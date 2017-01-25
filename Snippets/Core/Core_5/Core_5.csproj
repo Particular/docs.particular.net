@@ -79,9 +79,6 @@
     <Content Include="Audit\Audit.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Encryption\Configuration\encryption.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -162,14 +159,7 @@
     <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\Conventions\MessageWithLargePayload.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
-    <Compile Include="Encryption\Conventions\Message.cs" />
-    <Compile Include="Encryption\Conventions\Usage.cs" />
-    <Compile Include="Encryption\EncryptionService\Usage.cs" />
-    <Compile Include="Encryption\EncryptionService\EncryptionService.cs" />
-    <Compile Include="Encryption\Configuration\ProvideConfiguration.cs" />
-    <Compile Include="Encryption\Configuration\FromCode.cs" />
-    <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
-    <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
+    <Compile Include="MessageBodyEncryption\MessageEncryptor.cs" />
     <Compile Include="Recoverability\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Recoverability\Immediate\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Recoverability\Immediate\ConfigurationSource\Usage.cs" />
@@ -254,10 +244,9 @@
     <Compile Include="ScaleOut\IndividualizeQueues.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
-    <Compile Include="Encryption\MessageBody\Usage.cs" />
+    <Compile Include="MessageBodyEncryption\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="License.cs" />
-    <Compile Include="Encryption\Usage.cs" />
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="Logging\BuiltInConfig.cs" />
     <Compile Include="Installers.cs" />

@@ -5,8 +5,8 @@
     using System.Runtime.Remoting.Messaging;
     using System.Threading;
     using System.Threading.Tasks;
-    using Encryption.Conventions;
     using NServiceBus;
+    using IMessage = NServiceBus.IMessage;
 
     #region HandlerWhichIntegratesWithEvent
 
@@ -173,5 +173,10 @@
             Thread.Sleep(1000);
             return "Hello from remote.";
         }
+    }
+
+    public class MyMessage :
+        IMessage
+    {
     }
 }

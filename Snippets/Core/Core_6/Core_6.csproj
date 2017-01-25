@@ -92,16 +92,8 @@
     <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
-    <Compile Include="Encryption\Configuration\FromCode.cs" />
-    <Compile Include="Encryption\Configuration\ProvideConfiguration.cs" />
-    <Compile Include="Encryption\Conventions\Message.cs" />
-    <Compile Include="Encryption\Conventions\Usage.cs" />
-    <Compile Include="Encryption\EncryptionService\EncryptionService.cs" />
-    <Compile Include="Encryption\EncryptionService\Usage.cs" />
-    <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
-    <Compile Include="Encryption\MessageBody\Usage.cs" />
-    <Compile Include="Encryption\Usage.cs" />
-    <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
+    <Compile Include="MessageBodyEncryption\MessageEncryptor.cs" />
+    <Compile Include="MessageBodyEncryption\Usage.cs" />
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="Features\Features.cs" />
     <Compile Include="Features\MyStartupTaskThatUsesMessageSession.cs" />
@@ -251,9 +243,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Audit\Audit.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Headers\Writers\HeaderWriterAuditAudit.txt" />

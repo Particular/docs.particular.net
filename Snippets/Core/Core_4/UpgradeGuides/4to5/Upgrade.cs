@@ -2,11 +2,9 @@
 {
     using System;
     using NServiceBus;
-    using NServiceBus.Encryption;
     using NServiceBus.Installation.Environments;
     using NServiceBus.Logging;
     using NServiceBus.Transports;
-    using Encryption.EncryptionService;
 
     class Upgrade
     {
@@ -44,11 +42,6 @@
                 type =>
                 {
                     return type.Namespace == "Messages";
-                });
-            configure.DefiningEncryptedPropertiesAs(
-                property =>
-                {
-                    return property.Name.StartsWith("Encrypted");
                 });
             configure.DefiningDataBusPropertiesAs(
                 property =>
@@ -292,28 +285,6 @@
 
             var configure = Configure.With();
             configure.PurgeOnStartup(true);
-
-            #endregion
-        }
-
-        public void EncryptionServiceSimple()
-        {
-            #region 4to5EncryptionServiceSimple
-
-            var configure = Configure.With();
-            configure.RijndaelEncryptionService();
-
-            #endregion
-        }
-
-        public void FromCustomIEncryptionService()
-        {
-            #region 4to5EncryptionFromIEncryptionService
-
-            // where EncryptionService implements IEncryptionService
-            var configure = Configure.With();
-            var components = configure.Configurer;
-            components.RegisterSingleton<IEncryptionService>(new EncryptionService());
 
             #endregion
         }

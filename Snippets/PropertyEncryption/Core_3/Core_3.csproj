@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D52A6FEB-CC19-49C3-AF92-475669D2FF25}</ProjectGuid>
+    <ProjectGuid>{5FB8D00E-CA45-4BED-B4EB-8A1F9CA27100}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoreAll</RootNamespace>
-    <AssemblyName>CoreAll</AssemblyName>
+    <RootNamespace>Core3</RootNamespace>
+    <AssemblyName>Core3</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -25,36 +25,30 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Management.Automation" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Messaging" />
-    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.csproj">
-      <Project>{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
+    <Content Include="Configuration\encryption.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\GlobalSuppressions.cs">
-      <Link>GlobalSuppressions.cs</Link>
-    </Compile>
-    <Compile Include="ApprovalTestConfig.cs" />
-    <Compile Include="AsyncSuffix\MissingAwaitTests.cs" />
-    <Compile Include="Recoverability.cs" />
+    <Compile Include="Configuration\ProvideConfiguration.cs" />
+    <Compile Include="Conventions\MyMessage.cs" />
+    <Compile Include="Conventions\Usage.cs" />
+    <Compile Include="EncryptionService\EncryptionService.cs" />
+    <Compile Include="EncryptionService\Usage.cs" />
+    <Compile Include="Usage.cs" />
+    <Compile Include="WireEncryptedProperty\MyMessage.cs" />
+    <Compile Include="UpgradeGuides\3to4\Upgrade.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="project.json" />
-    <None Include="AsyncSuffix\MissingAwait.cs" />
-    <Compile Include="AsyncSuffix\MissingTaskUsageDetector.cs" />
-    <Compile Include="AsyncSuffix\MissingTaskUsageDetectorTests.cs" />
-    <Compile Include="AsyncSuffix\TaskExtensions.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

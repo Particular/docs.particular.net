@@ -1,8 +1,10 @@
 ---
 title: Security
 summary: Security Table of Contents
-reviewed: 2016-11-16
+reviewed: 2017-01-25
 tags:
-- Encryption
-- Security
+ - Encryption
+ - Security
+redirects:
+ - nservicebus/security/encryption
 ---

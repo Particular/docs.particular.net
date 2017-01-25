@@ -50,6 +50,15 @@
 #  NugetOrder:
 #    - NServiceBus.OracleAQ
 
+- Key: PropertyEncryption
+  Name: Message Property Encryption
+  DocoUrl: nservicebus/security/property-encryption
+  Category: Other
+  GitHubOwner: Particular/nservicebus-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus.Encryption.MessageProperty
+  NugetOrder:
+    - NServiceBus
+
 - Key: PostgreSQL
   Name: PostgreSQL Persistence
   DocoUrl: https://github.com/fhalim/NServiceBus.PostgreSQL

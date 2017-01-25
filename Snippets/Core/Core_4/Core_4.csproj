@@ -60,8 +60,8 @@
     <Compile Include="Container\Usage.cs" />
     <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
-    <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
-    <Compile Include="Encryption\MessageBody\Usage.cs" />
+    <Compile Include="MessageBodyEncryption\MessageEncryptor.cs" />
+    <Compile Include="MessageBodyEncryption\Usage.cs" />
     <Compile Include="Persistence\Custom\Usage.cs" />
     <Compile Include="Recoverability\CustomFaultManager.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicy.cs" />
@@ -102,12 +102,6 @@
     <Compile Include="DataBus\Conventions\MessageConventions.cs" />
     <Compile Include="DataBus\Conventions\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
-    <Compile Include="Encryption\Configuration\ProvideConfiguration.cs" />
-    <Compile Include="Encryption\Conventions\Message.cs" />
-    <Compile Include="Encryption\Conventions\Usage.cs" />
-    <Compile Include="Encryption\EncryptionService\Usage.cs" />
-    <Compile Include="Encryption\EncryptionService\EncryptionService.cs" />
-    <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
     <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
     <Compile Include="Recoverability\ErrorQueue\ConfigurationSource\Usage.cs" />
@@ -185,9 +179,6 @@
     <Compile Include="Transports\Throughput\Usage.cs" />
     <Compile Include="UpgradeGuides\4to5\Scheduler.cs" />
     <Compile Include="UpgradeGuides\4to5\Upgrade.cs" />
-    <Content Include="Encryption\Configuration\encryption.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
@@ -197,7 +188,6 @@
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Hosting.cs" />
     <Compile Include="License.cs" />
-    <Compile Include="Encryption\Usage.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Installers.cs" />
   </ItemGroup>

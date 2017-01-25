@@ -27,11 +27,6 @@
                 {
                     return type.Namespace == "MyNamespace.Messages";
                 });
-            configure.DefiningEncryptedPropertiesAs(
-                property =>
-                {
-                    return property.Name.StartsWith("Encrypted");
-                });
             configure.DefiningDataBusPropertiesAs(
                 property =>
                 {

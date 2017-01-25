@@ -1,13 +1,11 @@
 ---
 title: Encryption
 reviewed: 2016-03-21
-component: Core
+component: PropertyEncryption
 tags:
 - Encryption
 redirects:
 - nservicebus/encryption-sample
-related:
-- nservicebus/security/encryption
 ---
 
 

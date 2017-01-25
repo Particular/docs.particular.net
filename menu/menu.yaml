@@ -684,8 +684,8 @@
       Title: Transactions and Message Processing
     - Url: nservicebus/operations/auditing
       Title: Auditing Messages
-    - Url: nservicebus/security/encryption
-      Title: Encryption
+    - Url: nservicebus/security/property-encryption
+      Title: Message Property Encryption
     - Url: nservicebus/operations/configuring-aws
       Title: NServiceBus in AWS
     - Url: nservicebus/operations/dotnet-framework-version-requirements

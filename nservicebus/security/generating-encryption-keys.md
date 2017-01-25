@@ -7,7 +7,7 @@ tags:
 reviewed: 2016-11-16
 related:
  - nservicebus/security
- - nservicebus/security/encryption
+ - nservicebus/security/property-encryption
 ---
 
 There are multiple ways of generating a key. Most implementations rely on a *random* object. All examples mentioned here use a secure cryptographic randomizer.

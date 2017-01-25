@@ -6,7 +6,8 @@ component: Core
 tags:
 - Encryption
 related:
-- nservicebus/security/encryption
+- nservicebus/security
+- nservicebus/security/property-encryption
 - nservicebus/pipeline/message-mutators
 ---
 

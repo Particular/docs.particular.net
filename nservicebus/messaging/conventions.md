@@ -18,7 +18,7 @@ Currently conventions exist to identify:
  * [Commands](/nservicebus/messaging/messages-events-commands.md)
  * [Events](/nservicebus/messaging/messages-events-commands.md)
  * [Messages](/nservicebus/messaging/messages-events-commands.md)
- * [Encryption](/nservicebus/security/encryption.md)
+ * [Message Property Encryption](/nservicebus/security/property-encryption.md)
  * [DataBus](/nservicebus/messaging/databus/)
  * [Express messages](/nservicebus/messaging/non-durable-messaging.md)
  * [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md)

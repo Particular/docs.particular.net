@@ -93,7 +93,7 @@ The Pipeline refers to the series of actions taken when an incoming message is p
 A Behavior is a single step in the Pipeline.
 
 
-### [Encryption](/nservicebus/security/encryption.md)
+### [Message Property Encryption](/nservicebus/security/property-encryption.md)
 
 NServiceBus has both built in encryption and extension points to create fully customized encryption models.
 

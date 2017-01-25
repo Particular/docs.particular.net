@@ -35,23 +35,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.csproj">
-      <Project>{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\GlobalSuppressions.cs">
-      <Link>GlobalSuppressions.cs</Link>
-    </Compile>
-    <Compile Include="ApprovalTestConfig.cs" />
-    <Compile Include="AsyncSuffix\MissingAwaitTests.cs" />
-    <Compile Include="Recoverability.cs" />
     <None Include="project.json" />
-    <None Include="AsyncSuffix\MissingAwait.cs" />
-    <Compile Include="AsyncSuffix\MissingTaskUsageDetector.cs" />
-    <Compile Include="AsyncSuffix\MissingTaskUsageDetectorTests.cs" />
-    <Compile Include="AsyncSuffix\TaskExtensions.cs" />
+    <None Include="Hex.ps1" />
+    <None Include="Base64.ps1" />
+    <None Include="SecurityHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

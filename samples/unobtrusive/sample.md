@@ -28,7 +28,7 @@ The code tells NServiceBus to treat all types with a namespace that ends with "M
 
 The above code instructs NServiceBus to encrypt any property that starts with the string Encrypted and resides in any class in the namespaces that ends with Command or Events, or in namespaces that are equal to Messages.
 
-The encryption algorithm is declared in `app.config` of both client and server with the  `RijndaelEncryptionServiceConfig` section name. See the [Encryption](/nservicebus/security/encryption.md). NServiceBus supports property level encryption by using a special `WireEncryptedString` property. The code snippet shows the unobtrusive way to tell NServiceBus which properties to encrypt.
+The encryption algorithm is declared in `app.config` of both client and server with the  `RijndaelEncryptionServiceConfig` section name. See the [Message Property Encryption](/nservicebus/security/property-encryption.md). NServiceBus supports property level encryption by using a special `WireEncryptedString` property. The code snippet shows the unobtrusive way to tell NServiceBus which properties to encrypt.
 
 It also shows the unobtrusive way to tell NServiceBus which properties to deliver on a separate channel from the message itself using the [Data Bus](/nservicebus/messaging/databus/) feature, and which messages are express and/or have a defined time to be received.
 

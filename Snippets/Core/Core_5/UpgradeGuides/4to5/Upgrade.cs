@@ -54,11 +54,6 @@ namespace Core5.UpgradeGuides._4to5
                     return type.Namespace != null &&
                            type.Namespace == "Messages";
                 });
-            conventions.DefiningEncryptedPropertiesAs(
-                property =>
-                {
-                    return property.Name.StartsWith("Encrypted");
-                });
             conventions.DefiningDataBusPropertiesAs(
                 property =>
                 {
@@ -313,15 +308,6 @@ namespace Core5.UpgradeGuides._4to5
             #region 4to5PurgeOnStartup
 
             busConfiguration.PurgeOnStartup(true);
-
-            #endregion
-        }
-
-        void EncryptionServiceSimple(BusConfiguration busConfiguration)
-        {
-            #region 4to5EncryptionServiceSimple
-
-            busConfiguration.RijndaelEncryptionService();
 
             #endregion
         }

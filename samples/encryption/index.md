@@ -2,5 +2,6 @@
 title: Encryption Samples
 reviewed: 2016-09-06
 related:
- - nservicebus/security/encryption
+ - nservicebus/security/property-encryption
+ - nservicebus/security/body-encryption
 ---

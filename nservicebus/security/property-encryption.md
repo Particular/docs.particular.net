@@ -1,6 +1,6 @@
 ---
 title: Encryption
-component: Core
+component: PropertyEncryption
 reviewed: 2016-11-16
 tags:
 - Encryption
@@ -12,8 +12,6 @@ related:
 ---
 
 
-## Property Encryption
-
 Property encryption operates on specific properties of a message. The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible.
 
 The encryption algorithm used is [Rijndael](https://msdn.microsoft.com/en-us/library/system.security.cryptography.rijndael.aspx).
@@ -23,12 +21,12 @@ Keep in mind that the security is only as strong as the keys; if the key is expo
 partial: default
 
 
-### Defining encrypted properties
+## Defining encrypted properties
 
 There are two ways of telling NServiceBus what properties to encrypt.
 
 
-#### Convention
+### Convention
 
 Given a message of this convention
 
@@ -39,21 +37,21 @@ Encrypt `MyEncryptedProperty` by using `DefiningEncryptedPropertiesAs`.
 snippet:DefiningEncryptedPropertiesAs
 
 
-#### Property type
+### Property type
 
 Use the `WireEncryptedString` type to flag that a property should be encrypted.
 
 snippet: MessageWithEncryptedProperty
 
 
-### Enabling property encryption
+## Enabling property encryption
 
 Property encryption is enabled via the configuration API.
 
 snippet:EncryptionServiceSimple
 
 
-#### Key ID
+### Key ID
 
 Each key needs an unique key ID (`KeyIdentifier`). The key ID is communicated in the message header and allows the receiving endpoint to use the correct decryption key.
 
@@ -76,7 +74,7 @@ All previous versions support decrypting messages that have encrypted fragments 
 }}
 
 
-#### Key ID naming strategy
+### Key ID naming strategy
 
 A key ID identifies which key is used and it must not expose anything about the key itself.
 
@@ -97,7 +95,7 @@ NOTE: Random named key IDs DO NOT improve security as the key ID is not encrypte
 NOTE: Using a time-based key name does not weaken encryption. Messages already contain a timestamp that can be used to search for messages within a certain time range.
 
 
-### Using the same key with and without a key ID
+## Using the same key with and without a key ID
 
 If the `KeyIdentifier` attribute is set for a key then it will be used to decrypt message properties with a matching key ID but it will also be used to attempt decryption for messages without a key ID.
 
@@ -105,14 +103,14 @@ If the `KeyIdentifier` attribute is set for a key then it will be used to decryp
 partial: keyformat
 
 
-### Defining the encryption key
+## Defining the encryption key
 
 When encryption is enabled, the encryption and decryption keys must be configured.
 
 Note: Both the sending and the receiving side must use the same key to communicate encrypted information.
 
 
-### Key strength
+## Key strength
 
 Description        | Calculation| Combinations
 -------------------|------------|-------
@@ -132,21 +130,21 @@ NOTE: Use Base64 key format if possible and ASCII 32 key format for backward com
 partial: code
 
 
-#### Via App.config
+### Via App.config
 
 The encryption key can be defined in the `app.config`.
 
 snippet: EncryptionFromAppConfig
 
 
-#### Via IProvideConfiguration
+### Via IProvideConfiguration
 
 snippet:EncryptionFromIProvideConfiguration
 
 For more info on `IProvideConfiguration` see [Customizing NServiceBus Configuration](/nservicebus/hosting/custom-configuration-providers.md)
 
 
-### Multi-Key decryption
+## Multi-Key decryption
 
 Several of the examples above used both an encryption key and **multiple** decryption keys.
 
@@ -155,23 +153,10 @@ This feature allows a phased approach to key rotation. Endpoints can update to a
 When the original encryption key is replaced by a new encryption key, in-flight messages that were encrypted with the original key will not be decrypted unless the original encryption key is added to a list of decryption keys.
 
 
-### Custom handling of property encryption
+## Custom handling of property encryption
 
 To take full control over how properties are encrypted replace the `IEncryptionService` instance.
 
 This allows explicit handling of the encryption and decryption of each value. So for example to use an algorithm other than Rijndael.
 
 snippet:EncryptionFromIEncryptionService
-
-
-## Message Encryption
-
-Message encryption leverages the pipeline to encrypt the entire serialized message body.
-
-One way of achieving this is by using a [transport message mutator](/nservicebus/pipeline/message-mutators.md#two-flavors-of-mutators-transport-messages-mutators).
-
-snippet:MessageBodyEncryptor
-
-The encrypting mutator must be injected into the container:
-
-snippet:UsingMessageBodyEncryptor

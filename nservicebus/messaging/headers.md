@@ -398,7 +398,7 @@ snippet: HeaderWriterErrorError
 
 ## Encryption Headers
 
-Headers when using [property encryption](/nservicebus/security/encryption.md).
+Headers when using [message property encryption](/nservicebus/security/property-encryption.md).
 
 
 ### NServiceBus.RijndaelKeyIdentifier
