@@ -272,9 +272,6 @@
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Outbox\EnablingInConfig.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="UpgradeGuides\5to6\null.xml" />
     <None Include="project.json" />
   </ItemGroup>
