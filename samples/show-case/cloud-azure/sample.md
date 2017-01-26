@@ -11,7 +11,6 @@ This sample implements a fictional store that can be deployed to Azure. It is di
  1. Order products from the website. Once orders are submitted, there is a window of time allocated for handling cancellations due to buyer's remorse. Once the order has been accepted, they are provisioned and made available for download. If the order is cancelled before the buyer's remorse timeout, nothing is provisioned for download.
 
 
-
 include: showcase-walkthrough
 
 
@@ -22,7 +21,7 @@ In implementing the above workflow various aspects are highlighted:
 
 ### Azure Storage Queues Transport
 
-All endpoints in the solution communicate using the [Azure Storage Queues transport](/nservicebus/azure-storage-queues/). The sample has been configured to use the Azure Storage Emulator. 
+All endpoints in the solution communicate using the [Azure Storage Queues transport](/nservicebus/azure-storage-queues/). The sample has been configured to use the Azure Storage Emulator.
 
 
 ### Azure Storage Persistence

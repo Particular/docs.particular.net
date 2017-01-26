@@ -5,7 +5,7 @@ reviewed: 2016-03-21
 component: Core
 ---
 
-This sample implements a fictional store. It is different from most samples in that it shows many features of NServiceBus working together
+This sample implements a fictional store. It is different from most samples in that it shows many features of NServiceBus working together.
 
 
 include: showcase-walkthrough

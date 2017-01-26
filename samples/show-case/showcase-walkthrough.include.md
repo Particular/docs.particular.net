@@ -103,7 +103,7 @@ graph LR
 
 ### Customer Relations
 
-The CustomerRelations endpoint is subscribed to `OrderAccepted` events. When a customer order is accepted, the CustomerRelations endpoint publishes a `ClientBecamePreferred` event. This event only has one subscriber, CustomerRelations itself, which will use send the customer a welcome pack and a limitied time offer when a customer becomes preferred.
+The CustomerRelations endpoint is subscribed to `OrderAccepted` events. When a customer order is accepted, the CustomerRelations endpoint publishes a `ClientBecamePreferred` event. This event only has one subscriber, CustomerRelations itself, which will use send the customer a welcome pack and a limited time offer when a customer becomes preferred.
 
 ```mermaid
 graph LR
