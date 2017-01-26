@@ -24,6 +24,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.Recoverability().DisableLegacyRetriesSatellite();
 
         #region BrokeredMessageConvention
 
