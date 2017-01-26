@@ -35,11 +35,16 @@ In each lesson, look for any lines of code that look like this, which configure 
 
 Replace this:
 
-snippet:MsmqTransport
+```cs
+var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+```
 
 With this, which will select the SQL Server transport, and configure a connection string to your database instance:
 
-snippet:SqlServerTransport
+```cs
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+transport.ConnectionString(@"Server=.\sqlexpress;Initial Catalog=NServiceBusAcademy;Trusted_Connection=true;Max Pool Size=100;");
+```
 
 The connection string provided assumes use of SQL Express. You may need to change the connection string as appropriate to connect to your SQL Server instance.
 
