@@ -27,6 +27,8 @@ In Version 5 the implementation of the interface `ICreateQueues` was called for 
 
 snippet: 5to6-QueueCreation
 
+See also [transport-specific queue creation](/nservicebus/msmq/operations-scripting.md#create-queues).
+
 
 ## [Features](/nservicebus/pipeline/features.md)
 
@@ -62,7 +64,7 @@ To learn more about using Performance Counters, refer to the [Performance Counte
 
 `IDequeueMessages` has been obsoleted and is replaced by `IPushMessages`. The interfaces are equivalent so if implementing a transport, implement the new interface. `PushContext` has been given a new property `PushContext.ReceiveCancellationTokenSource`, revealing the intent of cancellation for receiving the current message. The transport implementation should act accordingly, canceling the receive when the source's token is canceled.
 
-The `ConfigureTransport` class was deprecated. Custom transports are now configured using the `TransportDefinition` class, see [this sample](/samples/custom-transport) for more information.
+The `ConfigureTransport` class was deprecated. Custom transports are now configured using the `TransportDefinition` class, see [Custom Transport Sample](/samples/custom-transport) for more information.
 
 
 ## Corrupted messages
