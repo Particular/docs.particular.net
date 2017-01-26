@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus 101 Lesson 1: Getting started"
-reviewed: 2017-01-24
+reviewed: 2017-01-26
 ---
 
 In the next 10 minutes, you will learn how to set up a new development machine for NServiceBus and create your very first messaging endpoint.
@@ -17,7 +17,7 @@ NServiceBus needs queuing infrastructure (a [transport](/nservicebus/transports/
 {{NOTE:
 In some environments, you may not have sufficient privileges on your system to install MSMQ. Or, you may be hesitant to introduce a new piece of infrastructure if not absolutely necessary. If this is the case, you can use the [SQL Server Transport](/nservicebus/sqlserver/) instead, as most developers have ready access to a SQL Server instance, or can install [SQL Server Express](http://downloadsqlserverexpress.com/) locally.
 
-To get started using the SQL Server transport for this guide, see the [SQL Server transport setup instructions](using-sql-transport.md). Throughout the rest of the guide, instructions that differ between the SQL and MSMQ transports will be highlighted in an informational box like this one.
+To get started using the SQL Server transport for this guide, see the [SQL Server transport setup instructions](../using-sql-transport.md). Throughout the rest of the guide, instructions that differ between the SQL and MSMQ transports will be highlighted in an informational box like this one.
 }}
 
 To install MSMQ on your machine, you have two options:
@@ -48,7 +48,7 @@ Install-Package NServiceBus -ProjectName ClientUI
 
 This adds a reference to the NServiceBus.Core assembly to the project.
 
-NOTE: If you are using the SQL Server transport, you also need to install the `NServiceBus.SqlServer` package before continuing. See [Using the SQL Server transport - Adding the NuGet package](using-sql-transport.md#modifying-each-endpoint-adding-the-nuget-package) for more details.
+NOTE: If you are using the SQL Server transport, you also need to install the `NServiceBus.SqlServer` package before continuing. See [Using the SQL Server transport - Adding the NuGet package](/tutorials/nservicebus-101/using-sql-transport.md#modifying-each-endpoint-adding-the-nuget-package) for more details.
 
 With the proper dependencies in place, we're ready to start writing code.
 
@@ -92,7 +92,7 @@ snippet:MsmqTransport
 
 This setting defines the [**transport**](/nservicebus/transports/) that NServiceBus will use to send and receive messages. We are using the `MsmqTransport`, which is bundled within the NServiceBus core library. All other transports require different NuGet packages.
 
-NOTE: If using the SQL Server transport, you must use the `SqlServerTransport` and provide a connection string to the database. See [Using the SQL Server transport - Configuring the transport](using-sql-transport.md#modifying-each-endpoint-configuring-the-transport) for more details.
+NOTE: If using the SQL Server transport, you must use the `SqlServerTransport` and provide a connection string to the database. See [Using the SQL Server transport - Configuring the transport](/tutorials/nservicebus-101/using-sql-transport.md#modifying-each-endpoint-configuring-the-transport) for more details.
 
 
 #### Serializer

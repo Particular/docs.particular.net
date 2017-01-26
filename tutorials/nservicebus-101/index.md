@@ -1,7 +1,7 @@
 ---
 title: "NServiceBus 101: Messaging Basics"
 suppressRelated: true
-reviewed: 2016-11-16
+reviewed: 2017-01-26
 ---
 
 In this course, you will learn how to get working quickly with NServiceBus.

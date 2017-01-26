@@ -1,6 +1,6 @@
 ---
 title: Using the SQL Server transport
-reviewed: 2017-01-24
+reviewed: 2017-01-26
 ---
 
 NServiceBus is a messaging framework and requires a **message transport** to move messages around. Natively, NServiceBus supports Microsoft Message Queuing (MSMQ), RabbitMQ, Azure Storage Queues, Azure Service Bus, and SQL Server as message transports. (Although SQL Server is not a message queue, the SQL Server Transport emulates queues within database tables.)
@@ -24,7 +24,7 @@ Each endpoint must have a reference to the **NServiceBus.SqlServer** NuGet packa
 
 The [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) NuGet package contains the code that allows NServiceBus to use SQL Server tables as queues.
 
-To use the SQL Server transport instead of MSMQ, you will need to add the NuGet package to each Console Application project that is hosting a messaging endpoint. For example, to add the NuGet package to the ClientUI project in [Lesson 1](tutorial.md):
+To use the SQL Server transport instead of MSMQ, you will need to add the NuGet package to each Console Application project that is hosting a messaging endpoint. For example, to add the NuGet package to the ClientUI project in [Lesson 1](lesson-1/):
 
     Install-Package NServiceBus.SqlServer -ProjectName ClientUI
 

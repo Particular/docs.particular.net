@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus 101 Lesson 5: Retrying errors"
-reviewed: 2016-11-16
+reviewed: 2017-01-26
 ---
 
 In software systems, exceptions will occur. Even with perfect, bug-free code, problems will arise when we have to deal with the issue of connectivity. If a database is overloaded, or a web service is down, we have no recourse except to try again.
@@ -166,7 +166,7 @@ To get these tools, we'll use the [Particular Platform Installer](/platform/inst
 If you need to install the Service Platform, or if you just aren't sure:
 
 1. Download the [Platform Installer](https://particular.net/start-platform-download).
-1. Launch the **ParticularPlatform.exe** you downloaded, and use it to install the Particular Service Platform [according to the instructions](https://docs.particular.net/platform/installer/).
+1. Launch the **ParticularPlatform.exe** you downloaded, and use it to install the Particular Service Platform [according to the instructions](/platform/installer/).
 
 NOTE: If you are using the SQL Server transport, you can uncheck the **Configure Microsoft Message Queuing** option, if you are not allowed to install it in your environment. It is only required for the MSMQ transport. All other checkboxes should remain selected.
 
