@@ -13,9 +13,9 @@
   <!--startcode sqlserver-non-standard-schema-messagemapping -->
   <connectionStrings>
     <add name="NServiceBus/Transport"
-         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True;"/>
+         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Max Pool Size=80"/>
     <add name="NServiceBus/Transport/Billing"
-         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True;Queue Schema=receiver"/>
+         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Queue Schema=receiver; Max Pool Size=80"/>
   </connectionStrings>
   <UnicastBusConfig>
     <MessageEndpointMappings>

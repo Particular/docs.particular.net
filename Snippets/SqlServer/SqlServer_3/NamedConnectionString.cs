@@ -12,7 +12,8 @@ class NamedConnectionString
         #region sqlserver-config-connectionstring
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
+        transport.ConnectionString(
+            "Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True;Max Pool Size=80");
 
         #endregion
     }
