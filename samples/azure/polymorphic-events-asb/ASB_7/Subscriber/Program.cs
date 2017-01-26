@@ -48,6 +48,7 @@ class Program
             {
                 settings.NumberOfRetries(0);
             });
+        recoverability.DisableLegacyRetriesSatellite();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
