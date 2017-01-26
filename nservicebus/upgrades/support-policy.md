@@ -7,9 +7,19 @@ related:
  - nservicebus/upgrades/release-policy
 ---
 
-## Supported Versions
+## Policy
+
+### NServiceBus package
 
 Supported versions include any major version released within the last 3 years. Within a supported major version, the latest minor version is supported, or any minor version released within the last year.
+
+### Downstream packages
+
+A downstream package is a package which is dependent on the NServiceBus package. For example, [transport](/nservicebus/transports/) or [persistence](/nservicebus/persistence/) packages.
+
+Supported versions include any major version released within the last 3 years. Within a supported major version, the latest minor version is supported.
+
+## Supported Versions
 
 WARNING: If a version is not listed or has expired, but support is required contact [Particular support](https://particular.net/support).
 
