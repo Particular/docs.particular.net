@@ -117,6 +117,7 @@
     <Compile Include="Sagas\FindByProperty\MySagaData.cs" />
     <Compile Include="Sagas\FindSagas\DbSessionProvider.cs" />
     <Compile Include="Sagas\FindSagas\MySagaFinder.cs" />
+    <Compile Include="UpgradeGuides\5to6\QueueCreation.cs" />
     <Compile Include="UpgradeGuides\5to6\Recoverability\DelayedDelivery.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStartAndStop.cs" />

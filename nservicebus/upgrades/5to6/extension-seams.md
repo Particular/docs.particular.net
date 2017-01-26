@@ -21,9 +21,13 @@ upgradeGuideCoreVersions:
 `IOutboxStorage` introduced a new parameter `OutboxStorageOptions`. This parameter gives access to the pipeline context. This enables outbox storage methods to manipulate everything that exists in the context during message pipeline execution.
 
 
-## Queue creation
+## [Queue creation](/nservicebus/transports/queuecreation.md)
 
 In Version 5 the implementation of the interface `ICreateQueues` was called for each queue that needed to be created. In Version 6 `ICreateQueues` has been redesigned. The implementation of the interface gets called once but with all queues provided on the `QueueBindings` object. It is now up to the implementation of that interface if the queues are created asynchronously in a sequential order or even in parallel.
+
+snippet: 5to6-QueueCreation
+
+See also [transport-specific queue creation](/nservicebus/msmq/operations-scripting.md#create-queues).
 
 
 ## [Features](/nservicebus/pipeline/features.md)
@@ -60,7 +64,7 @@ To learn more about using Performance Counters, refer to the [Performance Counte
 
 `IDequeueMessages` has been obsoleted and is replaced by `IPushMessages`. The interfaces are equivalent so if implementing a transport, implement the new interface. `PushContext` has been given a new property `PushContext.ReceiveCancellationTokenSource`, revealing the intent of cancellation for receiving the current message. The transport implementation should act accordingly, canceling the receive when the source's token is canceled.
 
-The `ConfigureTransport` class was deprecated. Custom transports are now configured using the `TransportDefinition` class, see [this sample](/samples/custom-transport) for more information.
+The `ConfigureTransport` class was deprecated. Custom transports are now configured using the `TransportDefinition` class, see [Custom Transport Sample](/samples/custom-transport) for more information.
 
 
 ## Corrupted messages

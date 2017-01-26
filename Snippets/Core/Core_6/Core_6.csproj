@@ -142,6 +142,8 @@
     <Compile Include="Features\MyFeatureWithStartupTasks.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
+    <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
+    <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameHelper.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStartStop.cs" />
@@ -229,6 +231,7 @@
     <Compile Include="Transports\Throughput\ConcurrencyConfiguration.cs" />
     <Compile Include="TransportTransactions.cs" />
     <Compile Include="UpgradeGuides\5to6\MsmqSubscriptionAuthorization.cs" />
+    <Compile Include="UpgradeGuides\5to6\QueueCreation.cs" />
     <Compile Include="UpgradeGuides\5to6\Recoverability\CustomRetryPolicy.cs" />
     <Compile Include="UpgradeGuides\5to6\Recoverability\Recoverability.cs" />
     <Compile Include="UpgradeGuides\5to6\Saga.cs" />
