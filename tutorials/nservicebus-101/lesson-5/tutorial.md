@@ -80,7 +80,7 @@ Sometimes, a new release will contain a bug in handler logic that isn't found un
 
 ## Exercise
 
-In this exercise we'll experiment with the different retry options we can use within an endpoint. Then, we'll use the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) monitoring tools to replay a failed message.
+In this exercise we'll experiment with the different retry options we can use within an endpoint. Then we'll use the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) monitoring tools to replay a failed message.
 
 This is an exploratory exercise without a lot of coding. We'll use the completed solution from the previous lesson.
 
@@ -181,8 +181,8 @@ Next, in the **ServiceControl Management** window, click the **Add new instance*
 
 First and foremost, under the **General** heading, take note of the host name and port (`localhost:33333` by default) as you will need these later.
 
-{[NOTE:
-If you are using the SQL Server transport and , you will need to make a few extra modifications.
+{{NOTE:
+If you are using the SQL Server transport, you will need to make a few extra modifications.
 
 If you are connecting to your database using Windows security, you'll need to modify the Windows service configuration under the **General** heading so that the service runs under your user account:
 
@@ -192,7 +192,7 @@ If you are connecting to your database using Windows security, you'll need to mo
 Next, scroll down to the **Transport Configuration** heading:
  1. Change the **Transport** dropdown value to **SQLServer**, which will cause a **Transport Connection String** text box to appear.
  1. Add the same connection string to the **Transport Connection String** text box you're using for your NServiceBus project. (The default used in the exercise was `Server=.\sqlexpress;Initial Catalog=NServiceBusAcademy;Trusted_Connection=true;`)
-]}
+}}
 
 Last, scroll down to the **Queues Configuration** heading:
 

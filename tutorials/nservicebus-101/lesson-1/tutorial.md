@@ -14,11 +14,7 @@ Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operation
 
 NServiceBus needs queuing infrastructure (a [transport](/nservicebus/transports/)) to move messages around. By default, this course will use **Microsoft Message Queuing (MSMQ)**, which is included with every version of Windows, although it is not installed by default.
 
-{{NOTE:
-In some environments, you may not have sufficient privileges on your system to install MSMQ. Or, you may be hesitant to introduce a new piece of infrastructure if not absolutely necessary. If this is the case, you can use the [SQL Server Transport](/nservicebus/sqlserver/) instead, as most developers have ready access to a SQL Server instance, or can install [SQL Server Express](http://downloadsqlserverexpress.com/) locally.
-
-To get started using the SQL Server transport for this guide, see the [SQL Server transport setup instructions](../using-sql-transport.md). Throughout the rest of the guide, instructions that differ between the SQL and MSMQ transports will be highlighted in an informational box like this one.
-}}
+NOTE: If MSMQ is not an option for your environment, the [SQL Server Transport](/nservicebus/sqlserver/) can be used as a message transport instead. To get started using the SQL instead of MSMQ, review the [SQL Server transport setup instructions](../using-sql-transport.md). Throughout the rest of the guide, instructions that differ between the SQL and MSMQ transports will be highlighted in an informational box like this one.
 
 To install MSMQ on your machine, you have two options:
 
