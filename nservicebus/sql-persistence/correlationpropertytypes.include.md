@@ -4,7 +4,7 @@
 
 | CorrelationPropertyType | Sql Type |
 |--|--|
-| String | nvarchar(450) |
+| String | nvarchar(200) |
 | DateTime | datetime |
 | DateTimeOffset | datetimeoffset |
 | Int | bigint |
@@ -15,7 +15,7 @@
 
 | CorrelationPropertyType | Sql Type |
 |--|--|
-| String | varchar(450) |
+| String | varchar(200) character set utf8mb4 |
 | DateTime | datetime |
 | Int | bigint(20) |
-| Guid | varchar(38) |
+| Guid | varchar(38) character set ascii |

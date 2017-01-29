@@ -7,7 +7,7 @@ insert into EndpointNameSagaName
     Data,
     PersistenceVersion,
     SagaTypeVersion,
-    SagaVersion,
+    Concurrency,
     Correlation_CorrelationPproperty,
     Correlation_TransitionalCorrelationPproperty
 )

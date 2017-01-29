@@ -2,7 +2,9 @@ startcode MsSqlServer_SagaCreateSql
 
 /* TableNameVariable */
 
-declare @tableName nvarchar(max) = @tablePrefix + 'OrderSaga';
+declare @tableName nvarchar(max) = @tablePrefix + N'OrderSaga';
+
+/* Initialise */
 
 /* CreateTable */
 
@@ -23,7 +25,7 @@ set @createTable = '
         Data nvarchar(max) not null,
         PersistenceVersion varchar(23) not null,
         SagaTypeVersion varchar(23) not null,
-        SagaVersion int not null
+        Concurrency int not null
     )
 ';
 exec(@createTable);
@@ -35,13 +37,13 @@ if not exists
 (
   select * from sys.columns
   where
-    name = 'Correlation_OrderNumber' and
+    name = N'Correlation_OrderNumber' and
     object_id = object_id(@tableName)
 )
 begin
   declare @createColumn_OrderNumber nvarchar(max);
   set @createColumn_OrderNumber = '
-  alter table ' + @tableName + '
+  alter table ' + @tableName + N'
     add Correlation_OrderNumber bigint;';
   exec(@createColumn_OrderNumber);
 end
@@ -53,11 +55,14 @@ set @dataType_OrderNumber = (
   select data_type
   from information_schema.columns
   where
-    table_name = ' + @tableName + ' and
+    table_name = ' + @tableName + N' and
     column_name = 'Correlation_OrderNumber'
 );
 if (@dataType_OrderNumber <> 'bigint')
-  throw 50000, 'Incorrect data type for Correlation_OrderNumber', 0
+  begin
+    declare @error_OrderNumber nvarchar(max) = N'Incorrect data type for Correlation_OrderNumber. Expected bigint got ' + @dataType_OrderNumber + '.';
+    throw 50000, @error_OrderNumber, 0
+  end
 
 /* WriteCreateIndex OrderNumber */
 
@@ -66,14 +71,14 @@ if not exists
     select *
     from sys.indexes
     where
-        name = 'Index_Correlation_OrderNumber' and
+        name = N'Index_Correlation_OrderNumber' and
         object_id = object_id(@tableName)
 )
 begin
   declare @createIndex_OrderNumber nvarchar(max);
-  set @createIndex_OrderNumber = '
+  set @createIndex_OrderNumber = N'
   create unique index Index_Correlation_OrderNumber
-  on ' + @tableName + '(Correlation_OrderNumber)
+  on ' + @tableName + N'(Correlation_OrderNumber)
   where Correlation_OrderNumber is not null;';
   exec(@createIndex_OrderNumber);
 end
@@ -84,13 +89,13 @@ if not exists
 (
   select * from sys.columns
   where
-    name = 'Correlation_OrderId' and
+    name = N'Correlation_OrderId' and
     object_id = object_id(@tableName)
 )
 begin
   declare @createColumn_OrderId nvarchar(max);
   set @createColumn_OrderId = '
-  alter table ' + @tableName + '
+  alter table ' + @tableName + N'
     add Correlation_OrderId uniqueidentifier;';
   exec(@createColumn_OrderId);
 end
@@ -102,11 +107,14 @@ set @dataType_OrderId = (
   select data_type
   from information_schema.columns
   where
-    table_name = ' + @tableName + ' and
+    table_name = ' + @tableName + N' and
     column_name = 'Correlation_OrderId'
 );
 if (@dataType_OrderId <> 'uniqueidentifier')
-  throw 50000, 'Incorrect data type for Correlation_OrderId', 0
+  begin
+    declare @error_OrderId nvarchar(max) = N'Incorrect data type for Correlation_OrderId. Expected uniqueidentifier got ' + @dataType_OrderId + '.';
+    throw 50000, @error_OrderId, 0
+  end
 
 /* CreateIndex OrderId */
 
@@ -115,14 +123,14 @@ if not exists
     select *
     from sys.indexes
     where
-        name = 'Index_Correlation_OrderId' and
+        name = N'Index_Correlation_OrderId' and
         object_id = object_id(@tableName)
 )
 begin
   declare @createIndex_OrderId nvarchar(max);
-  set @createIndex_OrderId = '
+  set @createIndex_OrderId = N'
   create unique index Index_Correlation_OrderId
-  on ' + @tableName + '(Correlation_OrderId)
+  on ' + @tableName + N'(Correlation_OrderId)
   where Correlation_OrderId is not null;';
   exec(@createIndex_OrderId);
 end
@@ -138,8 +146,8 @@ select @dropIndexQuery =
         Id = (select object_id from sys.objects where name = @tableName) and
         Name is not null and
         Name like 'Index_Correlation_%' and
-        Name <> 'Index_Correlation_OrderNumber' and
-        Name <> 'Index_Correlation_OrderId'
+        Name <> N'Index_Correlation_OrderNumber' and
+        Name <> N'Index_Correlation_OrderId'
 );
 exec sp_executesql @dropIndexQuery
 
@@ -148,13 +156,13 @@ exec sp_executesql @dropIndexQuery
 declare @dropPropertiesQuery nvarchar(max);
 select @dropPropertiesQuery =
 (
-    select 'alter table ' + @tableName + ' drop column ' + column_name ';'
+    select 'alter table ' + @tableName + ' drop column ' + column_name + ';'
     from information_schema.columns
     where
         table_name = @tableName and
         column_name like 'Correlation_%' and
-        column_name <> 'Correlation_OrderNumber' and
-        column_name <> 'Correlation_OrderId'
+        column_name <> N'Correlation_OrderNumber' and
+        column_name <> N'Correlation_OrderId'
 );
 exec sp_executesql @dropPropertiesQuery
 

@@ -2,7 +2,7 @@ startcode MsSqlServer_SagaDropSql
 
 /* TableNameVariable */
 
-declare @tableName nvarchar(max) = @tablePrefix + 'OrderSaga';
+declare @tableName nvarchar(max) = @tablePrefix + N'OrderSaga';
 
 /* DropTable */
 

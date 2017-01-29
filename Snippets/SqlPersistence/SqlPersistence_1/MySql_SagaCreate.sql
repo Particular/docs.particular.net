@@ -5,6 +5,18 @@ startcode MySql_SagaCreateSql
 set @tableName = concat(@tablePrefix, 'OrderSaga');
 
 
+/* Initialise */
+
+drop procedure if exists sqlpersistence_raiseerror;
+create procedure sqlpersistence_raiseerror(message varchar(256))
+begin
+signal sqlstate
+    'ERROR'
+set
+    message_text = message,
+    mysql_errno = '45000';
+end;
+
 /* CreateTable */
 
 set @createTable = concat('
@@ -14,13 +26,13 @@ set @createTable = concat('
         Data json not null,
         PersistenceVersion varchar(23) not null,
         SagaTypeVersion varchar(23) not null,
-        SagaVersion int not null,
+        Concurrency int not null,
         primary key (Id)
-    ) default charset=utf8;
+    ) default charset=ascii;
 ');
-prepare statment from @createTable;
-execute statment;
-deallocate prepare statment;
+prepare script from @createTable;
+execute script;
+deallocate prepare script;
 
 /* AddProperty OrderNumber */
 
@@ -33,16 +45,16 @@ where table_schema = database() and
 
 set @query = IF(
     @exist <= 0,
-    concat('alter table ', @tableName, ' add column Correlation_OrderNumber bigint'), 'select \'Column Exists\' status');
+    concat('alter table ', @tableName, ' add column Correlation_OrderNumber bigint(20)'), 'select \'Column Exists\' status');
 
-prepare statment from @query;
-execute statment;
-deallocate prepare statment;
+prepare script from @query;
+execute script;
+deallocate prepare script;
 
 /* VerifyColumnType Int */
 
 set @column_type_OrderNumber = (
-  select column_type
+  select concat(column_type,' character set ', character_set_name)
   from information_schema.columns
   where
     table_schema = database() and
@@ -51,13 +63,13 @@ set @column_type_OrderNumber = (
 );
 
 set @query = IF(
-    @column_type_OrderNumber <> 'bigint',
-    'SIGNAL SQLSTATE \'45000\' SET MESSAGE_TEXT = \'Incorrect data type for Correlation_OrderNumber\'',
+    @column_type_OrderNumber <> 'bigint(20)',
+    'call sqlpersistence_raiseerror(concat(\'Incorrect data type for Correlation_OrderNumber. Expected bigint(20) got \', @column_type_OrderNumber, \'.\'));',
     'select \'Column Type OK\' status');
 
-prepare statment from @query;
-execute statment;
-deallocate prepare statment;
+prepare script from @query;
+execute script;
+deallocate prepare script;
 
 /* WriteCreateIndex OrderNumber */
 
@@ -73,9 +85,9 @@ set @query = IF(
     @exist <= 0,
     concat('create unique index Index_Correlation_OrderNumber on ', @tableName, '(Correlation_OrderNumber)'), 'select \'Index Exists\' status');
 
-prepare statment from @query;
-execute statment;
-deallocate prepare statment;
+prepare script from @query;
+execute script;
+deallocate prepare script;
 
 /* AddProperty OrderId */
 
@@ -88,16 +100,16 @@ where table_schema = database() and
 
 set @query = IF(
     @exist <= 0,
-    concat('alter table ', @tableName, ' add column Correlation_OrderId varchar(38)'), 'select \'Column Exists\' status');
+    concat('alter table ', @tableName, ' add column Correlation_OrderId varchar(38) character set ascii'), 'select \'Column Exists\' status');
 
-prepare statment from @query;
-execute statment;
-deallocate prepare statment;
+prepare script from @query;
+execute script;
+deallocate prepare script;
 
 /* VerifyColumnType Guid */
 
 set @column_type_OrderId = (
-  select column_type
+  select concat(column_type,' character set ', character_set_name)
   from information_schema.columns
   where
     table_schema = database() and
@@ -106,13 +118,13 @@ set @column_type_OrderId = (
 );
 
 set @query = IF(
-    @column_type_OrderId <> 'varchar(38)',
-    'SIGNAL SQLSTATE \'45000\' SET MESSAGE_TEXT = \'Incorrect data type for Correlation_OrderId\'',
+    @column_type_OrderId <> 'varchar(38) character set ascii',
+    'call sqlpersistence_raiseerror(concat(\'Incorrect data type for Correlation_OrderId. Expected varchar(38) character set ascii got \', @column_type_OrderId, \'.\'));',
     'select \'Column Type OK\' status');
 
-prepare statment from @query;
-execute statment;
-deallocate prepare statment;
+prepare script from @query;
+execute script;
+deallocate prepare script;
 
 /* CreateIndex OrderId */
 
@@ -128,9 +140,9 @@ set @query = IF(
     @exist <= 0,
     concat('create unique index Index_Correlation_OrderId on ', @tableName, '(Correlation_OrderId)'), 'select \'Index Exists\' status');
 
-prepare statment from @query;
-execute statment;
-deallocate prepare statment;
+prepare script from @query;
+execute script;
+deallocate prepare script;
 
 /* PurgeObsoleteIndex */
 
@@ -150,9 +162,9 @@ select if (
     'select ''no index to delete'';')
     into @dropIndexQuery;
 
-prepare statment from @dropIndexQuery;
-execute statment;
-deallocate prepare statment;
+prepare script from @dropIndexQuery;
+execute script;
+deallocate prepare script;
 
 /* PurgeObsoleteProperties */
 
@@ -172,8 +184,8 @@ select if (
     'select ''no property to delete'';')
     into @dropPropertiesQuery;
 
-prepare statment from @dropPropertiesQuery;
-execute statment;
-deallocate prepare statment;
+prepare script from @dropPropertiesQuery;
+execute script;
+deallocate prepare script;
 
 endcode

@@ -6,11 +6,11 @@ if exists
     from sys.objects 
     where 
         object_id = object_id(@tableName) and 
-        type in (N'U')
+        type in ('U')
 )
 begin
 declare @dropTable nvarchar(max);
-set @dropTable = N'drop table ' + @tableName;
+set @dropTable = 'drop table ' + @tableName;
 exec(@dropTable);
 end
 endcode

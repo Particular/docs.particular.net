@@ -5,7 +5,7 @@ select
     Metadata,
     Data,
     SagaTypeVersion,
-    SagaVersion
+    Concurrency
 from EndpointNameSagaName
 where Id = @Id
 
