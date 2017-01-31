@@ -8,7 +8,7 @@ In the next 10 minutes, you will learn how to set up a new development machine f
 
 ## Before we get started
 
-NServiceBus has very few prerequisites. It's very easy to get started.
+NServiceBus has very few prerequisites. All it needs is the .NET Framework and message queuing infrastructure.
 
 Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md), this course uses Visual Studio 2015 and .NET Framework 4.6.1, which includes some useful async-related APIs.
 
@@ -88,6 +88,8 @@ snippet:MsmqTransport
 
 This setting defines the [**transport**](/nservicebus/transports/) that NServiceBus will use to send and receive messages. We are using the `MsmqTransport`, which is bundled within the NServiceBus core library. All other transports require different NuGet packages.
 
+Capturing the `transport` settings in a variable as shown will make things easier in [Lesson 3](../lesson-3/) when we start defining message routing rules.
+
 NOTE: If using the SQL Server transport, you must use the `SqlServerTransport` and provide a connection string to the database. See [Using the SQL Server transport - Configuring the transport](/tutorials/nservicebus-101/using-sql-transport.md#modifying-each-endpoint-configuring-the-transport) for more details.
 
 
@@ -143,9 +145,9 @@ When you run the endpoint for the first time, the endpoint will:
    * `clientui.timeouts`
    * `clientui.timeoutsdispatcher`
 
-Now might be a good time to go look at your list of queues. There are a [variety of options for viewing MSMQ queues and messages](/nservicebus/msmq/viewing-message-content-in-msmq.md) that you can pick from. In addition to the queues mentioned above, you may also see an `error.log` queue and queues starting with `particular.servicecontrol` if you installed a ServiceControl instance while installing the Particular Service Platform.
+Now might be a good time to go look at your list of queues. There are a [variety of options for viewing MSMQ queues and messages](/nservicebus/msmq/viewing-message-content-in-msmq.md) that you can pick from. In addition to the queues mentioned above, you may also see an `error.log` queue and queues starting with `particular.servicecontrol` if you [installed a ServiceControl instance](https://docs.particular.net/servicecontrol/installation) while installing the Particular Service Platform.
 
-When using the MSMQ transport, queues are created with [permissive settings](/nservicebus/msmq/operations-scripting.md#create-queues-default-permissions) that make things easier during development. In a production scenario these queues should be created with the minimum required privileges. The endpoint will output a message on startup when permissive settings are detected to remind you to do this.
+When using the MSMQ transport, queues are created with [permissive settings](/nservicebus/msmq/operations-scripting.md#create-queues-default-permissions) that make things easier during development. In a production scenario these queues should be created with the minimum required privileges. The endpoint will write a log entry on startup when permissive settings are detected to remind you to do this.
 
 NOTE: If you are using the SQL Server transport, take a look in your SQL database, where NServiceBus has created each of the queues listed above as a separate table.
 
