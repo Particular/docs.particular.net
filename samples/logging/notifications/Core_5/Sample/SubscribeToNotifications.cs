@@ -47,27 +47,27 @@ public class SubscribeToNotifications :
         return Encoding.UTF8.GetString(body);
     }
 
-    void Log(FailedMessage failedMessage)
+    void Log(FailedMessage failed)
     {
         log.Fatal($@"Message sent to error queue.
         Body:
-        {GetMessageString(failedMessage.Body)}");
+        {GetMessageString(failed.Body)}");
     }
 
-    void Log(SecondLevelRetry secondLevelRetry)
+    void Log(SecondLevelRetry retry)
     {
         log.Fatal($@"Message sent to Delayed Retries.
-        RetryAttempt: {secondLevelRetry.RetryAttempt}
+        RetryAttempt: {retry.RetryAttempt}
         Body:
-        {GetMessageString(secondLevelRetry.Body)}");
+        {GetMessageString(retry.Body)}");
     }
 
-    void Log(FirstLevelRetry firstLevelRetry)
+    void Log(FirstLevelRetry retry)
     {
         log.Fatal($@"Message sent to Immediate Reties.
-        RetryAttempt:{firstLevelRetry.RetryAttempt}
+        RetryAttempt:{retry.RetryAttempt}
         Body:
-        {GetMessageString(firstLevelRetry.Body)}");
+        {GetMessageString(retry.Body)}");
     }
 
     public void Stop()

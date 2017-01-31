@@ -31,20 +31,20 @@ public static class SubscribeToNotifications
         {GetMessageString(failed.Body)}");
     }
 
-    static void Log(DelayedRetryMessage delayedRetry)
+    static void Log(DelayedRetryMessage retry)
     {
         log.Fatal($@"Message sent to Delayed Retries.
-        RetryAttempt:{delayedRetry.RetryAttempt}
+        RetryAttempt:{retry.RetryAttempt}
         Body:
-        {GetMessageString(delayedRetry.Body)}");
+        {GetMessageString(retry.Body)}");
     }
 
-    static void Log(ImmediateRetryMessage immediateRetry)
+    static void Log(ImmediateRetryMessage retry)
     {
         log.Fatal($@"Message sent to Immedediate Retry.
-        RetryAttempt:{immediateRetry.RetryAttempt}
+        RetryAttempt:{retry.RetryAttempt}
         Body:
-        {GetMessageString(immediateRetry.Body)}");
+        {GetMessageString(retry.Body)}");
     }
 
 }
