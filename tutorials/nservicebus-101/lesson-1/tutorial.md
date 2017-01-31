@@ -145,7 +145,7 @@ When you run the endpoint for the first time, the endpoint will:
    * `clientui.timeouts`
    * `clientui.timeoutsdispatcher`
 
-Now might be a good time to go look at your list of queues. There are a [variety of options for viewing MSMQ queues and messages](/nservicebus/msmq/viewing-message-content-in-msmq.md) that you can pick from. In addition to the queues mentioned above, you may also see an `error.log` queue and queues starting with `particular.servicecontrol` if you [installed a ServiceControl instance](https://docs.particular.net/servicecontrol/installation) while installing the Particular Service Platform.
+Now might be a good time to go look at your list of queues. There are a [variety of options for viewing MSMQ queues and messages](/nservicebus/msmq/viewing-message-content-in-msmq.md) that you can pick from. In addition to the queues mentioned above, you may also see an `error.log` queue and queues starting with `particular.servicecontrol` if you [installed a ServiceControl instance](/servicecontrol/installation.md) while installing the Particular Service Platform.
 
 When using the MSMQ transport, queues are created with [permissive settings](/nservicebus/msmq/operations-scripting.md#create-queues-default-permissions) that make things easier during development. In a production scenario these queues should be created with the minimum required privileges. The endpoint will write a log entry on startup when permissive settings are detected to remind you to do this.
 
