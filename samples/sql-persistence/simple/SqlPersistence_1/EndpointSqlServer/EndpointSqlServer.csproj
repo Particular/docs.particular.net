@@ -37,7 +37,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Persistence.Sql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=affc41380e1a1478, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-rc0001\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.Sql.1.0.0-rc0002\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
