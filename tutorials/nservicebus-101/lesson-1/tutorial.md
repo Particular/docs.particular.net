@@ -3,7 +3,9 @@ title: "NServiceBus 101 Lesson 1: Getting started"
 reviewed: 2017-01-26
 ---
 
-In the next 10 minutes, you will learn how to set up a new development machine for NServiceBus and create your very first messaging endpoint.
+partial: nsb101-intro-paragraph
+
+In this first lesson, which should take no longer than 10-15 minutes, you will learn how to set up a new development machine for NServiceBus and create your very first messaging endpoint.
 
 
 ## Before we get started
