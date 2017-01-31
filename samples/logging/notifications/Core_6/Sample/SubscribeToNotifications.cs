@@ -19,7 +19,6 @@ public static class SubscribeToNotifications
         errors.MessageSentToErrorQueue += (sender, retry) => Log(retry);
     }
 
-
     static string GetMessageString(byte[] body)
     {
         return Encoding.UTF8.GetString(body);
