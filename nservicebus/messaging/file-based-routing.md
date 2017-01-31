@@ -28,9 +28,13 @@ snippet:Enable
 
 This will configure the endpoint to look for a `endpoints.xml` file in the endpoints [base directory](https://msdn.microsoft.com/en-us/library/system.appdomain.basedirectory.aspx).
 
-It is possible to configure a different relative or absolute file path, e.g.:
+The routing file path can be configured using relative or absolute paths, e.g.:
 
 snippet:EnableCustomPath
+
+It is also possible to provide an Uri to the routing file (supporting `http[s]` and `file` protocols):
+
+snippet:EnableCustomUri
 
 The routing file provides routing information like shown in the following example:
     

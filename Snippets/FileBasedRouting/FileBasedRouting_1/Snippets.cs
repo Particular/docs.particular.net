@@ -3,6 +3,8 @@ using NServiceBus.FileBasedRouting;
 
 namespace FileBasedRouting_1
 {
+    using System;
+
     class Snippets
     {
         public void Enable(EndpointConfiguration endpointConfiguration)
@@ -23,6 +25,17 @@ namespace FileBasedRouting_1
             var transport = endpointConfiguration.UseTransport<MyTransport>();
             var routing = transport.Routing();
             routing.UseFileBasedRouting(@"C:\routingFile.xml");
+
+            #endregion
+        }
+
+        public void EnableCustomUri(EndpointConfiguration endpointConfiguration)
+        {
+            #region EnableCustomUri
+
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            var routing = transport.Routing();
+            routing.UseFileBasedRouting(new Uri("https://myserver/routing/endpoints.xml"));
 
             #endregion
         }
