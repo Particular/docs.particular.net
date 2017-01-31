@@ -17,6 +17,8 @@ ServiceControl can also forward these messages to two forwarding queues.
 
 This behavior can be set through ServiceControl Management.
 
+![](managementutil-queueconfig.png 'width=500')
+
 
 ### Error and Audit Forwarding Queues
 
