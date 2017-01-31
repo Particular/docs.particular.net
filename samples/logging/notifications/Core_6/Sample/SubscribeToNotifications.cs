@@ -1,3 +1,4 @@
+using System.Text;
 using NServiceBus;
 using NServiceBus.Faults;
 using NServiceBus.Logging;
@@ -18,19 +19,33 @@ public static class SubscribeToNotifications
         errors.MessageSentToErrorQueue += (sender, retry) => Log(retry);
     }
 
-    static void Log(FailedMessage failedMessage)
+
+    static string GetMessageString(byte[] body)
     {
-        log.Fatal("Message sent to error queue");
+        return Encoding.UTF8.GetString(body);
     }
 
-    static void Log(DelayedRetryMessage secondLevelRetry)
+    static void Log(FailedMessage failed)
     {
-        log.Fatal($"Message sent to SLR. RetryAttempt:{secondLevelRetry.RetryAttempt}");
+        log.Fatal($@"Message sent to error queue.
+        Body:
+        {GetMessageString(failed.Body)}");
     }
 
-    static void Log(ImmediateRetryMessage firstLevelRetry)
+    static void Log(DelayedRetryMessage delayedRetry)
     {
-        log.Fatal($"Message sent to FLR. RetryAttempt:{firstLevelRetry.RetryAttempt}");
+        log.Fatal($@"Message sent to Delayed Retries.
+        RetryAttempt:{delayedRetry.RetryAttempt}
+        Body:
+        {GetMessageString(delayedRetry.Body)}");
+    }
+
+    static void Log(ImmediateRetryMessage immediateRetry)
+    {
+        log.Fatal($@"Message sent to Immedediate Retry.
+        RetryAttempt:{immediateRetry.RetryAttempt}
+        Body:
+        {GetMessageString(immediateRetry.Body)}");
     }
 
 }

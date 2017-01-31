@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
+using System.Text;
 using NServiceBus;
 using NServiceBus.Faults;
 using NServiceBus.Logging;
@@ -41,19 +42,32 @@ public class SubscribeToNotifications :
             );
     }
 
+    static string GetMessageString(byte[] body)
+    {
+        return Encoding.UTF8.GetString(body);
+    }
+
     void Log(FailedMessage failedMessage)
     {
-        log.Fatal("Message sent to error queue");
+        log.Fatal($@"Message sent to error queue.
+        Body:
+        {GetMessageString(failedMessage.Body)}");
     }
 
     void Log(SecondLevelRetry secondLevelRetry)
     {
-        log.Fatal($"Message sent to Delayed Retries. RetryAttempt:{secondLevelRetry.RetryAttempt}");
+        log.Fatal($@"Message sent to Delayed Retries.
+        RetryAttempt: {secondLevelRetry.RetryAttempt}
+        Body:
+        {GetMessageString(secondLevelRetry.Body)}");
     }
 
     void Log(FirstLevelRetry firstLevelRetry)
     {
-        log.Fatal($"Message sent to Immediate Reties. RetryAttempt:{firstLevelRetry.RetryAttempt}");
+        log.Fatal($@"Message sent to Immediate Reties.
+        RetryAttempt:{firstLevelRetry.RetryAttempt}
+        Body:
+        {GetMessageString(firstLevelRetry.Body)}");
     }
 
     public void Stop()

@@ -1,6 +1,7 @@
 ﻿// ReSharper disable UnusedParameter.Local
 namespace Core6.BusNotifications
 {
+    using System.Text;
     using NServiceBus;
     using NServiceBus.Faults;
     using NServiceBus.Logging;
@@ -26,19 +27,32 @@ namespace Core6.BusNotifications
             errors.MessageSentToErrorQueue += LogEvent;
         }
 
-        void LogEvent(object sender, FailedMessage failedMessage)
+        static string GetMessageString(byte[] body)
         {
-            log.Info("Message sent to error queue");
+            return Encoding.UTF8.GetString(body);
         }
 
-        void LogEvent(object sender, DelayedRetryMessage e)
+        void LogEvent(object sender, FailedMessage failed)
         {
-            log.Info($"Message sent to Delayed Retries. RetryAttempt:{e.RetryAttempt}");
+            log.Fatal($@"Message sent to error queue.
+        Body:
+        {GetMessageString(failed.Body)}");
         }
 
-        void LogEvent(object sender, ImmediateRetryMessage e)
+        void LogEvent(object sender, DelayedRetryMessage retry)
         {
-            log.Info($"Message has failed an immedediate retry attempt. RetryAttempt:{e.RetryAttempt}");
+            log.Info($@"Message sent to Delayed Retries.
+        RetryAttempt:{retry.RetryAttempt}
+        Body:
+        {GetMessageString(retry.Body)}");
+        }
+
+        void LogEvent(object sender, ImmediateRetryMessage retry)
+        {
+            log.Info($@"Message sent to Immedediate Retry.
+        RetryAttempt:{retry.RetryAttempt}
+        Body:
+        {GetMessageString(retry.Body)}");
         }
 
         #endregion

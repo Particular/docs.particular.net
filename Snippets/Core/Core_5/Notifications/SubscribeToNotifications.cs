@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Reactive.Concurrency;
     using System.Reactive.Linq;
+    using System.Text;
     using NServiceBus;
     using NServiceBus.Faults;
     using NServiceBus.Logging;
@@ -44,19 +45,32 @@
                 );
         }
 
-        void LogEvent(FailedMessage failedMessage)
+        static string GetMessageString(byte[] body)
         {
-            log.Info("Message sent to error queue");
+            return Encoding.UTF8.GetString(body);
+        }
+
+        void LogEvent(FailedMessage failed)
+        {
+            log.Info($@"Message sent to error queue.
+        Body:
+        {GetMessageString(failed.Body)}");
         }
 
         void LogEvent(SecondLevelRetry retry)
         {
-            log.Info($"Message sent to Delayed Reties. RetryAttempt:{retry.RetryAttempt}");
+            log.Info($@"Message sent to Delayed Retries.
+        RetryAttempt: {retry.RetryAttempt}
+        Body:
+        {GetMessageString(retry.Body)}");
         }
 
         void LogEvent(FirstLevelRetry retry)
         {
-            log.Info($"Message sent to Immediate Retries. RetryAttempt:{retry.RetryAttempt}");
+            log.Info($@"Message sent to Immediate Reties.
+        RetryAttempt:{retry.RetryAttempt}
+        Body:
+        {GetMessageString(retry.Body)}");
         }
 
         public void Stop()

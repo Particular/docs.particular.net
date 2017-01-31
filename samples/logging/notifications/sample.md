@@ -1,6 +1,6 @@
 ---
 title: Notifications
-reviewed: 2016-03-24
+reviewed: 2017-01-31
 component: Core
 related:
 - nservicebus/recoverability
@@ -8,7 +8,11 @@ related:
 
 ## Code walk-through
 
-This sample shows how to use the notification API to capture the SLR, FLR and error queue events.
+This sample shows how to use the notification API to capture the following:
+
+ * When a [Immediate Retry](/nservicebus/recoverability/#immediate-retries) occurs.
+ * When a [Delayed Retry](/nservicebus/recoverability/#delayed-retries) occurs.
+ * When a message fails all retries and is forwarded to the error queue.
 
 
 ## Custom Settings in this sample
@@ -43,3 +47,8 @@ partial: usage
 
 
 include: notificationThread
+
+
+## Message Body
+
+include: error-notifications-message-body

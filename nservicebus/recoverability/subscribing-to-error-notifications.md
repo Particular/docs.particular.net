@@ -1,7 +1,7 @@
 ---
 title: Error notifications
 summary: Subscribing to error notifications
-reviewed: 2016-08-23
+reviewed: 2017-01-31
 component: Core
 versions: '[5.0,)'
 redirects:
@@ -35,3 +35,8 @@ partial: reactive
 Since notifications are global for the current endpoint it is also important to ensure no longer required subscriptions removed so as to not unnecessarily impact performance.
 
 partial: unsubscribing
+
+
+## Message Body
+
+include: error-notifications-message-body

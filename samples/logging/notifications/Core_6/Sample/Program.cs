@@ -49,8 +49,11 @@ class Program
             .ConfigureAwait(false);
         try
         {
-            var myMessage = new MyMessage();
-            await endpointInstance.SendLocal(myMessage)
+            var message = new MyMessage
+            {
+                Property = "PropertyValue"
+            };
+            await endpointInstance.SendLocal(message)
                 .ConfigureAwait(false);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
