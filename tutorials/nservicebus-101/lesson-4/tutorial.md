@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus 101 Lesson 4: Publishing events"
-reviewed: 2016-11-16
+reviewed: 2017-01-26
 ---
 
 So far in this course, we have only sent **commands** – one-way messages from a sender to a specific receiver. There's another type of message we have yet to cover called an **event**. In many ways events are just like commands. They're simple classes and you deal with them in much the same way. But from an architectural standpoint commands and events are *polar opposites*. This creates a useful dichotomy. We can take advantage of the properties of events to open up new possibilities in how we design software.
@@ -146,13 +146,9 @@ And finally, modify the solution properties so that **Billing** will start when 
 
 We now have a handler in place for `OrderPlaced`, but just like in real life, having a mailbox isn't enough to get a newspaper delivered to your house. We need to let the publisher know we want to subscribe to get the message.
 
-In the **Billing** endpoint, locate the **AsyncMain** method in the **Program.cs** file. Modify it to gain access to the Routing API:
+In the **Billing** endpoint, locate the **AsyncMain** method in the **Program.cs** file. Use the `transport` variable to access the routing configuration and configure the publisher for `OrderPlaced`:
 
 snippet:BillingRouting
-
-With the `routing` variable, configure the publisher for `OrderPlaced`:
-
-snippet:OrderPlacedPublisher
 
 Now when we run the solution, we'll see the following output in the **Billing** window:
 

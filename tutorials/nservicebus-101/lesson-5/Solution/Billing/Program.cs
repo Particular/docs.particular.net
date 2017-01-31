@@ -19,8 +19,8 @@ namespace Billing
             var endpointConfiguration = new EndpointConfiguration("Billing");
 
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            var routing = transport.Routing();
 
+            var routing = transport.Routing();
             routing.RegisterPublisher(typeof(OrderPlaced), "Sales");
 
             endpointConfiguration.UseSerialization<JsonSerializer>();

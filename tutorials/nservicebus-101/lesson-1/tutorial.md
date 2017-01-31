@@ -1,18 +1,27 @@
 ---
 title: "NServiceBus 101 Lesson 1: Getting started"
-reviewed: 2016-11-16
+reviewed: 2017-01-26
 ---
 
 In the next 10 minutes, you will learn how to set up a new development machine for NServiceBus and create your very first messaging endpoint.
 
 
-## Prerequisites
+## Before we get started
 
-There are a few things we need in order to build a solution with the latest version of NServiceBus.
+NServiceBus has very few prerequisites. All it needs is the .NET Framework and message queuing infrastructure.
 
-* This course uses Visual Studio 2015 and .NET Framework 4.6.1, although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md).
-* NServiceBus requires queuing infrastructure (a [transport](/nservicebus/transports/)) to move messages around. This course uses Microsoft Message Queuing (MSMQ). The [Particular Platform Installer](/platform/installer/) will install MSMQ and its dependencies for you. [Download and run the Platform Installer](/platform/installer/) to get started, or [follow these instructions to configure MSMQ manually](/nservicebus/msmq/#nservicebus-configuration).
+Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md), this course uses Visual Studio 2015 and .NET Framework 4.6.1, which includes some useful async-related APIs.
 
+NServiceBus needs queuing infrastructure (a [transport](/nservicebus/transports/)) to move messages around. By default, this course will use **Microsoft Message Queuing (MSMQ)**, which is included with every version of Windows, although it is not installed by default.
+
+NOTE: If MSMQ is not an option for your environment, the [SQL Server Transport](/nservicebus/sqlserver/) can be used as a message transport instead. To get started using SQL Server instead of MSMQ, review the [SQL Server transport setup instructions](../using-sql-transport.md). Throughout the rest of the guide, instructions that differ between the SQL and MSMQ transports will be highlighted in an informational box like this one.
+
+To install MSMQ on your machine, you have two options:
+
+* [Download and run the Particular Platform Installer](https://particular.net/start-platform-download). This will install the MSMQ Windows Feature, configure the Distributed Transaction Coordinator (DTC) so that queues and databases can all work together within a single atomic transaction, and install tools from Particular ([ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/), and [ServicePulse](/servicepulse/)) that we'll use later in this course.
+* [Install and configure MSMQ manually](/nservicebus/msmq/#nservicebus-configuration).
+
+NOTE: It's enough at this point to simply install the Platform Installer tools. At the end of the install process, a button will offer the option to start ServiceControl Management to install or update a ServiceControl instance. This isn't required right now, but we'll return to this topic in [Lesson 5](../lesson-5/) when we explore how to replay failed messages.
 
 ## Exercise
 
@@ -33,7 +42,11 @@ Next, we need to add the NServiceBus NuGet package as a dependency. From the [Nu
 Install-Package NServiceBus -ProjectName ClientUI
 ```
 
-This adds a reference to the NServiceBus.Core assembly to the project. With the proper dependencies in place, we're ready to start writing code.
+This adds a reference to the NServiceBus.Core assembly to the project.
+
+NOTE: If you are using the SQL Server transport, you also need to install the `NServiceBus.SqlServer` package before continuing. See [Using the SQL Server transport - Adding the NuGet package](/tutorials/nservicebus-101/using-sql-transport.md#modifying-each-endpoint-adding-the-nuget-package) for more details.
+
+With the proper dependencies in place, we're ready to start writing code.
 
 
 ### Configure an endpoint
@@ -71,11 +84,13 @@ The `EndpointConfiguration` class is where we define all the settings that deter
 
 #### Transport
 
-snippet:Transport
+snippet:MsmqTransport
 
-This setting defines the [**transport**](/nservicebus/transports/) that NServiceBus will use to send and receive messages. `MsmqTransport` is the only transport available within the core library. All other transports require additional NuGet packages.
+This setting defines the [**transport**](/nservicebus/transports/) that NServiceBus will use to send and receive messages. We are using the `MsmqTransport`, which is bundled within the NServiceBus core library. All other transports require different NuGet packages.
 
-The [**MSMQ transport**](/nservicebus/msmq/) is the default setting, so we technically don't need this line at all. For now, it's good to make the choice of transport explicit within our code.
+Capturing the `transport` settings in a variable as shown will make things easier in [Lesson 3](../lesson-3/) when we start defining message routing rules.
+
+NOTE: If using the SQL Server transport, you must use the `SqlServerTransport` and provide a connection string to the database. See [Using the SQL Server transport - Configuring the transport](/tutorials/nservicebus-101/using-sql-transport.md#modifying-each-endpoint-configuring-the-transport) for more details.
 
 
 #### Serializer
@@ -123,11 +138,22 @@ When you run the endpoint for the first time, the endpoint will:
  * Display its logging information, which is written to a file as well as the console. NServiceBus also logs to multiple levels, so you can [change the log level](/nservicebus/logging/) from `INFO` to log level `DEBUG` in order to get more information.
  * Display the [status of your license](/nservicebus/licensing/).
  * Attempt to add the current user to the "Performance Monitor Users" group so that it can write [performance counters](/nservicebus/operations/performance-counters.md) to track its health and progress.
- * Warn you that the [queues it created have development-specific permissions that may not be required in production](/nservicebus/msmq/operations-scripting.md#create-queues-default-permissions). Creating the queues with additional permissions makes things easier during development, but in a production scenario these queues should be created with the minimum required privileges, and these warnings will serve as reminders to do that.
+ * Create several queues:, if they do not already exist: 
+   * `error`
+   * `clientui`
+   * `clientui.retries`
+   * `clientui.timeouts`
+   * `clientui.timeoutsdispatcher`
+
+Now might be a good time to go look at your list of queues. There are a [variety of options for viewing MSMQ queues and messages](/nservicebus/msmq/viewing-message-content-in-msmq.md) that you can pick from. In addition to the queues mentioned above, you may also see an `error.log` queue and queues starting with `particular.servicecontrol` if you [installed a ServiceControl instance](/servicecontrol/installation.md) while installing the Particular Service Platform.
+
+When using the MSMQ transport, queues are created with [permissive settings](/nservicebus/msmq/operations-scripting.md#create-queues-default-permissions) that make things easier during development. In a production scenario these queues should be created with the minimum required privileges. The endpoint will write a log entry on startup when permissive settings are detected to remind you to do this.
+
+NOTE: If you are using the SQL Server transport, take a look in your SQL database, where NServiceBus has created each of the queues listed above as a separate table.
 
 
 ## Summary
 
-In this lesson we set up the prerequisites for NServiceBus and created a simple messaging endpoint to make sure it works. In the next lesson, we'll define a message, a message handler, and then send the message and watch it get processed.
+In this lesson we created a simple messaging endpoint to make sure it works. In the next lesson, we'll define a message, a message handler, and then send the message and watch it get processed.
 
 When you're ready, move on to [**Lesson 2: Sending a command**](../lesson-2/).

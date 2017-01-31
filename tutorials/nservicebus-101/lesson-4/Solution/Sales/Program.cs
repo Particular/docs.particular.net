@@ -16,7 +16,9 @@ namespace Sales
             Console.Title = "Sales";
 
             var endpointConfiguration = new EndpointConfiguration("Sales");
-            endpointConfiguration.UseTransport<MsmqTransport>();
+
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.SendFailedMessagesTo("error");

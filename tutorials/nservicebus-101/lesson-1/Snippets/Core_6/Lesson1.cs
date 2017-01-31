@@ -29,7 +29,9 @@
             Console.Title = "ClientUI";
 
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
-            endpointConfiguration.UseTransport<MsmqTransport>();
+
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.SendFailedMessagesTo("error");
@@ -47,8 +49,8 @@
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
             #endregion
 
-            #region Transport
-            endpointConfiguration.UseTransport<MsmqTransport>();
+            #region MsmqTransport
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
             #endregion
 
             #region Serializer

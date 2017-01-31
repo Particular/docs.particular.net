@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus 101 Lesson 3: Multiple endpoints"
-reviewed: 2016-11-16
+reviewed: 2017-01-26
 ---
 
 Up until this point, we have constrained our activities to a single endpoint, but this is not how real systems behave. The strength of a messaging system is the ability to run code in multiple processes, on multiple servers, which can all collaborate by exchanging messages.
@@ -52,11 +52,13 @@ Therefore, it makes sense that logical routing is defined in code.
 
 ### Defining logical routes
 
-[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the method that defines the message transport, as shown in this example using the MSMQ transport:
+[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `transport` object returned when we defined the message transport, as shown in this example using the MSMQ transport:
 
 snippet:RoutingSettings
 
 `RoutingSettings<T>` is scoped to the actual transport being used, and routing options are exposed as extension methods on this class. Therefore, only routing options that are viable for the transport in use will appear. Routing configurations only applicable to Microsoft Azure, for example, won't clutter up the API when using the MSMQ transport.
+
+NOTE: If you are using the SQL Server transport for this lesson, the routing options are the same as for MSMQ.
 
 In order to define routes, start with the `routing` variable and call the `RouteToEndpoint` method as needed, which comes in three varieties:
 
@@ -135,7 +137,7 @@ The important part is, if a message is accidentally sent to an endpoint we didn'
 Now we need to change the ClientUI so that it is sending `PlaceOrder` to the Sales endpoint.
 
  1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
- 1. In the `AsyncMain` method of the same file, change the call to use the MSMQ transport to access the routing configuration and specify the logical routing for `PlaceOrder` by changing your code as follows.
+ 1. In the `AsyncMain` method of the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the MSMQ transport:
 
 snippet:AddingRouting
 
