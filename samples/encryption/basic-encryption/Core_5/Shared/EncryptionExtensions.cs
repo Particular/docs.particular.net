@@ -1,7 +1,8 @@
 ﻿using System;
-using NServiceBus;
 
 #region ConfigureEncryption
+using NServiceBus;
+
 public static class EncryptionExtensions
 {
     public static void ConfigurationEncryption(this BusConfiguration busConfiguration)

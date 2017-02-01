@@ -23,6 +23,7 @@ Distributor: NServiceBus.Distributor.MSMQ
 EntityFramework: GoodlyFere.NServiceBus.EntityFramework
 EventStoreTransport: NServiceBus.EventStore
 FileBasedRouting: NServiceBus.FileBasedRouting
+PropertyEncryption: NServiceBus.Encryption.MessageProperty
 RawMessaging: NServiceBus.Raw
 RawDelayedRetries: NServiceBus.Raw.DelayedRetries
 Gateway: NServiceBus.Gateway

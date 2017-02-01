@@ -57,6 +57,7 @@
   GitHubOwner: Particular/nservicebus-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus.Encryption.MessageProperty
   NugetOrder:
+    - NServiceBus.Encryption.MessageProperty
     - NServiceBus
 
 - Key: PostgreSQL
