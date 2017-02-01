@@ -47,7 +47,6 @@
     <Compile Include="EncryptionService\Usage.cs" />
     <Compile Include="EncryptionService\EncryptionService.cs" />
     <Compile Include="Configuration\ProvideConfiguration.cs" />
-    <Compile Include="Configuration\FromCode.cs" />
     <Compile Include="WireEncryptedProperty\MyMessage.cs" />
     <Compile Include="Usage.cs" />
     <Compile Include="UpgradeGuides\4to5\Upgrade.cs" />

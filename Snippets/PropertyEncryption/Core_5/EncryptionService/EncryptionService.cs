@@ -1,5 +1,9 @@
 namespace Core5.Encryption.EncryptionService
 {
+    using System;
+
+    #region EncryptionService
+
     using NServiceBus;
     using NServiceBus.Encryption;
 
@@ -8,12 +12,14 @@ namespace Core5.Encryption.EncryptionService
     {
         public EncryptedValue Encrypt(string value)
         {
-            return null;
+            throw new NotImplementedException();
         }
 
         public string Decrypt(EncryptedValue encryptedValue)
         {
-            return null;
+            throw new NotImplementedException();
         }
     }
+
+    #endregion
 }

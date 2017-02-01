@@ -1,8 +1,10 @@
 ﻿namespace Core6.Encryption.WireEncryptedProperty
 {
-    using NServiceBus;
 
     #region MessageWithEncryptedProperty
+    using NServiceBus;
+    using WireEncryptedString = NServiceBus.Encryption.MessageProperty.WireEncryptedString;
+
     public class MyMessage :
         IMessage
     {

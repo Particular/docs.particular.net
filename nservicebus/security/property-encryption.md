@@ -130,18 +130,7 @@ NOTE: Use Base64 key format if possible and ASCII 32 key format for backward com
 partial: code
 
 
-### Via App.config
-
-The encryption key can be defined in the `app.config`.
-
-snippet: EncryptionFromAppConfig
-
-
-### Via IProvideConfiguration
-
-snippet:EncryptionFromIProvideConfiguration
-
-For more info on `IProvideConfiguration` see [Customizing NServiceBus Configuration](/nservicebus/hosting/custom-configuration-providers.md)
+partial: config
 
 
 ## Multi-Key decryption
@@ -160,3 +149,6 @@ To take full control over how properties are encrypted replace the `IEncryptionS
 This allows explicit handling of the encryption and decryption of each value. So for example to use an algorithm other than Rijndael.
 
 snippet:EncryptionFromIEncryptionService
+
+
+snippet: EncryptionService

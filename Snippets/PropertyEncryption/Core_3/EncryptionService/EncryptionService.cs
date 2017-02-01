@@ -1,5 +1,9 @@
-﻿namespace Core3.Encryption.EncryptionService
+namespace Core3.Encryption.EncryptionService
 {
+    using System;
+
+    #region EncryptionService
+
     using NServiceBus;
     using NServiceBus.Encryption;
 
@@ -8,13 +12,14 @@
     {
         public EncryptedValue Encrypt(string value)
         {
-            return null;
+            throw new NotImplementedException();
         }
 
         public string Decrypt(EncryptedValue encryptedValue)
         {
-            return null;
+            throw new NotImplementedException();
         }
     }
 
+    #endregion
 }

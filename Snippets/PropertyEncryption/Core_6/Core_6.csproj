@@ -42,7 +42,6 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="Configuration\FromCode.cs" />
     <Compile Include="Configuration\ProvideConfiguration.cs" />
     <Compile Include="Conventions\Message.cs" />
     <Compile Include="Conventions\Usage.cs" />

@@ -42,8 +42,6 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="Configuration\FromCode.cs" />
-    <Compile Include="Configuration\ProvideConfiguration.cs" />
     <Compile Include="Conventions\Message.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="EncryptionService\EncryptionService.cs" />
@@ -52,9 +50,6 @@
     <Compile Include="WireEncryptedProperty\MyMessage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuration\encryption.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
