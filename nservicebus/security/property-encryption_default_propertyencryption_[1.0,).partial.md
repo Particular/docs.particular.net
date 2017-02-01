@@ -1,0 +1,1 @@
+NOTE: Encryption is enabled when explicitly configured with either `endpointConfiguration.RijndaelEncryptionService` or `endpointConfiguration.RegisterEncryptionService`.
