@@ -31,12 +31,13 @@ public class DiscountPolicy :
 
     Task ProcessOrder(SubmitOrder message, IMessageHandlerContext context)
     {
-        return context.Send<ProcessOrder>(m =>
+        var processOrder = new ProcessOrder
         {
-            m.CustomerId = Data.CustomerId;
-            m.OrderId = message.OrderId;
-            m.TotalAmount = message.TotalAmount;
-        });
+            CustomerId = Data.CustomerId,
+            OrderId = message.OrderId,
+            TotalAmount = message.TotalAmount
+        };
+        return context.Send(processOrder);
     }
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<DiscountPolicyData> mapper)

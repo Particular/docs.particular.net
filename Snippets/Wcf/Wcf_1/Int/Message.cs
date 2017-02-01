@@ -2,7 +2,7 @@
 
 namespace Wcf1.Int
 {
-    public class Message : 
+    public class Message :
         IMessage
     {
     }

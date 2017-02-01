@@ -53,7 +53,8 @@
 
         #endregion
 
-        class MyOtherBusinessException : Exception
+        class MyOtherBusinessException :
+            Exception
         {
         }
     }

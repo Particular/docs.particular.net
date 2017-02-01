@@ -5,7 +5,7 @@ using NServiceBus.Logging;
 
 #region Schedule
 
-public class ScheduleStarter : 
+public class ScheduleStarter :
     IWantToRunWhenConfigurationIsComplete
 {
     static ILog log = LogManager.GetLogger<ScheduleStarter>();

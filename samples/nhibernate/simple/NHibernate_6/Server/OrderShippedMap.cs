@@ -1,6 +1,7 @@
 ﻿using NHibernate.Mapping.ByCode.Conformist;
 
-public class OrderShippedMap : ClassMapping<OrderShipped>
+public class OrderShippedMap :
+    ClassMapping<OrderShipped>
 {
     public OrderShippedMap()
     {

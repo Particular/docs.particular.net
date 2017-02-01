@@ -5,7 +5,8 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
 
-public class CustomErrorHandlingBehavior : Behavior<ITransportReceiveContext>
+public class CustomErrorHandlingBehavior :
+    Behavior<ITransportReceiveContext>
 {
     static readonly ILog Log = LogManager.GetLogger(typeof(CustomErrorHandlingBehavior));
 

@@ -36,7 +36,8 @@
         {
         }
 
-        class TransportName : TransportDefinition
+        class TransportName :
+            TransportDefinition
         {
             public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
             {

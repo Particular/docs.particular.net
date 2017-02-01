@@ -2,7 +2,8 @@ using System;
 using System.Web;
 using NServiceBus;
 
-public class Global : HttpApplication
+public class Global :
+    HttpApplication
 {
     public static IEndpointInstance Endpoint;
 

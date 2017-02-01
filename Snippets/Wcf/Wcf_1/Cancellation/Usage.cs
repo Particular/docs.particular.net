@@ -5,7 +5,8 @@ namespace Wcf1.Cancellation
 {
     class Usage
     {
-        class MyService : WcfService<Request, Response>
+        class MyService :
+            WcfService<Request, Response>
         {
         }
 

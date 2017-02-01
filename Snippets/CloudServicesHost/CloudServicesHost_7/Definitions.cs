@@ -2,7 +2,8 @@
 using NServiceBus.Settings;
 using NServiceBus.Transport;
 
-public class AzureStorageQueueTransport : TransportDefinition
+public class AzureStorageQueueTransport :
+    TransportDefinition
 {
     public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
     {
@@ -15,7 +16,8 @@ public class AzureStorageQueueTransport : TransportDefinition
     }
 }
 
-public class AzureServiceBusTransport : TransportDefinition
+public class AzureServiceBusTransport :
+    TransportDefinition
 {
     public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
     {
@@ -28,6 +30,7 @@ public class AzureServiceBusTransport : TransportDefinition
     }
 }
 
-public class AzureStoragePersistence : PersistenceDefinition
+public class AzureStoragePersistence :
+    PersistenceDefinition
 {
 }

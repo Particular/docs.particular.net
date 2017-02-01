@@ -2,7 +2,8 @@ using System;
 using System.Web.UI;
 using NServiceBus;
 
-public partial class Default : Page
+public partial class Default :
+    Page
 {
     protected async void Button1_Click(object sender, EventArgs e)
     {

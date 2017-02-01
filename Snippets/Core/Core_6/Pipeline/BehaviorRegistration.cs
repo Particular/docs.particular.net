@@ -18,7 +18,8 @@
         }
     }
 
-    class FeatureWithBehavior : Feature
+    class FeatureWithBehavior :
+        Feature
     {
         #region RegisterBehaviorFromFeature
 

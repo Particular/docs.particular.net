@@ -3,7 +3,7 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.MessageRouting.RoutingSlips;
 
-public class Handler : 
+public class Handler :
     IHandleMessages<SequentialProcess>
 {
     static ILog log = LogManager.GetLogger(typeof(Handler));

@@ -2,7 +2,7 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class ConfirmOrderCommandHandler : 
+public class ConfirmOrderCommandHandler :
     IHandleMessages<ConfirmOrder>
 {
     static ILog log = LogManager.GetLogger<ConfirmOrderCommandHandler>();

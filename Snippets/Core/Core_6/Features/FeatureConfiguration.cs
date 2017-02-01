@@ -40,7 +40,8 @@ namespace Core6.Features
         {
         }
 
-        class CustomBehavior : Behavior<ITransportReceiveContext>
+        class CustomBehavior :
+            Behavior<ITransportReceiveContext>
         {
             public CustomBehavior(string configurationValue)
             {

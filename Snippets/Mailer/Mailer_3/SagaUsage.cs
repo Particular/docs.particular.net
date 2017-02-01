@@ -4,7 +4,7 @@ using NServiceBus.Mailer;
 
 #region MailerSagaUsage
 
-public class MySaga : 
+public class MySaga :
     Saga<MySaga.SagaData>,
     IAmStartedByMessages<MyMessage>
 {
@@ -26,7 +26,8 @@ public class MySaga :
     {
     }
 
-    public class SagaData : ContainSagaData
+    public class SagaData :
+        ContainSagaData
     {
     }
 }

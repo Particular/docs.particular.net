@@ -6,7 +6,8 @@ namespace Wcf1.Binding
 {
     class Usage
     {
-        class MyService : WcfService<Request, Response>
+        class MyService :
+            WcfService<Request, Response>
         {
         }
 

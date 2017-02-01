@@ -6,7 +6,8 @@ using Newtonsoft.Json.Serialization;
 
 #region ExtendedResolver
 
-public class ExtendedResolver : DefaultContractResolver
+public class ExtendedResolver :
+    DefaultContractResolver
 {
     protected override JsonContract CreateContract(Type objectType)
     {

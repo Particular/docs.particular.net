@@ -24,7 +24,8 @@ public class SagaThatUsesSession :
     {
     }
 
-    public class SagaData : ContainSagaData
+    public class SagaData :
+        ContainSagaData
     {
     }
 }
