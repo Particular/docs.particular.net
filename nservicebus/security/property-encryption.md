@@ -64,11 +64,12 @@ NOTE: If a key ID is not set then no messages with encrypted properties can be s
 
 Key IDs are only supported in the following versions
 
- * 3.3.16+
- * 4.7.8+
- * 5.0.7+
- * 5.1.5+
- * 5.2.9 and newer
+ * NServiceBus 3.3.16+
+ * NServiceBus 4.7.8+
+ * NServiceBus 5.0.7+
+ * NServiceBus 5.1.5+
+ * NServiceBus 5.2.9 and newer
+ * NServiceBus.Encryption.MessageProperty all versions
 
 All previous versions support decrypting messages that have encrypted fragments but no key ID header.
 
@@ -80,8 +81,8 @@ A key ID identifies which key is used and it must not expose anything about the 
 Good strategies
 
  * Incremental (1, 2, 3, 4, etc.)
- * Time-based (2015-w01, 2015-m08, 2015-q03
- * Random (ab4b7a6e71833798),
+ * Time-based (`2015-w01`, `2015-m08`, `2015-q03`)
+ * Random (`ab4b7a6e71833798`),
 
 Bad strategies
 
