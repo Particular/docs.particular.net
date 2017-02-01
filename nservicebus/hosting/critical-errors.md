@@ -45,10 +45,16 @@ snippet:CustomHostErrorHandlingAction
 
 ## When to override the default action
 
-The default action should be overridden whenever that default does not meet the specific hosting requirements. For example
+When self hosting the should be overriden in order to exit the current process unless you are using the [NServiceBus Host](/nservicebus/hosting/nservicebus-host) which already has a implementation that exits the process.
 
- * If using [NServiceBus Host](/nservicebus/hosting/nservicebus-host), and wish to take a custom action before the endpoint process is killed.
- * If self hosting the process can be shut down the process via [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) and re-start the process once the root cause has been diagnosed.
+Consider the following things when implementing a critical error callback:
+
+- Wrap any tasks in a `try..finally`, making sure the process will exit if any tasks fail.
+- Flush any loggers used which makes sure any unwritten tail of the log is persisted as [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) will immediately exit the process
+- Flush any state/caches used if you normally would flush such data structure in a certain interval.
+- It is easiest to call [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx)
+
+Rely on the environemnt that the process will be automatically restarted. When hosting in IIS the IIS host will automatically spawn a new instance and when hosting as a Windows Service the OS will restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-restart-recovery) is enabled.
 
 NOTE: If not killing the process and just dispose the bus, be aware that any `Send` operations will result in [ObjectDisposedException](https://msdn.microsoft.com/en-us/library/system.objectdisposedexception.aspx) being thrown.
 
