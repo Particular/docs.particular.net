@@ -1,5 +1,5 @@
 ---
-title: Encryption
+title: Message Property Encryption
 reviewed: 2016-03-21
 component: PropertyEncryption
 tags:
