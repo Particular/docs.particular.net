@@ -13,7 +13,7 @@ class Program
     {
         Console.Title = "Samples.Encryption.Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.Encryption.Endpoint2");
-        endpointConfiguration.RijndaelEncryptionService();
+        endpointConfiguration.ConfigurationEncryption();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");

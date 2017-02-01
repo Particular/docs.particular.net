@@ -15,7 +15,7 @@ class Program
         Console.Title = "Samples.Encryption.Endpoint1";
         var endpointConfiguration = new EndpointConfiguration("Samples.Encryption.Endpoint1");
         #region enableEncryption
-        endpointConfiguration.RijndaelEncryptionService();
+        endpointConfiguration.ConfigurationEncryption();
         #endregion
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();

@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 
 public static class CommonConfiguration
 {
@@ -10,7 +11,8 @@ public static class CommonConfiguration
         transport.ConnectionString(connectionString);
         var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
         persistence.ConnectionString(connectionString);
-        endpointConfiguration.RijndaelEncryptionService();
+        var encryptionKey = Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
+        endpointConfiguration.RijndaelEncryptionService("2015-10", encryptionKey);
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

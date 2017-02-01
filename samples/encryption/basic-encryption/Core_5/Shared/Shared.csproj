@@ -35,7 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
-    <Compile Include="ConfigureEncryption.cs" />
+    <Compile Include="EncryptionExtensions.cs" />
     <Compile Include="MessageWithSecretData.cs" />
   </ItemGroup>
   <ItemGroup>
