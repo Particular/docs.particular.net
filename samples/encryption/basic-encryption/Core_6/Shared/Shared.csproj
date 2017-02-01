@@ -35,7 +35,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigLogging.cs" />
     <Compile Include="ConfigureEncryption.cs" />
     <Compile Include="MySecretSubProperty.cs" />
     <Compile Include="CreditCardDetails.cs" />
