@@ -36,8 +36,6 @@
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="ConfigureEncryption.cs" />
-    <Compile Include="MySecretSubProperty.cs" />
-    <Compile Include="CreditCardDetails.cs" />
     <Compile Include="MessageWithSecretData.cs" />
   </ItemGroup>
   <ItemGroup>
