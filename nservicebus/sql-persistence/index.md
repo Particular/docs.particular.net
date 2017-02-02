@@ -94,30 +94,7 @@ A Table Prefix is required at runtime and install time.
 
 When using the default (execute at startup) approach to installation the value configured in code will be used.
 
-
-##### For all StorageTypes
-
 snippet: TablePrefix
-
-
-##### For Sagas
-
-snippet: SagaTablePrefix
-
-
-##### For Outbox
-
-snippet: OutboxTablePrefix
-
-
-##### For Subscription
-
-snippet: SubscriptionTablePrefix
-
-
-##### For Timeouts
-
-snippet: TimeoutTablePrefix
 
 
 #### Manual installation

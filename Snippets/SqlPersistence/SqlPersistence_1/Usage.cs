@@ -159,52 +159,12 @@ class Usage
         #endregion
     }
 
-    void SagaTablePrefix(EndpointConfiguration endpointConfiguration)
-    {
-        #region SagaTablePrefix
-
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence, StorageType.Sagas>();
-        persistence.TablePrefix("TheSagaPrefix");
-
-        #endregion
-    }
-
-    void TimeoutTablePrefix(EndpointConfiguration endpointConfiguration)
-    {
-        #region TimeoutTablePrefix
-
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence, StorageType.Timeouts>();
-        persistence.TablePrefix("TheTimeoutPrefix");
-
-        #endregion
-    }
-
-    void SubscriptionTablePrefix(EndpointConfiguration endpointConfiguration)
-    {
-        #region SubscriptionTablePrefix
-
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence, StorageType.Subscriptions>();
-        persistence.TablePrefix("TheSubscriptionPrefix");
-
-        #endregion
-    }
-
-    void OutboxTablePrefix(EndpointConfiguration endpointConfiguration)
-    {
-        #region OutboxTablePrefix
-
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence, StorageType.Outbox>();
-        persistence.TablePrefix("TheOutboxPrefix");
-
-        #endregion
-    }
-
     void TablePrefix(EndpointConfiguration endpointConfiguration)
     {
         #region TablePrefix
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.TablePrefix("ThePrefixForAllStorages");
+        persistence.TablePrefix("ThePrefix");
 
         #endregion
     }
@@ -217,21 +177,26 @@ class Usage
         {
             await connection.OpenAsync()
                 .ConfigureAwait(false);
-            foreach (var createScript in Directory.EnumerateFiles(
-                path: scriptDirectory,
-                searchPattern: "*_Create.sql",
-                searchOption: SearchOption.AllDirectories))
+            using (var transaction = connection.BeginTransaction())
             {
-                using (var command = connection.CreateCommand())
+                foreach (var createScript in Directory.EnumerateFiles(
+                    path: scriptDirectory,
+                    searchPattern: "*_Create.sql",
+                    searchOption: SearchOption.AllDirectories))
                 {
-                    command.CommandText = File.ReadAllText(createScript);
-                    var parameter = command.CreateParameter();
-                    parameter.ParameterName = "tablePrefix";
-                    parameter.Value = tablePrefix;
-                    command.Parameters.Add(parameter);
-                    await command.ExecuteNonQueryAsync()
-                        .ConfigureAwait(false);
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandText = File.ReadAllText(createScript);
+                        var parameter = command.CreateParameter();
+                        parameter.ParameterName = "tablePrefix";
+                        parameter.Value = tablePrefix;
+                        command.Parameters.Add(parameter);
+                        await command.ExecuteNonQueryAsync()
+                            .ConfigureAwait(false);
+                    }
                 }
+                transaction.Commit();
             }
         }
 
