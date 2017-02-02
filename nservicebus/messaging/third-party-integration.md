@@ -11,7 +11,7 @@ related:
 reviewed: 2017-01-18
 ---
 
-NServiceBus endpints can receive messages from external systems (such as BizTalk, TIBCO, etc). To ensure those messages can be handled correctly by NServiceBus, additional information might be required which are otherwise provided by NServiceBus automatically.
+NServiceBus endpoints can receive messages from external systems (such as BizTalk, TIBCO, etc). To ensure those messages can be handled correctly by NServiceBus, additional information might be required which are otherwise provided by NServiceBus automatically.
 
 
 ## Required information
