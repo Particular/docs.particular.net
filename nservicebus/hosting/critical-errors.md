@@ -51,6 +51,7 @@ Consider the following things when implementing a critical error callback:
 
 - Wrap any tasks in a `try..finally`, making sure the process will exit if any tasks fail.
 - Flush any loggers used which makes sure any unwritten log state is written/pushed to its target(s) making sure the tail of the log is not lost as [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) will immediately exit the process.
+ - Flush NLog or log4net state by calling `LogManager.Shutdown();`, this still isn't 100% guaranteed to not loose any log entries. Check each logging framework its document.
 - Flush any state/caches used if you normally would flush such data structure in a certain interval.
 - It is easiest to call [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx)
 
