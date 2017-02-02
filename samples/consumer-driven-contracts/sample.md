@@ -2,6 +2,7 @@
 title: Consumer Driven Contracts
 reviewed: 2017-03-21
 component: Core
+versions: '[6,)'
 ---
 
 WARNING: Consumer Driven Contracts currently only work when using [XML Serializer](/nservicebus/serialization/xml.md)

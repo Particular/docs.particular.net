@@ -33,8 +33,6 @@ class Program
         Console.WriteLine("Press 'p' to publish event");
         Console.WriteLine("Press any other key to exit");
 
-        #region PublishLoop
-
         while (true)
         {
             var key = Console.ReadKey();
@@ -48,7 +46,5 @@ class Program
             await endpointInstance.Publish(myEvent)
                 .ConfigureAwait(false);
         }
-
-        #endregion
     }
 }

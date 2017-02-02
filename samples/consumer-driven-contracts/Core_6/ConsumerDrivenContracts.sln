@@ -18,10 +18,16 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B9D5FCC6-26EA-4863-B060-87A68031812C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B9D5FCC6-26EA-4863-B060-87A68031812C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D5FCC6-26EA-4863-B060-87A68031812C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B9D5FCC6-26EA-4863-B060-87A68031812C}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{2DFF55AD-FF20-4A9B-85A7-1471A83FB8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2DFF55AD-FF20-4A9B-85A7-1471A83FB8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DFF55AD-FF20-4A9B-85A7-1471A83FB8E7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2DFF55AD-FF20-4A9B-85A7-1471A83FB8E7}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{A7BDDCF2-D335-44E9-9809-EFDFDCE6CAE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A7BDDCF2-D335-44E9-9809-EFDFDCE6CAE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7BDDCF2-D335-44E9-9809-EFDFDCE6CAE8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A7BDDCF2-D335-44E9-9809-EFDFDCE6CAE8}.Debug|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
