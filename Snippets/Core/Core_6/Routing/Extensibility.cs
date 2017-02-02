@@ -42,7 +42,7 @@
             class Refresher :
                 FeatureStartupTask
             {
-                readonly UnicastRoutingTable routeTable;
+                UnicastRoutingTable routeTable;
                 Timer timer;
 
                 #region RoutingExtensibility-StartupTask
@@ -71,8 +71,8 @@
             class RobustRefresher :
                 FeatureStartupTask
             {
-                readonly UnicastRoutingTable routeTable;
-                readonly CriticalError criticalError;
+                UnicastRoutingTable routeTable;
+                CriticalError criticalError;
                 Timer timer;
 
                 #region RoutingExtensibility-TriggerEndpointShutdown
@@ -157,7 +157,7 @@
         class RandomStrategy :
             DistributionStrategy
         {
-            static readonly Random r = new Random();
+            static Random r = new Random();
 
             public RandomStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)
             {

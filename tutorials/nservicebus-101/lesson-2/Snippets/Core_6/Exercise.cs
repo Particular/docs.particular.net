@@ -20,10 +20,8 @@ namespace Exercise
 
     class Program
     {
-        static async Task AsyncMain()
+        static async Task AsyncMain(EndpointConfiguration endpointConfiguration)
         {
-            EndpointConfiguration endpointConfiguration = null;
-
             #region AddRunLoopToAsyncMain
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)

@@ -8,7 +8,7 @@ using NServiceBus.Pipeline;
 public class CustomErrorHandlingBehavior :
     Behavior<ITransportReceiveContext>
 {
-    static readonly ILog Log = LogManager.GetLogger(typeof(CustomErrorHandlingBehavior));
+    static ILog Log = LogManager.GetLogger(typeof(CustomErrorHandlingBehavior));
 
     #region MoveToErrorQueue
     public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)

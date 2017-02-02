@@ -10,12 +10,7 @@ namespace Core_6
     {
         public int SomeId { get; set; }
         public ChildClass ChildStuff { get; set; }
-        public List<ChildClass> ListOfStuff { get; set; }
-
-        public DoSomethingComplex()
-        {
-            ListOfStuff = new List<ChildClass>();
-        }
+        public List<ChildClass> ListOfStuff { get; set; } = new List<ChildClass>();
     }
 
     public class ChildClass

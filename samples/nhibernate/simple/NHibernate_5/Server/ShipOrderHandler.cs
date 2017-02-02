@@ -6,7 +6,7 @@ using NServiceBus;
 public class ShipOrderHandler :
     IHandleMessages<ShipOrder>
 {
-    private readonly ISession session;
+    ISession session;
 
     public void Handle(ShipOrder message)
     {

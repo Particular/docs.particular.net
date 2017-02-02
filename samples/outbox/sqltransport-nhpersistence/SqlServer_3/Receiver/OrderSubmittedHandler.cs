@@ -7,7 +7,7 @@ public class OrderSubmittedHandler :
     IHandleMessages<OrderSubmitted>
 {
     static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
-    static readonly Random ChaosGenerator = new Random();
+    static Random ChaosGenerator = new Random();
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {

@@ -165,8 +165,8 @@ To get these tools, we'll use the [Particular Platform Installer](/platform/inst
 
 If you need to install the Service Platform, or if you just aren't sure:
 
-1. Download the [Platform Installer](https://particular.net/start-platform-download).
-1. Launch the **ParticularPlatform.exe** you downloaded, and use it to install the Particular Service Platform [according to the instructions](/platform/installer/).
+ 1. Download the [Platform Installer](https://particular.net/start-platform-download).
+ 1. Launch the **ParticularPlatform.exe** you downloaded, and use it to install the Particular Service Platform [according to the instructions](/platform/installer/).
 
 NOTE: If you are using the SQL Server transport, you can uncheck the **Configure Microsoft Message Queuing** option, if you are not allowed to install it in your environment. It is only required for the MSMQ transport. All other checkboxes should remain selected.
 
@@ -174,8 +174,8 @@ Now we need to install an instance of Service Control. It's possible to install 
 
 You can launch the **ServiceControl Management** application in one of two ways:
 
-* From the **Start ServiceControl Management** button on the last screen of the Platform Installer
-* By locating **ServiceControl Management** in the Windows Start menu
+ * From the **Start ServiceControl Management** button on the last screen of the Platform Installer
+ * By locating **ServiceControl Management** in the Windows Start menu
 
 Next, in the **ServiceControl Management** window, click the **Add new instance** button. There are a few customizations we will need to make here to configure ServiceControl.
 
@@ -206,13 +206,14 @@ Because we're just getting started with NServiceBus development, we don't need t
 
 Now, we're ready to create and start the service:
 
-1. Click the **Add** button to install the ServiceControl instance as a Windows service.
-1. When complete, the **ServiceControl Management** tool will display the high-level details of the ServiceControl instance, but the instance will be in the **Stopped** state.
-1. In the upper-right corner of the ServiceControl instance details, click the **Start** button (the button with the *Play* icon) to start the service. You can also start the service from the Windows Services manager.
+ 1. Click the **Add** button to install the ServiceControl instance as a Windows service.
+ 1. When complete, the **ServiceControl Management** tool will display the high-level details of the ServiceControl instance, but the instance will be in the **Stopped** state.
+ 1. In the upper-right corner of the ServiceControl instance details, click the **Start** button (the button with the *Play* icon) to start the service. You can also start the service from the Windows Services manager.
 
 To check that everything is working properly, you can click on the link shown under **URL**, which will return a JSON response if ServiceControl is working properly. This is the API that is used to serve information to the [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/) tools.
 
 Later in the exercise, we will be using ServicePulse to replay a failed message, so we should also check to make sure it is working. ServicePulse is installed as a Windows service named **Particular ServicePulse** and has a web-based UI, which can be accessed at `http://localhost:9090` [when default settings are used](/servicepulse/host-config.md). You can check to see if it is running from the Windows Services control panel. ServicePulse must to be able to connect to the ServiceControl API, which [can be configured](/servicepulse/host-config.md#changing-the-servicecontrol-url) if a non-default ServiceControl URL is used.
+
 
 ### Replay a message
 

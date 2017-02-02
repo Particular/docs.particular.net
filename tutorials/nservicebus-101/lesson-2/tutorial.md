@@ -5,7 +5,7 @@ reviewed: 2017-01-26
 
 Sending and receiving messages is a central characteristic of any NServiceBus system. Durable messages passed between processes allow reliable communication between those processes, even if one of them is temporarily unavailable. In this lesson we'll show how to send and process a message.
 
-In the next 15-20 minutes, you will learn how to define messages and message handlers, send and receive a message locally, and use NServiceBus's built-in logging capabilities.
+In the next 15-20 minutes, you will learn how to define messages and message handlers, send and receive a message locally, and use the built-in logging capabilities.
 
 
 ## What is a message
@@ -142,7 +142,7 @@ Add the following method to the **Program.cs** file:
 snippet:RunLoop
  
 Let's take a closer look at the case when we want to place an order. In order to create the `PlaceOrder` command simply create an instance of the `PlaceOrder` class and supply a unique value for the `OrderId`. Then, after logging the details, we can send it with the `SendLocal` method.
-    
+
 `SendLocal(object message)` is a method that is available on the `IEndpointInstance` interface, as we are using here, and also on the `IMessageHandlerContext` interface, which we saw when we were defining our message handler. The *Local* part means that we are not sending to an external endpoint (in a different process) so we intend to handle the message in the same endpoint that sent it. Using `SendLocal()`, we don't have to do anything special to tell the message where to go.
 
 NOTE: In this lesson, we're using `SendLocal` (rather than the more commonly used `Send` method) as a bit of a crutch. This way, we can explore how to define, send, and process messages without needing a second endpoint to process them. With `SendLocal`, we also don't need to define routing rules to control where the sent messages go. We'll learn about these concepts [in the next lesson](../lesson-3/).
