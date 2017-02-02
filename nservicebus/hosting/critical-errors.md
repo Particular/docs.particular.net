@@ -45,7 +45,11 @@ snippet:CustomHostErrorHandlingAction
 
 ## When to override the default action
 
-When self hosting the should be overriden in order to exit the current process unless you are using the [NServiceBus Host](/nservicebus/hosting/nservicebus-host) which already has a implementation that exits the process.
+When self hosting the critical error callback must be overriden in order to exit the current process. Not overriding the critical error callback will result in the endpoint instance to stop processing messages without the ability to recover from this state.
+
+NOTE: If not killing the process and just disposing the bus, be aware that any `Send` operations will result in [ObjectDisposedException](https://msdn.microsoft.com/en-us/library/system.objectdisposedexception.aspx) being thrown.
+
+When the [NServiceBus Host](/nservicebus/hosting/nservicebus-host) is used it is not required to override this callback as the host has a default implementation that exits the process. However, if it is required to execute tasks just before shutdown then it can be overriden in the same way as when self hosting.
 
 Consider the following things when implementing a critical error callback:
 
@@ -57,7 +61,6 @@ Consider the following things when implementing a critical error callback:
 
 Rely on the environment that the process will be automatically restarted. When hosting in IIS the IIS host will automatically spawn a new instance and when hosting as a Windows Service the OS will restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-restart-recovery) is enabled.
 
-NOTE: If not killing the process and just dispose the bus, be aware that any `Send` operations will result in [ObjectDisposedException](https://msdn.microsoft.com/en-us/library/system.objectdisposedexception.aspx) being thrown.
 
 
 ## Raising Critical error
