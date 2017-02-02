@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 using Subscriber1.Contracts;
 
 class Program
@@ -13,14 +12,13 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.MultipleInheritance.Consumer1";
-        LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultipleInheritance.Consumer1");
+        Console.Title = "Samples.ConsumerDrivenContracts.Consumer1";
+        var endpointConfiguration = new EndpointConfiguration("Samples.ConsumerDrivenContracts.Consumer1");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
 
         var routing = transport.Routing();
-        routing.RegisterPublisher(typeof(Consumer1Contract), "Samples.MultipleInheritance.Producer");
+        routing.RegisterPublisher(typeof(Consumer1Contract), "Samples.ConsumerDrivenContracts.Producer");
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

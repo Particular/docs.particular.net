@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A7BDDCF2-D335-44E9-9809-EFDFDCE6CAE8}</ProjectGuid>
+    <ProjectGuid>{B9D5FCC6-26EA-4863-B060-87A68031812C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Consumer2</RootNamespace>
-    <AssemblyName>Consumer2</AssemblyName>
+    <RootNamespace>Producer</RootNamespace>
+    <AssemblyName>Producer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -29,7 +29,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\NServiceBus.6.0.2\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.6.1.2\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -42,9 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\Consumer2Contract.cs" />
+    <Compile Include="..\Consumer1\Contracts\Consumer1Contract.cs">
+      <Link>Contracts\Consumer1Contract.cs</Link>
+    </Compile>
+    <Compile Include="..\Consumer2\Contracts\Consumer2Contract.cs">
+      <Link>Contracts\Consumer2Contract.cs</Link>
+    </Compile>
+    <Compile Include="Contracts\MyEvent.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Consumer2EventHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -12,13 +12,13 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.MultipleInheritance.Consumer2";
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultipleInheritance.Consumer2");
+        Console.Title = "Samples.ConsumerDrivenContracts.Consumer2";
+        var endpointConfiguration = new EndpointConfiguration("Samples.ConsumerDrivenContracts.Consumer2");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
 
         var routing = transport.Routing();
-        routing.RegisterPublisher(typeof(Consumer2Contract), "Samples.MultipleInheritance.Producer");
+        routing.RegisterPublisher(typeof(Consumer2Contract), "Samples.ConsumerDrivenContracts.Producer");
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

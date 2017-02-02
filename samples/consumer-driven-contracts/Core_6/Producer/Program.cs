@@ -12,8 +12,8 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.MultipleInheritance.Producer";
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultipleInheritance.Producer");
+        Console.Title = "Samples.ConsumerDrivenContracts.Producer";
+        var endpointConfiguration = new EndpointConfiguration("Samples.ConsumerDrivenContracts.Producer");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<MsmqTransport>();
 
@@ -22,16 +22,10 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            await Start(endpointInstance)
-                .ConfigureAwait(false);
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        await Start(endpointInstance)
+            .ConfigureAwait(false);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
     static async Task Start(IEndpointInstance endpointInstance)
@@ -45,7 +39,6 @@ class Program
         {
             var key = Console.ReadKey();
             Console.WriteLine();
-
 
             var myEvent = new MyEvent
             {
