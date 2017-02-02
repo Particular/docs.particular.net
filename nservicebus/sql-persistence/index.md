@@ -89,9 +89,6 @@ The default TablePrefix is [Endpoint Name](/nservicebus/endpoints/specify-endpoi
 
 A Table Prefix is required at runtime and install time.
 
-
-### Configure in code
-
 When using the default (execute at startup) approach to installation the value configured in code will be used.
 
 snippet: TablePrefix
