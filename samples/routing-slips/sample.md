@@ -6,7 +6,7 @@ component: MessageRouting
 
 ## Introduction
 
-Uses the [Routing Slip pattern](http://www.enterpriseintegrationpatterns.com/RoutingTable.html) feature of the [MessageRouting](https://github.com/jbogard/NServiceBus.MessageRouting) project.
+Uses the [Routing Slip pattern](http://www.enterpriseintegrationpatterns.com/patterns/messaging/RoutingTable.html) feature of the [MessageRouting](https://github.com/jbogard/NServiceBus.MessageRouting) project.
 
 
 ## Walk Through

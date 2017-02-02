@@ -56,6 +56,6 @@ The other parts of the Platform ([ServiceControl](/servicecontrol/), [ServiceIns
  * [Licensing/Sales information](https://particular.net/licensing)
  * [Contact Particular Software](https://particular.net/contactus)
  * [Get help with a Proof-Of-Concept](https://particular.net/proof-of-concept)
- * [Community Google Discussion Group](https://groups.google.com/d/forum/particularsoftware)
+ * [Community Google Discussion Group](https://groups.google.com/forum/#!forum/particularsoftware)
  * [GitHub/docs.particular.net](https://github.com/Particular/docs.particular.net) for any problems with the documentation content.
  * Any issues, bugs or feature requests with the Platform or any extension can be raise in the specific projects. See the "Project Hosting" links on the [Extensions](/components/) page.

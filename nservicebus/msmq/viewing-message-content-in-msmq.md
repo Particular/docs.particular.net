@@ -55,7 +55,7 @@ http://www.cogin.com/mq/
 
 Fast and free tool to manage MSMQ messages and queues.
 
-http://www.mqueue.net/
+https://www.mqueue.net/
 
 > Mqueue Viewer - is a fast and simple tool to manage MSMQ queues, view, edit, add, delete messages. Works with multiple machines/servers.
 

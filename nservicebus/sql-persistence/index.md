@@ -37,7 +37,7 @@ snippet:SqlPersistenceUsageMySql
 
 The following settings are required for [MySql connections string](https://dev.mysql.com/doc/connector-net/en/connector-net-connection-options.html).
 
- * `AllowUserVariables=True`: since the Persistence uses [user variables](http://dev.mysql.com/doc/refman/5.7/en/user-variables.html).
+ * `AllowUserVariables=True`: since the Persistence uses [user variables](https://dev.mysql.com/doc/refman/5.7/en/user-variables.html).
  * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .net connector does not currently support.
 
 

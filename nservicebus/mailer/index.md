@@ -28,7 +28,7 @@ snippet: MailerSagaUsage
 
 ## SmtpClient construction
 
-By default the following [`SmtpClient`](http://msdn.microsoft.com/en-us/library/system.net.mail.smtpclient.aspx) construction is used the code
+By default the following [`SmtpClient`](https://msdn.microsoft.com/en-us/library/system.net.mail.smtpclient.aspx) construction is used the code
 
 ```cs
 new SmtpClient
@@ -79,7 +79,7 @@ This is handling by letting the exception bubble to NServiceBus. This will resul
 
 ### When a subset of addresses fail
 
-This will most likely occur when there is a subset of invalid addresses however there cases where the address can fail once and succeed after a retry. Have a look at [SmtpStatusCode](http://msdn.microsoft.com/en-us/library/system.net.mail.smtpstatuscode.aspx) for the possible error cases.
+This will most likely occur when there is a subset of invalid addresses however there cases where the address can fail once and succeed after a retry. Have a look at [SmtpStatusCode](https://msdn.microsoft.com/en-us/library/system.net.mail.smtpstatuscode.aspx) for the possible error cases.
 
 In this scenario it is not valid to retry the message since it would result in the message being resent to all recipients. It is also flawed to resend the verbatim email to the subset of failed addresses as this would effectively exclude them from some of the recipients in the conversation.
 

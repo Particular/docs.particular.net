@@ -10,7 +10,7 @@ This course uses MSMQ as the default message transport, but in some environments
 
 ## Setting up
 
-You may already have access to a SQL Server instance you can use. Otherwise, you can download and install [SQL Server Express](http://downloadsqlserverexpress.com/) on your local machine.
+You may already have access to a SQL Server instance you can use. Otherwise, you can download and install [SQL Server Express](https://msdn.microsoft.com/library/dd206988.aspx) on your local machine.
 
 On your database server, create a database named **NServiceBusAcademy**.
 
