@@ -12,7 +12,7 @@ class Program
         Console.Title = "Samples.Logging.SerilogCustom";
         #region ConfigureSerilog
         Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console()
+            .WriteTo.ColoredConsole()
             .WriteTo.File("logFile.txt")
             .CreateLogger();
         #endregion
