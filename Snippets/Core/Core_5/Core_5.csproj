@@ -242,7 +242,6 @@
     <Compile Include="Sagas\Timeouts\MySagaData.cs" />
     <Compile Include="Sagas\Timeouts\MySaga.cs" />
     <Compile Include="Sagas\Timeouts\TiredOfWaitingForMessage2.cs" />
-    <Compile Include="ScaleOut\IndividualizeQueues.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="MessageBodyEncryption\Usage.cs" />
