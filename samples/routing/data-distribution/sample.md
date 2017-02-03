@@ -8,6 +8,8 @@ tags:
 - Data distribution
 ---
 
+DANGER: Asynchronous messaging is not an optimal solution for data distribution scenarios. It is usually better to use a dedicated data distribution technology for that purpose, such as a distributed cache or distributed configuration service. This sample aims to serve only as an example of the flexibility in the NServiceBus routing engine.
+
 The sample demonstrates how NServiceBus [routing](/nservicebus/messaging/routing.md) can be used to implement data distribution scenarios. When using the built-in [Publish/Subscribe](/nservicebus/messaging/publish-subscribe) pattern in NServiceBus, event messages are delivered to a single instance of any subscribed endpoint. In this sample every event message is delivered to all instances of subscribed endpoints.
 
 

@@ -400,8 +400,6 @@
         Title: Publishers name configuration
       - Url: nservicebus/azure-service-bus/multiple-namespaces-support
         Title: Multiple namespaces
-      - Url: nservicebus/azure/data-distribution
-        Title: Data distribution
     - Url: nservicebus/azure-service-bus/performance-tuning
       Title: Performance Tuning
       Articles:
