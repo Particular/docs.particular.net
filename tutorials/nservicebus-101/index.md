@@ -12,9 +12,9 @@ In [Lesson 2: Sending a command](lesson-2/) (15-20 minutes) you will learn how t
 
 In [Lesson 3: Multiple endpoints](lesson-3/) (15-20 minutes) you will learn how to create multiple endpoints and send messages between them.
 
-In [Lesson 4: Publishing events](lesson-4/) (25-30 minutes) you will learn how to publish events to multiple subscribers, and about the benefits of decoupling business processes using the Publish/Subscribe pattern.
+In [Lesson 4: Publishing events](lesson-4/) (25-30 minutes) you will learn about the Publish/Subscribe pattern, how to publish events to multiple subscribers, and about the benefits of using this pattern to decouple business processes.
 
-In [Lesson 5: Retrying errors](lesson-5/) (25-30 minutes) you will learn how to deal with exceptions and take advantage of automatic retries. You'll also learn how to use the tools in the Particular Service Platform to replay failed messages through the original message handler.
+In [Lesson 5: Retrying errors](lesson-5/) (25-30 minutes) you will learn how to use the Particular Service Platform tools to gracefully recover from exceptions in your code, allowing you to build systems that are resistant to failure.
 
 When you've completed all the exercises, your solution will look like this:
 
