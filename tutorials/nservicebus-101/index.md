@@ -4,7 +4,7 @@ suppressRelated: true
 reviewed: 2017-01-26
 ---
 
-partial: nsb101-intro-paragraph
+include: nsb101-intro-paragraph
 
 In [Lesson 1: Getting started](lesson-1/) (10-15 minutes) you will learn how to set up your development environment and create your very first messaging endpoint.
 
