@@ -1,0 +1,1 @@
+An [**event**](/nservicebus/messaging/messages-events-commands.md#event) is a message that is used to communicate that some action has taken place. It is published from a single logical endpoint, and is processed by potentially many subscribing endpoints.

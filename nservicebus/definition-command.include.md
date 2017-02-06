@@ -1,0 +1,1 @@
+A [**command**](/nservicebus/messaging/messages-events-commands.md#command) is a message that is used to request that an action should be taken. It can be sent from one or more endpoints, and is processed by a single logical endpoint.

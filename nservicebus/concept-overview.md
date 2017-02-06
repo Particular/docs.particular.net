@@ -14,8 +14,9 @@ A high level overview of the concepts, features and vernacular of NServiceBus.
 
 A Message is the unit of communication for NServiceBus. Messages are send and received by endpoints. There are two general types of messages:
 
- * [Command](/nservicebus/messaging/messages-events-commands.md): Used to request that an action should be taken.
- * [Event](/nservicebus/messaging/messages-events-commands.md): Used to communicate that some action has taken place.
+include: definition-command
+
+include: definition-event
 
 Message types can be set either using marker interfaces `ICommand` and `IEvent` or via [conventions](/nservicebus/messaging/unobtrusive-mode.md) (so called *unobtrusive mode*).
 

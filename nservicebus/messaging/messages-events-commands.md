@@ -44,6 +44,12 @@ Used to communicate that some action has taken place. An *Event* should be _publ
 
 Note: For reply messages in a request and response pattern, use `IMessage` since these replies are neither a Command nor an Event.
 
+### Command/Event Comparison
+
+Here is a comparison of some of the differences between commands and events:
+
+include: command-event-comparison-table
+
 
 ### Validation Messages
 
