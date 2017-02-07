@@ -51,7 +51,7 @@ NOTE: If not killing the process and just disposing the bus, be aware that any `
 
 Consider the following things when implementing a critical error callback:
 
-- Wrap any tasks in a `try..finally`, making sure the process will exit if any tasks fail.
+- Wrap any code in a `try..finally`, making sure the process will exit if any tasks fail.
 - Flush any loggers used which makes sure any unwritten log state is written/pushed to its target(s) making sure the tail of the log is not lost as [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) will immediately exit the process.
  - Flush appenders for [NLog](http://nlog-project.org/documentation/v4.3.0/html/M_NLog_LogManager_Shutdown.htm) or [log4net](https://logging.apache.org/log4net/log4net-1.2.11/release/sdk/log4net.LogManager.Shutdown.html) state by calling `LogManager.Shutdown();`.
 - Flush any state/caches used if such data structures would be written/persisted at a certain interval or regular graceful shutdown.
