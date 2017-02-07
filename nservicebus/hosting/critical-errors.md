@@ -49,7 +49,7 @@ When self hosting the critical error callback must be overriden in order to exit
 
 NOTE: If not killing the process and just disposing the bus, be aware that any `Send` operations will result in [ObjectDisposedException](https://msdn.microsoft.com/en-us/library/system.objectdisposedexception.aspx) being thrown.
 
-Consider the following things when implementing a critical error callback:
+Consider the following when implementing a critical error callback:
 
 - If calling any code wrap it in a `try..finally`, making sure the process will invoke exit code in the `finally` like `Environment.FailFast` if any code fails.
 - Flush any loggers used which makes sure any unwritten log state is written/pushed to its target(s) making sure the tail of the log is not lost as [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) will immediately exit the process.
