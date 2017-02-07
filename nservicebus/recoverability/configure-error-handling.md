@@ -51,11 +51,11 @@ partial:errorheader
 
 ## Error queue monitoring
 
-Administrators should monitor the error queue, in order to detect when problems occur. The message in the error queue contains relevant information such as, the endpoint that originally processed the message, exception details, etc. Having that information an administrator can investigate the problem and solve it, e.g. bring up a database that went down.
+Administrators should monitor the error queue in order to detect when problems occur. The message in the error queue contains relevant information such as the endpoint that originally processed the message, exception details, etc. With that information an administrator can investigate the problem and solve it, e.g. bring up a database that went down.
 
-Monitoring and handling of failed messages with [ServicePulse](/servicepulse/) provides access to full exception details (including stack-trace). [ServiceInsight](/serviceinsight/) offers advanced debugging capability providing additional information like exception details as well as visualizing the flow of messages. Both ServiceInsight and ServicePulse provides a `retry` functionality that sends the failed message from the error queue back to the endpoint for re-processing. For more details on how to retry a message using ServicePulse, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md). To retry a message using ServiceInsight, see [Managing Errors and Retries in ServiceInsight](/serviceinsight/managing-errors-and-retries.md).
+Monitoring and handling of failed messages with [ServicePulse](/servicepulse/) provides access to full exception details (including stack-trace). [ServiceInsight](/serviceinsight/) offers advanced debugging capability providing additional information like exception details as well as visualizing the flow of messages. Both ServiceInsight and ServicePulse provide a `retry` functionality that sends the failed message from the error queue back to the endpoint for re-processing. For more details on how to retry a message using ServicePulse, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md). To retry a message using ServiceInsight, see [Managing Errors and Retries in ServiceInsight](/serviceinsight/managing-errors-and-retries.md).
 
-If either ServicePulse or ServiceInsight is not available in the environment, the `retry` operation can be performed using the native management tools appropriate for the selected transport:
+If either ServicePulse or ServiceInsight are not available in the environment, the `retry` operation can be performed using the native management tools appropriate for the selected transport:
 
  * [Msmq Scripting](/nservicebus/msmq/operations-scripting.md)
  * [RabbitMq Scripting](/nservicebus/rabbitmq/operations-scripting.md)
