@@ -93,7 +93,7 @@ The default [Critical Error Action](/nservicebus/hosting/critical-errors.md) for
 
 snippet:DefaultHostCriticalErrorAction
 
-WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if co-hosting NServiceBus with a web-service or website.
+It is not required to override this callback. However, if it is required to execute tasks just before shutdown then it can be overridden in the same way as when self hosting. See [When to override the default critical error action](/nservicebus/hosting/critical-errors.md#when-to-override-the-default-critical-error-action) for guidance.
 
 
 ## Performance Counters
