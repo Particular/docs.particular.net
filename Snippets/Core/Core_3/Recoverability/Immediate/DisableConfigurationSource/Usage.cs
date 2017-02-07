@@ -6,7 +6,7 @@
     {
         DisableUsage(Configure configure)
         {
-            #region DisableImmediateDelayedRetriesConfigurationSourceUsage
+            #region DisableImmediateRetriesConfigurationSourceUsage
 
             configure.CustomConfigurationSource(new DisableConfigurationSource());
 
