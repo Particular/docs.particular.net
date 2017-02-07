@@ -1,1 +1,1 @@
-NOTE: Encryption is enabled when explicitly configured with either `endpointConfiguration.RijndaelEncryptionService` or `endpointConfiguration.RegisterEncryptionService`.
+NOTE: Encryption is enabled when explicitly configured with `endpointConfiguration.EnableMessagePropertyEncryption`.
