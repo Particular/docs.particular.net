@@ -26,7 +26,7 @@ public class CorrelationPropertyTypeConverterWriter
             foreach (var type in GetValues())
             {
                 var columnType = MsSqlServerCorrelationPropertyTypeConverter.GetColumnType(type);
-                writer.WriteLine($"| {type} | {columnType} |");
+                writer.WriteLine($"| `{type}` | `{columnType}` |");
             }
 
             writer.WriteLine(@"
@@ -38,7 +38,7 @@ public class CorrelationPropertyTypeConverterWriter
             foreach (var type in GetValues().Where(x => x != CorrelationPropertyType.DateTimeOffset))
             {
                 var columnType = MySqlCorrelationPropertyTypeConverter.GetColumnType(type);
-                writer.WriteLine($"| {type} | {columnType} |");
+                writer.WriteLine($"| `{type}` | `{columnType}` |");
             }
         }
     }
