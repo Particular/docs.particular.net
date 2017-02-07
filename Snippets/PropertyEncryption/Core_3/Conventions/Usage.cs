@@ -8,7 +8,11 @@
         {
             #region DefiningEncryptedPropertiesAs
 
-            configure.DefiningEncryptedPropertiesAs(x => x.Name.EndsWith("EncryptedProperty"));
+            configure.DefiningEncryptedPropertiesAs(
+                definesEncryptedProperty: propertyInfo =>
+                {
+                    return propertyInfo.Name.EndsWith("EncryptedProperty");
+                });
 
             #endregion
         }

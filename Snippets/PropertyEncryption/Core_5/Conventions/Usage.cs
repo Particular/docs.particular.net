@@ -9,10 +9,11 @@
             #region DefiningEncryptedPropertiesAs
 
             var conventions = busConfiguration.Conventions();
-            conventions.DefiningEncryptedPropertiesAs(info =>
-            {
-                return info.Name.EndsWith("EncryptedProperty");
-            });
+            conventions.DefiningEncryptedPropertiesAs(
+                definesEncryptedProperty: propertyInfo =>
+                {
+                    return propertyInfo.Name.EndsWith("EncryptedProperty");
+                });
 
             #endregion
         }

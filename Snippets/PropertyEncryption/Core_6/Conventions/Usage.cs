@@ -9,10 +9,11 @@
             #region DefiningEncryptedPropertiesAs
 
             var conventions = endpointConfiguration.Conventions();
-            conventions.DefiningEncryptedPropertiesAs(property =>
-            {
-                return property.Name.EndsWith("EncryptedProperty");
-            });
+            conventions.DefiningEncryptedPropertiesAs(
+                definesEncryptedProperty: propertyInfo =>
+                {
+                    return propertyInfo.Name.EndsWith("EncryptedProperty");
+                });
 
             #endregion
         }

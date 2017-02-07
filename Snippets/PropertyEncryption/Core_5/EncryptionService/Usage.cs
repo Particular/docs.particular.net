@@ -8,7 +8,11 @@
         {
             #region EncryptionFromIEncryptionService
 
-            busConfiguration.RegisterEncryptionService(b => new EncryptionService());
+            busConfiguration.RegisterEncryptionService(
+                func: builder =>
+                {
+                    return new EncryptionService();
+                });
 
             #endregion
         }

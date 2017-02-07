@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
     "NServiceBus": "6.*",
-    "NServiceBus.Encryption.MessageProperty": "1.0.0-alpha0023"
+    "NServiceBus.Encryption.MessageProperty": "1.0.0-alpha0027"
   },
   "frameworks": {
     "net461": {}

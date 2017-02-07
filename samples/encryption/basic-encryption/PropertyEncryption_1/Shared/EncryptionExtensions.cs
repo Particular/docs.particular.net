@@ -1,15 +1,19 @@
-﻿using System;
+﻿#region ConfigureEncryption
 
-#region ConfigureEncryption
+using System.Text;
 using NServiceBus;
-using ConfigureEncryption = NServiceBus.Encryption.MessageProperty.ConfigureRijndaelEncryptionService;
+using NServiceBus.Encryption.MessageProperty;
 
 public static class EncryptionExtensions
 {
     public static void ConfigurationEncryption(this EndpointConfiguration endpointConfiguration)
     {
-        var encryptionKey = Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
-        ConfigureEncryption.RijndaelEncryptionService(endpointConfiguration, "2015-10", encryptionKey);
+        var encryptionService = new RijndaelEncryptionService(
+            encryptionKeyIdentifier: "2015-10",
+            key: Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
+
+        endpointConfiguration.EnableMessagePropertyEncryption(encryptionService);
     }
 }
+
 #endregion

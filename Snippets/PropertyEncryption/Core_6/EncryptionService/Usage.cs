@@ -7,7 +7,12 @@
         Usage(EndpointConfiguration endpointConfiguration)
         {
             #region EncryptionFromIEncryptionService
-            endpointConfiguration.RegisterEncryptionService(() => new EncryptionService());
+
+            endpointConfiguration.RegisterEncryptionService(
+                func: () =>
+                {
+                    return new EncryptionService();
+                });
 
             #endregion
         }

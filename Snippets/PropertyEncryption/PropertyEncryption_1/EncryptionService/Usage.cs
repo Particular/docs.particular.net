@@ -1,14 +1,14 @@
 ﻿namespace Core6.Encryption.EncryptionService
 {
     using NServiceBus;
+    using NServiceBus.Encryption.MessageProperty;
 
     class Usage
     {
         Usage(EndpointConfiguration endpointConfiguration)
         {
             #region EncryptionFromIEncryptionService
-            NServiceBus.Encryption.MessageProperty.ConfigureRijndaelEncryptionService.RegisterEncryptionService(endpointConfiguration, () => new EncryptionService());
-
+            endpointConfiguration.EnableMessagePropertyEncryption(new EncryptionService());
             #endregion
         }
 

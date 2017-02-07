@@ -11,7 +11,8 @@
             #region EncryptionFromIEncryptionService
 
             // where EncryptionService implements IEncryptionService
-            configure.Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
+            var configurer = configure.Configurer;
+            configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
 
             #endregion
         }
