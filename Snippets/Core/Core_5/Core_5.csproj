@@ -51,6 +51,7 @@
     <Content Include="Headers\Writers\HeaderWriterSagaReplyingToOriginator.txt" />
     <Content Include="Headers\Writers\HeaderWriterSagaSending.txt" />
     <Content Include="Headers\Writers\HeaderWriterSagaTimeout.txt" />
+    <Content Include="Recoverability\Immediate\disable.xml" />
     <Content Include="Recoverability\retriesLogging.txt" />
     <Content Include="Forwarding\ForwardingConfig.xml" />
     <Content Include="Headers\Writers\HeaderWriterDataBusConvention.txt" />
@@ -112,6 +113,9 @@
     <Compile Include="Forwarding\ConfigurationSource.cs" />
     <Compile Include="Forwarding\ConfigurationSourceUsage.cs" />
     <Compile Include="Forwarding\ProvideConfiguration.cs" />
+    <Compile Include="Recoverability\Immediate\DisableConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Recoverability\Immediate\DisableConfigurationSource\Usage.cs" />
+    <Compile Include="Recoverability\Immediate\DisableProvideConfiguration.cs" />
     <Compile Include="Sagas\FindByProperty\MyMessage.cs" />
     <Compile Include="Sagas\FindByProperty\MySaga.cs" />
     <Compile Include="Sagas\FindByProperty\MySagaData.cs" />

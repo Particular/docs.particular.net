@@ -36,6 +36,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Recoverability\Immediate\disable.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Recoverability\retriesLogging.txt" />
     <Content Include="Forwarding\ForwardingConfig.xml" />
     <Content Include="Audit\audit.config.xml">
@@ -103,6 +106,8 @@
     <Compile Include="DataBus\Conventions\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
     <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
+    <Compile Include="Recoverability\Immediate\DisableConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Recoverability\Immediate\DisableConfigurationSource\Usage.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
     <Compile Include="Recoverability\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Recoverability\Immediate\ConfigurationSource\ConfigurationSource.cs" />

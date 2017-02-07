@@ -38,6 +38,7 @@
     </Content>
     <Content Include="Forwarding\ForwardingConfig.xml" />
     <Content Include="Recoverability\ErrorQueue\ErrorQueue.config.xml" />
+    <Content Include="Recoverability\Immediate\disable.xml" />
     <Content Include="Recoverability\Immediate\config.xml" />
     <Content Include="Recoverability\retriesLogging.txt" />
     <Content Include="Routing\EndpointMapping.config.xml">
@@ -104,6 +105,9 @@
     <Compile Include="DataBus\Conventions\Usage.cs" />
     <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
     <Compile Include="Recoverability\ErrorQueue\ProvideConfiguration.cs" />
+    <Compile Include="Recoverability\Immediate\DisableConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Recoverability\Immediate\DisableConfigurationSource\Usage.cs" />
+    <Compile Include="Recoverability\Immediate\DisableProvideConfiguration.cs" />
     <Compile Include="Recoverability\Immediate\ProvideConfiguration.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />

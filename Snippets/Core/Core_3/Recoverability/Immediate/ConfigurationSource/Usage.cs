@@ -6,7 +6,7 @@
     {
         Usage(Configure configure)
         {
-            #region DelayedRetriesConfigurationSourceUsage
+            #region ImmediateRetriesConfigurationSourceUsage
 
             configure.CustomConfigurationSource(new ConfigurationSource());
 

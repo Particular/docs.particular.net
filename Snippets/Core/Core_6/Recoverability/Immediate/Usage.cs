@@ -17,5 +17,19 @@
 
             #endregion
         }
+
+        void Disabling(EndpointConfiguration endpointConfiguration)
+        {
+            #region DisablingImmediateRetriesConfiguration
+
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Immediate(
+                immediate =>
+                {
+                    immediate.NumberOfRetries(0);
+                });
+
+            #endregion
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace Core3.Recoverability.Delayed.ConfigurationSource
     {
         Usage(Configure configure)
         {
-            #region ImmediateRetriesConfigurationSourceUsage
+            #region DelayedRetriesConfigurationSourceUsage
 
             configure.CustomConfigurationSource(new ConfigurationSource());
 

@@ -2,7 +2,7 @@
 title: Configure immediate retries
 summary: Shows how to configure immediate retries which happen as a first stage of the default recoverability behavior.
 component: Core
-reviewed: 2016-10-21
+reviewed: 2017-02-07
 tags:
  - Error Handling
  - Exceptions
@@ -17,7 +17,5 @@ NOTE: In order to get full control over Immediate Retries it is possible to over
 
 WARNING: Immediate Retries cannot be used when [transport transactions](/nservicebus/transports/transactions.md) are disabled.
 
-
-## Configuring Immediate Retries
 
 partial: config

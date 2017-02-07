@@ -22,7 +22,7 @@ WARNING: Delayed Retries cannot be used when transport transactions are disabled
 partial: config
 
 
-## Disabling Delayed Retries through code
+## Disabling through code
 
 snippet:DisableDelayedRetries
 

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--startcode configureImmediateRetriesViaXml-->
+<!--startcode disableImmediateRetriesViaXml-->
 <configuration>
   <configSections>
     <section name="MsmqTransportConfig"
              type="NServiceBus.Config.MsmqTransportConfig, NServiceBus.Core" />
   </configSections>
-  <MsmqTransportConfig MaxRetries="5"/>
+  <MsmqTransportConfig MaxRetries="0"/>
 </configuration>
 <!--endcode-->
