@@ -1,8 +1,6 @@
 ---
 title: SQL Persistence
 component: SqlPersistence
-tags:
- - Persistence
 related:
  - samples/sql-persistence
  - samples/saga/migration
