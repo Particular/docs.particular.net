@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks6_1", "CustomCh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks6_2", "CustomChecks6_2\CustomChecks6_2.csproj", "{7286B248-4947-4297-9031-811271751644}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks6_3", "CustomChecks6_3\CustomChecks6_3.csproj", "{A8E34344-2D73-4B11-942E-045F910171CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,8 @@ Global
 		{7286B248-4947-4297-9031-811271751643}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7286B248-4947-4297-9031-811271751644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7286B248-4947-4297-9031-811271751644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8E34344-2D73-4B11-942E-045F910171CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8E34344-2D73-4B11-942E-045F910171CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
