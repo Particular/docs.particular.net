@@ -57,7 +57,11 @@ Consider the following when implementing a critical error callback:
 - Flush any state/caches used if such data structures would be written/persisted at a certain interval or regular graceful shutdown.
 - It is easiest to call [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) or [Environment.Exit](https://msdn.microsoft.com/en-us/library/system.environment.exit(v=vs.110).aspx).
 
-Rely on the environment that the process will be automatically restarted. When hosting in IIS the IIS host will automatically spawn a new instance and when hosting as a Windows Service the OS will restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-restart-recovery) is enabled.
+
+Rely on the environment hosting the endpoint process for it to be automatically restarted.
+
+- IIS: When hosting in IIS the IIS host will automatically spawn a new instance
+- Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-restart-recovery) is enabled.
 
 
 WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if co-hosting NServiceBus with a web-service or website.
