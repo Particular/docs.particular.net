@@ -32,7 +32,7 @@ Given a message of this convention
 
 snippet:MessageForEncryptionConvention
 
-Encrypt `MyEncryptedProperty` by using `DefiningEncryptedPropertiesAs`.
+Encrypt `MyEncryptedProperty`.
 
 snippet:DefiningEncryptedPropertiesAs
 
