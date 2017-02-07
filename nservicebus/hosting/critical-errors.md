@@ -55,7 +55,7 @@ Consider the following when implementing a critical error callback:
 - Flush any loggers used which makes sure any unwritten log state is written/pushed to its target(s) making sure the tail of the log is not lost as [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) will immediately exit the process.
  - Flush appenders for [NLog](http://nlog-project.org/documentation/v4.3.0/html/M_NLog_LogManager_Shutdown.htm) or [log4net](https://logging.apache.org/log4net/log4net-1.2.11/release/sdk/log4net.LogManager.Shutdown.html) state by calling `LogManager.Shutdown();`.
 - Flush any state/caches used if such data structures would be written/persisted at a certain interval or regular graceful shutdown.
-- It is easiest to call [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx)
+- It is easiest to call [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) or [Environment.Exit](https://msdn.microsoft.com/en-us/library/system.environment.exit(v=vs.110).aspx).
 
 Rely on the environment that the process will be automatically restarted. When hosting in IIS the IIS host will automatically spawn a new instance and when hosting as a Windows Service the OS will restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-restart-recovery) is enabled.
 
