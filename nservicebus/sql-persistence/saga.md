@@ -1,8 +1,6 @@
 ---
 title: Saga Persister
 component: SqlPersistence
-tags:
- - Persistence
 related:
  - samples/sql-persistence
 reviewed: 2016-11-29
