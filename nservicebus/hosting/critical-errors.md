@@ -45,7 +45,7 @@ snippet:CustomHostErrorHandlingAction
 
 ## When to override the default critical error action
 
-When self hosting the critical error callback must be overridden in order to exit the current process. Not overriding the critical error callback will result in the endpoint instance to stop processing messages without the ability to recover from this state.
+The default behavior is to stop the endpoint and not the process. It is recommended to exit the process when a critical error occurs. Not overriding the critical error callback will result in the endpoint instance to stop processing messages without the ability to recover from this state.
 
 NOTE: If not killing the process and just disposing the bus, be aware that any `Send` operations will result in [ObjectDisposedException](https://msdn.microsoft.com/en-us/library/system.objectdisposedexception.aspx) being thrown.
 
