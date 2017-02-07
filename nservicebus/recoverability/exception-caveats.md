@@ -17,7 +17,7 @@ Certain types of exceptions are special in their behavior and may require custom
 
 If an [AccessViolationException](https://msdn.microsoft.com/en-us/library/system.accessviolationexception.aspx) is thrown then the endpoint will terminate. The reason is that a standard `try catch`, which NServiceBus uses does not catch an  `AccessViolationException` as such it will bubble out of he handler and terminate the endpoint.
 
-While these exceptions can explicitly handled (using a [HandleProcessCorruptedStateExceptionsAttribute](https://msdn.microsoft.com/en-us/library/system.runtime.exceptionservices.handleprocesscorruptedstateexceptionsattribute.aspx)) it is explicitly recommended MS not to do it.
+While these exceptions can be explicitly handled (using a [HandleProcessCorruptedStateExceptionsAttribute](https://msdn.microsoft.com/en-us/library/system.runtime.exceptionservices.handleprocesscorruptedstateexceptionsattribute.aspx)) it is explicitly recommended MS not to do it.
 
 > Corrupted process state exceptions are exceptions that indicate that the state of a process has been corrupted.
 
