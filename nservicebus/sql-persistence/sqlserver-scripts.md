@@ -1,8 +1,6 @@
 ---
 title: MS SQL Server Scripts
 component: SqlPersistence
-tags:
- - Persistence
 reviewed: 2016-11-29
 ---
 
