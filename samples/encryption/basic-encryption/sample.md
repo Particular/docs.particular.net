@@ -1,6 +1,6 @@
 ---
 title: Message Property Encryption
-reviewed: 2016-03-21
+reviewed: 2017-02-08
 component: PropertyEncryption
 tags:
 - Encryption
@@ -62,8 +62,7 @@ snippet: ConfigureEncryption
 
 Now run `Endpoint1` on its own (i.e. don't start `Endpoint2`).
 
-Go to the server queue (called `EncryptionSampleEndpoint1`) and examine the message in it. Read how to do this in the
-[FAQ](/nservicebus/msmq/viewing-message-content-in-msmq.md).
+Go to the server queue (called `EncryptionSampleEndpoint1`) and [view the message content](/nservicebus/msmq/viewing-message-content-in-msmq.md).
 
 The message will look like this:
 
