@@ -108,6 +108,7 @@
     <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
     <Compile Include="Recoverability\Immediate\DisableConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Recoverability\Immediate\DisableConfigurationSource\Usage.cs" />
+    <Compile Include="Recoverability\Immediate\DisableProvideConfiguration.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
     <Compile Include="Recoverability\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Recoverability\Immediate\ConfigurationSource\ConfigurationSource.cs" />
