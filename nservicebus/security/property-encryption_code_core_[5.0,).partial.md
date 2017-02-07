@@ -1,3 +1,3 @@
-#### Via Code
+### Via Code
 
 snippet:EncryptionFromCode

@@ -127,6 +127,8 @@ This means that a 16 character ASCII key is almost 100.000 times weaker then a 1
 NOTE: Use Base64 key format if possible and ASCII 32 key format for backward compatibility only. ASCII 16 key format is no longer recommended.
 
 
+## Configuration
+
 partial: code
 
 
