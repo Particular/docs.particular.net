@@ -1,8 +1,6 @@
 ---
 title: MySql Scripts
 component: SqlPersistence
-tags:
- - Persistence
 reviewed: 2016-11-29
 ---
 
