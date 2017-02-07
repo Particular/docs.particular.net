@@ -27,7 +27,7 @@ There are several approaches to hosting.
  * [Endpoint Lifecycle](/nservicebus/lifecycle/)
  * [Critical Error handling](critical-errors.md)
 
-NOTE: Be aware of critical errors, not configuring a critical error callback makes your endpoints unresponsive without terminating the process.
+NOTE: Be aware of critical errors, not configuring a critical error callback makes an endpoints unresponsive after a critical error without terminating the process.
 
 Related:
 
