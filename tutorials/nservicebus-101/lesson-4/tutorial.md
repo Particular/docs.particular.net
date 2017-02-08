@@ -91,7 +91,7 @@ Now that we've learned about events and the Publish/Subscribe pattern, let's mak
 
 We'll also create a new OrderBilled event that will be published by the Billing endpoint once the credit card transaction is complete.
 
-![Lesson 4 Diagram](diagram.png)
+![Lesson 4 Diagram](diagram.svg)
 
 When the Shipping endpoint receives both the OrderPlaced and OrderBilled, it will know that it is time to ship the product to the customer. Because this requires stored state, we can't accomplish that with message handlers alone. To implement that functionality, we would need a [Saga](/nservicebus/sagas/), but that will not be covered in this lesson.
 
