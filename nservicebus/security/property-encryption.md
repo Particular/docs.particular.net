@@ -11,6 +11,7 @@ related:
 - samples/encryption
 ---
 
+partial: obsolete
 
 Property encryption operates on specific properties of a message. The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible.
 
