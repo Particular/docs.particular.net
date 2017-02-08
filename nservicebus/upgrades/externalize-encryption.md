@@ -43,10 +43,12 @@ snippet: SplitEncryptionFromIEncryptionService
 
 The NServiceBus.Encryption.MessageProperty package is partially compatible with endpoints using NServiceBus core's encryption functionality:
 
+
 ### Sending and receiving using NServiceBus.Encryption.MessageProperty
 * NServiceBus.Encryption.MessageProperty can de- and encrypt all messages with message properties of type `NServiceBus.WireEncryptedString`.
 * NServiceBus.Encryption.MessageProperty can de- and encrypt all messages with message properties of type `NServiceBus.Encryption.MessageProperty.WireEncryptedString`.
 * NServiceBus.Encryption.MessageProperty can de- and encrypt all messages using an encrypted property convention.
+
 
 ### Sending and receiving using NServiceBus core
 * NServiceBus can de- and encrypt all messages with message properties of type `NServiceBus.WireEncryptedString`.
