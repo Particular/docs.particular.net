@@ -1,5 +1,0 @@
-Store.ContentManagement\Store.ContentManagement.csproj
-Store.CustomerRelations\Store.CustomerRelations.csproj
-Store.ECommerce\Store.ECommerce.csproj
-Store.Operations\Store.Operations.csproj
-Store.Sales\Store.Sales.csproj
