@@ -19,14 +19,17 @@ The API was also modified.
 Configuring encryption [via app.config](/nservicebus/security/property-encryption.md#configuration-via-app-config) and [via IProvideConfiguration](/nservicebus/security/property-encryption.md#configuration-via-iprovideconfiguration) have been removed. Instead use [configuration via code](/nservicebus/security/property-encryption.md#configuration-via-code).
 
 
-## Migration steps
+## Migration example
 
-When migrating endpoints to use the `NServiceBus.Encryption.MessageProperty` package:
+For a system with two endpoints, there are the steps to migrate to the `NServiceBus.Encryption.MessageProperty` package:
 
-1. Upgrade all endpoints to use `NServiceBus.Encryption.MessageProperty`. The endpoints will continue to process all messages the same way as they've done until then.
-1. After all endpoints have been migrated, upgrade message contracts to use the `NServiceBus.Encryption.MessageProperty.WireEncryptedString` property type.
->>>>>>> Move migration steps higher up
+1. Install the `NServiceBus.Encryption.MessageProperty` NuGet package into both endpoints.
+1. Update the configuration for both endpoints to use either [RijndaelEncryptionService](#enabling-rijndaelencryptionservice) or your own [custom encryption service](#custom-encryption-service).
+1. Deploy both endpoints
+1. Update message contracts in both endpoints to use the `NServiceBus.Encryption.MessageProperty.WireEncryptedString` property type.
+1. Deploy both endpoints
 
+Note that all endpoints must be updated to the `NServiceBus.Encryption.MessageProperty` package _before_ updating any message contracts to use `NServiceBus.Encryption.MessageProperty.WireEncryptedString`. This is to prevent issues with [compatibility](#compatibility).
 
 ## Enabling RijndaelEncryptionService
 
