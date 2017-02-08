@@ -1,6 +1,7 @@
 ﻿namespace Store.Messages.Commands
 {
     using NServiceBus;
+    using WireEncryptedString = NServiceBus.Encryption.MessageProperty.WireEncryptedString;
 
     public class SubmitOrder :
         ICommand
