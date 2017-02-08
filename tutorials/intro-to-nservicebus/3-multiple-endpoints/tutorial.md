@@ -1,6 +1,8 @@
 ---
-title: "NServiceBus 101 Lesson 3: Multiple endpoints"
+title: "Introduction to NServiceBus: Multiple endpoints"
 reviewed: 2017-01-26
+redirects:
+- tutorials/nservicebus-101/3-multiple-endpoints
 ---
 
 Up until this point, we have constrained our activities to a single endpoint, but this is not how real systems behave. The strength of a messaging system is the ability to run code in multiple processes, on multiple servers, which can all collaborate by exchanging messages.
@@ -127,7 +129,7 @@ If you attempt to place an order in the ClientUI, an exception will be thrown be
 
 WARNING: System.InvalidOperationException: No handlers could be found for message type: Messages.Commands.PlaceOrder
 
-In fact, you will probably get a giant wall of exception text, because the message is tried and retried, and then retried some more after successively longer delays, until finally failing for good some time later. We'll cover this behavior in more detail in [Lesson 5: Retrying errors](../lesson-5/).
+In fact, you will probably get a giant wall of exception text, because the message is tried and retried, and then retried some more after successively longer delays, until finally failing for good some time later. We'll cover this behavior in more detail in [Lesson 5: Retrying errors](../5-retrying-errors/).
 
 The important part is, if a message is accidentally sent to an endpoint we didn't intend, it won't just fail silently, and the message will not be lost.
 
@@ -185,4 +187,4 @@ In this lesson, we learned about sending messages between endpoints. We already 
 
 In the next lesson, we'll learn about events, a different kind of message that can be published to multiple subscribers using the Publish/Subscribe pattern. We'll also learn how the decoupling provided by this pattern allows us to structure our distributed systems in a more logical and maintainable way.
 
-When you're ready, move on to [**Lesson 4: Publishing events**](../lesson-4/).
+When you're ready, move on to [**Lesson 4: Publishing events**](../4-publishing-events/).

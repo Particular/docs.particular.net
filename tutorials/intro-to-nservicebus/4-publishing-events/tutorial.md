@@ -1,9 +1,11 @@
 ---
-title: "NServiceBus 101 Lesson 4: Publishing events"
+title: "Introduction to NServiceBus: Publishing events"
 reviewed: 2017-01-26
+redirects:
+- tutorials/nservicebus-101/4-publishing-events
 ---
 
-So far in this course, we have only sent **commands** – one-way messages from a sender to a specific receiver. There's another type of message we have yet to cover called an **event**. In many ways events are just like commands. They're simple classes and you deal with them in much the same way. But from an architectural standpoint commands and events are *polar opposites*. This creates a useful dichotomy. We can take advantage of the properties of events to open up new possibilities in how we design software.
+So far in this tutorial, we have only sent **commands** – one-way messages from a sender to a specific receiver. There's another type of message we have yet to cover called an **event**. In many ways events are just like commands. They're simple classes and you deal with them in much the same way. But from an architectural standpoint commands and events are *polar opposites*. This creates a useful dichotomy. We can take advantage of the properties of events to open up new possibilities in how we design software.
 
 In the next 25-30 minutes, you will learn how the publish/subscribe pattern can help you create more maintainable code. Together, we'll learn to define, publish, and subscribe to an event.
 
@@ -128,7 +130,7 @@ Unlike the command `PlaceOrder`, which is a request to do something, `OrderPlace
 
 When an order is placed, we will want to charge the credit card for that order. So we will create a **Billing** service, which will subscribe to `OrderPlaced` so that it can handle the payment transaction.
 
-NOTE: Since this is the third endpoint we've created, the instructions will be a little more abbreviated. Feel free to refer back to [Lesson 2](../lesson-2/) where we created the Sales endpoint for more detailed instructions.
+NOTE: Since this is the third endpoint we've created, the instructions will be a little more abbreviated. Feel free to refer back to [Lesson 2](../2-sending-a-command/) where we created the Sales endpoint for more detailed instructions.
 
  1. Create a new **Console Application** named **Billing**.
  1. Add references for the **NServiceBus NuGet package** and the **Messages** assembly.
@@ -192,6 +194,6 @@ You'll note that in the sample solution, the message for each handler says "Shou
 
 In this lesson we learned all about events, how they differ from commands, and how that enables us to create systems that are more decoupled and adhere better to the Single Responsibility Principle. We published an `OrderPlaced` event from the Sales endpoint, and created the Billing and Shipping endpoints to subscribe to that event. We also published the `OrderBilled` event from the Billing endpoint, and subscribed to it in Shipping.
 
-In the final lesson for this course, we'll see what happens when we introduce errors into our system, and see how we can automatically retry those messages to make a truly resilient system.
+In the final lesson for this tutorial, we'll see what happens when we introduce errors into our system, and see how we can automatically retry those messages to make a truly resilient system.
 
-When you're ready, move on to [**Lesson 5: Retrying errors**](../lesson-5/).
+When you're ready, move on to [**Lesson 5: Retrying errors**](../5-retrying-errors/).
