@@ -8,8 +8,7 @@
   </configSections>
   <RijndaelEncryptionServiceConfig Key="tWIrVnPy3Smd2r/xcSb9r/1wcVY9/3KWbrzIaemx5yw="
                                    KeyIdentifier="2015-10"
-                                   KeyFormat="Base64"
-    >
+                                   KeyFormat="Base64">
     <ExpiredKeys>
       <add Key="YWJEYnFScFFkUmJUczNtaGRaaDlxQ2FEYXhKWGwrZTY="
            KeyIdentifier="2015-09"

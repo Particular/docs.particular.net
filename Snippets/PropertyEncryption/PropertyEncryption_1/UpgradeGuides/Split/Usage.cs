@@ -1,24 +1,17 @@
-﻿namespace Core6.Encryption
+﻿namespace Core6.UpgradeGuides.Split
 {
     using System.Collections.Generic;
     using System.Text;
     using NServiceBus;
+    using NServiceBus.Encryption.MessageProperty;
 
     class Usage
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region EncryptionServiceSimple
-
-            endpointConfiguration.RijndaelEncryptionService();
-
-            #endregion
-        }
-
 
         void FromCode(EndpointConfiguration endpointConfiguration)
         {
-            #region EncryptionFromCode
+            #region SplitEncryptionFromCode
+
             var defaultKey = "2015-10";
 
             var ascii = Encoding.ASCII;
@@ -28,10 +21,11 @@
                 {"2015-09", ascii.GetBytes("abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6")},
                 {"2015-08", ascii.GetBytes("cdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6")},
             };
-            endpointConfiguration.RijndaelEncryptionService(defaultKey, keys);
+            var encryptionService = new RijndaelEncryptionService(defaultKey, keys);
+
+            endpointConfiguration.EnableMessagePropertyEncryption(encryptionService);
 
             #endregion
         }
-
     }
 }

@@ -18,7 +18,6 @@
 
         void FromCode(BusConfiguration busConfiguration)
         {
-#pragma warning disable 618
             #region EncryptionFromCode
 
             var defaultKey = "2015-10";
@@ -33,7 +32,6 @@
             busConfiguration.RijndaelEncryptionService(defaultKey, keys);
 
             #endregion
-#pragma warning restore 618
         }
 
     }

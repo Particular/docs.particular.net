@@ -1,7 +1,8 @@
-﻿namespace Core6.Encryption.WireEncryptedProperty
+﻿namespace Core6.UpgradeGuides.Split.WireEncryptedProperty
 {
 
-    #region MessageWithEncryptedProperty
+    #region SplitMessageWithEncryptedProperty
+
     using NServiceBus;
     using WireEncryptedString = NServiceBus.Encryption.MessageProperty.WireEncryptedString;
 

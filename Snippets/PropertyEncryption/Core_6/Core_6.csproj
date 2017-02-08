@@ -47,6 +47,10 @@
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="EncryptionService\EncryptionService.cs" />
     <Compile Include="EncryptionService\Usage.cs" />
+    <Compile Include="UpgradeGuides\Split\Conventions\Usage.cs" />
+    <Compile Include="UpgradeGuides\Split\EncryptionService\Usage.cs" />
+    <Compile Include="UpgradeGuides\Split\Usage.cs" />
+    <Compile Include="UpgradeGuides\Split\WireEncryptedProperty\MyMessage.cs" />
     <Compile Include="Usage.cs" />
     <Compile Include="WireEncryptedProperty\MyMessage.cs" />
   </ItemGroup>
@@ -65,5 +69,6 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

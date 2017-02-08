@@ -11,15 +11,19 @@
         {
             #region EncryptionServiceSimple
 
-            endpointConfiguration.RijndaelEncryptionService();
+            var defaultKey = "2015-10";
+            var ascii = Encoding.ASCII;
+            var encryptionService = new RijndaelEncryptionService(
+                encryptionKeyIdentifier: defaultKey,
+                key: ascii.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
+
+            endpointConfiguration.EnableMessagePropertyEncryption(encryptionService);
 
             #endregion
         }
 
         void FromCode(EndpointConfiguration endpointConfiguration)
         {
-#pragma warning disable 618
-
             #region EncryptionFromCode
 
             var defaultKey = "2015-10";
@@ -36,8 +40,6 @@
             endpointConfiguration.EnableMessagePropertyEncryption(encryptionService);
 
             #endregion
-
-#pragma warning restore 618
         }
     }
 }

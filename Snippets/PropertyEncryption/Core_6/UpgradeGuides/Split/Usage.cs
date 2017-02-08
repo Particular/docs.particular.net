@@ -1,4 +1,4 @@
-﻿namespace Core6.Encryption
+﻿namespace Core6.UpgradeGuides.Split
 {
     using System.Collections.Generic;
     using System.Text;
@@ -6,19 +6,10 @@
 
     class Usage
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region EncryptionServiceSimple
-
-            endpointConfiguration.RijndaelEncryptionService();
-
-            #endregion
-        }
-
 
         void FromCode(EndpointConfiguration endpointConfiguration)
         {
-            #region EncryptionFromCode
+            #region SplitEncryptionFromCode
             var defaultKey = "2015-10";
 
             var ascii = Encoding.ASCII;
