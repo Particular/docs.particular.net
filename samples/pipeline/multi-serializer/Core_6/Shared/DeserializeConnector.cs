@@ -97,7 +97,6 @@ class DeserializeConnector :
             return messageSerializer.Deserialize(stream, typesToDeserialize)
                 .Select(x => logicalMessageFactory.Create(x.GetType(), x))
                 .ToList();
-
         }
     }
 }
