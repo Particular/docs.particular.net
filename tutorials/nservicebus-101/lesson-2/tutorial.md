@@ -79,7 +79,7 @@ Now let's take the solution we started in the last lesson and modify it to send 
 
 When we're done, the ClientUI endpoint will be sending a PlaceOrder message to itself, and then processing that message, as depicted in the following diagram:
 
-![Exercise 2 Diagram](diagram.png)
+![Exercise 2 Diagram](diagram.svg)
 
 
 ### Create a messages assembly

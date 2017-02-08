@@ -18,6 +18,6 @@ In [Lesson 5: Retrying errors](lesson-5/) (25-30 minutes) you will learn how to 
 
 When you've completed all the exercises, your solution will look like this:
 
-![Completed Solution Diagram](lesson-4/diagram.png)
+![Completed Solution Diagram](lesson-4/diagram.svg)
 
 **Go to [**Lesson 1: Getting started**](lesson-1/) to begin.**
