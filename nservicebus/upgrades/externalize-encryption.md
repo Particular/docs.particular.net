@@ -9,7 +9,7 @@ related:
  - nservicebus/security/property-encryption
 ---
 
-The [Message Property Encryption feature](/nservicebus/security/property-encryption.md), has been moved from the NServiceBus package to the separate [NServiceBus.Encryption.MessageProperty](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/) NuGet package. That package should be used in order to encryption message properties when using versions NServiceBus Versions 6.2 and above.
+The [Message Property Encryption feature](/nservicebus/security/property-encryption.md), has been moved from the NServiceBus package to the separate [NServiceBus.Encryption.MessageProperty](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/) NuGet package. That package should be used to encrypt message properties when using versions NServiceBus Versions 6.2 and above.
 
 The API was also modified.
 
@@ -29,12 +29,12 @@ snippet: SplitEncryptionFromCode
 snippet: SplitMessageWithEncryptedProperty
 
 
-## Encrypted Property Convention
+## Encrypted property convention
 
 snippet: SplitDefiningEncryptedPropertiesAs
 
 
-## Custom encryption Service
+## Custom encryption service
 
 snippet: SplitEncryptionFromIEncryptionService
 
@@ -44,15 +44,17 @@ snippet: SplitEncryptionFromIEncryptionService
 The NServiceBus.Encryption.MessageProperty package is partially compatible with endpoints using NServiceBus package's encryption functionality:
 
 
-### Sending and receiving using NServiceBus.Encryption.MessageProperty
+### Encrypting and decrypting using NServiceBus.Encryption.MessageProperty
 * NServiceBus.Encryption.MessageProperty can decrypt and encrypt all messages with message properties of type `NServiceBus.WireEncryptedString`.
 * NServiceBus.Encryption.MessageProperty can decrypt and encrypt all messages with message properties of type `NServiceBus.Encryption.MessageProperty.WireEncryptedString`.
 * NServiceBus.Encryption.MessageProperty can decrypt and encrypt all messages using an encrypted property convention.
 
 
-### Sending and receiving using NServiceBus
+### Encrypting and decrypting using NServiceBus
+* NServiceBus.Encryption.MessageProperty **cannot** decrypt and encrypt messages with message properties of type `NServiceBus.Encryption.MessageProperty.WireEncryptedString`.
 * NServiceBus can decrypt and encrypt all messages with message properties of type `NServiceBus.WireEncryptedString`.
 * NServiceBus can decrypt and encrypt all messages using an encrypted property convention.
-* NServiceBus.Encryption.MessageProperty **cannot** decrypt and encrypt messages with message properties of type `NServiceBus.Encryption.MessageProperty.WireEncryptedString`.
 
-When migrating endpoints to use the NServiceBus.Encryption.MessageProperty package, message contracts should only be updated to use the `NServiceBus.Encryption.MessageProperty.WireEncryptedString` property type when all endpoints are migrated.
+When migrating endpoints to use the NServiceBus.Encryption.MessageProperty package:
+1. Upgrade all the endpoints to use the new package. The endpoints will continue to process all messages the same way as they've done until then.
+2. After all endpoints have been migrated, upgrade message contracts to use the `NServiceBus.Encryption.MessageProperty.WireEncryptedString` property type.
