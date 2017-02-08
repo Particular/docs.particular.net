@@ -16,7 +16,16 @@ The API was also modified.
 
 ## Removed APIs
 
-Configuring encryption [Via app.config](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-app-config) and [Via IProvideConfiguration](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-iprovideconfiguration) have been removed. Instead use [Configuration via code](/nservicebus/security/property-encryption.md#configuration-via-code).
+Configuring encryption [via app.config](/nservicebus/security/property-encryption.md#configuration-via-app-config) and [via IProvideConfiguration](/nservicebus/security/property-encryption.md#configuration-via-iprovideconfiguration) have been removed. Instead use [configuration via code](/nservicebus/security/property-encryption.md#configuration-via-code).
+
+
+## Migration steps
+
+When migrating endpoints to use the `NServiceBus.Encryption.MessageProperty` package:
+
+1. Upgrade all endpoints to use `NServiceBus.Encryption.MessageProperty`. The endpoints will continue to process all messages the same way as they've done until then.
+1. After all endpoints have been migrated, upgrade message contracts to use the `NServiceBus.Encryption.MessageProperty.WireEncryptedString` property type.
+>>>>>>> Move migration steps higher up
 
 
 ## Enabling RijndaelEncryptionService
@@ -39,6 +48,7 @@ snippet: SplitDefiningEncryptedPropertiesAs
 snippet: SplitEncryptionFromIEncryptionService
 
 
+
 ## Compatibility
 
 The NServiceBus.Encryption.MessageProperty package is partially compatible with endpoints using NServiceBus package's encryption functionality:
@@ -55,6 +65,3 @@ The NServiceBus.Encryption.MessageProperty package is partially compatible with 
 * NServiceBus can decrypt and encrypt all messages with message properties of type `NServiceBus.WireEncryptedString`.
 * NServiceBus can decrypt and encrypt all messages using an encrypted property convention.
 
-When migrating endpoints to use the NServiceBus.Encryption.MessageProperty package:
-1. Upgrade all the endpoints to use the new package. The endpoints will continue to process all messages the same way as they've done until then.
-2. After all endpoints have been migrated, upgrade message contracts to use the `NServiceBus.Encryption.MessageProperty.WireEncryptedString` property type.
