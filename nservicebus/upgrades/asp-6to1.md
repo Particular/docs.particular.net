@@ -19,7 +19,7 @@ WARNING: Upgrades from NServiceBus.Azure Versions 6.2.3 and below will need to a
 
 One of the most visible changes for this persister was moving it from the NServiceBus.Azure package to the NServiceBus.Persistence.AzureStorage package. This change in packaging has reset the version number to Version 1.
 
-Upgrading to the new package requires removing the NServiceBus.Azure Nuget package from the project and adding the NServiceBus.Persistence.AzureStorage package.
+Upgrading to the new package requires removing the [NServiceBus.Azure NuGet package](https://www.nuget.org/packages/NServiceBus.Azure/) from the project and adding the [NServiceBus.Persistence.AzureStorage NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/).
 
 Once the packages have been changed, any use of the `NServiceBus.Azure` namespace needs to be replaced with `NServiceBus.Persistence.AzureStorage`.
 
