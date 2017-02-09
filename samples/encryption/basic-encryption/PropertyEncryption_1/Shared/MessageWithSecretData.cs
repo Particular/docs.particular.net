@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #region Message
 using NServiceBus;
-using WireEncryptedString = NServiceBus.Encryption.MessageProperty.WireEncryptedString;
+using WireEncryptedString = NServiceBus.Encryption.MessageProperty.EncryptedString;
 
 public class MessageWithSecretData :
     IMessage
