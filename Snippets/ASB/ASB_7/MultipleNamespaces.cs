@@ -33,6 +33,7 @@ class MultipleNamespaces
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var partitioning = transport.NamespacePartitioning();
+        partitioning.UseStrategy<RoundRobinNamespacePartitioning>();
         partitioning.AddNamespace(
             name: "namespace1",
             connectionString: "Endpoint=sb://namespace1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
