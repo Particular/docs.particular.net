@@ -39,9 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\GlobalSuppressions.cs">
-      <Link>GlobalSuppressions.cs</Link>
-    </Compile>
     <Compile Include="Conventions\Message.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="EncryptionService\EncryptionService.cs" />
