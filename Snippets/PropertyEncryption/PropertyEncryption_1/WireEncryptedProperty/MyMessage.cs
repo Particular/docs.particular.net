@@ -3,12 +3,12 @@
 
     #region MessageWithEncryptedProperty
     using NServiceBus;
-    using WireEncryptedString = NServiceBus.Encryption.MessageProperty.WireEncryptedString;
+    using NServiceBus.Encryption.MessageProperty;
 
     public class MyMessage :
         IMessage
     {
-        public WireEncryptedString MyEncryptedProperty { get; set; }
+        public EncryptedString MyEncryptedProperty { get; set; }
     }
     #endregion
 }
