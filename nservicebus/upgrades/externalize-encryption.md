@@ -14,9 +14,10 @@ The [Message Property Encryption feature](/nservicebus/security/property-encrypt
 
 The API was also modified.
 
+
 ## Removed APIs
 
-Configuring encryption [Via app.config](/nservicebus/security/property-encryption.md#configuration-via-app-config) and [Via IProvideConfiguration](/nservicebus/security/property-encryption.md#configuration-via-iprovideconfiguration) have been removed. Instead use [Configuration via code](/nservicebus/security/property-encryption.md#configuration-via-code).
+Configuring encryption [Via app.config](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-app-config) and [Via IProvideConfiguration](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-iprovideconfiguration) have been removed. Instead use [Configuration via code](/nservicebus/security/property-encryption.md#configuration-via-code).
 
 
 ## Enabling RijndaelEncryptionService
