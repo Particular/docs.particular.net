@@ -9,7 +9,7 @@ related:
  - nservicebus/security/property-encryption
 ---
 
-The [Message Property Encryption feature](/nservicebus/security/property-encryption.md), has been moved from the NServiceBus package to the separate [NServiceBus.Encryption.MessageProperty](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/) NuGet package. That package should be used to encrypt message properties when using versions NServiceBus Versions 6.2 and above.
+The [Message Property Encryption feature](/nservicebus/security/property-encryption.md) has been moved from the NServiceBus package. It is now available as a separate NuGet package, [NServiceBus.Encryption.MessageProperty](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/). The new package should be used to encrypt message properties when using NServiceBus Versions 6.2 and above.
 
 The API was also modified.
 
