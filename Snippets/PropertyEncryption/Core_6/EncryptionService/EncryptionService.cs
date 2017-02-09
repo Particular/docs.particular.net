@@ -10,7 +10,6 @@ namespace Core6.Encryption.EncryptionService
     public class EncryptionService :
         IEncryptionService
     {
-
         public EncryptedValue Encrypt(string value, IOutgoingLogicalMessageContext context)
         {
             throw new NotImplementedException();
