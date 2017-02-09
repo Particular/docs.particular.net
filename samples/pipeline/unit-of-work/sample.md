@@ -43,7 +43,7 @@ The following code is needed to register the behavior in the receive pipeline.
 snippet: configuration
 
 
-### Providing the session from handlers
+### Providing the session to handlers
 
 While it is possible to use the code `contex.Extensions.Get<IMySession>` in the handler, it is better to provide extension methods on `IMessageHandlerContext` to allow for a more terse syntax. In this sample the methods `.Store<T>` a `.GetSession` are provided:
 
