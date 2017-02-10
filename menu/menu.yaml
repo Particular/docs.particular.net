@@ -5,7 +5,7 @@
     Articles:
     - Url: platform
       Title: Service Platform
-    - Url: tutorials/nservicebus-101
+    - Url: tutorials/intro-to-nservicebus
       Title: Messaging Basics Tutorial
     - Url: samples/step-by-step
       Title: Step by Step Sample
