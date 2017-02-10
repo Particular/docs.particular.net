@@ -37,6 +37,7 @@ The NServiceBus.Encryption.MessageProperty package is not fully compatible with 
  * NServiceBus can decrypt and encrypt all messages with message properties of type `NServiceBus.WireEncryptedString`.
  * NServiceBus can decrypt and encrypt all messages using an encrypted property convention.
 
+
 ## Migration example
 
 For a system with two or more endpoints, these are the steps to migrate to the `NServiceBus.Encryption.MessageProperty` package:
