@@ -1,6 +1,7 @@
 ---
 title: NServiceBus.Azure package deprecated
 summary: Instructions on how to move from the NServiceBus.Azure package to the new individual packages.
+reviewed: 2017-02-10
 related:
  - nservicebus/upgrades/5to6
  - nservicebus/upgrades/absdatabus-6to1
