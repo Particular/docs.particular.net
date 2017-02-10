@@ -15,18 +15,8 @@ public class MvcApplication :
     {
         #region ApplicationStart
 
-        var builder = new ContainerBuilder();
-
-        // Set the dependency resolver to be Autofac.
-        var container = builder.Build();
-
         var endpointConfiguration = new EndpointConfiguration("Samples.MvcInjection.WebApplication");
-        // instruct NServiceBus to use a custom AutoFac configuration
-        endpointConfiguration.UseContainer<AutofacBuilder>(
-            customizations: customizations =>
-            {
-                customizations.ExistingLifetimeScope(container);
-            });
+
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
