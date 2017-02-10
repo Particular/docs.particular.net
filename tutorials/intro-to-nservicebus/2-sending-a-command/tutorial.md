@@ -1,6 +1,7 @@
 ---
 title: "Introduction to NServiceBus: Sending a command"
 reviewed: 2017-01-26
+summary: In this 15-20 minute tutorial, you'll learn how to define NServiceBus messages and handlers, and send and receive a message.
 redirects:
 - tutorials/nservicebus-101/2-sending-a-command
 ---

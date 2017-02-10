@@ -2,6 +2,7 @@
 title: "Introduction to NServiceBus"
 suppressRelated: true
 reviewed: 2017-01-26
+summary: Learn how to use NServiceBus quickly with this step-by-step tutorial, including the architectural concepts behind it.
 redirects:
 - tutorials/nservicebus-101
 ---

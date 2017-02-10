@@ -1,6 +1,7 @@
 ---
 title: "Introduction to NServiceBus: Retrying errors"
 reviewed: 2017-01-26
+summary: In this 25-30 minute tutorial, you'll learn the different causes of errors and how to manage them with the Particular Service Platform.
 redirects:
 - tutorials/nservicebus-101/5-retrying-errors
 ---
