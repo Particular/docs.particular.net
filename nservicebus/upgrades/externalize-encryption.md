@@ -19,6 +19,24 @@ The API was also modified.
 Configuring encryption [via app.config](/nservicebus/security/property-encryption.md#configuration-via-app-config) and [via IProvideConfiguration](/nservicebus/security/property-encryption.md#configuration-via-iprovideconfiguration) have been removed. Instead use [configuration via code](/nservicebus/security/property-encryption.md#configuration-via-code).
 
 
+## Compatibility
+
+The NServiceBus.Encryption.MessageProperty package is not fully compatible with endpoints that use NServiceBus package's encryption functionality. Because the core implementation is not aware of the existence of the external package, it is unable to decrypt message that use the NServiceBus.Encryption.MessageProperty.EncryptedString. Here are details of the specific cases.
+
+
+### Encrypting and decrypting using NServiceBus.Encryption.MessageProperty
+
+ * NServiceBus.Encryption.MessageProperty can decrypt and encrypt all messages with message properties of type `NServiceBus.WireEncryptedString`.
+ * NServiceBus.Encryption.MessageProperty can decrypt and encrypt all messages with message properties of type `NServiceBus.Encryption.MessageProperty.EncryptedString`.
+ * NServiceBus.Encryption.MessageProperty can decrypt and encrypt all messages using an encrypted property convention.
+
+
+### Encrypting and decrypting using NServiceBus
+
+ * NServiceBus.Encryption.MessageProperty **cannot** decrypt and encrypt messages with message properties of type `NServiceBus.Encryption.MessageProperty.EncryptedString`.
+ * NServiceBus can decrypt and encrypt all messages with message properties of type `NServiceBus.WireEncryptedString`.
+ * NServiceBus can decrypt and encrypt all messages using an encrypted property convention.
+
 ## Migration example
 
 For a system with two or more endpoints, these are the steps to migrate to the `NServiceBus.Encryption.MessageProperty` package:
@@ -26,10 +44,10 @@ For a system with two or more endpoints, these are the steps to migrate to the `
  1. Install the `NServiceBus.Encryption.MessageProperty` NuGet package into all endpoints.
  1. Update the configuration for all endpoints to use either [RijndaelEncryptionService](#enabling-rijndaelencryptionservice) or [a custom encryption service](#custom-encryption-service).
  1. Deploy all endpoints.
- 1. Update message contracts in all endpoints to use the `NServiceBus.Encryption.MessageProperty.EncryptedString` property type.
- 1. Deploy all endpoints.
+ 1. After all endpoints are deployed, update message contracts in all endpoints to use the `NServiceBus.Encryption.MessageProperty.EncryptedString` property type.
+ 1. Deploy all endpoints again.
 
-Note: All endpoints must be updated to the `NServiceBus.Encryption.MessageProperty` package _before_ updating any message contracts to use `NServiceBus.Encryption.MessageProperty.EncryptedString`. This is to prevent issues with [compatibility](#compatibility).
+Note: All endpoints must be updated to the `NServiceBus.Encryption.MessageProperty` package _and deployed_ before updating any message contracts to use `NServiceBus.Encryption.MessageProperty.EncryptedString`. This is to prevent issues with [compatibility](#compatibility).
 
 
 ## Enabling RijndaelEncryptionService
@@ -51,22 +69,3 @@ snippet: SplitDefiningEncryptedPropertiesAs
 
 snippet: SplitEncryptionFromIEncryptionService
 
-
-
-## Compatibility
-
-The NServiceBus.Encryption.MessageProperty package is partially compatible with endpoints using NServiceBus package's encryption functionality:
-
-
-### Encrypting and decrypting using NServiceBus.Encryption.MessageProperty
-
- * NServiceBus.Encryption.MessageProperty can decrypt and encrypt all messages with message properties of type `NServiceBus.WireEncryptedString`.
- * NServiceBus.Encryption.MessageProperty can decrypt and encrypt all messages with message properties of type `NServiceBus.Encryption.MessageProperty.EncryptedString`.
- * NServiceBus.Encryption.MessageProperty can decrypt and encrypt all messages using an encrypted property convention.
-
-
-### Encrypting and decrypting using NServiceBus
-
- * NServiceBus.Encryption.MessageProperty **cannot** decrypt and encrypt messages with message properties of type `NServiceBus.Encryption.MessageProperty.EncryptedString`.
- * NServiceBus can decrypt and encrypt all messages with message properties of type `NServiceBus.WireEncryptedString`.
- * NServiceBus can decrypt and encrypt all messages using an encrypted property convention.
