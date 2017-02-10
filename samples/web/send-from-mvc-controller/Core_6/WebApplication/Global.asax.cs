@@ -34,15 +34,15 @@ public class MvcApplication :
 
         endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 
-        var updater = new ContainerBuilder();
-        updater.RegisterInstance(endpoint);
+        var mvcContainerBuilder = new ContainerBuilder();
+        mvcContainerBuilder.RegisterInstance(endpoint);
 
         // Register MVC controllers.
-        updater.RegisterControllers(typeof(MvcApplication).Assembly);
+        mvcContainerBuilder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-        var updated = updater.Build();
+        var mvcContainer = mvcContainerBuilder.Build();
 
-        DependencyResolver.SetResolver(new AutofacDependencyResolver(updated));
+        DependencyResolver.SetResolver(new AutofacDependencyResolver(mvcContainer));
 
         AreaRegistration.RegisterAllAreas();
         RegisterRoutes(RouteTable.Routes);
