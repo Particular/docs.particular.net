@@ -3,9 +3,6 @@ title: Sequence Diagram
 summary: ServiceInsight Sequence Diagram view
 reviewed: 2016-10-20
 component: ServiceInsight
-tags:
-- ServiceInsight
-- Sequence Diagram
 ---
 
 The sequence diagram shows when messages in the same conversation as the selected message were sent and handled relative to each other. It shows the interaction of endpoints involved in the conversation to give an understanding of the sequence of messages that occured during that conversation.

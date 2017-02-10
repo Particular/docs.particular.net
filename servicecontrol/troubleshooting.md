@@ -1,9 +1,6 @@
 ---
 title: Troubleshooting
 summary: Troubleshooting ServiceControl installation and common issues
-tags:
-- ServiceControl
-- Troubleshooting
 reviewed: 2016-11-09
 ---
 

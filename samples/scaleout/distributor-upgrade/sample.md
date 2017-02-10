@@ -4,9 +4,7 @@ summary: Upgrading an existing scaled-out endpoint that uses Distributor to vers
 reviewed: 2016-03-21
 component: Core
 tags:
-- Distributor
 - Scalability
-- Upgrade
 related:
 - nservicebus/msmq/distributor
 - samples/scaleout/distributor

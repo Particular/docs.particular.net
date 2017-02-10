@@ -3,7 +3,6 @@ title: Installing RavenDB
 summary: How to install RavenDB when using RavenDB persistence for various versions of NServiceBus.
 tags:
  - Persistence
- - RavenDB
 reviewed: 2016-10-18
 redirects:
  - nservicebus/using-ravendb-in-nservicebus-installing

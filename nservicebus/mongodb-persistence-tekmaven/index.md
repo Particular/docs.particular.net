@@ -4,7 +4,6 @@ component: MongoPersistenceTekmaven
 reviewed: 2016-09-23
 versions: '[2,)'
 tags:
- - MongoDB
  - Persistence
 related:
  - samples/mongodb

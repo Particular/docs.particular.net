@@ -8,7 +8,6 @@ tags:
  - Exceptions
  - Retry
  - Recoverability
- - Faults
 redirects:
 - nservicebus/configure-error-queue
 related:

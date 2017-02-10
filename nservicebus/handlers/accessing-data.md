@@ -8,10 +8,7 @@ related:
  - nservicebus/nhibernate/accessing-data
  - nservicebus/ravendb
 tags:
- - NHibernate
- - RavenDB
  - Persistence
- - Data access
  - Saga
 ---
 

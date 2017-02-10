@@ -4,7 +4,6 @@ summary: The design and implementation details of SQL Server Transport
 reviewed: 2016-08-08
 component: SqlServer
 tags:
-- SQL Server
 - Transactions
 - Transport
 ---

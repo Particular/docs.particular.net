@@ -5,7 +5,6 @@ reviewed: 2016-11-23
 component: Core
 tags:
  - Pipeline
- - Unit of work
 related:
  - nservicebus/pipeline
  - nservicebus/pipeline/unit-of-work

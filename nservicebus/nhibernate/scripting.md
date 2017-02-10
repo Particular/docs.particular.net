@@ -3,8 +3,6 @@ title: NHibernate Persistence Scripts
 summary: Collection of scripts for managing NHibernate Persistence
 component: NHibernate
 reviewed: 2016-09-29
-tags:
- - NHibernate
 ---
 
 WARNING: Ensure to create a backup of the database before executing any of the listed scripts.

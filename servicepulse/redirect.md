@@ -1,8 +1,6 @@
 ---
 title: Redirects
 summary: Describes what message redirects are and how to use them.
-tags:
-- ServicePulse
 related:
 - servicepulse/troubleshooting
 reviewed: 2016-09-12

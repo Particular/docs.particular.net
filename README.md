@@ -229,7 +229,6 @@ upgradeGuideCoreVersions:
 title: ServiceInsight Interaction
 summary: 'Using ServiceInsight Together'
 tags:
-- ServiceInsight
 - Invocation
 - Debugging
 redirects:

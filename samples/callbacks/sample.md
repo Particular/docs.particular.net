@@ -2,8 +2,6 @@
 title: Callback Usage
 component: Callbacks
 reviewed: 2016-03-21
-tags:
-- Callback
 ---
 
  1. Run the solution. Two console applications and a web application will start.

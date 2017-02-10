@@ -4,7 +4,6 @@ summary: Avoid writing repeat configuration code, host the endpoints in a Window
 tags:
  - Hosting
  - Logging
- - NServiceBus.Host
 redirects:
  - nservicebus/the-nservicebus-host
 related:

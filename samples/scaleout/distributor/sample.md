@@ -4,7 +4,6 @@ summary: Scale out existing message processing by adding workers on different ma
 reviewed: 2016-06-23
 component: Distributor
 tags:
- - Distributor
  - Scalability
 redirects:
  - nservicebus/scale-out-sample

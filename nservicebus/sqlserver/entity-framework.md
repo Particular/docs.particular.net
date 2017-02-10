@@ -2,8 +2,6 @@
 title: Entity Framework caveats
 reviewed: 2016-08-31
 component: SqlServer
-tags:
- - SQL Server
 ---
 
 

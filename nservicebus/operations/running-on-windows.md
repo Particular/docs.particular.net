@@ -7,8 +7,6 @@ tags:
 - MSDTC
 - Performance Counters
 - PowerShell
-- Storage
-- NHibernate
 redirects:
 - nservicebus/running-nservicebus-on-windows
 ---

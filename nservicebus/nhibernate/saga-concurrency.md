@@ -4,7 +4,6 @@ component: NHibernate
 versions: '[6,]'
 reviewed: 2016-10-19
 tags:
- - NHibernate
  - Persistence
  - Saga
 ---

@@ -3,7 +3,6 @@ title: Monitoring endpoints with ServiceControl events
 component: ServiceControlContracts
 reviewed: 2016-08-31
 tags:
- - ServiceControl
  - Notifications
 related:
  - servicecontrol

@@ -3,8 +3,6 @@ title: Configuring Hosting
 summary: Describes how to configure the ServicePulse Host
 reviewed: 2016-09-02
 component: ServicePulse
-tags:
- - ServicePulse
 redirects:
  - servicepulse/servicepulse-host-config
 ---

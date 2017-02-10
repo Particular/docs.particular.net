@@ -1,8 +1,6 @@
 ---
 title: Troubleshooting
 reviewed: 2016-11-05
-tags:
- - Gateway
 redirects:
  - nservicebus/gateway-trouble-shooting
  - nservicebus/gateway-service-point-manager

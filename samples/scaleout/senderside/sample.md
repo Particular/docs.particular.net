@@ -4,7 +4,6 @@ summary: Scale out existing message processing either by using underlying transp
 reviewed: 2016-03-17
 component: Core
 tags:
- - Distributor
  - Scalability
 related:
  - nservicebus/msmq/scaling-out

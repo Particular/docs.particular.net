@@ -2,8 +2,6 @@
 title: Connection Settings
 reviewed: 2016-09-07
 component: SqlServer
-tags:
- - SQL Server
 redirects:
  - nservicebus/sqlserver/concurrency
  - nservicebus/sqlserver/configuration

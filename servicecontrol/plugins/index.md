@@ -2,8 +2,6 @@
 title: ServiceControl Endpoint Plugins
 summary: Describes the purpose and internal behavior of the endpoint plugins used by ServiceControl
 reviewed: 2016-10-26
-tags:
-- ServiceControl
 related:
 - samples/custom-checks/monitoring3rdparty
 ---

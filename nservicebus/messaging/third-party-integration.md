@@ -2,10 +2,6 @@
 title: Third Party Integration
 summary: Receiving messages from external systems
 component: Core
-tags:
-- Monitoring
-- Third Party Integration
-- ServiceInsight
 related:
 - nservicebus/messaging/headers
 reviewed: 2017-02-06

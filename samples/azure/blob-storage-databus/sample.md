@@ -7,7 +7,6 @@ tags:
 - Azure
 - DataBus
 - Large messages
-- Message size limit
 related:
 - nservicebus/messaging/databus
 ---

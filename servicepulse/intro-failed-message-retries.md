@@ -2,8 +2,6 @@
 title: Retrying failed messages
 summary: Describes the concept and lifecycle of retrying messages in ServicePulse
 component: ServicePulse
-tags:
-- ServicePulse
 reviewed: 2016-12-15
 ---
 

@@ -5,9 +5,7 @@ component: NHibernate
 versions: '[6,]'
 reviewed: 2016-11-04
 tags:
- - NHibernate
  - Persistence
- - SQL Azure
 related:
  - nservicebus/nhibernate/accessing-data
 ---

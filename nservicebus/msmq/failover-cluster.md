@@ -2,9 +2,7 @@
 title: Deploying in a Windows Failover Cluster
 summary: Steps necessary to install NServiceBus Distributor endpoints in a windows failover cluster.
 tags:
-- Failover
 - Scalability
-- Distributor
 redirects:
  - nservicebus/deploying-nservicebus-in-a-windows-failover-cluster
  - nservicebus/scalability-and-ha/deploying-to-a-windows-failover-cluster

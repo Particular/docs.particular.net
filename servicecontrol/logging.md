@@ -2,7 +2,6 @@
 title: Logging
 reviewed: 2016-11-09
 tags:
-- ServiceControl
 - Logging
 redirects:
 - servicecontrol/setting-custom-log-location

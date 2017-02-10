@@ -4,8 +4,6 @@ summary: Build custom notifications by subscribing to ServiceControl events
 reviewed: 2016-10-06
 component: ServiceControlContracts
 tags:
- - ServiceControl
- - ServicePulse
  - Notifications
 redirects:
  - servicepulse/custom-notification-and-alerting-using-servicecontol-events

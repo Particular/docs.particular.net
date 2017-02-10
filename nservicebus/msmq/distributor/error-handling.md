@@ -4,7 +4,6 @@ summary: Error handling with and configuration with the distributor
 component: Distributor
 reviewed: 2016-08-30
 tags:
- - Distributor
  - Error Handling
  - Exceptions
  - Retry

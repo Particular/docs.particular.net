@@ -3,8 +3,6 @@ title: SagaAudit Plugin
 summary: Helps visualize and debug Sagas with ServiceInsight
 component: SagaAudit
 reviewed: 2016-11-15
-tags:
- - ServiceControl
 ---
 
 DANGER: **For Development only**. This plugin will result in a significant increase in the load placed on ServiceControl. As such it should not be used in production.

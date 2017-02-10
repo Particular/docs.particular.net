@@ -2,7 +2,6 @@
 title: Subscription versioning
 component: raven
 tags:
- - RavenDB
  - Persistence
  - Subscription
 reviewed: 2016-11-28

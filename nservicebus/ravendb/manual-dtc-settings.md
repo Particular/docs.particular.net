@@ -3,7 +3,6 @@ title: Configuring RavenDB DTC
 summary: Guidance on how to change the RavenDB ResourceManagerID and TransactionRecoveryStorage.
 component: Raven
 tags:
- - RavenDB
  - Persistence
 redirects:
  - nservicebus/ravendb/how-to-change-resourcemanagerid

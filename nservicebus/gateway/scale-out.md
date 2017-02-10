@@ -1,8 +1,6 @@
 ---
 title: Scale out
 reviewed: 2016-03-17
-tags:
- - Gateway
 related:
  - samples/gateway
 ---

@@ -4,7 +4,6 @@ summary: Install the infrastructure for NServiceBus on servers using PowerShell.
 reviewed: 2017-01-06
 tags:
 - PowerShell
-- Cmdlets
 - installation
 redirects:
 - nservicebus/managing-nservicebus-using-powershell

@@ -3,9 +3,6 @@ title: Store-and-forward
 summary: Add store-and-forward functionality for external-facing endpoints.
 reviewed: 2016-04-27
 component: SqlServer
-tags:
-- SQL Server
-- Store-and-forward
 related:
 - nservicebus/outbox
 - nservicebus/sqlserver

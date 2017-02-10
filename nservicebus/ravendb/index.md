@@ -3,7 +3,6 @@ title: RavenDB Persistence
 component: raven
 versions: '[2,)'
 tags:
- - RavenDB
  - Persistence
 related:
  - samples/ravendb

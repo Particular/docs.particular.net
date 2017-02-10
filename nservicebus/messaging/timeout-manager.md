@@ -5,7 +5,6 @@ component: core
 reviewed: 2016-12-05
 tags:
  - Defer
- - Timeout Manager
 related:
  - samples/delayed-delivery
  - nservicebus/messaging/delayed-delivery

@@ -8,7 +8,6 @@ related:
 redirects:
  - nservicebus/rabbitmq/configuration-api
 tags:
- - RabbitMQ
  - Transports
 ---
 

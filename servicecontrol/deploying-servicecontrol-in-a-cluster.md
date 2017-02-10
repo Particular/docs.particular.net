@@ -1,9 +1,5 @@
 ---
 title: Deploying to a cluster
-tags:
-- ServiceControl
-- Cluster
-- Windows Cluster
 related:
 - servicecontrol/troubleshooting
 reviewed: 2016-10-04

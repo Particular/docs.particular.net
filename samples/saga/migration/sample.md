@@ -5,9 +5,6 @@ component: Core
 reviewed: 2017-01-04
 tags:
 - Saga
-- NHibernate
-- SQL
-- Migration
 related:
 - nservicebus/sagas
 - nservicebus/nhibernate

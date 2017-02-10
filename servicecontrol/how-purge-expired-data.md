@@ -5,7 +5,6 @@ related:
  - nservicebus/recoverability
  - nservicebus/operations/auditing
 tags:
-- ServiceControl
 - Expiration
 reviewed: 2016-11-09
 ---

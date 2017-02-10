@@ -5,9 +5,6 @@ reviewed: 2016-12-16
 component: FileBasedRouting
 tags:
 - routing
-- message
-- send
-- publish
 related:
 - nservicebus/messaging/routing-extensibility
 - nservicebus/messaging/routing

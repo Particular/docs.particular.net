@@ -2,7 +2,6 @@
 title: Managing Instances via PowerShell
 reviewed: 2016-11-09
 tags:
- - ServiceControl
  - Installation
  - PowerShell
 ---

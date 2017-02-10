@@ -6,7 +6,6 @@ versions: '[4,)'
 reviewed: 2016-11-23
 tags:
 - MSMQ
-- FQDM
 ---
 
 The MSMQ Transport uses the local machine name, taken from `Environment.MachineName`, as the originator and reply-to address in messages by default.

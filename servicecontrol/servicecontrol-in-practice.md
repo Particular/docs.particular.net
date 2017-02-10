@@ -1,7 +1,5 @@
 ---
 title: Optimizing for use in different environments
-tags:
- - ServiceControl
 reviewed: 2016-10-05
 ---
 

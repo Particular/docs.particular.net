@@ -4,7 +4,6 @@ summary: How a worker can be disconnected from its distributor using PowerShell 
 reviewed: 2016-11-05
 tags:
  - Scalability
- - Distributor
 redirects:
  - nservicebus/disconnect-workers-from-running-distributor
  - nservicebus/scalability-and-ha/disconnect-workers

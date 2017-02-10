@@ -3,9 +3,6 @@ title: ServicePulse events
 summary: Introduction to ServicePulse monitoring events
 reviewed: 2016-10-06
 component: ServicePulse
-tags:
-- ServicePulse
-- Monitoring Events
 related:
 - servicepulse/intro-endpoints-custom-checks
 ---

@@ -9,7 +9,6 @@ tags:
  - Web Roles
  - Azure
  - Cloud
- - Critical Errors
 ---
 
 ## Handling critical errors

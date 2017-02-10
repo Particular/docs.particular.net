@@ -2,7 +2,6 @@
 title: Connection Options
 component: raven
 tags:
- - RavenDB
  - Persistence
 related:
  - samples/ravendb

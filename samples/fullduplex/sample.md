@@ -4,9 +4,7 @@ summary: Using full-duplex and request/response communication.
 reviewed: 2016-03-21
 component: Core
 tags:
-- Request Response
 - Messaging Patterns
-- Full Duplex
 redirects:
 - nservicebus/full-duplex-sample
 ---

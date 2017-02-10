@@ -4,8 +4,6 @@ summary: Integrating SQL Transport Transport with NHibernate persistence using O
 reviewed: 2016-03-21
 component: SqlServer
 tags:
-- SQL Server
-- NHibernate
 - Outbox
 related:
 - nservicebus/outbox

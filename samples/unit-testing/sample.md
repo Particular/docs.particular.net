@@ -3,9 +3,6 @@ title: Unit Testing NServiceBus
 summary: Writing unit tests for NServiceBus systems.
 reviewed: 2016-03-31
 component: Testing
-tags:
-- Testing
-redirects:
 related:
 - nservicebus/testing
 ---

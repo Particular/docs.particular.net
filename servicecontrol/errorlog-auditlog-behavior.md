@@ -1,8 +1,6 @@
 ---
 title: ServiceControl Forwarding Queues
 summary: Details the ServiceControl Audit and Error forwarding behavior and configuration
-tags:
-- ServiceControl
 reviewed: 2016-11-09
 ---
 

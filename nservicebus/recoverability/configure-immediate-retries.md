@@ -8,7 +8,6 @@ tags:
  - Exceptions
  - Retry
  - Recoverability
- - Immediate Retries
 related:
  - samples/faulttolerance
 ---

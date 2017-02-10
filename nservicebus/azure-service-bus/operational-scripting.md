@@ -6,7 +6,6 @@ reviewed: 2016-09-05
 tags:
  - Azure
  - Cloud
- - Scripting
 related: 
  - samples/azure/native-integration-asb
 ---

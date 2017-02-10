@@ -5,10 +5,7 @@ component: Core
 versions: "[4,)"
 tags:
 - Transactions
-- Retries
-- Consistency
 - Transport
-- TransactionScope
 redirects:
 - nservicebus/messaging/transactions
 reviewed: 2016-08-31

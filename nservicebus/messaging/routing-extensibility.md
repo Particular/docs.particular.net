@@ -5,7 +5,6 @@ reviewed: 2016-10-10
 component: Core
 tags:
  - routing
- - extensibility
 related:
  - nservicebus/messaging/routing
 ---

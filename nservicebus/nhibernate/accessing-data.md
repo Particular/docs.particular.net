@@ -7,7 +7,6 @@ reviewed: 2016-10-19
 related:
  - nservicebus/handlers/accessing-data
 tags:
- - NHibernate
  - Saga
 ---
 

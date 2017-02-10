@@ -3,7 +3,6 @@ title: Exposing Endpoints via WCF
 summary: Receiving and processing messages which pass through WCF
 component: Wcf
 tags:
- - WCF
  - Hosting
 redirects:
  - nservicebus/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service

@@ -2,8 +2,6 @@
 title: ServiceInsight
 reviewed: 2016-09-28
 component: ServiceInsight
-tags:
-- ServiceInsight
 redirects:
 - serviceinsight/getting-started-overview
 - servicepulse/introduction-and-installing-servicepulse

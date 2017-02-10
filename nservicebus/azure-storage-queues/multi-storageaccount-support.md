@@ -6,8 +6,6 @@ reviewed: 2016-10-26
 tags:
 - Azure
 - Cloud
-- Azure Storage
-- Scaling
 - Performance
 redirects:
  - nservicebus/using-multiple-azure-storage-accounts-for-scaleout

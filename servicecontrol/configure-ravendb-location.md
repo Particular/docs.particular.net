@@ -1,9 +1,6 @@
 ---
 title: RavenDB Embedded Location
 summary: Increase space for monitored data by configuring ServiceControl to save data in a different location other than the default.
-tags:
-- ServiceControl
-- RavenDB Embedded
 reviewed: 2016-11-09
 ---
 

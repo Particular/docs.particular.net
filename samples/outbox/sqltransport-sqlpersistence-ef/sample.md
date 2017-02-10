@@ -4,7 +4,6 @@ summary: Integrating SQL Transport with SQL Persistence and Entity Framework use
 reviewed: 2016-03-21
 component: SqlServer
 tags:
- - SQL Server
  - EntityFramework
  - Outbox
 related:

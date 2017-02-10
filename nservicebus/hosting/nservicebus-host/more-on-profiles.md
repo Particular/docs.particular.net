@@ -4,10 +4,7 @@ summary: 'Two types of profiles: environment and feature.'
 component: Host
 tags:
 - Profiles
-- NServiceBus.Host
-- Installers
 - Feature
-- Distributor
 - Performance Counters
 redirects:
  - nservicebus/more-on-profiles

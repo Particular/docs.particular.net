@@ -2,8 +2,6 @@
 title: Simple RabbitMQ Transport usage
 reviewed: 2016-10-18
 component: Rabbit
-tags:
-- RabbitMQ
 related:
 - nservicebus/rabbitmq
 - nservicebus/rabbitmq/connection-settings

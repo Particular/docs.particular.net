@@ -6,8 +6,6 @@ component: Core
 tags:
  - Publish Subscribe
  - Messaging Patterns
- - Durability
- - Fault Tolerance
 redirects:
  - nservicebus/publish-subscribe-sample
 related:

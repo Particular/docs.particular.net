@@ -4,9 +4,7 @@ summary: Configure persistence to support multi-tenant scenarios with database-p
 reviewed: 2016-03-21
 component: Core
 tags:
-- NHibernate
 - Outbox
-- Multi-tenant
 related:
 - nservicebus/nhibernate
 ---

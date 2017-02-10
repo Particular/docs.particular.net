@@ -4,7 +4,6 @@ summary: 'Profiles ease the configuration process. Three profiles straight from 
 tags:
 - Profiles
 - Hosting
-- NServiceBus.Host
 - Logging
 - Persistence
 redirects:

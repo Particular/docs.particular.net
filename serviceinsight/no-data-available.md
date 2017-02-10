@@ -4,8 +4,6 @@ reviewed: 2016-09-28
 summary: Why ServiceInsight cannot visualize a conversation.
 component: ServiceInsight
 tags:
-- ServiceControl
-- ServiceInsight
 - Expiration
 ---
 

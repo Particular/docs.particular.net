@@ -2,8 +2,6 @@
 title: Multi-Site Deployments
 reviewed: 2017-01-04
 summary: How multi-site communication is handled.
-tags:
- - Gateway
 component: Gateway
 redirects:
  - nservicebus/the-gateway-and-multi-site-distribution

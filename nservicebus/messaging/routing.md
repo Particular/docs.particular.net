@@ -5,13 +5,7 @@ reviewed: 2016-08-17
 component: Core
 tags:
 - routing
-- message
 - routing
-- send
-- publish
-- reply
-- Message Mapping
-- Message destination
 redirects:
 - nservicebus/how-do-i-specify-to-which-destination-a-message-will-be-sent
 - nservicebus/messaging/specify-message-destination

@@ -4,7 +4,6 @@ versions: '[6.0,)'
 component: NHibernate
 reviewed: 2016-10-26
 tags:
- - NHibernate
  - Outbox
 related:
 - nservicebus/outbox

@@ -2,7 +2,6 @@
 title: Installing ServiceControl
 reviewed: 2016-12-07
 tags:
- - ServiceControl
  - Installation
 redirects:
  - servicecontrol/multi-transport-support

@@ -6,7 +6,6 @@ reviewed: 2016-03-21
 tags:
 - Saga
 - SagaFinder
-- NHibernate
 related:
 - nservicebus/sagas
 - nservicebus/nhibernate

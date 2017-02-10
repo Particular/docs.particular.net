@@ -5,7 +5,6 @@ reviewed: 2016-08-29
 component: Core
 tags:
 - Hosting
-- Self Hosting
 - Logging
 ---
 

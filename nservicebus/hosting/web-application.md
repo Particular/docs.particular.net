@@ -4,8 +4,6 @@ summary: Hosting NServiceBus in a Web Site or Web Service
 reviewed: 2016-05-16
 tags:
 - Hosting
-- Web Site
-- Web Service
 related:
  - samples/web
  - nservicebus/lifecycle

@@ -3,10 +3,6 @@ title: Multi-message conversations when scaling out
 summary: How messages belong to the same conversation are routed depending on the scaling out approach used
 component: Core
 reviewed: 2016-11-30
-tags:
- - Distributor
- - Conversation
- - Session
 related:
  - nservicebus/msmq/sender-side-distribution
  - nservicebus/msmq/distributor

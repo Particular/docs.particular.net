@@ -6,7 +6,6 @@ reviewed: 2016-12-09
 tags:
 - Logging
 - Profiles
-- NServiceBus.Host
 redirects:
 - nservicebus/logging-profiles
 related:

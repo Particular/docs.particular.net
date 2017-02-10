@@ -5,7 +5,6 @@ component: CloudServicesHost
 reviewed: 2016-03-21
 tags:
 - Azure
-- Cloud Services
 - Hosting
 related:
 - nservicebus/hosting/cloud-services-host/shared-hosting

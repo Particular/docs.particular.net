@@ -1,8 +1,6 @@
 ---
 title: Configuring a Non-Privileged Account
 summary: Using low privilege account for ServiceControl
-tags:
-- ServiceControl
 reviewed: 2016-11-09
 ---
 

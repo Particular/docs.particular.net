@@ -3,9 +3,7 @@ title: Rerouting Existing Timeouts
 component: Raven
 reviewed: 2016-09-22
 tags:
- - RavenDB
  - Persistence
- - Timeouts
 related:
  - nservicebus/endpoints/decommissioning-endpoints
 ---

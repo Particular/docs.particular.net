@@ -1,9 +1,6 @@
 ---
 title: Compacting RavenDB
 summary: How to compact (release disk space to OS) the RavenDB database backing the ServiceControl
-tags:
-- ServiceControl
-- RavenDB
 reviewed: 2016-11-09
 ---
 
@@ -30,9 +27,9 @@ WARNING: For the `esentutl` command line utility to work properly, ServiceContro
 
 ### Step 3: Administrator command prompt
 
-* Open an elevated command prompt and navigate to the ServiceControl "DATA PATH" directory
-* Run **`esentutl /r RVN /l logs /s system`** and wait for it to finish. This will ensure that the database is in a consistent state and is ready for defragmentation.
-* Here is the result of running it:  
+ * Open an elevated command prompt and navigate to the ServiceControl "DATA PATH" directory
+ * Run **`esentutl /r RVN /l logs /s system`** and wait for it to finish. This will ensure that the database is in a consistent state and is ready for defragmentation.
+ * Here is the result of running it:  
 
 ```no-highlight
 Extensible Storage Engine Utilities for Microsoft(R) Windows(R)
@@ -68,7 +65,7 @@ Initiating DEFRAGMENTATION mode...
 
 ### Step 4: Restart ServiceControl
 
-* Start the ServiceControl Windows Service.
+ * Start the ServiceControl Windows Service.
 
 
 ## Using ServiceControl in Maintenance Mode
@@ -83,9 +80,9 @@ Once ServiceControl is running in this mode the following procedure can be used 
 ### Step 1: Start ServiceControl in the maintenance mode
 
 * Open ServiceControl Management.
-* Click on the "ADVANCED OPTIONS" icon of the instance that needs to be run in maintenance mode.  
+* Click on the "ADVANCED OPTIONS" icon of the instance that needs to be run in maintenance mode.
   ![](managementutil-advancedoptions.png)
-* Click on the "Start Maintenance Mode" button.  
+* Click on the "Start Maintenance Mode" button.
   ![](managementutil-maintenancemode.png)
 * ServiceControl will re-start in maintenance mode with RavenDB studio exposed on `http://localhost:{selected port}/storage`.
 
@@ -93,13 +90,13 @@ Once ServiceControl is running in this mode the following procedure can be used 
 ### Step 2: Export the current database
 
 * Open a browser and navigate to `http://localhost:{selected port}/storage`.
-* Export the existing ServiceControl database.  
+* Export the existing ServiceControl database.
   ![](export-database-step1.png 'width=500')
-* Click Ok.  
+* Click Ok.
   ![](export-database-step2.png 'width=500')
-* Select the directory to store the exported data file.  
+* Select the directory to store the exported data file.
   ![](export-database-step3.png 'width=500')
-* Wait for the export operation to complete.  
+* Wait for the export operation to complete.
   ![](export-database-step4.png)
 * Once the export operation is complete, stop ServiceControl (from ServiceControl Management).
 
@@ -107,21 +104,21 @@ Once ServiceControl is running in this mode the following procedure can be used 
 
 NOTE: At this point it is advisable to take a backup copy of the existing database directory as re-importing can fail. To do this ensure that ServiceControl is not running and the copy the contents of the database directory.
 
-* Delete the database directory contents.
-* Start ServiceControl, again in the maintenance mode. This will populate the database directory with a blank database.
+ * Delete the database directory contents.
+ * Start ServiceControl, again in the maintenance mode. This will populate the database directory with a blank database.
 
 
 ### Step 4: Import the exported data
 
 * Go to the RavenDB studio `http://localhost:{selected port}/storage` and perform Import steps.
-* Select the `Tasks` tab and select all the checkboxes.   
+* Select the `Tasks` tab and select all the checkboxes.
   ![](import-database-step1.png 'width=500')
 * Click OK to proceed.  
   ![](import-database-step2.png 'width=500')
-* Select the file where the exported data was stored.  
+* Select the file where the exported data was stored.
   ![](import-database-step3.png 'width=500')
 * Wait for the operation to complete.
-* After the operation has completed wait for the stale index count in the footer to indicate there are no stale indexes.  
+* After the operation has completed wait for the stale index count in the footer to indicate there are no stale indexes.
   ![](import-database-step4.png 'width=500')
 * Stop ServiceControl (from ServiceControl Management).
 
@@ -132,4 +129,4 @@ NOTE: If an `System.OutOfMemoryException` occurs during import work around this 
 
 ### Step 5: Restart ServiceControl
 
-* Start the ServiceControl Windows Service.
+ * Start the ServiceControl Windows Service.

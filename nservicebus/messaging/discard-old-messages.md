@@ -2,9 +2,6 @@
 title: Discarding Old Messages
 summary: Automatically discard messages if they have not been processed within a given period of time.
 component: Core
-tags:
- - Message Expiration
- - TimeToBeReceived
 related:
  - nservicebus/operations/auditing
 redirects:

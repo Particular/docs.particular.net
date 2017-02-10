@@ -2,9 +2,6 @@
 title: Event Store Transport
 summary: High-level description of the EventStore Transport.
 component: EventStoreTransport
-tags:
- - EventStore
- - GetEventStore
 ---
 
 The Event Store transport implements a message queuing mechanism on top of [Event Store](https://geteventstore.com/) stream database.

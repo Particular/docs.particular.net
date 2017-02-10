@@ -3,8 +3,6 @@ title: Gateway
 summary: Durable fire-and-forget messaging across physically separated IT infrastructure
 component: Gateway
 reviewed: 2016-07-23
-tags:
- - Gateway
 redirects:
  - nservicebus/introduction-to-the-gateway
 related:

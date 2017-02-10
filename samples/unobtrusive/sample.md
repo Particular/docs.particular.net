@@ -5,7 +5,6 @@ reviewed: 2016-03-21
 component: Core
 tags:
 - Unobtrusive
-- Message
 - Command
 - Event
 - Convention

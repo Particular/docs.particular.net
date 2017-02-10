@@ -3,7 +3,6 @@ title: Uninstall RavenDB v2.0
 summary: Uninstalling RavenDB instances that were installed by previous versions of the Platform Installer.
 tags:
 - Persistence
-- RavenDB
 reviewed: 2016-10-18
 redirects:
  - nservicebus/using-ravendb-uninstalling-v4

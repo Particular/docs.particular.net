@@ -2,8 +2,6 @@
 title: Archived Message Management
 summary: Describes how ServicePulse monitors archived failed messages, and allows unarchiving archived failed messages.
 component: ServicePulse
-tags:
- - ServicePulse
 reviewed: 2016-12-15
 ---
 

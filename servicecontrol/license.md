@@ -2,9 +2,7 @@
 title: Licensing ServiceControl
 reviewed: 2016-11-09
 tags:
- - servicecontrol
  - license
- - platform
 ---
 
 The following options outline how to add a license to ServiceControl.

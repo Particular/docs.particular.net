@@ -2,7 +2,6 @@
 title: Installing Silently
 reviewed: 2016-11-09
 tags:
-- ServiceControl
 - Installation
 ---
 

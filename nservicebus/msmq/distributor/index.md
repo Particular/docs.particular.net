@@ -4,7 +4,6 @@ summary: The distributor maintains all the characteristics of NServiceBus but is
 component: distributor
 tags:
  - Scalability
- - Distributor
 redirects:
  - nservicebus/load-balancing-with-the-distributor
  - nservicebus/scalability-and-ha/distributor

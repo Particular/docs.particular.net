@@ -8,7 +8,6 @@ tags:
  - Web Roles
  - Azure
  - Cloud
- - Startup
 reviewed: 2016-11-04
 ---
 

@@ -4,7 +4,6 @@ summary: Describes how ServicePulse is installed - independently or via the Plat
 component: ServicePulse
 reviewed: 2016-09-02
 tags:
-- ServicePulse
 - Installation
 related:
 - servicepulse/troubleshooting
@@ -46,8 +45,8 @@ Install ServicePulse using the [Particular Service Platform Installer](/platform
 ServicePulse connects to and relies on ServiceControl as its data source.
 For details on ServiceControl and ServicePulse configuration options, see:
 
-* [Configuring ServiceControl](/servicecontrol/creating-config-file.md)
-* [ServiceControl Guidance](/servicecontrol)
+ * [Configuring ServiceControl](/servicecontrol/creating-config-file.md)
+ * [ServiceControl Guidance](/servicecontrol)
 
 NOTE: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. Set the message storage timespan by [setting automatic expiration for ServiceControl data](/servicecontrol/how-purge-expired-data.md).
 

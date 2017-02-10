@@ -3,10 +3,7 @@ title: Securing Access
 summary: How security is addressed in ServiceControl V1.x. How to limit access to ServiceControl data.
 reviewed: 2016-10-06
 tags:
-- ServiceControl
 - Security
-- ServicePulse
-- ServiceInsight
 related:
 - servicecontrol/creating-config-file
 - servicecontrol/configure-ravendb-location
