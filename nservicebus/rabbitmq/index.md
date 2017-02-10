@@ -8,7 +8,7 @@ related:
 redirects:
  - nservicebus/rabbitmq/configuration-api
 tags:
- - Transports
+ - Transport
 ---
 
 Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) using the [RabbitMQ .NET Client](https://www.nuget.org/packages/RabbitMQ.Client/).
