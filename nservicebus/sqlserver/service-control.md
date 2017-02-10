@@ -4,7 +4,7 @@ summary: ServiceControl and SQL Server transport multi-instance mode configurati
 reviewed: 2016-07-01
 hidden: true
 tags:
- - Transports
+ - Transport
 ---
 
 
