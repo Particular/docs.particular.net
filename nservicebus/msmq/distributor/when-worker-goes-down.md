@@ -2,8 +2,6 @@
 title: When a worker goes down
 summary: The solution is virtualization, where worker nodes run in a virtual machine whose image is on a SAN somewhere.
 reviewed: 2016-11-05
-tags:
- - Distributor
 redirects:
  - nservicebus/in-a-distributor-scenario-what-happens-to-the-message-if-a-worker-goes-down
  - nservicebus/scalability-and-ha/when-worker-goes-down
