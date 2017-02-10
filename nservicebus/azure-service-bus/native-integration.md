@@ -5,7 +5,6 @@ component: ASB
 reviewed: 2016-09-05
 tags:
 - Azure
-- Cloud
 ---
 
 This document provides guidance on how to integrate NServiceBus endpoints with non-NServiceBus endpoints by sharing an Azure Service Bus (ASB) namespace as mutual communication channel.

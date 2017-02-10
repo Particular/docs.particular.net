@@ -4,7 +4,6 @@ reviewed: 2016-08-29
 component: ABSDataBus
 tags:
  - DataBus
- - Attachments
 related:
  - samples/azure/blob-storage-databus
 ---

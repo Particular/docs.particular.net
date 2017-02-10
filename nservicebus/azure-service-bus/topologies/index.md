@@ -5,7 +5,6 @@ component: ASB
 versions: '[7,)'
 tags:
  - Azure
- - Cloud
 related:
  - samples/azure/azure-service-bus
 ---

@@ -5,7 +5,6 @@ component: Core
 reviewed: 2016-08-10
 versions: "[5,)"
 tags:
-- Cloud
 - Azure
 - Transport
 redirects:

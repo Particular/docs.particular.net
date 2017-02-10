@@ -5,7 +5,6 @@ component: ASQ
 reviewed: 2016-10-26
 tags:
 - Azure
-- Cloud
 - Performance
 redirects:
  - nservicebus/using-multiple-azure-storage-accounts-for-scaleout

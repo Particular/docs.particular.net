@@ -3,7 +3,6 @@ title: Securing Connection Strings To Namespaces
 component: ASB
 versions: '[7,)'
 tags:
-- Cloud
 - Azure
 - Transport
 - Security

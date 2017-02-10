@@ -3,7 +3,7 @@ title: Conventions
 summary: Custom conventions for defining how certain things are detected.
 tags:
 - Unobtrusive
-- Conventions
+- Convention
 component: Core
 reviewed: 2016-07-07
 related:

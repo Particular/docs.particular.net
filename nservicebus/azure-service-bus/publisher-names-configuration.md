@@ -4,7 +4,6 @@ summary: Configuration mapping between publisher names and event types for Endpo
 component: ASB
 versions: "[7,)"
 tags:
-- Cloud
 - Azure
 - Transport
 reviewed: 2016-08-08

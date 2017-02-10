@@ -3,7 +3,7 @@ title: Ninject Container Usage
 component: Ninject
 reviewed: 2016-03-21
 tags:
-- Container
+- dependency injection
 related:
 - nservicebus/containers
 - nservicebus/containers/ninject

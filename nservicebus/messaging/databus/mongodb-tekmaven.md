@@ -4,7 +4,6 @@ reviewed: 2016-08-29
 component: MongoDatabusTekmaven
 tags:
  - DataBus
- - Attachments
 related:
  - nservicebus/mongodb-persistence-tekmaven
 ---

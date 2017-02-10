@@ -3,7 +3,6 @@ title: Addressing Logic
 component: ASB
 tags:
  - Azure
- - Cloud
 reviewed: 2016-09-12
 ---
 

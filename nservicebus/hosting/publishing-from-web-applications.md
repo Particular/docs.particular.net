@@ -3,7 +3,7 @@ title: Publishing from Web Applications
 component: core
 tags:
 - event
-- scale out
+- scalability
 - publish subscribe
 related:
 - samples/web

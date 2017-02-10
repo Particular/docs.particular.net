@@ -4,7 +4,6 @@ summary: Configuring Azure Service Bus transport to use a custom token provider 
 component: ASB
 versions: '[7,)'
 tags:
- - Cloud
  - Azure
  - Transport
  - Security

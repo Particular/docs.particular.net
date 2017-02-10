@@ -6,7 +6,6 @@ versions: '[6,)'
 reviewed: 2016-09-05
 tags:
  - Azure
- - Cloud
 related:
  - nservicebus/messaging/third-party-integration
  - nservicebus/messaging/headers

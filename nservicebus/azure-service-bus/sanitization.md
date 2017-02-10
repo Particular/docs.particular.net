@@ -2,7 +2,6 @@
 title: Sanitization
 component: ASB
 tags:
-- Cloud
 - Azure
 - Transport
 related: 

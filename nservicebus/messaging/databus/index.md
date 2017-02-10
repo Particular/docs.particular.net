@@ -4,7 +4,6 @@ component: Core
 reviewed: 2016-08-29
 tags:
  - DataBus
- - Attachments
 redirects:
  - nservicebus/databus
 related:

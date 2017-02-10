@@ -3,7 +3,6 @@ title: Avoiding Transactions in Azure
 reviewed: 2016-09-13
 tags:
  - Azure
- - Cloud
  - Transactions
  - Idempotency
  - DTC

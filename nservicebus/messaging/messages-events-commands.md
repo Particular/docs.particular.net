@@ -4,7 +4,7 @@ summary: What are Messages, Events and Commands and how to define them.
 component: Core
 tags:
  - Unobtrusive
- - Conventions
+ - Convention
 related:
  - nservicebus/messaging/conventions
  - nservicebus/messaging/unobtrusive-mode

@@ -3,7 +3,6 @@ title: Batching
 summary: Batching with Azure Service Bus and how it works
 component: ASB
 tags:
-- Cloud
 - Azure
 - Transport
 reviewed: 2016-04-26

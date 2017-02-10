@@ -5,7 +5,6 @@ reviewed: 2016-07-05
 component: ASB
 versions: '[7,)'
 tags:
-- Cloud
 - Azure
 - Transport
 related:

@@ -4,7 +4,7 @@ summary: How to scale out when using the MSMQ transport.
 reviewed: 2016-11-07
 component: MsmqTransport
 tags:
-- Scale Out
+- scalability
 - Routing
 - MSMQ
 related:

@@ -3,9 +3,6 @@ title: Azure Storage Queues Transport Configuration
 component: ASQ
 tags:
 - Azure
-- Cloud
-- ASQ
-- Azure Storage Queues
 related:
 - nservicebus/azure-storage-persistence/performance-tuning
 reviewed: 2016-10-21

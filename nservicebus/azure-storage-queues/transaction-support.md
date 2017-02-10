@@ -4,10 +4,7 @@ component: ASQ
 versions: '[6,]'
 tags:
 - Azure
-- Cloud
 - Transactions
-- ASQ
-- Azure Storage Queues
 reviewed: 2016-09-06
 ---
 

@@ -4,10 +4,7 @@ summary: Setting up logging in Azure Cloud Services.
 component: CloudServicesHost
 versions: '[6,)'
 tags:
- - Worker Roles
- - Web Roles
  - Azure
- - Cloud
  - Logging
 reviewed: 2016-10-21
 related:

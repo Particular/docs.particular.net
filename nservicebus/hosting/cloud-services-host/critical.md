@@ -5,10 +5,7 @@ component: CloudServicesHost
 reviewed: 2016-10-24
 tags:
  - Hosting
- - Worker Roles
- - Web Roles
  - Azure
- - Cloud
 ---
 
 ## Handling critical errors

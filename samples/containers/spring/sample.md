@@ -3,7 +3,7 @@ title: Spring Container Usage
 component: Spring
 reviewed: 2016-03-21
 tags:
-- Container
+- dependency injection
 related:
 - nservicebus/containers
 - nservicebus/containers/spring

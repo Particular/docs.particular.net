@@ -4,7 +4,6 @@ component: ASP
 summary: Configuring Azure Storage as persistence
 tags:
  - Azure
- - Cloud
  - Persistence
 reviewed: 2016-11-07
 ---

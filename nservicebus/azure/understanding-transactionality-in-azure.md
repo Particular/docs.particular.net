@@ -2,7 +2,6 @@
 title: Understanding Transactionality in Azure
 tags:
 - Azure
-- Cloud
 - Transactions
 - Idempotency
 - DTC

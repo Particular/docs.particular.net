@@ -4,7 +4,6 @@ summary: Integrating SQL Transport with NHibernate persistence and Entity Framew
 reviewed: 2016-03-21
 component: SqlServer
 tags:
-- EntityFramework
 - Outbox
 related:
 - nservicebus/nhibernate

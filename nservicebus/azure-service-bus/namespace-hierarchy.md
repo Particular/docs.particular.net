@@ -4,7 +4,6 @@ summary: Configuring Azure Service Bus transport to support namespace hierarchie
 component: ASB
 versions: "[7,)"
 tags:
-- Cloud
 - Azure
 - Transport
 reviewed: 2016-09-21

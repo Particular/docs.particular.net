@@ -4,7 +4,6 @@ summary: Extending message lock for long handler operation
 component: ASB
 versions: '[7,)'
 tags:
-- Cloud
 - Azure
 - Transport
 reviewed: 2016-09-07

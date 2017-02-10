@@ -5,7 +5,6 @@ versions: '[7,)'
 reviewed: 2016-08-29
 tags:
 - Azure
-- Cloud
 - Error Handling
 ---
 

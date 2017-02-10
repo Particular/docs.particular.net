@@ -4,7 +4,6 @@ reviewed: 2016-08-29
 component: FileShareDataBus
 tags:
  - DataBus
- - Attachments
 related:
  - samples/file-share-databus
 ---

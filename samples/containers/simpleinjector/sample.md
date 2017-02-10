@@ -3,7 +3,7 @@ title: Simple Injector Usage
 component: SimpleInjector
 reviewed: 2016-10-31
 tags:
-- Container
+- dependency injection
 related:
 - nservicebus/containers
 - nservicebus/containers/simpleinjector

@@ -4,8 +4,6 @@ summary: Using Azure Storage Queues as transport
 component: ASQ
 tags:
  - Azure
- - ASQ
- - Azure Storage Queues
 related:
  - samples/azure/storage-queues
 reviewed: 2016-10-19

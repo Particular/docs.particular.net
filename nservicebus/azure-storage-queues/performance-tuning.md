@@ -5,11 +5,8 @@ versions: '[7,]'
 reviewed: 2016-04-21
 tags:
 - Azure
-- Cloud
 - Transport
 - Performance
-- ASQ
-- Azure Storage Queues
 ---
 
 include: azure-storage-performance-tuning

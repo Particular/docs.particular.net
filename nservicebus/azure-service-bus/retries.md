@@ -4,7 +4,6 @@ summary: Describes the relationship between the NServiceBus retry behavior and t
 component: ASB
 versions: '[7,)'
 tags:
-- Cloud
 - Azure
 - Transport
 reviewed: 2016-09-22

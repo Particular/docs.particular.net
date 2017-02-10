@@ -5,7 +5,6 @@ reviewed: 2016-05-12
 component: ASP
 tags:
  - Azure
- - Cloud
  - Persistence
  - Performance
  - Hosting

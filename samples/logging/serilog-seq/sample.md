@@ -5,7 +5,6 @@ reviewed: 2016-03-21
 component: SerilogTracing
 tags:
  - Logging
- - Serilog
 related:
  - nservicebus/logging
  - nservicebus/logging/serilog-tracing

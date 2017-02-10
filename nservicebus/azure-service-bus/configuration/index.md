@@ -4,7 +4,6 @@ component: ASB
 versions: '[7,)'
 tags:
 - Azure
-- Cloud
 reviewed: 2016-12-08
 ---
 

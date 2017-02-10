@@ -4,7 +4,6 @@ reviewed: 2016-11-02
 component: FileShareDataBus
 tags:
  - DataBus
- - Large messages
 redirects:
  - nservicebus/attachments-databus-sample
 related:

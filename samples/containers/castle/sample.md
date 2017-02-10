@@ -3,7 +3,7 @@ title: Windsor Container Usage
 component: Castle
 reviewed: 2016-03-21
 tags:
-- Container
+- dependency injection
 related:
 - nservicebus/containers
 - nservicebus/containers/castlewindsor

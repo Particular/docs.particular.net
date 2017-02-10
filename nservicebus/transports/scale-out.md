@@ -3,7 +3,7 @@ title: Scaling out endpoints
 reviewed: 2016-11-07
 component: Core
 tags:
-- Scale Out
+- scalability
 - Routing
 ---
 

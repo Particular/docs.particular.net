@@ -4,7 +4,6 @@ reviewed: 2016-03-21
 component: MongoDatabusTekmaven
 tags:
  - DataBus
- - Large messages
 related:
  - nservicebus/mongodb-persistence-tekmaven
  - nservicebus/messaging/databus

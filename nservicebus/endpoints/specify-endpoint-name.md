@@ -4,7 +4,7 @@ summary: There are many ways to specify the endpoint name.
 reviewed: 2016-08-24
 component: Core
 tags:
-- Conventions
+- Convention
 redirects:
 - nservicebus/how-to-specify-your-input-queue-name
 - nservicebus/messaging/specify-input-queue-name

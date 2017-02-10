@@ -3,9 +3,7 @@ title: Shared Hosting in Azure
 summary: Using Azure Cloud Services to host multiple NServiceBus endpoints on a shared pool of machines.
 tags:
 - Azure
-- Cloud
 - Hosting
-- Worker Roles
 related:
  - samples/azure/shared-host
 redirects:

@@ -2,11 +2,8 @@
 title: Frequently Asked Questions
 component: ASQ
 tags:
-- Cloud
 - Azure
 - Transport
-- ASQ
-- Azure Storage Queues
 reviewed: 2016-10-21
 ---
 

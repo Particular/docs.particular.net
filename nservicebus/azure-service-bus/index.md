@@ -3,7 +3,6 @@ title: Azure Service Bus Transport
 component: ASB
 tags:
  - Azure
- - Cloud
 redirects:
  - nservicebus/using-azure-servicebus-as-transport-in-nservicebus
  - nservicebus/azure/azure-servicebus-transport

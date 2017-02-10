@@ -5,7 +5,7 @@ component: MsmqTransport
 reviewed: 2016-11-07
 versions: "[6,)"
 tags:
- - Scale Out
+ - scalability
  - Routing
  - MSMQ
 redirects:

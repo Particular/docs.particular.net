@@ -6,7 +6,6 @@ reviewed: 2016-03-21
 tags:
 - Azure
 - DataBus
-- Large messages
 related:
 - nservicebus/messaging/databus
 ---
