@@ -30,6 +30,14 @@ All samples have a download link that allows the sample solution to be downloade
 The samples are located in GitHub at [Particular/docs.particular.net/samples](https://github.com/Particular/docs.particular.net/tree/master/samples) and both [issues](https://github.com/Particular/docs.particular.net/issues) and [Pull Requests](https://help.github.com/articles/using-pull-requests/) are accepted.
 
 
+## Older Samples
+
+Samples that target non-supported versions of NServiceBus have been archived. They are still available for browsing and download
+
+ * NServiceBus 4 [Browse](https://github.com/Particular/docs.particular.net/tree/Version4Samples) [Download](https://github.com/Particular/docs.particular.net/archive/Version4Samples.zip
+ * NServiceBus 3 [Browse](https://github.com/Particular/docs.particular.net/tree/Version3Samples) [Download](https://github.com/Particular/docs.particular.net/archive/Version3Samples.zip)
+
+
 ## Technology Choices
 
 Unless otherwise specified (by an individual sample) the following are the default technology choices.
