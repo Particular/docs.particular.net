@@ -1,1 +1,0 @@
-The scheduling API is accessed via the static `Schedule` class.

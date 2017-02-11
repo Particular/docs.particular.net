@@ -74,9 +74,6 @@ This sample uses the [MSMQ Transport](/nservicebus/msmq/).
 snippet:transport
 
 
-partial:sagas
-
-
 ## Select and configure [Persistence](/nservicebus/persistence)
 
 This sample uses [InMemory persistence](/nservicebus/persistence/in-memory.md).

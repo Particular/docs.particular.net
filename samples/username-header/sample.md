@@ -6,7 +6,6 @@ component: Core
 related:
 - nservicebus/pipeline/message-mutators
 - nservicebus/messaging/headers
-- samples/run-under-incoming-principal
 ---
 
 This sample shows appending the current username to outgoing messages and then extracting that value during message handling.
