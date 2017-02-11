@@ -34,8 +34,8 @@ The samples are located in GitHub at [Particular/docs.particular.net/samples](ht
 
 Samples that target non-supported versions of NServiceBus have been archived. They are still available for browsing and download
 
- * NServiceBus 4 [Browse](https://github.com/Particular/docs.particular.net/tree/Version4Samples) [Download](https://github.com/Particular/docs.particular.net/archive/Version4Samples.zip)
- * NServiceBus 3 [Browse](https://github.com/Particular/docs.particular.net/tree/Version3Samples) [Download](https://github.com/Particular/docs.particular.net/archive/Version3Samples.zip)
+ * NServiceBus 4 [Browse](https://github.com/Particular/docs.particular.net/tree/Version4Samples/samples) [Download](https://github.com/Particular/docs.particular.net/archive/Version4Samples.zip)
+ * NServiceBus 3 [Browse](https://github.com/Particular/docs.particular.net/tree/Version3Samples/samples) [Download](https://github.com/Particular/docs.particular.net/archive/Version3Samples.zip)
 
 
 ## Technology Choices
