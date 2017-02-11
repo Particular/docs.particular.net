@@ -1,6 +1,9 @@
 ---
-title: "NServiceBus 101 Lesson 2: Sending a command"
+title: "Introduction to NServiceBus: Sending a command"
 reviewed: 2017-01-26
+summary: In this 15-20 minute tutorial, you'll learn how to define NServiceBus messages and handlers, and send and receive a message.
+redirects:
+- tutorials/nservicebus-101/2-sending-a-command
 ---
 
 Sending and receiving messages is a central characteristic of any NServiceBus system. Durable messages passed between processes allow reliable communication between those processes, even if one of them is temporarily unavailable. In this lesson we'll show how to send and process a message.
@@ -12,7 +15,7 @@ In the next 15-20 minutes, you will learn how to define messages and message han
 
 A [**message**](/nservicebus/messaging/messages-events-commands.md) is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we define message via simple classes.
 
-In this lesson, we'll focus on [commands](/nservicebus/messaging/messages-events-commands.md#command). In [Lesson 4: Publishing events](../lesson-4/) we'll expand to look at events as well.
+In this lesson, we'll focus on [commands](/nservicebus/messaging/messages-events-commands.md#command). In [Lesson 4: Publishing events](../4-publishing-events/) we'll expand to look at events as well.
 
 To define a command, create a class and mark it with the `ICommand` marker interface.
 
@@ -43,7 +46,7 @@ Messages are data contracts and as such, they are shared between multiple endpoi
 
 **Message assemblies** should be entirely self-contained, meaning they should contain only NServiceBus message types, and any supporting types required by the messages themselves. For example, if a message uses an enumeration type for one of its properties, then that enumeration should also live within the same message assembly.
 
-INFO: It is technically possible to embed messages within the endpoint assembly, but then those messages can't be exchanged with other endpoints. Samples will also sometimes embed the messages in order to make the sample easier to understand. In this course, we'll stick to keeping them in dedicated message assemblies.
+INFO: It is technically possible to embed messages within the endpoint assembly, but then those messages can't be exchanged with other endpoints. Samples will also sometimes embed the messages in order to make the sample easier to understand. In this tutorial, we'll stick to keeping them in dedicated message assemblies.
 
 Additionally, message assemblies should have no dependencies other than libraries included with the .NET Framework, and the NServiceBus core assembly, which is required to reference the `ICommand` interface. 
 
@@ -145,7 +148,7 @@ Let's take a closer look at the case when we want to place an order. In order to
 
 `SendLocal(object message)` is a method that is available on the `IEndpointInstance` interface, as we are using here, and also on the `IMessageHandlerContext` interface, which we saw when we were defining our message handler. The *Local* part means that we are not sending to an external endpoint (in a different process) so we intend to handle the message in the same endpoint that sent it. Using `SendLocal()`, we don't have to do anything special to tell the message where to go.
 
-NOTE: In this lesson, we're using `SendLocal` (rather than the more commonly used `Send` method) as a bit of a crutch. This way, we can explore how to define, send, and process messages without needing a second endpoint to process them. With `SendLocal`, we also don't need to define routing rules to control where the sent messages go. We'll learn about these concepts [in the next lesson](../lesson-3/).
+NOTE: In this lesson, we're using `SendLocal` (rather than the more commonly used `Send` method) as a bit of a crutch. This way, we can explore how to define, send, and process messages without needing a second endpoint to process them. With `SendLocal`, we also don't need to define routing rules to control where the sent messages go. We'll learn about these concepts [in the next lesson](../3-multiple-endpoints/).
 
 Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properly.
 
@@ -179,4 +182,4 @@ In this lesson we learned about messages, message assemblies, and message handle
 
 In the next lesson, we'll create a second messaging endpoint, move our message handler over to it, and then configure the ClientUI to send the message to the new endpoint. We'll also be able to observe what happens when we send messages while the receiver endpoint is offline.
 
-When you're ready, move on to [**Lesson 3: Multiple endpoints**](../lesson-3/).
+When you're ready, move on to [**Lesson 3: Multiple endpoints**](../3-multiple-endpoints/).

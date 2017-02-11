@@ -1,6 +1,9 @@
 ---
-title: "NServiceBus 101 Lesson 1: Getting started"
+title: "Introduction to NServiceBus: Getting started"
 reviewed: 2017-01-26
+summary: In this 10-15 minute tutorial, you will learn how to set up a development machine for NServiceBus and create your very first messaging endpoint.
+redirects:
+- tutorials/nservicebus-101/1-getting-started
 ---
 
 include: nsb101-intro-paragraph
@@ -12,18 +15,18 @@ In this first lesson, which should take 10-15 minutes, you will learn how to set
 
 NServiceBus has very few prerequisites. All it needs is the .NET Framework and message queuing infrastructure.
 
-Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md), this course uses Visual Studio 2015 and .NET Framework 4.6.1, which includes some useful async-related APIs.
+Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md), this tutorial uses Visual Studio 2015 and .NET Framework 4.6.1, which includes some useful async-related APIs.
 
-NServiceBus needs queuing infrastructure (a [transport](/nservicebus/transports/)) to move messages around. By default, this course will use **Microsoft Message Queuing (MSMQ)**, which is included with every version of Windows, although it is not installed by default.
+NServiceBus needs queuing infrastructure (a [transport](/nservicebus/transports/)) to move messages around. By default, this tutorial will use **Microsoft Message Queuing (MSMQ)**, which is included with every version of Windows, although it is not installed by default.
 
-NOTE: If MSMQ is not an option for your environment, the [SQL Server Transport](/nservicebus/sqlserver/) can be used as a message transport instead. To get started using SQL Server instead of MSMQ, review the [SQL Server transport setup instructions](../using-sql-transport.md). Throughout the rest of the guide, instructions that differ between the SQL and MSMQ transports will be highlighted in an informational box like this one.
+NOTE: If MSMQ is not an option for your environment, the [SQL Server Transport](/nservicebus/sqlserver/) can be used as a message transport instead. To get started using SQL Server instead of MSMQ, review the [SQL Server transport setup instructions](../using-sql-transport.md). Throughout the rest of the tutorial, instructions that differ between the SQL and MSMQ transports will be highlighted in an informational box like this one.
 
 To install MSMQ on your machine, you have two options:
 
-* [Download and run the Particular Platform Installer](https://particular.net/start-platform-download). This will install the MSMQ Windows Feature, configure the Distributed Transaction Coordinator (DTC) so that queues and databases can all work together within a single atomic transaction, and install tools from Particular ([ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/), and [ServicePulse](/servicepulse/)) that we'll use later in this course.
+* [Download and run the Particular Platform Installer](https://particular.net/start-platform-download). This will install the MSMQ Windows Feature, configure the Distributed Transaction Coordinator (DTC) so that queues and databases can all work together within a single atomic transaction, and install tools from Particular ([ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/), and [ServicePulse](/servicepulse/)) that we'll use later in this tutorial.
 * [Install and configure MSMQ manually](/nservicebus/msmq/#nservicebus-configuration).
 
-NOTE: It's enough at this point to simply install the Platform Installer tools. At the end of the install process, a button will offer the option to start ServiceControl Management to install or update a ServiceControl instance. This isn't required right now, but we'll return to this topic in [Lesson 5](../lesson-5/) when we explore how to replay failed messages.
+NOTE: It's enough at this point to simply install the Platform Installer tools. At the end of the install process, a button will offer the option to start ServiceControl Management to install or update a ServiceControl instance. This isn't required right now, but we'll return to this topic in [Lesson 5](../5-retrying-errors/) when we explore how to replay failed messages.
 
 ## Exercise
 
@@ -46,7 +49,7 @@ Install-Package NServiceBus -ProjectName ClientUI
 
 This adds a reference to the NServiceBus.Core assembly to the project.
 
-NOTE: If you are using the SQL Server transport, you also need to install the `NServiceBus.SqlServer` package before continuing. See [Using the SQL Server transport - Adding the NuGet package](/tutorials/nservicebus-101/using-sql-transport.md#modifying-each-endpoint-adding-the-nuget-package) for more details.
+NOTE: If you are using the SQL Server transport, you also need to install the `NServiceBus.SqlServer` package before continuing. See [Using the SQL Server transport - Adding the NuGet package](/tutorials/intro-to-nservicebus/using-sql-transport.md#modifying-each-endpoint-adding-the-nuget-package) for more details.
 
 With the proper dependencies in place, we're ready to start writing code.
 
@@ -90,9 +93,9 @@ snippet:MsmqTransport
 
 This setting defines the [**transport**](/nservicebus/transports/) that NServiceBus will use to send and receive messages. We are using the `MsmqTransport`, which is bundled within the NServiceBus core library. All other transports require different NuGet packages.
 
-Capturing the `transport` settings in a variable as shown will make things easier in [Lesson 3](../lesson-3/) when we start defining message routing rules.
+Capturing the `transport` settings in a variable as shown will make things easier in [Lesson 3](../3-multiple-endpoints/) when we start defining message routing rules.
 
-NOTE: If using the SQL Server transport, you must use the `SqlServerTransport` and provide a connection string to the database. See [Using the SQL Server transport - Configuring the transport](/tutorials/nservicebus-101/using-sql-transport.md#modifying-each-endpoint-configuring-the-transport) for more details.
+NOTE: If using the SQL Server transport, you must use the `SqlServerTransport` and provide a connection string to the database. See [Using the SQL Server transport - Configuring the transport](/tutorials/intro-to-nservicebus/using-sql-transport.md#modifying-each-endpoint-configuring-the-transport) for more details.
 
 
 #### Serializer
@@ -115,7 +118,7 @@ A [**persistence**](/nservicebus/persistence/) is required to store some data in
 
 snippet:ErrorQueue
 
-Processing a message can fail for several reasons. It could be due to a coding bug, a database deadlock, or unanticipated data inside a message. Automatic retries will make dealing with non-deterministic exceptions a non-issue, but for very serious errors, the message could get stuck at the top of the queue and be retried indefinitely. This type of message, known as a **poison message**, would block all other messages behind it. When these occur, NServiceBus needs to be able to set it aside in a different queue to allow other work to get done. This queue is referred to as the **error queue** and is commonly named `error`. We will discuss [**recoverability**](/nservicebus/recoverability/) more in [Lesson 5: Retrying errors](../lesson-5/).
+Processing a message can fail for several reasons. It could be due to a coding bug, a database deadlock, or unanticipated data inside a message. Automatic retries will make dealing with non-deterministic exceptions a non-issue, but for very serious errors, the message could get stuck at the top of the queue and be retried indefinitely. This type of message, known as a **poison message**, would block all other messages behind it. When these occur, NServiceBus needs to be able to set it aside in a different queue to allow other work to get done. This queue is referred to as the **error queue** and is commonly named `error`. We will discuss [**recoverability**](/nservicebus/recoverability/) more in [Lesson 5: Retrying errors](../5-retrying-errors/).
 
 
 #### Installers
@@ -131,7 +134,7 @@ At the end of the `AsyncMain` method, after the configuration code, add the foll
 
 snippet:Startup
 
-NOTE: In this course we will always use `.ConfigureAwait(false)` when awaiting tasks, in order to [avoid capturing and restoring the SynchronizationContext](/nservicebus/handlers/async-handlers.md#usage-of-configureawait).
+NOTE: In this tutorial we will always use `.ConfigureAwait(false)` when awaiting tasks, in order to [avoid capturing and restoring the SynchronizationContext](/nservicebus/handlers/async-handlers.md#usage-of-configureawait).
 
 The endpoint is initialized according to the settings defined by the `EndpointConfiguration` class. Once the endpoint starts, changes to the configuration information are no longer applied.
 
@@ -158,4 +161,4 @@ NOTE: If you are using the SQL Server transport, take a look in your SQL databas
 
 In this lesson we created a simple messaging endpoint to make sure it works. In the next lesson, we'll define a message, a message handler, and then send the message and watch it get processed.
 
-When you're ready, move on to [**Lesson 2: Sending a command**](../lesson-2/).
+When you're ready, move on to [**Lesson 2: Sending a command**](../2-sending-a-command/).

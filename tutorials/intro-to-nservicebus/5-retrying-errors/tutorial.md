@@ -1,6 +1,9 @@
 ---
-title: "NServiceBus 101 Lesson 5: Retrying errors"
+title: "Introduction to NServiceBus: Retrying errors"
 reviewed: 2017-01-26
+summary: In this 25-30 minute tutorial, you'll learn the different causes of errors and how to manage them with the Particular Service Platform.
+redirects:
+- tutorials/nservicebus-101/5-retrying-errors
 ---
 
 In software systems, exceptions will occur. Even with perfect, bug-free code, problems will arise when we have to deal with the issue of connectivity. If a database is overloaded, or a web service is down, we have no recourse except to try again.
@@ -240,6 +243,6 @@ For more details see [Persistence in NServiceBus](/nservicebus/persistence/).
 
 In this lesson, we explored different causes for exceptions and how NServiceBus makes those much easier to deal with by introducing automatic retries and message replay to make many transient and semi-transient exceptions just go away, and provide tools to deal with poison messages, all without our users noticing anything but perhaps a slight processing delay. This is a capability that will enable you to create truly resilient, self-healing systems that can keep running in the face of partial failure.
 
-You've completed the last lesson in NServiceBus 101: Messaging Basics. Over the span of this course, you've learned how to create endpoints, send and receive commands, publish events, and deal with message failures.
+You've completed the last lesson in the [Introduction to NServiceBus](/tutorials/intro-to-nservicebus) tutorial. You've learned how to create endpoints, send and receive commands, publish events, and deal with message failures.
 
 If you're looking for more, consider trying one of our many [sample projects](/samples/), such as the [on-premise showcase](/samples/show-case/on-premise/) showing many different NServiceBus features working together.
