@@ -110,7 +110,3 @@ The current [DbConnection](https://msdn.microsoft.com/en-us/library/system.data.
 
 snippet: handler-sqlPersistenceSession
 
-
-### Using in a Saga
-
-snippet: saga-sqlPersistenceSession
