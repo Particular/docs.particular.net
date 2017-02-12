@@ -106,6 +106,13 @@ A typical scenario is a saga controlling the process of billing a customer throu
 The usual way is to correlate on some kind of ID and let the user control how to find the correct saga instance using that ID. While this is easily done it was decided that this was common enough to warrant native support in NServiceBus for these type of interactions. In Version 3.0, NServiceBus handles this. If a `Reply` is done in response to a message coming from a saga, NServiceBus will detect it and automatically set the correct headers so that it can correlate the reply back to the saga instance that issued the request. The exception to this rule is the request/response message exchange between two sagas. In such case the automatic correlation won't work and the reply message needs to be explicitly mapped using `ConfigureHowToFindSaga`.
 
 
+## Accessing databases and other resources from a saga
+
+WARNING: Other than interacting with its own internal state, a saga should **not** access a database, call out to web services, or access other resources - neither directly nor indirectly by having such dependencies injected into it.
+
+Instead, a saga should send messages to other endpoints in which a regular message handler would access databases, call web services, or access other resources. Usually those message handlers will send response messages back to the saga, as described in the previous section.
+
+
 ## Querying Saga Data
 
 Sagas manage state of potentially long-running business processes. To access the current state of a business process the urge exists to query the saga data directly. It can be done, but is recommend against it. While this can be appropriate for very simple administrative or support functionality, it is not recommend as a general-purpose approach for these reasons:
