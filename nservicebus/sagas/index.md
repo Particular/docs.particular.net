@@ -110,7 +110,7 @@ The usual way is to correlate on some kind of ID and let the user control how to
 
 WARNING: Other than interacting with its own internal state, a saga should **not** access a database, call out to web services, or access other resources - neither directly nor indirectly by having such dependencies injected into it.
 
-Instead, a saga should send messages to other endpoints in which a regular message handler would access databases, call web services, or access other resources. Usually those message handlers will send response messages back to the saga, as described in the previous section.
+Instead, a saga should send messages to perform those actions. The corresponding message handler would access databases, call web services, or access other resources. Usually those message handlers will send response messages back to the saga, as described in the previous section. These message handlers can be hosted in separate endpoints or in the same endpoint depending on other architectural decisions.
 
 
 ## Querying Saga Data
