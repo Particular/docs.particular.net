@@ -3,7 +3,7 @@ title: "Introduction to NServiceBus: Retrying errors"
 reviewed: 2017-01-26
 summary: In this 25-30 minute tutorial, you'll learn the different causes of errors and how to manage them with the Particular Service Platform.
 redirects:
-- tutorials/nservicebus-101/5-retrying-errors
+- tutorials/nservicebus-101/lesson-5
 ---
 
 In software systems, exceptions will occur. Even with perfect, bug-free code, problems will arise when we have to deal with the issue of connectivity. If a database is overloaded, or a web service is down, we have no recourse except to try again.
