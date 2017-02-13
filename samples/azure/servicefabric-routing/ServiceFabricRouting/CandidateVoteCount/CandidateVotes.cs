@@ -13,6 +13,7 @@ namespace CandidateVoteCount
         {
             if (!Data.Started)
             {
+                // This won't work until we have Core PR #4474 
                 await RequestTimeout<CloseVoting>(context, DateTime.UtcNow.AddMinutes(1));
                 Data.Candidate = message.Candidate;
                 Data.Started = true;

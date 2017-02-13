@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Fabric;
 using System.Linq;
 using System.Threading;
@@ -6,6 +7,8 @@ using System.Threading.Tasks;
 using Messages;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
+using NServiceBus.Configuration.AdvanceExtensibility;
+using NServiceBus.Routing;
 
 namespace CandidateVoteCount
 {
@@ -47,6 +50,25 @@ namespace CandidateVoteCount
             transportConfig.UseForwardingTopology();
 
             transportConfig.Routing().RouteToEndpoint(typeof(TrackZipCode), "ZipCodeVoteCount");
+
+            var internalSettings = endpointConfiguration.GetSettings();
+
+            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
+
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", DistributionStrategyScope.Send));
+
+            using (var client = new FabricClient())
+            {
+                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(new Uri("fabric:/ServiceFabricRouting/ZipCodeVoteCount")).ConfigureAwait(false);
+                var partitions = new List<EndpointInstance>();
+                foreach (var partition in servicePartitionList)
+                {
+                    partitions.Add(new EndpointInstance("ZipCodeVoteCount", partition.PartitionInformation.Kind == ServicePartitionKind.Int64Range ? ((Int64RangePartitionInformation)partition.PartitionInformation).HighKey.ToString() : ((NamedPartitionInformation)partition.PartitionInformation).Name));
+                }
+
+                var instances = internalSettings.GetOrCreate<EndpointInstances>();
+                instances.AddOrReplaceInstances("ZipCodeVoteCount", partitions);
+            }
             
             endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
             return null;
