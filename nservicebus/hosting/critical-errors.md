@@ -45,27 +45,26 @@ snippet:CustomHostErrorHandlingAction
 
 ## When to override the default critical error action
 
-The default behavior is to stop the endpoint and not the process. It is recommended to exit the process when a critical error occurs. Not overriding the critical error callback will result in the endpoint instance to stop processing messages without the ability to recover from this state.
+The default action should be overridden in the following scenarios:
 
-NOTE: If not killing the process and just disposing the bus, be aware that any `Send` operations will result in [ObjectDisposedException](https://msdn.microsoft.com/en-us/library/system.objectdisposedexception.aspx) being thrown.
+ * When using [NServiceBus Host](/nservicebus/hosting/nservicebus-host), in case some custom operations should be performed before the endpoint process is exited.
+ * When self hosting.
 
-Consider the following when implementing a critical error callback:
+Warning: The default action should be always overriden when self-hosting NServiceBus, as by default when a critical error occurs NServiceBus will stop the endpoint without exiting the process.
 
-- If calling any code wrap it in a `try..finally`, making sure the process will invoke exit code in the `finally` like `Environment.FailFast` if any code fails.
-- Flush any loggers used which makes sure any unwritten log state is written/pushed to its target(s) making sure the tail of the log is not lost as [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) will immediately exit the process.
- - Flush appenders for [NLog](http://nlog-project.org/documentation/v4.3.0/html/M_NLog_LogManager_Shutdown.htm) or [log4net](https://logging.apache.org/log4net/log4net-1.2.11/release/sdk/log4net.LogManager.Shutdown.html) state by calling `LogManager.Shutdown();`.
-- Flush any state/caches used if such data structures would be written/persisted at a certain interval or regular graceful shutdown.
-- It is easiest to call [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) or [Environment.Exit](https://msdn.microsoft.com/en-us/library/system.environment.exit(v=vs.110).aspx).
+NOTE: If the endpoint is stopped without exiting the process, then any `Send` operations will result in [ObjectDisposedException](https://msdn.microsoft.com/en-us/library/system.objectdisposedexception.aspx) being thrown.
 
+When implementing a custom critical error callback:
 
-Rely on the environment hosting the endpoint process for it to be automatically restarted.
+- To exit the process use the [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) method. In case of send-only endpoints, also [Environment.Exit](https://msdn.microsoft.com/en-us/library/system.environment.exit(v=vs.110).aspx) may be used.
+- The code should be wrapped in a `try...finally` clause. In the `try` block perform any custom operations, in the `finally` block call the method that exits the process.
+- The custom operations should include flushing any in-memory state and cached data, if normally its persisted at a certain interval or during graceful shutdown. For example, flush appenders for [NLog](http://nlog-project.org/documentation/v4.3.0/html/M_NLog_LogManager_Shutdown.htm) or [log4net](https://logging.apache.org/log4net/log4net-1.2.11/release/sdk/log4net.LogManager.Shutdown.html) state by calling `LogManager.Shutdown();`.
 
-- IIS: When hosting in IIS the IIS host will automatically spawn a new instance
+Whenever possible rely on the environment hosting the endpoint process to automatically restart it:
+- IIS: The IIS host will automatically spawn a new instance.
 - Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-restart-recovery) is enabled.
 
-
 WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if co-hosting NServiceBus with a web-service or website.
-
 
 
 ## Raising Critical error

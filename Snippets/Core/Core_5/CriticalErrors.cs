@@ -24,13 +24,19 @@ namespace Core5
 
         void OnCriticalError(string errorMessage, Exception exception)
         {
-            // To leave the process active, dispose the bus.
-            // When the bus is disposed sending messages will throw an ObjectDisposedException.
-            bus.Dispose();
-
-            // To kill the process, raise a fail fast error as shown below.
-            // var failMessage = $"Critical error shutting down:'{errorMessage}'.";
-            // Environment.FailFast(failMessage, exception);
+            try
+            {
+                // To leave the process active, dispose the bus.
+                // When the bus is disposed, the attempt to send message will cause an ObjectDisposedException.
+                bus.Dispose();
+                // Perform custom actions here, e.g.
+                // NLog.LogManager.Shutdown();
+            }
+            finally
+            {
+                var failMessage = $"Critical error shutting down:'{errorMessage}'.";
+                Environment.FailFast(failMessage, exception);
+            }
         }
 
         #endregion

@@ -26,16 +26,20 @@ namespace Core3.Host
 
         void OnCriticalError()
         {
-            // Write log entry in version 3 since this is not done by default.
-            log.Fatal("CRITICAL Error");
-
-            // To leave the process active, dispose the bus.
-            // When the bus is disposed sending messages will throw an ObjectDisposedException.
-            ((IDisposable)bus).Dispose();
-
-            // To kill the process, raise a fail fast error as shown below.
-            // var failMessage = "Critical error shutting.";
-            // Environment.FailFast(failMessage);
+            try
+            {
+                // To leave the process active, dispose the bus.
+                // When the bus is disposed, the attempt to send message will cause an ObjectDisposedException.
+                ((IDisposable)bus).Dispose();
+                // Perform custom actions here, e.g.
+                // NLog.LogManager.Shutdown();
+            }
+            finally
+            {
+                // Write log entry in version 3 since this is not done by default.
+                log.Fatal("CRITICAL Error");
+                Environment.FailFast("Critical error shutting down.");
+            }
         }
 
         #endregion

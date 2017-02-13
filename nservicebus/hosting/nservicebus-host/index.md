@@ -93,7 +93,7 @@ The default [Critical Error Action](/nservicebus/hosting/critical-errors.md) for
 
 snippet:DefaultHostCriticalErrorAction
 
-It is not required to override this callback. However, if it is required to execute code just before shutdown then it can be overridden in the same way as when self hosting. See [When to override the default critical error action](/nservicebus/hosting/critical-errors.md#when-to-override-the-default-critical-error-action) for guidance.
+The default callback should be overriden, if some custom code should be executed before exiting the process, such as persisting some in-memory data, flushing the loggers, etc. Refer to the [Critical Errors](/nservicebus/hosting/critical-errors.md) article for more information.
 
 
 ## Performance Counters
