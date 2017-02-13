@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
+using NServiceBus.Configuration.AdvanceExtensibility;
+using NServiceBus.Routing;
 
 namespace Voter
 {
@@ -32,7 +32,22 @@ namespace Voter
             transportConfig.ConnectionString(connectionString);
             transportConfig.UseForwardingTopology();
 
-            transportConfig.Routing().RouteToEndpoint(typeof(PlaceVote), "CandidateVoteCount");
+            RoutingSettingsExtensions.Routing((TransportExtensions) transportConfig).RouteToEndpoint(typeof(PlaceVote), "CandidateVoteCount");
+
+            var internalSettings = endpointConfiguration.GetSettings();
+
+            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
+
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", DistributionStrategyScope.Send));
+
+            var candidateVoteCountInstances = new List<EndpointInstance>
+            {
+                new EndpointInstance("CandidateVoteCount", "John"),
+                new EndpointInstance("CandidateVoteCount", "Abby"),
+            };
+
+            var instances = internalSettings.GetOrCreate<EndpointInstances>();
+            instances.AddOrReplaceInstances("CandidateVoteCount", candidateVoteCountInstances);
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 

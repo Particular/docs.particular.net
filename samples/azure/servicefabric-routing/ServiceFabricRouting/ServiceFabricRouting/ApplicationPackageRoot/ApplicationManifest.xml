@@ -27,7 +27,7 @@
          The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
     <Service Name="ZipCodeVoteCount">
       <StatefulService ServiceTypeName="ZipCodeVoteCountType" TargetReplicaSetSize="3" MinReplicaSetSize="3">
-        <UniformInt64Partition PartitionCount="3" LowKey="0" HighKey="99999" />
+        <UniformInt64Partition PartitionCount="3" LowKey="0" HighKey="99000" />
       </StatefulService>
     </Service>
     <Service Name="CandidateVoteCount">
