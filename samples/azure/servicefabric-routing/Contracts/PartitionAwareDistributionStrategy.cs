@@ -1,10 +1,10 @@
-using System;
-using System.Linq;
-using NServiceBus;
-using NServiceBus.Routing;
-
-namespace Messages
+namespace Contracts
 {
+    using System;
+    using System.Linq;
+    using NServiceBus;
+    using NServiceBus.Routing;
+
     public class PartitionAwareDistributionStrategy : DistributionStrategy
     {
         public PartitionAwareDistributionStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)

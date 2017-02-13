@@ -4,7 +4,6 @@ using System.Fabric;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Messages;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
@@ -12,6 +11,8 @@ using NServiceBus.Routing;
 
 namespace CandidateVoteCount
 {
+    using Contracts;
+
     public class EndpointCommunicationListener : ICommunicationListener
     {
         private StatefulServiceContext context;

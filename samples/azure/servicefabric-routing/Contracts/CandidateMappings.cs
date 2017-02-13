@@ -1,4 +1,4 @@
-﻿namespace Messages
+﻿namespace Contracts
 {
     public static class CandidateMappings
     {

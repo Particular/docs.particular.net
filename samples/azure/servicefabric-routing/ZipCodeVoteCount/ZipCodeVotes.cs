@@ -1,10 +1,11 @@
 using System;
 using System.Threading.Tasks;
-using Messages;
 using NServiceBus;
 
 namespace ZipCodeVoteCount
 {
+    using Contracts;
+
     public  class ZipCodeVotes : Saga<ZipCodeVoteData>,
         IAmStartedByMessages<TrackZipCode>,
         IHandleTimeouts<CloseVoting>

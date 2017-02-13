@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Messages;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Routing;
 
 namespace Voter
 {
+    using Contracts;
+
     class Program
     {
         static void Main(string[] args)
