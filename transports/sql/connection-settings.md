@@ -13,7 +13,7 @@ The SQL Server transport is built on top of [ADO.NET](https://docs.microsoft.com
 
 In scenarios where the concurrent message processing limit is changed, or the database connection is used for other purposes as mentioned above, it is advisable to change the connection pool size to ensure it will not be exhausted. See also [SQL Server Connection Pooling and Configuration](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-connection-pooling).
 
-NOTE: In NServiceBus Versions 6 and above the default level of concurrency is based on the number of logical processors and as such, if the maximum and minimum pool sizes are not explicitly set on the connection string a warning message will be logged. See also [Tuning endpoint message processing](/nservicebus/operations/tuning.md) 
+partial:pool-size  
 
 
 ## Connection configuration
