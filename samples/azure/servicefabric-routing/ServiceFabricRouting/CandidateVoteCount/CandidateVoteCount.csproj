@@ -90,6 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EndpointCommunicationListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CandidateVoteCount.cs" />
     <Compile Include="Program.cs" />

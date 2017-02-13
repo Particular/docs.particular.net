@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
 
-namespace ZipCodeVoteCount
+namespace CandidateVoteCount
 {
     public class EndpointCommunicationListener : ICommunicationListener
     {
@@ -20,15 +20,15 @@ namespace ZipCodeVoteCount
 
         public async Task<string> OpenAsync(CancellationToken cancellationToken)
         {
-            Int64RangePartitionInformation rangePartitionInformation;
+            NamedPartitionInformation rangePartitionInformation;
             using (var client = new FabricClient())
             {
                 var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName, context.PartitionId).ConfigureAwait(false);
-                rangePartitionInformation = servicePartitionList.Select(x => x.PartitionInformation).Cast<Int64RangePartitionInformation>().Single(p => p.Id == context.PartitionId);
+                rangePartitionInformation = servicePartitionList.Select(x => x.PartitionInformation).Cast<NamedPartitionInformation>().Single(p => p.Id == context.PartitionId);
             }
-            
+
             var endpointConfiguration = new EndpointConfiguration(context.ServiceTypeName);
-            endpointConfiguration.MakeInstanceUniquelyAddressable(rangePartitionInformation.HighKey.ToString());
+            endpointConfiguration.MakeInstanceUniquelyAddressable(rangePartitionInformation.Name));
 
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.AuditProcessedMessagesTo("audit");
