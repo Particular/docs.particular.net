@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Messages;
 using NServiceBus;
 
 namespace Voter
@@ -31,10 +32,33 @@ namespace Voter
             transportConfig.ConnectionString(connectionString);
             transportConfig.UseForwardingTopology();
 
+            transportConfig.Routing().RouteToEndpoint(typeof(PlaceVote), "CandidateVoteCount");
+
             var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
-            Console.WriteLine("Press enter to exit");
-            Console.ReadLine();
+            Console.WriteLine("Press 'x' to exit or 'v' to vote");
+            var x = Console.ReadLine();
+
+            while (x != "x")
+            {
+                Console.WriteLine("Press '1' to vote for John or '2' to vote for Abby");
+                var choice = Console.ReadLine();
+
+                if (choice == "1" || choice == "2")
+                {
+                    Console.WriteLine("Please enter your ZipCode");
+                    var zipcode = Console.ReadLine();
+
+                    await endpointInstance.Send(new PlaceVote()
+                    {
+                        Candidate = choice == "1" ? "John" : "Abby",
+                        ZipCode = zipcode
+                    });
+                }
+
+                Console.WriteLine("Press 'x' to exit or 'v' to vote");
+                x = Console.ReadLine();
+            }
 
             await endpointInstance.Stop().ConfigureAwait(false);
         }

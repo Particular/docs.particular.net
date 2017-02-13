@@ -50,6 +50,7 @@
     <Compile Include="ReportVotes.cs" />
     <Compile Include="ReportZipCode.cs" />
     <Compile Include="TrackZipCode.cs" />
+    <Compile Include="CloseVoting.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -30,13 +30,16 @@
          
          The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
     <Service Name="ZipCodeVoteCount">
-      <StatefulService ServiceTypeName="ZipCodeVoteCountType" TargetReplicaSetSize="[ZipCodeVoteCount_TargetReplicaSetSize]" MinReplicaSetSize="[ZipCodeVoteCount_MinReplicaSetSize]">
-        <UniformInt64Partition PartitionCount="[ZipCodeVoteCount_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      <StatefulService ServiceTypeName="ZipCodeVoteCountType" TargetReplicaSetSize="3" MinReplicaSetSize="3">
+        <UniformInt64Partition PartitionCount="3" LowKey="0" HighKey="99999" />
       </StatefulService>
     </Service>
     <Service Name="CandidateVoteCount">
-      <StatefulService ServiceTypeName="CandidateVoteCountType" TargetReplicaSetSize="[CandidateVoteCount_TargetReplicaSetSize]" MinReplicaSetSize="[CandidateVoteCount_MinReplicaSetSize]">
-        <UniformInt64Partition PartitionCount="[CandidateVoteCount_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      <StatefulService ServiceTypeName="CandidateVoteCountType" TargetReplicaSetSize="3" MinReplicaSetSize="3">
+        <NamedPartition>
+          <Partition Name="John" />
+          <Partition Name="Abby" />
+        </NamedPartition>
       </StatefulService>
     </Service>
   </DefaultServices>

@@ -27,7 +27,7 @@ namespace ZipCodeVoteCount
                 rangePartitionInformation = servicePartitionList.Select(x => x.PartitionInformation).Cast<Int64RangePartitionInformation>().Single(p => p.Id == context.PartitionId);
             }
             
-            var endpointConfiguration = new EndpointConfiguration(context.ServiceTypeName);
+            var endpointConfiguration = new EndpointConfiguration("ZipCodeVoteCount");
             endpointConfiguration.MakeInstanceUniquelyAddressable(rangePartitionInformation.HighKey.ToString());
 
             endpointConfiguration.SendFailedMessagesTo("error");

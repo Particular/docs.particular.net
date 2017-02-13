@@ -3,6 +3,7 @@ using System.Fabric;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Messages;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
 
@@ -27,9 +28,9 @@ namespace CandidateVoteCount
                 rangePartitionInformation = servicePartitionList.Select(x => x.PartitionInformation).Cast<NamedPartitionInformation>().Single(p => p.Id == context.PartitionId);
             }
 
-            var endpointConfiguration = new EndpointConfiguration(context.ServiceTypeName);
-            endpointConfiguration.MakeInstanceUniquelyAddressable(rangePartitionInformation.Name));
-
+            var endpointConfiguration = new EndpointConfiguration("CandidateVoteCount");
+            endpointConfiguration.MakeInstanceUniquelyAddressable(rangePartitionInformation.Name);
+            
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.AuditProcessedMessagesTo("audit");
             endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -45,6 +46,8 @@ namespace CandidateVoteCount
             transportConfig.ConnectionString(connectionString);
             transportConfig.UseForwardingTopology();
 
+            transportConfig.Routing().RouteToEndpoint(typeof(TrackZipCode), "ZipCodeVoteCount");
+            
             endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
             return null;
         }
