@@ -2,7 +2,7 @@
 {
     using NServiceBus;
 
-    public class PlaceVote : ICommand, IHaveCandidate
+    public class PlaceVote : ICommand
     {
         public string ZipCode { get; set; }
 

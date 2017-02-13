@@ -57,7 +57,7 @@ namespace CandidateVoteCount
 
             var policy = internalSettings.GetOrCreate<DistributionPolicy>();
 
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", DistributionStrategyScope.Send));
+            policy.SetDistributionStrategy(new ZipCodePartitionDistributionStrategy(DistributionStrategyScope.Send));
 
             using (var client = new FabricClient())
             {
