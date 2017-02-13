@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateVoteCount", "Candi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZipCodeVoteCount", "ZipCodeVoteCount\ZipCodeVoteCount.csproj", "{313CA348-F3C4-46C7-AAE9-90C478D47BFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{D2D5A397-E764-48D9-8C02-BA7EDE62A36D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{D2D5A397-E764-48D9-8C02-BA7EDE62A36D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voter", "Voter\Voter.csproj", "{999D5A48-DEA0-45E0-AA16-DC6EA7EDBE1C}"
 EndProject
