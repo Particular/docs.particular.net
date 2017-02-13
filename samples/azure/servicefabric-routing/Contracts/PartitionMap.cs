@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Messages
+﻿namespace Contracts
 {
+    using System;
+
     public static class PartitionMap
     {
         // This could be done in a clever way

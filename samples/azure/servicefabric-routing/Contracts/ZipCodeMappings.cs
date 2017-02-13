@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Messages
+﻿namespace Contracts
 {
+    using System;
+
     public static class ZipCodeMappings
     {
         public static string Map(IHaveZipCode zipCode)

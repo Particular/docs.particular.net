@@ -1,10 +1,11 @@
 using System.Fabric;
 using System.Threading.Tasks;
-using Messages;
 using NServiceBus;
 
 namespace ZipCodeVoteCount
 {
+    using Contracts;
+
     public class ReportHandler : IHandleMessages<ReportZipCode>
     {
         public StatefulServiceContext ServiceContext { get; set; }

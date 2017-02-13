@@ -1,10 +1,11 @@
 using System.Fabric;
 using System.Threading.Tasks;
-using Messages;
 using NServiceBus;
 
 namespace CandidateVoteCount
 {
+    using Contracts;
+
     public class ReportHandler : IHandleMessages<ReportVotes>
     {
         public StatefulServiceContext ServiceContext { get; set; }

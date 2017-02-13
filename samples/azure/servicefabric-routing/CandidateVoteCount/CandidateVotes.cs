@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Messages;
 using NServiceBus;
 
 namespace CandidateVoteCount
 {
+    using Contracts;
+
     public class CandidateVotes : Saga<CandidateVoteData>,
         IAmStartedByMessages<PlaceVote>,
         IHandleTimeouts<CloseVoting>

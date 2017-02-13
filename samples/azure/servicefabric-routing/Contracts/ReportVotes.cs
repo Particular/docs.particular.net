@@ -1,7 +1,7 @@
-﻿using NServiceBus;
-
-namespace Messages
+﻿namespace Contracts
 {
+    using NServiceBus;
+
     public class ReportVotes : ICommand
     {
         public string Candidate { get; set; }
