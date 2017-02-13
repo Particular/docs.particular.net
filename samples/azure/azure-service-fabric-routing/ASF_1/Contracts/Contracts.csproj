@@ -45,18 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CandidateMappings.cs" />
     <Compile Include="PartitionAwareDistributionStrategy.cs" />
-    <Compile Include="IHaveCandidate.cs" />
-    <Compile Include="IHaveZipCode.cs" />
-    <Compile Include="PartitionMap.cs" />
     <Compile Include="PlaceVote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportVotes.cs" />
     <Compile Include="ReportZipCode.cs" />
     <Compile Include="TrackZipCode.cs" />
     <Compile Include="CloseVoting.cs" />
-    <Compile Include="ZipCodeMappings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
