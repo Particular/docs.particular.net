@@ -27,7 +27,7 @@ There are several approaches to hosting.
  * [Endpoint Lifecycle](/nservicebus/lifecycle/)
  * [Critical Error handling](critical-errors.md)
 
-Note: Override the default critical error callback when self-hosting NServiceBus. By default NServiceBus will stop the endpoint without exiting the process. Refer to the [Critical Errors](/nservicebus/hosting/critical-errors.md) article for more information.
+Note: Override the default critical error callback when self-hosting NServiceBus. By default NServiceBus will stop the endpoint instance without exiting the process. Refer to the [Critical Errors](/nservicebus/hosting/critical-errors.md) article for more information.
 
 Related:
 

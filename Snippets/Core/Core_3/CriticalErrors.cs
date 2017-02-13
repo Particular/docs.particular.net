@@ -28,6 +28,8 @@ namespace Core3.Host
         {
             try
             {
+                // Write log entry in version 3 since this is not done by default.
+                log.Fatal("CRITICAL Error");
                 // To leave the process active, dispose the bus.
                 // When the bus is disposed, the attempt to send message will cause an ObjectDisposedException.
                 ((IDisposable)bus).Dispose();
@@ -36,8 +38,6 @@ namespace Core3.Host
             }
             finally
             {
-                // Write log entry in version 3 since this is not done by default.
-                log.Fatal("CRITICAL Error");
                 Environment.FailFast("Critical error shutting down.");
             }
         }
