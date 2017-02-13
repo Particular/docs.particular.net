@@ -11,7 +11,7 @@ reviewed: 2017-02-13
 
 The Scheduler is a lightweight/non-durable API that helps schedule a task that needs to be executed repeatedly based on a specified interval. The scheduling infrastructure leverages the approach of reliable messaging with the NServiceBus core functionality. This allows scheduling to include features such as built in retries and forwarding to the error queue.
 
-WARN: Scheduling a task depends on [delayed delivery](/nservicebus/messaging/delayed-delivery). If delayed delivery operation fails, the schedule will be interrupted and a `ScheduledTask` message will be forwarded to the error queue.
+WARNING: Scheduling a task depends on [delayed delivery](/nservicebus/messaging/delayed-delivery). If delayed delivery operation fails, the schedule will be interrupted and a `ScheduledTask` message will be forwarded to the error queue.
 
 
 ## How the scheduler works
