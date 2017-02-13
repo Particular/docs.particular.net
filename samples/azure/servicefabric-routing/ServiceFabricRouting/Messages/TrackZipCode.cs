@@ -2,7 +2,7 @@
 
 namespace Messages
 {
-    public class TrackZipCode : ICommand
+    public class TrackZipCode : ICommand, IHaveZipCode
     {
         public string ZipCode { get; set; }
     }
