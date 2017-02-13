@@ -24,6 +24,7 @@ namespace Voter
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.Recoverability().DisableLegacyRetriesSatellite();
             var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
             var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
             if (string.IsNullOrWhiteSpace(connectionString))
