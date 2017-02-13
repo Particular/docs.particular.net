@@ -32,7 +32,7 @@ namespace Voter
             transportConfig.ConnectionString(connectionString);
             transportConfig.UseForwardingTopology();
 
-            RoutingSettingsExtensions.Routing((TransportExtensions) transportConfig).RouteToEndpoint(typeof(PlaceVote), "CandidateVoteCount");
+            transportConfig.Routing().RouteToEndpoint(typeof(PlaceVote), "CandidateVoteCount");
 
             var internalSettings = endpointConfiguration.GetSettings();
 
