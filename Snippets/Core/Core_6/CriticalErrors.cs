@@ -20,15 +20,21 @@ namespace Core6
 
         #region CustomHostErrorHandlingAction
 
-        Task OnCriticalError(ICriticalErrorContext context)
+        async Task OnCriticalError(ICriticalErrorContext context)
         {
-            // To leave the process active, stop the endpoint.
-            return context.Stop();
-
-            // To kill the process, await the above,
-            // then raise a fail fast error as shown below.
-            // var failMessage = $"Critical error shutting down:'{context.Error}'.";
-            // Environment.FailFast(failMessage, context.Exception);
+            try
+            {
+                // To leave the process active, dispose the bus.
+                // When the bus is disposed, the attempt to send message will cause an ObjectDisposedException.
+                await context.Stop().ConfigureAwait(false);
+                // Perform custom actions here, e.g.
+                // NLog.LogManager.Shutdown();
+            }
+            finally
+            {
+                var failMessage = $"Critical error shutting down:'{context.Error}'.";
+                Environment.FailFast(failMessage, context.Exception);
+            }
         }
 
         #endregion

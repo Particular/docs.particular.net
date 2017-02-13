@@ -93,7 +93,7 @@ The default [Critical Error Action](/nservicebus/hosting/critical-errors.md) for
 
 snippet:DefaultHostCriticalErrorAction
 
-WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if co-hosting NServiceBus with a web-service or website.
+The default callback should be overriden, if some custom code should be executed before exiting the process, such as persisting some in-memory data, flushing the loggers, etc. Refer to the [Critical Errors](/nservicebus/hosting/critical-errors.md) article for more information.
 
 
 ## Performance Counters

@@ -43,14 +43,28 @@ Next define what action to take when this scenario occurs:
 snippet:CustomHostErrorHandlingAction
 
 
-## When to override the default action
+## When to override the default critical error action
 
-The default action should be overridden whenever that default does not meet the specific hosting requirements. For example
+The default action should be overridden in the following scenarios:
 
- * If using [NServiceBus Host](/nservicebus/hosting/nservicebus-host), and wish to take a custom action before the endpoint process is killed.
- * If self hosting the process can be shut down the process via [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) and re-start the process once the root cause has been diagnosed.
+ * When using [NServiceBus Host](/nservicebus/hosting/nservicebus-host), in case some custom operations should be performed before the endpoint process is exited.
+ * When self hosting.
 
-NOTE: If not killing the process and just dispose the bus, be aware that any `Send` operations will result in [ObjectDisposedException](https://msdn.microsoft.com/en-us/library/system.objectdisposedexception.aspx) being thrown.
+Warning: The default action should be always overriden when self-hosting NServiceBus, as by default when a critical error occurs NServiceBus will stop the endpoint without exiting the process.
+
+NOTE: If the endpoint is stopped without exiting the process, then any `Send` operations will result in [ObjectDisposedException](https://msdn.microsoft.com/en-us/library/system.objectdisposedexception.aspx) being thrown.
+
+When implementing a custom critical error callback:
+
+- To exit the process use the [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) method. In case the environment has threads running that should be completed before shutdown (e.g. non transactional operations), one may also use the [Environment.Exit](https://msdn.microsoft.com/en-us/library/system.environment.exit(v=vs.110).aspx) method.
+- The code should be wrapped in a `try...finally` clause. In the `try` block perform any custom operations, in the `finally` block call the method that exits the process.
+- The custom operations should include flushing any in-memory state and cached data, if normally its persisted at a certain interval or during graceful shutdown. For example, flush appenders when using buffering or asynchrounous appanders for [NLog](http://nlog-project.org/documentation/v4.3.0/html/M_NLog_LogManager_Shutdown.htm) or [log4net](https://logging.apache.org/log4net/log4net-1.2.11/release/sdk/log4net.LogManager.Shutdown.html) state by calling `LogManager.Shutdown();`.
+
+Whenever possible rely on the environment hosting the endpoint process to automatically restart it:
+- IIS: The IIS host will automatically spawn a new instance.
+- Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-restart-recovery) is enabled.
+
+WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if co-hosting NServiceBus with a web-service or website.
 
 
 ## Raising Critical error
