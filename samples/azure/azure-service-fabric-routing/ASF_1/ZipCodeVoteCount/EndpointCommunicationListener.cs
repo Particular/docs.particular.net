@@ -35,6 +35,7 @@ namespace ZipCodeVoteCount
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.Recoverability().DisableLegacyRetriesSatellite();
             endpointConfiguration.RegisterComponents(components => components.RegisterSingleton(context));
             var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
             var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
