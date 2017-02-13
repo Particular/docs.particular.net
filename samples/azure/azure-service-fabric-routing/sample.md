@@ -21,23 +21,32 @@ For each message associated with a casted vote, the messages should be routed to
 
 Example:
 
-- Vote for John; vote casted in 92555
+- Vote for John; vote casted in 88701
 - Vote for Abby; vote casted in 36458
 - Vote for Abby; vote casted in 92555  
 - Vote for John; vote casted in 12789
-- Vote for Abby; vote casted in 12789
+- Vote for Abby; vote casted in 20567
 // some sort of distribution
 
 At the end of the execution, the following results should be expected:
 
-table: candidates_count
-John: 2
-Abby: 3
+table: candidates
+candidate | partition 
+John          JONH
+Abby          ABBY
+Abby          ABBY
+John          JONH
+Abby          ABBY
 
-table: voters_location_count
-92555: 2
-36458: 1
-12789: 2
+(John: 2, Abby: 3)
+
+table: voters_location
+zip code | partition
+92555       99000        
+36458       66000
+88701       99000
+12789       33000
+20567       33000
 
 
 mapping for named service:
