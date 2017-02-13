@@ -492,7 +492,7 @@ The most common misuse of screenshots is when capturing console output. **DO NOT
 
 Partials are version specific files that contain markdown.
 
-There are only rendered in the target page when the version filter matches the convention for a give file.
+They are only rendered in the target page when the version filter matches the convention for a give file.
 
 Partial Convention: `filePrefix_key_nugetAlias_version.partial.md`
 
