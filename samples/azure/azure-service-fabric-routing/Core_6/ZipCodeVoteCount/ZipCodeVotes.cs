@@ -19,7 +19,7 @@ namespace ZipCodeVoteCount
         {
             if (!Data.Started)
             {
-                await RequestTimeout<CloseVoting>(context, DateTime.UtcNow.AddMinutes(1));
+                await RequestTimeout<CloseVoting>(context, DateTime.UtcNow.AddMinutes(1)).ConfigureAwait(false);
                 Data.ZipCode = message.ZipCode;
                 Data.Started = true;
             }
@@ -32,7 +32,8 @@ namespace ZipCodeVoteCount
             {
                 ZipCode = Data.ZipCode,
                 NumberOfVotes = Data.Count
-            });
+            }).ConfigureAwait(false);
+
             MarkAsComplete();
         }
     }

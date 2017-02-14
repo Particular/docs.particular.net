@@ -11,6 +11,7 @@ namespace CandidateVoteCount
             : base(context)
         {
         }
+
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
         {
             var listener = new EndpointCommunicationListener(Context);

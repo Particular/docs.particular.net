@@ -7,7 +7,7 @@ namespace Contracts
 
     public abstract class PartitionAwareDistributionStrategy : DistributionStrategy
     {
-        public PartitionAwareDistributionStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)
+        protected PartitionAwareDistributionStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)
         {
         }
 
@@ -16,14 +16,14 @@ namespace Contracts
             throw new NotImplementedException();
         }
 
-        public abstract string MapMessageToPartition(object message);
+        protected abstract string MapMessageToPartition(object message);
 
         public override string SelectDestination(DistributionContext context)
         {
             var discriminator = MapMessageToPartition(context.Message.Instance);
 
-            // stampt message with the partition key so that behavior used for receiver side can identify the message destination
-            context.Headers["partition-key"] = discriminator;
+            // stamp message with the partition key so that behavior used for receiver side can identify the message destination
+            context.Headers[PartitionHeaders.PartitionKey] = discriminator;
 
             var logicalAddress = LogicalAddress.CreateRemoteAddress(new EndpointInstance(Endpoint, discriminator));
             return context.ReceiverAddresses.Single(a => a == logicalAddress.ToString());
