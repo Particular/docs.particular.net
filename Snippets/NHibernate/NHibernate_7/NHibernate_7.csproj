@@ -29,10 +29,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccessingData.cs" />
+    <Compile Include="Session\OrderSaga.cs" />
+    <Compile Include="Session\OrderHandler.cs" />
     <Compile Include="Concurrency\SagaDataWithLockMode.cs" />
     <Compile Include="Concurrency\SagaDataWithRowVersion.cs" />
     <Compile Include="Outbox.cs" />
+    <Compile Include="Session\Order.cs" />
+    <Compile Include="Session\OrderMessage.cs" />
     <Compile Include="Usage.cs" />
     <Compile Include="UsageSqlAzure.cs" />
     <Compile Include="DisableSchemaUpdate.cs" />

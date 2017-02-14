@@ -1,42 +1,8 @@
-﻿using NHibernate;
-using NServiceBus;
-using NServiceBus.Persistence;
-using NServiceBus.Persistence.NHibernate;
-
-class AccessingData
+﻿namespace NHibernate_6.Session
 {
-    class OrderMessage :
-        IMessage
-    {
-    }
-
-    class Order
-    {
-    }
-
-    class ViaContext
-    {
-        #region NHibernateAccessingDataViaContext
-
-        public class OrderHandler :
-            IHandleMessages<OrderMessage>
-        {
-            NHibernateStorageContext dataContext;
-
-            public OrderHandler(NHibernateStorageContext dataContext)
-            {
-                this.dataContext = dataContext;
-            }
-
-            public void Handle(OrderMessage message)
-            {
-                var nhibernateSession = dataContext.Session;
-                nhibernateSession.Save(new Order());
-            }
-        }
-
-        #endregion
-    }
+    using NHibernate;
+    using NServiceBus;
+    using NServiceBus.Persistence;
 
     class Directly
     {
@@ -76,8 +42,11 @@ class AccessingData
             #region CustomSessionCreation
 
             var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
-            persistence.UseCustomSessionCreationMethod((sessionFactory, connectionString) =>
-                sessionFactory.OpenSession());
+            persistence.UseCustomSessionCreationMethod(
+                callback: (sessionFactory, connectionString) =>
+                {
+                    return sessionFactory.OpenSession();
+                });
 
             #endregion
         }

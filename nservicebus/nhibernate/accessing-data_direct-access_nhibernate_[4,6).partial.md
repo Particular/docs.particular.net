@@ -2,4 +2,4 @@
 
 snippet:NHibernateAccessingDataDirectly
 
-As shown above, the handler uses constructor injection to access the `ISession` object.
+The handler uses constructor injection to access the `ISession` object.

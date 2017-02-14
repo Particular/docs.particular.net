@@ -1,16 +1,8 @@
 ﻿using NHibernate;
 using NServiceBus;
 
-class AccessingData
+namespace NHibernate_4.Session
 {
-    public class OrderMessage :
-        IMessage
-    {
-    }
-
-    public class Order
-    {
-    }
 
     #region NHibernateAccessingDataDirectly
 
