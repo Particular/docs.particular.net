@@ -25,23 +25,16 @@ namespace CandidateVoteCount
 
         public async Task<string> OpenAsync(CancellationToken cancellationToken)
         {
-            NamedPartitionInformation rangePartitionInformation;
-            using (var client = new FabricClient())
-            {
-                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName, context.PartitionId).ConfigureAwait(false);
-                rangePartitionInformation = servicePartitionList.Select(x => x.PartitionInformation).Cast<NamedPartitionInformation>().Single(p => p.Id == context.PartitionId);
-            }
-
             var endpointConfiguration = new EndpointConfiguration("CandidateVoteCount");
-            endpointConfiguration.MakeInstanceUniquelyAddressable(rangePartitionInformation.Name);
 
+            #region Common Endpoint Configuration
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.AuditProcessedMessagesTo("audit");
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.Recoverability().DisableLegacyRetriesSatellite();
-            endpointConfiguration.RegisterComponents(components => components.RegisterSingleton(context));
+
             var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
             var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
             if (string.IsNullOrWhiteSpace(connectionString))
@@ -50,39 +43,46 @@ namespace CandidateVoteCount
             }
             transportConfig.ConnectionString(connectionString);
             transportConfig.UseForwardingTopology();
+            #endregion
 
-            transportConfig.Routing().RouteToEndpoint(typeof(TrackZipCode), "ZipCodeVoteCount");
-
-            var internalSettings = endpointConfiguration.GetSettings();
-
-            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
-
-            policy.SetDistributionStrategy(new ZipCodePartitionDistributionStrategy("ZipCodeVoteCount", DistributionStrategyScope.Send));
-            policy.SetDistributionStrategy(new ZipCodePartitionDistributionStrategy("ZipCodeVoteCount", DistributionStrategyScope.Publish));
-
-            policy.SetDistributionStrategy(new LocalPartitionAwareDistributionStrategy(rangePartitionInformation.Name, "CandidateVoteCount", DistributionStrategyScope.Send));
-
+            //Determine which partition this endpoint is handling
+            string localPartitionKey;
             using (var client = new FabricClient())
             {
-                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName).ConfigureAwait(false);
-                var partitions = new List<EndpointInstance>();
-                var discriminators = new HashSet<string>();
+                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName, context.PartitionId).ConfigureAwait(false);
+                var servicePartitions =
+                    servicePartitionList.Select(x => x.PartitionInformation).Cast<NamedPartitionInformation>().ToList();
 
-                foreach (var partition in servicePartitionList)
-                {
-                    var paritionKey = partition.PartitionInformation.Kind == ServicePartitionKind.Int64Range
-                        ? ((Int64RangePartitionInformation) partition.PartitionInformation).HighKey.ToString()
-                        : ((NamedPartitionInformation) partition.PartitionInformation).Name;
-
-                    partitions.Add(new EndpointInstance("CandidateVoteCount", paritionKey));
-                    discriminators.Add(paritionKey);
-                }
-
-                var instances = internalSettings.GetOrCreate<EndpointInstances>();
-                instances.AddOrReplaceInstances("CandidateVoteCount", partitions);
-
+                #region Configure Receiver-Side routing for CandidateVoteCount
+                var discriminators = new HashSet<string>(servicePartitions.Select(x => x.Name));
                 endpointConfiguration.EnableReceiverSideDistribution(discriminators);
+                #endregion
+
+                localPartitionKey = servicePartitions.Single(p => p.Id == context.PartitionId).Name;
             }
+
+            // Set the endpoint instance discriminator using the partition key
+            endpointConfiguration.MakeInstanceUniquelyAddressable(localPartitionKey);
+
+            // Register the Service context for later use
+            endpointConfiguration.RegisterComponents(components => components.RegisterSingleton(context));
+
+            var internalSettings = endpointConfiguration.GetSettings();
+            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
+            var instances = internalSettings.GetOrCreate<EndpointInstances>();
+
+            #region Configure Local send to own individualized queue distribution strategy
+            policy.SetDistributionStrategy(new LocalPartitionAwareDistributionStrategy(localPartitionKey, "CandidateVoteCount", DistributionStrategyScope.Send));
+
+            instances.AddOrReplaceInstances("CandidateVoteCount", new List<EndpointInstance> { new EndpointInstance("CandidateVoteCount", localPartitionKey) });
+
+            #endregion
+
+            #region Configure Sender-Side routing for ZipCodeVoteCount
+            transportConfig.Routing().RouteToEndpoint(typeof(TrackZipCode), "ZipCodeVoteCount"); //TODO: Is this really necessary if we are replacing it later?
+
+            policy.SetDistributionStrategy(new ZipCodePartitionDistributionStrategy("ZipCodeVoteCount", DistributionStrategyScope.Send));
+            policy.SetDistributionStrategy(new ZipCodePartitionDistributionStrategy("ZipCodeVoteCount", DistributionStrategyScope.Publish)); //TODO: This may not be necessary
 
             using (var client = new FabricClient())
             {
@@ -93,9 +93,10 @@ namespace CandidateVoteCount
                     partitions.Add(new EndpointInstance("ZipCodeVoteCount", partition.PartitionInformation.Kind == ServicePartitionKind.Int64Range ? ((Int64RangePartitionInformation)partition.PartitionInformation).HighKey.ToString() : ((NamedPartitionInformation)partition.PartitionInformation).Name));
                 }
 
-                var instances = internalSettings.GetOrCreate<EndpointInstances>();
                 instances.AddOrReplaceInstances("ZipCodeVoteCount", partitions);
             }
+
+            #endregion
 
             endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
             return null;

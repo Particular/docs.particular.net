@@ -6,7 +6,7 @@ namespace CandidateVoteCount
 {
     using Contracts;
 
-    public class ReportHandler : IHandleMessages<ReportVotes>
+    public class ReportVotesHandler : IHandleMessages<ReportVotes>
     {
         public StatefulServiceContext ServiceContext { get; set; }
 

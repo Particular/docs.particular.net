@@ -34,6 +34,8 @@ namespace Voter
             transportConfig.ConnectionString(connectionString);
             transportConfig.UseForwardingTopology();
 
+            #region Configure Sender-Side routing for CandidateVoteCount
+
             transportConfig.Routing().RouteToEndpoint(typeof(PlaceVote), "CandidateVoteCount");
 
             var internalSettings = endpointConfiguration.GetSettings();
@@ -41,7 +43,7 @@ namespace Voter
             var policy = internalSettings.GetOrCreate<DistributionPolicy>();
 
             policy.SetDistributionStrategy(new CandidatePartitionDistributionStrategy("CandidateVoteCount", DistributionStrategyScope.Send));
-            policy.SetDistributionStrategy(new CandidatePartitionDistributionStrategy("CandidateVoteCount", DistributionStrategyScope.Publish));
+            policy.SetDistributionStrategy(new CandidatePartitionDistributionStrategy("CandidateVoteCount", DistributionStrategyScope.Publish)); //TODO: Might not need this, because publish alwasy handled on receiver side via shared queue
 
             var candidateVoteCountInstances = new List<EndpointInstance>
             {
@@ -51,6 +53,7 @@ namespace Voter
 
             var instances = internalSettings.GetOrCreate<EndpointInstances>();
             instances.AddOrReplaceInstances("CandidateVoteCount", candidateVoteCountInstances);
+            #endregion
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 

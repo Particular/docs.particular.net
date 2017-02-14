@@ -24,15 +24,7 @@ namespace ZipCodeVoteCount
 
         public async Task<string> OpenAsync(CancellationToken cancellationToken)
         {
-            Int64RangePartitionInformation rangePartitionInformation;
-            using (var client = new FabricClient())
-            {
-                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName, context.PartitionId).ConfigureAwait(false);
-                rangePartitionInformation = servicePartitionList.Select(x => x.PartitionInformation).Cast<Int64RangePartitionInformation>().Single(p => p.Id == context.PartitionId);
-            }
-
             var endpointConfiguration = new EndpointConfiguration("ZipCodeVoteCount");
-            endpointConfiguration.MakeInstanceUniquelyAddressable(rangePartitionInformation.HighKey.ToString());
 
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.AuditProcessedMessagesTo("audit");
@@ -40,25 +32,6 @@ namespace ZipCodeVoteCount
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.Recoverability().DisableLegacyRetriesSatellite();
-            endpointConfiguration.RegisterComponents(components => components.RegisterSingleton(context));
-
-            var internalSettings = endpointConfiguration.GetSettings();
-
-            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
-            policy.SetDistributionStrategy(new LocalPartitionAwareDistributionStrategy(rangePartitionInformation.HighKey.ToString(), "ZipCodeVoteCount", DistributionStrategyScope.Send));
-
-            using (var client = new FabricClient())
-            {
-                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName).ConfigureAwait(false);
-                var partitions = new List<EndpointInstance>();
-                foreach (var partition in servicePartitionList)
-                {
-                    partitions.Add(new EndpointInstance("ZipCodeVoteCount", partition.PartitionInformation.Kind == ServicePartitionKind.Int64Range ? ((Int64RangePartitionInformation)partition.PartitionInformation).HighKey.ToString() : ((NamedPartitionInformation)partition.PartitionInformation).Name));
-                }
-
-                var instances = internalSettings.GetOrCreate<EndpointInstances>();
-                instances.AddOrReplaceInstances("ZipCodeVoteCount", partitions);
-            }
 
             var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
             var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
@@ -68,6 +41,25 @@ namespace ZipCodeVoteCount
             }
             transportConfig.ConnectionString(connectionString);
             transportConfig.UseForwardingTopology();
+
+            endpointConfiguration.RegisterComponents(components => components.RegisterSingleton(context));
+
+            string localPartitionKey;
+            using (var client = new FabricClient())
+            {
+                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName, context.PartitionId).ConfigureAwait(false);
+                localPartitionKey = servicePartitionList.Select(x => x.PartitionInformation).Cast<Int64RangePartitionInformation>().Single(p => p.Id == context.PartitionId).HighKey.ToString();
+            }
+
+
+            endpointConfiguration.MakeInstanceUniquelyAddressable(localPartitionKey);
+
+            var internalSettings = endpointConfiguration.GetSettings();
+            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
+            var instances = internalSettings.GetOrCreate<EndpointInstances>();
+
+            policy.SetDistributionStrategy(new LocalPartitionAwareDistributionStrategy(localPartitionKey, "ZipCodeVoteCount", DistributionStrategyScope.Send));
+            instances.AddOrReplaceInstances("ZipCodeVoteCount", new List<EndpointInstance> {new EndpointInstance("ZipCodeVoteCount", localPartitionKey) });
 
             endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
             return null;
