@@ -52,11 +52,9 @@ namespace Contracts
                         await context.ForwardCurrentMessageTo(destination).ConfigureAwait(false);
                         return;
                     }
-                    
-                    // forward to error
-                    return;
                 }
-                await next(context).ConfigureAwait(false);
+                // forward to error
+                throw new Exception("Will be replaced by unrecoverable exception part of Core PR 4479");
             }
         }
     }
