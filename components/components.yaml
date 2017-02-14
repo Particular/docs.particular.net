@@ -54,7 +54,7 @@
   Name: Message Property Encryption
   DocoUrl: nservicebus/security/property-encryption
   Category: Other
-  GitHubOwner: Particular/nservicebus-maintainers
+  GitHubOwner: Particular/encryption-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus.Encryption.MessageProperty
   NugetOrder:
     - NServiceBus.Encryption.MessageProperty
