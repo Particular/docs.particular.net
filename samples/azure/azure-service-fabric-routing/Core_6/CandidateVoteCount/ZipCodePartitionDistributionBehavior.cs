@@ -2,14 +2,9 @@
 {
     using System;
     using Contracts;
-    using NServiceBus;
 
-    class ZipCodePartitionDistributionStrategy : PartitionAwareDistributionStrategy
+    class ZipCodePartitionDistributionBehavior : PartitionAwareOutgoingBehavior
     {
-        public ZipCodePartitionDistributionStrategy(DistributionStrategyScope scope) : base("ZipCodeVoteCount", scope)
-        {
-        }
-
         protected override string MapMessageToPartition(object message)
         {
             var trackZipCode = message as TrackZipCode;
