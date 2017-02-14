@@ -1,5 +1,6 @@
 ﻿using NServiceBus;
 using NServiceBus.Persistence.NHibernate;
+using NServiceBus.Saga;
 
 namespace NHibernate_6.Session
 {
@@ -7,11 +8,12 @@ namespace NHibernate_6.Session
     #region NHibernateAccessingDataViaContextSaga
 
     public class OrderSaga :
+        Saga<OrderSaga.SagaData>,
         IHandleMessages<OrderMessage>
     {
         NHibernateStorageContext dataContext;
 
-        public OrderHandler(NHibernateStorageContext dataContext)
+        public OrderSaga(NHibernateStorageContext dataContext)
         {
             this.dataContext = dataContext;
         }
@@ -21,7 +23,16 @@ namespace NHibernate_6.Session
             var nhibernateSession = dataContext.Session;
             nhibernateSession.Save(new Order());
         }
-    }
 
-    #endregion
+        #endregion
+
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
+        {
+        }
+
+        public class SagaData :
+            ContainSagaData
+        {
+        }
+    }
 }

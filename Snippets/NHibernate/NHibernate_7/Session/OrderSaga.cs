@@ -6,6 +6,7 @@ namespace NHibernate_7.Session
     #region NHibernateAccessingDataViaContextSaga
 
     public class OrderSaga :
+        Saga<OrderSaga.SagaData>,
         IHandleMessages<OrderMessage>
     {
         public Task Handle(OrderMessage message, IMessageHandlerContext context)
@@ -14,7 +15,17 @@ namespace NHibernate_7.Session
             nhibernateSession.Save(new Order());
             return Task.CompletedTask;
         }
+
+        #endregion
+
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
+        {
+        }
+
+        public class SagaData :
+            ContainSagaData
+        {
+        }
     }
 
-    #endregion
 }
