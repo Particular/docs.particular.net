@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
@@ -16,7 +17,7 @@ namespace Contracts
             var discriminator = context.Settings.Get<string>("EndpointInstanceDiscriminator");
             var transportInfrastructure = context.Settings.Get<TransportInfrastructure>();
             var localAddress = context.Settings.LogicalAddress();
-            
+
             context.Pipeline.Register(new ReceiverSideDistributionBehavior(discriminator, discriminators, address => transportInfrastructure.ToTransportAddress(address), localAddress), "Distributes on the receiver side");
         }
 
@@ -38,8 +39,12 @@ namespace Contracts
             public async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingPhysicalMessageContext, Task> next)
             {
                 string partitionKey;
+
+
                 if (context.MessageHeaders.TryGetValue(PartitionHeaders.PartitionKey, out partitionKey))
                 {
+                    Debug.WriteLine($"##### Received message: {context.Message.Headers[Headers.EnclosedMessageTypes]} with Header.PartitionKey={partitionKey} on partition {discriminator}");
+
                     if (partitionKey == discriminator)
                     {
                         await next(context).ConfigureAwait(false);

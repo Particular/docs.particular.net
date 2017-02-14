@@ -1,9 +1,11 @@
-﻿namespace CandidateVoteCount
+﻿using NServiceBus;
+
+namespace CandidateVoteCount
 {
     using System;
     using Contracts;
 
-    class ZipCodePartitionDistributionBehavior : PartitionAwareOutgoingBehavior
+    class ZipCodePartitionDistributionStrategy : PartitionAwareDistributionStrategy
     {
         protected override string MapMessageToPartition(object message)
         {
@@ -17,12 +19,12 @@
                     return "33000";
                 }
 
-                if (zipCodeAsNumber >= 34000 && zipCodeAsNumber <= 66000)
+                if (zipCodeAsNumber > 33000 && zipCodeAsNumber <= 66000)
                 {
                     return "66000";
                 }
 
-                if (zipCodeAsNumber >= 67000 && zipCodeAsNumber <= 99000)
+                if (zipCodeAsNumber > 66000 && zipCodeAsNumber <= 99000)
                 {
                     return "99000";
                 }
@@ -31,6 +33,10 @@
             }
 
             throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
+        }
+
+        public ZipCodePartitionDistributionStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)
+        {
         }
     }
 }
