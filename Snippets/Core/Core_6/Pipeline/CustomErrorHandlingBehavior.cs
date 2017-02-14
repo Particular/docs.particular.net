@@ -103,9 +103,12 @@
                 behavior: typeof(CustomErrorHandlingBehavior),
                 description: "Adds custom error behavior to pipeline")
         {
-            InsertAfter("MoveFaultsToErrorQueue");
-            InsertBeforeIfExists("FirstLevelRetries");
-            InsertBeforeIfExists("SecondLevelRetries");
+            // Within a stage you sometimes need a specific step order
+            // which can be achieved by invoking methods:
+            //  - InsertAfter,
+            //  - InsertAfterIfExists,
+            //  - InsertBefore,
+            //  - InsertBeforeIfExists
         }
     }
 
