@@ -5,7 +5,7 @@ using Microsoft.ServiceFabric.Services.Runtime;
 
 namespace CandidateVoteCount
 {
-    internal static class Program
+    static class Program
     {
         /// <summary>
         /// This is the entry point of the service host process.

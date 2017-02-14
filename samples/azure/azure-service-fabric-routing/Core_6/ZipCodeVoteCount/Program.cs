@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Runtime;
 
 namespace ZipCodeVoteCount
 {
-    internal static class Program
+    static class Program
     {
         /// <summary>
         /// This is the entry point of the service host process.
