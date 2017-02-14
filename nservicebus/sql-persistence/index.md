@@ -113,6 +113,6 @@ snippet: handler-sqlPersistenceSession
 
 ### Using in a Saga
 
-snippet: saga-sqlPersistenceSession
-
 include: saga-business-data-access
+
+snippet: saga-sqlPersistenceSession
