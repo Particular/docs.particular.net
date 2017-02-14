@@ -57,7 +57,10 @@ namespace CandidateVoteCount
 
             var policy = internalSettings.GetOrCreate<DistributionPolicy>();
 
-            policy.SetDistributionStrategy(new ZipCodePartitionDistributionStrategy(DistributionStrategyScope.Send));
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", DistributionStrategyScope.Send));
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", DistributionStrategyScope.Publish));
+
+            endpointConfiguration.Pipeline.Register(new ZipCodePartitionDistributionBehavior(), "Adds the zip code partition header");
 
             using (var client = new FabricClient())
             {

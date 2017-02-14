@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="EndpointConfigurationExtensions.cs" />
     <Compile Include="PartitionAwareDistributionStrategy.cs" />
+    <Compile Include="PartitionAwareOutgoingBehavior.cs" />
     <Compile Include="PartitionHeaders.cs" />
     <Compile Include="PlaceVote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -40,7 +40,9 @@ namespace Voter
 
             var policy = internalSettings.GetOrCreate<DistributionPolicy>();
 
-            policy.SetDistributionStrategy(new CandidatePartitionDistributionStrategy(DistributionStrategyScope.Send));
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", DistributionStrategyScope.Send));
+
+            endpointConfiguration.Pipeline.Register(new CandidatePartitionDistributionBehavior(), "Adds the partition header for candidates");
 
             var candidateVoteCountInstances = new List<EndpointInstance>
             {
