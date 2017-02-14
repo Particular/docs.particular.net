@@ -9,8 +9,8 @@ related:
 
 ## Prerequisites
 
-1. Azure Service Fabric [dev cluster](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started) running.
-2. An Azure Service Bus namespace that can be used for configuration.
+1. Azure Service Fabric [dev cluster](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started) running configured with 5 nodes.
+2. An Azure Service Bus namespace that can be used for communication between the instances.
 3. A machine level environment variable called "AzureServiceBus.ConnectionString" that contains the manage connectionstring to the Azure Service Bus namespace.
 
 ## Scenario
