@@ -37,9 +37,9 @@ snippet:ravendb-persistence-shared-session-for-handler
 
 ### Using in a Saga
 
-snippet:ravendb-persistence-shared-session-for-saga
-
 include: saga-business-data-access
+
+snippet:ravendb-persistence-shared-session-for-saga
 
 partial: unsafereads
 
