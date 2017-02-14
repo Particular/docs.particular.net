@@ -4,13 +4,13 @@
     using Contracts;
     using NServiceBus;
 
-    public class ZipCodePartitionDistributionStrategy : PartitionAwareDistributionStrategy
+    class ZipCodePartitionDistributionStrategy : PartitionAwareDistributionStrategy
     {
         public ZipCodePartitionDistributionStrategy(DistributionStrategyScope scope) : base("ZipCodeVoteCount", scope)
         {
         }
 
-        public override string MapMessageToPartition(object message)
+        protected override string MapMessageToPartition(object message)
         {
             var trackZipCode = message as TrackZipCode;
             if (trackZipCode != null)
@@ -35,7 +35,7 @@
                 throw new Exception($"Invalid zip code '{zipCodeAsNumber}' for message of type '{message.GetType()}'.");
             }
 
-            throw new InvalidOperationException($"No partition mapping is found for message type '{message.GetType()}'.");
+            throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
         }
     }
 }

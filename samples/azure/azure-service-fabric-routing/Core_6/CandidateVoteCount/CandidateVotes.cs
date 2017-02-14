@@ -15,7 +15,7 @@ namespace CandidateVoteCount
             if (!Data.Started)
             {
                 // This won't work until we have Core PR #4474 
-                await RequestTimeout<CloseVoting>(context, DateTime.UtcNow.AddMinutes(1));
+                await RequestTimeout<CloseVoting>(context, DateTime.UtcNow.AddMinutes(1)).ConfigureAwait(false);
                 Data.Candidate = message.Candidate;
                 Data.Started = true;
             }
@@ -24,7 +24,7 @@ namespace CandidateVoteCount
             await context.Send(new TrackZipCode()
             {
                 ZipCode = message.ZipCode
-            });
+            }).ConfigureAwait(false);
         }
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CandidateVoteData> mapper)
@@ -38,7 +38,7 @@ namespace CandidateVoteCount
             {
                 Candidate = Data.Candidate,
                 NumberOfVotes = Data.Count
-            });
+            }).ConfigureAwait(false);
 
             MarkAsComplete();
         }
