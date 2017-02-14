@@ -1,9 +1,11 @@
+using NServiceBus;
+
 namespace Voter
 {
     using System;
     using Contracts;
 
-    class CandidatePartitionDistributionBehavior : PartitionAwareOutgoingBehavior
+    class CandidatePartitionDistributionStrategy : PartitionAwareDistributionStrategy
     {
         protected override string MapMessageToPartition(object message)
         {
@@ -14,6 +16,10 @@ namespace Voter
             }
 
             throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
+        }
+
+        public CandidatePartitionDistributionStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)
+        {
         }
     }
 }

@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Fabric;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Contracts;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
+using NServiceBus.Configuration.AdvanceExtensibility;
+using NServiceBus.Routing;
 
 namespace ZipCodeVoteCount
 {
@@ -26,7 +30,7 @@ namespace ZipCodeVoteCount
                 var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName, context.PartitionId).ConfigureAwait(false);
                 rangePartitionInformation = servicePartitionList.Select(x => x.PartitionInformation).Cast<Int64RangePartitionInformation>().Single(p => p.Id == context.PartitionId);
             }
-            
+
             var endpointConfiguration = new EndpointConfiguration("ZipCodeVoteCount");
             endpointConfiguration.MakeInstanceUniquelyAddressable(rangePartitionInformation.HighKey.ToString());
 
@@ -37,6 +41,25 @@ namespace ZipCodeVoteCount
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.Recoverability().DisableLegacyRetriesSatellite();
             endpointConfiguration.RegisterComponents(components => components.RegisterSingleton(context));
+
+            var internalSettings = endpointConfiguration.GetSettings();
+
+            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
+            policy.SetDistributionStrategy(new LocalPartitionAwareDistributionStrategy(rangePartitionInformation.HighKey.ToString(), "ZipCodeVoteCount", DistributionStrategyScope.Send));
+
+            using (var client = new FabricClient())
+            {
+                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName).ConfigureAwait(false);
+                var partitions = new List<EndpointInstance>();
+                foreach (var partition in servicePartitionList)
+                {
+                    partitions.Add(new EndpointInstance("ZipCodeVoteCount", partition.PartitionInformation.Kind == ServicePartitionKind.Int64Range ? ((Int64RangePartitionInformation)partition.PartitionInformation).HighKey.ToString() : ((NamedPartitionInformation)partition.PartitionInformation).Name));
+                }
+
+                var instances = internalSettings.GetOrCreate<EndpointInstances>();
+                instances.AddOrReplaceInstances("ZipCodeVoteCount", partitions);
+            }
+
             var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
             var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
             if (string.IsNullOrWhiteSpace(connectionString))

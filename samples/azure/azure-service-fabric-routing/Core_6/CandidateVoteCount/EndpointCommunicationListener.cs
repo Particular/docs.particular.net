@@ -34,7 +34,7 @@ namespace CandidateVoteCount
 
             var endpointConfiguration = new EndpointConfiguration("CandidateVoteCount");
             endpointConfiguration.MakeInstanceUniquelyAddressable(rangePartitionInformation.Name);
-            
+
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.AuditProcessedMessagesTo("audit");
             endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -57,10 +57,32 @@ namespace CandidateVoteCount
 
             var policy = internalSettings.GetOrCreate<DistributionPolicy>();
 
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", DistributionStrategyScope.Send));
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", DistributionStrategyScope.Publish));
+            policy.SetDistributionStrategy(new ZipCodePartitionDistributionStrategy("ZipCodeVoteCount", DistributionStrategyScope.Send));
+            policy.SetDistributionStrategy(new ZipCodePartitionDistributionStrategy("ZipCodeVoteCount", DistributionStrategyScope.Publish));
 
-            endpointConfiguration.Pipeline.Register(new ZipCodePartitionDistributionBehavior(), "Adds the zip code partition header");
+            policy.SetDistributionStrategy(new LocalPartitionAwareDistributionStrategy(rangePartitionInformation.Name, "CandidateVoteCount", DistributionStrategyScope.Send));
+
+            using (var client = new FabricClient())
+            {
+                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName).ConfigureAwait(false);
+                var partitions = new List<EndpointInstance>();
+                var discriminators = new HashSet<string>();
+
+                foreach (var partition in servicePartitionList)
+                {
+                    var paritionKey = partition.PartitionInformation.Kind == ServicePartitionKind.Int64Range
+                        ? ((Int64RangePartitionInformation) partition.PartitionInformation).HighKey.ToString()
+                        : ((NamedPartitionInformation) partition.PartitionInformation).Name;
+
+                    partitions.Add(new EndpointInstance("CandidateVoteCount", paritionKey));
+                    discriminators.Add(paritionKey);
+                }
+
+                var instances = internalSettings.GetOrCreate<EndpointInstances>();
+                instances.AddOrReplaceInstances("CandidateVoteCount", partitions);
+
+                endpointConfiguration.EnableReceiverSideDistribution(discriminators);
+            }
 
             using (var client = new FabricClient())
             {
@@ -74,7 +96,7 @@ namespace CandidateVoteCount
                 var instances = internalSettings.GetOrCreate<EndpointInstances>();
                 instances.AddOrReplaceInstances("ZipCodeVoteCount", partitions);
             }
-            
+
             endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
             return null;
         }
