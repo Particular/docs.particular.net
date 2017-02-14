@@ -8,6 +8,6 @@ snippet:NHibernateAccessingDataViaContextHandler
 
 ### Using in a Saga
 
-snippet:NHibernateAccessingDataViaContextSaga
-
 include: saga-business-data-access
+
+snippet:NHibernateAccessingDataViaContextSaga
