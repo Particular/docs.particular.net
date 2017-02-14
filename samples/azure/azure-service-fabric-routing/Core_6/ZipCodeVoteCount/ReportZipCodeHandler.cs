@@ -6,7 +6,7 @@ namespace ZipCodeVoteCount
 {
     using Contracts;
 
-    public class ReportHandler : IHandleMessages<ReportZipCode>
+    public class ReportZipCodeHandler : IHandleMessages<ReportZipCode>
     {
         public StatefulServiceContext ServiceContext { get; set; }
 

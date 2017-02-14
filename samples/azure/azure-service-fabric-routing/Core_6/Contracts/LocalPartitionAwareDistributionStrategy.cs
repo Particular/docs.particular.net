@@ -24,8 +24,8 @@ namespace Contracts
         {
             context.Headers[PartitionHeaders.PartitionKey] = _partitionId;
 
-            var logicalAddress = LogicalAddress.CreateRemoteAddress(new EndpointInstance(Endpoint, _partitionId));
-            return context.ReceiverAddresses.Single(a => a == logicalAddress.ToString());
+            //var logicalAddress = LogicalAddress.CreateRemoteAddress(new EndpointInstance(Endpoint, _partitionId));
+            return context.ReceiverAddresses.First();//.Single(a => a == logicalAddress.ToString());
         }
     }
 }

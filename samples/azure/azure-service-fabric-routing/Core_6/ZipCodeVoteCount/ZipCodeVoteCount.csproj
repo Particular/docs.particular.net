@@ -92,7 +92,7 @@
   <ItemGroup>
     <Compile Include="EndpointCommunicationListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReportHandler.cs" />
+    <Compile Include="ReportZipCodeHandler.cs" />
     <Compile Include="ZipCodeVoteCount.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ServiceEventSource.cs" />
