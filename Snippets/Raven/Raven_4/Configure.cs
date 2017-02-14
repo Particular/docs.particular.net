@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.RavenDB;
 using Raven.Client.Document;
@@ -24,31 +23,8 @@ class Configure
 
         #endregion
     }
-
-    public class MyMessage
-    {
-    }
-
-    public class MyDocument
-    {
-    }
-
-    #region ravendb-persistence-shared-session-for-sagas-handler
-
-    public class MyMessageHandler :
-        IHandleMessages<MyMessage>
-    {
-        public Task Handle(MyMessage message, IMessageHandlerContext context)
-        {
-            var doc = new MyDocument();
-
-            var ravenSession = context.SynchronizedStorageSession.RavenSession();
-            return ravenSession.StoreAsync(doc);
-        }
-    }
-
-    #endregion
-
+    
+    
     void SpecificExternalDocumentStore(EndpointConfiguration endpointConfiguration)
     {
         #region ravendb-persistence-specific-external-store

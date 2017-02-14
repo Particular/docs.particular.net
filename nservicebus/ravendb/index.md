@@ -27,10 +27,19 @@ snippet:ravendb-persistence-shared-session-for-sagas
 
 This optionally allows customization of the document session that is created for Saga, Outbox, and handler logic to share.
 
-The session that is created is then made available to handler logic, although the method differs based on NServiceBus version:
+The session that is created is then made available.
 
-snippet:ravendb-persistence-shared-session-for-sagas-handler
 
+### Using in a Handler
+
+snippet:ravendb-persistence-shared-session-for-handler
+
+
+### Using in a Saga
+
+snippet:ravendb-persistence-shared-session-for-saga
+
+include: saga-business-data-access
 
 partial: unsafereads
 

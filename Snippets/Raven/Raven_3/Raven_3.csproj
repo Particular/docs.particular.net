@@ -32,6 +32,10 @@
     <Compile Include="Configure.cs" />
     <Compile Include="RavenDtcConventions.cs" />
     <Compile Include="OutboxTimeToKeep.cs" />
+    <Compile Include="Session\SagaThatUsesSession.cs" />
+    <Compile Include="Session\MyDocument.cs" />
+    <Compile Include="Session\MyMessage.cs" />
+    <Compile Include="Session\HandlerThatUsesSession.cs" />
     <Compile Include="UpgradeGuides\3to4\HandlerWithRavenSession.cs" />
     <Compile Include="UpgradeGuides\3to4\SharedSessionEndpointConfig.cs" />
   </ItemGroup>

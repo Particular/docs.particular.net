@@ -33,6 +33,10 @@
     <Compile Include="Configure.cs" />
     <Compile Include="OutboxTimeToKeep.cs" />
     <Compile Include="RavenDtcConventions.cs" />
+    <Compile Include="Session\HandlerThatUsesSession.cs" />
+    <Compile Include="Session\MyDocument.cs" />
+    <Compile Include="Session\MyMessage.cs" />
+    <Compile Include="Session\SagaThatUsesSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SharedDocumentStoreViaConnectionString.config.xml">

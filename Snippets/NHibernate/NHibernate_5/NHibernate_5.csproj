@@ -34,7 +34,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccessingData.cs" />
+    <Compile Include="Session\OrderHandler.cs" />
+    <Compile Include="Session\Order.cs" />
+    <Compile Include="Session\OrderMessage.cs" />
     <Compile Include="Usage.cs" />
   </ItemGroup>
   <ItemGroup>

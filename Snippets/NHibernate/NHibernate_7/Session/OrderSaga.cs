@@ -1,20 +1,11 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
-class AccessingData
+namespace NHibernate_7.Session
 {
-    public class OrderMessage :
-        IMessage
-    {
-    }
+    #region NHibernateAccessingDataViaContextSaga
 
-    public class Order
-    {
-    }
-
-    #region NHibernateAccessingDataViaContext
-
-    public class OrderHandler :
+    public class OrderSaga :
         IHandleMessages<OrderMessage>
     {
         public Task Handle(OrderMessage message, IMessageHandlerContext context)

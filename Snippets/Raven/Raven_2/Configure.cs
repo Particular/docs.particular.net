@@ -3,7 +3,6 @@ using System.IO;
 using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.RavenDB;
-using NServiceBus.RavenDB.Persistence;
 using Raven.Client.Document;
 using Raven.Client.Document.DTC;
 
@@ -36,36 +35,6 @@ class Configure
 
         #endregion
     }
-
-    public class MyMessage
-    {
-    }
-
-    public class MyDocument
-    {
-    }
-
-    #region ravendb-persistence-shared-session-for-sagas-handler
-
-    public class MyMessageHandler :
-        IHandleMessages<MyMessage>
-    {
-        ISessionProvider sessionProvider;
-
-        public MyMessageHandler(ISessionProvider sessionProvider)
-        {
-            this.sessionProvider = sessionProvider;
-        }
-
-        public void Handle(MyMessage message)
-        {
-            var doc = new MyDocument();
-
-            sessionProvider.Session.Store(doc);
-        }
-    }
-
-    #endregion
 
     void SpecificExternalDocumentStore(BusConfiguration busConfiguration)
     {

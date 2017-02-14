@@ -1,0 +1,1 @@
+WARNING: Other than interacting with its own internal state, a saga should not access a database, call out to web services, or access other resources. See [Accessing databases and other resources from a saga](/nservicebus/sagas/#accessing-databases-and-other-resources-from-a-saga).
