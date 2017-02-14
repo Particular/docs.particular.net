@@ -1,4 +1,4 @@
-|  | [Transaction scope (Distributed transaction)](/nservicebus/transports/transactions.md#transactions-transaction-scope-distributed-transaction) | [Transport transaction](/nservicebus/transports/transactions.md#transactions-transport-transaction)  | [Unreliable (Transactions Disabled)](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled) |
+|  | [Transaction scope (Distributed transaction)](/nservicebus/transports/transactions.md#transactions-transaction-scope-distributed-transaction) | [Transport transaction](/nservicebus/transports/transactions.md?version=core_4#transactions-transport-transaction)  | [Unreliable (Transactions Disabled)](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled) |
 | :------------------| :-: |:-:| :-: |
 | [MSMQ](/nservicebus/msmq/transportconfig.md#transactions-and-delivery-guarantees) | &#10004; | &#10004; | &#10004; |
 | [SQL Server](/nservicebus/sqlserver/transactions.md) | &#10004; | &#10004; | &#10004; |
