@@ -47,11 +47,14 @@ namespace CandidateVoteCount
 
             //Determine which partition this endpoint is handling
             string localPartitionKey;
+            IEnumerable<EndpointInstance> endpointInstances;
             using (var client = new FabricClient())
             {
                 var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName).ConfigureAwait(false);
                 var servicePartitions =
                     servicePartitionList.Select(x => x.PartitionInformation).Cast<NamedPartitionInformation>().ToList();
+
+                endpointInstances = servicePartitions.Select(x => new EndpointInstance("CandidateVoteCount", x.Name));
 
                 #region Configure Receiver-Side routing for CandidateVoteCount
                 var discriminators = new HashSet<string>(servicePartitions.Select(x => x.Name));
@@ -77,7 +80,7 @@ namespace CandidateVoteCount
             #region Configure Local send to own individualized queue distribution strategy
             policy.SetDistributionStrategy(new LocalPartitionAwareDistributionStrategy(localPartitionKey, "CandidateVoteCount", DistributionStrategyScope.Send));
 
-            instances.AddOrReplaceInstances("CandidateVoteCount", new List<EndpointInstance> { new EndpointInstance("CandidateVoteCount", localPartitionKey) });
+            instances.AddOrReplaceInstances("CandidateVoteCount", endpointInstances.ToList());
 
             #endregion
 
