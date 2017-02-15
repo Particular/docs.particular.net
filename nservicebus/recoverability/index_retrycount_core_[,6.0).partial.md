@@ -7,7 +7,7 @@ Total Attempts = MAX(1, (ImmediateRetries:NumberOfRetries)) * (DelayedRetries:Nu
 So for example given a variety of Immediate and Delayed here are the resultant possible attempts.
 
 | ImmediateRetries | DelayedRetries | Total possible attempts |
-|--------------- --|----------------|-------------------------|
+|------------------|----------------|-------------------------|
 | 1                | 1              | 2                       |
 | 1                | 2              | 3                       |
 | 1                | 3              | 4                       |
