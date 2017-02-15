@@ -2,7 +2,7 @@
 title: Shared Hosting in Azure Cloud Services
 summary: Uses the NServiceBus Hosting Azure HostProcess to achieve shared hosting of multiple NServiceBus endpoints in an Azure instance.
 component: CloudServicesHost
-reviewed: 2016-03-21
+reviewed: 2017-02-15
 tags:
 - Azure
 - Hosting
@@ -28,7 +28,7 @@ Results sorted by Timestamp
 
 ## Deploying endpoints
 
- 1. Open PowerShell console at the `shared-host\Version_5` location. This location should contain `PackageAndDeploy.ps1`.
+ 1. Open PowerShell console at the `shared-host\CloudServicesHost_{version}` location. This location should contain `PackageAndDeploy.ps1`.
  1. Execute `PackageAndDeploy.ps1` PowerShell script to package and deploy multi-hosted endpoints to local emulator storage
 
 
