@@ -152,7 +152,7 @@
             #endregion
         }
 
-        #region RoutingExtensibility-DistributionStrategy [6.0,6.2)
+        #region RoutingExtensibility-DistributionStrategy
 
         class RandomStrategy :
             DistributionStrategy
