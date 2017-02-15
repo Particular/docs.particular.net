@@ -69,48 +69,6 @@
             #endregion
         }
 
-        void ReplySendReplyToThisInstance(IBus bus)
-        {
-            #region BasicReplyReplyToThisInstance
-
-            var myMessage = new MyMessage();
-            bus.SetMessageHeader(
-                msg: myMessage,
-                key: NServiceBus.Headers.ReplyToAddress,
-                value: "MyInstanceAddress");
-            bus.Reply(myMessage);
-
-            #endregion
-        }
-
-        void ReplySendReplyToAnyInstance(IBus bus)
-        {
-            #region BasicReplyReplyToAnyInstance
-
-            var myMessage = new MyMessage();
-            bus.SetMessageHeader(
-                msg: myMessage,
-                key: NServiceBus.Headers.ReplyToAddress,
-                value: "MyEndpointAddress");
-            bus.Reply(myMessage);
-
-            #endregion
-        }
-
-        void ReplySendReplyTo(IBus bus)
-        {
-            #region BasicReplyReplyToDestination
-
-            var myMessage = new MyMessage();
-            bus.SetMessageHeader(
-                msg: myMessage,
-                key: NServiceBus.Headers.ReplyToAddress,
-                value: "MyReplyDestination");
-            bus.Reply(myMessage);
-
-            #endregion
-        }
-
         public class MyMessage
         {
         }
