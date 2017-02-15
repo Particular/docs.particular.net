@@ -372,11 +372,10 @@
 - Key: SqlPersistence
   Name: Sql Persistence
   DocoUrl: nservicebus/sql-persistence
-  GitHubOwner: SimonCropp
+  GitHubOwner: Particular/sqlpersistence-maintainers
   Category: Persistence
-  SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusSqlPersistence/NServiceBus.SqlPersistence/blob/master/LICENSE
-  ProjectUrl: https://github.com/NServiceBusSqlPersistence/NServiceBus.SqlPersistence/
+  LicenseUrl: https://github.com/Particular/NServiceBus.SqlPersistence/blob/master/LICENSE
+  ProjectUrl: https://github.com/Particular/NServiceBus.SqlPersistence/
   NugetOrder:
     - NServiceBus.Persistence.Sql
 
