@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
-using NServiceBus.Pipeline;
 using NServiceBus.Transport;
 
 namespace Contracts
@@ -19,126 +16,16 @@ namespace Contracts
             var transportInfrastructure = context.Settings.Get<TransportInfrastructure>();
             var logicalAddress = context.Settings.LogicalAddress();
 
-            context.Pipeline.Register(new PhysicalMessageReceiverSideDistributionBehavior(discriminator, discriminators, address => transportInfrastructure.ToTransportAddress(address), logicalAddress), "Distributes on the receiver side using header only");
-            context.Pipeline.Register(new LogicalMessageReceiverSideDistributionBehavior(discriminator, discriminators, address => transportInfrastructure.ToTransportAddress(address), logicalAddress, mapper), "Distributes on the receiver side using user supplied mapper");
-        }
+            var supportMessageDrivenPubSub = context.Settings.Get<TransportInfrastructure>().OutboundRoutingPolicy.Publishes == OutboundRoutingType.Unicast;
 
-        class PhysicalMessageReceiverSideDistributionBehavior : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
-        {
-            private readonly HashSet<string> knownPartitionKeys;
-            private readonly string localPartitionKey;
-            private readonly Func<LogicalAddress, string> addressTranslator;
-            private LogicalAddress logicalAddress;
-
-            public PhysicalMessageReceiverSideDistributionBehavior(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress)
+            if (supportMessageDrivenPubSub)
             {
-                this.logicalAddress = logicalAddress;
-                this.addressTranslator = addressTranslator;
-                this.localPartitionKey = localPartitionKey;
-                this.knownPartitionKeys = knownPartitionKeys;
+                context.Pipeline.Register(new SubscriptionDistributionBehavior.Register(discriminator, discriminators, address => transportInfrastructure.ToTransportAddress(address), logicalAddress));
             }
 
-            public async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingPhysicalMessageContext, Task> next)
-            {
-                var intent = context.Message.GetMesssageIntent();
-                var isPubSubRelatedMessage = intent == MessageIntentEnum.Subscribe || intent == MessageIntentEnum.Unsubscribe;
-
-                if (isPubSubRelatedMessage)
-                {
-                    var tasks = new List<Task>();
-
-                    //Check to see if subscription message was already forwarded to prevent infinite loop
-                    if (!context.MessageHeaders.ContainsKey(PartitionHeaders.ForwardedSubscription))
-                    {
-                        context.Message.Headers[PartitionHeaders.ForwardedSubscription] = string.Empty;
-
-                        // ReSharper disable once LoopCanBeConvertedToQuery
-                        foreach (var partitionKey in knownPartitionKeys)
-                        {
-                            if (partitionKey == localPartitionKey)
-                            {
-                                continue;
-                            }
-
-                            var destination = addressTranslator(logicalAddress.CreateIndividualizedAddress(partitionKey));
-                            tasks.Add(context.ForwardCurrentMessageTo(destination));
-                        }
-                    }
-
-                    await Task.WhenAll(tasks).ConfigureAwait(false);
-                    await next(context).ConfigureAwait(false);
-                    return;
-                }
-
-                string messagePartitionKey;
-                var hasPartitionKeyHeader = context.MessageHeaders.TryGetValue(PartitionHeaders.PartitionKey, out messagePartitionKey);
-
-                //1. The header value isn't present (logical behavior will check message contents)
-                //2. The header value matches local partition key
-                if (!hasPartitionKeyHeader || messagePartitionKey == localPartitionKey)
-                {
-                    await next(context).ConfigureAwait(false); //Continue the pipeline as usual
-                    return;
-                }
-
-                if (knownPartitionKeys.Contains(messagePartitionKey)) //Forward message to known instance
-                {
-                    var destination = addressTranslator(logicalAddress.CreateIndividualizedAddress(messagePartitionKey));
-                    await context.ForwardCurrentMessageTo(destination).ConfigureAwait(false);
-                    return;
-                }
-
-                throw new Exception($"Header key value {messagePartitionKey} does not map to any known partition key values."); //Will be replaced by unrecoverable exception part of Core PR 4479
-            }
-        }
-
-        class LogicalMessageReceiverSideDistributionBehavior : IBehavior<IIncomingLogicalMessageContext, IIncomingLogicalMessageContext>
-        {
-            private readonly string localPartitionKey;
-            private readonly HashSet<string> knownPartitionKeys;
-            private readonly Func<LogicalAddress, string> addressTranslator;
-            private readonly LogicalAddress logicalAddress;
-            private readonly Func<object, string> mapper;
-
-            public LogicalMessageReceiverSideDistributionBehavior(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress, Func<object, string> mapper)
-            {
-                this.localPartitionKey = localPartitionKey;
-                this.knownPartitionKeys = knownPartitionKeys;
-                this.addressTranslator = addressTranslator;
-                this.logicalAddress = logicalAddress;
-                this.mapper = mapper;
-            }
-
-            public async Task Invoke(IIncomingLogicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> next)
-            {
-                string messagePartitionKey;
-
-                if (!context.MessageHeaders.TryGetValue(PartitionHeaders.PartitionKey, out messagePartitionKey))
-                {
-                    messagePartitionKey = mapper(context.Message.Instance);
-
-                    if (string.IsNullOrWhiteSpace(messagePartitionKey))
-                    {
-                        throw new Exception($"Could not map a partition key for message of type {context.Headers[Headers.EnclosedMessageTypes]}"); //Will be replaced by unrecoverable exception part of Core PR 4479
-                    }
-                }
-
-                Debug.WriteLine($"##### Received message: {context.Headers[Headers.EnclosedMessageTypes]} with Mapped PartitionKey={messagePartitionKey} on partition {localPartitionKey}");
-
-                if (messagePartitionKey == localPartitionKey)
-                {
-                    await next(context).ConfigureAwait(false); //Continue the pipeline as usual
-                    return;
-                }
-
-                if (!knownPartitionKeys.Contains(messagePartitionKey))
-                {
-                    throw new Exception($"User mapped key {messagePartitionKey} does not match any known partition key values"); //Will be replaced by unrecoverable exception part of Core PR 4479
-                }
-
-                var destination = addressTranslator(logicalAddress.CreateIndividualizedAddress(messagePartitionKey));
-                await context.ForwardCurrentMessageTo(destination).ConfigureAwait(false);
-            }
+            var forwarder = new Forwarder(discriminators, address => transportInfrastructure.ToTransportAddress(address), logicalAddress);
+            context.Pipeline.Register(new DistributeMessagesBasedOnHeader(discriminator, forwarder), "Distributes on the receiver side using header only");
+            context.Pipeline.Register(new DistributeMessagesBasedOnPayload(discriminator, forwarder, mapper), "Distributes on the receiver side using user supplied mapper");
         }
     }
 }
