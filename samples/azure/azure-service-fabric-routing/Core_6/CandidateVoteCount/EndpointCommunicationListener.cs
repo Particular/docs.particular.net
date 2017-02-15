@@ -11,6 +11,7 @@ using NServiceBus.Routing;
 
 namespace CandidateVoteCount
 {
+    using System.Fabric.Description;
     using Contracts;
 
     public class EndpointCommunicationListener : ICommunicationListener
@@ -78,7 +79,8 @@ namespace CandidateVoteCount
             var instances = internalSettings.GetOrCreate<EndpointInstances>();
 
             #region Configure Local send to own individualized queue distribution strategy
-            policy.SetDistributionStrategy(new LocalPartitionAwareDistributionStrategy(localPartitionKey, "CandidateVoteCount", DistributionStrategyScope.Send));
+
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", message => localPartitionKey, DistributionStrategyScope.Send));
 
             instances.AddOrReplaceInstances("CandidateVoteCount", endpointInstances.ToList());
 
