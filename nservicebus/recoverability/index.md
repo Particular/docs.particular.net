@@ -79,6 +79,7 @@ Fault handling doesn't require that the transport transaction is rolled back. A 
 
 partial:recoverabilitypolicy
 
+partial:unrecoverableexceptions
 
 ## Total number of possible retries
 

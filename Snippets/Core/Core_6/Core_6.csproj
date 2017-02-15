@@ -127,6 +127,7 @@
     <Compile Include="Pipeline\CustomForkConnector.cs" />
     <Compile Include="Pipeline\CustomStageConnector.cs" />
     <Compile Include="Pipeline\CustomStageForkConnector.cs" />
+    <Compile Include="Recoverability\UnrecoverableExceptions.cs" />
     <Compile Include="Routing\Extensibility.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />

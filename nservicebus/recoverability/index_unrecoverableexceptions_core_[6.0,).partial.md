@@ -1,0 +1,2 @@
+## Unrecoverable exceptions
+
