@@ -67,7 +67,6 @@
     <Compile Include="DistributeMessagesBasedOnPayload.cs" />
     <Compile Include="EndpointConfigurationExtensions.cs" />
     <Compile Include="Forwarder.cs" />
-    <Compile Include="LocalPartitionAwareDistributionStrategy.cs" />
     <Compile Include="PartitionAwareDistributionStrategy.cs" />
     <Compile Include="PartitionHeaders.cs" />
     <Compile Include="PlaceVote.cs" />
