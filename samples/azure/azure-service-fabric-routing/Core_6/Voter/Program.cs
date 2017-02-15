@@ -42,8 +42,18 @@ namespace Voter
 
             var policy = internalSettings.GetOrCreate<DistributionPolicy>();
 
-            policy.SetDistributionStrategy(new CandidatePartitionDistributionStrategy("CandidateVoteCount", DistributionStrategyScope.Send));
-            policy.SetDistributionStrategy(new CandidatePartitionDistributionStrategy("CandidateVoteCount", DistributionStrategyScope.Publish)); //TODO: Might not need this, because publish alwasy handled on receiver side via shared queue
+            Func<object, string> mapper = message =>
+            {
+                var candidate = message as PlaceVote;
+                if (candidate != null)
+                {
+                    return candidate.Candidate;
+                }
+
+                throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
+            };
+
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", mapper, DistributionStrategyScope.Send));
 
             var candidateVoteCountInstances = new List<EndpointInstance>
             {
