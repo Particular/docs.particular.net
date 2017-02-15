@@ -63,7 +63,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DistributeMessagesBasedOnHeader.cs" />
+    <Compile Include="DistributeMessagesBasedOnPayload.cs" />
     <Compile Include="EndpointConfigurationExtensions.cs" />
+    <Compile Include="Forwarder.cs" />
     <Compile Include="LocalPartitionAwareDistributionStrategy.cs" />
     <Compile Include="PartitionAwareDistributionStrategy.cs" />
     <Compile Include="PartitionHeaders.cs" />
@@ -72,6 +75,7 @@
     <Compile Include="ReceiverSideDistribution.cs" />
     <Compile Include="ReportVotes.cs" />
     <Compile Include="ReportZipCode.cs" />
+    <Compile Include="SubscriptionDistributionBehavior.cs" />
     <Compile Include="TrackZipCode.cs" />
     <Compile Include="CloseVoting.cs" />
   </ItemGroup>
