@@ -11,12 +11,14 @@ namespace Contracts
         private readonly string localPartitionKey;
         private readonly Forwarder forwarder;
         private readonly Func<object, string> mapper;
+        private readonly Action<string> logger;
 
-        public DistributeMessagesBasedOnPayload(string localPartitionKey, Forwarder forwarder, Func<object, string> mapper)
+        public DistributeMessagesBasedOnPayload(string localPartitionKey, Forwarder forwarder, Func<object, string> mapper, Action<string> logger)
         {
             this.localPartitionKey = localPartitionKey;
             this.forwarder = forwarder;
             this.mapper = mapper;
+            this.logger = logger;
         }
 
         public async Task Invoke(IIncomingLogicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> next)
@@ -33,7 +35,9 @@ namespace Contracts
                 }
             }
 
-            Debug.WriteLine($"##### Received message: {context.Headers[Headers.EnclosedMessageTypes]} with Mapped PartitionKey={messagePartitionKey} on partition {localPartitionKey}");
+            var message = $"##### Received message: {context.Headers[Headers.EnclosedMessageTypes]} with Mapped PartitionKey={messagePartitionKey} on partition {localPartitionKey}";
+
+            logger(message);
 
             if (messagePartitionKey == localPartitionKey)
             {

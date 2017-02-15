@@ -49,13 +49,16 @@ namespace CandidateVoteCount
             string localPartitionKey;
             using (var client = new FabricClient())
             {
-                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName, context.PartitionId).ConfigureAwait(false);
+                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName).ConfigureAwait(false);
                 var servicePartitions =
                     servicePartitionList.Select(x => x.PartitionInformation).Cast<NamedPartitionInformation>().ToList();
 
                 #region Configure Receiver-Side routing for CandidateVoteCount
                 var discriminators = new HashSet<string>(servicePartitions.Select(x => x.Name));
-                endpointConfiguration.EnableReceiverSideDistribution(discriminators, message => null); //There are no message types that need to be mapped, so this receiver side mapper just returns null for now
+                endpointConfiguration.EnableReceiverSideDistribution(
+                    discriminators,
+                    message => (message as PlaceVote)?.Candidate,
+                    m => ServiceEventSource.Current.ServiceMessage(context, m)); //There are no message types that need to be mapped, so this receiver side mapper just returns null for now
                 #endregion
 
                 localPartitionKey = servicePartitions.Single(p => p.Id == context.PartitionId).Name;

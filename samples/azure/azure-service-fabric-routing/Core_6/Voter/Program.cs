@@ -53,7 +53,7 @@ namespace Voter
                 throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
             };
 
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", mapper, DistributionStrategyScope.Send));
+            //policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", mapper, DistributionStrategyScope.Send));
 
             var candidateVoteCountInstances = new List<EndpointInstance>
             {
