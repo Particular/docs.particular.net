@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
@@ -6,9 +7,10 @@ namespace Contracts
 {
     public static class EndpointConfigurationExtensions
     {
-        public static void EnableReceiverSideDistribution(this EndpointConfiguration configuration, HashSet<string> discriminators)
+        public static void EnableReceiverSideDistribution(this EndpointConfiguration configuration, HashSet<string> discriminators, Func<object,string> mapper)
         {
             configuration.GetSettings().Set("ReceiverSideDistribution.Discriminators", discriminators);
+            configuration.GetSettings().Set("ReceiverSideDistribution.Mapper", mapper);
             configuration.EnableFeature<ReceiverSideDistribution>();
         }
     }
