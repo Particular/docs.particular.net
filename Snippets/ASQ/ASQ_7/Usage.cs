@@ -78,6 +78,17 @@ class Usage
         #endregion
     }
 
+    void NativeDelivery(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzureStorageQueueUseNativeDelivery
+
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport.UseNativeTimeouts("endpointtimeoutstable");
+
+        #endregion
+    }
+
+
     #region AzureStorageQueueTransportWithAzureHost
 
     public class EndpointConfig :
