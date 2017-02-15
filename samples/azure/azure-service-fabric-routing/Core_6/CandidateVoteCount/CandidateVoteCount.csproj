@@ -98,7 +98,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="ReportVotesHandler.cs" />
     <Compile Include="ServiceEventSource.cs" />
-    <Compile Include="ZipCodePartitionDistributionStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PackageRoot\Config\Settings.xml" />

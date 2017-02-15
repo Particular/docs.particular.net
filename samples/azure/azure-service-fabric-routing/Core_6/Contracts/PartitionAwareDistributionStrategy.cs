@@ -5,10 +5,13 @@ namespace Contracts
     using NServiceBus;
     using NServiceBus.Routing;
 
-    public abstract class PartitionAwareDistributionStrategy : DistributionStrategy
+    public class PartitionAwareDistributionStrategy : DistributionStrategy
     {
-        protected PartitionAwareDistributionStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)
+        private readonly Func<object, string> mapper;
+
+        public PartitionAwareDistributionStrategy(string endpoint, Func<object,string> mapper, DistributionStrategyScope scope) : base(endpoint, scope)
         {
+            this.mapper = mapper;
         }
 
         public override string SelectReceiver(string[] receiverAddresses)
@@ -18,14 +21,12 @@ namespace Contracts
 
         public override string SelectDestination(DistributionContext context)
         {
-            var discriminator = MapMessageToPartition(context.Message.Instance);
+            var discriminator = mapper(context.Message.Instance);
 
             context.Headers[PartitionHeaders.PartitionKey] = discriminator;
 
             var logicalAddress = LogicalAddress.CreateRemoteAddress(new EndpointInstance(Endpoint, discriminator));
             return context.ReceiverAddresses.Single(a => a == logicalAddress.ToString());
         }
-
-        protected abstract string MapMessageToPartition(object message);
     }
 }
