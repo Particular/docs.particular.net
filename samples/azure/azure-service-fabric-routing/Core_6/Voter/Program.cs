@@ -36,7 +36,7 @@ namespace Voter
 
             #region Configure Sender-Side routing for CandidateVoteCount
 
-            transportConfig.Routing().RouteToEndpoint(typeof(PlaceVote), "CandidateVoteCount");
+            transportConfig.Routing().RouteToEndpoint(typeof(CloseElection), "CandidateVoteCount");
 
             var internalSettings = endpointConfiguration.GetSettings();
 
@@ -44,7 +44,7 @@ namespace Voter
 
             Func<object, string> mapper = message =>
             {
-                var candidate = message as PlaceVote;
+                var candidate = message as CloseElection;
                 if (candidate != null)
                 {
                     return candidate.Candidate;
@@ -53,7 +53,7 @@ namespace Voter
                 throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
             };
 
-            //policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", mapper, DistributionStrategyScope.Send));
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", mapper, DistributionStrategyScope.Send));
 
             var candidateVoteCountInstances = new List<EndpointInstance>
             {
@@ -67,29 +67,39 @@ namespace Voter
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
-            Console.WriteLine("Press 'x' to exit or 'v' to vote");
-            var x = Console.ReadLine();
-
-            while (x != "x")
+            Console.WriteLine("Press Enter to start election");
+            Console.WriteLine("Press Esc to stop election");
+            Console.ReadLine();
+            do
             {
-                Console.WriteLine("Press '1' to vote for John or '2' to vote for Abby");
-                var choice = Console.ReadLine();
-
-                if (choice == "1" || choice == "2")
+                while (!Console.KeyAvailable)
                 {
-                    Console.WriteLine("Please enter your ZipCode");
-                    var zipcode = Console.ReadLine();
+                    var choice = new Random().Next(1, 3);
+                    var zipcode = new Random().Next(0, 99001).ToString("d5");
+                    var candidate = choice == 1 ? "John" : "Abby";
 
-                    await endpointInstance.Send(new PlaceVote()
-                    {
-                        Candidate = choice == "1" ? "John" : "Abby",
-                        ZipCode = zipcode
-                    });
+                    Console.WriteLine($"Voted for {candidate} from zip code {zipcode}");
+
+                await endpointInstance.Publish(new VotePlaced
+                {
+                    Candidate = candidate,
+                    ZipCode = zipcode
+                });
+
+                    await Task.Delay(1000);
                 }
+            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
-                Console.WriteLine("Press 'x' to exit or 'v' to vote");
-                x = Console.ReadLine();
-            }
+            Console.WriteLine("Closing election");
+
+            await endpointInstance.Send(new CloseElection
+            {
+                Candidate = "John",
+            });
+            await endpointInstance.Send(new CloseElection
+            {
+                Candidate = "Abby",
+            });
 
             await endpointInstance.Stop().ConfigureAwait(false);
         }
