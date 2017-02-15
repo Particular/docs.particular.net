@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
@@ -44,43 +43,43 @@ namespace Contracts
                 var intent = context.Message.GetMesssageIntent();
                 var isPubSubRelatedMessage = intent == MessageIntentEnum.Subscribe || intent == MessageIntentEnum.Unsubscribe;
 
-
                 if (isPubSubRelatedMessage)
                 {
-                    var tasks = new List<Task>
-                    {
-                        next(context)
-                    };
+                    var tasks = new List<Task>();
 
                     //Check to see if subscription message was already forwarded to prevent infinite loop
                     if (!context.MessageHeaders.ContainsKey(PartitionHeaders.ForwardedSubscription))
                     {
                         context.Message.Headers[PartitionHeaders.ForwardedSubscription] = string.Empty;
 
-                        foreach (var partitionKey in knownPartitionKeys.ToList().Where(key => key != localPartitionKey))
+                        // ReSharper disable once LoopCanBeConvertedToQuery
+                        foreach (var partitionKey in knownPartitionKeys)
                         {
+                            if (partitionKey == localPartitionKey)
+                            {
+                                continue;
+                            }
+
                             var destination = addressTranslator(logicalAddress.CreateIndividualizedAddress(partitionKey));
                             tasks.Add(context.ForwardCurrentMessageTo(destination));
                         }
                     }
 
                     await Task.WhenAll(tasks).ConfigureAwait(false);
+                    await next(context).ConfigureAwait(false);
                     return;
                 }
 
                 string messagePartitionKey;
                 var hasPartitionKeyHeader = context.MessageHeaders.TryGetValue(PartitionHeaders.PartitionKey, out messagePartitionKey);
 
-                //1. The intent is subscribe or unsubscribe
-                //2. The header value isn't present (logical behavior will check message contents)
-                //3. The header value matches local partition key
-                if (isPubSubRelatedMessage || !hasPartitionKeyHeader || messagePartitionKey == localPartitionKey)
+                //1. The header value isn't present (logical behavior will check message contents)
+                //2. The header value matches local partition key
+                if (!hasPartitionKeyHeader || messagePartitionKey == localPartitionKey)
                 {
                     await next(context).ConfigureAwait(false); //Continue the pipeline as usual
                     return;
                 }
-
-
 
                 if (knownPartitionKeys.Contains(messagePartitionKey)) //Forward message to known instance
                 {
