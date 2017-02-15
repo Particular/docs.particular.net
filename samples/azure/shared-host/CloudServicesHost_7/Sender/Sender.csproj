@@ -64,11 +64,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Hosting.Azure, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.7.0.0\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.7.0.1\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Hosting.Azure.HostProcess, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.HostProcess.7.0.0\lib\net452\NServiceBus.Hosting.Azure.HostProcess.exe</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.HostProcess.7.0.1\lib\net452\NServiceBus.Hosting.Azure.HostProcess.exe</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Persistence.AzureStorage, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
