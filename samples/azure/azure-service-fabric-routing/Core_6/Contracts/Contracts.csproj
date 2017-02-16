@@ -63,10 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CopyPartitionKeyForReplies.cs" />
     <Compile Include="DistributeMessagesBasedOnHeader.cs" />
     <Compile Include="DistributeMessagesBasedOnPayload.cs" />
     <Compile Include="CloseElection.cs" />
     <Compile Include="EndpointConfigurationExtensions.cs" />
+    <Compile Include="CopyPartionKeyForRepliesBehavior.cs" />
     <Compile Include="Forwarder.cs" />
     <Compile Include="PartitionAwareDistributionStrategy.cs" />
     <Compile Include="PartitionHeaders.cs" />
