@@ -14,9 +14,9 @@ NOTE: If DLQ is enabled messages will remain in the senders outgoing queue until
 
 ### Enabling DLQ for messages with TTBR
 
-In Versions below 6.2 DLQ will be enabled by default for TTBR messages as well.
+In Versions 6.2 and below DLQ will be enabled by default for TTBR messages as well.
 
-To opt-in to this behavior for Version 6.2 and higher use
+To opt-in to this behavior for Versions 6.2 and above, use:
 
 snippet: msmq-dlq-for-ttbr-optin
 
