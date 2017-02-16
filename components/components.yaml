@@ -60,6 +60,15 @@
     - NServiceBus.Encryption.MessageProperty
     - NServiceBus
 
+- Key: PerformanceCounters
+  Name: Performance Counters
+  DocoUrl: nservicebus/operations/performance-counters
+  Category: Other
+  GitHubOwner: Particular/metrics-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
+
 - Key: PostgreSQL
   Name: PostgreSQL Persistence
   DocoUrl: https://github.com/fhalim/NServiceBus.PostgreSQL

@@ -2,7 +2,7 @@
 title: Performance Counter Usage
 summary: Using the built in Performance Counters.
 reviewed: 2016-07-20
-component: Core
+component: PerformanceCounters
 tags:
 - Performance Counters
 related:

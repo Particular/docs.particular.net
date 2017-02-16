@@ -2,7 +2,7 @@
 title: Performance Counters
 summary: Monitoring through the use of performance counters.
 reviewed: 2016-11-01
-component: Core
+component: PerformanceCounters
 tags:
  - Performance Counters
 redirects:
