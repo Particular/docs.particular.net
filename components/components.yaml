@@ -374,7 +374,6 @@
   DocoUrl: nservicebus/sql-persistence
   GitHubOwner: Particular/sqlpersistence-maintainers
   Category: Persistence
-  LicenseUrl: https://github.com/Particular/NServiceBus.SqlPersistence/blob/master/LICENSE
   ProjectUrl: https://github.com/Particular/NServiceBus.SqlPersistence/
   NugetOrder:
     - NServiceBus.Persistence.Sql

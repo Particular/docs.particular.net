@@ -48,6 +48,11 @@ A subscription only storage on top of MSMQ.
 Uses Azure Tables Storage for storage
 
 
+### [SQL Persistence](/nservicebus/sql-persistence/)
+
+Uses [Json.NET](http://www.newtonsoft.com/json) to serialize data and store in a SQL database.
+
+
 ### Community run Persistences
 
 There are several community run Persistences that can be seen on the full list of [Extensions](/components#persisters).
