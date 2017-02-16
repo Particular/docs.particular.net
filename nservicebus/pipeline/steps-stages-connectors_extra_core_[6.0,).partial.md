@@ -14,7 +14,7 @@ In the diagram User Code can refer to a handler or a saga. If the handler or sag
 
 ### Incoming Pipeline Stages
 
- * TransportReceiveContext: Behaviors in this stage are responsible signaling failure or success to the transport. This stage provides `ITransportReceiveContext` to it's behaviors.
+ * TransportReceiveContext: Behaviors in this stage are responsible signalling failure or success to the transport. In this stage no outgoing operations are supported. This stage provides ITransportReceiveContext to its behaviors.
  * Incoming Physical Message: Behaviors on this stage have access the raw message body before it is deserialized. This stage provides `IIncomingPhysicalMessageContext` to it's behaviors.
  * Incoming Logical Message: This stage provides information about the received message type and it's deserialized instance. It provides `IIncomingLogicalMessageContext` to it's behaviors.
  * Invoke Handlers: Each received message can be handled by multiple handlers. This stage will be executed once for every associated handler and provides `IInvokeHandlerContext` to the behaviors.
