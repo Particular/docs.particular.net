@@ -103,8 +103,8 @@
                 behavior: typeof(CustomErrorHandlingBehavior),
                 description: "Adds custom error behavior to pipeline")
         {
-            // Within a stage it sometimes is needed to configure a specific
-            // step order which can be achieved by invoking methods:
+            // Within a stage it is sometimes necessary to configure a specific
+            // step order. This can be achieved by invoking on of the following methods:
             //  - InsertAfter,
             //  - InsertAfterIfExists,
             //  - InsertBefore,
