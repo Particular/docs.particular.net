@@ -18,7 +18,7 @@ related:
 
 The default Recoverability Policy is implemented in `DefaultRecoverabilityPolicy` and publicly exposed for use cases when the default recoverability behavior needs to be reused as part of a custom recoverability policy. The default policy takes into account the settings provided for Immediate Retries, Delayed Retries and the configured error queue. The default policy works like the following:
 
- 1. When an exception of type `MessageDeserializedException` was raised, the `MoveToError` recoverability action is returned with the default error queue.
+ 1. When an unrecoverable exception was raised, by default exceptions of type `MessageDeserializedException`, the `MoveToError` recoverability action is returned with the default error queue.
  1. If the `ImmediateProcessingFailures` is less or equal to the configured `MaxNumberOfRetries` for Immediate Retries, the `ImmediateRetry` recoverability action is returned.
  1. When Immediate Retries are exceeded the Delayed Retries configuration is considered. If the `DelayedDeliveriesPerformed` is less or equal than `MaxNumberOfRetries` and the message hasn't reached the maximum time allowed for retries (24 hours), the `DelayedRetry` recoverability action is returned. The delay is calculated according to the following formula:
 
@@ -40,6 +40,7 @@ As outlined in the [Recoverability introduction](/nservicebus/recoverability/) I
  * Maximum number of retries for Delayed Retries
  * Time of increase for individual Delayed Retries
  * Configured error queue address
+ * Exceptions that need to be treated as unrecoverable (as of NServiceBus version 6.2)
 
 The information provided on the configuration is static and will not change between subsequent executions of the policy.
 
@@ -84,6 +85,6 @@ Fully customizing the Recoverability Policy basically means not calling `Default
 
 snippet:FullyCustomizedPolicyRecoverabilityConfiguration
 
-The configuration will be passed into the custom policy. Below is a policy which moves all exceptions of type `MyBusinessException` to a custom error queue, does Delayed Retries with a constant time increase of five seconds for `MyOtherBusinessException` and for all other cases moves messages to the configured standard error queue.
+The configuration will be passed into the custom policy. Below is a policy which moves all unrecoverable exceptions such as `MyBusinessException` to a custom error queue, does Delayed Retries with a constant time increase of five seconds for `MyOtherBusinessException` and for all other cases moves messages to the configured standard error queue.
 
 snippet:FullyCustomizedPolicy
