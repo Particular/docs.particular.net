@@ -72,3 +72,5 @@ snippet:rabbitmq-config-useroutingtopology
 For each queue required by the endpoint, the transport will first declare that queue and will then call the `Initialize` method of the routing topology. The routing topology should then perform all initialization related to that specific queue such as the creation of appropriate exchanges and bindings.
 
 partial: queue-declaration
+
+partial: support-native-delays
