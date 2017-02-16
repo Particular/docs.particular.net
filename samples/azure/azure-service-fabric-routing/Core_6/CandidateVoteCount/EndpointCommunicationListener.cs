@@ -11,7 +11,6 @@ using NServiceBus.Routing;
 
 namespace CandidateVoteCount
 {
-    using System.Fabric.Description;
     using Contracts;
 
     public class EndpointCommunicationListener : ICommunicationListener
@@ -58,11 +57,22 @@ namespace CandidateVoteCount
                 endpointInstances = servicePartitions.Select(x => new EndpointInstance("CandidateVoteCount", x.Name));
 
                 #region Configure Receiver-Side routing for CandidateVoteCount
+
                 var discriminators = new HashSet<string>(servicePartitions.Select(x => x.Name));
-                endpointConfiguration.EnableReceiverSideDistribution(
-                    discriminators,
-                    message => (message as PlaceVote)?.Candidate,
-                    m => ServiceEventSource.Current.ServiceMessage(context, m)); //There are no message types that need to be mapped, so this receiver side mapper just returns null for now
+
+                Func<object, string> candidateMapper = message =>
+                {
+                    var votePlaced = message as VotePlaced;
+                    if (votePlaced == null)
+                    {
+                        throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
+                    }
+
+                    return votePlaced.Candidate;
+                };
+
+                endpointConfiguration.EnableReceiverSideDistribution(discriminators, candidateMapper, m => ServiceEventSource.Current.ServiceMessage(context, m));
+
                 #endregion
 
                 localPartitionKey = servicePartitions.Single(p => p.Id == context.PartitionId).Name;
