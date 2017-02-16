@@ -1,6 +1,8 @@
 ## Unrecoverable exceptions
 
-By default every exception, unless it is NServiceBus' built-in `MessageDeserializationException`, will go through the recoverability as defined in the endpoint configuration. Depending on the business domain some exceptions might indicate that is never useful to go through Recoverability since all subsequent retries would lead to the same exception over and over again. An example is message validation. When a validator would raise a `ValidationExceptions`, or derivatives of that exception base type, subsequent retries of the same message would fail the validation again. In such scenarios, it is possible to mark certain exception types as unrecoverable. When an exception is marked as unrecoverable, then message handling that raises such an exception type will immediately move the message to the error queue and not even try to attempt to do [Immediate](/nservicebus/recoverability/configure-immediate-retries) and [Delayed Retries](/nservicebus/messaging/delayed-delivery). 
+Recoverability enables declaring an exception type as unrecoverable. When a message processing fails due to a unrecoverable exception being thrown, it does not go through retry process but is moved to the error queue instead. By default MessageDeserializationException is the only unrecoverable exception however based on the business domain users can declare additional. For example, a user might declare ValidationExceptions thrown when a message fails validation as unrecoverable. Assuming that validation is deterministic, processing will always fail so extra retries will not bring any benefit.
+
+NOTE: Declaring exception type as unrecoverable declares the whole inheritance tree as unrecoverable i.e. any direct or indirect subclass.
 
 snippet: UnrecoverableExceptions
 
