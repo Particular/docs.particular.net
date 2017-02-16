@@ -5,7 +5,6 @@ reviewed: 2016-03-17
 tags:
 - MSMQ
 - MSDTC
-- Performance Counters
 - PowerShell
 redirects:
 - nservicebus/running-nservicebus-on-windows
