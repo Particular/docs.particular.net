@@ -5,7 +5,6 @@ component: Host
 tags:
 - Profiles
 - Feature
-- Performance Counters
 redirects:
  - nservicebus/more-on-profiles
 reviewed: 2016-12-09
