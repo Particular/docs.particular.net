@@ -90,7 +90,7 @@ namespace CandidateVoteCount
 
             #region Configure Local send to own individualized queue distribution strategy
 
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", message => localPartitionKey, DistributionStrategyScope.Send));
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", message => localPartitionKey, DistributionStrategyScope.Send, localPartitionKey));
 
             instances.AddOrReplaceInstances("CandidateVoteCount", endpointInstances.ToList());
 
@@ -127,7 +127,7 @@ namespace CandidateVoteCount
                 throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
             };
 
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", mapper, DistributionStrategyScope.Send));
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", mapper, DistributionStrategyScope.Send, localPartitionKey));
 
             using (var client = new FabricClient())
             {

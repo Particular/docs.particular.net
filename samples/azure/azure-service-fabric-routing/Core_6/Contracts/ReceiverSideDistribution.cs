@@ -26,7 +26,7 @@ namespace Contracts
             }
 
             var forwarder = new Forwarder(discriminators, address => transportInfrastructure.ToTransportAddress(address), logicalAddress);
-            context.Pipeline.Register(new DistributeMessagesBasedOnHeader(discriminator, forwarder), "Distributes on the receiver side using header only");
+            context.Pipeline.Register(new DistributeMessagesBasedOnHeader(discriminator, forwarder, logger), "Distributes on the receiver side using header only");
             context.Pipeline.Register(new DistributeMessagesBasedOnPayload(discriminator, forwarder, mapper, logger), "Distributes on the receiver side using user supplied mapper");
         }
     }
