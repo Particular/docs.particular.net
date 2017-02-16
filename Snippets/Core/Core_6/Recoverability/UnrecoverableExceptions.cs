@@ -12,8 +12,8 @@
 
             var recoverability = endpointConfiguration.Recoverability();
 
-            recoverability.AddUnrecoverableException<ArgumentNullException>();
-            recoverability.AddUnrecoverableException(typeof(TimeoutException));
+            recoverability.AddUnrecoverableException<ValidationException>();
+            recoverability.AddUnrecoverableException(typeof(ArgumentException));
 
             #endregion
         }
@@ -22,9 +22,13 @@
         {
             #region UnrecoverableExceptionsSettings
 
-            settings.AddUnrecoverableException(typeof(TimeoutException));
+            settings.AddUnrecoverableException(typeof(ValidationException));
 
             #endregion
+        }
+
+        class ValidationException : Exception
+        {
         }
     }
 }
