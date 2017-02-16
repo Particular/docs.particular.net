@@ -23,7 +23,14 @@ namespace ZipCodeVoteCount
                 Data.ZipCode = message.ZipCode;
                 Data.Started = true;
             }
+
             Data.Count++;
+
+            await context.Reply(new TrackZipCodeReply
+            {
+                ZipCode = Data.ZipCode,
+                CurrentCount = Data.Count
+            }).ConfigureAwait(false);
         }
 
         public async Task Timeout(CloseVoting state, IMessageHandlerContext context)
