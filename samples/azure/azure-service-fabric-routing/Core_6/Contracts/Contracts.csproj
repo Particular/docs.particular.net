@@ -74,6 +74,7 @@
     <Compile Include="PartitionHeaders.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiverSideDistribution.cs" />
+    <Compile Include="SendOptionsExtensions.cs" />
     <Compile Include="ReportVotes.cs" />
     <Compile Include="ReportZipCode.cs" />
     <Compile Include="SubscriptionDistributionBehavior.cs" />
