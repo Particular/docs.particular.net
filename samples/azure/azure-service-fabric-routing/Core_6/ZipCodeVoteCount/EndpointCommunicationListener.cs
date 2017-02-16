@@ -60,7 +60,7 @@ namespace ZipCodeVoteCount
             var policy = internalSettings.GetOrCreate<DistributionPolicy>();
             var instances = internalSettings.GetOrCreate<EndpointInstances>();
 
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", message => localPartitionKey, DistributionStrategyScope.Send));
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", message => localPartitionKey, DistributionStrategyScope.Send, localPartitionKey));
             instances.AddOrReplaceInstances("ZipCodeVoteCount", instanceList.ToList());
 
             endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);

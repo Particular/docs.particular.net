@@ -12,7 +12,8 @@ namespace Contracts
         {
             IncomingMessage message;
             string partitionKey;
-            if (context.Extensions.TryGet(out message) && message.Headers.TryGetValue(PartitionHeaders.PartitionKey, out partitionKey))
+            if (context.Extensions.TryGet(out message) &&
+                message.Headers.TryGetValue(PartitionHeaders.OriginatorPartitionKey, out partitionKey))
             {
                 context.Headers[PartitionHeaders.PartitionKey] = partitionKey;
             }

@@ -7,10 +7,12 @@ namespace Contracts
 
     public class PartitionAwareDistributionStrategy : DistributionStrategy
     {
+        readonly string localDiscriminator;
         private readonly Func<object, string> mapper;
 
-        public PartitionAwareDistributionStrategy(string endpoint, Func<object,string> mapper, DistributionStrategyScope scope) : base(endpoint, scope)
+        public PartitionAwareDistributionStrategy(string endpoint, Func<object, string> mapper, DistributionStrategyScope scope, string localDiscriminator = null) : base(endpoint, scope)
         {
+            this.localDiscriminator = localDiscriminator;
             this.mapper = mapper;
         }
 
@@ -21,19 +23,14 @@ namespace Contracts
 
         public override string SelectDestination(DistributionContext context)
         {
-            string discriminator;
-
-            if (context.Headers.ContainsKey(PartitionHeaders.PartitionKey))
-            {
-                var x = 6;
-            }
-
-            if (context.Headers.TryGetValue(PartitionHeaders.PartitionKey, out discriminator) == false)
-            {
-                discriminator = mapper(context.Message.Instance);
-            }
+            var discriminator = mapper(context.Message.Instance);
 
             context.Headers[PartitionHeaders.PartitionKey] = discriminator;
+
+            if (localDiscriminator != null)
+            {
+                context.Headers[PartitionHeaders.OriginatorPartitionKey] = localDiscriminator;
+            }
 
             var logicalAddress = LogicalAddress.CreateRemoteAddress(new EndpointInstance(Endpoint, discriminator));
             return context.ReceiverAddresses.Single(a => a == logicalAddress.ToString());

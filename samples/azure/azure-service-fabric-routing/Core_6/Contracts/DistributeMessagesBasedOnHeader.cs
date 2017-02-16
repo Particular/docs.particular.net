@@ -10,11 +10,13 @@ namespace Contracts
     {
         private readonly string localPartitionKey;
         private readonly Forwarder forwarder;
+        readonly Action<string> logger;
 
-        public DistributeMessagesBasedOnHeader(string localPartitionKey, Forwarder forwarder)
+        public DistributeMessagesBasedOnHeader(string localPartitionKey, Forwarder forwarder, Action<string> logger)
         {
             this.localPartitionKey = localPartitionKey;
             this.forwarder = forwarder;
+            this.logger = logger;
         }
 
         public async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingPhysicalMessageContext, Task> next)
@@ -38,6 +40,10 @@ namespace Contracts
                 return;
             }
             context.Message.Headers[PartitionHeaders.PartitionKey] = messagePartitionKey;
+
+            var message = $"##### Received message: {context.Message.Headers[Headers.EnclosedMessageTypes]} with Mapped PartitionKey={messagePartitionKey} on partition {localPartitionKey}";
+
+            logger(message);
 
             await forwarder.Forward(context, messagePartitionKey).ConfigureAwait(false);
         }
