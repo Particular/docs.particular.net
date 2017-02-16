@@ -3,12 +3,21 @@ using NServiceBus;
 
 namespace CandidateVoteCount
 {
+    using System.Fabric;
     using Contracts;
 
     public class CandidateVotes : Saga<CandidateVoteData>,
         IAmStartedByMessages<VotePlaced>,
-        IHandleMessages<CloseElection>
+        IHandleMessages<CloseElection>,
+        IHandleMessages<TrackZipCodeReply>
     {
+        private readonly StatefulServiceContext serviceContext;
+
+        public CandidateVotes(StatefulServiceContext serviceContext)
+        {
+            this.serviceContext = serviceContext;
+        }
+
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CandidateVoteData> mapper)
         {
             mapper.ConfigureMapping<VotePlaced>(m => m.Candidate).ToSaga(s => s.Candidate);
@@ -39,6 +48,12 @@ namespace CandidateVoteCount
             }).ConfigureAwait(false);
 
             MarkAsComplete();
+        }
+
+        public Task Handle(TrackZipCodeReply message, IMessageHandlerContext context)
+        {
+            ServiceEventSource.Current.ServiceMessage(serviceContext, $"##### CandidateVote saga for {Data.Candidate} got reply for zip code '{message.ZipCode}' tracking with current count of {message.CurrentCount}");
+            return Task.FromResult(0);
         }
     }
 }

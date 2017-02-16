@@ -7,6 +7,7 @@ using NServiceBus.Routing;
 
 namespace Voter
 {
+    using System.Linq;
     using Contracts;
 
     class Program
@@ -70,13 +71,17 @@ namespace Voter
             Console.WriteLine("Press Enter to start election");
             Console.WriteLine("Press Esc to stop election");
             Console.ReadLine();
+
+            var random = new Random();
+            var votedZipCode = Enumerable.Range(1, 10).Select(x => random.Next(0, 99001).ToString("d5")).ToArray();
+
             do
             {
                 while (!Console.KeyAvailable)
                 {
-                    var choice = new Random().Next(1, 3);
-                    var zipcode = new Random().Next(0, 99001).ToString("d5");
+                    var choice = random.Next(1, 3);
                     var candidate = choice == 1 ? "John" : "Abby";
+                    var zipcode = votedZipCode[random.Next(0, 10)];
 
                     Console.WriteLine($"Voted for {candidate} from zip code {zipcode}");
 

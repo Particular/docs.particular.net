@@ -77,6 +77,7 @@
     <Compile Include="SubscriptionDistributionBehavior.cs" />
     <Compile Include="TrackZipCode.cs" />
     <Compile Include="CloseVoting.cs" />
+    <Compile Include="TrackZipCodeReply.cs" />
     <Compile Include="VotePlaced.cs" />
   </ItemGroup>
   <ItemGroup>

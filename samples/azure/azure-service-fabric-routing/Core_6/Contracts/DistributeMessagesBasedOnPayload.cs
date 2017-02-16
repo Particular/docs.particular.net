@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Pipeline;
@@ -23,6 +22,20 @@ namespace Contracts
 
         public async Task Invoke(IIncomingLogicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> next)
         {
+            // TODO: need to know message intent to let reply go as-is. Is there a better way to achive it?
+            string intentHeader;
+            if (context.Headers.TryGetValue(Headers.MessageIntent, out intentHeader))
+            {
+                MessageIntentEnum intent;
+                Enum.TryParse(intentHeader, true, out intent);
+
+                if (intent == MessageIntentEnum.Reply)
+                {
+                    await next(context).ConfigureAwait(false);
+                    return;
+                }
+            }
+
             string messagePartitionKey;
 
             if (!context.MessageHeaders.TryGetValue(PartitionHeaders.PartitionKey, out messagePartitionKey))
