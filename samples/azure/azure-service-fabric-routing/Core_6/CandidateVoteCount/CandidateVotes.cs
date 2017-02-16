@@ -33,10 +33,13 @@ namespace CandidateVoteCount
             }
             Data.Count++;
 
+            var sendOptions = new SendOptions();
+            sendOptions.RouteReplyToThisInstance();
+
             return context.Send(new TrackZipCode
             {
                 ZipCode = message.ZipCode
-            });
+            }, sendOptions);
         }
 
         public async Task Handle(CloseElection message, IMessageHandlerContext context)

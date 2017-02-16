@@ -21,7 +21,17 @@ namespace Contracts
 
         public override string SelectDestination(DistributionContext context)
         {
-            var discriminator = mapper(context.Message.Instance);
+            string discriminator;
+
+            if (context.Headers.ContainsKey(PartitionHeaders.PartitionKey))
+            {
+                var x = 6;
+            }
+
+            if (context.Headers.TryGetValue(PartitionHeaders.PartitionKey, out discriminator) == false)
+            {
+                discriminator = mapper(context.Message.Instance);
+            }
 
             context.Headers[PartitionHeaders.PartitionKey] = discriminator;
 
