@@ -3,8 +3,6 @@ title: Performance Counter Usage
 summary: Using the built in Performance Counters.
 reviewed: 2016-07-20
 component: PerformanceCounters
-tags:
-- Performance Counters
 related:
 - nservicebus/operations/performance-counters
 - nservicebus/operations/management-using-powershell
