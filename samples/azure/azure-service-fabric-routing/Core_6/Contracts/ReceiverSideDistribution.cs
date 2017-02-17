@@ -1,15 +1,16 @@
-using System;
-using System.Collections.Generic;
-using NServiceBus;
-using NServiceBus.Features;
-using NServiceBus.Transport;
-
 namespace Contracts
 {
+    using System;
+    using System.Collections.Generic;
+    using NServiceBus;
+    using NServiceBus.Features;
+    using NServiceBus.Transport;
+
     class ReceiverSideDistribution : Feature
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
+            var options = context.Settings.Get<ReceiverSideDistributionOptions>("ReceiverSideDistribution.Options");
             var discriminators = context.Settings.Get<HashSet<string>>("ReceiverSideDistribution.Discriminators");
             var mapper = context.Settings.Get<Func<object,string>>("ReceiverSideDistribution.Mapper");
             Action<string> logger = context.Settings.Get<Action<string>>("ReceiverSideDistribution.Logger");
@@ -27,7 +28,7 @@ namespace Contracts
 
             var forwarder = new Forwarder(discriminators, address => transportInfrastructure.ToTransportAddress(address), logicalAddress);
             context.Pipeline.Register(new DistributeMessagesBasedOnHeader(discriminator, forwarder, logger), "Distributes on the receiver side using header only");
-            context.Pipeline.Register(new DistributeMessagesBasedOnPayload(discriminator, forwarder, mapper, logger), "Distributes on the receiver side using user supplied mapper");
+            context.Pipeline.Register(new DistributeMessagesBasedOnPayload(discriminator, forwarder, mapper, options.TrustReplies, logger), "Distributes on the receiver side using user supplied mapper");
         }
     }
 }
