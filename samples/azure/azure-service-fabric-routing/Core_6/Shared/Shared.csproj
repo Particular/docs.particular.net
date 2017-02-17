@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CopyPartionKeyForRepliesBehavior.cs" />
+    <Compile Include="CopyPartitonKeyForRepliesBehavior.cs" />
     <Compile Include="CopyPartitionKeyForReplies.cs" />
     <Compile Include="DistributeMessagesBasedOnHeader.cs" />
     <Compile Include="DistributeMessagesBasedOnPayload.cs" />
@@ -63,7 +63,7 @@
     <Compile Include="ReceiverSideDistribution.cs" />
     <Compile Include="ReceiverSideDistributionExtensions.cs" />
     <Compile Include="ReceiverSideDistributionOptions.cs" />
-    <Compile Include="SendOptionsExtensions.cs" />
+    <Compile Include="ReplyToExtensions.cs" />
     <Compile Include="SubscriptionDistributionBehavior.cs" />
   </ItemGroup>
   <ItemGroup>

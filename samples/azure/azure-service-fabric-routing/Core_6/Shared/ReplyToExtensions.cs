@@ -3,7 +3,7 @@ using NServiceBus.Routing;
 
 namespace Shared
 {
-    static class SendOptionsExtensions
+    static class ReplyToExtensions
     {
         public static void RouteReplyToPartitionedEndpoint(this SendOptions options, string endpointname, string partitionKey)
         {

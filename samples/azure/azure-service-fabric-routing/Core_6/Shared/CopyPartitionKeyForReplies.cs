@@ -11,7 +11,7 @@ namespace Shared
 
         protected override void Setup(FeatureConfigurationContext context)
         {
-            context.Pipeline.Register(new CopyPartionKeyForRepliesBehavior(), "Copies partitionKey to the reply messages from incoming message headers");
+            context.Pipeline.Register(new CopyPartitonKeyForRepliesBehavior(), "Copies partitionKey to the reply messages from incoming message headers");
         }
     }
 }
