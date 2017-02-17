@@ -68,9 +68,13 @@ void Process(List<IPackage> allPackages, string packageName, string coreDependen
 			{
 				version = nsbDependency.VersionSpec.MaxVersion.Version.Major;
 			}
-			else
+			else if (nsbDependency.VersionSpec.MaxVersion != null)
 			{
 				version = nsbDependency.VersionSpec.MaxVersion.Version.Major - 1;
+			}
+			else 
+			{
+				version = nsbDependency.VersionSpec.MinVersion.Version.Major;
 			}
 			writer.WriteLine($"{majorVersion} : {version}");
         }
