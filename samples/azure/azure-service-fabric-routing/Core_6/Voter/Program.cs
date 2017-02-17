@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Routing;
+using Shared;
 
 namespace Voter
 {
@@ -20,20 +21,8 @@ namespace Voter
         static async Task AsyncMain()
         {
             var endpointConfiguration = new EndpointConfiguration("Voter");
-            endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.AuditProcessedMessagesTo("audit");
-            endpointConfiguration.UseSerialization<JsonSerializer>();
-            endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.Recoverability().DisableLegacyRetriesSatellite();
-            var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-            var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
-            if (string.IsNullOrWhiteSpace(connectionString))
-            {
-                throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
-            }
-            transportConfig.ConnectionString(connectionString);
-            transportConfig.UseForwardingTopology();
+
+            var transportConfig = endpointConfiguration.ApplyCommonConfiguration();
 
             #region Configure Sender-Side routing for CandidateVoteCount
 

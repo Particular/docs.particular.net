@@ -8,6 +8,7 @@ using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Routing;
+using Shared;
 
 namespace CandidateVoteCount
 {
@@ -27,23 +28,7 @@ namespace CandidateVoteCount
         {
             var endpointConfiguration = new EndpointConfiguration("CandidateVoteCount");
 
-            #region Common Endpoint Configuration
-            endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.AuditProcessedMessagesTo("audit");
-            endpointConfiguration.UseSerialization<JsonSerializer>();
-            endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.Recoverability().DisableLegacyRetriesSatellite();
-
-            var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-            var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
-            if (string.IsNullOrWhiteSpace(connectionString))
-            {
-                throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
-            }
-            transportConfig.ConnectionString(connectionString);
-            transportConfig.UseForwardingTopology();
-            #endregion
+            var transportConfig = endpointConfiguration.ApplyCommonConfiguration();
 
             //Determine which partition this endpoint is handling
             string localPartitionKey;
