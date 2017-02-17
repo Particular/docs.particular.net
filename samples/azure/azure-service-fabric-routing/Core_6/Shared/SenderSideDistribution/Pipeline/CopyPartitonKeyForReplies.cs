@@ -5,7 +5,7 @@ using NServiceBus.Transport;
 
 namespace Shared
 {
-    class CopyPartitonKeyForRepliesBehavior : IBehavior<IOutgoingReplyContext, IOutgoingReplyContext>
+    class CopyPartitonKeyForReplies : IBehavior<IOutgoingReplyContext, IOutgoingReplyContext>
     {
         public Task Invoke(IOutgoingReplyContext context, Func<IOutgoingReplyContext, Task> next)
         {

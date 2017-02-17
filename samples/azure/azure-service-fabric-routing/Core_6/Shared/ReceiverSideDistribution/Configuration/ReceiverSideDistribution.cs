@@ -23,7 +23,7 @@ namespace Shared
 
             if (supportMessageDrivenPubSub)
             {
-                context.Pipeline.Register(new SubscriptionDistributionBehavior.Register(discriminator, discriminators, address => transportInfrastructure.ToTransportAddress(address), logicalAddress));
+                context.Pipeline.Register(new DistributeSubscriptions.Register(discriminator, discriminators, address => transportInfrastructure.ToTransportAddress(address), logicalAddress));
             }
 
             var forwarder = new Forwarder(discriminators, address => transportInfrastructure.ToTransportAddress(address), logicalAddress);

@@ -7,14 +7,14 @@ using NServiceBus.Transport;
 
 namespace Shared
 {
-    class SubscriptionDistributionBehavior : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
+    class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
     {
         private readonly HashSet<string> knownPartitionKeys;
         private readonly string localPartitionKey;
         private readonly Func<LogicalAddress, string> addressTranslator;
         private LogicalAddress logicalAddress;
 
-        public SubscriptionDistributionBehavior(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress)
+        public DistributeSubscriptions(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress)
         {
             this.logicalAddress = logicalAddress;
             this.addressTranslator = addressTranslator;
@@ -56,7 +56,7 @@ namespace Shared
         public class Register : RegisterStep
         {
             public Register(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress) :
-                base("SubscriptionDistributionBehavior", typeof(SubscriptionDistributionBehavior), "Distributes subscription messages for message driven pubsub using header only.", b => new SubscriptionDistributionBehavior(localPartitionKey, knownPartitionKeys, addressTranslator, logicalAddress))
+                base("DistributeSubscriptions", typeof(DistributeSubscriptions), "Distributes subscription messages for message driven pubsub using header only.", b => new DistributeSubscriptions(localPartitionKey, knownPartitionKeys, addressTranslator, logicalAddress))
             {
                 InsertBeforeIfExists("ProcessSubscriptionRequests");
             }
