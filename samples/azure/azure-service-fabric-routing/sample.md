@@ -53,17 +53,44 @@ This behavior can be achieved however by using NServiceBus' sender and receiver 
 The remainder of this document will focus on the different techniques that can be used to configure these distribution strategies, either manually or automatically, to achieve full partition aware routing. 
 
 
-### Configuring Sender Side Distribution
+## Receiver Side Distribution
 
-mapping to partition keys (named and ranged)
+Explain receiver side forwarding mechanic
+
+### Payload inspection
+
+Explain how payload inspection will deal with messages destined for unknown partition
+
+### Header inspection
+
+Explain how header inspection will deal with messages destined for known partition
+
+### System message exclusion
+
+Explain that partitioning should not happen for system messages such as subscribe
+
+### Configuration
+
+Explain how receiver side distribution is configured
 
 
 
-### Setting up Sender Side Distribution
 
-mapping to partition keys (named and ranged)
+## Sender Side Distribution
 
+Explain how sender side distribution works, for send & publish
 
+### Partition aware distribution strategy
+
+Explain the partition aware distribution strategy
+
+### Reply 
+
+Explain the concerns around replying
+
+### Configuration
+
+Explain how sender side distribution is configured
 
 
 
