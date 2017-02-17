@@ -25,7 +25,8 @@ class Usage
                 .ConfigureAwait(false);
             try
             {
-                // either a blocking action or split the instantiation and disposal in to the server startup and shutdown
+                // either a blocking action or split the instantiation 
+                // and disposal in to the server startup and shutdown
             }
             finally
             {
