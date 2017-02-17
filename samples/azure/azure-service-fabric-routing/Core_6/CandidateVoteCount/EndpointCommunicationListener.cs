@@ -8,6 +8,7 @@ using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Routing;
+using PartitionedEndpointConfig;
 using Shared;
 
 namespace CandidateVoteCount
@@ -30,59 +31,19 @@ namespace CandidateVoteCount
 
             var transportConfig = endpointConfiguration.ApplyCommonConfiguration();
 
-            //Determine which partition this endpoint is handling
-            string localPartitionKey;
-            IEnumerable<EndpointInstance> endpointInstances;
-            using (var client = new FabricClient())
-            {
-                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName).ConfigureAwait(false);
-                var servicePartitions =
-                    servicePartitionList.Select(x => x.PartitionInformation).Cast<NamedPartitionInformation>().ToList();
+            var partitionedEndpointConfiguration = await endpointConfiguration.ConfigureNamedPartitionedEndpoint(context);
 
-                endpointInstances = servicePartitions.Select(x => new EndpointInstance("CandidateVoteCount", x.Name));
+            #region Configure Receiver-Side routing for CandidateVoteCount
 
-                #region Configure Receiver-Side routing for CandidateVoteCount
+            var receiverSideDistributionConfig = endpointConfiguration.EnableReceiverSideDistribution(partitionedEndpointConfiguration.KnownPartitionKeys, m => ServiceEventSource.Current.ServiceMessage(context, m));
 
-                var discriminators = new HashSet<string>(servicePartitions.Select(x => x.Name));
-
-                Func<object, string> candidateMapper = message =>
-                {
-                    var votePlaced = message as VotePlaced;
-                    if (votePlaced == null)
-                    {
-                        throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
-                    }
-
-                    return votePlaced.Candidate;
-                };
-
-                endpointConfiguration.EnableReceiverSideDistribution(discriminators, candidateMapper, m => ServiceEventSource.Current.ServiceMessage(context, m));
-
-                #endregion
-
-                localPartitionKey = servicePartitions.Single(p => p.Id == context.PartitionId).Name;
-            }
-
-            // Set the endpoint instance discriminator using the partition key
-            endpointConfiguration.MakeInstanceUniquelyAddressable(localPartitionKey);
-
-            // Register the Service context for later use
-            endpointConfiguration.RegisterComponents(components => components.RegisterSingleton(context));
-
-            var internalSettings = endpointConfiguration.GetSettings();
-            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
-            var instances = internalSettings.GetOrCreate<EndpointInstances>();
-
-            #region Configure Local send to own individualized queue distribution strategy
-
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", message => localPartitionKey, DistributionStrategyScope.Send, localPartitionKey));
-
-            instances.AddOrReplaceInstances("CandidateVoteCount", endpointInstances.ToList());
+            receiverSideDistributionConfig.AddMappingForMessageType<VotePlaced>(message => message.Candidate);
 
             #endregion
 
+
             #region Configure Sender-Side routing for ZipCodeVoteCount
-            transportConfig.Routing().RouteToEndpoint(typeof(TrackZipCode), "ZipCodeVoteCount"); //TODO: Is this really necessary if we are replacing it later?
+            transportConfig.Routing().RouteToEndpoint(typeof(TrackZipCode), "ZipCodeVoteCount");
 
             Func<object, string> mapper = message =>
             {
@@ -112,7 +73,11 @@ namespace CandidateVoteCount
                 throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
             };
 
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", mapper, DistributionStrategyScope.Send, localPartitionKey));
+            var internalSettings = endpointConfiguration.GetSettings();
+            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
+            var instances = internalSettings.GetOrCreate<EndpointInstances>();
+
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", mapper, DistributionStrategyScope.Send, partitionedEndpointConfiguration.LocalPartitionKey));
 
             using (var client = new FabricClient())
             {

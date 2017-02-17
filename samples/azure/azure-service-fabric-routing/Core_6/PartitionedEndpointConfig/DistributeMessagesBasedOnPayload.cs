@@ -1,4 +1,4 @@
-namespace Contracts
+namespace PartitionedEndpointConfig
 {
     using System;
     using System.Threading.Tasks;

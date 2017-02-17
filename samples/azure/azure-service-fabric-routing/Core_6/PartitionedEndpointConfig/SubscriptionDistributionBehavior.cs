@@ -1,12 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Pipeline;
-using NServiceBus.Transport;
-
-namespace Contracts
+namespace PartitionedEndpointConfig
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using NServiceBus;
+    using NServiceBus.Pipeline;
+    using NServiceBus.Transport;
+
     class SubscriptionDistributionBehavior : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
     {
         private readonly HashSet<string> knownPartitionKeys;
