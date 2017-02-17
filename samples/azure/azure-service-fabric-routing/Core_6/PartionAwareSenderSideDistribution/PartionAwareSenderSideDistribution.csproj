@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D2D5A397-E764-48D9-8C02-BA7EDE62A36D}</ProjectGuid>
+    <ProjectGuid>{9E42777F-04C7-4867-B86A-00B0F669656E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Contracts</RootNamespace>
-    <AssemblyName>Contracts</AssemblyName>
+    <RootNamespace>PartionAwareSenderSideDistribution</RootNamespace>
+    <AssemblyName>PartionAwareSenderSideDistribution</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,24 +29,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.2.0-pullrequest4461\lib\net452\NServiceBus.Core.dll</HintPath>
@@ -63,18 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CopyPartitionKeyForReplies.cs" />
-    <Compile Include="CloseElection.cs" />
-    <Compile Include="CopyPartionKeyForRepliesBehavior.cs" />
+    <Compile Include="EndpointConfigurationExtensions.cs" />
+    <Compile Include="PartitionAwareDistributionStrategy.cs" />
+    <Compile Include="PartitionAwareSenderSideDistributionConfiguration.cs" />
     <Compile Include="PartitionHeaders.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SendOptionsExtensions.cs" />
-    <Compile Include="ReportVotes.cs" />
-    <Compile Include="ReportZipCode.cs" />
-    <Compile Include="TrackZipCode.cs" />
-    <Compile Include="CloseVoting.cs" />
-    <Compile Include="TrackZipCodeReply.cs" />
-    <Compile Include="VotePlaced.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

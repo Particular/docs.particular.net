@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using NServiceBus;
-
-namespace Contracts
+namespace PartitionedEndpointConfig
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using NServiceBus;
+
     class Forwarder
     {
         private readonly LogicalAddress logicalAddress;

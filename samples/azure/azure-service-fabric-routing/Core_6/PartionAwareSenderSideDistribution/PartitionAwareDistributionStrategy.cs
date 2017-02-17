@@ -1,10 +1,10 @@
-namespace Contracts
-{
-    using System;
-    using System.Linq;
-    using NServiceBus;
-    using NServiceBus.Routing;
+using System;
+using System.Linq;
+using NServiceBus;
+using NServiceBus.Routing;
 
+namespace PartionAwareSenderSideDistribution
+{
     public class PartitionAwareDistributionStrategy : DistributionStrategy
     {
         readonly string localDiscriminator;

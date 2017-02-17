@@ -90,6 +90,10 @@
       <Project>{D2D5A397-E764-48D9-8C02-BA7EDE62A36D}</Project>
       <Name>Messages</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PartionAwareSenderSideDistribution\PartionAwareSenderSideDistribution.csproj">
+      <Project>{9e42777f-04c7-4867-b86a-00b0f669656e}</Project>
+      <Name>PartionAwareSenderSideDistribution</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{8a06709e-003c-47da-8be5-861e311e8212}</Project>
       <Name>Shared</Name>

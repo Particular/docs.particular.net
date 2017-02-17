@@ -1,11 +1,11 @@
-using System;
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Pipeline;
-using NServiceBus.Transport;
-
-namespace Contracts
+namespace PartitionedEndpointConfig
 {
+    using System;
+    using System.Threading.Tasks;
+    using NServiceBus;
+    using NServiceBus.Pipeline;
+    using NServiceBus.Transport;
+
     class DistributeMessagesBasedOnHeader : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
     {
         private readonly string localPartitionKey;

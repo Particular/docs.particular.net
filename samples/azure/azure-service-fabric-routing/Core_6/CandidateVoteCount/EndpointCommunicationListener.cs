@@ -8,6 +8,8 @@ using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Routing;
+using PartionAwareSenderSideDistribution;
+using PartitionedEndpointConfig;
 using Shared;
 
 namespace CandidateVoteCount
@@ -30,101 +32,43 @@ namespace CandidateVoteCount
 
             var transportConfig = endpointConfiguration.ApplyCommonConfiguration();
 
-            //Determine which partition this endpoint is handling
-            string localPartitionKey;
-            IEnumerable<EndpointInstance> endpointInstances;
-            using (var client = new FabricClient())
-            {
-                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName).ConfigureAwait(false);
-                var servicePartitions =
-                    servicePartitionList.Select(x => x.PartitionInformation).Cast<NamedPartitionInformation>().ToList();
+            var partitionedEndpointConfiguration = await endpointConfiguration.ConfigureNamedPartitionedEndpoint(context);
 
-                endpointInstances = servicePartitions.Select(x => new EndpointInstance("CandidateVoteCount", x.Name));
+            #region Configure Receiver-Side routing for CandidateVoteCount
 
-                #region Configure Receiver-Side routing for CandidateVoteCount
+            var receiverSideDistributionConfig = endpointConfiguration.EnableReceiverSideDistribution(partitionedEndpointConfiguration.KnownPartitionKeys, m => ServiceEventSource.Current.ServiceMessage(context, m));
 
-                var discriminators = new HashSet<string>(servicePartitions.Select(x => x.Name));
-
-                Func<object, string> candidateMapper = message =>
-                {
-                    var votePlaced = message as VotePlaced;
-                    if (votePlaced == null)
-                    {
-                        throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
-                    }
-
-                    return votePlaced.Candidate;
-                };
-
-                endpointConfiguration.EnableReceiverSideDistribution(discriminators, candidateMapper, m => ServiceEventSource.Current.ServiceMessage(context, m));
-
-                #endregion
-
-                localPartitionKey = servicePartitions.Single(p => p.Id == context.PartitionId).Name;
-            }
-
-            // Set the endpoint instance discriminator using the partition key
-            endpointConfiguration.MakeInstanceUniquelyAddressable(localPartitionKey);
-
-            // Register the Service context for later use
-            endpointConfiguration.RegisterComponents(components => components.RegisterSingleton(context));
-
-            var internalSettings = endpointConfiguration.GetSettings();
-            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
-            var instances = internalSettings.GetOrCreate<EndpointInstances>();
-
-            #region Configure Local send to own individualized queue distribution strategy
-
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", message => localPartitionKey, DistributionStrategyScope.Send, localPartitionKey));
-
-            instances.AddOrReplaceInstances("CandidateVoteCount", endpointInstances.ToList());
+            receiverSideDistributionConfig.AddMappingForMessageType<VotePlaced>(message => message.Candidate);
 
             #endregion
 
+
             #region Configure Sender-Side routing for ZipCodeVoteCount
-            transportConfig.Routing().RouteToEndpoint(typeof(TrackZipCode), "ZipCodeVoteCount"); //TODO: Is this really necessary if we are replacing it later?
 
-            Func<object, string> mapper = message =>
+            var zipCodeVoteCountSenderSideDistributionConfig = transportConfig.RegisterSenderSideDistributionForPartitionedEndpoint("ZipCodeVoteCount", new[] {"33000", "66000", "99000"});
+
+            Func<Type, string, string> convertStringZipCodeToHighKey = (messageType, zipCode) =>
             {
-                var trackZipCode = message as TrackZipCode;
-                if (trackZipCode != null)
+                var zipCodeAsNumber = Convert.ToInt32(zipCode);
+                // 00000..33000 => 33000 33001..66000 => 66000 66001..99000 => 99000
+                if (zipCodeAsNumber >= 0 && zipCodeAsNumber <= 33000)
                 {
-                    var zipCodeAsNumber = Convert.ToInt32(trackZipCode.ZipCode);
-                    // 00000..33000 => 33000 34000..66000 => 66000 67000..99000 => 99000
-                    if (zipCodeAsNumber >= 0 && zipCodeAsNumber <= 33000)
-                    {
-                        return "33000";
-                    }
-
-                    if (zipCodeAsNumber > 33000 && zipCodeAsNumber <= 66000)
-                    {
-                        return "66000";
-                    }
-
-                    if (zipCodeAsNumber > 66000 && zipCodeAsNumber <= 99000)
-                    {
-                        return "99000";
-                    }
-
-                    throw new Exception($"Invalid zip code '{zipCodeAsNumber}' for message of type '{message.GetType()}'.");
+                    return "33000";
                 }
 
-                throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
+                if (zipCodeAsNumber > 33000 && zipCodeAsNumber <= 66000)
+                {
+                    return "66000";
+                }
+
+                if (zipCodeAsNumber > 66000 && zipCodeAsNumber <= 99000)
+                {
+                    return "99000";
+                }
+                throw new Exception($"Invalid zip code '{zipCodeAsNumber}' for message of type '{messageType}'.");
             };
 
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", mapper, DistributionStrategyScope.Send, localPartitionKey));
-
-            using (var client = new FabricClient())
-            {
-                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(new Uri("fabric:/ServiceFabricRouting/ZipCodeVoteCount")).ConfigureAwait(false);
-                var partitions = new List<EndpointInstance>();
-                foreach (var partition in servicePartitionList)
-                {
-                    partitions.Add(new EndpointInstance("ZipCodeVoteCount", partition.PartitionInformation.Kind == ServicePartitionKind.Int64Range ? ((Int64RangePartitionInformation)partition.PartitionInformation).HighKey.ToString() : ((NamedPartitionInformation)partition.PartitionInformation).Name));
-                }
-
-                instances.AddOrReplaceInstances("ZipCodeVoteCount", partitions);
-            }
+            zipCodeVoteCountSenderSideDistributionConfig.AddMappingForMessageType<TrackZipCode>(message => convertStringZipCodeToHighKey(message.GetType(), message.ZipCode));
 
             #endregion
 
