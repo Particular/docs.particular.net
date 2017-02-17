@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 
-namespace Contracts
+namespace Shared
 {
-    public static class EndpointConfigurationExtensions
+    public static class ReceiverSideDistributionExtensions
     {
         public static ReceiverSideDistributionOptions EnableReceiverSideDistribution(this EndpointConfiguration configuration, HashSet<string> discriminators, Func<object,string> mapper, Action<string> logger = null)
         {

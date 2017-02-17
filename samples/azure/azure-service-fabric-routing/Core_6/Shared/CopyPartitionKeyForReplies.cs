@@ -1,6 +1,6 @@
 ﻿using NServiceBus.Features;
 
-namespace Contracts
+namespace Shared
 {
     class CopyPartitionKeyForReplies : Feature
     {

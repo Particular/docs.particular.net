@@ -5,7 +5,7 @@ using NServiceBus;
 using NServiceBus.Pipeline;
 using NServiceBus.Transport;
 
-namespace Contracts
+namespace Shared
 {
     class SubscriptionDistributionBehavior : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
     {

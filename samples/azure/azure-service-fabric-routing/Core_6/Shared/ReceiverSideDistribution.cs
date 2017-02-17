@@ -1,11 +1,11 @@
-namespace Contracts
-{
-    using System;
-    using System.Collections.Generic;
-    using NServiceBus;
-    using NServiceBus.Features;
-    using NServiceBus.Transport;
+using System;
+using System.Collections.Generic;
+using NServiceBus;
+using NServiceBus.Features;
+using NServiceBus.Transport;
 
+namespace Shared
+{
     class ReceiverSideDistribution : Feature
     {
         protected override void Setup(FeatureConfigurationContext context)

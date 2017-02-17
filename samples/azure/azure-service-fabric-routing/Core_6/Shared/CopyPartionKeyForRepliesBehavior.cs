@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NServiceBus;
 using NServiceBus.Pipeline;
 using NServiceBus.Transport;
 
-namespace Contracts
+namespace Shared
 {
     class CopyPartionKeyForRepliesBehavior : IBehavior<IOutgoingReplyContext, IOutgoingReplyContext>
     {

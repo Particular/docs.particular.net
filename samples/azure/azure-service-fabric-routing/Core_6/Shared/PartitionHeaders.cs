@@ -1,4 +1,4 @@
-namespace Contracts
+namespace Shared
 {
     public static class PartitionHeaders
     {

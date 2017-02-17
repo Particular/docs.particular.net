@@ -4,7 +4,7 @@ using NServiceBus;
 using NServiceBus.Pipeline;
 using NServiceBus.Transport;
 
-namespace Contracts
+namespace Shared
 {
     class DistributeMessagesBasedOnHeader : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
     {

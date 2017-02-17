@@ -1,10 +1,8 @@
+using NServiceBus;
 using NServiceBus.Routing;
 
-namespace Contracts
+namespace Shared
 {
-    using System;
-    using NServiceBus;
-
     static class SendOptionsExtensions
     {
         public static void RouteReplyToPartitionedEndpoint(this SendOptions options, string endpointname, string partitionKey)

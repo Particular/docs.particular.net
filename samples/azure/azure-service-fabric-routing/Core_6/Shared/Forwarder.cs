@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
 
-namespace Contracts
+namespace Shared
 {
     class Forwarder
     {

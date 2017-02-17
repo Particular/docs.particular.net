@@ -1,10 +1,10 @@
-namespace Contracts
-{
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.Pipeline;
+using System;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Pipeline;
 
+namespace Shared
+{
     class DistributeMessagesBasedOnPayload : IBehavior<IIncomingLogicalMessageContext, IIncomingLogicalMessageContext>
     {
         private readonly string localPartitionKey;
