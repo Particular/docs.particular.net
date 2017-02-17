@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Routing;
+using PartionAwareSenderSideDistribution;
 using Shared;
 
 namespace Voter
@@ -26,33 +27,10 @@ namespace Voter
 
             #region Configure Sender-Side routing for CandidateVoteCount
 
-            transportConfig.Routing().RouteToEndpoint(typeof(CloseElection), "CandidateVoteCount");
+            var candidateVoteCountDistributionConfig = transportConfig.RegisterSenderSideDistributionForPartitionedEndpoint("CandidateVoteCount", new[] {"John", "Abby"});
 
-            var internalSettings = endpointConfiguration.GetSettings();
+            candidateVoteCountDistributionConfig.AddMappingForMessageType<CloseElection>(message => message.Candidate);
 
-            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
-
-            Func<object, string> mapper = message =>
-            {
-                var candidate = message as CloseElection;
-                if (candidate != null)
-                {
-                    return candidate.Candidate;
-                }
-
-                throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
-            };
-
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", mapper, DistributionStrategyScope.Send));
-
-            var candidateVoteCountInstances = new List<EndpointInstance>
-            {
-                new EndpointInstance("CandidateVoteCount", "John"),
-                new EndpointInstance("CandidateVoteCount", "Abby"),
-            };
-
-            var instances = internalSettings.GetOrCreate<EndpointInstances>();
-            instances.AddOrReplaceInstances("CandidateVoteCount", candidateVoteCountInstances);
             #endregion
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
