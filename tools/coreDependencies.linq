@@ -62,9 +62,17 @@ void Process(List<IPackage> allPackages, string packageName, string coreDependen
             {
                 continue;
             }
-            processed.Add(majorVersion);
-            var minVersion = nsbDependency.VersionSpec.MinVersion.Version;
-            writer.WriteLine($"{majorVersion} : {minVersion.Major}");
+			processed.Add(majorVersion);
+			int version;
+			if (nsbDependency.VersionSpec.IsMaxInclusive)
+			{
+				version = nsbDependency.VersionSpec.MaxVersion.Version.Major;
+			}
+			else
+			{
+				version = nsbDependency.VersionSpec.MaxVersion.Version.Major - 1;
+			}
+			writer.WriteLine($"{majorVersion} : {version}");
         }
         writer.Flush();
     }
