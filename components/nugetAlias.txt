@@ -22,6 +22,7 @@ CloudServicesHost: NServiceBus.Hosting.Azure
 Distributor: NServiceBus.Distributor.MSMQ
 EntityFramework: GoodlyFere.NServiceBus.EntityFramework
 EventStoreTransport: NServiceBus.EventStore
+EventSourceLogging: NServiceBus.EventSourceLogging
 FileBasedRouting: NServiceBus.FileBasedRouting
 PropertyEncryption: NServiceBus.Encryption.MessageProperty
 RawMessaging: NServiceBus.Raw

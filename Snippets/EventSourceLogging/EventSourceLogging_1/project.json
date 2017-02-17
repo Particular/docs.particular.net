@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "6.*",
+    "NServiceBus.EventSourceLogging": "1.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

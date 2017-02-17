@@ -36,6 +36,7 @@ For more advanced logging, it is recommended to utilize one of the many mature l
  * [NLog integration](nlog.md)
  * [CommonLogging integration](common-logging.md)
  * [Serilog integration](serilog.md)
+ * [EventSourceLogging integration](eventsourcelogging.md)
 
 Note: Moving to custom logging means none of the approaches used in the above [Default Logging](#default-logging) apply.
 

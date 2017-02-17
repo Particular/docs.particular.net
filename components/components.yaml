@@ -217,6 +217,17 @@
   NugetOrder:
     - GoodlyFere.NServiceBus.EntityFramework
 
+- Key: EventSourceLogging
+  Name: EventSourceLogging
+  DocoUrl: nservicebus/logging/eventsourcelogging
+  GitHubOwner: robv8r
+  Category: Logger
+  SupportLevel: Community
+  LicenseUrl: https://github.com/robv8r/NServiceBus.EventSourceLogging/blob/develop/LICENSE
+  ProjectUrl: https://github.com/robv8r/NServiceBus.EventSourceLogging
+  NugetOrder:
+    - NServiceBus.EventSourceLogging
+
 - Key: EventStorePersistence
   Name: EventStore Persistence
   DocoUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
