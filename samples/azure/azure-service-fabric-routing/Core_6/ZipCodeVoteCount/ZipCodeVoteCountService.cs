@@ -3,20 +3,18 @@ using System.Fabric;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 
-namespace CandidateVoteCount
+namespace ZipCodeVoteCount
 {
-    internal sealed class CandidateVoteCount : StatefulService
+    internal sealed class ZipCodeVoteCountService : StatefulService
     {
-        public CandidateVoteCount(StatefulServiceContext context)
+        public ZipCodeVoteCountService(StatefulServiceContext context)
             : base(context)
-        {
-        }
+        { }
 
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
         {
             var listener = new EndpointCommunicationListener(Context);
-            return new List<ServiceReplicaListener> {new ServiceReplicaListener(context => listener)};
-
+            return new List<ServiceReplicaListener> { new ServiceReplicaListener(context => listener) };
         }
     }
 }

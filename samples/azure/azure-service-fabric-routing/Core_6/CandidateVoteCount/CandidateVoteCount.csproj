@@ -94,7 +94,7 @@
     <Compile Include="CandidateVotes.cs" />
     <Compile Include="EndpointCommunicationListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CandidateVoteCount.cs" />
+    <Compile Include="CandidateVoteCountService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ReportVotesHandler.cs" />
     <Compile Include="ServiceEventSource.cs" />

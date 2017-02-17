@@ -20,9 +20,9 @@ namespace ZipCodeVoteCount
                 // an instance of the class is created in this host process.
 
                 ServiceRuntime.RegisterServiceAsync("ZipCodeVoteCountType",
-                    context => new ZipCodeVoteCount(context)).GetAwaiter().GetResult();
+                    context => new ZipCodeVoteCountService(context)).GetAwaiter().GetResult();
 
-                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(ZipCodeVoteCount).Name);
+                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(ZipCodeVoteCountService).Name);
 
                 // Prevents this host process from terminating so services keep running.
                 Thread.Sleep(Timeout.Infinite);
