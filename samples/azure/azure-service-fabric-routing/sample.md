@@ -52,29 +52,30 @@ This behavior can be achieved however by using NServiceBus' sender and receiver 
 
 The remainder of this document will focus on the different techniques that can be used to configure these distribution strategies, either manually or automatically, to achieve full partition aware routing. 
 
-
 ## Receiver Side Distribution
 
-Explain receiver side forwarding mechanic
-
-### Payload inspection
-
-Explain how payload inspection will deal with messages destined for unknown partition
+Every partitioned endpoint is configured to check whether an incoming message should be processed on a partition it runs on. If it is not the case, the message is forwarded to the proper partition. Details of Receiver Side Distribution are described below.
 
 ### Header inspection
 
-Explain how header inspection will deal with messages destined for known partition
+Every incoming message has its `partition-key` header value inspected by `DistributeMessagesBasedOnHeader` behavior. If the value specified in this header is equal to the receiver's parition, then a regular message processing occurs. Otherwise, the receiver forwards the message to the right partition. If the partition key is wrongly assinged - the specified partition does not exist, the message is moved to the error queue.
 
-### System message exclusion
+If the `partition-key` header does not exist, the pipeline execution continues moving the message to the *Message body inspection* step.
 
-Explain that partitioning should not happen for system messages such as subscribe
+### Message body inspection
+
+If the value of `partition-key` can't be extracted from a header value, it's determined on the basis of the message body. `DistributeMessagesBasedOnPayload` behavior determines the partition value using the mapping function provided by a user via configuration API. The calculated value is added as the `partition-key` header.
+
+The forwarding/processing decision is made in the same way as in *Header inspection* step.
+
+### Control message forwarding
+
+When an endpoint instance receives a control message representing [either Subscribe or Unsubscribe intent](https://docs.particular.net/nservicebus/messaging/headers#messaging-interaction-headers-nservicebus-messageintent), the message is forwarded it to all other partitions.
 
 ### Configuration
 
+**TODO**
 Explain how receiver side distribution is configured
-
-
-
 
 ## Sender Side Distribution
 
