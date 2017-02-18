@@ -1,6 +1,4 @@
-﻿// change file type to Compile to test
-using System.IO;
-using System.Threading.Tasks;
+﻿using System;
 
 class SecurityHelpers
 {
@@ -9,7 +7,7 @@ class SecurityHelpers
     {
         #region Base64-CSharp
 
-        using (var rijndael = System.Security.Cryptography.RijndaelManaged.Create())
+        using (var rijndael = System.Security.Cryptography.Rijndael.Create())
         {
             rijndael.GenerateKey();
             var key = Convert.ToBase64String(rijndael.Key);
@@ -20,10 +18,12 @@ class SecurityHelpers
 
         #region Hex-CSharp
 
-        using (var rijndael = System.Security.Cryptography.RijndaelManaged.Create())
+        using (var rijndael = System.Security.Cryptography.Rijndael.Create())
         {
             rijndael.GenerateKey();
-            var key = BitConverter.ToString(rijndael.Key).Replace("-", string.Empty).ToLowerInvariant();
+            var key = BitConverter.ToString(rijndael.Key)
+                .Replace("-", string.Empty)
+                .ToLowerInvariant();
             Console.WriteLine(key);
         }
 
