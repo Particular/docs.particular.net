@@ -12,8 +12,8 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.ComplexSagaFindingLogic";
-        var endpointConfiguration = new EndpointConfiguration("Samples.ComplexSagaFindingLogic");
+        Console.Title = "Samples.SimpleSaga";
+        var endpointConfiguration = new EndpointConfiguration("Samples.SimpleSaga");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

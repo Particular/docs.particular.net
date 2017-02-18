@@ -1,7 +1,7 @@
 ---
 title: Simple Saga Usage
 summary: How build and use a saga.
-reviewed: 2016-03-21
+reviewed: 2017-02-17
 component: Core
 tags:
 - Saga
@@ -16,17 +16,17 @@ related:
 
 This sample shows a simple saga.
 
-At startup the sample will send two `StartOrder`s with different `OrderId`s. This will cause two sagas to start because `StartOrder` is configured as a `IAmStartedByMessages` and there is a mapping between `StartOrder.OrderId` and `OrderSagaData.OrderId`.
+At startup the sample will send two `StartOrder` messages with different identifers for `OrderId`. This will cause two saga instances to start because `StartOrder` is configured to start a saga using the `IAmStartedByMessages` construct. There is also a mapping defined between `StartOrder.OrderId` and `OrderSagaData.OrderId`. This mapping helps to [correlate incoming messages](/nservicebus/sagas/message-correlation.md) to its appropriate saga instances. 
 
-The ample also requests a 30min `CancelOrder` timeout that will mark the saga as complete if the saga is not already complete.
+This sample also requests a 30 minute `CancelOrder` timeout that will mark the saga as complete if the saga is not already complete.
 
 The output to the console will be
 
 ```no-highlight
-2015-02-11 22:34:59.475 INFO  OrderSaga Saga with OrderId 123 received StartOrder with OrderId 123
-2015-02-11 22:34:59.526 INFO  OrderSaga Saga with OrderId 456 received StartOrder with OrderId 456
-2015-02-11 22:34:59.572 INFO  OrderSaga Saga with OrderId 123 received CompleteOrder with OrderId 123
-2015-02-11 22:34:59.606 INFO  OrderSaga Saga with OrderId 456 received CompleteOrder with OrderId 456
+2015-02-11 22:34:59.475 INFO  OrderSaga Saga with OrderId 1 received StartOrder with OrderId 1
+2015-02-11 22:34:59.526 INFO  OrderSaga Saga with OrderId 2 received StartOrder with OrderId 2
+2015-02-11 22:34:59.572 INFO  OrderSaga Saga with OrderId 1 received CompleteOrder with OrderId 1
+2015-02-11 22:34:59.606 INFO  OrderSaga Saga with OrderId 2 received CompleteOrder with OrderId 2
 ```
 
 
