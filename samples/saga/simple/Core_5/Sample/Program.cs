@@ -6,9 +6,9 @@ class Program
 
     static void Main()
     {
-        Console.Title = "Samples.ComplexSagaFindingLogic";
+        Console.Title = "Samples.SimpleSaga";
         var busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.ComplexSagaFindingLogic");
+        busConfiguration.EndpointName("Samples.SimpleSaga");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
