@@ -73,7 +73,7 @@ The forwarding/processing decision is made in the same way as in *Header inspect
 
 ### Control message forwarding
 
-When an endpoint instance receives a control message representing [either Subscribe or Unsubscribe intent](/nservicebus/messaging/headers#messaging-interaction-headers-nservicebus-messageintent), the message is forwarded it to all other partitions.
+When an endpoint instance receives a control message representing [either Subscribe or Unsubscribe intent](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-messageintent), the message is forwarded it to all other partitions.
 
 ### Configuration
 
