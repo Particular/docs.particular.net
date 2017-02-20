@@ -24,7 +24,8 @@ For sake of simplicity, there are only 2 candidates in the election, called "Joh
 
 The solution contains the following projects:
 
- * Contracts: This project contains class that are shared by the other projects. These classes include message definitions as well as partition aware routing definitions that will be plugged into the NServiceBus pipeline.
+ * Contracts: This project contains message definitions that are shared between the projects in the solution.
+ * Shared: Contains the receiver side distribution code as well as the sender side distribution code. 
  * CandidateVoteCount: This Service Fabric service contains the logic to count the votes by candidate while the votes come in. It also sends these votes to the `ZipCodeVoteCount` endpoint for tracking by zipcode and it will report the results when the voting period is over.
  * ZipCodeVoteCount: This Service Fabric service contains the logic to count the votes by zip code in the background. It will report the results when the allowed counting period is over.
  * ServiceFabricRouting: This is the Service Fabric deployment project, it describes how the Service Fabric application and service types will be configured.
@@ -58,9 +59,11 @@ Every partitioned endpoint is configured to check whether an incoming message sh
 
 ### Header inspection
 
-Every incoming message has its `partition-key` header value inspected by `DistributeMessagesBasedOnHeader` behavior. If the value specified in this header is equal to the receiver's parition, then a regular message processing occurs. Otherwise, the receiver forwards the message to the right partition. If the partition key is wrongly assinged - the specified partition does not exist, the message is moved to the error queue.
+Every incoming message has its `partition-key` header value inspected by `DistributeMessagesBasedOnHeader` behavior. If the value specified in this header is equal to the receiver's parition, then a regular message processing occurs. Otherwise, the receiver forwards the message to the right partition. If the partition key is wrongly assigned - the specified partition does not exist, the message is moved to the error queue.
 
 If the `partition-key` header does not exist, the pipeline execution continues moving the message to the *Message body inspection* step.
+
+NOTE: `PartitionMappingFailedException` is configured as an unrecoverable exception. Whenever such an exception is raised the message that triggered the exception will be moved to the configured error queue. For more information refer to [unrecoverable exceptions](/TODO) documentation page.
 
 ### Message body inspection
 
