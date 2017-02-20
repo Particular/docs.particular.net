@@ -204,7 +204,7 @@
             public override string SelectDestination(DistributionContext context)
             {
                 // access to headers, payload...
-                return context.ReceiverAddresses[andomr.Next(context.ReceiverAddresses.Length)];
+                return context.ReceiverAddresses[random.Next(context.ReceiverAddresses.Length)];
             }
         }
 
