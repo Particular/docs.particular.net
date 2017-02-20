@@ -53,6 +53,10 @@
   <ItemGroup>
     <Compile Include="ReceiverSideDistribution\PartitionMappingFailedException.cs" />
     <Compile Include="ReceiverSideDistribution\Pipeline\HardcodeReplyToAddressToLogicalAddress.cs" />
+    <Compile Include="SenderSideDistribution\Configuration\PartitionAwareSenderSideDistributionConfiguration.cs" />
+    <Compile Include="SenderSideDistribution\Configuration\SenderSideDistributionExtensions.cs" />
+    <Compile Include="SenderSideDistribution\Pipeline\CopyPartitonKeyForReplies.cs" />
+    <Compile Include="SenderSideDistribution\Configuration\SenderSideDistribution.cs" />
     <Compile Include="ReceiverSideDistribution\Pipeline\DistributeMessagesBasedOnHeader.cs" />
     <Compile Include="ReceiverSideDistribution\Pipeline\DistributeMessagesBasedOnPayload.cs" />
     <Compile Include="EndpointConfigurationExtensions.cs" />

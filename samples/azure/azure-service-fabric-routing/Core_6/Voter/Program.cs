@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Routing;
+using NServiceBus.Settings;
 using NServiceBus.Transport;
 using Shared;
 
@@ -29,34 +30,6 @@ namespace Voter
 
             var distributionConfig = transportConfig.Routing().RegisterPartitionedDestinationEndpoint("CandidateVoteCount", new[] { "John", "Abby" });
             distributionConfig.AddPartitionMappingForMessageType<CloseElection>(message => message.Candidate);
-
-            //transportConfig.Routing().RouteToEndpoint(typeof(CloseElection), "CandidateVoteCount");
-
-            //var internalSettings = endpointConfiguration.GetSettings();
-
-            //var policy = internalSettings.GetOrCreate<DistributionPolicy>();
-
-            //Func<object, string> mapper = message =>
-            //{
-            //    var candidate = message as CloseElection;
-            //    if (candidate != null)
-            //    {
-            //        return candidate.Candidate;
-            //    }
-
-            //    throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
-            //};
-
-            //policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", mapper, DistributionStrategyScope.Send));
-
-            //var candidateVoteCountInstances = new List<EndpointInstance>
-            //{
-            //    new EndpointInstance("CandidateVoteCount", "John"),
-            //    new EndpointInstance("CandidateVoteCount", "Abby"),
-            //};
-
-            //var instances = internalSettings.GetOrCreate<EndpointInstances>();
-            //instances.AddOrReplaceInstances("CandidateVoteCount", candidateVoteCountInstances);
 
             #endregion
 
@@ -104,13 +77,4 @@ namespace Voter
         }
     }
 
-    public static class SenderSideDistributionExtensions
-    {
-        public static RoutingSettings<T> RegisterPartitionedDestinationEndpoint<T>(
-            this RoutingSettings<T> routingSettings, string endpointName, string[] partitions) where T: TransportDefinition
-        {
-
-            return routingSettings;
-        }
-    }
 }
