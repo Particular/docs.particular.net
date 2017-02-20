@@ -7,19 +7,19 @@ namespace Shared
 {
     class HardcodeReplyToAddressToLogicalAddress : IBehavior<IOutgoingPhysicalMessageContext, IOutgoingPhysicalMessageContext>
     {
-        private LogicalAddress logicalAddress;
+        private string instanceSpecificQueue;
 
-        public HardcodeReplyToAddressToLogicalAddress(LogicalAddress logicalAddress)
+        public HardcodeReplyToAddressToLogicalAddress(string instanceSpecificQueue)
         {
-            this.logicalAddress = logicalAddress;
+            this.instanceSpecificQueue = instanceSpecificQueue;
         }
 
         public Task Invoke(IOutgoingPhysicalMessageContext context, Func<IOutgoingPhysicalMessageContext, Task> next)
         {
             NoReplyToAddressOverride noOverride;
-            if (logicalAddress != default(LogicalAddress) && !context.Extensions.TryGet(out noOverride))
+            if (instanceSpecificQueue != null && !context.Extensions.TryGet(out noOverride))
             {
-                context.Headers[Headers.ReplyToAddress] = logicalAddress.ToString();
+                context.Headers[Headers.ReplyToAddress] = instanceSpecificQueue;
             }
 
             return next(context);
