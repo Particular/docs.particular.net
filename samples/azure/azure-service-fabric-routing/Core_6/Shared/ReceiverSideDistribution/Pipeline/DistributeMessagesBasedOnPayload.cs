@@ -20,7 +20,7 @@ namespace Shared
             this.logger = logger;
         }
 
-        public async Task Invoke(IIncomingLogicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> next)
+        public Task Invoke(IIncomingLogicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> next)
         {
             string messagePartitionKey;
 
@@ -30,8 +30,7 @@ namespace Shared
 
             if (isSubscriptionMessage || isReply)
             {
-                await next(context).ConfigureAwait(false);
-                return;
+                return next(context);
             }
 
             if (!context.MessageHeaders.TryGetValue(PartitionHeaders.PartitionKey, out messagePartitionKey))
@@ -50,13 +49,12 @@ namespace Shared
 
             if (messagePartitionKey == localPartitionKey)
             {
-                await next(context).ConfigureAwait(false); //Continue the pipeline as usual
-                return;
+                return next(context);
             }
 
             context.Headers[PartitionHeaders.PartitionKey] = messagePartitionKey;
 
-            await forwarder.Forward(context, messagePartitionKey).ConfigureAwait(false);
+            return forwarder.Forward(context, messagePartitionKey);
         }
 
         static MessageIntentEnum? GetMessageIntent(IMessageProcessingContext context)

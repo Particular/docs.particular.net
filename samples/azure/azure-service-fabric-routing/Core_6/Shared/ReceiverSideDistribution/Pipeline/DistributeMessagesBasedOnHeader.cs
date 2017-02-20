@@ -19,7 +19,7 @@ namespace Shared
             this.logger = logger;
         }
 
-        public async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingPhysicalMessageContext, Task> next)
+        public Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingPhysicalMessageContext, Task> next)
         {
             var intent = context.Message.GetMesssageIntent();
             var isSubscriptionMessage = intent == MessageIntentEnum.Subscribe || intent == MessageIntentEnum.Unsubscribe;
@@ -27,8 +27,7 @@ namespace Shared
 
             if (isSubscriptionMessage || isReply)
             {
-                await next(context).ConfigureAwait(false);
-                return;
+                return next(context);
             }
 
             string messagePartitionKey;
@@ -38,8 +37,7 @@ namespace Shared
             //2. The header value matches local partition key
             if (!hasPartitionKeyHeader || messagePartitionKey == localPartitionKey)
             {
-                await next(context).ConfigureAwait(false); //Continue the pipeline as usual
-                return;
+                return next(context);
             }
             context.Message.Headers[PartitionHeaders.PartitionKey] = messagePartitionKey;
 
@@ -47,7 +45,7 @@ namespace Shared
 
             logger(message);
 
-            await forwarder.Forward(context, messagePartitionKey).ConfigureAwait(false);
+            return forwarder.Forward(context, messagePartitionKey);
         }
     }
 }
