@@ -19,7 +19,7 @@ include: sql-persistence-prereqs
 
 ## Scenario
 
-This samples uses a hypothetical "Order" scenario where the requirement is to transition from an an int correlation id `OrderNumer` to a guid correlation id `OrderId`. 
+This samples uses a hypothetical "Order" scenario where the requirement is to transition from an an int correlation id `OrderNumber` to a guid correlation id `OrderId`. 
 
 
 ## Phases
@@ -27,7 +27,7 @@ This samples uses a hypothetical "Order" scenario where the requirement is to tr
 
 ### Phase 1
 
-In the initial phase an int `OrderNumer` is used. The saga maps to `StartOrder.OrderNumber` in the `ConfigureMapping` and correlates to `OrderSagaData.OrderNumber` via a `SqlSagaAttribute` with `correlationProperty` of `OrderNumber`.
+In the initial phase an int `OrderNumber` is used. The saga maps to `StartOrder.OrderNumber` in the `ConfigureMapping` and correlates to `OrderSagaData.OrderNumber` via a `SqlSagaAttribute` with `correlationProperty` of `OrderNumber`.
 
 
 #### Message
@@ -71,7 +71,7 @@ WARNING: Prior to moving to Phase 3 it is necessary to verify that all existing 
 
 ### Phase 3
 
-In the third phase the int `OrderNumer` is removed leaving only the `OrderId`. The saga now maps to `StartOrder.OrderId` in the `ConfigureMapping` and correlates to `OrderSagaData.OrderId` via a `SqlSagaAttribute` with `correlationProperty` of `OrderNumber`.
+In the third phase the int `OrderNumber` is removed leaving only the `OrderId`. The saga now maps to `StartOrder.OrderId` in the `ConfigureMapping` and correlates to `OrderSagaData.OrderId` via a `SqlSagaAttribute` with `correlationProperty` of `OrderNumber`.
 
 
 #### Message
