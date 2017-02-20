@@ -24,6 +24,21 @@ namespace Shared
         {
             string messagePartitionKey;
 
+            var intent = default(MessageIntentEnum);
+            string str;
+            if (context.MessageHeaders.TryGetValue("NServiceBus.MessageIntent", out str))
+            {
+                Enum.TryParse(str, true, out intent);
+            }
+            var isSubscriptionMessage = intent == MessageIntentEnum.Subscribe || intent == MessageIntentEnum.Unsubscribe;
+            var isReply = intent == MessageIntentEnum.Reply;
+
+            if (isSubscriptionMessage || isReply)
+            {
+                await next(context).ConfigureAwait(false);
+                return;
+            }
+
             if (!context.MessageHeaders.TryGetValue(PartitionHeaders.PartitionKey, out messagePartitionKey))
             {
                 messagePartitionKey = mapper(context.Message.Instance);

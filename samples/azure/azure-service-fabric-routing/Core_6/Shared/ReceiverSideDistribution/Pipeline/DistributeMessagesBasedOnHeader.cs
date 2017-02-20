@@ -23,10 +23,12 @@ namespace Shared
         {
             var intent = context.Message.GetMesssageIntent();
             var isSubscriptionMessage = intent == MessageIntentEnum.Subscribe || intent == MessageIntentEnum.Unsubscribe;
+            var isReply = intent == MessageIntentEnum.Reply;
 
-            if (isSubscriptionMessage)
+            if (isSubscriptionMessage || isReply)
             {
                 await next(context).ConfigureAwait(false);
+                return;
             }
 
             string messagePartitionKey;
