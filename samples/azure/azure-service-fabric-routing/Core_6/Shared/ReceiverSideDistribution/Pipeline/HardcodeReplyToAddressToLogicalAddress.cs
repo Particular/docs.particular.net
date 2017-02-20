@@ -7,7 +7,7 @@ namespace Shared
 {
     class HardcodeReplyToAddressToLogicalAddress : IBehavior<IOutgoingPhysicalMessageContext, IOutgoingPhysicalMessageContext>
     {
-        private string instanceSpecificQueue;
+        readonly string instanceSpecificQueue;
 
         public HardcodeReplyToAddressToLogicalAddress(string instanceSpecificQueue)
         {
@@ -25,6 +25,13 @@ namespace Shared
             return next(context);
         }
 
-        public struct NoReplyToAddressOverride { }
+        public class NoReplyToAddressOverride
+        {
+            public static NoReplyToAddressOverride Instance = new NoReplyToAddressOverride();
+
+            NoReplyToAddressOverride()
+            {
+            }
+        }
     }
 }

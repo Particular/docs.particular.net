@@ -7,7 +7,7 @@ namespace Shared
 {
     public class PartitionAwareDistributionStrategy : DistributionStrategy
     {
-        private readonly Func<object, string> mapper;
+        readonly Func<object, string> mapper;
 
         public PartitionAwareDistributionStrategy(string endpoint, Func<object, string> mapper, DistributionStrategyScope scope) : base(endpoint, scope)
         {

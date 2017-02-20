@@ -9,10 +9,10 @@ namespace Shared
 {
     class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
     {
-        private readonly HashSet<string> knownPartitionKeys;
-        private readonly string localPartitionKey;
-        private readonly Func<LogicalAddress, string> addressTranslator;
-        private LogicalAddress logicalAddress;
+        readonly HashSet<string> knownPartitionKeys;
+        readonly string localPartitionKey;
+        readonly Func<LogicalAddress, string> addressTranslator;
+        readonly LogicalAddress logicalAddress;
 
         public DistributeSubscriptions(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress)
         {

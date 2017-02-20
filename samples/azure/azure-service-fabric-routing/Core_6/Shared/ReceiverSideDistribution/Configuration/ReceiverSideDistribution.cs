@@ -8,6 +8,10 @@ namespace Shared
 {
     class ReceiverSideDistribution : Feature
     {
+        internal const string Discriminators = "ReceiverSideDistribution.Discriminators";
+        internal const string Mapper = "ReceiverSideDistribution.Mapper";
+        internal const string Logger = "ReceiverSideDistribution.Logger";
+
         public ReceiverSideDistribution()
         {
             Defaults(s => s.AddUnrecoverableException(typeof(PartitionMappingFailedException)));
@@ -15,9 +19,9 @@ namespace Shared
 
         protected override void Setup(FeatureConfigurationContext context)
         {
-            var discriminators = context.Settings.Get<HashSet<string>>("ReceiverSideDistribution.Discriminators");
-            var mapper = context.Settings.Get<Func<object,string>>("ReceiverSideDistribution.Mapper");
-            Action<string> logger = context.Settings.Get<Action<string>>("ReceiverSideDistribution.Logger");
+            var discriminators = context.Settings.Get<HashSet<string>>(Discriminators);
+            var mapper = context.Settings.Get<Func<object,string>>(Mapper);
+            var logger = context.Settings.Get<Action<string>>(Logger);
 
             var discriminator = context.Settings.Get<string>("EndpointInstanceDiscriminator");
             var transportInfrastructure = context.Settings.Get<TransportInfrastructure>();

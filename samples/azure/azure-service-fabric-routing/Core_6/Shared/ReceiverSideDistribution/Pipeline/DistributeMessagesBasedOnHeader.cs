@@ -8,8 +8,8 @@ namespace Shared
 {
     class DistributeMessagesBasedOnHeader : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
     {
-        private readonly string localPartitionKey;
-        private readonly Forwarder forwarder;
+        readonly string localPartitionKey;
+        readonly Forwarder forwarder;
         readonly Action<string> logger;
 
         public DistributeMessagesBasedOnHeader(string localPartitionKey, Forwarder forwarder, Action<string> logger)

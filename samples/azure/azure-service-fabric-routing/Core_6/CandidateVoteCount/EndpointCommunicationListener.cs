@@ -48,12 +48,12 @@ namespace CandidateVoteCount
                 Func<object, string> candidateMapper = message =>
                 {
                     var votePlaced = message as VotePlaced;
-                    if (votePlaced == null)
+                    if (votePlaced != null)
                     {
-                        throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
+                        return votePlaced.Candidate;
                     }
 
-                    return votePlaced.Candidate;
+                    throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
                 };
 
                 endpointConfiguration.EnableReceiverSideDistribution(discriminators, candidateMapper, m => ServiceEventSource.Current.ServiceMessage(context, m));

@@ -9,23 +9,23 @@ namespace Shared
 {
     public class PartitionAwareSenderSideDistributionConfiguration : ExposeSettings
     {
-        private readonly RoutingSettings _routingSettings;
-        private readonly string _endpointName;
-        private readonly string[] _partitions;
-        private readonly Dictionary<Type, Func<object, string>> _messageTypeMappers = new Dictionary<Type, Func<object, string>>();
+        readonly RoutingSettings routingSettings;
+        readonly string endpointName;
+        readonly string[] partitions;
+        readonly Dictionary<Type, Func<object, string>> messageTypeMappers = new Dictionary<Type, Func<object, string>>();
 
         public PartitionAwareSenderSideDistributionConfiguration(SettingsHolder settings, RoutingSettings routingSettings, string endpointName, string[] partitions)
             : base(settings)
         {
-            _routingSettings = routingSettings;
-            _endpointName = endpointName;
-            _partitions = partitions;
+            this.routingSettings = routingSettings;
+            this.endpointName = endpointName;
+            this.partitions = partitions;
         }
 
         public PartitionAwareSenderSideDistributionConfiguration AddPartitionMappingForMessageType<T>(Func<T, string> mapMessageToPartitionKey)
         {
-            _routingSettings.RouteToEndpoint(typeof(T), _endpointName);
-            _messageTypeMappers[typeof(T)] = message => mapMessageToPartitionKey((T)message);
+            routingSettings.RouteToEndpoint(typeof(T), endpointName);
+            messageTypeMappers[typeof(T)] = message => mapMessageToPartitionKey((T)message);
 
             return this;
         }
@@ -34,18 +34,18 @@ namespace Shared
         {
             var messageType = message.GetType();
 
-            if (!_messageTypeMappers.ContainsKey(messageType))
+            if (!messageTypeMappers.ContainsKey(messageType))
             {
                 throw new Exception($"No partition mapping is found for message type '{messageType}'.");
             }
 
-            var mapper = _messageTypeMappers[messageType];
+            var mapper = messageTypeMappers[messageType];
 
             var partition = mapper(message);
 
-            if (!_partitions.Contains(partition))
+            if (!partitions.Contains(partition))
             {
-                throw new Exception($"Partition '{partition}' returned by partition mapping of '{messageType}' did not match any of the registered destination partitions '{string.Join(",", _partitions)}'.");
+                throw new Exception($"Partition '{partition}' returned by partition mapping of '{messageType}' did not match any of the registered destination partitions '{string.Join(",", partitions)}'.");
             }
 
             return partition;

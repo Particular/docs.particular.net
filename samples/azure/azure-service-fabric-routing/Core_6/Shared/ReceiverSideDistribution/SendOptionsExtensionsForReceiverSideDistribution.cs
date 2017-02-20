@@ -7,7 +7,7 @@ namespace Shared
     {
         public static void DoNotOverrideReplyToAddress(this SendOptions options)
         {
-            options.GetExtensions().Set(new HardcodeReplyToAddressToLogicalAddress.NoReplyToAddressOverride());
+            options.GetExtensions().Set(HardcodeReplyToAddressToLogicalAddress.NoReplyToAddressOverride.Instance);
         }
     }
 }

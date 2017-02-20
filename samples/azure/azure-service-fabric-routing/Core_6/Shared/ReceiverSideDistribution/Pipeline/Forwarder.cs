@@ -7,9 +7,9 @@ namespace Shared
 {
     class Forwarder
     {
-        private readonly LogicalAddress logicalAddress;
-        private readonly HashSet<string> knownPartitionKeys;
-        private readonly Func<LogicalAddress, string> addressTranslator;
+        readonly LogicalAddress logicalAddress;
+        readonly HashSet<string> knownPartitionKeys;
+        readonly Func<LogicalAddress, string> addressTranslator;
 
         public Forwarder(HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress)
         {

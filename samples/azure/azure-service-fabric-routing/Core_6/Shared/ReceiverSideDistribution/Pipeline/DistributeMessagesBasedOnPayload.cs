@@ -7,10 +7,10 @@ namespace Shared
 {
     class DistributeMessagesBasedOnPayload : IBehavior<IIncomingLogicalMessageContext, IIncomingLogicalMessageContext>
     {
-        private readonly string localPartitionKey;
-        private readonly Forwarder forwarder;
-        private readonly Func<object, string> mapper;
-        private readonly Action<string> logger;
+        readonly string localPartitionKey;
+        readonly Forwarder forwarder;
+        readonly Func<object, string> mapper;
+        readonly Action<string> logger;
 
         public DistributeMessagesBasedOnPayload(string localPartitionKey, Forwarder forwarder, Func<object, string> mapper, Action<string> logger)
         {
