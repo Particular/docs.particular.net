@@ -55,8 +55,6 @@
     <Compile Include="ReceiverSideDistribution\Pipeline\HardcodeReplyToAddressToLogicalAddress.cs" />
     <Compile Include="SenderSideDistribution\Configuration\PartitionAwareSenderSideDistributionConfiguration.cs" />
     <Compile Include="SenderSideDistribution\Configuration\SenderSideDistributionExtensions.cs" />
-    <Compile Include="SenderSideDistribution\Pipeline\CopyPartitonKeyForReplies.cs" />
-    <Compile Include="SenderSideDistribution\Configuration\SenderSideDistribution.cs" />
     <Compile Include="ReceiverSideDistribution\Pipeline\DistributeMessagesBasedOnHeader.cs" />
     <Compile Include="ReceiverSideDistribution\Pipeline\DistributeMessagesBasedOnPayload.cs" />
     <Compile Include="EndpointConfigurationExtensions.cs" />
@@ -72,9 +70,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SenderSideDistribution\Configuration\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
