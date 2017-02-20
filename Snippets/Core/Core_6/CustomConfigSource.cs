@@ -18,6 +18,7 @@
 
     }
 
+#pragma warning disable 618
     #region CustomConfigSource
 
     public class MyCustomConfigurationSource :
@@ -39,11 +40,14 @@
     }
 
     #endregion
+#pragma warning restore 618
 
+#pragma warning disable 618
     #region CustomConfigProvider
 
     class CustomRijndaelEncryptionServiceConfigProvider :
         IProvideConfiguration<RijndaelEncryptionServiceConfig>
+
     {
         public RijndaelEncryptionServiceConfig GetConfiguration()
         {
@@ -55,4 +59,5 @@
     }
 
     #endregion
+#pragma warning restore 618
 }
