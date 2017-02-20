@@ -24,12 +24,7 @@ namespace Shared
         {
             string messagePartitionKey;
 
-            var intent = default(MessageIntentEnum);
-            string str;
-            if (context.MessageHeaders.TryGetValue("NServiceBus.MessageIntent", out str))
-            {
-                Enum.TryParse(str, true, out intent);
-            }
+            var intent = GetMessageIntent(context);
             var isSubscriptionMessage = intent == MessageIntentEnum.Subscribe || intent == MessageIntentEnum.Unsubscribe;
             var isReply = intent == MessageIntentEnum.Reply;
 
@@ -45,12 +40,6 @@ namespace Shared
 
                 if (string.IsNullOrWhiteSpace(messagePartitionKey))
                 {
-                    if (IsReply(context))
-                    {
-                        await next(context).ConfigureAwait(false);
-                        return;
-                    }
-
                     throw new PartitionMappingFailedException($"Could not map a partition key for message of type {context.Headers[Headers.EnclosedMessageTypes]}");
                 }
             }
@@ -70,7 +59,7 @@ namespace Shared
             await forwarder.Forward(context, messagePartitionKey).ConfigureAwait(false);
         }
 
-        static bool IsReply(IMessageProcessingContext context)
+        static MessageIntentEnum? GetMessageIntent(IMessageProcessingContext context)
         {
             string intentStr;
 
@@ -79,12 +68,12 @@ namespace Shared
                 MessageIntentEnum intent;
                 if (Enum.TryParse(intentStr, out intent))
                 {
-                    return intent == MessageIntentEnum.Reply;
+                    return intent;
                 }
-                return false;
+                return null;
             }
 
-            return false;
+            return null;
         }
     }
 }
