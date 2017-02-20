@@ -87,6 +87,11 @@ Fully customizing the Recoverability Policy basically means not calling `Default
 
 snippet:FullyCustomizedPolicyRecoverabilityConfiguration
 
-The configuration will be passed into the custom policy. Below is a policy which moves all unrecoverable exceptions such as `MyBusinessException` to a custom error queue, does Delayed Retries with a constant time increase of five seconds for `MyOtherBusinessException` and for all other cases moves messages to the configured standard error queue.
+The configuration will be passed into the custom policy. 
+
+The following custom policy:
+- for unrecoverable exceptions such as `MyBusinessException` immediately moves failed messages to a custom error queue 
+- for `MyOtherBusinessException` does Delayed Retries with a constant time increase of five seconds 
+- for all other cases immediately moves failed messages to the configured standard error queue.
 
 snippet:FullyCustomizedPolicy
