@@ -99,21 +99,27 @@ endpointConfiguration.EnableReceiverSideDistribution(discriminators, candidateMa
 
 ## Sender Side Distribution
 
-Explain how sender side distribution works, for send & publish
+Receiver Side Distribution addresses forwarding messages that arrive to an endpoint instance that is different from the destined one. Forwarding them introduces some overhead though. To remove the overhead on the receiver side, Sender Side Distribution can be used, to distribute messages properly, amongst the endpoints' instances based on Service Fabric partitions.
+
+The Sender Side Distribution works in a following way. It applies the mapping function when dispatching messages. The result of the mapping, a selected partition, is added as the `partition-key` header. This ensures that its value doesn't have to be calculated on the receiver side again. Additionally, to remove the need of forwarding on the receiver side, the message is sent to the instance specific queue.
 
 ### Partition aware distribution strategy
 
-Explain the partition aware distribution strategy
+Sender Side Distribution introduces an overload for `DistributionStrategy` called `PartitionAwareDistributionStrategy`. When a destination is selected for a given message, the mapping function is applied to obtain a discriminator value. The message has `partition-key` value set and is routed to the instance specific queue.
 
 ### Reply 
 
-Explain the concerns around replying
+**TODO Explain the concerns around replying**
 
 ### Configuration
 
-Explain how sender side distribution is configured
+The Sender Side Distribution is configured by augmenting the distributing messages for a specific endpoint. The first step of configuring it is setting a new PartitionAwareDistributionStrategy aware of partitions of the destined endpoint. The second, to register this endpoints' instances. This ensures, that from now on, all messages sent to this endpoint will be routed in the partition-aware manner.
 
+```
+var internalSettings = endpointConfiguration.GetSettings();
+var policy = internalSettings.GetOrCreate<DistributionPolicy>();
+var instances = internalSettings.GetOrCreate<EndpointInstances>();
 
-
-
-
+policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", message => localPartitionKey, DistributionStrategyScope.Send, localPartitionKey));
+instances.AddOrReplaceInstances("CandidateVoteCount", endpointInstances.ToList());
+```
