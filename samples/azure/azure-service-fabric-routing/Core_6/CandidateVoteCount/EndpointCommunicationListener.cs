@@ -43,20 +43,10 @@ namespace CandidateVoteCount
 
                 #region ReceiverSideRoutingCandidateVoteCount
 
-                var discriminators = new HashSet<string>(servicePartitions.Select(x => x.Name));
+                var discriminators = servicePartitions.Select(x => x.Name).ToArray();
 
-                Func<object, string> candidateMapper = message =>
-                {
-                    var votePlaced = message as VotePlaced;
-                    if (votePlaced != null)
-                    {
-                        return votePlaced.Candidate;
-                    }
-
-                    throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
-                };
-
-                endpointConfiguration.EnableReceiverSideDistribution(discriminators, candidateMapper, m => ServiceEventSource.Current.ServiceMessage(context, m));
+                var receiverSideDistributionConfig = transportConfig.Routing().EnableReceiverSideDistribution(discriminators, m => ServiceEventSource.Current.ServiceMessage(context, m));
+                receiverSideDistributionConfig.AddPartitionMappingForMessageType<VotePlaced>(m => m.Candidate);
 
                 #endregion
 
@@ -82,9 +72,9 @@ namespace CandidateVoteCount
 
             #region SenderSideRoutingZipCodeVoteCount
 
-            Func<Type, string, string> convertStringZipCodeToHighKey = (messageType, zipCode) =>
+            Func<TrackZipCode, string> convertStringZipCodeToHighKey = message =>
             {
-                var zipCodeAsNumber = Convert.ToInt32(zipCode);
+                var zipCodeAsNumber = Convert.ToInt32(message.ZipCode);
                 // 00000..33000 => 33000 33001..66000 => 66000 66001..99000 => 99000
                 if (zipCodeAsNumber >= 0 && zipCodeAsNumber <= 33000)
                 {
@@ -100,11 +90,11 @@ namespace CandidateVoteCount
                 {
                     return "99000";
                 }
-                throw new Exception($"Invalid zip code '{zipCodeAsNumber}' for message of type '{messageType}'.");
+                throw new Exception($"Invalid zip code '{zipCodeAsNumber}' for message of type '{message.GetType()}'.");
             };
 
-            var distributionConfig = transportConfig.Routing().RegisterPartitionedDestinationEndpoint("ZipCodeVoteCount", new[] { "33000", "66000", "99000" });
-            distributionConfig.AddPartitionMappingForMessageType<TrackZipCode>(message => convertStringZipCodeToHighKey(message.GetType(), message.ZipCode));
+            var senderSideDistributionConfig = transportConfig.Routing().RegisterPartitionedDestinationEndpoint("ZipCodeVoteCount", new[] { "33000", "66000", "99000" });
+            senderSideDistributionConfig.AddPartitionMappingForMessageType<TrackZipCode>(message => convertStringZipCodeToHighKey(message));
 
             #endregion
 

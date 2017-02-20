@@ -11,7 +11,7 @@ namespace Shared
         public static PartitionAwareSenderSideDistributionConfiguration RegisterPartitionedDestinationEndpoint<T>(this RoutingSettings<T> routingSettings, string destinationEndpoint, string[] partitions) where T : TransportDefinition
         {
             var settings = routingSettings.GetSettings();
-            var distributionConfiguration = new PartitionAwareSenderSideDistributionConfiguration(settings, routingSettings, destinationEndpoint, partitions);
+            var distributionConfiguration = new PartitionAwareSenderSideDistributionConfiguration(routingSettings, destinationEndpoint, partitions);
             var policy = settings.GetOrCreate<DistributionPolicy>();
 
             policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy(destinationEndpoint, distributionConfiguration.MapMessageToPartitionKey, DistributionStrategyScope.Send));

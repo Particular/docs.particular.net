@@ -1,29 +1,27 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 
 namespace Shared
 {
-    public class PartitionAwareSenderSideDistributionConfiguration : ExposeSettings
+    public class PartitionAwareReceiverSideDistributionConfiguration : ExposeSettings
     {
-        readonly RoutingSettings routingSettings;
-        readonly string endpointName;
-        readonly string[] partitions;
         readonly Dictionary<Type, Func<object, string>> messageTypeMappers = new Dictionary<Type, Func<object, string>>();
 
-        public PartitionAwareSenderSideDistributionConfiguration(RoutingSettings routingSettings, string endpointName, string[] partitions)
+        public PartitionAwareReceiverSideDistributionConfiguration(RoutingSettings routingSettings, string[] partitions, Action<string> logger = null)
             : base(routingSettings.GetSettings())
         {
-            this.routingSettings = routingSettings;
-            this.endpointName = endpointName;
-            this.partitions = partitions;
+            Partitions = new HashSet<string>(partitions);
+            Logger = logger ?? EmptyLogger;
         }
 
-        public PartitionAwareSenderSideDistributionConfiguration AddPartitionMappingForMessageType<T>(Func<T, string> mapMessageToPartitionKey)
+        internal Action<string> Logger { get; }
+
+        internal HashSet<string> Partitions { get; }
+
+        public PartitionAwareReceiverSideDistributionConfiguration AddPartitionMappingForMessageType<T>(Func<T, string> mapMessageToPartitionKey)
         {
-            routingSettings.RouteToEndpoint(typeof(T), endpointName);
             messageTypeMappers[typeof(T)] = message => mapMessageToPartitionKey((T)message);
 
             return this;
@@ -42,12 +40,16 @@ namespace Shared
 
             var partition = mapper(message);
 
-            if (!partitions.Contains(partition))
+            if (!Partitions.Contains(partition))
             {
-                throw new Exception($"Partition '{partition}' returned by partition mapping of '{messageType}' did not match any of the registered destination partitions '{string.Join(",", partitions)}'.");
+                throw new Exception($"Partition '{partition}' returned by partition mapping of '{messageType}' did not match any of the registered local partitions '{string.Join(",", Partitions)}'.");
             }
 
             return partition;
+        }
+
+        static void EmptyLogger(string logMessage)
+        {
         }
     }
 }

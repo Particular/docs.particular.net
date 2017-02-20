@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ReceiverSideDistribution\Configuration\PartitionAwareReceiverSideDistributionConfiguration.cs" />
     <Compile Include="ReceiverSideDistribution\PartitionMappingFailedException.cs" />
     <Compile Include="ReceiverSideDistribution\Pipeline\HardcodeReplyToAddressToLogicalAddress.cs" />
     <Compile Include="SenderSideDistribution\Configuration\PartitionAwareSenderSideDistributionConfiguration.cs" />

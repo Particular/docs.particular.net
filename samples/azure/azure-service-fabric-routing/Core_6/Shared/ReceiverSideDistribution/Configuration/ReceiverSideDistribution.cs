@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Transport;
@@ -8,10 +6,6 @@ namespace Shared
 {
     class ReceiverSideDistribution : Feature
     {
-        internal const string Discriminators = "ReceiverSideDistribution.Discriminators";
-        internal const string Mapper = "ReceiverSideDistribution.Mapper";
-        internal const string Logger = "ReceiverSideDistribution.Logger";
-
         public ReceiverSideDistribution()
         {
             Defaults(s => s.AddUnrecoverableException(typeof(PartitionMappingFailedException)));
@@ -19,9 +13,7 @@ namespace Shared
 
         protected override void Setup(FeatureConfigurationContext context)
         {
-            var discriminators = context.Settings.Get<HashSet<string>>(Discriminators);
-            var mapper = context.Settings.Get<Func<object,string>>(Mapper);
-            var logger = context.Settings.Get<Action<string>>(Logger);
+            var configuration = context.Settings.Get<PartitionAwareReceiverSideDistributionConfiguration>();
 
             var discriminator = context.Settings.Get<string>("EndpointInstanceDiscriminator");
             var transportInfrastructure = context.Settings.Get<TransportInfrastructure>();
@@ -31,12 +23,12 @@ namespace Shared
 
             if (supportMessageDrivenPubSub)
             {
-                context.Pipeline.Register(new DistributeSubscriptions.Register(discriminator, discriminators, address => transportInfrastructure.ToTransportAddress(address), logicalAddress));
+                context.Pipeline.Register(new DistributeSubscriptions.Register(discriminator, configuration.Partitions, address => transportInfrastructure.ToTransportAddress(address), logicalAddress));
             }
 
-            var forwarder = new Forwarder(discriminators, address => transportInfrastructure.ToTransportAddress(address), logicalAddress);
-            context.Pipeline.Register(new DistributeMessagesBasedOnHeader(discriminator, forwarder, logger), "Distributes on the receiver side using header only");
-            context.Pipeline.Register(new DistributeMessagesBasedOnPayload(discriminator, forwarder, mapper, logger), "Distributes on the receiver side using user supplied mapper");
+            var forwarder = new Forwarder(configuration.Partitions, address => transportInfrastructure.ToTransportAddress(address), logicalAddress);
+            context.Pipeline.Register(new DistributeMessagesBasedOnHeader(discriminator, forwarder, configuration.Logger), "Distributes on the receiver side using header only");
+            context.Pipeline.Register(new DistributeMessagesBasedOnPayload(discriminator, forwarder, configuration.MapMessageToPartitionKey, configuration.Logger), "Distributes on the receiver side using user supplied mapper");
             context.Pipeline.Register(new HardcodeReplyToAddressToLogicalAddress(context.Settings.InstanceSpecificQueue()), "Hardcodes the ReplyToAddress to the instance specific address of this endpoint.");
         }
     }
