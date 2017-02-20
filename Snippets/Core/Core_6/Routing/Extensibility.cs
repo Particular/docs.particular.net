@@ -157,7 +157,7 @@
         class RandomStrategy :
             DistributionStrategy
         {
-            static Random r = new Random();
+            static Random random = new Random();
 
             public RandomStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)
             {
@@ -165,7 +165,7 @@
 
             public override string SelectReceiver(string[] receiverAddresses)
             {
-                return receiverAddresses[r.Next(receiverAddresses.Length)];
+                return receiverAddresses[random.Next(receiverAddresses.Length)];
             }
         }
 
@@ -184,12 +184,12 @@
 
     public class Extensibility_62
     {
-        #region RoutingExtensibility-DistributionStrategy [6.2,7.0)
+        #region RoutingExtensibility-DistributionStrategy [6.2,)
 
         class RandomStrategy :
             DistributionStrategy
         {
-            static Random r = new Random();
+            static Random random = new Random();
 
             public RandomStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)
             {
@@ -204,7 +204,7 @@
             public override string SelectDestination(DistributionContext context)
             {
                 // access to headers, payload...
-                return context.ReceiverAddresses[r.Next(context.ReceiverAddresses.Length)];
+                return context.ReceiverAddresses[andomr.Next(context.ReceiverAddresses.Length)];
             }
         }
 
