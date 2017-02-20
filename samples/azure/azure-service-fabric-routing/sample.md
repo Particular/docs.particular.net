@@ -109,7 +109,7 @@ Sender Side Distribution introduces an overload for `DistributionStrategy` calle
 
 ### Reply 
 
-**TODO Explain the concerns around replying**
+When replying, an endpoint routes the reply message to the endpoint that initiated conversation. For a partitioned endpoint, it could require forwarding messages between endpoint instances. This is required to properly handle messages that need access to a paritioned state. Therefore, is much easier to ensure that all the `ReplyTo` headers will be instance specific. For sagas, it means that replies will arrive right to the correct partition. The rest of messages will be routed in the same way. Handling them does not require access to the parititoned state, so they can be processed on any instance.
 
 ### Configuration
 
