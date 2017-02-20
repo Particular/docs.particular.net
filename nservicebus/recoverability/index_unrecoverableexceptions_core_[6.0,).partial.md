@@ -1,13 +1,17 @@
 ## Unrecoverable exceptions
 
-Recoverability enables declaring an exception type as unrecoverable. When a message processing fails due to a unrecoverable exception being thrown, it does not go through retry process but is moved to the error queue directly instead. By default MessageDeserializationException is the only unrecoverable exception however based on the business domain users can declare additional. For example, a user might declare ValidationExceptions thrown when a message fails validation as unrecoverable. Assuming that validation is deterministic, processing will always fail so extra retries will not bring any benefit.
+If a message processing fails due to an unrecoverable exception being thrown, then the retry process is skipped. The failed message is then immediately moved to the error queue after the first failure. 
 
-NOTE: Declaring exception type as unrecoverable declares the whole inheritance tree as unrecoverable i.e. any direct or indirect subclass.
+According to the default policy, only exceptions of type `MessageDeserializationException` are considered unrecoverable. However, it's possible to customize the policy and declare additional types as unrecoverable exceptions. That allows to skip retries for certain exceptions, when it's known in advance that retries won't resolve the issue.
+
+For example, messages might need validation to ensure they contain all required information and are well-formed. If a message fails validation, then exception of type `ValidationExceptions` will be thrown. If the validation process is deterministic, then `ValidationExceptions` exceptions might be configured as unrecoverable, as every retry attempt will fail anyway.
 
 snippet: UnrecoverableExceptions
 
-The above snippets defines `ValidationException` and `ArgumentException` as unrecoverable exceptions. For example if a `ArgumentNullException` is raised during message handling, the message will be automatically moved to the error queue since `ArgumentNullException` is assignable to `ArgumentException`.
+NOTE: Declaring exception type as unrecoverable declares the whole inheritance tree as unrecoverable i.e. any direct or indirect subclasses.
+
+In the example above, `ValidationException` and `ArgumentException` are defined as unrecoverable. If an `ArgumentNullException` is raised during message processing, then according to this policy the failed message will be immediately moved to the error queue without retries, since `ArgumentNullException` inherits from the `ArgumentException` type.
 
 snippet: UnrecoverableExceptionsSettings
 
-It is also possible to define certain exceptions as unrecoverable in plugins such as persisters, transports and features. Everywhere there is access to `SettingsHolder` the non-generic `AddUnrecoverableException` can be used.
+It is also possible to define exceptions as unrecoverable in plugins such as persisters, transports and features, using the `AddUnrecoverableException` method exposed on the `SettingsHolder` property.
