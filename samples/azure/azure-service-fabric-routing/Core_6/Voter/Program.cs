@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Routing;
+using NServiceBus.Transport;
 using Shared;
 
 namespace Voter
@@ -26,33 +27,37 @@ namespace Voter
 
             #region Configure Sender-Side routing for CandidateVoteCount
 
-            transportConfig.Routing().RouteToEndpoint(typeof(CloseElection), "CandidateVoteCount");
+            var distributionConfig = transportConfig.Routing().RegisterPartitionedDestinationEndpoint("CandidateVoteCount", new[] { "John", "Abby" });
+            distributionConfig.AddPartitionMappingForMessageType<CloseElection>(message => message.Candidate);
 
-            var internalSettings = endpointConfiguration.GetSettings();
+            //transportConfig.Routing().RouteToEndpoint(typeof(CloseElection), "CandidateVoteCount");
 
-            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
+            //var internalSettings = endpointConfiguration.GetSettings();
 
-            Func<object, string> mapper = message =>
-            {
-                var candidate = message as CloseElection;
-                if (candidate != null)
-                {
-                    return candidate.Candidate;
-                }
+            //var policy = internalSettings.GetOrCreate<DistributionPolicy>();
 
-                throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
-            };
+            //Func<object, string> mapper = message =>
+            //{
+            //    var candidate = message as CloseElection;
+            //    if (candidate != null)
+            //    {
+            //        return candidate.Candidate;
+            //    }
 
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", mapper, DistributionStrategyScope.Send));
+            //    throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
+            //};
 
-            var candidateVoteCountInstances = new List<EndpointInstance>
-            {
-                new EndpointInstance("CandidateVoteCount", "John"),
-                new EndpointInstance("CandidateVoteCount", "Abby"),
-            };
+            //policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", mapper, DistributionStrategyScope.Send));
 
-            var instances = internalSettings.GetOrCreate<EndpointInstances>();
-            instances.AddOrReplaceInstances("CandidateVoteCount", candidateVoteCountInstances);
+            //var candidateVoteCountInstances = new List<EndpointInstance>
+            //{
+            //    new EndpointInstance("CandidateVoteCount", "John"),
+            //    new EndpointInstance("CandidateVoteCount", "Abby"),
+            //};
+
+            //var instances = internalSettings.GetOrCreate<EndpointInstances>();
+            //instances.AddOrReplaceInstances("CandidateVoteCount", candidateVoteCountInstances);
+
             #endregion
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
@@ -96,6 +101,16 @@ namespace Voter
             });
 
             await endpointInstance.Stop().ConfigureAwait(false);
+        }
+    }
+
+    public static class SenderSideDistributionExtensions
+    {
+        public static RoutingSettings<T> RegisterPartitionedDestinationEndpoint<T>(
+            this RoutingSettings<T> routingSettings, string endpointName, string[] partitions) where T: TransportDefinition
+        {
+
+            return routingSettings;
         }
     }
 }
