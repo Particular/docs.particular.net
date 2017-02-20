@@ -16,5 +16,9 @@ Starting with Version 4.TBD, the transport no longer relies on the [timeout mana
 
 ### Disable the timeout manager
 
+snippet: rabbitmq-delay-disable-timeout-manager
+
 
 ### All endpoints support native delays
+
+snippet: rabbitmq-delay-all-endpoints-support-native-delays

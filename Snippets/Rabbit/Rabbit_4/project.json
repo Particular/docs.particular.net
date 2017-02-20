@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus.RabbitMQ": "4.*"
+    "NServiceBus.RabbitMQ": "4.2.2-native-delays0001"
   },
   "frameworks": {
     "net461": {}
