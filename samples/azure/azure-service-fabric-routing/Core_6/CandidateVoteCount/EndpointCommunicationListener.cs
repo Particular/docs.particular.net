@@ -41,7 +41,7 @@ namespace CandidateVoteCount
 
                 endpointInstances = servicePartitions.Select(x => new EndpointInstance("CandidateVoteCount", x.Name));
 
-                #region Configure Receiver-Side routing for CandidateVoteCount
+                #region ReceiverSideRoutingCandidateVoteCount
 
                 var discriminators = new HashSet<string>(servicePartitions.Select(x => x.Name));
 
@@ -69,19 +69,18 @@ namespace CandidateVoteCount
             // Register the Service context for later use
             endpointConfiguration.RegisterComponents(components => components.RegisterSingleton(context));
 
+            #region ConfigureSenderSideDistributionCandidateVoteCount
+
             var internalSettings = endpointConfiguration.GetSettings();
             var policy = internalSettings.GetOrCreate<DistributionPolicy>();
             var instances = internalSettings.GetOrCreate<EndpointInstances>();
 
-            #region Configure Local send to own individualized queue distribution strategy
-
             policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", message => localPartitionKey, DistributionStrategyScope.Send));
-
             instances.AddOrReplaceInstances("CandidateVoteCount", endpointInstances.ToList());
 
             #endregion
 
-            #region Configure Sender-Side routing for ZipCodeVoteCount
+            #region SenderSideRoutingZipCodeVoteCount
 
             Func<Type, string, string> convertStringZipCodeToHighKey = (messageType, zipCode) =>
             {

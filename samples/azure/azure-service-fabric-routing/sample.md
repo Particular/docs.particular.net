@@ -78,27 +78,12 @@ When an endpoint instance receives a control message representing [either Subscr
 ### Configuration
 
 To enable receiver side distribution in a specific endpoint two arguments are provided:
-- `endpoint discriminators` that are based on Service Fabric partitions 
-- `mapping function` that maps an incoming message of any type to a partition key value
+- endpoint discriminators that are based on Service Fabric partitions 
+- mapping function that maps an incoming message of any type to a partition key value
 
 The configuration is applied by calling an extension method on `EndpointConfiguration`:
 
-```
-var discriminators = new HashSet<string>(servicePartitions.Select(x => x.Name));
-
-Func<object, string> mapping = message =>
-{
-    var votePlaced = message as VotePlaced;
-    if (votePlaced != null)
-    {
-        return votePlaced.Candidate;
-    }
-
-    throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
-};
-
-endpointConfiguration.EnableReceiverSideDistribution(discriminators, candidateMapper);
-```
+snippet: ReceiverSideRoutingCandidateVoteCount
 
 ## Sender Side Distribution
 
@@ -118,11 +103,4 @@ When replying, an endpoint routes the reply message to the endpoint that initiat
 
 The Sender Side Distribution is configured by augmenting the distributing messages for a specific endpoint. The first step of configuring it is setting a new PartitionAwareDistributionStrategy aware of partitions of the destined endpoint. The second, to register this endpoints' instances. This ensures, that from now on, all messages sent to this endpoint will be routed in the partition-aware manner.
 
-```
-var internalSettings = endpointConfiguration.GetSettings();
-var policy = internalSettings.GetOrCreate<DistributionPolicy>();
-var instances = internalSettings.GetOrCreate<EndpointInstances>();
-
-policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", message => localPartitionKey, DistributionStrategyScope.Send, localPartitionKey));
-instances.AddOrReplaceInstances("CandidateVoteCount", endpointInstances.ToList());
-```
+snippet: ConfigureSenderSideDistributionCandidateVoteCount

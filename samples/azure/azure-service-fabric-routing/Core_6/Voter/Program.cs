@@ -26,7 +26,7 @@ namespace Voter
 
             var transportConfig = endpointConfiguration.ApplyCommonConfiguration();
 
-            #region Configure Sender-Side routing for CandidateVoteCount
+            #region ConfigureSenderSideRoutingCandidateVoteCount
 
             var distributionConfig = transportConfig.Routing().RegisterPartitionedDestinationEndpoint("CandidateVoteCount", new[] { "John", "Abby" });
             distributionConfig.AddPartitionMappingForMessageType<CloseElection>(message => message.Candidate);
