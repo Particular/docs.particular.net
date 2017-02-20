@@ -74,8 +74,28 @@ When an endpoint instance receives a control message representing [either Subscr
 
 ### Configuration
 
-**TODO**
-Explain how receiver side distribution is configured
+To enable receiver side distribution in a specific endpoint two arguments are provided:
+- `endpoint discriminators` that are based on Service Fabric partitions 
+- `mapping function` that maps an incoming message of any type to a partition key value
+
+The configuration is applied by calling an extension method on `EndpointConfiguration`:
+
+```
+var discriminators = new HashSet<string>(servicePartitions.Select(x => x.Name));
+
+Func<object, string> mapping = message =>
+{
+    var votePlaced = message as VotePlaced;
+    if (votePlaced != null)
+    {
+        return votePlaced.Candidate;
+    }
+
+    throw new Exception($"No partition mapping is found for message type '{message.GetType()}'.");
+};
+
+endpointConfiguration.EnableReceiverSideDistribution(discriminators, candidateMapper);
+```
 
 ## Sender Side Distribution
 
