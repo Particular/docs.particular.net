@@ -151,4 +151,23 @@ class Usage
         #endregion
     }
 
+    void DisableTimeoutManager(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-delay-disable-timeout-manager
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.DelayedDelivery().DisableTimeoutManager();
+
+        #endregion
+    }
+
+    void AllEndpointsSupportNativeDelays(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-delay-all-endpoints-support-native-delays
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.DelayedDelivery().AllEndpointsSupportNativeDelays();
+
+        #endregion
+    }
 }
