@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Fabric;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Contracts;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
@@ -47,7 +45,7 @@ namespace ZipCodeVoteCount
             var policy = internalSettings.GetOrCreate<DistributionPolicy>();
             var instances = internalSettings.GetOrCreate<EndpointInstances>();
 
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", message => localPartitionKey, DistributionStrategyScope.Send, localPartitionKey));
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", message => localPartitionKey, DistributionStrategyScope.Send));
             instances.AddOrReplaceInstances("ZipCodeVoteCount", instanceList.ToList());
 
             endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);

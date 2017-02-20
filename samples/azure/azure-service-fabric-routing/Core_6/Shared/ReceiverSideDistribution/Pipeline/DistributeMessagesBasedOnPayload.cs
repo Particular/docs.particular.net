@@ -10,15 +10,13 @@ namespace Shared
         private readonly string localPartitionKey;
         private readonly Forwarder forwarder;
         private readonly Func<object, string> mapper;
-        private readonly bool trustReplies;
         private readonly Action<string> logger;
 
-        public DistributeMessagesBasedOnPayload(string localPartitionKey, Forwarder forwarder, Func<object, string> mapper, bool trustReplies, Action<string> logger)
+        public DistributeMessagesBasedOnPayload(string localPartitionKey, Forwarder forwarder, Func<object, string> mapper, Action<string> logger)
         {
             this.localPartitionKey = localPartitionKey;
             this.forwarder = forwarder;
             this.mapper = mapper;
-            this.trustReplies = trustReplies;
             this.logger = logger;
         }
 
@@ -32,7 +30,7 @@ namespace Shared
 
                 if (string.IsNullOrWhiteSpace(messagePartitionKey))
                 {
-                    if (trustReplies && IsReply(context))
+                    if (IsReply(context))
                     {
                         await next(context).ConfigureAwait(false);
                         return;
@@ -57,7 +55,7 @@ namespace Shared
             await forwarder.Forward(context, messagePartitionKey).ConfigureAwait(false);
         }
 
-        static bool IsReply(IIncomingLogicalMessageContext context)
+        static bool IsReply(IMessageProcessingContext context)
         {
             string intentStr;
 

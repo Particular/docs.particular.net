@@ -10,7 +10,6 @@ namespace Shared
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
-            var options = context.Settings.Get<ReceiverSideDistributionOptions>("ReceiverSideDistribution.Options");
             var discriminators = context.Settings.Get<HashSet<string>>("ReceiverSideDistribution.Discriminators");
             var mapper = context.Settings.Get<Func<object,string>>("ReceiverSideDistribution.Mapper");
             Action<string> logger = context.Settings.Get<Action<string>>("ReceiverSideDistribution.Logger");
@@ -28,7 +27,8 @@ namespace Shared
 
             var forwarder = new Forwarder(discriminators, address => transportInfrastructure.ToTransportAddress(address), logicalAddress);
             context.Pipeline.Register(new DistributeMessagesBasedOnHeader(discriminator, forwarder, logger), "Distributes on the receiver side using header only");
-            context.Pipeline.Register(new DistributeMessagesBasedOnPayload(discriminator, forwarder, mapper, options.TrustReplies, logger), "Distributes on the receiver side using user supplied mapper");
+            context.Pipeline.Register(new DistributeMessagesBasedOnPayload(discriminator, forwarder, mapper, logger), "Distributes on the receiver side using user supplied mapper");
+            context.Pipeline.Register(new HardcodeReplyToAddressToLogicalAddress(context.Settings.LogicalAddress()), "Hardcodes the ReplyToAddress to the logical address of this endpoint.");
         }
     }
 }

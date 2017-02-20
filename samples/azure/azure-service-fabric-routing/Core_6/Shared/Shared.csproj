@@ -51,8 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SenderSideDistribution\Pipeline\CopyPartitonKeyForReplies.cs" />
-    <Compile Include="SenderSideDistribution\Configuration\SenderSideDistribution.cs" />
+    <Compile Include="ReceiverSideDistribution\Pipeline\HardcodeReplyToAddressToLogicalAddress.cs" />
     <Compile Include="ReceiverSideDistribution\Pipeline\DistributeMessagesBasedOnHeader.cs" />
     <Compile Include="ReceiverSideDistribution\Pipeline\DistributeMessagesBasedOnPayload.cs" />
     <Compile Include="EndpointConfigurationExtensions.cs" />
@@ -62,12 +61,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiverSideDistribution\Configuration\ReceiverSideDistribution.cs" />
     <Compile Include="ReceiverSideDistribution\Configuration\ReceiverSideDistributionExtensions.cs" />
-    <Compile Include="ReceiverSideDistribution\Configuration\ReceiverSideDistributionOptions.cs" />
-    <Compile Include="SenderSideDistribution\Configuration\ReplyToExtensions.cs" />
+    <Compile Include="ReceiverSideDistribution\SendOptionsExtensionsForReceiverSideDistribution.cs" />
     <Compile Include="ReceiverSideDistribution\Pipeline\DistributeSubscriptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SenderSideDistribution\Configuration\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
