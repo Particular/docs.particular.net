@@ -523,22 +523,24 @@
   - Url: nservicebus/rabbitmq
     Title: RabbitMQ Transport
     Articles:
-    - Url: nservicebus/rabbitmq/rabbitmqclient-nuget
-      Title: RabbitMQ.Client NuGet usage
     - Url: nservicebus/rabbitmq/connection-settings
       Title: Connection settings
     - Url: nservicebus/rabbitmq/routing-topology
       Title: Routing topology
-    - Url: nservicebus/rabbitmq/callbacks
-      Title: Callback support
+    - Url: nservicebus/rabbitmq/delayed-delivery
+      Title: Delayed Delivery
     - Url: nservicebus/rabbitmq/message-id-strategy
       Title: Message Id strategy
+    - Url: nservicebus/rabbitmq/callbacks
+      Title: Callback support
     - Url: nservicebus/rabbitmq/transactions-and-delivery-guarantees
       Title: Transactions and delivery guarantees
     - Url: nservicebus/rabbitmq/cluster
       Title: In a cluster
     - Url: nservicebus/rabbitmq/operations-scripting
       Title: Scripting
+    - Url: nservicebus/rabbitmq/rabbitmqclient-nuget
+      Title: RabbitMQ.Client NuGet usage
   - Url: nservicebus/eventstoretransport
     Title: Event Store Transport
   - Url: nservicebus/kafka
