@@ -8,6 +8,11 @@ namespace Shared
 {
     class ReceiverSideDistribution : Feature
     {
+        public ReceiverSideDistribution()
+        {
+            Defaults(s => s.AddUnrecoverableException(typeof(PartitionMappingFailedException)));
+        }
+
         protected override void Setup(FeatureConfigurationContext context)
         {
             var discriminators = context.Settings.Get<HashSet<string>>("ReceiverSideDistribution.Discriminators");

@@ -36,7 +36,7 @@ namespace Shared
                         return;
                     }
 
-                    throw new Exception($"Could not map a partition key for message of type {context.Headers[Headers.EnclosedMessageTypes]}"); //Will be replaced by unrecoverable exception part of Core PR 4479
+                    throw new PartitionMappingFailedException($"Could not map a partition key for message of type {context.Headers[Headers.EnclosedMessageTypes]}");
                 }
             }
 

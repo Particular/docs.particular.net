@@ -22,7 +22,7 @@ namespace Shared
         {
             if (!knownPartitionKeys.Contains(messagePartitionKey))
             {
-                throw new Exception($"User mapped key {messagePartitionKey} does not match any known partition key values"); //Will be replaced by unrecoverable exception part of Core PR 4479
+                throw new PartitionMappingFailedException($"User mapped key {messagePartitionKey} does not match any known partition key values");
             }
 
             var destination = addressTranslator(logicalAddress.CreateIndividualizedAddress(messagePartitionKey));
