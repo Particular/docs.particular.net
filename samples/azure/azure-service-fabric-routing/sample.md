@@ -63,7 +63,7 @@ Every incoming message has its `partition-key` header value inspected by `Distri
 
 If the `partition-key` header does not exist, the pipeline execution continues moving the message to the *Message body inspection* step.
 
-NOTE: `PartitionMappingFailedException` is configured as an unrecoverable exception. Whenever such an exception is raised the message that triggered the exception will be moved to the configured error queue. For more information refer to [unrecoverable exceptions](/TODO) documentation page.
+NOTE: `PartitionMappingFailedException` is configured as an unrecoverable exception. Whenever such an exception is raised the message that triggered the exception will be moved to the configured error queue. For more information refer to unrecoverable exceptions documentation page.
 
 ### Message body inspection
 
