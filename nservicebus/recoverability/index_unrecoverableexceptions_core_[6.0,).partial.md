@@ -1,6 +1,6 @@
 ## Unrecoverable exceptions
 
-Recoverability enables declaring an exception type as unrecoverable. When a message processing fails due to a unrecoverable exception being thrown, it does not go through retry process but is moved to the error queue instead. By default MessageDeserializationException is the only unrecoverable exception however based on the business domain users can declare additional. For example, a user might declare ValidationExceptions thrown when a message fails validation as unrecoverable. Assuming that validation is deterministic, processing will always fail so extra retries will not bring any benefit.
+Recoverability enables declaring an exception type as unrecoverable. When a message processing fails due to a unrecoverable exception being thrown, it does not go through retry process but is moved to the error queue directly instead. By default MessageDeserializationException is the only unrecoverable exception however based on the business domain users can declare additional. For example, a user might declare ValidationExceptions thrown when a message fails validation as unrecoverable. Assuming that validation is deterministic, processing will always fail so extra retries will not bring any benefit.
 
 NOTE: Declaring exception type as unrecoverable declares the whole inheritance tree as unrecoverable i.e. any direct or indirect subclass.
 
