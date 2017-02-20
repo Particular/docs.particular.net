@@ -32,7 +32,7 @@ namespace Shared
                 context.Headers[PartitionHeaders.OriginatorPartitionKey] = localDiscriminator;
             }
 
-            var logicalAddress = LogicalAddress.CreateRemoteAddress(new EndpointInstance(Endpoint, discriminator));
+            var logicalAddress = context.ToTransportAddress(new EndpointInstance(Endpoint, discriminator));
             return context.ReceiverAddresses.Single(a => a == logicalAddress.ToString());
         }
     }
