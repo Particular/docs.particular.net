@@ -70,8 +70,14 @@ namespace CandidateVoteCount
 
             #endregion
 
-            #region SenderSideRoutingZipCodeVoteCount
+            ConfigureSenderSizeRoutingForZipCodeVoteCount(transportConfig);
 
+            endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+            return null;
+        }
+
+        static void ConfigureSenderSizeRoutingForZipCodeVoteCount(TransportExtensions<AzureServiceBusTransport> transportConfig)
+        {
             Func<TrackZipCode, string> convertStringZipCodeToHighKey = message =>
             {
                 var zipCodeAsNumber = Convert.ToInt32(message.ZipCode);
@@ -93,13 +99,11 @@ namespace CandidateVoteCount
                 throw new Exception($"Invalid zip code '{zipCodeAsNumber}' for message of type '{message.GetType()}'.");
             };
 
-            var senderSideDistributionConfig = transportConfig.Routing().RegisterPartitionedDestinationEndpoint("ZipCodeVoteCount", new[] { "33000", "66000", "99000" });
-            senderSideDistributionConfig.AddPartitionMappingForMessageType<TrackZipCode>(message => convertStringZipCodeToHighKey(message));
+            var senderSideDistributionConfig = transportConfig.Routing()
+                    .RegisterPartitionedDestinationEndpoint("ZipCodeVoteCount", new[] {"33000", "66000", "99000"});
 
-            #endregion
-
-            endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
-            return null;
+            senderSideDistributionConfig.AddPartitionMappingForMessageType<TrackZipCode>(
+                message => convertStringZipCodeToHighKey(message));
         }
 
         public Task CloseAsync(CancellationToken cancellationToken)

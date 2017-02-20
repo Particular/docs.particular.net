@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Configuration.AdvanceExtensibility;
-using NServiceBus.Routing;
-using NServiceBus.Settings;
-using NServiceBus.Transport;
 using Shared;
 
 namespace Voter
@@ -26,12 +21,7 @@ namespace Voter
 
             var transportConfig = endpointConfiguration.ApplyCommonConfiguration();
 
-            #region ConfigureSenderSideRoutingCandidateVoteCount
-
-            var distributionConfig = transportConfig.Routing().RegisterPartitionedDestinationEndpoint("CandidateVoteCount", new[] { "John", "Abby" });
-            distributionConfig.AddPartitionMappingForMessageType<CloseElection>(message => message.Candidate);
-
-            #endregion
+            ConfigureSenderSizeRoutingForCandidateVoteCount(transportConfig);
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
@@ -75,6 +65,12 @@ namespace Voter
 
             await endpointInstance.Stop().ConfigureAwait(false);
         }
-    }
 
+        static void ConfigureSenderSizeRoutingForCandidateVoteCount(TransportExtensions<AzureServiceBusTransport> transportConfig)
+        {
+            var distributionConfig = transportConfig.Routing()
+                .RegisterPartitionedDestinationEndpoint("CandidateVoteCount", new[] {"John", "Abby"});
+            distributionConfig.AddPartitionMappingForMessageType<CloseElection>(message => message.Candidate);
+        }
+    }
 }
