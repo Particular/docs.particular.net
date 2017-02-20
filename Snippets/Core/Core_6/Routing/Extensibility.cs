@@ -157,7 +157,7 @@
         class RandomStrategy :
             DistributionStrategy
         {
-            static Random r = new Random();
+            static Random random = new Random();
 
             public RandomStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)
             {
@@ -165,7 +165,7 @@
 
             public override string SelectReceiver(string[] receiverAddresses)
             {
-                return receiverAddresses[r.Next(receiverAddresses.Length)];
+                return receiverAddresses[random.Next(receiverAddresses.Length)];
             }
         }
 
@@ -180,5 +180,34 @@
             IEvent
         {
         }
+    }
+
+    public class Extensibility_62
+    {
+        #region RoutingExtensibility-DistributionStrategy [6.2,)
+
+        class RandomStrategy :
+            DistributionStrategy
+        {
+            static Random random = new Random();
+
+            public RandomStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)
+            {
+            }
+
+            // Method will not be called since SelectDestination doesnt call base.SelectDestination
+            public override string SelectReceiver(string[] receiverAddresses)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override string SelectDestination(DistributionContext context)
+            {
+                // access to headers, payload...
+                return context.ReceiverAddresses[random.Next(context.ReceiverAddresses.Length)];
+            }
+        }
+
+        #endregion
     }
 }

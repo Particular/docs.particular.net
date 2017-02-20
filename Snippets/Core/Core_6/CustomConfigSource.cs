@@ -25,10 +25,12 @@
     {
         public T GetConfiguration<T>() where T : class, new()
         {
+#pragma warning disable 618
             if (typeof(T) == typeof(RijndaelEncryptionServiceConfig))
             {
                 var config = new RijndaelEncryptionServiceConfig
                 {
+#pragma warning restore 618
                     Key = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"
                 };
                 return config as T;
@@ -40,6 +42,7 @@
 
     #endregion
 
+#pragma warning disable 618
     #region CustomConfigProvider
 
     class CustomRijndaelEncryptionServiceConfigProvider :
@@ -55,4 +58,5 @@
     }
 
     #endregion
+#pragma warning restore 618
 }
