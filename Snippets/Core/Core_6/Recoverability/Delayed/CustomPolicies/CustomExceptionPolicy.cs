@@ -30,4 +30,17 @@ namespace Core6.Recoverability.Delayed.CustomPolicies
 
         #endregion
     }
+
+    class CustomExceptionPolicy62
+    {
+        CustomExceptionPolicy62(EndpointConfiguration endpointConfiguration)
+        {
+            #region CustomExceptionPolicyHandler [6.2,)
+
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.AddUnrecoverableException<MyBusinessException>();
+
+            #endregion
+        }
+    }
 }

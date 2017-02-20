@@ -18,13 +18,15 @@ related:
 
 The default Recoverability Policy is implemented in `DefaultRecoverabilityPolicy` and publicly exposed for use cases when the default recoverability behavior needs to be reused as part of a custom recoverability policy. The default policy takes into account the settings provided for Immediate Retries, Delayed Retries and the configured error queue. The default policy works like the following:
 
- 1. When an exception of type `MessageDeserializedException` was raised, the `MoveToError` recoverability action is returned with the default error queue.
- 1. If the `ImmediateProcessingFailures` is less or equal to the configured `MaxNumberOfRetries` for Immediate Retries, the `ImmediateRetry` recoverability action is returned.
- 1. When Immediate Retries are exceeded the Delayed Retries configuration is considered. If the `DelayedDeliveriesPerformed` is less or equal than `MaxNumberOfRetries` and the message hasn't reached the maximum time allowed for retries (24 hours), the `DelayedRetry` recoverability action is returned. The delay is calculated according to the following formula:
+ 1. If an unrecoverable exception is raised, then the `MoveToError` action is returned immediately with the default error queue. 
+ 1. If the `ImmediateProcessingFailures` value is less or equal to the configured `MaxNumberOfRetries` for Immediate Retries, then the `ImmediateRetry` action is returned.
+ 1. If Immediate Retries are exceeded, then the Delayed Retries configuration is considered. If the `DelayedDeliveriesPerformed` is less or equal than `MaxNumberOfRetries` and the message hasn't reached the maximum time allowed for retries (24 hours), then the `DelayedRetry` action is returned. The delay is calculated according to the following formula:
 
- `delay = DelayedRetry.TimeIncrease * (DelayedDeliveriesPerformed + 1)`
+    `delay = DelayedRetry.TimeIncrease * (DelayedDeliveriesPerformed + 1)`.
 
- 1. If `MaxNumberOfRetries` for both ImmediateRetries and DelayedRetries is exceeded, the `MoveToError` recoverability action is returned with the default error queue.
+ 1. If `MaxNumberOfRetries` for both ImmediateRetries and DelayedRetries is exceeded, then the `MoveToError` action is returned with the default error queue.
+ 
+NOTE: According to the default policy, only exceptions of type `MessageDeserializedException` are unrecoverable. It's possible to customize the policy and instruct NServiceBus to treat other types as unrecoverable exceptions. Refer to the [Unrecoverable exceptions](/nservicebus/recoverability/#unrecoverable-exceptions) section to learn more.
 
 
 ## Fallback
@@ -40,6 +42,7 @@ As outlined in the [Recoverability introduction](/nservicebus/recoverability/) I
  * Maximum number of retries for Delayed Retries
  * Time of increase for individual Delayed Retries
  * Configured error queue address
+ * Exceptions that need to be treated as unrecoverable (as of NServiceBus version 6.2)
 
 The information provided on the configuration is static and will not change between subsequent executions of the policy.
 
@@ -84,6 +87,11 @@ Fully customizing the Recoverability Policy basically means not calling `Default
 
 snippet:FullyCustomizedPolicyRecoverabilityConfiguration
 
-The configuration will be passed into the custom policy. Below is a policy which moves all exceptions of type `MyBusinessException` to a custom error queue, does Delayed Retries with a constant time increase of five seconds for `MyOtherBusinessException` and for all other cases moves messages to the configured standard error queue.
+The configuration will be passed into the custom policy. 
+
+The following custom policy:
+- for unrecoverable exceptions such as `MyBusinessException` immediately moves failed messages to a custom error queue 
+- for `MyOtherBusinessException` does Delayed Retries with a constant time increase of five seconds 
+- for all other cases immediately moves failed messages to the configured standard error queue.
 
 snippet:FullyCustomizedPolicy
