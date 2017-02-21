@@ -13,6 +13,8 @@ related:
 2. An Azure Service Bus namespace that can be used for communication between the instances.
 3. A machine level environment variable called "AzureServiceBus.ConnectionString" that contains the manage connectionstring to the Azure Service Bus namespace.
 
+Not: Make sure the environment variable "AzureServiceBus.ConnectionString" is defined at the machine level. Because a Service Fabric cluster runs on the Network Service account, it has no access to user level variables.
+
 ## Scenario
 
 The scenario used in this sample covers a voting system. In this voting system the casted votes are counted by candidate. The casted votes are `sent` from the voter client to the endpoint responsible for counting candidate votes.
@@ -23,7 +25,7 @@ When election is closed, the candidate vote counting endpoint will `publish` the
 
 After the counting time expires, using a `timeout`, the zip code counting endpoint `sends a local command` to report the statistics per zip code.
 
-For sake of simplicity, there are only 2 candidates in the election, called "John" and "Abby". Zip codes are always assumed to be valid integers with a length up to 5 digits in the range (00000 to 99000).
+For sake of simplicity, there are only 2 candidates in the election, called "John" and "Abby". Zip codes are always assumed to be valid integers with a length up to 5 digits in the range (0 to 99000).
 
 ### trade offs and known limitations
 
@@ -46,17 +48,17 @@ The solution contains the following projects:
 
 The CandidateVoteCount is a statefull service that uses a `NamedPartition` partitioning scheme. Each candidate has it's own partition, so there is one called "John" and another called "Abby". 
 
-The ZipCodeVoteCount is a statefull service that uses a `UniformInt64Partition` partitioning scheme with the `PartitionCount` set to 3, the `LowKey` set to 0 and the `HighKey` set to 99000. This configuration ensure that the partition is split into 3 well known ranges (00000 -> 32999), (33000 -> 65999) , (66000 -> 98999).
+The ZipCodeVoteCount is a statefull service that uses a `UniformInt64Partition` partitioning scheme with the `PartitionCount` set to 3, the `LowKey` set to 0 and the `HighKey` set to 99000. This configuration ensure that the partition is split into 3 well known ranges (0 -> 32999), (33000 -> 65999) , (66000 -> 98999).
 
 ## Routing
 
-The conventional NServiceBus routing approach cannot be used as-is with Service Fabric [statefull services](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-concepts-partitioning) as processing should be taking place on the partition strictly associated with the partition data. For each `PlaceVote` message associated with a casted vote, the message should be routed to the partition associated with voted candidate "John" or "Abby". Similar, to count the votes per zip code the sender needs to ensure that the `TrackZipCode` message ends up on the partition that is responsible for the range in which the zip code belongs.
+The default NServiceBus routing approach cannot be used as-is with Service Fabric [statefull services](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-concepts-partitioning). Statefull services assume business data partitioning and as a result a message must be delivered to the instance that manages that specific partition. E.g. for each `PlaceVote` message associated with a casted vote, the message should be routed to the partition associated with voted candidate "John" or "Abby". Similar, to count the votes per zip code the sender needs to ensure that the `TrackZipCode` message ends up on the partition that is responsible for the range in which the zip code belongs.
 
 Example:
 
-- Vote for John; casted in 88701; should result in a `PlaceVote` message routed to partition "John", followed by a `TrackZipCode` message routed to range (66000 -> 98999).
-- Vote for Abby; casted in 36458; should result in a `PlaceVote` message routed to partition "Abby", followed by a `TrackZipCode` message routed to range (33000 -> 65999).
-- Vote for John; casted in 12789; should result in a `PlaceVote` message routed to partition "John", followed by a `TrackZipCode` message routed to range (00000 -> 32999).
+- Vote for John; casted in 88701; should result in a `PlaceVote` message routed to named partition "John", followed by a `TrackZipCode` message routed to range partition (66000 -> 98999).
+- Vote for Abby; casted in 36458; should result in a `PlaceVote` message routed to named partition "Abby", followed by a `TrackZipCode` message routed to range partition (33000 -> 65999).
+- Vote for John; casted in 12789; should result in a `PlaceVote` message routed to named partition "John", followed by a `TrackZipCode` message routed to range partition (0 -> 32999).
 
 and so on.
 
