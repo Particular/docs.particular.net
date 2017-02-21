@@ -32,6 +32,15 @@ namespace Voter
 
             #endregion
 
+            if (MessageDrivenPubSub.Enabled)
+            {
+                #region ConfigureSenderSideRouting-MessageDrivenPubSub
+
+                distributionConfig.AddPartitionMappingForMessageType<VotePlaced>(message => message.Candidate);
+
+                #endregion
+            }
+
             var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
             Console.WriteLine("Press Enter to start election");
