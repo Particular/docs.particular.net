@@ -21,7 +21,7 @@ class Program
 
         #region addFilterBehaviors
 
-        endpointConfiguration.AuditProcessedMessagesTo("Samples.AuditFilter.Audit");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
 
         var pipeline = endpointConfiguration.Pipeline;
         pipeline.Register(
