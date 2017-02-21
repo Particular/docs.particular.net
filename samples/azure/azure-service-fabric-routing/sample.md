@@ -66,6 +66,21 @@ This behavior can be achieved by combinding NServiceBus' built-in sender side di
 
 The remainder of this document will focus on the different techniques that can be used to configure these distribution strategies, either manually or automatically, to achieve full partition aware routing. 
 
+## Partitioned Endpoint Configuration
+Partitioned endpoints require specifying partitioning configuration by calling an extension method on `EndpointConfiguration`:
+
+snippet: ConfigureLocalPartitions-ZipCodeVoteCount
+
+This ensures that the endpoint will be uniquely addressable and that both `SendLocal` and `ReplyTo` operations result in message being sent to proper originating partition.  
+
+### Local sends
+
+All local sends are handeled by `PartitionAwareDistributionStrategy`. It sets the `partition-key` header value to local parition and routes the message to instance specific queue.
+
+### Reply 
+
+When replying, an endpoint routes the reply message to the endpoint that initiated the conversation. It's the responsibility of the requestor to properly set the reply to header before sending out the request. For a partitioned endpoint this implies that it sets the reply to header to its instance specific queue instead of the shared queue. This functionality is covered by the `HardcodeReplyToAddressToLogicalAddress` behavior.
+
 ## Receiver Side Distribution
 
 A partitioned endpoint can be configured to check that an incoming message should be processed locally. If it is not the case, the message is forwarded to a correct remote partition.
@@ -116,14 +131,6 @@ The Sender Side Distribution works the following way:
 ### Partition aware distribution strategy
 
 The Sender Side Distribution feature plugs a `PartitionAwareDistributionStrategy` into the outgoing pipeline, which is responsible for selecting a destination queue for each message sent to a specific endpoint. When a destination is to be selected for a given message, the mapping function is applied to obtain a partition key value. The message has it's `partition-key` header value set and the instance specific queue is selected as a destination address.
-
-### Local sends
-
-For local sends, the system already knows the `partition-key` header value and destination up front, so in this case no mapping needs to be specified.
-
-### Reply 
-
-When replying, an endpoint routes the reply message to the endpoint that initiated the conversation. It's the responsibility of the requestor to properly set the reply to header before sending out the request. For a partitioned endpoint this implies that it sets the reply to header to its instance specific queue instead of the shared queue. This functionality is covered by the `HardcodeReplyToAddressToLogicalAddress` behavior. This code is logically acting as part of sender side distribution, but as it only needs to be used for partitioned endpoints it's actually the receiver side distribution that sets it up.
 
 ### Configuration
 
