@@ -29,7 +29,7 @@ public class AuditRulesBehavior : IBehavior<IncomingContext>
             return;
         }
 
-        // Do not audit messages of type DoSomethingAtScheduledTime. 
+        // Do not audit messages of type DoNotAuditThisMessage. 
         if (context.IncomingLogicalMessage.MessageType != typeof(DoNotAuditThisMessage))
         {
             MessageAuditer.Audit(sendOptions, context.PhysicalMessage);
