@@ -10,14 +10,12 @@ namespace Shared
         readonly string localPartitionKey;
         readonly Forwarder forwarder;
         readonly Func<object, string> mapper;
-        readonly Action<string> logger;
 
-        public DistributeMessagesBasedOnPayload(string localPartitionKey, Forwarder forwarder, Func<object, string> mapper, Action<string> logger)
+        public DistributeMessagesBasedOnPayload(string localPartitionKey, Forwarder forwarder, Func<object, string> mapper)
         {
             this.localPartitionKey = localPartitionKey;
             this.forwarder = forwarder;
             this.mapper = mapper;
-            this.logger = logger;
         }
 
         public Task Invoke(IIncomingLogicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> next)
@@ -45,7 +43,7 @@ namespace Shared
 
             var message = $"##### Received message: {context.Headers[Headers.EnclosedMessageTypes]} with Mapped PartitionKey={messagePartitionKey} on partition {localPartitionKey}";
 
-            logger(message);
+            Logger.Log(message);
 
             if (messagePartitionKey == localPartitionKey)
             {

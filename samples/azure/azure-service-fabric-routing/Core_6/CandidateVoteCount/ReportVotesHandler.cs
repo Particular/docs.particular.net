@@ -1,6 +1,7 @@
 using System.Fabric;
 using System.Threading.Tasks;
 using NServiceBus;
+using Shared;
 
 namespace CandidateVoteCount
 {
@@ -8,11 +9,9 @@ namespace CandidateVoteCount
 
     public class ReportVotesHandler : IHandleMessages<ReportVotes>
     {
-        public StatefulServiceContext ServiceContext { get; set; }
-
         public Task Handle(ReportVotes message, IMessageHandlerContext context)
         {
-            ServiceEventSource.Current.ServiceMessage(ServiceContext, $"Closing voting, {message.Candidate} got {message.NumberOfVotes} votes ");
+            Logger.Log($"Closing voting, {message.Candidate} got {message.NumberOfVotes} votes ");
 
             return Task.FromResult(true);
         }

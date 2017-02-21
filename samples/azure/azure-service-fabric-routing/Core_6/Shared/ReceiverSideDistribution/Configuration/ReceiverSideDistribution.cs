@@ -27,8 +27,8 @@ namespace Shared
             }
 
             var forwarder = new Forwarder(configuration.Partitions, address => transportInfrastructure.ToTransportAddress(address), logicalAddress);
-            context.Pipeline.Register(new DistributeMessagesBasedOnHeader(discriminator, forwarder, configuration.Logger), "Distributes on the receiver side using header only");
-            context.Pipeline.Register(new DistributeMessagesBasedOnPayload(discriminator, forwarder, configuration.MapMessageToPartitionKey, configuration.Logger), "Distributes on the receiver side using user supplied mapper");
+            context.Pipeline.Register(new DistributeMessagesBasedOnHeader(discriminator, forwarder), "Distributes on the receiver side using header only");
+            context.Pipeline.Register(new DistributeMessagesBasedOnPayload(discriminator, forwarder, configuration.MapMessageToPartitionKey), "Distributes on the receiver side using user supplied mapper");
             context.Pipeline.Register(new HardcodeReplyToAddressToLogicalAddress(context.Settings.InstanceSpecificQueue()), "Hardcodes the ReplyToAddress to the instance specific address of this endpoint.");
         }
     }

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Fabric;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
-using NServiceBus.Configuration.AdvanceExtensibility;
-using NServiceBus.Routing;
 using Shared;
 
 namespace CandidateVoteCount
@@ -26,13 +23,14 @@ namespace CandidateVoteCount
 
         public async Task<string> OpenAsync(CancellationToken cancellationToken)
         {
+            Logger.Log = m => ServiceEventSource.Current.ServiceMessage(context, m);
+
             var endpointConfiguration = new EndpointConfiguration("CandidateVoteCount");
 
             var transportConfig = endpointConfiguration.ApplyCommonConfiguration();
 
             //Determine which partition this endpoint is handling
             string localPartitionKey;
-            IEnumerable<EndpointInstance> endpointInstances;
             string[] partitions;
             using (var client = new FabricClient())
             {
@@ -46,18 +44,13 @@ namespace CandidateVoteCount
 
                 var discriminators = servicePartitions.Select(x => x.Name).ToArray();
 
-                var receiverSideDistributionConfig = transportConfig.Routing().EnableReceiverSideDistribution(discriminators, m => ServiceEventSource.Current.ServiceMessage(context, m));
+                var receiverSideDistributionConfig = transportConfig.Routing().EnableReceiverSideDistribution(discriminators);
                 receiverSideDistributionConfig.AddPartitionMappingForMessageType<VotePlaced>(m => m.Candidate);
 
                 #endregion
 
                 localPartitionKey = servicePartitions.Single(p => p.Id == context.PartitionId).Name;
             }
-
-
-
-            // Register the Service context for later use
-            endpointConfiguration.RegisterComponents(components => components.RegisterSingleton(context));
 
             #region ConfigureSenderSideDistributionCandidateVoteCount
 
@@ -71,6 +64,7 @@ namespace CandidateVoteCount
             ConfigureSenderSizeRoutingForZipCodeVoteCount(transportConfig);
 
             endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+
             return null;
         }
 

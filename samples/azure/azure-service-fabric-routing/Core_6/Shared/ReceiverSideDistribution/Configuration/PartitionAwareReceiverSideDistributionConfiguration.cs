@@ -9,14 +9,11 @@ namespace Shared
     {
         readonly Dictionary<Type, Func<object, string>> messageTypeMappers = new Dictionary<Type, Func<object, string>>();
 
-        public PartitionAwareReceiverSideDistributionConfiguration(RoutingSettings routingSettings, string[] partitions, Action<string> logger = null)
+        public PartitionAwareReceiverSideDistributionConfiguration(RoutingSettings routingSettings, string[] partitions)
             : base(routingSettings.GetSettings())
         {
             Partitions = new HashSet<string>(partitions);
-            Logger = logger ?? EmptyLogger;
         }
-
-        internal Action<string> Logger { get; }
 
         internal HashSet<string> Partitions { get; }
 
@@ -46,10 +43,6 @@ namespace Shared
             }
 
             return partition;
-        }
-
-        static void EmptyLogger(string logMessage)
-        {
         }
     }
 }

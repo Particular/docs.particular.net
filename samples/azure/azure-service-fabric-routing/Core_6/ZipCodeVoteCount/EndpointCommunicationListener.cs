@@ -23,32 +23,28 @@ namespace ZipCodeVoteCount
 
         public async Task<string> OpenAsync(CancellationToken cancellationToken)
         {
+            Logger.Log = m => ServiceEventSource.Current.ServiceMessage(context, m);
+
             var endpointConfiguration = new EndpointConfiguration("ZipCodeVoteCount");
 
-            endpointConfiguration.ApplyCommonConfiguration();
-
-            endpointConfiguration.RegisterComponents(components => components.RegisterSingleton(context));
+            var transportConfiguration = endpointConfiguration.ApplyCommonConfiguration();
 
             string localPartitionKey;
-            IEnumerable<EndpointInstance> instanceList;
+            string[] partitions;
             using (var client = new FabricClient())
             {
                 var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName).ConfigureAwait(false);
                 var partitionInformations = servicePartitionList.Select(x => x.PartitionInformation).Cast<Int64RangePartitionInformation>().ToList();
-                instanceList = partitionInformations.Select(p => new EndpointInstance("ZipCodeVoteCount", p.HighKey.ToString()));
+                partitions = partitionInformations.Select(p => p.HighKey.ToString()).ToArray();
                 localPartitionKey = partitionInformations.Single(p => p.Id == context.PartitionId).HighKey.ToString();
             }
 
             endpointConfiguration.MakeInstanceUniquelyAddressable(localPartitionKey);
 
-            var internalSettings = endpointConfiguration.GetSettings();
-            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
-            var instances = internalSettings.GetOrCreate<EndpointInstances>();
-
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("ZipCodeVoteCount", message => localPartitionKey, DistributionStrategyScope.Send));
-            instances.AddOrReplaceInstances("ZipCodeVoteCount", instanceList.ToList());
+            transportConfiguration.Routing().RegisterPartitionsForThisEndpoint(localPartitionKey, partitions);
 
             endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+
             return null;
         }
 
