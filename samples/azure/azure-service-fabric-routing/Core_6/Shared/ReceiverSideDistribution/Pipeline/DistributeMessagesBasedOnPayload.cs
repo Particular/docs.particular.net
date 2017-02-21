@@ -31,14 +31,17 @@ namespace Shared
                 return next(context);
             }
 
-            if (!context.MessageHeaders.TryGetValue(PartitionHeaders.PartitionKey, out messagePartitionKey))
+            //If the header is set we assume it's validity was checked by DistributeMessagesBasedOnHeader
+            if (context.MessageHeaders.ContainsKey(PartitionHeaders.PartitionKey))
             {
-                messagePartitionKey = mapper(context.Message.Instance);
+                return next(context);
+            }
 
-                if (string.IsNullOrWhiteSpace(messagePartitionKey))
-                {
-                    throw new PartitionMappingFailedException($"Could not map a partition key for message of type {context.Headers[Headers.EnclosedMessageTypes]}");
-                }
+            messagePartitionKey = mapper(context.Message.Instance);
+
+            if (string.IsNullOrWhiteSpace(messagePartitionKey))
+            {
+                throw new PartitionMappingFailedException($"Could not map a partition key for message of type {context.Headers[Headers.EnclosedMessageTypes]}");
             }
 
             var message = $"##### Received message: {context.Headers[Headers.EnclosedMessageTypes]} with Mapped PartitionKey={messagePartitionKey} on partition {localPartitionKey}";

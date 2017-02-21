@@ -37,7 +37,6 @@ namespace Shared
             {
                 return next(context);
             }
-            context.Message.Headers[PartitionHeaders.PartitionKey] = messagePartitionKey;
 
             var message = $"##### Received message: {context.Message.Headers[Headers.EnclosedMessageTypes]} with Mapped PartitionKey={messagePartitionKey} on partition {localPartitionKey}";
 
