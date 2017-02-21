@@ -100,18 +100,29 @@ snippet: ConfigureReceiverSideDistribution-CandidateVoteCount
 
 Receiver Side Distribution addresses forwarding messages that arrive to an endpoint instance that is different from the destined one. Forwarding them introduces some overhead though. To remove the overhead on the receiver side; Sender Side Distribution can be used to distribute messages to the correct endpoint instance based on Service Fabric partitioning information.
 
-The Sender Side Distribution works in a following way. It applies the mapping function when dispatching messages. The result of the mapping, a selected partition, is added as the `partition-key` header. This ensures that its value doesn't have to be calculated on the receiver side again. Additionally, to remove the need of forwarding on the receiver side, the message is sent to the instance specific queue.
+The Sender Side Distribution works the following way:
+1. A mapping function is applied when dispatching messages. This mapping function is intended to select an available partition based on business criteria. In this example it's either the candidate name or the zip code of the voter, depending on the destination endpoint.
+2. The result of this mapping, a selected partition, is then added as a `partition-key` header to the sent message. This ensures that its value doesn't have to be calculated on the receiver side again and no receiver side distribution will occur. 
+3. As the correct destination instance is now know, given there can only be one master endpoint per Service Fabric partition, the message can be sent to the instance specific queue directly.
 
 ### Partition aware distribution strategy
 
-Sender Side Distribution introduces an overload for `DistributionStrategy` called `PartitionAwareDistributionStrategy`. When a destination is selected for a given message, the mapping function is applied to obtain a discriminator value. The message has `partition-key` value set and is routed to the instance specific queue.
+The Sender Side Distribution feature plugs a `PartitionAwareDistributionStrategy` into the outgoing pipeline, which is responsible for selecting a destination queue for each message sent to a specific endpoint. When a destination is to be selected for a given message, the mapping function is applied to obtain a discriminator value. The message has it's `partition-key` header value set and the instance specific queue is selected as a destination address.
+
+### Local sends
+
+For local sends, the system already knows the `partition-key` header value and destination up front, so in this case no mapping needs to be specified.
 
 ### Reply 
 
-When replying, an endpoint routes the reply message to the endpoint that initiated conversation. For a partitioned endpoint, it could require forwarding messages between endpoint instances. This is required to properly handle messages that need access to a paritioned state. Therefore, is much easier to ensure that all the `ReplyTo` headers will be instance specific. For sagas, it means that replies will arrive right to the correct partition. The rest of messages will be routed in the same way. Handling them does not require access to the parititoned state, so they can be processed on any instance.
+When replying, an endpoint routes the reply message to the endpoint that initiated the conversation. It's the responsibility of the requestor to properly set the reply to header before sending out the request. For a partitioned endpoint this implies that it sets the reply to header to its instance specific queue instead of the shared queue. This functionality is covered by the `HardcodeReplyToAddressToLogicalAddress` behavior. This code is logically acting as part of sender side distribution, but as it only needs to be used for partitioned endpoints it's actually the receiver side distribution that sets it up.
 
 ### Configuration
 
-The Sender Side Distribution is configured by augmenting the distributing messages for a specific endpoint. The first step of configuring it is setting a new PartitionAwareDistributionStrategy aware of partitions of the destined endpoint. The second, to register this endpoints' instances. This ensures, that from now on, all messages sent to this endpoint will be routed in the partition-aware manner.
+Sender Side Distribution is configured by teaching the system which partitions exist for a given endpoint and make sure that each of these partitions is uniquely addressable on the receiver side.
+
+snippet: ConfigureLocalPartitions-CandidateVoteCount
+
+In order to send to specific partitions on the destination side, it is required to specificy the mapping function between a business property on the message to a partition key for each sent message type.
 
 snippet: ConfigureSenderSideRouting-CandidateVoteCount
