@@ -1,4 +1,6 @@
 <Query Kind="Program">
+  <Reference>&lt;RuntimeDirectory&gt;\Microsoft.VisualBasic.dll</Reference>
+  <Namespace>Microsoft.VisualBasic</Namespace>
   <Namespace>System.Threading.Tasks</Namespace>
 </Query>
 
@@ -11,6 +13,10 @@ void Main()
 	var samplesDirectory = Path.Combine(docsDirectory, "samples");
 	var tutorialsDirectory = Path.Combine(docsDirectory, "tutorials");
 	var nugetConfigFile = Path.Combine(docsDirectory, "nuget.config");
+	
+	var filter = Interaction.InputBox("To filter solutions to update, enter a simple filter value. Leave blank to update all solutions.",
+		"Filter Solutions to Update",
+		string.Empty);
 
 	var solutionFiles = Directory.EnumerateFiles(samplesDirectory, "*.sln", SearchOption.AllDirectories).ToList();
 	solutionFiles.AddRange(Directory.EnumerateFiles(tutorialsDirectory, "*.sln", SearchOption.AllDirectories));
@@ -21,6 +27,11 @@ void Main()
 	new ParallelOptions() { MaxDegreeOfParallelism = 20 },
 	(solutionFile) =>
 		{
+			if (!string.IsNullOrEmpty(filter) && solutionFile.IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0)
+			{
+				return;
+			}
+			
 			Debug.WriteLine(solutionFile);
 			try
 			{ 
