@@ -1,6 +1,7 @@
 ﻿using NServiceBus;
 using NServiceBus.Pipeline;
 
+#region addFilterBehaviors
 class InitializeNewAuditBehavior : INeedInitialization
 {
     public void Customize(BusConfiguration configuration)
@@ -9,3 +10,4 @@ class InitializeNewAuditBehavior : INeedInitialization
         configuration.Pipeline.Replace(WellKnownStep.AuditProcessedMessage, typeof(AuditRulesBehavior), "Replaces existing audit behavior with the new behavior that filters certain messages");
     }
 }
+#endregion
