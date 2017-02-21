@@ -147,4 +147,9 @@ snippet: ConfigureSenderSideRouting-CandidateVoteCount
 The sample can be used with Message Driven Pub/Sub transports such as Azure Storage Queue Transport as well. The sample works out of the box but will heavily rely on Receiver Side Distribution to add the required partition keys to the header. For higher throughput scenarios the sender side distribution code needs to be tweaked in the following way:
 
 1. Add a `PartitionAwareDistributionStrategy` with scope `Publish` in the `SenderSideDistributionExtensions`
-1. Make sure `VotePlaced` message has a partition mapping function on the sender side
+
+snippet: SenderSideDistributionExtensions-MessageDrivenPubSub
+
+2. Make sure `VotePlaced` message has a partition mapping function on the sender side
+
+snippet: ConfigureSenderSideRouting-MessageDrivenPubSub
