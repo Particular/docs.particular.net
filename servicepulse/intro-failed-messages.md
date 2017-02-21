@@ -18,19 +18,19 @@ ServicePulse (via ServiceControl) monitors the central error queue and displays 
 In addition, ServicePulse also provides a Failed Messages page to assist in examining failed messages and taking certain actions on them.
 
 
-### Failed Messages page
+## Failed Messages page
 
 Both the "Failed Messages" indicator in the Dashboard and the "Failed Messages" link in the navigation bar link to the Failed Messages screen. This page is split into various tabs.
 
 
-#### Failed message groups tab
+### Failed message groups tab
 
 The first tab in the Failed Messages page shows error groups. A group is a set of failed messages grouped according to criteria like, for example, the same exception type.
 
 This tab shows two lists, described below.
 
 
-##### Last 10 completed retry requests list
+#### Last 10 completed retry requests list
 
 This list is collapsed by default and shows information about the last 10 completed group retry requests.
 
@@ -39,7 +39,7 @@ This list is collapsed by default and shows information about the last 10 comple
 A completed retry request represents a completed operation where messages from a given group were sent to the corresponding queue for processing. This means those messages may not actually have been processed yet. [Learn more about retrying failed messages](/servicepulse/intro-failed-message-retries.md).
 
 
-##### Failed groups list
+#### Failed groups list
 
 This list shows all groups of currently failed messages.
 
@@ -53,7 +53,7 @@ The display of failed message groups can be changed via the "Group by" drop down
 Note: the number of listed groups may differ depending on the selected classifications type view.
 
 
-###### Managing failed message groups
+##### Managing failed message groups
 
 The following actions can be performed on a failed message group:
 
@@ -65,37 +65,54 @@ The following actions can be performed on a failed message group:
  * **Archive group** - Archives all messages contained in the group. [Learn more about archiving messages](/servicepulse/intro-archived-messages.md).
 
 
-#### Viewing individual messages
-
-Individual messages views allow for accessing in-depth details about a given failed message, or retrying individual messages.
+### Listing messages
 
 Individual failed messages can viewed using one of the following two ways:
 
-- **Inside a failed message groups** - in the "Failed Messages Group" tab, click the "View messages" link from a failed message group entry
-- **All messages without any grouping** - in the "All messages" tab
+- **Inside a failed message group** - in the "Failed Messages Group" tab, click the "View messages" link from a failed message group entry
+- **All messages without any grouping** - via the "All messages" tab
 
 ![Failed Messages Page](images/intro-failed-messages-failed-messages-page.png 'width=500')
 
-Both of these individual message list views allow for taking actions on an individual message, on custom message selections or on all messages contained in the view.
+Both of these message list views allow for taking actions on an individual message, on custom message selections or on all messages contained in the view.
 
 NOTE: Retrying one or a few individual messages can be useful for testing system fixes before deciding to retry several messages in a group. This is because retrying several messages take a long time and queue other ServiceControl operations for longer than desired.
 
+The following actions can also be taken on each individual message or selection of messages:
 
-##### Managing individual failed messages
-
-The following actions can be taken on each individual message:
-
- * **Message Details:** For a given failed message, displays the message type, exception description, endpoint name and location, and failure timestamp.
- * **StackTrace:** Displays the full .NET exception stacktrace.
- * **Headers:** Displays a complete set of message headers.
- * **Body:** Displays the serialized message body.
- * **Copy Message Id:** Copies the failed message unique ID to the clipboard.
- * **Open in ServiceInsight:** Launches [ServiceInsight](/serviceinsight/), focusing on the failed message for in-depth analysis of the failure causes. This only works if ServiceInsight is installed on the local machine.
+* **Retry** - Sends message(s) to be reprocessed by the corresponding endpoint.
+* **Archive** - Archives message(s).
 
 
-### Archived Messages tab
+### Message details page
 
-Failed messages that cannot be processed successfully (or should not be retried due to various application-specific reasons) can be archived.
+As of ServicePulse v1.8.0, each individual message can be browsed in order to see in-depth details about a given failed message, archive or retry that message.
+
+![Failed Messages Page](images/failed-message-page.png 'width=500')
+
+Individual messages can be accessed by clicking the respective entry in any of the message list views.
+
+Each invidual failed message view allows for viewing:
+
+* **Message metadata** - Failure timestamp, endpoint name and location, retry status.
+* **StackTrace** - Full .NET exception stacktrace.
+* **Headers** - Complete set of message headers.
+* **Body** - Serialized message body.
+
+The following actions can also be taken on any given message:
+
+* **Retry** - Sends message to be reprocessed by the corresponding endpoint.
+* **Archive** - Archives the message.
+* **View in ServiceInsight** - Launches [ServiceInsight](/serviceinsight/), focusing on the failed message for in-depth analysis of the failure causes. This only works if ServiceInsight is installed on the local machine.
+
+#### Sharing message data from ServicePulse
+
+The URL from that message's page be copied to share the details of a specific message from ServicePulse.
+
+
+## Archived Messages tab
+
+Failed messages that cannot be processed successfully (or should not be retried due to various application-specific reasons) can be archived and later viewed in the Archived Messages tab.
 
 ![Archived Messages Tab](images/archive.png 'width=500')
 
