@@ -63,7 +63,6 @@
     <Compile Include="ReceiverSideDistribution\Pipeline\Forwarder.cs" />
     <Compile Include="SenderSideDistribution\Pipeline\PartitionAwareDistributionStrategy.cs" />
     <Compile Include="PartitionHeaders.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiverSideDistribution\Configuration\ReceiverSideDistribution.cs" />
     <Compile Include="ReceiverSideDistribution\Configuration\ReceiverSideDistributionExtensions.cs" />
     <Compile Include="ReceiverSideDistribution\Pipeline\DistributeSubscriptions.cs" />
