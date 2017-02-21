@@ -1,12 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Fabric;
-using System.Linq;
+﻿using System.Fabric;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
-using NServiceBus.Configuration.AdvanceExtensibility;
-using NServiceBus.Routing;
 using Shared;
 
 namespace ZipCodeVoteCount
@@ -25,23 +21,19 @@ namespace ZipCodeVoteCount
         {
             Logger.Log = m => ServiceEventSource.Current.ServiceMessage(context, m);
 
+            var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId);
+
             var endpointConfiguration = new EndpointConfiguration("ZipCodeVoteCount");
 
             var transportConfiguration = endpointConfiguration.ApplyCommonConfiguration();
 
-            string localPartitionKey;
-            string[] partitions;
-            using (var client = new FabricClient())
-            {
-                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName).ConfigureAwait(false);
-                var partitionInformations = servicePartitionList.Select(x => x.PartitionInformation).Cast<Int64RangePartitionInformation>().ToList();
-                partitions = partitionInformations.Select(p => p.HighKey.ToString()).ToArray();
-                localPartitionKey = partitionInformations.Single(p => p.Id == context.PartitionId).HighKey.ToString();
-            }
+            #region ConfigureLocalPartitions-ZipCodeVoteCount
 
-            endpointConfiguration.MakeInstanceUniquelyAddressable(localPartitionKey);
+            endpointConfiguration.MakeInstanceUniquelyAddressable(partitionInfo.LocalPartitionKey);
 
-            transportConfiguration.Routing().RegisterPartitionsForThisEndpoint(localPartitionKey, partitions);
+            transportConfiguration.Routing().RegisterPartitionsForThisEndpoint(partitionInfo.LocalPartitionKey, partitionInfo.Partitions);
+
+            #endregion
 
             endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
 using Shared;
+using ZipCodeVoteCount;
 
 namespace CandidateVoteCount
 {
@@ -25,51 +26,32 @@ namespace CandidateVoteCount
         {
             Logger.Log = m => ServiceEventSource.Current.ServiceMessage(context, m);
 
+            var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId);
+
             var endpointConfiguration = new EndpointConfiguration("CandidateVoteCount");
 
             var transportConfig = endpointConfiguration.ApplyCommonConfiguration();
 
-            //Determine which partition this endpoint is handling
-            string localPartitionKey;
-            string[] partitions;
-            using (var client = new FabricClient())
-            {
-                var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName).ConfigureAwait(false);
-                var servicePartitions =
-                    servicePartitionList.Select(x => x.PartitionInformation).Cast<NamedPartitionInformation>().ToList();
-
-                partitions = servicePartitions.Select(x => x.Name).ToArray();
-
-                #region ReceiverSideRoutingCandidateVoteCount
-
-                var discriminators = servicePartitions.Select(x => x.Name).ToArray();
-
-                var receiverSideDistributionConfig = transportConfig.Routing().EnableReceiverSideDistribution(discriminators);
-                receiverSideDistributionConfig.AddPartitionMappingForMessageType<VotePlaced>(m => m.Candidate);
-
-                #endregion
-
-                localPartitionKey = servicePartitions.Single(p => p.Id == context.PartitionId).Name;
-            }
-
-            #region ConfigureSenderSideDistributionCandidateVoteCount
+            #region ConfigureLocalPartitions-CandiateVoteCount
 
             // Set the endpoint instance discriminator using the partition key
-            endpointConfiguration.MakeInstanceUniquelyAddressable(localPartitionKey);
+            endpointConfiguration.MakeInstanceUniquelyAddressable(partitionInfo.LocalPartitionKey);
 
-            transportConfig.Routing().RegisterPartitionsForThisEndpoint(localPartitionKey, partitions);
+            transportConfig.Routing().RegisterPartitionsForThisEndpoint(partitionInfo.LocalPartitionKey, partitionInfo.Partitions);
 
             #endregion
 
-            ConfigureSenderSizeRoutingForZipCodeVoteCount(transportConfig);
+            #region ConfigureReceiverSideDistribution-CandidateVoteCount
 
-            endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+            var receiverSideDistributionConfig = transportConfig.Routing().EnableReceiverSideDistribution(partitionInfo.Partitions);
+            receiverSideDistributionConfig.AddPartitionMappingForMessageType<VotePlaced>(m => m.Candidate);
 
-            return null;
-        }
+            #endregion
 
-        static void ConfigureSenderSizeRoutingForZipCodeVoteCount(TransportExtensions<AzureServiceBusTransport> transportConfig)
-        {
+            #region ConfigureSenderSideRouting-CandidateVoteCount
+
+            var remotePartitions = new[] {"33000", "66000", "99000"};
+
             Func<TrackZipCode, string> convertStringZipCodeToHighKey = message =>
             {
                 var zipCodeAsNumber = Convert.ToInt32(message.ZipCode);
@@ -91,11 +73,15 @@ namespace CandidateVoteCount
                 throw new Exception($"Invalid zip code '{zipCodeAsNumber}' for message of type '{message.GetType()}'.");
             };
 
-            var senderSideDistributionConfig = transportConfig.Routing()
-                    .RegisterPartitionedDestinationEndpoint("ZipCodeVoteCount", new[] {"33000", "66000", "99000"});
+            var senderSideDistributionConfig = transportConfig.Routing().RegisterPartitionedDestinationEndpoint("ZipCodeVoteCount", remotePartitions);
 
-            senderSideDistributionConfig.AddPartitionMappingForMessageType<TrackZipCode>(
-                message => convertStringZipCodeToHighKey(message));
+            senderSideDistributionConfig.AddPartitionMappingForMessageType<TrackZipCode>(m => convertStringZipCodeToHighKey(m));
+
+            #endregion
+
+            endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+
+            return null;
         }
 
         public Task CloseAsync(CancellationToken cancellationToken)

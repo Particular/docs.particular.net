@@ -90,6 +90,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\ZipCodeVoteCount\ServicePartitionQueryHelper.cs">
+      <Link>ServicePartitionQueryHelper.cs</Link>
+    </Compile>
     <Compile Include="CandidateVoteData.cs" />
     <Compile Include="CandidateVotes.cs" />
     <Compile Include="EndpointCommunicationListener.cs" />
