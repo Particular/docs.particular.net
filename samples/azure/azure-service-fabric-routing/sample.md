@@ -98,7 +98,7 @@ snippet: ReceiverSideRoutingCandidateVoteCount
 
 ## Sender Side Distribution
 
-Receiver Side Distribution addresses forwarding messages that arrive to an endpoint instance that is different from the destined one. Forwarding them introduces some overhead though. To remove the overhead on the receiver side, Sender Side Distribution can be used, to distribute messages properly, amongst the endpoints' instances based on Service Fabric partitions.
+Receiver Side Distribution addresses forwarding messages that arrive to an endpoint instance that is different from the destined one. Forwarding them introduces some overhead though. To remove the overhead on the receiver side; Sender Side Distribution can be used to distribute messages to the correct endpoint instance based on Service Fabric partitioning information.
 
 The Sender Side Distribution works in a following way. It applies the mapping function when dispatching messages. The result of the mapping, a selected partition, is added as the `partition-key` header. This ensures that its value doesn't have to be calculated on the receiver side again. Additionally, to remove the need of forwarding on the receiver side, the message is sent to the instance specific queue.
 
