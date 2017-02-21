@@ -14,12 +14,12 @@ related:
 
 ## Introduction
 
-This sample shows how to extend the pipeline with custom behaviors to add filters which prevent messages from being forwarded to the audit queue.
+This sample shows how to extend the NServiceBus message processing pipeline with custom behaviors to add filters which prevent certain message types from being forwarded to the audit queue.
 
 
 ## Code Walk Through
 
-The solution contains a single endpoint with auditing enabled. The endpoint sends one `AuditThisMessage` and one `DoNotAuditThisMessage` to itself on startup. Both messages are handled by message handlers but `DoNotAuditThisMessage` should not be moved to the audit queue.
+The solution contains a single endpoint with auditing enabled. The endpoint sends one `AuditThisMessage` and one `DoNotAuditThisMessage` to itself on start up. Both messages are handled by message handlers however only the `AuditThisMessage` will be moved to the audit queue, and the `DoNotAuditThisMessage` is filtered out.
 
 partial:filtering
 
