@@ -94,7 +94,7 @@ To enable receiver side distribution in a specific endpoint two arguments are pr
 
 The configuration is applied by calling an extension method on `EndpointConfiguration`:
 
-snippet: ReceiverSideRoutingCandidateVoteCount
+snippet: ConfigureReceiverSideDistribution-CandidateVoteCount
 
 ## Sender Side Distribution
 
@@ -114,4 +114,4 @@ When replying, an endpoint routes the reply message to the endpoint that initiat
 
 The Sender Side Distribution is configured by augmenting the distributing messages for a specific endpoint. The first step of configuring it is setting a new PartitionAwareDistributionStrategy aware of partitions of the destined endpoint. The second, to register this endpoints' instances. This ensures, that from now on, all messages sent to this endpoint will be routed in the partition-aware manner.
 
-snippet: ConfigureSenderSideDistributionCandidateVoteCount
+snippet: ConfigureSenderSideRouting-CandidateVoteCount
