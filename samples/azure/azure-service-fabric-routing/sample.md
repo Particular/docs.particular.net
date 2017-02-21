@@ -15,10 +15,21 @@ related:
 
 ## Scenario
 
-The scenario used in this sample covers a voting system. In this voting system the casted votes are counted by candidate. Next to this the system also counts the total number of votes casted in each zip code. When voting is over, the system will publish the results and report them on the Service Fabric diagnostics infrastructure.
+The scenario used in this sample covers a voting system. In this voting system the casted votes are counted by candidate. The casted votes are `sent` from the voter client to the endpoint responsible for counting candidate votes.
+
+Next to this the system also counts the total number of votes casted in each zip code. In order to achieve this the candidate voting endpoint issues a `request` to the zip code counting endpoint to track the zip code. The zip code counting endpoint will send a `reply` back with the intermediary results.
+
+When election is closed, the candidate vote counting endpoint will `publish` the results per candidate and report them on the Service Fabric diagnostics infrastructure.
+
+After the counting time expires, using a `timeout`, the zip code counting endpoint `sends a local command` to report the statistics per zip code.
 
 For sake of simplicity, there are only 2 candidates in the election, called "John" and "Abby". Zip codes are always assumed to be valid integers with a length up to 5 digits in the range (00000 to 99000).
 
+### trade offs and known limitations
+
+The scenario has been set up to show the different kinds of communication that can occur in a partitioned solution: `send`, `send local`, `publish/subscribe`, `request\reply`, `timeout`.
+
+The downside of the focus on the communication patterns is that the saga design is less then ideal for a real voting system. There will be quite some contention on the saga data, which may result in concurrency exceptions and a few retries impacting performance of the system.
 
 ## Solution structure
 
@@ -26,10 +37,10 @@ The solution contains the following projects:
 
  * Contracts: This project contains message definitions that are shared between the projects in the solution.
  * Shared: Contains the receiver side distribution code as well as the sender side distribution code. 
- * CandidateVoteCount: This Service Fabric service contains the logic to count the votes by candidate while the votes come in. It also sends these votes to the `ZipCodeVoteCount` endpoint for tracking by zipcode and it will report the results when the voting period is over.
+ * CandidateVoteCount: This Service Fabric service contains the logic to count the votes by candidate while the votes come in. It also sends these votes to the `ZipCodeVoteCount` endpoint for tracking by zip code, it will report the intermediate results as well as the full results when the election is closed.
  * ZipCodeVoteCount: This Service Fabric service contains the logic to count the votes by zip code in the background. It will report the results when the allowed counting period is over.
  * ServiceFabricRouting: This is the Service Fabric deployment project, it describes how the Service Fabric application and service types will be configured.
- * Voter: This is a console application that allows to cast votes. It is hosted outside of the Service Fabric cluster.
+ * Voter: This is a console application that simulates casting of votes. It is hosted outside of the Service Fabric cluster.
 
 ## Cluster partitioning
 
