@@ -68,6 +68,8 @@ The remainder of this document will focus on the different techniques that can b
 
 Every partitioned endpoint is configured to check whether an incoming message should be processed on a partition it runs on. If it is not the case, the message is forwarded to the proper partition. Details of Receiver Side Distribution are described below.
 
+Receiver Side Distribution only applies to endpoints hosted inside Service Fabric.
+
 ### Header inspection
 
 Every incoming message has its `partition-key` header value inspected by `DistributeMessagesBasedOnHeader` behavior. If the value specified in this header is equal to the receiver's parition, then a regular message processing occurs. Otherwise, the receiver forwards the message to the right partition. If the partition key is wrongly assigned - the specified partition does not exist, the message is moved to the error queue.
@@ -101,6 +103,8 @@ In many low-throughput scenarios Receiver Side Distribution might be enough to g
 ## Sender Side Distribution
 
 Receiver Side Distribution addresses forwarding messages that arrive to an endpoint instance that is different from the destined one. Forwarding them introduces some overhead though. To remove the overhead on the receiver side; Sender Side Distribution can be used to distribute messages to the correct endpoint instance based on Service Fabric partitioning information.
+
+Sender Side Distribution can be applied to endpoints hosted inside Service Fabric by using the available partition information on the stateful context or for endpoints outside the cluster that need to send messages into endpoints hosted inside the cluster. Endpoints that are hosted outside the cluster don't need access to Service Fabric specific APIs. The endpoints only need to know how the partition keys influence the instance specific mapping.
 
 The Sender Side Distribution works the following way:
 1. A mapping function is applied when dispatching messages. This mapping function is intended to select an partition key based on business criteria. In this example it's either the candidate name or the zip code of the voter, depending on the destination endpoint.
