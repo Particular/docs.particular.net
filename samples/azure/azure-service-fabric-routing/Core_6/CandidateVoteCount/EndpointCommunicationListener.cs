@@ -33,9 +33,7 @@ namespace CandidateVoteCount
 
             #region ConfigureLocalPartitions-CandidateVoteCount
 
-            endpointConfiguration.MakeInstanceUniquelyAddressable(partitionInfo.LocalPartitionKey);
-
-            transportConfig.Routing().RegisterPartitionsForThisEndpoint(partitionInfo.LocalPartitionKey, partitionInfo.Partitions);
+            endpointConfiguration.RegisterPartitionsForThisEndpoint(partitionInfo.LocalPartitionKey, partitionInfo.Partitions);
 
             #endregion
 

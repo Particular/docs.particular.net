@@ -23,19 +23,5 @@ namespace Shared
 
             return distributionConfiguration;
         }
-
-        public static void RegisterPartitionsForThisEndpoint<T>(this RoutingSettings<T> routingSettings, string localPartitionKey, string[] allPartitions) where T : TransportDefinition
-        {
-            var settings = routingSettings.GetSettings();
-
-            var endpointName = settings.EndpointName();
-            var distributionStrategy = new PartitionAwareDistributionStrategy(endpointName, _ => localPartitionKey, DistributionStrategyScope.Send);
-
-            settings.GetOrCreate<DistributionPolicy>().SetDistributionStrategy(distributionStrategy);
-
-            var destinationEndpointInstances = allPartitions.Select(key => new EndpointInstance(endpointName, key)).ToList();
-
-            settings.GetOrCreate<EndpointInstances>().AddOrReplaceInstances(endpointName, destinationEndpointInstances);
-        }
     }
 }

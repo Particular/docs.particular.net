@@ -25,13 +25,11 @@ namespace ZipCodeVoteCount
 
             var endpointConfiguration = new EndpointConfiguration("ZipCodeVoteCount");
 
-            var transportConfiguration = endpointConfiguration.ApplyCommonConfiguration();
+            endpointConfiguration.ApplyCommonConfiguration();
 
             #region ConfigureLocalPartitions-ZipCodeVoteCount
 
-            endpointConfiguration.MakeInstanceUniquelyAddressable(partitionInfo.LocalPartitionKey);
-
-            transportConfiguration.Routing().RegisterPartitionsForThisEndpoint(partitionInfo.LocalPartitionKey, partitionInfo.Partitions);
+            endpointConfiguration.RegisterPartitionsForThisEndpoint(partitionInfo.LocalPartitionKey, partitionInfo.Partitions);
 
             #endregion
 
