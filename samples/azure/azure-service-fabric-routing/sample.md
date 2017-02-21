@@ -27,7 +27,7 @@ For sake of simplicity, there are only 2 candidates in the election, called "Joh
 
 ### trade offs and known limitations
 
-The scenario has been set up to show the different kinds of communication that can occur in a partitioned solution: `send`, `send local`, `publish/subscribe`, `request\reply`, `timeout`.
+The scenario has been set up to show the different kinds of communication that can occur in a partitioned solution: `send`, `send local`, `publish/subscribe`, `request/reply`, `timeout`.
 
 The downside of the focus on the communication patterns is that the saga design is less then ideal for a real voting system. There will be quite some contention on the saga data, which may result in concurrency exceptions and a few retries impacting performance of the system.
 
@@ -60,7 +60,7 @@ Example:
 
 and so on.
 
-This behavior can be achieved however by using NServiceBus' sender and receiver side distribution features and a few modifications to the NServiceBus processing pipeline to make it partition aware.
+This behavior can be achieved by combinding NServiceBus' built-in sender side distribution feature and a few modiciations to the processing pipeline to make it partition aware.
 
 The remainder of this document will focus on the different techniques that can be used to configure these distribution strategies, either manually or automatically, to achieve full partition aware routing. 
 
@@ -96,18 +96,20 @@ The configuration is applied by calling an extension method on `EndpointConfigur
 
 snippet: ConfigureReceiverSideDistribution-CandidateVoteCount
 
+In many low-throughput scenarios Receiver Side Distribution might be enough to get started. If higher throughput needs to be achieved it might be desired to route directly to the partition that is the ulimate destination of a command. In those cases the below described Sender Side Distribution can be used in combination with Receiver Side Distribution.
+
 ## Sender Side Distribution
 
 Receiver Side Distribution addresses forwarding messages that arrive to an endpoint instance that is different from the destined one. Forwarding them introduces some overhead though. To remove the overhead on the receiver side; Sender Side Distribution can be used to distribute messages to the correct endpoint instance based on Service Fabric partitioning information.
 
 The Sender Side Distribution works the following way:
-1. A mapping function is applied when dispatching messages. This mapping function is intended to select an available partition based on business criteria. In this example it's either the candidate name or the zip code of the voter, depending on the destination endpoint.
-2. The result of this mapping, a selected partition, is then added as a `partition-key` header to the sent message. This ensures that its value doesn't have to be calculated on the receiver side again and no receiver side distribution will occur. 
+1. A mapping function is applied when dispatching messages. This mapping function is intended to select an partition key based on business criteria. In this example it's either the candidate name or the zip code of the voter, depending on the destination endpoint.
+2. The result of this mapping, a selected partition key, is then added as a `partition-key` header to the sent message. This ensures that its value doesn't have to be calculated on the receiver side again and no receiver side distribution will occur. 
 3. As the correct destination instance is now know, given there can only be one master endpoint per Service Fabric partition, the message can be sent to the instance specific queue directly.
 
 ### Partition aware distribution strategy
 
-The Sender Side Distribution feature plugs a `PartitionAwareDistributionStrategy` into the outgoing pipeline, which is responsible for selecting a destination queue for each message sent to a specific endpoint. When a destination is to be selected for a given message, the mapping function is applied to obtain a discriminator value. The message has it's `partition-key` header value set and the instance specific queue is selected as a destination address.
+The Sender Side Distribution feature plugs a `PartitionAwareDistributionStrategy` into the outgoing pipeline, which is responsible for selecting a destination queue for each message sent to a specific endpoint. When a destination is to be selected for a given message, the mapping function is applied to obtain a partition key value. The message has it's `partition-key` header value set and the instance specific queue is selected as a destination address.
 
 ### Local sends
 
