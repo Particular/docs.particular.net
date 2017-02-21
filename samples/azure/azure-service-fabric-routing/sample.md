@@ -141,3 +141,10 @@ snippet: ConfigureLocalPartitions-CandidateVoteCount
 In order to send to specific partitions on the destination side, it is required to specificy the mapping function between a business property on the message to a partition key for each sent message type.
 
 snippet: ConfigureSenderSideRouting-CandidateVoteCount
+
+### Message Driven Pub/Sub
+
+The sample can be used with Message Driven Pub/Sub transports such as Azure Storage Queue Transport as well. The sample works out of the box but will heavily rely on Receiver Side Distribution to add the required partition keys to the header. For higher throughput scenarios the sender side distribution code needs to be tweaked in the following way:
+
+1. Add a `PartitionAwareDistributionStrategy` with scope `Publish` in the `SenderSideDistributionExtensions`
+1. Make sure `VotePlaced` message has a partition mapping function on the sender side
