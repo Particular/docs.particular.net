@@ -33,7 +33,6 @@ namespace CandidateVoteCount
 
             #region ConfigureLocalPartitions-CandidateVoteCount
 
-            // Set the endpoint instance discriminator using the partition key
             endpointConfiguration.MakeInstanceUniquelyAddressable(partitionInfo.LocalPartitionKey);
 
             transportConfig.Routing().RegisterPartitionsForThisEndpoint(partitionInfo.LocalPartitionKey, partitionInfo.Partitions);
