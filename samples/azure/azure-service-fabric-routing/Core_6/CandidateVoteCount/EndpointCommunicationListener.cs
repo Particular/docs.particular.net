@@ -33,13 +33,14 @@ namespace CandidateVoteCount
             //Determine which partition this endpoint is handling
             string localPartitionKey;
             IEnumerable<EndpointInstance> endpointInstances;
+            string[] partitions;
             using (var client = new FabricClient())
             {
                 var servicePartitionList = await client.QueryManager.GetPartitionListAsync(context.ServiceName).ConfigureAwait(false);
                 var servicePartitions =
                     servicePartitionList.Select(x => x.PartitionInformation).Cast<NamedPartitionInformation>().ToList();
 
-                endpointInstances = servicePartitions.Select(x => new EndpointInstance("CandidateVoteCount", x.Name));
+                partitions = servicePartitions.Select(x => x.Name).ToArray();
 
                 #region ReceiverSideRoutingCandidateVoteCount
 
@@ -53,20 +54,17 @@ namespace CandidateVoteCount
                 localPartitionKey = servicePartitions.Single(p => p.Id == context.PartitionId).Name;
             }
 
-            // Set the endpoint instance discriminator using the partition key
-            endpointConfiguration.MakeInstanceUniquelyAddressable(localPartitionKey);
+
 
             // Register the Service context for later use
             endpointConfiguration.RegisterComponents(components => components.RegisterSingleton(context));
 
             #region ConfigureSenderSideDistributionCandidateVoteCount
 
-            var internalSettings = endpointConfiguration.GetSettings();
-            var policy = internalSettings.GetOrCreate<DistributionPolicy>();
-            var instances = internalSettings.GetOrCreate<EndpointInstances>();
+            // Set the endpoint instance discriminator using the partition key
+            endpointConfiguration.MakeInstanceUniquelyAddressable(localPartitionKey);
 
-            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy("CandidateVoteCount", message => localPartitionKey, DistributionStrategyScope.Send));
-            instances.AddOrReplaceInstances("CandidateVoteCount", endpointInstances.ToList());
+            transportConfig.Routing().RegisterPartitionsForThisEndpoint(localPartitionKey, partitions);
 
             #endregion
 

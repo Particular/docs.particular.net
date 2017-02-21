@@ -23,5 +23,19 @@ namespace Shared
 
             return distributionConfiguration;
         }
+
+        public static void RegisterPartitionsForThisEndpoint<T>(this RoutingSettings<T> routingSettings, string localPartitionKey, string[] allPartitions) where T : TransportDefinition
+        {
+            var settings = routingSettings.GetSettings();
+            var endpointName = settings.EndpointName();
+            var policy = settings.GetOrCreate<DistributionPolicy>();
+
+            policy.SetDistributionStrategy(new PartitionAwareDistributionStrategy(endpointName, _ => localPartitionKey, DistributionStrategyScope.Send));
+
+            var destinationEndpointInstances = allPartitions.Select(key => new EndpointInstance(endpointName, key)).ToList();
+
+            var instances = settings.GetOrCreate<EndpointInstances>();
+            instances.AddOrReplaceInstances(endpointName, destinationEndpointInstances);
+        }
     }
 }
