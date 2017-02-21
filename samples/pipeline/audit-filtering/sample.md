@@ -1,7 +1,7 @@
 ---
 title: Audit filter pipeline extension
 summary: Extending the pipeline to stop certain messages from being audited.
-reviewed: 2016-06-01
+reviewed: 2017-02-21
 component: Core
 tags:
  - Pipeline
@@ -14,38 +14,18 @@ related:
 
 ## Introduction
 
-This sample shows how to extend the pipeline with custom behaviors to add filters which prevent messages from being forwarded to the audit queue.
+This sample shows how to extend the NServiceBus message processing pipeline with custom behaviors to add filters which prevent certain message types from being forwarded to the audit queue.
 
 
 ## Code Walk Through
 
-The solution contains a single endpoint with auditing enabled. The endpoint sends one `AuditThisMessage` and one `DoNotAuditThisMessage` to itself on startup. Both messages are handled by message handlers but `DoNotAuditThisMessage` should not be moved to the audit queue.
+The solution contains a single endpoint with auditing enabled. The endpoint sends one `AuditThisMessage` and one `DoNotAuditThisMessage` to itself on start up. Both messages are handled by message handlers however only the `AuditThisMessage` will be moved to the audit queue, and the `DoNotAuditThisMessage` is filtered out.
 
-Three behaviors are added to the message processing pipeline to implement the desired filtering logic:
+partial:filtering
+
+The filtering logic then needs to be registered in the pipeline:
 
 snippet:addFilterBehaviors
-
-
-
-### AuditFilterContextBehavior
-
-This behavior adds a class to the pipeline contexts `Extensions` bag. This class can later be accessed by the other behaviors to share state across behaviors. The state needs to be added early in the pipeline because anything added to the `Extensions` after the `IIncomingPhysicalMessageContext` is invisible to the `IAuditContext`.
-
-snippet:auditFilterContextBehavior
-
-
-### AuditRulesBehavior
-
-The `AuditRulesBehavior` uses the `IIncomingLogicalMessageContext` to inspect the incoming message type and applies its rules to determine whether that message should be audited or not. If the message should not be audited, it retrieves the shared state from the context's `Extensions` and marks the message.
-
-snippet:auditRulesBehavior
-
-
-### AuditFilterBehavior
-
-This behavior is invoked for every message which is sent to the audit queue. By retrieving the shared state and checking its value, this behavior can stop the auditing pipeline by not invoking the next step.
-
-snippet:auditFilterBehavior
 
 
 ## Running the Code
