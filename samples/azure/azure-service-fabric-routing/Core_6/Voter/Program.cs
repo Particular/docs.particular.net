@@ -21,7 +21,16 @@ namespace Voter
 
             var transportConfig = endpointConfiguration.ApplyCommonConfiguration();
 
-            ConfigureSenderSizeRoutingForCandidateVoteCount(transportConfig);
+            #region ConfigureSenderSideRouting-Voter
+
+            var remotePartitions = new[] { "John", "Abby" };
+
+            var distributionConfig = transportConfig.Routing()
+                .RegisterPartitionedDestinationEndpoint("CandidateVoteCount", remotePartitions);
+
+            distributionConfig.AddPartitionMappingForMessageType<CloseElection>(message => message.Candidate);
+
+            #endregion
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
@@ -36,17 +45,17 @@ namespace Voter
             {
                 while (!Console.KeyAvailable)
                 {
-                    var choice = random.Next(1, 3);
-                    var candidate = choice == 1 ? "John" : "Abby";
+                    var choice = random.Next(0, 2);
+                    var candidate = remotePartitions[choice % 2];
                     var zipcode = votedZipCode[random.Next(0, 10)];
 
                     Console.WriteLine($"Voted for {candidate} from zip code {zipcode}");
 
-                await endpointInstance.Publish(new VotePlaced
-                {
-                    Candidate = candidate,
-                    ZipCode = zipcode
-                });
+                    await endpointInstance.Publish(new VotePlaced
+                    {
+                        Candidate = candidate,
+                        ZipCode = zipcode
+                    });
 
                     await Task.Delay(1000);
                 }
@@ -54,23 +63,10 @@ namespace Voter
 
             Console.WriteLine("Closing election");
 
-            await endpointInstance.Send(new CloseElection
-            {
-                Candidate = "John",
-            });
-            await endpointInstance.Send(new CloseElection
-            {
-                Candidate = "Abby",
-            });
+            await endpointInstance.Send(new CloseElection {Candidate = remotePartitions[0]});
+            await endpointInstance.Send(new CloseElection {Candidate = remotePartitions[1]});
 
             await endpointInstance.Stop().ConfigureAwait(false);
-        }
-
-        static void ConfigureSenderSizeRoutingForCandidateVoteCount(TransportExtensions<AzureServiceBusTransport> transportConfig)
-        {
-            var distributionConfig = transportConfig.Routing()
-                .RegisterPartitionedDestinationEndpoint("CandidateVoteCount", new[] {"John", "Abby"});
-            distributionConfig.AddPartitionMappingForMessageType<CloseElection>(message => message.Candidate);
         }
     }
 }
