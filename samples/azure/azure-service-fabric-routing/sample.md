@@ -13,7 +13,7 @@ related:
 2. An Azure Service Bus namespace that can be used for communication between the instances.
 3. A machine level environment variable called "AzureServiceBus.ConnectionString" that contains the manage connectionstring to the Azure Service Bus namespace.
 
-Not: Make sure the environment variable "AzureServiceBus.ConnectionString" is defined at the machine level. Because a Service Fabric cluster runs on the Network Service account, it has no access to user level variables.
+Note: Make sure the environment variable "AzureServiceBus.ConnectionString" is defined at the machine level. Because a Service Fabric cluster runs on the Network Service account, it has no access to user level variables.
 
 ## Scenario
 
