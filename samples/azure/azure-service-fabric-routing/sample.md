@@ -68,13 +68,13 @@ The remainder of this document will focus on the different techniques that can b
 
 ## Receiver Side Distribution
 
-Every partitioned endpoint is configured to check whether an incoming message should be processed on a partition it runs on. If it is not the case, the message is forwarded to the proper partition. Details of Receiver Side Distribution are described below.
+A partitioned endpoint can be configured to check that an incoming message should be processed locally. If it is not the case, the message is forwarded to a correct remote partition.
 
-Receiver Side Distribution only applies to endpoints hosted inside Service Fabric.
+Partition validation is performed at the level of message headers and message body.
 
 ### Header inspection
 
-Every incoming message has its `partition-key` header value inspected by `DistributeMessagesBasedOnHeader` behavior. If the value specified in this header is equal to the receiver's parition, then a regular message processing occurs. Otherwise, the receiver forwards the message to the right partition. If the partition key is wrongly assigned - the specified partition does not exist, the message is moved to the error queue.
+Every incoming message has its `partition-key` header value inspected by `DistributeMessagesBasedOnHeader` behavior. If the value specified in the header is equal to the receiver's parition, then message processing continues. Otherwise, the message is forwarded to the remote partition specified by the header value. If the partition key is wrongly assigned - the specified partition does not exist, the message is moved to the error queue.
 
 If the `partition-key` header does not exist, the pipeline execution continues moving the message to the *Message body inspection* step.
 
