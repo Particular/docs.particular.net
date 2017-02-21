@@ -2,8 +2,6 @@
 title: Running locally without Azure Cloud Services emulator
 summary: Debugging endpoints without Azure Cloud Services emulator
 component: CloudServicesHost
-redirects:
- - nservicebus/hosting/cloud-services-host
 reviewed: 2017-02-21
 ---
 
