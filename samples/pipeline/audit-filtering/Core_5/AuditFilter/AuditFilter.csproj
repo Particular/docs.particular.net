@@ -45,8 +45,9 @@
     <Compile Include="AuditThisMessageHandler.cs" />
     <Compile Include="ConfigureAuditQueue.cs" />
     <Compile Include="ConfigureErrorQueue.cs" />
+    <Compile Include="DoNotAuditThisMessage.cs" />
     <Compile Include="InitializeAuditRulesBehavior.cs" />
-    <Compile Include="Messages.cs" />
+    <Compile Include="AuditThisMessage.cs" />
     <Compile Include="DoNotAuditThisMessageHandler.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

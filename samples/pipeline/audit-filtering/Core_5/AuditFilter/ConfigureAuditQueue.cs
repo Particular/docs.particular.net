@@ -8,7 +8,7 @@ class ConfigureAuditQueue :
     {
         return new AuditConfig
         {
-                QueueName = "audit"
+            QueueName = "audit"
         };
     }
 }

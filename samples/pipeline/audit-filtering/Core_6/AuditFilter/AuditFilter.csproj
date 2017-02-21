@@ -46,7 +46,8 @@
     <Compile Include="AuditRulesBehavior.cs" />
     <Compile Include="AuditFilterBehavior.cs" />
     <Compile Include="AuditThisMessageHandler.cs" />
-    <Compile Include="Messages.cs" />
+    <Compile Include="DoNotAuditThisMessage.cs" />
+    <Compile Include="AuditThisMessage.cs" />
     <Compile Include="DoNotAuditThisMessageHandler.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

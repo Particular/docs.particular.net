@@ -6,25 +6,32 @@ using NServiceBus.Transports;
 using NServiceBus.Unicast;
 
 #region auditRulesBehavior
-public class AuditRulesBehavior : IBehavior<IncomingContext>
+public class AuditRulesBehavior :
+    IBehavior<IncomingContext>
 {
-    public IAuditMessages MessageAuditer { get; set; }
-    public TimeSpan? TimeToBeReceivedOnForwardedMessages { get; set; }
+    IAuditMessages messageAuditer;
+
+    public AuditRulesBehavior(IAuditMessages messageAuditer)
+    {
+        this.messageAuditer = messageAuditer;
+    }
 
     public void Invoke(IncomingContext context, Action next)
     {
         next();
-        var sendOptions = new SendOptions("audit")
-        {
-            TimeToBeReceived = TimeToBeReceivedOnForwardedMessages
-        };
+        var sendOptions = new SendOptions("audit");
 
         //set audit related headers
-        context.PhysicalMessage.Headers[Headers.ProcessingStarted] = DateTimeExtensions.ToWireFormattedString(context.Get<DateTime>("IncomingMessage.ProcessingStarted"));
-        context.PhysicalMessage.Headers[Headers.ProcessingEnded] = DateTimeExtensions.ToWireFormattedString(context.Get<DateTime>("IncomingMessage.ProcessingEnded"));
+        var headers = context.PhysicalMessage.Headers;
+
+        var processingStarted = context.Get<DateTime>("IncomingMessage.ProcessingStarted");
+        headers[Headers.ProcessingStarted] = DateTimeExtensions.ToWireFormattedString(processingStarted);
+
+        var processingEnded = context.Get<DateTime>("IncomingMessage.ProcessingEnded");
+        headers[Headers.ProcessingEnded] = DateTimeExtensions.ToWireFormattedString(processingEnded);
 
         // Don't audit control messages
-        if (context.PhysicalMessage.Headers.ContainsKey(Headers.ControlMessageHeader))
+        if (headers.ContainsKey(Headers.ControlMessageHeader))
         {
             return;
         }
@@ -32,7 +39,7 @@ public class AuditRulesBehavior : IBehavior<IncomingContext>
         // Do not audit messages of type DoNotAuditThisMessage. 
         if (context.IncomingLogicalMessage.MessageType != typeof(DoNotAuditThisMessage))
         {
-            MessageAuditer.Audit(sendOptions, context.PhysicalMessage);
+            messageAuditer.Audit(sendOptions, context.PhysicalMessage);
         }
     }
 }

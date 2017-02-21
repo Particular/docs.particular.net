@@ -50,6 +50,7 @@ class Program
             };
             await endpointInstance.SendLocal(auditThisMessage)
                 .ConfigureAwait(false);
+
             var doNotAuditThisMessage = new DoNotAuditThisMessage
             {
                 Content = "Don't look for me!"

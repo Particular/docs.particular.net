@@ -17,15 +17,17 @@ class Program
 
         using (var bus = Bus.Create(busConfiguration).Start())
         {
-            bus.SendLocal<AuditThisMessage>(m =>
+            var auditThisMessage = new AuditThisMessage
             {
-                m.Content = "See you in the audit queue!";
-            });
+                Content = "See you in the audit queue!"
+            };
+            bus.SendLocal(auditThisMessage);
 
-            bus.SendLocal<DoNotAuditThisMessage>(m =>
+            var doNotAuditThisMessage = new DoNotAuditThisMessage
             {
-                m.Content = "Don't look for me!";
-            });
+                Content = "Don't look for me!"
+            };
+            bus.SendLocal(doNotAuditThisMessage);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
