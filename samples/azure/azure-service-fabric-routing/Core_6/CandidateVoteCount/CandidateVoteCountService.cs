@@ -15,8 +15,7 @@ namespace CandidateVoteCount
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
         {
             var listener = new EndpointCommunicationListener(Context);
-            return new List<ServiceReplicaListener> {new ServiceReplicaListener(context => listener)};
-
+            return new List<ServiceReplicaListener> { new ServiceReplicaListener(context => listener) };
         }
     }
 }

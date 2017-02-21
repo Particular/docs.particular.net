@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Fabric;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
@@ -26,7 +25,7 @@ namespace CandidateVoteCount
         {
             Logger.Log = m => ServiceEventSource.Current.ServiceMessage(context, m);
 
-            var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId);
+            var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId).ConfigureAwait(false);
 
             var endpointConfiguration = new EndpointConfiguration("CandidateVoteCount");
 
