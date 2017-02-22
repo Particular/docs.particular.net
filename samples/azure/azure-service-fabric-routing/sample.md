@@ -124,9 +124,10 @@ Receiver Side Distribution addresses forwarding messages that arrive to an endpo
 Sender Side Distribution can be applied to endpoints hosted inside Service Fabric by using the available partition information on the stateful context or for endpoints outside the cluster that need to send messages into endpoints hosted inside the cluster. Endpoints that are hosted outside the cluster don't need access to Service Fabric specific APIs. The endpoints only need to know how the partition keys influence the instance specific mapping.
 
 The Sender Side Distribution works the following way:
+
 1. A mapping function is applied when dispatching messages. This mapping function is intended to select an partition key based on business criteria. In this example it's either the candidate name or the zip code of the voter, depending on the destination endpoint.
-2. The result of this mapping, a selected partition key, is then added as a `partition-key` header to the sent message. This ensures that its value doesn't have to be calculated on the receiver side again and no receiver side distribution will occur. 
-3. As the correct destination instance is now know, given there can only be one master endpoint per Service Fabric partition, the message can be sent to the instance specific queue directly.
+1. The result of this mapping, a selected partition key, is then added as a `partition-key` header to the sent message. This ensures that its value doesn't have to be calculated on the receiver side again and no receiver side distribution will occur. 
+1. As the correct destination instance is now know, given there can only be one master endpoint per Service Fabric partition, the message can be sent to the instance specific queue directly.
 
 ### Partition aware distribution strategy
 
