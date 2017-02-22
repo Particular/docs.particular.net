@@ -284,6 +284,8 @@
         Title: Shared Hosting
       - Url: nservicebus/hosting/cloud-services-host/critical
         Title: Critical Errors
+      - Url: nservicebus/hosting/cloud-services-host/running-without-emulator
+        Title: Running without emulator
       - Url: nservicebus/hosting/cloud-services-host/faq
         Title: FAQ
     - Url: nservicebus/lifecycle
