@@ -5,7 +5,7 @@ component: CloudServicesHost
 reviewed: 2017-02-21
 ---
 
-Debugging endpoints hosted with Cloud Services requires spinning up Azure Cloud Service emulator and loading endpoint in the emulator. It's a heavy operation and if no scale out of roles is required, can be done by loading endpoints using a host process provided by NServiceBus instead.
+Debugging endpoints hosted with Cloud Services requires starting up Azure Cloud Service emulator and loading endpoint in the emulator. It's a resource intensive operation and if no scale out of roles is required, can be done by loading endpoints using a host process provided by NServiceBus instead.
 
 Following these steps will enable local execution of endpoints without Azure Cloud Service emulator:
 
