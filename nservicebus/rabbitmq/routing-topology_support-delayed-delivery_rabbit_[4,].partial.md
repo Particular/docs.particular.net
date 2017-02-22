@@ -1,6 +1,6 @@
 ### Delayed delivery
 
-Starting with Version 4.3, it is possible to support [delayed delivery](delayed-delivery.md) without requiring the timeout manager by implementing `ISupportDelayedDelivery` in addition to `IRoutingTopology` in the routing topology class.
+Starting with Version 4.3, it is possible to support [delayed delivery](delayed-delivery.md) without requiring the [timeout manager](/nservicebus/messaging/timeout-manager.md) by implementing `ISupportDelayedDelivery` in addition to `IRoutingTopology` in the routing topology class.
 
 When the routing topology implements `ISupportDelayedDelivery`, the transport will call the `BindToDelayInfrastructure` method to allow the routing topology to create the appropriate bindings to the delivery exchange that is part of the native delayed delivery infrastructure. 
 
