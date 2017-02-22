@@ -73,4 +73,4 @@ For each queue required by the endpoint, the transport will first declare that q
 
 partial: queue-declaration
 
-partial: support-native-delays
+partial: support-delayed-delivery

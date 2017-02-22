@@ -150,12 +150,12 @@ class Usage
         #endregion
     }
 
-    void AllEndpointsSupportNativeDelays(EndpointConfiguration endpointConfiguration)
+    void AllEndpointsSupportDelayedDelivery(EndpointConfiguration endpointConfiguration)
     {
-        #region rabbitmq-delay-all-endpoints-support-native-delays 4.3
+        #region rabbitmq-delay-all-endpoints-support-delayed-delivery 4.3
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.DelayedDelivery().AllEndpointsSupportNativeDelays();
+        transport.DelayedDelivery().AllEndpointsSupportDelayedDelivery();
 
         #endregion
     }
