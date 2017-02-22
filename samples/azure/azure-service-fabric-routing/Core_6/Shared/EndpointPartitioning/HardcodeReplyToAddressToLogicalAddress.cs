@@ -25,6 +25,7 @@ namespace Shared
             return next(context);
         }
 
+        // TODO: what's this used for?
         public class NoReplyToAddressOverride
         {
             public static NoReplyToAddressOverride Instance = new NoReplyToAddressOverride();

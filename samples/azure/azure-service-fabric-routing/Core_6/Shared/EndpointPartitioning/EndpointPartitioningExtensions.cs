@@ -7,7 +7,7 @@ namespace Shared
 {
     public static class EndpointPartitioningExtensions
     {
-        public static void RegisterPartitionsForThisEndpoint(this EndpointConfiguration endpointConfiguration, string localPartitionKey, string[] allPartitions)
+        public static void RegisterPartitionsForThisEndpoint(this EndpointConfiguration endpointConfiguration, string localPartitionKey, string[] allPartitionKeys)
         {
             endpointConfiguration.MakeInstanceUniquelyAddressable(localPartitionKey);
 
@@ -18,7 +18,7 @@ namespace Shared
 
             settings.GetOrCreate<DistributionPolicy>().SetDistributionStrategy(distributionStrategy);
 
-            var destinationEndpointInstances = allPartitions.Select(key => new EndpointInstance(endpointName, key)).ToList();
+            var destinationEndpointInstances = allPartitionKeys.Select(key => new EndpointInstance(endpointName, key)).ToList();
 
             settings.GetOrCreate<EndpointInstances>().AddOrReplaceInstances(endpointName, destinationEndpointInstances);
 
