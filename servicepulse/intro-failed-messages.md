@@ -86,13 +86,13 @@ The following actions can also be taken on each individual message or selection 
 
 ### Message details page
 
-As of ServicePulse v1.8.0, each individual message can be browsed in order to see in-depth details about a given failed message, archive or retry that message.
+As of versions 1.8.0 and above, each individual message can be browsed in order to see in-depth details about a given failed message, archive or retry that message.
 
 ![Failed Messages Page](images/failed-message-page.png 'width=500')
 
 Individual messages can be accessed by clicking the respective entry in any of the message list views.
 
-Each invidual failed message view allows for viewing:
+Each invidual failed message page allows for viewing the following additional message details:
 
 * **Message metadata** - Failure timestamp, endpoint name and location, retry status.
 * **StackTrace** - Full .NET exception stacktrace.
@@ -101,7 +101,7 @@ Each invidual failed message view allows for viewing:
 
 The following actions can also be taken on any given message:
 
-* **Retry** - Sends message to be reprocessed by the corresponding endpoint.
+* **Retry** - Sends message to be reprocessed by the same endpoint that failed to process it and caused the message to end up in the error queue.
 * **Archive** - Archives the message.
 * **View in ServiceInsight** - Launches [ServiceInsight](/serviceinsight/), focusing on the failed message for in-depth analysis of the failure causes. This only works if ServiceInsight is installed on the local machine.
 
@@ -112,7 +112,7 @@ The URL from that message's page be copied to share the details of a specific me
 
 ## Archived Messages tab
 
-Failed messages that cannot be processed successfully (or should not be retried due to various application-specific reasons) can be archived and later viewed in the Archived Messages tab.
+Failed messages that cannot be processed successfully (or could not be retried due to various application-specific reasons) can be archived and later viewed in the Archived Messages tab.
 
 ![Archived Messages Tab](images/archive.png 'width=500')
 
