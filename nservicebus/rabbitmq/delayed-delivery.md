@@ -19,6 +19,6 @@ Starting with Version 4.3, the transport no longer relies on the [timeout manage
 snippet: rabbitmq-delay-disable-timeout-manager
 
 
-### All endpoints support native delays
+### All endpoints support delayed delivery
 
-snippet: rabbitmq-delay-all-endpoints-support-native-delays
+snippet: rabbitmq-delay-all-endpoints-support-delayed-delivery
