@@ -14,7 +14,7 @@ The SQL Persistence uses [Json.NET](http://www.newtonsoft.com/json) to serialize
 ## Supported SQL Implementations
 
  * [SQL Server](https://www.microsoft.com/en-au/sql-server/)
- * [MySql](https://www.mysql.com/)
+ * [MySQL](https://www.mysql.com/)
 
 
 ## Usage
@@ -27,13 +27,13 @@ Install the [NServiceBus.Persistence.Sql](https://www.nuget.org/packages/NServic
 snippet:SqlPersistenceUsageSqlServer
 
 
-### MySql
+### MySQL
 
 Using the [MySql.Data NuGet Package](https://www.nuget.org/packages/MySql.Data/).
 
 snippet:SqlPersistenceUsageMySql
 
-The following settings are required for [MySql connections string](https://dev.mysql.com/doc/connector-net/en/connector-net-connection-options.html).
+The following settings are required for [MySQL connections string](https://dev.mysql.com/doc/connector-net/en/connector-net-connection-options.html).
 
  * `AllowUserVariables=True`: since the Persistence uses [user variables](https://dev.mysql.com/doc/refman/5.7/en/user-variables.html).
  * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .net connector does not currently support.
@@ -65,7 +65,7 @@ snippet: AllSqlScripts
 snippet: SqlServerScripts
 
 
-#### To Produce only MySql scripts
+#### To Produce only MySQL scripts
 
 snippet: MySqlScripts
 
