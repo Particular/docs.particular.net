@@ -74,7 +74,7 @@ snippet: MySqlScripts
 
 The SQL persistence enables creation of scripts that can be run as a part of a deployment process instead of as part of endpoint startup as with [standard installers](/nservicebus/operations/installers.md). See [Installer Workflow](installer-workflow.md) for more information.
 
-To streamline development SQL persistence installation are executed at endpoint startup in the same manner as all other installers. However in higher level environment scenarios, where standard installers are being run but the SQL persistence installation scripts have been executed as part of a deployment, it may be necessary to explicitly disable the SQL persistence installation script executing while leaving standard installers enabled.
+To streamline development SQL persistence installers are executed at endpoint startup, in the same manner as all other installers. However in higher level environment scenarios, where standard installers are being run, but the SQL persistence installation scripts have been executed as part of a deployment, it may be necessary to explicitly disable the SQL persistence installers executing while leaving standard installers enabled.
 
 snippet: DisableInstaller
 
