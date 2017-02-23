@@ -39,6 +39,33 @@ The following settings are required for [MySQL connections string](https://dev.m
  * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .net connector does not currently support.
 
 
+## Nugets
+
+The SQL Persistence consists of several NuGet Packages.
+
+
+### [NServiceBus.Persistence.Sql.MsBuild](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild/)
+
+This packages installs into the MSBuild pipeline and generates all SQL installation scripts at compile time.
+ It is required for any project where those SQL installation scripts are required. For Saga Scripts it will be any project that contains Saga classes. For Timeouts, Subscriptions and Outbox Scripts it will be the endpoint hosting project.
+
+
+### [NServiceBus.Persistence.Sql](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/)
+
+This package contains several parts
+
+ * APIs for manipulating `EndPointConfiguration` at configuration time.
+ * Runtime implementations of Saga, Timeouts, Subscriptions and Outbox Persister
+ * Attribute definitions used to define certain compile time configuration settings. These attributes are then interrogated by the NServiceBus.Persistence.Sql.MsBuild NuGet Package when generating SQL installation scripts
+
+
+### [NServiceBus.Persistence.Sql.ScriptBuilder](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.ScriptBuilder/)
+
+This package contains all APIs that enable the generation of SQL installation scripts using code, i.e. without using the NServiceBus.Persistence.Sql.MsBuild NuGet package.
+
+DANGER: NServiceBus.Persistence.Sql.ScriptBuilder is currently not ready for general usage. It has been made public, and deployed to NuGet, primarily to enable the generation of documentation in a repeatable way. For example it is used to the SQL scripts in both the [MS SQL Server Scripts](/nservicebus/sql-persistence/sqlserver-scripts.md) and [MySql Scripts](/nservicebus/sql-persistence/mysql-scripts.md) pages. In future releases the API may evolve in ways that do not follow the standard of [Release Policy - Semantic Versioning](/nservicebus/upgrades/release-policy#semantic-versioning.md). Raise an issue in the [NServiceBus.Persistence.Sql Repository](https://github.com/Particular/NServiceBus.Persistence.Sql/issues) to discuss this in more details.
+
+
 ## Script Creation
 
 SQL installation scripts are created at compile time by the `NServiceBus.Persistence.Sql.MsBuild` NuGet package.
@@ -55,17 +82,17 @@ Scripts will also be included in the list of project output files. So this means
 What scripts are created can be controlled via the use of `[SqlPersistenceSettings]` applied to the target assembly.
 
 
-#### To Produce All scripts
+### To Produce All scripts
 
 snippet: AllSqlScripts
 
 
-#### To Produce only MS SQL Server scripts
+### To Produce only MS SQL Server scripts
 
 snippet: SqlServerScripts
 
 
-#### To Produce only MySQL scripts
+### To Produce only MySQL scripts
 
 snippet: MySqlScripts
 
