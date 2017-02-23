@@ -51,6 +51,7 @@
     <Compile Include="..\Server\TestSaga.cs">
       <Link>TestSaga.cs</Link>
     </Compile>
+    <Compile Include="DrainTempQueueSatelliteFeature.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
