@@ -19,6 +19,13 @@ The ServiceControl Installation has the following prerequisites:
 If ServiceControl is installed via the Platform Installer then the installation and configuration of these prerequisites are managed by the installer.
 
 
+####  RavenDB Prerequisites 
+
+* [Silverlight 5](https://www.microsoft.com/silverlight/) 
+
+ServiceControl makes us of an embedded version of RavenDB.  To carry out maintenance activities on this database the Microsoft Silverlight plugin must be installed within a browser on the server. Without the plugin the RavenDB Management Studio will not load.
+
+
 ### Transport Support
 
 In Versions 1.7 and above the transport DLLs are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/nservicebus/transports/) listed below using the ServiceControl Management application:
