@@ -13,8 +13,8 @@ The SQL Persistence uses [Json.NET](http://www.newtonsoft.com/json) to serialize
 
 ## Supported SQL Implementations
 
- * [SQL Server](https://www.microsoft.com/en-au/sql-server/)
- * [MySQL](https://www.mysql.com/) ([Version 5.7](https://dev.mysql.com/doc/relnotes/mysql/5.7/en/) or greater due to the use of [JSON Data Type](https://dev.mysql.com/doc/refman/5.7/en/json.html))
+ * [SQL Server](https://www.microsoft.com/en-au/sql-server/) ([Version 2012](https://docs.microsoft.com/en-us/sql/release-notes/sql-server-2012-release-notes) and above due to the use of the [THROW functionality](https://msdn.microsoft.com/en-us/library/ee677615.aspx)).
+ * [MySQL](https://www.mysql.com/) ([Version 5.7](https://dev.mysql.com/doc/relnotes/mysql/5.7/en/) and above due to the use of [JSON Data Type](https://dev.mysql.com/doc/refman/5.7/en/json.html)).
 
 
 ## Usage
