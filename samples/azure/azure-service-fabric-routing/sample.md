@@ -46,13 +46,13 @@ The solution contains the following projects:
  
 ## Cluster partitioning
 
-The `CandidateVoteCount` is a [statefull service](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-introduction) that uses a `NamedPartition` [partitioning scheme](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-concepts-partitioning). Each candidate has its own partition, so there is one called "John" and another called "Abby". 
+The `CandidateVoteCount` is a [stateful service](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-introduction) that uses a `NamedPartition` [partitioning scheme](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-concepts-partitioning). Each candidate has its own partition, so there is one called "John" and another called "Abby". 
 
-The `ZipCodeVoteCount` is a statefull service that uses a `UniformInt64Partition` partitioning scheme with the `PartitionCount` set to 3, the `LowKey` set to 0 and the `HighKey` set to 99000. This configuration ensure that the partition is split into 3 well known ranges (0 -> 32999), (33000 -> 65999) , (66000 -> 98999).
+The `ZipCodeVoteCount` is a stateful service that uses a `UniformInt64Partition` partitioning scheme with the `PartitionCount` set to 3, the `LowKey` set to 0 and the `HighKey` set to 99000. This configuration ensure that the partition is split into 3 well known ranges (0 -> 32999), (33000 -> 65999) , (66000 -> 98999).
 
 ## Routing
 
-The default NServiceBus routing approach cannot be used as-is with Service Fabric statefull services. Statefull services assume business data partitioning. A message must be delivered to a replica (instance) of a statefull that can handle message data. E.g. for each `PlaceVote` message associated with a casted vote, the message should be routed to the partition associated with voted candidate, "John" or "Abby". Similar to that, to count the votes per zip code the `TrackZipCode` message needs to end up on the partition that is responsible for the range to which the zip code belongs.
+The default NServiceBus routing approach cannot be used as-is with Service Fabric stateful services. Stateful services assume business data partitioning. A message must be delivered to a replica (instance) of a stateful that can handle message data. E.g. for each `PlaceVote` message associated with a casted vote, the message should be routed to the partition associated with voted candidate, "John" or "Abby". Similar to that, to count the votes per zip code the `TrackZipCode` message needs to end up on the partition that is responsible for the range to which the zip code belongs.
 
 Example:
 
@@ -122,7 +122,7 @@ In many low-throughput scenarios Receiver Side Distribution might be enough to g
 
 Receiver Side Distribution addresses forwarding messages that arrive to an endpoint instance that is different from the destined one. Forwarding them introduces some overhead though. To remove the overhead on the receiver side Sender Side Distribution can be used to distribute messages to the correct endpoint instances based on Service Fabric partitioning information.
 
-Sender Side Distribution can be applied to endpoints hosted inside Service Fabric by using the partition information of the statefull services. This is suitable for endpoints hosted inside the cluster that need to send messages to other endpoints hosted in the cluster. For the endpoints hosted outside of the cluster access to Service Fabric APIs is not possible. Instead, partitioned destination endpoints need to be registered with message mapping for commands sent out.
+Sender Side Distribution can be applied to endpoints hosted inside Service Fabric by using the partition information of the stateful services. This is suitable for endpoints hosted inside the cluster that need to send messages to other endpoints hosted in the cluster. For the endpoints hosted outside of the cluster access to Service Fabric APIs is not possible. Instead, partitioned destination endpoints need to be registered with message mapping for commands sent out.
 
 The Sender Side Distribution works in the following way:
 
