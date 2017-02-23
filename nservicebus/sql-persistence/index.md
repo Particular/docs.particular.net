@@ -39,7 +39,7 @@ The following settings are required for [MySQL connections string](https://dev.m
  * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .net connector does not currently support.
 
 
-## Nugets
+## NuGets Packages
 
 The SQL Persistence consists of several NuGet Packages.
 
