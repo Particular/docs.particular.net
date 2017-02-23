@@ -126,3 +126,12 @@ snippet: SqlPersistenceSagaWithCorrelationAndTransitional
 Each correlation property type has an equivalent sql data type.
 
 include: correlationpropertytypes
+
+The following .NET types are interpreted as `CorrelationPropertyType.Int`:
+
+ * [Int16](https://msdn.microsoft.com/en-us/library/system.int16.aspx)
+ * [Int32](https://msdn.microsoft.com/en-us/library/system.int32.aspx)
+ * [Int64](https://msdn.microsoft.com/en-us/library/system.int64.aspx)
+ * [UInt16](https://msdn.microsoft.com/en-us/library/system.uint16.aspx)
+ * [UInt32](https://msdn.microsoft.com/en-us/library/system.uint32.aspx)
+ * [UInt64](https://msdn.microsoft.com/en-us/library/system.uint64.aspx)
