@@ -23,7 +23,7 @@ If ServiceControl is installed via the Platform Installer then the installation 
 
 * [Silverlight 5](https://www.microsoft.com/silverlight/) 
 
-ServiceControl makes us of an embedded version of RavenDB.  To carry out maintenance activities on this database the Microsoft Silverlight plugin must be installed within a browser on the server. Without the plugin the RavenDB Management Studio will not load.
+ServiceControl makes use of an embedded version of RavenDB. To carry out [maintenance activities](https://docs.particular.net/servicecontrol/use-ravendb-studio)  on this database the Microsoft Silverlight plugin must be installed within a browser on the server. Without the plugin the RavenDB Management Studio will not load.
 
 
 ### Transport Support
