@@ -10,6 +10,17 @@ Starting with Version 4.3, the transport no longer relies on the [timeout manage
 
 ## How it works
 
+The transport sets up a series of exchanges, queues, and bindings that work together to provide the necessary infrastructure to support delayed messages. These exchange & queues are grouped into a series of levels, 0 - 27. There is one final "delivery" exchange in addition to the level.
+
+
+### Delay levels
+
+Each level represents a delay amount corresponding to a number of seconds equal to 2 ^ level seconds. This is achieved by declaring the queue for each level with an `x-message-ttl` value corresponding to level's delay amount. It is also declared with an `x-dead-letter-exchange` value corresponding to the next lowest level. This means a message will sit in the queue for the amount of time specified in  `x-message-ttl` and then be routed to the next level.
+
+
+When a message needs to be delayed, the value of the desired delay is first converted to seconds. The binary representation of this value is then used as the routing key to determine which of the delay levels the message needs to 
+
+
 
 ## Settings
 
