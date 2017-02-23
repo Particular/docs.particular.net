@@ -1,6 +1,6 @@
 ---
 title: Installing ServiceControl
-reviewed: 2016-12-07
+reviewed: 2017-02-23
 tags:
  - Installation
 redirects:
@@ -10,7 +10,7 @@ redirects:
 The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI. This installation can be executed standalone or via the [Platform Installer](/platform/installer/). The installation package include a utility to manage the installation, upgrade and remove of ServiceControl services. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
 
 
-### Prerequisites
+## Prerequisites
 
 The ServiceControl Installation has the following prerequisites:
 
@@ -19,14 +19,14 @@ The ServiceControl Installation has the following prerequisites:
 If ServiceControl is installed via the Platform Installer then the installation and configuration of these prerequisites are managed by the installer.
 
 
-####  RavenDB Prerequisites 
+### RavenDB Prerequisites
 
 * [Silverlight 5](https://www.microsoft.com/silverlight/) 
 
-ServiceControl makes use of an embedded version of RavenDB. To carry out [maintenance activities](https://docs.particular.net/servicecontrol/use-ravendb-studio)  on this database the Microsoft Silverlight plugin must be installed within a browser on the server. Without the plugin the RavenDB Management Studio will not load.
+ServiceControl makes use of an embedded version of RavenDB. To carry out [maintenance activities](/servicecontrol/use-ravendb-studio.md) on this database the Microsoft Silverlight plugin must be installed within a browser on the server. Without the plugin the RavenDB Management Studio will not load.
 
 
-### Transport Support
+## Transport Support
 
 In Versions 1.7 and above the transport DLLs are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/nservicebus/transports/) listed below using the ServiceControl Management application:
 
@@ -36,12 +36,12 @@ In Versions 1.7 and above the transport DLLs are managed by the installation and
  * [SQL Server](/nservicebus/sqlserver/)
  * [RabbitMQ](/nservicebus/rabbitmq/)
 
-Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites). 
+Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
 Installing MSMQ is optional in the Platform Installer. See [Platform Installer - MSMQ](/platform/installer/#select-items-to-install-configure-microsoft-message-queuing).
 
 
-#### Performance Counter
+## Performance Counter
 
 Metrics are reported via the [Performance Counters](/nservicebus/operations/performance-counters.md) if the counters are installed.
 
@@ -52,7 +52,7 @@ The installation of the NServiceBus Performance Counters is optional for Version
 Performance Counters are an optional component in the Platform Installer. See [Platform Installer - Performance Counters](/platform/installer/#select-items-to-install-nservicebus-performance-counters).
 
 
-#### Using ServiceControl Management to upgrade ServiceControl instances
+## Using ServiceControl Management to upgrade ServiceControl instances
 
 ServiceControl Management provides a simple means of setting up one or more instances of the ServiceControl service. For production systems it is recommended to limit the number of instances per machine to one.
 
@@ -75,12 +75,12 @@ Clicking the upgrade link will
  * Start the Service.
 
 
-#### Using ServiceControl Management to add ServiceControl instances
+## Using ServiceControl Management to add ServiceControl instances
 
 If this is a new installation of ServiceControl click on the `Add New Instance` button in the center of the screen or the "New Instance" link at the top of the screen,  both options launch the same "New instance form". Complete the form to register a new ServiceControl service.
 
 
-#### Service Name and Plugins
+## Service Name and Plugins
 
 When adding the first instance of the ServiceControl service the default service name is "Particular.ServiceControl". It is possible choose to change this name to a custom service name. In doing so this is also changing the queue name associated with this instance of ServiceControl.
 
