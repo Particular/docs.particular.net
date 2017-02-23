@@ -1,18 +1,22 @@
 ﻿//#define POST_MIGRATION
 
-
 #if POST_MIGRATION
 
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Features;
+using NServiceBus.ObjectBuilder;
 using NServiceBus.Routing;
 using NServiceBus.Transport;
 
+#region DrainTempQueueSatellite
 public class DrainTempQueueSatelliteFeature :
     Feature
 {
     static ILog log = LogManager.GetLogger<DrainTempQueueSatelliteFeature>();
+    string tempQueue;
+    string mainQueue;
 
     public DrainTempQueueSatelliteFeature()
     {
@@ -21,13 +25,11 @@ public class DrainTempQueueSatelliteFeature :
 
     protected override void Setup(FeatureConfigurationContext context)
     {
-        #region DrainTempQueueSatellite
-
         var settings = context.Settings;
         var qualifiedAddress = settings.LogicalAddress()
             .CreateQualifiedAddress("New");
-        var tempQueue = settings.GetTransportAddress(qualifiedAddress);
-        var mainQueue = settings.LocalAddress();
+        tempQueue = settings.GetTransportAddress(qualifiedAddress);
+        mainQueue = settings.LocalAddress();
 
         context.AddSatelliteReceiver(
             name: "DrainTempQueueSatellite",
@@ -37,22 +39,23 @@ public class DrainTempQueueSatelliteFeature :
             {
                 return RecoverabilityAction.MoveToError(config.Failed.ErrorQueue);
             },
-            onMessage: (builder, messageContext) =>
-            {
-                var dispatcher = builder.Build<IDispatchMessages>();
-                var headers = messageContext.Headers;
+            onMessage: OnMessage);
+    }
 
-                var message = new OutgoingMessage(messageContext.MessageId, headers, messageContext.Body);
-                var operation = new TransportOperation(message, new UnicastAddressTag(mainQueue));
+    Task OnMessage(IBuilder builder, MessageContext context)
+    {
+        var dispatcher = builder.Build<IDispatchMessages>();
+        var headers = context.Headers;
 
-                log.Info($"Moving message from {tempQueue} to {mainQueue}");
+        var message = new OutgoingMessage(context.MessageId, headers, context.Body);
+        var operation = new TransportOperation(message, new UnicastAddressTag(mainQueue));
 
-                var operations = new TransportOperations(operation);
-                return dispatcher.Dispatch(operations, messageContext.TransportTransaction, messageContext.Context);
-            });
+        log.Info($"Moving message from {tempQueue} to {mainQueue}");
 
-        #endregion
+        var operations = new TransportOperations(operation);
+        return dispatcher.Dispatch(operations, context.TransportTransaction, context.Context);
     }
 }
+#endregion
 
 #endif
