@@ -22,8 +22,8 @@ public class TestSaga :
         IHandleMessages<CorrelatedMessage>,
         IHandleTimeouts<TestTimeout>,
 #if MIGRATION && !SERVER_NEW
-    IHandleMessages<StartingMessage>,
-    IAmStartedByMessages<DummyMessage>
+        IHandleMessages<StartingMessage>,
+        IAmStartedByMessages<DummyMessage>
 #else
         IAmStartedByMessages<StartingMessage>
 #endif
