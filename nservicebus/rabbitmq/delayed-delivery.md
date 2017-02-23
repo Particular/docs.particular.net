@@ -53,6 +53,51 @@ The levels are connected in this manner, from highest (27) to lowest (0). Each l
 The final delay-level exchange is bound to the delivery exchange instead of another level. Every endpoint that can receive a delayed message will have a binding to this exchange with a routing key corresponding to the endpoint's name, so the message will be delivered to the endpoint's queue.
 
 
+### Example
+
+```mermaid
+graph LR
+
+subgraph Example: delay of 5 seconds
+
+exchange3(Level 3)
+exchange2(Level 2)
+exchange1(Level 1)
+exchange0(Level 0)
+exchange-delivery(delay-delivery)
+q3[fa:fa-hourglass-half 8sec]
+q2[fa:fa-hourglass-half 4sec]
+q1[fa:fa-hourglass-half 2sec]
+q0[fa:fa-hourglass-half 1sec]
+
+exchange3 .-> q3
+exchange3 ==>exchange2
+q3 .-> exchange2
+
+exchange2 ==> q2
+exchange2 .->exchange1
+q2 ==> exchange1
+
+exchange1 .-> q1
+exchange1 ==>exchange0
+q1 .-> exchange0
+
+exchange0 ==> q0
+exchange0 .->exchange-delivery
+q0 ==> exchange-delivery
+
+exchange-delivery ==> dest[destination]
+
+classDef exchangeClass stroke:#000000,stroke-width:2px;
+class exchange3,exchange2,exchange1,exchange0,exchange-delivery exchangeClass
+
+classDef usedQueue fill:#11ff00;
+class q0,q2 usedQueue
+
+end
+```
+
+
 ## Settings
 
 
