@@ -38,8 +38,7 @@ exchangeN -->|bit=0| exchangeN-1
 queueN -->|expired<br>message| exchangeN-1
 
 classDef exchangeClass stroke:#000000,stroke-width:2px;
-class exchangeN exchangeClass
-class exchangeN-1 exchangeClass
+class exchangeN,exchangeN-1 exchangeClass
 
 end
 
