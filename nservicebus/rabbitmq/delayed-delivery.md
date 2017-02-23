@@ -23,6 +23,28 @@ Each exchange/queue pair that makes up a level represents one bit of the total d
 
 A level is created by declaring a topic exchange that is bound to a queue with a routing key of `1`, and is also bound to the exchange corresponding to `level - 1` with a routing key of `0`. The queue for the level is declared with an `x-message-ttl` value corresponding to `2^level` seconds. The queue is also declared with an `x-dead-letter-exchange` value corresponding to the `level - 1` exchange, so that when a message in the queue expires, it will be routed to the `level - 1` exchange.
 
+```mermaid
+
+graph TD
+
+subgraph Single delay level
+
+exchangeN(Level N)
+queueN[TTL 2^N]
+exchangeN-1(Level N-1)
+
+exchangeN -->|bit=1| queueN
+exchangeN -->|bit=0| exchangeN-1
+queueN -->|expired<br>message| exchangeN-1
+
+classDef exchangeClass stroke:#000000,stroke-width:2px;
+class exchangeN exchangeClass
+class exchangeN-1 exchangeClass
+
+end
+
+```
+
 The levels are connected in this manner, from highest (27) to lowest (0). Each level's routing key's add wildcards as needed so that they are looking at the portion of the message's routing key that corresponds to its level.
 
 
