@@ -27,7 +27,7 @@ A level is created by declaring a topic exchange that is bound to a queue with a
 
 graph TD
 
-subgraph Single delay level
+subgraph
 
 exchangeN(Level N)
 queueN[TTL 2^N]
