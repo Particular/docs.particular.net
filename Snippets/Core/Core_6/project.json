@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.2.0-alpha0219",
+    "NServiceBus": "6.2.0-alpha0226",
     "NServiceBus.Autofac": "6.*",
     "NServiceBus.Callbacks": "1.*",
     "NServiceBus.NHibernate": "7.*",

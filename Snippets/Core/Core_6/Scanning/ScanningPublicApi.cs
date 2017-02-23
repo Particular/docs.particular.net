@@ -5,12 +5,14 @@
 
     class ScanningPublicApi
     {
-
         void ScanningNestedAssembliesEnabled(EndpointConfiguration endpointConfiguration)
         {
             #region ScanningNestedAssebliesEnabled
 
-            endpointConfiguration.ScanAssembliesInNestedDirectories();
+            endpointConfiguration.AssemblyScanner(scannerConfiguration =>
+            {
+                scannerConfiguration.ScanAssembliesInNestedDirectories = true;
+            });
 
             #endregion
         }
@@ -19,7 +21,10 @@
         {
             #region ScanningExcludeByName
 
-            endpointConfiguration.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
+            endpointConfiguration.AssemblyScanner(scannerConfiguration =>
+            {
+                scannerConfiguration.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
+            });
 
             #endregion
         }
@@ -28,7 +33,10 @@
         {
             #region ScanningExcludeTypes
 
-            endpointConfiguration.ExcludeTypes(type1, type2);
+            endpointConfiguration.AssemblyScanner(scannerConfiguration =>
+            {
+                scannerConfiguration.ExcludeTypes(type1, type2);
+            });
 
             #endregion
         }
@@ -44,5 +52,28 @@
             #endregion
         }
 
+        void ScanningApDomainAssemblies(EndpointConfiguration endpointConfiguration)
+        {
+            #region ScanningApDomainAssemblies
+
+            endpointConfiguration.AssemblyScanner(scannerConfiguration =>
+            {
+                scannerConfiguration.ScanAppDomainAssemblies = true;
+            });
+
+            #endregion
+        }
+
+        void SwallowScanningExceptions(EndpointConfiguration endpointConfiguration)
+        {
+            #region SwallowScanningExceptions
+
+            endpointConfiguration.AssemblyScanner(scannerConfiguration =>
+            {
+                scannerConfiguration.ThrowExceptions = false;
+            });
+
+            #endregion
+        }
     }
 }
