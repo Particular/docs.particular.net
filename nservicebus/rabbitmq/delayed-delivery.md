@@ -10,16 +10,21 @@ Starting with Version 4.3, the transport no longer relies on the [timeout manage
 
 ## How it works
 
-The transport sets up a series of exchanges, queues, and bindings that work together to provide the necessary infrastructure to support delayed messages. These exchange & queues are grouped into a series of levels, 0 - 27. There is one final "delivery" exchange in addition to the level exchanges.
+Upon starting the endpoint, the transport declares a set of topic exchanges, queues, and bindings that work together to provide the necessary infrastructure to support delayed messages. These exchange & queues are grouped into a series of levels. There is one final delivery exchange in addition to the level exchanges. When a message needs to be delayed, the value of the desired delay is first converted to seconds. The binary representation of this value is then used as the routing key when the message is sent to the delay-level exchanges.
 
 
 ### Delay levels
 
-Each level represents a delay amount corresponding to a number of seconds equal to 2^level seconds. This is achieved by declaring the queue for each level with an `x-message-ttl` value corresponding to level's delay amount in milliseconds. It is also declared with an `x-dead-letter-exchange` value corresponding to the exchange of the next level. This means a message will sit in the queue for the amount of time specified in  `x-message-ttl` and then be routed to the next level.
+Each exchange/queue pair that makes up a level represents one bit of the total delay value. By having 28 of these levels, corresponding to 2^27 through 2^0, the delay infrastructure can delay a message for any value that can be represented by a 28-bit number. With 28 total levels, the maximum delay value is 268,435,455 seconds.
+
+A level is created by declaring a topic exchange that is bound to a queue with a routing key of `1`, and is also bound to the exchange corresponding to `level - 1` with a routing key of `0`. The queue for the level is declared with an `x-message-ttl` value corresponding to `2^level` seconds. The queue is also declared with an `x-dead-letter-exchange` value corresponding to the `level - 1` exchange, so that when a message in the queue expires, it will be routed to the `level - 1` exchange.
+
+The levels are connected in this manner, from highest (27) to lowest (0).
 
 
-When a message needs to be delayed, the value of the desired delay is first converted to seconds. The binary representation of this value is then used as the routing key to determine which of the delay levels the message needs to 
+### Delivery
 
+The final delay-level exchange is bound to the delivery exchange instead of another level. Every endpoint that can receive a delayed message will have a binding to this exchange with a routing key corresponding to the endpoint's name, so the message will be delivered to the endpoint's queue.
 
 
 ## Settings
