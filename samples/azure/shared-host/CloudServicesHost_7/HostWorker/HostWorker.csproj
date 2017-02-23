@@ -66,7 +66,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Hosting.Azure, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-    <Reference Include="NServiceBus.Hosting.Azure, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.7.0.2\lib\net452\NServiceBus.Hosting.Azure.dll</HintPath>
       <Private>True</Private>
     </Reference>
