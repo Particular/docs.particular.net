@@ -7,6 +7,7 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 
 #region Header
 
@@ -37,6 +38,7 @@ public class TestSaga :
         throw new Exception("Dummy");
     }
 #endif
+    static ILog log = LogManager.GetLogger<TestSaga>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<TestSagaData> mapper)
     {
@@ -58,19 +60,19 @@ public class TestSaga :
 
     public Task Handle(StartingMessage message, IMessageHandlerContext context)
     {
-        Console.WriteLine($"{Data.SomeId}: Created new saga instance.");
+        log.Info($"{Data.SomeId}: Created new saga instance.");
         return Task.CompletedTask;
     }
 
     public Task Handle(ReplyFollowUpMessage message, IMessageHandlerContext context)
     {
-        Console.WriteLine($"{Data.SomeId}: Got a follow-up message.");
+        log.Info($"{Data.SomeId}: Got a follow-up message.");
         return RequestTimeout<TestTimeout>(context, DateTime.UtcNow.AddSeconds(10));
     }
 
     public Task Handle(CorrelatedMessage message, IMessageHandlerContext context)
     {
-        Console.WriteLine($"{Data.SomeId}: Got a correlated message {message.SomeId}. Replying back.");
+        log.Info($"{Data.SomeId}: Got a correlated message {message.SomeId}. Replying back.");
         var replyMessage = new ReplyMessage
         {
             SomeId = Data.SomeId
@@ -80,7 +82,7 @@ public class TestSaga :
 
     public Task Timeout(TestTimeout state, IMessageHandlerContext context)
     {
-        Console.WriteLine($"{Data.SomeId}: Got timeout. Completing.");
+        log.Info($"{Data.SomeId}: Got timeout. Completing.");
         MarkAsComplete();
         return Task.CompletedTask;
     }
