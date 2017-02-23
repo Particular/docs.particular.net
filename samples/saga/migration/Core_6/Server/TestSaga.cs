@@ -1,8 +1,4 @@
-﻿#region Toggle
-
-//#define MIGRATION
-
-#endregion
+﻿//#define MIGRATION
 
 using System;
 using System.Threading.Tasks;
@@ -28,7 +24,7 @@ public class TestSaga :
         IAmStartedByMessages<StartingMessage>
 #endif
 
-    #endregion
+#endregion
 
 {
 #if MIGRATION && !SERVER_NEW

@@ -75,7 +75,9 @@ The migration procedure require that the new version of a given endpoint is depl
 
 The new version has to be deployed and started before the migration process can begin. Only then the old version has to be modified to enable the migration. This requires a couple of code changes. In this sample both versions share the same source code file for the saga definition and the changes are done via pre-processor instructions. Enabling the migration happens by un-commenting this statement:
 
-snippet:Toggle
+```
+//#define MIGRATION
+```
 
 
 #### Handling not found sagas
