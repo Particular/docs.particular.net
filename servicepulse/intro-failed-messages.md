@@ -101,7 +101,7 @@ Each invidual failed message page allows for viewing the following additional me
 
 The following actions can also be taken on any given message:
 
-* **Retry** - Sends message to be reprocessed by the same endpoint that failed to process it and caused the message to end up in the error queue.
+* **Retry** - Sends message to be [retried](https://docs.particular.net/servicepulse/intro-failed-message-retries) by the corresponding endpoint.
 * **Archive** - Archives the message.
 * **View in ServiceInsight** - Launches [ServiceInsight](/serviceinsight/), focusing on the failed message for in-depth analysis of the failure causes. This only works if ServiceInsight is installed on the local machine.
 
