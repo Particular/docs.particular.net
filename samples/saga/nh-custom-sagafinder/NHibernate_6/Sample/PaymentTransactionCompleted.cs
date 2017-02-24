@@ -3,5 +3,5 @@
 public class PaymentTransactionCompleted :
     IEvent
 {
-	public string PaymentTransactionId { get; set; }
+    public string PaymentTransactionId { get; set; }
 }

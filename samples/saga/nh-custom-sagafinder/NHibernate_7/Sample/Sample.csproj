@@ -51,7 +51,6 @@
     <Compile Include="ConfigEndpointMappings.cs" />
     <Compile Include="PaymentTransactionCompletedSagaFinder.cs" />
     <Compile Include="CompleteOrderSagaFinder.cs" />
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="IssuePaymentRequest.cs" />
     <Compile Include="IssuePaymentRequestHandler.cs" />
     <Compile Include="OrderSaga.cs" />

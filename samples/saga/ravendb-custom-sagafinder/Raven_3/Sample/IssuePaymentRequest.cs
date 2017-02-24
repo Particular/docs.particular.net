@@ -3,5 +3,5 @@
 class IssuePaymentRequest :
     IMessage
 {
-	public string PaymentTransactionId { get; set; }
+    public string PaymentTransactionId { get; set; }
 }

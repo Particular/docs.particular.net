@@ -9,7 +9,6 @@ using NServiceBus.Sagas;
 class StartOrderSagaFinder :
     IFindSagas<OrderSagaData>.Using<StartOrder>
 {
-
     public Task<OrderSagaData> FindBy(StartOrder message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
     {
         var session = storageSession.Session();
@@ -24,4 +23,3 @@ class StartOrderSagaFinder :
 }
 
 #endregion
-

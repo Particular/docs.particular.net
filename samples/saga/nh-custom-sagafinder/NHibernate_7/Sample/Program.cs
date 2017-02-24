@@ -17,6 +17,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.NHibernateCustomSagaFinder");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region NHibernateSetup
 
