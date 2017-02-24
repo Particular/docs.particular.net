@@ -49,7 +49,7 @@ DANGER: The current version (1.0) of the SQL Persistence has not been built with
 
 ### Saga Finder Helper
 
-This class has an understanding of the saga storage conventions of the SQL Persistence and applies those conventions to generate SQL queries.
+This class has an understanding of the saga storage conventions of the SQL Persistence and applies those conventions to generate SQL queries and return a Saga Data instance.
 
 snippet: SqlPersistenceSagaFinder
 
