@@ -1,0 +1,1 @@
+From the process point of view it is important to note that the saga is not sending to the payment processor the order id, instead it is sending a payment transaction id. A saga can be correlated given more than one unique attribute, such as `OrderId` and `PaymentTransactionId`, requiring both to be treated as unique.
