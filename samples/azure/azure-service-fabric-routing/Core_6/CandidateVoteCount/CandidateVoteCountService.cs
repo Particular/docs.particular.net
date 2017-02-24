@@ -5,7 +5,7 @@ using Microsoft.ServiceFabric.Services.Runtime;
 
 namespace CandidateVoteCount
 {
-    internal sealed class CandidateVoteCountService : StatefulService
+    sealed class CandidateVoteCountService : StatefulService
     {
         public CandidateVoteCountService(StatefulServiceContext context)
             : base(context)

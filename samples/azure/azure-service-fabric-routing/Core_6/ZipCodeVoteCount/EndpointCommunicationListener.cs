@@ -9,8 +9,8 @@ namespace ZipCodeVoteCount
 {
     public class EndpointCommunicationListener : ICommunicationListener
     {
-        private StatefulServiceContext context;
-        private IEndpointInstance endpointInstance;
+        StatefulServiceContext context;
+        IEndpointInstance endpointInstance;
 
         public EndpointCommunicationListener(StatefulServiceContext context)
         {

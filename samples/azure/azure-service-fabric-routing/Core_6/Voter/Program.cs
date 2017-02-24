@@ -64,16 +64,16 @@ namespace Voter
                     {
                         Candidate = candidate,
                         ZipCode = zipcode
-                    });
+                    }).ConfigureAwait(false);
 
-                    await Task.Delay(1000);
+                    await Task.Delay(1000).ConfigureAwait(false);
                 }
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
             Console.WriteLine("Closing election");
 
-            await endpointInstance.Send(new CloseElection {Candidate = remotePartitions[0]});
-            await endpointInstance.Send(new CloseElection {Candidate = remotePartitions[1]});
+            await endpointInstance.Send(new CloseElection {Candidate = remotePartitions[0]}).ConfigureAwait(false);
+            await endpointInstance.Send(new CloseElection {Candidate = remotePartitions[1]}).ConfigureAwait(false);
 
             await endpointInstance.Stop().ConfigureAwait(false);
         }
