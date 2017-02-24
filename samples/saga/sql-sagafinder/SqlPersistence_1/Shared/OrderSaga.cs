@@ -25,7 +25,6 @@ public class OrderSaga :
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)
     {
-        Data.OrderId = message.OrderId;
         Data.PaymentTransactionId = Guid.NewGuid().ToString();
 
         log.Info($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
