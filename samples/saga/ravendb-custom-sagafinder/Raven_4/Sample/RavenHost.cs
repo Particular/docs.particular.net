@@ -8,7 +8,6 @@ using Raven.Client.UniqueConstraints;
 class RavenHost :
     IDisposable
 {
-
     public RavenHost()
     {
         documentStore = new EmbeddableDocumentStore
