@@ -28,10 +28,34 @@ After the counting time expires, using a `timeout`, the zip code counting endpoi
 
 For sake of simplicity, there are only 2 candidates in the election, called "John" and "Abby". Zip codes are always assumed to be valid integers with a length up to 5 digits in the range of 0 to 99000.
 
-[TODO: scenario diagram with mermaid]
 ```mermaid
-graph LR
+graph TB
 
+subgraph Non partitioned
+  v[Voter]
+end
+
+subgraph Partitioned
+
+  cv[CandidateVoteCounts] -->|2. Send| zc[ZipCodeCounts]
+  zc -->|3. Reply| cv
+
+subgraph 
+  cv -->|5. Request<br> Timeout|cv-timeout((1 min<br> timeout))
+  cv-timeout -->|6.Timeout|cv
+  cv -->|7. Publish| cv
+end
+
+subgraph 
+  zc -->|8. Request<br> Timeout|zc-timeout((1 min<br> timeout))
+  zc-timeout -->|9. Timeout|zc
+  zc -->|10. Publish| zc
+end
+
+end
+
+v -->|1. Publish<br> VotePlaced| cv
+v -->|4. Send<br> CloseElection| cv
 ```
 
 ### Trade offs and known limitations
