@@ -15,6 +15,7 @@ related:
 
 Note: Service Fabric cluster runs under Network Service account and only reads system environment variables. Make sure the environment variable "AzureServiceBus.ConnectionString" is defined as a system environment variable and not user-scoped.
 
+
 ## Scenario
 
 The scenario used in this sample covers a voting system. In this voting system the casted votes are counted by candidate. The casted votes are `published` from the voter client to the endpoint responsible for counting candidate votes.
@@ -27,11 +28,18 @@ After the counting time expires, using a `timeout`, the zip code counting endpoi
 
 For sake of simplicity, there are only 2 candidates in the election, called "John" and "Abby". Zip codes are always assumed to be valid integers with a length up to 5 digits in the range of 0 to 99000.
 
+[TODO: scenario diagram with mermaid]
+```mermaid
+graph LR
+
+```
+
 ### Trade offs and known limitations
 
 The scenario has been set up to show the different kinds of communication patterns that can occur in a partitioned solution: `send`, `send local`, `publish/subscribe`, `request/reply`, `timeout`.
 
 The downside of the focus on the communication patterns is that the saga design is less then ideal for a real voting system. There will be quite some contention on the saga data, which may result in concurrency exceptions and a few retries impacting performance of the system.
+
 
 ## Solution structure
 
@@ -43,12 +51,14 @@ The solution contains the following projects:
  * CandidateVoteCount: Service Fabric service with the logic to count votes by candidate while the votes come in. It also instructs the `ZipCodeVoteCount` endpoint to track votes by zip code. It will report the intermediate results as well as the final results when the election is closed.
  * ZipCodeVoteCount: Service Fabric service with the logic to count the votes by zip code in the background. It will report the results when the allowed counting period is over.
  * ServiceFabricRouting: [Service Fabric application](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-application-model) containing description of services it will run when deployed into Service Fabric cluster.
- 
+
+
 ## Cluster partitioning
 
 The `CandidateVoteCount` is a [stateful service](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-introduction) that uses a `NamedPartition` [partitioning scheme](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-concepts-partitioning). Each candidate has its own partition, so there is one called "John" and another called "Abby". 
 
 The `ZipCodeVoteCount` is a stateful service that uses a `UniformInt64Partition` partitioning scheme with the `PartitionCount` set to 3, the `LowKey` set to 0 and the `HighKey` set to 99000. This configuration ensure that the partition is split into 3 well known ranges (0 -> 32999), (33000 -> 65999) , (66000 -> 98999).
+
 
 ## Routing
 
@@ -66,41 +76,43 @@ Partition aware behavior is achieved by combining NServiceBus built-in sender si
 
 The remainder of this document will focus on the different techniques that can be used to configure these distribution strategies, either manually or automatically, to achieve full partition aware routing. 
 
+
 ## Partitioned Endpoint Configuration
+
+Endpoint instances hosted with stateful service replicas need to be uniquely addressable by the partition key associated with each replica. Possible keys are `NamedPartition` and `Int64RangePartition`. The unique partition keys are used for `SendLocal` and `ReplyTo` operations to route messages to the correct partitions.
 
 Partitioned endpoints require specifying partitioning configuration by calling an extension method on `EndpointConfiguration`:
 
-snippet: ConfigureLocalPartitions-ZipCodeVoteCount
-
-This ensures that the endpoint will be uniquely addressable and that both `SendLocal` and `ReplyTo` operations result in messages sent to the proper originating partition.  
+snippet: ApplyPartitionConfigurationToEndpoint-ZipCodeVoteCount
 
 ### Local sends
 
-All local sends are handled by `PartitionAwareDistributionStrategy`. It sets the `partition-key` header value to local partition and routes the message to instance specific queue.
+All local sends are handled by `PartitionAwareDistributionStrategy`. For each locally sent message it sets the `partition-key` header value to the local partition key and routes the message to the queue associated with the local partition.
 
-### Replies 
+### Replies
 
 When replying, an endpoint routes the reply message to the endpoint that initiated the conversation. It's the responsibility of the requestor to properly set the reply to header before sending out the request. For a partitioned endpoint this implies that it sets the reply to header to its instance specific queue instead of the shared queue. This functionality is covered by the `HardcodeReplyToAddressToLogicalAddress` behavior.
 
+
 ## Receiver Side Distribution
+
+Receiver Side Distribution validates if a replica of a partitioned endpoint can process an incoming message or should forward it to the appropriate replicate instead. Partition validation is performed by inspecting message headers and message body.
 
 A partitioned endpoint can be configured to check that an incoming message should be processed locally. If it is not the case, the message is forwarded to the correct partition.
 
-Partition validation is performed by inspecting message headers and message body.
-
 ### Message headers inspection
 
-Every incoming message has its `partition-key` header value inspected by `DistributeMessagesBasedOnHeader` behavior. If the value specified in the header is equal to the receiver`s partition, then message processing takes place. Otherwise, the message is forwarded to the appropriate partition specified by the header value. If the partition key is wrongly assigned - the specified partition does not exist, the message is moved to the error queue.
+Every incoming message has its `partition-key` header value inspected by `DistributeMessagesBasedOnHeader` behavior. If the value specified in the header is matching the receiver`s partition key, then message is processed. Otherwise, the message is forwarded to the appropriate partition specified by the header value. If the partition key is wrongly assigned, the specified partition does not exist, the message is moved to the error queue.
 
-If the `partition-key` header does not exist, the pipeline execution continues moving the message to the *Message body inspection* step.
-
-NOTE: `PartitionMappingFailedException` is configured as an unrecoverable exception. Whenever such an exception is raised the message that triggered the exception will be moved to the configured error queue. For more information refer to [unrecoverable exceptions documentation](/nservicebus/recoverability/custom-recoverability-policy.md).
+If the `partition-key` header does not exist, the pipeline execution continues to the *Message body inspection* step.
 
 ### Message body inspection
 
-If the value of `partition-key` can't be extracted from a header value, it's determined on the basis of the message body. `DistributeMessagesBasedOnPayload` behavior determines the partition value using the mapping function provided by a user via configuration API. The calculated value is added as the `partition-key` header.
+If message headers inspection is unsuccessful with value extraction of `partition-key` header, message body is used to determine partition key value. `DistributeMessagesBasedOnPayload` behavior determines the partition value using the mapping function provided by a user via configuration API. Result of the mapping function is stored as the `partition-key` header value. Inspection can raise a `PartitionMappingFailedException` exception if partition key is not a valid partition key for a given endpoint. For a partition key that is not local, the message is forwarded to the appropriate partition. 
 
 The forwarding/processing decision is made in the same way as in *Header inspection* step.
+
+NOTE: `PartitionMappingFailedException` is configured as an unrecoverable exception. Whenever such an exception is raised the message that triggered the exception will be moved to the configured error queue. For more information refer to [unrecoverable exceptions documentation](/nservicebus/recoverability/custom-recoverability-policy.md).
 
 ### Control message forwarding
 
@@ -120,15 +132,15 @@ In many low-throughput scenarios Receiver Side Distribution might be enough to g
 
 ## Sender Side Distribution
 
-Receiver Side Distribution addresses forwarding messages that arrive to an endpoint instance that is different from the destined one. Forwarding them introduces some overhead though. To remove the overhead on the receiver side Sender Side Distribution can be used to distribute messages to the correct endpoint instances based on Service Fabric partitioning information.
+Receiver Side Distribution addresses forwarding messages that arrive to an endpoint instance that is different from the destined one. Forwarding received messages introduces some overhead though. To remove the overhead on the receiver side the Sender Side Distribution can be used to distribute messages to the correct endpoint instances based on Service Fabric partitioning information.
 
 Sender Side Distribution can be applied to endpoints hosted inside Service Fabric by using the partition information of the stateful services. This is suitable for endpoints hosted inside the cluster that need to send messages to other endpoints hosted in the cluster. For the endpoints hosted outside of the cluster access to Service Fabric APIs is not possible. Instead, partitioned destination endpoints need to be registered with message mapping for commands sent out.
 
 The Sender Side Distribution works in the following way:
 
-1. A mapping function is applied when dispatching messages. This mapping function is intended to select a partition key based on business criteria. In this example it's either the candidate name or the zip code of the voter, depending on the destination endpoint.
-1. The result of this mapping, a selected partition key, is then added as a `partition-key` header to the sent message. This ensures that its value doesn't have to be calculated on the receiver side again and no receiver side distribution will occur. 
-1. With determined destination instance, the message is sent to the instance specific queue directly.
+1. A mapping function is applied when dispatching messages. This mapping function is intended to select a partition key based on business criteria. In this example it's either the candidate name or the zip code of the voter, depending on the message type and destination endpoint.
+1. The result of this mapping, a partition key, is then added as a `partition-key` header to the outgoing message. This ensures that its value doesn't have to be calculated on the receiver side again and no receiver side distribution will occur. 
+1. With determined destination, the message is sent to the instance specific queue directly.
 
 ### Partition aware distribution strategy
 
@@ -140,7 +152,7 @@ Sender Side Distribution is configured by providing partitions information for a
 
 snippet: ConfigureLocalPartitions-CandidateVoteCount
 
-In order to send to specific destination partitions, it is required to provide the a mapping function that connects a business property on the message to a partition key for each outgoing message type.
+In order to send to specific destination partitions, it is required to provide the a mapping function that connects a business property on the message to a partition key for each outgoing message type. For the `TrackZipCode` command the mapping is done on the `ZipCode` property.
 
 snippet: ConfigureSenderSideRouting-CandidateVoteCount
 

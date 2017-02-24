@@ -27,7 +27,7 @@ namespace ZipCodeVoteCount
 
             endpointConfiguration.ApplyCommonConfiguration();
 
-            #region ConfigureLocalPartitions-ZipCodeVoteCount
+            #region ApplyPartitionConfigurationToEndpoint-ZipCodeVoteCount
 
             endpointConfiguration.RegisterPartitionsForThisEndpoint(partitionInfo.LocalPartitionKey, partitionInfo.Partitions);
 
