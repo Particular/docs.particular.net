@@ -18,7 +18,7 @@ include: sagafinder-into
 This sample also use multiple Unique attributes using the default [RavenDB Unique Constraint bundle](https://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints).
 
 
-### RavenDB setup
+## RavenDB setup
 
 This sample requires [RavenDB persistence](/nservicebus/ravendb/) package and a running RavenDB instance configured accordingly.
 
@@ -27,7 +27,7 @@ NServiceBus out of the box does not support saga data with multiple `Unique` att
 NOTE: If running this sample against an external RavenDB server ensure that the `RavenDB.Bundles.UniqueConstraints` [bundle](https://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints) is currently installed according to the [extending RavenDB](https://ravendb.net/docs/search/latest/csharp?searchTerm=server%20extending%20plugins) documentation. If the server side of the plugin is not correctly loaded, notice that the [`SagaNotFoundHandler`](/nservicebus/sagas/saga-not-found.md) will be invoked.
 
 
-### In Process Raven Host
+## In Process Raven Host
 
 It is possible to self-host RavenDB so that no running instance of RavenDB server is required to run the sample.
 
