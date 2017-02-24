@@ -8,7 +8,7 @@ using NServiceBus.Pipeline;
 class StreamSendBehavior :
     Behavior<IOutgoingLogicalMessageContext>
 {
-    TimeSpan MaxMessageTimeToLive = TimeSpan.FromDays(14);
+    TimeSpan maxMessageTimeToLive = TimeSpan.FromDays(14);
     string location;
 
     public StreamSendBehavior(StreamStorageSettings storageSettings)
@@ -68,9 +68,9 @@ class StreamSendBehavior :
     #region generate-key-for-stream
     string GenerateKey(TimeSpan timeToBeReceived)
     {
-        if (timeToBeReceived > MaxMessageTimeToLive)
+        if (timeToBeReceived > maxMessageTimeToLive)
         {
-            timeToBeReceived = MaxMessageTimeToLive;
+            timeToBeReceived = maxMessageTimeToLive;
         }
 
         var keepMessageUntil = DateTime.MaxValue;
