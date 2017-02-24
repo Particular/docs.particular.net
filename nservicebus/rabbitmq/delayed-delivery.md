@@ -19,7 +19,7 @@ Where 'N' is either `0` or `1` as necessary to represent the delay value, and "d
 
 ### Delay levels
 
-Each exchange/queue pair that makes up a level represents one bit of the total delay value. By having 28 of these levels, corresponding to 2^27 through 2^0, the delay infrastructure can delay a message for any value that can be represented by a 28-bit number. With 28 total levels, the maximum delay value is 268,435,455 seconds.
+Each exchange/queue pair that makes up a level represents one bit of the total delay value. By having 28 of these levels, corresponding to `2^27` through `2^0`, the delay infrastructure can delay a message for any value that can be represented by a 28-bit number. With 28 total levels, the maximum delay value is 268,435,455 seconds.
 
 A level is created by declaring a topic exchange that is bound to a queue with a routing key of `1`, and is also bound to the exchange corresponding to `level - 1` with a routing key of `0`. The queue for the level is declared with an `x-message-ttl` value corresponding to `2^level` seconds. The queue is also declared with an `x-dead-letter-exchange` value corresponding to the `level - 1` exchange, so that when a message in the queue expires, it will be routed to the `level - 1` exchange.
 
@@ -53,6 +53,17 @@ The final delay-level exchange is bound to the delivery exchange instead of anot
 
 
 ### Example
+
+Using a simplified version of the delay infrastructure that has 4 levels (0-3), here is an example of sending a message with a delay of 5 seconds to an endpoint called `destination`:
+
+1. The message is published to the level 3 exchange with the following routing key: `0.1.0.1.destination`
+1. The level 3 bit of the routing key is `0`, so the message is routed to the level 2 exchange. (**0**.1.0.1.destination)
+1. The level 2 bit of the routing key is `1`, so the message is delivered to the level 2 queue. (0.**1**.0.1.destination)
+1. After 4 seconds, the message expires and is routed to the level 1 exchange.
+1. The level 1 bit of the routing key is `0`, so the message is routed to the level 0 exchange. (0.1.**0**.1.destination)
+1. The level 0 bit of the routing key is `1`, so th message is delivered to the level 0 queue. (0.1.0.**1**.destination)
+1. After 1 second, the message expires and is routed to the delivery exchange.
+1. The final portion of routing key is `destination`, so the message is delivered to the endpoint's queue. (0.1.0.1.**destination**)
 
 ```mermaid
 graph LR
