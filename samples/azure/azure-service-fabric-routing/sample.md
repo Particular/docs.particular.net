@@ -152,9 +152,15 @@ Sender Side Distribution is configured by providing partition information for a 
 
 snippet: ConfigureLocalPartitions-CandidateVoteCount
 
-In order to send to specific destination partitions, it is required to provide the a mapping function that connects a business property on the message to a partition key for each outgoing message type. E.g. for the `TrackZipCode` command the mapping is done on the `ZipCode` property.
+In order to send to specific destination partitions, it is required to provide the a mapping function that connects a business property on the message to a partition key for each outgoing message type. 
+
+E.g. for the `TrackZipCode` command the mapping is done on the `ZipCode` property.
 
 snippet: ConfigureSenderSideRouting-CandidateVoteCount
+
+E.g. for the `CloseElection` command the mapping is done on the `Candidate` property.
+
+snippet: configuresendersiderouting-voter
 
 ### Message Driven Pub/Sub
 
