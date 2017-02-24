@@ -49,7 +49,7 @@ DANGER: The current version (1.0) of the SQL Persistence has not been built with
 
 ### Saga Finder Helper
 
-This class has an understanding of the saga storage conventions of the SQL Persistence and applies those conventions to generate SQL queries and return a Saga Data instance.
+This class encapsulates the saga storage conventions of the SQL Persistence and applies those conventions to generate SQL  queries and return a Saga Data instance.
 
 snippet: SqlPersistenceSagaFinder
 
@@ -58,7 +58,7 @@ snippet: SqlPersistenceSagaFinder
 
 Helper for serializing saga data and deserializing Saga Data and the Saga Metadata dictionary.
 
-WANRING: If using [custom saga serialization logic](/nservicebus/sql-persistence/saga.md#json-net-settings) this class will require the same changes applied.
+WARNING: If using [custom saga serialization logic](/nservicebus/sql-persistence/saga.md#json-net-settings) this class will require the same changes applied.
 
 snippet: serializer
 
