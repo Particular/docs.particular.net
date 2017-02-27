@@ -15,11 +15,9 @@ public class PartitionAwareReceiverSideDistributionConfiguration : ExposeSetting
 
     internal HashSet<string> Partitions { get; }
 
-    public PartitionAwareReceiverSideDistributionConfiguration AddPartitionMappingForMessageType<T>(Func<T, string> mapMessageToPartitionKey)
+    public void AddPartitionMappingForMessageType<T>(Func<T, string> mapMessageToPartitionKey)
     {
         messageTypeMappers[typeof(T)] = message => mapMessageToPartitionKey((T)message);
-
-        return this;
     }
 
     internal string MapMessageToPartitionKey(object message)

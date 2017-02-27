@@ -19,12 +19,10 @@ public class PartitionAwareSenderSideDistributionConfiguration : ExposeSettings
         this.partitions = partitions;
     }
 
-    public PartitionAwareSenderSideDistributionConfiguration AddPartitionMappingForMessageType<T>(Func<T, string> mapMessageToPartitionKey)
+    public void AddPartitionMappingForMessageType<T>(Func<T, string> mapMessageToPartitionKey)
     {
         routingSettings.RouteToEndpoint(typeof(T), endpointName);
         messageTypeMappers[typeof(T)] = message => mapMessageToPartitionKey((T)message);
-
-        return this;
     }
 
     internal string MapMessageToPartitionKey(object message)
