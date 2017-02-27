@@ -36,6 +36,7 @@
     <Compile Include="Session\Handler.cs" />
     <Compile Include="Session\Saga.cs" />
     <Compile Include="Session\MyMessage.cs" />
+    <Compile Include="UpgradeGuides\Upgrade101.cs" />
     <Compile Include="UsingSaga\SagaWithCorrelationAndTransitional.cs" />
     <Compile Include="UsingSaga\SagaWithCorrelation.cs" />
     <Compile Include="UsingSaga\SagaWithNoCorrelation.cs" />
@@ -47,6 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="UpgradeGuides\ConvertOutboxToNonclustered.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
