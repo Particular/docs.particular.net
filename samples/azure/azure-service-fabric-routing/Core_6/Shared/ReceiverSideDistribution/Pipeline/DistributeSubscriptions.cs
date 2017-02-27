@@ -29,7 +29,7 @@ class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IInco
         {
             var tasks = new List<Task>();
 
-            //Check to see if subscription message was already forwarded to prevent infinite loop
+            // Check to see if subscription message was already forwarded to prevent infinite loop
             if (!context.MessageHeaders.ContainsKey(PartitionHeaders.ForwardedSubscription))
             {
                 context.Message.Headers[PartitionHeaders.ForwardedSubscription] = string.Empty;

@@ -29,7 +29,7 @@ class DistributeMessagesBasedOnPayload : IBehavior<IIncomingLogicalMessageContex
             return next(context);
         }
 
-        //If the header is set we assume it's validity was checked by DistributeMessagesBasedOnHeader
+        // If the header is set we assume it's validity was checked by DistributeMessagesBasedOnHeader
         if (context.MessageHeaders.ContainsKey(PartitionHeaders.PartitionKey))
         {
             return next(context);
