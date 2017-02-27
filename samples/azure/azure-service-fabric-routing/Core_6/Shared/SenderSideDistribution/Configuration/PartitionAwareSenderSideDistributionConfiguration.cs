@@ -29,12 +29,11 @@ public class PartitionAwareSenderSideDistributionConfiguration : ExposeSettings
     {
         var messageType = message.GetType();
 
-        if (!messageTypeMappers.ContainsKey(messageType))
+        Func<object, string> mapper;
+        if (!messageTypeMappers.TryGetValue(messageType, out mapper))
         {
             throw new Exception($"No partition mapping is found for message type '{messageType}'.");
         }
-
-        var mapper = messageTypeMappers[messageType];
 
         var partition = mapper(message);
 
