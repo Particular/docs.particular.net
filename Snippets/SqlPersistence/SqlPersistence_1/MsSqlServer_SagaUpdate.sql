@@ -6,7 +6,7 @@ set
     PersistenceVersion = @PersistenceVersion,
     SagaTypeVersion = @SagaTypeVersion,
     Concurrency = @Concurrency + 1,
-    Correlation_TransitionalCorrelationPproperty = @TransitionalCorrelationId
+    Correlation_TransitionalCorrelationProperty = @TransitionalCorrelationId
 where
     Id = @Id AND Concurrency = @Concurrency
 

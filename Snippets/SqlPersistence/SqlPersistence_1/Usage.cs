@@ -2,7 +2,6 @@
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -48,8 +47,8 @@ class Usage
 
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var isDevelopement = Environment.GetEnvironmentVariable("IsDevelopement") == "true";
-        if (!isDevelopement)
+        var isDevelopment = Environment.GetEnvironmentVariable("IsDevelopment") == "true";
+        if (!isDevelopment)
         {
             persistence.DisableInstaller();
         }
@@ -169,14 +168,13 @@ class Usage
         #endregion
     }
 
-    async Task ExecuteScripts(string scriptDirectory, string tablePrefix)
+    void ExecuteScripts(string scriptDirectory, string tablePrefix)
     {
         #region ExecuteScripts
 
         using (var connection = new SqlConnection("ConnectionString"))
         {
-            await connection.OpenAsync()
-                .ConfigureAwait(false);
+            connection.Open();
             using (var transaction = connection.BeginTransaction())
             {
                 foreach (var createScript in Directory.EnumerateFiles(
@@ -192,8 +190,7 @@ class Usage
                         parameter.ParameterName = "tablePrefix";
                         parameter.Value = tablePrefix;
                         command.Parameters.Add(parameter);
-                        await command.ExecuteNonQueryAsync()
-                            .ConfigureAwait(false);
+                        command.ExecuteNonQuery();
                     }
                 }
                 transaction.Commit();

@@ -7,6 +7,6 @@
         IMessage
     {
         public Guid CorrelationProperty { get; set; }
-        public Guid TranstitionalCorrelationProperty { get; set; }
+        public Guid TransitionalCorrelationProperty { get; set; }
     }
 }

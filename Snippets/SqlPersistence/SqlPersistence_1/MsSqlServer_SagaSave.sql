@@ -8,8 +8,8 @@ insert into EndpointNameSagaName
     PersistenceVersion,
     SagaTypeVersion,
     Concurrency,
-    Correlation_CorrelationPproperty,
-    Correlation_TransitionalCorrelationPproperty
+    Correlation_CorrelationProperty,
+    Correlation_TransitionalCorrelationProperty
 )
 values
 (
