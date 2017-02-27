@@ -12,7 +12,7 @@ upgradeGuideCoreVersions:
 
 ## Convert Outbox Index to Nonclustered
 
-WARNING: Only required by Endpoints that are using both [Microsoft SQL Server](/nservicebus/sql-persistence/#usage-sql-server) and [Outbox](/nservicebus/outbox/).
+WARNING: This upgrade is only required by Endpoints that are using both [Microsoft SQL Server](/nservicebus/sql-persistence/#usage-sql-server) and [Outbox](/nservicebus/outbox/).
 
 NOTE: This is a optional performance optimization that is only necessary for high throughput endpoints. All new endpoints created with Version 1.0.1 and above will have this optimization applied.
 
@@ -21,16 +21,16 @@ As the `MessageId` is not guaranteed to be sequential a [nonclustered index](htt
 
 ### Performing the upgrade
 
-For all endpoint that that are using both [Microsoft SQL Server](/nservicebus/sql-persistence/#usage-sql-server) and [Outbox](/nservicebus/outbox/) and have been deployed using the 1.0.0 version of the Sql Persistence NuGet package.
+Perform the steps described in this section for all endpoints that that are using [Microsoft SQL Server](/nservicebus/sql-persistence/#usage-sql-server), [Outbox](/nservicebus/outbox/) and Sql Persistence Version 1.0.0.
 
 NOTE: Since Version 1.0.1 does not require the nonclustered index to function, the conversion of indexes over to nonclustered can be done before **or** after the upgrade to 1.0.1.
 
 
 #### Stop endpoint
 
-Stop the effected endpoint.
+Stop the affected endpoint.
 
-NOTE: This process can be done on a per-endpoint basis or in bulk for all effected endpoints.
+NOTE: This process can be done on a per-endpoint basis or in bulk for all affected endpoints.
 
 
 #### Convert to Nonclustered
