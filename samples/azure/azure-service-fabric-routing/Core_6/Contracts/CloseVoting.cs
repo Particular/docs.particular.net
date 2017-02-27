@@ -1,9 +1,5 @@
-﻿namespace Contracts
-{
-    using NServiceBus;
+﻿using NServiceBus;
 
-    public class CloseVoting : ICommand
-    {
-       
-    }
+public class CloseVoting : ICommand
+{
 }

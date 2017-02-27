@@ -1,11 +1,8 @@
 ﻿using NServiceBus;
 
-namespace CandidateVoteCount
+public class CandidateVoteData : ContainSagaData
 {
-    public class CandidateVoteData : ContainSagaData
-    {
-        public bool Started { get; set; }
-        public string Candidate { get; set; }
-        public int Count { get; set; }
-    }
+    public bool Started { get; set; }
+    public string Candidate { get; set; }
+    public int Count { get; set; }
 }

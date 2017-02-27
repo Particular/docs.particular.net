@@ -3,50 +3,46 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
-using Shared;
 
-namespace ZipCodeVoteCount
+public class EndpointCommunicationListener : ICommunicationListener
 {
-    public class EndpointCommunicationListener : ICommunicationListener
+    StatefulServiceContext context;
+    IEndpointInstance endpointInstance;
+
+    public EndpointCommunicationListener(StatefulServiceContext context)
     {
-        StatefulServiceContext context;
-        IEndpointInstance endpointInstance;
+        this.context = context;
+    }
 
-        public EndpointCommunicationListener(StatefulServiceContext context)
-        {
-            this.context = context;
-        }
+    public async Task<string> OpenAsync(CancellationToken cancellationToken)
+    {
+        Logger.Log = m => ServiceEventSource.Current.ServiceMessage(context, m);
 
-        public async Task<string> OpenAsync(CancellationToken cancellationToken)
-        {
-            Logger.Log = m => ServiceEventSource.Current.ServiceMessage(context, m);
+        var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId);
 
-            var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId);
+        var endpointConfiguration = new EndpointConfiguration("ZipCodeVoteCount");
 
-            var endpointConfiguration = new EndpointConfiguration("ZipCodeVoteCount");
+        endpointConfiguration.ApplyCommonConfiguration();
 
-            endpointConfiguration.ApplyCommonConfiguration();
+        #region ApplyPartitionConfigurationToEndpoint-ZipCodeVoteCount
 
-            #region ApplyPartitionConfigurationToEndpoint-ZipCodeVoteCount
+        endpointConfiguration.RegisterPartitionsForThisEndpoint(partitionInfo.LocalPartitionKey, partitionInfo.Partitions);
 
-            endpointConfiguration.RegisterPartitionsForThisEndpoint(partitionInfo.LocalPartitionKey, partitionInfo.Partitions);
+        #endregion
 
-            #endregion
+        endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
-            endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        return null;
+    }
 
-            return null;
-        }
+    public Task CloseAsync(CancellationToken cancellationToken)
+    {
+        return endpointInstance.Stop();
+    }
 
-        public Task CloseAsync(CancellationToken cancellationToken)
-        {
-            return endpointInstance.Stop();
-        }
-
-        public void Abort()
-        {
-            // Fire & Forget Close
-            CloseAsync(CancellationToken.None);
-        }
+    public void Abort()
+    {
+        // Fire & Forget Close
+        CloseAsync(CancellationToken.None);
     }
 }

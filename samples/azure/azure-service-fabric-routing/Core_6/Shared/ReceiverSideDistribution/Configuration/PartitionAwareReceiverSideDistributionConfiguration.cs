@@ -3,46 +3,43 @@ using System.Collections.Generic;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 
-namespace Shared
+public class PartitionAwareReceiverSideDistributionConfiguration : ExposeSettings
 {
-    public class PartitionAwareReceiverSideDistributionConfiguration : ExposeSettings
+    readonly Dictionary<Type, Func<object, string>> messageTypeMappers = new Dictionary<Type, Func<object, string>>();
+
+    public PartitionAwareReceiverSideDistributionConfiguration(RoutingSettings routingSettings, string[] partitions)
+        : base(routingSettings.GetSettings())
     {
-        readonly Dictionary<Type, Func<object, string>> messageTypeMappers = new Dictionary<Type, Func<object, string>>();
+        Partitions = new HashSet<string>(partitions);
+    }
 
-        public PartitionAwareReceiverSideDistributionConfiguration(RoutingSettings routingSettings, string[] partitions)
-            : base(routingSettings.GetSettings())
+    internal HashSet<string> Partitions { get; }
+
+    public PartitionAwareReceiverSideDistributionConfiguration AddPartitionMappingForMessageType<T>(Func<T, string> mapMessageToPartitionKey)
+    {
+        messageTypeMappers[typeof(T)] = message => mapMessageToPartitionKey((T)message);
+
+        return this;
+    }
+
+    internal string MapMessageToPartitionKey(object message)
+    {
+        var messageType = message.GetType();
+
+        if (!messageTypeMappers.ContainsKey(messageType))
         {
-            Partitions = new HashSet<string>(partitions);
+            throw new Exception($"No partition mapping is found for message type '{messageType}'.");
         }
 
-        internal HashSet<string> Partitions { get; }
+        var mapper = messageTypeMappers[messageType];
 
-        public PartitionAwareReceiverSideDistributionConfiguration AddPartitionMappingForMessageType<T>(Func<T, string> mapMessageToPartitionKey)
+        var partition = mapper(message);
+
+        if (!Partitions.Contains(partition))
         {
-            messageTypeMappers[typeof(T)] = message => mapMessageToPartitionKey((T)message);
-
-            return this;
+            throw new Exception($"Partition '{partition}' returned by partition mapping of '{messageType}' did not match any of the registered local partitions '{string.Join(",", Partitions)}'.");
         }
 
-        internal string MapMessageToPartitionKey(object message)
-        {
-            var messageType = message.GetType();
-
-            if (!messageTypeMappers.ContainsKey(messageType))
-            {
-                throw new Exception($"No partition mapping is found for message type '{messageType}'.");
-            }
-
-            var mapper = messageTypeMappers[messageType];
-
-            var partition = mapper(message);
-
-            if (!Partitions.Contains(partition))
-            {
-                throw new Exception($"Partition '{partition}' returned by partition mapping of '{messageType}' did not match any of the registered local partitions '{string.Join(",", Partitions)}'.");
-            }
-
-            return partition;
-        }
+        return partition;
     }
 }

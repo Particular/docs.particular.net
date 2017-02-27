@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Shared
+public class PartitionMappingFailedException : Exception
 {
-    [Serializable]
-    public class PartitionMappingFailedException : Exception
+    public PartitionMappingFailedException()
     {
-        public PartitionMappingFailedException()
-        {
-        }
+    }
 
-        public PartitionMappingFailedException(string message) : base(message)
-        {
-        }
+    public PartitionMappingFailedException(string message) : base(message)
+    {
+    }
 
-        public PartitionMappingFailedException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+    public PartitionMappingFailedException(string message, Exception innerException) : base(message, innerException)
+    {
+    }
 
-        protected PartitionMappingFailedException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+    protected PartitionMappingFailedException(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
     }
 }

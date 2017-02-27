@@ -3,36 +3,32 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Pipeline;
 
-namespace Shared
+class HardcodeReplyToAddressToLogicalAddress : IBehavior<IOutgoingPhysicalMessageContext, IOutgoingPhysicalMessageContext>
 {
-    class HardcodeReplyToAddressToLogicalAddress : IBehavior<IOutgoingPhysicalMessageContext, IOutgoingPhysicalMessageContext>
+    readonly string instanceSpecificQueue;
+
+    public HardcodeReplyToAddressToLogicalAddress(string instanceSpecificQueue)
     {
-        readonly string instanceSpecificQueue;
+        this.instanceSpecificQueue = instanceSpecificQueue;
+    }
 
-        public HardcodeReplyToAddressToLogicalAddress(string instanceSpecificQueue)
+    public Task Invoke(IOutgoingPhysicalMessageContext context, Func<IOutgoingPhysicalMessageContext, Task> next)
+    {
+        NoReplyToAddressOverride noOverride;
+        if (instanceSpecificQueue != null && !context.Extensions.TryGet(out noOverride))
         {
-            this.instanceSpecificQueue = instanceSpecificQueue;
+            context.Headers[Headers.ReplyToAddress] = instanceSpecificQueue;
         }
 
-        public Task Invoke(IOutgoingPhysicalMessageContext context, Func<IOutgoingPhysicalMessageContext, Task> next)
+        return next(context);
+    }
+
+    public class NoReplyToAddressOverride
+    {
+        public static NoReplyToAddressOverride Instance = new NoReplyToAddressOverride();
+
+        NoReplyToAddressOverride()
         {
-            NoReplyToAddressOverride noOverride;
-            if (instanceSpecificQueue != null && !context.Extensions.TryGet(out noOverride))
-            {
-                context.Headers[Headers.ReplyToAddress] = instanceSpecificQueue;
-            }
-
-            return next(context);
-        }
-
-        // TODO: what's this used for?
-        public class NoReplyToAddressOverride
-        {
-            public static NoReplyToAddressOverride Instance = new NoReplyToAddressOverride();
-
-            NoReplyToAddressOverride()
-            {
-            }
         }
     }
 }

@@ -5,61 +5,58 @@ using NServiceBus;
 using NServiceBus.Pipeline;
 using NServiceBus.Transport;
 
-namespace Shared
+class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
 {
-    class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
+    readonly HashSet<string> knownPartitionKeys;
+    readonly string localPartitionKey;
+    readonly Func<LogicalAddress, string> addressTranslator;
+    readonly LogicalAddress logicalAddress;
+
+    public DistributeSubscriptions(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress)
     {
-        readonly HashSet<string> knownPartitionKeys;
-        readonly string localPartitionKey;
-        readonly Func<LogicalAddress, string> addressTranslator;
-        readonly LogicalAddress logicalAddress;
+        this.logicalAddress = logicalAddress;
+        this.addressTranslator = addressTranslator;
+        this.localPartitionKey = localPartitionKey;
+        this.knownPartitionKeys = knownPartitionKeys;
+    }
 
-        public DistributeSubscriptions(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress)
+    public async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingPhysicalMessageContext, Task> next)
+    {
+        var intent = context.Message.GetMesssageIntent();
+        var isSubscriptionMessage = intent == MessageIntentEnum.Subscribe || intent == MessageIntentEnum.Unsubscribe;
+
+        if (isSubscriptionMessage)
         {
-            this.logicalAddress = logicalAddress;
-            this.addressTranslator = addressTranslator;
-            this.localPartitionKey = localPartitionKey;
-            this.knownPartitionKeys = knownPartitionKeys;
-        }
+            var tasks = new List<Task>();
 
-        public async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingPhysicalMessageContext, Task> next)
-        {
-            var intent = context.Message.GetMesssageIntent();
-            var isSubscriptionMessage = intent == MessageIntentEnum.Subscribe || intent == MessageIntentEnum.Unsubscribe;
-
-            if (isSubscriptionMessage)
+            //Check to see if subscription message was already forwarded to prevent infinite loop
+            if (!context.MessageHeaders.ContainsKey(PartitionHeaders.ForwardedSubscription))
             {
-                var tasks = new List<Task>();
+                context.Message.Headers[PartitionHeaders.ForwardedSubscription] = string.Empty;
 
-                //Check to see if subscription message was already forwarded to prevent infinite loop
-                if (!context.MessageHeaders.ContainsKey(PartitionHeaders.ForwardedSubscription))
+                // ReSharper disable once LoopCanBeConvertedToQuery
+                foreach (var partitionKey in knownPartitionKeys)
                 {
-                    context.Message.Headers[PartitionHeaders.ForwardedSubscription] = string.Empty;
-
-                    // ReSharper disable once LoopCanBeConvertedToQuery
-                    foreach (var partitionKey in knownPartitionKeys)
+                    if (partitionKey == localPartitionKey)
                     {
-                        if (partitionKey == localPartitionKey)
-                        {
-                            continue;
-                        }
-
-                        var destination = addressTranslator(logicalAddress.CreateIndividualizedAddress(partitionKey));
-                        tasks.Add(context.ForwardCurrentMessageTo(destination));
+                        continue;
                     }
-                }
-                await Task.WhenAll(tasks).ConfigureAwait(false);
-            }
-            await next(context).ConfigureAwait(false);
-        }
 
-        public class Register : RegisterStep
-        {
-            public Register(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress) :
-                base("DistributeSubscriptions", typeof(DistributeSubscriptions), "Distributes subscription messages for message driven pubsub using header only.", b => new DistributeSubscriptions(localPartitionKey, knownPartitionKeys, addressTranslator, logicalAddress))
-            {
-                InsertBeforeIfExists("ProcessSubscriptionRequests");
+                    var destination = addressTranslator(logicalAddress.CreateIndividualizedAddress(partitionKey));
+                    tasks.Add(context.ForwardCurrentMessageTo(destination));
+                }
             }
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+        }
+        await next(context).ConfigureAwait(false);
+    }
+
+    public class Register : RegisterStep
+    {
+        public Register(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress) :
+            base("DistributeSubscriptions", typeof(DistributeSubscriptions), "Distributes subscription messages for message driven pubsub using header only.", b => new DistributeSubscriptions(localPartitionKey, knownPartitionKeys, addressTranslator, logicalAddress))
+        {
+            InsertBeforeIfExists("ProcessSubscriptionRequests");
         }
     }
 }

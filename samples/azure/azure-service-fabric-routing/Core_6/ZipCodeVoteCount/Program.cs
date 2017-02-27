@@ -3,35 +3,32 @@ using System.Diagnostics;
 using System.Threading;
 using Microsoft.ServiceFabric.Services.Runtime;
 
-namespace ZipCodeVoteCount
+static class Program
 {
-    static class Program
+    /// <summary>
+    /// This is the entry point of the service host process.
+    /// </summary>
+    private static void Main()
     {
-        /// <summary>
-        /// This is the entry point of the service host process.
-        /// </summary>
-        private static void Main()
+        try
         {
-            try
-            {
-                // The ServiceManifest.XML file defines one or more service type names.
-                // Registering a service maps a service type name to a .NET type.
-                // When Service Fabric creates an instance of this service type,
-                // an instance of the class is created in this host process.
+            // The ServiceManifest.XML file defines one or more service type names.
+            // Registering a service maps a service type name to a .NET type.
+            // When Service Fabric creates an instance of this service type,
+            // an instance of the class is created in this host process.
 
-                ServiceRuntime.RegisterServiceAsync("ZipCodeVoteCountType",
-                    context => new ZipCodeVoteCountService(context)).GetAwaiter().GetResult();
+            ServiceRuntime.RegisterServiceAsync("ZipCodeVoteCountType",
+                context => new ZipCodeVoteCountService(context)).GetAwaiter().GetResult();
 
-                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(ZipCodeVoteCountService).Name);
+            ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(ZipCodeVoteCountService).Name);
 
-                // Prevents this host process from terminating so services keep running.
-                Thread.Sleep(Timeout.Infinite);
-            }
-            catch (Exception e)
-            {
-                ServiceEventSource.Current.ServiceHostInitializationFailed(e.ToString());
-                throw;
-            }
+            // Prevents this host process from terminating so services keep running.
+            Thread.Sleep(Timeout.Infinite);
+        }
+        catch (Exception e)
+        {
+            ServiceEventSource.Current.ServiceHostInitializationFailed(e.ToString());
+            throw;
         }
     }
 }

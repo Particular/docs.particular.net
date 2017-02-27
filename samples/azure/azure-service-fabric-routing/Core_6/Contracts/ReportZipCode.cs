@@ -1,11 +1,8 @@
-﻿namespace Contracts
+﻿using NServiceBus;
+
+public class ReportZipCode : ICommand
 {
-    using NServiceBus;
+    public string ZipCode { get; set; }
 
-    public class ReportZipCode : ICommand
-    {
-        public string ZipCode { get; set; }
-
-        public int NumberOfVotes { get; set; }
-    }
+    public int NumberOfVotes { get; set; }
 }

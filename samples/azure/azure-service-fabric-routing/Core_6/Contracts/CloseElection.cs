@@ -1,8 +1,6 @@
-﻿namespace Contracts
+﻿using NServiceBus;
+
+public class CloseElection : ICommand
 {
-    using NServiceBus;
-    public class CloseElection : ICommand
-    {
-        public string Candidate { get; set; }
-    }
+    public string Candidate { get; set; }
 }

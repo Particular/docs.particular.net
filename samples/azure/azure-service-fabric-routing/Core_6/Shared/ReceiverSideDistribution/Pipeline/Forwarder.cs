@@ -3,30 +3,27 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
 
-namespace Shared
+class Forwarder
 {
-    class Forwarder
+    readonly LogicalAddress logicalAddress;
+    readonly HashSet<string> knownPartitionKeys;
+    readonly Func<LogicalAddress, string> addressTranslator;
+
+    public Forwarder(HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress)
     {
-        readonly LogicalAddress logicalAddress;
-        readonly HashSet<string> knownPartitionKeys;
-        readonly Func<LogicalAddress, string> addressTranslator;
+        this.knownPartitionKeys = knownPartitionKeys;
+        this.addressTranslator = addressTranslator;
+        this.logicalAddress = logicalAddress;
+    }
 
-        public Forwarder(HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress)
+    public Task Forward(IMessageProcessingContext context, string messagePartitionKey)
+    {
+        if (!knownPartitionKeys.Contains(messagePartitionKey))
         {
-            this.knownPartitionKeys = knownPartitionKeys;
-            this.addressTranslator = addressTranslator;
-            this.logicalAddress = logicalAddress;
+            throw new PartitionMappingFailedException($"User mapped key {messagePartitionKey} does not match any known partition key values");
         }
 
-        public Task Forward(IMessageProcessingContext context, string messagePartitionKey)
-        {
-            if (!knownPartitionKeys.Contains(messagePartitionKey))
-            {
-                throw new PartitionMappingFailedException($"User mapped key {messagePartitionKey} does not match any known partition key values");
-            }
-
-            var destination = addressTranslator(logicalAddress.CreateIndividualizedAddress(messagePartitionKey));
-            return context.ForwardCurrentMessageTo(destination);
-        }
+        var destination = addressTranslator(logicalAddress.CreateIndividualizedAddress(messagePartitionKey));
+        return context.ForwardCurrentMessageTo(destination);
     }
 }

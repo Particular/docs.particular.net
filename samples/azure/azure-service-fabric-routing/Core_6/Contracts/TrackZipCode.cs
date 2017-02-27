@@ -1,9 +1,6 @@
-﻿namespace Contracts
-{
-    using NServiceBus;
+﻿using NServiceBus;
 
-    public class TrackZipCode : ICommand
-    {
-        public string ZipCode { get; set; }
-    }
+public class TrackZipCode : ICommand
+{
+    public string ZipCode { get; set; }
 }
