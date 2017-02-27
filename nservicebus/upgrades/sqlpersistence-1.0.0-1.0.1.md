@@ -1,6 +1,6 @@
 ---
 title: Sql Persistence Upgrade Version 1.0.0 to 1.0.1
-summary: Instructions on how to patch SQL injection vulnerability in SQL Server Transport version 1.x
+summary: Instructions on how to upgrade to Sql Persistence version 1.x
 reviewed: 2017-02-27
 component: SqlPersistence
 isUpgradeGuide: true
@@ -23,7 +23,7 @@ As the `MessageId` is not guaranteed to be sequential a [Nonclustered Index](htt
 
 For all endpoint that that are using both [Microsoft SQL Server](/nservicebus/sql-persistence/#usage-sql-server) and [Outbox](/nservicebus/outbox/) and have been deployed using the 1.0.0 version of the Sql Persistence NuGet package.
 
-NOTE: Since Version 1.0.1 does not require the Nonclustered to function, the conversion of indexes over to Nonclustered can be done before **or** after the upgrade to 1.0.1.
+NOTE: Since Version 1.0.1 does not require the nonclustered index to function, the conversion of indexes over to Nonclustered can be done before **or** after the upgrade to 1.0.1.
 
 
 #### Stop endpoint
