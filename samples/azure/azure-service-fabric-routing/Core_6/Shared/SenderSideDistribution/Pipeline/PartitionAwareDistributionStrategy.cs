@@ -24,6 +24,6 @@ public class PartitionAwareDistributionStrategy : DistributionStrategy
         context.Headers[PartitionHeaders.PartitionKey] = discriminator;
 
         var remoteAddress = context.ToTransportAddress(new EndpointInstance(Endpoint, discriminator));
-        return context.ReceiverAddresses.Single(a => a == remoteAddress.ToString());
+        return context.ReceiverAddresses.Single(a => a == remoteAddress);
     }
 }
