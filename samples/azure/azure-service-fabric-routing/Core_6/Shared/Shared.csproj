@@ -58,7 +58,6 @@
     <Compile Include="ReceiverSideDistribution\Configuration\PartitionAwareReceiverSideDistributionConfiguration.cs" />
     <Compile Include="ReceiverSideDistribution\PartitionMappingFailedException.cs" />
     <Compile Include="EndpointPartitioning\HardcodeReplyToAddressToLogicalAddress.cs" />
-    <Compile Include="SenderSideDistribution\Configuration\MessageDrivenPubSub.cs" />
     <Compile Include="SenderSideDistribution\Configuration\PartitionAwareSenderSideDistributionConfiguration.cs" />
     <Compile Include="SenderSideDistribution\Configuration\SenderSideDistributionExtensions.cs" />
     <Compile Include="ReceiverSideDistribution\Pipeline\DistributeMessagesBasedOnHeader.cs" />

@@ -15,16 +15,6 @@ public static class SenderSideDistributionExtensions
         var sendDistributionStrategy = new PartitionAwareDistributionStrategy(destinationEndpoint, distributionConfiguration.MapMessageToPartitionKey, DistributionStrategyScope.Send);
         settings.GetOrCreate<DistributionPolicy>().SetDistributionStrategy(sendDistributionStrategy);
 
-        if (MessageDrivenPubSub.Enabled)
-        {
-            #region SenderSideDistributionExtensions-MessageDrivenPubSub
-
-            var publishDistributionStrategy = new PartitionAwareDistributionStrategy(destinationEndpoint, distributionConfiguration.MapMessageToPartitionKey, DistributionStrategyScope.Publish);
-            settings.GetOrCreate<DistributionPolicy>().SetDistributionStrategy(publishDistributionStrategy);
-
-            #endregion
-        }
-
         var destinationEndpointInstances = partitions.Select(key => new EndpointInstance(destinationEndpoint, key)).ToList();
 
         settings.GetOrCreate<EndpointInstances>().AddOrReplaceInstances(destinationEndpoint, destinationEndpointInstances);

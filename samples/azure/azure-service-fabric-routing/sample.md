@@ -184,16 +184,7 @@ snippet: configuresendersiderouting-voter
 
 ### Message Driven Pub/Sub
 
-The sample can be used with Message Driven Pub/Sub transports such as Azure Storage Queue Transport as well. The sample works out of the box but will heavily rely on Receiver Side Distribution to add the required partition keys to the header. For higher throughput scenarios the sender side distribution code needs to be tweaked in the following way:
-
-1. Add a `PartitionAwareDistributionStrategy` with scope `Publish` in the `SenderSideDistributionExtensions`
-
-snippet: SenderSideDistributionExtensions-MessageDrivenPubSub
-
-2. Make sure `VotePlaced` message has a partition mapping function on the sender side
-
-snippet: ConfigureSenderSideRouting-MessageDrivenPubSub
-
+The sample can be used with Message Driven Pub/Sub transports such as Azure Storage Queue Transport as well. The sample works out of the box but will heavily rely on Receiver Side Distribution to add the required partition keys to the header.
 
 ## Optimization strategies
 
@@ -204,7 +195,8 @@ snippet: ConfigureSenderSideRouting-MessageDrivenPubSub
 |Directing the reply to myself, a Partitioned Endpoint           | Reply override behavior, header copying behavior on the replier|
 |Directing the reply to a different Partitioned Endpoint         | Extension method on SendOptions|
 |Publish a message to a Partitioned Endpoint using Native Pub/Sub| Broker forwards to the correct key partition based on the header key value\* |
-|Publish a message to a Partitioned Endpoint using Non Native Pub/Sub|Partition Aware Sender Side Distribution|
+|Publish a message to a Partitioned Endpoint using Non Native Pub/Sub| Receiver forwards to the correct key partition based on the header key value\**|
 |Request a Timeout in a Saga                                     | Parition Aware Sender Side Distribution for Local Endpoint|
 
 \* native distribution is not supported at this point
+\** message driven pub/sub distribution on the publisher side is not supported at this point
