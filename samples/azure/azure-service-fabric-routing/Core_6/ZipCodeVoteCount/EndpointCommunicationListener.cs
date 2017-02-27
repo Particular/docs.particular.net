@@ -18,7 +18,7 @@ public class EndpointCommunicationListener : ICommunicationListener
     {
         Logger.Log = m => ServiceEventSource.Current.ServiceMessage(context, m);
 
-        var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId);
+        var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId).ConfigureAwait(false);
 
         var endpointConfiguration = new EndpointConfiguration("ZipCodeVoteCount");
 
