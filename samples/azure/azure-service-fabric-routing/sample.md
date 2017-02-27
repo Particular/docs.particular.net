@@ -196,10 +196,10 @@ snippet: ConfigureSenderSideRouting-MessageDrivenPubSub
 
 ## Optimization strategies
 
-| **Scenario**                                                   | **Srtategy**                            |
+| **Scenario**                                                   | **Strategy**                            |
 |----------------------------------------------------------------|-----------------------------------------|
 |Send to a Partitioned Endpoint                                  | Partition Aware Sender Side Distribution|
-|Send Local in a Partitioned Endpoint                            | Parition Aware Sender Side Distribution for Local Endpoint|
+|Send Local in a Partitioned Endpoint                            | Partition Aware Sender Side Distribution for Local Endpoint|
 |Directing the reply to myself, a Partitioned Endpoint           | Reply override behavior, header copying behavior on the replier|
 |Directing the reply to a different Partitioned Endpoint         | Extension method on SendOptions|
 |Publish a message to a Partitioned Endpoint using Native Pub/Sub| Broker forwards to the correct key partition based on the header key value\* |
