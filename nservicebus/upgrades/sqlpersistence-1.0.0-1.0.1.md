@@ -16,14 +16,14 @@ WARNING: Only required by Endpoints that are using both [Microsoft SQL Server](/
 
 NOTE: This is a optional performance optimization that is only necessary for high throughput endpoints. All new endpoints created with Version 1.0.1 and above will have this optimization applied.
 
-As the `MessageId` is not guaranteed to be sequential a [Nonclustered Index](https://msdn.microsoft.com/en-AU/library/ms190457.aspx) gives better performance. Applying this change results in the table being treated as a [Heap](https://msdn.microsoft.com/en-AU/library/hh213609.aspx).
+As the `MessageId` is not guaranteed to be sequential a [nonclustered index](https://msdn.microsoft.com/en-AU/library/ms190457.aspx) gives better performance. Applying this change results in the table being treated as a [heap](https://msdn.microsoft.com/en-AU/library/hh213609.aspx).
 
 
 ### Performing the upgrade
 
 For all endpoint that that are using both [Microsoft SQL Server](/nservicebus/sql-persistence/#usage-sql-server) and [Outbox](/nservicebus/outbox/) and have been deployed using the 1.0.0 version of the Sql Persistence NuGet package.
 
-NOTE: Since Version 1.0.1 does not require the nonclustered index to function, the conversion of indexes over to Nonclustered can be done before **or** after the upgrade to 1.0.1.
+NOTE: Since Version 1.0.1 does not require the nonclustered index to function, the conversion of indexes over to nonclustered can be done before **or** after the upgrade to 1.0.1.
 
 
 #### Stop endpoint
