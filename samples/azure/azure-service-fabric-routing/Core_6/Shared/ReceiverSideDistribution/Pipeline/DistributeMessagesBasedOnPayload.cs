@@ -62,12 +62,7 @@ class DistributeMessagesBasedOnPayload : IBehavior<IIncomingLogicalMessageContex
 
         if (context.MessageHeaders.TryGetValue(Headers.MessageIntent, out intentStr))
         {
-            MessageIntentEnum intent;
-            if (Enum.TryParse(intentStr, out intent))
-            {
-                return intent;
-            }
-            return null;
+            return (MessageIntentEnum) Enum.Parse(typeof(MessageIntentEnum), intentStr);
         }
 
         return null;
