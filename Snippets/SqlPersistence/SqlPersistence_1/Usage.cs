@@ -17,7 +17,6 @@ class Usage
         #region SqlPersistenceUsageSqlServer
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-
         var connection = @"Data Source=.\SQLEXPRESS;Initial Catalog=sqlpersistencesample;Integrated Security=True";
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(
