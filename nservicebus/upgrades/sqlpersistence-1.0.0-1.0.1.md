@@ -14,6 +14,7 @@ upgradeGuideCoreVersions:
 
 WARNING: Only required by Endpoints that are using both [Microsoft SQL Server](/nservicebus/sql-persistence/#usage-sql-server) and [Outbox](/nservicebus/outbox/).
 
+NOTE: This is a optional performance optimization that is only necessary for high throughput endpoints. All new endpoints created with Version 1.0.1 and above will have this optimization applied.
 
 As the `MessageId` is not guaranteed to be sequential a [Nonclustered Index](https://msdn.microsoft.com/en-AU/library/ms190457.aspx) gives better performance. Applying this change results in the table being treated as a [Heap](https://msdn.microsoft.com/en-AU/library/hh213609.aspx).
 
