@@ -1,4 +1,3 @@
-using System;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Features;

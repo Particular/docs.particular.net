@@ -1,4 +1,3 @@
-using System.Fabric;
 using System.Threading.Tasks;
 using NServiceBus;
 using Shared;
