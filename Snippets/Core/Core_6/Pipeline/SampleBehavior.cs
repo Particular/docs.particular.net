@@ -9,11 +9,11 @@
     public class SampleBehavior :
         Behavior<IIncomingLogicalMessageContext>
     {
-        public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
+        public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
         {
             // custom logic before calling the next step in the pipeline.
 
-            return next();
+            await next().ConfigureAwait(false);
 
             // custom logic after all inner steps in the pipeline completed.
         }
