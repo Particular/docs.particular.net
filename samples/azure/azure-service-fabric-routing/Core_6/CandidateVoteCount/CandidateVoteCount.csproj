@@ -93,7 +93,6 @@
     <Compile Include="..\ZipCodeVoteCount\ServicePartitionQueryHelper.cs">
       <Link>ServicePartitionQueryHelper.cs</Link>
     </Compile>
-    <Compile Include="CandidateVoteData.cs" />
     <Compile Include="CandidateVotes.cs" />
     <Compile Include="EndpointCommunicationListener.cs" />
     <Compile Include="CandidateVoteCountService.cs" />

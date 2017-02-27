@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
-public class CandidateVotes : Saga<CandidateVoteData>,
+public class CandidateVotes : Saga<CandidateVotes.CandidateVoteData>,
         IAmStartedByMessages<VotePlaced>,
         IHandleMessages<CloseElection>,
         IHandleMessages<TrackZipCodeReply>
@@ -44,5 +44,12 @@ public class CandidateVotes : Saga<CandidateVoteData>,
         Logger.Log($"##### CandidateVote saga for {Data.Candidate} got reply for zip code '{message.ZipCode}' tracking with current count of {message.CurrentCount}");
 
         return Task.FromResult(0);
+    }
+
+    public class CandidateVoteData : ContainSagaData
+    {
+        public bool Started { get; set; }
+        public string Candidate { get; set; }
+        public int Count { get; set; }
     }
 }

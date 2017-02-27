@@ -96,7 +96,6 @@
     <Compile Include="ZipCodeVoteCountService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ServiceEventSource.cs" />
-    <Compile Include="ZipCodeVoteData.cs" />
     <Compile Include="ZipCodeVotes.cs" />
   </ItemGroup>
   <ItemGroup>

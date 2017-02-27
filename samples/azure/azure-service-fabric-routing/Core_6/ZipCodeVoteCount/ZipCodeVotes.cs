@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
-public class ZipCodeVotes : Saga<ZipCodeVoteData>,
+public class ZipCodeVotes : Saga<ZipCodeVotes.ZipCodeVoteData>,
         IAmStartedByMessages<TrackZipCode>,
         IHandleTimeouts<CloseVoting>
 {
@@ -38,5 +38,12 @@ public class ZipCodeVotes : Saga<ZipCodeVoteData>,
         }).ConfigureAwait(false);
 
         MarkAsComplete();
+    }
+
+    public class ZipCodeVoteData : ContainSagaData
+    {
+        public string ZipCode { get; set; }
+        public int Count { get; set; }
+        public bool Started { get; set; }
     }
 }
