@@ -10,8 +10,6 @@ from sys.tables st
 where st.name = @table
   and si.is_primary_key = 1
 
-select @index
-
 select @dropSql = 'alter table ' + @table + ' drop constraint ' + @index
 exec sp_executeSQL @dropSql;
 
