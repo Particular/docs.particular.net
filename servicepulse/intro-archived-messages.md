@@ -23,6 +23,7 @@ Archived messages can be found in ServicePulse in a tab in the Failed Messages p
 * Failed Groups tab
 * Any failed group's contents view
 * All Messages tab
+* A message details page
 
 
 ## Managing archived messages
