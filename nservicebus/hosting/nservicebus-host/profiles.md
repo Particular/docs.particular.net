@@ -8,78 +8,83 @@ tags:
 - Persistence
 redirects:
  - nservicebus/profiles-for-nservicebus-host
+ - nservicebus/more-on-profiles
+ - nservicebus/nservicebus/hosting/nservicebus-host/more-on-profiles
 component: Host
 reviewed: 2016-10-27
 ---
 
-The [NServiceBus Host](/nservicebus/hosting/nservicebus-host/) provides facilities of profiles designed specifically to ease this process and provide structure when versioning the configuration of a system.
+There are many configuration options for endpoints using [NServiceBus Host](/nservicebus/hosting/nservicebus-host/). The endpoint configuration specifies levels of logging, subscription and saga storage, etc. 
+
+NServiceBus profiles enable tailoring endpoints configuration for different environments without recompiling code.
+
+NServiceBus Host supports two categories of profiles:
+
+ * **Environment profiles** can be used to avoid common configuration errors that occur when manually moving a system between different environments, e.g. from development to production.
+ * **Feature profiles** allow to turn on and off NServiceBus features such as performance counters with no code changes.
 
 
-## Configuration difficulties
+## Default profiles
 
-There are many configuration options for levels of logging, technologies for storing subscribers, and types of saga storage (to name a few). Often, an appropriate combination of all these options is required, as long as they can be changed later. Profiles give that flexibility.
+NServiceBus comes out of the box with a set of predefined environment- and feature-related profiles. It's also possible to create custom profiles or customize the default NServiceBus profiles, to learn more about those options refer to the [NServiceBus Host Profiles customization](/profiles-customization.md) article.
 
-There are three profiles out of the box: Lite, Integration, and Production. Each profile configures a cohesive combination of technologies:
 
- * Lite keeps everything in memory with the most detailed logging.
- * Integration uses technologies closer to production but without scale out and less logging.
- * Production uses scale out friendly technologies and minimal file-based logging.
+## Environment-related profiles
 
-These profiles can be used to easily switch between different environments during development, testing and deployment.
+NServiceBus comes with three built-in environment-related profiles that adjust the behavior of the host to the environment in which the endpoint is running. These profiles can be used to easily switch between different environments during development, testing and deployment.
+
+
+### Lite profile
+
+Suitable for running on the development machine, possibly inside Visual Studio.
+
+partial: lite
+
+
+### Integration profile
+
+Suitable for running the endpoint in integration and QA environments.
+
+[Installers](/nservicebus/operations/installers.md) are invoked to make deployment easy to automate.
+
+partial: integration
+
+
+### Production profile
+
+The default if no explicit profile is defined.
+
+This profile sets the endpoint up for production use.
+
+[Installers](/nservicebus/operations/installers.md) are not invoked since the endpoint is probably installed as a Windows Service and does not run with elevated privileges.
+
+[Installers](/nservicebus/operations/installers.md) only run when [installing the host](/nservicebus/hosting/nservicebus-host/installation.md) or the code runs inside Visual Studio in Debug mode.
+
+partial: production
+
+
+## Feature-related profiles
+
+partial: feature
+
 
 ## Specifying which profiles to run
 
-To tell the host to run using a specific profile, pass the namespace-qualified type of the profile class as a command-line parameter. Specify the Lite profile, as follows:
+If the host is run without specifying a profile, NServiceBus defaults to the `Production` profile.
+
+To activate a specific profile, when starting the host pass the full name of the profile in the command line. Type names are case insensitive. Profiles can be combined by separating them with white space.
+
+For example, to run the endpoint with the `Integration` and `PerformanceCounters` profiles:
 
 ```dos
-NServiceBus.Host.exe NServiceBus.Lite
+.\NServiceBus.Host.exe nservicebus.integration nservicebus.performancecounters
 ```
 
-When installing the NServiceBus Host as a Windows Service, all provided profiles are baked into the installation.
-
-If the host is run without specifying a profile, NServiceBus defaults to the Production profile. Pass in as many other profiles as required and NServiceBus runs them all.
-
-
-## Writing a custom profile
-
-To write a Profile define a class that implements the `NServiceBus.IProfile` marker interface:
-
-snippet:defining_profile
-
-To tell the host to run the profile and the NServiceBus Lite profile together:
+When installing the host as a Windows Service, the profiles used during installation are saved and they are used every time the host starts. In order to install the host with the `Production` and `PerformanceCounters` profiles:
 
 ```dos
-NServiceBus.Host.exe YourNamespace.YourProfile NServiceBus.Lite
+.\NServiceBus.Host.exe /install nservicebus.production nservicebus.performancecounters
 ```
-
-Note the profile itself does not contain any behavior itself. It is just a place-holder around which different kinds of behavior can be hooked. See how those behaviors are connected to their profiles.
-
-
-## Profile behaviors
-
-To provide behavior around a profile, implement the `NServiceBus.Hosting.Profiles.IHandleProfile<T>` interface where `T` is the given profile.
-For example, an email component
-
- * Does nothing with the Lite profile
- * Writes emails to disk with the Integration profile
- * Uses an SMTP server with the Production profile
-
-Set it up as follows:
-
-snippet:profile_behavior
-
-With these classes, switching profiles doesn't only change NServiceBus behaviors but also custom behaviors as a consistent set. There is no worry about keeping different parts of a configuration file in sync or changing the configuration file the application uses. It is possible have multiple classes provide behaviors for the same profile, or have a single class handle multiple profiles (by implementing `IHandleProfile<T>` for each profile type) if identical behavior across profiles is required.
-
-
-## Dependent profile behaviors
-
-It is possible to have slight variations of behavior based on the properties of the class that implements `IConfigureThisEndpoint`. Also, it is not necessarily desired to have all profile handlers to be dependent on the type that implements `IConfigureThisEndpoint`, just for it to check whether it also implements some other interface. The host itself does this when it handles publishers. Endpoints that don't publish don't need to have a subscription storage. Those that are publishers do need different storage technologies configured, based on profile. Just as the host defines the `AsA_Server` interface and customizes behavior around it, it is possible to do the same with the own interfaces.
-
-For a profile handler to access the type that implements `IConfigureThisEndpoint`, it has to implement `IWantTheEndpointConfig`, like this:
-
-snippet:dependent_profile
-
-This allows extending the host and write additional profiles and behaviors to customize various aspects of the system, all while maintaining loose-coupling and composability between the various parts of the system.
 
 
 ## Logging behaviors
