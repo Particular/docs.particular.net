@@ -271,10 +271,10 @@
         Title: Logging
       - Url: nservicebus/hosting/nservicebus-host/profiles
         Title: Profiles
+      - Url: nservicebus/hosting/nservicebus-host/profiles-customization
+        Title: Profiles customization
       - Url: nservicebus/hosting/nservicebus-host/logging-profiles
         Title: Logging Profiles
-      - Url: nservicebus/hosting/nservicebus-host/more-on-profiles
-        Title: More On Profiles
     - Url: nservicebus/hosting/cloud-services-host
       Title: Azure Cloud Services Host
       Articles:
