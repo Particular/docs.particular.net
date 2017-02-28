@@ -18,7 +18,7 @@ include: sagafinder-into
 
 
 include: sql-persistence-prereqs
-
+1. Ensure the SQL Server version is 2016 or higher, as saga finder uses `JSON_VALUE` function that is not available in older versions
 
 ## Persistence Config
 
