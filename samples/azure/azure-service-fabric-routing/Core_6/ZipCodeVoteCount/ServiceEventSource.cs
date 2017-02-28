@@ -4,7 +4,8 @@ using System.Fabric;
 using System.Threading.Tasks;
 
 [EventSource(Name = "MyCompany-ServiceFabricRouting-ZipCodeVoteCount")]
-sealed class ServiceEventSource : EventSource
+sealed class ServiceEventSource :
+    EventSource
 {
     public static readonly ServiceEventSource Current = new ServiceEventSource();
 
@@ -16,7 +17,8 @@ sealed class ServiceEventSource : EventSource
     }
 
     // Instance constructor is private to enforce singleton semantics
-    private ServiceEventSource() : base() { }
+    ServiceEventSource()
+    { }
 
     // Event keywords can be used to categorize events. 
     // Each keyword is a bit flag. A single event can be associated with multiple keywords (via EventAttribute.Keywords property).
@@ -38,9 +40,9 @@ sealed class ServiceEventSource : EventSource
     [NonEvent]
     public void Message(string message, params object[] args)
     {
-        if (this.IsEnabled())
+        if (IsEnabled())
         {
-            string finalMessage = string.Format(message, args);
+            var finalMessage = string.Format(message, args);
             Message(finalMessage);
         }
     }
@@ -49,7 +51,7 @@ sealed class ServiceEventSource : EventSource
     [Event(MessageEventId, Level = EventLevel.Informational, Message = "{0}")]
     public void Message(string message)
     {
-        if (this.IsEnabled())
+        if (IsEnabled())
         {
             WriteEvent(MessageEventId, message);
         }
@@ -58,9 +60,9 @@ sealed class ServiceEventSource : EventSource
     [NonEvent]
     public void ServiceMessage(StatefulServiceContext serviceContext, string message, params object[] args)
     {
-        if (this.IsEnabled())
+        if (IsEnabled())
         {
-            string finalMessage = string.Format(message, args);
+            var finalMessage = string.Format(message, args);
             ServiceMessage(
                 serviceContext.ServiceName.ToString(),
                 serviceContext.ServiceTypeName,

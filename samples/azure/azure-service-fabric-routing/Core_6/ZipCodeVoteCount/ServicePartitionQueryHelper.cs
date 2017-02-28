@@ -9,7 +9,8 @@ public static class ServicePartitionQueryHelper
     {
         using (var client = new FabricClient())
         {
-            var servicePartitionList = await client.QueryManager.GetPartitionListAsync(serviceName).ConfigureAwait(false);
+            var servicePartitionList = await client.QueryManager.GetPartitionListAsync(serviceName)
+                .ConfigureAwait(false);
 
             var partitionInformations =
                 servicePartitionList.Select(x => new {
@@ -22,7 +23,7 @@ public static class ServicePartitionQueryHelper
             return new PartitionsInformation
             {
                 LocalPartitionKey = partitionInformations.Single(p => p.PartitionId == partitionId).PartitionKey,
-                Partitions = partitionInformations.Select(p => p.PartitionKey.ToString()).ToArray()
+                Partitions = partitionInformations.Select(p => p.PartitionKey).ToArray()
             };
         }
     }
@@ -31,6 +32,5 @@ public static class ServicePartitionQueryHelper
 public class PartitionsInformation
 {
     public string LocalPartitionKey { get; set; }
-
     public string[] Partitions { get; set; }
 }

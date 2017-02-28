@@ -3,9 +3,10 @@ using System.Linq;
 using NServiceBus;
 using NServiceBus.Routing;
 
-public class PartitionAwareDistributionStrategy : DistributionStrategy
+public class PartitionAwareDistributionStrategy :
+    DistributionStrategy
 {
-    readonly Func<object, string> mapper;
+    Func<object, string> mapper;
 
     public PartitionAwareDistributionStrategy(string endpoint, Func<object, string> mapper, DistributionStrategyScope scope) : base(endpoint, scope)
     {

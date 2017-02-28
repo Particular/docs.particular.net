@@ -5,9 +5,9 @@ using NServiceBus;
 
 class Forwarder
 {
-    readonly LogicalAddress logicalAddress;
-    readonly HashSet<string> knownPartitionKeys;
-    readonly Func<LogicalAddress, string> addressTranslator;
+    LogicalAddress logicalAddress;
+    HashSet<string> knownPartitionKeys;
+    Func<LogicalAddress, string> addressTranslator;
 
     public Forwarder(HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress)
     {

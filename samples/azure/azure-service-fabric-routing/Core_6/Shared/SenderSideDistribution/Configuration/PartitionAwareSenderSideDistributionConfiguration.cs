@@ -4,12 +4,13 @@ using System.Linq;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 
-public class PartitionAwareSenderSideDistributionConfiguration : ExposeSettings
+public class PartitionAwareSenderSideDistributionConfiguration :
+    ExposeSettings
 {
-    readonly RoutingSettings routingSettings;
-    readonly string endpointName;
-    readonly string[] partitions;
-    readonly Dictionary<Type, Func<object, string>> messageTypeMappers = new Dictionary<Type, Func<object, string>>();
+    RoutingSettings routingSettings;
+    string endpointName;
+    string[] partitions;
+    Dictionary<Type, Func<object, string>> messageTypeMappers = new Dictionary<Type, Func<object, string>>();
 
     public PartitionAwareSenderSideDistributionConfiguration(RoutingSettings routingSettings, string endpointName, string[] partitions)
         : base(routingSettings.GetSettings())

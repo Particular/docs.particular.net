@@ -7,10 +7,10 @@ using NServiceBus.Transport;
 
 class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
 {
-    readonly HashSet<string> knownPartitionKeys;
-    readonly string localPartitionKey;
-    readonly Func<LogicalAddress, string> addressTranslator;
-    readonly LogicalAddress logicalAddress;
+    HashSet<string> knownPartitionKeys;
+    string localPartitionKey;
+    Func<LogicalAddress, string> addressTranslator;
+    LogicalAddress logicalAddress;
 
     public DistributeSubscriptions(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress)
     {
@@ -46,12 +46,15 @@ class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IInco
                     tasks.Add(context.ForwardCurrentMessageTo(destination));
                 }
             }
-            await Task.WhenAll(tasks).ConfigureAwait(false);
+            await Task.WhenAll(tasks)
+                .ConfigureAwait(false);
         }
-        await next(context).ConfigureAwait(false);
+        await next(context)
+            .ConfigureAwait(false);
     }
 
-    public class Register : RegisterStep
+    public class Register :
+        RegisterStep
     {
         public Register(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<LogicalAddress, string> addressTranslator, LogicalAddress logicalAddress) :
             base("DistributeSubscriptions", typeof(DistributeSubscriptions), "Distributes subscription messages for message driven pubsub using header only.", b => new DistributeSubscriptions(localPartitionKey, knownPartitionKeys, addressTranslator, logicalAddress))

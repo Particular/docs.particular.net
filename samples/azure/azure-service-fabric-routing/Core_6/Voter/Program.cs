@@ -14,20 +14,27 @@ class Program
     {
         var endpointConfiguration = new EndpointConfiguration("Voter");
 
-        var transportConfig = endpointConfiguration.ApplyCommonConfiguration();
+        var transport = endpointConfiguration.ApplyCommonConfiguration();
 
         #region ConfigureSenderSideRouting-Voter
 
         var remotePartitions = new[] { "John", "Abby" };
 
-        var distributionConfig = transportConfig.Routing()
-            .RegisterPartitionedDestinationEndpoint("CandidateVoteCount", remotePartitions);
+        var routing = transport.Routing();
+        var distribution = routing.RegisterPartitionedDestinationEndpoint(
+            destinationEndpoint: "CandidateVoteCount",
+            partitions: remotePartitions);
 
-        distributionConfig.AddPartitionMappingForMessageType<CloseElection>(message => message.Candidate);
+        distribution.AddPartitionMappingForMessageType<CloseElection>(
+            mapMessageToPartitionKey: message =>
+            {
+                return message.Candidate;
+            });
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         Console.WriteLine("Press Enter to start election");
         Console.WriteLine("Press Esc to stop election");
@@ -46,21 +53,35 @@ class Program
 
                 Console.WriteLine($"Voted for {candidate} from zip code {zipcode}");
 
-                await endpointInstance.Publish(new VotePlaced
+                var votePlaced = new VotePlaced
                 {
                     Candidate = candidate,
                     ZipCode = zipcode
-                }).ConfigureAwait(false);
+                };
+                await endpointInstance.Publish(votePlaced)
+                .ConfigureAwait(false);
 
-                await Task.Delay(1000).ConfigureAwait(false);
+                await Task.Delay(1000)
+                    .ConfigureAwait(false);
             }
         } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
         Console.WriteLine("Closing election");
 
-        await endpointInstance.Send(new CloseElection { Candidate = remotePartitions[0] }).ConfigureAwait(false);
-        await endpointInstance.Send(new CloseElection { Candidate = remotePartitions[1] }).ConfigureAwait(false);
+        var closeElection1 = new CloseElection
+        {
+            Candidate = remotePartitions[0]
+        };
+        await endpointInstance.Send(closeElection1)
+            .ConfigureAwait(false);
+        var closeElection2 = new CloseElection
+        {
+            Candidate = remotePartitions[1]
+        };
+        await endpointInstance.Send(closeElection2)
+            .ConfigureAwait(false);
 
-        await endpointInstance.Stop().ConfigureAwait(false);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

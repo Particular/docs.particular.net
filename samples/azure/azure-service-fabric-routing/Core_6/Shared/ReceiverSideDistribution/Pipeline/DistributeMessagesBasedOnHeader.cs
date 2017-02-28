@@ -4,10 +4,11 @@ using NServiceBus;
 using NServiceBus.Pipeline;
 using NServiceBus.Transport;
 
-class DistributeMessagesBasedOnHeader : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
+class DistributeMessagesBasedOnHeader :
+    IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
 {
-    readonly string localPartitionKey;
-    readonly Forwarder forwarder;
+    string localPartitionKey;
+    Forwarder forwarder;
 
     public DistributeMessagesBasedOnHeader(string localPartitionKey, Forwarder forwarder)
     {

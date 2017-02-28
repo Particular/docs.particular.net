@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Pipeline;
 
-class DistributeMessagesBasedOnPayload : IBehavior<IIncomingLogicalMessageContext, IIncomingLogicalMessageContext>
+class DistributeMessagesBasedOnPayload :
+    IBehavior<IIncomingLogicalMessageContext, IIncomingLogicalMessageContext>
 {
-    readonly string localPartitionKey;
-    readonly Forwarder forwarder;
-    readonly Func<object, string> mapper;
+    string localPartitionKey;
+    Forwarder forwarder;
+    Func<object, string> mapper;
 
     public DistributeMessagesBasedOnPayload(string localPartitionKey, Forwarder forwarder, Func<object, string> mapper)
     {

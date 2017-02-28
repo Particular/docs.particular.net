@@ -3,7 +3,8 @@ using System.Fabric;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 
-class ZipCodeVoteCountService : StatefulService
+class ZipCodeVoteCountService :
+    StatefulService
 {
     public ZipCodeVoteCountService(StatefulServiceContext context)
         : base(context)
@@ -12,6 +13,9 @@ class ZipCodeVoteCountService : StatefulService
     protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
     {
         var listener = new EndpointCommunicationListener(Context);
-        return new List<ServiceReplicaListener> { new ServiceReplicaListener(context => listener) };
+        return new List<ServiceReplicaListener>
+        {
+            new ServiceReplicaListener(context => listener)
+        };
     }
 }

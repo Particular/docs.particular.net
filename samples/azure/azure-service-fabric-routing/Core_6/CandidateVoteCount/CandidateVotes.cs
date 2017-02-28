@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
-public class CandidateVotes : Saga<CandidateVotes.CandidateVoteData>,
+public class CandidateVotes :
+    Saga<CandidateVotes.CandidateVoteData>,
         IAmStartedByMessages<VotePlaced>,
         IHandleMessages<CloseElection>,
         IHandleMessages<TrackZipCodeReply>
@@ -9,8 +10,10 @@ public class CandidateVotes : Saga<CandidateVotes.CandidateVoteData>,
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CandidateVoteData> mapper)
     {
-        mapper.ConfigureMapping<VotePlaced>(m => m.Candidate).ToSaga(s => s.Candidate);
-        mapper.ConfigureMapping<CloseElection>(m => m.Candidate).ToSaga(s => s.Candidate);
+        mapper.ConfigureMapping<VotePlaced>(m => m.Candidate)
+            .ToSaga(s => s.Candidate);
+        mapper.ConfigureMapping<CloseElection>(m => m.Candidate)
+            .ToSaga(s => s.Candidate);
     }
 
     public Task Handle(VotePlaced message, IMessageHandlerContext context)
@@ -22,19 +25,22 @@ public class CandidateVotes : Saga<CandidateVotes.CandidateVoteData>,
         }
         Data.Count++;
 
-        return context.Send(new TrackZipCode
+        var trackZipCode = new TrackZipCode
         {
             ZipCode = message.ZipCode
-        });
+        };
+        return context.Send(trackZipCode);
     }
 
     public async Task Handle(CloseElection message, IMessageHandlerContext context)
     {
-        await context.SendLocal(new ReportVotes
+        var reportVotes = new ReportVotes
         {
             Candidate = Data.Candidate,
             NumberOfVotes = Data.Count
-        }).ConfigureAwait(false);
+        };
+        await context.SendLocal(reportVotes)
+            .ConfigureAwait(false);
 
         MarkAsComplete();
     }
@@ -46,7 +52,8 @@ public class CandidateVotes : Saga<CandidateVotes.CandidateVoteData>,
         return Task.FromResult(0);
     }
 
-    public class CandidateVoteData : ContainSagaData
+    public class CandidateVoteData :
+        ContainSagaData
     {
         public bool Started { get; set; }
         public string Candidate { get; set; }

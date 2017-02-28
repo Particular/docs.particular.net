@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
 
-public class EndpointCommunicationListener : ICommunicationListener
+public class EndpointCommunicationListener :
+    ICommunicationListener
 {
     StatefulServiceContext context;
     IEndpointInstance endpointInstance;
@@ -18,7 +19,8 @@ public class EndpointCommunicationListener : ICommunicationListener
     {
         Logger.Log = m => ServiceEventSource.Current.ServiceMessage(context, m);
 
-        var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId).ConfigureAwait(false);
+        var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId)
+            .ConfigureAwait(false);
 
         var endpointConfiguration = new EndpointConfiguration("ZipCodeVoteCount");
 
@@ -26,11 +28,14 @@ public class EndpointCommunicationListener : ICommunicationListener
 
         #region ApplyPartitionConfigurationToEndpoint-ZipCodeVoteCount
 
-        endpointConfiguration.RegisterPartitionsForThisEndpoint(partitionInfo.LocalPartitionKey, partitionInfo.Partitions);
+        endpointConfiguration.RegisterPartitionsForThisEndpoint(
+            localPartitionKey: partitionInfo.LocalPartitionKey, 
+            allPartitionKeys: partitionInfo.Partitions);
 
         #endregion
 
-        endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         return null;
     }

@@ -1,5 +1,6 @@
 ﻿using NServiceBus;
 
-public class CloseVoting : ICommand
+public class CloseVoting :
+    ICommand
 {
 }

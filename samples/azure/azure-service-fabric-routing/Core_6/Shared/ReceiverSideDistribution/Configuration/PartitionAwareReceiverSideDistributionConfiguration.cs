@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 
-public class PartitionAwareReceiverSideDistributionConfiguration : ExposeSettings
+public class PartitionAwareReceiverSideDistributionConfiguration :
+    ExposeSettings
 {
-    readonly Dictionary<Type, Func<object, string>> messageTypeMappers = new Dictionary<Type, Func<object, string>>();
+    Dictionary<Type, Func<object, string>> messageTypeMappers = new Dictionary<Type, Func<object, string>>();
 
     public PartitionAwareReceiverSideDistributionConfiguration(RoutingSettings routingSettings, string[] partitions)
         : base(routingSettings.GetSettings())

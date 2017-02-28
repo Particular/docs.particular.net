@@ -3,9 +3,10 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Pipeline;
 
-class HardcodeReplyToAddressToLogicalAddress : IBehavior<IOutgoingPhysicalMessageContext, IOutgoingPhysicalMessageContext>
+class HardcodeReplyToAddressToLogicalAddress :
+    IBehavior<IOutgoingPhysicalMessageContext, IOutgoingPhysicalMessageContext>
 {
-    readonly string instanceSpecificQueue;
+    string instanceSpecificQueue;
 
     public HardcodeReplyToAddressToLogicalAddress(string instanceSpecificQueue)
     {
