@@ -19,7 +19,7 @@ snippet:EndpointNameCode
 
 See also:
  
- * [Specify Endpoint Name in NServiceBus Host](/nservicebus/hosting/nservicebus-host/#specify-endpoint-name)
+ * [Specify Endpoint Name in NServiceBus Host](/nservicebus/hosting/nservicebus-host/#endpoint-configuration-endpoint-name)
  * [Configure an Endpoint in Azure Cloud Services](/nservicebus/hosting/cloud-services-host/configuration.md#configuring-an-endpoint)
 
 
