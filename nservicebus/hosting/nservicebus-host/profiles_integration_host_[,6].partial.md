@@ -1,1 +1,1 @@
-Logging is output to the console by default.
+* Logging is output to the console by default.

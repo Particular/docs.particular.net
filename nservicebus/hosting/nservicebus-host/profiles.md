@@ -26,12 +26,12 @@ NServiceBus Host supports two categories of profiles:
 
 ## Default profiles
 
-NServiceBus comes out of the box with a set of predefined environment- and feature-related profiles. It's also possible to create custom profiles or customize the default NServiceBus profiles, to learn more about those options refer to the [NServiceBus Host Profiles customization](/nservicebus/hosting/nservicebus-host/profiles-customization.md) article.
+NServiceBus comes out of the box with a set of predefined environment and feature profiles. It's also possible to create custom profiles or customize the default NServiceBus profiles, to learn more about those options refer to the [NServiceBus Host Profiles customization](/nservicebus/hosting/nservicebus-host/profiles-customization.md) article.
 
 
 ## Environment-related profiles
 
-NServiceBus comes with three built-in environment-related profiles that adjust the behavior of the host to the environment in which the endpoint is running. These profiles can be used to easily switch between different environments during development, testing and deployment.
+NServiceBus comes with three built-in environment profiles that adjust the behavior of the host to the environment in which the endpoint is running. These profiles can be used to easily switch between different environments during development, testing and deployment.
 
 
 ### Lite profile
@@ -45,21 +45,15 @@ partial: lite
 
 Suitable for running the endpoint in integration and QA environments.
 
-[Installers](/nservicebus/operations/installers.md) are invoked to make deployment easy to automate.
-
+* [Installers](/nservicebus/operations/installers.md) are invoked to make deployment easy to automate.
 partial: integration
 
 
 ### Production profile
 
-The default if no explicit profile is defined.
+The default if no explicit profile is defined. This profile sets the endpoint up for production use.
 
-This profile sets the endpoint up for production use.
-
-[Installers](/nservicebus/operations/installers.md) are not invoked since the endpoint is probably installed as a Windows Service and does not run with elevated privileges.
-
-[Installers](/nservicebus/operations/installers.md) only run when [installing the host](/nservicebus/hosting/nservicebus-host/installation.md) or the code runs inside Visual Studio in Debug mode.
-
+* [Installers](/nservicebus/operations/installers.md) are not invoked since the endpoint is probably installed as a Windows Service and does not run with elevated privileges. [Installers](/nservicebus/operations/installers.md) only run when [installing the host](/nservicebus/hosting/nservicebus-host/installation.md) or the code runs inside Visual Studio in Debug mode.
 partial: production
 
 
