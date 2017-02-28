@@ -16,9 +16,9 @@ reviewed: 2016-10-27
 
 There are many configuration options for endpoints using [NServiceBus Host](/nservicebus/hosting/nservicebus-host/). The endpoint configuration specifies levels of logging, subscription and saga storage, etc. 
 
-NServiceBus profiles enable tailoring endpoints configuration for different environments without recompiling code.
+Profiles enable tailoring endpoints configuration for different environments without recompiling code.
 
-NServiceBus Host supports two categories of profiles:
+There are two categories of profiles:
 
  * **Environment profiles** can be used to avoid common configuration errors that occur when manually moving a system between different environments, e.g. from development to production.
  * **Feature profiles** allow to turn on and off NServiceBus features such as performance counters with no code changes.
@@ -26,12 +26,12 @@ NServiceBus Host supports two categories of profiles:
 
 ## Default profiles
 
-NServiceBus comes out of the box with a set of predefined environment and feature profiles. It's also possible to create custom profiles or customize the default NServiceBus profiles, to learn more about those options refer to the [NServiceBus Host Profiles customization](/nservicebus/hosting/nservicebus-host/profiles-customization.md) article.
+Out of the box there are a set of predefined environment and feature profiles. It's also possible to create custom profiles or customize the default profiles, to learn more about those options refer to the [NServiceBus Host Profiles customization](/nservicebus/hosting/nservicebus-host/profiles-customization.md) article.
 
 
 ## Environment-related profiles
 
-NServiceBus comes with three built-in environment profiles that adjust the behavior of the host to the environment in which the endpoint is running. These profiles can be used to easily switch between different environments during development, testing and deployment.
+There are three built-in environment profiles that adjust the behavior of the host to the environment in which the endpoint is running. These profiles can be used to easily switch between different environments during development, testing and deployment.
 
 
 ### Lite profile
@@ -93,7 +93,7 @@ The logging behavior configured for the three built-in profiles is shown:
 | Integration | Console      | Info
 | Production  | Rolling File | Configurable, Warn by default
 
-When running the production profile, the logs are written to 'logfile' in the same directory as the exe. The file grows to a maximum size of 1MB and then a new file is created. A maximum of 10 files is held and then the oldest file is erased. If no configuration exists, the logging threshold is Warn. To configure the logging threshold see [changing logging level via config file](/nservicebus/logging/#logging-levels-changing-the-logging-level-via-app-config).
+When running the production profile, the logs are written to `logfile` in the same directory as the exe. The file grows to a maximum size of 1MB and then a new file is created. A maximum of 10 files is held and then the oldest file is erased. If no configuration exists, the logging threshold is Warn. To configure the logging threshold see [changing logging level via config file](/nservicebus/logging/#logging-levels-changing-the-logging-level-via-app-config).
 
 For changes to the configuration to have an effect, the process must be restarted.
 
@@ -108,26 +108,26 @@ snippet:configure_logging
 
 Here, the host passes the instance of the class that implements `IConfigureThisEndpoint` so it is not necessary to implement `IWantTheEndpointConfig`.
 
-NOTE: While it is possible have one class configure logging for multiple profile types, it is not possible to have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
+NOTE: While it is possible have one class configure logging for multiple profile types, it is not possible to have more than one class configure logging for the same profile. Only one of these classes for all profile types passed in the command-line.
 
 See the [logging documentation](/nservicebus/logging/) for more information.
 
 
 ## Persistence
 
-When using the NServiceBus.Host.exe out of the box, it is possible to utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, it is possible override the configured defaults.
+When using the Host out of the box, it is possible to utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, it is possible override the configured defaults.
 
 The following table summarizes the different persistence technologies being used by the built-in profiles.
 
 NOTE: Before configuring persistence technology, to avoid overriding custom configurations, the profiles check if other types of storage are used.
 
-|-                                |In-Memory|RavenDB			   |NHibernate   |MSMQ                         |
-|:--------------------------------|:--------|:---------------------|:------------|:----------------------------|                                       
+|-                                |In-Memory|RavenDB               |NHibernate   |MSMQ                         |
+|:--------------------------------|:--------|:---------------------|:------------|:----------------------------|
 |  Timeout                        |Lite     |Integration/Production|-            |Keeps a queue for management |
 |  Subscription                   |Lite     |Integration/Production|-            |-                            |
-|  Saga                           |Lite     |Integration/Production|-            |-    				           |
-|  Gateway                        |Lite     |MultiSite             |-            |-     					   |
-|  Distributor                    |- 	    |-                     |-            |Distributor				   |
+|  Saga                           |Lite     |Integration/Production|-            |-                            |
+|  Gateway                        |Lite     |MultiSite             |-            |-                            |
+|  Distributor                    |-        |-                     |-            |Distributor                  |
 
 
 ## Default persisting technology

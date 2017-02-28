@@ -1,1 +1,1 @@
-* [Installers](/nservicebus/operations/installers.md) are always invoked when running the Lite profile.
+ * [Installers](/nservicebus/operations/installers.md) are always invoked when running the Lite profile.
