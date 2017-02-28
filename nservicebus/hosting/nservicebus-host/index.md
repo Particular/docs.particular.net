@@ -11,41 +11,12 @@ related:
  - nservicebus/operations/installers
  - nservicebus/lifecycle
 component: Host
-reviewed: 2016-11-01
+reviewed: 2017-02-28
 ---
 
-The NServiceBus Host takes a more opinionated approach to hosting. It allows the execution as both a windows service and a console application (for development).
+The NServiceBus Host takes an opinionated approach to hosting. Endpoints using NServiceBus Host can run as windows services or console application (e.g. during development).
 
-To use the host create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/). The package also creates an example endpoint configuration and sets the NServiceBus.Host.exe as the startup project for the endpoint.
-
-
-## Configuring the endpoint
-
-The `NServiceBus.Host.exe` scans the runtime directory for assemblies containing a class that implements the `IConfigureThisEndpoint` interface. This class will contain the configuration for this endpoint. Read more on how NServiceBus does [assembly scanning](/nservicebus/hosting/assembly-scanning.md).
-
-To avoid the scanning process, configure the type of the endpoint configuration by adding the following to the `NServiceBus.Host.exe.config` file. The below example show the exact syntax:
-
-snippet:ExplicitHostConfigType
-
-
-### Controlling assembly scanning using code
-
-By default, the assembly scanning process of the host is equal to a regular endpoint. It can be configured by the the [assembly scanning](/nservicebus/hosting/assembly-scanning.md) API via `IConfigureThisEndpoint`:
-
-snippet:ScanningConfigurationInNSBHost
-
-
-### Controlling assembly scanning using the command line
-
-A list of assemblies to scan can also be controlled using the `/scannedAssemblies` switch. If this option is used, the `NServiceBus.Host.exe` loads only assemblies that have been explicitly listed on the command line. Each assembly must be added using a separate switch:
-
-```dos
-NServiceBus.Host.exe /scannedAssemblies:"NServiceBus.Host" /scannedAssemblies:"MyMessages" /scannedAssemblies:"MyEndpoint"
-```
-
-The host loads the assemblies by invoking [`Assembly.Load`](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) method. This approach ensures that the specified assembly and all its dependent assemblies will also be loaded.
-
-NOTE: It is mandatory to include `NServiceBus.Host` in the `/scannedAssemblies` list as shown in the example above. As `NServiceBus.Host` references `NServiceBus.Core`, the latter can be safely omitted from the list.
+To use the host, create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/). The package will automatically create a sample endpoint configuration and will set the `NServiceBus.Host.exe` as the endpoint's startup project.
 
 
 ## Application Domains
@@ -55,7 +26,25 @@ The `NServiceBus.Host.exe` creates a separate *service* [Application Domain](htt
 NOTE: When the endpoint configuration is not specified explicitly, the host scans all the assemblies to find it and it does so in the context of the *host* application domain, not the new *service* domain. Because of that, when [redirecting assembly versions](https://msdn.microsoft.com/en-us/library/7wd6ex19.aspx), the `assemblyBinding` element needs to be present in both `NServiceBus.Host.exe.config` and `app.config`.
 
 
-## Custom initialization
+## Endpoint configuration
+
+
+### Assembly scanning
+
+By default, [the assembly scanning process](/nservicebus/hosting/assembly-scanning.md) of the NServiceBus Host is the same as for a regular endpoint. At startup the host scans the runtime directory to find assemblies that contain configuration for the given endpoint, i.e. classes implementing the `IConfigureThisEndpoint` interface. 
+
+The scanning process can be avoided if the class containing endpoint's configuration is explicitly specified:
+
+snippet:ExplicitHostConfigType
+
+Alternatively, it's possible to control which assemblies should be scanned. That can be done in code by implementing `IConfigureThisEndpoint` interface:
+
+snippet:ScanningConfigurationInNSBHost
+
+or during installation by passing values to [`/scannedAssemblies:` parameters](/nservicebus/hosting/nservicebus-host/installation.md#installing-a-windows-service-scannedassemblies).
+
+
+### Initialization
 
 partial:initialization
 
@@ -63,10 +52,10 @@ partial:initialization
 partial:roles
 
 
-## Specify Endpoint Name
+### Endpoint Name
 
 
-### Namespace convention
+#### Via namespace convention
 
 When using NServiceBus.Host, the namespace of the class implementing `IConfigureThisEndpoint` will be used as the endpoint name as the default convention. In the following example the endpoint name when running `NServiceBus.Host.exe` becomes `MyServer`. This is the recommended way to name a endpoint. Also this emphasizes convention over configuration approach.
 
@@ -76,7 +65,7 @@ snippet:EndpointNameByNamespace
 partial: endpointname-code
 
 
-### EndpointName attribute
+#### Via `EndpointName` attribute
 
 Set the endpoint name using the `[EndpointName]` attribute on the endpoint configuration.
 
@@ -85,7 +74,7 @@ NOTE: This will only work when using [NServiceBus host](/nservicebus/hosting/nse
 snippet: EndpointNameByAttribute
 
 
-## Default Critical error action handling
+### Default Critical error action
 
 The default [Critical Error Action](/nservicebus/hosting/critical-errors.md) for the Host is:
 
@@ -99,7 +88,7 @@ The default callback should be overriden, if some custom code should be executed
 
 ### SLA violation countdown
 
-In the NServiceBus Host this counter is enabled by default. But the value can be configured either by the above API or using a `EndpointSLAAttribute` on the instance of `IConfigureThisEndpoint`.
+In the NServiceBus Host the `SLA violation countdown` counter is enabled by default. But the value can be configured either by the above API or using a `EndpointSLAAttribute` on the instance of `IConfigureThisEndpoint`.
 
 snippet:enable-sla-host-attribute
 
@@ -107,5 +96,6 @@ snippet:enable-sla-host-attribute
 
 ## When Endpoint Instance Starts and Stops
 
+Classes that plug into the startup/shutdown sequence are invoked just after the endpoint instance has been started and just before it is stopped. This approach may be used for any tasks that need to execute with the same life-cycle as the endpoint instance.
 
 snippet: HostStartAndStop
