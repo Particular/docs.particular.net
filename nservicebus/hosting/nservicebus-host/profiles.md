@@ -26,7 +26,7 @@ NServiceBus Host supports two categories of profiles:
 
 ## Default profiles
 
-NServiceBus comes out of the box with a set of predefined environment- and feature-related profiles. It's also possible to create custom profiles or customize the default NServiceBus profiles, to learn more about those options refer to the [NServiceBus Host Profiles customization](/profiles-customization.md) article.
+NServiceBus comes out of the box with a set of predefined environment- and feature-related profiles. It's also possible to create custom profiles or customize the default NServiceBus profiles, to learn more about those options refer to the [NServiceBus Host Profiles customization](/nservicebus/hosting/nservicebus-host/profiles-customization.md) article.
 
 
 ## Environment-related profiles
