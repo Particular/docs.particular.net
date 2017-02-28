@@ -1,6 +1,6 @@
 ---
 title: NServiceBus Host Profiles customization 
-summary: ''
+summary: 'Create custom NServiceBus Host profiles. Customize default NServiceBus Host profiles.'
 tags:
 - Profiles
 - Hosting
