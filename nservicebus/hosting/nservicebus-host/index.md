@@ -60,8 +60,6 @@ NOTE: When the endpoint configuration is not specified explicitly, the host scan
 partial:initialization
 
 
-## Roles - Built-in configurations
-
 partial:roles
 
 
