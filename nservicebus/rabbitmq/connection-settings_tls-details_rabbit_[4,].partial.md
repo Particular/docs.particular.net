@@ -12,4 +12,4 @@ snippet:rabbitmq-config-client-certificates
 
 NOTE: If a certificate is specified via the code API, the `CertPath` and `CertPassphrase` connection string settings are ignored.
 
-WARN: TLS 1.2 must be enabled on the broker to establish a secure connection.
+WARNING: TLS 1.2 must be enabled on the broker to establish a secure connection.
