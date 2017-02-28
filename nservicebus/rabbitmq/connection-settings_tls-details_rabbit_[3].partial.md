@@ -6,4 +6,4 @@ An example connection string using these settings:
 
 snippet:rabbitmq-connection-tls
 
-WARN: TLS 1.2 must be enabled on the broker to establish a secure connection.
+WARNING: TLS 1.2 must be enabled on the broker to establish a secure connection.
