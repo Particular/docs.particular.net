@@ -1,19 +1,25 @@
 ---
 title: NServiceBus Host Logging configuration
 component: Host
-reviewed: 2016-11-04
+reviewed: 2017-03-01
 ---
 
-Logging configuration for NServiceBus Host can be customized by providing endpoint configuration or using profiles. See [Profiles - Logging](/nservicebus/hosting/nservicebus-host/profiles.md#Logging) section for more details about built-in profiles. This article explains how to customize default configuration.
 
-## Via Endpoint configuration
+## Logging configuration
+
+This article explains how to customize default configuration. Refer to the [Profiles - Logging](/nservicebus/hosting/nservicebus-host/profiles.md#Logging) section for more details about logging configuration in built-in profiles. 
+
+Logging configuration for NServiceBus Host can be customized by providing endpoint configuration or using profiles. 
+
+
+### Via endpoint configuration
 
 partial: customize
 
 Refer to the [logging documentation](/nservicebus/logging/) for more information about available configuration options.
 
 
-## Via profiles 
+### Via profiles 
 
 Logging levels and sinks need to be defined before configuring other components, therefore logging profile configuration is kept separate from other profile behaviors and requires implementing a dedicated interface. To customize logging for a given profile, create a class implementing `IConfigureLoggingForProfile<T>` where `T` is the profile type:
 

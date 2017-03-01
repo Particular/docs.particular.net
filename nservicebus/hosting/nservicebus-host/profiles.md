@@ -95,7 +95,7 @@ When running the production profile, the logs are written to the `logfile` in th
 
 Warning: For changes to the configuration to have an effect, the process must be restarted.
 
-Refer to the [Logging customization](/nservicebus/hosting/nservicebus-host/logging.md) article to learn about customizing logging configuration.
+Refer to the [Logging configuration](/nservicebus/hosting/nservicebus-host/logging-configuration.md) article to learn about customizing logging configuration.
 
 
 ## Persistence
