@@ -32,6 +32,7 @@
     <Compile Include="AsAClientEquivalent.cs" />
     <Compile Include="CriticalErrors.cs" />
     <Compile Include="CustomizingHost.cs" />
+    <Compile Include="CustomLogging.cs" />
     <Compile Include="EndpointConfigByNamespace.cs" />
     <Compile Include="EndpointConfigWithAttribute.cs" />
     <Compile Include="OverrideLoggingViaProfile.cs" />

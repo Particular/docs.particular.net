@@ -1,3 +1,3 @@
-Logging for the host is controlled with the [core logging API](/nservicebus/logging/).
+To change the host's logging configuration, implement the `IConfigureThisEndoint` interface. Provide the custom configuration in the `Customize` method:
 
-Add the logging API calls as mentioned in the above article directly in the implementation of the `IConfigureThisEndoint.Customize` method.
+snippet:CustomHostLogging
