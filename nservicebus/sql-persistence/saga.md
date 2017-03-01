@@ -58,6 +58,16 @@ snippet: SqlPersistenceSqlSaga
 ## Table Structure
 
 
+### Table Name
+
+The name used for a saga table consist of two parts.
+
+ * The prefix of the table name is the [Table Prefix](/nservicebus/sql-persistence/#installation-table-prefix) defined at the endpoint level.
+ * The suffix of the table name is **either** the saga [Type.Name](https://msdn.microsoft.com/en-us/library/system.type.name.aspx) **or** the Table Suffix defined in the `[SqlSagaAttribute]`.
+
+snippet: tableSuffix
+
+
 ### Columns
 
 
@@ -93,7 +103,7 @@ Incrementing counter used to provide [optimistic concurrency](https://en.wikiped
 
 #### Correlation Ids
 
-There is between 0 and 2 correlation id columns named `Correlation_[PROPERTYNAME]`. The type will correspond to the .net type of .net type of the mapped property on the saga data. See [Correlation Ids](#correlation-ids).
+There is between 0 and 2 correlation id columns named `Correlation_[PROPERTYNAME]`. The type will correspond to the .net type of .net type of the mapped property on the saga data.
 
 For each Correlation Id there will be a corresponding index named `Index_Correlation_[PROPERTYNAME]`.
 
