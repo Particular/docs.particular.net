@@ -59,11 +59,11 @@ Type: string
 
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>`
 
-The indexes and Esent logs can be stored in a different path from the the RavenDB database data files by using the following 2 [RavenDB configuration app settings](https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration):
+The indexes and Esent logs can be stored in a different path from the the RavenDB database data files by using the following [RavenDB configuration app settings](https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration):
 
 #### Raven/IndexStoragePath
 
-The path for the indexes on disk. Useful if you want to store the indexes on another HDD for performance reasons.
+The path for the indexes on disk.
 
 Type: string
 
@@ -71,7 +71,7 @@ Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>\
 
 #### Raven/Esent/LogsPath
 
-The path for the Esent logs on disk. Useful if you want to store the Esent logs on another HDD for performance reasons.
+The path for the Esent logs on disk.
 
 Type: string
 
