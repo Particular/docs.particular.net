@@ -5,10 +5,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
+using NServiceBus.Logging;
 
 class RoutingInfoCommunicator :
     FeatureStartupTask
 {
+    ILog log = LogManager.GetLogger<RoutingInfoCommunicator>();
     Dictionary<string, Entry> cache = new Dictionary<string, Entry>();
     SqlDataAccess dataAccess;
     Timer timer;
@@ -35,32 +37,39 @@ class RoutingInfoCommunicator :
 
     async Task Refresh()
     {
-        var addedOrUpdated = new List<Entry>();
-        var results = await dataAccess.Query()
-            .ConfigureAwait(false);
-        var removed = cache.Values
-            .Where(x => results.All(r => r.Publisher != x.Publisher))
-            .ToArray();
-        foreach (var entry in results)
+        try
         {
-            Entry oldEntry;
-            var key = entry.Publisher;
-            if (!cache.TryGetValue(key, out oldEntry) || oldEntry.Data != entry.Data)
+            var addedOrUpdated = new List<Entry>();
+            var results = await dataAccess.Query()
+                .ConfigureAwait(false);
+            var removed = cache.Values
+                .Where(x => results.All(r => r.Publisher != x.Publisher))
+                .ToArray();
+            foreach (var entry in results)
             {
-                cache[key] = entry;
-                addedOrUpdated.Add(entry);
+                Entry oldEntry;
+                var key = entry.Publisher;
+                if (!cache.TryGetValue(key, out oldEntry) || oldEntry.Data != entry.Data)
+                {
+                    cache[key] = entry;
+                    addedOrUpdated.Add(entry);
+                }
+            }
+            foreach (var change in addedOrUpdated)
+            {
+                await Changed(change)
+                    .ConfigureAwait(false);
+            }
+            foreach (var entry in removed)
+            {
+                cache.Remove(entry.Publisher);
+                await Removed(entry)
+                    .ConfigureAwait(false);
             }
         }
-        foreach (var change in addedOrUpdated)
+        catch (Exception ex)
         {
-            await Changed(change)
-                .ConfigureAwait(false);
-        }
-        foreach (var entry in removed)
-        {
-            cache.Remove(entry.Publisher);
-            await Removed(entry)
-                .ConfigureAwait(false);
+            log.Error("Refresh failed", ex);
         }
     }
 
