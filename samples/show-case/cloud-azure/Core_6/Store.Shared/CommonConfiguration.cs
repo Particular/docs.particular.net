@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using NServiceBus;
 using NServiceBus.Encryption.MessageProperty;
 
@@ -11,6 +12,7 @@ public static class CommonConfiguration
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString(connectionString);
         var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
+        persistence.ConnectionString(connectionString);
         var defaultKey = "2015-10";
         var ascii = Encoding.ASCII;
         var encryptionService = new RijndaelEncryptionService(
