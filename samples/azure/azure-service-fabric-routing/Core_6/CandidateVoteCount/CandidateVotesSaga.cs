@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
-public class CandidateVotes :
-    Saga<CandidateVotes.CandidateVoteData>,
+public class CandidateVotesSaga :
+    Saga<CandidateVotesSaga.CandidateVoteData>,
         IAmStartedByMessages<VotePlaced>,
         IHandleMessages<CloseElection>,
         IHandleMessages<TrackZipCodeReply>

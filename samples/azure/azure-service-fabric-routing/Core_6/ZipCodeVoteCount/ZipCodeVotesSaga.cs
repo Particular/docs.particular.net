@@ -2,8 +2,8 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
-public class ZipCodeVotes :
-    Saga<ZipCodeVotes.ZipCodeVoteData>,
+public class ZipCodeVotesSaga :
+    Saga<ZipCodeVotesSaga.ZipCodeVoteData>,
     IAmStartedByMessages<TrackZipCode>,
     IHandleTimeouts<CloseVoting>
 {

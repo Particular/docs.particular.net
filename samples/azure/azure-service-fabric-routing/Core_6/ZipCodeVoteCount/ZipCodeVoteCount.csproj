@@ -97,7 +97,7 @@
     <Compile Include="ZipCodeVoteCountService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ServiceEventSource.cs" />
-    <Compile Include="ZipCodeVotes.cs" />
+    <Compile Include="ZipCodeVotesSaga.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PackageRoot\Config\Settings.xml" />
