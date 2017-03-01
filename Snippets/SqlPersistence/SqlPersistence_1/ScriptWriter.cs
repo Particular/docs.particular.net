@@ -8,6 +8,7 @@ using NServiceBus.Persistence.Sql;
 using NServiceBus.Persistence.Sql.ScriptBuilder;
 using NServiceBus.Unicast.Subscriptions;
 using NUnit.Framework;
+#pragma warning disable 618
 
 public class ScriptWriter
 {
