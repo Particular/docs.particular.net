@@ -43,7 +43,7 @@ snippet:SqlPersistenceUsageMySql
  * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .net connector does not currently support.}}
 
 
-## NuGets Packages
+## NuGet Packages
 
 The SQL Persistence consists of several [Nuget Packages](https://www.nuget.org/packages?q=NServiceBus.Persistence.Sql).
 
@@ -67,7 +67,7 @@ This package contains several parts
 
 This package contains all APIs that enable the generation of SQL installation scripts using code, i.e. without using the NServiceBus.Persistence.Sql.MsBuild NuGet package.
 
-DANGER: NServiceBus.Persistence.Sql.ScriptBuilder is currently not ready for general usage. It has been made public, and deployed to NuGet, primarily to enable the generation of documentation in a repeatable way. For example it is used to the SQL scripts in both the [MS SQL Server Scripts](/nservicebus/sql-persistence/sqlserver-scripts.md) and [MySql Scripts](/nservicebus/sql-persistence/mysql-scripts.md) pages. In future releases the API may evolve in ways that do not follow the standard of [Release Policy - Semantic Versioning](/nservicebus/upgrades/release-policy.md#semantic-versioning). Raise an issue in the [NServiceBus.Persistence.Sql Repository](https://github.com/Particular/NServiceBus.Persistence.Sql/issues) to discuss this in more detail.
+DANGER: NServiceBus.Persistence.Sql.ScriptBuilder is currently not ready for general usage. It has been made public, and deployed to NuGet, primarily to enable the generation of documentation in a repeatable way. For example it is used to generate the SQL scripts in both the [MS SQL Server Scripts](/nservicebus/sql-persistence/sqlserver-scripts.md) and [MySql Scripts](/nservicebus/sql-persistence/mysql-scripts.md) pages. In future releases, the API may evolve in ways that do not follow the standard of [Release Policy - Semantic Versioning](/nservicebus/upgrades/release-policy.md#semantic-versioning). Raise an issue in the [NServiceBus.Persistence.Sql Repository](https://github.com/Particular/NServiceBus.Persistence.Sql/issues) to discuss this in more detail.
 
 
 ## Script Creation
