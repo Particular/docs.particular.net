@@ -15,7 +15,7 @@ public class PartitionAwareDistributionStrategy :
 
     public override string SelectReceiver(string[] receiverAddresses)
     {
-        throw new NotImplementedException();
+        throw new NotSupportedException();
     }
 
     public override string SelectDestination(DistributionContext context)
