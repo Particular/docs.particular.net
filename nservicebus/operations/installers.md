@@ -30,3 +30,5 @@ snippet:InstallersRunWhenNecessaryCommandLine
 or by a machine name convention like:
 
 snippet:InstallersRunWhenNecessaryMachineNameConvention
+
+NOTE: Installers are always run when the application is run with a debugger attached. This includes when the application is being debugged remotely.
