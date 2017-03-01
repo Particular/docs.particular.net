@@ -109,8 +109,10 @@ WARNING: The target directory will be deleted and recreated as part of each buil
 
 Some token replacement using [MSBuild variables](https://msdn.microsoft.com/en-us/library/c02as0cs.aspx) is supported.
 
- * `$(SolutionDir)`: The directory of the solution (defined as drive + path); includes the trailing backslash '\'.
- * `$(ProjectDir)`: The directory of the project (defined as drive + path); includes the trailing backslash '\'.
+ * `$(SolutionDir)`: The directory of the solution.
+ * `$(ProjectDir)`: The directory of the project
+
+All tokens are drive + path and include the trailing backslash `\`.
 
 snippet: PromoteScripts
 
