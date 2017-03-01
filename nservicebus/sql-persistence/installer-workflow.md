@@ -8,7 +8,7 @@ related:
 reviewed: 2016-11-29
 ---
 
-WARNING: Read about [SQL Persistence NuGet Packages](/#nugets-packages) before proceeding.
+WARNING: Read about [SQL Persistence NuGet Packages](/nservicebus/sql-persistence/#nugets-packages) before proceeding.
 
 
 ## Contrasting Workflows
