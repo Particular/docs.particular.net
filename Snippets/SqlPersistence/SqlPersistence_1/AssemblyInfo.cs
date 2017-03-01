@@ -13,4 +13,9 @@
 [assembly: SqlPersistenceSettings(mySqlScripts: true)]
 #endregion
 
+#region PromoteScripts 1.1
+[assembly: SqlPersistenceSettings(
+    scriptPromotionPath: "$(SolutionDir)PromotedSqlScripts")]
+#endregion
+
 **/

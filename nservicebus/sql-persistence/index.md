@@ -83,7 +83,7 @@ For example for a project named `ClassLibrary` build in Debug mode the following
 
 Scripts will also be included in the list of project output files. So this means those files produced will be copied to the output directory of any project that references it.
 
-What scripts are created can be controlled via the use of `[SqlPersistenceSettings]` applied to the target assembly.
+Scripts creation can configured via the use of `[SqlPersistenceSettings]` applied to the target assembly.
 
 
 ### To Produce All scripts
@@ -99,6 +99,20 @@ snippet: SqlServerScripts
 ### To Produce only MySQL scripts
 
 snippet: MySqlScripts
+
+
+### Promotion
+
+As stated above, scripts are created in the target project output directory. Generally this directory will be excluded from source control. To add created scripts to source control they can be "promoted".
+
+WARNING: The target directory will be deleted and recreated as part of each build. So ensure to choose a path that is for script promotion only.
+
+Some token replacement using [MSBuild variables](https://msdn.microsoft.com/en-us/library/c02as0cs.aspx) is supported.
+
+ * `$(SolutionDir)`: The directory of the solution (defined as drive + path); includes the trailing backslash '\'.
+ * `$(ProjectDir)`: The directory of the project (defined as drive + path); includes the trailing backslash '\'.
+
+snippet: PromoteScripts
 
 
 ## Installation
