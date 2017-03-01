@@ -11,9 +11,11 @@ In Versions 4.3 and above, the RabbitMQ transport no longer relies on the [timeo
 ## How it works
 
 Upon starting the endpoint, the transport declares a set of topic exchanges, queues, and bindings that work together to provide the necessary infrastructure to support delayed messages. Exchanges and queues are grouped to provide 28 delay levels. There is one final delivery exchange in addition to the level exchanges. When a message needs to be delayed, the value of the desired delay is first converted to seconds. The binary representation of this value is then used as part of the routing key when the message is sent to the delay-level exchanges. The full routing key will be in the following format:
+
 ```
 N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.destination
 ```
+
 Where 'N' is either `0` or `1` as necessary to represent the delay value, and "destination" is the name of endpoint the delayed message is intended for.
 
 
@@ -41,7 +43,6 @@ classDef exchangeClass stroke:#000000,stroke-width:2px;
 class exchangeN,exchangeN-1 exchangeClass
 
 end
-
 ```
 
 The levels are connected in this manner, from highest (27) to lowest (0). Each level's routing key's add wildcards as needed so that they are looking at the portion of the message's routing key that corresponds to its level.
@@ -56,14 +57,14 @@ The final delay-level exchange is bound to the delivery exchange instead of anot
 
 Using a simplified version of the delay infrastructure that has 4 levels (0-3), here is an example of sending a message with a delay of 5 seconds to an endpoint called `destination`:
 
-1. The message is published to the level 3 exchange with the following routing key: `0.1.0.1.destination`
-1. The level 3 bit of the routing key is `0`, so the message is routed to the level 2 exchange. (**0**.1.0.1.destination)
-1. The level 2 bit of the routing key is `1`, so the message is delivered to the level 2 queue. (0.**1**.0.1.destination)
-1. After 4 seconds, the message expires and is routed to the level 1 exchange.
-1. The level 1 bit of the routing key is `0`, so the message is routed to the level 0 exchange. (0.1.**0**.1.destination)
-1. The level 0 bit of the routing key is `1`, so th message is delivered to the level 0 queue. (0.1.0.**1**.destination)
-1. After 1 second, the message expires and is routed to the delivery exchange.
-1. The final portion of routing key is `destination`, so the message is delivered to the endpoint's queue. (0.1.0.1.**destination**)
+ 1. The message is published to the level 3 exchange with the following routing key: (0.1.0.1.destination)
+ 1. The level 3 bit of the routing key is `0`, so the message is routed to the level 2 exchange. (**0**.1.0.1.destination)
+ 1. The level 2 bit of the routing key is `1`, so the message is delivered to the level 2 queue. (0.**1**.0.1.destination)
+ 1. After 4 seconds, the message expires and is routed to the level 1 exchange.
+ 1. The level 1 bit of the routing key is `0`, so the message is routed to the level 0 exchange. (0.1.**0**.1.destination)
+ 1. The level 0 bit of the routing key is `1`, so the message is delivered to the level 0 queue. (0.1.0.**1**.destination)
+ 1. After 1 second, the message expires and is routed to the delivery exchange.
+ 1. The final portion of routing key is `destination`, so the message is delivered to the endpoint's queue. (0.1.0.1.**destination**)
 
 ```mermaid
 graph LR
