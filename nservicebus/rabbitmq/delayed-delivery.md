@@ -108,22 +108,22 @@ end
 ```
 
 
-## Settings
+## Backwards compatibility
+
+When using a version of the transport that supports delayed delivery natively, the endpoint continues to operate in a backwards-compatible manner by default. The timeout manager will continue to be enabled, so any delayed messages already stored in the endpoint's persistence database will be sent when their timeouts expire. New delayed messages will be sent through the delay infrastructure, but the endpoint cannot assume that other endpoints have also been upgraded, so it will incur some additional overhead when sending delayed messages to ensure that they can be delivered successfully.
 
 
 ### Disabling the timeout manager
 
-By default, the timeout manager continues to run to allow any preexisting delayed messages stored in the persistence database to be successfully sent. However, once the persistence database is empty, there is no more need for the timeout manager. It can be disabled by calling:
+Once an endpoint has no more delayed messages in its persistence database, there is no more need for the timeout manager. It can be disabled by calling:
 
 snippet: rabbitmq-delay-disable-timeout-manager
 
-Once this has been called, the `.Timeouts` and `.TimeoutsDispatcher` exchanges and queues for the endpoint can be deleted from the broker.
+At this point, the `.Timeouts` and `.TimeoutsDispatcher` exchanges and queues for the endpoint can be deleted from the broker. In addition, the endpoint no longer requires timeout persistence.
 
 
-### All endpoints support delayed delivery
+### Removing sending overhead
 
-When an endpoint supports delayed delivery it is responsible for ensuring that it can receive delayed messages from the delay infrastructure. However, it cannot assume that all other endpoints in the system are also capable of doing the same. Because of this, before each delayed message is sent, the endpoint first makes an additional call to bind the destination to the delay infrastructure.
-
-Once all endpoints have been upgraded to a version of the transport that supports delayed delivery, this behavior is no longer needed and can be disabled by calling:
+Once all endpoints have been upgraded to a version of the transport that supports delayed delivery natively, the extra overheard in sending a delayed message in a backwards-compatible manner can be removed by calling the following on each endpoint:
 
 snippet: rabbitmq-delay-all-endpoints-support-delayed-delivery
