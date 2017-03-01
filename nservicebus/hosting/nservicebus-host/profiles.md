@@ -1,5 +1,5 @@
 ---
-title: Profiles For NServiceBus Host
+title: NServiceBus Host profiles
 summary: 'Profiles ease the configuration process. Three profiles straight from the box: Lite, Integration, and Production.'
 tags:
 - Profiles
@@ -29,7 +29,7 @@ There are two categories of profiles:
 Out of the box there are a set of predefined environment and feature profiles. It's also possible to create custom profiles or customize the default profiles, to learn more about those options refer to the [NServiceBus Host Profiles customization](/nservicebus/hosting/nservicebus-host/profiles-customization.md) article.
 
 
-## Environment-related profiles
+## Environment profiles
 
 There are three built-in environment profiles that adjust the behavior of the host to the environment in which the endpoint is running. These profiles can be used to easily switch between different environments during development, testing and deployment.
 
@@ -57,7 +57,7 @@ The default if no explicit profile is defined. This profile sets the endpoint up
 partial: production
 
 
-## Feature-related profiles
+## Feature profiles
 
 partial: feature
 
