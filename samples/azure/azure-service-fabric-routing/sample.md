@@ -135,7 +135,7 @@ If message headers inspection is unsuccessful with value extraction of `partitio
 
 The forwarding/processing decision is made in the same way as in the *Header inspection* step.
 
-NOTE: `PartitionMappingFailedException` is considered an [unrecoverable exception](/nservicebus/recoverability/custom-recoverability-policy.md). Whenever such an exception is raised the message that triggered the exception will be moved immediately to the configured error queue.
+NOTE: `PartitionMappingFailedException` is considered an [unrecoverable exception](/nservicebus/recoverability/custom-recoverability-policy.md) and the message will be moved to the error queue immediately.
 
 ### Control message forwarding
 
@@ -165,11 +165,11 @@ The Sender Side Distribution works in the following way:
 
 ### Partition aware distribution strategy
 
-The Sender Side Distribution feature adds a [custom distribution strategy](/nservicebus/messaging/routing-extensibility.md#routing-apis-message-distribution) `PartitionAwareDistributionStrategy` into the outgoing pipeline, which is responsible for selecting a destination queue for each message sent to a specific endpoint. When a destination is to be selected for a given outgoing message, the mapping function is applied to obtain the partition key value. The message has its `partition-key` header value set and the instance specific queue is selected as a destination address.
+The Sender Side Distribution feature adds a [custom distribution strategy](/nservicebus/messaging/routing-extensibility.md#routing-apis-message-distribution) `PartitionAwareDistributionStrategy` into the outgoing pipeline, which is responsible for selecting a destination queue for each message sent to a specific endpoint. When a destination is to be selected for a given outgoing message, the mapping function is applied to obtain the partition key value. The message has its `partition-key` header value set and the partition specific queue is selected as a destination address.
 
 ### Configuration
 
-Sender Side Distribution is configured by providing partition information for a given endpoint and ensuring each of these partitions is uniquely addressable on the receiver side.
+Sender Side Distribution is configured by providing partition information for a given endpoint and ensuring each of these partitions are uniquely addressable on the sender side.
 
 snippet: ConfigureLocalPartitions-CandidateVoteCount
 
