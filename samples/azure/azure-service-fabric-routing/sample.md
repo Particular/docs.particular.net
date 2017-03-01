@@ -10,7 +10,7 @@ related:
 ## Prerequisites
 
 1. Strong understanding of Service Fabric [Reliable Services](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-quick-start). 
-1. Azure Service Fabric [dev cluster](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started) running and configured with 5 nodes.
+1. Service Fabric [development environment setup](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started) with dev cluster configured to run on 5 nodes.
 1. An Azure Service Bus namespace that can be used for communication between the instances.
 1. A system environment variable named "AzureServiceBus.ConnectionString" set to the connection string of the Azure Service Bus namespace. The connection string must provide Manage rights.
 
@@ -23,11 +23,15 @@ The scenario used in this sample covers a voting system. In this voting system t
 
 Next to this the system also counts the total number of votes cast in each zip code. In order to achieve this the candidate voting endpoint issues a `request` to the zip code counting endpoint to track the zip code. The zip code counting endpoint will `reply` back with the intermediary results.
 
-When the election is closed, the candidate vote counting endpoint will `publish` the results per candidate and report them using Service Fabric diagnostics infrastructure (ETW Event Viewer windows).
+When the election is closed, the candidate vote counting endpoint will `publish` the results per candidate and report them using Service Fabric diagnostics infrastructure ([ETW Event Viewer windows](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally#view-service-fabric-system-events-in-visual-studio)).
 
 After the counting time expires, using a `timeout`, the zip code counting endpoint `sends a local command` to report the statistics per zip code.
 
-For sake of simplicity, there are only 2 candidates in the election, called "John" and "Abby". Zip codes are always assumed to be valid integers with a length up to 5 digits in the range of 0 to 99000.
+The sample assumes that:
+    * There are only 2 candidates in the election, called "John" and "Abby",
+    * Zip codes are integers in the range of 0 to 99000. 
+    
+This simplifies partition id value calculation, in real world scenario a hash function could be used to perform mapping from arbitrary input types.
 
 ```mermaid
 sequenceDiagram
@@ -60,7 +64,7 @@ The scenario has been set up to show the different kinds of communication patter
 
 The downside of the focus on the communication patterns is that the saga design is less than ideal for a real voting system. There will be quite some contention on the saga data, which may result in concurrency exceptions and a few retries impacting performance of the system.
 
-For logging purposes a simple static logger was used to expose specific log statements for the routing part. It is recommended to use a dedicated logging package for production instead.
+For logging purposes a simple static logger was used to expose specific log statements for the routing part. It is recommended to use a dedicated package to emit ETW logging information.
 
 ## Solution structure
 
@@ -83,7 +87,7 @@ The `ZipCodeVoteCount` is a stateful service that uses a `UniformInt64Partition`
 
 ## Routing
 
-The default NServiceBus routing approach cannot be used as-is with Service Fabric stateful services. Stateful services assume business data partitioning. A message must be delivered to a specific replica (instance) of a stateful that can handle the message data. E.g. for each `PlaceVote` message associated with a cast vote, the message should be routed to the partition associated with the preferred candidate, "John" or "Abby". Similar to that, to count the votes per zip code the `TrackZipCode` message needs to delivered to the partition that is responsible for the range to which the zip code belongs.
+The default NServiceBus routing approach cannot be used as-is with Service Fabric stateful services. Stateful services assume business data partitioning. A message must be routed to a specific replica (instance) of a stateful service that can handle the message data. E.g. for each `PlaceVote` message associated with a cast vote, the message should be routed to the partition associated with the preferred candidate, "John" or "Abby". Similar to that, to count the votes per zip code the `TrackZipCode` message needs to be routed to the partition that is responsible for the range to which the zip code belongs.
 
 Example:
 
@@ -110,7 +114,7 @@ All local sends are handled by the `PartitionAwareDistributionStrategy`. For eac
 
 ### Replies
 
-When replying, an endpoint routes the reply message to the endpoint that initiated the conversation. It's the responsibility of the requestor to properly set the reply-to header before sending out the request. For a partitioned endpoint this implies that it sets the reply to header to its instance specific queue instead of the shared queue. This functionality is covered by the `HardcodeReplyToAddressToLogicalAddress` behavior.
+When replying, an endpoint routes the reply message to the endpoint that initiated the conversation. It's the responsibility of the requestor to properly set the reply-to header before sending out the request. For a partitioned endpoint this implies that it sets the reply-to header to its instance specific queue instead of the shared queue. This functionality is covered by the `HardcodeReplyToAddressToLogicalAddress` behavior.
 
 
 ## Receiver Side Distribution
@@ -121,7 +125,7 @@ A partitioned endpoint can be configured to check that an incoming message shoul
 
 ### Message headers inspection
 
-Every incoming message has its `partition-key` header value inspected by the `DistributeMessagesBasedOnHeader` behavior. If the value specified in the header is matching the receiver`s partition key, then the message is processed. Otherwise, the message is forwarded to the appropriate partition specified by the header value. If the partition key value indicates non-existent partition, the message is moved to the error queue.
+Every incoming message has its `partition-key` header value inspected by the `DistributeMessagesBasedOnHeader` behavior. If the value specified in the header is matching the receiver's partition key, then the message is processed. Otherwise, the message is forwarded to the appropriate partition specified by the header value. If the partition key value indicates non-existent partition, the message is moved to the error queue.
 
 If the `partition-key` header does not exist, the pipeline execution continues to the *Message body inspection* step.
 
@@ -147,13 +151,11 @@ Use this code to enable Receiver-Side distribution:
 
 snippet: ConfigureReceiverSideDistribution-CandidateVoteCount
 
-In many low-throughput scenarios Receiver Side Distribution might be enough to get started. To achieve better performance, it would be more efficient to route directly to the partitions from the sender with *Sender-Side Distribution*.
-
 ## Sender Side Distribution
 
 Receiver Side Distribution addresses forwarding messages that arrive to the incorrect partition. Forwarding received messages introduces some overhead though. To remove the overhead on the receiver side the Sender Side Distribution approach can be used to distribute messages to the correct endpoint instances based on Service Fabric partitioning information.
 
-Sender Side Distribution can be applied to endpoints hosted inside Service Fabric by using the partition information of the stateful services. This is suitable for endpoints hosted inside the cluster that need to send messages to other endpoints hosted in the cluster. For the endpoints hosted outside of the cluster access to Service Fabric APIs is not possible. Instead, partitioned destination endpoints need to be registered with message mapping for commands sent out.
+Sender Side Distribution can be applied to endpoints hosted inside Service Fabric by using the partition information of the stateful services. This is suitable for endpoints hosted inside the cluster that need to send messages to other endpoints hosted in the cluster. For the endpoints hosted outside of the cluster access to Service Fabric APIs is not possible. Instead, partitioning information has to be provided separately.
 
 The Sender Side Distribution works in the following way:
 
@@ -171,7 +173,7 @@ Sender Side Distribution is configured by providing partition information for a 
 
 snippet: ConfigureLocalPartitions-CandidateVoteCount
 
-In order to send to specific destination partitions, it is required to provide the a mapping function that connects a business property on the message to a partition key for each outgoing message type. 
+In order to send to specific destination partitions, it is required to provide a mapping function that connects a business property on the message to a partition key for each outgoing message type. 
 
 Example of mapping a property value directly to the partition key:
 
