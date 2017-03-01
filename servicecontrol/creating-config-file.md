@@ -211,6 +211,26 @@ Type: string
 Default: `100`
 
 
+#### Raven/IndexStoragePath
+
+This configures the embedded RavenDB database to use a different location to store the index data. This can help to improve performance if the disk isn't fast enough and you want to spread the load over multiple disks.
+
+See: https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration
+
+Default: ~/Data/Indexes
+
+
+#### Raven/Esent/LogsPath
+
+This configures the embedded RavenDB database to use a different location to store the Esent log/journal data. This can help to improve performance if the disk isn't fast enough and you want to spread the load over multiple disks.
+
+See: https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration
+
+Type: string 
+
+Default: ~/Data/logs
+
+
 ## Transport
 
 
