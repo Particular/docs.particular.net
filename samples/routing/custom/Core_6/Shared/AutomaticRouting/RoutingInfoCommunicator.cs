@@ -14,10 +14,16 @@ class RoutingInfoCommunicator :
     Dictionary<string, Entry> cache = new Dictionary<string, Entry>();
     SqlDataAccess dataAccess;
     Timer timer;
+    ICircuitBreaker circuitBreaker;
 
-    public RoutingInfoCommunicator(SqlDataAccess dataAccess)
+    public RoutingInfoCommunicator(SqlDataAccess dataAccess, CriticalError criticalError)
     {
         this.dataAccess = dataAccess;
+        circuitBreaker = new RepeatedFailuresOverTimeCircuitBreaker(
+            "Refresh",
+            TimeSpan.FromMinutes(2),
+            ex => criticalError.Raise("Failed to refresh routing info.", ex)
+            );
     }
 
     public Func<Entry, Task> Changed = entry => Task.CompletedTask;
@@ -66,10 +72,11 @@ class RoutingInfoCommunicator :
                 await Removed(entry)
                     .ConfigureAwait(false);
             }
+            circuitBreaker.Success();
         }
         catch (Exception ex)
         {
-            log.Error("Refresh failed", ex);
+            await circuitBreaker.Failure(ex);
         }
     }
 

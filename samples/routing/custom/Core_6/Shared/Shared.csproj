@@ -45,7 +45,9 @@
     <Compile Include="AutomaticRoutingConst.cs" />
     <Compile Include="AutomaticRouting\AdvertisePublishingSettings.cs" />
     <Compile Include="AutomaticRouting\AutomaticRoutingFeature.cs" />
+    <Compile Include="ICircuitBreaker.cs" />
     <Compile Include="AutomaticRouting\Installer.cs" />
+    <Compile Include="RepeatedFailuresOverTimeCircuitBreaker.cs" />
     <Compile Include="AutomaticRouting\RoutingInfoCommunicator.cs" />
     <Compile Include="AutomaticRouting\AutomaticRoutingConfigExtensions.cs" />
     <Compile Include="AutomaticRouting\EndpointInstanceInfo.cs" />
