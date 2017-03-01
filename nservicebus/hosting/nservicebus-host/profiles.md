@@ -106,17 +106,14 @@ The following table summarizes the different persistence technologies being used
 
 NOTE: Before configuring persistence technology, to avoid overriding custom configurations, the profiles check if other types of storage are used.
 
-|-                                |In-Memory|RavenDB               |NHibernate   |MSMQ                         |
-|:--------------------------------|:--------|:---------------------|:------------|:----------------------------|
-|  Timeout                        |Lite     |Integration/Production|-            |Keeps a queue for management |
-|  Subscription                   |Lite     |Integration/Production|-            |-                            |
-|  Saga                           |Lite     |Integration/Production|-            |-                            |
-|  Gateway                        |Lite     |MultiSite             |-            |-                            |
-|  Distributor                    |-        |-                     |-            |Distributor                  |
+The built-in profiles use the following default persistence settings:
 
+| -              | Lite     | Integration             | Production              |
+|:---------------|:---------|:------------------------|:------------------------|
+|  Timeout       |In-Memory |RavenDB or as configured |RavenDB or as configured |
+|  Subscription  |In-Memory |RavenDB or as configured |RavenDB or as configured |
+|  Saga          |In-Memory |RavenDB or as configured |RavenDB or as configured |
+|  Gateway       |In-Memory |RavenDB or as configured |RavenDB or as configured |
+|  Distributor   |-         |-                        |-                        |
 
-## Default persisting technology
-
-The `AsA_Server` role activates the timeout manager. This role does not explicitly determine which persisting technology to use. Hence, the default persisting technology for timeout manager (RavenDB) is used.
-
-Similarly to the `AsA_Server` role, the various profiles activate the different NServiceBus features, without explicitly configuring the persisting technology.
+In the Lite profile NServiceBus Host will always use the in-memory persistence. In the Integration and Production profiles, the Host verifies if a specific persistence mechanism is provided, e.g. in the endpoint configuration. If not specified otherwise, then RavenDB persistence will be used by default.
