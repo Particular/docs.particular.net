@@ -45,13 +45,12 @@ snippet:SqlPersistenceUsageMySql
 
 ## NuGets Packages
 
-The SQL Persistence consists of several NuGet Packages.
+The SQL Persistence consists of several [Nuget Packages](https://www.nuget.org/packages?q=NServiceBus.Persistence.Sql).
 
 
 ### [NServiceBus.Persistence.Sql.MsBuild](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild/)
 
-This packages installs into the MSBuild pipeline and generates all SQL installation scripts at compile time.
- It is required for any project where those SQL installation scripts are required. For Saga Scripts it will be any project that contains Saga classes. For Timeouts, Subscriptions and Outbox Scripts it will be the endpoint hosting project.
+This packages installs into the MSBuild pipeline and generates all SQL installation scripts at compile time. It does this by interrogating types (in the target assembly) and attributes (from the `NServiceBus.Persistence.Sql` NuGet package) to infer what scripts to create. It is required for any project where those SQL installation scripts are required. For Saga Scripts it will be any project that contains Saga classes. For Timeouts, Subscriptions and Outbox Scripts it will be the endpoint hosting project. This package has a dependency on the `NServiceBus.Persistence.Sql` NuGet package
 
 
 ### [NServiceBus.Persistence.Sql](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/)
@@ -59,8 +58,9 @@ This packages installs into the MSBuild pipeline and generates all SQL installat
 This package contains several parts
 
  * APIs for manipulating `EndPointConfiguration` at configuration time.
- * Runtime implementations of Saga, Timeouts, Subscriptions and Outbox Persister
+ * Runtime implementations of Saga, Timeouts, Subscriptions and Outbox Persisters.
  * Attribute definitions used to define certain compile time configuration settings. These attributes are then interrogated by the NServiceBus.Persistence.Sql.MsBuild NuGet Package when generating SQL installation scripts
+ * Optionally runs SQL installation scripts at endpoint startup for developement purposes. See [Installer Workflow](installer-workflow.md).
 
 
 ### [NServiceBus.Persistence.Sql.ScriptBuilder](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.ScriptBuilder/)

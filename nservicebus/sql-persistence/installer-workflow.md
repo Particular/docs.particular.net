@@ -8,28 +8,7 @@ related:
 reviewed: 2016-11-29
 ---
 
-## Packages
-
-The SQL Persistence consists of several [Nuget Packages](https://www.nuget.org/packages?q=NServiceBus.Persistence.Sql).
-
-
-### Runtime and static configuration
-
-The [NServiceBus.Persistence.Sql NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/) serves several purposes.
-
- * Provides the runtime functionality for persisting all [storage types](/nservicebus/persistence/#storage-types) 
- * Provides static configuration (in the form of attributes and types) that allow settings to be passed consumed by the `NServiceBus.Persistence.Sql.MsBuild` NuGet package at compile time.
- * Optionally runs SQL installation scripts at endpoint startup.
-
-
-### MsBuild Script Creation
- 
-The [NServiceBus.Persistence.Sql.MsBuild NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild/) creates all the SQL installation scripts. It does this by wiring into the MSBuild pipeline and interrogating types and attributes to infer what scripts to create. This package has a dependency on the `NServiceBus.Persistence.Sql` NuGet package
-
-
-### Script Builder
-
-The [NServiceBus.Persistence.Sql.ScriptBuilder NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.ScriptBuilder/) is a class library that provides an API for creating all SQL installation scripts. This library is used internally by the `NServiceBus.Persistence.Sql.MsBuild` NuGet package at compile time.
+WARNING: Read about [SQL Persistence NuGet Packages](/#nugets-packages) before proceeding.
 
 
 ## Contrasting Workflows
@@ -65,5 +44,3 @@ The workflow in higher environment may differ based on the specifics of an organ
  1. SQL installer scripts are reviewed by a DBA or QA team and approved.
  1. SQL installer scripts are executed in higher environment.
  1. Endpoint is deployed and started.
-
-
