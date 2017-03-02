@@ -82,7 +82,7 @@ While inferring the Correlation Id from the IL of `ConfigureHowToFindSaga` is po
 
 ### Attribute required for other purposes
 
-It is likely a consumer of the persister will need to use the `[SqlSagaAttribute]` configurations options other than Correlation Id. For example to control the [table name for a saga](/nservicebus/sql-persistence/saga.md#table-structure-table-name). Given this likelihood, the argument for avoiding the necessity of an attribute is diminished.
+It is likely a consumer of the persister will need to use the `[SqlSagaAttribute]` configuration options other than Correlation Id. For example to control the [table name for a saga](/nservicebus/sql-persistence/saga.md#table-structure-table-name). Given this likelihood, the argument for avoiding the necessity of an attribute is diminished.
 
 
 ## Table Structure
