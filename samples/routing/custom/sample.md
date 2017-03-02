@@ -37,25 +37,6 @@ The advantage of configuration-free approach is low development friction and sim
  1. The Billing endpoint displays information that orders were billed.
 
 
-### Detecting failure
-
- 1. Close the Sales.2 console window.
- 1. Hit `<enter>` several times to send more messages.
- 1. Notice that only every other message gets processed by Sales.1. Client still does not know that Sales.2 is down.
- 1. Wait until consoles show that Sales.2 heartbeat timed out.
- 1. Hit `<enter>` several times to send more messages.
- 1. Notice that all orders are now routed to Sales.1 queue.
-
-
-### Recovery
-
- 1. In Visual Studio right-click on `Sales2` project and select `Debug -> Start new instance`.
- 1. Notice that all messages sent to Sales.2 while it was down are now processed.
- 1. Wait until other endpoints detect Sales.2 again.
- 1. Hit `<enter>` several times to send more messages.
- 1. Notice that orders are again routed to both Sales instances in round-robin fashion.
-
-
 ## Code walk-through
 
 This sample contains four applications that use configuration-free custom routing:
@@ -142,6 +123,6 @@ The following information is required by this automatic routing implementation:
 
 `Logical` endpoints, publishers and destinations are `Endpoints`, while `physical` instances are `Endpoint Instances`. Refer to [Endpoints](/nservicebus/endpoints/) article for full definitions.
 
-This information is updated every time the automatic routing feature detects a change in the topology:
+This information is updated every time the automatic routing feature detects a change in the logical topology:
 
 snippet:AddOrReplace
