@@ -55,7 +55,7 @@ snippet: SqlPersistenceSaga
 snippet: SqlPersistenceSqlSaga
 
 
-## Requirement for attribute `[SqlSagaAttribute]`
+## Requirement for the SqlSagaAttribute
 
 When looking at a standards Saga's `ConfigureHowToFindSaga` it is logical to come to the conclusion that it should be possible to infer the Correlation Id and hence remove the requirement for defining a `[SqlSagaAttribute]`.
 
@@ -73,9 +73,9 @@ At the IL level it is not possible to discover the base hierarchy of a type give
 
 ### Inferring edge cases
 
-While inferring the Correlation Id, from the IL of `ConfigureHowToFindSaga`, is possible for the simple case there are many edge cases that make this approach problematic. Some of the include:
+While inferring the Correlation Id, from the IL of `ConfigureHowToFindSaga`, is possible for the simple case there are many edge cases that make this approach problematic. Some of these include:
 
- * It is possible to [map message to a complex expression](/nservicebus/sagas/message-correlation.md#message-property-expression). This greatly increased the complexity of accurately determining the Correlation Id.
+ * It is possible to [map message to a complex expression](/nservicebus/sagas/message-correlation.md#message-property-expression). This greatly increased the complexity of accurately determining the Correlation Id due to the higher complexity of the resultant IL.
  * The implementation of `ConfigureHowToFindSaga` means it is evaluated at run time. So it supports branching logic, performing mapping in helper methods, and mapping in various combinations of base classes and child classes. Use of any of these would prevent determining the Correlation Id from the IL.
  * Mapping performed in another assembly. If the mapping is performed in a helper method or base class, and that implementation exists in another assembly, then this would negatively effect build times due to the necessity of loading and parsing the IL for those assemblies.
 
