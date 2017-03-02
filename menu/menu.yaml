@@ -636,8 +636,6 @@
         Title: Performance Tuning
       - Url: nservicebus/azure-storage-persistence/scripting
         Title: Scripting
-    - Url: nservicebus/mongodb-persistence-tekmaven
-      Title: MongoDB Persistence
     - Url: nservicebus/sql-persistence
       Title: Sql Persistence
       Articles:
@@ -649,6 +647,8 @@
         Title: MS SQL Server Scripts
       - Url: nservicebus/sql-persistence/mysql-scripts
         Title: MySQL Scripts
+    - Url: nservicebus/mongodb-persistence-tekmaven
+      Title: MongoDB Persistence
   - Url: nservicebus/containers
     Title: Containers
     Articles:
