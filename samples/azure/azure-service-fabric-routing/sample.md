@@ -7,7 +7,7 @@ related:
 - nservicebus/azure-service-bus
 ---
 
-The sample demonstrates how NServiceBus extension points API can be used to implement partition aware routing for services hosted inside Service Fabric cluster. It takes advantage of [routing system extensibility points](/nservicebus/messaging/routing-extensibility.md) and [custom pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) to support various types of NServiceBus communication patterns such as `send`, `send local`, `publish/subscribe`, `request/reply` and `timeout`. The sample does not assume that the system consist only of Service Fabric services. It enable also proper communication between services hosted inside and outside of Service Fabric cluster.
+The sample demonstrates how NServiceBus extension points API can be used to implement partition aware routing for services hosted inside Service Fabric cluster. It takes advantage of [routing system extensibility points](/nservicebus/messaging/routing-extensibility.md) and [custom pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) to support various types of NServiceBus communication patterns. It is assumed that NServiceBus users are able to define mapping between message type and service partition for each command and event. It is also assumed that `send local`, `timeout` and `reply` messages are partition affine i.e. should be processed in the context of originating partition. The sample consists of  services hosted inside Service Fabric as well as outside of the cluster and enables proper communication also in such scenario.
 
 ## Prerequisites
 
