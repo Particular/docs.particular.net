@@ -38,10 +38,11 @@
     <Compile Include="Session\MyMessage.cs" />
     <Compile Include="UpgradeGuides\Upgrade101.cs" />
     <Compile Include="TableSuffix.cs" />
-    <Compile Include="UsingSaga\SagaWithCorrelationAndTransitional.cs" />
-    <Compile Include="UsingSaga\SagaWithCorrelation.cs" />
-    <Compile Include="UsingSaga\SagaWithNoCorrelation.cs" />
+    <Compile Include="AttributeRequirement\OrderSaga.cs" />
     <Compile Include="UsingSaga\OrderSaga.cs" />
+    <Compile Include="UsingSaga\SagaWithCorrelation.cs" />
+    <Compile Include="UsingSaga\SagaWithCorrelationAndTransitional.cs" />
+    <Compile Include="UsingSaga\SagaWithNoCorrelation.cs" />
     <Compile Include="UsingSaga\StartSagaMessage.cs" />
     <Compile Include="UsingSqlSaga\OrderSaga.cs" />
     <Compile Include="StartOrder.cs" />
