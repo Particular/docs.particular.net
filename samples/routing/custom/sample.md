@@ -2,12 +2,12 @@
 title: Custom routing
 summary: Customizing NServiceBus message routing
 component: Core
-reviewed: 2016-10-26
+reviewed: 2017-03-02
 tags:
 - Routing
 ---
 
-The sample demonstrates how NServiceBus routing model can be extended to allow for configuration-free routing with MSMQ transport. It does so by making endpoint instances publish metadata information about themselves:
+The sample demonstrates how the routing model can be extended to allow for configuration-free routing with [MSMQ transport](/nservicebus/msmq/). It does so by making endpoint instances publish metadata information about themselves:
 
  * identity - logical name and physical address;
  * handled messages;
@@ -72,7 +72,7 @@ The Client application submits the orders for processing by the back-end systems
 
 ### Sales
 
-The Sales application accepts clients' orders and publishes the `OrderAccepted` event. 
+The Sales application accepts clients' orders and publishes the `OrderAccepted` event.
 
 NOTE: In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, in this sample the scale out is simulated by having two separate projects, Sales and Sales2.
 
