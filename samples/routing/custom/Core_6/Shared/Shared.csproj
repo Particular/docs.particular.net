@@ -50,12 +50,10 @@
     <Compile Include="RepeatedFailuresOverTimeCircuitBreaker.cs" />
     <Compile Include="AutomaticRouting\RoutingInfoCommunicator.cs" />
     <Compile Include="AutomaticRouting\AutomaticRoutingConfigExtensions.cs" />
-    <Compile Include="AutomaticRouting\EndpointInstanceInfo.cs" />
     <Compile Include="AutomaticRouting\Entry.cs" />
     <Compile Include="AutomaticRouting\RoutingInfo.cs" />
     <Compile Include="AutomaticRouting\RoutingInfoPublisher.cs" />
     <Compile Include="AutomaticRouting\RoutingInfoSubscriber.cs" />
-    <Compile Include="AutomaticRouting\InstanceState.cs" />
     <Compile Include="AutomaticRouting\VerifyAdvertisedBehavior.cs" />
     <Compile Include="Messages\OrderAccepted.cs" />
     <Compile Include="Messages\PlaceOrder.cs" />

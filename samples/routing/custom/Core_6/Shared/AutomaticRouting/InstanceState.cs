@@ -1,5 +1,0 @@
-enum InstanceState
-{
-    Active,
-    Inactive
-}
