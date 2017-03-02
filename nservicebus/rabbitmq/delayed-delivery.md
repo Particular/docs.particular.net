@@ -30,7 +30,7 @@ A delay level is created by declaring a topic exchange that is bound to a queue 
 
 graph TD
 
-subgraph
+subgraph Delay Level
 
 exchangeN(Level N)
 queueN[TTL 2^N]
