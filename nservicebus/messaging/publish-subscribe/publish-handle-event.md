@@ -1,7 +1,8 @@
 ---
 title: Publish and Handle an Event
-summary: How to define a message as an event and publish that message.
+summary: How to define, publish and handle events.
 component: Core
+reviewed: 2017-03-02
 tags:
 - Publish Subscribe
 related:
@@ -11,66 +12,56 @@ related:
 ---
 
 
-## Classifying a message as an event
+## Defining events
 
-To publish a message it must be classified as an event. There are two ways of achieving this
+The messages needs to be declared as an event before it can be published. That can be done in two ways: using marker interfaces or message conventions.
 
 
 ### Via a Marker interface
 
-Adding a marker interface to the message definition.
+Add `IEvent` marker interface to the message definition:
 
 snippet:EventWithInterface
 
 
 ### Via Message Conventions
 
-Using the `EventWithConvention` message convention.
-
-Given a message with the following definition.
+The following message:
 
 snippet:EventWithConvention
 
-It could be treated as an event using the following convention.
+can be declared as an event using the following convention:
 
 snippet:DefiningEventsAs
 
 
-## Handling a event
+## Handling an event
 
-An event can be handled by use of the `IHandleMessages` interface on any [Handler](/nservicebus/handlers) or [Saga](/nservicebus/sagas).
+In order to handle an event, implement `IHandleMessages<T>` interface in any [Handler](/nservicebus/handlers) or [Saga](/nservicebus/sagas) class, where `T` is the specific event type.
+
 
 ## Publishing an event
 
-NOTE: In Version 6, the IBus interface has been deprecated and removed. Use the `Publish` methods on the `IMessageHandlerContext` interface within a handler, or the `IEndpointInstance`/`IMessageSession` interface instead.
+In order to publish an event call the `Send` method from inside the event publisher. 
 
-An event can be published via any instance of `IBus`. However there are several common locations where publishing occurs.
+There are a few common scenarios for publishing events. Events might be published:
 
+- from a **handler**, when processing another message.
 
-### From a Handler
+   snippet:publishFromHandler
 
-From a handler in reaction to some other message being handled.
+- from a **saga handler**, when processing another message.
 
-snippet:publishFromHandler
+   snippet:publishFromSaga
 
+- at endpoint startup
 
-### From a Saga
-
-From a handler in reaction to some other message being handled.
-
-snippet:publishFromSaga
-
-
-### At endpoint startup
-
-At startup of an endpoint, directly after the bus has started.
-
-snippet:publishAtStartup
+   snippet:publishAtStartup
 
 
 ## Events as Classes or Interfaces
 
-Events can be either classes or interfaces. Since interfaces cannot be constructed there are slightly different semantics for publishing each.
+Events can be either classes or interfaces.  Since interfaces cannot be constructed there are slightly different semantics for publishing each.
 
 
 ### Publish a class
