@@ -57,7 +57,7 @@ snippet: SqlPersistenceSqlSaga
 
 ## Requirement for the SqlSagaAttribute
 
-When looking at a Saga's `ConfigureHowToFindSaga` it is logical to come to the conclusion that it should be possible to infer the Correlation Id and hence remove the requirement for defining a `[SqlSagaAttribute]`.
+In a standard Saga, the Correlation Id is configured in the `ConfigureHowToFindSaga` method. When using the Sql Persistence, each saga must be decorated with a `[SqlSagaAttribute]` which defines the Correlation Id again. There are a few good reasons for that.
 
 Take this code:
 
