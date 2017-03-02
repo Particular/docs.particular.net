@@ -19,12 +19,12 @@ class CustomEnvelopeUnwrapper
             using (var streamReader = new StreamReader(stream))
             using (var textReader = new JsonTextReader(streamReader))
             {
-                //try to deserialize to the NServiceBus envelope
+                //try deserialize to a NServiceBus envelope first
                 var wrapper = jsonSerializer.Deserialize<MessageWrapper>(textReader);
 
                 if (!string.IsNullOrEmpty(wrapper.Id))
                 {
-                    //this was a message comming from a NServiceBus endpoint
+                    //this was a envelope message
                     return wrapper;
                 }
 
