@@ -123,6 +123,6 @@ The following information is required by this automatic routing implementation:
 
 `Logical` endpoints, publishers and destinations are `Endpoints`, while `physical` instances are `Endpoint Instances`. Refer to [Endpoints](/nservicebus/endpoints/) article for full definitions.
 
-This information is updated every time the automatic routing feature detects a change in the topology:
+This information is updated every time the automatic routing feature detects a change in the logical topology:
 
 snippet:AddOrReplace
