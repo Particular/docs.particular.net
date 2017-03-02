@@ -26,6 +26,7 @@ Error queue address can be configured in several ways.
 
 partial:ErrorWithCode
 
+Warning: Configuration of message forwarding via `app.config`, `IConfigurationProvider`, and `IProvideConfiguration` is not recommended in Version 6, use the [code configuration API](#configure-the-error-queue-address-using-code) instead. The configuration sections will be removed in Version 7.
 
 ### Using a IConfigurationProvider
 

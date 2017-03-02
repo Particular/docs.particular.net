@@ -77,6 +77,8 @@ snippet:AuditWithCode
 
 ### Using app.config
 
+Warning: Configuration of auditing via `app.config` is not recommended in Version 6, use the [code configuration API](#configuring-auditing-using-code) instead. The configuration section will be removed in Version 7.
+
 snippet:configureAuditUsingXml
 
 Note: `OverrideTimeToBeReceived` needs to be a valid [TimeSpan](https://msdn.microsoft.com/en-us/library/system.timespan.aspx).
