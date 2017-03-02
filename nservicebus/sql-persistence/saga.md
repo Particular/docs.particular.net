@@ -73,9 +73,9 @@ At the IL level it is not possible to discover the base hierarchy of a type give
 
 ### Inferring edge cases
 
-While inferring the Correlation Id from the IL of `ConfigureHowToFindSaga` is possible there are many edge cases that make this approach problematic. Some of these include:
+While inferring the Correlation Id from the IL of `ConfigureHowToFindSaga` is possible, there are many edge cases that make this approach problematic. Some of these include:
 
- * It is possible to [map message to a complex expression](/nservicebus/sagas/message-correlation.md#message-property-expression). This greatly increased the complexity of accurately determining the Correlation Id due to the higher complexity of the resultant IL.
+ * It is possible to [map a message to a complex expression](/nservicebus/sagas/message-correlation.md#message-property-expression). This greatly increases the complexity of accurately determining the Correlation Id due to the higher complexity of the resultant IL.
  * The implementation of `ConfigureHowToFindSaga` means it is evaluated at run time. So it supports branching logic, performing mapping in helper methods, and mapping in various combinations of base classes and child classes. Use of any of these would prevent determining the Correlation Id from the IL.
  * Mapping performed in another assembly. If the mapping is performed in a helper method or base class, and that implementation exists in another assembly, then this would negatively effect build times due to the necessity of loading and parsing the IL for those assemblies.
 
