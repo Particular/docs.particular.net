@@ -1,11 +1,13 @@
 ---
 title: Azure Service Fabric Partition Aware Routing
+summary: Implementing partition aware routing for services hosted inside Service Fabric cluster.
 reviewed: 2017-02-14
 component: Core
 related:
 - nservicebus/azure-service-bus
 ---
 
+The sample demonstrates how NServiceBus extension points API can be used to implement partition aware routing for services hosted inside Service Fabric cluster. It takes advantage of [routing system extensibility points](/nservicebus/messaging/routing-extensibility.md) and [custom pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) to support various types of NServiceBus communication patterns such as `send`, `send local`, `publish/subscribe`, `request/reply` and `timeout`. The sample does not assume that the system consist only of Service Fabric services. It enable also proper communication between services hosted inside and outside of Service Fabric cluster.
 
 ## Prerequisites
 
@@ -14,7 +16,7 @@ related:
 1. An Azure Service Bus namespace that can be used for communication between the instances.
 1. A system environment variable named "AzureServiceBus.ConnectionString" set to the connection string of the Azure Service Bus namespace. The connection string must provide Manage rights.
 
-Note: A Service Fabric cluster runs under the Network Service account and only reads system environment variables. Make sure the environment variable "AzureServiceBus.ConnectionString" is defined as a system environment variable and not user-scoped.
+NOTE: A Service Fabric cluster runs under the Network Service account and only reads system environment variables. Make sure the environment variable "AzureServiceBus.ConnectionString" is defined as a system environment variable and not user-scoped.
 
 
 ## Scenario
