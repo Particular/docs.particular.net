@@ -1,9 +1,13 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
+using NServiceBus.Persistence.Sql;
 
 #region saga-sqlPersistenceSession
 
+[SqlSaga(
+    correlationProperty: nameof(SagaData.CorrelationProperty)
+)]
 public class SagaThatUsesSession :
     Saga<SagaThatUsesSession.SagaData>,
     IHandleMessages<MyMessage>
@@ -27,5 +31,6 @@ public class SagaThatUsesSession :
     public class SagaData :
         ContainSagaData
     {
+        public object CorrelationProperty { get; }
     }
 }
