@@ -55,6 +55,36 @@ snippet: SqlPersistenceSaga
 snippet: SqlPersistenceSqlSaga
 
 
+## Requirement for the SqlSagaAttribute
+
+When looking at a standards Saga's `ConfigureHowToFindSaga` it is logical to come to the conclusion that it should be possible to infer the Correlation Id and hence remove the requirement for defining a `[SqlSagaAttribute]`.
+
+Take this code:
+
+snippet: AttributeRequirement
+
+At build time the [IL](https://en.wikipedia.org/wiki/Common_Intermediate_Language) of the target assembly is interrogated to generate the SQL installation scripts. The IL will contain enough information to determine that `ToSaga` is called on the property `SagaData.OrderId`. However there are several reasons that an explicit attribute was chosen for defining the Correlation Id over inferring it from the `ConfigureHowToFindSaga`.
+
+
+### Discovering Sagas
+
+At the IL level it is not possible to discover the base hierarchy of a type given the IL for that type alone. So, in IL, to detect if a given type inherits from `Saga<T>` the full hierarchy of the type needs to be interrogated. This includes loading and interrogating references assemblies, where any types hierarchy extends into those assemblies. This adds significant complexity and performance overheads to the build time operation of generating SQL installation scripts. The explicit `[SqlSagaAttribute]` allows saga detection via a simpler type scan of the target assembly.
+
+
+### Inferring edge cases
+
+While inferring the Correlation Id from the IL of `ConfigureHowToFindSaga` is possible there are many edge cases that make this approach problematic. Some of these include:
+
+ * It is possible to [map message to a complex expression](/nservicebus/sagas/message-correlation.md#message-property-expression). This greatly increased the complexity of accurately determining the Correlation Id due to the higher complexity of the resultant IL.
+ * The implementation of `ConfigureHowToFindSaga` means it is evaluated at run time. So it supports branching logic, performing mapping in helper methods, and mapping in various combinations of base classes and child classes. Use of any of these would prevent determining the Correlation Id from the IL.
+ * Mapping performed in another assembly. If the mapping is performed in a helper method or base class, and that implementation exists in another assembly, then this would negatively effect build times due to the necessity of loading and parsing the IL for those assemblies.
+
+
+### Attribute required for other purposes
+
+It is likely a consumer of the persister will need to use the `[SqlSagaAttribute]` configurations options other than Correlation Id. For example to control the [table name for a saga](/nservicebus/sql-persistence/saga.md#table-structure-table-name). Given this likelihood, the argument for avoiding the necessity of an attribute is diminished.
+
+
 ## Table Structure
 
 
