@@ -18,6 +18,7 @@ The sample demonstrates how the NServiceBus extension points API can be used to 
 
 NOTE: A Service Fabric cluster runs under the Network Service account and only reads system environment variables. Make sure the environment variable "AzureServiceBus.ConnectionString" is defined as a system environment variable and not user-scoped.
 
+NOTE: All services hosted inside Service Fabric custer log diagnostic information using [Event Tracing for Windows] (https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally). In most of the cases no action is required to see application logs, however in some cases it might be necessary to add `MyCompany-ServiceFabricRouting-ZipCodeVoteCount` to the list of know [ETW providers](http://stackoverflow.com/a/35347603/2672802). 
 
 ## Scenario
 
