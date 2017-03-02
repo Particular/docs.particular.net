@@ -19,10 +19,12 @@ class RoutingInfoCommunicator :
     {
         this.dataAccess = dataAccess;
         circuitBreaker = new RepeatedFailuresOverTimeCircuitBreaker(
-            "Refresh",
-            TimeSpan.FromMinutes(2),
-            ex => criticalError.Raise("Failed to refresh routing info.", ex)
-            );
+            name: "Refresh",
+            timeToWaitBeforeTriggering: TimeSpan.FromMinutes(2),
+            triggerAction: exception =>
+            {
+                criticalError.Raise("Failed to refresh routing info.", exception);
+            });
     }
 
     public Func<Entry, Task> Changed = entry => Task.CompletedTask;
@@ -30,19 +32,27 @@ class RoutingInfoCommunicator :
 
     protected override Task OnStart(IMessageSession messageSession)
     {
-        timer = new Timer(state =>
-        {
-            Refresh()
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
-        }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+        timer = new Timer(
+            callback: state =>
+            {
+                Refresh()
+                    .ConfigureAwait(false)
+                    .GetAwaiter()
+                    .GetResult();
+            },
+            state: null,
+            dueTime: TimeSpan.Zero,
+            period: TimeSpan.FromSeconds(5));
         return Task.CompletedTask;
     }
 
     async Task Refresh()
     {
-        if (refreshingRoutingInfo) return; // Makes sure no overlap in refresh intervals
+        // Makes sure no overlap in refresh intervals
+        if (refreshingRoutingInfo)
+        {
+            return;
+        }
 
         try
         {
@@ -77,9 +87,10 @@ class RoutingInfoCommunicator :
             }
             circuitBreaker.Success();
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-            await circuitBreaker.Failure(ex);
+            await circuitBreaker.Failure(exception)
+                .ConfigureAwait(false);
         }
         finally
         {

@@ -3,7 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus.Logging;
 
-class RepeatedFailuresOverTimeCircuitBreaker : IDisposable, ICircuitBreaker
+class RepeatedFailuresOverTimeCircuitBreaker :
+    IDisposable,
+    ICircuitBreaker
 {
     public RepeatedFailuresOverTimeCircuitBreaker(string name, TimeSpan timeToWaitBeforeTriggering, Action<Exception> triggerAction)
     {
@@ -24,7 +26,7 @@ class RepeatedFailuresOverTimeCircuitBreaker : IDisposable, ICircuitBreaker
         }
 
         timer.Change(Timeout.Infinite, Timeout.Infinite);
-        Logger.InfoFormat("The circuit breaker for {0} is now disarmed", name);
+        log.InfoFormat("The circuit breaker for {0} is now disarmed", name);
     }
 
     public Task Failure(Exception exception)
@@ -35,7 +37,7 @@ class RepeatedFailuresOverTimeCircuitBreaker : IDisposable, ICircuitBreaker
         if (newValue == 1)
         {
             timer.Change(timeToWaitBeforeTriggering, NoPeriodicTriggering);
-            Logger.WarnFormat("The circuit breaker for {0} is now in the armed state", name);
+            log.WarnFormat("The circuit breaker for {0} is now in the armed state", name);
         }
 
         return Task.Delay(TimeSpan.FromSeconds(1));
@@ -50,7 +52,7 @@ class RepeatedFailuresOverTimeCircuitBreaker : IDisposable, ICircuitBreaker
     {
         if (Interlocked.Read(ref failureCount) > 0)
         {
-            Logger.WarnFormat("The circuit breaker for {0} will now be triggered", name);
+            log.WarnFormat("The circuit breaker for {0} will now be triggered", name);
             triggerAction(lastException);
         }
     }
@@ -64,5 +66,5 @@ class RepeatedFailuresOverTimeCircuitBreaker : IDisposable, ICircuitBreaker
     Action<Exception> triggerAction;
 
     static TimeSpan NoPeriodicTriggering = TimeSpan.FromMilliseconds(-1);
-    static ILog Logger = LogManager.GetLogger<RepeatedFailuresOverTimeCircuitBreaker>();
+    static ILog log = LogManager.GetLogger<RepeatedFailuresOverTimeCircuitBreaker>();
 }

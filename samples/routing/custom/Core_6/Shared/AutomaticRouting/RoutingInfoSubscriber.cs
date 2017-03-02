@@ -41,16 +41,20 @@ class RoutingInfoSubscriber :
     protected override Task OnStart(IMessageSession context)
     {
         messageSession = context;
-        sweepTimer = new Timer(state =>
-        {
-            foreach (var info in instanceInformation)
+        sweepTimer = new Timer(
+            callback: state =>
             {
-                if (!info.Value.Sweep(DateTime.UtcNow, heartbeatTimeout))
+                foreach (var info in instanceInformation)
                 {
-                    log.Info($"Instance {info.Key} deactivated (heartbeat timeout).");
+                    if (!info.Value.Sweep(DateTime.UtcNow, heartbeatTimeout))
+                    {
+                        log.Info($"Instance {info.Key} deactivated (heartbeat timeout).");
+                    }
                 }
-            }
-        }, null, sweepPeriod + sweepPeriod, sweepPeriod);
+            },
+            state: null,
+            dueTime: sweepPeriod + sweepPeriod,
+            period: sweepPeriod);
         return Task.CompletedTask;
     }
 
@@ -123,6 +127,7 @@ class RoutingInfoSubscriber :
         var toSubscribe = LogChangesToPublisherMap(publisherMap, newPublisherMap).ToArray();
 
         #region AddOrReplace
+
         routingTable.AddOrReplaceRoutes("AutomaticRouting", newEndpointMap.Select(
             x => new RouteTableEntry(x.Key, UnicastRoute.CreateFromEndpointName(x.Value))).ToList());
 
@@ -130,6 +135,7 @@ class RoutingInfoSubscriber :
             x => new PublisherTableEntry(x.Key, PublisherAddress.CreateFromEndpointName(x.Value))).ToList());
 
         endpointInstances.AddOrReplaceInstances("AutomaticRouting", newInstanceMap.SelectMany(x => x.Value).ToList());
+
         #endregion
 
         instanceMap = newInstanceMap;

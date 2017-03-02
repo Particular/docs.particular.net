@@ -5,10 +5,10 @@ component: Core
 reviewed: 2016-10-26
 tags:
 - Routing
-redirects:
 ---
 
 The sample demonstrates how NServiceBus routing model can be extended to allow for configuration-free routing with MSMQ transport. It does so by making endpoint instances publish metadata information about themselves:
+
  * identity - logical name and physical address;
  * handled messages;
  * published events.
@@ -63,6 +63,7 @@ This sample contains four applications that use configuration-free custom routin
 snippet:EnableAutomaticRouting
 
 NOTE: In order to use this custom routing all published types need to be specified.
+
 
 ### Client
 
@@ -134,6 +135,7 @@ RI -up-> S2_S
 ![Automatic routing design](design.png)
 
 The following information is required by this automatic routing implementation:
+
  * Mapping command types to their logical destinations.
  * Mapping event types to their respective logical publishers.
  * Mapping logical endpoints to their physical instances.
