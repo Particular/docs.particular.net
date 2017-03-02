@@ -12,10 +12,17 @@ class RoutingInfoCommunicator :
     Dictionary<string, Entry> cache = new Dictionary<string, Entry>();
     SqlDataAccess dataAccess;
     Timer timer;
+    ICircuitBreaker circuitBreaker;
+    bool refreshingRoutingInfo;
 
-    public RoutingInfoCommunicator(SqlDataAccess dataAccess)
+    public RoutingInfoCommunicator(SqlDataAccess dataAccess, CriticalError criticalError)
     {
         this.dataAccess = dataAccess;
+        circuitBreaker = new RepeatedFailuresOverTimeCircuitBreaker(
+            "Refresh",
+            TimeSpan.FromMinutes(2),
+            ex => criticalError.Raise("Failed to refresh routing info.", ex)
+            );
     }
 
     public Func<Entry, Task> Changed = entry => Task.CompletedTask;
@@ -35,32 +42,48 @@ class RoutingInfoCommunicator :
 
     async Task Refresh()
     {
-        var addedOrUpdated = new List<Entry>();
-        var results = await dataAccess.Query()
-            .ConfigureAwait(false);
-        var removed = cache.Values
-            .Where(x => results.All(r => r.Publisher != x.Publisher))
-            .ToArray();
-        foreach (var entry in results)
+        if (refreshingRoutingInfo) return; // Makes sure no overlap in refresh intervals
+
+        try
         {
-            Entry oldEntry;
-            var key = entry.Publisher;
-            if (!cache.TryGetValue(key, out oldEntry) || oldEntry.Data != entry.Data)
+            refreshingRoutingInfo = true;
+
+            var addedOrUpdated = new List<Entry>();
+            var results = await dataAccess.Query()
+                .ConfigureAwait(false);
+            var removed = cache.Values
+                .Where(x => results.All(r => r.Publisher != x.Publisher))
+                .ToArray();
+            foreach (var entry in results)
             {
-                cache[key] = entry;
-                addedOrUpdated.Add(entry);
+                Entry oldEntry;
+                var key = entry.Publisher;
+                if (!cache.TryGetValue(key, out oldEntry) || oldEntry.Data != entry.Data)
+                {
+                    cache[key] = entry;
+                    addedOrUpdated.Add(entry);
+                }
             }
+            foreach (var change in addedOrUpdated)
+            {
+                await Changed(change)
+                    .ConfigureAwait(false);
+            }
+            foreach (var entry in removed)
+            {
+                cache.Remove(entry.Publisher);
+                await Removed(entry)
+                    .ConfigureAwait(false);
+            }
+            circuitBreaker.Success();
         }
-        foreach (var change in addedOrUpdated)
+        catch (Exception ex)
         {
-            await Changed(change)
-                .ConfigureAwait(false);
+            await circuitBreaker.Failure(ex);
         }
-        foreach (var entry in removed)
+        finally
         {
-            cache.Remove(entry.Publisher);
-            await Removed(entry)
-                .ConfigureAwait(false);
+            refreshingRoutingInfo = false;
         }
     }
 
