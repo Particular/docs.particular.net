@@ -13,11 +13,11 @@ In Versions 4.3 and above, the RabbitMQ transport no longer relies on the [timeo
 
 When an endpoint is started, the transport declares a set of topic exchanges, queues, and bindings that work together to provide the necessary infrastructure to support delayed messages. Exchanges and queues are grouped to provide 28 delay levels. There is one final delivery exchange in addition to the delay-level exchanges. When a message needs to be delayed, the value of the desired delay is first converted to seconds. The binary representation of this value is used as part of the routing key when the message is sent to the delay-level exchanges. The full routing key has the following format:
 
-```
+```no-highlight
 N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.destination
 ```
 
-Where 'N' is either `0` or `1`, representing the delay value in binary, and "destination" is the name of endpoint the delayed message will be sent to.
+Where `N` is either `0` or `1`, representing the delay value in binary, and `destination` is the name of endpoint the delayed message will be sent to.
 
 
 ### Delay levels
@@ -65,7 +65,7 @@ Using a simplified version of the delay infrastructure that has 4 delay levels (
  1. The level 1 bit of the routing key is `0`, so the message is routed to the level 0 exchange. (0.1.**0**.1.destination)
  1. The level 0 bit of the routing key is `1`, so the message is delivered to the level 0 queue. (0.1.0.**1**.destination)
  1. After 1 second, the message expires and is routed to the delivery exchange.
- 1. The final portion of routing key is `destination`, so the message is delivered to the endpoint's queue. (0.1.0.1.**destination**)
+ 1. The last part of the routing key is `destination`, so the message is delivered to the endpoint. (0.1.0.1.**destination**)
 
 ```mermaid
 graph LR
@@ -124,7 +124,7 @@ snippet: rabbitmq-delay-disable-timeout-manager
 At this point, the `.Timeouts` and `.TimeoutsDispatcher` exchanges and queues for the endpoint can be deleted from the broker. In addition, the endpoint no longer requires timeout persistence.
 
 
-### Removing sending overhead
+### Removing the sending overhead
 
 Once all endpoints have been upgraded to a version of the transport that supports delayed delivery natively, the extra overheard in sending a delayed message in a backwards-compatible manner can be removed by calling the following on each endpoint:
 
