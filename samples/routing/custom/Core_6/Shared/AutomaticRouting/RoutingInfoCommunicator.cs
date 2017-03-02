@@ -5,16 +5,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
-using NServiceBus.Logging;
 
 class RoutingInfoCommunicator :
     FeatureStartupTask
 {
-    ILog log = LogManager.GetLogger<RoutingInfoCommunicator>();
     Dictionary<string, Entry> cache = new Dictionary<string, Entry>();
     SqlDataAccess dataAccess;
     Timer timer;
     ICircuitBreaker circuitBreaker;
+    bool refreshingRoutingInfo;
 
     public RoutingInfoCommunicator(SqlDataAccess dataAccess, CriticalError criticalError)
     {
@@ -43,8 +42,12 @@ class RoutingInfoCommunicator :
 
     async Task Refresh()
     {
+        if (refreshingRoutingInfo) return; // Makes sure no overlap in refresh intervals
+
         try
         {
+            refreshingRoutingInfo = true;
+
             var addedOrUpdated = new List<Entry>();
             var results = await dataAccess.Query()
                 .ConfigureAwait(false);
@@ -77,6 +80,10 @@ class RoutingInfoCommunicator :
         catch (Exception ex)
         {
             await circuitBreaker.Failure(ex);
+        }
+        finally
+        {
+            refreshingRoutingInfo = false;
         }
     }
 
