@@ -93,7 +93,7 @@ It is likely a consumer of the persister will need to use the `[SqlSagaAttribute
 The name used for a saga table consist of two parts.
 
  * The prefix of the table name is the [Table Prefix](/nservicebus/sql-persistence/#installation-table-prefix) defined at the endpoint level.
- * The suffix of the table name is **either** the saga [Type.Name](https://msdn.microsoft.com/en-us/library/system.type.name.aspx) **or** the Table Suffix defined in the `[SqlSagaAttribute]`.
+ * The suffix of the table name is **either** the saga [Type.Name](https://msdn.microsoft.com/en-us/library/system.type.name.aspx) **or**, if defined, the Table Suffix from the `[SqlSagaAttribute]`.
 
 snippet: tableSuffix
 
