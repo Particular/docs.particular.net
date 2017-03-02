@@ -31,7 +31,9 @@ class AutomaticRoutingFeature :
         // Create the infrastructure
         var dataAccess = new SqlDataAccess(uniqueKey, connectionString);
 
-        context.RegisterStartupTask(builder => new RoutingInfoCommunicator(dataAccess, builder.Build<CriticalError>()));
+        context.Container.ConfigureComponent(builder => new RoutingInfoCommunicator(dataAccess, builder.Build<CriticalError>()), DependencyLifecycle.SingleInstance);
+
+        context.RegisterStartupTask(builder => builder.Build<RoutingInfoCommunicator>());
 
         // Register the routing info publisher
         context.RegisterStartupTask(builder =>
