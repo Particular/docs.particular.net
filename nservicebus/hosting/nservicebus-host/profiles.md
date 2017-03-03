@@ -100,6 +100,8 @@ Refer to the [Logging configuration](/nservicebus/hosting/nservicebus-host/loggi
 
 ## Persistence
 
+Note: In Versions 6 and above persistence has to be explicitly configured.
+
 The built-in profiles use the following default persistence settings:
 
 | -              | Lite     | Integration             | Production              |
