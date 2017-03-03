@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using NServiceBus;
@@ -22,7 +23,7 @@ class CustomEnvelopeUnwrapper
                 //try deserialize to a NServiceBus envelope first
                 var wrapper = jsonSerializer.Deserialize<MessageWrapper>(textReader);
 
-                if (!string.IsNullOrEmpty(wrapper.Id))
+                if (wrapper.Id != null)
                 {
                     //this was a envelope message
                     return wrapper;
