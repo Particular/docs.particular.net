@@ -52,7 +52,7 @@ NServiceBus will find the provided behaviors for the email component at runtime 
 
 In some situations profile behavior implementation might depend on the endpoint configuration. 
 
-For example, NServiceBus Host uses this information to configure publishers. Endpoints that don't publish messages don't need to have any subscription storage. Endpoints that are publishers should use storage that can be specified either in the profile or endpoint configuration, but typically it is provided in the endpoint configuration. The Lite profile configures an in memory subscription storage, but the Integration and Production profiles should use configuration specified in the endpoint configuration, such as RavenDB or NHibernate.
+For example, NServiceBus Host uses this information to configure publishers. Endpoints that don't publish messages don't need to have any subscription storage. The Lite profile configures an in-memory subscription storage, but the Integration and Production profiles should use configuration specified in the endpoint configuration, such as RavenDB or NHibernate.
 
 Endpoint's configuration can be accessed to customize profile behaviors in the following way:
 
