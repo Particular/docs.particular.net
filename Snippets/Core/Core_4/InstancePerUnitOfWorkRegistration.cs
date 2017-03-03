@@ -11,7 +11,7 @@
             #region InstancePerUnitOfWorkRegistration
 
             var configureComponents = configuration.Configurer;
-            configureComponents.ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerCall);
+            configureComponents.ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerUnitOfWork);
 
             #endregion
         }
