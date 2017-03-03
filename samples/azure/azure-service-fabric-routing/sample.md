@@ -7,9 +7,9 @@ related:
 - nservicebus/azure-service-bus
 ---
 
-WARNING: This sample currently makes use of a pre-release version of NServiceBus, 6.2.
+WARNING: This sample currently makes use of a pre-release version of NServiceBus 6.2.
 
-The sample demonstrates how the NServiceBus extension points API can be used to implement partition aware routing for services hosted inside a Service Fabric cluster. It takes advantage of [routing system extensibility points](/nservicebus/messaging/routing-extensibility.md) and [custom pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) to support various types of NServiceBus communication patterns. It is assumed that the NServiceBus users are able to define mapping between message type and service partition for each command and event. It is also assumed that `send local`, `timeout` and `reply` messages are partition affine i.e. should be processed in the context of originating partition. The sample consists of services hosted inside Service Fabric as well as outside of the cluster and enables proper communication between the two.
+The sample demonstrates how the NServiceBus API can be used to implement partition aware routing for services hosted inside a Service Fabric cluster. It takes advantage of [routing system extensibility points](/nservicebus/messaging/routing-extensibility.md) and [custom pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) to support various types of NServiceBus communication patterns. It is assumed that the NServiceBus users are able to define mapping between message type and service partition for each message. It is also assumed that `send local`, `timeout` and `reply` messages are partition affine i.e. should be processed in the context of originating partition. The sample consists of services hosted inside and outside the Service Fabric and enables proper communication between the two.
 
 ## Prerequisites
 
@@ -20,11 +20,11 @@ The sample demonstrates how the NServiceBus extension points API can be used to 
 
 NOTE: A Service Fabric cluster runs under the Network Service account and only reads system environment variables. Make sure the environment variable "AzureServiceBus.ConnectionString" is defined as a system environment variable and not user-scoped.
 
-NOTE: This sample makes use of Service Fabric's recommended instrumentation technology [Event Tracing for Windows] (https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally) (ETW) to provide sample output from the services running within the Service Fabric cluster. If you do not see sample diagnostic messages in the Visual Studio Diagnostic Events window it may be necessary to add `MyCompany-ServiceFabricRouting-ZipCodeVoteCount` to the list of known [ETW providers](http://stackoverflow.com/a/35347603/2672802).
+NOTE: This sample makes use of Service Fabric's recommended instrumentation technology [Event Tracing for Windows](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally) (ETW) to provide sample output from the services running within the Service Fabric cluster. If you do not see sample diagnostic messages in the Visual Studio Diagnostic Events window it may be necessary to add `MyCompany-ServiceFabricRouting-ZipCodeVoteCount` and `MyCompany-ServiceFabricRouting-CandidateVoteCount` to the list of known [ETW providers](http://stackoverflow.com/a/35347603/2672802).
 
 ## Scenario
 
-The scenario used in this sample covers a voting system. In this voting system the cast votes are counted by candidate. The endpoint responsible for counting candidate votes is subscribed to an event `published` when votes are cast.
+The scenario used in this sample covers a voting system. In this voting system the cast votes are counted by candidate. The endpoint responsible for counting candidate votes is subscribed to an event published when votes are cast.
 
 Next to this the system also counts the total number of votes cast in each zip code. In order to achieve this the candidate voting endpoint issues a `request` to the zip code counting endpoint to track the zip code. The zip code counting endpoint will `reply` back with the intermediary results.
 
@@ -36,7 +36,7 @@ The sample assumes that:
     * There are only 2 candidates in the election, called "John" and "Abby",
     * Zip codes are integers in the range of 0 to 99000. 
     
-This simplifies partition id value calculation, in a real world scenario a hash function could be used to perform mapping from arbitrary input types.
+This simplifies partition id value calculation. In a real world scenario a hash function could be used to perform mapping from arbitrary input types.
 
 ```mermaid
 sequenceDiagram
@@ -136,7 +136,7 @@ If the `partition-key` header does not exist, the pipeline execution continues t
 
 ### Message body inspection
 
-If the messages `partition-key` header has not been set, then the message body is used to determine the partition key value. The `DistributeMessagesBasedOnPayload` behavior determines the partition value using the mapping function provided via the configuration API. The mapping function inspects the message data and returns the appropriate partition key value for the message. The inspection logic can raise a `PartitionMappingFailedException` exception if the partition key for the endpoint cannot be determined. For a partition key that is not local, the message is forwarded to the appropriate partition. 
+If the messages' `partition-key` header has not been set, then the message body is used to determine the partition key value. The `DistributeMessagesBasedOnPayload` behavior determines the partition value using the mapping function provided via the configuration API. The mapping function inspects the message data and returns the appropriate partition key value for the message. The inspection logic can raise a `PartitionMappingFailedException` exception if the partition key for the endpoint cannot be determined. For a partition key that is not local, the message is forwarded to the appropriate partition. 
 
 Once the partition key value has been determined, the forwarding/processing decision is made in the same way as in the *Header inspection* step.
 
@@ -148,7 +148,7 @@ When an endpoint instance receives a control message representing either the [Su
 
 ### Configuration
 
-To enable Receiver Side Distribution for a specific endpoint:
+To enable Receiver Side Distribution for a specific endpoint provide:
 - Endpoint discriminators that are based on Service Fabric partition keys 
 - Mapping function per incoming message type that maps incoming messages to a partition key
 
@@ -160,7 +160,7 @@ snippet: ConfigureReceiverSideDistribution-CandidateVoteCount
 
 Receiver Side Distribution addresses forwarding messages that arrive to the incorrect partition. Forwarding received messages introduces some overhead though. To remove the overhead on the receiver side the Sender Side Distribution approach can be used to distribute messages to the correct endpoint instances based on Service Fabric partitioning information.
 
-Sender Side Distribution can be applied to endpoints hosted inside Service Fabric by using the partition information of the stateful services. This is suitable for endpoints hosted inside the cluster that need to send messages to other endpoints hosted in the cluster. For the endpoints hosted outside of the cluster access to Service Fabric APIs is not possible. Instead, partitioning information has to be provided by the developer.
+Sender Side Distribution can be applied to endpoints hosted inside Service Fabric by using the partition information of the stateful services. This is suitable for endpoints hosted inside the cluster that need to send messages to other endpoints hosted in the cluster. For endpoints hosted outside of the cluster access to Service Fabric APIs is not required and partitioning information can simply be provided by the developer.
 
 The Sender Side Distribution works in the following way:
 
@@ -174,7 +174,7 @@ The Sender Side Distribution feature adds a [custom distribution strategy](/nser
 
 ### Configuration
 
-Sender Side Distribution is configured by providing partition information for a given endpoint and ensuring each of these partitions are uniquely addressable on the sender side. In addition a mapping function is required for each message type which can inspect the message data and determine the correct partition key for the message.
+Sender Side Distribution is configured by providing partition information for a given endpoint and ensuring each of these partitions are uniquely addressable on the sender side. In addition, a mapping function is required for each message type which can inspect the message data and determine the correct partition key for the message.
 
 Example of configuring Sender Side Distribution on an endpoint external to the Service Fabric cluster sending to a Partitioned Endpoint in the cluster using named partitioning:
 
