@@ -100,12 +100,6 @@ Refer to the [Logging configuration](/nservicebus/hosting/nservicebus-host/loggi
 
 ## Persistence
 
-When using the Host out of the box, it is possible to utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, it is possible override the configured defaults.
-
-The following table summarizes the different persistence technologies being used by the built-in profiles.
-
-NOTE: Before configuring persistence technology, to avoid overriding custom configurations, the profiles check if other types of storage are used.
-
 The built-in profiles use the following default persistence settings:
 
 | -              | Lite     | Integration             | Production              |
