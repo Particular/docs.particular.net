@@ -77,6 +77,8 @@ snippet:AuditWithCode
 
 ### Using app.config
 
+include: configurationWarning
+
 snippet:configureAuditUsingXml
 
 Note: `OverrideTimeToBeReceived` needs to be a valid [TimeSpan](https://msdn.microsoft.com/en-us/library/system.timespan.aspx).

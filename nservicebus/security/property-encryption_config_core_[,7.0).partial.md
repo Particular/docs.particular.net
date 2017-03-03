@@ -1,6 +1,8 @@
 
 ### Via App.config
 
+include: configurationWarning
+
 The encryption key can be defined in the `app.config`.
 
 snippet: EncryptionFromAppConfig

@@ -26,6 +26,7 @@ Error queue address can be configured in several ways.
 
 partial:ErrorWithCode
 
+include: configurationWarning
 
 ### Using a IConfigurationProvider
 
