@@ -20,6 +20,7 @@ There are several ways to customize this pipeline with varying levels of complex
  * [Steps, Stages and Connectors](/nservicebus/pipeline/steps-stages-connectors.md)
  * [Message Mutators](/nservicebus/pipeline/message-mutators.md)
  * [Aborting the Pipeline](/nservicebus/pipeline/aborting.md)
+ * [Reacting to pipeline events](/nservicebus/pipeline/events.md)
 
 ### Features build on the pipeline
 
