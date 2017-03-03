@@ -14,7 +14,7 @@ related:
 
 ## Defining events
 
-The messages needs to be declared as an event before it can be published. That can be done in two ways: using marker interfaces or message conventions.
+The messages needs to be declared as an event before they can be published. That can be done with marker interfaces or using message conventions.
 
 
 ### Via a Marker interface
@@ -33,6 +33,8 @@ snippet:EventWithConvention
 can be declared as an event using the following convention:
 
 snippet:DefiningEventsAs
+
+Learn more about [conventions](/nservicebus/messaging/conventions.md) and [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md).
 
 
 ## Handling an event
@@ -61,16 +63,10 @@ There are a few common scenarios for publishing events. Events might be publishe
 
 ## Events as Classes or Interfaces
 
-Events can be either classes or interfaces.  Since interfaces cannot be constructed there are slightly different semantics for publishing each.
-
-
-### Publish a class
-
-snippet:InstancePublish
-
-
-### Publish an interface
-
-If using interfaces to define event contracts set the message properties by passing in a lambda. NServiceBus will then generate a proxy and set those properties.
+NServiceBus messages can be implemented either as classes or [interfaces](/nservicebus/messaging/messages-as-interfaces.md). Since interfaces cannot be instantiated directly, use the following API to send events implemented as interfaces:
 
 snippet:InterfacePublish
+
+NServiceBus will then generate a proxy, set properties and send the message. It's equivalent of the following call:
+
+snippet:InstancePublish
