@@ -27,6 +27,6 @@ To customize logging for a given profile, create a class implementing `IConfigur
 
 snippet:LoggingConfigWithProfile
 
-NOTE: It is possible have one class configure logging for multiple profile types. However, it is not possible to have logging configuration for a single profile defined in multiple classes.
+NOTE: One class can configure logging for multiple profile types. However, it is not possible to spread logging configuration for a single profile across multiple classes.
 
 The host's [profiles](/nservicebus/hosting/nservicebus-host/profiles.md) mechanism can be used to specify different logging levels (`DEBUG`, `WARN`, etc.) or targets (`CONSOLE`, `FILE`, etc.).
