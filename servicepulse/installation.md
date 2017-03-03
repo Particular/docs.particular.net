@@ -55,4 +55,4 @@ NOTE: ServiceControl consumes messages from the Audit queue and stores it tempor
 
 ServicePulse will check the current licensing status by querying the ServiceControl API, located by default at `http://localhost:33333/api`. Therefore, if ServicePulse indicates that the license is invalid or has expired, then the license must be updated in ServiceControl. 
 
-See also [NServiceBus Licensing](/nservicebus/licensing/) or [licensing ServiceControl](/servicecontrol/license/) for adding a license using the ServiceControl Management Utility.
+See also [NServiceBus Licensing](/nservicebus/licensing/) or [licensing ServiceControl](/servicecontrol/license/) for adding a license using the ServiceControl Management app.

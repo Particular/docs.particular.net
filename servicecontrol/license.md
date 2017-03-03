@@ -10,7 +10,7 @@ The following options outline how to add a license to ServiceControl.
 
 ## ServiceControl Management app
 
-ServiceControl has a license graphical user interface which can be accessed in the ServiceControl Management app. The app is intalled together with ServiceControl and can be found in the Windows Start Menu.
+ServiceControl has a license graphical user interface which can be accessed in the ServiceControl Management app. The app is installed together with ServiceControl and can be found in the Windows Start Menu.
 
 
 The app will import the designated license file into the registry. The license file is added to the `HKEY_LOCAL_MACHINE` registry hive so it is available to all instances of ServiceControl regardless of the service account used.
