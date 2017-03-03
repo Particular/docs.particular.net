@@ -41,13 +41,9 @@ public class EndpointCommunicationListener :
 
     static void ConfigureLocalPartitionsCandidateVoteCount(EndpointConfiguration endpointConfiguration, PartitionsInformation partitionInfo)
     {
-        #region ConfigureLocalPartitions-CandidateVoteCount
-
         endpointConfiguration.RegisterPartitionsForThisEndpoint(
             localPartitionKey: partitionInfo.LocalPartitionKey,
             allPartitionKeys: partitionInfo.Partitions);
-
-        #endregion
     }
 
     static void ConfigureReceiverSideDistributionCandidateVoteCount(TransportExtensions<AzureServiceBusTransport> transportConfig, PartitionsInformation partitionInfo)
