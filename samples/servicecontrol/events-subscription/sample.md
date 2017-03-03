@@ -14,7 +14,7 @@ related:
 ## Prerequisistes
 
  1. [Install ServiceControl](/servicecontrol/installation.md).
- 1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management) tool, set up ServiceControl to monitor endpoints using MSMQ transport.
+ 1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using MSMQ transport.
  1. Ensure the `ServiceControl` process is running before running the sample. 
 
 
