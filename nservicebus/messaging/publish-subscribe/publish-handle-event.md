@@ -50,15 +50,15 @@ There are a few common scenarios for publishing events. Events might be publishe
 
 - from a **handler**, when processing another message.
 
-   snippet:publishFromHandler
+snippet:publishFromHandler
 
 - from a **saga handler**, when processing another message.
 
-   snippet:publishFromSaga
+snippet:publishFromSaga
 
 - at endpoint startup
 
-   snippet:publishAtStartup
+snippet:publishAtStartup
 
 
 ## Events as Classes or Interfaces
