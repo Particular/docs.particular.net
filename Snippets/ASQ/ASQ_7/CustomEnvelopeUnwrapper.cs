@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using NServiceBus;
@@ -10,7 +9,7 @@ class CustomEnvelopeUnwrapper
 
     CustomEnvelopeUnwrapper(EndpointConfiguration endpointConfiguration)
     {
-        #region CustomEnvelopeUnwrapper
+        #region CustomEnvelopeUnwrapper 7.1
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
 
