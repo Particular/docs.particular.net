@@ -51,6 +51,9 @@ The DISM command line equivalent is:
 DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server
 ```
 
+## MSMQ Machine name limitation
+
+For MSMQ to function properly, [the server name should be 15 characters or less](http://geekswithblogs.net/Plumbersmate/archive/2012/02/03/make-sure-computer-names-are-15-characters-or-less-fro.aspx). This is because of [NETBIOS limitation](https://support.microsoft.com/en-us/help/163409/netbios-suffixes-16th-character-of-the-netbios-name). Having a longer machine name may result in MSMQ not functioning properly. 
 
 ## MSMQ clustering
 
@@ -62,3 +65,7 @@ So downtime is proportional to the time taken for the MSMQ service to restart on
 ## Remote Queues
 
 Remote queues are not supported for MSMQ as this conflicts with the Distributed Bus architectural style that is predicated on consents of durability, autonomy and avoiding a single point of failure. For scenarios where a Broker Bus style architecture is required use transports like [Sql Server](/nservicebus/sqlserver/) and [RabbitMQ](/nservicebus/rabbitmq/).
+
+## Public Queues
+
+Although MSMQ has the concept of both [Public and Private queues](https://technet.microsoft.com/en-us/library/cc753440.aspx), NServiceBus only supports private queues and uses the private queue addressing scheme for all its routing. Public queues require Active Directory and is not supported. Installing MSMQ with Active Directory may in some cases interfere with the addressing scheme when sending messages and for this reason it is recommended to not include Active Directory when installing MSMQ.     
