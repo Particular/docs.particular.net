@@ -1,12 +1,14 @@
 ﻿using NServiceBus.Persistence.Sql;
 
 #region AllSqlScripts
-[assembly: SqlPersistenceSettings]
+[assembly: SqlPersistenceSettings(
+    msSqlServerScripts: true,
+    mySqlScripts: true)]
 #endregion
 /**
 
 #region SqlServerScripts
-[assembly: SqlPersistenceSettings(msSqlServerScripts:true)]
+[assembly: SqlPersistenceSettings(msSqlServerScripts: true)]
 #endregion
     
 #region MySqlScripts
