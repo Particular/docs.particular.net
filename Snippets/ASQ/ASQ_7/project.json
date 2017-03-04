@@ -2,7 +2,7 @@
   "dependencies": {
     "NServiceBus.Azure.Transports.WindowsAzureStorageQueues": "7.*",
     "NServiceBus.Host": "7.*",
-    "WindowsAzure.Storage": "8.1.1"
+    "WindowsAzure.Storage": "8.*"
   },
   "frameworks": {
     "net461": {}
