@@ -57,6 +57,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderLifecycleSaga.cs" />
     <Compile Include="OrderLifecycleSagaData.cs" />
