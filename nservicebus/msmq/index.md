@@ -64,8 +64,9 @@ So downtime is proportional to the time taken for the MSMQ service to restart on
 
 ## Remote Queues
 
-Remote queues are not supported for MSMQ as this conflicts with the Distributed Bus architectural style that is predicated on consents of durability, autonomy and avoiding a single point of failure. For scenarios where a Broker Bus style architecture is required use transports like [Sql Server](/nservicebus/sqlserver/) and [RabbitMQ](/nservicebus/rabbitmq/).
+Remote queues are not supported for MSMQ as this conflicts with the Distributed Bus architectural style that is predicated on concepts of durability, autonomy and avoiding a single point of failure. For scenarios where a Broker Bus style architecture is required use transports like [Sql Server](/nservicebus/sqlserver/) and [RabbitMQ](/nservicebus/rabbitmq/).
+
 
 ## Public Queues
 
-Although MSMQ has the concept of both [Public and Private queues](https://technet.microsoft.com/en-us/library/cc753440.aspx), NServiceBus only supports private queues and uses the private queue addressing scheme for all its routing. Public queues require Active Directory and is not supported. Installing MSMQ with Active Directory may in some cases interfere with the addressing scheme when sending messages and for this reason it is recommended to not include Active Directory when installing MSMQ.     
+Although MSMQ has the concept of both [Public and Private queues](https://technet.microsoft.com/en-us/library/cc753440.aspx), Public queues require Active Directory as a pre-requisite and are also not available in a workgroup environment. Therefore, NServiceBus only supports private queues and uses the path name addressing scheme for all its routing.  Installing MSMQ with Active Directory may in some cases interfere with the addressing scheme when sending messages and for this reason, it is recommended not to include Active Directory when installing MSMQ.
