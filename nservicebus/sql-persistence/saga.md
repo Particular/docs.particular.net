@@ -97,6 +97,8 @@ The name used for a saga table consist of two parts.
 
 snippet: tableSuffix
 
+NOTE: Using [Delimited Identifiers](https://technet.microsoft.com/en-us/library/ms176027.aspx) in the TableSuffix is currently **not** supported.
+
 
 ### Columns
 

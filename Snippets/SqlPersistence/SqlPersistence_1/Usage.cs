@@ -166,6 +166,24 @@ class Usage
 
         #endregion
     }
+    void TablePrefixSchema(EndpointConfiguration endpointConfiguration)
+    {
+        #region TablePrefix_Schema
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.TablePrefix("MySchema.");
+
+        #endregion
+    }
+    void TablePrefixSchemaExtended(EndpointConfiguration endpointConfiguration)
+    {
+        #region TablePrefix_Schema_Extended
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.TablePrefix("[My Schema].");
+
+        #endregion
+    }
 
     void ExecuteScripts(string scriptDirectory, string tablePrefix)
     {

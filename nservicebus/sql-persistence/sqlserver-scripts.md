@@ -11,7 +11,7 @@ Scripts and SQL used when interacting with a [SQL Server](https://www.microsoft.
 ## Build Time
 
 Scripts created at build time and executed as part of a deployment or decommissioning of an endpoint.
- 
+
 
 ### Outbox
 
