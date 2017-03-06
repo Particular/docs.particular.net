@@ -1,22 +1,26 @@
 ---
-title: SQL Server Transport and NHibernate Persistence
-summary: Integrating SQL Server transport with NHibernate persistence without outbox.
-reviewed: 2016-03-21
+title: SQL Server Transport and SQL Persistence
+summary: Integrating SQL Server transport with SQL persistence
+reviewed: 2017-03-06
 component: SqlServer
 related:
-- nservicebus/nhibernate
+- nservicebus/sql-persistence
 - nservicebus/sqlserver
 ---
 
- 1. Make sure an instance is SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a databases `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under *security* directory in SSMS database tree).
- 1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
- 1. Start the Receiver project.
+In this sample, the SQL Server Transport is used in conjunction with SQL Persistence. The sample shows how to use the same database connection for both transport and persistence operations, and how to access the SQL connection from within a message handler to persist business objects to the database.
+
+## Procedure
+
+ 1. Make sure an instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
+ 1. Create a database named `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under the *Security* directory in the SQL Server Management Studio database tree).
+ 1. Start the Sender and Receiver projects.
  1. In the Sender's console notice the `Press <enter> to send a message` text when the app is ready.
  1. Hit <enter>.
  1. On the Receiver console notice that order was submitted.
  1. On the Sender console notice that the order was accepted.
  1. Finally, after a couple of seconds, on the Receiver console notice that the timeout message has been received.
- 1. Open SQL Server Management Studio and go to the receiver database. Verify that there is a row in saga state table (`receiver.OrderLifecycleSagaData`) and in the orders table (`receiver.Orders`)
+ 1. Open SQL Server Management Studio and go to the `shared` database. Verify that there is a row in the saga state table (`receiver.OrderLifecycleSaga`) and in the orders table (`receiver.Orders`)
 
 
 ## Code walk-through
@@ -32,7 +36,7 @@ Sender and Receiver use different schemas within one database. This creates a se
 
 ### Sender project
 
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQLServer transport with NHibernate persistence. The transport is configured to use a non-standard schema `sender` and to send messages addressed to `receiver` endpoint to a different schema.
+The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed as messages to the back-end. It is configured to use the SQL Server transport with SQL persistence. The transport is configured to use a non-standard schema `sender` and to send messages addressed to the `receiver` endpoint to a different schema.
 
 snippet:SenderConfiguration
 
@@ -43,25 +47,21 @@ snippet:SenderConnectionStrings
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use SQL Server transport with NHibernate persistence but instead of hard-coding the other endpoint's schema, it uses a convention based on the endpoint's queue name.
+The Receiver mimics a back-end system. It is also configured to use the SQL Server transport with SQL persistence, but with a different schema.
 
 snippet:ReceiverConfiguration
 
-snippet:NHibernate
-
 When the message arrives at the Receiver, a `TransactionScope` is created that encompasses
 
- * dequeuing the message
- * persisting business data using the shared session,
- * persisting saga data of `OrderLifecycleSaga` ,
- * sending the reply message and the timeout request.
+ * Dequeuing the message
+ * Accessing the shared connection and persisting business data using [Dapper](https://github.com/StackExchange/Dapper)
+ * Persisting saga data of `OrderLifecycleSaga`
+ * Sending the reply message and the timeout request
 
 snippet:Reply
 
 snippet:Timeout
 
-The shared session is managed by NServiceBus hence no need to explicitly begin a transaction or `Flush()` the session.
+The shared session is managed by NServiceBus, so there is no need to explicitly commit a transaction or dispose the connection.
 
 snippet:StoreUserData
-
-The downside of this approach is, it makes it impossible to use NHibernate's second level cache feature since it requires usage of NHibernate's transactions and letting NHibernate manage its database connections, both of which are disabled when operating in shared connection mode.
