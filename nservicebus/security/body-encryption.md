@@ -13,7 +13,7 @@ related:
 
 Message encryption leverages the pipeline to encrypt the entire serialized message body.
 
-One way of achieving this is by using a [transport message mutator](/nservicebus/pipeline/message-mutators.md#two-flavors-of-mutators-transport-messages-mutators).
+One way of achieving this is by using a [transport message mutator](/nservicebus/pipeline/message-mutators.md#transport-messages-mutators).
 
 snippet:MessageBodyEncryptor
 
