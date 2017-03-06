@@ -3,6 +3,7 @@ namespace Core6.Pipeline
     using System;
     using System.Threading.Tasks;
     using NServiceBus;
+    using NServiceBus.Features;
     using NServiceBus.Pipeline;
     using NServiceBus.Transport;
 
@@ -22,6 +23,21 @@ namespace Core6.Pipeline
             // Fork into new pipeline
             await fork(this.CreateAuditContext(message, auditAddress, context))
                 .ConfigureAwait(false);
+        }
+    }
+
+    public class FeatureReplacingExistingForkConnector :
+        Feature
+    {
+        internal FeatureReplacingExistingForkConnector()
+        {
+            EnableByDefault();
+        }
+
+        protected override void Setup(FeatureConfigurationContext context)
+        {
+            var pipeline = context.Pipeline;
+            pipeline.Replace("AuditProcessedMessage", new CustomForkConnector());
         }
     }
     #endregion

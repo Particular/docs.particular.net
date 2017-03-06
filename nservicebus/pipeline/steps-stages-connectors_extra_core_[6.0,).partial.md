@@ -1,6 +1,6 @@
 Version 6 further splits the existing pipelines into smaller composable units called *Stages* and *Connectors*. A stage is a group of steps acting on the same level of abstraction.
 
-Note: There currently is no way to provide custom Pipelines, Stages, Fork Connectors, or Stage Connectors. The existing elements can be customized. The examples below are included here for completeness.
+Note: There currently is no way to provide custom Pipelines, Stages, Fork Connectors, or Stage Connectors. Existing Stages, Fork Connectors, or Stage Connectors can be replaced but extreme caution has to be applied. Stages, Fork Connectors and Stage Connectors define the inner workings of NServiceBus core behavior. Wrongly replaced stages or connectors could lead to message loss. The examples below are included here for completeness. 
 
 
 ## Stages
