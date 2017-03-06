@@ -29,7 +29,7 @@ If either the configured NServiceBus persistence mechanism or the user data acce
 
 NOTE: If the persistence mechanisms use SQL Server 2008 or later as an underlying data store and the connection string configured for the SQL Server transport and the persistence is the same, there will be no DTC escalation as SQL Server is able to handle multiple non-overlapping connections via a local transaction.
 
-See also [Sample covering this mode of operation](/samples/sqltransport-nhpersistence/).
+See also a sample covering this mode of operation using either [SQL Persistence](/samples/sqltransport-sqlpersistence/) or [NHibernate Persistence(/samples/sqltransport-nhpersistence/).
 
 
 ### Native transactions
