@@ -8,13 +8,13 @@ namespace Sales
     public class PlaceOrderHandler :
         IHandleMessages<PlaceOrder>
     {
-        static ILog logger = LogManager.GetLogger<PlaceOrderHandler>();
+        static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
 
         #region UpdatedHandler
 
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
-            logger.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
+            log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
 
             // This is normally where some business logic would occur
 

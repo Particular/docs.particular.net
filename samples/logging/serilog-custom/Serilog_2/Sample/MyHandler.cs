@@ -8,6 +8,6 @@ public class MyHandler :
 
     public void Handle(MyMessage message)
     {
-        log.Info("Hello from MyHandler");
+        log.InfoFormat("Hello from {@Handler}", nameof(MyHandler));
     }
 }

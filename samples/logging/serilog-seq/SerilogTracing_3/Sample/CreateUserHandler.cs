@@ -5,11 +5,11 @@ using NServiceBus.Logging;
 public class CreateUserHandler :
     IHandleMessages<CreateUser>
 {
-    static ILog logger = LogManager.GetLogger(typeof(CreateUserHandler));
+    static ILog log = LogManager.GetLogger(typeof(CreateUserHandler));
 
     public Task Handle(CreateUser message, IMessageHandlerContext context)
     {
-        logger.Info("Hello from CreateUserHandler");
+        log.InfoFormat("Hello from {@Handler}", nameof(CreateUserHandler));
         return Task.FromResult(0);
     }
 }

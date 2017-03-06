@@ -8,7 +8,7 @@ namespace Core_6
     public class PlaceOrderHandler :
         IHandleMessages<PlaceOrder>
     {
-        static ILog logger = LogManager.GetLogger<PlaceOrderHandler>();
+        static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
 
 #pragma warning disable CS0162 // Unreachable code detected
 
@@ -16,7 +16,7 @@ namespace Core_6
 
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
-            logger.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
+            log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
 
             // This is normally where some business logic would occur
             throw new Exception("BOOM");
