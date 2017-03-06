@@ -44,7 +44,7 @@ In order to handle an event, implement `IHandleMessages<T>` interface in any [Ha
 
 ## Publishing an event
 
-In order to publish an event call the `Send` method from inside the event publisher. 
+In order to publish an event call the `Publish` method. 
 
 There are a few common scenarios for publishing events. Events might be published:
 
@@ -63,10 +63,10 @@ snippet:publishAtStartup
 
 ## Events as Classes or Interfaces
 
-NServiceBus messages can be implemented either as classes or [interfaces](/nservicebus/messaging/messages-as-interfaces.md). Since interfaces cannot be instantiated directly, use the following API to send events implemented as interfaces:
+NServiceBus messages can be implemented either as classes or [interfaces](/nservicebus/messaging/messages-as-interfaces.md). Since interfaces cannot be instantiated directly, use the following API to publish events implemented as interfaces:
 
 snippet:InterfacePublish
 
-NServiceBus will then generate a proxy, set properties and send the message. It's equivalent of the following call:
+When the event message is declared as an interface, NServiceBus will generate a proxy, set properties and publish the message. It's equivalent of the following call:
 
 snippet:InstancePublish
