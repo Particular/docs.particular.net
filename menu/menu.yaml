@@ -192,10 +192,10 @@
     - Url: nservicebus/messaging/publish-subscribe
       Title: Publish Subscribe
       Articles:
-      - Url: nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
-        Title: Subscription configuration
       - Url: nservicebus/messaging/publish-subscribe/publish-handle-event
         Title: Publish and Handle an Event
+      - Url: nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
+        Title: Subscription configuration
     - Url: nservicebus/messaging/headers
       Title: Message Headers
       Articles:
