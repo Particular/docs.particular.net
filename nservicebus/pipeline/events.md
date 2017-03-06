@@ -16,6 +16,10 @@ Everytime a receive pipeline is completed a `ReceivePipelineCompleted` will be r
 
 Use the following configuration code to subscribe to this event:
 
-snippet: ReceivePipelineCompletedSubscription
+snippet: ReceivePipelineCompletedSubscriptionFromEndpointConfig
+
+Subscribing from a [feature](/nservicebus/pipeline/features.md) is show below:
+
+snippet: ReceivePipelineCompletedSubscriptionFromFeature
 
 Note: A completed receive pipeline is not the same as the message being removed from the incoming queue. Infrastructure exceptions can still cause the message to be rolled back and reprocessed. See [receoverability](/nservicebus/recoverability/) for more details.
