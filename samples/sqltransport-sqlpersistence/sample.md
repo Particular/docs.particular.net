@@ -16,7 +16,8 @@ In this sample, the SQL Server Transport is used in conjunction with SQL Persist
  1. Create a database named `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under the *Security* directory in the SQL Server Management Studio database tree).
  1. Execute the **Receiver.Orders.sql** script, found in the solution root directory, against the database to create the `[receiver].[Orders]` table:
 
- snippet:OrdersTable
+ snippet:orderstable
+
 
  ## Procedure
 
