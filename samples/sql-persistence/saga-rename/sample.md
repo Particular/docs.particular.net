@@ -19,14 +19,16 @@ include: sql-persistence-prereqs
 
 This sample shows a two sagas that need to be renamed.
 
-The sagas implementations are rather contrived and their implementation exists only to illustrate the renaming of sagas.
+The sagas implementations are rather contrived and their implementation exists only to illustrate the renaming of sagas. The functionality is, for sample purposes, split between the two versions. Saga starting logic existing in one endpoint and the handling logic existing in the other endpoint.
 
 The sample consists of two Versions a single endpoint. The first version will start the sagas. The second version will handle the renaming of the sagas.
 
 
 ### Timeout Saga
 
-The timeout saga sends a timeout at startup. It will be renamed from `MyNamespace1.MyTimeoutSagaVersion1` to `MyNamespace2.MyTimeoutSagaVersion2`.
+The timeout saga sends a timeout at startup and then handles that timeout. 
+
+This Saga will be renamed from `MyNamespace1.MyTimeoutSagaVersion1` to `MyNamespace2.MyTimeoutSagaVersion2`.
 
 This scenario is necessary to illustrate how, when the timeout message is received, its header needs to be translated over the new saga name.
 
@@ -35,7 +37,10 @@ The saga type is stored in the Headers of the TimeoutData Table ([Sql Server](/n
 
 ### Reply Saga
 
-The timeout saga sends a timeout at startup. It will be renamed from `MyNamespace1.MyReplySagaVersion1` to `MyNamespace2.MyReplySagaVersion2`.
+The timeout saga sends a request at startup and then handles the response for that message. 
+
+
+This Saga will be renamed from `MyNamespace1.MyReplySagaVersion1` to `MyNamespace2.MyReplySagaVersion2`.
 
 This scenario is necessary to illustrate how, when the [reply message](/nservicebus/messaging/headers.md#saga-related-headers-replying-to-a-saga) is received, its header needs to be translated over the new saga name.
 
