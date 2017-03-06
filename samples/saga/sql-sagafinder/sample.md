@@ -1,6 +1,6 @@
 ---
-title: Sql Persistence Saga Finding Logic
-summary: Perform custom saga finding logic based on custom query logic when the Saga storage is the native Sql Persistence
+title: SQL Persistence Saga Finding Logic
+summary: Perform custom saga finding logic based on custom query logic when the Saga storage is the native SQL Persistence
 component: SqlPersistence
 reviewed: 2017-02-24
 tags:
@@ -49,7 +49,7 @@ DANGER: The current version (1.0) of the SQL Persistence has not been built with
 
 ### Saga Finder Helper
 
-This class encapsulates the saga storage conventions of the SQL Persistence and applies those conventions to generate SQL  queries and return a Saga Data instance.
+This class encapsulates the saga storage conventions of the SQL Persistence and applies those conventions to generate SQL queries and return a Saga Data instance.
 
 snippet: SqlPersistenceSagaFinder
 
