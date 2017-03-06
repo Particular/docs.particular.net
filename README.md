@@ -466,7 +466,7 @@ For example if the solution contains two endpoints and you only want to start `E
 Endpoint1\Endpoint1.csproj
 ```
 
-To apply this convention on you local clone of the docs repo use the [set startup projects linkpad script](#setstartuplinq).
+To apply this convention on your local clone of the docs repo use the [set startup projects linkpad script](#setstartuplinq).
 
 
 ### Bootstrapping a sample
