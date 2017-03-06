@@ -8,6 +8,6 @@ public class CreateUserHandler :
 
     public void Handle(CreateUser message)
     {
-        log.InfoFormat("Hello from {@Handler}", nameof(CreateUserHandler));
+        log.Info("Hello from CreateUserHandler");
     }
 }

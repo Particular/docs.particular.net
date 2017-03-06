@@ -9,7 +9,7 @@ public class MyHandler :
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Hello from {@Handler}",nameof(MyHandler));
+        log.InfoFormat("Hello from {@Handler}", nameof(MyHandler));
         return Task.CompletedTask;
     }
 }

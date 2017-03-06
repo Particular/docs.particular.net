@@ -16,7 +16,7 @@ public class CreateUserSaga :
     public void Handle(CreateUser message)
     {
         Data.UserName = message.UserName;
-        log.InfoFormat("User Created {@UserName}", message.UserName);
+        log.Info($"User Created {message.UserName}");
         var userCreated = new UserCreated
         {
             UserName = message.UserName
