@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
+using NServiceBus.Serilog;
 using NServiceBus.Serilog.Tracing;
 using Serilog;
 
@@ -19,6 +21,8 @@ static class Program
             .WriteTo.Seq("http://localhost:5341")
             .MinimumLevel.Information()
             .CreateLogger();
+        var serilogFactory = LogManager.Use<SerilogFactory>();
+        serilogFactory.WithLogger(tracingLog);
         #endregion
 
         #region UseConfig

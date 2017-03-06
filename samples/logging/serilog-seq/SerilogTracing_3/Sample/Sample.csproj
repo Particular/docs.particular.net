@@ -31,6 +31,10 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.1.3\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NServiceBus.Serilog, Version=3.0.1.0, Culture=neutral, PublicKeyToken=ce8ec7717ba6fbb6, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Serilog.3.0.1\Lib\NET452\NServiceBus.Serilog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NServiceBus.Serilog.Tracing, Version=3.0.1.0, Culture=neutral, PublicKeyToken=ce8ec7717ba6fbb6, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Serilog.Tracing.3.0.1\lib\NET45\NServiceBus.Serilog.Tracing.dll</HintPath>
       <Private>True</Private>

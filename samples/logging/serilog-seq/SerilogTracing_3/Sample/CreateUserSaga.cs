@@ -17,7 +17,7 @@ public class CreateUserSaga :
     public Task Handle(CreateUser message, IMessageHandlerContext context)
     {
         Data.UserName = message.UserName;
-        log.InfoFormat("User Created {@UserName}", message.UserName);
+        log.InfoFormat("User Created {@Message}", message);
         var userCreated = new UserCreated
         {
             UserName = message.UserName
