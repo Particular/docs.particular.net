@@ -51,8 +51,8 @@ public class EndpointCommunicationListener :
         #region ConfigureReceiverSideDistribution-CandidateVoteCount
 
         var routing = transportConfig.Routing();
-        var receiverSideDistributionConfig = routing.EnableReceiverSideDistribution(partitionInfo.Partitions);
-        receiverSideDistributionConfig.AddPartitionMappingForMessageType<VotePlaced>(
+        var receiverSideDistribution = routing.EnableReceiverSideDistribution(partitionInfo.Partitions);
+        receiverSideDistribution.AddPartitionMappingForMessageType<VotePlaced>(
             mapMessageToPartitionKey: votePlaced =>
             {
                 return votePlaced.Candidate;
