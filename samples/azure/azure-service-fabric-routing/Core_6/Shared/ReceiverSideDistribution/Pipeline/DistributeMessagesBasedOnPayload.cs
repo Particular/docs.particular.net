@@ -19,8 +19,6 @@ class DistributeMessagesBasedOnPayload :
 
     public Task Invoke(IIncomingLogicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> next)
     {
-        string messagePartitionKey;
-
         var intent = GetMessageIntent(context);
         var isSubscriptionMessage = intent == MessageIntentEnum.Subscribe || intent == MessageIntentEnum.Unsubscribe;
         var isReply = intent == MessageIntentEnum.Reply;
@@ -36,7 +34,7 @@ class DistributeMessagesBasedOnPayload :
             return next(context);
         }
 
-        messagePartitionKey = mapper(context.Message.Instance);
+        var messagePartitionKey = mapper(context.Message.Instance);
 
         if (string.IsNullOrWhiteSpace(messagePartitionKey))
         {
