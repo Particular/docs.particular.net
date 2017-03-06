@@ -14,7 +14,7 @@ related:
 
 ## Defining events
 
-The messages needs to be declared as an event before they can be published. That can be done with marker interfaces or using message conventions.
+The messages need to be declared as an event before they can be published. That can be done with marker interfaces or using message conventions.
 
 
 ### Via a Marker interface
@@ -67,6 +67,6 @@ NServiceBus messages can be implemented either as classes or [interfaces](/nserv
 
 snippet:InterfacePublish
 
-When the event message is declared as an interface, NServiceBus will generate a proxy, set properties and publish the message. It's equivalent of the following call:
+When the event message is declared as an interface, NServiceBus will generate a proxy, set properties and publish the message. It's equivalent to the following call:
 
 snippet:InstancePublish
