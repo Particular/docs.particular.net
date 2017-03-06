@@ -14,13 +14,10 @@ related:
 
 Message Mutators allow mutation of messages in the pipeline.
 
-
-## Two flavors of Mutators
-
-NServiceBus enables two categories of Message Mutators:
+NServiceBus supports two categories of Message Mutators:
 
 
-### Logical Message Mutators
+## Logical Message Mutators
 
 Message mutators change/react to individual messages being sent or received. The `IMutateOutgoingMessages` or `IMutateIncomingMessages` interfaces allow the implementation of hooks for the sending and receiving sides.
 
@@ -29,12 +26,12 @@ Mutators can be used to perform actions such as validation of outgoing/incoming 
 NServiceBus uses this type of mutator internally to do things like property encryption and serialization/deserialization of properties to and from the DataBus.
 
 
-#### IMutateIncomingMessages
+### IMutateIncomingMessages
 
 snippet:IMutateIncomingMessages
 
 
-#### IMutateOutgoingMessages
+### IMutateOutgoingMessages
 
 snippet:IMutateOutgoingMessages
 
@@ -42,17 +39,17 @@ snippet:IMutateOutgoingMessages
 partial: imessagemutator
 
 
-### Transport Messages Mutators
+## Transport Messages Mutators
 
 Create transport message mutators by implementing the `IMutateIncomingTransportMessages` or `IMutateOutgoingTransportMessages` interfaces. This type of mutator works on the entire transport message and is useful for compression, header manipulation, etc.
 
 
-#### IMutateIncomingTransportMessages
+### IMutateIncomingTransportMessages
 
 snippet:IMutateIncomingTransportMessages
 
 
-#### IMutateOutgoingTransportMessages
+### IMutateOutgoingTransportMessages
 
 snippet:IMutateOutgoingTransportMessages
 
