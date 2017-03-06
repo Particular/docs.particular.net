@@ -1,7 +1,7 @@
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
-using Dapper;
 
 public class OrderSubmittedHandler :
     IHandleMessages<OrderSubmitted>
@@ -15,13 +15,16 @@ public class OrderSubmittedHandler :
         #region StoreUserData
 
         var session = context.SynchronizedStorageSession.SqlPersistenceSession();
-        var order = new Order
-        {
-            OrderId = message.OrderId,
-            Value = message.Value
-        };
+        var connection = session.Connection as SqlConnection;
 
-        session.Connection.Execute("INSERT INTO [receiver].[Orders] (OrderId, Value) VALUES (@OrderId, @Value)", order);
+        const string sqlCommand = "INSERT INTO [receiver].[Orders] (OrderId, Value) VALUES (@OrderId, @Value)";
+
+        using (var dbCommand = new SqlCommand(sqlCommand, connection))
+        {
+            dbCommand.Parameters.AddWithValue("OrderId", message.OrderId);
+            dbCommand.Parameters.AddWithValue("Value", message.Value);
+            dbCommand.ExecuteNonQuery();
+        }
 
         #endregion
 

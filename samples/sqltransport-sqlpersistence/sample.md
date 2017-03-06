@@ -76,7 +76,7 @@ snippet:StoreUserData
 
 ### Script Output
 
-Both Sender and Receiver projects contain an attribute in the **AssemblyInfo.cs** file which instructs the SQL persister to generate table creation scripts for only Microsft SQL Server.
+Both Sender and Receiver projects contain an attribute in the **AssemblyInfo.cs** file which instructs the SQL persister to generate table creation scripts for only Microsoft SQL Server.
 
 snippet:SqlPersistenceSettings
 
