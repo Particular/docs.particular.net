@@ -57,6 +57,8 @@ The result will be
 {"FamilyName":"Smith","GivenNames":"John"}
 ```
 
+partial: encoding
+
 
 ## Bson
 
