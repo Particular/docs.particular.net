@@ -30,7 +30,7 @@ The timeout saga sends a timeout at startup. It will be renamed from `MyNamespac
 
 This scenario is necessary to illustrate how, when the timeout message is received, its header needs to be translated over the new saga name.
 
-The saga type is stored in the Headers of the TimeoutData Table ([Sql Server](/nservicebus/sql-persistence/sqlserver-scripts.md#build-time-timeout-create-table) and [MySql](/nservicebus/sql-persistence/mysql-scripts.md#build-time-timeout-create-table)) but will be converted back to a [message header](/nservicebus/messaging/headers#saga-related-headers-requesting-a-timeout-from-a-saga) when the timeout is executed.
+The saga type is stored in the Headers of the TimeoutData Table ([Sql Server](/nservicebus/sql-persistence/sqlserver-scripts.md#build-time-timeout-create-table) and [MySql](/nservicebus/sql-persistence/mysql-scripts.md#build-time-timeout-create-table)) but will be converted back to a [message header](/nservicebus/messaging/headers.md#saga-related-headers-requesting-a-timeout-from-a-saga) when the timeout is executed.
 
 
 ### Reply Saga
@@ -59,7 +59,7 @@ snippet: endpointConfig
 
 #### Reply Handler
 
-A reply handler which takes a request and sends a reply. In this case the reply will always be to a saga. It also duplicates the [OriginatingSagaType Header](/nservicebus/messaging/headers#saga-related-headers) on to the message for logging purposes when the reply is executed on the saga.
+A reply handler which takes a request and sends a reply. In this case the reply will always be to a saga. It also duplicates the [OriginatingSagaType Header](/nservicebus/messaging/headers.md#saga-related-headers) on to the message for logging purposes when the reply is executed on the saga.
 
 snippet: replyHandler
 
