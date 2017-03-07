@@ -125,7 +125,7 @@ The settings can already be accessed during endpoint configuration:
 
 snippet:WriteSettingsFromEndpointConfiguration
 
-Note that *defaults* have not yet been applied at endpoint configuration time.
+Note that *defaults* have not yet been applied at endpoint configuration time, so they can't be accessed during endpoint configuration. However, irrelevant of the declaration order, custom values will always take precedence over the defaults.
 
 
 ## Feature startup tasks
