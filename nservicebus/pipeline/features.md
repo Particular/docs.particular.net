@@ -57,15 +57,6 @@ This can be overridden and a feature can be enabled by default (like most of the
 snippet:FeatureEnabledByDefault
 
 
-### Defaults
-
-When a feature is found to be enabled, the bootstrapping code applies the *defaults* defined by that feature to a shared dictionary containing the settings.
-
-snippet:FeatureWithDefaults
-
-The code above configures the key `"Key"` to contain value `"Value"` and the key `"OtherKey"` to contain value `42` as a default value. The querying API allows to distinguish these two types of registrations. Usually, for a given key, a feature registers a default value in this way and also exposes an extension method of the endpoint configuration to allow a user to override this default value.
-
-
 ### Enabling other features
 
 The list of all the enabled features is built interactively. A feature can enable other feature via the *defaults* mechanism and that fact might trigger another set of *defaults* to be applied, enabling subsequent features etc.
@@ -112,6 +103,29 @@ In order for a feature to be activated it needs to satisfy the following criteri
 snippet:FeatureSetup
 
 Note: Features are automatically detected and registered by NServiceBus when the assembly is scanned.
+
+
+## Feature settings
+
+The settings are a good way to share data and configuration between the feature and the endpoint configuration, or various features. Settings can be accessed via the `FeatureConfigurationContext.Settings` property during the *setup phase*. Settings can be configured using *defaults* or `EndpointConfiguration`:
+
+
+### Defaults
+
+When a feature is found to be enabled, the bootstrapping code applies the *defaults* defined by that feature to a shared dictionary containing the settings.
+
+snippet:FeatureWithDefaults
+
+The code above configures the key `"Key"` to contain value `"Value"` and the key `"OtherKey"` to contain value `42` as a default value. The querying API allows to distinguish these two types of registrations. Usually, for a given key, a feature registers a default value in this way and also exposes an extension method of the endpoint configuration to allow a user to override the default value.
+
+
+### EndpointConfiguration
+
+The settings can already be accessed during endpoint configuration:
+
+snippet:WriteSettingsFromEndpointConfiguration
+
+Note that *defaults* have not yet been applied at endpoint configuration time, so they can't be accessed during endpoint configuration. However, irrelevant of the declaration order, custom values will always take precedence over the defaults.
 
 
 ## Feature startup tasks
