@@ -7,6 +7,8 @@
         MutatorRegistration(EndpointConfiguration endpointConfiguration)
         {
             #region MutatorRegistration
+
+            //TODO
             endpointConfiguration.RegisterComponents(
                 registration: components =>
                 {
