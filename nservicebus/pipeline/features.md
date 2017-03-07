@@ -107,8 +107,8 @@ Note: Features are automatically detected and registered by NServiceBus when the
 
 ## Feature settings
 
+The settings are a good way to share data and configuration between the feature and the endpoint configuration, or various features. Settings can be accessed via the `FeatureConfigurationContext.Settings` property during the *setup phase*. Settings can be configured using *defaults* or `EndpointConfiguration`:
 
-The settings are a good way to share data and configuration between the endpoint configuration or other features. Written settings are then available in the `FeatureConfigurationContext.Settings` property during the *setup phase*. Settings can be written via *defaults* or the `EndpointConfiguration`:
 
 ### Defaults
 
@@ -116,7 +116,7 @@ When a feature is found to be enabled, the bootstrapping code applies the *defau
 
 snippet:FeatureWithDefaults
 
-The code above configures the key `"Key"` to contain value `"Value"` and the key `"OtherKey"` to contain value `42` as a default value. The querying API allows to distinguish these two types of registrations. Usually, for a given key, a feature registers a default value in this way and also exposes an extension method of the endpoint configuration to allow a user to override this default value.
+The code above configures the key `"Key"` to contain value `"Value"` and the key `"OtherKey"` to contain value `42` as a default value. The querying API allows to distinguish these two types of registrations. Usually, for a given key, a feature registers a default value in this way and also exposes an extension method of the endpoint configuration to allow a user to override the default value.
 
 
 ### EndpointConfiguration
