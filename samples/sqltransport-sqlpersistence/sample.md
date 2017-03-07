@@ -73,6 +73,10 @@ The shared session is managed by NServiceBus, so there is no need to explicitly 
 
 snippet:StoreUserData
 
+With SQL persistence, the `OrderLifecycleSaga` is decorated with a `SqlSaga` attribute, which identifies the saga's correlation id. This gives the SQL persister knowledge of the correlation id at build time when it is generating the table creation script for the saga data.
+
+snippet:SqlSagaAttribute 
+
 
 ### Script Output
 

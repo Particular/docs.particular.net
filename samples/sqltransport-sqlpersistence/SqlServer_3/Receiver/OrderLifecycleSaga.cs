@@ -4,9 +4,11 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Persistence.Sql;
 
+#region SqlSagaAttribute
 [SqlSaga(
     correlationProperty: nameof(OrderLifecycleSagaData.OrderId)
  )]
+#endregion
 public class OrderLifecycleSaga :
     Saga<OrderLifecycleSagaData>,
     IAmStartedByMessages<OrderSubmitted>,

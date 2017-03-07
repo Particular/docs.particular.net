@@ -33,7 +33,7 @@ class Program
         transport.UseSchemaForQueue("audit", "dbo");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var connectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"].ConnectionString;
+        var connectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Transport"].ConnectionString;
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>

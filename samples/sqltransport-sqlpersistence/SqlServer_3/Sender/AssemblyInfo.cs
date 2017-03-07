@@ -3,7 +3,6 @@
 #region SqlPersistenceSettings
 
 [assembly: SqlPersistenceSettings(
-    msSqlServerScripts: true,
-    mySqlScripts: false)]
+    msSqlServerScripts: true)]
 
 #endregion
