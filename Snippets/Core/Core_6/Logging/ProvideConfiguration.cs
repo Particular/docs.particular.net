@@ -3,6 +3,7 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
+    #pragma warning disable CS0618
     #region LoggingThresholdFromIProvideConfiguration
 
     public class ProvideConfiguration :
@@ -18,4 +19,5 @@
     }
 
     #endregion
+    #pragma warning restore CS0618
 }
