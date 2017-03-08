@@ -1,4 +1,5 @@
-﻿using NServiceBus.Saga;
+﻿using System;
+using NServiceBus.Saga;
 using NServiceBus.SagaPersisters.NHibernate;
 
 #region NHibernateConcurrencyRowVersion
