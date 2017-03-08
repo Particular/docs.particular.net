@@ -30,6 +30,8 @@ That property will be included by NHibernate in the `SELECT` and `UPDATE` SQL st
 
 NOTE: Marking a property with `RowVersion` **does not** disable the pessimistic locking optimization. All it does is replacing the default optimistic concurrency validation that depends on values of all columns with one that is based on that single explicit version column. To switch to pure optimistic concurrency adjust the locking strategy to `Read`.
 
+NOTE: `RowVersion` attribute is not supported when used on derived classes. To specify a custom row version property don't inherit saga data from the `ContainSagaData` class, instead directly implement the `IContainSagaData` interface.
+
 In most cases where the saga data table is only ever accessed by the saga persister it is advisable to use an explicit version because the `UPDATE` SQL statement is much simpler and faster. The downside is that it does not detect concurrency violations if the data is updated by some external party that does not conform to the protocol i.e. does not bump the version field when doing updates. If such an external modification is possible, e.g. when different business process touches the same set of data, it is better to use the default optimistic concurrency validation strategy.
 
 ## Adjusting the locking strategy
