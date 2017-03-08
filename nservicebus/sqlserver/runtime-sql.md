@@ -52,6 +52,6 @@ snippet: SendTextSql
 
 ## Missing index warning
 
-Used to log a warning if a required index is missing. See also [Upgrade from version 2 to 3](/nservicebus/upgrades/sqlserver-2to3#namespace-changes-indexes).
+Used to log a warning if a required index is missing. See also [Upgrade from version 2 to 3](/nservicebus/upgrades/sqlserver-2to3.md#namespace-changes-indexes).
 
 snippet: CheckIfExpiresIndexIsPresentSql
