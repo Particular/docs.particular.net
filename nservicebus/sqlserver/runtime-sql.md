@@ -1,5 +1,5 @@
 ---
-title: SQL Server Transport Scripts
+title: SQL Server Transport Runtime SQL
 component: SqlServer
 reviewed: 2017-03-08
 versions: '[3,)'
