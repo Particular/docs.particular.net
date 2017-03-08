@@ -62,6 +62,8 @@ The endpoints know which scripts to execute via the use of the `persistence.SqlV
 
 partial: promote
 
+snippet: SqlPersistenceSettings
+
 
 ### Persistence Config
 
