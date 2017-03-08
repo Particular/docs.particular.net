@@ -1,6 +1,6 @@
 ﻿-- startcode OrdersTableSQL
-CREATE TABLE [receiver].[Orders] (
-	[OrderId] varchar(5) NOT NULL PRIMARY KEY CLUSTERED,
-	[Value] decimal(19, 5) NULL
+create table [receiver].[Orders] (
+    [OrderId] varchar(5) not null primary key clustered,
+    [Value] decimal(19, 5) null
 )
 -- endcode

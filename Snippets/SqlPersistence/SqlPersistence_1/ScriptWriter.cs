@@ -41,7 +41,9 @@ public class ScriptWriter
         }
         foreach (var variant in Enum.GetValues(typeof(SqlVariant)).Cast<SqlVariant>())
         {
-            var timeoutCommands = TimeoutCommandBuilder.Build(sqlVariant: variant, tablePrefix: "EndpointName");
+            var timeoutCommands = TimeoutCommandBuilder.Build(
+                sqlVariant: variant,
+                tablePrefix: "EndpointName");
             Write(directory, variant, "TimeoutAdd", timeoutCommands.Add);
             Write(directory, variant, "TimeoutNext", timeoutCommands.Next);
             Write(directory, variant, "TimeoutRange", timeoutCommands.Range);

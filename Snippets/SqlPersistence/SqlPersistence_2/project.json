@@ -1,0 +1,14 @@
+﻿{
+  "dependencies": {
+    "MySql.Data": "6.*",
+    "NServiceBus.Persistence.Sql": "2.0.0-unstable0017",
+    "NServiceBus.Persistence.Sql.ScriptBuilder": "2.0.0-unstable0017",
+    "NUnit": "3.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
