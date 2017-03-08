@@ -41,7 +41,9 @@ public class ScriptWriter
         }
         foreach (var variant in Enum.GetValues(typeof(SqlVariant)).Cast<SqlVariant>())
         {
-            var timeoutCommands = TimeoutCommandBuilder.Build(sqlVariant: variant, tablePrefix: "EndpointName");
+            var timeoutCommands = TimeoutCommandBuilder.Build(
+                sqlVariant: variant,
+                tablePrefix: "EndpointName");
             Write(directory, variant, "TimeoutAdd", timeoutCommands.Add);
             Write(directory, variant, "TimeoutNext", timeoutCommands.Next);
             Write(directory, variant, "TimeoutRange", timeoutCommands.Range);
@@ -63,12 +65,12 @@ public class ScriptWriter
                 new MessageType("MessageTypeName", new Version())
             }));
 
-            var sagaCommandBuilder = new SagaCommandBuilder(variant, "EndpointName");
-            Write(directory, variant, "SagaComplete", sagaCommandBuilder.BuildCompleteCommand("SagaName"));
-            Write(directory, variant, "SagadGetByProperty", sagaCommandBuilder.BuildGetByPropertyCommand("SagaName", "PropertyName"));
-            Write(directory, variant, "SagaGetBySagaId", sagaCommandBuilder.BuildGetBySagaIdCommand("SagaName"));
-            Write(directory, variant, "SagaSave", sagaCommandBuilder.BuildSaveCommand("SagaName", "CorrelationProperty", "TransitionalCorrelationProperty"));
-            Write(directory, variant, "SagaUpdate", sagaCommandBuilder.BuildUpdateCommand("SagaName", "TransitionalCorrelationProperty"));
+            var sagaCommandBuilder = new SagaCommandBuilder();
+            Write(directory, variant, "SagaComplete", sagaCommandBuilder.BuildCompleteCommand("EndpointName_SagaName"));
+            Write(directory, variant, "SagadGetByProperty", sagaCommandBuilder.BuildGetByPropertyCommand("PropertyName", "EndpointName_SagaName"));
+            Write(directory, variant, "SagaGetBySagaId", sagaCommandBuilder.BuildGetBySagaIdCommand("EndpointName_SagaName"));
+            Write(directory, variant, "SagaSave", sagaCommandBuilder.BuildSaveCommand("CorrelationProperty", "TransitionalCorrelationProperty", "EndpointName_SagaName"));
+            Write(directory, variant, "SagaUpdate", sagaCommandBuilder.BuildUpdateCommand("TransitionalCorrelationProperty", "EndpointName_SagaName"));
         }
     }
 
