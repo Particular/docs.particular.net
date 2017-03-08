@@ -36,6 +36,7 @@
     <Content Include="MultiSchema.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ScriptWriter.cs" />
     <Compile Include="ConfigurationSettings.cs" />
     <Compile Include="DelayConfig.cs" />
     <Compile Include="NamedConnectionString.cs" />
