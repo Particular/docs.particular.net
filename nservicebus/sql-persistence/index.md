@@ -6,6 +6,8 @@ related:
  - samples/sql-persistence/transitioning-correlation-ids
  - samples/saga/sql-sagafinder
  - samples/saga/migration
+ - nservicebus/upgrades/sqlpersistence-1to2
+ - nservicebus/upgrades/sqlpersistence-1.0.0-1.0.1
 reviewed: 2016-11-29
 ---
 
