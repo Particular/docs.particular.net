@@ -587,18 +587,31 @@
       Title: In Memory
     - Url: nservicebus/msmq/subscription-persistence
       Title: MSMQ Subscription
-    - Url: nservicebus/nhibernate
-      Title: NHibernate Persistence
+    - Url: nservicebus/sql-persistence
+      Title: Sql Persistence
       Articles:
-      - Url: nservicebus/nhibernate/accessing-data
-        Title: Business data
-      - Url: nservicebus/nhibernate/saga-concurrency
-        Title: Saga concurrency
-      - Url: nservicebus/nhibernate/outbox
-        Title: Outbox
-      - Url: nservicebus/nhibernate/sql-azure
-        Title: SQL Azure
-      - Url: nservicebus/nhibernate/scripting
+      - Url: nservicebus/sql-persistence/saga
+        Title: Saga Persistence
+      - Url: nservicebus/sql-persistence/installer-workflow
+        Title: Installer Workflow
+      - Url: nservicebus/sql-persistence/sqlserver-scripts
+        Title: MS SQL Server Scripts
+      - Url: nservicebus/sql-persistence/mysql-scripts
+        Title: MySQL Scripts
+    - Url: nservicebus/azure-storage-persistence
+      Title: Azure Storage Persistence
+      Articles:
+      - Url: nservicebus/upgrades/asp-saga-deduplication
+        Title: Version 6.2.3 to 6.2.4
+      - Url: nservicebus/upgrades/asp-saga-pruning
+        Title: Version 6.2.4 to 6.2.5
+      - Url: nservicebus/azure-storage-persistence/configuration
+        Title: Configuration
+      - Url: nservicebus/azure/understanding-transactionality-in-azure
+        Title: Transactions in Azure
+      - Url: nservicebus/azure-storage-persistence/performance-tuning
+        Title: Performance Tuning
+      - Url: nservicebus/azure-storage-persistence/scripting
         Title: Scripting
     - Url: nservicebus/ravendb
       Title: RavenDB Persistence
@@ -621,32 +634,19 @@
         Title: Subscription versioning
       - Url: nservicebus/ravendb/licensing
         Title: Licensing
-    - Url: nservicebus/azure-storage-persistence
-      Title: Azure Storage Persistence
+    - Url: nservicebus/nhibernate
+      Title: NHibernate Persistence
       Articles:
-      - Url: nservicebus/upgrades/asp-saga-deduplication
-        Title: Version 6.2.3 to 6.2.4
-      - Url: nservicebus/upgrades/asp-saga-pruning
-        Title: Version 6.2.4 to 6.2.5
-      - Url: nservicebus/azure-storage-persistence/configuration
-        Title: Configuration
-      - Url: nservicebus/azure/understanding-transactionality-in-azure
-        Title: Transactions in Azure
-      - Url: nservicebus/azure-storage-persistence/performance-tuning
-        Title: Performance Tuning
-      - Url: nservicebus/azure-storage-persistence/scripting
+      - Url: nservicebus/nhibernate/accessing-data
+        Title: Business data
+      - Url: nservicebus/nhibernate/saga-concurrency
+        Title: Saga concurrency
+      - Url: nservicebus/nhibernate/outbox
+        Title: Outbox
+      - Url: nservicebus/nhibernate/sql-azure
+        Title: SQL Azure
+      - Url: nservicebus/nhibernate/scripting
         Title: Scripting
-    - Url: nservicebus/sql-persistence
-      Title: Sql Persistence
-      Articles:
-      - Url: nservicebus/sql-persistence/saga
-        Title: Saga Persistence
-      - Url: nservicebus/sql-persistence/installer-workflow
-        Title: Installer Workflow
-      - Url: nservicebus/sql-persistence/sqlserver-scripts
-        Title: MS SQL Server Scripts
-      - Url: nservicebus/sql-persistence/mysql-scripts
-        Title: MySQL Scripts
     - Url: nservicebus/mongodb-persistence-tekmaven
       Title: MongoDB Persistence
   - Url: nservicebus/containers
