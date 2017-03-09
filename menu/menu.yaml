@@ -137,6 +137,8 @@
         Title: Version 1.x to 1.2.5
     - Title: SQL Persistence
       Articles:
+      - Url: nservicebus/upgrades/sqlpersistence-1to2
+        Title: Version 1 to 2
       - Url: nservicebus/upgrades/sqlpersistence-1.0.0-1.0.1
         Title: Version 1 to 1.0.1
     - Title: NServiceBus Testing
