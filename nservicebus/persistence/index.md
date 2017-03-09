@@ -28,6 +28,16 @@ Various features require persistence.
 A volatile RAM based storage mainly used for development purposes. Can also be used where the storage is not required to persist between process restarts.
 
 
+### [SQL Persistence](/nservicebus/sql-persistence/)
+
+Uses [Json.NET](http://www.newtonsoft.com/json) to serialize data and store in a SQL database.
+
+
+### [Azure Storage](/nservicebus/azure-storage-persistence/)
+
+Uses Azure Tables Storage for storage.
+
+
 ### [RavenDB](/nservicebus/ravendb/)
 
 Uses the [RavenDB document database](https://ravendb.net/) for storage.
@@ -41,16 +51,6 @@ Uses custom [NHibernate](http://nhibernate.info/) to persist data to an ADO.net 
 ### [MSMQ](/nservicebus/msmq/subscription-persistence.md)
 
 A subscription only storage on top of MSMQ.
-
-
-### [Azure Storage](/nservicebus/azure-storage-persistence/)
-
-Uses Azure Tables Storage for storage
-
-
-### [SQL Persistence](/nservicebus/sql-persistence/)
-
-Uses [Json.NET](http://www.newtonsoft.com/json) to serialize data and store in a SQL database.
 
 
 ### Community run Persistences
