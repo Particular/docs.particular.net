@@ -4,9 +4,9 @@ component: Host
 reviewed: 2017-03-01
 related:
  - nservicebus/logging
- - samples/logging/hostdefault/
- - samples/logging/hostcustom/
- - samples/logging/hostprofiles/
+ - samples/logging/hostdefault
+ - samples/logging/hostcustom
+ - samples/logging/hostprofiles
 ---
 
 
