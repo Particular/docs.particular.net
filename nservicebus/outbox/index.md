@@ -24,7 +24,7 @@ Every time a message is processed, the copy of that message is stored in the per
 If the message is not found in the Outbox storage, then it is processed in a regular way 
 as shown in the following diagram:
 
-![No DTC Diagram](outbox.png)
+![No DTC Diagram](outbox.svg)
 
 Processing a new incoming message consists of the following steps:
 
