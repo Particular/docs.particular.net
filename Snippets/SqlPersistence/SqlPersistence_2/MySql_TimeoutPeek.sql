@@ -6,6 +6,6 @@ select
     State,
     Time,
     Headers
-from EndpointNameTimeoutData
+from `EndpointNameTimeoutData`
 where Id = @Id
 endcode

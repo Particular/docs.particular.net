@@ -36,9 +36,10 @@
     <Compile Include="Session\Handler.cs" />
     <Compile Include="Session\Saga.cs" />
     <Compile Include="Session\MyMessage.cs" />
-    <Compile Include="UpgradeGuides\Upgrade101.cs" />
+    <Compile Include="UpgradeGuides\1to101\Upgrade101.cs" />
     <Compile Include="TableSuffix.cs" />
     <Compile Include="AttributeRequirement\OrderSaga.cs" />
+    <Compile Include="UpgradeGuides\1to2\Upgrade1to2.cs" />
     <Compile Include="UsingSaga\OrderSaga.cs" />
     <Compile Include="UsingSaga\SagaWithCorrelation.cs" />
     <Compile Include="UsingSaga\SagaWithCorrelationAndTransitional.cs" />
@@ -53,7 +54,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="UpgradeGuides\ConvertOutboxToNonclustered.sql" />
+    <Content Include="UpgradeGuides\1to101\ConvertOutboxToNonclustered.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

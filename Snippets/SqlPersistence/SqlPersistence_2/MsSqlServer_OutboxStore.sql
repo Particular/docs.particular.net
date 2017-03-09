@@ -1,6 +1,6 @@
 startcode MsSqlServer_OutboxStoreSql
 
-insert into EndpointNameOutboxData
+insert into [dbo].[EndpointNameOutboxData]
 (
     MessageId,
     Operations,

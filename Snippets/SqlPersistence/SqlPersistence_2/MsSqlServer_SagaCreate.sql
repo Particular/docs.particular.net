@@ -2,9 +2,9 @@ startcode MsSqlServer_SagaCreateSql
 
 /* TableNameVariable */
 
-declare @tableName nvarchar(max) = @tablePrefix + N'OrderSaga';
+declare @tableName nvarchar(max) = '[' + @schema + '].[' + @tablePrefix + N'OrderSaga]';
 
-/* Initialise */
+/* Initialize */
 
 /* CreateTable */
 

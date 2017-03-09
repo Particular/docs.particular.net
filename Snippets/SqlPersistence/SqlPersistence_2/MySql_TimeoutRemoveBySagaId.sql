@@ -1,5 +1,5 @@
 startcode MySql_TimeoutRemoveBySagaIdSql
 
-delete from EndpointNameTimeoutData
+delete from `EndpointNameTimeoutData`
 where SagaId = @SagaId
 endcode

@@ -128,26 +128,28 @@ snippet: TablePrefix
 
 #### Database Schema
 
-A database schema can be defined by suffixing the TablePrefix with a period `.`. For example by passing `MySchema.` to the sql creation scripts and using the same value at code configuration time:
+A database schema can be defined in the configuration API as follows:
 
-snippet: TablePrefix_Schema
+snippet: Schema
 
-This will result in all created tables existing in the defined schema.
-
-To use an extended character set in the schema use [Delimited Identifiers](https://technet.microsoft.com/en-us/library/ms176027.aspx). For example by passing `[My Schema].` to the sql creation scripts and using the same value at code configuration time:
-
-snippet: TablePrefix_Schema_Extended
+Note that the same value will need to be passed to the SQL installation scripts as a parameter.
 
 
 #### Manual installation
 
 When performing a custom script execution the TablePrefix is required. See also [Installer Workflow](installer-workflow.md).
 
-snippet: ExecuteScripts
-
 Note that `scriptDirectory` can be either the root directory for all scripts for, alternatively, the specific locations for a given storage type i.e. Saga, Outbox, Subscription and Timeout scripts.
 
 
+##### SQL Server
+
+snippet: ExecuteScriptsSqlServer
+
+
+##### MySQL
+
+snippet: ExecuteScriptsMySql
 
 
 ## SqlStorageSession

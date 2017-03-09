@@ -1,6 +1,6 @@
 startcode MySql_SubscriptionSubscribeSql
 
-insert into EndpointNameSubscriptionData
+insert into `EndpointNameSubscriptionData`
 (
     Subscriber,
     MessageType,

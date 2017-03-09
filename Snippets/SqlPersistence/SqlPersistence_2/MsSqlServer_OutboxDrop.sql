@@ -1,5 +1,5 @@
 startcode MsSqlServer_OutboxDropSql
-declare @tableName nvarchar(max) = @tablePrefix + 'OutboxData';
+declare @tableName nvarchar(max) = '[' + @schema + '].[' + @tablePrefix + 'OutboxData]';
 
 if exists
 (

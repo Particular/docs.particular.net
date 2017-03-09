@@ -6,6 +6,6 @@ select
     State,
     Time,
     Headers
-from EndpointNameTimeoutData
+from [dbo].[EndpointNameTimeoutData]
 where Id = @Id
 endcode

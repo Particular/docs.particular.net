@@ -1,5 +1,5 @@
 startcode MsSqlServer_TimeoutCreateSql
-declare @tableName nvarchar(max) = @tablePrefix + 'TimeoutData';
+declare @tableName nvarchar(max) = '[' + @schema + '].[' + @tablePrefix + 'TimeoutData]';
 
 if not exists (
     select * from sys.objects

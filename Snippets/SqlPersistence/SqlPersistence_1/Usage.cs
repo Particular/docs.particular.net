@@ -166,30 +166,51 @@ class Usage
 
         #endregion
     }
-    void TablePrefixSchema(EndpointConfiguration endpointConfiguration)
+
+    void Schema(EndpointConfiguration endpointConfiguration)
     {
-        #region TablePrefix_Schema
+        #region Schema
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.TablePrefix("MySchema.");
 
         #endregion
     }
-    void TablePrefixSchemaExtended(EndpointConfiguration endpointConfiguration)
-    {
-        #region TablePrefix_Schema_Extended
-
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.TablePrefix("[My Schema].");
-
-        #endregion
-    }
 
     void ExecuteScripts(string scriptDirectory, string tablePrefix)
     {
-        #region ExecuteScripts
+        #region ExecuteScriptsSqlServer
 
         using (var connection = new SqlConnection("ConnectionString"))
+        {
+            connection.Open();
+            using (var transaction = connection.BeginTransaction())
+            {
+                foreach (var createScript in Directory.EnumerateFiles(
+                    path: scriptDirectory,
+                    searchPattern: "*_Create.sql",
+                    searchOption: SearchOption.AllDirectories))
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandText = File.ReadAllText(createScript);
+                        var parameter = command.CreateParameter();
+                        parameter.ParameterName = "tablePrefix";
+                        parameter.Value = tablePrefix;
+                        command.Parameters.Add(parameter);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                transaction.Commit();
+            }
+        }
+
+        #endregion
+
+        #region ExecuteScriptsMySql
+
+        using (var connection = new MySqlConnection("ConnectionString"))
         {
             connection.Open();
             using (var transaction = connection.BeginTransaction())

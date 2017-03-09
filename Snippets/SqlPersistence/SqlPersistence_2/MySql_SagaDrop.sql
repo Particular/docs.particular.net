@@ -2,7 +2,7 @@ startcode MySql_SagaDropSql
 
 /* TableNameVariable */
 
-set @tableName = concat(@tablePrefix, 'OrderSaga');
+set @tableName = concat('`', @tablePrefix, 'OrderSaga`');
 
 
 /* DropTable */

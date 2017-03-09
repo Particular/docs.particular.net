@@ -1,6 +1,6 @@
 startcode MsSqlServer_SagaSaveSql
 
-insert into EndpointNameSagaName
+insert into EndpointName_SagaName
 (
     Id,
     Metadata,

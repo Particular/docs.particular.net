@@ -1,6 +1,6 @@
 startcode MsSqlServer_SagaUpdateSql
 
-update EndpointNameSagaName
+update EndpointName_SagaName
 set
     Data = @Data,
     PersistenceVersion = @PersistenceVersion,
@@ -8,6 +8,6 @@ set
     Concurrency = @Concurrency + 1,
     Correlation_TransitionalCorrelationProperty = @TransitionalCorrelationId
 where
-    Id = @Id AND Concurrency = @Concurrency
+    Id = @Id and Concurrency = @Concurrency
 
 endcode

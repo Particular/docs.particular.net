@@ -1,5 +1,6 @@
 startcode MsSqlServer_SubscriptionCreateSql
-declare @tableName nvarchar(max) = @tablePrefix + 'SubscriptionData';
+declare @tableName nvarchar(max) = '[' + @schema + '].[' + @tablePrefix + 'SubscriptionData]';
+
 if not exists
 (
     select *

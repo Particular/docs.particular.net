@@ -1,6 +1,6 @@
 startcode MySql_TimeoutAddSql
 
-insert into EndpointNameTimeoutData
+insert into `EndpointNameTimeoutData`
 (
     Id,
     Destination,

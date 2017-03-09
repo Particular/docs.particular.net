@@ -1,6 +1,6 @@
 startcode MsSqlServer_SagaCompleteSql
 
-delete from EndpointNameSagaName
-where Id = @Id AND Concurrency = @Concurrency
+delete from EndpointName_SagaName
+where Id = @Id and Concurrency = @Concurrency
 
 endcode

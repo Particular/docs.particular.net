@@ -1,5 +1,6 @@
 startcode MsSqlServer_SubscriptionDropSql
-declare @tableName nvarchar(max) = @tablePrefix + 'SubscriptionData';
+declare @tableName nvarchar(max) = '[' + @schema + '].[' + @tablePrefix + 'SubscriptionData]';
+
 if exists
 (
     select * 

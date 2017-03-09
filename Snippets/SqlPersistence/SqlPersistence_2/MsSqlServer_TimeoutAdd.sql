@@ -1,6 +1,6 @@
 startcode MsSqlServer_TimeoutAddSql
 
-insert into EndpointNameTimeoutData
+insert into [dbo].[EndpointNameTimeoutData]
 (
     Id,
     Destination,

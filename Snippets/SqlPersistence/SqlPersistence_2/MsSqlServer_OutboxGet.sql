@@ -3,6 +3,6 @@ startcode MsSqlServer_OutboxGetSql
 select
     Dispatched,
     Operations
-from EndpointNameOutboxData
+from [dbo].[EndpointNameOutboxData]
 where MessageId = @MessageId
 endcode

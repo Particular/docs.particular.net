@@ -43,7 +43,8 @@ public class ScriptWriter
         {
             var timeoutCommands = TimeoutCommandBuilder.Build(
                 sqlVariant: variant,
-                tablePrefix: "EndpointName");
+                tablePrefix: "EndpointName",
+                schema:"dbo");
             Write(directory, variant, "TimeoutAdd", timeoutCommands.Add);
             Write(directory, variant, "TimeoutNext", timeoutCommands.Next);
             Write(directory, variant, "TimeoutRange", timeoutCommands.Range);
@@ -51,13 +52,19 @@ public class ScriptWriter
             Write(directory, variant, "TimeoutRemoveBySagaId", timeoutCommands.RemoveBySagaId);
             Write(directory, variant, "TimeoutPeek", timeoutCommands.Peek);
 
-            var outboxCommands = OutboxCommandBuilder.Build(variant, "EndpointName");
+            var outboxCommands = OutboxCommandBuilder.Build(
+                tablePrefix: "EndpointName",
+                schema: "dbo",
+                sqlVariant: variant);
             Write(directory, variant, "OutboxCleanup", outboxCommands.Cleanup);
             Write(directory, variant, "OutboxGet", outboxCommands.Get);
             Write(directory, variant, "OutboxSetAsDispatched", outboxCommands.SetAsDispatched);
             Write(directory, variant, "OutboxStore", outboxCommands.Store);
 
-            var subscriptionCommands = SubscriptionCommandBuilder.Build(variant, "EndpointName");
+            var subscriptionCommands = SubscriptionCommandBuilder.Build(
+                sqlVariant: variant, 
+                tablePrefix: "EndpointName",
+                schema: "dbo");
             Write(directory, variant, "SubscriptionSubscribe", subscriptionCommands.Subscribe);
             Write(directory, variant, "SubscriptionUnsubscribe", subscriptionCommands.Unsubscribe);
             Write(directory, variant, "SubscriptionGetSubscribers", subscriptionCommands.GetSubscribers(new List<MessageType>

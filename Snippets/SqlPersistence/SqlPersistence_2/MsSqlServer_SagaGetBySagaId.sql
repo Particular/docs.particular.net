@@ -6,7 +6,7 @@ select
     Concurrency,
     Metadata,
     Data
-from EndpointNameSagaName
+from EndpointName_SagaName
 where Id = @Id
 
 endcode

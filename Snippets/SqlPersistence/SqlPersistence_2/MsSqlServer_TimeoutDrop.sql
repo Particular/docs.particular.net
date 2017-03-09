@@ -1,5 +1,5 @@
 startcode MsSqlServer_TimeoutDropSql
-declare @tableName nvarchar(max) = @tablePrefix + 'TimeoutData';
+declare @tableName nvarchar(max) = '[' + @schema + '].[' + @tablePrefix + 'TimeoutData]';
 
 if exists
 (

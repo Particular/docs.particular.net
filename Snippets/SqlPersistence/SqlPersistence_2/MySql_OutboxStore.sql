@@ -1,6 +1,6 @@
 startcode MySql_OutboxStoreSql
 
-insert into EndpointNameOutboxData
+insert into `EndpointNameOutboxData`
 (
     MessageId,
     Operations,
