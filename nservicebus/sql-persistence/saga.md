@@ -10,37 +10,6 @@ reviewed: 2016-11-29
 ---
 
 
-## Json.net Settings
-
-
-### Custom Settings
-
-Customizes the instance of [JsonSerializerSettings](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
-
-snippet: SqlPersistenceCustomSettings
-
-
-#### Version / Type specific deserialization settings
-
-The Type and Saga Assembly version are persisted. It is possible to explicitly control the deserialization of sagas based on Version and/or Type. This allows the serialization approach to be evolved forward while avoiding migrations.
-
-snippet: SqlPersistenceJsonSettingsForVersion
-
-
-### Custom Reader
-
-Customize the creation of the [JsonReader](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
-
-snippet:SqlPersistenceCustomReader
-
-
-### Custom Writer
-
-Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
-
-snippet:SqlPersistenceCustomWriter
-
-
 ## Saga Definition
 
 A saga can be implemented as follows:
@@ -187,3 +156,34 @@ The following .NET types are interpreted as `CorrelationPropertyType.Int`:
  * [UInt16](https://msdn.microsoft.com/en-us/library/system.uint16.aspx)
  * [UInt32](https://msdn.microsoft.com/en-us/library/system.uint32.aspx)
  * [UInt64](https://msdn.microsoft.com/en-us/library/system.uint64.aspx)
+
+
+## Json.net Settings
+
+
+### Custom Settings
+
+Customizes the instance of [JsonSerializerSettings](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
+
+snippet: SqlPersistenceCustomSettings
+
+
+#### Version / Type specific deserialization settings
+
+The Type and Saga Assembly version are persisted. It is possible to explicitly control the deserialization of sagas based on Version and/or Type. This allows the serialization approach to be evolved forward while avoiding migrations.
+
+snippet: SqlPersistenceJsonSettingsForVersion
+
+
+### Custom Reader
+
+Customize the creation of the [JsonReader](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
+
+snippet:SqlPersistenceCustomReader
+
+
+### Custom Writer
+
+Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
+
+snippet:SqlPersistenceCustomWriter
