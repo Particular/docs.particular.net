@@ -8,9 +8,9 @@ namespace SqlPersistence_1.UsingSaga
 
     [SqlSaga]
     public class SagaWithNoCorrelation :
-        Saga<SagaWithNoCorrelation.SagaData>
+        SqlSaga<SagaWithNoCorrelation.SagaData>
     {
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
+        protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
         {
         }
 

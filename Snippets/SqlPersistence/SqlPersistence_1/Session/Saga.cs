@@ -9,7 +9,7 @@ using NServiceBus.Persistence.Sql;
     correlationProperty: nameof(SagaData.CorrelationProperty)
 )]
 public class SagaThatUsesSession :
-    Saga<SagaThatUsesSession.SagaData>,
+    SqlSaga<SagaThatUsesSession.SagaData>,
     IHandleMessages<MyMessage>
 {
     static ILog log = LogManager.GetLogger<HandlerThatUsesSession>();
@@ -24,7 +24,7 @@ public class SagaThatUsesSession :
 
     #endregion
 
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
+    protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
     {
     }
 

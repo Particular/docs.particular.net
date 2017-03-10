@@ -80,7 +80,7 @@ public class ScriptWriter
         correlationProperty: "OrderNumber",
         transitionalCorrelationProperty: "OrderId")]
     public class OrderSaga :
-        Saga<OrderSaga.OrderSagaData>
+        SqlSaga<OrderSaga.OrderSagaData>
     {
         public class OrderSagaData :
             ContainSagaData
@@ -91,7 +91,7 @@ public class ScriptWriter
 
         #endregion
 
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
+        protected override void ConfigureMapping(MessagePropertyMapper<OrderSagaData> mapper)
         {
         }
     }
