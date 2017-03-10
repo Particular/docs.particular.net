@@ -1,12 +1,17 @@
 ---
-title: Sql Persistence Upgrade Version 1 to 2
-summary: Instructions on how to upgrade to Sql Persistence version 2
+title: SQL Persistence Upgrade Version 1 to 2
+summary: Instructions on how to upgrade to SQL Persistence version 2
 reviewed: 2017-03-09
 component: SqlPersistence
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
 ---
+
+
+## Inheriting from SqlSaga now required
+
+In Version 1 inhering from `NServiceBus.Saga<T>` was partially supported. However this having two competing approaches that deliver the same features caused significant confusion. In Version 2 `NServiceBus.Saga<T>` is no longer supported and either a build error, or an runtime exception for some edge cases, will occur.
 
 
 ## Explicit schema API

@@ -43,21 +43,28 @@ snippet:SqlPersistenceCustomWriter
 
 ## Saga Definition
 
-Sagas need to be decorated with a `[SqlSagaAttribute]`. If no [Saga Finder](/nservicebus/sagas/saga-finding.md) is defined then the `correlationProperty` needs to match the [Correlated Saga Property](/nservicebus/sagas/message-correlation.md).
+A saga can be implemented as follows:
 
 snippet: SqlPersistenceSaga
 
+Note that there are some differences to how a standard NServiceBus saga is implemented.
 
-### SqlSaga
 
-`SqlSaga<T>` is an extension of `Saga<T>` that has a less verbose mapping API. The `ToSaga` part is inferred from the `[SqlSagaAttribute]`.
+### SqlSaga Base Class
 
-snippet: SqlPersistenceSqlSaga
+All sagas need to inherit from `SqlSaga<T>`. This class is an extension of `Saga<T>` that has a less verbose mapping API. The `ToSaga` part is inferred from the `[SqlSagaAttribute]`.
+
+
+### SqlSagaAttribute
+
+Sagas need to be decorated with a `[SqlSagaAttribute]`. If no [Saga Finder](/nservicebus/sagas/saga-finding.md) is defined then the `correlationProperty` needs to match the [Correlated Saga Property](/nservicebus/sagas/message-correlation.md).
 
 
 ## Requirement for the SqlSagaAttribute
 
-In a standard Saga, the Correlation Id is configured in the `ConfigureHowToFindSaga` method. When using the Sql Persistence, each saga must be decorated with a `[SqlSagaAttribute]` which defines the Correlation Id again. There are a few good reasons for that.
+The divergence from the standard standard NServiceBus saga API is required since the SQL Persistence need to be able to determine certain meta data about a saga at compile time.
+
+In a standard Saga, the Correlation Id is configured in the `ConfigureHowToFindSaga` method. When using the SQL Persistence, each saga must be decorated with a `[SqlSagaAttribute]` which defines the Correlation Id again. There are a few good reasons for that.
 
 Take this code:
 
