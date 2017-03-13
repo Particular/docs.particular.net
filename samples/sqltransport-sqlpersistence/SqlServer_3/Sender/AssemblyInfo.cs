@@ -3,6 +3,6 @@
 #region SqlPersistenceSettings
 
 [assembly: SqlPersistenceSettings(
-    msSqlServerScripts: true)]
+    MsSqlServerScripts= true)]
 
 #endregion

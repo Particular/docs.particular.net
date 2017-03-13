@@ -12,7 +12,7 @@ namespace SqlPersistence_1.AttributeRequirement
         #region AttributeRequirement
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
         {
-            mapper.ConfigureMapping<StartOrder>(order => order.OrderId)
+            mapper.ConfigureMapping<StartOrder>(message => message.OrderId)
                 .ToSaga(data => data.OrderId);
         }
         #endregion

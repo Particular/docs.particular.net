@@ -6,19 +6,19 @@ using NServiceBus.Persistence.Sql;
 
 #region SqlSagaAttribute
 [SqlSaga(
-    correlationProperty: nameof(OrderLifecycleSagaData.OrderId)
+    correlationProperty: nameof(SagaData.OrderId)
  )]
 #endregion
 public class OrderLifecycleSaga :
-    Saga<OrderLifecycleSagaData>,
+    SqlSaga<OrderLifecycleSaga.SagaData>,
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
     static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
 
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderLifecycleSagaData> mapper)
+    protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
     {
-        mapper.ConfigureMapping<OrderSubmitted>(msg => msg.OrderId).ToSaga(saga => saga.OrderId);
+        mapper.MapMessage<OrderSubmitted>(_ => _.OrderId);
     }
 
     public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
@@ -33,5 +33,11 @@ public class OrderLifecycleSaga :
     {
         log.Info("Got timeout");
         return Task.CompletedTask;
+    }
+
+    public class SagaData :
+        ContainSagaData
+    {
+        public string OrderId { get; set; }
     }
 }

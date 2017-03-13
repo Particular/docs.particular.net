@@ -2,22 +2,22 @@
 
 #region AllSqlScripts
 [assembly: SqlPersistenceSettings(
-    msSqlServerScripts: true,
-    mySqlScripts: true)]
+    MsSqlServerScripts = true,
+    MySqlScripts = true)]
 #endregion
 /**
 
 #region SqlServerScripts
-[assembly: SqlPersistenceSettings(msSqlServerScripts: true)]
+[assembly: SqlPersistenceSettings(MsSqlServerScripts = true)]
 #endregion
     
 #region MySqlScripts
-[assembly: SqlPersistenceSettings(mySqlScripts: true)]
+[assembly: SqlPersistenceSettings(MySqlScripts = true)]
 #endregion
 
 #region PromoteScripts
 [assembly: SqlPersistenceSettings(
-    scriptPromotionPath: "$(SolutionDir)PromotedSqlScripts")]
+    ScriptPromotionPath = "$(SolutionDir)PromotedSqlScripts")]
 #endregion
 
 **/

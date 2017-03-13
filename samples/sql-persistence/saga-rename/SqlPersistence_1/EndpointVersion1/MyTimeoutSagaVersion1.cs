@@ -20,7 +20,7 @@ namespace MyNamespace1
 
         protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
         {
-            mapper.MapMessage<StartTimeoutSaga>(message => message.TheId);
+            mapper.MapMessage<StartTimeoutSaga>(_ => _.TheId);
         }
 
         public Task Handle(StartTimeoutSaga message, IMessageHandlerContext context)

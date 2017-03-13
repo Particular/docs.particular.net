@@ -4,11 +4,11 @@ using NServiceBus.Persistence.Sql;
 namespace SqlPersistence_1.UsingSaga
 {
 
-    #region SqlPersistenceSagaWithNoCorrelation
+    #region SqlPersistenceSagaWithNoMessageMapping
 
-    [SqlSaga]
-    public class SagaWithNoCorrelation :
-        SqlSaga<SagaWithNoCorrelation.SagaData>
+    [SqlSaga(correlationProperty: nameof(SagaData.CorrelationId))]
+    public class SagaWithNoMessageMapping :
+        SqlSaga<SagaWithNoMessageMapping.SagaData>
     {
         protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
         {
@@ -17,6 +17,7 @@ namespace SqlPersistence_1.UsingSaga
         public class SagaData :
             ContainSagaData
         {
+            public string CorrelationId { get; set; }
         }
     }
 

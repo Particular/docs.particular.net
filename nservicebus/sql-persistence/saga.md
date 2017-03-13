@@ -123,9 +123,9 @@ For each Correlation Id there will be a corresponding index named `Index_Correla
 
 ### No Correlation Id
 
-When implementing a [Custom Saga Finder](/nservicebus/sagas/saga-finding.md) it is possible to have no correlation id and instead interrogate the Json serialized data stored in the database.
+When implementing a [Custom Saga Finder](/nservicebus/sagas/saga-finding.md) it is possible to have a message that does not map to a   correlation id and instead interrogate the Json serialized data stored in the database.
 
-snippet: SqlPersistenceSagaWithNoCorrelation
+snippet: SqlPersistenceSagaWithNoMessageMapping
 
 
 ### Single Correlation Id

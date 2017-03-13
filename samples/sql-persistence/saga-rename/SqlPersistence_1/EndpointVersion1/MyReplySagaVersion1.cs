@@ -20,8 +20,8 @@ namespace MyNamespace1
 
         protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
         {
-            mapper.MapMessage<StartReplySaga>(message => message.TheId);
-            mapper.MapMessage<Reply>(message => message.TheId);
+            mapper.MapMessage<StartReplySaga>(_ => _.TheId);
+            mapper.MapMessage<Reply>(_ => _.TheId);
         }
 
         public Task Handle(StartReplySaga message, IMessageHandlerContext context)

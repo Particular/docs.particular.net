@@ -3,8 +3,8 @@
 #region SqlPersistenceSettings
 
 [assembly: SqlPersistenceSettings(
-    msSqlServerScripts: true,
-    mySqlScripts: true,
-    scriptPromotionPath: "$(SolutionDir)PromotedSqlScripts")]
+    MsSqlServerScripts = true,
+    MySqlScripts = true,
+    ScriptPromotionPath = "$(SolutionDir)PromotedSqlScripts")]
 
 #endregion

@@ -85,7 +85,7 @@ public class ScriptWriter
 
     [SqlSaga(
         correlationProperty: "OrderNumber",
-        transitionalCorrelationProperty: "OrderId")]
+        TransitionalCorrelationProperty = "OrderId")]
     public class OrderSaga :
         SqlSaga<OrderSaga.OrderSagaData>
     {

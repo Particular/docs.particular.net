@@ -42,7 +42,7 @@
     <Compile Include="UpgradeGuides\1to2\Upgrade1to2.cs" />
     <Compile Include="UsingSaga\SagaWithCorrelation.cs" />
     <Compile Include="UsingSaga\SagaWithCorrelationAndTransitional.cs" />
-    <Compile Include="UsingSaga\SagaWithNoCorrelation.cs" />
+    <Compile Include="UsingSaga\SagaWithNoMessageMapping.cs" />
     <Compile Include="UsingSaga\StartSagaMessage.cs" />
     <Compile Include="UsingSaga\OrderSaga.cs" />
     <Compile Include="StartOrder.cs" />

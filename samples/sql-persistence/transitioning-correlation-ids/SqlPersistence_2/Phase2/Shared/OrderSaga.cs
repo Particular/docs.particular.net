@@ -7,7 +7,7 @@ using NServiceBus.Persistence.Sql;
 
 [SqlSaga(
      correlationProperty: nameof(OrderSagaData.OrderNumber),
-     transitionalCorrelationProperty: nameof(OrderSagaData.OrderId)
+     TransitionalCorrelationProperty = nameof(OrderSagaData.OrderId)
  )]
 public class OrderSaga :
     SqlSaga<OrderSagaData>,
@@ -17,7 +17,7 @@ public class OrderSaga :
 
     protected override void ConfigureMapping(MessagePropertyMapper<OrderSagaData> mapper)
     {
-        mapper.MapMessage<StartOrder>(message => message.OrderNumber);
+        mapper.MapMessage<StartOrder>(_ => _.OrderNumber);
     }
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)

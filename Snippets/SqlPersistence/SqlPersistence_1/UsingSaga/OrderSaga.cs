@@ -20,7 +20,7 @@ namespace SqlPersistence_1.UsingSaga
 
         protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
         {
-            mapper.MapMessage<StartOrder>(message => message.OrderId);
+            mapper.MapMessage<StartOrder>(_ => _.OrderId);
         }
 
         public Task Handle(StartOrder message, IMessageHandlerContext context)

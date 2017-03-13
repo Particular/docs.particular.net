@@ -3,7 +3,8 @@
 #region tableSuffix
 
 [SqlSaga(
-    tableSuffix: "TheCustomTableName"
+    correlationProperty: "CorrelationProperty",
+    TableSuffix = "TheCustomTableName"
 )]
 #endregion
 class FakeSaga
