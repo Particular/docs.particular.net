@@ -5,7 +5,7 @@
     <section name="AuditConfig"
              type="NServiceBus.Config.AuditConfig, NServiceBus.Core"/>
   </configSections>
-  <AuditConfig QueueName="auditqueue@adminmachine"
+  <AuditConfig QueueName="targetAuditQueue"
                OverrideTimeToBeReceived="00:10:00"/>
 </configuration>
 <!--endcode-->
