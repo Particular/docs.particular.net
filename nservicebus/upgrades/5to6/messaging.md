@@ -31,7 +31,7 @@ Another option is to use a custom header as illustrated in [Appending username u
 
 ## Throttling
 
-Requirements to throttling mechanisms are very different. While some 3rd party services (e.g. GitHub, Twitter, Google, etc.) enforce rate limits on certain time periods, other services may have entirely different usage limitations. The previous throttling API offered a very limited, messages per second based, throttling mechanism which only works for very few scenarios. Therefore, the throttling API has been removed with Version 6 without a built-in alternative. [Tuning NServiceBus](/nservicebus/operations/tuning.md) contains more information about implementing a custom throttling mechanism.
+Requirements to throttling mechanisms are very different. While some 3rd party services (e.g. GitHub, Twitter, Google, etc.) enforce rate limits on certain time periods, other services may have entirely different usage limitations. The previous throttling API offered a very limited, messages per second based, throttling mechanism which only works for very few scenarios. Therefore, the throttling API has been removed with Version 6 without a built-in alternative.
 
 The `MaximumMessageThroughputPerSecond` on the `TransportConfig` class has been marked as obsolete. Using a configuration based approach, the endpoint will fail to start when using the `MaximumMessageThroughputPerSecond` attribute on the `<TransportConfig>` element.
 
