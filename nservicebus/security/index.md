@@ -12,7 +12,7 @@ redirects:
 As NServiceBus is layered over the top of existing data stores and queuing technologies, the majority of security related tasks involve leveraging the underlying features of those technologies. There are also some shared security concepts that span all technologies.
 
 
-## Share Security Concepts
+## Shared Security Concepts
 
  * [Message Property Encryption](/nservicebus/security/property-encryption.md) ([Sample](/samples/encryption/basic-encryption/))
  * [Message Body Encryption](/nservicebus/security/body-encryption.md) ([Sample](/samples/encryption/message-body-encryption/))
