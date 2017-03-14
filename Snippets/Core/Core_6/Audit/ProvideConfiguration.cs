@@ -13,7 +13,7 @@
         {
             return new AuditConfig
             {
-                QueueName = "auditqueue@adminmachine",
+                QueueName = "targetAuditQueue",
                 OverrideTimeToBeReceived = TimeSpan.FromMinutes(10)
             };
         }
