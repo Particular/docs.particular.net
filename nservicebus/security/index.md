@@ -79,6 +79,12 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
  * [SQL Server Encryption](https://msdn.microsoft.com/en-us/library/bb510663.aspx)
 
 
+## [Service Control](/servicecontrol/)
+
+ * [Securing Access](/servicecontrol/securing-servicecontrol.md)
+ * [Configuring a Non-Privileged Account](/servicecontrol/configure-non-privileged-service-account.md)
+
+
 ## Security Advisories
 
 All releases that are security related are listed under [Security Advisories](/security-advisories/).
