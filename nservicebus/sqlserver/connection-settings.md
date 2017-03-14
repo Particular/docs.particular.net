@@ -20,88 +20,25 @@ NOTE: In NServiceBus Versions 6 and above the default level of concurrency is ba
 
 Connection string can be configured in several ways:
 
-
-### Via the configuration API
-
-By using the `ConnectionString` extension method:
-
-snippet:sqlserver-config-connectionstring
-
-
-### Via the App.Config
-
-By adding a connection named `NServiceBus/Transport` in the `connectionStrings` node.
-
-snippet:sqlserver-connection-string-xml
-
-
-### Via a named connection string
-
-By using the `ConnectionStringName` extension method:
-
-snippet:sqlserver-named-connection-string
-
-Combined this with a named connection in the `connectionStrings` node of the `app.config` file:
-
-snippet:sqlserver-named-connection-string-xml
+partial:connection-string
 
 
 ## Multiple connection strings
 
-In [*multi-catalog* and *multi-instance* modes](/nservicebus/sqlserver/deployment-options.md) additional configuration is required for proper message routing:
-
- * The sending endpoint needs the connection string of the receiving endpoint.
- * The subscribing endpoint needs the connection string of the publishing endpoint, in order to send subscription request.
-
-Connection strings for the remote endpoint can be configured in several ways:
-
-partial:multiple-connection-push
-
-
-### Via the configuration API - Pull mode
-
-The pull mode can be used when specific information is not available at configuration time. One can pass a function that will be used by the SQL Server transport to resolve connection information at runtime.
-
-snippet:sqlserver-multidb-other-endpoint-connection-pull
-
-Note that in Version 3 the `EnableLegacyMultiInstanceMode` method passes transport address parameter. Transport address conforms to the `endpoint_name@schema_name` convention, e.g. could be equal to `Samples.SqlServer.MultiInstanceSender@[dbo]`.
-
-
-partial: multiple-appconfig
+partial:multi-instance
 
 
 ## Custom database schemas
 
 SQL Server transport uses `dbo` as a default schema. Default schema is used for every queue if no other schema is explicitly provided in transport address. That includes all local queues, error, audit and remote queues of other endpoints.
 
-In SQL Server default schema can be overridden using `DefaultSchema` method:
+partial:custom-schema
 
-snippet:sqlserver-non-standard-schema
-
-partial: custom-schema
-
-
-## Custom SQL Server transport connection factory
-
-In some environments it might be necessary to adapt to database server settings, or to perform additional operations. For example, if the `NOCOUNT` setting is enabled on the server, then it is necessary to send the `SET NOCOUNT OFF` command right after opening the connection.
-
-That can be done by passing the transport a custom factory method which will provide connection strings at runtime, and which can perform custom actions:
-
-snippet:sqlserver-custom-connection-factory
+partial:factory
 
 
 ## Circuit Breaker
 
 The SQL transport has a built in circuit breaker to handle intermittent SQL Server connectivity problems.
 
-
-### Wait time
-
-Overrides the default time to wait before triggering a circuit breaker that initiates the endpoint shutdown procedure in case of [repeated critical errors](/nservicebus/hosting/critical-errors.md).
-
-The default value is 2 minutes.
-
-snippet:sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
-
-
-partial: pause-time
+partial:circuit-breaker
