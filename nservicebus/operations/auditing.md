@@ -4,7 +4,6 @@ summary: Configure where to send messages and it provides built-in message audit
 reviewed: 2016-03-17
 tags:
  - Audit
- - Forwarding Messages
 related:
  - nservicebus/messaging/headers
  - nservicebus/messaging/discard-old-messages
