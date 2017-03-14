@@ -6,6 +6,6 @@
              type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
   </configSections>
   <UnicastBusConfig
-    ForwardReceivedMessagesTo="auditqueue@adminmachine"/>
+    ForwardReceivedMessagesTo="targetAuditQueue"/>
 </configuration>
 <!--endcode-->
