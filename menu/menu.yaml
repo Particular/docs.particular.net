@@ -32,7 +32,8 @@
       Title: Support Policy
     - Url: nservicebus/upgrades/release-policy
       Title: Release Policy
-    - Title: Security Advisories
+    - Url: security-advisories
+      Title: Security Advisories
       Articles:
       - Url: security-advisories/msmq-permissions
         Title: 2017-01-10
@@ -691,6 +692,8 @@
       Title: Auditing Messages
     - Url: samples/logging
       Title: Samples
+  - Url: nservicebus/security
+    Title: Security
   - Url: nservicebus/operations
     Title: Operations
     Articles:

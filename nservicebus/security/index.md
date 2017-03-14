@@ -77,3 +77,9 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 
  * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.aspx)
  * [SQL Server Encryption](https://msdn.microsoft.com/en-us/library/bb510663.aspx)
+
+
+## Security Advisories
+
+All releases that are security related are listed under [Security Advisories](/security-advisories/).
+
