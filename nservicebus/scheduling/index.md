@@ -47,3 +47,8 @@ snippet:ScheduleTask
  * The scheduler API does not support scaling out the endpoint or doing a side-by-side deployment of an endpoint. When there are multiple instances of the endpoint that are running on the same machine, while using a non-broker transport such as MSMQ, or when there are scaling out the endpoint instances while using a broker transport such as RabbitMQ, these endpoint instances share the same input queue. Since each endpoint maintains its own created tasks in memory, when the specified time is up and the task is queued at the endpoint, any of the endpoint instances that are currently running can dequeue that message. If an endpoint that did not originally create this task happened to dequeue this message in order to execute it, it will not find the task in its list.
 
 WARNING: This will result in the task not being executed but also not being rescheduled.
+
+
+## Exception Handling
+
+When an exception is thrown inside a schedule callback, the exception will be [logged as an error](/nservicebus/logging/#logging-levels) and the endpoint will **not** shutdown.
