@@ -9,7 +9,7 @@ redirects:
  - nservicebus/security/encryption
 ---
 
-As NServiceBus is layered over the top of existing data stores and queuing technologies, the majority of security related tasks involve leveraging the underlying features of those technologies. There are also some share security concepts that span all technologies.
+As NServiceBus is layered over the top of existing data stores and queuing technologies, the majority of security related tasks involve leveraging the underlying features of those technologies. There are also some shared security concepts that span all technologies.
 
 
 ## Share Security Concepts
@@ -33,7 +33,7 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
  * [Azure Storage Service Encryption for Data at Rest](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption)
 
 
-### SQL Server Transport
+### [SQL Server Transport](/nservicebus/sqlserver/)
 
  * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.asp)
  * [SQL Server Encryption](https://msdn.microsoft.com/en-us/library/bb510663.aspx)
