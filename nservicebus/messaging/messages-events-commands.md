@@ -1,7 +1,8 @@
 ---
 title: Messages, Events and Commands
-summary: What are Messages, Events and Commands and how to define them.
+summary: Messages, Events and Commands and how to define them.
 component: Core
+reviewed: 2017-03-14
 tags:
  - Unobtrusive
  - Convention
@@ -50,6 +51,7 @@ Note: For reply messages in a request and response pattern, use `IMessage` since
 There are checks in place to ensure following of the best practices. While violating above rules the following exceptions can be seen:
 
 partial:errors
+
 
 ## Defining Messages
 
