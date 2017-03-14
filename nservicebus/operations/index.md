@@ -63,8 +63,8 @@ Operational documentation is best reviewed from the perceptive of the selected t
 
 ### [Azure Storage Persistence](/nservicebus/azure-storage-persistence/)
 
- * Performance Tuning https://docs.particular.net/nservicebus/azure-storage-persistence/performance-tuning
- * https://docs.particular.net/nservicebus/azure-storage-persistence/scripting
+ * [Performance Tuning](/nservicebus/azure-storage-persistence/performance-tuning.md)
+ * [Scripting](/nservicebus/azure-storage-persistence/scripting.md)
 
 
 ### [RavenDB Persistence](/nservicebus/ravendb/)
