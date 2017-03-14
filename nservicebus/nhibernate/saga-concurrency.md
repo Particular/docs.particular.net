@@ -39,3 +39,8 @@ In most cases where the saga data table is only ever accessed by the saga persis
 The `LockMode` attribute can be used to override the default locking strategy.
 
 snippet:NHibernateConcurrencyLockMode
+
+
+## Customizing the optimistic concurrency handling
+
+In order to customize or switch off optimistic concurrency handling, `optimistic-lock` NHibernate attribute has to be specified in a custom mapping. The [custom mapping sample](/samples/nhibernate/custom-mappings) explains to override the default mapping with a custom one.
