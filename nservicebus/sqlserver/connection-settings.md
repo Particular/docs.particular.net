@@ -81,28 +81,6 @@ snippet:sqlserver-non-standard-schema
 partial: custom-schema
 
 
-## Custom schema per destination
-
-If different schemas should be used for different destinations, then additional configuration is required:
-
- * The sending endpoint needs to know the custom schema of the receiving endpoint's input queue.
- * The sending endpoint needs to know the custom schema of infrastructural queues e.g. error.
- * The subscriber will need the schema information of the publisher, in order to send subscription request.
- * In Versions 2.1.x to 2.x publisher also needs to know the schema of every subscriber. The same applies to sending reply messages using `ReplyTo()` or callbacks.
-
-The schema for an endpoint can be specified in the following way:
-
-snippet: sqlserver-multischema-config-for-endpoint
-
-The schema for a given queue can be specifed in the following way:
-
-snippet:sqlserver-multischema-config-for-queue
-
-snippet:sqlserver-non-standard-schema-messagemapping
-
-partial: multi-schema-config-notes
-
-
 ## Custom SQL Server transport connection factory
 
 In some environments it might be necessary to adapt to database server settings, or to perform additional operations. For example, if the `NOCOUNT` setting is enabled on the server, then it is necessary to send the `SET NOCOUNT OFF` command right after opening the connection.

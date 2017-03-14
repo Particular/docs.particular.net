@@ -25,7 +25,7 @@ class MultiSchema
 
     void ConfigureCustomSchemaForEndpoint(BusConfiguration busConfiguration)
     {
-        #region sqlserver-multischema-config-for-endpoint [2.1,3.0)
+        #region sqlserver-multischema-config-for-push [2.1,3.0)
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.UseSpecificConnectionInformation(
@@ -55,7 +55,7 @@ class MultiSchema
 
     void OtherEndpointConnectionParamsPull(BusConfiguration busConfiguration)
     {
-        #region sqlserver-multischema-config-for-queue 2.1
+        #region sqlserver-multischema-config-pull 2.1
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.UseSpecificConnectionInformation(queueName =>
