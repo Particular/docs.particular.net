@@ -582,8 +582,6 @@
     Articles:
     - Url: nservicebus/persistence/order
       Title: Persistence order
-    - Url: nservicebus/persistence/authoring-custom
-      Title: Custom
     - Url: nservicebus/persistence/in-memory
       Title: In Memory
     - Url: nservicebus/msmq/subscription-persistence
