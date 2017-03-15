@@ -6,7 +6,7 @@ using NServiceBus.Persistence.Sql;
 #region sagaPhase2
 
 [SqlSaga(
-     correlationProperty: nameof(OrderSagaData.OrderNumber),
+     CorrelationProperty = nameof(OrderSagaData.OrderNumber),
      TransitionalCorrelationProperty = nameof(OrderSagaData.OrderId)
  )]
 public class OrderSaga :

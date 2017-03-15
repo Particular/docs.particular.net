@@ -84,7 +84,7 @@ public class ScriptWriter
     #region CreationScriptSaga
 
     [SqlSaga(
-        correlationProperty: "OrderNumber",
+        CorrelationProperty = "OrderNumber",
         TransitionalCorrelationProperty = "OrderId")]
     public class OrderSaga :
         SqlSaga<OrderSaga.OrderSagaData>

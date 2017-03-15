@@ -8,7 +8,7 @@ using NServiceBus.Persistence.Sql;
 namespace MyNamespace2
 {
     [SqlSaga(
-        correlationProperty: nameof(SagaData.TheId)
+        CorrelationProperty = nameof(SagaData.TheId)
     )]
     public class MyTimeoutSagaVersion2 :
         SqlSaga<MyTimeoutSagaVersion2.SagaData>,

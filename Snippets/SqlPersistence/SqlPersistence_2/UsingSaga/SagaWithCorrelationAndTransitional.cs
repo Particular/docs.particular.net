@@ -9,7 +9,7 @@ namespace SqlPersistence_1.UsingSaga
     #region SqlPersistenceSagaWithCorrelationAndTransitional
 
     [SqlSaga(
-        correlationProperty: nameof(SagaData.CorrelationProperty),
+        CorrelationProperty = nameof(SagaData.CorrelationProperty),
         TransitionalCorrelationProperty = nameof(SagaData.TransitionalCorrelationProperty)
     )]
     public class SagaWithCorrelationAndTransitional :

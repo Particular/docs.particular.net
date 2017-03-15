@@ -9,7 +9,7 @@ namespace SqlPersistence_1.UsingSaga
     #region SqlPersistenceSagaWithCorrelation
 
     [SqlSaga(
-        correlationProperty: nameof(SagaData.CorrelationProperty)
+        CorrelationProperty = nameof(SagaData.CorrelationProperty)
     )]
     public class SagaWithCorrelation :
         SqlSaga<SagaWithCorrelation.SagaData>,

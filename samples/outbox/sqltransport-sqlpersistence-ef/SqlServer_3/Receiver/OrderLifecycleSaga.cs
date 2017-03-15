@@ -14,7 +14,7 @@ public class OrderLifecycleSaga :
 
     protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
     {
-        mapper.MapMessage<OrderSubmitted>(m => m.OrderId);
+        mapper.MapMessage<OrderSubmitted>(_ => _.OrderId);
     }
 
     #region Timeout

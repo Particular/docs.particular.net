@@ -6,7 +6,7 @@ namespace SqlPersistence_1.UsingSaga
 
     #region SqlPersistenceSagaWithNoMessageMapping
 
-    [SqlSaga(correlationProperty: nameof(SagaData.CorrelationId))]
+    [SqlSaga]
     public class SagaWithNoMessageMapping :
         SqlSaga<SagaWithNoMessageMapping.SagaData>
     {
@@ -17,7 +17,6 @@ namespace SqlPersistence_1.UsingSaga
         public class SagaData :
             ContainSagaData
         {
-            public string CorrelationId { get; set; }
         }
     }
 

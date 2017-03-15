@@ -6,7 +6,7 @@ using NServiceBus.Persistence.Sql;
 #region saga-sqlPersistenceSession
 
 [SqlSaga(
-    correlationProperty: nameof(SagaData.CorrelationProperty)
+    CorrelationProperty = nameof(SagaData.CorrelationProperty)
 )]
 public class SagaThatUsesSession :
     SqlSaga<SagaThatUsesSession.SagaData>,
