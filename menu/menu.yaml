@@ -468,6 +468,8 @@
       Title: Design
     - Url: nservicebus/sqlserver/connection-settings
       Title: Connection Settings
+    - Url: nservicebus/sqlserver/addressing
+      Title: Addressing
     - Url: nservicebus/sqlserver/transactions
       Title: Transaction support
     - Url: nservicebus/sqlserver/concurrency
