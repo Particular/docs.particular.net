@@ -202,11 +202,11 @@ class Usage
 
         #region asb-incoming-message-convention
 
-        var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
-        transportConfig.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
+        transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
         // OR
-        transportConfig.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
+        transport.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
         #endregion
 #pragma warning restore 618
 
@@ -218,11 +218,11 @@ class Usage
 
         #region asb-outgoing-message-convention
 
-        var transportConfig = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
-        transportConfig.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
+        transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
         // OR
-        transportConfig.UseOutgoingMessageToBrokeredMessageConverter<CustomOutgoingMessageConversion>();
+        transport.UseOutgoingMessageToBrokeredMessageConverter<CustomOutgoingMessageConversion>();
 
         #endregion
 #pragma warning restore 618
