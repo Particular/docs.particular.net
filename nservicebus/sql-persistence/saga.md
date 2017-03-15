@@ -144,7 +144,7 @@ snippet: SqlPersistenceSagaWithCorrelationAndTransitional
 
 ### Correlation Types
 
-Each correlation property type has an equivalent sql data type.
+Each correlation property type has an equivalent SQL data type.
 
 include: correlationpropertytypes
 

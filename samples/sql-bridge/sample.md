@@ -13,7 +13,7 @@ related:
 
 WARNING: This sample has been deprecated. Refer to the [MsmqToSqlRelay Sample](/samples/msmqtosqlrelay/)
 
-This sample shows how to setup a sql subscriber so it can subscribe to events from a MSMQ publisher. The solution comprises of these 5 projects.
+This sample shows how to setup a SQL subscriber so it can subscribe to events from a MSMQ publisher. The solution comprises of these 5 projects.
 
 NOTE: This sample uses NHibernate persistence. It uses a database called, `PersistenceForMsmqTransport` for MSMQ transport endpoints and a different database called, `PersistenceForSqlTransport` for SQL Transport endpoints.
 
@@ -106,7 +106,7 @@ Note: Since `SqlBridge` is not using the native MSMQ transport manually creating
 
 ## SqlSubscriber
 
-Receives events from the SqlBridge. The endpoint address is the sql bridge address and not the original publisher's address.
+Receives events from the SqlBridge. The endpoint address is the SQL bridge address and not the original publisher's address.
 
 
 ### The SQL Subscriber configuration
