@@ -78,20 +78,7 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 partial: extra-queues
 
 
-### Default permissions
-
-| Group | Permissions |
-|---|---|
-| Owning account | Write, Receive, Peek |
-| Administrators | Full |
-| Anonymous | Write  |
-| Everyone | Write |
-
-To retrieve the group names the [WellKnownSidType](https://msdn.microsoft.com/en-us/library/system.security.principal.wellknownsidtype.aspx) enumeration is used.
-
-MSMQ permissions are defined in the [MessageQueueAccessRights](https://msdn.microsoft.com/en-us/library/system.messaging.messagequeueaccessrights.aspx) enumeration.
-
-NOTE: Write access is granted to both `Everyone` and `Anonymous`. The reason for this is so that a given endpoint can receive messages from other endpoints running under different accounts. To further lock down MSMQ write permissions remove `Everyone` and `Anonymous` and instead grant specific access to a know subset of account.
+See also: [Queue Permissions](/nservicebus/msmq/#permissions)
 
 
 ### The create queue helper methods
