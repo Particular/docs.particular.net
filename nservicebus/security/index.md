@@ -43,7 +43,7 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 
  * [Message Queuing Security Overview](https://technet.microsoft.com/en-us/library/cc771268.aspx)
  * [Subscription authorisation](/nservicebus/msmq/subscription-authorisation.md)
- * [Installer Permissions](/nservicebus/msmq/operations-scripting.md#create-queues-default-permissions)
+ * [Permissions](/nservicebus/msmq/#permissions)
 
 
 ### [RabbitMQ Transport](/nservicebus/rabbitmq/)
