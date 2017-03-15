@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServer_1", "SqlServer_1\SqlServer_1.csproj", "{BE948BCF-1425-42CA-B0F5-E527DDCAE862}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServer_2.1", "SqlServer_2.1\SqlServer_2.1.csproj", "{DB7B97B4-3075-4541-A821-1C6FF9AB8671}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{BE948BCF-1425-42CA-B0F5-E527DDCAE862}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE948BCF-1425-42CA-B0F5-E527DDCAE862}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE948BCF-1425-42CA-B0F5-E527DDCAE862}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB7B97B4-3075-4541-A821-1C6FF9AB8671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB7B97B4-3075-4541-A821-1C6FF9AB8671}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB7B97B4-3075-4541-A821-1C6FF9AB8671}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB7B97B4-3075-4541-A821-1C6FF9AB8671}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

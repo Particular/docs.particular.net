@@ -17,6 +17,7 @@ The address is resolved into a qualified table name that includes both table nam
 A schema for a destination endpoint can be specified either as a collection or via a callback:
 
 snippet:sqlserver-multischema-config-push
+
 snippet:sqlserver-multischema-config-pull
 
 NOTE: Although the API uses the term `Endpoint` the actual values provided/returned are physical queue names, not logical endpoint names as defined in Version 6 of NServiceBus.
