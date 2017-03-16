@@ -47,4 +47,4 @@ snippet: MsSqlServer_SagaSelectSql
 
 Converting the returned information into a `IContainSagaData` will then be performed by the SQL Persister. 
 
-See also [SQL Persistence Saga Finder Sample](https://docs.particular.net/samples/saga/sql-sagafinder/).
+See also [SQL Persistence Saga Finder Sample](/samples/saga/sql-sagafinder/).
