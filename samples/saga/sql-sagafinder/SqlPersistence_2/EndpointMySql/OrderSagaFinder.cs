@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using NServiceBus;
 using NServiceBus.Extensibility;
 using NServiceBus.Persistence;
 using NServiceBus.Sagas;
@@ -9,17 +10,16 @@ class OrderSagaFinder :
 {
     public Task<OrderSagaData> FindBy(PaymentTransactionCompleted message, SynchronizedStorageSession session, ReadOnlyContextBag context)
     {
-        return session.FindBy<OrderSagaData>(
-            context: context,
-            addParameters: command =>
+        return session.GetSagaData<OrderSagaData>(
+            readOnlyContextBag: context,
+            whereClause: "JSON_EXTRACT(Data,'$.PaymentTransactionId') = @propertyValue",
+            appendParameters: (builder, append) =>
             {
-                var parameter = command.CreateParameter();
+                var parameter = builder();
                 parameter.ParameterName = "propertyValue";
                 parameter.Value = message.PaymentTransactionId;
-                command.Parameters.Add(parameter);
-            },
-            endpointName: "Samples.SqlSagaFinder.MySql",
-            whereClause: "JSON_EXTRACT(Data,'$.PaymentTransactionId') = @propertyValue");
+                append(parameter);
+            });
     }
 }
 #endregion

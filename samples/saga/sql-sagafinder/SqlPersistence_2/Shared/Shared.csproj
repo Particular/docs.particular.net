@@ -57,8 +57,6 @@
     <Compile Include="OrderSaga.cs" />
     <Compile Include="OrderSagaData.cs" />
     <Compile Include="PaymentTransactionCompleted.cs" />
-    <Compile Include="SqlPersistenceHacks\SqlPersistenceSagaFinder.cs" />
-    <Compile Include="SqlPersistenceHacks\SqlPersistenceSerializer.cs" />
     <Compile Include="StartOrder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
