@@ -24,7 +24,7 @@ snippet: SagaFinder-MySql
 
 ### context
 
-Used to ensure the concurrency metadata is stored in the current session
+Used to ensure the concurrency metadata is stored in the current session.
 
 
 #### whereClause
