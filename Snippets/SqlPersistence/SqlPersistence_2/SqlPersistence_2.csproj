@@ -37,7 +37,6 @@
     <Compile Include="Session\Handler.cs" />
     <Compile Include="Session\Saga.cs" />
     <Compile Include="Session\MyMessage.cs" />
-    <Compile Include="UpgradeGuides\Upgrade101.cs" />
     <Compile Include="TableSuffix.cs" />
     <Compile Include="AttributeRequirement\OrderSaga.cs" />
     <Compile Include="UsingSaga\SagaWithCorrelation.cs" />
