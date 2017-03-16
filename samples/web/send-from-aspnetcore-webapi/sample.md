@@ -8,27 +8,27 @@ related:
 ---
 
 
-This sample shows how to send messages to a NServiceBus endpoint from a ASP.NET Core WebAPI application. 
+This sample shows how to send messages to an NServiceBus endpoint from an ASP.NET Core WebAPI application. 
 
-WARNING: This sample is running on the full .NET framework 4.6.1 and utilizing both .NET Core and full .NET dependencies, i.e. ASP.NET Core and NServiceBus. So while .NET Core dependencies can be consumed in the .NET runtime, the .NET Core runtime is not currently supported.
-
-
-## Converting to the full .NET runtime
-
-If the default *ASP.NET Core Web Application .NET Core* Visual Studio Project template is used there are two actions that will be required prior to adding the NServiceBus dependency. 
+WARNING: This sample runs on the full .NET framework 4.6.1 but utilizes both .NET Core and .NET Framework dependencies, i.e. ASP.NET Core and NServiceBus. So while .NET Core dependencies can be consumed by the .NET Framework runtime, the .NET Core runtime is not currently supported.
 
 
-### Convert to full .NET runtime
+## Converting to the full .NET Framework runtime
 
-To reference both .NET Core and Full .NET dependencies a project needs to have the framework configured to `net461`.
+If the default *ASP.NET Core Web Application .NET Core* Visual Studio Project template is used, there are two actions that will be required prior to adding the NServiceBus dependency. 
 
-If this is not done the following build error will occur
+
+### Change the target framework
+
+To reference both .NET Core and .NET Framework dependencies, a project needs to have the framework configured to `net461`.
+
+If this is not done, the following build error will occur
 
 ```no-highlight
 NU1002 The dependency NServiceBus does not support framework .NETCoreApp,Version=v1.0.project.json
 ``` 
 
-To convert to .NET 4.6.1 open the project.json file and locate the following  
+To convert to .NET Framework 4.6.1, open the project.json file and locate the following
 
 ```json
 "frameworks": {
@@ -50,31 +50,31 @@ Replace those lines with
 ```
 
 
-### NuGet dependencies Changes
+### Change the NuGet dependencies
 
 
-#### Update Existing NugetPackages
+#### Update existing Nuget packages
 
 The project template will default to the following dependencies
 
  * Microsoft.NETCore.App 1.0
- * Microsoft.AspNetCore.* 1.0
- * Microsoft.Extensions.* 1.0
+ * Microsoft.AspNetCore.\* 1.0
+ * Microsoft.Extensions.\* 1.0
 
-These are not compatible with .NET 4.6.1 and will need to be updated. Use one of the following to update those packages to at least 1.1.
+These are not compatible with .NET Framework 4.6.1 and will need to be updated. Use one of the following to update those packages to at least 1.1.
 
  * [NuGet Package Manager UI - Updating a package](https://docs.nuget.org/ndocs/tools/package-manager-ui#updating-a-package)
  * [NuGet Package Manager Console - Updating a package](https://docs.nuget.org/ndocs/tools/package-manager-console#updating-a-package)
 
 
-#### Add IISIntegration
+#### Add IIS integration
 
-Add the [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/) NuGet pacakge. It is required for the full .NET runtime to host a .NET Core website in IIS.
+Add the [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/) NuGet pacakge. It is required for the .NET Framework runtime to host a .NET Core website in IIS.
 
 
 #### Remove Microsoft.NETCore.App 
 
-The [Microsoft.NETCore.App](https://www.nuget.org/packages/Microsoft.NETCore.App/) NuGet pacakge is not compatible with the full .NET runtime. Howeve it is not required for this sample anc can be remove.  
+The [Microsoft.NETCore.App](https://www.nuget.org/packages/Microsoft.NETCore.App/) NuGet package is not compatible with the .NET Framework runtime. However, it is not required for this sample and can be removed.
 
 Remove the following from the project.json file.
 
@@ -86,11 +86,13 @@ Remove the following from the project.json file.
 ```
 
 
-## Running the Solution
+## Running the solution
 
-Run the solution, a new browser window/tab opens, as well as a console application.
+When you run the solution, a new browser window/tab opens, as well as a console application.
 
-The browser will open up the URL `http://localhost:51863/api/sendmessage`. An async [WebAPI](https://www.asp.net/web-api) controller handles the request. It creates an NServiceBus message and sends it to the endpoint running in the console application. The message has been processed successfully when the console application prints "Message received at endpoint". 
+The browser will navigate to `http://localhost:51863/api/sendmessage`.
+
+An async [WebAPI](https://www.asp.net/web-api) controller handles the request. It creates an NServiceBus message and sends it to the endpoint running in the console application. The message has been processed successfully when the console application prints "Message received at endpoint". 
 
 
 ## Prerequisites
