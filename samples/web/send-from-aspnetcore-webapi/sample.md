@@ -88,9 +88,7 @@ Remove the following from the project.json file.
 
 ## Running the solution
 
-When you run the solution, a new browser window/tab opens, as well as a console application.
-
-The browser will navigate to `http://localhost:51863/api/sendmessage`.
+When the solution is run, a new browser window/tab opens, as well as a console application. The browser will navigate to `http://localhost:51863/api/sendmessage`.
 
 An async [WebAPI](https://www.asp.net/web-api) controller handles the request. It creates an NServiceBus message and sends it to the endpoint running in the console application. The message has been processed successfully when the console application prints "Message received at endpoint". 
 
