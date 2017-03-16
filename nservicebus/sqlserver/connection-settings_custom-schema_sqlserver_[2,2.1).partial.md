@@ -1,4 +1,4 @@
-It is also possible to pass custom schema in the connection string, using `Queue Schema` parameter:
+The default schema can be overridden via the connection string, using `Queue Schema` parameter:
 
 snippet:sqlserver-non-standard-schema-connString
 
