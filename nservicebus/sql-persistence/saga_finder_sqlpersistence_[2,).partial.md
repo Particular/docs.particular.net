@@ -36,6 +36,8 @@ snippet: MsSqlServer_SagaSelectSql
 
 #### appendParameters
 
+`appendParameters` allows [DbParameter](https://msdn.microsoft.com/en-us/library/system.data.common.dbparameter.aspx)s to be appended to the underlying [DbCommand](https://msdn.microsoft.com/en-us/library/system.data.common.dbcommand.aspx) that will perform the query.
+
 **builder**: calls through to [DbCommand.CreateParameter](https://msdn.microsoft.com/en-us/library/system.data.common.dbcommand.createparameter.aspx) to allow construction on a [DbParameter](https://msdn.microsoft.com/en-us/library/system.data.common.dbparameter.aspx).
 
 **append**: calls through to [DbParameterCollection.Add](https://msdn.microsoft.com/en-us/library/system.data.common.dbparametercollection.add.aspx) to add the parameter to the underlying [DbCommand](https://msdn.microsoft.com/en-us/library/system.data.common.dbcommand.aspx).
