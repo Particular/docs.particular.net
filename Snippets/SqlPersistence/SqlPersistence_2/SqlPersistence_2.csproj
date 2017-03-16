@@ -52,8 +52,5 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Content Include="UpgradeGuides\ConvertOutboxToNonclustered.sql" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
