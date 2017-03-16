@@ -1,4 +1,4 @@
 
 ### Select used by Saga Finder
 
-snippet: MySqlServer_SagaSelectSql
+snippet: MySql_SagaSelectSql
