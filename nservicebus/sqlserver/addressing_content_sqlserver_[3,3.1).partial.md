@@ -1,4 +1,4 @@
-### Format
+## Format
 
 The SQL Server address has following canonical form
 
@@ -11,19 +11,19 @@ where:
  * `schema` is either an unquoted delimited identifier without the surrounding square brackets or a standard bracket-delimited identifier. In the second form it is always surrounded by brackets and any right brackets (`]`) inside are escaped e.g. `[my]]schema]`. `@` is only allowed in the bracket-delimited form, otherwise it is treated as separator.
 
 
-### Resolution
+## Resolution
 
 The address is resolved into a qualified table name that includes both table name and its schema. In the address the table name is the only mandatory part. An address containing only a table name is a valid address e.g. `MyTable`. 
 
 
-#### Schema
+### Schema
 
 Schema name is optional. Even if it is present in the address, it might be overridden by configuration. The algorithm for calculating the schema is following:
  * If schema is configured for a given queue via `UseSchemaForQueue`, the configured value is used.
 
 snippet:sqlserver-multischema-config-for-queue
 
- * If [logical routing](/nservicebus/messaging/routing.md#command-routing) is is used and schema is configured for a given endpoint via `UseSchemaForEndpoint`, the configured schema is used.
+ * If [logical routing](/nservicebus/messaging/routing.md#command-routing) is used and schema is configured for a given endpoint via `UseSchemaForEndpoint`, the configured schema is used.
 
 snippet:sqlserver-multischema-config-for-endpoint
 
