@@ -1,7 +1,7 @@
 
 ## Saga Finder
 
-The SQL Persistence exposes a specific API to enable creating [Saga Finders](/nservicebus/sagas/saga-finding.md).
+The SQL Persistence exposes an API to enable creating [Saga Finders](/nservicebus/sagas/saga-finding.md).
 
 
 ### Usage
@@ -45,6 +45,6 @@ snippet: MsSqlServer_SagaSelectSql
 
 ### IContainSagaData Construction
 
-Converting the returned information into a `IContainSagaData` will then be performed by the SQL Persister. 
+Converting the returned information into an `IContainSagaData` will then be performed by the SQL Persister. 
 
 See also [SQL Persistence Saga Finder Sample](/samples/saga/sql-sagafinder/).
