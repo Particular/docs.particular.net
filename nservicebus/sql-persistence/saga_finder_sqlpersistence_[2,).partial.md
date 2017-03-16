@@ -4,18 +4,45 @@
 The SQL Persistence exposes a specific API to enable creating [Saga Finders](/nservicebus/sagas/saga-finding.md).
 
 
-### Microsoft SQL Server
+### Usage
+
+The API is exposed as an extension method on `SynchronizedStorageSession` and can be called as follows:
+
+
+#### Microsoft SQL Server
 
 snippet: SagaFinder-sqlServer
 
 
-### MySql
+#### MySql
 
 snippet: SagaFinder-MySql
 
 
-This will result in a SQL Select query being executed with the where statement appended to the following:
+### Parameters
+
+
+### context
+
+Used to ensure the concurrency metadata is stored in the current session
+
+
+#### whereClause
+
+This text will be appended to a standard Saga select statement:
 
 snippet: MsSqlServer_SagaSelectSql
 
-Converting the returned information into a `IContainSagaData` will then be performed by the SQL Persister. See also [SQL Persistence Saga Finder Sample](https://docs.particular.net/samples/saga/sql-sagafinder/).
+
+#### appendParameters
+
+**builder**: calls through to [DbCommand.CreateParameter](https://msdn.microsoft.com/en-us/library/system.data.common.dbcommand.createparameter.aspx) to allow construction on a [DbParameter](https://msdn.microsoft.com/en-us/library/system.data.common.dbparameter.aspx).
+
+**append**: calls through to [DbParameterCollection.Add](https://msdn.microsoft.com/en-us/library/system.data.common.dbparametercollection.add.aspx) to add the parameter to the underlying [DbCommand](https://msdn.microsoft.com/en-us/library/system.data.common.dbcommand.aspx).
+
+
+### IContainSagaData Construction
+
+Converting the returned information into a `IContainSagaData` will then be performed by the SQL Persister. 
+
+See also [SQL Persistence Saga Finder Sample](https://docs.particular.net/samples/saga/sql-sagafinder/).
