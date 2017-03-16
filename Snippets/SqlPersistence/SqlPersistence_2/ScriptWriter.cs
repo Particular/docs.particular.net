@@ -78,6 +78,7 @@ public class ScriptWriter
             Write(directory, variant, "SagaGetBySagaId", sagaCommandBuilder.BuildGetBySagaIdCommand("EndpointName_SagaName"));
             Write(directory, variant, "SagaSave", sagaCommandBuilder.BuildSaveCommand("CorrelationProperty", "TransitionalCorrelationProperty", "EndpointName_SagaName"));
             Write(directory, variant, "SagaUpdate", sagaCommandBuilder.BuildUpdateCommand("TransitionalCorrelationProperty", "EndpointName_SagaName"));
+            Write(directory, variant, "SagaSelect", sagaCommandBuilder.BuildSelectFromCommand("EndpointName_SagaName"));
         }
     }
 
