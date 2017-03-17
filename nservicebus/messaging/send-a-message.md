@@ -1,6 +1,6 @@
 ---
 title: Sending messages
-reviewed: 2016-08-26
+reviewed: 2017-03-17
 component: Core
 redirects:
  - nservicebus/how-do-i-send-a-message
@@ -42,28 +42,10 @@ snippet: BasicSendInterface
 Note: In Versions 5 and below, the operations are available on the `IBus` which can be accessed using constructor or property injection. In Versions 6 and above, the message handlers have access to the `IMessageHandlerContext` parameter, which can be used to dispatch messages on the bus.
 
 
-## Overriding the default routing
-
-The `SendOptions` object can be used to override the default routing.
-
-Using the destination address:
-
-snippet: BasicSendSetDestination
+partial: override-default-routing
 
 
-partial: route-to-specific-instance
-
-
-## Sending to *self*
-
-Sending a message to the same endpoint, i.e. Sending to *self* can be done in two ways.
-
-An endpoint can send a message to any of its instances:
-
-snippet: BasicSendToAnyInstance
-
-
-partial: route-to-this-instance
+partial: sending-to-self
 
 
 partial: influence-reply
@@ -71,14 +53,6 @@ partial: influence-reply
 
 ## Dispatching a message immediately
 
-While its usually best to let NServiceBus [handle all exceptions](/nservicebus/recoverability/), there are some scenarios where messages might need to be sent regardless of if the message handler succeeds or not. For example, sending a reply notifying that there was a problem with processing the message.
-
-WARNING: By specifying immediate dispatch, outgoing messages will not be [batched](/nservicebus/messaging/batched-dispatch.md) or enlisted in the current receive transaction even if the transport has support for it.
-
-Suppressing the ambient transaction to have the outgoing message sent immediately is possible:
-
-snippet: RequestImmediateDispatchUsingScope
-
-WARNING: Suppressing transaction scopes only works for MSMQ and SQL transports in DTC mode. Other transports or disabled DTC may result in unexpected behavior.
+While it's usually best to let NServiceBus [handle all exceptions](/nservicebus/recoverability/), there are some scenarios where messages might need to be sent regardless of whether the message handler succeeds or not. For example, it might be desirable to send a reply notifying that there was a problem with processing the message.
 
 partial: immediate-dispatch
