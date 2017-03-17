@@ -37,6 +37,7 @@ Forwarding[Forwarding]
 Audit[Audit]
 Dispatch
 end
+
 end
 
 AncillaryTransport[Transport]
@@ -46,10 +47,11 @@ RUC[Receiving<br>User Code]
 
 
 Transport --> TR
-IPM -.-> Forwarding
-IPM -.-> Audit
+IPM -- Step 1 --> ILM
+IPM -. Step 2 .-> Forwarding
+IPM -. Step 2 .-> Audit
 ILM --> IH
-IPM --> ILM
+
 TR --> IPM
 IH --> RUC
 
