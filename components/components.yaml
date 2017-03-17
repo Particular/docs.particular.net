@@ -500,7 +500,7 @@
 - Key: ServiceBootstrap
   Name: Windows Service Bootstrap
   DocoUrl: nservicebus/hosting/windows-service
-  GitHubOwner: Particular/nservicebus-maintainers
+  GitHubOwner: Particular/bootstrap-windowsservice-maintainers
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Bootstrap.WindowsService
   NugetOrder:
