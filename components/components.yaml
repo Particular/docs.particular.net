@@ -787,7 +787,7 @@
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.FileBasedRouting
   NugetOrder:
     - NServiceBus.FileBasedRouting
-	
+
 - Key: ServiceFabric
   Name: Service Fabric Persistence 
   DocoUrl: nservicebus/service-fabric
