@@ -60,7 +60,7 @@
     - NServiceBus.Encryption.MessageProperty
     - NServiceBus
 
-- Key: PerformanceCounters
+- Key: PerfCounters
   Name: Performance Counters
   DocoUrl: nservicebus/operations/performance-counters
   Category: Other

@@ -16,7 +16,7 @@ The API was also modified.
 
 ## Changed APIs
 
-The NServiceBus Performance Counter APIs have been marked as obsolete and have one-for-one equiavlents in the NServiceBus.WindowsPerformanceCounters package.
+The NServiceBus Performance Counter APIs have been marked as obsolete and have one-for-one equivalents in the NServiceBus.WindowsPerformanceCounters package.
 
 
 ### Enabling Critical Time Counter

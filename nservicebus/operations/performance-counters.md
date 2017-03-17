@@ -2,7 +2,7 @@
 title: Performance Counters
 summary: Monitoring through the use of performance counters.
 reviewed: 2016-11-01
-component: PerformanceCounters
+component: PerfCounters
 redirects:
  - nservicebus/monitoring-nservicebus-endpoints
  - nservicebus/operations/monitoring-endpoints
