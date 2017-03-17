@@ -67,6 +67,7 @@
   GitHubOwner: Particular/metrics-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus.WindowsPerformanceCounters
   NugetOrder:
+    - NServiceBus.WindowsPerformanceCounters
     - NServiceBus
 
 - Key: PostgreSQL
