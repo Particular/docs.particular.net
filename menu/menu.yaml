@@ -654,6 +654,15 @@
         Title: SQL Azure
       - Url: nservicebus/nhibernate/scripting
         Title: Scripting
+    - Url: nservicebus/service-fabric
+      Title: Service Fabric Persistence
+      Articles:
+      - Url: nservicebus/service-fabric/sagas
+        Title: Sagas
+      - Url: nservicebus/service-fabric/outbox
+        Title: Outbox
+      - Url: nservicebus/service-fabric/transaction-sharing
+        Title: Transaction Sharing
     - Url: nservicebus/mongodb-persistence-tekmaven
       Title: MongoDB Persistence
   - Url: nservicebus/containers
