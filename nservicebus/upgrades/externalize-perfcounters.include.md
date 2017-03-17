@@ -1,0 +1,3 @@
+The [Windows Performance Counters feature](/nservicebus/operations/performance-counters.md) is in the process of being removed from the NServiceBus NuGet package. It is now available as a separate NuGet package, [NServiceBus.WindowsPerformanceCounters](https://www.nuget.org/packages/NServiceBus.WindowsPerformanceCounters/). The new package should be used to write to performance counters when using NServiceBus Versions 6.2 and above.
+
+The Performance Counters APIs in the NServiceBus NuGet package have been marked as [obsolete with warning](https://msdn.microsoft.com/en-us/library/system.obsoleteattribute.aspx) and can still be used by suppressing the [CS0618 warning](https://msdn.microsoft.com/en-us/library/x5ye6x1e.aspx).
