@@ -9,7 +9,7 @@ related:
  - nservicebus/operations/performance-counters
 ---
 
-The [Windows Performance Counters feature](/nservicebus/operations/performance-counters.md) has is being moved from the NServiceBus package. It is now available as a separate NuGet package, [NServiceBus.WindowsPerformanceCounters](https://www.nuget.org/packages/NServiceBus.WindowsPerformanceCounters/). The new package should be used to write to performance counters when using NServiceBus Versions 6.2 and above.
+The [Windows Performance Counters feature](/nservicebus/operations/performance-counters.md) is being removed from the NServiceBus package. It is now available as a separate NuGet package, [NServiceBus.WindowsPerformanceCounters](https://www.nuget.org/packages/NServiceBus.WindowsPerformanceCounters/). The new package should be used to write to performance counters when using NServiceBus Versions 6.2 and above.
 
 The API was also modified.
 
