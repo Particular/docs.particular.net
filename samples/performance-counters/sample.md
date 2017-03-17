@@ -1,12 +1,13 @@
 ---
 title: Performance Counter Usage
 summary: Using the built in Performance Counters.
-reviewed: 2016-07-20
+reviewed: 2017-03-17
 component: PerformanceCounters
 related:
 - nservicebus/operations/performance-counters
 - nservicebus/operations/management-using-powershell
 ---
+
 
 ## Install Counters
 
@@ -32,6 +33,7 @@ The following will result
 \NServiceBus(*)\# of msgs pulled from the input queue /sec
 \NServiceBus(*)\# of msgs failures / sec
 ```
+
 
 ## Enabling Counters For The Endpoint
 
