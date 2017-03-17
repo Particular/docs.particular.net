@@ -725,6 +725,15 @@
       Title: Scripting
   - Url: nservicebus/msmq/subscription-persistence
     Title: MSMQ Subscription
+  - Url: nservicebus/service-fabric
+    Title: Serice Fabric Persistence      
+    Articles:
+    - Url: nservicebus/service-fabric/sagas
+      Title: Sagas
+    - Url: nservicebus/service-fabric/outbox
+      Title: Outbox
+    - Url: nservicebus/service-faric/transaction-sharing
+      Title: Transaction Sharing
   - Url: nservicebus/mongodb-persistence-tekmaven
     Title: MongoDB
 
