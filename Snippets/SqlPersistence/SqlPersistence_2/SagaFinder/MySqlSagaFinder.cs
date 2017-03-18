@@ -14,7 +14,7 @@
         public Task<MySagaData> FindBy(MyMessage message, SynchronizedStorageSession session, ReadOnlyContextBag context)
         {
             return session.GetSagaData<MySagaData>(
-                readOnlyContextBag: context,
+                context: context,
                 whereClause: "JSON_EXTRACT(Data,'$.PropertyPathInJson') = @propertyValue",
                 appendParameters: (builder, append) =>
                 {
