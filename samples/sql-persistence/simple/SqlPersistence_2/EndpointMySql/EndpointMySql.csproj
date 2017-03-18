@@ -41,8 +41,8 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.1.3\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Persistence.Sql, Version=2.0.0.0, Culture=neutral, PublicKeyToken=affc41380e1a1478, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.Sql.2.0.0-unstable0039\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
+    <Reference Include="NServiceBus.Persistence.Sql, Version=2.0.0.0, Culture=neutral, PublicKeyToken=affc41380e1a1478">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.Sql.2.0.0-unstable0045\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
