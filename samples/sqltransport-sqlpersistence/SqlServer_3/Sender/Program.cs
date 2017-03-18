@@ -40,7 +40,8 @@ class Program
             {
                 return new SqlConnection(connectionString);
             });
-        persistence.TablePrefix("sender.");
+        persistence.Schema("sender");
+        persistence.TablePrefix("");
 
         #endregion
 

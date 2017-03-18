@@ -37,7 +37,8 @@ class Program
             {
                 return new SqlConnection(connectionString);
             });
-        persistence.TablePrefix("receiver.");
+        persistence.Schema("receiver");
+        persistence.TablePrefix("");
 
         #endregion
 
