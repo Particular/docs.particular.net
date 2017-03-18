@@ -12,7 +12,7 @@ class OrderSagaFinder :
     public Task<OrderSagaData> FindBy(PaymentTransactionCompleted message, SynchronizedStorageSession session, ReadOnlyContextBag context)
     {
         return session.GetSagaData<OrderSagaData>(
-            readOnlyContextBag: context,
+            context: context,
             whereClause: "JSON_VALUE(Data,'$.PaymentTransactionId') = @propertyValue",
             appendParameters: (builder, append) =>
             {
