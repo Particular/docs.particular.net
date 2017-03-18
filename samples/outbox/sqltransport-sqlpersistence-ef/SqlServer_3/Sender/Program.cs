@@ -22,6 +22,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SQLOutboxEF.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region SenderConfiguration
 
@@ -39,7 +40,8 @@ class Program
             {
                 return new SqlConnection(connectionString);
             });
-        persistence.TablePrefix("sender.");
+        persistence.Schema("sender");
+        persistence.TablePrefix("");
 
         endpointConfiguration.EnableOutbox();
 
