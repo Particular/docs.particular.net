@@ -9,4 +9,10 @@ A persister built on top of [Service Fabric Reliable Collections](https://docs.m
 
 ## Usage
 
+Add a NuGet package reference to `NServiceBus.Persistence.ServiceFabric`. Configure the persistence technology using the following configuration API.
+
 snippet: ServiceFabricPersistenceConfiguration
+
+## Viewing the data
+
+Currently Service Fabric does not provide capabilities to view the data that is stored inside reliable collections. The data has to be programatically accessed and exposed over customized infrastructure.
