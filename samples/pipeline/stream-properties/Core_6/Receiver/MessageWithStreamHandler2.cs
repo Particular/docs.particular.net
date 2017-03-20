@@ -1,3 +1,4 @@
+using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
@@ -11,7 +12,7 @@ public class MessageWithStreamHandler2 :
     {
         var stream = message.StreamProperty;
         log.Info($"Message received, size of stream property: {stream.Length} Bytes");
-        using (var streamReader = new ResettingStreamReader(stream))
+        using (var streamReader = new StreamReader(stream))
         {
             var streamContents = await streamReader.ReadToEndAsync()
                 .ConfigureAwait(false);

@@ -26,13 +26,6 @@ The helper method can then be called at configuration time.
 snippet: configure-stream-storage
 
 
-## Stream Consumption
-
-In the scenario where multiple handlers can consumer the same stream instance it is necessary to not dispose of stream and reset it after use. In this sample a `ResettingStreamReader` class is used.
-
-snippet: stream-reader-helper
-
-
 ## Write Stream properties to disk
 
 This happens in as part of the outgoing pipeline, see `StreamSendBehavior.cs`.
