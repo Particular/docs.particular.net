@@ -43,7 +43,7 @@ This endpoint is limited to 1 concurrent message processing and uses a [pipeline
 
 [Limits the endpoint concurrency](/nservicebus/operations/tuning.md).
 
-snippet:LimitConcurrency
+snippet: LimitConcurrency
 
 
 ### Search Handler
@@ -55,7 +55,7 @@ snippet: SearchHandler
 
 ### Registering the behavior in pipeline
 
-snippet:RegisterBehavior
+snippet: RegisterBehavior
 
 snippet: RegisterStep
 

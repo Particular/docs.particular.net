@@ -6,13 +6,13 @@ The sender of the message can also control how the reply messages are received. 
 
 To explicitly control the reply message to be dispatched to a particular instance:
 
-snippet:BasicSendReplyToThisInstance
+snippet: BasicSendReplyToThisInstance
 
 To send the reply message to any instance of the endpoint:
 
-snippet:BasicSendReplyToAnyInstance
+snippet: BasicSendReplyToAnyInstance
 
 The sender can also request the reply to be routed to a specific transport address
 
-snippet:BasicSendReplyToDestination
+snippet: BasicSendReplyToDestination
 

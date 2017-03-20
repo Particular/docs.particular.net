@@ -56,14 +56,14 @@ Instances of `IBus` that were being injected into message handler classes by the
 
 The message handler signature now includes an additional `IMessageHandlerContext` parameter, which provides the methods that used to be called from `IBus`. Use the `IMessageHandlerContext` to send and publish messages from within the message handler.
 
-snippet:5to6-bus-send-publish
+snippet: 5to6-bus-send-publish
 
 
 ### Sending messages outside message handlers
 
 A common use of `IBus` is to invoke bus operations outside of the pipeline (e.g. in handlers, sagas and pipeline extensions), such as sending a message from an ASP.NET request or from a client application. Instead of an `IBus` the `IMessageSession` offers all available messaging operations outside the message processing pipeline. For example:
 
-snippet:5to6-endpoint-send-messages-outside-handlers
+snippet: 5to6-endpoint-send-messages-outside-handlers
 
 In this example a message is being sent during startup of an Endpoint. Hence the `IMessageSession` is available via the `IEndpointInstance` class from `Endpoint.Start`. Note that implicitly converting from `IEndpointInstance` to `IMessageSession` is optional but it is preferred as `IMessageSession` offers a more concise API for messaging interactions.
 

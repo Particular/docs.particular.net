@@ -43,7 +43,7 @@ The `Server` endpoint is configured to use the Azure Storage persistence in two 
 
 #### The endpoint configuration
 
-snippet:Config
+snippet: Config
 
 
 partial:AppConfig
@@ -51,12 +51,12 @@ partial:AppConfig
 
 ### Order Saga Data
 
-snippet:sagadata
+snippet: sagadata
 
 
 ### Order Saga
 
-snippet:thesaga
+snippet: thesaga
 
 
 ## The Data in Azure Storage
@@ -71,17 +71,17 @@ There are several helper methods in `AzureHelper.cs` in the `StorageReader` proj
 
 #### Writing table data
 
-snippet:WriteOutTable
+snippet: WriteOutTable
 
 
 #### Writing blob data
 
-snippet:WriteOutBlobContainer
+snippet: WriteOutBlobContainer
 
 
 #### Using the helpers
 
-snippet:UsingHelpers
+snippet: UsingHelpers
 
 
 ### The Saga Data

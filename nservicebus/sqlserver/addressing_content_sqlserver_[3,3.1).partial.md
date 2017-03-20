@@ -23,11 +23,11 @@ Schema name is optional. Even if it is present in the address, it might be overr
 
  * If schema is configured for a given queue via `UseSchemaForQueue`, the configured value is used.
 
-snippet:sqlserver-multischema-config-for-queue
+snippet: sqlserver-multischema-config-for-queue
 
  * If [logical routing](/nservicebus/messaging/routing.md#command-routing) is used and schema is configured for a given endpoint via `UseSchemaForEndpoint`, the configured schema is used.
 
-snippet:sqlserver-multischema-config-for-endpoint
+snippet: sqlserver-multischema-config-for-endpoint
 
  * If destination address contains schema, the schema from address is used.
  * If default schema is configured via `DefaultSchema`, the configured value is used.

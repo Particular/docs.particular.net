@@ -43,7 +43,7 @@ partial:disableautosubscribe
 
 Events can manually be subscribed and unsubscribed:
 
-snippet:ExplicitSubscribe
+snippet: ExplicitSubscribe
 
 partial:manualsubscriptions
 

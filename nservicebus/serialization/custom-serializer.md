@@ -24,6 +24,6 @@ In order to see sample implementations, refer to the [community run serializers]
 
 Register the serializer:
 
-snippet:RegisterCustomSerializer
+snippet: RegisterCustomSerializer
 
 Note: When using multiple deserializers make sure that there's only one type registered per given `ContentType`.

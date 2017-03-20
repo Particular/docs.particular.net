@@ -28,12 +28,12 @@ DANGER: The `Start` and `Stop` methods will block start up and shut down of the 
 
 ### Interface in Version 5 of NServiceBus
 
-snippet:5to6-EndpointStartAndStopCore
+snippet: 5to6-EndpointStartAndStopCore
 
 
 ### Interface in Version 7 of NServiceBus.Host
 
-snippet:5to6-EndpointStartAndStopHost
+snippet: 5to6-EndpointStartAndStopHost
 
 
 The `IMessageSession` parameter provides all the necessary methods to send messages as part of the endpoint start up.

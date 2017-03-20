@@ -22,14 +22,14 @@ The inference here is that the remaining handlers (not specified in the order) a
 
 ### With the configuration API
 
-snippet:HandlerOrderingWithCode
+snippet: HandlerOrderingWithCode
 
 
 #### Specifying one to run first
 
-snippet:HandlerOrderingWithFirst
+snippet: HandlerOrderingWithFirst
 
 
 #### Specifying multiple to run ordered
 
-snippet:HandlerOrderingWithMultiple
+snippet: HandlerOrderingWithMultiple

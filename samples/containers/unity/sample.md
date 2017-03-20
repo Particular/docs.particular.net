@@ -11,9 +11,9 @@ related:
 
 ### Configuring NServiceBus to use the container
 
-snippet:ContainerConfiguration
+snippet: ContainerConfiguration
 
 
 ### Injecting the dependency in the handler
 
-snippet:InjectingDependency
+snippet: InjectingDependency

@@ -28,7 +28,7 @@ This sample contains three projects:
 
 Look at the Shared project:
 
-snippet:MessageWithLargePayload
+snippet: MessageWithLargePayload
 
 `DataBusProperty<byte[]>` is an NServiceBus data type that instructs NServiceBus to treat the `LargePayload` property as an attachment. It is not transported in the NServiceBus normal flow.
 

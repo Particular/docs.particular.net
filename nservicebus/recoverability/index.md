@@ -96,6 +96,6 @@ Given the following configuration:
 
 The output in the log will be:
 
-snippet:RetryLogging
+snippet: RetryLogging
 
 partial: exceptionincluded

@@ -28,12 +28,12 @@ NServiceBus uses this type of mutator internally to do things like property encr
 
 ### IMutateIncomingMessages
 
-snippet:IMutateIncomingMessages
+snippet: IMutateIncomingMessages
 
 
 ### IMutateOutgoingMessages
 
-snippet:IMutateOutgoingMessages
+snippet: IMutateOutgoingMessages
 
 
 partial: imessagemutator
@@ -46,12 +46,12 @@ Create transport message mutators by implementing the `IMutateIncomingTransportM
 
 ### IMutateIncomingTransportMessages
 
-snippet:IMutateIncomingTransportMessages
+snippet: IMutateIncomingTransportMessages
 
 
 ### IMutateOutgoingTransportMessages
 
-snippet:IMutateOutgoingTransportMessages
+snippet: IMutateOutgoingTransportMessages
 
 
 partial: imutatetransportmessages
@@ -61,7 +61,7 @@ partial: imutatetransportmessages
 
 Mutators are **NOT** automatically registered in the container, so to have them invoked, register them in the [container](/nservicebus/containers/).
 
-snippet:MutatorRegistration
+snippet: MutatorRegistration
 
 NOTE: Mutators are non-deterministic in terms of order of execution. If more fine grained control is required over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/manipulate-with-behaviors.md).
 

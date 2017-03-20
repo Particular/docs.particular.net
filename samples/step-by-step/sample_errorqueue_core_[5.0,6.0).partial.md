@@ -2,7 +2,7 @@
 
 In the Shared project, create a class named `ConfigErrorQueue`:
 
-snippet:ConfigErrorQueue
+snippet: ConfigErrorQueue
 
 Each endpoint needs to [configure recoverability](/nservicebus/recoverability/). This defines where messages are sent when they cannot be processed due to repetitive exceptions during message processing.
 

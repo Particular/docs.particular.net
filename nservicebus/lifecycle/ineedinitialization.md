@@ -29,4 +29,4 @@ Exceptions thrown by instances of `INeedInitialization` are not handled by NServ
 
 NOTE: Instances of `INeedInitialization` are created after type-scanning has occurred. Do not attempt to alter the types to be scanned from an instance of `INeedInitialization`.
 
-snippet:lifecycle-ineedinitialization
+snippet: lifecycle-ineedinitialization

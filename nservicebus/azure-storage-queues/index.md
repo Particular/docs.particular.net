@@ -22,6 +22,6 @@ include: azure-transports
 
 Then at configuration time set ASB as the transport:
 
-snippet:AzureStorageQueueTransportWithAzure
+snippet: AzureStorageQueueTransportWithAzure
 
 Then set up appropriate [connection strings](/nservicebus/azure-storage-queues/configuration.md#connection-strings), and ensure they are [secure](/nservicebus/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts).

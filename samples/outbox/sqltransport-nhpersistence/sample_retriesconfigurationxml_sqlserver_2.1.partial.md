@@ -1,2 +1,2 @@
 
-snippet:RetriesConfigurationXml
+snippet: RetriesConfigurationXml

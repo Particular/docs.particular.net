@@ -64,35 +64,35 @@ Now start `Endpoint2`. The reply message will appear in its file system `%temp%\
 
 The `TransportDefinition` allows a Transport to define how it interacts with the core of NServiceBus.
 
-snippet:TransportDefinition
+snippet: TransportDefinition
 
 
 ### Storage location
 
 This transport is hard coded to persist message to `%TEMP%FileTransport/ADDRESS/`.
 
-snippet:BaseDirectoryBuilder
+snippet: BaseDirectoryBuilder
 
 
 ### Header Serializer
 
 To serialize [Headers](/nservicebus/messaging/headers.md) headers this Transport uses JSON via[DataContractJsonSerializer](https://msdn.microsoft.com/en-us/library/system.runtime.serialization.json.datacontractjsonserializer.aspx)
 
-snippet:HeaderSerializer
+snippet: HeaderSerializer
 
 
 ### QueueCreation
 
 At startup a transport can optionally [create queues](/nservicebus/transports/queuecreation.md).
 
-snippet:QueueCreation
+snippet: QueueCreation
 
 
 ### DirectoryBasedTransaction
 
 How a Transport handles transactions differs greatly between specific implementations. For demonstration purposes this Transport uses a highly simplified file system based transaction.
 
-snippet:DirectoryBasedTransaction
+snippet: DirectoryBasedTransaction
 
 
 ### Dispatcher
@@ -106,4 +106,4 @@ snippet: Dispatcher
 
 The message pump is responsible for reading message from the underlying transport and pushing them into the [Message Handling Pipeline](/nservicebus/pipeline/).
 
-snippet:MessagePump
+snippet: MessagePump

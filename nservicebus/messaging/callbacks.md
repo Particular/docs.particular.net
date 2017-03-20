@@ -21,7 +21,7 @@ DANGER: If the server process returns multiple responses, NServiceBus cannot kno
 
 To handle responses from the processing endpoint, the sending endpoint must have it's own queue. Therefore, the sending endpoint cannot be configured as a [SendOnly endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting). Messages arriving in this queue are handled using a message handler, similar to that of the processing endpoint, as shown:
 
-snippet:EmptyHandler
+snippet: EmptyHandler
 
 
 ## Prerequisites for callback functionality
@@ -43,12 +43,12 @@ The integer response scenario allows any integer value to be returned in a stron
 
 #### Send and Callback
 
-snippet:IntCallback
+snippet: IntCallback
 
 
 #### Response
 
-snippet:IntCallbackResponse
+snippet: IntCallbackResponse
 
 
 ### Enum
@@ -58,12 +58,12 @@ The enum response scenario allows any enum value to be returned in a strong type
 
 #### Send and Callback
 
-snippet:EnumCallback
+snippet: EnumCallback
 
 
 #### Response
 
-snippet:EnumCallbackResponse
+snippet: EnumCallbackResponse
 
 
 ### Object
@@ -75,19 +75,19 @@ The Object response scenario allows an object instance to be returned.
 
 This feature leverages the message Reply mechanism of the bus and hence the response need to be a message.
 
-snippet:CallbackResponseMessage
+snippet: CallbackResponseMessage
 
 
 #### Send and Callback
 
-snippet:ObjectCallback
+snippet: ObjectCallback
 
 partial:fakeHandler
 
 
 #### Response
 
-snippet:ObjectCallbackResponse
+snippet: ObjectCallbackResponse
 
 partial:cancellation
 

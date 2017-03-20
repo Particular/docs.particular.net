@@ -13,12 +13,12 @@ NServiceBus can be configured to use [Spring](http://www.springframework.net/) a
 
 ### Default Usage
 
-snippet:Spring
+snippet: Spring
 
 
 ### Existing Container Instance
 
-snippet:Spring_Existing
+snippet: Spring_Existing
 
 
 ### DependencyLifecycle Mapping

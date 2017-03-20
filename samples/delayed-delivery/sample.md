@@ -25,14 +25,14 @@ The `Shared` project is the container for shared classes including message defin
 
 Used to place an order, used in Defer Message Handling scenario
 
-snippet:PlaceOrder
+snippet: PlaceOrder
 
 
 ### PlaceDelayedOrder Command
 
 Used to place an order, used in Defer Message Delivery scenario
 
-snippet:PlaceDelayedOrder
+snippet: PlaceDelayedOrder
 
 
 ## Defer message handling
@@ -44,14 +44,14 @@ This flow is shown when user chose 1 on Client Console. In this case message is 
 
 The `Client` is the initiate for the ordering process. The sending code in the client is as follows.
 
-snippet:SendOrder
+snippet: SendOrder
 
 
 ### The Server
 
 The `Server` project processes an Order. It receives `PlaceOrder` sent from `Client` and for the first time defers it's handling for some time.
 
-snippet:PlaceOrderHandler
+snippet: PlaceOrderHandler
 
 
 ## Defer message delivery
@@ -63,7 +63,7 @@ This flow is shown when user chose 2 on Client Console. In this case message is 
 
 The `Client` is the initiate for the ordering process. The 'Client' defers sending of a message as can be seen below.
 
-snippet:DeferOrder
+snippet: DeferOrder
 
 
 partial:HandleDefer
@@ -73,4 +73,4 @@ partial:HandleDefer
 
 The `Server` project processes an Order. It receives `PlaceDelayedOrder` sent from `Client` and process it.
 
-snippet:PlaceDelayedOrderHandler
+snippet: PlaceDelayedOrderHandler

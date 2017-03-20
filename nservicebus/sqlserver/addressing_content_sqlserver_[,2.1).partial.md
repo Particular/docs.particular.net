@@ -18,4 +18,4 @@ The address is resolved into a qualified table name that includes both table nam
 
 A schema for a destination endpoint can be specified using a connection string convention. In the example below the connection string `NServiceBus/Transport/Billing` overrides the default if sending to the `Billing` queue, in which case `billingSchema` is used.
 
-snippet:sqlserver-non-standard-schema-messagemapping
+snippet: sqlserver-non-standard-schema-messagemapping

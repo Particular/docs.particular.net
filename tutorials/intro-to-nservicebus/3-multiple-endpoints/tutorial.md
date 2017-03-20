@@ -17,11 +17,11 @@ In the next 15-20 minutes, you will learn how to send messages between multiple 
 
 We've already shown how an endpoint can "send a message to itself" using the `SendLocal()` method, which is available on the `IEndpointInstance` that we use in the endpoint startup code to create a UI, and also on the `IMessageHandlerContext` that we can access while handling a message.
 
-snippet:SendLocal
+snippet: SendLocal
 
 Sending a message to another endpoint is exactly the same, we just need to drop the word **Local** from the method name.
 
-snippet:Send
+snippet: Send
 
 The main difference is that with `SendLocal()`, the destination (local) for the message is already known. So when we call `Send()`, how does NServiceBus know where to send the message?
 
@@ -30,7 +30,7 @@ The main difference is that with `SendLocal()`, the destination (local) for the 
 
 We could specify where we want the message to go directly in code. There is actually an overload of the `Send()` method that allows us to do this:
 
-snippet:SendDestination
+snippet: SendDestination
 
 However, doing that in most cases isn't a good idea. This requires each developer to remember where each message is supposed to go and type it in every time that message is sent.
 
@@ -57,7 +57,7 @@ Therefore, it makes sense that logical routing is defined in code.
 
 [**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `transport` object returned when we defined the message transport, as shown in this example using the MSMQ transport:
 
-snippet:RoutingSettings
+snippet: RoutingSettings
 
 `RoutingSettings<T>` is scoped to the actual transport being used, and routing options are exposed as extension methods on this class. Therefore, only routing options that are viable for the transport in use will appear. Routing configurations only applicable to Microsoft Azure, for example, won't clutter up the API when using the MSMQ transport.
 
@@ -65,7 +65,7 @@ NOTE: If you are using the SQL Server transport for this lesson, the routing opt
 
 In order to define routes, start with the `routing` variable and call the `RouteToEndpoint` method as needed, which comes in three varieties:
 
-snippet:RouteToEndpoint
+snippet: RouteToEndpoint
 
 For now we will use the first overload, specifying individual message types.
 
@@ -90,7 +90,7 @@ First, let's create the project for our new endpoint.
 
 Now that we have a project for our Sales endpoint, we need to add similar code to configure and start an NServiceBus endpoint:
 
-snippet:SalesProgram
+snippet: SalesProgram
 
 Most of this configuration looks exactly the same as our ClientUI endpoint. It's critical for the configuration between endpoints to match (especially message transport and serializer) otherwise the endpoints would not be able to understand each other.
 
@@ -98,7 +98,7 @@ For example, if the ClientUI endpoint used `.UseSerialization<XmlSerializer>()` 
 
 While most of the configuration is the same, let me draw your attention to two specific lines that are different:
 
-snippet:EndpointDifferences
+snippet: EndpointDifferences
 
 The difference, of course, is the name "Sales" in the console title and `EndpointConfiguration` constructor, which defines the endpoint name for the Sales endpoint and gives it its own identity.
 
@@ -142,7 +142,7 @@ Now we need to change the ClientUI so that it is sending `PlaceOrder` to the Sal
  1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
  1. In the `AsyncMain` method of the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the MSMQ transport:
 
-snippet:AddingRouting
+snippet: AddingRouting
 
 This establishes that commands of type `PlaceOrder` should be sent to the **Sales** endpoint.
 

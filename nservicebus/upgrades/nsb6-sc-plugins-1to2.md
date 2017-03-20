@@ -23,7 +23,7 @@ Version 2 of the ServiceControl plugins changes the way that the plugins connect
 
 The location of the ServiceControl queue can be specified once for all plugins in via an `appSetting` in the endpoint configuration file.
 
-snippet:sc-plugin-queue-config
+snippet: sc-plugin-queue-config
 
 
 ### Code
@@ -33,14 +33,14 @@ The location of the ServiceControl queue can be specified via plugin-specific ex
 
 #### Heartbeats
 
-snippet:Heartbeats_Configure_ServiceControl
+snippet: Heartbeats_Configure_ServiceControl
 
 
 #### CustomChecks
 
-snippet:CustomCheck_Configure_ServiceControl
+snippet: CustomCheck_Configure_ServiceControl
 
 
 #### SagaAudit
 
-snippet:SagaAudit_Configure_ServiceControl
+snippet: SagaAudit_Configure_ServiceControl

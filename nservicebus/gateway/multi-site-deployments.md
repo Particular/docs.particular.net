@@ -66,7 +66,7 @@ The sending process in site A sends a message to the gateway's input queue. The 
 
 To send a message to a remote site, use the `SendToSites` API call, as shown:
 
-snippet:SendToSites
+snippet: SendToSites
 
 `SiteA` and `SiteB` is the list of remote sites where the message(s) are sent.
 
@@ -78,7 +78,7 @@ While these URLs can be placed directly in the call, it is recommended to put th
 
 #### Using App.Config
 
-snippet:GatewaySitesAppConfig
+snippet: GatewaySitesAppConfig
 
 
 Or specify this physical routing in code:
@@ -86,16 +86,16 @@ Or specify this physical routing in code:
 
 #### Using an IConfigurationProvider
 
-snippet:GatewaySitesConfigurationProvider
+snippet: GatewaySitesConfigurationProvider
 
 
 #### Using a ConfigurationSource
 
-snippet:GatewaySitesConfigurationSource
+snippet: GatewaySitesConfigurationSource
 
 Then at configuration time:
 
-snippet:UseCustomConfigurationSourceForGatewaySitesConfig
+snippet: UseCustomConfigurationSourceForGatewaySitesConfig
 
 
 NServiceBus automatically sets the required headers to enable sending messages back over the gateway using the familiar `Reply`.
@@ -125,23 +125,23 @@ When the gateway is enabled it automatically sets up an HTTP channel to listen t
 
 #### Using App.Config
 
-snippet:GatewayChannelsAppConfig
+snippet: GatewayChannelsAppConfig
 
 Or specify the physical routing in code:
 
 
 #### Using an IConfigurationProvider
 
-snippet:GatewayChannelsConfigurationProvider
+snippet: GatewayChannelsConfigurationProvider
 
 
 #### Using a ConfigurationSource
 
-snippet:GatewayChannelsConfigurationSource
+snippet: GatewayChannelsConfigurationSource
 
 Then at configuration time:
 
-snippet:UseCustomConfigurationSourceForGatewayChannelsConfig
+snippet: UseCustomConfigurationSourceForGatewayChannelsConfig
 
 
 The `Default = true` on the first channel config entry tells the gateway which address to attach to outgoing messages if the sender does not specify it explicitly. Any number of channels can be added.

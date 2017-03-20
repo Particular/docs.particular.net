@@ -25,7 +25,7 @@ partial:filtering
 
 The filtering logic then needs to be registered in the pipeline:
 
-snippet:addFilterBehaviors
+snippet: addFilterBehaviors
 
 
 ## Running the Code

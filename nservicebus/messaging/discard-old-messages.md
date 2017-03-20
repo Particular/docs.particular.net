@@ -22,12 +22,12 @@ To discard a message when a specific time interval has elapsed:
 
 ## Using an Attribute
 
-snippet:DiscardingOldMessagesWithAnAttribute
+snippet: DiscardingOldMessagesWithAnAttribute
 
 
 ## Using a custom convention
 
-snippet:DiscardingOldMessagesWithCode
+snippet: DiscardingOldMessagesWithCode
 
 
 ## Clock synchronization issues

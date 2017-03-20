@@ -62,7 +62,7 @@ Armed with this it will be possible to send messages from any app in the organiz
 
 Sometimes it is necessary to integrate with old legacy apps where performing sends straight from within the database itself might be a better approach. Just execute the following SQL statement and notice how the message is consumed by the NServiceBus endpoint.
 
-snippet:SendFromTSQL
+snippet: SendFromTSQL
 
 
 ### Using triggers to emit messages

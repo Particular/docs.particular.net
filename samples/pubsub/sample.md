@@ -24,7 +24,7 @@ The `Shared` project contains the definition of the messages that are sent betwe
 
 As the name implies, the `Publisher` project is a publisher of event messages. It uses the NServiceBus API to publish the `OrderReceived` event every time the `1` key is pressed. The created message is populated and [published](/nservicebus/messaging/publish-subscribe/) using the `Publish` API.
 
-snippet:PublishLoop
+snippet: PublishLoop
 
 
 ## Implementing subscribers

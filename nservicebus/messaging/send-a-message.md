@@ -22,7 +22,7 @@ In some cases, messages that need to be sent may not be related to an incoming m
 
 To send a message when the bus is started:
 
-snippet:BasicSend
+snippet: BasicSend
 
 partial:batch-sends-performance
 
@@ -33,11 +33,11 @@ In some cases, messages might need to be sent as part of handling a message such
 
 To send a message from inside a message handler:
 
-snippet:SendFromHandler
+snippet: SendFromHandler
 
 The message can also be an interface rather than a concrete class:
 
-snippet:BasicSendInterface
+snippet: BasicSendInterface
 
 Note: In Versions 5 and below, the operations are available on the `IBus` which can be accessed using constructor or property injection. In Versions 6 and above, the message handlers have access to the `IMessageHandlerContext` parameter, which can be used to dispatch messages on the bus.
 
@@ -48,7 +48,7 @@ The `SendOptions` object can be used to override the default routing.
 
 Using the destination address:
 
-snippet:BasicSendSetDestination
+snippet: BasicSendSetDestination
 
 
 partial:route-to-specific-instance
@@ -60,7 +60,7 @@ Sending a message to the same endpoint, i.e. Sending to *self* can be done in tw
 
 An endpoint can send a message to any of its instances:
 
-snippet:BasicSendToAnyInstance
+snippet: BasicSendToAnyInstance
 
 
 partial:route-to-this-instance
@@ -77,7 +77,7 @@ WARNING: By specifying immediate dispatch, outgoing messages will not be [batche
 
 Suppressing the ambient transaction to have the outgoing message sent immediately is possible:
 
-snippet:RequestImmediateDispatchUsingScope
+snippet: RequestImmediateDispatchUsingScope
 
 WARNING: Suppressing transaction scopes only works for MSMQ and SQL transports in DTC mode. Other transports or disabled DTC may result in unexpected behavior.
 

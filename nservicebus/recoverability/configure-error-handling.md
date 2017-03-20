@@ -30,7 +30,7 @@ include: configurationWarning
 
 ### Using a IConfigurationProvider
 
-snippet:ErrorQueueConfigurationProvider
+snippet: ErrorQueueConfigurationProvider
 
 
 ### Using a ConfigurationSource
@@ -39,12 +39,12 @@ snippet: ErrorQueueConfigurationSource
 
 Then at configuration time:
 
-snippet:UseCustomConfigurationSourceForErrorQueueConfig
+snippet: UseCustomConfigurationSourceForErrorQueueConfig
 
 
 ### Using App.Config
 
-snippet:configureErrorQueueViaXml
+snippet: configureErrorQueueViaXml
 
 partial:errorheader
 

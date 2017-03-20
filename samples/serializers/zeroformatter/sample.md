@@ -11,16 +11,16 @@ related:
 
 ## Configuring to use ZeroFormatter
 
-snippet:config
+snippet: config
 
 
 ## The message
 
-snippet:message
+snippet: message
 
 
 ## The message send
 
 The message is decorated with  [ZeroFormatter Attributes](https://github.com/neuecc/ZeroFormatter/#define-object-rules).
 
-snippet:messagesend
+snippet: messagesend

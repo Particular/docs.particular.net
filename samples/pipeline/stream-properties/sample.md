@@ -34,11 +34,11 @@ snippet: SendBehaviorDefinition
 
 Each stream copied to disk will need a unique key.
 
-snippet:generate-key-for-stream
+snippet: generate-key-for-stream
 
 Copy each stream property to disk
 
-snippet:copy-stream-properties-to-disk
+snippet: copy-stream-properties-to-disk
 
 On disk (at the root of the solution for this sample) it will look like this
 

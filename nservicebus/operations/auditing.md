@@ -71,14 +71,14 @@ If no OverrideTimeToBeReceived is defined then:
 
 Configure the target audit queue using the configuration API.
 
-snippet:AuditWithCode
+snippet: AuditWithCode
 
 
 ### Using app.config
 
 include: configurationWarning
 
-snippet:configureAuditUsingXml
+snippet: configureAuditUsingXml
 
 Note: `OverrideTimeToBeReceived` needs to be a valid [TimeSpan](https://msdn.microsoft.com/en-us/library/system.timespan.aspx).
 
@@ -87,7 +87,7 @@ Note: `OverrideTimeToBeReceived` needs to be a valid [TimeSpan](https://msdn.mic
 
 The audit settings can also be configured using code via a [custom configuration provider](/nservicebus/hosting/custom-configuration-providers.md).
 
-snippet:AuditProvideConfiguration
+snippet: AuditProvideConfiguration
 
 
 ## Machine level configuration

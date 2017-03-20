@@ -3,11 +3,11 @@ The `NHibernateStorageContext` can be used directly to access NHibernate `ISessi
 
 ### Using in a Handler
 
-snippet:NHibernateAccessingDataViaContextHandler
+snippet: NHibernateAccessingDataViaContextHandler
 
 
 ### Using in a Saga
 
 include: saga-business-data-access
 
-snippet:NHibernateAccessingDataViaContextSaga
+snippet: NHibernateAccessingDataViaContextSaga

@@ -29,7 +29,7 @@ To expose the endpoint as a WCF service, inherit from `NServiceBus.WcfService<TR
 
 Example:
 
-snippet:ExposeWCFService
+snippet: ExposeWCFService
 
 partial: enumnote
 

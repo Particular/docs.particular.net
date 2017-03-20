@@ -18,9 +18,9 @@ The following code shows an example of how to grant a user access to a RavenDB d
 
 This is helpful to ensure the user account, an endpoint is running under, has appropriate access to RavenDB.
 
-snippet:raven-add-user
+snippet: raven-add-user
 
 
 ### Using the user access helper method
 
-snippet:raven-add-user-usage
+snippet: raven-add-user-usage

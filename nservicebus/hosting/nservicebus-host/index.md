@@ -35,11 +35,11 @@ By default, [the assembly scanning process](/nservicebus/hosting/assembly-scanni
 
 The scanning process can be avoided if the class containing endpoint's configuration is explicitly specified:
 
-snippet:ExplicitHostConfigType
+snippet: ExplicitHostConfigType
 
 Alternatively, it's possible to control which assemblies should be scanned. That can be done in code by implementing `IConfigureThisEndpoint` interface:
 
-snippet:ScanningConfigurationInNSBHost
+snippet: ScanningConfigurationInNSBHost
 
 or during installation by passing values to [`/scannedAssemblies:` parameters](/nservicebus/hosting/nservicebus-host/installation.md#installing-a-windows-service-scannedassemblies).
 
@@ -59,7 +59,7 @@ partial:roles
 
 When using NServiceBus.Host, the namespace of the class implementing `IConfigureThisEndpoint` will be used as the endpoint name as the default convention. In the following example the endpoint name when running `NServiceBus.Host.exe` becomes `MyServer`. This is the recommended way to name a endpoint. Also this emphasizes convention over configuration approach.
 
-snippet:EndpointNameByNamespace
+snippet: EndpointNameByNamespace
 
 
 partial: endpointname-code
@@ -78,7 +78,7 @@ snippet: EndpointNameByAttribute
 
 The default [Critical Error Action](/nservicebus/hosting/critical-errors.md) for the Host is:
 
-snippet:DefaultHostCriticalErrorAction
+snippet: DefaultHostCriticalErrorAction
 
 The default callback should be overriden, if some custom code should be executed before exiting the process, such as persisting some in-memory data, flushing the loggers, etc. Refer to the [Critical Errors](/nservicebus/hosting/critical-errors.md) article for more information.
 
@@ -90,7 +90,7 @@ The default callback should be overriden, if some custom code should be executed
 
 In the NServiceBus Host the `SLA violation countdown` counter is enabled by default. But the value can be configured either by the above API or using a `EndpointSLAAttribute` on the instance of `IConfigureThisEndpoint`.
 
-snippet:enable-sla-host-attribute
+snippet: enable-sla-host-attribute
 
 
 

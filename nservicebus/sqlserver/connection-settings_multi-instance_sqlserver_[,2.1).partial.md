@@ -4,10 +4,10 @@ Connection strings for the remote endpoint can be configured via `app.config` co
 
 Given the following mappings:
 
-snippet:sqlserver-multidb-messagemapping
+snippet: sqlserver-multidb-messagemapping
 
 and the following connection strings:
 
-snippet:sqlserver-multidb-connectionstrings
+snippet: sqlserver-multidb-connectionstrings
 
 The messages sent to the endpoint called `billing` will be dispatched to the database catalog `Billing` on the server instance `DbServerB`. Because the endpoint configuration isn't specified for `sales`, any messages sent to the `sales` endpoint will be dispatched to the default database catalog and database server instance. In this example that will be `MyDefaultDB` on server `DbServerA`.

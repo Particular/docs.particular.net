@@ -42,7 +42,7 @@ NOTE: MSMQ will escalate to a distributed transaction right away since it doesn'
 
 *Transaction scope* mode is enabled by default for the transports that support it (i.e. MSMQ and SQL Server transport). It can be enabled explicitly via
 
-snippet:TransportTransactionScope
+snippet: TransportTransactionScope
 
 
 #### Consistency guarantees
@@ -61,7 +61,7 @@ Disabling transactions is generally not recommended, because it might lead to th
 
 DANGER: In this mode, when encountering a critical failure such as system or endpoint crash, the message is **permanently lost**.
 
-snippet:TransactionsDisable
+snippet: TransactionsDisable
 
 partial:unreliable
 
@@ -72,7 +72,7 @@ partial:outbox
 
 In transaction modes lower than [TransactionScope](#transactions-transaction-scope-distributed-transaction) there is a risk of partial updates because one handler might succeed in updating business data while another handler fails. To avoid this configure NServiceBus to wrap all handlers in a `TransactionScope` that will act as a unit of work and make sure that there is no partial updates. Use following code to enable a wrapping scope:
 
-snippet:TransactionsWrapHandlersExecutionInATransactionScope
+snippet: TransactionsWrapHandlersExecutionInATransactionScope
 
 NOTE: This requires that all the data stores used by the handler support enlisting in a distributed transaction (e.g. SQL Server), including the saga store when using sagas.
 

@@ -29,7 +29,7 @@ For all the below samples that mutate the outgoing pipeline they also (optionall
 
 When performing the standard messaging actions (Send, Publish, Reply etc) headers can be appended to the message being dispatched.
 
-snippet:sending
+snippet: sending
 
 ## Using Mutators
 
@@ -41,22 +41,22 @@ partial:mutator
 
 ### IMutateIncomingMessages
 
-snippet:mutate-incoming-messages
+snippet: mutate-incoming-messages
 
 
 ### IMutateIncomingTransportMessages
 
-snippet:mutate-incoming-transport-messages
+snippet: mutate-incoming-transport-messages
 
 
 ### IMutateOutgoingMessages
 
-snippet:mutate-outgoing-messages
+snippet: mutate-outgoing-messages
 
 
 ### IMutateOutgoingTransportMessages
 
-snippet:mutate-outgoing-transport-messages
+snippet: mutate-outgoing-transport-messages
 
 
 
@@ -70,7 +70,7 @@ Headers can be manipulated at any step in the pipeline.
 
 Configure the pipeline changes as follows.
 
-snippet:pipeline-config
+snippet: pipeline-config
 
 Note that the injection is contextual to the other exiting steps in the pipeline. Do in this case the injection is happening after Transport message mutation has occurred.
 
@@ -89,7 +89,7 @@ snippet: incoming-header-behavior
 
 A list of headers can be defined that are automatically appended to all messages sent though a give instance of the Bus.
 
-snippet:global-all-outgoing
+snippet: global-all-outgoing
 
 
 ## The Handler

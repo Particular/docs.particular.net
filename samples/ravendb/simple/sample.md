@@ -31,31 +31,31 @@ This sample shows a simple Client + Server scenario.
 
 Configure the endpoint to use RavenDB persistence.
 
-snippet:config
+snippet: config
 
 
 ### In Process Raven Host
 
 It is possible to self-host RavenDB so that no running instance of RavenDB server is required to run the sample.
 
-snippet:ravenhost
+snippet: ravenhost
 
 
 ### Order Saga Data
 
-snippet:sagadata
+snippet: sagadata
 
 
 ### Order Saga
 
-snippet:thesaga
+snippet: thesaga
 
 
 ### Handler Using Raven Session
 
 The handler access the same Raven `ISession` via `ISessionProvider`.
 
-snippet:handler
+snippet: handler
 
 
 ## The Data in RavenDB

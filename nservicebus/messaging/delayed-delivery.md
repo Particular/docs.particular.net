@@ -35,14 +35,14 @@ Note: Similar to `SendLocal`, `Defer` will also change the message's reply-to ad
 
 Delays delivery of a message for a specified duration.
 
-snippet:delayed-delivery-timespan
+snippet: delayed-delivery-timespan
 
 
 ## Using a DateTime
 
 Delays delivery of a message until a specified point in time.
 
-snippet:delayed-delivery-datetime
+snippet: delayed-delivery-datetime
 
 
 ## Caveats

@@ -26,13 +26,13 @@ A simple project that sends a message to `Server` and handles the message back f
 
 #### Sending code
 
-snippet:sender
+snippet: sender
 
 
 #### Handling code
 
 
-snippet:sender-event-handler
+snippet: sender-event-handler
 
 
 ### Shared
@@ -65,7 +65,7 @@ The workers are hosts for running the handlers defined in `Worker.Handlers`
 
 #### Startup code
 
-snippet:Workerstartup
+snippet: Workerstartup
 
 
 #### Configuration
@@ -162,4 +162,4 @@ Normally workers are deployed to different machines. When deployed to the same m
 
 There is a configuration setting that can be used
 
-snippet:WorkerNameToUseWhileTestingConfig
+snippet: WorkerNameToUseWhileTestingConfig

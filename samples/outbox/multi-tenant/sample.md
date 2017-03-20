@@ -55,9 +55,9 @@ The Receiver mimics a back-end system. It is also configured to use MSMQ transpo
 
 #### Creating the schema
 
-snippet:ReceiverConfiguration
+snippet: ReceiverConfiguration
 
-snippet:CreateSchema
+snippet: CreateSchema
 
 The above code makes sure that user, saga and outbox tables are created in the tenant databases while the timeouts and subscriptions -- in the shared database.
 
@@ -75,13 +75,13 @@ partial: propagatetenantidoutgoing
 
 The custom connection provider has to be registered with NHibernate
 
-snippet:ConnectionProvider
+snippet: ConnectionProvider
 
 partial:CapturePipelineExecutor
 
 The connection provider looks at the current message processing context. If there is an existing connection to the tenant database, it creates a new one with the same connection string. Otherwise it defaults to creating a connection to the shared database.
 
-snippet:GetConnectionFromContext
+snippet: GetConnectionFromContext
 
 NOTE: The connection provider is only used by `OutboxPersister`'s `TryGet` and `MarkAsDispatched` methods which execute in separate transaction from all the other storage operations.
 
@@ -91,19 +91,19 @@ NOTE: The connection provider is a simple implementation that is not thread-safe
 
 The `MultiTenantOpenSqlConnectionBehavior` behavior extracts the `TenantId` header from the incoming message and looks up the matching connection string in the app.config file.
 
-snippet:OpenTenantDatabaseConnection
+snippet: OpenTenantDatabaseConnection
 
 This behavior needs to replace the built-in behavior
 
-snippet:ReplaceOpenSqlConnection
+snippet: ReplaceOpenSqlConnection
 
 
 #### Propagating the tenant information downstream
 
 Finally the `PropagateTenantIdBehavior` behavior makes sure that tenant information is not lost and all outgoing messages have the same tenant ID as the message being processed.
 
-snippet:PropagateTenantId
+snippet: PropagateTenantId
 
 This behavior also needs to be registered a configuration time.
 
-snippet:RegisterPropagateTenantIdBehavior
+snippet: RegisterPropagateTenantIdBehavior

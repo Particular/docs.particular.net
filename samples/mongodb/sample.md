@@ -37,19 +37,19 @@ This sample shows a simple Client + Server scenario.
 
 The `Server` endpoint is configured to use the MongoDB persistence with a connection string of `mongodb://localhost:27017/SamplesMongoDBServer`.
 
-snippet:MongoDBConfig
+snippet: MongoDBConfig
 
 
 ### Order Saga Data
 
 `NServiceBus.Persistence.MongoDB` [requires a property on the saga decorated with attribute `[DocumentVersion]`, usually named Version](https://github.com/tekmaven/NServiceBus.Persistence.MongoDB/#saga-definition-guideline).
 
-snippet:sagadata
+snippet: sagadata
 
 
 ### Order Saga
 
-snippet:thesaga
+snippet: thesaga
 
 
 ## The Data in MongoDB

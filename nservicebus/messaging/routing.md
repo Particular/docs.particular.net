@@ -22,7 +22,7 @@ related:
 
 Routing subsystem is responsible for finding destinations for the messages. In most cases the sending code should not care about the destination of the message being sent:
 
-snippet:BasicSend
+snippet: BasicSend
 
 Based on the type of the message the routing provides the destination address.
 
@@ -39,7 +39,7 @@ Each entry in the collection has to specify the assembly where the messages are 
 
 NOTE: For backwards compatibility a `Messages` attribute can be used instead of `Type` and `Namespace` attributes. 
 
-snippet:endpoint-mapping-appconfig
+snippet: endpoint-mapping-appconfig
 
 The per-namespace routes override assembly-level routes and the per-type routes override both namespace and assembly routes. 
 

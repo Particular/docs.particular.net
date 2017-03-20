@@ -1,3 +1,3 @@
 ### Via Code
 
-snippet:EncryptionFromCode
+snippet: EncryptionFromCode

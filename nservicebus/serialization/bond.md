@@ -13,7 +13,7 @@ Serializes messages with [Microsoft Bond](https://microsoft.github.io/bond/manua
 
 ## Usage
 
-snippet:BondSerialization
+snippet: BondSerialization
 
 include: interface-not-supported
 
@@ -29,4 +29,4 @@ snippet: BondSerializationDelegates
 
 include: custom-contenttype-key
 
-snippet:BondContentTypeKey
+snippet: BondContentTypeKey

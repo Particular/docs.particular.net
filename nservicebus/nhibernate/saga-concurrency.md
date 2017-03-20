@@ -24,7 +24,7 @@ In order to overcome the problem of frequent retries the NHibernate saga persist
 
 The `RowVersion` attribute can be used to explicitly denote a property that should be used for optimistic concurrency control
 
-snippet:NHibernateConcurrencyRowVersion
+snippet: NHibernateConcurrencyRowVersion
 
 That property will be included by NHibernate in the `SELECT` and `UPDATE` SQL statements causing concurrency violation error to be raised in case of concurrent updates.
 
@@ -38,7 +38,7 @@ In most cases where the saga data table is only ever accessed by the saga persis
 
 The `LockMode` attribute can be used to override the default locking strategy.
 
-snippet:NHibernateConcurrencyLockMode
+snippet: NHibernateConcurrencyLockMode
 
 
 ## Customizing the optimistic concurrency handling

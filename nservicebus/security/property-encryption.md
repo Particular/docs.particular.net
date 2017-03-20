@@ -31,11 +31,11 @@ There are two ways of telling NServiceBus what properties to encrypt.
 
 Given a message of this convention
 
-snippet:MessageForEncryptionConvention
+snippet: MessageForEncryptionConvention
 
 Encrypt `MyEncryptedProperty`.
 
-snippet:DefiningEncryptedPropertiesAs
+snippet: DefiningEncryptedPropertiesAs
 
 
 ### Property type
@@ -49,7 +49,7 @@ snippet: MessageWithEncryptedProperty
 
 Property encryption is enabled via the configuration API.
 
-snippet:EncryptionServiceSimple
+snippet: EncryptionServiceSimple
 
 
 ### Key ID
@@ -151,7 +151,7 @@ To take full control over how properties are encrypted replace the `IEncryptionS
 
 This allows explicit handling of the encryption and decryption of each value. So for example to use an algorithm other than Rijndael.
 
-snippet:EncryptionFromIEncryptionService
+snippet: EncryptionFromIEncryptionService
 
 
 snippet: EncryptionService

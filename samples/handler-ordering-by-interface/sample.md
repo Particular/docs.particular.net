@@ -15,7 +15,7 @@ HandlerOrdering allows the dependency between handlers to be expressed via inter
 
 ## Configuring to use HandlerOrdering
 
-snippet:config
+snippet: config
 
 
 ## Expressing dependencies

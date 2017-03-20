@@ -12,16 +12,16 @@
 
 To configure Delayed Retries, enable its configuration section:
 
-snippet:DelayedRetriesAppConfig
+snippet: DelayedRetriesAppConfig
 
 
 ### Through IProvideConfiguration
 
-snippet:DelayedRetriesProvideConfiguration
+snippet: DelayedRetriesProvideConfiguration
 
 
 ### Through ConfigurationSource
 
-snippet:DelayedRetriesConfigurationSource
+snippet: DelayedRetriesConfigurationSource
 
-snippet:DelayedRetriesConfigurationSourceUsage
+snippet: DelayedRetriesConfigurationSourceUsage

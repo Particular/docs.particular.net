@@ -15,7 +15,7 @@ redirects:
 
 Define the endpoint name at initialization time using:
 
-snippet:EndpointNameCode
+snippet: EndpointNameCode
 
 See also:
  

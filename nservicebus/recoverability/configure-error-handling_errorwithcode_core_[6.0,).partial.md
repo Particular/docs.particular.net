@@ -1,3 +1,3 @@
 ### Using Code
 
-snippet:ErrorWithCode
+snippet: ErrorWithCode

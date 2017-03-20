@@ -7,4 +7,4 @@ NOTE: The tests are written using fluent API, but expectations should be general
 
 If [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md) is used, the conventions must be configured in the `Test.Initialize()` method:
 
-snippet:SetupConventionsForUnitTests
+snippet: SetupConventionsForUnitTests

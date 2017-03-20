@@ -42,29 +42,29 @@ partial: passconnection
 
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport and run in the [*multi-instance*](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) mode. `ConnectionProvider.GetConnection` method is used for providing connections.
 
-snippet:SenderConfiguration
+snippet: SenderConfiguration
 
 The Sender sends a message to the Receiver:
 
-snippet:SendMessage
+snippet: SendMessage
 
 
 ### Receiver project
 
 The Receiver mimics a back-end system. It is configured to use SQLServer transport in the [*multi-instance*](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) mode.
 
-snippet:ReceiverConfiguration
+snippet: ReceiverConfiguration
 
 It receives `ClientOrder` message sent by Sender and replies to them with `ClientOrderAccepted`.
 
-snippet:Reply
+snippet: Reply
 
 
 ### Multi-instance connection lookup
 
 Both sender and receiver provide a custom lookup mechanism for providing connection information for given destination. The following snippet shows lookup logic used by Sender.
 
-snippet:SenderConnectionProvider
+snippet: SenderConnectionProvider
 
 
 ## How it works

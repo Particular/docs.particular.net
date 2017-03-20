@@ -19,7 +19,7 @@ In Versions 6 and below the Azure Storage Queues transport was configured using 
 
 The new configuration API is accessible through extension methods on the `UseTransport<AzureStorageQueueTransport>()` extension point in the endpoint configuration. See also [Azure Storage Queues Configuration](/nservicebus/azure-storage-queues/configuration.md).
 
-snippet:6to7AzureStorageQueueTransportWithAzure
+snippet: 6to7AzureStorageQueueTransportWithAzure
 
 
 ### Setting the configuration values via API
@@ -35,14 +35,14 @@ Setting the configuration values can now be done via API in the following way:
 
 Can be set using corresponding extension methods like in an example:
 
-snippet:AzureStorageQueueConfigCodeOnly
+snippet: AzureStorageQueueConfigCodeOnly
 
 
 ### PurgeOnStartup
 
 `PurgeOnStartup` setting now can be set on `EndpointConfiguration` using extension method.
 
-snippet:AzureStorageQueuePurgeOnStartup
+snippet: AzureStorageQueuePurgeOnStartup
 
 
 ### DefaultQueuePerInstance
@@ -64,7 +64,7 @@ In previous versions, the Azure Storage Queues Transport change the default `Ser
 
 In Version 6 of NServiceBus transports no longer have the ability to manipulate serialization. To preserve backward compatibility and ensure that message payloads are small, setting JSON serialization should now be done on the endpoint configuration level.
 
-snippet:6to7-serializer-definition
+snippet: 6to7-serializer-definition
 
 
 ## API Changes

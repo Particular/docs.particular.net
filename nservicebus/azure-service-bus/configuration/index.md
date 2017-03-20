@@ -11,7 +11,7 @@ reviewed: 2016-12-08
 
 In order to setup a basic endpoint using the Azure Service Bus transport the following configuration settings need to be provided.
 
-snippet:AzureServiceBusTransportGettingStarted
+snippet: AzureServiceBusTransportGettingStarted
 
  * `UseTransport<AzureServiceBusTransport>()`: Enables the Azure Service Bus transport.
  * `UseForwardingTopology()`: Defines what the underlying layout of Azure Service Bus messaging entities looks like.

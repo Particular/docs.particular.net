@@ -14,7 +14,7 @@ Support for writing all NServiceBus log entries to [NLog](http://nlog-project.or
 
 ## Usage
 
-snippet:NLogInCode
+snippet: NLogInCode
 
 
 ## Filtering
@@ -25,4 +25,4 @@ For example to limit log output to a specific namespace.
 
 Here is a code configuration example for adding a [Rule](https://github.com/nlog/NLog/wiki/Configuration-file#rules).
 
-snippet:NLogFiltering
+snippet: NLogFiltering

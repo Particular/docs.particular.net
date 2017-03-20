@@ -28,7 +28,7 @@ Logging levels and sinks need to be defined before configuring other components,
 
 To customize logging for a given profile, create a class implementing `IConfigureLoggingForProfile<T>` where `T` is the profile type:
 
-snippet:LoggingConfigWithProfile
+snippet: LoggingConfigWithProfile
 
 NOTE: One class can configure logging for multiple profile types. However, it is not possible to spread logging configuration for a single profile across multiple classes.
 

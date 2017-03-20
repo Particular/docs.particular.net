@@ -28,4 +28,4 @@ Exceptions raised from the `Stop` method will not halt shutdown and will be logg
 
 ## Code
 
-snippet:lifecycle-EndpointStartAndStopCore
+snippet: lifecycle-EndpointStartAndStopCore

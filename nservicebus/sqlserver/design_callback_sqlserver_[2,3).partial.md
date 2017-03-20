@@ -4,4 +4,4 @@ If [Callbacks](/nservicebus/messaging/callbacks.md#message-routing) support is n
 
 Callbacks can be disabled using code API:
 
-snippet:sqlserver-config-disable-secondaries
+snippet: sqlserver-config-disable-secondaries

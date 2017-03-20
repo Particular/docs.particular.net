@@ -37,7 +37,7 @@ partial: assemblies-to-scan
 
 ### Exclude specific assemblies by name:
 
-snippet:ScanningExcludeByName
+snippet: ScanningExcludeByName
 
 
 partial: wildcard
@@ -45,7 +45,7 @@ partial: wildcard
 
 ### Exclude specific types:
 
-snippet:ScanningExcludeTypes
+snippet: ScanningExcludeTypes
 
 
 partial: include

@@ -20,9 +20,9 @@ Run the solution. Two console applications start up, `Client` and `Server`.
 
 Look at the messages the `Shared` project:
 
-snippet:RequestMessage
+snippet: RequestMessage
 
-snippet:ResponseMessage
+snippet: ResponseMessage
 
 The two classes here implement the NServiceBus `IMessage` interface, indicating that they are messages. The only thing these classes have are properties, each with both get and set access. The `RequestDataMessage` is sent from the client to the server, and the `DataResponseMessage` replies from the server to the client.
 

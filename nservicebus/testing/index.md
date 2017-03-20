@@ -35,7 +35,7 @@ The test verifies that when a message of the type `RequestMessage` is processed 
 
 Testing sagas focuses on their externally visible behavior - the types of messages they send or reply with, but it's also possible to verify that saga requested a timeout or was completed.
 
-snippet:TestingSaga
+snippet: TestingSaga
 
 The test verifies that when a message of the type `StartsSaga` is processed by `MySaga`, the saga replies to the sender with the `MyResponse` message, publishes `MyEvent`, sends `MyCommand` and requests a timeout for message `StartsSaga`. Also it checks if the saga publishes `MyOtherEvent` and is completed, after the timeout expires.
 
@@ -48,7 +48,7 @@ partial:interfacemessages
 
 Message handlers retrieve information from the incoming message headers and set headers for the outgoing messages, for example NServiceBus uses that set correlation Id or address for reply. Headers can be also used for passing [custom information](/nservicebus/messaging/header-manipulation.md).
 
-snippet:TestingHeaderManipulation
+snippet: TestingHeaderManipulation
 
 This test asserts that the value of the outgoing header has been set.
 
@@ -57,7 +57,7 @@ This test asserts that the value of the outgoing header has been set.
 
 Many of the message handling classes in the service layer make use of other objects to perform their work. When testing these classes, replace those objects with "stubs" so that the class under test is isolated.
 
-snippet:TestingAdditionalDependencies
+snippet: TestingAdditionalDependencies
 
 
 partial:nsbinjection

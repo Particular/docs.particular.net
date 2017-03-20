@@ -44,16 +44,16 @@ Note: The properties must be of type `byte[]`.
 
 Properties defined using the `DataBusProperty<T>` type are not treated as part of a message, but persist externally based on the type of `DataBus` used, and are linked to the original message using a unique key.
 
-snippet:MessageWithLargePayload
+snippet: MessageWithLargePayload
 
 
 ### Using message conventions
 
 NServiceBus supports defining DataBus properties via convention. This allows defining a convention for data properties to be sent using `DataBus` without using `DataBusProperty<T>`.
 
-snippet:DefineMessageWithLargePayloadUsingConvention
+snippet: DefineMessageWithLargePayloadUsingConvention
 
-snippet:MessageWithLargePayloadUsingConvention
+snippet: MessageWithLargePayloadUsingConvention
 
 
 ## DataBus attachments cleanup

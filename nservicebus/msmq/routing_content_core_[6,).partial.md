@@ -7,7 +7,7 @@ The preferred way of configuring the physical routing is via the instance mappin
 
 The instance mapping file is a simple XML file that has to be located either on a local hard drive or a network drive. When using MSMQ as the transport, NServiceBus will automatically look for an `instance-mapping.xml` file in `AppDomain.BaseDirectoy`.
 
-snippet:InstanceMappingFile
+snippet: InstanceMappingFile
 
 The mapping file is processed before the endpoint starts up and then re-processed at regular intervals so the changes in the document are reflected in the behavior of NServiceBus automatically. If the document is not present in its configured location when endpoint starts up, NServiceBus will not search again for the file at runtime. If it is deleted when the endpoint is already running, it will continue to run normally with the last successfully read routes.
 
@@ -47,6 +47,6 @@ The instance mapping aspect of routing, as well as all other aspects, can be cus
 
 For compatibility reasons it can also be configured in the same way as in Version 5 and older by `UnicastBusConfig/MessageEndpointMappings` configuration section:
 
-snippet:endpoint-mapping-msmq
+snippet: endpoint-mapping-msmq
 
 NOTE: The downside of this approach is that it mixes logical and physical concerns. It also does not allow to configure more than one endpoint instance as a destination which prevents scaling out via [sender-side distribution](/nservicebus/msmq/sender-side-distribution.md).

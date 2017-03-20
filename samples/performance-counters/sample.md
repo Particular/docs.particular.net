@@ -39,7 +39,7 @@ The following will result
 
 Both the SLA and Critical Time counters are enabled and configured in configuration code.
 
-snippet:enable-counters
+snippet: enable-counters
 
 The other counters are enabled by default.
 
@@ -50,7 +50,7 @@ NOTE: Regardless of whether the SLA and Critical Time counters are enabled, all 
 
 The handler just has a random sleep to give achieve some fake load. Not that the max random number is greater than the above configured SLA to cause it to occasionally fire.
 
-snippet:handler
+snippet: handler
 
 
 ## Run Solution

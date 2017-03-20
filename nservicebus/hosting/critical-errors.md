@@ -19,7 +19,7 @@ For many scenarios NServiceBus has built-in [recoverability](/nservicebus/recove
 
 And hence the default behavior that will be taken in any kind of self hosting scenario.
 
-snippet:DefaultCriticalErrorAction
+snippet: DefaultCriticalErrorAction
 
 
 ### Logging of critical errors
@@ -33,14 +33,14 @@ NServiceBus allows providing a delegate that overrides the above action. So when
 
 Define a custom handler using the following code.
 
-snippet:DefiningCustomHostErrorHandlingAction
+snippet: DefiningCustomHostErrorHandlingAction
 
 
 ## A possible custom implementation
 
 Next define what action to take when this scenario occurs:
 
-snippet:CustomHostErrorHandlingAction
+snippet: CustomHostErrorHandlingAction
 
 
 ## When to override the default critical error action
@@ -71,7 +71,7 @@ WARNING: It is important to consider the effect these defaults will have on othe
 
 Any code in the endpoint can invoke the Critical Error action.
 
-snippet:InvokeCriticalError
+snippet: InvokeCriticalError
 
 
 ## ServicePulse and ServiceControl Heartbeat functionality

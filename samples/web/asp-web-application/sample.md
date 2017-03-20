@@ -33,13 +33,13 @@ snippet: ApplicationStart
 
 Open `Default.aspx.cs` in `WebApplication` to see the `Button1Click` method:
 
-snippet:ActionHandling
+snippet: ActionHandling
 
 The first line of code parses the text passed in by the user. The second line creates a new NServiceBus message of the type `Command`, and initializes its `Id` property with the value from the text box.
 
 Open the class definition for the `Command` type in the `Shared` project:
 
-snippet:Message
+snippet: Message
 
 Return to `Default.aspx.cs` and look at the code `Global.Bus.Send(command)`. Global.Bus references the Bus property of the Global class in `Global.asax.cs`. Then the code calls the Send method, passing in the newly created command object.
 

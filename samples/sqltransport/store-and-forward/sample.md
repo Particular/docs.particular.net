@@ -58,7 +58,7 @@ Sender and Receiver use different databases, just like in a production scenario 
 
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport.
 
-snippet:SenderConfiguration
+snippet: SenderConfiguration
 
 The Sender registers two custom behaviors, one for the send pipeline and one for the receive pipeline.
 
@@ -67,7 +67,7 @@ The Sender registers two custom behaviors, one for the send pipeline and one for
 
 The new behavior is added at the beginning of the send pipeline (in Version 2) or in the routing stage (in Version 3).
 
-snippet:SendThroughLocalQueueBehavior
+snippet: SendThroughLocalQueueBehavior
 
 The behavior ignores:
 
@@ -83,11 +83,11 @@ NOTICE: In Version 3 of this sample some properties of a message (such as defer 
 
 In the receive pipeline the new behavior is placed just before loading the message handlers (in Version 2) or in the physical processing stage (in Version 3).
 
-snippet:ForwardBehavior
+snippet: ForwardBehavior
 
 If the message contains the headers used by the send-side behavior, it is forwarded to the ultimate destination instead of being processed locally. This is the first time the remote database of the Receiver endpoint is contacted. Should it be down, the retry mechanism kicks in and ensures the message is eventually delivered to the destination. In this example the retry mechanism is configured to retry every 10 seconds for up to 100 times.
 
-snippet:DelayedRetriesConfig
+snippet: DelayedRetriesConfig
 
 NOTE: When both sender's and receiver's databases cannot be accessed in a distributed transaction, the `ForwardBehavior` has to include a `TransactionScope` that suppresses the ambient transaction before forwarding the message.
 
@@ -96,6 +96,6 @@ NOTE: When both sender's and receiver's databases cannot be accessed in a distri
 
 The Receiver mimics a back-end system. The following code configures it to use the [*multi-instance* mode](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) of the SQL Server transport.
 
-snippet:ReceiverConfiguration
+snippet: ReceiverConfiguration
 
 NOTE: Multi-instance mode is deprecated in Version 3 of SQL Server transport and will be removed in the next major version. By that time an alternative store-and-forward solution will be provided. For more information refer to the [SQL Server transport Version 2 to Version 3 upgrade guide](/nservicebus/upgrades/sqlserver-2to3.md#namespace-changes-multi-instance-support).
