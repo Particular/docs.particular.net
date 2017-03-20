@@ -17,7 +17,7 @@ snippet: ServiceFabricPersistenceConfiguration
 
 ### Storage types
 
-Currently saga and outbox storage types are supported. For gateway deduplication, timeouts or subscriptions use either the native capability of the transport of choice or another persistence like [Azure Storage Persistence](/nservicebus/azure-storage-persistence/index.md).
+Currently saga and outbox storage types are supported. For gateway deduplication, timeouts or subscriptions use either the native capability of the transport of choice or another persistence like [Azure Storage Persistence](/nservicebus/azure-storage-persistence).
 
 ### Viewing the data
 
