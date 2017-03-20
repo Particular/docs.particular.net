@@ -13,6 +13,12 @@ Add a NuGet package reference to `NServiceBus.Persistence.ServiceFabric`. Config
 
 snippet: ServiceFabricPersistenceConfiguration
 
-## Viewing the data
+## Limitations
+
+### Storage types
+
+Currently saga and outbox storage types are supported. For gateway deduplication, timeouts or subscriptions use either the native capability of the transport of choice or another persistence like [Azure Storage Persistence](/nservicebus/azure-storage-persistence/index.md).
+
+### Viewing the data
 
 Currently Service Fabric does not provide capabilities to view the data that is stored inside reliable collections. The data has to be programatically accessed and exposed over customized infrastructure.
