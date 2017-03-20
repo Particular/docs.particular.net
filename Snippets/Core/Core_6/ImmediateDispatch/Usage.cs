@@ -17,18 +17,6 @@
             #endregion
         }
 
-        async Task RequestImmediateDispatchUsingScope(IPipelineContext context)
-        {
-            #region RequestImmediateDispatchUsingScope
-            using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
-            {
-                var message = new MyMessage();
-                await context.SendLocal(message)
-                    .ConfigureAwait(false);
-            }
-            #endregion
-        }
-
         class MyMessage
         {
         }
