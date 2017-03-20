@@ -1,6 +1,6 @@
 ---
 title: Service Fabric Persistence
-reviewed: 2017-03-17
+reviewed: 2017-03-20
 component: ServiceFabricPersistence
 ---
 
@@ -17,8 +17,8 @@ snippet: ServiceFabricPersistenceConfiguration
 
 ### Storage types
 
-Currently saga and outbox storage types are supported. For gateway deduplication, timeouts or subscriptions use either the native capability of the transport of choice or another persistence like [Azure Storage Persistence](/nservicebus/azure-storage-persistence).
+Currently saga and outbox storage types are supported. For timeouts, subscriptions or gateway deduplication use either the native capability of the transport of choice or another persistence such as [Azure Storage Persistence](/nservicebus/azure-storage-persistence) or[In-Memory persistence](/nservicebus/persistence/in-memory.md).
 
 ### Viewing the data
 
-Currently Service Fabric does not provide capabilities to view the data that is stored inside reliable collections. The data has to be programatically accessed and exposed over customized infrastructure.
+Currently, Service Fabric does not provide capabilities to view the data that is stored inside reliable collections. The data has to be programmatically accessed and exposed over the [backup and restore APIs](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-backup-restore).
