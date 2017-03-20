@@ -50,7 +50,7 @@ snippet: SpecificNHibernateConfiguration
 
 NOTE: Combine both approaches to define a common configuration and override it for one specific concern.
 
-partial:code
+partial: code
 
 
 ### Using configuration convention

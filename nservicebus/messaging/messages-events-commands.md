@@ -50,7 +50,7 @@ Note: For reply messages in a request and response pattern, use `IMessage` since
 
 There are checks in place to ensure following of the best practices. While violating above rules the following exceptions can be seen:
 
-partial:errors
+partial: errors
 
 
 ## Defining Messages

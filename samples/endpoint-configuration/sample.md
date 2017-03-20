@@ -27,7 +27,7 @@ When a message fails processing it will be forwarded here.
 
 snippet: error
 
-partial:error
+partial: error
 
 
 ## Configure an [Audit](/nservicebus/operations/auditing.md) queue

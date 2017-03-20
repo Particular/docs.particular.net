@@ -15,7 +15,7 @@ Extending the routing with a custom data source makes sense in following scenari
  * When dynamically calculating routes based on endpoint discovery protocol (similar of [UDDI](https://en.wikipedia.org/wiki/Web_Services_Discovery)).
  * When using a convention based on massage naming.
 
-partial:content 
+partial: content 
 
 
 ## MessageEndpointMappings

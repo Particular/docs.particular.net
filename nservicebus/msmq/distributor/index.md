@@ -235,4 +235,4 @@ Since the Distributor performs no CPU or memory intensive work, several Distribu
 
 ## Licensing
 
-partial:licensing
+partial: licensing

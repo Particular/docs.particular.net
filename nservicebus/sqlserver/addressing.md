@@ -7,4 +7,4 @@ tags:
 - Transport
 ---
 
-partial:content
+partial: content

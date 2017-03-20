@@ -24,7 +24,7 @@ To send a message when the bus is started:
 
 snippet: BasicSend
 
-partial:batch-sends-performance
+partial: batch-sends-performance
 
 
 ## Inside the incoming message processing pipeline
@@ -51,7 +51,7 @@ Using the destination address:
 snippet: BasicSendSetDestination
 
 
-partial:route-to-specific-instance
+partial: route-to-specific-instance
 
 
 ## Sending to *self*
@@ -63,7 +63,7 @@ An endpoint can send a message to any of its instances:
 snippet: BasicSendToAnyInstance
 
 
-partial:route-to-this-instance
+partial: route-to-this-instance
 
 
 partial: influence-reply
@@ -81,4 +81,4 @@ snippet: RequestImmediateDispatchUsingScope
 
 WARNING: Suppressing transaction scopes only works for MSMQ and SQL transports in DTC mode. Other transports or disabled DTC may result in unexpected behavior.
 
-partial:immediate-dispatch
+partial: immediate-dispatch

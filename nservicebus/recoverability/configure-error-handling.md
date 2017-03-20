@@ -24,7 +24,7 @@ WARNING: When running with [transport transactions disabled](/nservicebus/transp
 
 Error queue address can be configured in several ways.
 
-partial:ErrorWithCode
+partial: ErrorWithCode
 
 include: configurationWarning
 
@@ -46,7 +46,7 @@ snippet: UseCustomConfigurationSourceForErrorQueueConfig
 
 snippet: configureErrorQueueViaXml
 
-partial:errorheader
+partial: errorheader
 
 
 ## Error queue monitoring

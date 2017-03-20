@@ -46,10 +46,10 @@ or during installation by passing values to [`/scannedAssemblies:` parameters](/
 
 ### Initialization
 
-partial:initialization
+partial: initialization
 
 
-partial:roles
+partial: roles
 
 
 ### Endpoint Name

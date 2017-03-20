@@ -14,7 +14,7 @@ Each endpoint has a single table representing the primary queue. The name of the
 
 In a scale out scenario this single queue is shared by all instances.
 
-partial:callback
+partial: callback
 
 
 ### Other queues
@@ -72,4 +72,4 @@ To generate this DDL script, right-click the database and from "Tasks" menu choo
 
 ![](generating-ddl.png)
 
-partial:indexes
+partial: indexes

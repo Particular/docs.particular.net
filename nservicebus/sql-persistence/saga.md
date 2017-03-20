@@ -189,4 +189,4 @@ Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/h
 snippet: SqlPersistenceCustomWriter
 
 
-partial:finder
+partial: finder

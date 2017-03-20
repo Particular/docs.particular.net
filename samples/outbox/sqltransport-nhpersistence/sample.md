@@ -41,9 +41,9 @@ NOTE: The handling code has built-in chaotic behavior. There is a 50% chance tha
 
 The retries are disabled using the following settings:
 
-partial:RetriesConfigurationXml
+partial: RetriesConfigurationXml
 
-partial:RetriesConfiguration
+partial: RetriesConfiguration
 
 
 ## Code walk-through
@@ -59,7 +59,7 @@ This sample contains three projects:
 
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport with NHibernate persistence and Outbox.
 
-partial:SenderConfiguration
+partial: SenderConfiguration
 
 
 ### Receiver project

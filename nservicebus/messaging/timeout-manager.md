@@ -37,4 +37,4 @@ If the transport is configured to use [TransactionScope mode](/nservicebus/trans
 
 ### Handling of persistence errors
 
-partial:circuit-breaker
+partial: circuit-breaker

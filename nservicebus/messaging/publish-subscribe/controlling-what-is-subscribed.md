@@ -36,7 +36,7 @@ partial: plainmessage
 A Subscriber will not unsubscribe when it stops, it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started it will consume the messages from its queue. The subscriber will never lose an event.
 
 
-partial:disableautosubscribe
+partial: disableautosubscribe
 
 
 ## Manually subscribing to a message
@@ -45,5 +45,5 @@ Events can manually be subscribed and unsubscribed:
 
 snippet: ExplicitSubscribe
 
-partial:manualsubscriptions
+partial: manualsubscriptions
 

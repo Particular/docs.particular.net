@@ -24,7 +24,7 @@ NOTE: Extensions (for example `NServiceBus.RavenDB.dll`) are not considered a co
 
 ## Nested Directories
 
-partial:nested
+partial: nested
 
 
 ## Assemblies to scan

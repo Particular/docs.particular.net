@@ -50,7 +50,7 @@ The downside to this approach is that, in order to share the same data access co
 
 NOTE: There is support for accessing business data via NServiceBus Azure Storage persistence because Azure data stores support only single-entity operations.
 
-partial:api
+partial: api
 
 The documentation below provides more detail on how to share the same data access context for business data and NServiceBus, when using:
 
@@ -67,4 +67,4 @@ snippet: BusinessData-Native-Managed
 
 ### Outbox
 
-partial:outbox
+partial: outbox

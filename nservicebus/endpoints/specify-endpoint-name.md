@@ -27,4 +27,4 @@ See also:
 
 By default the endpoint's input queue name is the same as endpoint's name.
 
-partial:inputqueuename
+partial: inputqueuename

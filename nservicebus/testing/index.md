@@ -19,7 +19,7 @@ The testing package can be used with any .NET unit testing framework, such as [N
 ## Structure
 
 
-partial:teststructure
+partial: teststructure
 
 
 ## Handlers
@@ -41,7 +41,7 @@ The test verifies that when a message of the type `StartsSaga` is processed by `
 
 Note that the expectation for `MyOtherEvent` is set only after the message is sent.
 
-partial:interfacemessages
+partial: interfacemessages
 
 
 ## Header manipulation
@@ -60,7 +60,7 @@ Many of the message handling classes in the service layer make use of other obje
 snippet: TestingAdditionalDependencies
 
 
-partial:nsbinjection
+partial: nsbinjection
 
 
 partial: init

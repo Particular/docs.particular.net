@@ -20,25 +20,25 @@ NOTE: In NServiceBus Versions 6 and above the default level of concurrency is ba
 
 Connection string can be configured in several ways:
 
-partial:connection-string
+partial: connection-string
 
 
 ## Multiple connection strings
 
-partial:multi-instance
+partial: multi-instance
 
 
 ## Custom database schemas
 
 SQL Server transport uses `dbo` as a default schema. Default schema is used for every queue if no other schema is explicitly provided in transport address. That includes all local queues, error, audit and remote queues of other endpoints.
 
-partial:custom-schema
+partial: custom-schema
 
-partial:factory
+partial: factory
 
 
 ## Circuit Breaker
 
 The SQL transport has a built in circuit breaker to handle intermittent SQL Server connectivity problems.
 
-partial:circuit-breaker
+partial: circuit-breaker

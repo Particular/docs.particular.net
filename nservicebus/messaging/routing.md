@@ -26,14 +26,14 @@ snippet: BasicSend
 
 Based on the type of the message the routing provides the destination address.
 
-partial:concepts
+partial: concepts
 
 
 ## Command routing
 
 As described [here](/nservicebus/messaging/messages-events-commands.md), NServiceBus distinguishes several types of messages. Command messages are always routed to a single logical endpoint. 
 
-partial:commands
+partial: commands
 
 Each entry in the collection has to specify the assembly where the messages are defined. In addition to that, a type name or the namespace name can be also specified for additional filtering. 
 
@@ -63,7 +63,7 @@ Events can be received by multiple logical endpoints, however even in case of sc
 
 [Other transports](/nservicebus/transports/#types-of-transports-unicast-only-transports) do not support Publish-Subscribe natively. These transports emulate the publish behavior by sending message to each subscriber directly. To do this, the publisher endpoint has to know its subscribers and subscribers have to notify the publisher about their interest in a given event type. The notification message (known as *subscribe* message) has to be routed to the publisher.
 
-partial:events
+partial: events
 
 In the `UnicastBusConfig/MessageEndpointMappings` configuration section publishers are registered in the same way as the command destinations are defined. If a given assembly or namespace contains both events and commands, the mapping will recognize that fact and configure the routing correctly (both commands and subscribe messages will be routed to the destination specified in `Endpoint` attribute).
 

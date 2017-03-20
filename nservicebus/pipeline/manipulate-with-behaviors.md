@@ -30,7 +30,7 @@ Warning: Each behavior is responsible to call the next step in the pipeline chai
 
 ## Add a new step
 
-partial:registernew
+partial: registernew
 
 
 ## Replace an existing step

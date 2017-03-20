@@ -20,7 +20,7 @@ NOTE: When doing a blocking send+receive inside a WCF service, the service imple
 
 ## Prerequisites for WCF functionality
 
-partial:prereq
+partial: prereq
 
 
 ## Expose a WCF service
@@ -66,13 +66,13 @@ To expose the WCF service, change the configuration as shown below:
 
 The service name in `<service name="XXX"` needs to match the [`Type.FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) that derives from `NServiceBus.WcfService<TRequest, TResponse>`.
 
-partial:bindingaddressincode
+partial: bindingaddressincode
 
-partial:requestresponse
+partial: requestresponse
 
-partial:cancellation
+partial: cancellation
 
-partial:routing
+partial: routing
 
 
 ## Queries and other return values

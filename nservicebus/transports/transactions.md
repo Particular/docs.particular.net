@@ -29,7 +29,7 @@ NServiceBus offers four levels of guarantees with regards to message processing.
 
 The implementation details for each transport are discussed in the dedicated documentation sections. They can be accessed by clicking the links with the transport name in the following table:
 
-partial:matrix
+partial: matrix
 
 
 ### Transaction scope (Distributed transaction)
@@ -53,7 +53,7 @@ Distributed transactions do not guarantee atomicity for an outside observer. For
 
 NOTE: This mode requires the selected storage to support participating in distributed transactions.
 
-partial:native
+partial: native
 
 ### Unreliable (Transactions Disabled)
 
@@ -63,9 +63,9 @@ DANGER: In this mode, when encountering a critical failure such as system or end
 
 snippet: TransactionsDisable
 
-partial:unreliable
+partial: unreliable
 
-partial:outbox
+partial: outbox
 
 
 ## Avoiding partial updates
@@ -78,7 +78,7 @@ NOTE: This requires that all the data stores used by the handler support enlisti
 
 WARNING: This might escalate to a distributed transaction if data in different databases are updated.
 
-partial:partial-updates
+partial: partial-updates
 
 
-partial:scope-options
+partial: scope-options

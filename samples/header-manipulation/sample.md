@@ -36,7 +36,7 @@ snippet: sending
 Headers can be manipulated by implementing any of the message mutation interfaces.
 
 
-partial:mutator
+partial: mutator
 
 
 ### IMutateIncomingMessages

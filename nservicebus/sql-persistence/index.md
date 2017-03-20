@@ -103,7 +103,7 @@ snippet: SqlServerScripts
 snippet: MySqlScripts
 
 
-partial:promote
+partial: promote
 
 
 ## Installation

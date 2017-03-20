@@ -6,5 +6,5 @@ tags:
 reviewed: 2016-10-18
 ---
 
-partial:body
+partial: body
 

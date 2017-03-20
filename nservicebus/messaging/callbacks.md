@@ -82,14 +82,14 @@ snippet: CallbackResponseMessage
 
 snippet: ObjectCallback
 
-partial:fakeHandler
+partial: fakeHandler
 
 
 #### Response
 
 snippet: ObjectCallbackResponse
 
-partial:cancellation
+partial: cancellation
 
 
 ## When to use callbacks
@@ -104,4 +104,4 @@ When using callbacks in a ASP.NET Web/MVC/Web API, the NServiceBus callbacks can
 ## Message routing
 
 
-partial:route
+partial: route

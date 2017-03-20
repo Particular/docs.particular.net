@@ -77,7 +77,7 @@ The custom connection provider has to be registered with NHibernate
 
 snippet: ConnectionProvider
 
-partial:CapturePipelineExecutor
+partial: CapturePipelineExecutor
 
 The connection provider looks at the current message processing context. If there is an existing connection to the tenant database, it creates a new one with the same connection string. Otherwise it defaults to creating a connection to the shared database.
 

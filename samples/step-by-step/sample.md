@@ -100,7 +100,7 @@ Next, define the `OrderPlaced` event by creating a class that implements `IEvent
 snippet: OrderPlaced
 
 
-partial:errorqueue
+partial: errorqueue
 
 
 ## The Client
@@ -134,7 +134,7 @@ snippet: PlaceOrderHandler
 
 This class is the message handler that processes the `PlaceOrder` command being sent by the Client. A handler is where a message is processed; very often this will involve saving information from the message into a database, calling a web service, or some other business function. In this example, the message is logged, so the fact the message was received will be visible in the Console window. Next, the handler publishes a new `OrderPlaced` event.
 
-partial:dependencyinjection
+partial: dependencyinjection
 
 The next step is to create a subscriber for this event.
 

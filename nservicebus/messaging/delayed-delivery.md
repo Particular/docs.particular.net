@@ -26,7 +26,7 @@ WARNING: This method will be deprecated in Version 7.0. It is recommended to use
 
 ## Delaying message dispatching
 
-partial:intro
+partial: intro
 
 Note: Similar to `SendLocal`, `Defer` will also change the message's reply-to address to the endpoint deferring the message. Calling `Reply` on a deferred message will send the reply to itself.
 
@@ -54,7 +54,7 @@ Delayed delivery of messages is supported when the one following requirements ar
 
 When deferring a message, it is sent to the Timeout Manager requesting it to deliver the message at a later time or deferred by using the transports native capability to defer messages.
 
-partial:caveatsnote
+partial: caveatsnote
 
 NOTE: When relying on Timeout Manager, the sending endpoint must be running when the timeout is reached in order for the message to be sent. If the endpoint is not running when the timeout is reached then the message will be sent when the endpoint is next started.
 

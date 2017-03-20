@@ -16,7 +16,7 @@ The [Outbox](/nservicebus/outbox) feature requires persistence in order to store
 
 To keep track of duplicate messages, the NHibernate implementation of Outbox requires the creation of `OutboxRecord` table.
 
-partial:customizing
+partial: customizing
 
 ## Deduplication record lifespan
 

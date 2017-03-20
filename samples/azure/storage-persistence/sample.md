@@ -46,7 +46,7 @@ The `Server` endpoint is configured to use the Azure Storage persistence in two 
 snippet: Config
 
 
-partial:AppConfig
+partial: AppConfig
 
 
 ### Order Saga Data

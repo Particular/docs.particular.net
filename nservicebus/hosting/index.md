@@ -41,7 +41,7 @@ The user is also responsible for properly shutting down the endpoint when it is 
 
 snippet: Hosting-Shutdown
 
-partial:dispose
+partial: dispose
 
 
 ### Windows Service Hosting
@@ -73,7 +73,7 @@ NServiceBus can be hosted in any web technology that support .NET. See [Web Appl
 
 "Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .NET process.
 
-partial:multi
+partial: multi
 
 Related:
 

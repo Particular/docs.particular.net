@@ -66,7 +66,7 @@ The `Client` is the initiate for the ordering process. The 'Client' defers sendi
 snippet: DeferOrder
 
 
-partial:HandleDefer
+partial: HandleDefer
 
 
 ### The Server
