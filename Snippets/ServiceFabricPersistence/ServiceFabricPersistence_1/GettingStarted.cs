@@ -1,16 +1,16 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.ServiceFabric.Data;
 using Microsoft.ServiceFabric.Data.Collections;
 using NServiceBus;
 using NServiceBus.Persistence.ServiceFabric;
 
 class GettingStarted
 {
-    async Task GettingStartedUsage()
+    async Task GettingStartedUsage(IReliableStateManager statemanager)
     {
         #region ServiceFabricPersistenceConfiguration
-
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
-        endpointConfiguration.UsePersistence<ServiceFabricPersistence>();
+        endpointConfiguration.UsePersistence<ServiceFabricPersistence>().StateManager(statemanager);
 
         var startableEndpoint = await Endpoint.Create(endpointConfiguration)
             .ConfigureAwait(false);
