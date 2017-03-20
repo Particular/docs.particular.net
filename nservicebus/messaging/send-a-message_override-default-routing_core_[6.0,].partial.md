@@ -4,8 +4,8 @@ The `SendOptions` object can be used to override the default routing.
 
 Using the destination address:
 
-snippet:BasicSendSetDestination
+snippet: BasicSendSetDestination
 
 Using the ID of the target instance:
 
-snippet:BasicSendSpecificInstance
+snippet: BasicSendSpecificInstance

@@ -39,7 +39,7 @@ The message can also be an interface rather than a concrete class:
 
 snippet: BasicSendInterface
 
-partial:imessagessession-warning
+partial: imessagessession-warning
 
 
 partial: override-default-routing
