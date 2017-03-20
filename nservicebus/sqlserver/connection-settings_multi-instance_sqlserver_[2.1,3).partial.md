@@ -1,4 +1,4 @@
-include:multi-instance-connection-requirements
+include: multi-instance-connection-requirements
 
 Connection strings for the remote endpoint can be configured in several ways:
 

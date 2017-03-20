@@ -38,7 +38,7 @@ snippet:5to6-EndpointStartAndStopHost
 
 The `IMessageSession` parameter provides all the necessary methods to send messages as part of the endpoint start up.
 
-include:5to6removePShelpers
+include: 5to6removePShelpers
 
 WARNING: If an `EndpointConfig.cs` file already exists in the project, be careful to not overwrite it when upgrading the `NServiceBus.Host` package. If Visual Studio detects a conflict, it will ask whether the file should be overwritten. To keep the old configuration, choose `No`.
 

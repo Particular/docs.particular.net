@@ -77,7 +77,7 @@ snippet:setting_topic_properties
 
 ## [Securing Credentials](/nservicebus/azure-service-bus/securing-connection-strings.md)
 
-include:asb-credential-warning
+include: asb-credential-warning
 
 In order to enhance security and to avoid sharing sensitive information using `UseNamespaceNameInsteadOfConnectionString` feature follow the next steps:
 

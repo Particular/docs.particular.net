@@ -8,7 +8,7 @@ upgradeGuideCoreVersions:
 ---
 
 
-include:5to6removePShelpers
+include: 5to6removePShelpers
 
 
 
