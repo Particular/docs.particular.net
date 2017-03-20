@@ -6,17 +6,11 @@ using NServiceBus.Persistence.ServiceFabric;
 
 class GettingStarted
 {
-    async Task GettingStartedUsage(IReliableStateManager statemanager)
+    void GettingStartedUsage(IReliableStateManager statemanager, EndpointConfiguration endpointConfiguration)
     {
         #region ServiceFabricPersistenceConfiguration
-        var endpointConfiguration = new EndpointConfiguration("myendpoint");
-        endpointConfiguration.UsePersistence<ServiceFabricPersistence>().StateManager(statemanager);
-
-        var startableEndpoint = await Endpoint.Create(endpointConfiguration)
-            .ConfigureAwait(false);
-        var endpointInstance = await startableEndpoint.Start()
-            .ConfigureAwait(false);
-
+        var persistence = endpointConfiguration.UsePersistence<ServiceFabricPersistence>();
+        persistence.StateManager(statemanager);
         #endregion
     }
 
