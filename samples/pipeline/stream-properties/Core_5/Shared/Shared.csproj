@@ -38,6 +38,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ResettingStreamReader.cs" />
     <Compile Include="StreamConfig.cs" />
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="MessageWithStream.cs" />

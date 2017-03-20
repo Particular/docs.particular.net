@@ -37,6 +37,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ResettingStreamReader.cs" />
     <Compile Include="StreamConfig.cs" />
     <Compile Include="MessageWithStream.cs" />
     <Compile Include="StreamReceiveBehavior.cs" />

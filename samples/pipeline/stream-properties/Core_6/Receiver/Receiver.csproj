@@ -40,7 +40,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessageWithStreamHandler.cs" />
+    <Compile Include="MessageWithStreamHandler2.cs" />
+    <Compile Include="MessageWithStreamHandler1.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

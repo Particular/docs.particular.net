@@ -1,19 +1,17 @@
-using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-#region message-with-stream-handler
-public class MessageWithStreamHandler :
+public class MessageWithStreamHandler2 :
     IHandleMessages<MessageWithStream>
 {
-    static ILog log = LogManager.GetLogger<MessageWithStreamHandler>();
+    static ILog log = LogManager.GetLogger<MessageWithStreamHandler2>();
 
     public async Task Handle(MessageWithStream message, IMessageHandlerContext context)
     {
-        var streamProperty = message.StreamProperty;
-        log.Info($"Message received, size of stream property: {streamProperty.Length} Bytes");
-        using (var streamReader = new StreamReader(streamProperty))
+        var stream = message.StreamProperty;
+        log.Info($"Message received, size of stream property: {stream.Length} Bytes");
+        using (var streamReader = new ResettingStreamReader(stream))
         {
             var streamContents = await streamReader.ReadToEndAsync()
                 .ConfigureAwait(false);
@@ -22,4 +20,3 @@ public class MessageWithStreamHandler :
     }
 
 }
-#endregion
