@@ -30,8 +30,8 @@ static class Program
 
         // External Newtonsoft Bson
         var externalNewtonsoftBson = endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
-        externalNewtonsoftBson.ReaderCreator(stream => new BsonReader(stream));
-        externalNewtonsoftBson.WriterCreator(stream => new BsonWriter(stream));
+        externalNewtonsoftBson.ReaderCreator(stream => new BsonDataReader(stream));
+        externalNewtonsoftBson.WriterCreator(stream => new BsonDataWriter(stream));
         externalNewtonsoftBson.ContentTypeKey("NewtonsoftBson");
 
         // Jil
