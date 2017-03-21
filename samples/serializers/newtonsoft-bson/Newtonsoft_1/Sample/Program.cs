@@ -17,8 +17,8 @@ static class Program
         #region config
         var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalBson");
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-        serialization.ReaderCreator(stream => new BsonReader(stream));
-        serialization.WriterCreator(stream => new BsonWriter(stream));
+        serialization.ReaderCreator(stream => new BsonDataReader(stream));
+        serialization.WriterCreator(stream => new BsonDataWriter(stream));
 
         // register the mutator so the the message on the wire is written
         endpointConfiguration.RegisterComponents(components =>
