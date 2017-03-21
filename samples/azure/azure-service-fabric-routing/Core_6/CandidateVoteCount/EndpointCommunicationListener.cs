@@ -2,6 +2,7 @@
 using System.Fabric;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.ServiceFabric.Data;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
 
@@ -9,11 +10,14 @@ public class EndpointCommunicationListener :
     ICommunicationListener
 {
     StatefulServiceContext context;
+    IReliableStateManager stateManager;
     IEndpointInstance endpointInstance;
+    EndpointConfiguration endpointConfiguration;
 
-    public EndpointCommunicationListener(StatefulServiceContext context)
+    public EndpointCommunicationListener(StatefulServiceContext context, IReliableStateManager stateManager)
     {
         this.context = context;
+        this.stateManager = stateManager;
     }
 
     public async Task<string> OpenAsync(CancellationToken cancellationToken)
@@ -23,18 +27,15 @@ public class EndpointCommunicationListener :
         var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId)
             .ConfigureAwait(false);
 
-        var endpointConfiguration = new EndpointConfiguration("CandidateVoteCount");
+        endpointConfiguration = new EndpointConfiguration("CandidateVoteCount");
 
-        var transport = endpointConfiguration.ApplyCommonConfiguration();
+        var transport = endpointConfiguration.ApplyCommonConfiguration(stateManager);
 
         ConfigureLocalPartitionsCandidateVoteCount(endpointConfiguration, partitionInfo);
 
         ConfigureReceiverSideDistributionCandidateVoteCount(transport, partitionInfo);
 
         ConfigureSenderSideRoutingCandidateVoteCount(transport);
-
-        endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
 
         return null;
     }
@@ -100,6 +101,14 @@ public class EndpointCommunicationListener :
             });
 
         #endregion
+    }
+
+    public async Task Run()
+    {
+        if(endpointConfiguration != null)
+        {
+            endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        }
     }
 
     public Task CloseAsync(CancellationToken cancellationToken)
