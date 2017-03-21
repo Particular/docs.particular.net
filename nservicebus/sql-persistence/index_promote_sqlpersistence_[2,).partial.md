@@ -13,3 +13,5 @@ Some token replacement using [MSBuild variables](https://msdn.microsoft.com/en-u
 All tokens are drive + path and include the trailing backslash `\`.
 
 snippet: PromoteScripts
+
+The path calculation is performed relative to the current project directory. So, for example, a value of `PromotedSqlScripts` (with no tokens) would evaluate as `$(ProjectDir)PromotedSqlScripts`.
