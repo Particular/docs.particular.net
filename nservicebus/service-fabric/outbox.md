@@ -18,4 +18,4 @@ The Service Fabric implementation by default keeps deduplication records for 1 h
 
 These values can be changed using
 
-snippet:ServiceFabricPersistenceOutboxConfiguration
+snippet: ServiceFabricPersistenceOutboxConfiguration
