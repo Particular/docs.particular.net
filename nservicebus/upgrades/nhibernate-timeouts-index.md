@@ -18,7 +18,7 @@ https://github.com/Particular/PlatformDevelopment/issues/1145
 
 This guidance explains how to resolve SQL index issues as mentioned in XXX. If you have endpoints with an incorrect index then this is detected in all supported versions for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created. If you are affected you will get the following log event with log level warning:
 
-> TimeoutEntity indexes are non-optimal
+> Could not find TimeoutEntity_EndpointIdx index. This may cause significant performance degradation of message deferral. Consult NServiceBus NHibernate persistence documentation for details on how to create this index.
 
 
 If this log event is written to your log file then please take the following steps to resolve the issue.
