@@ -29,6 +29,18 @@ This issues has been resolved in following patch versions as defined in our  [su
 If you are using any of the supported minor versions (7.1.x, 7.0.x, or 6.2.8) then you should at least update to the latest patch release. If you are using an older version then you should update to a newer minor (in case of 6.1.x or 6.0.x) or major version (any version prior to 6.x).
 
 
+## Upgrade steps
+
+Steps:
+
+ * Update to latest patch release
+ * Deploy the new version
+ * Check if you get a warning related to this schema issue
+   * Or manually inspect the schema in your database
+ * Follow procedure on how to resolve schema issues for your database engine (Microsoft SQL Server or Oracle)
+   * If you are using any other database engine then you have to apply these changes in the database dialact for your engine manually
+
+
 ## Check at startup
 
 If you have endpoints with an incorrect table schema then this is detected in all fixed supported versions (at March 1th, 2017) for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created. If you are affected you will get the following log event with log level warning:
