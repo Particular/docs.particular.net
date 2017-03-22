@@ -6,8 +6,6 @@
     using Common;
     using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
-    using NServiceBus.Config;
-    using NServiceBus.Config.ConfigurationSource;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
 
@@ -39,6 +37,8 @@
                 {
                     components.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
                 });
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+            routing.RouteToEndpoint(GetType().Assembly, EndpointName);
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
@@ -66,21 +66,6 @@
             }
         }
 
-        class ConfigUnicastBus :
-            IProvideConfiguration<UnicastBusConfig>
-        {
-            public UnicastBusConfig GetConfiguration()
-            {
-                var unicastBusConfig = new UnicastBusConfig();
-                var endpointMapping = new MessageEndpointMapping
-                {
-                    AssemblyName = GetType().Assembly.GetName().Name,
-                    Endpoint = $"{EndpointName}@{Environment.MachineName}"
-                };
-                unicastBusConfig.MessageEndpointMappings.Add(endpointMapping);
-                return unicastBusConfig;
-            }
-        }
         class Mutator :
             IMutateIncomingTransportMessages
         {

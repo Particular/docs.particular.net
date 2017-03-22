@@ -4,6 +4,7 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
+    #pragma warning disable CS0618
     #region endpoint-mapping-configurationprovider
     public class ProvideConfiguration :
         IProvideConfiguration<UnicastBusConfig>
@@ -32,4 +33,5 @@
         }
     }
     #endregion
+    #pragma warning restore CS0618
 }
