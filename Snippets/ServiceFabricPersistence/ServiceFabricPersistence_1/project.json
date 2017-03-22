@@ -2,7 +2,7 @@
   "dependencies": {
     "Microsoft.ServiceFabric.Data": "2.4.164",
     "NServiceBus": "6.1.3",
-    "NServiceBus.Persistence.ServiceFabric": "1.0.0-alpha0153"
+    "NServiceBus.Persistence.ServiceFabric": "1.0.0-alpha0186"
   },
   "frameworks": {
     "net461": {}
