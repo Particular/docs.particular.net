@@ -8,9 +8,9 @@ The [Outbox](/nservicebus/outbox) feature requires persistence in order to store
 
 ## Reliable collections
 
-When using the Service Fabric Persistence with a reliable service, it will store the outbox related data in a reliable dictionary called `outbox`. 
+When using the Service Fabric Persistence with a reliable service, it will store the Outbox related data in a reliable dictionary called `outbox`. 
 
-In addition to that, it also creates a reliable queue called `outboxCleanup`. This queue is used by the persister to schedule cleanup commands to the cleanup mechanism after the outbound messages have been successfully dispatched.
+In addition to that, it also creates a reliable queue called `outboxCleanup`. This queue is used by the persister to schedule cleanup for messages that have been successfully dispatched.
 
 ## Configuration
 
