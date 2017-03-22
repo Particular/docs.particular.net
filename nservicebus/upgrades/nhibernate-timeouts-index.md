@@ -15,6 +15,8 @@ This guidance explains how to resolve an incorrectly created schema when passing
 
 - https://github.com/Particular/NServiceBus.NHibernate/issues/252
 
+This issues will cause performance issues if the table contains a large number of rows. Inserts into the table are very inefficient due but queries are ineffecient too due to the incorrect order of columns. This results in unnecessary locking which limits the processing throughput of timeouts.
+
 
 ## Compatibility
 
