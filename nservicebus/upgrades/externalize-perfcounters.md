@@ -16,7 +16,7 @@ The API was also modified.
 
 ## Changed APIs
 
-The NServiceBus Performance Counter APIs have been marked as obsolete and have one-for-one equivalents in the NServiceBus.WindowsPerformanceCounters package.
+The NServiceBus Performance Counter APIs have been marked as obsolete and have one-for-one equivalents in the NServiceBus.Metrics.PerformanceCounters package.
 
 
 ### Enabling Critical Time Counter
@@ -31,4 +31,4 @@ snippet: 6to1-enable-sla
 
 ## Compatibility
 
-The NServiceBus.WindowsPerformanceCounters package is fully compatible with endpoints that use NServiceBus package's Performance Counters functionality.
+The NServiceBus.Metrics.PerformanceCounters package is fully compatible with endpoints that use NServiceBus package's Performance Counters functionality.
