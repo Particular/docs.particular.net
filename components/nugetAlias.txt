@@ -47,7 +47,7 @@ Ninject: NServiceBus.Ninject
 NLog: NServiceBus.NLog
 OracleAQ: NServiceBus.OracleAQ
 PostgreSQL: NServiceBus.PostgreSQL
-PerfCounters: NServiceBus.WindowsPerformanceCounters
+PerfCounters: NServiceBus.Metrics.PerformanceCounters
 ProtoBuf: NServiceBus.ProtoBuf
 PropertyEncryption: NServiceBus.Encryption.MessageProperty
 RawMessaging: NServiceBus.Raw

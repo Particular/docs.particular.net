@@ -65,9 +65,9 @@
   DocoUrl: nservicebus/operations/performance-counters
   Category: Other
   GitHubOwner: Particular/metrics-maintainers
-  ProjectUrl: https://github.com/Particular/NServiceBus.WindowsPerformanceCounters
+  ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.PerformanceCounters
   NugetOrder:
-    - NServiceBus.WindowsPerformanceCounters
+    - NServiceBus.Metrics.PerformanceCounters
     - NServiceBus
 
 - Key: PostgreSQL
