@@ -38,7 +38,6 @@ namespace MyNamespace1
             throw new Exception("Expected Timeout in MyTimeoutSagaVersion2. EndpointVersion1 may have been incorrectly started.");
         }
 
-
         public class SagaData :
             ContainSagaData
         {
