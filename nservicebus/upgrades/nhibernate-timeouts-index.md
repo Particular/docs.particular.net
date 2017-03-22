@@ -9,10 +9,24 @@ upgradeGuideCoreVersions:
 ---
 
 
+## Summary
+
 This guidance explains how to resolve an incorrectly created schema when passing a custom NHibernate configuration to NServiceBus as described in the following issue:
 
 - https://github.com/Particular/NServiceBus.NHibernate/issues/252
 
+
+## Compatibility
+
+This issues has been resolved in following patch versions as defined in our  [support policy](support-policy.md):
+
+- 7.1.6 (latest) in use by NServiceBus 6.x
+- 7.0.6 (support 7.0.x) in use by NServiceBus 5.x
+- 6.2.8 (support 6.2.x) in use by NServiceBus 5.x
+
+
+
+If you are using any of the supported minor versions (7.1.x, 7.0.x, or 6.2.8) then you should at least update to the latest patch release. If you are using an older version then you should update to a newer minor (in case of 6.1.x or 6.0.x) or major version (any version prior to 6.x).
 
 
 ## Check at startup
