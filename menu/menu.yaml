@@ -516,8 +516,6 @@
       Title: Subscription Persistence
     - Url: nservicebus/msmq/full-qualified-domain-name
       Title: Fully Qualified Domain Names
-    - Url: nservicebus/msmq/failover-cluster
-      Title: Deploying to Failover Cluster
     - Url: nservicebus/msmq/scaling-out
       Title: Scaling out
     - Url: nservicebus/msmq/sender-side-distribution
