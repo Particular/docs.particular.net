@@ -11,10 +11,20 @@ TODO: describe saga persister [SUBJECT TO CHANGE, need to decide if a signle or 
 
 When using the Service Fabric Persistence with a reliable service, saga data is stored using a reliable dictionary called `sagas`.  
 
+## Saga data serialization settings
 
-## Configuration
+Saga data gets stored in reliable collection in json format. Service Fabric Persister uses Json.NET for the purpose of serialization. 
 
-Things to list:
+It is possible to customize serialization by providing custom [JsonSerializerSettings](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) instance 
 
-SagaSettings().JsonSettings().WriterCreator()
-SagaSettings().JsonSettings().ReaderCreator()
+snippet: ServiceFabricPersistenceSagaJsonSerializerSettings
+
+custom [JsonReader](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm) instance
+
+snippet: ServiceFabricPersistenceSagaReaderCreator
+
+or custom [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm) instance
+
+snippet: ServiceFabricPersistenceSagaWriterCreator
+
+
