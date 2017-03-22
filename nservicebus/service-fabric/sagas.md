@@ -4,18 +4,15 @@ reviewed: 2017-03-20
 component: ServiceFabricPersistence
 ---
 
-TODO: describe saga persister [SUBJECT TO CHANGE, need to decide if a signle or multiple collections]
-
-
 ## Reliable collections
 
 When using the Service Fabric Persistence with a reliable service, saga data is stored using a reliable dictionary called `sagas`.  
 
-## Saga data serialization settings
+## Saga data serialization
 
-Saga data gets stored in reliable collection in json format. Service Fabric Persister uses Json.NET for the purpose of serialization. 
+Service Fabric Persistence stores saga data in json format using uses Json.NET. 
 
-It is possible to customize serialization by providing custom [JsonSerializerSettings](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) instance 
+Saga data serialization can be configured by providing custom [JsonSerializerSettings](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) instance 
 
 snippet: ServiceFabricPersistenceSagaJsonSerializerSettings
 
@@ -27,4 +24,12 @@ or custom [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Jso
 
 snippet: ServiceFabricPersistenceSagaWriterCreator
 
+## Saga data storage 
 
+By default saga data gets stored in multiple reliable collections - one per saga data type. Reliable collection name can be changed at the level of saga data type using `ServiceFabricSagaAttribute.CollectionName`
+
+snippet: ServiceFabricPersistenceSagaWithCustomCollectionName
+
+Saga data storage identifier includes saga data type name. As a result renaming saga data class name changes storage identifer for every saga data instance. This is a problem especially when some saga data instances have already been stored for a given saga data type. In such scenarios it is necessary to provide stable saga data type name via ``ServiceFabricSagaAttribute.CollectionName`
+
+snippet: ServiceFabricPersistenceSagaWithCustomSagaDataName
