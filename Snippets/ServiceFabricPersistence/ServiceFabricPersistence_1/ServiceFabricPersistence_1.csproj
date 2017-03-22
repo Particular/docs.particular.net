@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="GettingStarted.cs" />
     <Compile Include="OutboxConfiguration.cs" />
+    <Compile Include="SynchronizedStorageSession.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
