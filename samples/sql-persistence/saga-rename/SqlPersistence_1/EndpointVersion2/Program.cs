@@ -27,16 +27,19 @@ class Program
         var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=SqlPersistenceSample;Integrated Security=True";
         using (var connection = new SqlConnection(connectionString))
         {
-            await connection.OpenAsync().ConfigureAwait(false);
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = "exec sp_rename 'Samples_RenameSaga_MyReplySagaVersion1', 'Samples_RenameSaga_MyReplySagaVersion2'";
-                await command.ExecuteNonQueryAsync().ConfigureAwait(false);
+                await command.ExecuteNonQueryAsync()
+                    .ConfigureAwait(false);
             }
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = "exec sp_rename 'Samples_RenameSaga_MyTimeoutSagaVersion1', 'Samples_RenameSaga_MyTimeoutSagaVersion2'";
-                await command.ExecuteNonQueryAsync().ConfigureAwait(false);
+                await command.ExecuteNonQueryAsync()
+                    .ConfigureAwait(false);
             }
         }
 

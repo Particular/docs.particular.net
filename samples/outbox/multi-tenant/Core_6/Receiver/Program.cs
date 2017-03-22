@@ -118,8 +118,8 @@ class Program
         using (var connection = new SqlConnection(connectionString))
         {
             connection.Open();
-            new SchemaExport(hibernateConfig)
-                .Execute(false, true, false, connection, TextWriter.Null);
+            var schemaExport = new SchemaExport(hibernateConfig);
+            schemaExport.Execute(false, true, false, connection, TextWriter.Null);
         }
     }
 }

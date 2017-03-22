@@ -23,7 +23,8 @@ class Program
         }
         transport.ConnectionString(connectionString);
         var topology = transport.UseEndpointOrientedTopology();
-        transport.Sanitization().UseStrategy<ValidateAndHashIfNeeded>();
+        var sanitization = transport.Sanitization();
+        sanitization.UseStrategy<ValidateAndHashIfNeeded>();
 
         #region RegisterPublisherNames
 
@@ -67,7 +68,8 @@ class Program
         }
         finally
         {
-            await endpointInstance.Unsubscribe<BaseEvent>().ConfigureAwait(false);
+            await endpointInstance.Unsubscribe<BaseEvent>()
+                .ConfigureAwait(false);
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
         }

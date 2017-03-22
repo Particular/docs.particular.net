@@ -6,10 +6,10 @@ class Program
 {
     static void Main()
     {
-        Start().GetAwaiter().GetResult();
+        AsyncMain().GetAwaiter().GetResult();
     }
 
-    static async Task Start()
+    static async Task AsyncMain()
     {
         Console.Title = "Samples.SagaMigration.Client";
 

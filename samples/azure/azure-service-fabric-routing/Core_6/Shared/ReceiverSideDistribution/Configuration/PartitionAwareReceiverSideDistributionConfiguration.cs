@@ -34,11 +34,10 @@ public class PartitionAwareReceiverSideDistributionConfiguration :
 
         var partition = mapper(message);
 
-        if (!Partitions.Contains(partition))
+        if (Partitions.Contains(partition))
         {
-            throw new Exception($"Partition '{partition}' returned by partition mapping of '{messageType}' did not match any of the registered local partitions '{string.Join(",", Partitions)}'.");
+            return partition;
         }
-
-        return partition;
+        throw new Exception($"Partition '{partition}' returned by partition mapping of '{messageType}' did not match any of the registered local partitions '{string.Join(",", Partitions)}'.");
     }
 }

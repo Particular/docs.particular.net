@@ -25,7 +25,8 @@ class Program
         transport.ConnectionString(connectionString);
         transport.UseForwardingTopology();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.Recoverability().DisableLegacyRetriesSatellite();
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.DisableLegacyRetriesSatellite();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
