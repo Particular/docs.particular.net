@@ -1,4 +1,5 @@
-﻿namespace Core6.Logging
+﻿#pragma warning disable 618
+namespace Core6.Logging
 {
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;

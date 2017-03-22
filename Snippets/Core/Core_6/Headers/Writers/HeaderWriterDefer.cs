@@ -1,4 +1,5 @@
-﻿namespace Core6.Headers.Writers
+﻿#pragma warning disable 618
+namespace Core6.Headers.Writers
 {
     using System;
     using System.Threading;
