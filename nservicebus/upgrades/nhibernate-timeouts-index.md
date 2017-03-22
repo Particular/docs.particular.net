@@ -1,9 +1,7 @@
 ---
-title: NHibernate Timeouts Index Persistence Upgrade Version 6 to 7
-summary: Instructions on how to upgrade NHibernate Persistence Version 6 to 7.
+title: NHibernate Persistence - How to resolve issue 252
+summary: Instructions on how to resolve incorrect schema that can cause performance issues for affected versions 6 to 7.
 component: NHibernate
-related:
- - nservicebus/upgrades/5to6
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5
@@ -19,28 +17,27 @@ This guidance explains how to resolve an incorrectly created schema when passing
 
 ## Check at startup
 
-If you have endpoints with an incorrect index then this is detected in all fixed supported versions for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created. If you are affected you will get the following log event with log level warning:
+If you have endpoints with an incorrect table schema then this is detected in all fixed supported versions (at March 1th, 2017) for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created. If you are affected you will get the following log event with log level warning:
 
 > Could not find TimeoutEntity_EndpointIdx index. This may cause significant performance degradation of message deferral. Consult NServiceBus NHibernate persistence documentation for details on how to create this index.
 
-If this log event is written to your log file then please take the following steps to resolve the issue.
+If this log event is written to your log file then read the following guidance on how to apply corrections.
 
 
-## Corrections to be applied
+## Potential issues
 
-Corrections that need to be made:
+Any of the following issues can be present:
 
-Make sure that:
-
-- index `TimeoutEntity_EndpointIdx` is present
-- index `TimeoutEntity_EndpointIdx` has the correct column order (Endpoint, Time)
-- index `TimeoutEntity_EndpointIdx` is clustered instead of the primary key
+- table `TimeoutEntity` has a clustered primary key
+- index `TimeoutEntity_EndpointIdx` is non-clustered
+- index `TimeoutEntity_EndpointIdx` is missing
+- index `TimeoutEntity_EndpointIdx` has an incorrect column order (should be Endpoint, Time)
 
 
 How to correct these depend on the database engine that you are using.
 
 
-## Microsoft SQL Server
+## Resolving schema issues with Microsoft SQL Server
 
 This assumes that both the index column order and clustered index are incorrect. To resolve this we will drop all existing indexes and recreate them.
 
@@ -73,7 +70,6 @@ GO
 
 COMMIT TRAN
 ```
-
 
 If you get any of the following messages then your current database is incorrect or you are using a custom schema. Please update the schema in the SQL statements.
 
