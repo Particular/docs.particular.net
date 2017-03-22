@@ -1,5 +1,5 @@
 ---
-title: NHibernate Persistence - How to resolve issue 252
+title: NHibernate Persistence - Resolving incorrect timeout table schema (#252)
 summary: Instructions on how to resolve incorrect schema that can cause performance issues for affected versions 6 to 7.
 component: NHibernate
 isUpgradeGuide: true
@@ -15,14 +15,14 @@ This guidance explains how to resolve an incorrectly created schema when passing
 
 - https://github.com/Particular/NServiceBus.NHibernate/issues/252
 
-This issues will cause performance issues if the table contains a large number of rows. Inserts into the table are very inefficient due but queries are ineffecient too due to the incorrect order of columns. This results in unnecessary locking which limits the processing throughput of timeouts.
+This issues will cause performance issues if the table contains a large number of rows. Inserts and queries are inefficient due to the incorrect order of columns. This results in unnecessary locking which limits the processing throughput of timeouts.
 
 
 ## Compatibility
 
 This issues has been resolved in following patch versions as defined in our  [support policy](support-policy.md):
 
-- 7.1.6 (latest) in use by NServiceBus 6.x
+- 7.1.6 in use by NServiceBus 6.x
 - 7.0.6 (support 7.0.x) in use by NServiceBus 5.x
 - 6.2.8 (support 6.2.x) in use by NServiceBus 5.x
 
