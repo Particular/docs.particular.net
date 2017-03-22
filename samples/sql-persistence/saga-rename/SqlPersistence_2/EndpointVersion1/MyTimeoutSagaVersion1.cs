@@ -8,9 +8,6 @@ using NServiceBus.Persistence.Sql;
 
 namespace MyNamespace1
 {
-    [SqlSaga(
-        CorrelationProperty = nameof(SagaData.TheId)
-    )]
     public class MyTimeoutSagaVersion1 :
         SqlSaga<MyTimeoutSagaVersion1.SagaData>,
         IAmStartedByMessages<StartTimeoutSaga>,
@@ -18,10 +15,12 @@ namespace MyNamespace1
     {
         static ILog log = LogManager.GetLogger<MyTimeoutSagaVersion1>();
 
-        protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
+        protected override void ConfigureMapping(IMessagePropertyMapper mapper)
         {
-            mapper.MapMessage<StartTimeoutSaga>(_ => _.TheId);
+            mapper.ConfigureMapping<StartTimeoutSaga>(_ => _.TheId);
         }
+
+        protected override string CorrelationPropertyName => nameof(SagaData.TheId);
 
         public Task Handle(StartTimeoutSaga message, IMessageHandlerContext context)
         {

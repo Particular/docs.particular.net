@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
     "MySql.Data": "6.*",
-    "NServiceBus.Persistence.Sql": "2.0.0-unstable0049",
-    "NServiceBus.Persistence.Sql.ScriptBuilder": "2.0.0-unstable0049",
+    "NServiceBus.Persistence.Sql": "2.0.0-unstable0006",
+    "NServiceBus.Persistence.Sql.ScriptBuilder": "2.0.0-unstable0006",
     "NUnit": "3.*"
   },
   "frameworks": {

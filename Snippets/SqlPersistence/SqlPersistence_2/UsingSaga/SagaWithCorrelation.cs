@@ -8,17 +8,16 @@ namespace SqlPersistence_1.UsingSaga
 
     #region SqlPersistenceSagaWithCorrelation
 
-    [SqlSaga(
-        CorrelationProperty = nameof(SagaData.CorrelationProperty)
-    )]
     public class SagaWithCorrelation :
         SqlSaga<SagaWithCorrelation.SagaData>,
         IAmStartedByMessages<StartSagaMessage>
     {
-        protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
+        protected override void ConfigureMapping(IMessagePropertyMapper mapper)
         {
-            mapper.MapMessage<StartSagaMessage>(_ => _.CorrelationProperty);
+            mapper.ConfigureMapping<StartSagaMessage>(_ => _.CorrelationProperty);
         }
+
+        protected override string CorrelationPropertyName => nameof(SagaData.CorrelationProperty);
 
         public Task Handle(StartSagaMessage message, IMessageHandlerContext context)
         {

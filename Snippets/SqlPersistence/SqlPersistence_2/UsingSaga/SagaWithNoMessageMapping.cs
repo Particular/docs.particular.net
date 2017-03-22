@@ -6,13 +6,14 @@ namespace SqlPersistence_1.UsingSaga
 
     #region SqlPersistenceSagaWithNoMessageMapping
 
-    [SqlSaga]
     public class SagaWithNoMessageMapping :
         SqlSaga<SagaWithNoMessageMapping.SagaData>
     {
-        protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
+        protected override void ConfigureMapping(IMessagePropertyMapper mapper)
         {
         }
+
+        protected override string CorrelationPropertyName => null;
 
         public class SagaData :
             ContainSagaData
