@@ -612,8 +612,6 @@
       Title: Scripting
     - Url: nservicebus/msmq/uninstalling-msmq
       Title: Uninstalling MSMQ
-    - Url: nservicebus/msmq/subscription-persistence
-      Title: Subscription Persistence
     - Url: nservicebus/msmq/full-qualified-domain-name
       Title: Fully Qualified Domain Names
     - Url: nservicebus/msmq/failover-cluster

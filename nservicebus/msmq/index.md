@@ -5,6 +5,8 @@ component: MsmqTransport
 reviewed: 2016-08-31
 redirects:
  - nservicebus/msmq-information
+related:
+ - nservicebus/msmq/subscription-persistence
 ---
 
 MSMQ is the default transport used by NServiceBus.
