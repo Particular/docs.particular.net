@@ -11,7 +11,6 @@
         SqlSaga<MySaga.SagaData>,
         IAmStartedByMessages<MyMessage>
     {
-
         protected override string CorrelationPropertyName => nameof(SagaData.TheId);
 
         #endregion

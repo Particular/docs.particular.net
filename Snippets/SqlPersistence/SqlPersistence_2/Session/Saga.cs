@@ -9,10 +9,6 @@ public class SagaThatUsesSession :
     SqlSaga<SagaThatUsesSession.SagaData>,
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger<HandlerThatUsesSession>();
-
-    protected override string CorrelationPropertyName => nameof(SagaData.CorrelationProperty);
-
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         var sqlPersistenceSession = context.SynchronizedStorageSession.SqlPersistenceSession();
@@ -22,6 +18,10 @@ public class SagaThatUsesSession :
     }
 
     #endregion
+
+    protected override string CorrelationPropertyName => nameof(SagaData.CorrelationProperty);
+
+    static ILog log = LogManager.GetLogger<HandlerThatUsesSession>();
 
     protected override void ConfigureMapping(IMessagePropertyMapper mapper)
     {
