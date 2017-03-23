@@ -547,9 +547,6 @@
       Title: Running on Windows
     - Url: nservicebus/endpoints/decommissioning-endpoints
       Title: Decommissioning Endpoints
-
-
-
 - Name: Transports
   Url: nservicebus/transports
   Topics:
@@ -731,9 +728,6 @@
     Title: Event Store Transport
   - Url: nservicebus/kafka
     Title: Kafka Transport
-
-
-
 - Name: ServiceInsight
   Topics:
   - Title: Getting Started
