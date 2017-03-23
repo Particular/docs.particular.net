@@ -15,7 +15,8 @@
             #region ServiceFabricPersistenceSagaJsonSerializerSettings
             var persistence = endpointConfiguration.UsePersistence<ServiceFabricPersistence>();
 
-            persistence.SagaSettings().JsonSettings(new JsonSerializerSettings
+            var sagaSettings = persistence.SagaSettings();
+            sagaSettings.JsonSettings(new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,
                 Converters =
@@ -34,7 +35,8 @@
             #region ServiceFabricPersistenceSagaReaderCreator
             var persistence = endpointConfiguration.UsePersistence<ServiceFabricPersistence>();
 
-            persistence.SagaSettings().ReaderCreator(textReader => { return new JsonTextReader(textReader); });
+            var sagaSettings = persistence.SagaSettings();
+            sagaSettings.ReaderCreator(textReader => { return new JsonTextReader(textReader); });
             #endregion
         }
 
@@ -43,7 +45,8 @@
             #region ServiceFabricPersistenceSagaWriterCreator
             var persistence = endpointConfiguration.UsePersistence<ServiceFabricPersistence>();
 
-            persistence.SagaSettings().WriterCreator(builder =>
+            var sagaSettings = persistence.SagaSettings();
+            sagaSettings.WriterCreator(builder =>
             {
                 var writer = new StringWriter(builder);
                 return new JsonTextWriter(writer)
