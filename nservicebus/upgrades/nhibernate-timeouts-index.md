@@ -15,14 +15,14 @@ This guidance explains how to resolve an incorrectly created schema when passing
 
 - https://github.com/Particular/NServiceBus.NHibernate/issues/252
 
-This issues will cause performance issues if the table contains a large number of rows. Inserts and queries are inefficient due to the incorrect order of columns. This results in unnecessary locking which limits the processing throughput of timeouts.
+This issues causes performance issues if the table contains a large number of rows. Inserts and queries are inefficient due to the incorrect order of columns. This results in unnecessary locking which limits the processing throughput of timeouts.
 
 
 ## Compatibility
 
 This issues has been resolved in following patch versions as defined in our  [support policy](support-policy.md):
 
-- 7.1.6 in use by NServiceBus 6.x
+- 7.1.4 in use by NServiceBus 6.x
 - 7.0.6 (support 7.0.x) in use by NServiceBus 5.x
 - 6.2.8 (support 6.2.x) in use by NServiceBus 5.x
 
@@ -40,12 +40,12 @@ Steps:
  * Check if you get a warning related to this schema issue
    * Or manually inspect the schema in your database
  * Follow procedure on how to resolve schema issues for your database engine (Microsoft SQL Server or Oracle)
-   * If you are using any other database engine then you have to apply these changes in the database dialact for your engine manually
+   * If you are using any other database engine then you have to apply these changes in the database dialect for your engine manually
 
 
 ## Check at startup
 
-If you have endpoints with an incorrect table schema then this is detected in all fixed supported versions (at March 1th, 2017) for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created. If you are affected you will get the following log event with log level warning:
+If you have endpoints with an incorrect table schema then this is detected in all fixed supported versions (at March 1th, 2017) for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created and started. If you are affected you will get the following log event with log level warning:
 
 > Could not find TimeoutEntity_EndpointIdx index. This may cause significant performance degradation of message deferral. Consult NServiceBus NHibernate persistence documentation for details on how to create this index.
 
@@ -58,7 +58,6 @@ Any of the following issues can be present:
 
 - table `TimeoutEntity` has a clustered primary key
 - index `TimeoutEntity_EndpointIdx` is non-clustered
-- index `TimeoutEntity_EndpointIdx` is missing
 - index `TimeoutEntity_EndpointIdx` has an incorrect column order (should be Endpoint, Time)
 
 
@@ -93,7 +92,7 @@ GO
 CREATE NONCLUSTERED INDEX [TimeoutEntity_SagaIdIdx] ON [dbo].[TimeoutEntity]([SagaId] ASC);
 GO
 
-CREATE CLUSTERED INDEX [TimeoutEntity_EndpointIdx] ON [dbo].[TimeoutEntity]([Time] ASC, [Endpoint] ASC);
+CREATE CLUSTERED INDEX [TimeoutEntity_EndpointIdx] ON [dbo].[TimeoutEntity]([Endpoint] ASC, [Time] ASC);
 GO
 
 COMMIT TRAN
