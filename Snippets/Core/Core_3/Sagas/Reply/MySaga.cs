@@ -8,7 +8,6 @@
         Saga<MySagaData>,
         IAmStartedByMessages<StartMessage>
     {
-
         public void Handle(StartMessage message)
         {
             Data.SomeId = message.SomeId;
