@@ -1,4 +1,5 @@
-﻿using System.Fabric;
+﻿using System;
+using System.Fabric;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Data;
@@ -33,22 +34,25 @@ public class EndpointCommunicationListener :
         #region ApplyPartitionConfigurationToEndpoint-ZipCodeVoteCount
 
         endpointConfiguration.RegisterPartitionsForThisEndpoint(
-            localPartitionKey: partitionInfo.LocalPartitionKey, 
+            localPartitionKey: partitionInfo.LocalPartitionKey,
             allPartitionKeys: partitionInfo.Partitions);
 
         #endregion
-
-       
 
         return null;
     }
 
     public async Task Run()
     {
-        if (endpointConfiguration != null)
+        if (endpointConfiguration == null)
         {
-            endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+            var message = $"{nameof(EndpointCommunicationListener)} Run() method should be invoked after communication listener has been opened and not before.";
+
+            Logger.Log(message);
+            throw new Exception(message);
         }
+
+        endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
     }
 
     public Task CloseAsync(CancellationToken cancellationToken)
@@ -61,6 +65,4 @@ public class EndpointCommunicationListener :
         // Fire & Forget Close
         CloseAsync(CancellationToken.None);
     }
-
-    
 }
