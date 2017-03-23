@@ -670,7 +670,7 @@
   - Url: nservicebus/msmq/subscription-persistence
     Title: MSMQ Subscription
   - Url: nservicebus/sql-persistence
-    Title: Sql
+    Title: SQL
     Articles:
     - Url: nservicebus/sql-persistence/saga
       Title: Saga Persistence
