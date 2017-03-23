@@ -59,25 +59,48 @@
 
         #region ServiceFabricPersistenceSagaWithCustomCollectionName
         [ServiceFabricSaga(CollectionName = "custom-collection-name")]
-        public class CustomCollectionNameSaga : IHandleMessages<Message>
+        public class CustomCollectionNameSaga :
+            Saga<CustomCollectionNameSaga.SagaData>,
+            IHandleMessages<Message>
         {
             public Task Handle(Message message, IMessageHandlerContext context)
             {
                 return Task.FromResult(0);
             }
-        }
         #endregion
+
+            protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public class SagaData : ContainSagaData
+            {
+            }
+        }
 
         #region ServiceFabricPersistenceSagaWithCustomSagaDataName
         [ServiceFabricSaga(SagaDataName = "saga-data-name")]
-        public class ExplicitSagaDataNameSaga : IHandleMessages<Message>
+        public class ExplicitSagaDataNameSaga :
+            Saga<ExplicitSagaDataNameSaga.SagaData>,
+            IHandleMessages<Message>
         {
             public Task Handle(Message message, IMessageHandlerContext context)
             {
                 return Task.FromResult(0);
             }
-        }
+
         #endregion
+
+            protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public class SagaData : ContainSagaData
+            {
+            }
+        }
 
         public class Message : IMessage
         {
