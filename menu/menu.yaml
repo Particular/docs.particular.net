@@ -407,77 +407,6 @@
       Title: Custom
     - Url: nservicebus/serialization/type-was-not-registered
       Title: Type Not Registered
-  - Url: nservicebus/persistence
-    Title: Persistence
-    Articles:
-    - Url: nservicebus/persistence/order
-      Title: Persistence order
-    - Url: nservicebus/persistence/in-memory
-      Title: In Memory
-    - Url: nservicebus/msmq/subscription-persistence
-      Title: MSMQ Subscription
-    - Url: nservicebus/sql-persistence
-      Title: Sql Persistence
-      Articles:
-      - Url: nservicebus/sql-persistence/saga
-        Title: Saga Persistence
-      - Url: nservicebus/sql-persistence/installer-workflow
-        Title: Installer Workflow
-      - Url: nservicebus/sql-persistence/sqlserver-scripts
-        Title: MS SQL Server Scripts
-      - Url: nservicebus/sql-persistence/mysql-scripts
-        Title: MySQL Scripts
-    - Url: nservicebus/azure-storage-persistence
-      Title: Azure Storage Persistence
-      Articles:
-      - Url: nservicebus/upgrades/asp-saga-deduplication
-        Title: Version 6.2.3 to 6.2.4
-      - Url: nservicebus/upgrades/asp-saga-pruning
-        Title: Version 6.2.4 to 6.2.5
-      - Url: nservicebus/azure-storage-persistence/configuration
-        Title: Configuration
-      - Url: nservicebus/azure/understanding-transactionality-in-azure
-        Title: Transactions in Azure
-      - Url: nservicebus/azure-storage-persistence/performance-tuning
-        Title: Performance Tuning
-      - Url: nservicebus/azure-storage-persistence/scripting
-        Title: Scripting
-    - Url: nservicebus/ravendb
-      Title: RavenDB Persistence
-      Articles:
-      - Url: nservicebus/ravendb/connection
-        Title: Connection Options
-      - Url: nservicebus/ravendb/operations-scripting
-        Title: Scripting
-      - Url: nservicebus/ravendb/installation
-        Title: Installation
-      - Url: nservicebus/ravendb/manual-dtc-settings
-        Title: Configure DTC
-      - Url: nservicebus/ravendb/outbox
-        Title: Outbox
-      - Url: nservicebus/ravendb/version-compatibility
-        Title: RavenDB Client Versions
-      - Url: nservicebus/ravendb/reroute-existing-timeouts
-        Title: Reroute Existing Timeouts
-      - Url: nservicebus/ravendb/subscription-versioning
-        Title: Subscription versioning
-      - Url: nservicebus/ravendb/licensing
-        Title: Licensing
-    - Url: nservicebus/nhibernate
-      Title: NHibernate Persistence
-      Articles:
-      - Url: nservicebus/nhibernate/accessing-data
-        Title: Business data
-      - Url: nservicebus/nhibernate/saga-concurrency
-        Title: Saga concurrency
-      - Url: nservicebus/nhibernate/outbox
-        Title: Outbox
-      - Url: nservicebus/nhibernate/sql-azure
-        Title: SQL Azure
-      - Url: nservicebus/nhibernate/scripting
-        Title: Scripting
-    - Url: nservicebus/mongodb-persistence-tekmaven
-      Title: MongoDB Persistence
   - Url: nservicebus/containers
     Title: Containers
     Articles:
@@ -547,6 +476,7 @@
       Title: Running on Windows
     - Url: nservicebus/endpoints/decommissioning-endpoints
       Title: Decommissioning Endpoints
+      
 - Name: Transports
   Url: nservicebus/transports
   Topics:
@@ -728,6 +658,78 @@
     Title: Event Store
   - Url: nservicebus/kafka
     Title: Kafka
+
+- Name: Persistence
+  Url: nservicebus/persistence
+  Topics:
+  - Url: nservicebus/persistence
+    Title: General
+    Articles:
+    - Url: nservicebus/persistence/order
+      Title: Persistence order
+  - Url: nservicebus/persistence/in-memory
+    Title: In Memory
+  - Url: nservicebus/msmq/subscription-persistence
+    Title: MSMQ Subscription
+  - Url: nservicebus/sql-persistence
+    Title: Sql
+    Articles:
+    - Url: nservicebus/sql-persistence/saga
+      Title: Saga Persistence
+    - Url: nservicebus/sql-persistence/installer-workflow
+      Title: Installer Workflow
+    - Url: nservicebus/sql-persistence/sqlserver-scripts
+      Title: MS SQL Server Scripts
+    - Url: nservicebus/sql-persistence/mysql-scripts
+      Title: MySQL Scripts
+  - Url: nservicebus/azure-storage-persistence
+    Title: Azure Storage
+    Articles:
+    - Url: nservicebus/azure-storage-persistence/configuration
+      Title: Configuration
+    - Url: nservicebus/azure/understanding-transactionality-in-azure
+      Title: Transactions in Azure
+    - Url: nservicebus/azure-storage-persistence/performance-tuning
+      Title: Performance Tuning
+    - Url: nservicebus/azure-storage-persistence/scripting
+      Title: Scripting
+  - Url: nservicebus/ravendb
+    Title: RavenDB
+    Articles:
+    - Url: nservicebus/ravendb/connection
+      Title: Connection Options
+    - Url: nservicebus/ravendb/operations-scripting
+      Title: Scripting
+    - Url: nservicebus/ravendb/installation
+      Title: Installation
+    - Url: nservicebus/ravendb/manual-dtc-settings
+      Title: Configure DTC
+    - Url: nservicebus/ravendb/outbox
+      Title: Outbox
+    - Url: nservicebus/ravendb/version-compatibility
+      Title: RavenDB Client Versions
+    - Url: nservicebus/ravendb/reroute-existing-timeouts
+      Title: Reroute Existing Timeouts
+    - Url: nservicebus/ravendb/subscription-versioning
+      Title: Subscription versioning
+    - Url: nservicebus/ravendb/licensing
+      Title: Licensing
+  - Url: nservicebus/nhibernate
+    Title: NHibernate
+    Articles:
+    - Url: nservicebus/nhibernate/accessing-data
+      Title: Business data
+    - Url: nservicebus/nhibernate/saga-concurrency
+      Title: Saga concurrency
+    - Url: nservicebus/nhibernate/outbox
+      Title: Outbox
+    - Url: nservicebus/nhibernate/sql-azure
+      Title: SQL Azure
+    - Url: nservicebus/nhibernate/scripting
+      Title: Scripting
+  - Url: nservicebus/mongodb-persistence-tekmaven
+    Title: MongoDB
+
 - Name: ServiceInsight
   Topics:
   - Title: Getting Started
@@ -747,6 +749,7 @@
       Title: Logging
     - Url: serviceinsight/no-data-available
       Title: Data not available
+
 - Name: ServicePulse
   Topics:
   - Title: Introduction
@@ -779,6 +782,7 @@
       Title: Install in IIS
     - Url: servicepulse/troubleshooting
       Title: Troubleshooting
+
 - Name: ServiceControl
   Topics:
   - Title: Configuration

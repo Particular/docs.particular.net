@@ -8,6 +8,9 @@ tags:
  - Persistence
  - Performance
  - Hosting
+related:
+ - nservicebus/upgrades/asp-saga-deduplication
+ - nservicebus/upgrades/asp-saga-pruning
 redirects:
  - nservicebus/using-azure-storage-persistence-in-nservicebus
  - nservicebus/azure/azure-storage-persistence
