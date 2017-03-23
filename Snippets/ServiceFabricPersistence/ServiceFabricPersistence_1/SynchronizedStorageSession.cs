@@ -7,10 +7,10 @@
 
     public class SynchronizedStorageSession
     {
-        class Message : IMessage { }
+        public class Message : IMessage { }
 
-        #region ServiceFabricPersistenceSynchronizedSession
-        class Handler : IHandleMessages<Message>
+        #region ServiceFabricPersistenceSynchronizedSession-Handler
+        public class HandlerThatUsesSession : IHandleMessages<Message>
         {
             public async Task Handle(Message message, IMessageHandlerContext context)
             {
@@ -24,6 +24,34 @@
             }
         }
         #endregion
+
+        #region ServiceFabricPersistenceSynchronizedSession-Saga
+
+        public class SagaThatUsesSession : Saga<SagaThatUsesSession.SagaData>,
+            IHandleMessages<Message>
+        {
+            public async Task Handle(Message message, IMessageHandlerContext context)
+            {
+                var session = context.SynchronizedStorageSession.ServiceFabricSession();
+                var stateManager = session.StateManager;
+                var transaction = session.Transaction;
+
+                var dictionary = await stateManager.GetOrAddAsync<IReliableDictionary<string, string>>(transaction, "state");
+
+                await dictionary.AddOrUpdateAsync(transaction, "key", _ => "value", (_, __) => "value");
+            }
+
+            #endregion
+
+            public class SagaData : ContainSagaData
+            {
+            }
+
+            protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
         class CustomTransactionHandler : IHandleMessages<Message>
         {
