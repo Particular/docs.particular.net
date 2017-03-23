@@ -1,5 +1,5 @@
 ---
-title: NHibernate Persistence - Resolving incorrect timeout table schema (#252)
+title: NHibernate Persistence - Resolving incorrect timeout table schema #252
 summary: Instructions on how to resolve incorrect schema that can cause performance issues for affected versions 6 to 7.
 component: NHibernate
 isUpgradeGuide: true
