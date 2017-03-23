@@ -1,15 +1,12 @@
 ﻿using System;
 using NServiceBus;
-using NServiceBus.Logging;
 
-namespace SqlPersistence_1.AttributeRequirement
+namespace SqlPersistence_1.IlRequirement
 {
     public class OrderSaga :
         Saga<OrderSaga.SagaData>
     {
-        static ILog log = LogManager.GetLogger<OrderSaga>();
-
-        #region AttributeRequirement
+        #region IlRequirement
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
         {
             mapper.ConfigureMapping<StartOrder>(message => message.OrderId)

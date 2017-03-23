@@ -39,7 +39,7 @@
     <Compile Include="Session\MyMessage.cs" />
     <Compile Include="UpgradeGuides\1to101\Upgrade101.cs" />
     <Compile Include="TableSuffix.cs" />
-    <Compile Include="AttributeRequirement\OrderSaga.cs" />
+    <Compile Include="IlRequirement\OrderSaga.cs" />
     <Compile Include="UpgradeGuides\1to2\Correlation\MySaga.cs" />
     <Compile Include="UpgradeGuides\1to2\Correlation\MyMessage.cs" />
     <Compile Include="UpgradeGuides\1to2\Mapping\MyMessage.cs" />
