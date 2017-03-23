@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.ServiceFabric.Data;
-using Microsoft.ServiceFabric.Data.Collections;
+﻿using Microsoft.ServiceFabric.Data;
 using NServiceBus;
 using NServiceBus.Persistence.ServiceFabric;
 
@@ -14,5 +12,5 @@ class GettingStarted
         #endregion
     }
 
-   
+
 }
