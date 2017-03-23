@@ -732,7 +732,7 @@
       Title: Sagas
     - Url: nservicebus/service-fabric/outbox
       Title: Outbox
-    - Url: nservicebus/service-faric/transaction-sharing
+    - Url: nservicebus/service-fabric/transaction-sharing
       Title: Transaction Sharing
   - Url: nservicebus/mongodb-persistence-tekmaven
     Title: MongoDB
