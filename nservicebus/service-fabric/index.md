@@ -21,4 +21,6 @@ Currently saga and outbox storage types are supported. For timeouts, subscriptio
 
 ### Viewing the data
 
-Currently, Service Fabric does not provide capabilities to view the data that is stored inside reliable collections. The data has to be programmatically accessed and exposed over the [backup and restore APIs](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-backup-restore).
+Currently, Service Fabric does not provide capabilities to view the data that is stored inside reliable collections. The data has to be programatically accessed and exposed over customized infrastructure.
+
+Data also should be backed up and restored to avoid data loss. See Service Fabric [backup and restore APIs](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-backup-restore).

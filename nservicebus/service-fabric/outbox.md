@@ -1,10 +1,8 @@
 ---
 title: Service Fabric Persistence Outbox
-reviewed: 2017-03-20
+reviewed: 2017-03-23
 component: ServiceFabricPersistence
 ---
-
-The [Outbox](/nservicebus/outbox) feature requires persistence in order to store the outbound messages and enable deduplication.
 
 ## Reliable collections
 
