@@ -13,14 +13,16 @@ class MultiSchema
         #endregion
     }
 
-    void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration)
+    void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration, IMessageSession session)
     {
         #region sqlserver-multischema-config-for-queue
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.UseSchemaForQueue(queueName: "sales", schema: "salesSchema");
-        transport.UseSchemaForQueue(queueName: "billing", schema: "[billingSchema]");
+
+        transport.UseSchemaForQueue(queueName: "myqueue", schema: "my_schema");
         transport.UseSchemaForQueue(queueName: "error", schema: "error");
+
+        session.Send("myqueue", new MyMessage());
 
         #endregion
     }
@@ -30,8 +32,11 @@ class MultiSchema
         #region sqlserver-multischema-config-for-endpoint
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.UseSchemaForEndpoint(endpointName: "sales", schema: "sender");
-        transport.UseSchemaForEndpoint(endpointName: "billing", schema: "receiver");
+
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(typeof(MyMessage), "MyEndpoint");
+
+        transport.UseSchemaForEndpoint(endpointName: "MyEndpoint", schema: "my_schema");
 
         #endregion
     }
@@ -45,5 +50,9 @@ class MultiSchema
         transport.UseSchemaForQueue(queueName: "error", schema: "control");
 
         #endregion
+    }
+
+    class MyMessage
+    {
     }
 }
