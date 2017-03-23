@@ -6,7 +6,7 @@ component: ServiceFabricPersistence
 
 ## Reliable collections
 
-When using the Service Fabric Persistence with a reliable service, saga data is stored using a reliable dictionary called `sagas`.  
+When using the Service Fabric Persistence with a reliable service, saga data is stored in reliable dictionaries.  
 
 ## Saga data serialization
 
