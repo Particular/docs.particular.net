@@ -560,7 +560,7 @@
     - Url: nservicebus/transports/queuecreation
       Title: Creating queues
   - Url: nservicebus/azure-service-bus
-    Title: Azure Service Bus Transport
+    Title: Azure Service Bus
     Articles:
     - Url: nservicebus/azure-service-bus/topologies
       Title: Topologies
@@ -622,7 +622,7 @@
     - Url: nservicebus/azure-service-bus/faq
       Title: FAQ
   - Url: nservicebus/azure-storage-queues
-    Title: Azure Storage Queues Transport
+    Title: Azure Storage Queues
     Articles:
     - Url: nservicebus/azure-storage-queues/faq
       Title: FAQ
@@ -641,7 +641,7 @@
     - Url: nservicebus/azure/data-distribution
       Title: Data distribution
   - Url: nservicebus/sqlserver
-    Title: SQL Server Transport
+    Title: SQL Server
     Articles:
     - Url: nservicebus/sqlserver/design
       Title: Design
@@ -664,7 +664,7 @@
     - Url: nservicebus/sqlserver/queuepeek
       Title: Queue Peek Settings
   - Url: nservicebus/msmq
-    Title: MSMQ Transport
+    Title: MSMQ
     Articles:
     - Url: nservicebus/msmq/routing
       Title: Physical routing
@@ -704,7 +704,7 @@
       - Url: nservicebus/msmq/distributor/error-handling
         Title: Error handling
   - Url: nservicebus/rabbitmq
-    Title: RabbitMQ Transport
+    Title: RabbitMQ
     Articles:
     - Url: nservicebus/rabbitmq/connection-settings
       Title: Connection settings
@@ -725,9 +725,9 @@
     - Url: nservicebus/rabbitmq/rabbitmqclient-nuget
       Title: RabbitMQ.Client NuGet usage
   - Url: nservicebus/eventstoretransport
-    Title: Event Store Transport
+    Title: Event Store
   - Url: nservicebus/kafka
-    Title: Kafka Transport
+    Title: Kafka
 - Name: ServiceInsight
   Topics:
   - Title: Getting Started
