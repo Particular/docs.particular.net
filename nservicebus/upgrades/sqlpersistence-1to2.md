@@ -14,6 +14,28 @@ upgradeGuideCoreVersions:
 In Version 1 inheriting from `NServiceBus.Saga<T>` was partially supported. However this having two competing approaches that deliver the same features caused significant confusion. In Version 2 `NServiceBus.Saga<T>` is no longer supported and either a build error, or an runtime exception for some edge cases, will occur.
 
 
+## Deep nested Saga hierarchies are no longer supported
+
+In Version 1 having deep class hierarchies from under `SqlSaga<T>` was supported. This scenario is no longer supported and all sagas **must** inherit directly from `SqlSaga<T>`. This change was done to bring the SQL persistence approach inline with the future approach being taken by NServiceBus.
+
+
+## Correlation Property
+
+The API for definition a Correlation Property has been moved from an attribute to a property at the saga class level.
+
+snippet: 1to2_Correlation
+
+
+## Message Mapping
+
+The API for definition message mapping has been changed to bring it inline with the future approach being taken by NServiceBus:
+
+ * `MapMessage` renamed to `ConfigureMapping`.
+ * `MessagePropertyMapper<T>` renamed to `IMessagePropertyMapper`.
+
+snippet: 1to2_Mapping
+
+
 ## Explicit schema API
 
 An explicit schema API has been added.
@@ -32,15 +54,30 @@ WARNING: An exception will be thrown if any of ], [ or &grave; are detected in t
 To simplify implementing a saga using `SqlSaga<T>` the method `SqlSaga<T>.ConfigureMapping` has been made abstract and now always needs to be implemented even if no message mapping is required.
 
 
-## Missing Indexs
+## Attribute move to use properties
+
+Attribute have been moved to use properties instead of optional parameters in the constructor.
+
+
+### SqlPersistenceSettingsAttribute
+
+snippet: 1to2_SqlPersistenceSettings
+
+
+### SqlSagaAttribute
+
+snippet: 1to2_SagaAttribute
+
+
+## Missing Indexes
 
 Some missing indexes have been added. These indexes will be added the next time the [installers](/nservicebus/sql-persistence/#installation) are executed. No explicit SQL migration is required.
 
 
 ### TimeoutData
 
- * Add missing non-unique index on `Time`, for query to find expired timeouts
- * Add missing non-unique index on `SagaId`, used for clearing timeouts from completed sagas
+ * Add missing non-unique index on `Time`, for query to find expired timeouts.
+ * Add missing non-unique index on `SagaId`, used for clearing timeouts from completed sagas.
 
 
 ### OutboxData

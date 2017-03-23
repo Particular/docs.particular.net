@@ -667,8 +667,6 @@
       Title: Persistence order
   - Url: nservicebus/persistence/in-memory
     Title: In Memory
-  - Url: nservicebus/msmq/subscription-persistence
-    Title: MSMQ Subscription
   - Url: nservicebus/sql-persistence
     Title: SQL
     Articles:
@@ -725,6 +723,8 @@
       Title: SQL Azure
     - Url: nservicebus/nhibernate/scripting
       Title: Scripting
+  - Url: nservicebus/msmq/subscription-persistence
+    Title: MSMQ Subscription
   - Url: nservicebus/mongodb-persistence-tekmaven
     Title: MongoDB
 

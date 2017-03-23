@@ -35,8 +35,14 @@
     <Compile Include="SagaFinder\MySqlSagaFinder.cs" />
     <Compile Include="SagaFinder\SqlServerSagaFinder.cs" />
     <Compile Include="SagaFinder\MyMessage.cs" />
+    <Compile Include="UpgradeGuides\1to2\SqlPersistenceSettings.cs" />
+    <Compile Include="UpgradeGuides\1to2\Correlation\MySaga.cs" />
+    <Compile Include="UpgradeGuides\1to2\Correlation\MyMessage.cs" />
+    <Compile Include="UpgradeGuides\1to2\Mapping\MySaga.cs" />
+    <Compile Include="UpgradeGuides\1to2\Mapping\MyMessage.cs" />
+    <Compile Include="UpgradeGuides\1to2\SagaAttribute.cs" />
     <Compile Include="UpgradeGuides\1to2\Upgrade1to2.cs" />
-    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="SqlPersistenceSettings.cs" />
     <Compile Include="CorrelationPropertyTypeConverterWriter.cs" />
     <Compile Include="ScriptWriter.cs" />
     <Compile Include="Session\Handler.cs" />
