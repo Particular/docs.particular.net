@@ -787,3 +787,12 @@
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.FileBasedRouting
   NugetOrder:
     - NServiceBus.FileBasedRouting
+
+- Key: ServiceFabricPersistence
+  Name: Service Fabric Persistence 
+  DocoUrl: nservicebus/service-fabric
+  GitHubOwner: Particular/service-fabric-maintainers
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.ServiceFabric
+  NugetOrder:
+    - NServiceBus.Persistence.ServiceFabric

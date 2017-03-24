@@ -62,6 +62,7 @@ SerilogTracing: NServiceBus.Serilog.Tracing
 ServiceBootstrap: NServiceBus.Bootstrap.WindowsService
 ServiceControl: ServiceControl
 ServiceControlContracts: ServiceControl.Contracts
+ServiceFabricPersistence: NServiceBus.Persistence.ServiceFabric
 ServicePulse: ServicePulse
 ServiceInsight: ServiceInsight
 SqlPersistence: NServiceBus.Persistence.Sql
