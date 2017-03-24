@@ -23,4 +23,20 @@ class MyClass
 
         #endregion
     }
+
+    public void Foo3()
+    {
+        var isSagaPluginEnabled = true;
+
+        #region SagaAudit_Configurable
+
+        var endpointConfiguration = new EndpointConfiguration("myendpoint");
+        if (isSagaPluginEnabled)
+        {
+            endpointConfiguration.SagaPlugin(
+            serviceControlQueue: "ServiceControl_Queue");
+        }
+
+        #endregion
+    }
 }
