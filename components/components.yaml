@@ -796,3 +796,12 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.ServiceFabric
   NugetOrder:
     - NServiceBus.Persistence.ServiceFabric
+
+- Key: Metrics
+  Name: Metrics
+  DocoUrl: nservicebus/operations/metrics
+  GitHubOwner: Particular/metrics-maintainers
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Metrics
+  NugetOrder:
+    - NServiceBus.Metrics
