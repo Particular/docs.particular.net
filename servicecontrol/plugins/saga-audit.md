@@ -45,15 +45,20 @@ partial: config
 
 ## Removing the plugin from Production
 
-If currently running the endpoint with the SagaAudit plugin in Production, do the following to remove it:
+Removing the plugin before deployment to production depends on how the plugin is configured.
+
+Disable plugin in production via config: 
 
  1. Stop the endpoint.
  1. Delete the SagaAudit plugin dll from the endpoint's bin directory. 
  1. If there is an automated deployment processes in place, ensure that this dll is no longer included.
  1. Restart the endpoint.
 
-Doing so will stop sending the saga state change messages to ServiceControl reducing message load to ServiceControl. Turn it back on if or when needed.
+If plugin is configured via code it is not possible to remove the SagaAudit plugin dll from the bin directory. Rather create a configurable option in the config with which you can enable or disable the plugin. Use this option in your deployment to disable it for production.
 
+snippet: SagaAudit_Configurable
+
+Disabling the SagaAudit plugin will stop sending the saga state change messages to ServiceControl reducing message load to ServiceControl. Turn it back on if or when needed.
 
 ## Temporarily debugging sagas in Production
 
