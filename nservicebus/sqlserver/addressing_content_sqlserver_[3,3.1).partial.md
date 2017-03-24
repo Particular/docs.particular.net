@@ -25,7 +25,7 @@ snippet: sqlserver-multischema-config-for-endpoint
 
 When sending to a specific queue using transport address or when configuring schema for replies to older versions of NServiceBus, the queue-based API should be used instead of endpoint-based one.
 
-snippet: sqlserver-multischema-config-for-endpoint
+snippet: sqlserver-multischema-config-for-queue
 
 The entire algorithm for calculating the schema is following:
 
