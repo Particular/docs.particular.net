@@ -4,7 +4,7 @@ using NServiceBus;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
     }
@@ -24,7 +24,8 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfig).ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfig)
+            .ConfigureAwait(false);
 
         try
         {
@@ -39,12 +40,14 @@ class Program
                     break;
                 }
 
-                await endpointInstance.SendLocal(new SomeCommand()).ConfigureAwait(false);
+                await endpointInstance.SendLocal(new SomeCommand())
+                    .ConfigureAwait(false);
             }
         }
         finally
         {
-            await endpointInstance.Stop().ConfigureAwait(false);
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }

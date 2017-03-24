@@ -1,5 +1,6 @@
 ﻿using NServiceBus;
 
-class SomeCommand : ICommand
+class SomeCommand :
+    ICommand
 {
 }
