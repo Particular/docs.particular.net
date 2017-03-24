@@ -10,7 +10,7 @@ Due to specifics of the protocol used, the gateway is designed to run on at most
 
 ### MSMQ scaled-out with the distributor
 
-When scaling out MSMQ through the [distributor](/nservicebus/msmq/distributor), the node running the distributor is the natural candidate to host the gateway. Running the distributor as [a clustered service on a Windows Failover Cluster](/nservicebus/msmq/failover-cluster.md) provides High Availability (HA). No special action needs to be taken, other than configuring senders to send gateway HTTP traffic to the node running the distributor instead of directly to the workers.
+When scaling out MSMQ through the [distributor](/nservicebus/msmq/distributor), the node running the distributor is the natural candidate to host the gateway. Running the distributor as [Failover Cluster](https://technet.microsoft.com/en-us/library/dn505754.aspx) provides High Availability (HA). No special action needs to be taken, other than configuring senders to send gateway HTTP traffic to the node running the distributor instead of directly to the workers.
 
 ![Gateway with distributor](/nservicebus/gateway/scaleoutdistributor.png 'width=400')
 
