@@ -17,10 +17,10 @@
                 var session = context.SynchronizedStorageSession.ServiceFabricSession();
                 var stateManager = session.StateManager;
                 var transaction = session.Transaction;
-
-                var dictionary = await stateManager.GetOrAddAsync<IReliableDictionary<string, string>>(transaction, "state").ConfigureAwait(false);
-
-                await dictionary.AddOrUpdateAsync(transaction, "key", _ => "value", (_, __) => "value").ConfigureAwait(false);
+                var dictionary = await stateManager.GetOrAddAsync<IReliableDictionary<string, string>>(transaction, "state")
+                    .ConfigureAwait(false);
+                await dictionary.AddOrUpdateAsync(transaction, "key", _ => "value", (_, __) => "value")
+                    .ConfigureAwait(false);
             }
         }
         #endregion
@@ -35,10 +35,10 @@
                 var session = context.SynchronizedStorageSession.ServiceFabricSession();
                 var stateManager = session.StateManager;
                 var transaction = session.Transaction;
-
-                var dictionary = await stateManager.GetOrAddAsync<IReliableDictionary<string, string>>(transaction, "state").ConfigureAwait(false);
-
-                await dictionary.AddOrUpdateAsync(transaction, "key", _ => "value", (_, __) => "value").ConfigureAwait(false);
+                var dictionary = await stateManager.GetOrAddAsync<IReliableDictionary<string, string>>(transaction, "state")
+                    .ConfigureAwait(false);
+                await dictionary.AddOrUpdateAsync(transaction, "key", _ => "value", (_, __) => "value")
+                    .ConfigureAwait(false);
             }
 
             #endregion
@@ -49,7 +49,6 @@
 
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
             {
-                throw new System.NotImplementedException();
             }
         }
 
@@ -62,9 +61,12 @@
                 var stateManager = session.StateManager;
                 using (var transaction = stateManager.CreateTransaction())
                 {
-                    var dictionary = await stateManager.GetOrAddAsync<IReliableDictionary<string, string>>(transaction, "specialCollection").ConfigureAwait(false);
-                    await dictionary.AddOrUpdateAsync(transaction, "key", _ => "value", (_, __) => "value").ConfigureAwait(false);
-                    await transaction.CommitAsync().ConfigureAwait(false);
+                    var dictionary = await stateManager.GetOrAddAsync<IReliableDictionary<string, string>>(transaction, "specialCollection")
+                        .ConfigureAwait(false);
+                    await dictionary.AddOrUpdateAsync(transaction, "key", _ => "value", (_, __) => "value")
+                        .ConfigureAwait(false);
+                    await transaction.CommitAsync()
+                        .ConfigureAwait(false);
                 }
             }
             #endregion

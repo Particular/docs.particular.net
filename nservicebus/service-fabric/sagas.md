@@ -4,15 +4,17 @@ reviewed: 2017-03-22
 component: ServiceFabricPersistence
 ---
 
+
 ## Reliable collections
 
-Saga data is stored in reliable dictionaries.  
+Saga data is stored in reliable dictionaries.
+
 
 ## Saga data serialization
 
 Saga data in stored in JSON format using [Json.NET](http://www.newtonsoft.com/json). 
 
-Saga data serialization can be configured by providing custom [JsonSerializerSettings](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) instance 
+Saga data serialization can be configured by providing custom [JsonSerializerSettings](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) instance
 
 snippet: ServiceFabricPersistenceSagaJsonSerializerSettings
 
@@ -23,6 +25,7 @@ snippet: ServiceFabricPersistenceSagaReaderCreator
 or custom [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm) instance
 
 snippet: ServiceFabricPersistenceSagaWriterCreator
+
 
 ## Saga data storage 
 

@@ -4,13 +4,11 @@ using NServiceBus.Persistence.ServiceFabric;
 
 class GettingStarted
 {
-    void GettingStartedUsage(IReliableStateManager statemanager, EndpointConfiguration endpointConfiguration)
+    void GettingStartedUsage(IReliableStateManager reliableStateManager, EndpointConfiguration endpointConfiguration)
     {
         #region ServiceFabricPersistenceConfiguration
         var persistence = endpointConfiguration.UsePersistence<ServiceFabricPersistence>();
-        persistence.StateManager(statemanager);
+        persistence.StateManager(reliableStateManager);
         #endregion
     }
-
-
 }

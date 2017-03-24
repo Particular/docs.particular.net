@@ -4,11 +4,13 @@ reviewed: 2017-03-23
 component: ServiceFabricPersistence
 ---
 
+
 ## Reliable collections
 
-Outbox related data is stored in a reliable dictionary called `outbox`. 
+Outbox related data is stored in a reliable dictionary called `outbox`.
 
 In addition to that, it also creates a reliable queue called `outboxCleanup`. This queue is used by the persister to schedule cleanup for messages that have been successfully dispatched.
+
 
 ## Configuration
 

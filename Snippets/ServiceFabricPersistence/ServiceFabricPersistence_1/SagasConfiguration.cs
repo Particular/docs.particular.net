@@ -36,24 +36,31 @@
             var persistence = endpointConfiguration.UsePersistence<ServiceFabricPersistence>();
 
             var sagaSettings = persistence.SagaSettings();
-            sagaSettings.ReaderCreator(textReader => { return new JsonTextReader(textReader); });
+            sagaSettings.ReaderCreator(
+                readerCreator: textReader =>
+                {
+                    return new JsonTextReader(textReader);
+                });
             #endregion
         }
 
         public void ConfigureCustomJsonWriter(EndpointConfiguration endpointConfiguration)
         {
             #region ServiceFabricPersistenceSagaWriterCreator
+
             var persistence = endpointConfiguration.UsePersistence<ServiceFabricPersistence>();
 
             var sagaSettings = persistence.SagaSettings();
-            sagaSettings.WriterCreator(builder =>
-            {
-                var writer = new StringWriter(builder);
-                return new JsonTextWriter(writer)
+            sagaSettings.WriterCreator(
+                writerCreator: builder =>
                 {
-                    Formatting = Formatting.None
-                };
-            });
+                    var writer = new StringWriter(builder);
+                    return new JsonTextWriter(writer)
+                    {
+                        Formatting = Formatting.None
+                    };
+                });
+
             #endregion
         }
 
@@ -71,7 +78,6 @@
 
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
             {
-                throw new System.NotImplementedException();
             }
 
             public class SagaData : ContainSagaData
@@ -94,7 +100,6 @@
 
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
             {
-                throw new System.NotImplementedException();
             }
 
             public class SagaData : ContainSagaData

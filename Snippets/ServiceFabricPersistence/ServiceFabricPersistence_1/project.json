@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Microsoft.ServiceFabric.Data": "2.4.164",
+    "Microsoft.ServiceFabric.Data": "2.*",
     "NServiceBus": "6.*",
     "NServiceBus.Persistence.ServiceFabric": "1.0.0-alpha0186"
   },
