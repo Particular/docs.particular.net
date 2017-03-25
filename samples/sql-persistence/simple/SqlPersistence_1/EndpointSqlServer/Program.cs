@@ -33,7 +33,6 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.EnableOutbox();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
