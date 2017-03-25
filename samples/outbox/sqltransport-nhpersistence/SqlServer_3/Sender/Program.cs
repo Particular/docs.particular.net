@@ -48,7 +48,7 @@ class Program
             Console.WriteLine();
             if (key.Key != ConsoleKey.Enter)
             {
-                return;
+                break;
             }
             var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
             var orderSubmitted = new OrderSubmitted

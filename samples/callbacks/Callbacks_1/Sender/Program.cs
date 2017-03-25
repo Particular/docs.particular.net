@@ -49,7 +49,7 @@ class Program
                     .ConfigureAwait(false);
                 continue;
             }
-            return;
+            break;
         }
         await endpointInstance.Stop()
             .ConfigureAwait(false);

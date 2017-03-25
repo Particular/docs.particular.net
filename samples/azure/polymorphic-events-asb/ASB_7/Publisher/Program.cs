@@ -41,6 +41,14 @@ class Program
         Console.WriteLine("Press '2' to publish the derived event");
         Console.WriteLine("Press any other key to exit");
 
+        await Run(endpointInstance)
+            .ConfigureAwait(false);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
+    }
+
+    static async Task Run(IEndpointInstance endpointInstance)
+    {
         while (true)
         {
             var key = Console.ReadKey();
@@ -51,19 +59,18 @@ class Program
             switch (key.Key)
             {
                 case ConsoleKey.D1:
-                    await endpointInstance.Publish<BaseEvent>(e =>
-                    {
-                        e.EventId = eventId;
-                    });
+                    await endpointInstance.Publish<BaseEvent>(e => { e.EventId = eventId; })
+                        .ConfigureAwait(false);
                     Console.WriteLine($"BaseEvent sent. EventId: {eventId}");
                     break;
 
                 case ConsoleKey.D2:
                     await endpointInstance.Publish<DerivedEvent>(e =>
-                    {
-                        e.EventId = eventId;
-                        e.Data = "more data";
-                    });
+                        {
+                            e.EventId = eventId;
+                            e.Data = "more data";
+                        })
+                        .ConfigureAwait(false);
                     Console.WriteLine($"DerivedEvent sent. EventId: {eventId}");
                     break;
 
@@ -71,6 +78,5 @@ class Program
                     return;
             }
         }
-        await endpointInstance.Stop();
     }
 }

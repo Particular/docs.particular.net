@@ -44,7 +44,7 @@ class Program
 
             if (key.Key != ConsoleKey.Enter)
             {
-                return;
+                break;
             }
 
             var guid = Guid.NewGuid();
@@ -53,7 +53,8 @@ class Program
             {
                 Id = guid
             };
-            await endpointInstance.Send("NServiceBusEndpoint", simpleMessage);
+            await endpointInstance.Send("NServiceBusEndpoint", simpleMessage)
+                .ConfigureAwait(false);
             Console.WriteLine($"Sent a new message with Id = {guid}.");
 
             Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");

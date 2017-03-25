@@ -32,7 +32,7 @@ static class Program
             var key = Console.ReadKey();
             if (key.Key != ConsoleKey.Enter)
             {
-                return;
+                break;
             }
             var myMessage = new MyMessage
             {

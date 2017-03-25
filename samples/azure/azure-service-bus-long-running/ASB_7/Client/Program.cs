@@ -42,7 +42,7 @@ class Program
 
             if (key.Key != ConsoleKey.Enter)
             {
-                return;
+                break;
             }
 
             #region request-message

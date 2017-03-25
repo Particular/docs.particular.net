@@ -37,7 +37,7 @@ public class Program
         {
             if (Console.ReadKey().Key != ConsoleKey.Enter)
             {
-                return;
+                break;
             }
             await PlaceOrder(endpointInstance)
                 .ConfigureAwait(false);

@@ -29,7 +29,7 @@ class Program
             var key = Console.ReadKey();
             if (key.Key != ConsoleKey.Enter)
             {
-                return;
+                break;
             }
             var id = Guid.NewGuid();
             var myMessage = new MyMessage
@@ -39,7 +39,7 @@ class Program
             await endpointInstance.Send("Samples.FaultTolerance.Server", myMessage)
                 .ConfigureAwait(false);
 
-            Console.WriteLine($"Sent a message with id: {id.ToString("N")}");
+            Console.WriteLine($"Sent a message with id: {id:N}");
         }
         await endpointInstance.Stop()
             .ConfigureAwait(false);

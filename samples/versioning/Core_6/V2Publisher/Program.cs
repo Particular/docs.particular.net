@@ -29,10 +29,10 @@ class Program
         {
             var key = Console.ReadKey();
             Console.WriteLine();
-
+            
             if (key.Key != ConsoleKey.Enter)
             {
-                return;
+                break;
             }
             await endpointInstance.Publish<V2.Messages.ISomethingHappened>(sh =>
             {

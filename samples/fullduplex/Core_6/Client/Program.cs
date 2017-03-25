@@ -36,10 +36,10 @@ class Program
 
             if (key.Key != ConsoleKey.Enter)
             {
-                return;
+                break;
             }
             var guid = Guid.NewGuid();
-            Console.WriteLine($"Requesting to get data by id: {guid.ToString("N")}");
+            Console.WriteLine($"Requesting to get data by id: {guid:N}");
 
             var message = new RequestDataMessage
             {

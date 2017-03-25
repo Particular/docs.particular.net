@@ -27,12 +27,19 @@ class Program
             .ConfigureAwait(false);
 
         Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs)");
+        Console.WriteLine("Press Escape to exit");
         var acceptableInput = new List<char> { 'A', 'B' };
 
         while (true)
         {
+
             var key = Console.ReadKey();
             Console.WriteLine();
+
+            if (key.Key == ConsoleKey.Escape)
+            {
+                break;
+            }
             var uppercaseKey = char.ToUpperInvariant(key.KeyChar);
 
             if (acceptableInput.Contains(uppercaseKey))
