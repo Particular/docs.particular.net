@@ -21,35 +21,29 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press 'enter' to send a StartOrder messages");
-            Console.WriteLine("Press any other key to exit");
+        Console.WriteLine("Press 'enter' to send a StartOrder messages");
+        Console.WriteLine("Press any other key to exit");
 
-            while (true)
+        while (true)
+        {
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key != ConsoleKey.Enter)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    return;
-                }
-
-                var orderId = Guid.NewGuid();
-                var startOrder = new StartOrder
-                {
-                    OrderId = orderId
-                };
-                await endpointInstance.Send("Samples.MongoDB.Server", startOrder)
-                    .ConfigureAwait(false);
-                Console.WriteLine($"StartOrder Message sent with OrderId {orderId}");
+                return;
             }
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+
+            var orderId = Guid.NewGuid();
+            var startOrder = new StartOrder
+            {
+                OrderId = orderId
+            };
+            await endpointInstance.Send("Samples.MongoDB.Server", startOrder)
                 .ConfigureAwait(false);
+            Console.WriteLine($"StartOrder Message sent with OrderId {orderId}");
         }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

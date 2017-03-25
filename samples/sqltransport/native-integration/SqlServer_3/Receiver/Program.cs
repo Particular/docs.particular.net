@@ -28,29 +28,23 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press enter to send a message");
-            Console.WriteLine("Press any key to exit");
+        Console.WriteLine("Press enter to send a message");
+        Console.WriteLine("Press any key to exit");
 
-            while (true)
+        while (true)
+        {
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key != ConsoleKey.Enter)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    return;
-                }
-                await PlaceOrder()
-                    .ConfigureAwait(false);
+                return;
             }
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+            await PlaceOrder()
                 .ConfigureAwait(false);
         }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
     static async Task PlaceOrder()

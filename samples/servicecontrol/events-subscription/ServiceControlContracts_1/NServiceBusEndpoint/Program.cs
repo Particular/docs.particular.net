@@ -37,34 +37,28 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
+        while (true)
         {
-            Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
-            while (true)
+            var key = Console.ReadKey();
+
+            if (key.Key != ConsoleKey.Enter)
             {
-                var key = Console.ReadKey();
-
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    return;
-                }
-
-                var guid = Guid.NewGuid();
-
-                var simpleMessage = new SimpleMessage
-                {
-                    Id = guid
-                };
-                await endpointInstance.Send("NServiceBusEndpoint", simpleMessage);
-                Console.WriteLine($"Sent a new message with Id = {guid}.");
-
-                Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
+                return;
             }
+
+            var guid = Guid.NewGuid();
+
+            var simpleMessage = new SimpleMessage
+            {
+                Id = guid
+            };
+            await endpointInstance.Send("NServiceBusEndpoint", simpleMessage);
+            Console.WriteLine($"Sent a new message with Id = {guid}.");
+
+            Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
         }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

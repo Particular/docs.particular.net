@@ -28,38 +28,32 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press 'D' to send a databus large message");
-            Console.WriteLine("Press 'N' to send a normal large message exceed the size limit and throw");
-            Console.WriteLine("Press any other key to exit");
+        Console.WriteLine("Press 'D' to send a databus large message");
+        Console.WriteLine("Press 'N' to send a normal large message exceed the size limit and throw");
+        Console.WriteLine("Press any other key to exit");
 
-            while (true)
+        while (true)
+        {
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key == ConsoleKey.N)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                if (key.Key == ConsoleKey.N)
-                {
-                    await SendMessageTooLargePayload(endpointInstance)
-                        .ConfigureAwait(false);
-                    continue;
-                }
-
-                if (key.Key == ConsoleKey.D)
-                {
-                    await SendMessageLargePayload(endpointInstance)
-                        .ConfigureAwait(false);
-                    continue;
-                }
-                return;
+                await SendMessageTooLargePayload(endpointInstance)
+                    .ConfigureAwait(false);
+                continue;
             }
+
+            if (key.Key == ConsoleKey.D)
+            {
+                await SendMessageLargePayload(endpointInstance)
+                    .ConfigureAwait(false);
+                continue;
+            }
+            return;
         }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
 

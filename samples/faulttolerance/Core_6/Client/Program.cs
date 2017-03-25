@@ -21,33 +21,27 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press enter to send a message");
-            Console.WriteLine("Press any key to exit");
+        Console.WriteLine("Press enter to send a message");
+        Console.WriteLine("Press any key to exit");
 
-            while (true)
+        while (true)
+        {
+            var key = Console.ReadKey();
+            if (key.Key != ConsoleKey.Enter)
             {
-                var key = Console.ReadKey();
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    return;
-                }
-                var id = Guid.NewGuid();
-                var myMessage = new MyMessage
-                {
-                    Id = id
-                };
-                await endpointInstance.Send("Samples.FaultTolerance.Server", myMessage)
-                    .ConfigureAwait(false);
-
-                Console.WriteLine($"Sent a message with id: {id.ToString("N")}");
+                return;
             }
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+            var id = Guid.NewGuid();
+            var myMessage = new MyMessage
+            {
+                Id = id
+            };
+            await endpointInstance.Send("Samples.FaultTolerance.Server", myMessage)
                 .ConfigureAwait(false);
+
+            Console.WriteLine($"Sent a message with id: {id.ToString("N")}");
         }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

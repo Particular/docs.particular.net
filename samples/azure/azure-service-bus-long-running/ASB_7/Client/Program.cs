@@ -32,42 +32,36 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press 'enter' to send a message");
-            Console.WriteLine("Press any other key to exit");
+        Console.WriteLine("Press 'enter' to send a message");
+        Console.WriteLine("Press any other key to exit");
 
-            while (true)
+        while (true)
+        {
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key != ConsoleKey.Enter)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    return;
-                }
-
-                #region request-message
-
-                var message = new LongProcessingRequest
-                {
-                    Id = Guid.NewGuid(),
-                    // set to a longer period of time to emulate longer processing
-                    EstimatedProcessingTime = Constants.EstimatedProcessingTime
-                };
-
-                #endregion
-
-                await endpointInstance.Send("Samples.Azure.ServiceBus.Server", message)
-                    .ConfigureAwait(false);
-
-                Console.WriteLine($"LongProcessingRequest with ID {message.Id} and estimated processing time {message.EstimatedProcessingTime} sent.");
+                return;
             }
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+
+            #region request-message
+
+            var message = new LongProcessingRequest
+            {
+                Id = Guid.NewGuid(),
+                // set to a longer period of time to emulate longer processing
+                EstimatedProcessingTime = Constants.EstimatedProcessingTime
+            };
+
+            #endregion
+
+            await endpointInstance.Send("Samples.Azure.ServiceBus.Server", message)
                 .ConfigureAwait(false);
+
+            Console.WriteLine($"LongProcessingRequest with ID {message.Id} and estimated processing time {message.EstimatedProcessingTime} sent.");
         }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

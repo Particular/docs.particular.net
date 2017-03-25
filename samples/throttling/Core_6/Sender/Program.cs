@@ -20,29 +20,23 @@ class Program
         #region Sending
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        Console.WriteLine("Sending messages...");
+        for (var i = 0; i < 100; i++)
         {
-            Console.WriteLine("Sending messages...");
-            for (var i = 0; i < 100; i++)
+            var searchGitHub = new SearchGitHub
             {
-                var searchGitHub = new SearchGitHub
-                {
-                    Repository = "NServiceBus",
-                    RepositoryOwner = "Particular",
-                    SearchFor = "IBus"
-                };
-                await endpointInstance.Send("Samples.Throttling.Limited", searchGitHub)
-                    .ConfigureAwait(false);
-            }
-            Console.WriteLine("Messages sent.");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+                Repository = "NServiceBus",
+                RepositoryOwner = "Particular",
+                SearchFor = "IBus"
+            };
+            await endpointInstance.Send("Samples.Throttling.Limited", searchGitHub)
                 .ConfigureAwait(false);
         }
         #endregion
+        Console.WriteLine("Messages sent.");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

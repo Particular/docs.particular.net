@@ -36,35 +36,29 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press 'enter' to send a message");
-            Console.WriteLine("Press any other key to exit");
+        Console.WriteLine("Press 'enter' to send a message");
+        Console.WriteLine("Press any other key to exit");
 
-            while (true)
+        while (true)
+        {
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key != ConsoleKey.Enter)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    return;
-                }
-
-                var orderId = Guid.NewGuid();
-                var message = new Message1
-                {
-                    Property = "Hello from Endpoint1"
-                };
-                await endpointInstance.Send("Samples.Azure.ServiceBus.Endpoint2", message)
-                    .ConfigureAwait(false);
-                Console.WriteLine("Message1 sent");
+                return;
             }
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+
+            var orderId = Guid.NewGuid();
+            var message = new Message1
+            {
+                Property = "Hello from Endpoint1"
+            };
+            await endpointInstance.Send("Samples.Azure.ServiceBus.Endpoint2", message)
                 .ConfigureAwait(false);
+            Console.WriteLine("Message1 sent");
         }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

@@ -24,40 +24,34 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        Console.WriteLine("Press enter to send a message");
+        Console.WriteLine("Press any key to exit");
+
+        #region ClientLoop
+
+        while (true)
         {
-            Console.WriteLine("Press enter to send a message");
-            Console.WriteLine("Press any key to exit");
+            var key = Console.ReadKey();
+            Console.WriteLine();
 
-            #region ClientLoop
-
-            while (true)
+            if (key.Key != ConsoleKey.Enter)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    return;
-                }
-                var guid = Guid.NewGuid();
-                Console.WriteLine($"Requesting to get data by id: {guid.ToString("N")}");
-
-                var message = new RequestDataMessage
-                {
-                    DataId = guid,
-                    String = "String property value"
-                };
-                await endpointInstance.Send("Samples.FullDuplex.Server", message)
-                    .ConfigureAwait(false);
+                return;
             }
+            var guid = Guid.NewGuid();
+            Console.WriteLine($"Requesting to get data by id: {guid.ToString("N")}");
 
-            #endregion
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+            var message = new RequestDataMessage
+            {
+                DataId = guid,
+                String = "String property value"
+            };
+            await endpointInstance.Send("Samples.FullDuplex.Server", message)
                 .ConfigureAwait(false);
         }
+
+        #endregion
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }
