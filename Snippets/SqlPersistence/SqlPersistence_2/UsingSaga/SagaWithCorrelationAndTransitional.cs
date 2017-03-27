@@ -8,9 +8,6 @@ namespace SqlPersistence_1.UsingSaga
 
     #region SqlPersistenceSagaWithCorrelationAndTransitional
 
-    [SqlSaga(
-        TransitionalCorrelationProperty = nameof(SagaData.TransitionalCorrelationProperty)
-    )]
     public class SagaWithCorrelationAndTransitional :
         SqlSaga<SagaWithCorrelationAndTransitional.SagaData>,
         IAmStartedByMessages<StartSagaMessage>
@@ -21,6 +18,8 @@ namespace SqlPersistence_1.UsingSaga
         }
 
         protected override string CorrelationPropertyName => nameof(SagaData.CorrelationProperty);
+
+        protected override string TransitionalCorrelationPropertyName => nameof(SagaData.TransitionalCorrelationProperty);
 
         public Task Handle(StartSagaMessage message, IMessageHandlerContext context)
         {
