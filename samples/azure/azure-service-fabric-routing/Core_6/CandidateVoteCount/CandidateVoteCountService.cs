@@ -26,8 +26,10 @@ class CandidateVoteCountService :
 
     protected override async Task RunAsync(CancellationToken cancellationToken)
     {
-        await listener.Run();
+        await listener.Run()
+            .ConfigureAwait(false);
 
-        await base.RunAsync(cancellationToken);
+        await base.RunAsync(cancellationToken)
+            .ConfigureAwait(false);
     }
 }
