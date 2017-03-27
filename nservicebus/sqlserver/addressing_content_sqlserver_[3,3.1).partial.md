@@ -19,15 +19,15 @@ The address is resolved into a qualified table name that includes both table nam
 
 ### Schema
 
-Schema name is optional. Even if it is present in the address, it might be overridden by configuration. The following API can be used specify schema for a given destination logical endpoint when [logical routing](/nservicebus/messaging/routing.md#command-routing) is used.
+Schema name is optional. Even if it is present in the address, it might be overridden by configuration. The following API can be used to specify schema for a given destination logical endpoint when [logical routing](/nservicebus/messaging/routing.md#command-routing) is used.
 
 snippet: sqlserver-multischema-config-for-endpoint
 
-When sending to a specific queue using transport address or when configuring schema for replies to older versions of NServiceBus, the queue-based API should be used instead of endpoint-based one.
+When sending to a specific queue using transport address or when configuring schema for replies to older versions of NServiceBus, the queue-based API should be used instead of endpoint-based one:
 
 snippet: sqlserver-multischema-config-for-queue
 
-The entire algorithm for calculating the schema is following:
+The entire algorithm for calculating the schema is the following:
 
  * If schema is configured for a given queue via `UseSchemaForQueue`, the configured value is used.
  * If [logical routing](/nservicebus/messaging/routing.md#command-routing) is used and schema is configured for a given endpoint via `UseSchemaForEndpoint`, the configured schema is used.
