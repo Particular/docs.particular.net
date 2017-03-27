@@ -106,17 +106,3 @@ ServiceControl offers the following endpoint plugins:
 	SCQ --> ServiceControl
 	```
 
-
-## Connecting to ServiceControl
-
-Once deployed on an active endpoint, the endpoint sends plugin-specific information to ServiceControl. Plugins send messages using the defined endpoint transport to the ServiceControl queue. 
-
-partial: sc-location
-
-WARNING: Endpoint with plugins installed will shut down when the ServiceControl queue setting has not been set or when the plugin is unable to communicate with the configured ServiceControl queue.
-
-The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl. The queue name is based on the ServiceControl instance name which is visible in the ServiceControl Management utility.
-
-![Service Control Instance Name](ServiceControl-InstanceName.png)
-
-NOTE: ServiceControl instances configured to use the MSMQ transport must be installed on the same machine as the error and audit queues.
