@@ -23,7 +23,7 @@ snippet: Metrics-DefaultInterval
 
 ### To NServiceBus Log
 
-Metrics data can be written to the [NServiceBus Log](/nservicebus/logging/index.md).
+Metrics data can be written to the [NServiceBus Log](/nservicebus/logging/).
 
 snippet: Metrics-Log
 
