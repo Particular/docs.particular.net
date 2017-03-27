@@ -21,6 +21,12 @@ namespace Metrics_1
 
             #endregion
 
+            #region Metrics-Log
+
+            metricsOptions.EnableLogTracing(TimeSpan.FromMinutes(5));
+
+            #endregion
+
             #region Metrics-Tracing
 
             metricsOptions.EnableMetricTracing(TimeSpan.FromSeconds(5));
