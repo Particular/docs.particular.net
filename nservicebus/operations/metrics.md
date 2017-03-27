@@ -21,6 +21,14 @@ Metrics can be reported to a number of different locations. Each location is upd
 
 snippet: Metrics-DefaultInterval
 
+### To NServiceBus Log
+
+Metrics data can be written to the [NServiceBus Log](/nservicebus/logging/index.md).
+
+snippet: Metrics-Log
+
+NOTE: Metrics will be written to the log at the Info log level.
+
 ### To trace log
 
 Metrics data can be written to [System.Diagnostics.Trace](https://msdn.microsoft.com/en-us/library/system.diagnostics.trace.aspx).
