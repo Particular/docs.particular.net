@@ -13,7 +13,7 @@ class MultiSchema
         #endregion
     }
 
-    void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration, IMessageSession session)
+    void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration, IMessageSession messageSession)
     {
         #region sqlserver-multischema-config-for-queue
 
@@ -22,7 +22,7 @@ class MultiSchema
         transport.UseSchemaForQueue(queueName: "myqueue", schema: "my_schema");
         transport.UseSchemaForQueue(queueName: "error", schema: "error");
 
-        session.Send("myqueue", new MyMessage());
+        messageSession.Send("myqueue", new MyMessage());
 
         #endregion
     }

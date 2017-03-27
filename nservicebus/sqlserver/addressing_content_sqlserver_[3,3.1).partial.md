@@ -19,7 +19,7 @@ The address is resolved into a qualified table name that includes both table nam
 
 ### Schema
 
-Schema name is optional. Even if it is present in the address, it might be overridden by configuration. Following API can be used specify schema for a given destination logical endpoint when [logical routing](/nservicebus/messaging/routing.md#command-routing) is used.
+Schema name is optional. Even if it is present in the address, it might be overridden by configuration. The following API can be used specify schema for a given destination logical endpoint when [logical routing](/nservicebus/messaging/routing.md#command-routing) is used.
 
 snippet: sqlserver-multischema-config-for-endpoint
 
