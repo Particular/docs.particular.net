@@ -41,17 +41,16 @@ snippet: 1to2_Mapping
 To simplify implementing a saga using `SqlSaga<T>` the method `SqlSaga<T>.ConfigureMapping` has been made abstract and now always needs to be implemented even if no message mapping is required.
 
 
-## Attribute move to use properties
+## SqlPersistenceSettingsAttribute move to use properties
 
 Attribute have been moved to use properties instead of optional parameters in the constructor.
-
-
-### SqlPersistenceSettingsAttribute
 
 snippet: 1to2_SqlPersistenceSettings
 
 
-### SqlSagaAttribute
+## SqlSagaAttribute made obsolete
+
+The `[SqlSagaAttribute]` has been made obsolete and replaced by property overrides on the `SqlSaga<T>` class.
 
 snippet: 1to2_SagaAttribute
 

@@ -62,7 +62,7 @@ While inferring the Correlation Id from the IL of `ConfigureHowToFindSaga` is po
 The name used for a saga table consist of two parts.
 
  * The prefix of the table name is the [Table Prefix](/nservicebus/sql-persistence/#installation-table-prefix) defined at the endpoint level.
- * The suffix of the table name is **either** the saga [Type.Name](https://msdn.microsoft.com/en-us/library/system.type.name.aspx) **or**, if defined, the Table Suffix from the `[SqlSagaAttribute]`.
+ * The suffix of the table name is **either** the saga [Type.Name](https://msdn.microsoft.com/en-us/library/system.type.name.aspx) **or**, if defined, the Table Suffix defined at the saga level.
 
 snippet: tableSuffix
 

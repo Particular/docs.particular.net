@@ -84,8 +84,6 @@ public class ScriptWriter
 
     #region CreationScriptSaga
 
-    [SqlSaga(
-        TransitionalCorrelationProperty = nameof(OrderSagaData.OrderId))]
     public class OrderSaga :
         SqlSaga<OrderSaga.OrderSagaData>
     {
@@ -97,6 +95,8 @@ public class ScriptWriter
         }
 
         protected override string CorrelationPropertyName => nameof(OrderSagaData.OrderNumber);
+
+        protected override string TransitionalCorrelationPropertyName => nameof(OrderSagaData.OrderId);
 
         #endregion
 
