@@ -1,0 +1,1 @@
+The location of ServiceControl queue is managed using a code API. See specific plugins for details.
