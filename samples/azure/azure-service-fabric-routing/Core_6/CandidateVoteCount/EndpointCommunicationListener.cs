@@ -119,7 +119,8 @@ public class EndpointCommunicationListener :
         await zipcodeVotes.ClearAsync()
             .ConfigureAwait(false);
 
-        endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
     }
 
     public Task CloseAsync(CancellationToken cancellationToken)
