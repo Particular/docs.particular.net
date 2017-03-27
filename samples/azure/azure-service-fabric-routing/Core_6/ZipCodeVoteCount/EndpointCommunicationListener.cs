@@ -54,10 +54,13 @@ public class EndpointCommunicationListener :
             throw new Exception(message);
         }
 
-        var zipcodeVotes = await stateManager.GetOrAddAsync<IReliableDictionary<Guid, SagaEntry>>("zipcode-votes");
-        await zipcodeVotes.ClearAsync();
+        var zipcodeVotes = await stateManager.GetOrAddAsync<IReliableDictionary<Guid, SagaEntry>>("zipcode-votes")
+            .ConfigureAwait(false);
+        await zipcodeVotes.ClearAsync()
+            .ConfigureAwait(false);
 
-        endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
     }
 
     public Task CloseAsync(CancellationToken cancellationToken)
