@@ -1,7 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Persistence.ServiceFabric;
 
+[ServiceFabricSaga(CollectionName = "zipcode-votes")]
 public class ZipCodeVotesSaga :
     Saga<ZipCodeVotesSaga.ZipCodeVoteData>,
     IAmStartedByMessages<TrackZipCode>,
