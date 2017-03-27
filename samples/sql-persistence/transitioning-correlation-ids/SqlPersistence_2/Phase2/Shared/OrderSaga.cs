@@ -5,9 +5,6 @@ using NServiceBus.Persistence.Sql;
 
 #region sagaPhase2
 
-[SqlSaga(
-     TransitionalCorrelationProperty = nameof(OrderSagaData.OrderId)
- )]
 public class OrderSaga :
     SqlSaga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>
@@ -20,6 +17,7 @@ public class OrderSaga :
     }
 
     protected override string CorrelationPropertyName => nameof(OrderSagaData.OrderNumber);
+    protected override string TransitionalCorrelationPropertyName => nameof(OrderSagaData.OrderId);
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)
     {
