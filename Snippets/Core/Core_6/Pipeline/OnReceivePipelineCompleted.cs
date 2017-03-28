@@ -14,7 +14,8 @@ namespace Core6.Pipeline
             endpointConfiguration.Pipeline.OnReceivePipelineCompleted(
                 subscription: completed =>
                 {
-                    log.Info($"Reveive pipeline completed. Message: {completed.ProcessedMessage.MessageId}, duration: {completed.CompletedAt - completed.StartedAt}");
+                    var duration = completed.CompletedAt - completed.StartedAt;
+                    log.Info($"Reveive pipeline completed. Message: {completed.ProcessedMessage.MessageId}, duration: {duration}");
                     return Task.CompletedTask;
                 });
 
@@ -33,7 +34,8 @@ namespace Core6.Pipeline
                 pipeline.OnReceivePipelineCompleted(
                     subscription: completed =>
                     {
-                        log.Info($"Reveive pipeline completed: Message: {completed.ProcessedMessage.MessageId}, duration: {completed.CompletedAt - completed.StartedAt}");
+                        var duration = completed.CompletedAt - completed.StartedAt;
+                        log.Info($"Reveive pipeline completed: Message: {completed.ProcessedMessage.MessageId}, duration: {duration}");
                         return Task.CompletedTask;
                     });
 
