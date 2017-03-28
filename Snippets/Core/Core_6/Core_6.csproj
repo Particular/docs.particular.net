@@ -57,6 +57,7 @@
     <Compile Include="Handlers\DataAccess\Order.cs" />
     <Compile Include="Handlers\DataAccess\OrderMessage.cs" />
     <Compile Include="Handlers\DataAccess\Simple.cs" />
+    <Compile Include="Pipeline\OnReceivePipelineCompleted.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\CustomExceptionPolicy.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicyOverridingDelayedRetriesPart.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\FullyCustomizedPolicy.cs" />
