@@ -70,4 +70,4 @@ By default, exceptions occurring during assembly scanning will be rethrown. NSer
 
 snippet:SwallowScanningExceptions
 
-WARN: Ignorning assembly scanning exceptions can cause the endpoint to not load some features, behaviors, messages or message handlers and behave incorrectly.
+WARNING: Ignorning assembly scanning exceptions can cause the endpoint to not load some features, behaviors, messages or message handlers and behave incorrectly.
