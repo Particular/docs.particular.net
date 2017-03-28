@@ -1,40 +1,41 @@
 namespace Core6.Pipeline
 {
-    using System;
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Features;
+    using NServiceBus.Logging;
 
     class OnReceivePipelineCompleted
     {
-        public void FromEndpointConfig()
+        void FromEndpointConfig(EndpointConfiguration endpointConfiguration, ILog log)
         {
-            var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
-
             #region ReceivePipelineCompletedSubscriptionFromEndpointConfig
 
-            endpointConfiguration.Pipeline.OnReceivePipelineCompleted(e =>
-            {
-                Console.Out.WriteLine($"Reveive pipeline completed for message {e.ProcessedMessage.MessageId}, duration: {e.CompletedAt - e.StartedAt}");
-
-                return Task.CompletedTask;
-            });
+            endpointConfiguration.Pipeline.OnReceivePipelineCompleted(
+                subscription: completed =>
+                {
+                    log.Info($"Reveive pipeline completed. Message: {completed.ProcessedMessage.MessageId}, duration: {completed.CompletedAt - completed.StartedAt}");
+                    return Task.CompletedTask;
+                });
 
             #endregion
         }
 
-        public class FromFeature : Feature
+        class FromFeature : Feature
         {
+            static ILog log = LogManager.GetLogger(typeof(FromFeature));
+
             protected override void Setup(FeatureConfigurationContext context)
             {
                 #region ReceivePipelineCompletedSubscriptionFromFeature
 
-                context.Pipeline.OnReceivePipelineCompleted(e =>
-                {
-                    Console.Out.WriteLine($"Reveive pipeline completed for message {e.ProcessedMessage.MessageId}, duration: {e.CompletedAt - e.StartedAt}");
-
-                    return Task.CompletedTask;
-                });
+                var pipeline = context.Pipeline;
+                pipeline.OnReceivePipelineCompleted(
+                    subscription: completed =>
+                    {
+                        log.Info($"Reveive pipeline completed: Message: {completed.ProcessedMessage.MessageId}, duration: {completed.CompletedAt - completed.StartedAt}");
+                        return Task.CompletedTask;
+                    });
 
                 #endregion
             }
