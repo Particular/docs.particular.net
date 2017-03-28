@@ -8,8 +8,8 @@
         {
             #region msmq-dlq-for-ttbr-optin
 
-            endpointConfiguration.UseTransport<MsmqTransport>()
-                .UseDeadLetterQueueForMessagesWithTimeToBeReceived();
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            transport.UseDeadLetterQueueForMessagesWithTimeToBeReceived();
 
             #endregion
         }
