@@ -13,11 +13,15 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.NHibernateCustomSagaFinder";
-        var endpointConfiguration = new EndpointConfiguration("Samples.NHibernateCustomSagaFinder");
+        var endpointName = "Samples.NHibernateCustomSagaFinder";
+        Console.Title = endpointName;
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
+
+        var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+        routing.RegisterPublisher(typeof(Program).Assembly, endpointName);
 
         #region NHibernateSetup
 

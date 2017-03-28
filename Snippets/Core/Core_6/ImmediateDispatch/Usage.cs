@@ -1,7 +1,6 @@
 ﻿namespace Core6.ImmediateDispatch
 {
     using System.Threading.Tasks;
-    using System.Transactions;
     using NServiceBus;
 
     class Usage

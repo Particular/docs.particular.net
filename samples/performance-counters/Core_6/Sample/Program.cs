@@ -20,6 +20,9 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region enable-counters
+        // PerformanceCounters has been moved to an external nuget package: NServiceBus.Metrics.PerformanceCounters
+        // Old PerformanceCounter APIs marked obsolete in 6.2 of NServiceBus
+        #pragma warning disable 618
         endpointConfiguration.EnableCriticalTimePerformanceCounter();
         endpointConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromSeconds(100));
         #endregion

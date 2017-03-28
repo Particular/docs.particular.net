@@ -40,7 +40,6 @@
   <ItemGroup>
     <Compile Include="MultiSerializerFeature.cs" />
     <Compile Include="ConfigErrorQueue.cs" />
-    <Compile Include="ConfigLogging.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="DeserializeBehavior.cs" />
     <Compile Include="SerializationAttributes.cs" />

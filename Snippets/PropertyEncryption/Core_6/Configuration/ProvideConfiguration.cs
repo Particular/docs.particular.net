@@ -1,4 +1,5 @@
-﻿namespace Core6.Encryption.Configuration
+﻿#pragma warning disable 618
+namespace Core6.Encryption.Configuration
 {
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;

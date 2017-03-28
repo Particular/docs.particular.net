@@ -9,11 +9,12 @@ class Program
 
     static void Main()
     {
-        Console.Title = "Samples.RavenDBCustomSagaFinder";
+        var endpointName = "Samples.RavenDBCustomSagaFinder";
+        Console.Title = endpointName;
         using (new RavenHost())
         {
             var busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName("Samples.RavenDBCustomSagaFinder");
+            busConfiguration.EndpointName(endpointName);
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.EnableInstallers();
 
