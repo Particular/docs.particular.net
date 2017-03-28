@@ -11,19 +11,19 @@ related:
 - nservicebus/recoverability
 ---
 
-The pipeline exposed the following events.
+The pipeline raises the following notification events:
 
 
-## Receive Pipeline completed
+## Receive pipeline completed
 
-Every time a receive pipeline is completed a `ReceivePipelineCompleted` event will be raised. This event will occur even if the message fails to be processed.
+Every time a receive pipeline is completed, a `ReceivePipelineCompleted` event will be raised. This event will occur even if the message fails to be processed.
 
 Use the following configuration code to subscribe to this event:
 
 snippet: ReceivePipelineCompletedSubscriptionFromEndpointConfig
 
-Subscribing from a [feature](/nservicebus/pipeline/features.md) is show below:
+Subscribing from a [feature](/nservicebus/pipeline/features.md) is shown below:
 
 snippet: ReceivePipelineCompletedSubscriptionFromFeature
 
-NOTE: A completed receive pipeline is not the same as the message being removed from the incoming queue. Infrastructure exceptions can still cause the message to be rolled back and reprocessed.
+NOTE: A `ReceivePipelineCompleted` event being raised does not guarantee that the message has been removed from the incoming queue. Infrastructure exceptions can still cause the message to be rolled back and reprocessed.
