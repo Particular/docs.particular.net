@@ -54,7 +54,7 @@ Disable plugin in production via config:
  1. If there is an automated deployment processes in place, ensure that this dll is no longer included.
  1. Restart the endpoint.
 
-If plugin is configured via code it is not possible to remove the SagaAudit plugin dll from the bin directory. Rather create a configurable option in the config with which the plugin can be enabled or disabled. Configure this option during deployment to disable it in production.
+When the plugin is configured via code the endpoint has a direct reference to it. Removing the dll from the bin directory will prevent the endpoint from starting unless the configuration code is also removed. Rather create a configurable option in the config with which the plugin can be enabled or disabled. Configure this option during deployment to disable it in production.
 
 snippet: SagaAudit_Configurable
 
@@ -62,4 +62,4 @@ Disabling the SagaAudit plugin will stop sending the saga state change messages 
 
 ## Temporarily debugging sagas in Production
 
-To visualize the saga in Production and the plugin is not already deployed, then add the Saga Audit plugin in the same location where the saga is running and restart the endpoint. Use ServiceInsight to view the visualization and when done, follow the steps above to remove the plugin and restart the service.
+To temporarily start visualizing a saga in production, the Saga Audit plugin can be deployed with the endpoint hosting the saga. Deploy the assembly at the same location as the endpoint is running, configure it and restart the endpoint. Use ServiceInsight to view the visualization and when done, follow the steps above to remove the plugin and restart the service.
