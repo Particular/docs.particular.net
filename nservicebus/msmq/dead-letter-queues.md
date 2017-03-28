@@ -6,7 +6,7 @@ tags:
  - Transport
 ---
 
-[Dead Letter Queues](https://msdn.microsoft.com/en-us/library/ms706227.aspx) is a feature of MSMQ that tracks messages that are undeliverable, deleted, expired etc. NServiceBus endpoints will by default enable DLQ for all outgoing messages except messages that have a [Time To Be Received(TTBR)](/nservicebus/messaging/discard-old-messages.md) set. This avoids expired messages ending up in the DLQ and wasting disk space on the machine where they timed out.
+[Dead Letter Queues](https://msdn.microsoft.com/en-us/library/ms706227.aspx) is a feature of MSMQ that tracks messages that are undeliverable, deleted, expired etc. NServiceBus endpoints will by default enable DLQ for all outgoing messages except messages that have a [Time To Be Received(TTBR)](/nservicebus/messaging/discard-old-messages.md) set. This avoids expired messages ending up either in the TDLQ or DLQ (if [non-transactional queues are used](/nservicebus/msmq/connection-strings.md)) wasting disk space on the machine when they time out.
 
 DLQ can be disabled for the entire endpoint using the [MSMQ connection string](/nservicebus/msmq/connection-strings.md).
 
