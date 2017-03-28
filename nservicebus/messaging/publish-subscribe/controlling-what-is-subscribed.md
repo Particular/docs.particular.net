@@ -19,6 +19,8 @@ Messages matching the following criteria will be auto subscribed at startup.
  1. If the selected transport [does not support publish-subscribe natively](/nservicebus/transports/#types-of-transports-unicast-only-transports), the publisher for that message needs to be specified via the [routing](/nservicebus/messaging/routing.md) API.
 
 
+WARNING: Handler of `IEvent` will not cause automatic subscription to be send. The handler will still be executed for every event that is processed by that endpoint.
+
 ### Exclude sagas from auto subscribe
 
 partial: exclude
