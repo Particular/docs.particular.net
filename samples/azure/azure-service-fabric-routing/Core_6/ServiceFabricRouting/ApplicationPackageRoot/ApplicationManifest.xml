@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="ServiceFabricRoutingType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
-    <Parameter Name="ZipCodeVoteCount_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="ZipCodeVoteCount_MinReplicaSetSize" DefaultValue="1" />
     <Parameter Name="ZipCodeVoteCount_PartitionCount" DefaultValue="1" />
-    <Parameter Name="ZipCodeVoteCount_TargetReplicaSetSize" DefaultValue="3" />
-    <Parameter Name="CandidateVoteCount_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="ZipCodeVoteCount_TargetReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="CandidateVoteCount_MinReplicaSetSize" DefaultValue="1" />
     <Parameter Name="CandidateVoteCount_PartitionCount" DefaultValue="1" />
-    <Parameter Name="CandidateVoteCount_TargetReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="CandidateVoteCount_TargetReplicaSetSize" DefaultValue="1" />
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
        should match the Name and Version attributes of the ServiceManifest element defined in the 
@@ -26,12 +26,12 @@
          
          The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
     <Service Name="ZipCodeVoteCount">
-      <StatefulService ServiceTypeName="ZipCodeVoteCountType" TargetReplicaSetSize="3" MinReplicaSetSize="3">
+      <StatefulService ServiceTypeName="ZipCodeVoteCountType" TargetReplicaSetSize="3" MinReplicaSetSize="2">
         <UniformInt64Partition PartitionCount="3" LowKey="0" HighKey="99000" />
       </StatefulService>
     </Service>
     <Service Name="CandidateVoteCount">
-      <StatefulService ServiceTypeName="CandidateVoteCountType" TargetReplicaSetSize="3" MinReplicaSetSize="3">
+      <StatefulService ServiceTypeName="CandidateVoteCountType" TargetReplicaSetSize="3" MinReplicaSetSize="2">
         <NamedPartition>
           <Partition Name="John" />
           <Partition Name="Abby" />

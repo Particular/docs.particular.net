@@ -13,4 +13,4 @@ related:
 
 This sample shows how to host an in-process instance of NServiceBus.
 
-snippet:self-hosting
+snippet: self-hosting

@@ -6,7 +6,7 @@ In order to prevent it only creating an alias for each connection string is allo
 
 This feature can be enabled when configuring the `AzureStorageQueueTransport`:
 
-snippet:AzureStorageQueueUseAccountAliasesInsteadOfConnectionStrings
+snippet: AzureStorageQueueUseAccountAliasesInsteadOfConnectionStrings
 
 See also [Using aliases for connection strings to storage accounts for Scale Out](/nservicebus/azure-storage-queues/multi-storageaccount-support.md#using-aliases-for-connection-strings-to-storage-accounts-for-scale-out)
 
@@ -15,4 +15,4 @@ See also [Using aliases for connection strings to storage accounts for Scale Out
 
 If a queue name is longer than [63 characters](https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/Naming-Queues-and-Metadata), the Azure Storage Queues Transport uses a hashing algorithm to rename it. The default algorithm is `MD5`. In order to use `SHA1`, apply the following configuration:
 
-snippet:AzureStorageQueueUseSha1
+snippet: AzureStorageQueueUseSha1

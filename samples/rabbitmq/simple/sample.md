@@ -20,6 +20,6 @@ This sample shows basic usage of RabbitMQ as a transport for NServiceBus. The ap
 
 ### Configuration
 
-snippet:ConfigureRabbit
+snippet: ConfigureRabbit
 
 The username and password can also be configured via the connection string. If these are not present, the connection string effectively defaults to `host=localhost;username=guest;password=guest`.

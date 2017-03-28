@@ -59,7 +59,7 @@ Defaults:
  * 32 in Version 7
 
 
-partial:serialization
+partial: serialization
 
 
 #### DegreeOfReceiveParallelism
@@ -88,7 +88,7 @@ WARNING: Changing the value of `DegreeOfReceiveParallelism` will influence the t
 
 WARNING: The values of `BatchSize` , `DegreeOfParallelism`, `Concurrency`, [ServicePointManager Settings](/nservicebus/azure-storage-persistence/performance-tuning.md) and the other parameters like `MaximumWaitTimeWhenIdle` have to be selected carefully in order to get the desired speed out of the transport while not exceeding [the boundaries](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits) of the allowed number of operations per second.
 
-partial:config
+partial: config
 
 
 ## Connection strings

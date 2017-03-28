@@ -35,13 +35,13 @@ Related:
 
 When self-hosting, the user is responsible for creating and starting the endpoint instance
 
-snippet:Hosting-Startup
+snippet: Hosting-Startup
 
 The user is also responsible for properly shutting down the endpoint when it is no longer needed (usually when the application terminates).
 
-snippet:Hosting-Shutdown
+snippet: Hosting-Shutdown
 
-partial:dispose
+partial: dispose
 
 
 ### Windows Service Hosting
@@ -59,7 +59,7 @@ Related:
 
 A "Send-only endpoint" is used when the only purpose is sending messages and no message processing is required in that endpoint. Common use cases include websites, console application and windows application. This is the code for starting an endpoint in send only mode.
 
-snippet:Hosting-SendOnly
+snippet: Hosting-SendOnly
 
 The only configuration when running in this mode is the destination when [Sending a message](/nservicebus/messaging/send-a-message.md).
 
@@ -73,7 +73,7 @@ NServiceBus can be hosted in any web technology that support .NET. See [Web Appl
 
 "Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .NET process.
 
-partial:multi
+partial: multi
 
 Related:
 
@@ -106,7 +106,7 @@ For many scenarios a container is not required. In these cases a simple public s
 
 Alternatively the static variable could be placed on a (more appropriately named) helper class.
 
-snippet:Hosting-Static
+snippet: Hosting-Static
 
 
 ## "Custom Host" Solutions

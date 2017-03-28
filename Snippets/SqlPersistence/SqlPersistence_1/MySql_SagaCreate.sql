@@ -5,7 +5,7 @@ startcode MySql_SagaCreateSql
 set @tableName = concat(@tablePrefix, 'OrderSaga');
 
 
-/* Initialise */
+/* Initialize */
 
 drop procedure if exists sqlpersistence_raiseerror;
 create procedure sqlpersistence_raiseerror(message varchar(256))

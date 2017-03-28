@@ -2,6 +2,8 @@
 
 namespace Core5.Extending
 {
+    using NServiceBus;
+    using NServiceBus.Configuration.AdvanceExtensibility;
 
     #region MinimalFeature
 
@@ -83,6 +85,22 @@ namespace Core5.Extending
     }
 
     #endregion
+
+    public class WriteSettings
+    {
+        public void ConfigureEndpoint(BusConfiguration busConfiguration)
+        {
+            #region WriteSettingsFromEndpointConfiguration
+
+            busConfiguration.GetSettings().Set("AnotherKey", new CustomSettingsDto());
+
+            #endregion
+        }
+
+        public class CustomSettingsDto
+        {
+        }
+    }
 
     public class EnablingOtherFeatures :
         Feature

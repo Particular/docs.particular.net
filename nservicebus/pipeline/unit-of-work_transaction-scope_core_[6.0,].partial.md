@@ -3,7 +3,7 @@
 
 If a business transaction is spread across multiple handlers there is always a risk of partial updates since one handler might succeed in updating the data while other won't. To avoid this use a unit of work that wraps all handlers in a `TransactionScope` and makes sure that there are no partial updates. Use following code to enable a wrapping scope:
 
-snippet:UnitOfWorkWrapHandlersInATransactionScope
+snippet: UnitOfWorkWrapHandlersInATransactionScope
 
 NOTE: This requires the selected [persistence](/nservicebus/persistence/) to support enlisting in transaction scopes.
 
@@ -23,7 +23,7 @@ NServiceBus will by default use the `ReadCommitted` [isolation level](https://ms
 
 Change the isolation level using
 
-snippet:UnitOfWorkCustomTransactionIsolationLevel
+snippet: UnitOfWorkCustomTransactionIsolationLevel
 
 
 ### Transaction timeout
@@ -32,6 +32,6 @@ NServiceBus will use the [default transaction timeout](https://msdn.microsoft.co
 
 Change the transaction timeout using
 
-snippet:UnitOfWorkCustomTransactionTimeout
+snippet: UnitOfWorkCustomTransactionTimeout
 
 Or via .config file using a [example DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.aspx#Anchor_5).

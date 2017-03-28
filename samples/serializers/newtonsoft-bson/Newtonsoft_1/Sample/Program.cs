@@ -17,8 +17,8 @@ static class Program
         #region config
         var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalBson");
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-        serialization.ReaderCreator(stream => new BsonReader(stream));
-        serialization.WriterCreator(stream => new BsonWriter(stream));
+        serialization.ReaderCreator(stream => new BsonDataReader(stream));
+        serialization.WriterCreator(stream => new BsonDataWriter(stream));
 
         // register the mutator so the the message on the wire is written
         endpointConfiguration.RegisterComponents(components =>
@@ -32,39 +32,33 @@ static class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        #region message
+        var message = new CreateOrder
         {
-            #region message
-            var message = new CreateOrder
+            OrderId = 9,
+            Date = DateTime.Now,
+            CustomerId = 12,
+            OrderItems = new List<OrderItem>
             {
-                OrderId = 9,
-                Date = DateTime.Now,
-                CustomerId = 12,
-                OrderItems = new List<OrderItem>
+                new OrderItem
                 {
-                    new OrderItem
-                    {
-                        ItemId = 6,
-                        Quantity = 2
-                    },
-                    new OrderItem
-                    {
-                        ItemId = 5,
-                        Quantity = 4
-                    },
-                }
-            };
-            await endpointInstance.SendLocal(message)
-                .ConfigureAwait(false);
-            #endregion
-            Console.WriteLine("Order Sent");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+                    ItemId = 6,
+                    Quantity = 2
+                },
+                new OrderItem
+                {
+                    ItemId = 5,
+                    Quantity = 4
+                },
+            }
+        };
+        await endpointInstance.SendLocal(message)
+            .ConfigureAwait(false);
+        #endregion
+        Console.WriteLine("Order Sent");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

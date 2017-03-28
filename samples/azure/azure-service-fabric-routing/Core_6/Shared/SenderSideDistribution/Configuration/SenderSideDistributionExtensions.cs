@@ -13,11 +13,13 @@ public static class SenderSideDistributionExtensions
         var distributionConfiguration = new PartitionAwareSenderSideDistributionConfiguration(routingSettings, destinationEndpoint, partitions);
 
         var sendDistributionStrategy = new PartitionAwareDistributionStrategy(destinationEndpoint, distributionConfiguration.MapMessageToPartitionKey, DistributionStrategyScope.Send);
-        settings.GetOrCreate<DistributionPolicy>().SetDistributionStrategy(sendDistributionStrategy);
+        var distributionPolicy = settings.GetOrCreate<DistributionPolicy>();
+        distributionPolicy.SetDistributionStrategy(sendDistributionStrategy);
 
         var destinationEndpointInstances = partitions.Select(key => new EndpointInstance(destinationEndpoint, key)).ToList();
 
-        settings.GetOrCreate<EndpointInstances>().AddOrReplaceInstances(destinationEndpoint, destinationEndpointInstances);
+        var endpointInstances = settings.GetOrCreate<EndpointInstances>();
+        endpointInstances.AddOrReplaceInstances(destinationEndpoint, destinationEndpointInstances);
 
         return distributionConfiguration;
     }

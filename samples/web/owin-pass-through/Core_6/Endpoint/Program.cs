@@ -30,23 +30,17 @@ static class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        using (StartOwinHost(endpointInstance))
         {
-            using (StartOwinHost(endpointInstance))
-            {
-                Console.WriteLine("Press any key to exit");
-                Console.ReadKey();
-            }
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
+        }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
 
-            #endregion
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        #endregion
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
     #region startowin

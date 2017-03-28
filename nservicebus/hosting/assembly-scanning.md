@@ -1,7 +1,7 @@
 ---
 title: Assembly scanning
 summary: To enable automatic detection of various features NServiceBus scans assemblies for well known types
-reviewed: 2016-10-11
+reviewed: 2017-03-17
 component: core
 redirects:
  - nservicebus/assembly-scanning
@@ -24,7 +24,7 @@ NOTE: Extensions (for example `NServiceBus.RavenDB.dll`) are not considered a co
 
 ## Nested Directories
 
-partial:nested
+partial: nested
 
 
 ## Assemblies to scan
@@ -37,12 +37,15 @@ partial: assemblies-to-scan
 
 ### Exclude specific assemblies by name:
 
-snippet:ScanningExcludeByName
+snippet: ScanningExcludeByName
+
+
+partial: wildcard
 
 
 ### Exclude specific types:
 
-snippet:ScanningExcludeTypes
+snippet: ScanningExcludeTypes
 
 
 partial: include

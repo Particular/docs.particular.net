@@ -33,26 +33,26 @@ This sample shows a simple Client + Server scenario.
 
 Configure NHibernate with the right driver, dialect and connection string. Since NHibernate needs a form of mapping of the class to the database table, the configuration code also does that with ModelMapper API. Finally, the configuration is used to run the endpoint.
 
-snippet:config
+snippet: config
 
 
 ### Order Saga Data
 
 Note that to use NHibernate's lazy-loading, all the properties on the Saga data class must be `virtual`.
 
-snippet:sagadata
+snippet: sagadata
 
 
 ### Order Saga
 
-snippet:ordersaga
+snippet: ordersaga
 
 
 ### Handler Using ISession
 
 The handler access the `ISession` to store business data.
 
-snippet:handler
+snippet: handler
 
 
 ## The Data in the database

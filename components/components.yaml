@@ -60,13 +60,14 @@
     - NServiceBus.Encryption.MessageProperty
     - NServiceBus
 
-- Key: PerformanceCounters
+- Key: PerfCounters
   Name: Performance Counters
   DocoUrl: nservicebus/operations/performance-counters
   Category: Other
   GitHubOwner: Particular/metrics-maintainers
-  ProjectUrl: https://github.com/Particular/NServiceBus.WindowsPerformanceCounters
+  ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.PerformanceCounters
   NugetOrder:
+    - NServiceBus.Metrics.PerformanceCounters
     - NServiceBus
 
 - Key: PostgreSQL
@@ -500,7 +501,7 @@
 - Key: ServiceBootstrap
   Name: Windows Service Bootstrap
   DocoUrl: nservicebus/hosting/windows-service
-  GitHubOwner: Particular/nservicebus-maintainers
+  GitHubOwner: Particular/bootstrap-windowsservice-maintainers
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Bootstrap.WindowsService
   NugetOrder:
@@ -786,3 +787,12 @@
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.FileBasedRouting
   NugetOrder:
     - NServiceBus.FileBasedRouting
+
+- Key: ServiceFabricPersistence
+  Name: Service Fabric Persistence 
+  DocoUrl: nservicebus/service-fabric
+  GitHubOwner: Particular/service-fabric-maintainers
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.ServiceFabric
+  NugetOrder:
+    - NServiceBus.Persistence.ServiceFabric

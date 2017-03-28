@@ -40,34 +40,28 @@ static class Program
 
         var endpointInstance = await Endpoint.Start(configure)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press enter to send a message that will throw an exception or \r\n" +
-                              "Press [E] key to send a message failing with the custom exception.");
-            Console.WriteLine("Press [ESC] key to exit");
+        Console.WriteLine("Press enter to send a message that will throw an exception or \r\n" +
+                          "Press [E] key to send a message failing with the custom exception.");
+        Console.WriteLine("Press [ESC] key to exit");
 
-            while (true)
+        while (true)
+        {
+            var input = Console.ReadKey();
+
+            var myMessage = new MyMessage
             {
-                var input = Console.ReadKey();
+                Id = Guid.NewGuid(),
+                ThrowCustomException = input.Key == ConsoleKey.E
+            };
 
-                var myMessage = new MyMessage
-                {
-                    Id = Guid.NewGuid(),
-                    ThrowCustomException = input.Key == ConsoleKey.E
-                };
-
-                if (input.Key == ConsoleKey.Escape)
-                {
-                    break;
-                }
-                await endpointInstance.SendLocal(myMessage)
-                    .ConfigureAwait(false);
+            if (input.Key == ConsoleKey.Escape)
+            {
+                break;
             }
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+            await endpointInstance.SendLocal(myMessage)
                 .ConfigureAwait(false);
         }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

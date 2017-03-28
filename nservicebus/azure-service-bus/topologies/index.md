@@ -71,6 +71,7 @@ The `ForwardingTopology` supports up to 2,000 endpoints with up to 2,000 events 
 | Polymorphic events support                  | no                        | yes                |
 | Event overflow protections                  | no                        | yes                |
 | Subscriber auto-scaling based on queue size | no                        | yes                |
+| Reduced number of connections to the broker | no                        | yes                |
 
 
 ## Versions 6 and below

@@ -26,12 +26,12 @@ Mutators can be used to perform actions such as validation of outgoing/incoming 
 
 ### IMutateIncomingMessages
 
-snippet:IMutateIncomingMessages
+snippet: IMutateIncomingMessages
 
 
 ### IMutateOutgoingMessages
 
-snippet:IMutateOutgoingMessages
+snippet: IMutateOutgoingMessages
 
 
 partial: imessagemutator
@@ -45,12 +45,12 @@ Create transport message mutators by implementing the `IMutateIncomingTransportM
 
 ### IMutateIncomingTransportMessages
 
-snippet:IMutateIncomingTransportMessages
+snippet: IMutateIncomingTransportMessages
 
 
 ### IMutateOutgoingTransportMessages
 
-snippet:IMutateOutgoingTransportMessages
+snippet: IMutateOutgoingTransportMessages
 
 
 partial: imutatetransportmessages
@@ -60,7 +60,7 @@ partial: imutatetransportmessages
 
 Mutators are **NOT** automatically registered in the container, so to have them invoked, register them in the `EndpointConfiguration`:
 
-snippet:MutatorRegistration
+snippet: MutatorRegistration
 
 NOTE: Mutators are non-deterministic in terms of order of execution. If more fine grained control is required over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/manipulate-with-behaviors.md).
 

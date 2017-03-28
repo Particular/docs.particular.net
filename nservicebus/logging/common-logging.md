@@ -12,4 +12,4 @@ Support for writing all NServiceBus log entries to [CommonLogging](http://netcom
 
 ## Usage
 
-snippet:CommonLoggingInCode
+snippet: CommonLoggingInCode

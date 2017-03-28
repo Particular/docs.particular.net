@@ -25,23 +25,23 @@ This sample uses a dual runnable console and Windows Service for hosting. More d
 
 When a message fails processing it will be forwarded here.
 
-snippet:error
+snippet: error
 
-partial:error
+partial: error
 
 
 ## Configure an [Audit](/nservicebus/operations/auditing.md) queue
 
 All messages received by an endpoint will be forwarded to the audit queue.
 
-snippet:audit
+snippet: audit
 
 
 ## Select and configure [Logging](/nservicebus/logging)
 
 In this sample [Log4net](/nservicebus/logging/log4net.md) is being used to route log events to the Console.
 
-snippet:logging
+snippet: logging
 
 
 ## Create the root configuration instance
@@ -50,53 +50,53 @@ And also define the endpoint name.
 
 partial: endpointname
 
-snippet:create-config
+snippet: create-config
 
 
 ## Select and configure a [Container](/nservicebus/containers)
 
 [Autofac](/nservicebus/containers/autofac.md) is being used with a customized container instance being passed into NServiceBus.
 
-snippet:container
+snippet: container
 
 
 ## Select and configure [Serialization](/nservicebus/serialization)
 
 This sample uses the [JSON](/nservicebus/serialization/json.md).
 
-snippet:serialization
+snippet: serialization
 
 
 ## Select and configure a [Transport](/nservicebus/transports)
 
 This sample uses the [MSMQ Transport](/nservicebus/msmq/).
 
-snippet:transport
+snippet: transport
 
 
 ## Select and configure [Persistence](/nservicebus/persistence)
 
 This sample uses [InMemory persistence](/nservicebus/persistence/in-memory.md).
 
-snippet:persistence
+snippet: persistence
 
 
 ## Start the [Endpoint](/nservicebus/endpoints/)
 
 Enable [installers](/nservicebus/operations/installers.md) and start the endpoint.
 
-snippet:start-bus
+snippet: start-bus
 
 
 ## Shut down the [Endpoint](/nservicebus/endpoints/)
 
 The bus implements `IDisposable` and should be shut down when the process is shut down.
 
-snippet:stop-endpoint
+snippet: stop-endpoint
 
 
 ## Handling [Critical Errors](/nservicebus/hosting/critical-errors.md)
 
 Since this sample is configured to run as a [windows service](/nservicebus/hosting/windows-service.md), the action defined when a critical error occurs is to shut down the process.
 
-snippet:critical-errors
+snippet: critical-errors

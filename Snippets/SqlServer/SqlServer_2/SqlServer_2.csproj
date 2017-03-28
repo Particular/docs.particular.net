@@ -38,17 +38,13 @@
   <ItemGroup>
     <Compile Include="ConfigurationSettings.cs" />
     <Compile Include="NamedConnectionString.cs" />
-    <Compile Include="MultiDb.cs" />
     <Compile Include="MultiSchema.cs" />
-    <Compile Include="UpgradeGuides\MultiInstance.cs" />
-    <Compile Include="UpgradeGuides\Transactions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ExpiredIndex.sql" />
     <Content Include="MultiDb.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="UpgradeGuides\ExpiredIndex.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

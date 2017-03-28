@@ -19,7 +19,7 @@ NServiceBus uses defaults that ensure good performance in most common cases. Whi
 ## Tuning concurrency
 
 
-partial:defaults
+partial: defaults
 
 
 Define a maximum concurrency setting that will make sure that no more messages than the specified value is ever being processed at the same time. Set this value to `1` to process messages sequentially. If not specified the transport will choose an optimal value.
@@ -32,13 +32,13 @@ Examples where concurrency tuning is relevant are
 
 ## Throttling
 
-partial:throttling
+partial: throttling
 
 
 ## Configuration
 
-partial:configuration
+partial: configuration
 
 
 
-partial:runtime
+partial: runtime

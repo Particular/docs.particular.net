@@ -69,15 +69,15 @@ Sometimes only a partial customization of the default Recoverability Policy is d
 
 In the following example the default Recoverability Policy is tweaked to do three Immediate Retries and three Delayed Retries with a time increase of two seconds. The configuration looks like the following:
 
-snippet:PartiallyCustomizedPolicyRecoverabilityConfiguration
+snippet: PartiallyCustomizedPolicyRecoverabilityConfiguration
 
 If when certain exceptions like `MyBusinessException` happen messages that triggered such an exception should be moved to error queue. And if for exceptions like `MyOtherBusinessException` the default Delayed Retries time increase should be always five seconds but for all other cases the Default Recoverability Policy should be applied then the code can look like the following:
 
-snippet:PartiallyCustomizedPolicy
+snippet: PartiallyCustomizedPolicy
 
 If the Default Recoverability Policy just needs to be tweaked for `MyBusinessException` then a policy might look like:
 
-snippet:CustomExceptionPolicyHandler
+snippet: CustomExceptionPolicyHandler
 
 If more control over Recoverability is desired the Recoverability delegate can be overridden completely.
 
@@ -85,7 +85,7 @@ If more control over Recoverability is desired the Recoverability delegate can b
 
 Fully customizing the Recoverability Policy basically means not calling `DefaultRecoverabilityPolicy`. It is still possible to use the recoverability high level APIs like shown below:
 
-snippet:FullyCustomizedPolicyRecoverabilityConfiguration
+snippet: FullyCustomizedPolicyRecoverabilityConfiguration
 
 The configuration will be passed into the custom policy. 
 
@@ -94,4 +94,4 @@ The following custom policy:
 - for `MyOtherBusinessException` does Delayed Retries with a constant time increase of five seconds 
 - for all other cases immediately moves failed messages to the configured standard error queue.
 
-snippet:FullyCustomizedPolicy
+snippet: FullyCustomizedPolicy

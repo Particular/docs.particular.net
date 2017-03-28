@@ -15,11 +15,11 @@ Illustrates customizing Log4Net by passing in a custom Appender.
 
 ### Configure Log4Net
 
-snippet:ConfigureLog4Net
+snippet: ConfigureLog4Net
 
 ### Pass that configuration to NServiceBus
 
-snippet:UseConfig
+snippet: UseConfig
 
 
 

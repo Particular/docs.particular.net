@@ -62,10 +62,10 @@ snippet: 5to6-IConfigureComponentsNotInjected
 
 ## Containers passed to the configuration API are no longer disposed
 
-snippet:5-to-6-autofac-existing
+snippet: 5-to-6-autofac-existing
 
 While the above example shows how an existing container can be passed into the configuration API using Autofac, the same behavior can also be applied to all of the [currently supported container adapters](/nservicebus/containers/). Previous versions of the containers treated the externally passed in container as if it was owned by the container adapter and disposed the container when the bus was disposed. This behavior changed. When a container customization is passed like above, then the container is no longer disposed. It is the responsibility of the container owner to dispose the container. 
 
-snippet:5-to-6-autofac
+snippet: 5-to-6-autofac
 
 The above example shows how a new container can be assigned using the Configuration API. While the container used in this example is Autofac, the same behavior can also be applied to all of the [currently supported container adapters](/nservicebus/containers/). When passing a new container, the endpoint owns the container and will also be responsible for disposing the container when it is stopped.

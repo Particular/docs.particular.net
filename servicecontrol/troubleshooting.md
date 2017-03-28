@@ -61,8 +61,7 @@ If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.In
 
 If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentDatabaseDirtyShutdownException` run Esent Recovery against the ServiceControl database followed by an Esent Repair.
 
- 1. Open an elevated command prompt and navigate to the ServiceControl [database directory](configure-ravendb-location.md)
- 1. Change to the RavenDB directory (the default is `localhost-33333`)
+ 1. Open an elevated command prompt and navigate to the ServiceControl [database directory](configure-ravendb-location.md) (the default is `%PROGRAMDATA%\Particular\ServiceControl\Particular.ServiceControl\DB`)
  1. Run `esentutl /r RVN /l "logs"` and wait for it to finish
  1. Run `esentutl /p Data` and wait for it to finish
  1. Restart ServiceControl

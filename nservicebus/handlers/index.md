@@ -10,7 +10,7 @@ redirects:
 
 To handle a message, write a class that implements `IHandleMessages<T>` where `T` is the message type:
 
-snippet:CreatingMessageHandler
+snippet: CreatingMessageHandler
 
 For scenarios that involve changing the application state via data access code in the handler, see [accessing data](/nservicebus/handlers/accessing-data.md) for more details.
 
@@ -21,7 +21,7 @@ To handle messages of all types:
 
 Since this class is setup to handle type `Object`, every message arriving in the queue will trigger it.
 
-snippet:GenericMessageHandler
+snippet: GenericMessageHandler
 
 include: non-null-task
 

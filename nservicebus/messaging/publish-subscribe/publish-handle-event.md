@@ -21,18 +21,18 @@ The messages need to be declared as an event before they can be published. That 
 
 Add `IEvent` marker interface to the message definition:
 
-snippet:EventWithInterface
+snippet: EventWithInterface
 
 
 ### Via Message Conventions
 
 The following message:
 
-snippet:EventWithConvention
+snippet: EventWithConvention
 
 can be declared as an event using the following convention:
 
-snippet:DefiningEventsAs
+snippet: DefiningEventsAs
 
 Learn more about [conventions](/nservicebus/messaging/conventions.md) and [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md).
 
@@ -50,23 +50,23 @@ There are a few common scenarios for publishing events. Events might be publishe
 
 - from a **handler**, when processing another message.
 
-snippet:publishFromHandler
+snippet: publishFromHandler
 
 - from a **saga handler**, when processing another message.
 
-snippet:publishFromSaga
+snippet: publishFromSaga
 
 - at endpoint startup
 
-snippet:publishAtStartup
+snippet: publishAtStartup
 
 
 ## Events as Classes or Interfaces
 
 NServiceBus messages can be implemented either as classes or [interfaces](/nservicebus/messaging/messages-as-interfaces.md). Since interfaces cannot be instantiated directly, use the following API to publish events implemented as interfaces:
 
-snippet:InterfacePublish
+snippet: InterfacePublish
 
 When the event message is declared as an interface, NServiceBus will generate a proxy, set properties and publish the message. It's equivalent to the following call:
 
-snippet:InstancePublish
+snippet: InstancePublish

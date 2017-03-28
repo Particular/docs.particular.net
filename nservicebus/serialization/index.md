@@ -36,7 +36,7 @@ NOTE: The same Serializer must be used by the sending endpoint to serialize mess
 In order to register community run serializer or custom serializer, refer to the [Custom serializers - Register the serializer](/nservicebus/serialization/custom-serializer.md#register-the-serializer) section.
 
 
-partial:additionaldeserializers
+partial: additionaldeserializers
 
 
 ### Community run serializers

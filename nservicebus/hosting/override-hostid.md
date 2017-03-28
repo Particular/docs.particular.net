@@ -24,4 +24,4 @@ There are scenarios where the rules used by NServiceBus to generate a `hostid` a
 
 Manual configuration is required when deployments may end up in different paths than previously deployed versions (e.g. using [Octopus Deploy](https://octopus.com/)). The `hostid` needs to remain the same across restarts unless the physical host has changed.
 
-snippet:HostIdFixer
+snippet: HostIdFixer

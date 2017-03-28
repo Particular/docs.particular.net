@@ -41,7 +41,7 @@ The advantage of configuration-free approach is low development friction and sim
 
 This sample contains four applications that use configuration-free custom routing:
 
-snippet:EnableAutomaticRouting
+snippet: EnableAutomaticRouting
 
 NOTE: In order to use this custom routing all published types need to be specified.
 
@@ -74,7 +74,7 @@ The automatic routing is based on the idea of endpoints exchanging information a
 
 All the routing components are wired up using the following code:
 
-snippet:Feature
+snippet: Feature
 
 It creates a publisher and a subscriber for the routing information, as well as the communication object they use to exchange information between endpoints instances. It also registers an additional behavior that ensures that all published types are properly advertised. The automatic routing discovery protocol has no master and works in a peer-to-peer manner, therefore both publisher and subscriber need to be active in each endpoint instance.
 
@@ -125,4 +125,4 @@ The following information is required by this automatic routing implementation:
 
 This information is updated every time the automatic routing feature detects a change in the logical topology:
 
-snippet:AddOrReplace
+snippet: AddOrReplace

@@ -1,17 +1,17 @@
 ### Using app.config
 
-snippet:configureForwardingUsingXml
+snippet: configureForwardingUsingXml
 
 
 ### Using IProvideConfiguration
 
-snippet:ProvideConfigurationForMessageForwarding
+snippet: ProvideConfigurationForMessageForwarding
 
 
 ### Using IConfigurationSource
 
-snippet:ConfigurationSourceForMessageForwarding
+snippet: ConfigurationSourceForMessageForwarding
 
 Initialize the Configuration Source as follows:
 
-snippet:ConfigurationSourceUsageForMessageForwarding
+snippet: ConfigurationSourceUsageForMessageForwarding

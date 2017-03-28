@@ -60,9 +60,7 @@ These scripts will then be copied to the output of both `EndpointMySql` and `End
 The endpoints know which scripts to execute via the use of the `persistence.SqlVariant();` API usage at configuration time.
 
 
-#### Promoting Scripts
-
-The scripts produced in this sample are [promoted to](/nservicebus/sql-persistence/#script-creation-promotion) `$(SolutionDir)PromotedSqlScripts`.
+partial: promote
 
 snippet: SqlPersistenceSettings
 
@@ -74,20 +72,20 @@ Configure the endpoint to use SQL Persistence.
 
 #### MS SQL Server
 
-snippet:sqlServerConfig
+snippet: sqlServerConfig
 
 
 ### MySql
 
-snippet:MySqlConfig
+snippet: MySqlConfig
 
 
 ### Order Saga Data
 
-snippet:sagadata
+snippet: sagadata
 
 
 ### Order Saga
 
-snippet:thesaga
+snippet: thesaga
 

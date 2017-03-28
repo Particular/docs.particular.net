@@ -30,7 +30,7 @@ This sample contains three projects:
 
 Look at the Messages project, at the two messages. Start with the large message that is not utilizing the DataBus mechanism. The message is a simple byte array command:
 
-snippet:AnotherMessageWithLargePayload
+snippet: AnotherMessageWithLargePayload
 
 The other message utilizes the DataBus mechanism:
 
@@ -60,14 +60,14 @@ Following is an example of the signaling message that is sent to the receiving e
 
 Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by calling `FileShareDataBus`. This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment.
 
-snippet:ConfigureDataBus
+snippet: ConfigureDataBus
 
 
 ### Sender project
 
 The following sender project code sends the `MessageWithLargePayload `message, utilizing the NServiceBus attachment mechanism:
 
-snippet:SendMessageLargePayload
+snippet: SendMessageLargePayload
 
 The following `Sender` project code sends the `AnotherMessageWithLargePayload` message without utilizing the NServiceBus attachment mechanism:
 

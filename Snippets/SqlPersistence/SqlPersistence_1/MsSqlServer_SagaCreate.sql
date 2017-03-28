@@ -4,7 +4,7 @@ startcode MsSqlServer_SagaCreateSql
 
 declare @tableName nvarchar(max) = @tablePrefix + N'OrderSaga';
 
-/* Initialise */
+/* Initialize */
 
 /* CreateTable */
 

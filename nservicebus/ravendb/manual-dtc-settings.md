@@ -38,7 +38,7 @@ RavenDB provides [transaction recovery storage options](https://ravendb.net/docs
 
 In order to configure safe settings for production use of RavenDB, construct a `DocumentStore` instance and configure the `ResourceManagerId` and `TransactionRecoveryStorage` properties as shown in the following code:
 
-snippet:RavenDBManualDtcSettingExample
+snippet: RavenDBManualDtcSettingExample
 
 In order to provide transaction safety, the following must be observed:
 
@@ -50,7 +50,7 @@ In order to provide transaction safety, the following must be observed:
 
 It can be cumbersome to manage these settings for multiple endpoints, so it is preferable to create a convention that will calculate a unique ResourceManagerId, and then use this value to create a storage location for TransactionRecoveryStorage as well.
 
-snippet:RavenDBDtcSettingsByConvention
+snippet: RavenDBDtcSettingsByConvention
 
 It is important to keep a few things in mind when determining a convention.
 

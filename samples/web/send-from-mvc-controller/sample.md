@@ -17,11 +17,11 @@ related:
 
 Open `Global.asax.cs` and look at the `ApplicationStart` method.
 
-snippet:ApplicationStart
+snippet: ApplicationStart
 
 
 ### Injection into the Controller
 
 The endpoint instance is injected into the `DefaultController` at construction time.
 
-snippet:Controller
+snippet: Controller

@@ -13,12 +13,12 @@ NServiceBus can be configured to use [Castle Windsor](https://github.com/castlep
 
 ### Default Usage
 
-snippet:CastleWindsor
+snippet: CastleWindsor
 
 
 ### Existing Container Instance
 
-snippet:CastleWindsor_Existing
+snippet: CastleWindsor_Existing
 
 
 ### DependencyLifecycle Mapping

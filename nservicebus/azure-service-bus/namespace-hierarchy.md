@@ -6,7 +6,7 @@ versions: "[7,)"
 tags:
 - Azure
 - Transport
-reviewed: 2016-09-21
+reviewed: 2017-03-16
 ---
 
 At the core of the Azure Service Bus service, there is a Service Registry which tracks the location of each queue, topic, relay or eventhub in the service. This Service Registry provides a DNS integrated hierarchical naming system, that has a root entry point (called a namespace) at a URI with the following scheme.
@@ -29,7 +29,7 @@ For more information about this feature refer to the [Addressing and Protocol](h
 
 ## Positioning an endpoint in the hierarchy
 
-NServiceBus provides to tan endpoint the capability to register its Azure Service Bus transport resources inside a namespace hierarchy by replacing part of the addressing logic - the composition strategy. The composition strategy is responsible for determining the path to an entity in the namespace. Out of the box, the transport comes with two implementations - `FlatComposition` and `HierarchyComposition` strategies. The `FlatComposition` strategy is the default and applies no composition logic, resulting in a flat namespace hierarchy. The `HierarchyComposition` strategy allows to specify a lambda expression that can calculate the path for each entity.
+NServiceBus provides to an endpoint the capability to register its Azure Service Bus transport resources inside a namespace hierarchy by replacing part of the addressing logic - the composition strategy. The composition strategy is responsible for determining the path to an entity in the namespace. Out of the box, the transport comes with two implementations - `FlatComposition` and `HierarchyComposition` strategies. The `FlatComposition` strategy is the default and applies no composition logic, resulting in a flat namespace hierarchy. The `HierarchyComposition` strategy allows to specify a lambda expression that can calculate the path for each entity.
 
 snippet: asb-hierarchy-composition
 

@@ -2,4 +2,4 @@
 
 Note the use of `UseDevelopmentStorage` to point to the Azure Storage Emulator.
 
-snippet:AppConfig
+snippet: AppConfig

@@ -22,7 +22,7 @@ A unit of work allows for shared code, that wraps handlers, to be reused in a wa
 
 To create a unit of work, implement the `IManageUnitsOfWork` interface.
 
-snippet:UnitOfWorkImplementation
+snippet: UnitOfWorkImplementation
 
 The semantics are that `Begin()` is called when the transport messages enters the pipeline. A transport message can consist of multiple application messages. This allows any setup that is required.
 
@@ -41,4 +41,4 @@ partial: nulltask
 
 After implementing a `IManageUnitsOfWork`, it needs to be registered:
 
-snippet:InstancePerUnitOfWorkRegistration
+snippet: InstancePerUnitOfWorkRegistration

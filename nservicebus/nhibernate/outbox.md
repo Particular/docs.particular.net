@@ -16,7 +16,7 @@ The [Outbox](/nservicebus/outbox) feature requires persistence in order to store
 
 To keep track of duplicate messages, the NHibernate implementation of Outbox requires the creation of `OutboxRecord` table.
 
-partial:customizing
+partial: customizing
 
 ## Deduplication record lifespan
 
@@ -24,4 +24,4 @@ The NHibernate implementation by default keeps deduplication records for 7 days 
 
 These default settings can be changed by specifying new defaults in the config file using [TimeStamp strings](https://msdn.microsoft.com/en-us/library/ee372286.aspx):
 
-snippet:OutboxNHibernateTimeToKeep
+snippet: OutboxNHibernateTimeToKeep

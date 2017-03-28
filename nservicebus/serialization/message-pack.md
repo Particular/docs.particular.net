@@ -11,7 +11,7 @@ Serialize messages with the [MessagePack](http://msgpack.org/) binary format.
 
 ## Usage
 
-snippet:MessagePackSerialization
+snippet: MessagePackSerialization
 
 include: interface-not-supported
 
@@ -25,5 +25,5 @@ snippet: MessagePackCustomSettings
 
 include: custom-contenttype-key
 
-snippet:MessagePackContentTypeKey
+snippet: MessagePackContentTypeKey
 

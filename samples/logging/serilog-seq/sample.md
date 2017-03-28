@@ -22,9 +22,9 @@ Illustrates customizing logginNServiceBus.Serilog) usage by configuring Serilog 
 
 ### Configure Serilog
 
-snippet:ConfigureSerilog
+snippet: ConfigureSerilog
 
 
 ### Pass that configuration to NServiceBus
 
-snippet:UseConfig
+snippet: UseConfig

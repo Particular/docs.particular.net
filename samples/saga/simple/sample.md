@@ -32,4 +32,4 @@ The output to the console will be
 
 ### The Saga
 
-snippet:thesaga
+snippet: thesaga

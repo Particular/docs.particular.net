@@ -24,9 +24,6 @@ EntityFramework: GoodlyFere.NServiceBus.EntityFramework
 EventStoreTransport: NServiceBus.EventStore
 EventSourceLogging: NServiceBus.EventSourceLogging
 FileBasedRouting: NServiceBus.FileBasedRouting
-PropertyEncryption: NServiceBus.Encryption.MessageProperty
-RawMessaging: NServiceBus.Raw
-RawDelayedRetries: NServiceBus.Raw.DelayedRetries
 Gateway: NServiceBus.Gateway
 HandlerOrdering: NServiceBus.HandlerOrdering
 Heartbeats3: ServiceControl.Plugin.Nsb3.Heartbeat
@@ -50,7 +47,11 @@ Ninject: NServiceBus.Ninject
 NLog: NServiceBus.NLog
 OracleAQ: NServiceBus.OracleAQ
 PostgreSQL: NServiceBus.PostgreSQL
+PerfCounters: NServiceBus.Metrics.PerformanceCounters
 ProtoBuf: NServiceBus.ProtoBuf
+PropertyEncryption: NServiceBus.Encryption.MessageProperty
+RawMessaging: NServiceBus.Raw
+RawDelayedRetries: NServiceBus.Raw.DelayedRetries
 Rabbit: NServiceBus.RabbitMQ
 Raven: NServiceBus.RavenDB
 SagaAudit6: ServiceControl.Plugin.Nsb6.SagaAudit
@@ -61,6 +62,7 @@ SerilogTracing: NServiceBus.Serilog.Tracing
 ServiceBootstrap: NServiceBus.Bootstrap.WindowsService
 ServiceControl: ServiceControl
 ServiceControlContracts: ServiceControl.Contracts
+ServiceFabricPersistence: NServiceBus.Persistence.ServiceFabric
 ServicePulse: ServicePulse
 ServiceInsight: ServiceInsight
 SqlPersistence: NServiceBus.Persistence.Sql

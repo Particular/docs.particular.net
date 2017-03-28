@@ -49,11 +49,11 @@ In this worker role one needs to reference the assembly that contains the Azure 
 
 To integrate the NServiceBus dynamic host into the worker role entry point, all one needs to do is to create a new instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override.
 
-Snippet:HostingInWorkerRole
+snippet: HostingInWorkerRole
 
 Next to starting the role entry point, configure the endpoint behavior. In this case a hosting behavior, so that it will not run an endpoint itself but instead host other endpoints. To do so just specify the `AsA_Host` role for version 6 and below, or `IConfigureThisHost` for version 7 and above.
 
-Snippet:AsAHost
+snippet: AsAHost
 
 The host entry point does require some configuration, it is necessary to tell it in what storage account to look for endpoints and how often it should do so, furthermore Azure needs to be configured to provision some space on the local disk, where the host can put the downloaded and extracted endpoints.
 
@@ -61,11 +61,11 @@ For version 7 and above, return this information from the `Configure` method in 
 
 For version 6 and below, add the following configuration settings entries to the `.csdef` file
 
-Snippet:DynamicHostControllerConfig
+snippet: DynamicHostControllerConfig
 
 For all versions a local storage resource must be configured, usually with the name `endpoints`. This will be the location to which the role entry point downloads the zip files of the endpoint packages.
 
-Snippet:LocalResource
+snippet: LocalResource
 
 Other configuration settings are available as well if one needs a more fine grained control on how the host works:
 

@@ -1,10 +1,10 @@
 
 ### IMessageMutator
 
-snippet:message-mutator
+snippet: message-mutator
 
 
 ### IMutateTransportMessages
 
-snippet:mutate-transport-messages
+snippet: mutate-transport-messages
 

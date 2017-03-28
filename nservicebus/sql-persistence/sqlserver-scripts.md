@@ -140,6 +140,9 @@ Used by `ISagaPersister.Update`.
 snippet: MsSqlServer_SagaUpdateSql
 
 
+partial: finder
+
+
 ### Subscription
 
 

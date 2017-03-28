@@ -13,22 +13,22 @@ Installers ensure that endpoint specific artifacts (e.g. queues, directories, da
 
 To create a custom installer implement the `INeedToInstallSomething` interface.
 
-snippet:InstallSomething
+snippet: InstallSomething
 
 Assemblies in the runtime directory are scanned for installers so no code is needed to register them.
 
 Installers can be enabled to run at startup:
 
-snippet:Installers
+snippet: Installers
 
 Installers may need to be run depending on the arguments that are provided to the host or aspects the environment the endpoint is hosted in.
 
 For example Installers can be enabled based on the command line arguments provided:
 
-snippet:InstallersRunWhenNecessaryCommandLine
+snippet: InstallersRunWhenNecessaryCommandLine
 
 or by a machine name convention like:
 
-snippet:InstallersRunWhenNecessaryMachineNameConvention
+snippet: InstallersRunWhenNecessaryMachineNameConvention
 
 NOTE: Installers are always run when the application is run with a debugger attached. This includes when the application is being debugged remotely.

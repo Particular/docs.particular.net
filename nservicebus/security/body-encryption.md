@@ -15,8 +15,8 @@ Message encryption leverages the pipeline to encrypt the entire serialized messa
 
 One way of achieving this is by using a [transport message mutator](/nservicebus/pipeline/message-mutators.md#transport-messages-mutators).
 
-snippet:MessageBodyEncryptor
+snippet: MessageBodyEncryptor
 
 The encrypting mutator must be injected into the container:
 
-snippet:UsingMessageBodyEncryptor
+snippet: UsingMessageBodyEncryptor

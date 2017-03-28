@@ -10,7 +10,7 @@ redirects:
 
 Set up a single static field to a `ILog` in the classes, and then use it in all methods, like this:
 
-snippet:UsingLogging
+snippet: UsingLogging
 
 NOTE: When writing to a logger ensure the log level is of an equivalent value that will result in that log entry being written. So for example when calling `.Debug(..)` ensure that the log level is set to DEBUG. See [Change settings via configuration](/nservicebus/logging/#changing-the-defaults).
 

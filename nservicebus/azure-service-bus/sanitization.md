@@ -41,7 +41,7 @@ To perform manual sanitization, inspect entity name for invalid characters and n
 
 ## Automated sanitization
 
-partial:auto
+partial: auto
 
 
 ## Future consideration prior to using sanitization

@@ -37,6 +37,7 @@ Forwarding[Forwarding]
 Audit[Audit]
 Dispatch
 end
+
 end
 
 AncillaryTransport[Transport]
@@ -46,10 +47,11 @@ RUC[Receiving<br>User Code]
 
 
 Transport --> TR
-IPM -.-> Forwarding
-IPM -.-> Audit
+IPM -- Step 1 --> ILM
+IPM -. Step 2 .-> Forwarding
+IPM -. Step 2 .-> Audit
 ILM --> IH
-IPM --> ILM
+
 TR --> IPM
 IH --> RUC
 
@@ -70,6 +72,9 @@ click Forwarding "/nservicebus/messaging/forwarding"
  * Outgoing Logical Message: Behaviors on this stage have access to the message which should be sent. Use `IOutgoingLogicalMessageContext` in a behavior to enlist in this stage.
  * Outgoing Physical Message: Enables to access the serialized message. This stage provides `IOutgoingPhysicalMessageContext` to it's behaviors.
  * Routing: Provides access to the routing strategies that have been selected for the outgoing message. This stage provides `IRoutingContext` to it's behaviors.
+ * Batch Dispatch: when messages are sent as part of a message handler or saga handler. Outgoing messages are [collected into a batch](/nservicebus/messaging/batched-dispatch.md) and handed to the Batch Dispatch stage all at once once message processing has been completed. This stage provides access to the collection of transport operations that are to be dispatched. This stage provides `IBatchDispatchContext` to it's behaviors. The batch dispatch stage can be bypassed by specifying [immediate dispatch](/nservicebus/messaging/send-a-message.md) for an outgoing message.
+ * Dispatch: provides access to outgoing dispatch operations before they are handed off to the transport. This stage provides `IDispatchContext` to it's behaviors.
+
 
 
 ```mermaid
@@ -118,15 +123,6 @@ BD --> Transport
  * Forwarding: Behaviors in the Forwarding stage have access to the message to be sent to the forwarding queue and the address of the forwarding queue. Behaviors should use `IForwardingContext` to enlist in this stage. This stage is only entered if [Message Forwarding](/nservicebus/messaging/forwarding.md) is enabled.
 
 
-### Other Pipeline Stages
-
-NOTE: These stages are documented for the sake of completeness. Replacing behaviors in these stages is not recommended without a fully understanding of the entire pipeline. 
-
- * Transport Receive: provides access to the raw incoming message before any other stages have been invoked. This stage provides `ITransportReceiveContext` to it's behaviors.
- * Dispatch: provides access to outgoing dispatch operations before they are handed off to the transport. This stage provides `IBatchDispatch` to it's behaviors.
- * Batch Dispatch: when messages are sent as part of a message handler or saga handler, they are not immediately dispatched. Those messages are [collected into a batch](/nservicebus/messaging/batched-dispatch.md) and handed to the Batch Dispatch stage all at once once message processing has been completed. This stage provides access to the collection of transport operations that are to be dispatched. This stage provides `IBatchDispatchContext` to it's behaviors. The batch dispatch stage can be bypassed by specifying [immediate dispatch](/nservicebus/messaging/send-a-message.md) for an outgoing message.
-
-
 ## Stage Connectors
 
 ```mermaid
@@ -139,7 +135,7 @@ end
 
 Stage connectors connect from the current stage (i.e. `IOutgoingLogicalMessageContext`) to another stage (i.e. `IOutgoingPhysicalMessageContext`). In order to override an existing stage to inherit from `StageConnector<TFromContext, TToContext>` and then replace an existing stage connector. Most pipeline extensions can be done by inheriting from `Behavior<TContext>`. It is rarely ever necessary to implement stage connectors or replace existing ones. When implementing a stage connector ensure that all required data is passed along for the next stage.
 
-snippet:CustomStageConnector
+snippet: CustomStageConnector
 
 
 ## Fork Connectors
@@ -157,7 +153,7 @@ end
 
 Fork connectors fork from a current stage (i.e. `IIncomingPhysicalMessageContext`) to another independent pipeline (i.e. `IAuditContext`). A fork connector has the required knowledge to create additional pipelines and cache them appropriately for performance reasons. In order to override an existing fork connector inherit from `ForkConnector<TFromContext, TForkContext>` and then replace an existing fork connector.
 
-snippet:CustomForkConnector
+snippet: CustomForkConnector
 
 ## Stage Fork Connector
 
@@ -174,4 +170,4 @@ end
 
 Stage fork connectors are essentially a marriage of a stage connector and a fork connector. They have the ability to connect from the current stage (i.e. `ITransportReceiveContext`) to another stage (i.e. `IIncomingPhysicalMessageContext`) and fork to another independent pipeline (i.e. `IBatchedDispatchContext`). Like a fork connector it has the required knowledge to create additional pipelines and cache them appropriately for performance reasons. In order to override an existing stage fork connector inherit from `StageForkConnector<TFromContext, TToContext, TForkContext` and then replace an existing stage fork connector.
 
-snippet:CustomStageForkConnector
+snippet: CustomStageForkConnector

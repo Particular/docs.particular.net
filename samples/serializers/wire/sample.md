@@ -11,12 +11,12 @@ related:
 
 ## Configuring to use Wire
 
-snippet:config
+snippet: config
 
 
 ## The message send
 
-snippet:message
+snippet: message
 
 
 ## The Output

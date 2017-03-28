@@ -28,4 +28,4 @@ Child containers are a powerful feature that can simplify the code.
 
 If configuring components using the NServiceBus configure API, it's possible to configure instance life-cycle to be per unit of work, using this:
 
-snippet:InstancePerUnitOfWorkRegistration
+snippet: InstancePerUnitOfWorkRegistration

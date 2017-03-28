@@ -13,7 +13,7 @@ WARNING: Read about [SQL Persistence NuGet Packages](/nservicebus/sql-persistenc
 
 ## Contrasting Workflows
 
-Generally sql installer script execution at endpoint startup will only be desired on a developers machine.
+Generally SQL installer script execution at endpoint startup will only be desired on a developers machine.
 
 So the code to enable this would be something similar to.
 

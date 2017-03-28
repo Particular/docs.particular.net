@@ -1,7 +1,7 @@
 
 Callback responses are routed based on the `ReplyTo` header of the request. In order to use callbacks, instance Id needs to be explicitly specified in the requester endpoint configuration:
 
-snippet:Callbacks-InstanceId
+snippet: Callbacks-InstanceId
 
 The endpoint queue name will include the specified suffix. When upgrading from lower versions the original input queue (without a suffix) will still exist, and the additional queue with the suffix will be created. 
 

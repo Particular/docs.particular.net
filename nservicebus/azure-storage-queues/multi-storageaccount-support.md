@@ -63,7 +63,7 @@ Each endpoint uses its own Azure storage account, thereby increasing message thr
 ![Scale out with multiple storage accounts](azure03.png "width=500")
 
 
-partial:aliases
+partial: aliases
 
 
 ## Scale Units

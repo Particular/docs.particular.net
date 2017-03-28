@@ -13,7 +13,7 @@ Azure Blob Storage DataBus will **remove** the [Azure storage blobs](https://doc
 
 ## Usage
 
-snippet:AzureDataBus
+snippet: AzureDataBus
 
 
 ## Cleanup Strategy
@@ -25,7 +25,7 @@ Specify a proper value for the `TimeToBeReceived` property. For more details on 
 
 The following extension methods are available for changing the behavior of `AzureDataBus` defaults:
 
-snippet:AzureDataBusSetup
+snippet: AzureDataBusSetup
 
  * `ConnectionString()`: The connection string to the storage account for storing DataBus properties, defaults to `UseDevelopmentStorage=true`.
  * `Container()`: Container name, defaults to `databus`.

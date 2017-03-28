@@ -22,7 +22,7 @@ Even though it is [recommended that all SQL Server transport queue tables are st
 
 Multi-instance deployment of the SQL Server transport requires that the Distributed Transaction Coordinator (DTC) is used by all endpoints. This is also required by ServiceControl to support retry of failed messages. Default configuration of ServiceControl disables support for distributed transactions and it has to be enabled explicitly using `EnableDtc` configuration setting:
 
-snippet:sc-enabledtc-config
+snippet: sc-enabledtc-config
 
 NOTE: ServiceControl supports the DTC only for the SQL Server transport. The `EnableDtc` switch has no effect on other transports.
 
@@ -31,11 +31,11 @@ NOTE: ServiceControl supports the DTC only for the SQL Server transport. The `En
 
 The default SQL Server transport connection string used by ServiceControl must point at a SQL Server instance that stores `error`, `audit`, and ServiceControl queues. In order to support retry of failed messages, ServiceControl also has to be configured with connection strings for each individual endpoint:
 
-snippet:sc-multi-instance-connection-strings
+snippet: sc-multi-instance-connection-strings
 
 
 ## Endpoint configuration
 
 Each endpoint can use queues stored in any SQL Server instance except for shared `error` and `audit` queues, which need to be stored in an instance used by ServiceControl. This cannot be expressed in the configuration file but can be implemented using the [pull mode API](/nservicebus/sqlserver/connection-settings.md#multiple-connection-strings):
 
-snippet:sc-multi-instance-endpoint-connection-strings
+snippet: sc-multi-instance-endpoint-connection-strings

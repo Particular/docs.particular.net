@@ -13,12 +13,12 @@ NServiceBus can be configured to use [Autofac](https://autofac.org/) as a depend
 
 ### Default Usage
 
-snippet:Autofac
+snippet: Autofac
 
 
 ### Existing Container Instance
 
-snippet:Autofac_Existing
+snippet: Autofac_Existing
 
 WARN: As of Autofac 4.2.1, the [`ContainerBuilder.Update` method is marked as obsolete](https://github.com/autofac/Autofac/issues/811). In the future, updating the container passed to NServiceBus may not be possible.
 

@@ -2,8 +2,9 @@
 title: Message forwarding
 summary: Describes how to set up message forwarding
 component: Core
-tags:
-- Forwarding Messages
+reviewed: 2017-03-14
+related: 
+ - nservicebus/operations/auditing
 ---
 
 
@@ -16,9 +17,10 @@ Use this feature to forward successfully processed messages from an endpoint to 
 
 Auditing is used for collecting information on what is happening in the system, therefore the audited message is enriched with additional [information regarding processing it](/nservicebus/operations/auditing.md#message-headers). The forwarded message is a copy of the processed message, without the additional auditing information.
 
-Note: In Versions 5 and below some of the audit headers were available for the forwarded messages. In Versions 6 and above the forwarded messages will no longer contain the audit message headers.
+
+partial: headers
 
 
 ## Configuring Message Forwarding
 
-partial:config
+partial: config

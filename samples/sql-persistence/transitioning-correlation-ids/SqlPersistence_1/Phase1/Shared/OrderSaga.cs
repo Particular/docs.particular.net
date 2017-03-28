@@ -16,7 +16,7 @@ public class OrderSaga :
 
     protected override void ConfigureMapping(MessagePropertyMapper<OrderSagaData> mapper)
     {
-        mapper.MapMessage<StartOrder>(message => message.OrderNumber);
+        mapper.MapMessage<StartOrder>(_ => _.OrderNumber);
     }
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)

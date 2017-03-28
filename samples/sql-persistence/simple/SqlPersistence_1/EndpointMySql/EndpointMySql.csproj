@@ -38,16 +38,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.1.3\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.2.0-rc0001\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Persistence.Sql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=affc41380e1a1478, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.Sql.1.1.0-unstable0067\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
+    <Reference Include="NServiceBus.Persistence.Sql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=affc41380e1a1478">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.Sql.1.0.4\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
   </ItemGroup>

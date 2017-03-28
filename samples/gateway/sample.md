@@ -41,7 +41,7 @@ snippet: AcknowledgedHandler
 
 Handles `UpdatePrice` from `WebClient`.
 
-snippet:UpdatePriceHandler
+snippet: UpdatePriceHandler
 
 
 ## RemoteSite

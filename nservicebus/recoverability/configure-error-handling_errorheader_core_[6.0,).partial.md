@@ -4,4 +4,4 @@ Before a message is moved to the error queue it is possible to inspect and modif
 
 The following snippet shows how to configure header customizations and perform header value modification.
 
-snippet:ErrorHeadersCustomizations
+snippet: ErrorHeadersCustomizations

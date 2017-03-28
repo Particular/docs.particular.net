@@ -33,7 +33,7 @@ When using the diagnostics service in Cloud Services, this service starts in par
 
 Set the endpoint name using the `DefineEndpointName(name)` extension method on the endpoint configuration.
 
-snippet:EndpointNameInCodeForAzureHost
+snippet: EndpointNameInCodeForAzureHost
 
 
 ## Host Identifier

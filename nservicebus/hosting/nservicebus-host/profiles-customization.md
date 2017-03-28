@@ -14,7 +14,7 @@ reviewed: 2017-02-28
 
 In certain scenarios it might be useful to define additional profiles. For example, some organizations have a few testing or staging environments that might require different configurations. To define a custom Profile create a class that implements the `NServiceBus.IProfile` marker interface:
 
-snippet:defining_profile
+snippet: defining_profile
 
 Note that the profile definition does not contain any configuration. The actual configuration for the profile is provided in profile behaviors.
 
@@ -43,7 +43,7 @@ Profile behaviors might also be used to customize configuration of a specific el
 
 That can be achieved with the following implementation:
 
-snippet:profile_behavior
+snippet: profile_behavior
 
 NServiceBus will find the provided behaviors for the email component at runtime and invoke only methods appropriate for the profile that it's currently using. As a result, for each environment a different implementation of the email component will be registered with the DI container and used in the system. 
 
@@ -56,4 +56,4 @@ For example, NServiceBus Host uses this information to configure publishers. End
 
 Endpoint's configuration can be accessed to customize profile behaviors in the following way:
 
-snippet:dependent_profile
+snippet: dependent_profile

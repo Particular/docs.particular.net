@@ -9,11 +9,11 @@ Retry | Delay
 
 The number of retries and the time to increase between retries can be configured using configuration API:
 
-snippet:GatewayDefaultRetryPolicyConfiguration
+snippet: GatewayDefaultRetryPolicyConfiguration
 
 The default retry policy can be replaced by implementing a `Func<IncomingMessage, Exception, int, TimeSpan>` to calculate the delay for each retry:
 
-snippet:GatewayCustomRetryPolicyConfiguration
+snippet: GatewayCustomRetryPolicyConfiguration
 
 The provided example shows the built-in default retry policy.
 

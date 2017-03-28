@@ -1,4 +1,5 @@
-﻿namespace Core6.Routing.EndpointMapping
+﻿#pragma warning disable 618
+namespace Core6.Routing.EndpointMapping
 {
     using System.Configuration;
     using NServiceBus.Config;

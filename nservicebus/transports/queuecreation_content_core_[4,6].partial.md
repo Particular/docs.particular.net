@@ -5,7 +5,7 @@ Queues should be declared during the Setup phase of a [Feature](/nservicebus/pip
 
 A built-in example is the audit feature which needs the audit queue. During start-up NServiceBus ensures the declared queues are present and aborts the start-up procedure if they are not (with an exception of MSMQ remote queues which are optional).
 
-snippet:queuebindings
+snippet: queuebindings
 
 
 ## Creation
@@ -20,8 +20,8 @@ In Version 5 and below the queue creation process is always executed sequentiall
 
 Here a sample of a queue creator
 
-snippet:CustomQueueCreator
+snippet: CustomQueueCreator
 
 The custom queue creator needs to be registered.
 
-snippet:RegisteringTheQueueCreator
+snippet: RegisteringTheQueueCreator

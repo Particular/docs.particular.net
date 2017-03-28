@@ -2,5 +2,5 @@
 
 ### Via Code
 
-snippet:setting_asb_connection_string
+snippet: setting_asb_connection_string
 

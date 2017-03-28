@@ -6,20 +6,20 @@ In some cases it may be necessary to take full control over creating the SQL str
 
 **For all persistence schema updates:**
 
-snippet:DisableSchemaUpdate
+snippet: DisableSchemaUpdate
 
 
 **For Gateway schema update:**
 
-snippet:DisableGatewaySchemaUpdate
+snippet: DisableGatewaySchemaUpdate
 
 
 **For Subscription schema update:**
 
-snippet:DisableSubscriptionSchemaUpdate
+snippet: DisableSubscriptionSchemaUpdate
 
 
 **For Timeout schema update:**
 
-snippet:DisableTimeoutSchemaUpdate
+snippet: DisableTimeoutSchemaUpdate
 

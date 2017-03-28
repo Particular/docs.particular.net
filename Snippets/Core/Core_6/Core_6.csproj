@@ -145,6 +145,7 @@
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
     <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
+    <Compile Include="UpgradeGuides\6to6.2\Upgrade.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameHelper.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStartStop.cs" />
@@ -273,9 +274,6 @@
     <Content Include="Headers\Writers\HeaderWriterPublish.txt" />
     <Content Include="Headers\Writers\HeaderWriterSend.txt" />
     <Content Include="Logging\OverrideInAppConfig.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Outbox\EnablingInConfig.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="UpgradeGuides\5to6\null.xml" />

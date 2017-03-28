@@ -95,7 +95,7 @@ First, let's throw an exception. For the purposes of this exercise, we'll create
 1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
 1. After logging receipt of the message, throw an exception:
 
-snippet:Throw
+snippet: Throw
 
 Now, run the solution.
 
@@ -132,7 +132,7 @@ To configure the endpoint to disable immediate retries:
  1. In the **Sales** endpoint, locate the **Program.cs** file.
  1. Before the endpoint is started, add the following code:
 
-snippet:ImmediateRetries
+snippet: ImmediateRetries
 
 Now, re-run the solution.
 
@@ -147,7 +147,7 @@ Now let's try modifying the delayed retries. First let's try disabling them comp
 
 Modify the recoverability code you wrote previously, then re-run the solution:
 
-snippet:DelayedRetries
+snippet: DelayedRetries
 
 Notice how the message is only attempted once. The stack trace is red, and the message is immediately forwarded to the error queue.
 
@@ -155,7 +155,7 @@ With delayed retries, we can also modify the time increase applied to each round
 
 Modify the same recoverability code, and re-run the solution:
 
-snippet:TimeIncrease
+snippet: TimeIncrease
 
 Notice how much faster the message proceeds through delayed retries, because instead of delays of 10/20/30 seconds (60 seconds total) the delays are now 3/6/9 seconds, for a total of 18 seconds wait time.
 

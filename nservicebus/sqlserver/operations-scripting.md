@@ -21,19 +21,19 @@ A send involves the following actions:
 
 #### In C&#35;
 
-snippet:sqlserver-nativesend
+snippet: sqlserver-nativesend
 
 In this example, the value `MyNamespace.MyMessage` represents the .NET type of the message. See the [headers documentation](/nservicebus/messaging/headers.md) for more information on the `EnclosedMessageTypes` header.
 
 
 #### In PowerShell;
 
-snippet:sqlserver-powershell-nativesend
+snippet: sqlserver-powershell-nativesend
 
 
 ### Using the native send helper methods
 
-snippet:sqlserver-nativesend-usage
+snippet: sqlserver-nativesend-usage
 
 
 ## Create queues
@@ -43,7 +43,7 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 
 ### The create queue helper methods
 
-snippet:sqlserver-create-queues
+snippet: sqlserver-create-queues
 
 
 ### Creating queues for an endpoint
@@ -52,12 +52,12 @@ To create all queues for a given endpoint name:
 
 snippet: sqlserver-create-queues-for-endpoint
 
-snippet:sqlserver-create-queues-endpoint-usage
+snippet: sqlserver-create-queues-endpoint-usage
 
 
 ### To create shared queues
 
-snippet:sqlserver-create-queues-shared-usage
+snippet: sqlserver-create-queues-shared-usage
 
 
 ## Delete queues
@@ -65,19 +65,19 @@ snippet:sqlserver-create-queues-shared-usage
 
 ### The delete helper queue methods
 
-snippet:sqlserver-delete-queues
+snippet: sqlserver-delete-queues
 
 
 ### To delete all queues for a given endpoint
 
-snippet:sqlserver-delete-queues-for-endpoint
+snippet: sqlserver-delete-queues-for-endpoint
 
-snippet:sqlserver-delete-queues-endpoint-usage
+snippet: sqlserver-delete-queues-endpoint-usage
 
 
 ### To delete shared queues
 
-snippet:sqlserver-delete-queues-shared-usage
+snippet: sqlserver-delete-queues-shared-usage
 
 
 ## Return message to source queue
@@ -92,12 +92,12 @@ A retry involves the following actions:
 
 NOTE: Since the connection information for the endpoint that failed is not contained in the error queue table that information is explicitly passed in.
 
-snippet:sqlserver-return-to-source-queue
+snippet: sqlserver-return-to-source-queue
 
 
 ### Using the retry helper methods
 
-snippet:sqlserver-return-to-source-queue-usage
+snippet: sqlserver-return-to-source-queue-usage
 
 
 ### Archiving SqlTransport audit log to long term storage

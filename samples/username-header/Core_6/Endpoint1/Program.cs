@@ -31,25 +31,19 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            #region SendMessage
+        #region SendMessage
 
-            var identity = new GenericIdentity("FakeUser");
-            Thread.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
-            var message = new MyMessage();
-            await endpointInstance.Send("Samples.UsernameHeader.Endpoint2", message)
-                .ConfigureAwait(false);
+        var identity = new GenericIdentity("FakeUser");
+        Thread.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
+        var message = new MyMessage();
+        await endpointInstance.Send("Samples.UsernameHeader.Endpoint2", message)
+            .ConfigureAwait(false);
 
-            #endregion
+        #endregion
 
-            Console.WriteLine("Message sent. Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Message sent. Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

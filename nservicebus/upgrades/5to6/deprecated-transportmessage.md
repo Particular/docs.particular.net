@@ -49,11 +49,11 @@ From the perspective of an outgoing message the `TimeToBeReceived` is a delivery
 
 Set the `TimeToBeReceived`
 
-snippet:SetDeliveryConstraintDiscardIfNotReceivedBefore
+snippet: SetDeliveryConstraintDiscardIfNotReceivedBefore
 
 Read the `TimeToBeReceived`
 
-snippet:ReadDeliveryConstraintDiscardIfNotReceivedBefore
+snippet: ReadDeliveryConstraintDiscardIfNotReceivedBefore
 
 From the perspective of an incoming message the `TimeToBeReceived` can be acquired by using the `Headers.TimeToBeReceived` on the `IncomingMessage.Headers` dictionary.
 
@@ -64,11 +64,11 @@ From the perspective of an outgoing message the `Recoverable` flag is a delivery
 
 Set the `Recoverable`
 
-snippet:SetDeliveryConstraintNonDurable
+snippet: SetDeliveryConstraintNonDurable
 
 Read the `Recoverable`
 
-snippet:ReadDeliveryConstraintNonDurable
+snippet: ReadDeliveryConstraintNonDurable
 
 From the perspective of an incoming message, the `Recoverable` flag can be acquired by using the `Headers.NonDurableMessage` on the `IncomingMessage.Headers` dictionary.
 
@@ -77,4 +77,4 @@ From the perspective of an incoming message, the `Recoverable` flag can be acqui
 
 In Version 5 it was possible  to use `ISendMessages` to do raw sends. In Version 6 `IDispatchMessages` was introduced. See the following snippet how raw sending could look like
 
-snippet:DispatcherRawSending
+snippet: DispatcherRawSending

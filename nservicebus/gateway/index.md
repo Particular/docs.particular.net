@@ -52,7 +52,7 @@ A gateway runs inside each host process. It gets its input from the current [tra
 
 In order to send message to other sites call `SendToSites` method:
 
-snippet:SendToSites
+snippet: SendToSites
 
 `SendToSite` accepts a list of sites to which it should send messages. Note that each site can be configured with a different transport mechanism.
 
@@ -63,7 +63,7 @@ In Versions 5 and above the gateway is provided by the `NServiceBus.Gateway` NuG
 
 The gateway feature needs to be explicitly enabled using configuration API:
 
-snippet:GatewayConfiguration
+snippet: GatewayConfiguration
 
 
 ### Recoverability

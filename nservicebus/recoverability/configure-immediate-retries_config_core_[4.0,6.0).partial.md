@@ -3,19 +3,19 @@
 
 ### Using app.config
 
-snippet:configureImmediateRetriesViaXml
+snippet: configureImmediateRetriesViaXml
 
 
 ### Through IProvideConfiguration
 
-snippet:ImmediateRetriesProvideConfiguration
+snippet: ImmediateRetriesProvideConfiguration
 
 
 ### Through ConfigurationSource
 
-snippet:ImmediateRetriesConfigurationSource
+snippet: ImmediateRetriesConfigurationSource
 
-snippet:ImmediateRetriesConfigurationSourceUsage
+snippet: ImmediateRetriesConfigurationSourceUsage
 
 
 ## Disabling
@@ -23,16 +23,16 @@ snippet:ImmediateRetriesConfigurationSourceUsage
 
 ### Using app.config
 
-snippet:disableImmediateRetriesViaXml
+snippet: disableImmediateRetriesViaXml
 
 
 ### Through IProvideConfiguration
 
-snippet:disableImmediateRetriesProvideConfiguration
+snippet: disableImmediateRetriesProvideConfiguration
 
 
 ### Through ConfigurationSource
 
-snippet:disableImmediateRetriesConfigurationSource
+snippet: disableImmediateRetriesConfigurationSource
 
-snippet:disableImmediateRetriesConfigurationSourceUsage
+snippet: disableImmediateRetriesConfigurationSourceUsage

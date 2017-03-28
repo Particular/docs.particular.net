@@ -64,9 +64,9 @@ An interface `IWantToRunWhenEndpointStartsAndStops` has been added. This interfa
 
 ### Interface in Version 5 of NServiceBus
 
-snippet:5to6-EndpointStartAndStopCore
+snippet: 5to6-EndpointStartAndStopCore
 
 
 ### Interface in Version 7 of NServiceBus.Hosting.Azure
 
-snippet:5to6-EndpointStartAndStopCloudHost
+snippet: 5to6-EndpointStartAndStopCloudHost

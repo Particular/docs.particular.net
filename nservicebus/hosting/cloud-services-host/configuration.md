@@ -25,18 +25,18 @@ To enable a given transport, the `UseTransport<T>` should be called on the endpo
 
 For example using Azure Service Bus Transport
 
-snippet:AzureServiceBusTransportWithAzureHost
+snippet: AzureServiceBusTransportWithAzureHost
 
 Or using the Azure Storage Queues Transport:
 
-snippet:AzureStorageQueueTransportWithAzureHost
+snippet: AzureStorageQueueTransportWithAzureHost
 
 
 ### Enabling the Persistence
 
 The Azure Storage Persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config as well.
 
-snippet:PersistenceWithAzureHost
+snippet: PersistenceWithAzureHost
 
 NOTE: In Version 4, when hosting in the Azure RoleEntryPoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
@@ -49,25 +49,25 @@ NOTE: NServiceBus is moving towards a code only configuration model, in NService
 
 The configuration source can be turned on like this:
 
-snippet:AzureConfigurationSource
+snippet: AzureConfigurationSource
 
 The convention-based override model works for all configuration sections used by NServiceBus. For example, it's possible to override the `AzureServiceBusQueueConfig` section which is available in Azure Service Bus transport Version 6 and below:
 
-Snippet:AzureServiceBusQueueConfigSection
+snippet: AzureServiceBusQueueConfigSection
 
 It is configured in the `app.config` file by specifying a dedicated config section:
 
-Snippet:AzureServiceBusQueueConfig
+snippet: AzureServiceBusQueueConfig
 
 That setting can then be overridden in the service configuration file (`.cscfg`), when hosting in the Azure Cloud Service.
 
 First define the setting in the service definition file (`.csdef`).
 
-Snippet:AzureServiceBusQueueConfigCsDef
+snippet: AzureServiceBusQueueConfigCsDef
 
 Then specify the value for every cloud service deployment in the Cloud Services project.
 
-Snippet:AzureServiceBusQueueConfigCsCfg
+snippet: AzureServiceBusQueueConfigCsCfg
 
 Names used for property overrides always have the following structure:  `TagName.PropertyName`. Tags can be nested: `ParentTagName.ChildTagName.PropertyName`. It's currently not possible to override parent tags that contain multiple child tags with the same name, therefore `MessageEndpointMappings` can't be overridden using this approach.
 

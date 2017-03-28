@@ -15,7 +15,7 @@ Also [leverages both serialization and headers](/nservicebus/messaging/headers.m
 
 ## Usage
 
-snippet:FileShareDataBus
+snippet: FileShareDataBus
 
 
 ## Cleanup Strategy
@@ -26,10 +26,10 @@ The business requirements can indicate how a message and its corresponding file 
 
 The file location used by the DataBus is set during configuration time.
 
-snippet:DefineFileLocationForDatabusFiles
+snippet: DefineFileLocationForDatabusFiles
 
 This same location should be used when performing the cleanup.
 
 So for example this path can be used in a Handler for a message containing DataBus properties.
 
-snippet:HandlerThatCleansUpDatabus
+snippet: HandlerThatCleansUpDatabus

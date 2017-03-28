@@ -20,7 +20,7 @@ This samples shows how to perform a WCF request response by leveraging [Callback
 
 An generic interface that is shared between both Client and Server to give a strong typed API.
 
-snippet:ICallbackService
+snippet: ICallbackService
 
 Note: For the sake of simplicity this interface is located in the same assembly as the server side helpers. This results in a reference to NServiceBus assemblies on the client side. In a real world solution this interface would most likely be moved to another assembly to avoid the need for a NServiceBus reference on the client side.
 
@@ -36,7 +36,7 @@ The url used for the binding will be of the format `http://localhost:8080/BusSer
 
 If a different binding or url structure is required it can be customized:
 
-snippet:WcfMapper
+snippet: WcfMapper
 
 
 #### CallbackService
@@ -45,7 +45,7 @@ The server side implementation of `ICallbackService`. This class handles the act
 
 Note: In Version 5 and below the Callback APIs for Enums, Ints and message responses differ slightly hence some logic is required to call the correct API for each response type. In Version 6 and above this API has been simplified and hence no logic is required.
 
-snippet:CallbackService
+snippet: CallbackService
 
 
 ### Client Helpers
@@ -55,7 +55,7 @@ snippet:CallbackService
 
 The `ClientChannelBuilder` creates a proxy at run time to allow strong typed execution of a mapped WCF service.
 
-snippet:ClientChannelBuilder
+snippet: ClientChannelBuilder
 
 If generating a static proxy, using the Visual Studio "Add Service Reference" feature, no `ClientChannelBuilder` is required.
 
@@ -67,14 +67,14 @@ If generating a static proxy, using the Visual Studio "Add Service Reference" fe
 
 This method maps some specific known Request-Response pairs to be listened to via a given url prefix.
 
-snippet:startwcf
+snippet: startwcf
 
 
 ### Apply mapping to endpoint
 
 Apply the Request-Response at bus startup.
 
-snippet:startbus
+snippet: startbus
 
 
 ## Client Configuration
@@ -84,7 +84,7 @@ snippet:startbus
 
 A helper that build and cleans up both the [ChannelFactory](https://msdn.microsoft.com/en-us/library/ms576132.aspx) and the channel.
 
-snippet:SendHelper
+snippet: SendHelper
 
 Note: For the purposes of this sample, for every call it creates a new `ChannelFactory` and `ICommunicationObject`. Depending on the specific use case it may be required to apply different scoping, lifetime and cleanup rules for these instances.
 
@@ -93,4 +93,4 @@ Note: For the purposes of this sample, for every call it creates a new `ChannelF
 
 The actual request send and handling of the response.
 
-snippet:Send
+snippet: Send

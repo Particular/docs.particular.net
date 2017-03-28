@@ -38,9 +38,9 @@ snippet: customDelayedRetries
 
 The notifications API is exposed as follows.
 
-snippet:endpointConfig
+snippet: endpointConfig
 
-snippet:subscriptions
+snippet: subscriptions
 
 
 partial: usage

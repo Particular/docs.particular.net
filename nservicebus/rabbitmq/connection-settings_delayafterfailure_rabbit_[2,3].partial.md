@@ -7,5 +7,5 @@ Type: `System.TimeSpan`
 
 Default: `00:00:05` (5 seconds)
 
-snippet:rabbitmq-custom-breaker-settings-delay-after-failure
+snippet: rabbitmq-custom-breaker-settings-delay-after-failure
 

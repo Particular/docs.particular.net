@@ -64,7 +64,7 @@ The message flow is designed to demonstrate the correctness of migration logic:
  * The `ReplyMessage` sent by the saga contains the saga ID header containing the storage ID (not the correlation property) of the saga instance that sent it
  * The `ReplyFollowUpMessage` send as a response to `ReplyMessage` contains the mentioned saga ID header by which the target saga is being looked up
 
-snippet:Handlers
+snippet: Handlers
 
 To summarize, sagas can be either looked up by their correlation property value or the storage ID.
 
@@ -84,26 +84,26 @@ The new version has to be deployed and started before the migration process can 
 
 In order to eventually migrate to the new persistence, all new saga instances need to be created by the "Server.New" endpoint. To ensure this, the old "Server" endpoint has to include a handler for not found sagas that forwards the messages to the new endpoint:
 
-snippet:Forwarder
+snippet: Forwarder
 
 The messages are forwarded as-is, without any side effects and handled normally by the destination.
 
 This handler is only invoked for messages that target an existing saga (either by correlation or by having a saga ID header). It is never invoked for a message that can start a saga so the saga code has to be modified to not treat `StartingMessage` as a saga started in the old endpoint.
 
-snippet:Header
+snippet: Header
 
 Notice `DummyMessage` is necessary as a saga starter. NServiceBus validation logic does not allow sagas without any starter messages. `DummyMessage` is never sent. It is only there so satisfy the validation.
 
 The correlation property mappings also need to include `DummyMessage`
 
-snippet:Mappings
+snippet: Mappings
 
 
 #### Forwarding messages from temporary queue
 
 When there are no sagas left in the old persistence, the old version of the endpoint can be decommissioned. In order to not lose any messages, the new version has to include, for a certain period of time, a redirection satellite that receives any remaining messages from the temporary queue and moves it to the regular queue.
 
-snippet:DrainTempQueueSatellite
+snippet: DrainTempQueueSatellite
 
 
 #### Decommissioning the old endpoint

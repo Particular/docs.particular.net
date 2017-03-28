@@ -15,18 +15,18 @@ RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.htm
 
 To specify the connection string in code:
 
-snippet:rabbitmq-config-connectionstring-in-code
+snippet: rabbitmq-config-connectionstring-in-code
 
 
 ### Specifying the connection string via app.config
 
 By default, the transport will look for a connection string called `NServiceBus/Transport` in `app.config`:
 
-snippet:rabbitmq-connectionstring
+snippet: rabbitmq-connectionstring
 
 To use a custom name for the connection string:
 
-snippet:rabbitmq-config-connectionstringname
+snippet: rabbitmq-config-connectionstringname
 
 
 ## Connection string options

@@ -6,6 +6,8 @@ related:
  - samples/sql-persistence/transitioning-correlation-ids
  - samples/saga/sql-sagafinder
  - samples/saga/migration
+ - nservicebus/upgrades/sqlpersistence-1to2
+ - nservicebus/upgrades/sqlpersistence-1.0.0-1.0.1
 reviewed: 2016-11-29
 ---
 
@@ -28,14 +30,14 @@ Install the [NServiceBus.Persistence.Sql](https://www.nuget.org/packages/NServic
 
 ### SQL Server
 
-snippet:SqlPersistenceUsageSqlServer
+snippet: SqlPersistenceUsageSqlServer
 
 
 ### MySQL
 
 Using the [MySql.Data NuGet Package](https://www.nuget.org/packages/MySql.Data/).
 
-snippet:SqlPersistenceUsageMySql
+snippet: SqlPersistenceUsageMySql
 
 {{Note: The following settings are required for [MySQL connections string](https://dev.mysql.com/doc/connector-net/en/connector-net-connection-options.html).
 
@@ -101,20 +103,7 @@ snippet: SqlServerScripts
 snippet: MySqlScripts
 
 
-### Promotion
-
-As stated above, scripts are created in the target project output directory. Generally this directory will be excluded from source control. To add created scripts to source control they can be "promoted".
-
-WARNING: The target directory will be deleted and recreated as part of each build. So ensure to choose a path that is for script promotion only.
-
-Some token replacement using [MSBuild variables](https://msdn.microsoft.com/en-us/library/c02as0cs.aspx) is supported.
-
- * `$(SolutionDir)`: The directory of the solution.
- * `$(ProjectDir)`: The directory of the project
-
-All tokens are drive + path and include the trailing backslash `\`.
-
-snippet: PromoteScripts
+partial: promote
 
 
 ## Installation
@@ -141,26 +130,28 @@ snippet: TablePrefix
 
 #### Database Schema
 
-A database schema can be defined by suffixing the TablePrefix with a period `.`. For example by passing `MySchema.` to the sql creation scripts and using the same value at code configuration time:
+A database schema can be defined in the configuration API as follows:
 
-snippet: TablePrefix_Schema
+snippet: Schema
 
-This will result in all created tables existing in the defined schema.
-
-To use an extended character set in the schema use [Delimited Identifiers](https://technet.microsoft.com/en-us/library/ms176027.aspx). For example by passing `[My Schema].` to the sql creation scripts and using the same value at code configuration time:
-
-snippet: TablePrefix_Schema_Extended
+Note that the same value will need to be passed to the SQL installation scripts as a parameter.
 
 
 #### Manual installation
 
 When performing a custom script execution the TablePrefix is required. See also [Installer Workflow](installer-workflow.md).
 
-snippet: ExecuteScripts
-
 Note that `scriptDirectory` can be either the root directory for all scripts for, alternatively, the specific locations for a given storage type i.e. Saga, Outbox, Subscription and Timeout scripts.
 
 
+##### SQL Server
+
+snippet: ExecuteScriptsSqlServer
+
+
+##### MySQL
+
+snippet: ExecuteScriptsMySql
 
 
 ## SqlStorageSession

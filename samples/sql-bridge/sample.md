@@ -13,7 +13,7 @@ related:
 
 WARNING: This sample has been deprecated. Refer to the [MsmqToSqlRelay Sample](/samples/msmqtosqlrelay/)
 
-This sample shows how to setup a sql subscriber so it can subscribe to events from a MSMQ publisher. The solution comprises of these 5 projects.
+This sample shows how to setup a SQL subscriber so it can subscribe to events from a MSMQ publisher. The solution comprises of these 5 projects.
 
 NOTE: This sample uses NHibernate persistence. It uses a database called, `PersistenceForMsmqTransport` for MSMQ transport endpoints and a different database called, `PersistenceForSqlTransport` for SQL Transport endpoints.
 
@@ -22,7 +22,7 @@ NOTE: This sample uses NHibernate persistence. It uses a database called, `Persi
 
 The event that will be published by `MsmqPublisher`
 
-snippet:event
+snippet: event
 
 
 ## MsmqPublisher
@@ -30,12 +30,12 @@ snippet:event
 
 ### The publisher configuration.
 
-snippet:publisher-config
+snippet: publisher-config
 
 
 ### The publish loop
 
-snippet:publisher-loop
+snippet: publisher-loop
 
 
 ### Additional entry to the list of subscribers
@@ -69,12 +69,12 @@ Subscribes to the events from the `MsmqPublisher`
 
 ### The Msmq Subscriber configuration.
 
-snippet:msmqsubscriber-config
+snippet: msmqsubscriber-config
 
 
 ### The Msmq Subscriber handler.
 
-snippet:msmqsubscriber-handler
+snippet: msmqsubscriber-handler
 
 
 ## SqlBridge
@@ -84,12 +84,12 @@ This endpoint is setup to read messages that arrive in MSMQ via an `IAdvancedSat
 
 ### The bridge configuration
 
-snippet:bridge-config
+snippet: bridge-config
 
 
 ### The Satellite
 
-snippet:satellite
+snippet: satellite
 
 Note: Since `SqlBridge` is not using the native MSMQ transport manually creating `SqlMsmqTransportBridge` queue will be required.
 
@@ -106,17 +106,17 @@ Note: Since `SqlBridge` is not using the native MSMQ transport manually creating
 
 ## SqlSubscriber
 
-Receives events from the SqlBridge. The endpoint address is the sql bridge address and not the original publisher's address.
+Receives events from the SqlBridge. The endpoint address is the SQL bridge address and not the original publisher's address.
 
 
 ### The SQL Subscriber configuration
 
-snippet:sqlsubscriber-config
+snippet: sqlsubscriber-config
 
 
 ### The event handler
 
-snippet:sqlsubscriber-handler
+snippet: sqlsubscriber-handler
 
 
 ## Summary

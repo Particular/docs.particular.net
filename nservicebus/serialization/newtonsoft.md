@@ -41,7 +41,7 @@ The `AddDeserializer` API can help transition between serializers. See the [Mult
 
 ## Usage
 
-snippet:NewtonsoftSerialization
+snippet: NewtonsoftSerialization
 
 
 ### Json.net attributes
@@ -50,7 +50,7 @@ Json.net attributes are supported.
 
 For example
 
-snippet:NewtonsoftAttributes
+snippet: NewtonsoftAttributes
 
 
 ### Custom Settings
@@ -64,19 +64,19 @@ snippet: NewtonsoftCustomSettings
 
 Customize the creation of the [JsonReader](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
 
-snippet:NewtonsoftCustomReader
+snippet: NewtonsoftCustomReader
 
 
 ### Custom Writer
 
 Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
 
-snippet:NewtonsoftCustomWriter
+snippet: NewtonsoftCustomWriter
 
 
 include: custom-contenttype-key
 
-snippet:NewtonsoftContentTypeKey
+snippet: NewtonsoftContentTypeKey
 
 
 ## BSON

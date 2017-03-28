@@ -41,15 +41,15 @@ The Client application submits the orders for processing by the back-end systems
 
 The client application consists of two endpoints. The main endpoint is used to send the `PlaceOrder` commands and process `OrderAccepted` events.
 
-snippet:MainConfig
+snippet: MainConfig
 
 The auxiliary endpoint is used for data distribution purposes. It reacts on `OrderAccepted` events and invalidates the cache. In order to ensure each scaled out instance of Client receives its own copy of the event the logical name of the data distribution endpoint consists of the name of the main endpoint and a suffix which is specific to a given instance. Such suffix can be set in the configuration for each deployment or can be obtained from an environment (e.g. Azure role instance ID).
 
-snippet:DistributionEndpointName
+snippet: DistributionEndpointName
 
 NServiceBus uses assembly scanning to load user-provided components such as message handlers. When co-hosting two endpoints in a single process it is important to make sure NServiceBus loads correct components to each endpoint. In this sample `DataDistribution` namespace is used to mark data distribution components
 
-snippet:DistributionEndpointTypes
+snippet: DistributionEndpointTypes
 
 NOTE: In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, in this sample the scale out is simulated by having two separate projects, Client and Client2.
 
