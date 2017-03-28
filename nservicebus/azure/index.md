@@ -6,7 +6,7 @@ tags:
 reviewed: 2017-03-28
 ---
 
-NServiceBus helps create distributed systems not only on premise but also in a public cloud environment. That is why it provides a variety of capabilities built for Microsoft Azure, covering hosting, Azure specific transports and persistence.
+NServiceBus helps create distributed .NET systems not only on premises but also in a public cloud environment. That is why it provides a variety of capabilities built for Microsoft Azure, the cloud closest to .NET. This covers hosting, Azure specific transports and persistence.
 
 Hosting:
 - [Hosting in Azure Cloud Services](/nservicebus/hosting/cloud-services-host/)
