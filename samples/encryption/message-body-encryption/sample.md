@@ -48,7 +48,7 @@ Note that is does not need any custom property types to be encrypted.
 
 Open either one of the `Program.cs`. Notice the line
 
-snippet:RegisterMessageEncryptor
+snippet: RegisterMessageEncryptor
 
 This is a extension method that adds a `IMutateTransportMessages` to the configuration.
 

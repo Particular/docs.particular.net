@@ -16,8 +16,8 @@ EXEC sp_getapplock @Resource = 'dbo_Data_lock', @LockMode = 'Exclusive'
 IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Data]') AND type in (N'U'))
 BEGIN
     CREATE TABLE [dbo].[Data](
-	    [Publisher] [varchar](100) NOT NULL,
-	    [Value] [nvarchar](max)
+        [Publisher] [varchar](100) NOT NULL,
+        [Value] [nvarchar](max)
     ) ON [PRIMARY];
 END
 

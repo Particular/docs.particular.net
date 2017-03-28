@@ -15,7 +15,7 @@ Support for writing all NServiceBus log entries to [Serilog](https://serilog.net
 
 ## Usage
 
-snippet:SerilogInCode
+snippet: SerilogInCode
 
 
 ## Seq
@@ -33,4 +33,4 @@ For example to limit log output to a specific namespace.
 
 Here is a code configuration example for adding a [Filter](https://github.com/serilog/serilog/wiki/Configuration-Basics#filters).
 
-snippet:SerilogFiltering
+snippet: SerilogFiltering

@@ -5,8 +5,7 @@ using NServiceBus.Transport.SQLServer;
 
 class NamedConnectionString
 {
-    string connectionString;
-
+    
     void ConnectionString(EndpointConfiguration endpointConfiguration)
     {
         #region sqlserver-config-connectionstring
@@ -33,9 +32,11 @@ class NamedConnectionString
         #region sqlserver-custom-connection-factory
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.UseCustomSqlConnectionFactory(async () =>
+        transport.UseCustomSqlConnectionFactory(
+            sqlConnectionFactory: async () =>
         {
-            connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            var connectionStrings = ConfigurationManager.ConnectionStrings["myConnectionString"];
+            var connectionString = connectionStrings.ConnectionString;
 
             var connection = new SqlConnection(connectionString);
             await connection.OpenAsync()

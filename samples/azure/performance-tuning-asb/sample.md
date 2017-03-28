@@ -54,7 +54,7 @@ Run without debugging (CTRL + F5) for optimal results.
 
  * Run the `Sender` standalone to test the send performance, but also to fill up the receive queue.
  * Run the `Receiver` standalone to test the receive performance, if the queue empties, just run the sender again.
- * Run the `SenderReceiver`r standalone.
+ * Run the `SenderReceiver` standalone.
  
 
 ## Variations

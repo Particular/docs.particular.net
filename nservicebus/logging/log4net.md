@@ -12,7 +12,7 @@ Support for writing all NServiceBus log entries to [Log4Net](http://logging.apac
 
 ## Usage
 
-snippet:Log4netInCode
+snippet: Log4netInCode
 
 
 ## Filtering
@@ -26,9 +26,9 @@ Here is a code configuration example for adding a [Filter](http://logging.apache
 
 ### The Filter
 
-snippet:Log4netFilter
+snippet: Log4netFilter
 
 
 ### Using the Filter
 
-snippet:Log4netFilterUsage
+snippet: Log4netFilterUsage

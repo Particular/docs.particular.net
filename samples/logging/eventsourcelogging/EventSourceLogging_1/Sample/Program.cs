@@ -31,18 +31,12 @@ class Program
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
-            try
-            {
-                await SendMessage(endpointInstance)
-                    .ConfigureAwait(false);
-                Console.WriteLine("Press any key to exit");
-                Console.ReadKey();
-            }
-            finally
-            {
-                await endpointInstance.Stop()
-                    .ConfigureAwait(false);
-            }
+            await SendMessage(endpointInstance)
+                .ConfigureAwait(false);
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
 
         #endregion

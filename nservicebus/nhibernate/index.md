@@ -26,7 +26,7 @@ Uses the [NHibernate ORM](http://nhibernate.info/) for persistence.
 
 The next stage is to actually tell NServiceBus how to use NHibernate for persistence
 
-snippet:ConfiguringNHibernate
+snippet: ConfiguringNHibernate
 
 
 ## Connection strings
@@ -46,11 +46,11 @@ To customize the NHibernate `Configuration` object used to bootstrap the persist
 
 To specific configuration on a per-concern basis, use following
 
-snippet:SpecificNHibernateConfiguration
+snippet: SpecificNHibernateConfiguration
 
 NOTE: Combine both approaches to define a common configuration and override it for one specific concern.
 
-partial:code
+partial: code
 
 
 ### Using configuration convention
@@ -59,7 +59,7 @@ NServiceBus then picks up the connection setting from the `app.config` from `con
 
 NOTE: When using SQL 2012 or later, change the dialect to `MsSql2012Dialect`. Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhibernate.info/doc/)
 
-snippet:NHibernateAppConfig
+snippet: NHibernateAppConfig
 
 
 ## Change database schema
@@ -73,7 +73,7 @@ The subscriptions can be cached when using NHibernate. This can improve the perf
 
 NOTE: Publishing is performed on stale data. This is only advised in high volume environments where latency can be a potential issue.
 
-snippet:NHibernateSubscriptionCaching
+snippet: NHibernateSubscriptionCaching
 
 
 partial: schema

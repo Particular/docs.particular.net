@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
-    "NServiceBus.SqlServer": "3.*"
+    "NServiceBus.SqlServer": "3.*",
+    "NUnit": "3.*"
   },
   "frameworks": {
     "net461": {}

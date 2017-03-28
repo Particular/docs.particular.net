@@ -30,4 +30,4 @@ There are two choices of package for this library.
 
 After installation of the package, enable the driver by setting NHibernate `connection.driver_class` property:
 
-snippet:SqlAzureNHibernateDriverConfiguration
+snippet: SqlAzureNHibernateDriverConfiguration

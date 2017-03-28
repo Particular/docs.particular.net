@@ -10,11 +10,11 @@ namespace ClientUI
     public class PlaceOrderHandler :
         IHandleMessages<PlaceOrder>
     {
-        static ILog logger = LogManager.GetLogger<PlaceOrderHandler>();
+        static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
 
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
-            logger.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
+            log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
             return Task.CompletedTask;
         }
     }

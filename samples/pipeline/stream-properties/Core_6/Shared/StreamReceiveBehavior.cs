@@ -7,7 +7,7 @@ using NServiceBus.Pipeline;
 #region ReceiveBehaviorDefinition
 
 class StreamReceiveBehavior :
-    Behavior<IIncomingLogicalMessageContext>
+    Behavior<IInvokeHandlerContext>
 {
     string location;
 
@@ -16,13 +16,13 @@ class StreamReceiveBehavior :
         location = Path.GetFullPath(storageSettings.Location);
     }
 
-    public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
+    public override async Task Invoke(IInvokeHandlerContext context, Func<Task> next)
     {
         #endregion
 
         #region write-stream-properties-back
 
-        var message = context.Message.Instance;
+        var message = context.MessageBeingHandled;
         var streamsToCleanUp = new List<FileStream>();
         foreach (var property in StreamStorageHelper
             .GetStreamProperties(message))
@@ -43,7 +43,7 @@ class StreamReceiveBehavior :
             // For safety send the message to the error queue
             if (!File.Exists(filePath))
             {
-                string format = $"Expected a file to exist in '{filePath}'. It is possible the file has been prematurely cleaned up.";
+                var format = $"Expected a file to exist in '{filePath}'. It is possible the file has been prematurely cleaned up.";
                 throw new Exception(format);
             }
             var fileStream = File.OpenRead(filePath);
@@ -66,4 +66,5 @@ class StreamReceiveBehavior :
 
         #endregion
     }
+
 }

@@ -1,2 +1,2 @@
 
-snippet:RetriesConfiguration
+snippet: RetriesConfiguration

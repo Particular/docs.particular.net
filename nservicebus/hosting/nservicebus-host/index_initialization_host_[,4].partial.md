@@ -9,4 +9,4 @@ NOTE: Do not perform any startup behaviors in the `Init` method.
 After the custom initialization is done the regular core `INeedInitalization` implementations found will be called in the same way as when self hosting.
 
 
-include:host-startup
+include: host-startup

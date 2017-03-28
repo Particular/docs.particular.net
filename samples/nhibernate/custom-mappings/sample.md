@@ -46,14 +46,14 @@ For more information, see: [how to create a simple NHibernate based application]
 
 The `.hbm.xml` contents is as follows
 
-snippet:hmlxml
+snippet: hmlxml
 
 
 ### Reading the mapping mappings
 
 Create a custom NHibernate configuration object and use the following example to add mappings from the file system.
 
-snippet:AddMappingsFromFilesystem
+snippet: AddMappingsFromFilesystem
 
 
 ## Use Fluent NHibernate
@@ -71,7 +71,7 @@ To use it with NServiceBus:
 
 Example of a possible implementation:
 
-snippet:FluentConfiguration
+snippet: FluentConfiguration
 
 
 ## Use NHibernate.Mapping.Attributes
@@ -88,7 +88,7 @@ NHibernate.Mapping.Attributes needs to know what types to scan to generate an NH
 
 Initialize the NHibernate attribute based mappings:
 
-snippet:AttributesConfiguration
+snippet: AttributesConfiguration
 
 
 ## Use the Loquacious mapping by code API
@@ -104,4 +104,4 @@ To use it:
 
 Initialize NHibernate Loquacious configuration
 
-snippet:LoquaciousConfiguration
+snippet: LoquaciousConfiguration

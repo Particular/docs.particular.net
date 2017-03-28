@@ -68,7 +68,6 @@ class Program
 
         var startableEndpoint = await Endpoint.Create(endpointConfiguration)
             .ConfigureAwait(false);
-        IEndpointInstance endpointInstance = null;
 
         #region CreateSchema
 
@@ -77,21 +76,15 @@ class Program
 
         #endregion
 
-        try
-        {
-            endpointInstance = await startableEndpoint.Start()
-                .ConfigureAwait(false);
+        var endpointInstance = await startableEndpoint.Start()
+            .ConfigureAwait(false);
 
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        if (endpointInstance != null)
         {
-            if (endpointInstance != null)
-            {
-                await endpointInstance.Stop()
-                    .ConfigureAwait(false);
-            }
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 
@@ -118,8 +111,8 @@ class Program
         using (var connection = new SqlConnection(connectionString))
         {
             connection.Open();
-            new SchemaExport(hibernateConfig)
-                .Execute(false, true, false, connection, TextWriter.Null);
+            var schemaExport = new SchemaExport(hibernateConfig);
+            schemaExport.Execute(false, true, false, connection, TextWriter.Null);
         }
     }
 }

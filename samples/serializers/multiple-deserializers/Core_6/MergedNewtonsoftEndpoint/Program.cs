@@ -23,19 +23,13 @@ static class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            var message = MesasgeBuilder.BuildMessage();
-            await endpointInstance.Send("Samples.MultipleDeserializers.ReceivingEndpoint", message)
-                .ConfigureAwait(false);
-            Console.WriteLine("Order Sent");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        var message = MesasgeBuilder.BuildMessage();
+        await endpointInstance.Send("Samples.MultipleDeserializers.ReceivingEndpoint", message)
+            .ConfigureAwait(false);
+        Console.WriteLine("Order Sent");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

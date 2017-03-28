@@ -8,7 +8,7 @@ Function Usage
     # For NServiceBus 6 Enpoints 
     CreateQueuesForEndpoint -EndpointName "myendpoint" -Account $env:USERNAME
 
-    # For NServiceBus 5 and below Endpoints 
+# For NServiceBus 5 and below Endpoints 
     CreateQueuesForEndpoint -EndpointName "myendpoint" -Account $env:USERNAME -IncludeRetries
 # endcode
 
@@ -28,6 +28,7 @@ Function CreateQueuesForEndpoint
 
         [Parameter(Mandatory=$true)]
         [ValidateNotNullOrEmpty()]
+        [ValidateScript({ValidateAccount -Account $_})]
         [string] $Account,
 
         [Parameter(HelpMessage="Only required for NSB Versions 5 and below")]
@@ -60,6 +61,7 @@ Function CreateQueue
 
         [Parameter(Mandatory=$true)]
         [ValidateNotNullOrEmpty()]
+        [ValidateScript({ValidateAccount -Account $_})]
         [string] $Account
     )
 
@@ -68,6 +70,9 @@ Function CreateQueue
     if (-Not [System.Messaging.MessageQueue]::Exists($queuePath)) {
 	    $messageQueue = [System.Messaging.MessageQueue]::Create($queuePath, $true)
 		SetDefaultPermissionsForQueue -Queue $messageQueue -Account $Account
+    }
+    else {
+        Write-Warning "$queuepath already exists - no changes were made"
     }
 }
 
@@ -80,6 +85,25 @@ Function GetAccountFromWellKnownSid
     
     $account = New-Object System.Security.Principal.SecurityIdentifier $WellKnownSidType,$null
     return $account.Translate([System.Security.Principal.NTAccount]).ToString()
+}
+
+Function ValidateAccount {
+    param(
+        [Parameter(Mandatory=$true)]
+        [ValidateNotNullOrEmpty()]
+        [string] $Account 
+    )
+
+    # Test Account is valid
+    $userAccount =  new-object System.Security.Principal.NTAccount($Account)
+    try {
+        [void] $userAccount.Translate([System.Security.Principal.SecurityIdentifier]) 
+        return $true
+    }
+    catch [System.Security.Principal.IdentityNotMappedException] {
+        Write-Warning "$account does not resolve to a Windows Account"
+        return $false
+    }
 }
 
 Function SetDefaultPermissionsForQueue

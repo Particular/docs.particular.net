@@ -9,7 +9,7 @@ class MultiDb
 
     void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration)
     {
-        #region sqlserver-multidb-other-endpoint-connection-pull
+        #region sqlserver-multidb-other-endpoint-connection
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.EnableLegacyMultiInstanceMode(async address =>

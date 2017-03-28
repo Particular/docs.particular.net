@@ -28,4 +28,4 @@ The default file name will be `nsb_log_yyyy-MM-dd_N.txt`, where `N` is a sequenc
 
 With code both the Level and the logging directory can be configured. To do this, use the `LogManager` class.
 
-snippet:OverrideLoggingDefaultsInCode
+snippet: OverrideLoggingDefaultsInCode

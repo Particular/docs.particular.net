@@ -31,25 +31,30 @@ class RoutingInfoPublisher :
     protected override Task OnStart(IMessageSession context)
     {
         var mainLogicalAddress = settings.LogicalAddress();
-        var instanceProperties = mainLogicalAddress.EndpointInstance.Properties.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-        instanceProperties["queue"] = mainLogicalAddress.EndpointInstance.Endpoint;
+        var endpointInstance = mainLogicalAddress.EndpointInstance;
+        var instanceProperties = endpointInstance.Properties.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        instanceProperties["queue"] = endpointInstance.Endpoint;
         publication = new RoutingInfo
         {
             EndpointName = settings.EndpointName(),
-            Discriminator = mainLogicalAddress.EndpointInstance.Discriminator,
+            Discriminator = endpointInstance.Discriminator,
             InstanceProperties = instanceProperties,
             HandledMessageTypes = hanledMessageTypes.Select(m => m.AssemblyQualifiedName).ToArray(),
             PublishedMessageTypes = publishedMessageTypes.Select(m => m.AssemblyQualifiedName).ToArray(),
             Active = true,
         };
 
-        timer = new Timer(state =>
-        {
-            Publish()
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
-        }, null, TimeSpan.Zero, heartbeatPeriod);
+        timer = new Timer(
+            callback: state =>
+            {
+                Publish()
+                    .ConfigureAwait(false)
+                    .GetAwaiter()
+                    .GetResult();
+            },
+            state: null,
+            dueTime: TimeSpan.Zero,
+            period: heartbeatPeriod);
 
         return Publish();
     }

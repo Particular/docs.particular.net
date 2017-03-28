@@ -3,5 +3,5 @@ WARNING: The `ForwardReceivedMessagesTo` attribute in the `UnicastBusConfig` con
 
 ### Using Code
 
-snippet:ForwardingWithCode
+snippet: ForwardingWithCode
 

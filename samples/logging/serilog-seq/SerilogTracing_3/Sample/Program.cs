@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
+using NServiceBus.Serilog;
 using NServiceBus.Serilog.Tracing;
 using Serilog;
 
@@ -19,6 +21,8 @@ static class Program
             .WriteTo.Seq("http://localhost:5341")
             .MinimumLevel.Information()
             .CreateLogger();
+        var serilogFactory = LogManager.Use<SerilogFactory>();
+        serilogFactory.WithLogger(tracingLog);
         #endregion
 
         #region UseConfig
@@ -36,24 +40,18 @@ static class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        var createUser = new CreateUser
         {
-            var createUser = new CreateUser
-            {
-                UserName = "jsmith",
-                FamilyName = "Smith",
-                GivenNames = "John",
-            };
-            await endpointInstance.SendLocal(createUser)
-                .ConfigureAwait(false);
-            Console.WriteLine("Message sent");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+            UserName = "jsmith",
+            FamilyName = "Smith",
+            GivenNames = "John",
+        };
+        await endpointInstance.SendLocal(createUser)
+            .ConfigureAwait(false);
+        Console.WriteLine("Message sent");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

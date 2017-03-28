@@ -4,7 +4,6 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Persistence.Sql;
 
-[SqlSaga(correlationProperty:nameof(SagaData.OrderId))]
 public class OrderLifecycleSaga :
     SqlSaga<OrderLifecycleSaga.SagaData>,
     IAmStartedByMessages<OrderSubmitted>,
@@ -12,10 +11,12 @@ public class OrderLifecycleSaga :
 {
     static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
 
-    protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
+    protected override void ConfigureMapping(IMessagePropertyMapper mapper)
     {
-        mapper.MapMessage<OrderSubmitted>(m => m.OrderId);
+        mapper.ConfigureMapping<OrderSubmitted>(_ => _.OrderId);
     }
+
+    protected override string CorrelationPropertyName => nameof(SagaData.OrderId);
 
     #region Timeout
 

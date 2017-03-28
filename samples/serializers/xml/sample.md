@@ -13,19 +13,19 @@ This sample uses the default XML serializer in the core.
 
 ## Configuring to use XML
 
-snippet:config
+snippet: config
 
 
 ## Diagnostic Mutator
 
 A helper that will Write out the contents of any incoming message.
 
-snippet:mutator
+snippet: mutator
 
 
 ## The message send
 
-snippet:message
+snippet: message
  
 
 ## The Output

@@ -21,7 +21,7 @@ This sample leverages the logging and recoverability APIs to remove some of the 
 
 ## Solution Layout
 
-The solution consists of two projects. `SampleWithoutClean` which takes the standard approach to converting an exception to a string. `SampleWithClean` which cleans the exception information before allowing to to be written.
+The solution consists of two projects. `SampleWithoutClean` which takes the standard approach to converting an exception to a string. `SampleWithClean` which cleans the exception information before allowing it to be written.
 
 
 ### The Handler
@@ -40,60 +40,60 @@ snippet: disable-retries
 
 ## Before optimizations
 
-Before the above optimizations the below (45 lines and ~4900 characters) is written to both the log and the error queue when the above handler throws.
+Before the above optimizations the below (**45 lines and ~4900 characters**) is written to both the log and the error queue when the above handler throws.
 
 ```no-highlight
 System.Exception: Foo
-   at Handler.Handle(Message message, IMessageHandlerContext context) in C:\Code\docs.particular.net\samples\logging\stack-trace-cleaning\Core_6\SampleWithoutClean\Handler.cs:line 9
-   at NServiceBus.InvokeHandlerTerminator.<Terminate>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\InvokeHandlerTerminator.cs:line 19
+at Handler.Handle(Message message, IMessageHandlerContext context) in C:\Code\docs.particular.net\samples\logging\stack-trace-cleaning\Core_6\SampleWithoutClean\Handler.cs:line 9
+at NServiceBus.InvokeHandlerTerminator.<Terminate>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\InvokeHandlerTerminator.cs:line 19
 --- End of stack trace from previous location where exception was thrown ---
-   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at NServiceBus.LoadHandlersConnector.<Invoke>d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\LoadHandlersConnector.cs:line 41
+at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+at NServiceBus.LoadHandlersConnector.<Invoke>d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\LoadHandlersConnector.cs:line 41
 --- End of stack trace from previous location where exception was thrown ---
-   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at NServiceBus.MutateIncomingMessageBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\MutateInstanceMessage\MutateIncomingMessageBehavior.cs:line 28
+at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+at NServiceBus.MutateIncomingMessageBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\MutateInstanceMessage\MutateIncomingMessageBehavior.cs:line 28
 --- End of stack trace from previous location where exception was thrown ---
-   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at NServiceBus.DeserializeLogicalMessagesConnector.<Invoke>d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\DeserializeLogicalMessagesConnector.cs:line 30
+at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+at NServiceBus.DeserializeLogicalMessagesConnector.<Invoke>d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\DeserializeLogicalMessagesConnector.cs:line 30
 --- End of stack trace from previous location where exception was thrown ---
-   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at NServiceBus.SubscriptionReceiverBehavior.<Invoke>d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Routing\MessageDrivenSubscriptions\SubscriptionReceiverBehavior.cs:line 30
+at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+at NServiceBus.SubscriptionReceiverBehavior.<Invoke>d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Routing\MessageDrivenSubscriptions\SubscriptionReceiverBehavior.cs:line 30
 --- End of stack trace from previous location where exception was thrown ---
-   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at NServiceBus.MutateIncomingTransportMessageBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\MutateTransportMessage\MutateIncomingTransportMessageBehavior.cs:line 27
+at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+at NServiceBus.MutateIncomingTransportMessageBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\MutateTransportMessage\MutateIncomingTransportMessageBehavior.cs:line 27
 --- End of stack trace from previous location where exception was thrown ---
-   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at NServiceBus.UnitOfWorkBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 26
+at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+at NServiceBus.UnitOfWorkBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 26
 --- End of stack trace from previous location where exception was thrown ---
-   at NServiceBus.UnitOfWorkBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 48
+at NServiceBus.UnitOfWorkBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 48
 --- End of stack trace from previous location where exception was thrown ---
-   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at NServiceBus.ProcessingStatisticsBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Performance\Statistics\ProcessingStatisticsBehavior.cs:line 25
+at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+at NServiceBus.ProcessingStatisticsBehavior.<Invoke>d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Performance\Statistics\ProcessingStatisticsBehavior.cs:line 25
 --- End of stack trace from previous location where exception was thrown ---
-   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at NServiceBus.ReceivePerformanceDiagnosticsBehavior.<Invoke>d__2.MoveNext() in C:\Build\src\NServiceBus.Core\Performance\Statistics\ReceivePerformanceDiagnosticsBehavior.cs:line 40
+at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+at NServiceBus.ReceivePerformanceDiagnosticsBehavior.<Invoke>d__2.MoveNext() in C:\Build\src\NServiceBus.Core\Performance\Statistics\ReceivePerformanceDiagnosticsBehavior.cs:line 40
 --- End of stack trace from previous location where exception was thrown ---
-   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at NServiceBus.TransportReceiveToPhysicalMessageProcessingConnector.<Invoke>d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\TransportReceiveToPhysicalMessageProcessingConnector.cs:line 38
+at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+at NServiceBus.TransportReceiveToPhysicalMessageProcessingConnector.<Invoke>d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\TransportReceiveToPhysicalMessageProcessingConnector.cs:line 38
 --- End of stack trace from previous location where exception was thrown ---
-   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at NServiceBus.MoveFaultsToErrorQueueBehavior.<Invoke>d__3.MoveNext() in C:\Build\src\NServiceBus.Core\Recoverability\Faults\MoveFaultsToErrorQueueBehavior.cs:line 38
+at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+at NServiceBus.MoveFaultsToErrorQueueBehavior.<Invoke>d__3.MoveNext() in C:\Build\src\NServiceBus.Core\Recoverability\Faults\MoveFaultsToErrorQueueBehavior.cs:line 38
 ```
 
 
 ## Manipulate Error Queue Header
 
-NServiceBus has no explicit API to control what is written to the exceptions headers when messages are handled by [recoverability](/nservicebus/recoverability). Instead this sample leverages the [error message header customizations](/nservicebus/recoverability/configure-error-handling.md) to manipulate the headers after they are added but before the error message is sent.
+NServiceBus has no explicit API to control what is written to the exceptions headers when messages are handled by [recoverability](/nservicebus/recoverability). Instead this sample leverages the [error message header customizations](/nservicebus/recoverability/configure-error-handling.md) to manipulate the headers after they are added, but before the error message is sent.
 
 
 ### The Stack Trace Cleaner
@@ -132,7 +132,7 @@ snippet: Renderer
 
 ### Configure Layout Renderer and NLog
 
-The endpoint is then configured to The layout Renderer is then con
+The endpoint is then configured to the layout Renderer:
 
 snippet: ConfigureNLog
 
@@ -142,43 +142,43 @@ snippet: ConfigureNLog
 
 ### Logging with optimizations
 
-With the above optimizations the following text (14 lines and ~2100 characters) is written to the log.
+With the above optimizations the following text (**14 lines and ~2100 characters**) is written to the log.
 
 ```no-highlight
 System.Exception: Foo
-   at Handler.Handle(Message message, IMessageHandlerContext context) in C:\Code\docs.particular.net\samples\logging\stack-trace-cleaning\Core_6\SampleWithClean\Handler.cs:line 10
-   at async NServiceBus.InvokeHandlerTerminator.Terminate(?) in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\InvokeHandlerTerminator.cs:line 19
-   at async NServiceBus.LoadHandlersConnector.Invoke(?) in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\LoadHandlersConnector.cs:line 41
-   at async NServiceBus.MutateIncomingMessageBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Pipeline\MutateInstanceMessage\MutateIncomingMessageBehavior.cs:line 28
-   at async NServiceBus.DeserializeLogicalMessagesConnector.Invoke(?) in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\DeserializeLogicalMessagesConnector.cs:line 30
-   at async NServiceBus.SubscriptionReceiverBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Routing\MessageDrivenSubscriptions\SubscriptionReceiverBehavior.cs:line 30
-   at async NServiceBus.MutateIncomingTransportMessageBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Pipeline\MutateTransportMessage\MutateIncomingTransportMessageBehavior.cs:line 27
-   at async NServiceBus.UnitOfWorkBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 26
-   at async NServiceBus.UnitOfWorkBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 48
-   at async NServiceBus.ProcessingStatisticsBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Performance\Statistics\ProcessingStatisticsBehavior.cs:line 25
-   at async NServiceBus.ReceivePerformanceDiagnosticsBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Performance\Statistics\ReceivePerformanceDiagnosticsBehavior.cs:line 40
-   at async NServiceBus.TransportReceiveToPhysicalMessageProcessingConnector.Invoke(?) in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\TransportReceiveToPhysicalMessageProcessingConnector.cs:line 38
-   at async NServiceBus.MoveFaultsToErrorQueueBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Recoverability\Faults\MoveFaultsToErrorQueueBehavior.cs:line 38
+at Handler.Handle(Message message, IMessageHandlerContext context) in C:\Code\docs.particular.net\samples\logging\stack-trace-cleaning\Core_6\SampleWithClean\Handler.cs:line 10
+at async NServiceBus.InvokeHandlerTerminator.Terminate(?) in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\InvokeHandlerTerminator.cs:line 19
+at async NServiceBus.LoadHandlersConnector.Invoke(?) in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\LoadHandlersConnector.cs:line 41
+at async NServiceBus.MutateIncomingMessageBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Pipeline\MutateInstanceMessage\MutateIncomingMessageBehavior.cs:line 28
+at async NServiceBus.DeserializeLogicalMessagesConnector.Invoke(?) in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\DeserializeLogicalMessagesConnector.cs:line 30
+at async NServiceBus.SubscriptionReceiverBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Routing\MessageDrivenSubscriptions\SubscriptionReceiverBehavior.cs:line 30
+at async NServiceBus.MutateIncomingTransportMessageBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Pipeline\MutateTransportMessage\MutateIncomingTransportMessageBehavior.cs:line 27
+at async NServiceBus.UnitOfWorkBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 26
+at async NServiceBus.UnitOfWorkBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 48
+at async NServiceBus.ProcessingStatisticsBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Performance\Statistics\ProcessingStatisticsBehavior.cs:line 25
+at async NServiceBus.ReceivePerformanceDiagnosticsBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Performance\Statistics\ReceivePerformanceDiagnosticsBehavior.cs:line 40
+at async NServiceBus.TransportReceiveToPhysicalMessageProcessingConnector.Invoke(?) in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\TransportReceiveToPhysicalMessageProcessingConnector.cs:line 38
+at async NServiceBus.MoveFaultsToErrorQueueBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Recoverability\Faults\MoveFaultsToErrorQueueBehavior.cs:line 38
 ```
 
 
 ### Error Queue with optimizations
 
-With the above optimizations the following text (14 lines and ~2300 characters)is written to the error queue.
+With the above optimizations the following text (**14 lines and ~2300 characters**) is written to the error queue.
 
 ```no-highlight
 System.Exception: Foo
-   at Handler.Handle(Message message, IMessageHandlerContext context) in C:\Code\docs.particular.net\samples\logging\stack-trace-cleaning\Core_6\SampleWithClean\Handler.cs:line 10
-   at NServiceBus.InvokeHandlerTerminator.&lt;Terminate&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\InvokeHandlerTerminator.cs:line 19
-   at NServiceBus.LoadHandlersConnector.&lt;Invoke&gt;d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\LoadHandlersConnector.cs:line 41
-   at NServiceBus.MutateIncomingMessageBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\MutateInstanceMessage\MutateIncomingMessageBehavior.cs:line 28
-   at NServiceBus.DeserializeLogicalMessagesConnector.&lt;Invoke&gt;d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\DeserializeLogicalMessagesConnector.cs:line 30
-   at NServiceBus.SubscriptionReceiverBehavior.&lt;Invoke&gt;d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Routing\MessageDrivenSubscriptions\SubscriptionReceiverBehavior.cs:line 30
-   at NServiceBus.MutateIncomingTransportMessageBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\MutateTransportMessage\MutateIncomingTransportMessageBehavior.cs:line 27
-   at NServiceBus.UnitOfWorkBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 26
-   at NServiceBus.UnitOfWorkBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 48
-   at NServiceBus.ProcessingStatisticsBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Performance\Statistics\ProcessingStatisticsBehavior.cs:line 25
-   at NServiceBus.ReceivePerformanceDiagnosticsBehavior.&lt;Invoke&gt;d__2.MoveNext() in C:\Build\src\NServiceBus.Core\Performance\Statistics\ReceivePerformanceDiagnosticsBehavior.cs:line 40
-   at NServiceBus.TransportReceiveToPhysicalMessageProcessingConnector.&lt;Invoke&gt;d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\TransportReceiveToPhysicalMessageProcessingConnector.cs:line 38
-   at NServiceBus.MoveFaultsToErrorQueueBehavior.&lt;Invoke&gt;d__3.MoveNext() in C:\Build\src\NServiceBus.Core\Recoverability\Faults\MoveFaultsToErrorQueueBehavior.cs:line 38
+at Handler.Handle(Message message, IMessageHandlerContext context) in C:\Code\docs.particular.net\samples\logging\stack-trace-cleaning\Core_6\SampleWithClean\Handler.cs:line 10
+at NServiceBus.InvokeHandlerTerminator.&lt;Terminate&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\InvokeHandlerTerminator.cs:line 19
+at NServiceBus.LoadHandlersConnector.&lt;Invoke&gt;d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\LoadHandlersConnector.cs:line 41
+at NServiceBus.MutateIncomingMessageBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\MutateInstanceMessage\MutateIncomingMessageBehavior.cs:line 28
+at NServiceBus.DeserializeLogicalMessagesConnector.&lt;Invoke&gt;d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\DeserializeLogicalMessagesConnector.cs:line 30
+at NServiceBus.SubscriptionReceiverBehavior.&lt;Invoke&gt;d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Routing\MessageDrivenSubscriptions\SubscriptionReceiverBehavior.cs:line 30
+at NServiceBus.MutateIncomingTransportMessageBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\MutateTransportMessage\MutateIncomingTransportMessageBehavior.cs:line 27
+at NServiceBus.UnitOfWorkBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 26
+at NServiceBus.UnitOfWorkBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\UnitOfWork\UnitOfWorkBehavior.cs:line 48
+at NServiceBus.ProcessingStatisticsBehavior.&lt;Invoke&gt;d__0.MoveNext() in C:\Build\src\NServiceBus.Core\Performance\Statistics\ProcessingStatisticsBehavior.cs:line 25
+at NServiceBus.ReceivePerformanceDiagnosticsBehavior.&lt;Invoke&gt;d__2.MoveNext() in C:\Build\src\NServiceBus.Core\Performance\Statistics\ReceivePerformanceDiagnosticsBehavior.cs:line 40
+at NServiceBus.TransportReceiveToPhysicalMessageProcessingConnector.&lt;Invoke&gt;d__1.MoveNext() in C:\Build\src\NServiceBus.Core\Pipeline\Incoming\TransportReceiveToPhysicalMessageProcessingConnector.cs:line 38
+at NServiceBus.MoveFaultsToErrorQueueBehavior.&lt;Invoke&gt;d__3.MoveNext() in C:\Build\src\NServiceBus.Core\Recoverability\Faults\MoveFaultsToErrorQueueBehavior.cs:line 38
 ```

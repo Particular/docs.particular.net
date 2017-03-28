@@ -28,21 +28,21 @@ The are several configuration options that must be set for express message to
 
 The endpoints must be configured to be non-transactional.
 
-snippet:non-transactional
+snippet: non-transactional
 
 
 ### MSMQ configured to be non-transactional
 
 To ensure MSMQ is used in a setup and used non-durable way the `NServiceBus/Transport` connection string must contain `useTransactionalQueues=false`.
 
-snippet:useTransactionalQueues-false
+snippet: useTransactionalQueues-false
 
 
 ### Express Attribute
 
 Messages must have an `[ExpressAttribute]`.
 
-snippet:message-definition
+snippet: message-definition
 
 
 ## Running the solution

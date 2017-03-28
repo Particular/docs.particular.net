@@ -1,14 +1,13 @@
 ---
 title: Simple SQL Persistence Usage
 summary: Using SQL Persistence to store Sagas and Timeouts.
-reviewed: 2016-03-21
+reviewed: 2016-10-05
 component: SqlPersistence
 tags:
  - Saga
  - Timeout
 related:
  - nservicebus/sagas
-reviewed: 2016-10-05
 ---
 
 ## Prerequisites
@@ -61,6 +60,11 @@ These scripts will then be copied to the output of both `EndpointMySql` and `End
 The endpoints know which scripts to execute via the use of the `persistence.SqlVariant();` API usage at configuration time.
 
 
+partial: promote
+
+snippet: SqlPersistenceSettings
+
+
 ### Persistence Config
 
 Configure the endpoint to use SQL Persistence.
@@ -68,19 +72,20 @@ Configure the endpoint to use SQL Persistence.
 
 #### MS SQL Server
 
-snippet:sqlServerConfig
+snippet: sqlServerConfig
 
 
 ### MySql
 
-snippet:MySqlConfig
+snippet: MySqlConfig
 
 
 ### Order Saga Data
 
-snippet:sagadata
+snippet: sagadata
 
 
 ### Order Saga
 
-snippet:thesaga
+snippet: thesaga
+

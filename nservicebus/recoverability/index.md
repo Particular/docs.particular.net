@@ -77,13 +77,13 @@ Fault handling doesn't require that the transport transaction is rolled back. A 
 
 ## Recoverability Policy
 
-partial:recoverabilitypolicy
+partial: recoverabilitypolicy
 
-partial:unrecoverableexceptions
+partial: unrecoverableexceptions
 
 ## Total number of possible retries
 
-partial:retrycount
+partial: retrycount
 
 
 ## Retry Logging
@@ -96,6 +96,6 @@ Given the following configuration:
 
 The output in the log will be:
 
-snippet:RetryLogging
+snippet: RetryLogging
 
 partial: exceptionincluded

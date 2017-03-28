@@ -1,12 +1,13 @@
 ---
 title: Performance Counter Usage
 summary: Using the built in Performance Counters.
-reviewed: 2016-07-20
-component: PerformanceCounters
+reviewed: 2017-03-17
+component: PerfCounters
 related:
 - nservicebus/operations/performance-counters
 - nservicebus/operations/management-using-powershell
 ---
+
 
 ## Install Counters
 
@@ -33,11 +34,12 @@ The following will result
 \NServiceBus(*)\# of msgs failures / sec
 ```
 
+
 ## Enabling Counters For The Endpoint
 
 Both the SLA and Critical Time counters are enabled and configured in configuration code.
 
-snippet:enable-counters
+snippet: enable-counters
 
 The other counters are enabled by default.
 
@@ -48,7 +50,7 @@ NOTE: Regardless of whether the SLA and Critical Time counters are enabled, all 
 
 The handler just has a random sleep to give achieve some fake load. Not that the max random number is greater than the above configured SLA to cause it to occasionally fire.
 
-snippet:handler
+snippet: handler
 
 
 ## Run Solution

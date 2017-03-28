@@ -4,4 +4,4 @@ The code above instructs NServiceBus to use a unique input queue for each endpoi
 
 In case there is a need to provide a custom queue names suffix (instead of using the role instance ID), following API can be used instead:
 
-snippet:UniqueQueuePerEndpointInstanceWithSuffix
+snippet: UniqueQueuePerEndpointInstanceWithSuffix

@@ -30,16 +30,27 @@ class AutomaticRoutingFeature :
 
         // Create the infrastructure
         var dataAccess = new SqlDataAccess(uniqueKey, connectionString);
-        var communicator = new RoutingInfoCommunicator(dataAccess);
-        context.RegisterStartupTask(communicator);
+
+        context.Container.ConfigureComponent(
+            componentFactory: builder =>
+            {
+                return new RoutingInfoCommunicator(dataAccess, builder.Build<CriticalError>());
+            },
+            dependencyLifecycle: DependencyLifecycle.SingleInstance);
+
+        context.RegisterStartupTask(
+            startupTaskFactory: builder =>
+            {
+                return builder.Build<RoutingInfoCommunicator>();
+            });
 
         // Register the routing info publisher
-        context.RegisterStartupTask(builder =>
+        context.RegisterStartupTask(startupTaskFactory: builder =>
         {
             var handlerRegistry = builder.Build<MessageHandlerRegistry>();
             var messageTypesHandled = GetHandledCommands(handlerRegistry, conventions);
             return new RoutingInfoPublisher(
-                dataBackplane: communicator,
+                dataBackplane: builder.Build<RoutingInfoCommunicator>(),
                 hanledMessageTypes: messageTypesHandled,
                 publishedMessageTypes: messageTypesPublished,
                 settings: settings,
@@ -47,21 +58,23 @@ class AutomaticRoutingFeature :
         });
 
         // Register the routing info subscriber
-        context.RegisterStartupTask(builder =>
-        {
-            var handlerRegistry = builder.Build<MessageHandlerRegistry>();
-            var messageTypesHandled = GetHandledEvents(handlerRegistry, conventions);
-            var subscriber = new RoutingInfoSubscriber(
-                routingTable: unicastRoutingTable,
-                endpointInstances: endpointInstances,
-                messageTypesHandledByThisEndpoint: messageTypesHandled,
-                publishers: publishers,
-                sweepPeriod: TimeSpan.FromSeconds(5),
-                heartbeatTimeout: TimeSpan.FromSeconds(20));
-            communicator.Changed = subscriber.OnChanged;
-            communicator.Removed = subscriber.OnRemoved;
-            return subscriber;
-        });
+        context.RegisterStartupTask(
+            startupTaskFactory: builder =>
+            {
+                var handlerRegistry = builder.Build<MessageHandlerRegistry>();
+                var messageTypesHandled = GetHandledEvents(handlerRegistry, conventions);
+                var subscriber = new RoutingInfoSubscriber(
+                    routingTable: unicastRoutingTable,
+                    endpointInstances: endpointInstances,
+                    messageTypesHandledByThisEndpoint: messageTypesHandled,
+                    publishers: publishers,
+                    sweepPeriod: TimeSpan.FromSeconds(5),
+                    heartbeatTimeout: TimeSpan.FromSeconds(20));
+                var communicator = builder.Build<RoutingInfoCommunicator>();
+                communicator.Changed = subscriber.OnChanged;
+                communicator.Removed = subscriber.OnRemoved;
+                return subscriber;
+            });
 
         context.Pipeline.Register(
             stepId: "VerifyAdvertisedBehavior",

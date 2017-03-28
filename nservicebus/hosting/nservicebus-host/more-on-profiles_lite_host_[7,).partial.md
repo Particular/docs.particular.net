@@ -1,1 +1,0 @@
-[Installers](/nservicebus/operations/installers.md) are always invoked when running the Lite profile.

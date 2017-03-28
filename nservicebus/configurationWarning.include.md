@@ -1,0 +1,1 @@
+Warning: Configuring this feature via `app.config`, `IConfigurationProvider`, or `IProvideConfiguration` is not recommended in Version 6, use the code configuration API instead. The configuration sections will be removed in Version 7.

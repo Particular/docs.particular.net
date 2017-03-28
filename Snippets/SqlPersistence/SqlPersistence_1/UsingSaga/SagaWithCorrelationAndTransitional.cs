@@ -10,18 +10,16 @@ namespace SqlPersistence_1.UsingSaga
 
     [SqlSaga(
         correlationProperty: nameof(SagaData.CorrelationProperty),
-        transitionalCorrelationProperty: nameof(SagaData.TranstitionalCorrelationProperty)
+        transitionalCorrelationProperty: nameof(SagaData.TransitionalCorrelationProperty)
     )]
     public class SagaWithCorrelationAndTransitional :
-        Saga<SagaWithCorrelationAndTransitional.SagaData>,
+        SqlSaga<SagaWithCorrelationAndTransitional.SagaData>,
         IAmStartedByMessages<StartSagaMessage>
     {
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
+        protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
         {
-            mapper.ConfigureMapping<StartSagaMessage>(order => order.CorrelationProperty)
-                .ToSaga(data => data.CorrelationProperty);
-            mapper.ConfigureMapping<StartSagaMessage>(order => order.TranstitionalCorrelationProperty)
-                .ToSaga(data => data.TranstitionalCorrelationProperty);
+            mapper.MapMessage<StartSagaMessage>(_ => _.CorrelationProperty);
+            mapper.MapMessage<StartSagaMessage>(_ => _.TransitionalCorrelationProperty);
         }
 
         public Task Handle(StartSagaMessage message, IMessageHandlerContext context)
@@ -33,7 +31,7 @@ namespace SqlPersistence_1.UsingSaga
             ContainSagaData
         {
             public Guid CorrelationProperty { get; set; }
-            public Guid TranstitionalCorrelationProperty { get; set; }
+            public Guid TransitionalCorrelationProperty { get; set; }
         }
     }
 

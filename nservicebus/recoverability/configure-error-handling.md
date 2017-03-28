@@ -24,12 +24,13 @@ WARNING: When running with [transport transactions disabled](/nservicebus/transp
 
 Error queue address can be configured in several ways.
 
-partial:ErrorWithCode
+partial: ErrorWithCode
 
+include: configurationWarning
 
 ### Using a IConfigurationProvider
 
-snippet:ErrorQueueConfigurationProvider
+snippet: ErrorQueueConfigurationProvider
 
 
 ### Using a ConfigurationSource
@@ -38,14 +39,14 @@ snippet: ErrorQueueConfigurationSource
 
 Then at configuration time:
 
-snippet:UseCustomConfigurationSourceForErrorQueueConfig
+snippet: UseCustomConfigurationSourceForErrorQueueConfig
 
 
 ### Using App.Config
 
-snippet:configureErrorQueueViaXml
+snippet: configureErrorQueueViaXml
 
-partial:errorheader
+partial: errorheader
 
 
 ## Error queue monitoring

@@ -12,7 +12,7 @@ Using [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet dependency on [Jil]
 
 ## Usage
 
-snippet:JilSerialization
+snippet: JilSerialization
 
 
 ### Custom Settings
@@ -26,19 +26,19 @@ snippet: JilCustomSettings
 
 Customize the creation of the [JsonReader](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
 
-snippet:JilCustomReader
+snippet: JilCustomReader
 
 
 ### Custom Writer
 
 Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
 
-snippet:JilCustomWriter
+snippet: JilCustomWriter
 
 
 include: custom-contenttype-key
 
-snippet:JilContentTypeKey
+snippet: JilContentTypeKey
 
 
 ## Currently not supported

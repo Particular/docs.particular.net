@@ -12,7 +12,7 @@ Using [Json](https://en.wikipedia.org/wiki/Json) via an [ILMerged](https://githu
 
 ## Usage
 
-snippet:JsonSerialization
+snippet: JsonSerialization
 
 
 partial: version
@@ -56,6 +56,8 @@ The result will be
 ```json
 {"FamilyName":"Smith","GivenNames":"John"}
 ```
+
+partial: encoding
 
 
 ## Bson

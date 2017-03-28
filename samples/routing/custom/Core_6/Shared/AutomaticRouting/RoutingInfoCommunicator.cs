@@ -12,10 +12,19 @@ class RoutingInfoCommunicator :
     Dictionary<string, Entry> cache = new Dictionary<string, Entry>();
     SqlDataAccess dataAccess;
     Timer timer;
+    ICircuitBreaker circuitBreaker;
+    bool refreshingRoutingInfo;
 
-    public RoutingInfoCommunicator(SqlDataAccess dataAccess)
+    public RoutingInfoCommunicator(SqlDataAccess dataAccess, CriticalError criticalError)
     {
         this.dataAccess = dataAccess;
+        circuitBreaker = new RepeatedFailuresOverTimeCircuitBreaker(
+            name: "Refresh",
+            timeToWaitBeforeTriggering: TimeSpan.FromMinutes(2),
+            triggerAction: exception =>
+            {
+                criticalError.Raise("Failed to refresh routing info.", exception);
+            });
     }
 
     public Func<Entry, Task> Changed = entry => Task.CompletedTask;
@@ -23,44 +32,69 @@ class RoutingInfoCommunicator :
 
     protected override Task OnStart(IMessageSession messageSession)
     {
-        timer = new Timer(state =>
-        {
-            Refresh()
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
-        }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+        timer = new Timer(
+            callback: state =>
+            {
+                Refresh()
+                    .ConfigureAwait(false)
+                    .GetAwaiter()
+                    .GetResult();
+            },
+            state: null,
+            dueTime: TimeSpan.Zero,
+            period: TimeSpan.FromSeconds(5));
         return Task.CompletedTask;
     }
 
     async Task Refresh()
     {
-        var addedOrUpdated = new List<Entry>();
-        var results = await dataAccess.Query()
-            .ConfigureAwait(false);
-        var removed = cache.Values
-            .Where(x => results.All(r => r.Publisher != x.Publisher))
-            .ToArray();
-        foreach (var entry in results)
+        // Makes sure no overlap in refresh intervals
+        if (refreshingRoutingInfo)
         {
-            Entry oldEntry;
-            var key = entry.Publisher;
-            if (!cache.TryGetValue(key, out oldEntry) || oldEntry.Data != entry.Data)
+            return;
+        }
+
+        try
+        {
+            refreshingRoutingInfo = true;
+
+            var addedOrUpdated = new List<Entry>();
+            var results = await dataAccess.Query()
+                .ConfigureAwait(false);
+            var removed = cache.Values
+                .Where(x => results.All(r => r.Publisher != x.Publisher))
+                .ToArray();
+            foreach (var entry in results)
             {
-                cache[key] = entry;
-                addedOrUpdated.Add(entry);
+                Entry oldEntry;
+                var key = entry.Publisher;
+                if (!cache.TryGetValue(key, out oldEntry) || oldEntry.Data != entry.Data)
+                {
+                    cache[key] = entry;
+                    addedOrUpdated.Add(entry);
+                }
             }
+            foreach (var change in addedOrUpdated)
+            {
+                await Changed(change)
+                    .ConfigureAwait(false);
+            }
+            foreach (var entry in removed)
+            {
+                cache.Remove(entry.Publisher);
+                await Removed(entry)
+                    .ConfigureAwait(false);
+            }
+            circuitBreaker.Success();
         }
-        foreach (var change in addedOrUpdated)
+        catch (Exception exception)
         {
-            await Changed(change)
+            await circuitBreaker.Failure(exception)
                 .ConfigureAwait(false);
         }
-        foreach (var entry in removed)
+        finally
         {
-            cache.Remove(entry.Publisher);
-            await Removed(entry)
-                .ConfigureAwait(false);
+            refreshingRoutingInfo = false;
         }
     }
 

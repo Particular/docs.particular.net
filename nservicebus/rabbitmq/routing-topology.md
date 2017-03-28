@@ -49,11 +49,11 @@ WARNING: In accordance with the [AMQP 0.9.1 standard](https://www.rabbitmq.com/a
 
 To enable the direct routing topology, use the following configuration:
 
-snippet:rabbitmq-config-usedirectroutingtopology
+snippet: rabbitmq-config-usedirectroutingtopology
 
 Adjust the conventions for exchange name and routing key by using the overload:
 
-snippet:rabbitmq-config-usedirectroutingtopologywithcustomconventions
+snippet: rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
 WARNING: In some cases, the direct routing topology may not deliver message types with "non-system" interfaces in their inheritance hierarchy. A "non-system" interface is any interface which is not contained in a .NET Framework assembly (any assembly signed with the same public key as mscorlib), and is not one of the [marker interfaces](/nservicebus/messaging/messages-events-commands.md#defining-messages-marker-interfaces). When using the direct routing topology, message types must not inherit from "non-system" interfaces. To guarantee delivery of message types which inherit from non-system interfaces, the conventional routing topology must be used.
 
@@ -67,8 +67,10 @@ If the built-in routing topologies do not satisfy the requirements of the system
 
 partial: delegate-argument
 
-snippet:rabbitmq-config-useroutingtopology
+snippet: rabbitmq-config-useroutingtopology
 
 For each queue required by the endpoint, the transport will first declare that queue and will then call the `Initialize` method of the routing topology. The routing topology should then perform all initialization related to that specific queue such as the creation of appropriate exchanges and bindings.
 
 partial: queue-declaration
+
+partial: support-delayed-delivery

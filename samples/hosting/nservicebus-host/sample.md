@@ -15,7 +15,7 @@ related:
 
 This sample shows how to host a NServiceBus endpoint using the NServiceBus.Host.
 
-snippet:nservicebus-host
+snippet: nservicebus-host
 
 
 ## Running code when at start and stop

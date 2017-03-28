@@ -4,4 +4,4 @@ In NServiceBus.Azure the behavior of the `AzureStoragePersister` can be controll
 
 In NServiceBus.Azure configuration can be performed using configuration sections and properties in the `app.config` file.
 
-snippet:AzurePersistenceFromAppConfig
+snippet: AzurePersistenceFromAppConfig

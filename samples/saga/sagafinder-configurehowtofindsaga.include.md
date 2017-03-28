@@ -1,0 +1,1 @@
+NOTE: In the sample the implementation of the `ConfigureHowToFindSaga` method, that is required, is empty since a saga finder is provided for each message type that the saga is handling. It is not required to provide a saga finder for every message type, a mix of standard saga mappings and custom saga finding is a valid scenario.

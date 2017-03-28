@@ -21,8 +21,7 @@ class ProgramService :
             {
                 service.OnStart(null);
 
-                Console.WriteLine("Bus created and configured");
-                Console.WriteLine("Press any key to exit");
+                Console.WriteLine("Bus started. Press any key to exit");
                 Console.ReadKey();
 
                 service.OnStop();

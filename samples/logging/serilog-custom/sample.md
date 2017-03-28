@@ -15,9 +15,9 @@ Illustrates customizing logging usage by configuring Serilog targets and rules.
 
 ### Configure Serilog
 
-snippet:ConfigureSerilog
+snippet: ConfigureSerilog
 
 
 ### Pass that configuration to NServiceBus
 
-snippet:UseConfig
+snippet: UseConfig

@@ -1,1 +1,1 @@
-snippet:SenderConfiguration
+snippet: SenderConfiguration

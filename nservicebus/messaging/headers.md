@@ -114,7 +114,7 @@ Downstream message [Handlers](/nservicebus/handlers) or [Sagas](/nservicebus/sag
 
 When a message is sent the headers will be as follows:
 
-snippet:HeaderWriterSend
+snippet: HeaderWriterSend
 
 The above example headers are for a Send and hence the `MessageIntent` header is `Send`. If the message was published instead, the `MessageIntent` header would be `Publish`.
 

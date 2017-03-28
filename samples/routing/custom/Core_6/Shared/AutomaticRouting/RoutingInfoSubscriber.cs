@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NServiceBus;
@@ -23,9 +22,7 @@ class RoutingInfoSubscriber :
     TimeSpan heartbeatTimeout;
     Dictionary<Type, string> endpointMap = new Dictionary<Type, string>();
     Dictionary<string, HashSet<EndpointInstance>> instanceMap = new Dictionary<string, HashSet<EndpointInstance>>();
-    Dictionary<EndpointInstance, EndpointInstanceInfo> instanceInformation = new Dictionary<EndpointInstance, EndpointInstanceInfo>();
     Dictionary<Type, string> publisherMap = new Dictionary<Type, string>();
-    Timer sweepTimer;
     IMessageSession messageSession;
 
     public RoutingInfoSubscriber(UnicastRoutingTable routingTable, EndpointInstances endpointInstances, IReadOnlyCollection<Type> messageTypesHandledByThisEndpoint, Publishers publishers, TimeSpan sweepPeriod, TimeSpan heartbeatTimeout)
@@ -41,26 +38,11 @@ class RoutingInfoSubscriber :
     protected override Task OnStart(IMessageSession context)
     {
         messageSession = context;
-        sweepTimer = new Timer(state =>
-        {
-            foreach (var info in instanceInformation)
-            {
-                if (!info.Value.Sweep(DateTime.UtcNow, heartbeatTimeout))
-                {
-                    log.Info($"Instance {info.Key} deactivated (heartbeat timeout).");
-                }
-            }
-        }, null, sweepPeriod + sweepPeriod, sweepPeriod);
         return Task.CompletedTask;
     }
 
     protected override Task OnStop(IMessageSession session)
     {
-        using (var waitHandle = new ManualResetEvent(false))
-        {
-            sweepTimer.Dispose(waitHandle);
-            waitHandle.WaitOne();
-        }
         return Task.CompletedTask;
     }
 
@@ -73,8 +55,6 @@ class RoutingInfoSubscriber :
 
         await UpdateCaches(instanceName, new Type[0], new Type[0])
             .ConfigureAwait(false);
-
-        instanceInformation.Remove(instanceName);
     }
 
     public Task OnChanged(Entry entry)
@@ -92,24 +72,6 @@ class RoutingInfoSubscriber :
                 .Where(x => x != null)
                 .ToArray();
 
-        EndpointInstanceInfo instanceInfo;
-        if (!instanceInformation.TryGetValue(instanceName, out instanceInfo))
-        {
-            var newInstanceInformation = new Dictionary<EndpointInstance, EndpointInstanceInfo>(instanceInformation);
-            instanceInfo = new EndpointInstanceInfo();
-            newInstanceInformation[instanceName] = instanceInfo;
-            instanceInformation = newInstanceInformation;
-        }
-        if (deserializedData.Active)
-        {
-            instanceInfo.Activate(deserializedData.Timestamp);
-            log.Debug($"Instance {instanceName} active (heartbeat).");
-        }
-        else
-        {
-            instanceInfo.Deactivate();
-            log.Info($"Instance {instanceName} deactivated.");
-        }
         return UpdateCaches(instanceName, handledTypes, publishedTypes);
     }
 
@@ -123,6 +85,7 @@ class RoutingInfoSubscriber :
         var toSubscribe = LogChangesToPublisherMap(publisherMap, newPublisherMap).ToArray();
 
         #region AddOrReplace
+
         routingTable.AddOrReplaceRoutes("AutomaticRouting", newEndpointMap.Select(
             x => new RouteTableEntry(x.Key, UnicastRoute.CreateFromEndpointName(x.Value))).ToList());
 
@@ -130,6 +93,7 @@ class RoutingInfoSubscriber :
             x => new PublisherTableEntry(x.Key, PublisherAddress.CreateFromEndpointName(x.Value))).ToList());
 
         endpointInstances.AddOrReplaceInstances("AutomaticRouting", newInstanceMap.SelectMany(x => x.Value).ToList());
+
         #endregion
 
         instanceMap = newInstanceMap;

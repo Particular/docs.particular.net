@@ -33,6 +33,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomEnvelopeUnwrapper.cs" />
     <Compile Include="MessageWrapperSerializer.cs" />
     <Compile Include="UpgradeGuides\6to7\SerializerDefinition.cs" />
     <Compile Include="UpgradeGuides\6to7\Upgrade.cs" />

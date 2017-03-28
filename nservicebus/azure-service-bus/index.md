@@ -30,7 +30,7 @@ When creating the namespace at the Azure portal, choose Standard or Premium Mess
 
 Then at configuration time set ASB as the transport:
 
-snippet:AzureServiceBusTransportWithAzure
+snippet: AzureServiceBusTransportWithAzure
 
 
 ## Setting the Connection String
@@ -44,4 +44,4 @@ partial: code-connection
 
 ### Via App.Config
 
-snippet:AzureServiceBusConnectionStringFromAppConfig
+snippet: AzureServiceBusConnectionStringFromAppConfig

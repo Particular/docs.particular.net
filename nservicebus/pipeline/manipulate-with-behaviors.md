@@ -21,7 +21,7 @@ Pipelines are made up of a group of steps acting on the same level of abstractio
 
 Extending the pipeline is done with a custom behavior implementing `Behavior<TContext>`.`TContext` is the context of the stage that the behavior belongs to.
 
-snippet:SamplePipelineBehavior
+snippet: SamplePipelineBehavior
 
 In the above code snippet the `SampleBehavior` class derives from the Behavior contract and target the incoming context. This tells the framework to execute this behavior after the incoming raw message has been deserialized and a matching message type has been found. At runtime, the pipeline will call the `Invoke` method of each registered behavior passing in as arguments the current message context and an action to invoke the next behavior in the pipeline.
 
@@ -30,14 +30,14 @@ Warning: Each behavior is responsible to call the next step in the pipeline chai
 
 ## Add a new step
 
-partial:registernew
+partial: registernew
 
 
 ## Replace an existing step
 
 To replace the implementation of an existing step replace it with a custom behavior:
 
-snippet:ReplacePipelineStep
+snippet: ReplacePipelineStep
 
 Note: Steps can also be registered from a [Feature](features.md).
 

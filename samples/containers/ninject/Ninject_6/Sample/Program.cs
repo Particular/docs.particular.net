@@ -38,19 +38,13 @@ public class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        try
-        {
-            var myMessage = new MyMessage();
-            await endpointInstance.SendLocal(myMessage)
-                .ConfigureAwait(false);
+        var myMessage = new MyMessage();
+        await endpointInstance.SendLocal(myMessage)
+            .ConfigureAwait(false);
 
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

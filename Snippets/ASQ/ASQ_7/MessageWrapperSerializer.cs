@@ -1,4 +1,5 @@
 ﻿using NServiceBus;
+using JsonSerializer = NServiceBus.JsonSerializer;
 
 class MessageWrapperSerializer
 {

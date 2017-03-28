@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using NServiceBus;
 
 class Usage
@@ -140,4 +141,35 @@ class Usage
         #endregion
     }
 
+    void SetClientCertificates(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-config-client-certificates
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.SetClientCertificates(new X509CertificateCollection());
+
+        #endregion
+    }
+
+    void DisableTimeoutManager(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-delay-disable-timeout-manager 4.3
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        var delayedDelivery = transport.DelayedDelivery();
+        delayedDelivery.DisableTimeoutManager();
+
+        #endregion
+    }
+
+    void AllEndpointsSupportDelayedDelivery(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-delay-all-endpoints-support-delayed-delivery 4.3
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        var delayedDelivery = transport.DelayedDelivery();
+        delayedDelivery.AllEndpointsSupportDelayedDelivery();
+
+        #endregion
+    }
 }

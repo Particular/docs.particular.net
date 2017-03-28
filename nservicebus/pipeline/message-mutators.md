@@ -2,7 +2,7 @@
 title: Message Mutators
 summary: Message Mutators allow mutation of messages in the pipeline
 component: Core
-reviewed: 2016-12-01
+reviewed: 2017-07-03
 tags:
  - Mutator
 redirects:
@@ -14,47 +14,43 @@ related:
 
 Message Mutators allow mutation of messages in the pipeline.
 
-
-## Two flavors of Mutators
-
-NServiceBus enables two categories of Message Mutators:
+NServiceBus supports two categories of Message Mutators:
 
 
-### Logical Message Mutators
+## Logical Message Mutators
 
 Message mutators change/react to individual messages being sent or received. The `IMutateOutgoingMessages` or `IMutateIncomingMessages` interfaces allow the implementation of hooks for the sending and receiving sides.
 
 Mutators can be used to perform actions such as validation of outgoing/incoming messages.
 
-NServiceBus uses this type of mutator internally to do things like property encryption and serialization/deserialization of properties to and from the DataBus.
+
+### IMutateIncomingMessages
+
+snippet: IMutateIncomingMessages
 
 
-#### IMutateIncomingMessages
+### IMutateOutgoingMessages
 
-snippet:IMutateIncomingMessages
-
-
-#### IMutateOutgoingMessages
-
-snippet:IMutateOutgoingMessages
+snippet: IMutateOutgoingMessages
 
 
 partial: imessagemutator
 
 
-### Transport Messages Mutators
+## Transport Messages Mutators
 
-Create transport message mutators by implementing the `IMutateIncomingTransportMessages` or `IMutateOutgoingTransportMessages` interfaces. This type of mutator works on the entire transport message and is useful for compression, header manipulation, etc.
-
-
-#### IMutateIncomingTransportMessages
-
-snippet:IMutateIncomingTransportMessages
+Transport message mutators work on the serialized transport message and are useful for compression, header manipulation, etc.
+Create transport message mutators by implementing the `IMutateIncomingTransportMessages` or `IMutateOutgoingTransportMessages` interfaces.
 
 
-#### IMutateOutgoingTransportMessages
+### IMutateIncomingTransportMessages
 
-snippet:IMutateOutgoingTransportMessages
+snippet: IMutateIncomingTransportMessages
+
+
+### IMutateOutgoingTransportMessages
+
+snippet: IMutateOutgoingTransportMessages
 
 
 partial: imutatetransportmessages
@@ -62,9 +58,9 @@ partial: imutatetransportmessages
 
 ## Registering a Mutator
 
-Mutators are **NOT** automatically registered in the container, so to have them invoked, register them in the [container](/nservicebus/containers/).
+Mutators are **NOT** automatically registered in the container, so to have them invoked, register them in the `EndpointConfiguration`:
 
-snippet:MutatorRegistration
+snippet: MutatorRegistration
 
 NOTE: Mutators are non-deterministic in terms of order of execution. If more fine grained control is required over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/manipulate-with-behaviors.md).
 

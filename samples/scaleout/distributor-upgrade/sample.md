@@ -33,7 +33,7 @@ This new project is going to reference `NServiceBus` Version 5.X because distrib
 
 Following code is required to set up the distributor
 
-snippet:DistributorCode
+snippet: DistributorCode
 
 Notice that `false` is passed as a value for `withWorker` argument of the `RunMSMQDistributor` API call.
 
@@ -42,7 +42,7 @@ Notice that `false` is passed as a value for `withWorker` argument of the `RunMS
 
 In the original sample the sender was sending messages to the master (Worker1). Now it needs to send messages to the new stand-alone distributor
 
-snippet:SenderRouting
+snippet: SenderRouting
 
 
 ### Upgrading the workers
@@ -59,14 +59,14 @@ There are minor changes required to make the workers compile against the Version
 
 In Versions 6 and above each endpoint instance is identified by name of the endpoint and an ID of the instance. Both workers are going to be named `Samples.Scaleout.Worker` and the instance ID is going to be loaded from the app.config file. If the workers are deployed to separate machines the instance ID can be omitted.
 
-snippet:WorkerIdentity
+snippet: WorkerIdentity
 
 
 ### Enlisting with the distributor
 
 In Versions 6 and above there is a new API for enlisting with the distributor. The API requires passing addresses of distributor data and control queues which were previously read from the configuration section.
 
-snippet:Enlisting
+snippet: Enlisting
 
 The last parameter, `capacity` is the maximum number of messages in-flight between the distributor and the worker. The worker sends an acknowledgement (ACK) message (also called `ready` message) for each message processed. The distributor keeps track of these ACKs to ensure no worker is flooded with work that it can't process
 

@@ -20,4 +20,4 @@ The default behavior of Version 6 is to not scan nested directories for assembli
 
 The API has been changed to an "Exclude a list" approach. See [Assemblies to scan](/nservicebus/hosting/assembly-scanning.md#assemblies-to-scan) for more information.
 
-snippet:5to6ScanningUpgrade
+snippet: 5to6ScanningUpgrade

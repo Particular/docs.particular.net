@@ -1,7 +1,7 @@
 ---
 title: Configuration Settings
 summary: Categorized list of ServiceControl configuration settings.
-reviewed: 2016-11-09
+reviewed: 2017-03-01
 ---
 
 
@@ -59,6 +59,23 @@ Type: string
 
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>`
 
+The indexes and Esent logs can be stored in a different path from the the RavenDB database data files by using the following [RavenDB configuration app settings](https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration):
+
+#### Raven/IndexStoragePath
+
+The path for the indexes on disk.
+
+Type: string
+
+Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>\indexes`
+
+#### Raven/Esent/LogsPath
+
+The path for the Esent logs on disk.
+
+Type: string
+
+Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>\Logs`
 
 #### ServiceControl/LogPath
 

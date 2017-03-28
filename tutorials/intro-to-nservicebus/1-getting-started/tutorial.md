@@ -62,34 +62,34 @@ Because of the current limitations of console applications, we need to add some 
 
 In the **Program.cs** file, modify the code to look like the following:
 
-snippet:EmptyProgram
+snippet: EmptyProgram
 
 Add the following code to your program first and then let's analyze the importance of each line.
 
 Add this code to your AsyncMain method:
 
-snippet:AsyncMain
+snippet: AsyncMain
 
 Now, let's go line-by-line and find out exactly what each step is doing.
 
 
 #### Console Title
 
-snippet:ConsoleTitle
+snippet: ConsoleTitle
 
 When running multiple console apps in the same solution, giving each a name makes them easier to identify. This console app's title uses `ClientUI`. In later lessons, we'll expand this solution to host several more.
 
 
 #### EndpointConfiguration
 
-snippet:EndpointName
+snippet: EndpointName
 
 The `EndpointConfiguration` class is where we define all the settings that determine how our endpoint will operate. The single string parameter `ClientUI` is the [**endpoint name**](/nservicebus/endpoints/specify-endpoint-name.md), which serves as the logical identity for our endpoint, and forms a naming convention by which other things will derive their names, such as the **input queue** where the endpoint will listen for messages to process.
 
 
 #### Transport
 
-snippet:MsmqTransport
+snippet: MsmqTransport
 
 This setting defines the [**transport**](/nservicebus/transports/) that NServiceBus will use to send and receive messages. We are using the `MsmqTransport`, which is bundled within the NServiceBus core library. All other transports require different NuGet packages.
 
@@ -100,7 +100,7 @@ NOTE: If using the SQL Server transport, you must use the `SqlServerTransport` a
 
 #### Serializer
 
-snippet:Serializer
+snippet: Serializer
 
 When sending messages, an endpoint needs to serialize message objects to a stream, and then deserialize the stream back to a message object on the receiving end. The choice of [**serializer**](/nservicebus/serialization/) governs what format that will take. Each endpoint in a system needs to use the same serializer in order to be able to understand each other.
 
@@ -109,21 +109,21 @@ Here, we are choosing the `JsonSerializer` because JSON is reasonably compact an
 
 #### Persistence
 
-snippet:Persistence
+snippet: Persistence
 
 A [**persistence**](/nservicebus/persistence/) is required to store some data in between handling messages. We will explore the reasons for this in future lessons but for now, we'll use an [implementation that stores everything in memory](/nservicebus/persistence/in-memory.md). This has the advantage during development of allowing us to iterate quickly by providing us with a clean slate every time we start up. Of course, as everything persisted is lost when the endpoint shuts down, it is not safe for production use, so we will want to replace it with a different persistence option before deployment.
 
 
 #### Error queue
 
-snippet:ErrorQueue
+snippet: ErrorQueue
 
 Processing a message can fail for several reasons. It could be due to a coding bug, a database deadlock, or unanticipated data inside a message. Automatic retries will make dealing with non-deterministic exceptions a non-issue, but for very serious errors, the message could get stuck at the top of the queue and be retried indefinitely. This type of message, known as a **poison message**, would block all other messages behind it. When these occur, NServiceBus needs to be able to set it aside in a different queue to allow other work to get done. This queue is referred to as the **error queue** and is commonly named `error`. We will discuss [**recoverability**](/nservicebus/recoverability/) more in [Lesson 5: Retrying errors](../5-retrying-errors/).
 
 
 #### Installers
 
-snippet:EnableInstallers
+snippet: EnableInstallers
 
 This setting instructs the endpoint to run [installers](/nservicebus/operations/installers.md) on startup. Installers are used to set up anything the endpoint requires to run. The most common example is creating necessary queues, such as the endpoint's input queue where it will receive messages.
 
@@ -132,7 +132,7 @@ This setting instructs the endpoint to run [installers](/nservicebus/operations/
 
 At the end of the `AsyncMain` method, after the configuration code, add the following code which will start up the endpoint, keep it running until we press the Enter key, and then shut it down.
 
-snippet:Startup
+snippet: Startup
 
 NOTE: In this tutorial we will always use `.ConfigureAwait(false)` when awaiting tasks, in order to [avoid capturing and restoring the SynchronizationContext](/nservicebus/handlers/async-handlers.md#usage-of-configureawait).
 
@@ -152,7 +152,7 @@ When you run the endpoint for the first time, the endpoint will:
 
 Now might be a good time to go look at your list of queues. There are a [variety of options for viewing MSMQ queues and messages](/nservicebus/msmq/viewing-message-content-in-msmq.md) that you can pick from. In addition to the queues mentioned above, you may also see an `error.log` queue and queues starting with `particular.servicecontrol` if you [installed a ServiceControl instance](/servicecontrol/installation.md) while installing the Particular Service Platform.
 
-When using the MSMQ transport, queues are created with [permissive settings](/nservicebus/msmq/operations-scripting.md#create-queues-default-permissions) that make things easier during development. In a production scenario these queues should be created with the minimum required privileges. The endpoint will write a log entry on startup when permissive settings are detected to remind you to do this.
+When using the MSMQ transport, queues are created with [permissive settings](/nservicebus/msmq/#permissions) that make things easier during development. In a production scenario these queues should be created with the minimum required privileges. The endpoint will write a log entry on startup when permissive settings are detected to remind you to do this.
 
 NOTE: If you are using the SQL Server transport, take a look in your SQL database, where NServiceBus has created each of the queues listed above as a separate table.
 

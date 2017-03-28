@@ -2,7 +2,6 @@
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -18,8 +17,7 @@ class Usage
         #region SqlPersistenceUsageSqlServer
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-
-        var connection = @"Data Source=.\SQLEXPRESS;Initial Catalog=sqlpersistencesample;Integrated Security=True";
+        var connection = @"Data Source=.\SQLEXPRESS;Initial Catalog=dbname;Integrated Security=True";
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
@@ -48,8 +46,8 @@ class Usage
 
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var isDevelopement = Environment.GetEnvironmentVariable("IsDevelopement") == "true";
-        if (!isDevelopement)
+        var isDevelopment = Environment.GetEnvironmentVariable("IsDevelopment") == "true";
+        if (!isDevelopment)
         {
             persistence.DisableInstaller();
         }
@@ -61,7 +59,7 @@ class Usage
     {
         #region SqlPersistenceUsageMySql
 
-        var connection = "server=localhost;user=root;database=sqlpersistencesample;port=3306;password=Password1;AllowUserVariables=True;AutoEnlist=false";
+        var connection = "server=localhost;user=root;database=dbname;port=3306;password=pass;AllowUserVariables=True;AutoEnlist=false";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlVariant(SqlVariant.MySql);
         persistence.ConnectionBuilder(
@@ -169,14 +167,23 @@ class Usage
         #endregion
     }
 
-    async Task ExecuteScripts(string scriptDirectory, string tablePrefix)
+    void Schema(EndpointConfiguration endpointConfiguration)
     {
-        #region ExecuteScripts
+        #region Schema
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.TablePrefix("MySchema.");
+
+        #endregion
+    }
+
+    void ExecuteScripts(string scriptDirectory, string tablePrefix)
+    {
+        #region ExecuteScriptsSqlServer
 
         using (var connection = new SqlConnection("ConnectionString"))
         {
-            await connection.OpenAsync()
-                .ConfigureAwait(false);
+            connection.Open();
             using (var transaction = connection.BeginTransaction())
             {
                 foreach (var createScript in Directory.EnumerateFiles(
@@ -192,8 +199,36 @@ class Usage
                         parameter.ParameterName = "tablePrefix";
                         parameter.Value = tablePrefix;
                         command.Parameters.Add(parameter);
-                        await command.ExecuteNonQueryAsync()
-                            .ConfigureAwait(false);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                transaction.Commit();
+            }
+        }
+
+        #endregion
+
+        #region ExecuteScriptsMySql
+
+        using (var connection = new MySqlConnection("ConnectionString"))
+        {
+            connection.Open();
+            using (var transaction = connection.BeginTransaction())
+            {
+                foreach (var createScript in Directory.EnumerateFiles(
+                    path: scriptDirectory,
+                    searchPattern: "*_Create.sql",
+                    searchOption: SearchOption.AllDirectories))
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandText = File.ReadAllText(createScript);
+                        var parameter = command.CreateParameter();
+                        parameter.ParameterName = "tablePrefix";
+                        parameter.Value = tablePrefix;
+                        command.Parameters.Add(parameter);
+                        command.ExecuteNonQuery();
                     }
                 }
                 transaction.Commit();

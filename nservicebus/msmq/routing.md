@@ -17,10 +17,10 @@ MSMQ is a [bus transport](/nservicebus/transports). This means that an MSMQ syst
 
 Because the MSMQ queues are not accessible from outside the machine they are hosted at, NServiceBus endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out with a single shared queue. 
 
-partial:scale-out
+partial: scale-out
 
 
 ## Physical mapping
 
-partial:content
+partial: content
 

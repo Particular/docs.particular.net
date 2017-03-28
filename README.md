@@ -466,7 +466,7 @@ For example if the solution contains two endpoints and you only want to start `E
 Endpoint1\Endpoint1.csproj
 ```
 
-To apply this convention on you local clone of the docs repo use the [set startup projects linkpad script](#setstartuplinq).
+To apply this convention on your local clone of the docs repo use the [set startup projects linkpad script](#setstartuplinq).
 
 
 ### Bootstrapping a sample
@@ -1014,7 +1014,7 @@ Under https://github.com/Particular/docs.particular.net/tree/master/tools there 
 
 ## nugets.linq
 
-Uses nuget.exe to update all NuGet packages in all solutions to the newest patch version. This script takes 10-20 minutes depending on bandwidth.
+Uses nuget.exe to update all NuGet packages in all solutions to the newest patch version. This script takes 10-20 minutes depending on bandwidth. The script will **not** update to the newest minor or major versions.
 
 
 ## resharpersettings.linq

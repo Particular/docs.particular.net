@@ -2,10 +2,10 @@ startcode MsSqlServer_SagadGetByPropertySql
 
 select
     Id,
-    Metadata,
-    Data,
     SagaTypeVersion,
-    Concurrency
+    Concurrency,
+    Metadata,
+    Data
 from EndpointNameSagaName
 where Correlation_PropertyName = @propertyValue
 

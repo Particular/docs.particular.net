@@ -2,13 +2,13 @@
 title: Custom routing
 summary: Customizing NServiceBus message routing
 component: Core
-reviewed: 2016-10-26
+reviewed: 2017-03-02
 tags:
 - Routing
-redirects:
 ---
 
-The sample demonstrates how NServiceBus routing model can be extended to allow for configuration-free routing with MSMQ transport. It does so by making endpoint instances publish metadata information about themselves:
+The sample demonstrates how the routing model can be extended to allow for configuration-free routing with [MSMQ transport](/nservicebus/msmq/). It does so by making endpoint instances publish metadata information about themselves:
+
  * identity - logical name and physical address;
  * handled messages;
  * published events.
@@ -37,32 +37,14 @@ The advantage of configuration-free approach is low development friction and sim
  1. The Billing endpoint displays information that orders were billed.
 
 
-### Detecting failure
-
- 1. Close the Sales.2 console window.
- 1. Hit `<enter>` several times to send more messages.
- 1. Notice that only every other message gets processed by Sales.1. Client still does not know that Sales.2 is down.
- 1. Wait until consoles show that Sales.2 heartbeat timed out.
- 1. Hit `<enter>` several times to send more messages.
- 1. Notice that all orders are now routed to Sales.1 queue.
-
-
-### Recovery
-
- 1. In Visual Studio right-click on `Sales2` project and select `Debug -> Start new instance`.
- 1. Notice that all messages sent to Sales.2 while it was down are now processed.
- 1. Wait until other endpoints detect Sales.2 again.
- 1. Hit `<enter>` several times to send more messages.
- 1. Notice that orders are again routed to both Sales instances in round-robin fashion.
-
-
 ## Code walk-through
 
 This sample contains four applications that use configuration-free custom routing:
 
-snippet:EnableAutomaticRouting
+snippet: EnableAutomaticRouting
 
 NOTE: In order to use this custom routing all published types need to be specified.
+
 
 ### Client
 
@@ -71,7 +53,7 @@ The Client application submits the orders for processing by the back-end systems
 
 ### Sales
 
-The Sales application accepts clients' orders and publishes the `OrderAccepted` event. 
+The Sales application accepts clients' orders and publishes the `OrderAccepted` event.
 
 NOTE: In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, in this sample the scale out is simulated by having two separate projects, Sales and Sales2.
 
@@ -92,7 +74,7 @@ The automatic routing is based on the idea of endpoints exchanging information a
 
 All the routing components are wired up using the following code:
 
-snippet:Feature
+snippet: Feature
 
 It creates a publisher and a subscriber for the routing information, as well as the communication object they use to exchange information between endpoints instances. It also registers an additional behavior that ensures that all published types are properly advertised. The automatic routing discovery protocol has no master and works in a peer-to-peer manner, therefore both publisher and subscriber need to be active in each endpoint instance.
 
@@ -134,12 +116,13 @@ RI -up-> S2_S
 ![Automatic routing design](design.png)
 
 The following information is required by this automatic routing implementation:
+
  * Mapping command types to their logical destinations.
  * Mapping event types to their respective logical publishers.
  * Mapping logical endpoints to their physical instances.
 
 `Logical` endpoints, publishers and destinations are `Endpoints`, while `physical` instances are `Endpoint Instances`. Refer to [Endpoints](/nservicebus/endpoints/) article for full definitions.
 
-This information is updated every time the automatic routing feature detects a change in the topology:
+This information is updated every time the automatic routing feature detects a change in the logical topology:
 
-snippet:AddOrReplace
+snippet: AddOrReplace

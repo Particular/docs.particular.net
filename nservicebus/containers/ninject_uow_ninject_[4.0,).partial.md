@@ -9,8 +9,8 @@ In essence, bindings using _Unit of Work_ scope
 
 Bind the services in _Unit of Work_ scope using:
 
-snippet:NinjectUnitOfWork
+snippet: NinjectUnitOfWork
 
 Services using `InUnitOfWorkScope()` can only be injected into code which is processing messages. To inject the service somewhere else (e.g. because of an user interaction) define conditional bindings:
 
-snippet:NinjectConditionalBindings
+snippet: NinjectConditionalBindings

@@ -65,7 +65,6 @@
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="MessageBodyEncryption\MessageEncryptor.cs" />
     <Compile Include="MessageBodyEncryption\Usage.cs" />
-    <Compile Include="Persistence\Custom\Usage.cs" />
     <Compile Include="Recoverability\CustomFaultManager.cs" />
     <Compile Include="Recoverability\Delayed\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="Forwarding\ConfigurationSource.cs" />

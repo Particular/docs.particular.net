@@ -59,7 +59,9 @@ Defaults:
  * 32 in Version 7
 
 
-partial:serialization
+partial: serialization
+
+
 #### DegreeOfReceiveParallelism
 
 The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it.
@@ -86,7 +88,7 @@ WARNING: Changing the value of `DegreeOfReceiveParallelism` will influence the t
 
 WARNING: The values of `BatchSize` , `DegreeOfParallelism`, `Concurrency`, [ServicePointManager Settings](/nservicebus/azure-storage-persistence/performance-tuning.md) and the other parameters like `MaximumWaitTimeWhenIdle` have to be selected carefully in order to get the desired speed out of the transport while not exceeding [the boundaries](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits) of the allowed number of operations per second.
 
-partial:config
+partial: config
 
 
 ## Connection strings
@@ -102,3 +104,6 @@ partial: aliasesAndHashing
 ## Serialization
 
 Azure Storage Queues Transport changes the default serializer to JSON. The serializer can be changed using the [serialization API](/nservicebus/serialization).
+
+
+partial: envelope

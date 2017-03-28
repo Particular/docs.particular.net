@@ -21,30 +21,30 @@ Centralized file-based routing is an alternative approach to configure message r
 
 Enable the feature in via the routing configuration:
 
-snippet:Enable
+snippet: Enable
 
 This will configure the endpoint to look for a `endpoints.xml` file in the endpoints [base directory](https://msdn.microsoft.com/en-us/library/system.appdomain.basedirectory.aspx).
 
 The routing file path can be configured using relative or absolute paths, e.g.:
 
-snippet:EnableCustomPath
+snippet: EnableCustomPath
 
 It is also possible to provide an Uri to the routing file (supporting `http[s]` and `file` protocols):
 
-snippet:EnableCustomUri
+snippet: EnableCustomUri
 
 The routing file provides routing information like shown in the following example:
     
 Create a new XML file named `endpoints.xml` and include it on every endpoint using file based routing. 
 
-snippet:EndpointsByType
+snippet: EndpointsByType
 
 The `type` attribute needs to provide the [Assembly Qualified Type Name](https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname.aspx).
 Make sure that the routing file is copied to the binaries output folder.
 
 Instead of defining every single message type, it's also possible to configure entire assemblies or namespaces in bulk:
 
-snippet:EndpointsByAssembly
+snippet: EndpointsByAssembly
 
 
 ### Updating the routing configuration

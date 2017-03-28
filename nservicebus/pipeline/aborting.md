@@ -18,4 +18,4 @@ snippet: AbortHandler
 Warning: Handler execution order by default is non-deterministic. To configure the ordering see [Handler Ordering](/nservicebus/handlers/handler-ordering.md).
 
 
-partial:behavior
+partial: behavior

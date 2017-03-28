@@ -6,7 +6,7 @@ public class CreateUserSaga :
     Saga<CreateUserSagaData>,
     IAmStartedByMessages<CreateUser>
 {
-    static ILog logger = LogManager.GetLogger(typeof(CreateUserSaga));
+    static ILog log = LogManager.GetLogger(typeof(CreateUserSaga));
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CreateUserSagaData> mapper)
     {
@@ -14,15 +14,15 @@ public class CreateUserSaga :
             .ToSaga(sagaData => sagaData.UserName);
     }
 
-    public async Task Handle(CreateUser message, IMessageHandlerContext context)
+    public Task Handle(CreateUser message, IMessageHandlerContext context)
     {
         Data.UserName = message.UserName;
-        logger.Info("User created");
+        log.InfoFormat("User Created {@Message}", message);
         var userCreated = new UserCreated
         {
             UserName = message.UserName
         };
-        await context.SendLocal(userCreated);
         MarkAsComplete();
+        return context.SendLocal(userCreated);
     }
 }

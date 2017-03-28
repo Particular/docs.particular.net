@@ -29,11 +29,11 @@ NOTE: When self-hosting everything can be configured using code API and extensio
 
 To integrate the NServiceBus generic host into the worker role entry point, create an instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override.
 
-snippet:HostingInWorkerRole
+snippet: HostingInWorkerRole
 
 Next to starting the role entry point, define the endpoint behavior. The role has been named `AsA_Worker`. Specify the transport to use, using the `UseTransport<T>`, as well the persistence using the `UsePersistence<T>` configuration methods.
 
-snippet:AzureServiceBusTransportWithAzureHost
+snippet: AzureServiceBusTransportWithAzureHost
 
 Partial: Worker
 
@@ -46,7 +46,7 @@ Usually NServiceBus is configured as a client in the IIS process. This needs to 
 
 The configuration API is used with the following extension methods to achieve the same behavior as the `AsA_worker` role:
 
-snippet:HostingInWebRole
+snippet: HostingInWebRole
 
 Partial: Web
 

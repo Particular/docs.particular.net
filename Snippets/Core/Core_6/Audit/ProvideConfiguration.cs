@@ -1,4 +1,5 @@
-﻿namespace Core6.Audit
+﻿#pragma warning disable 618
+namespace Core6.Audit
 {
     using System;
     using NServiceBus.Config;
@@ -13,7 +14,7 @@
         {
             return new AuditConfig
             {
-                QueueName = "auditqueue@adminmachine",
+                QueueName = "targetAuditQueue",
                 OverrideTimeToBeReceived = TimeSpan.FromMinutes(10)
             };
         }

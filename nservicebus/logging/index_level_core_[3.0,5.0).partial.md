@@ -8,12 +8,12 @@ Note: When logging level is defined in both app.config and code the app.config w
 
 #### Via app.config
 
-snippet:OverrideLoggingDefaultsInAppConfig
+snippet: OverrideLoggingDefaultsInAppConfig
 
 
 #### Via IProvideConfiguration
 
-snippet:LoggingThresholdFromIProvideConfiguration
+snippet: LoggingThresholdFromIProvideConfiguration
 
 
 #### Via config API

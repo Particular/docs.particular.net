@@ -51,7 +51,7 @@ Once deployed on an active endpoint, the endpoint sends plugin-specific informat
  1. **Code base API (only available for Version 2 or greater of the plugins that target NServiceBus Version 6)**
    See specific plugin pages.
 
-WARNING: Endpoint with plugins installed that cannot communicate to ServiceControl will shut down.
+WARNING: Endpoint with plugins installed will shut down when the ServiceControl queue setting has not been set or when the plugin is unable to communicate with the configured ServiceControl queue.
 
 The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl. The queue name is based on the Window Service name. If ServiceControl is installed with a Windows Service name other than the default name then the convention based detection does not apply. In this scenario the configuration setting `ServiceControl/Queue` must be set to the correct queue name.
 

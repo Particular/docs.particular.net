@@ -8,23 +8,17 @@ tags:
 related:
  - nservicebus/sagas
  - nservicebus/ravendb
-reviewed: 2016-10-05
+reviewed: 2017-02-24
 ---
 
 include: raven-resourcemanagerid-warning
 
+include: sagafinder-into
 
-## Code walk-through
-
-When the default Saga message mappings do not satisfy the requirements, custom logic can be put in place to allow NServiceBus to find a saga data instance based on which logic best suites the environment.
-
-This sample shows how to:
-
- * Perform custom saga finding logic based on custom query logic.
- * Use multiple Unique attributes using the default [RavenDB Unique Constraint bundle](https://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints).
+This sample also use multiple Unique attributes using the default [RavenDB Unique Constraint bundle](https://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints).
 
 
-### RavenDB setup
+## RavenDB setup
 
 This sample requires [RavenDB persistence](/nservicebus/ravendb/) package and a running RavenDB instance configured accordingly.
 
@@ -33,34 +27,30 @@ NServiceBus out of the box does not support saga data with multiple `Unique` att
 NOTE: If running this sample against an external RavenDB server ensure that the `RavenDB.Bundles.UniqueConstraints` [bundle](https://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints) is currently installed according to the [extending RavenDB](https://ravendb.net/docs/search/latest/csharp?searchTerm=server%20extending%20plugins) documentation. If the server side of the plugin is not correctly loaded, notice that the [`SagaNotFoundHandler`](/nservicebus/sagas/saga-not-found.md) will be invoked.
 
 
-### In Process Raven Host
+## In Process Raven Host
 
 It is possible to self-host RavenDB so that no running instance of RavenDB server is required to run the sample.
 
-snippet:ravenhost
+snippet: ravenhost
 
 
-### The Saga
+include: sagafinder-thesaga
 
-The saga shown in the sample is a very simple order management saga that:
 
- * handles the creation of an order;
- * offloads the payment process to a different handler;
- * handles the completion of the payment process;
- * completes the order;
+snippet: TheSagaRavenDB
 
-snippet:TheSagaRavenDB
 
-From the process point of view it is important to note that the saga is not sending to the payment processor the order id, instead it is sending a payment transaction id. A saga can be correlated given more than one unique attribute, such as `OrderId` and `PaymentTransactionId`, requiring both to be treated as unique.
+include: sagafinder-process
 
-snippet:OrderSagaDataRavenDB
+snippet: OrderSagaDataRavenDB
 
 A properties uniqueness can be expressed by using the `UniqueConstraint` attribute provided by the RavenDB bundle.
 
 At start-up the sample will send a `StartOrder` message, since the saga data class is decorated with custom attributes it is required to also plug custom logic to find a saga data instance:
 
-snippet:CustomSagaFinderWithUniqueConstraintRavenDB
+snippet: CustomSagaFinderWithUniqueConstraintRavenDB
 
-Building a saga finder requires to define a class that implements the `IFindSagas<TSagaData>.Using<TMessage>` interface. The class will be automatically picked up by NServiceBus at configuration time and used each time a message of type `TMessage`, that is expected to load a saga of type `TSagaData`, is received. The `FindBy` method will be invoked by NServiceBus.
 
-NOTE: In the sample the implementation of the `ConfigureHowToFindSaga` method, that is required, is empty because since a saga finder is provided for each message type that the saga is handling. It is not required to provide a saga finder for every message type, a mix of standard saga mappings and custom saga finding is a valid scenario.
+include: sagafinder-ifindsagas
+
+include: sagafinder-configurehowtofindsaga

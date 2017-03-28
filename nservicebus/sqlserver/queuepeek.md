@@ -14,4 +14,4 @@ The recommended range for this setting is between 100 milliseconds to 10 seconds
 
 Use the following code:
 
-snippet:sqlserver-config-delay
+snippet: sqlserver-config-delay

@@ -27,7 +27,7 @@ This sample contains three projects:
 
 Look at the Messages project, at the two messages. Start with the large message that is not utilizing the DataBus mechanism. The message is a simple byte array command:
 
-snippet:AnotherMessageWithLargePayload
+snippet: AnotherMessageWithLargePayload
 
 The other message utilizes the DataBus mechanism:
 
@@ -38,7 +38,7 @@ snippet: MessageWithLargePayload
 
 Both the `Sender` and `Receive` project need to share a common location to store large binary objects.
 
-snippet:ConfigureDataBus
+snippet: ConfigureDataBus
 
 Note that the connection string used for the databus is shared by the [MongoDB Persistence](/nservicebus/mongodb-persistence-tekmaven).
 
@@ -47,7 +47,7 @@ Note that the connection string used for the databus is shared by the [MongoDB P
 
 The following sender project code sends the `MessageWithLargePayload `message, utilizing the NServiceBus attachment mechanism:
 
-snippet:SendMessageLargePayload
+snippet: SendMessageLargePayload
 
 The following `Sender` project code sends the `AnotherMessageWithLargePayload` message without utilizing the NServiceBus attachment mechanism:
 

@@ -42,29 +42,23 @@ class Program
 
         #endregion
 
-        try
+        var auditThisMessage = new AuditThisMessage
         {
-            var auditThisMessage = new AuditThisMessage
-            {
-                Content = "See you in the audit queue!"
-            };
-            await endpointInstance.SendLocal(auditThisMessage)
-                .ConfigureAwait(false);
+            Content = "See you in the audit queue!"
+        };
+        await endpointInstance.SendLocal(auditThisMessage)
+            .ConfigureAwait(false);
 
-            var doNotAuditThisMessage = new DoNotAuditThisMessage
-            {
-                Content = "Don't look for me!"
-            };
-            await endpointInstance.SendLocal(doNotAuditThisMessage)
-                .ConfigureAwait(false);
-
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
+        var doNotAuditThisMessage = new DoNotAuditThisMessage
         {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+            Content = "Don't look for me!"
+        };
+        await endpointInstance.SendLocal(doNotAuditThisMessage)
+            .ConfigureAwait(false);
+
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

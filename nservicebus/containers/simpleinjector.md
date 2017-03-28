@@ -15,12 +15,12 @@ NServiceBus can be configured to use [Simple Injector](https://simpleinjector.or
 
 ### Default Usage
 
-snippet:simpleinjector
+snippet: simpleinjector
 
 
 ### Existing Container Instance
 
-snippet:simpleinjector_Existing
+snippet: simpleinjector_Existing
 
 
 ### DependencyLifecycle Mapping

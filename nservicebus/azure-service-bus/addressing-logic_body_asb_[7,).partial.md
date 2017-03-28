@@ -22,7 +22,7 @@ Out of the box there are 2 sanitization strategies:
 
 The default implementation of this strategy can be replaced by using the configuration API:
 
-snippet:swap-sanitization-strategy
+snippet: swap-sanitization-strategy
 
 
 ### Implementing a custom sanitization strategy
@@ -31,14 +31,14 @@ Implementing a custom sanitization strategy requires a class that implements `IS
 
 If the implementation of a sanitization strategy requires configuration settings, these settings can be accessed by letting NServiceBus inject the `ReadOnlySettings` into the constructor of the strategy.
 
-snippet:custom-sanitization-strategy
+snippet: custom-sanitization-strategy
 
 
 ### Extending the configuration API for custom sanitization settings
 
 In order to allow configuration of the custom sanitization strategy it is advised to create an extension method at the `AzureServiceBusSanitizationSettings` extension point , returned by `.Sanitization()`, in the NServiceBus configuration API. This provides access to the settings, in which the value can be registered using a well known key.
 
-snippet:custom-sanitization-strategy-extension
+snippet: custom-sanitization-strategy-extension
 
 
 ### Example custom sanitization strategy
@@ -57,7 +57,7 @@ Out of the box, there are 2 individualization strategies:
 
 The default implementation of this strategy can be replaced by using the configuration API:
 
-snippet:swap-individualization-strategy
+snippet: swap-individualization-strategy
 
 
 ### Implementing a custom individualization strategy
@@ -66,14 +66,14 @@ Implementing a custom individualization strategy requires a class that implement
 
 If the implementation of a individualization strategy requires configuration settings, these settings can be accessed by letting NServiceBus inject the `ReadOnlySettings` into the constructor of the strategy.
 
-snippet:custom-individualization-strategy
+snippet: custom-individualization-strategy
 
 
 ### Extending the configuration API for custom individualization settings
 
 In order to allow configuration of the custom individualization strategy it is advised to create an extension method at the `AzureServiceBusIndividualizationSettings` extension point , returned by `.Individualization()`, in the NServiceBus configuration API. This provides access to the settings, in which the value can be registered using a well known key.
 
-snippet:custom-individualization-strategy-extension
+snippet: custom-individualization-strategy-extension
 
 
 ## Namespace Partitioning
@@ -88,7 +88,7 @@ Out of the box there are 3 namespace partitioning strategies:
 
 The default implementation of this strategy can be replaced by using the configuration API:
 
-snippet:swap-namespace-partitioning-strategy
+snippet: swap-namespace-partitioning-strategy
 
 
 ### Implementing a custom namespace partitioning strategy
@@ -103,14 +103,14 @@ The `PartitioningIntent` is to be interpreted as follows:
 
 If the implementation of a namespace partitioning strategy requires configuration settings, these settings can be accessed by letting NServiceBus inject the `ReadOnlySettings` into the constructor of the strategy.
 
-snippet:custom-namespace-partitioning-strategy
+snippet: custom-namespace-partitioning-strategy
 
 
 ### Extending the configuration API for custom partitioning settings
 
 In order to allow configuration of the custom namespace partitioning strategy it is advised to create an extension method at the `AzureServiceBusNamespacePartitioningSettings` extension point , returned by `.NamespacePartitioning()`, in the NServiceBus configuration API. This provides access to the settings, in which the value can be registered using a well known key.
 
-snippet:custom-namespace-partitioning-strategy-extension
+snippet: custom-namespace-partitioning-strategy-extension
 
 
 ### Example custom partitioning strategy
@@ -129,7 +129,7 @@ Out of the box there are 2 composition strategies:
 
 The default implementation of this strategy can be replaced by using the configuration API:
 
-snippet:swap-composition-strategy
+snippet: swap-composition-strategy
 
 
 ### Implementing a custom composition strategy
@@ -138,11 +138,11 @@ Implementing a custom composition strategy requires a class that implements `ICo
 
 If the implementation of a composition strategy requires configuration settings, these settings can be accessed by letting NServiceBus inject the `ReadOnlySettings` into the constructor of the strategy.
 
-snippet:custom-composition-strategy
+snippet: custom-composition-strategy
 
 
 ### Extending the configuration API for custom composition settings
 
 In order to allow configuration of the custom composition partitioning strategy it is advised to create an extension method at the `AzureServiceBusCompositionSettings` extension point , returned by `.Composition()`, in the NServiceBus configuration API. This provides access to the settings, in which the value can be registered using a well known key.
 
-snippet:custom-composition-strategy-extension
+snippet: custom-composition-strategy-extension

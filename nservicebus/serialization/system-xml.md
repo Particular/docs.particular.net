@@ -9,4 +9,4 @@ Implements a [System.Xml.Serialization](https://msdn.microsoft.com/en-us/library
 
 ## Usage
 
-snippet:SystemXmlSerialization
+snippet: SystemXmlSerialization

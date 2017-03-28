@@ -4,7 +4,6 @@ summary: Configure where to send messages and it provides built-in message audit
 reviewed: 2016-03-17
 tags:
  - Audit
- - Forwarding Messages
 related:
  - nservicebus/messaging/headers
  - nservicebus/messaging/discard-old-messages
@@ -72,12 +71,14 @@ If no OverrideTimeToBeReceived is defined then:
 
 Configure the target audit queue using the configuration API.
 
-snippet:AuditWithCode
+snippet: AuditWithCode
 
 
 ### Using app.config
 
-snippet:configureAuditUsingXml
+include: configurationWarning
+
+snippet: configureAuditUsingXml
 
 Note: `OverrideTimeToBeReceived` needs to be a valid [TimeSpan](https://msdn.microsoft.com/en-us/library/system.timespan.aspx).
 
@@ -86,7 +87,7 @@ Note: `OverrideTimeToBeReceived` needs to be a valid [TimeSpan](https://msdn.mic
 
 The audit settings can also be configured using code via a [custom configuration provider](/nservicebus/hosting/custom-configuration-providers.md).
 
-snippet:AuditProvideConfiguration
+snippet: AuditProvideConfiguration
 
 
 ## Machine level configuration

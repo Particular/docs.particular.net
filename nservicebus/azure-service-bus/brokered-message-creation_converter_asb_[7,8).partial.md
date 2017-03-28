@@ -1,1 +1,1 @@
-WARN: The converters have been obsoleted starting from version 7.1.0 and will be removed in version 8.0.
+WARNING: The converters have been obsoleted starting from version 7.1.0 and will be removed in version 8.0.

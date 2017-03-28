@@ -27,14 +27,14 @@ This feature can be enabled in two ways
 
 A message can be configured to be non-durable via the use of an `[ExpressAttribute]`.
 
-snippet:ExpressMessageAttribute
+snippet: ExpressMessageAttribute
 
 
 #### Using the configuration API
 
 A subset of messages can be configured to be non-durable by using a convention.
 
-snippet:ExpressMessageConvention
+snippet: ExpressMessageConvention
 
 
 partial: global

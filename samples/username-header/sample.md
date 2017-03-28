@@ -27,7 +27,7 @@ The recommended approach to capturing the current user is to create a transport 
 
 The outgoing mutator extracts `Thread.CurrentPrincipal.Identity.Name` and appends it to a message header.
 
-snippet:Mutator
+snippet: Mutator
 
 
 #### Register the Mutator

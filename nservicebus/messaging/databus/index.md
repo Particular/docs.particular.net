@@ -16,7 +16,9 @@ Messages are intended to be small. Some scenarios require sending large binary d
 
 ## How it works
 
-The `DataBus` approach is to store a large payload in a location that both the sending and receiving parties can access. The message is sent with a reference to the location, and upon processing, the payload is brought, allowing the receiving part to access the message along with the payload. If the location is not available upon sending, the message fails the send operation. When the payload location is not available, the receive operation fails as well and results in standard NServiceBus behavior, causing retries and eventually going into the error queue.
+The `DataBus` approach is to store a large binary payload in a location that both the sending and receiving parties can access. The message is sent with a reference to the location, and upon processing, the payload is brought, allowing the receiving part to access the message along with the payload. If the location is not available upon sending, the message fails the send operation. When the payload location is not available, the receive operation fails as well and results in standard NServiceBus behavior, causing retries and eventually going into the error queue.
+
+The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach implemented by leveraging NServiceBus pipeline. 
 
 
 ## Enabling the DataBus
@@ -35,21 +37,23 @@ There are two ways to specify the message properties to be sent using DataBus
  1. Using `DataBusProperty<T>` type
  1. Message conventions
 
+Note: The properties must be of type `byte[]`.
+
 
 ### Using DataBusProperty<T>
 
 Properties defined using the `DataBusProperty<T>` type are not treated as part of a message, but persist externally based on the type of `DataBus` used, and are linked to the original message using a unique key.
 
-snippet:MessageWithLargePayload
+snippet: MessageWithLargePayload
 
 
 ### Using message conventions
 
 NServiceBus supports defining DataBus properties via convention. This allows defining a convention for data properties to be sent using `DataBus` without using `DataBusProperty<T>`.
 
-snippet:DefineMessageWithLargePayloadUsingConvention
+snippet: DefineMessageWithLargePayloadUsingConvention
 
-snippet:MessageWithLargePayloadUsingConvention
+snippet: MessageWithLargePayloadUsingConvention
 
 
 ## DataBus attachments cleanup

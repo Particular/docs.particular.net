@@ -18,7 +18,6 @@ public class OrderSaga :
         // NOP
     }
 
-
     public Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
@@ -41,7 +40,6 @@ public class OrderSaga :
         };
         return context.SendLocal(completeOrder);
     }
-
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {

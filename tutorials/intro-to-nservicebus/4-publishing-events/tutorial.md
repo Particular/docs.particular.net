@@ -63,7 +63,7 @@ This means that when the code for the credit card processing changes, we don't e
 
 Creating an event message is just similar to creating an event. We just create a class and mark it with the `IEvent` (rather than `ICommand`) marker interface.
 
-snippet:Event
+snippet: Event
 
 All the other considerations for command messages apply to events as well. Properties can be simple types, complex types, or collections - whatever the message serializer supports.
 
@@ -74,7 +74,7 @@ With events, you should be even more careful to refrain from getting carried awa
 
 Create a handler class by implementing `IHandleMessages<T>` where `T` is the type of the event message.
 
-snippet:EventHandler
+snippet: EventHandler
 
 
 ## Subscribing to events
@@ -83,7 +83,7 @@ For the MSMQ transport, NServiceBus needs to know which endpoint is responsible 
 
 You can configure the publisher endpoint via the Routing API like this:
 
-snippet:RegisterPublisher
+snippet: RegisterPublisher
 
 NOTE: Some other transports have built-in publish/subscribe capabilities, so all that is required to subscribe to an event is to create a message handler for the event. A subscription request message is not required. Because the routing configuration is scoped to the transport type, transports that don't require publisher configuration simply won't contain this API.
 
@@ -109,7 +109,7 @@ Let's create our first event, `OrderPlaced`:
 
 When complete, your `OrderPlaced` class should look like the following:
 
-snippet:OrderPlaced
+snippet: OrderPlaced
 
 
 ### Publish an event
@@ -120,7 +120,7 @@ Now that the `OrderPlaced` event is defined, we can publish it from the `PlaceOr
  1. Remove the `return Task.CompletedTask;` line.
  1. Instead, modify the `Handle` method to look like the following:
 
-snippet:UpdatedHandler
+snippet: UpdatedHandler
 
 If we ran the solution now, nothing new or exciting will happen, at least visibly. We're publishing a message, but there are no subscribers, so no physical messages actually get sent anywhere. We're like a newspaper with no circulation. To fix that, we need a subscriber.
 
@@ -140,7 +140,7 @@ NOTE: Since this is the third endpoint we've created, the instructions will be a
  1. In the **Billing** endpoint, add a class named `OrderPlacedHandler`, mark it as `public`, and implement `IHandleMessages<OrderPlaced>`.
  1. Modify the handler class to log the receipt of the event:
 
-snippet:SubscriberHandlerDontPublishOrderBilled
+snippet: SubscriberHandlerDontPublishOrderBilled
 
 And finally, modify the solution properties so that **Billing** will start when debugging.
 
@@ -151,7 +151,7 @@ We now have a handler in place for `OrderPlaced`, but just like in real life, ha
 
 In the **Billing** endpoint, locate the **AsyncMain** method in the **Program.cs** file. Use the `transport` variable to access the routing configuration and configure the publisher for `OrderPlaced`:
 
-snippet:BillingRouting
+snippet: BillingRouting
 
 Now when we run the solution, we'll see the following output in the **Billing** window:
 

@@ -32,18 +32,12 @@ static class Program
             .ConfigureAwait(false);
         await RunAfterEndpointStart(compositionContainer, endpointInstance)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await RunBeforeEndpointStop(compositionContainer, endpointInstance)
-                .ConfigureAwait(false);
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await RunBeforeEndpointStop(compositionContainer, endpointInstance)
+            .ConfigureAwait(false);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
         await RunAfterEndpointStop(compositionContainer)
             .ConfigureAwait(false);
     }

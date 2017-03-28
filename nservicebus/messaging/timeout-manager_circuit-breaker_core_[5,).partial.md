@@ -2,4 +2,4 @@ If there are any connection problems with the timeout storage then by default NS
 
 The default wait time can be changed:
 
-snippet:TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
+snippet: TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
