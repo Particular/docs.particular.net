@@ -6,7 +6,7 @@ tags:
 reviewed: 2017-03-28
 ---
 
-With lots of customers moving to the cloud, embracing the public cloud sector is a must have. That is why NServiceBus provides a variety of capabilities built specially for Microsoft Azure, covering hosting, Azure specific transports and persistence.
+NServiceBus helps create distributed systems not only on premise but also in a public cloud environment. That is why it provides a variety of capabilities built for Microsoft Azure, covering hosting, Azure specific transports and persistence.
 
 Hosting:
 - [Hosting in Azure Cloud Services](/nservicebus/hosting/cloud-services-host/)
