@@ -10,24 +10,24 @@ related:
 Metrics collects information to measure endpoint health and performance.
 
 
-## Enabling Metrics
+## Enabling NServiceBus.Metrics
 
 snippet: Metrics-Enable
 
 
-## Reporting Metrics data
+## Reporting metrics data
 
-Metrics can be reported to a number of different locations. Each location is updated on a separate interval. If an interval is not specified then the default interval is used. The default interval is 30 seconds but it can adjusted:
+Metrics can be reported to a number of different locations. Each location is updated on a separate interval. If an interval is not specified then the default interval of 30 seconds is used. To change the default interval:
 
 snippet: Metrics-DefaultInterval
 
-### To NServiceBus Log
+### To NServiceBus log
 
 Metrics data can be written to the [NServiceBus Log](/nservicebus/logging/).
 
 snippet: Metrics-Log
 
-NOTE: Metrics will be written to the log at the Info log level.
+NOTE: Metrics will be written to the log at the INFO log level.
 
 ### To trace log
 
@@ -43,29 +43,30 @@ snippet: Metrics-ServiceControl
 
 ### To Windows Performance Counters
 
-Some of the data captured by the Metrics component can be forwarded to Windows Performance Counters. See [Performance Counters](./performance-counters.md) for more information.
+Some of the data captured by the NServiceBus.Metrics component can be forwarded to Windows Performance Counters. See [Performance Counters](./performance-counters.md) for more information.
 
 
-## Metrics Captured
+## Metrics captured
 
-The Metrics component captures a number of different metrics about a running endpoint.
+The NServiceBus.Metrics component captures a number of different metrics about a running endpoint.
 
-### Processing Time
+### Processing time
 
-Processing Time is the time it takes for an endpoint to process a single message.
+Processing time is the time it takes for an endpoint to process a single message.
 
-### Critical Time
+### Critical time
 
-Critical Time is the time between when a message is sent and when it is fully processed. It is a combination of:
-- Network Send Time - The time a message spends on the network before arriving in the destination queue
-- Queue Wait Time - The time a message spends in the destination queue before being picked up and processed
-- Processing Time - The time is takes for the destination endpoint to process the message
+Critical time is the time between when a message is sent and when it is fully processed. It is a combination of:
+- Network send time: The time a message spends on the network before arriving in the destination queue
+- Queue wait time: The time a message spends in the destination queue before being picked up and processed
+- Processing time: The time it takes for the destination endpoint to process the message
 
-### Message Receive Performance Statistics
+### Messages received performance statistics
 
-Including:
-- Messages Pulled from Queue
-- Message Processing Failures
-- Messages Successfully Processed
+These statistics encompass a number of different metrics, including:
+
+- Number of messages pulled from queue
+- Number of message processing failures
+- Number of messages successfully processed
 
 
