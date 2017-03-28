@@ -50,6 +50,10 @@ Version 6 introduced the concept of [Batched dispatch](/nservicebus/messaging/ba
 
 Version 5 represents addresses with an `Address` class. The `Address` class maintains addresses in the *queue@host* format. This format was originally developed for the MSMQ transport but does not meet the needs of other transports. In Version 6, addresses are represented as opaque strings.
 
+Using the Address type will give you the following compiler error:
+
+> Use the string based overloads. Will be removed in version 7.0.0.
+
 Any usages of `Address` should be replaced by `string`.
 
 
