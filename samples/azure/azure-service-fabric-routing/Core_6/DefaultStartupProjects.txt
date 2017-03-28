@@ -1,0 +1,2 @@
+ServiceFabricRouting\ServiceFabricRouting.sfproj
+Voter\Voter.csproj
