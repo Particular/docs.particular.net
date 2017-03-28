@@ -4,6 +4,12 @@ using NServiceBus.Logging;
 public class EndpointConfig :
     IConfigureThisEndpoint
 {
+    static EndpointConfig()
+    {
+        var defaultFactory = LogManager.Use<DefaultFactory>();
+        defaultFactory.Level(LogLevel.Debug);
+    }
+
     public void Customize(EndpointConfiguration endpointConfiguration)
     {
         var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
@@ -12,8 +18,6 @@ public class EndpointConfig :
         transport.ConnectionString("UseDevelopmentStorage=true");
         transport.SerializeMessageWrapperWith<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
-        LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Debug);
 
         endpointConfiguration.DisableNotUsedFeatures();
     }
