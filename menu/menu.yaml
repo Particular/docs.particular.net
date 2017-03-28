@@ -670,6 +670,8 @@
     Articles:
     - Url: nservicebus/sql-persistence/saga
       Title: Saga Persistence
+    - Url: nservicebus/sql-persistence/subscriptions
+      Title: Subscription Persistence
     - Url: nservicebus/sql-persistence/installer-workflow
       Title: Installer Workflow
     - Url: nservicebus/sql-persistence/sqlserver-scripts

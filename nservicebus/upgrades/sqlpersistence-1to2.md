@@ -9,6 +9,19 @@ upgradeGuideCoreVersions:
 ---
 
 
+## Subscription Caching configuration now required
+
+[Subscription Caching](/nservicebus/sql-persistence/subscriptions.md) is now a required configuration option. 
+
+Ether configure a period of time cache for:
+
+snippet: 1to2_subscriptions_CacheFor
+
+Or explicitly disable subscription caching.
+
+snippet: 1to2_subscriptions_Disable
+
+
 ## Inheriting from SqlSaga now required
 
 In Version 1 inheriting from `NServiceBus.Saga<T>` was partially supported. However this having two competing approaches that deliver the same features caused significant confusion. In Version 2 `NServiceBus.Saga<T>` is no longer supported and either a build error, or an runtime exception for some edge cases, will occur.

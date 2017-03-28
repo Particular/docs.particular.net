@@ -49,6 +49,7 @@
     <Compile Include="Session\MyMessage.cs" />
     <Compile Include="TableSuffix.cs" />
     <Compile Include="IlRequirement\OrderSaga.cs" />
+    <Compile Include="Subscriptions.cs" />
     <Compile Include="UsingSaga\SagaWithCorrelation.cs" />
     <Compile Include="UsingSaga\SagaWithCorrelationAndTransitional.cs" />
     <Compile Include="UsingSaga\SagaWithNoMessageMapping.cs" />

@@ -39,6 +39,8 @@ class Program
             {
                 return new MySqlConnection(connection);
             });
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
         #endregion
 

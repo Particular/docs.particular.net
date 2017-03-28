@@ -27,6 +27,8 @@ class Program
             {
                 return new SqlConnection(connection);
             });
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
         #endregion
 

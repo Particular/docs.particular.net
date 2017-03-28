@@ -39,6 +39,8 @@ class Program
             });
         persistence.Schema("receiver");
         persistence.TablePrefix("");
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
         #endregion
 

@@ -23,7 +23,7 @@ public class OrderSaga :
     {
         Data.OrderId = message.OrderId;
         Data.OrderNumber = message.OrderNumber;
-        log.Info($"Received StartOrder message. Data.OrderId={Data.OrderId}. Data.OrderNumber={Data.OrderNumber}");
+        log.Info($"Received StartOrder message. OrderId={Data.OrderId}. OrderNumber={Data.OrderNumber}");
         return Task.CompletedTask;
     }
 }
