@@ -1,4 +1,5 @@
-﻿namespace Core6.Encryption
+﻿#pragma warning disable 618
+namespace Core6.Encryption
 {
     using System.Collections.Generic;
     using System.Text;
