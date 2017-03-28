@@ -100,7 +100,6 @@
     <Compile Include="Handlers\DataAccess\MyPersistence.cs" />
     <Compile Include="Handlers\DataAccess\Order.cs" />
     <Compile Include="Handlers\DataAccess\OrderMessage.cs" />
-    <Compile Include="Persistence\Custom\Usage.cs" />
     <Compile Include="Recoverability\CustomFaultManager.cs" />
     <Compile Include="Features\SimpleSatellite.cs" />
     <Compile Include="MessageIdentity\MessageIdFromMessageMutator.cs" />

@@ -25,20 +25,14 @@ class Program
         Logger.WriteLine("Calling Endpoint.Start");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            // simulate some activity
-            await Task.Delay(500)
-                .ConfigureAwait(false);
+        // simulate some activity
+        await Task.Delay(500)
+            .ConfigureAwait(false);
 
-            Logger.WriteLine("Endpoint is processing messages");
-        }
-        finally
-        {
-            Logger.WriteLine("Calling IEndpointInstance.Stop");
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Logger.WriteLine("Endpoint is processing messages");
+        Logger.WriteLine("Calling IEndpointInstance.Stop");
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
         Logger.WriteLine("Finished");
         #endregion
         Console.WriteLine($"Logged information to {Logger.OutputFilePath}");

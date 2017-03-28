@@ -5,7 +5,7 @@ public class CreateUserSaga :
     Saga<MySagaData>,
     IAmStartedByMessages<CreateUser>
 {
-    static ILog logger = LogManager.GetLogger(typeof(CreateUserSaga));
+    static ILog log = LogManager.GetLogger(typeof(CreateUserSaga));
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
     {
@@ -16,7 +16,7 @@ public class CreateUserSaga :
     public void Handle(CreateUser message)
     {
         Data.UserName = message.UserName;
-        logger.Info("User created");
+        log.Info($"User Created {message.UserName}");
         var userCreated = new UserCreated
         {
             UserName = message.UserName

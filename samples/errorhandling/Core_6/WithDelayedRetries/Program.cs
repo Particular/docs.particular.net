@@ -24,30 +24,24 @@ static class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press enter to send a message that will throw an exception.");
-            Console.WriteLine("Press any key to exit");
+        Console.WriteLine("Press enter to send a message that will throw an exception.");
+        Console.WriteLine("Press any key to exit");
 
-            while (true)
-            {
-                var key = Console.ReadKey();
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    return;
-                }
-                var myMessage = new MyMessage
-                {
-                    Id = Guid.NewGuid()
-                };
-                await endpointInstance.SendLocal(myMessage)
-                    .ConfigureAwait(false);
-            }
-        }
-        finally
+        while (true)
         {
-            await endpointInstance.Stop()
+            var key = Console.ReadKey();
+            if (key.Key != ConsoleKey.Enter)
+            {
+                break;
+            }
+            var myMessage = new MyMessage
+            {
+                Id = Guid.NewGuid()
+            };
+            await endpointInstance.SendLocal(myMessage)
                 .ConfigureAwait(false);
         }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

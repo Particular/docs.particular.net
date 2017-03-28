@@ -59,7 +59,7 @@ Note that the 'Server' processes all those messages, and the `Samples.FaultToler
 
 So, make the handling of messages in the 'Server' endpoint fail. Open `MyHandler.cs`.
 
-snippet:MyHandler
+snippet: MyHandler
 
 Note the commented out `throw new Exception`. uncomment that line.
 

@@ -28,8 +28,6 @@ public class StreamReceiveRegistration :
             behavior: typeof(StreamReceiveBehavior),
             description: "Copies the shared data back to the logical messages")
     {
-        InsertAfter("MutateIncomingMessages");
-        // Note that in V6 invocation of handlers is in a different stage so no "before" is needed
     }
 }
 

@@ -34,6 +34,6 @@ Enabling EventSourceLogger involves several steps
 
 Then at service shutdown time dispose of both the instance of `EventListener` and the instance of `EventSourceLoggerBase`.
 
-snippet:ConfigureLogging
+snippet: ConfigureLogging
 
 This code uses self hosting console scenario for example purposes. Typically the `EventListener` would be instantiated at service startup and disposed of in service shutdown. Depending on the hosting approach it may not be possible to have a `using` wrap the instances. See also [Hosting](/nservicebus/hosting/) and [Windows Service Hosting](/nservicebus/hosting/windows-service.md).

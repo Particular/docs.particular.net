@@ -8,6 +8,7 @@ tags:
 related:
 - samples/saga/ravendb-custom-sagafinder
 - samples/saga/nh-custom-sagafinder
+- samples/saga/sql-sagafinder
 - nservicebus/sagas
 - nservicebus/sagas/concurrency
 ---
@@ -16,7 +17,7 @@ A saga can handle multiple messages. When NServiceBus receives a message that sh
 
 Custom Saga Finders are created by implementing `IFindSagas`.
 
-snippet:saga-finder
+snippet: saga-finder
 
 
 include: non-null-task

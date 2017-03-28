@@ -7,10 +7,10 @@ class Program
 {
     static void Main()
     {
-        RunBus().GetAwaiter().GetResult();
+        AsyncMain().GetAwaiter().GetResult();
     }
 
-    static async Task RunBus()
+    static async Task AsyncMain()
     {
         Console.Title = "Samples.RoutingSlips.StepA";
         var endpointConfiguration = new EndpointConfiguration("Samples.RoutingSlips.StepA");

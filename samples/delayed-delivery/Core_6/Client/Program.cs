@@ -21,16 +21,10 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            await SendOrder(endpointInstance)
-                .ConfigureAwait(false);
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        await SendOrder(endpointInstance)
+            .ConfigureAwait(false);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
     static async Task SendOrder(IEndpointInstance endpointInstance)

@@ -13,11 +13,11 @@ Consider the following example:
 
 To enable sending from `account_A` to `account_B`, following configuration has to be applied in the `account_A` endpoint
 
-snippet:AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
+snippet: AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
 
 To enable sending from `account_B` to `account_A`, following configuration has to be applied in the `account_B` endpoint
 
-snippet:AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings2
+snippet: AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings2
 
 Aliases can be provided for both the endpoint's connection string as well as other accounts' connection strings. This enables using `@` notation for destination addresses `queue_name@accountName`.
 

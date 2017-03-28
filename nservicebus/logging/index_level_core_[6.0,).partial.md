@@ -16,15 +16,15 @@ include: configurationWarning
 
 #### Via config API
 
-snippet:OverrideLoggingLevelInCode
+snippet: OverrideLoggingLevelInCode
 
 
 #### Via app.config
 
-snippet:OverrideLoggingDefaultsInAppConfig
+snippet: OverrideLoggingDefaultsInAppConfig
 
 
 #### Via IProvideConfiguration
 
-snippet:LoggingThresholdFromIProvideConfiguration
+snippet: LoggingThresholdFromIProvideConfiguration
 

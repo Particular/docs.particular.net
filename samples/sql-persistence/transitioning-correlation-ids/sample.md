@@ -37,7 +37,7 @@ snippet: messagePhase1
 
 #### Saga
 
-snippet:sagaPhase1
+snippet: sagaPhase1
 
 
 #### SagaData
@@ -58,7 +58,7 @@ snippet: messagePhase2
 #### Saga
 
 
-snippet:sagaPhase2
+snippet: sagaPhase2
 
 
 #### SagaData
@@ -81,7 +81,7 @@ snippet: messagePhase3
 
 #### Saga
 
-snippet:sagaPhase3
+snippet: sagaPhase3
 
 
 #### SagaData

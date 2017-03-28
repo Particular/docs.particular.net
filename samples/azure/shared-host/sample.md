@@ -60,37 +60,37 @@ This sample contains five projects:
 
 Sender project defines message mapping to instruct NServiceBus to send `Ping` commands to `Receiver` endpoint.
 
-snippet:AzureMultiHost_MessageMapping
+snippet: AzureMultiHost_MessageMapping
 
 When Bus is started, ping command is sent and a custom verification log is written to Azure Storage Tables (see Shared project for details about verification log table).
 
-snippet:AzureMultiHost_SendPingCommand
+snippet: AzureMultiHost_SendPingCommand
 
 Sender also defines a handler for messages of type `Pong` and writes into verification log when such arrives.
 
-snippet:AzureMultiHost_PongHandler
+snippet: AzureMultiHost_PongHandler
 
 
 ### Receiver project
 
 Receiver project has a handler for `Ping` commands and it writes into verification log when such arrives and replies back to originator with `Pong` message.
 
-snippet:AzureMultiHost_PingHandler
+snippet: AzureMultiHost_PingHandler
 
 
 ### Shared project
 
 Shared project defines all the messages used in the sample
 
-snippet:AzureMultiHost_PingMessage
-snippet:AzureMultiHost_PongMessage
+snippet: AzureMultiHost_PingMessage
+snippet: AzureMultiHost_PongMessage
 
 
 ### HostWorker project
 
 HostWorker project is the multi-host project. To enable multi-hosting, endpoint is configured as a multi-host
 
-snippet:AzureSharedHosting_HostConfiguration
+snippet: AzureSharedHosting_HostConfiguration
 
 NOTE: Multi-host project is used solely as a host for other endpoints
 
@@ -99,8 +99,8 @@ NOTE: Multi-host project is used solely as a host for other endpoints
 
 HostCloudService project defines multi-host parameters for all environment (`Local` and `Cloud` in this sample)
 
-snippet:AzureSharedHosting_CloudServiceDefinition
+snippet: AzureSharedHosting_CloudServiceDefinition
 
 Values provided to execute sample against local Azure Storage emulator
 
-snippet:AzureSharedHosting_CloudServiceConfiguration
+snippet: AzureSharedHosting_CloudServiceConfiguration

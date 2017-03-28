@@ -13,12 +13,12 @@ NServiceBus can be configured to use [StructureMap](https://structuremap.github.
 
 ### Default Usage
 
-snippet:StructureMap
+snippet: StructureMap
 
 
 ### Existing Container Instance
 
-snippet:StructureMap_Existing
+snippet: StructureMap_Existing
 
 
 

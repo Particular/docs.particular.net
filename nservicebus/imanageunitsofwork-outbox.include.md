@@ -1,1 +1,0 @@
-NOTE: In Version 6 `IManageUnitsOfWork` does not wrap the Outbox transaction. 

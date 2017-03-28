@@ -30,16 +30,16 @@ These two projects are identical and they are there to show the scale out in act
 
 Following snippet instructs NServiceBus to get the instance ID from the `appSettings` configuration section.
 
-snippet:Server-Set-InstanceId
+snippet: Server-Set-InstanceId
 
-snippet:Server-InstanceId
+snippet: Server-InstanceId
 
 WARNING: Never hard-code instance IDs because they are mostly operations concern and operations people should be able to modify them without the need to recompile the source code.
 
 
 #### Handling code
 
-snippet:Server-Handler
+snippet: Server-Handler
 
 
 ### Messages
@@ -51,16 +51,16 @@ Contains message definitions shared by the server and the clients.
 
 This project contains code for a client which is not aware of specific scale out design of the server. The client specifies only the logical routing as shown below:
 
-snippet:Logical-Routing
+snippet: Logical-Routing
 
 
 ### Aware client
 
 In addition to the logical routing, the scale out-aware client uses an [instance mapping file](/nservicebus/msmq/routing.md) to tell NServiceBus about the specific instances of the server. This is done as shown below:
 
-snippet:File-Based-Routing
+snippet: File-Based-Routing
 
-snippet:Physical-Routes
+snippet: Physical-Routes
 
 
 ## Running the code

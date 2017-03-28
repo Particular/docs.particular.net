@@ -28,22 +28,16 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        var startOrder = new StartOrder
         {
-            var startOrder = new StartOrder
-            {
-                OrderId = "123"
-            };
-            await endpointInstance.SendLocal(startOrder)
-                .ConfigureAwait(false);
+            OrderId = "123"
+        };
+        await endpointInstance.SendLocal(startOrder)
+            .ConfigureAwait(false);
 
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

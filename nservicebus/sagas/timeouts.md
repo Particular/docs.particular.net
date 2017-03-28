@@ -14,7 +14,7 @@ In a message-driven environment one can't make any assumptions regarding the ord
 
 The upper wait time is modeled in NServiceBus as a `Timeout`:
 
-snippet:saga-with-timeout
+snippet: saga-with-timeout
 
 NOTE: Timeouts feature is enabled by default. To turn it off it's necessary to disable the `TimeoutManager` feature.
 

@@ -13,7 +13,8 @@ public static class StreamStorageHelper
 
     internal static IEnumerable<PropertyInfo> GetStreamProperties(object message)
     {
-        return message.GetType().GetProperties()
+        return message.GetType()
+            .GetProperties()
             .Where(x => x.PropertyType.IsAssignableFrom(typeof(Stream)))
             .ToList();
     }
@@ -30,4 +31,5 @@ public static class StreamStorageHelper
     }
 
     #endregion
+
 }

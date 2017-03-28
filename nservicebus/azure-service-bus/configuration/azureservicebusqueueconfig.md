@@ -12,7 +12,7 @@ reviewed: 2016-09-21
 
 The default settings can be overridden by adding a configuration section called `AzureServiceBusQueueConfig` to the web.config or app.config files:
 
-snippet:AzureServiceBusQueueConfig
+snippet: AzureServiceBusQueueConfig
 
 The following values can be modified using this configuration setting:
 

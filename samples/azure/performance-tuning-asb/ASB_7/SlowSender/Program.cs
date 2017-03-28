@@ -53,53 +53,47 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        try
+        await Console.Out.WriteLineAsync("Press 'e' to send a large amount of messages")
+            .ConfigureAwait(false);
+        await Console.Out.WriteLineAsync("Press any other key to exit")
+            .ConfigureAwait(false);
+
+        while (true)
         {
-            await Console.Out.WriteLineAsync("Press 'e' to send a large amount of messages")
-                .ConfigureAwait(false);
-            await Console.Out.WriteLineAsync("Press any other key to exit")
+            var key = Console.ReadKey();
+            await Console.Out.WriteLineAsync()
                 .ConfigureAwait(false);
 
-            while (true)
+            var eventId = Guid.NewGuid();
+
+            if (key.Key != ConsoleKey.E)
             {
-                var key = Console.ReadKey();
-                await Console.Out.WriteLineAsync()
-                    .ConfigureAwait(false);
-
-                var eventId = Guid.NewGuid();
-
-                if (key.Key != ConsoleKey.E)
-                {
-                    break;
-                }
-
-                var stopwatch = Stopwatch.StartNew();
-
-                #region slow-send
-                for (var i = 0; i < NumberOfMessages; i++)
-                {
-                    await Console.Out.WriteLineAsync("Sending a message...");
-
-                    // by awaiting each individual send, no client side batching can take place
-                    // latency is incurred for each send and thus lowest performance possible
-                    await endpointInstance.Send(new SomeMessage())
-                        .ConfigureAwait(false);
-                }
-                #endregion
-
-                stopwatch.Stop();
-                var elapsedSeconds = stopwatch.ElapsedTicks / (double)Stopwatch.Frequency;
-                var msgsPerSecond = NumberOfMessages / elapsedSeconds;
-                await Console.Out.WriteLineAsync($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {msgsPerSecond} messages per second")
-                    .ConfigureAwait(false);
-
+                break;
             }
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+
+            var stopwatch = Stopwatch.StartNew();
+
+            #region slow-send
+            for (var i = 0; i < NumberOfMessages; i++)
+            {
+                await Console.Out.WriteLineAsync("Sending a message...");
+
+                // by awaiting each individual send, no client side batching can take place
+                // latency is incurred for each send and thus lowest performance possible
+                await endpointInstance.Send(new SomeMessage())
+                    .ConfigureAwait(false);
+            }
+            #endregion
+
+            stopwatch.Stop();
+            var elapsedSeconds = stopwatch.ElapsedTicks / (double)Stopwatch.Frequency;
+            var msgsPerSecond = NumberOfMessages / elapsedSeconds;
+            await Console.Out.WriteLineAsync($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {msgsPerSecond} messages per second")
                 .ConfigureAwait(false);
+
         }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
     static async Task EnsureReceiverQueueExists(string receiverPath, string connectionString)

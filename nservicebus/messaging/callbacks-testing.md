@@ -25,7 +25,7 @@ The integer response scenario allows any integer value to be returned in a stron
 
 The response type returned by the `When` definition needs to be of type `int`.
 
-snippet:IntCallbackTesting
+snippet: IntCallbackTesting
 
 
 ### Enum
@@ -37,7 +37,7 @@ The enum response scenario allows any enum value to be returned in a strong type
 
 The response type returned by the `When` definition needs to be of the enum type expected.
 
-snippet:EnumCallbackTesting
+snippet: EnumCallbackTesting
 
 
 ### Object
@@ -49,14 +49,14 @@ The Object response scenario allows an object instance to be returned.
 
 The response type returned by the `When` definition needs to be of the object response type expected.
 
-snippet:ObjectCallbackTesting
+snippet: ObjectCallbackTesting
 
 
 #### Testing with SendOptions
 
 The `When` definition provides a matcher overload which allows to match against the response and the send options passed into the callback function.
 
-snippet:ObjectCallbackTestingWithOptions
+snippet: ObjectCallbackTestingWithOptions
 
 
 ## Cancellation
@@ -66,4 +66,4 @@ The asynchronous callback can be canceled by registering a `CancellationToken` p
 
 #### Testing
 
-snippet:CancelCallbackTesting
+snippet: CancelCallbackTesting

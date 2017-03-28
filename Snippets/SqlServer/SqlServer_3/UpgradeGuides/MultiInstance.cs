@@ -11,14 +11,23 @@ class SqlServer
         #region sqlserver-multiinstance-upgrade
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.EnableLegacyMultiInstanceMode(async address =>
-        {
-            var connectionString = address.Equals("RemoteEndpoint") ? "SomeConnectionString" : "SomeOtherConnectionString";
-            var connection = new SqlConnection(connectionString);
-            await connection.OpenAsync()
-                .ConfigureAwait(false);
-            return connection;
-        });
+        transport.EnableLegacyMultiInstanceMode(
+            sqlConnectionFactory: async address =>
+            {
+                string connectionString;
+                if (address.Equals("RemoteEndpoint"))
+                {
+                    connectionString = "SomeConnectionString";
+                }
+                else
+                {
+                    connectionString = "SomeOtherConnectionString";
+                }
+                var connection = new SqlConnection(connectionString);
+                await connection.OpenAsync()
+                    .ConfigureAwait(false);
+                return connection;
+            });
 
         #endregion
 

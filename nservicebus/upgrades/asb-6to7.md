@@ -17,13 +17,13 @@ upgradeGuideCoreVersions:
 
 In Versions 7 and above the topology selection is mandatory:
 
-snippet:topology-selection-upgrade-guide
+snippet: topology-selection-upgrade-guide
 
 The [`EndpointOrientedTopology`](/nservicebus/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology)  is backward compatible with versions 6 and below of the transport. The [`ForwardingTopology`](/nservicebus/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology) is the recommended option for new projects.
 
 When selecting `EndpointOrientedTopology`, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers are subscribed to the correct publisher:
 
-snippet:publisher_names_mapping_upgrade_guide
+snippet: publisher_names_mapping_upgrade_guide
 
 For more details on topologies refer to the [Azure Service Bus Transport Topologies](/nservicebus/azure-service-bus/topologies/) article.
 
@@ -48,7 +48,7 @@ The new configuration API is accessible through extension methods on the `UseTra
 
 Setting the connection string can still be done using the `ConnectionString` extension method:
 
-snippet:6to7_setting_asb_connection_string
+snippet: 6to7_setting_asb_connection_string
 
 
 ### Default value changes
@@ -68,16 +68,16 @@ In the new configuration API the settings for queues, topics and subscriptions c
 
 For example the lock duration on a queue can be configured using the `LockDuration` setting:
 
-snippet:setting_queue_properties
+snippet: setting_queue_properties
 
 and the size of the topics can be configured using the `MaxSizeInMegabytes` setting:
 
-snippet:setting_topic_properties
+snippet: setting_topic_properties
 
 
 ## [Securing Credentials](/nservicebus/azure-service-bus/securing-connection-strings.md)
 
-include:asb-credential-warning
+include: asb-credential-warning
 
 In order to enhance security and to avoid sharing sensitive information using `UseNamespaceNameInsteadOfConnectionString` feature follow the next steps:
 

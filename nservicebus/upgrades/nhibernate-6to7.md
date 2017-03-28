@@ -16,7 +16,7 @@ upgradeGuideCoreVersions:
 
 The way the NHibernate's `ISession` object is accessed has changed. This object is no longer accessible through the IoC Container or `NHibernateStorageContext`. When Property or Constructor injection is used to get an instance of `ISession` directly or through `NHibernateStorageContext`, the code needs to be refactored after the upgrade to this version.
 
-snippet:NHibernateAccessingSessionUpgrade6To7
+snippet: NHibernateAccessingSessionUpgrade6To7
 
 As shown in the above snippet, the only way to access the `ISession` object is through the `Session()` extension method on `IMessageHandlerContext.SynchronizedStorageSession`.
 

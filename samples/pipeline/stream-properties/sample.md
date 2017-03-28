@@ -10,12 +10,12 @@ related:
 ---
 
 
-### Introduction
+## Introduction
 
 This sample leverages the pipeline to provide a pure stream based approach for sending large amounts of data. It is similar to the file share [DataBus](/nservicebus/messaging/databus/file-share.md) in that it uses assumes a common network file share accessible by endpoints and uses headers to correlate between a message and its connected files on disk.
 
 
-### Stream Storage helper
+## Stream Storage helper
 
 This provides an extension method to `Configure` to simplify passing in settings to the stream storage.
 
@@ -26,7 +26,7 @@ The helper method can then be called at configuration time.
 snippet: configure-stream-storage
 
 
-### Write Stream properties to disk
+## Write Stream properties to disk
 
 This happens in as part of the outgoing pipeline, see `StreamSendBehavior.cs`.
 
@@ -34,11 +34,11 @@ snippet: SendBehaviorDefinition
 
 Each stream copied to disk will need a unique key.
 
-snippet:generate-key-for-stream
+snippet: generate-key-for-stream
 
 Copy each stream property to disk
 
-snippet:copy-stream-properties-to-disk
+snippet: copy-stream-properties-to-disk
 
 On disk (at the root of the solution for this sample) it will look like this
 
@@ -53,7 +53,7 @@ On disk (at the root of the solution for this sample) it will look like this
 Where each GUID is a file containing the contents of the emptied stream.
 
 
-### Reading back from the stream
+## Reading back from the stream
 
 This happens in as part of the incoming pipeline, see `StreamReceiveBehavior.cs`
 
@@ -68,29 +68,29 @@ Cleanup the opened streams after message processing.
 snippet: cleanup-after-nested-action
 
 
-### Configuring the pipeline behaviors
+## Configuring the pipeline behaviors
 
 snippet: pipeline-config
 
 
-### The message to send
+## The message to send
 
 snippet: message-with-stream
 
 
-### Sending with a http stream
+## Sending with a http stream
 
 snippet: send-message-with-http-stream
 
 
-### Sending with a file stream
+## Sending with a file stream
 
 snippet: send-message-with-file-stream
 
 NOTE: If using a `MemoryStream` ensure that the [Position](https://msdn.microsoft.com/en-us/library/system.io.memorystream.position.aspx) is set back to `0` before sending the message. Also note that writing large amounts of data to a `MemoryStream` will result in significant memory usage (perhaps resulting in an `OutOfMemoryException`) and put pressure on Garbage Collection.
 
 
-### Handler
+## Handler
 
 snippet: message-with-stream-handler
 

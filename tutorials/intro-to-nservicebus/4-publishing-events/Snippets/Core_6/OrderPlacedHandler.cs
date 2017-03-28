@@ -9,11 +9,11 @@ namespace Billing
     public class OrderPlacedHandler :
         IHandleMessages<OrderPlaced>
     {
-        static ILog logger = LogManager.GetLogger<OrderPlacedHandler>();
+        static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
 
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
         {
-            logger.Info($"Received OrderPlaced, OrderId = {message.OrderId} - Charging credit card...");
+            log.Info($"Received OrderPlaced, OrderId = {message.OrderId} - Charging credit card...");
 
             return Task.CompletedTask;
         }

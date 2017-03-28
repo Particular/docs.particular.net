@@ -17,18 +17,18 @@ When configuring persistence order is very important. The last configured persis
 
 In this example the last configuration option will override all previous options.
 
-snippet:PersistenceOrder_Incorrect
+snippet: PersistenceOrder_Incorrect
 
 
 ### Example 2
 
 In this example all configuration options are explicit.
 
-snippet:PersistenceOrder_Explicit
+snippet: PersistenceOrder_Explicit
 
 
 ### Example 3
 
 This example sets the default persistence first thing and then overrides more explicit options.
 
-snippet:PersistenceOrder_Correct
+snippet: PersistenceOrder_Correct

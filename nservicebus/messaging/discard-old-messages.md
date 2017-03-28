@@ -22,12 +22,12 @@ To discard a message when a specific time interval has elapsed:
 
 ## Using an Attribute
 
-snippet:DiscardingOldMessagesWithAnAttribute
+snippet: DiscardingOldMessagesWithAnAttribute
 
 
 ## Using a custom convention
 
-snippet:DiscardingOldMessagesWithCode
+snippet: DiscardingOldMessagesWithCode
 
 
 ## Clock synchronization issues
@@ -50,7 +50,7 @@ MSMQ continuously checks the TimeToBeReceived of all queued messages. As soon as
 
 MSMQ however only allows a single TimeToBeReceived for all messages in a transaction. If multiple messages enlist in a single transaction, then TimeToBeReceived from the first message will be used for all messages, leading to a potential message loss scenario. To prevent message loss, `TimeToBeReceived` is not supported for endpoints with [transaction mode](/nservicebus/transports/transactions.md) `TransportTransactionMode.AtomicSendsWithReceive` or `Transaction Scope (Distributed Transaction)`.
 
-partial:msmq
+partial: msmq
 
 
 ### RabbitMQ transport
@@ -65,4 +65,4 @@ The Azure transports only evaluate the TimeToBeReceived for a message when the m
 
 ### SQL transport
 
-partial:sql
+partial: sql

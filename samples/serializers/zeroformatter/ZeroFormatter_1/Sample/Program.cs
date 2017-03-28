@@ -27,29 +27,23 @@ static class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        #region messagesend
+
+        var message = new CreateOrder
         {
-            #region messagesend
+            OrderId = 9,
+            Date = DateTime.Now.Ticks,
+            CustomerId = 12,
+        };
+        await endpointInstance.SendLocal(message)
+            .ConfigureAwait(false);
 
-            var message = new CreateOrder
-            {
-                OrderId = 9,
-                Date = DateTime.Now.Ticks,
-                CustomerId = 12,
-            };
-            await endpointInstance.SendLocal(message)
-                .ConfigureAwait(false);
+        #endregion
 
-            #endregion
-
-            Console.WriteLine("Order Sent");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Order Sent");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

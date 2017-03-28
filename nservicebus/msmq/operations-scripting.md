@@ -23,12 +23,12 @@ A send involves the following actions:
 
 #### In C&#35;
 
-snippet:msmq-nativesend
+snippet: msmq-nativesend
 
 
 #### In PowerShell
 
-snippet:msmq-nativesend-powershell
+snippet: msmq-nativesend-powershell
 
 
 ### Using the native send helper methods
@@ -36,12 +36,12 @@ snippet:msmq-nativesend-powershell
 
 #### In C&#35;
 
-snippet:msmq-nativesend-usage
+snippet: msmq-nativesend-usage
 
 
 #### In PowerShell
 
-snippet:msmq-nativesend-powershell-usage
+snippet: msmq-nativesend-powershell-usage
 
 
 ## Return message to source queue
@@ -58,17 +58,17 @@ A retry involves the following actions:
 
 #### In C&#35;
 
-snippet:msmq-return-to-source-queue
+snippet: msmq-return-to-source-queue
 
 
 #### In PowerShell
 
-snippet:msmq-return-to-source-queue-powershell
+snippet: msmq-return-to-source-queue-powershell
 
 
 ### Using the retry helper methods
 
-snippet:msmq-return-to-source-queue-usage
+snippet: msmq-return-to-source-queue-usage
 
 
 ## Create queues
@@ -78,20 +78,7 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 partial: extra-queues
 
 
-### Default permissions
-
-| Group | Permissions |
-|---|---|
-| Owning account | Write, Receive, Peek |
-| Administrators | Full |
-| Anonymous | Write  |
-| Everyone | Write |
-
-To retrieve the group names the [WellKnownSidType](https://msdn.microsoft.com/en-us/library/system.security.principal.wellknownsidtype.aspx) enumeration is used.
-
-MSMQ permissions are defined in the [MessageQueueAccessRights](https://msdn.microsoft.com/en-us/library/system.messaging.messagequeueaccessrights.aspx) enumeration.
-
-NOTE: Write access is granted to both `Everyone` and `Anonymous`. The reason for this is so that a given endpoint can receive messages from other endpoints running under different accounts. To further lock down MSMQ write permissions remove `Everyone` and `Anonymous` and instead grant specific access to a know subset of account.
+See also: [Queue Permissions](/nservicebus/msmq/#permissions)
 
 
 ### The create queue helper methods
@@ -99,12 +86,12 @@ NOTE: Write access is granted to both `Everyone` and `Anonymous`. The reason for
 
 #### In C&#35;
 
-snippet:msmq-create-queues
+snippet: msmq-create-queues
 
 
 #### In PowerShell
 
-snippet:msmq-create-queues-powershell
+snippet: msmq-create-queues-powershell
 
 
 ### Creating queues for an endpoint
@@ -127,12 +114,12 @@ snippet: msmq-create-queues-for-endpoint-powershell
 
 #### In C&#35;
 
-snippet:msmq-create-queues-endpoint-usage
+snippet: msmq-create-queues-endpoint-usage
 
 
 #### In PowerShell
 
-snippet:msmq-create-queues-endpoint-usage-powershell
+snippet: msmq-create-queues-endpoint-usage-powershell
 
 
 ### To create shared queues
@@ -140,12 +127,12 @@ snippet:msmq-create-queues-endpoint-usage-powershell
 
 #### In C&#35;
 
-snippet:msmq-create-queues-shared-usage
+snippet: msmq-create-queues-shared-usage
 
 
 #### In PowerShell
 
-snippet:msmq-create-queues-shared-usage-powershell
+snippet: msmq-create-queues-shared-usage-powershell
 
 
 ## Delete queues
@@ -156,21 +143,21 @@ snippet:msmq-create-queues-shared-usage-powershell
 
 #### In C&#35;
 
-snippet:msmq-delete-queues
+snippet: msmq-delete-queues
 
 
 #### In PowerShell
 
-snippet:msmq-delete-queues-powershell
+snippet: msmq-delete-queues-powershell
 
 
 ### To delete all queues for a given endpoint
 
 snippet: msmq-delete-queues-for-endpoint
 
-snippet:msmq-delete-queues-endpoint-usage
+snippet: msmq-delete-queues-endpoint-usage
 
 
 ### To delete shared queues
 
-snippet:msmq-delete-queues-shared-usage
+snippet: msmq-delete-queues-shared-usage

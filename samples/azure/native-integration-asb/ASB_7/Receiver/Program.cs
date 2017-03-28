@@ -24,7 +24,8 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.Recoverability().DisableLegacyRetriesSatellite();
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.DisableLegacyRetriesSatellite();
 
         #region BrokeredMessageConvention
 
@@ -43,15 +44,9 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

@@ -21,44 +21,38 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press 'E' to send a message with an enum return");
-            Console.WriteLine("Press 'I' to send a message with an int return");
-            Console.WriteLine("Press 'O' to send a message with an object return");
-            Console.WriteLine("Press any other key to exit");
+        Console.WriteLine("Press 'E' to send a message with an enum return");
+        Console.WriteLine("Press 'I' to send a message with an int return");
+        Console.WriteLine("Press 'O' to send a message with an object return");
+        Console.WriteLine("Press any other key to exit");
 
-            while (true)
+        while (true)
+        {
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key == ConsoleKey.E)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                if (key.Key == ConsoleKey.E)
-                {
-                    await SendEnumMessage(endpointInstance)
-                        .ConfigureAwait(false);
-                    continue;
-                }
-                if (key.Key == ConsoleKey.I)
-                {
-                    await SendIntMessage(endpointInstance)
-                        .ConfigureAwait(false);
-                    continue;
-                }
-                if (key.Key == ConsoleKey.O)
-                {
-                    await SendObjectMessage(endpointInstance)
-                        .ConfigureAwait(false);
-                    continue;
-                }
-                return;
+                await SendEnumMessage(endpointInstance)
+                    .ConfigureAwait(false);
+                continue;
             }
+            if (key.Key == ConsoleKey.I)
+            {
+                await SendIntMessage(endpointInstance)
+                    .ConfigureAwait(false);
+                continue;
+            }
+            if (key.Key == ConsoleKey.O)
+            {
+                await SendObjectMessage(endpointInstance)
+                    .ConfigureAwait(false);
+                continue;
+            }
+            break;
         }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
 

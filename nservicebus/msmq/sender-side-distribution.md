@@ -30,7 +30,7 @@ Using sender-side distribution requires two parts. The first part maps message t
 
 To map message types to logical endpoints, use the following config:
 
-snippet:Routing-MapMessagesToLogicalEndpoints
+snippet: Routing-MapMessagesToLogicalEndpoints
 
 This creates mappings specifying that the `AcceptOrder` command is handled by the **Sales** endpoint, while the `SendOrder` command is handled by the **Shipping** endpoint.
 
@@ -43,7 +43,7 @@ WARNING: If a message is mapped in an App.config file via the `UnicastBusConfig/
 
 The routing configuration file specifies how logical endpoint names are mapped to physical queues on specific machines:
 
-snippet:InstanceMappingFile-ScaleOut
+snippet: InstanceMappingFile-ScaleOut
 
 To read more about the instance mapping, refer to the [MSMQ routing page](/nservicebus/msmq/routing.md).
 

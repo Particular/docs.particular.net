@@ -124,7 +124,7 @@ NServiceBus.Host.exe NServiceBus.Master
 
 When [self hosting](/nservicebus/hosting/) the endpoint, use this configuration:
 
-snippet:ConfiguringDistributor
+snippet: ConfiguringDistributor
 
 NOTE: In versions 4 and above the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
@@ -235,4 +235,4 @@ Since the Distributor performs no CPU or memory intensive work, several Distribu
 
 ## Licensing
 
-partial:licensing
+partial: licensing

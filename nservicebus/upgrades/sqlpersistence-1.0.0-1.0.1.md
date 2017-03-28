@@ -1,5 +1,5 @@
 ---
-title: Sql Persistence Upgrade Version 1.0.0 to 1.0.1
+title: SQL Persistence Upgrade Version 1.0.0 to 1.0.1
 summary: Instructions on how to upgrade to Sql Persistence version 1.x
 reviewed: 2017-02-27
 component: SqlPersistence

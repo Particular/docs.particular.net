@@ -4,6 +4,6 @@ In Versions 3.2 and above, secure connections to the broker using [Transport Lay
 
 An example connection string using these settings:
 
-snippet:rabbitmq-connection-tls
+snippet: rabbitmq-connection-tls
 
 WARNING: TLS 1.2 must be enabled on the broker to establish a secure connection.

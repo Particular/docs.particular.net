@@ -13,15 +13,14 @@ namespace SqlPersistence_1.UsingSaga
          correlationProperty: nameof(SagaData.OrderId)
      )]
     public class OrderSaga :
-        Saga<OrderSaga.SagaData>,
+        SqlSaga<OrderSaga.SagaData>,
         IAmStartedByMessages<StartOrder>
     {
         static ILog log = LogManager.GetLogger<OrderSaga>();
 
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
+        protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
         {
-            mapper.ConfigureMapping<StartOrder>(order => order.OrderId)
-                .ToSaga(data => data.OrderId);
+            mapper.MapMessage<StartOrder>(_ => _.OrderId);
         }
 
         public Task Handle(StartOrder message, IMessageHandlerContext context)
@@ -39,5 +38,4 @@ namespace SqlPersistence_1.UsingSaga
     }
 
     #endregion
-
 }

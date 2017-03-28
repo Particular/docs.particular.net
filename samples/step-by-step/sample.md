@@ -93,27 +93,27 @@ The easiest way to differentiate commands and events is to use the `ICommand` an
 
 Define the `PlaceOrder` command by creating a class that implements `ICommand` in the Shared project called `PlaceOrder`:
 
-snippet:PlaceOrder
+snippet: PlaceOrder
 
 Next, define the `OrderPlaced` event by creating a class that implements `IEvent` in the Shared project called `OrderPlaced`:
 
-snippet:OrderPlaced
+snippet: OrderPlaced
 
 
-partial:errorqueue
+partial: errorqueue
 
 
 ## The Client
 
 Next, the Client application must be ready to send messages with NServiceBus. In the Client application, add the following code to the Program class. Ignore the missing `SendOrder` method, it will be added below.
 
-snippet:ClientInit
+snippet: ClientInit
 
 With a `PlaceOrder` command defined, and NServiceBus initialized, a loop can be created to send a new command message every time the Enter key is pressed.
 
 In the Client endpoint, add this code to the Program class:
 
-snippet:SendOrder
+snippet: SendOrder
 
 The Client endpoint is now complete, and could now be executed. However, doing so would throw an exception when trying to send the message. The Client is sending the `PlaceOrder` command to an endpoint named `Samples.StepByStep.Server`, which will not exist yet. A server endpoint must be created to handle that command.
 
@@ -124,17 +124,17 @@ Like the client, the Server application needs to be configured as an NServiceBus
 
 In the Server application, add the following code to the Program class:
 
-snippet:ServerInit
+snippet: ServerInit
 
 Notice that the endpoint name is different, which differentiates the Server endpoint from the Client.
 
 Next, create a new class in the Server project named `PlaceOrderHandler` using the following code:
 
-snippet:PlaceOrderHandler
+snippet: PlaceOrderHandler
 
 This class is the message handler that processes the `PlaceOrder` command being sent by the Client. A handler is where a message is processed; very often this will involve saving information from the message into a database, calling a web service, or some other business function. In this example, the message is logged, so the fact the message was received will be visible in the Console window. Next, the handler publishes a new `OrderPlaced` event.
 
-partial:dependencyinjection
+partial: dependencyinjection
 
 The next step is to create a subscriber for this event.
 
@@ -147,7 +147,7 @@ Like the client and the server, the Subscriber application also needs to be conf
 
 In the Subscriber application, add the following code to the Program class:
 
-snippet:SubscriberInit
+snippet: SubscriberInit
 
 This is almost identical to the Server configuration, except for the different endpoint name.
 
@@ -155,7 +155,7 @@ Next, create a message handler for the `OrderPlaced` event. Note that whether ha
 
 Create a new class in the Subscriber project named `OrderCreatedHandler` using the following code:
 
-snippet:OrderCreatedHandler
+snippet: OrderCreatedHandler
 
 The handler only logs the fact that the message was received. In a real system, a subscriber to `OrderPlaced` could charge a credit card for the order, start to prepare the order for shipment, or even update information in a customer loyalty database to track when the customer is eligible for different purchase-driven incentives.
 
@@ -165,7 +165,7 @@ Next, the subscriber needs to inform the publisher that it wants to receive `Ord
 
 In the Subscriber application, create an App.config file and add the following XML configuration:
 
-snippet:subscriptionConfig
+snippet: subscriptionConfig
 
 NOTE: The `Assembly` and `Type` values must exactly match the full name (including namespace) for the `OrderPlaced` event.
 

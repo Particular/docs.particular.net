@@ -15,7 +15,7 @@ Extending the routing with a custom data source makes sense in following scenari
  * When dynamically calculating routes based on endpoint discovery protocol (similar of [UDDI](https://en.wikipedia.org/wiki/Web_Services_Discovery)).
  * When using a convention based on massage naming.
 
-partial:content 
+partial: content 
 
 
 ## MessageEndpointMappings
@@ -24,13 +24,13 @@ The routing system can be extended in a static manner (once at startup) by provi
 
 It can be done either by using a configuration source:
 
-snippet:endpoint-mapping-configurationsource
+snippet: endpoint-mapping-configurationsource
 
-snippet:inject-endpoint-mapping-configuration-source
+snippet: inject-endpoint-mapping-configuration-source
 
 or a configuration provider:
 
-snippet:endpoint-mapping-configurationprovider
+snippet: endpoint-mapping-configurationprovider
 
 The `MessageEndpointMappings` collection can be populated based on any external source. It is read during the endpoint start-up, before any messages are sent.
 

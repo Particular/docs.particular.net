@@ -31,24 +31,24 @@ NOTE: If running this sample against an external RavenDB server ensure that the 
 
 It is possible to self-host RavenDB so that no running instance of RavenDB server is required to run the sample.
 
-snippet:ravenhost
+snippet: ravenhost
 
 
 include: sagafinder-thesaga
 
 
-snippet:TheSagaRavenDB
+snippet: TheSagaRavenDB
 
 
 include: sagafinder-process
 
-snippet:OrderSagaDataRavenDB
+snippet: OrderSagaDataRavenDB
 
 A properties uniqueness can be expressed by using the `UniqueConstraint` attribute provided by the RavenDB bundle.
 
 At start-up the sample will send a `StartOrder` message, since the saga data class is decorated with custom attributes it is required to also plug custom logic to find a saga data instance:
 
-snippet:CustomSagaFinderWithUniqueConstraintRavenDB
+snippet: CustomSagaFinderWithUniqueConstraintRavenDB
 
 
 include: sagafinder-ifindsagas

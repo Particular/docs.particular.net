@@ -80,7 +80,7 @@ Attempting to use `Reply()` or `Return()` to communicate with the caller, that w
 
 To communicate status in the example:
 
-snippet:saga-with-reply
+snippet: saga-with-reply
 
 This is one of the methods on the saga base class that would be very difficult to implement without tying the saga code to low-level parts of the NServiceBus infrastructure.
 
@@ -89,7 +89,7 @@ This is one of the methods on the saga base class that would be very difficult t
 
 Make sure to configure appropriate [saga persistence](/nservicebus/persistence/).
 
-snippet:saga-configure
+snippet: saga-configure
 
 
 ## Sagas and automatic subscriptions

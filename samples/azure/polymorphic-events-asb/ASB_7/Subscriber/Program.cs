@@ -23,7 +23,8 @@ class Program
         }
         transport.ConnectionString(connectionString);
         var topology = transport.UseEndpointOrientedTopology();
-        transport.Sanitization().UseStrategy<ValidateAndHashIfNeeded>();
+        var sanitization = transport.Sanitization();
+        sanitization.UseStrategy<ValidateAndHashIfNeeded>();
 
         #region RegisterPublisherNames
 
@@ -52,24 +53,19 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            #region ControledSubscriptions
+        #region ControledSubscriptions
 
-            await endpointInstance.Subscribe<BaseEvent>()
-                .ConfigureAwait(false);
+        await endpointInstance.Subscribe<BaseEvent>()
+            .ConfigureAwait(false);
 
-            #endregion
+        #endregion
 
-            Console.WriteLine("Subscriber is ready to receive events");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Unsubscribe<BaseEvent>().ConfigureAwait(false);
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Subscriber is ready to receive events");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Unsubscribe<BaseEvent>()
+            .ConfigureAwait(false);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

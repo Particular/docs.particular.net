@@ -3,14 +3,14 @@
 
 ### Including assemblies:
 
-snippet:ScanningListOfAssemblies
+snippet: ScanningListOfAssemblies
 
 
 ### Controlling the exact types that NServiceBus uses:
 
-snippet:ScanningListOfTypes
+snippet: ScanningListOfTypes
 
 
 ### Specifying the directory to scan:
 
-snippet:ScanningCustomDirectory
+snippet: ScanningCustomDirectory

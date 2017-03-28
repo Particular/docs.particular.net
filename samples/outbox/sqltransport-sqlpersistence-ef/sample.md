@@ -49,31 +49,31 @@ Sender and Receiver use different schemas in the same database. Apart from busin
 
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use [SQLServer transport](/nservicebus/sqlserver/) with [Sql persistence](/nservicebus/sql-persistence/) and Outbox.
 
-snippet:SenderConfiguration
+snippet: SenderConfiguration
 
 
 ### Receiver project
 
 The Receiver mimics a back-end system. It is also configured to use SQLServer transport with SQL persistence  and Outbox. It uses [EntityFramework](https://msdn.microsoft.com/en-us/library/gg696172.aspx) to store business data (orders).
 
-snippet:ReceiverConfiguration
+snippet: ReceiverConfiguration
 
 In order for the Outbox to work, the business data has to reuse the same connection string as NServiceBus persistence:
 
-snippet:EntityFramework
+snippet: EntityFramework
 
 When the message arrives at the Receiver, it is dequeued using a native SQL Server transaction. Then a `TransactionScope` is created that encompasses
 
  * persisting business data:
 
-snippet:StoreUserData
+snippet: StoreUserData
 
  * persisting saga data of `OrderLifecycleSaga` ,
  * storing the reply message and the timeout request in the Outbox:
 
-snippet:Reply
+snippet: Reply
 
-snippet:Timeout
+snippet: Timeout
 
 Finally the messages in the Outbox are pushed to their destinations. The timeout message gets stored in the NServiceBus timeout store and is sent back to the saga after requested delay of 5 seconds.
 

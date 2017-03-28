@@ -36,17 +36,17 @@ Note: All the usages of the Bus are done via a static instance stored on the roo
 
 ### Send and callback for an enum
 
-snippet:Web_SendEnumMessage
+snippet: Web_SendEnumMessage
 
 
 ### Send and callback for an int
 
-snippet:Web_SendIntMessage
+snippet: Web_SendIntMessage
 
 
 ### Send and callback for an object
 
-snippet:Web_SendObjectMessage
+snippet: Web_SendObjectMessage
 
 
 ## Sender project
@@ -56,17 +56,17 @@ A console application responsible for sending a messages and handling the callba
 
 ### Send and callback for an enum
 
-snippet:SendEnumMessage
+snippet: SendEnumMessage
 
 
 ### Send and callback for an int
 
-snippet:SendIntMessage
+snippet: SendIntMessage
 
 
 ### Send and callback for an object
 
-snippet:SendObjectMessage
+snippet: SendObjectMessage
 
 
 ## Receiver project
@@ -76,16 +76,16 @@ A console application responsible replying to messages from either the web appli
 
 ### Return an enum
 
-snippet:EnumMessageHandler
+snippet: EnumMessageHandler
 
 
 ### Return an int
 
-snippet:IntMessageHandler
+snippet: IntMessageHandler
 
 
 ### Return an Object
 
 Note that this scenario requires a `Reply` with a real message.
 
-snippet:ObjectMessageHandler
+snippet: ObjectMessageHandler

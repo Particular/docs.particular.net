@@ -19,7 +19,7 @@ In this lesson, we'll focus on [commands](/nservicebus/messaging/messages-events
 
 To define a command, create a class and mark it with the `ICommand` marker interface.
 
-snippet:Command
+snippet: Command
 
 The marker interface has no implementation, but lets NServiceBus know that the class is a command so that it can build up some metadata about the message type when the endpoint starts up. Any properties you create within the message constitute the message data.
 
@@ -31,7 +31,7 @@ When sending a message, the endpoint's [serializer](/nservicebus/serialization/)
 
 Messages can even contain child objects or collections. (The supported range of structures is dictated by the [choice of serializer](/nservicebus/serialization/#supported-serializers).)
 
-snippet:ComplexCommand
+snippet: ComplexCommand
 
 Messages are a contract between two endpoints. Any change to the message will likely involve a change on both the sender and receiver side. The more properties you have on a message, the more reasons it has to change, so keep your messages as slim as possible.
 
@@ -57,19 +57,19 @@ Following these guidelines will make your message contracts easy to evolve in th
 
 To process a message, we create a [**message handler**](/nservicebus/handlers/), a class that implements `IHandleMessages<T>`, where `T` is a message type. A message handler looks like this:
 
-snippet:EmptyHandler
+snippet: EmptyHandler
 
 The implementation of the `IHandleMessages<T>` interface is the `Handle` method, which NServiceBus will invoke when a message of type `T` (in this case `DoSomething`) arrives. The `Handle` method receives the message and an `IMessageHandlerContext` that contains contextual API for working with messages.
 
 Instead of explicitly returning a `Task`, you can add the `async` keyword to a handler method:
 
-snippet:EmptyHandlerAsync
+snippet: EmptyHandlerAsync
 
 If you want to learn more about working with async methods, check out [Asynchronous Handlers](/nservicebus/handlers/async-handlers.md).
 
 A single class can implement multiple `IHandleMessages<T>` for multiple message types. This allows grouping handlers that are logically related, although a new instance of the class will be created for every message processed.
 
-snippet:MultiHandler
+snippet: MultiHandler
 
 When NServiceBus starts up, it will find all of these message handler classes and automatically wire them up, so that they will be invoked when messages arrive. There's no special setup or configuration needed.
 
@@ -108,7 +108,7 @@ WARNING: The .NET Framework contains its own interface named `ICommand` in the `
 
 When complete, your `PlaceOrder` class should look like the following:
 
-snippet:PlaceOrder
+snippet: PlaceOrder
 
 
 ### Create a handler
@@ -129,7 +129,7 @@ Now that we've defined a message, we can create a corresponding message handler.
 
 When complete, your `PlaceOrderHandler` class should look like this:
 
-snippet:PlaceOrderHandler
+snippet: PlaceOrderHandler
 
 INFO: Because `LogManager.GetLogger(..);` is an expensive call, it's important to [always implement loggers as static members](/nservicebus/logging/usage.md).
 
@@ -142,7 +142,7 @@ In the **ClientUI** project, we are currently stopping the endpoint when we pres
 
 Add the following method to the **Program.cs** file:
 
-snippet:RunLoop
+snippet: RunLoop
  
 Let's take a closer look at the case when we want to place an order. In order to create the `PlaceOrder` command simply create an instance of the `PlaceOrder` class and supply a unique value for the `OrderId`. Then, after logging the details, we can send it with the `SendLocal` method.
 
@@ -154,7 +154,7 @@ Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properl
 
 Now let's modify the `AsyncMain` method to call the new `RunLoop` method:
 
-snippet:AddRunLoopToAsyncMain
+snippet: AddRunLoopToAsyncMain
 
 
 ### Running the solution

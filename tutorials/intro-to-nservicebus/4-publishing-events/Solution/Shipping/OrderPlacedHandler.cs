@@ -8,11 +8,11 @@ namespace Shipping
     public class OrderPlacedHandler :
         IHandleMessages<OrderPlaced>
     {
-        static ILog logger = LogManager.GetLogger<OrderPlacedHandler>();
+        static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
 
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
         {
-            logger.Info($"Received OrderPlaced, OrderId = {message.OrderId} - Should we ship now?");
+            log.Info($"Received OrderPlaced, OrderId = {message.OrderId} - Should we ship now?");
             return Task.CompletedTask;
         }
     }

@@ -6,6 +6,8 @@ related:
  - samples/sql-persistence/transitioning-correlation-ids
  - samples/saga/sql-sagafinder
  - samples/saga/migration
+ - nservicebus/upgrades/sqlpersistence-1to2
+ - nservicebus/upgrades/sqlpersistence-1.0.0-1.0.1
 reviewed: 2016-11-29
 ---
 
@@ -28,14 +30,14 @@ Install the [NServiceBus.Persistence.Sql](https://www.nuget.org/packages/NServic
 
 ### SQL Server
 
-snippet:SqlPersistenceUsageSqlServer
+snippet: SqlPersistenceUsageSqlServer
 
 
 ### MySQL
 
 Using the [MySql.Data NuGet Package](https://www.nuget.org/packages/MySql.Data/).
 
-snippet:SqlPersistenceUsageMySql
+snippet: SqlPersistenceUsageMySql
 
 {{Note: The following settings are required for [MySQL connections string](https://dev.mysql.com/doc/connector-net/en/connector-net-connection-options.html).
 
@@ -60,7 +62,7 @@ This package contains several parts
  * APIs for manipulating `EndPointConfiguration` at configuration time.
  * Runtime implementations of Saga, Timeouts, Subscriptions and Outbox Persisters.
  * Attribute definitions used to define certain compile time configuration settings. These attributes are then interrogated by the NServiceBus.Persistence.Sql.MsBuild NuGet Package when generating SQL installation scripts
- * Optionally runs SQL installation scripts at endpoint startup for developement purposes. See [Installer Workflow](installer-workflow.md).
+ * Optionally runs SQL installation scripts at endpoint startup for development purposes. See [Installer Workflow](installer-workflow.md).
 
 
 ### [NServiceBus.Persistence.Sql.ScriptBuilder](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.ScriptBuilder/)
@@ -101,20 +103,7 @@ snippet: SqlServerScripts
 snippet: MySqlScripts
 
 
-### Promotion
-
-As stated above, scripts are created in the target project output directory. Generally this directory will be excluded from source control. To add created scripts to source control they can be "promoted".
-
-WARNING: The target directory will be deleted and recreated as part of each build. So ensure to choose a path that is for script promotion only.
-
-Some token replacement using [MSBuild variables](https://msdn.microsoft.com/en-us/library/c02as0cs.aspx) is supported.
-
- * `$(SolutionDir)`: The directory of the solution.
- * `$(ProjectDir)`: The directory of the project
-
-All tokens are drive + path and include the trailing backslash `\`.
-
-snippet: PromoteScripts
+partial: promote
 
 
 ## Installation
@@ -139,13 +128,30 @@ When using the default (execute at startup) approach to installation the value c
 snippet: TablePrefix
 
 
+#### Database Schema
+
+A database schema can be defined in the configuration API as follows:
+
+snippet: Schema
+
+Note that the same value will need to be passed to the SQL installation scripts as a parameter.
+
+
 #### Manual installation
 
 When performing a custom script execution the TablePrefix is required. See also [Installer Workflow](installer-workflow.md).
 
-snippet: ExecuteScripts
-
 Note that `scriptDirectory` can be either the root directory for all scripts for, alternatively, the specific locations for a given storage type i.e. Saga, Outbox, Subscription and Timeout scripts.
+
+
+##### SQL Server
+
+snippet: ExecuteScriptsSqlServer
+
+
+##### MySQL
+
+snippet: ExecuteScriptsMySql
 
 
 ## SqlStorageSession

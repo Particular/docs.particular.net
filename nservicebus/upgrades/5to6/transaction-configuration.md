@@ -15,46 +15,46 @@ Version 6 provide a configuration API that is more aligned with the transaction 
 
 Transactions are enabled by default so calls to `.Enable()` can safely be removed.
 
-snippet:5to6EnableTransactions
+snippet: 5to6EnableTransactions
 
 
 ## Disabling transactions
 
 Disabling transactions is now done by setting a transport transaction mode.
 
-snippet:5to6DisableTransactions
+snippet: 5to6DisableTransactions
 
 
 ## Enabling distributed transactions
 
 Distributed transactions is the default mode for transports with DTC support but can be enabled explicitly.
 
-snippet:5to6EnableDistributedTransactions
+snippet: 5to6EnableDistributedTransactions
 
 
 ## Disabling distributed transactions
 
 Disabling distributed transactions is now done by setting a transport transaction mode.
 
-snippet:5to6DisableDistributedTransactions
+snippet: 5to6DisableDistributedTransactions
 
 Or, if the transport supports native AtomicWithReceive:
 
-snippet:5to6DisableDistributedTransactionsNative
+snippet: 5to6DisableDistributedTransactionsNative
 
 
 ## Controlling transaction scope options
 
 Version 6 allows transaction scope options to be configured at the transport level. Setting isolation level and timeout can now be done with the following:
 
-snippet:5to6TransportTransactionScopeOptions
+snippet: 5to6TransportTransactionScopeOptions
 
 
 ## Wrapping handlers execution in a transaction scope
 
 Version 6 comes with a unit of work that wraps execution of handlers in a transaction scope, which can now be done with this API:
 
-snippet:5to6WrapHandlersExecutionInATransactionScope
+snippet: 5to6WrapHandlersExecutionInATransactionScope
 
 
 ## Forwarding messages to error queue when transactions are disabled

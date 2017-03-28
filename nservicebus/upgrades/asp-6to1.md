@@ -30,10 +30,10 @@ In Versions 6 and below the Azure Storage Persistence was configured using XML c
 
 For example, the following Xml:
 
-snippet:AzurePersistenceFromAppConfig
+snippet: AzurePersistenceFromAppConfig
 
 changes to this code configuration:
 
-snippet:AzurePersistenceSubscriptionsAllConnectionsCustomization
+snippet: AzurePersistenceSubscriptionsAllConnectionsCustomization
 
 The new configuration APIs are accessible through extension methods on the `UsePersistence<AzureStoragePersistence, StorageType.Sagas>()`, `UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()`, and `UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()` extension points in the endpoint configuration. See [Azure Storage Persistence Code Configuration](/nservicebus/azure-storage-persistence/configuration.md#configuration-with-code) for more details on code configuration API use.

@@ -7,11 +7,11 @@ These extensions are available as `ISatellite` and `IAdvancedSatellite` interfac
 
 To use this extension, declare a class that implements the `ISatellite` interface. Specify values for the `InputAddress` and enable it as shown. The `InputAddress` is the queue that the satellite watches for messages.
 
-snippet:SimpleSatelliteSetup
+snippet: SimpleSatelliteSetup
 
 When messages are received in the queue specified as the `InputAddress`, the satellite's `Handle` method will be invoked.
 
-snippet:SimpleSatelliteHandleMessages
+snippet: SimpleSatelliteHandleMessages
 
 
 ### IAdvancedSatellite

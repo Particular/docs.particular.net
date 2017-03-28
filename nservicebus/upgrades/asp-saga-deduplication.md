@@ -23,7 +23,7 @@ This bug will affect a system only if the following conditions are met on the sa
  * NServiceBus Version 5 or lower.
  * NServiceBus.Azure Version 6.2.3 or lower.
  * AzureStoragePersistence is used.
- * the endpoint contains a saga which has more than one `IAmStartedBy<T>`.
+ * the endpoint contains a saga which has more than one `IAmStartedByMessages<T>`.
  * endpoint concurrency is set to > 1.
 
 

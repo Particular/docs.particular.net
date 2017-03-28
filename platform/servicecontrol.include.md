@@ -11,3 +11,5 @@ To enable [ServiceControl](/servicecontrol) to gather this information, configur
  * [install plugins on the endpoints](/servicecontrol/plugins/) to monitor their health and sagas and use custom checks.
 
 By default ServiceControl stores information for 30 days, but it can be [customized](/servicecontrol/creating-config-file.md).
+
+Refer to the [Optimizing for use in different environments](/servicecontrol/servicecontrol-in-practice.md) article for more information about practical considerations.

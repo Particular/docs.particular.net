@@ -61,11 +61,11 @@ RavenDB integration, in both the core and the externalized versions is configure
 
 Previously:
 
-snippet:OldRavenDBPersistenceInitialization
+snippet: OldRavenDBPersistenceInitialization
 
 Now:
 
-snippet:Version2_5RavenDBPersistenceInitialization
+snippet: Version2_5RavenDBPersistenceInitialization
 
 
 ## NServiceBus 3: ILMerged into the Core

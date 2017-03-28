@@ -10,10 +10,10 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Throttling.Sender");
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        #region Sending
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Sending messages...");
+            #region Sending
             for (var i = 0; i < 100; i++)
             {
                 var searchGitHub = new SearchGitHub
@@ -24,11 +24,11 @@ class Program
                 };
                 bus.Send("Samples.Throttling.Limited",searchGitHub);
             }
+            #endregion
             Console.WriteLine("Messages sent.");
             Console.WriteLine("Press any key to exit");
 
             Console.ReadKey();
         }
-        #endregion
     }
 }

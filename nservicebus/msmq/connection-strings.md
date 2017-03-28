@@ -7,7 +7,7 @@ tags:
  - Transport
 ---
 
-snippet:MessageQueueConfiguration
+snippet: MessageQueueConfiguration
 
  * `deadLetter`: The `deadLetter` configuration parameter enables or disables [dead letter queue](https://msdn.microsoft.com/en-us/library/ms706227.aspx) support, dead letter queues tracks messages that cannot be delivered. The default value is `true`.
  * `journal`: MSMQ supports the concept of journaling, when the journaling is active a copy of each sent message is stored in the [journal queue](https://msdn.microsoft.com/en-us/library/ms702011.aspx). The default value is `false`.

@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-  <!--startcode OutboxEnablingInAppConfig-->
-  <appSettings>
-    <add key="NServiceBus/Outbox" 
-         value="true" />
-  </appSettings>
-  <!--endcode -->
-</configuration>

@@ -8,7 +8,7 @@ using NServiceBus.Logging;
 class Program
 {
     public static ReceiveCounter ReceiveCounter = new ReceiveCounter();
-    static ILog logger = LogManager.GetLogger<Program>();
+    static ILog log = LogManager.GetLogger<Program>();
 
     static void Main()
     {
@@ -19,7 +19,7 @@ class Program
     {
         Console.Title = "Samples.ASB.Performance.FastNonAtomicSenderReceiver";
 
-        ReceiveCounter.Subscribe(i => logger.Warn($"Processed {i} & sent {i*SomeMessageHandler.NumberOfMessagesToSend} messages"));
+        ReceiveCounter.Subscribe(i => log.Warn($"Processed {i} & sent {i*SomeMessageHandler.NumberOfMessagesToSend} messages"));
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Performance.Receiver");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();

@@ -37,13 +37,13 @@ namespace ClientUI
 
         #region RunLoop
 
-        static ILog logger = LogManager.GetLogger<Program>();
+        static ILog log = LogManager.GetLogger<Program>();
 
         static async Task RunLoop(IEndpointInstance endpointInstance)
         {
             while (true)
             {
-                logger.Info("Press 'P' to place an order, or 'Q' to quit.");
+                log.Info("Press 'P' to place an order, or 'Q' to quit.");
                 var key = Console.ReadKey();
                 Console.WriteLine();
 
@@ -57,7 +57,7 @@ namespace ClientUI
                         };
 
                         // Send the command to the local endpoint
-                        logger.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
+                        log.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
                         await endpointInstance.SendLocal(command)
                             .ConfigureAwait(false);
 
@@ -67,7 +67,7 @@ namespace ClientUI
                         return;
 
                     default:
-                        logger.Info("Unknown input. Please try again.");
+                        log.Info("Unknown input. Please try again.");
                         break;
                 }
             }

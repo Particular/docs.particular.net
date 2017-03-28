@@ -4,4 +4,4 @@ Using [Bson](https://en.wikipedia.org/wiki/BSON) via the same ILMerged copy of J
 
 ### Usage
 
-snippet:BsonSerialization
+snippet: BsonSerialization

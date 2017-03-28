@@ -16,8 +16,8 @@ static class Program
         #region configExternalNewtonsoftBson
         var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.ExternalNewtonsoftBsonEndpoint");
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-        serialization.ReaderCreator(stream => new BsonReader(stream));
-        serialization.WriterCreator(stream => new BsonWriter(stream));
+        serialization.ReaderCreator(stream => new BsonDataReader(stream));
+        serialization.WriterCreator(stream => new BsonDataWriter(stream));
         serialization.ContentTypeKey("NewtonsoftBson");
         endpointConfiguration.RegisterOutgoingMessageLogger();
 
@@ -28,20 +28,14 @@ static class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            var message = MesasgeBuilder.BuildMessage();
-            await endpointInstance.Send("Samples.MultipleDeserializers.ReceivingEndpoint", message)
-                .ConfigureAwait(false);
-            Console.WriteLine("Order Sent");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        var message = MesasgeBuilder.BuildMessage();
+        await endpointInstance.Send("Samples.MultipleDeserializers.ReceivingEndpoint", message)
+            .ConfigureAwait(false);
+        Console.WriteLine("Order Sent");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
 }
