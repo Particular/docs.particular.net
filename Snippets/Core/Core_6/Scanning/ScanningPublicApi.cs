@@ -14,10 +14,8 @@ namespace Core6.Scanning
         {
             #region ScanningNestedAssebliesEnabled
 
-            endpointConfiguration.AssemblyScanner(scannerConfiguration =>
-            {
-                scannerConfiguration.ScanAssembliesInNestedDirectories = true;
-            });
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ScanAssembliesInNestedDirectories = true;
 
             #endregion
         }
@@ -26,10 +24,8 @@ namespace Core6.Scanning
         {
             #region ScanningExcludeByName
 
-            endpointConfiguration.AssemblyScanner(scannerConfiguration =>
-            {
-                scannerConfiguration.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
-            });
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
 
             #endregion
         }
@@ -65,10 +61,8 @@ namespace Core6.Scanning
         {
             #region ScanningExcludeTypes
 
-            endpointConfiguration.AssemblyScanner(scannerConfiguration =>
-            {
-                scannerConfiguration.ExcludeTypes(type1, type2);
-            });
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ExcludeTypes(type1, type2);
 
             #endregion
         }
@@ -88,10 +82,8 @@ namespace Core6.Scanning
         {
             #region ScanningApDomainAssemblies
 
-            endpointConfiguration.AssemblyScanner(scannerConfiguration =>
-            {
-                scannerConfiguration.ScanAppDomainAssemblies = true;
-            });
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ScanAppDomainAssemblies = true;
 
             #endregion
         }
@@ -100,10 +92,8 @@ namespace Core6.Scanning
         {
             #region SwallowScanningExceptions
 
-            endpointConfiguration.AssemblyScanner(scannerConfiguration =>
-            {
-                scannerConfiguration.ThrowExceptions = false;
-            });
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ThrowExceptions = false;
 
             #endregion
         }
