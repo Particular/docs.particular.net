@@ -52,4 +52,20 @@ The Metrics component captures a number of different metrics about a running end
 
 ### Processing Time
 
-Processing Time is time it takes for an endpoint to process a single message.
+Processing Time is the time it takes for an endpoint to process a single message.
+
+### Critical Time
+
+Critical Time is the time between when a message is sent and when it is fully processed. It is a combination of:
+- Network Send Time - The time a message spends on the network before arriving in the destination queue
+- Queue Wait Time - The time a message spends in the destination queue before being picked up and processed
+- Processing Time - The time is takes for the destination endpoint to process the message
+
+### Message Receive Performance Statistics
+
+Including:
+- Messages Pulled from Queue
+- Message Processing Failures
+- Messages Successfully Processed
+
+
