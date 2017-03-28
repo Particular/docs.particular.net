@@ -15,6 +15,7 @@ related:
 
 Using Outbox allows for running endpoints with similar reliability to DTC while not actually using DTC.
 
+
 ## How it works
 
 The Outbox feature has been implemented using the [Outbox](http://gistlabs.com/2014/05/the-outbox/) and the [Deduplication](https://en.wikipedia.org/wiki/Data_deduplication#In-line_deduplication) patterns.
@@ -46,9 +47,10 @@ Note: On the wire level the Outbox guarantees `at-least-once` message delivery, 
    * If endpoints using Outbox send messages to endpoints using DTC, then the handlers processing those messages are [idempotent](https://en.wikipedia.org/wiki/Idempotence).
  * The Outbox may generate duplicate messages if outgoing messages are successfully dispatched but the _Mark as dispatched_ phase fails. This may happen for a variety of reasons, including _Outbox storage_ connectivity issues and deadlocks.
 
+
 ## Enabling the Outbox
 
-partial:enable-outbox
+partial: enable-outbox
 
 
 ## Persistence
