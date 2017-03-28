@@ -37,7 +37,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="ICustomizeConfiguration.cs" />
     <Compile Include="IRunAfterEndpointStart.cs" />
     <Compile Include="IRunAfterEndpointStop.cs" />
