@@ -374,6 +374,8 @@
       Title: Unit of Work
     - Url: nservicebus/pipeline/aborting
       Title: Abort execution
+    - Url: nservicebus/pipeline/events
+      Title: Subscribing to notification events
     - Url: nservicebus/pipeline/features
       Title: Features
     - Url: nservicebus/pipeline/customizing-error-handling
