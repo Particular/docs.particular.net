@@ -14,11 +14,18 @@ public class EndpointConfig :
     {
         var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
         persistence.ConnectionString("UseDevelopmentStorage=true");
+
+        #region AzureMultiHost_MessageMapping
+
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        var routing = transport.Routing();
+        routing.RegisterPublisher(typeof(Ping), "Receiver");
+
+        #endregion
+
         transport.ConnectionString("UseDevelopmentStorage=true");
         transport.SerializeMessageWrapperWith<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
-
         endpointConfiguration.DisableNotUsedFeatures();
     }
 }
