@@ -65,9 +65,9 @@
   DocoUrl: nservicebus/operations/performance-counters
   Category: Other
   GitHubOwner: Particular/metrics-maintainers
-  ProjectUrl: https://github.com/Particular/NServiceBus.WindowsPerformanceCounters
+  ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.PerformanceCounters
   NugetOrder:
-    - NServiceBus.WindowsPerformanceCounters
+    - NServiceBus.Metrics.PerformanceCounters
     - NServiceBus
 
 - Key: PostgreSQL
@@ -787,3 +787,12 @@
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.FileBasedRouting
   NugetOrder:
     - NServiceBus.FileBasedRouting
+
+- Key: ServiceFabricPersistence
+  Name: Service Fabric Persistence 
+  DocoUrl: nservicebus/service-fabric
+  GitHubOwner: Particular/service-fabric-maintainers
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.ServiceFabric
+  NugetOrder:
+    - NServiceBus.Persistence.ServiceFabric

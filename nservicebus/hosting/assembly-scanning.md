@@ -51,3 +51,7 @@ snippet: ScanningExcludeTypes
 partial: include
 
 partial: mixing
+
+partial: appdomain
+
+partial: suppress

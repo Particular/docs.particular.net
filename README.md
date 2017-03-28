@@ -1014,7 +1014,7 @@ Under https://github.com/Particular/docs.particular.net/tree/master/tools there 
 
 ## nugets.linq
 
-Uses nuget.exe to update all NuGet packages in all solutions to the newest patch version. This script takes 10-20 minutes depending on bandwidth.
+Uses nuget.exe to update all NuGet packages in all solutions to the newest patch version. This script takes 10-20 minutes depending on bandwidth. The script will **not** update to the newest minor or major versions.
 
 
 ## resharpersettings.linq

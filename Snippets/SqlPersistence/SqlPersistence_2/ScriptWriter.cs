@@ -84,9 +84,6 @@ public class ScriptWriter
 
     #region CreationScriptSaga
 
-    [SqlSaga(
-        CorrelationProperty = "OrderNumber",
-        TransitionalCorrelationProperty = "OrderId")]
     public class OrderSaga :
         SqlSaga<OrderSaga.OrderSagaData>
     {
@@ -97,11 +94,16 @@ public class ScriptWriter
             public Guid OrderId { get; set; }
         }
 
+        protected override string CorrelationPropertyName => nameof(OrderSagaData.OrderNumber);
+
+        protected override string TransitionalCorrelationPropertyName => nameof(OrderSagaData.OrderId);
+
         #endregion
 
-        protected override void ConfigureMapping(MessagePropertyMapper<OrderSagaData> mapper)
+        protected override void ConfigureMapping(IMessagePropertyMapper mapper)
         {
         }
+
     }
 
     static void Write(string testDirectory, BuildSqlVariant variant, string suffix, string script)

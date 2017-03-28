@@ -16,7 +16,7 @@ The `NServiceBus.Callbacks` package has to be referenced only by the requesting 
 
 snippet: 5to6-Callbacks
 
-In Version 6 the callback handling on [broker transports](/nservicebus/transports/#types-of-transports-broker-transports) is no longer based on the machine host name. In order to continue using callbacks when using a broker transport, the endpoint needs to be uniquely addressable:
+In order to use callbacks, the endpoint needs to be uniquely addressable:
 
 snippet: 5to6-Callbacks-InstanceId
 

@@ -22,9 +22,16 @@ class Program
 
         #region sqlServerConfig
 
+        var connection = @"Data Source=.\SqlExpress;Database=SqlPersistenceSample;Integrated Security=True";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.ConnectionBuilder(() => new SqlConnection(@"Data Source=.\SqlExpress;Database=SqlPersistenceSample;Integrated Security=True"));
+        persistence.ConnectionBuilder(
+            connectionBuilder: () =>
+            {
+                return new SqlConnection(connection);
+            });
         persistence.SqlVariant(SqlVariant.MsSqlServer);
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
         #endregion
 

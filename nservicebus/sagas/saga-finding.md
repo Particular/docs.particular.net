@@ -8,6 +8,7 @@ tags:
 related:
 - samples/saga/ravendb-custom-sagafinder
 - samples/saga/nh-custom-sagafinder
+- samples/saga/sql-sagafinder
 - nservicebus/sagas
 - nservicebus/sagas/concurrency
 ---

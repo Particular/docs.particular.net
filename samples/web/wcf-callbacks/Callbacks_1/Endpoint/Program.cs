@@ -23,19 +23,13 @@ static class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        using (StartWcfHost(endpointInstance))
         {
-            using (StartWcfHost(endpointInstance))
-            {
-                Console.WriteLine("Press any key to exit");
-                Console.ReadKey();
-            }
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
         }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
 
         #endregion
     }

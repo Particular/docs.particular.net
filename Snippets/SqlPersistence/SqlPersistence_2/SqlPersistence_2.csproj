@@ -7,8 +7,7 @@
     <ProjectGuid>{AF39A002-63FF-4AFA-9631-BF844878A603}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace />
     <AssemblyName>SqlPersistence_2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -35,15 +34,22 @@
     <Compile Include="SagaFinder\MySqlSagaFinder.cs" />
     <Compile Include="SagaFinder\SqlServerSagaFinder.cs" />
     <Compile Include="SagaFinder\MyMessage.cs" />
+    <Compile Include="UpgradeGuides\1to2\SqlPersistenceSettings.cs" />
+    <Compile Include="UpgradeGuides\1to2\Correlation\MySaga.cs" />
+    <Compile Include="UpgradeGuides\1to2\Correlation\MyMessage.cs" />
+    <Compile Include="UpgradeGuides\1to2\Mapping\MySaga.cs" />
+    <Compile Include="UpgradeGuides\1to2\Mapping\MyMessage.cs" />
+    <Compile Include="UpgradeGuides\1to2\SagaAttribute.cs" />
     <Compile Include="UpgradeGuides\1to2\Upgrade1to2.cs" />
-    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="SqlPersistenceSettings.cs" />
     <Compile Include="CorrelationPropertyTypeConverterWriter.cs" />
     <Compile Include="ScriptWriter.cs" />
     <Compile Include="Session\Handler.cs" />
     <Compile Include="Session\Saga.cs" />
     <Compile Include="Session\MyMessage.cs" />
     <Compile Include="TableSuffix.cs" />
-    <Compile Include="AttributeRequirement\OrderSaga.cs" />
+    <Compile Include="IlRequirement\OrderSaga.cs" />
+    <Compile Include="Subscriptions.cs" />
     <Compile Include="UsingSaga\SagaWithCorrelation.cs" />
     <Compile Include="UsingSaga\SagaWithCorrelationAndTransitional.cs" />
     <Compile Include="UsingSaga\SagaWithNoMessageMapping.cs" />

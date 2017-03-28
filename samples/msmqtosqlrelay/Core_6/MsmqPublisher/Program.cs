@@ -26,17 +26,10 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Start(endpointInstance);
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Start(endpointInstance);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
-
 
     static void Start(IEndpointInstance busSession)
     {

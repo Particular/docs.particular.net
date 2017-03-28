@@ -36,22 +36,16 @@ class Program
 
         var endpoint = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        var startOrder = new StartOrder
         {
-            var startOrder = new StartOrder
-            {
-                OrderId = "123"
-            };
-            await endpoint.SendLocal(startOrder)
-                .ConfigureAwait(false);
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpoint.Stop()
-                .ConfigureAwait(false);
-        }
+            OrderId = "123"
+        };
+        await endpoint.SendLocal(startOrder)
+            .ConfigureAwait(false);
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpoint.Stop()
+            .ConfigureAwait(false);
     }
 
     #region AttributesConfiguration

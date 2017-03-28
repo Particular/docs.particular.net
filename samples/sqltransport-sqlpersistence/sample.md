@@ -10,6 +10,7 @@ related:
 
 In this sample, the SQL Server Transport is used in conjunction with SQL Persistence. The sample shows how to use the same database connection for both transport and persistence operations, and how to access the SQL connection from within a message handler to persist business objects to the database.
 
+
 ## Prerequisites
 
  1. Make sure an instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
@@ -73,9 +74,9 @@ The shared session is managed by NServiceBus, so there is no need to explicitly 
 
 snippet: StoreUserData
 
-With SQL persistence, the `OrderLifecycleSaga` is decorated with a `SqlSaga` attribute, which identifies the saga's correlation id. This gives the SQL persister knowledge of the correlation id at build time when it is generating the table creation script for the saga data.
+With SQL persistence, the `OrderLifecycleSaga` inherits from `SqlSaga`.
 
-snippet: SqlSagaAttribute 
+snippet: Saga
 
 
 ### Script Output

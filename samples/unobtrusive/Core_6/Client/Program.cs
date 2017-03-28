@@ -26,16 +26,10 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            await CommandSender.Start(endpointInstance)
-                .ConfigureAwait(false);
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        await CommandSender.Start(endpointInstance)
+            .ConfigureAwait(false);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }
 

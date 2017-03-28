@@ -1,4 +1,5 @@
-﻿namespace Core6.Recoverability.ErrorHandling
+﻿#pragma warning disable 618
+namespace Core6.Recoverability.ErrorHandling
 {
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;

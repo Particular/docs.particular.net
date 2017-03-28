@@ -9,7 +9,6 @@
         Saga<MySagaData>,
         IAmStartedByMessages<StartMessage>
     {
-
         public Task Handle(StartMessage message, IMessageHandlerContext context)
         {
             var almostDoneMessage = new AlmostDoneMessage

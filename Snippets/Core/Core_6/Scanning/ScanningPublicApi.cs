@@ -1,4 +1,5 @@
-﻿namespace Core6.Scanning
+﻿#pragma warning disable 618
+namespace Core6.Scanning
 {
     using System;
     using System.Collections.Generic;
@@ -9,12 +10,12 @@
 
     class ScanningPublicApi
     {
-
         void ScanningNestedAssembliesEnabled(EndpointConfiguration endpointConfiguration)
         {
             #region ScanningNestedAssebliesEnabled
 
-            endpointConfiguration.ScanAssembliesInNestedDirectories();
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ScanAssembliesInNestedDirectories = true;
 
             #endregion
         }
@@ -23,7 +24,8 @@
         {
             #region ScanningExcludeByName
 
-            endpointConfiguration.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
 
             #endregion
         }
@@ -59,7 +61,8 @@
         {
             #region ScanningExcludeTypes
 
-            endpointConfiguration.ExcludeTypes(type1, type2);
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ExcludeTypes(type1, type2);
 
             #endregion
         }
@@ -75,5 +78,24 @@
             #endregion
         }
 
+        void ScanningApDomainAssemblies(EndpointConfiguration endpointConfiguration)
+        {
+            #region ScanningApDomainAssemblies
+
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ScanAppDomainAssemblies = true;
+
+            #endregion
+        }
+
+        void SwallowScanningExceptions(EndpointConfiguration endpointConfiguration)
+        {
+            #region SwallowScanningExceptions
+
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ThrowExceptions = false;
+
+            #endregion
+        }
     }
 }

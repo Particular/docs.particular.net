@@ -6,9 +6,6 @@ using NServiceBus.Persistence.Sql;
 
 #region TheSaga
 
-[SqlSaga(
-     CorrelationProperty = nameof(OrderSagaData.OrderId)
- )]
 public class OrderSaga :
     SqlSaga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
@@ -17,11 +14,13 @@ public class OrderSaga :
 {
     static ILog log = LogManager.GetLogger<OrderSaga>();
 
-    protected override void ConfigureMapping(MessagePropertyMapper<OrderSagaData> mapper)
+    protected override void ConfigureMapping(IMessagePropertyMapper mapper)
     {
-        mapper.MapMessage<StartOrder>(_ => _.OrderId);
-        mapper.MapMessage<CompleteOrder>(_ => _.OrderId);
+        mapper.ConfigureMapping<StartOrder>(_ => _.OrderId);
+        mapper.ConfigureMapping<CompleteOrder>(_ => _.OrderId);
     }
+
+    protected override string CorrelationPropertyName => nameof(OrderSagaData.OrderId);
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)
     {

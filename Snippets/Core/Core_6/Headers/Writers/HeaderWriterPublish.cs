@@ -5,8 +5,6 @@
     using Common;
     using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
-    using NServiceBus.Config;
-    using NServiceBus.Config.ConfigurationSource;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
 
@@ -33,11 +31,9 @@
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.RegisterComponents(
-                registration: components =>
-                {
-                    components.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
-                });
+            endpointConfiguration.RegisterMessageMutator(new Mutator());
+            var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+            routing.RegisterPublisher(GetType().Assembly, EndpointName);
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
@@ -62,22 +58,6 @@
             public Task Handle(MessageToPublish message, IMessageHandlerContext context)
             {
                 return Task.CompletedTask;
-            }
-        }
-
-        class ConfigUnicastBus :
-            IProvideConfiguration<UnicastBusConfig>
-        {
-            public UnicastBusConfig GetConfiguration()
-            {
-                var unicastBusConfig = new UnicastBusConfig();
-                var endpointMapping = new MessageEndpointMapping
-                {
-                    AssemblyName = GetType().Assembly.GetName().Name,
-                    Endpoint = EndpointName
-                };
-                unicastBusConfig.MessageEndpointMappings.Add(endpointMapping);
-                return unicastBusConfig;
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "Newtonsoft.Json.Bson": "1.*",
     "NServiceBus.Newtonsoft.Json": "1.*"
   },
   "frameworks": {

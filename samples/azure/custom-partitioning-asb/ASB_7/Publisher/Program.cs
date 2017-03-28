@@ -50,35 +50,29 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        try
-        {
-            Console.WriteLine("Press 'e' to publish an event");
-            Console.WriteLine("Press any other key to exit");
+        Console.WriteLine("Press 'e' to publish an event");
+        Console.WriteLine("Press any other key to exit");
 
-            while (true)
+        while (true)
+        {
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            var eventId = Guid.NewGuid();
+
+            if (key.Key != ConsoleKey.E)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                var eventId = Guid.NewGuid();
-
-                if (key.Key != ConsoleKey.E)
-                {
-                    break;
-                }
-                var someEvent = new SomeEvent
-                {
-                    EventId = eventId
-                };
-                await endpointInstance.Publish(someEvent)
-                    .ConfigureAwait(false);
-                Console.WriteLine($"SomeEvent sent. EventId: {eventId}");
+                break;
             }
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+            var someEvent = new SomeEvent
+            {
+                EventId = eventId
+            };
+            await endpointInstance.Publish(someEvent)
                 .ConfigureAwait(false);
+            Console.WriteLine($"SomeEvent sent. EventId: {eventId}");
         }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

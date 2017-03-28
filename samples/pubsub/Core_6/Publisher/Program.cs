@@ -23,16 +23,10 @@ static class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            await Start(endpointInstance)
-                .ConfigureAwait(false);
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        await Start(endpointInstance)
+            .ConfigureAwait(false);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
     static async Task Start(IEndpointInstance endpointInstance)

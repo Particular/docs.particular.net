@@ -47,35 +47,29 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press enter to send a message");
-            Console.WriteLine("Press any key to exit");
+        Console.WriteLine("Press enter to send a message");
+        Console.WriteLine("Press any key to exit");
 
-            while (true)
+        while (true)
+        {
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key != ConsoleKey.Enter)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    return;
-                }
-
-                var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                var orderSubmitted = new OrderSubmitted
-                {
-                    OrderId = orderId,
-                    Value = random.Next(100)
-                };
-                await endpointInstance.Publish(orderSubmitted)
-                .ConfigureAwait(false);
+                break;
             }
+
+            var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+            var orderSubmitted = new OrderSubmitted
+            {
+                OrderId = orderId,
+                Value = random.Next(100)
+            };
+            await endpointInstance.Publish(orderSubmitted)
+            .ConfigureAwait(false);
         }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

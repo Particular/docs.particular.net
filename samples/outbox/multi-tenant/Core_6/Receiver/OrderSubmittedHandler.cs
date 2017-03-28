@@ -16,7 +16,8 @@ public class OrderSubmittedHandler :
             OrderId = message.OrderId,
             Value = message.Value
         };
-        context.SynchronizedStorageSession.Session().Save(order);
+        var session = context.SynchronizedStorageSession.Session();
+        session.Save(order);
 
         var orderAccepted = new OrderAccepted
         {
