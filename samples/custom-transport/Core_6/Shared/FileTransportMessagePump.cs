@@ -186,7 +186,8 @@ class FileTransportMessagePump :
             var transportTransaction = new TransportTransaction();
             transportTransaction.Set(transaction);
 
-            var shouldCommit = await HandleMessageWithRetries(messageId, headers, body, transportTransaction, 1);
+            var shouldCommit = await HandleMessageWithRetries(messageId, headers, body, transportTransaction, 1)
+                .ConfigureAwait(false);
 
             if (shouldCommit)
             {
@@ -216,11 +217,13 @@ class FileTransportMessagePump :
         catch (Exception e)
         {
             var errorContext = new ErrorContext(e, headers, messageId, body, transportTransaction, processingAttempt);
-            var errorHandlingResult = await onError(errorContext);
+            var errorHandlingResult = await onError(errorContext)
+                .ConfigureAwait(false);
 
             if (errorHandlingResult == ErrorHandleResult.RetryRequired)
             {
-                return await HandleMessageWithRetries(messageId, headers, body, transportTransaction, ++processingAttempt);
+                return await HandleMessageWithRetries(messageId, headers, body, transportTransaction, ++processingAttempt)
+                    .ConfigureAwait(false);
             }
 
             return true;

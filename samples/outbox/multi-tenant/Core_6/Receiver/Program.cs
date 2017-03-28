@@ -68,7 +68,6 @@ class Program
 
         var startableEndpoint = await Endpoint.Create(endpointConfiguration)
             .ConfigureAwait(false);
-        IEndpointInstance endpointInstance = null;
 
         #region CreateSchema
 
@@ -77,21 +76,15 @@ class Program
 
         #endregion
 
-        try
-        {
-            endpointInstance = await startableEndpoint.Start()
-                .ConfigureAwait(false);
+        var endpointInstance = await startableEndpoint.Start()
+            .ConfigureAwait(false);
 
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        if (endpointInstance != null)
         {
-            if (endpointInstance != null)
-            {
-                await endpointInstance.Stop()
-                    .ConfigureAwait(false);
-            }
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 

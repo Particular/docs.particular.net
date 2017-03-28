@@ -21,7 +21,7 @@ public class OrderSaga :
     public Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
-        log.Info($"Received StartOrder message. Data.OrderId={Data.OrderId}.");
+        log.Info($"Received StartOrder message. OrderId={Data.OrderId}.");
         return Task.CompletedTask;
     }
 }

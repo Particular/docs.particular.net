@@ -21,16 +21,10 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("\r\nPress any key to stop program\r\n");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("\r\nPress any key to stop program\r\n");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }
 

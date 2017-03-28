@@ -9,6 +9,19 @@ upgradeGuideCoreVersions:
 ---
 
 
+## Subscription Caching configuration now required
+
+[Subscription Caching](/nservicebus/sql-persistence/subscriptions.md) is now a required configuration option. 
+
+Ether configure a period of time cache for:
+
+snippet: 1to2_subscriptions_CacheFor
+
+Or explicitly disable subscription caching.
+
+snippet: 1to2_subscriptions_Disable
+
+
 ## Inheriting from SqlSaga now required
 
 In Version 1 inheriting from `NServiceBus.Saga<T>` was partially supported. However this having two competing approaches that deliver the same features caused significant confusion. In Version 2 `NServiceBus.Saga<T>` is no longer supported and either a build error, or an runtime exception for some edge cases, will occur.
@@ -41,17 +54,16 @@ snippet: 1to2_Mapping
 To simplify implementing a saga using `SqlSaga<T>` the method `SqlSaga<T>.ConfigureMapping` has been made abstract and now always needs to be implemented even if no message mapping is required.
 
 
-## Attribute move to use properties
+## SqlPersistenceSettingsAttribute move to use properties
 
 Attribute have been moved to use properties instead of optional parameters in the constructor.
-
-
-### SqlPersistenceSettingsAttribute
 
 snippet: 1to2_SqlPersistenceSettings
 
 
-### SqlSagaAttribute
+## SqlSagaAttribute made obsolete
+
+The `[SqlSagaAttribute]` has been made obsolete and replaced by property overrides on the `SqlSaga<T>` class.
 
 snippet: 1to2_SagaAttribute
 

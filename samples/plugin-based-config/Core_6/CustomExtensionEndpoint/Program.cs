@@ -17,6 +17,7 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomExtensionEndpoint");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
         await RunCustomizeConfiguration(endpointConfiguration)
             .ConfigureAwait(false);
         await RunBeforeEndpointStart()
@@ -25,18 +26,12 @@ static class Program
             .ConfigureAwait(false);
         await RunAfterEndpointStart(endpointInstance)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await RunBeforeEndpointStop( endpointInstance)
-                .ConfigureAwait(false);
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await RunBeforeEndpointStop( endpointInstance)
+            .ConfigureAwait(false);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
         await RunAfterEndpointStop()
             .ConfigureAwait(false);
     }

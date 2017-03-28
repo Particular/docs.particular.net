@@ -124,7 +124,11 @@ Use a [custom finder](/nservicebus/sagas/saga-finding.md) for the received messa
 
 snippet: 5to6-NoSagaDataCorrelationNeeded
 
-Versions 6 and above will only support correlating messages to a single saga property. Correlating on more than one property is still supported by creating a custom [saga finder](/nservicebus/sagas/saga-finding.md).
+Versions 6 and above will only support correlating messages to a single saga property. Correlating on more than one property is still supported by creating a custom [saga finder](/nservicebus/sagas/saga-finding.md). If sagas with multiple correlations mappings to different properties are detected the following exception will be thrown:
+
+```no-highlight
+Sagas can only have mappings that correlate on a single saga property. Use custom finders to correlate *message types* to saga *saga type*
+```
 
 
 ### Saga persisters & finders

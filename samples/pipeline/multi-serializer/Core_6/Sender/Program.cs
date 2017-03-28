@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 
 class Program
 {
-
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
@@ -12,6 +12,9 @@ class Program
 
     static async Task AsyncMain()
     {
+        var defaultFactory = LogManager.Use<DefaultFactory>();
+        defaultFactory.Level(LogLevel.Info);
+
         Console.Title = "Samples.MultiSerializer.Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiSerializer.Sender");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -20,18 +23,11 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            await Run(endpointInstance)
-                .ConfigureAwait(false);
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        await Run(endpointInstance)
+            .ConfigureAwait(false);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
-
 
     static async Task Run(IEndpointInstance endpointInstance)
     {

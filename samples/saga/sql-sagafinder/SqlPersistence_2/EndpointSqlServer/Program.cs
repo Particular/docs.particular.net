@@ -30,6 +30,8 @@ class Program
                 return new SqlConnection(connection);
             });
         persistence.SqlVariant(SqlVariant.MsSqlServer);
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
         #endregion
 

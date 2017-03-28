@@ -44,16 +44,10 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Subscriber is ready to receive events");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Subscriber is ready to receive events");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

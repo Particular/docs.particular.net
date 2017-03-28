@@ -10,12 +10,12 @@ namespace Core6.Scanning
 
     class ScanningPublicApi
     {
-
         void ScanningNestedAssembliesEnabled(EndpointConfiguration endpointConfiguration)
         {
             #region ScanningNestedAssebliesEnabled
 
-            endpointConfiguration.ScanAssembliesInNestedDirectories();
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ScanAssembliesInNestedDirectories = true;
 
             #endregion
         }
@@ -24,7 +24,8 @@ namespace Core6.Scanning
         {
             #region ScanningExcludeByName
 
-            endpointConfiguration.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
 
             #endregion
         }
@@ -60,7 +61,8 @@ namespace Core6.Scanning
         {
             #region ScanningExcludeTypes
 
-            endpointConfiguration.ExcludeTypes(type1, type2);
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ExcludeTypes(type1, type2);
 
             #endregion
         }
@@ -76,5 +78,24 @@ namespace Core6.Scanning
             #endregion
         }
 
+        void ScanningApDomainAssemblies(EndpointConfiguration endpointConfiguration)
+        {
+            #region ScanningApDomainAssemblies
+
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ScanAppDomainAssemblies = true;
+
+            #endregion
+        }
+
+        void SwallowScanningExceptions(EndpointConfiguration endpointConfiguration)
+        {
+            #region SwallowScanningExceptions
+
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            assemblyScanner.ThrowExceptions = false;
+
+            #endregion
+        }
     }
 }

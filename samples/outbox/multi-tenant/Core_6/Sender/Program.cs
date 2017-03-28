@@ -26,42 +26,43 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        try
+        Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs)");
+        Console.WriteLine("Press Escape to exit");
+        var acceptableInput = new List<char> { 'A', 'B' };
+
+        while (true)
         {
-            Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs)");
-            var acceptableInput = new List<char> { 'A', 'B' };
 
-            while (true)
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key == ConsoleKey.Escape)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
-                var uppercaseKey = char.ToUpperInvariant(key.KeyChar);
+                break;
+            }
+            var uppercaseKey = char.ToUpperInvariant(key.KeyChar);
 
-                if (acceptableInput.Contains(uppercaseKey))
+            if (acceptableInput.Contains(uppercaseKey))
+            {
+                var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                var message = new OrderSubmitted
                 {
-                    var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                    var message = new OrderSubmitted
-                    {
-                        OrderId = orderId,
-                        Value = random.Next(100)
-                    };
+                    OrderId = orderId,
+                    Value = random.Next(100)
+                };
 
-                    var options = new PublishOptions();
-                    options.SetHeader("TenantId", uppercaseKey.ToString());
+                var options = new PublishOptions();
+                options.SetHeader("TenantId", uppercaseKey.ToString());
 
-                    await endpointInstance.Publish(message, options)
-                        .ConfigureAwait(false);
-                }
-                else
-                {
-                    Console.WriteLine($"[{uppercaseKey}] is not a valid tenant identifier.");
-                }
+                await endpointInstance.Publish(message, options)
+                    .ConfigureAwait(false);
+            }
+            else
+            {
+                Console.WriteLine($"[{uppercaseKey}] is not a valid tenant identifier.");
             }
         }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

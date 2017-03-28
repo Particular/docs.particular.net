@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Persistence.ServiceFabric;
 
+[ServiceFabricSaga(CollectionName = "candidate-votes")]
 public class CandidateVotesSaga :
     Saga<CandidateVotesSaga.CandidateVoteData>,
         IAmStartedByMessages<VotePlaced>,

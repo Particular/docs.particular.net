@@ -1,4 +1,5 @@
-﻿namespace Core6.Encryption.WireEncryptedProperty
+﻿#pragma warning disable 618
+namespace Core6.Encryption.WireEncryptedProperty
 {
     #region MessageWithEncryptedProperty
     using NServiceBus;

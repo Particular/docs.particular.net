@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 using NServiceBus.Persistence.Sql;
 
 class Upgrade1to2
@@ -20,6 +21,28 @@ class Upgrade1to2
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.Schema("My Schema");
+
+        #endregion
+    }
+
+    void SubscriptionsCacheFor(EndpointConfiguration endpointConfiguration)
+    {
+        #region 1to2_subscriptions_CacheFor
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
+
+        #endregion
+    }
+
+    void SubscriptionsDisable(EndpointConfiguration endpointConfiguration)
+    {
+        #region 1to2_subscriptions_Disable
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.DisableCache();
 
         #endregion
     }

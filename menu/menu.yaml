@@ -374,6 +374,8 @@
       Title: Unit of Work
     - Url: nservicebus/pipeline/aborting
       Title: Abort execution
+    - Url: nservicebus/pipeline/events
+      Title: Subscribing to notification events
     - Url: nservicebus/pipeline/features
       Title: Features
     - Url: nservicebus/pipeline/customizing-error-handling
@@ -600,6 +602,8 @@
       Title: Physical routing
     - Url: nservicebus/msmq/connection-strings
       Title: Connection strings
+    - Url: nservicebus/msmq/dead-letter-queues
+      Title: Dead Letter Queues
     - Url: nservicebus/msmq/viewing-message-content-in-msmq
       Title: Viewing content
     - Url: nservicebus/msmq/transportconfig
@@ -669,7 +673,9 @@
     Title: SQL
     Articles:
     - Url: nservicebus/sql-persistence/saga
-      Title: Saga Persistence
+      Title: Sagas
+    - Url: nservicebus/sql-persistence/subscriptions
+      Title: Subscriptions
     - Url: nservicebus/sql-persistence/installer-workflow
       Title: Installer Workflow
     - Url: nservicebus/sql-persistence/sqlserver-scripts

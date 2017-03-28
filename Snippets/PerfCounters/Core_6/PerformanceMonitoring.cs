@@ -1,4 +1,5 @@
-﻿namespace Core6
+﻿#pragma warning disable 618
+namespace Core6
 {
     using System;
     using NServiceBus;

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
+#pragma warning disable 618
 
 public class Handler :
     IHandleMessages<MessageWithSecretData>

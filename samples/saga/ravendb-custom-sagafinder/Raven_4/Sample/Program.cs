@@ -13,10 +13,11 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.RavenDBCustomSagaFinder";
+        var endpointName = "Samples.RavenDBCustomSagaFinder";
+        Console.Title = endpointName;
         using (new RavenHost())
         {
-            var endpointConfiguration = new EndpointConfiguration("Samples.RavenDBCustomSagaFinder");
+            var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.SendFailedMessagesTo("error");
@@ -33,6 +34,10 @@ class Program
             // Only required to simplify the sample setup
             persistence.DoNotSetupDatabasePermissions();
             persistence.SetDefaultDocumentStore(documentStore);
+
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var routing = transport.Routing();
+            routing.RegisterPublisher(typeof(Program).Assembly, endpointName);
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);

@@ -28,23 +28,17 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            #region StartMessageInteraction
+        #region StartMessageInteraction
 
-            var messageA = new MessageA();
-            await endpointInstance.Send("Samples.CustomTransport.Endpoint2", messageA)
-                .ConfigureAwait(false);
+        var messageA = new MessageA();
+        await endpointInstance.Send("Samples.CustomTransport.Endpoint2", messageA)
+            .ConfigureAwait(false);
 
-            #endregion
+        #endregion
 
-            Console.WriteLine("MessageA sent. Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("MessageA sent. Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

@@ -24,22 +24,16 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        var completeOrder = new CompleteOrder
         {
-            var completeOrder = new CompleteOrder
-            {
-                CreditCard = "123-456-789"
-            };
-            await endpointInstance.Send("Samples.MessageBodyEncryption.Endpoint2", completeOrder)
-                .ConfigureAwait(false);
-            Console.WriteLine("Message sent");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+            CreditCard = "123-456-789"
+        };
+        await endpointInstance.Send("Samples.MessageBodyEncryption.Endpoint2", completeOrder)
+            .ConfigureAwait(false);
+        Console.WriteLine("Message sent");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

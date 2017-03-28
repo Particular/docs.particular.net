@@ -7,6 +7,8 @@ include: Plugin_ServiceControl_Queue
 
 snippet: sagaaudit-queue-config
 
+include: Plugin_ServiceControl_Queue_CodeConfig
+
 snippet: SagaAudit_Configure_ServiceControl
 
 
