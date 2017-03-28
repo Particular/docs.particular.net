@@ -12,11 +12,5 @@ DLQ can be disabled for the entire endpoint using the [MSMQ connection string](/
 
 NOTE: If DLQ is enabled messages will remain in the senders outgoing queue until processed and count towards disk space quota on the senders machine.
 
-### Enabling DLQ for messages with TTBR
 
-In Versions 6.2 and below DLQ will be enabled by default for TTBR messages as well.
-
-To opt-in to this behavior for Versions 6.2 and above, use:
-
-snippet: msmq-dlq-for-ttbr-optin
-
+partial: config
