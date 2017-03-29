@@ -1,7 +1,8 @@
 ---
 title: Service Fabric Persistence
-reviewed: 2017-03-20
+reviewed: 2017-03-29
 component: ServiceFabricPersistence
+related: samples/azure/azure-service-fabric-routing
 ---
 
 A persister built on top of [Service Fabric Reliable Collections](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
