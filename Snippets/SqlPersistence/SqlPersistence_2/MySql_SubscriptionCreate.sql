@@ -12,5 +12,4 @@ set @createTable = concat('
 prepare script from @createTable;
 execute script;
 deallocate prepare script;
-
 endcode

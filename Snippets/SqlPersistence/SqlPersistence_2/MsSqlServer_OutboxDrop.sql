@@ -14,5 +14,4 @@ declare @dropTable nvarchar(max);
 set @dropTable = 'drop table ' + @tableName;
 exec(@dropTable);
 end
-
 endcode
