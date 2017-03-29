@@ -1,4 +1,4 @@
----
+SenderConnectionStrings---
 title: SQL Server Transport and SQL Persistence
 summary: Integrating SQL Server transport with SQL persistence
 reviewed: 2017-03-06
@@ -48,9 +48,7 @@ The Sender does not store any data. It mimics the front-end system where orders 
 
 snippet: SenderConfiguration
 
-The connection strings for both persistence and transport need to be exactly the same.
-
-snippet: SenderConnectionStrings
+The connection strings for both persistence and transport are the same.
 
 
 ### Receiver project

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,13 +26,14 @@ class Program
 
         #region SenderConfiguration
 
+        var connectionString = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True";
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.ConnectionString(connectionString);
         transport.DefaultSchema("sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var connectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Transport"].ConnectionString;
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
@@ -69,7 +69,7 @@ class Program
                 Value = random.Next(100)
             };
             await endpointInstance.Publish(orderSubmitted)
-            .ConfigureAwait(false);
+                .ConfigureAwait(false);
         }
         await endpointInstance.Stop()
             .ConfigureAwait(false);

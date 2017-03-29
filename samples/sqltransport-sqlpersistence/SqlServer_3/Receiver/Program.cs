@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
@@ -23,14 +22,15 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
+        var connectionString = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True";
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.ConnectionString(connectionString);
         transport.DefaultSchema("receiver");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
         transport.UseSchemaForQueue("Samples.SqlTransportSqlPersistence.Sender", "sender");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var connectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Transport"].ConnectionString;
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
