@@ -63,7 +63,7 @@ Any of the following issues can be present:
 How to correct these depend on the database engine that you are using.
 
 
-## Resolving schema issues with Microsoft SQL Server
+## Resolving schema issues on Microsoft SQL Server
 
 This assumes that both the index column order and clustered index are incorrect. To resolve this we will drop all existing indexes and recreate them.
 
@@ -106,11 +106,11 @@ If you get any of the following messages then your current database is incorrect
 
 ## Resolving incorrect index definition on Oracle
 
-Incorrect index definition on Oracle only applies to column order. An existing `TIMEOUTENTITY_ENDPOINTIDX` index has to be dropped and a new index with correct column order needs to be created:
+The incorrect index definition on Oracle only applies to the column order. An existing `TIMEOUTENTITY_ENDPOINTIDX` index has to be dropped, and a new index with correct column order needs to be created:
 
-NOTE: This procedure does not require downtime. It is still advisable to execute it when endpoint is not under heavy load.
+NOTE: This procedure does not require any downtime. It is still advisable to execute it when corresponding endpoint instances are not under heavy load.
 
-NOTE: Please first run this script on your testing or staging environment first to verify that it works correctly.
+NOTE: Please  run this script on your testing or staging environment first to verify that it works as expected.
 
 ```sql
 DROP INDEX TIMEOUTENTITY_ENDPOINTIDX;
