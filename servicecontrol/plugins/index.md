@@ -20,7 +20,7 @@ ServiceControl provides the monitoring capability by analyzing the configured er
 To allow ServiceControl to monitor endpoints:
 
  1. ServiceControl should be [installed](/servicecontrol/installation.md) and at least one instance should be configured using the same transport as that of the endpoints that are being monitored.
- 2. For every endpoint that is being monitored by ServiceControl, [configure the endpoint for auditing](/nservicebus/operations/auditing.md#configuring-auditing). Make sure that the audit queue is the same as the audit queue that ServiceControl is configured with.
+ 2. For every endpoint that is being monitored by ServiceControl, [configure the endpoint for auditing](/nservicebus/operations/auditing.md#configuring-auditing), and make sure that the audit queue is the same as the audit queue that ServiceControl is configured with.
    ```mermaid
    graph LR
  	
@@ -32,7 +32,7 @@ To allow ServiceControl to monitor endpoints:
   	
    ServiceControl .-> AuditLog[audit.log]
    ```
- 3. For every endpoint that is being monitored by ServiceControl, [configure recoverability](/nservicebus/recoverability/). Make sure that the error queue is the same as the error queue that ServiceControl is configured with.
+ 3. For every endpoint that is being monitored by ServiceControl, [configure recoverability](/nservicebus/recoverability/), and make sure that the error queue is the same as the error queue that ServiceControl is configured with.
  	 ```mermaid
    graph LR
  	
