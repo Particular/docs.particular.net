@@ -5,9 +5,11 @@
 
 include: Plugin_ServiceControl_Queue
 
+Configure the ServiceControl queue via config:
+
 snippet: sagaaudit-queue-config
 
-include: Plugin_ServiceControl_Queue_CodeConfig
+Configure the ServiceControl queue via code:
 
 snippet: SagaAudit_Configure_ServiceControl
 
