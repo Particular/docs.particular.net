@@ -11,7 +11,6 @@
             #region UnrecoverableExceptions
 
             var recoverability = endpointConfiguration.Recoverability();
-
             recoverability.AddUnrecoverableException<ValidationException>();
             recoverability.AddUnrecoverableException(typeof(ArgumentException));
 
