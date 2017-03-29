@@ -1,6 +1,6 @@
 ---
-title: NHibernate Persistence - Resolving incorrect timeout table schema #252
-summary: Instructions on how to resolve incorrect schema that can cause performance issues for affected versions 6 to 7.
+title: NHibernate Persistence - Resolving incorrect timeout table indexes #252
+summary: Instructions on how to resolve incorrect index definitions that can cause performance issues for affected versions 6 to 7.
 component: NHibernate
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -11,24 +11,23 @@ upgradeGuideCoreVersions:
 
 ## Summary
 
-This guidance explains how to resolve an incorrectly created schema when passing a custom NHibernate configuration to NServiceBus as described in the following issue:
+This guidance explains how to resolve an incorrectly created index when passing a custom NHibernate configuration to NServiceBus as described in the following issue:
 
 - https://github.com/Particular/NServiceBus.NHibernate/issues/252
 
-This issues causes performance issues if the table contains a large number of rows. Inserts and queries are inefficient due to the incorrect order of columns. This results in unnecessary locking which limits the processing throughput of timeouts.
+This issue causes performance degradation if the table contains a large number of rows. Inserts and queries are inefficient due to the incorrect order of columns. This results in unnecessary locking which limits the processing throughput of timeouts.
 
 
 ## Compatibility
 
-This issues has been resolved in following patch versions as defined in our  [support policy](support-policy.md):
+This issue has been resolved in the following patch versions as defined in our [support policy](support-policy.md):
 
-- 7.1.4 in use by NServiceBus 6.x
-- 7.0.6 (support 7.0.x) in use by NServiceBus 5.x
-- 6.2.8 (support 6.2.x) in use by NServiceBus 5.x
+- NServiceBus.NHibernate 7.1.4
+- NServiceBus.NHibernate 7.0.6
+- NServiceBus.NHibernate 6.2.8
 
 
-
-If you are using any of the supported minor versions (7.1.x, 7.0.x, or 6.2.8) then you should at least update to the latest patch release. If you are using an older version then you should update to a newer minor (in case of 6.1.x or 6.0.x) or major version (any version prior to 6.x).
+If any of the supported affected minor versions (7.1.x, 7.0.x, or 6.2.8) are used these should be updated to the latest patch release. If an older version - non supported - affected version is used, this should be updated to a newer minor (in case of 6.1.x or 6.0.x) or major version (any version prior to 6.x).
 
 
 ## Upgrade steps
@@ -45,7 +44,7 @@ Steps:
 
 ## Check at startup
 
-If you have endpoints with an incorrect table schema then this is detected in all fixed supported versions (at March 1th, 2017) for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created and started. If you are affected you will get the following log event with log level warning:
+If you have endpoints with an incorrect index definition then this is detected in all fixed supported versions (at March 1th, 2017) for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created and started. If you are affected you will get the following log event with log level warning:
 
 > Could not find TimeoutEntity_EndpointIdx index. This may cause significant performance degradation of message deferral. Consult NServiceBus NHibernate persistence documentation for details on how to create this index.
 
@@ -68,7 +67,7 @@ How to correct these depend on the database engine that you are using.
 
 This assumes that both the index column order and clustered index are incorrect. To resolve this we will drop all existing indexes and recreate them.
 
-WARN: This procedure requires downtime. Make sure that all affected endpoint instances are not running or that the database is running in admin mode. This is needed because we are dropping index that guarantee consistency.
+WARNING: This procedure requires downtime. Make sure that all affected endpoint instances are not running or that the database is running in single-user mode. This is needed because we are dropping index that guarantees consistency.
 
 NOTE: Make sure that the correct database is selected. If you are using a custom schema name then update the dbo schema with your custom schema identifier.
 
