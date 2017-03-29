@@ -15,7 +15,7 @@ namespace Core6.Pipeline
                 subscription: completed =>
                 {
                     var duration = completed.CompletedAt - completed.StartedAt;
-                    log.Info($"Reveive pipeline completed. Message: {completed.ProcessedMessage.MessageId}, duration: {duration}");
+                    log.Info($"Reveive completed. Message: {completed.ProcessedMessage.MessageId}, duration: {duration}");
                     return Task.CompletedTask;
                 });
 
@@ -35,7 +35,7 @@ namespace Core6.Pipeline
                     subscription: completed =>
                     {
                         var duration = completed.CompletedAt - completed.StartedAt;
-                        log.Info($"Reveive pipeline completed: Message: {completed.ProcessedMessage.MessageId}, duration: {duration}");
+                        log.Info($"Reveive completed: Message: {completed.ProcessedMessage.MessageId}, duration: {duration}");
                         return Task.CompletedTask;
                     });
 
