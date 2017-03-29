@@ -105,6 +105,16 @@ If you get any of the following messages then your current database is incorrect
 - Cannot find the object "dbo.TimeoutEntity" because it does not exist or you do not have permissions.
 
 
-## Oracle
+## Resolving incorrect index definition on Oracle
 
-TBD
+Incorrect index definition on Oracle only applies to column order. An existing `TIMEOUTENTITY_ENDPOINTIDX` index has to be dropped and a new index with correct column order needs to be created:
+
+NOTE: This procedure does not require downtime. It is still advisable to execute it when endpoint is not under heavy load.
+
+NOTE: Please first run this script on your testing or staging environment first to verify that it works correctly.
+
+```sql
+DROP INDEX TIMEOUTENTITY_ENDPOINTIDX;
+
+CREATE INDEX TIMEOUTENTITY_ENDPOINTIDX ON TIMEOUTENTITY (ENDPOINT ASC, TIME ASC);
+```
