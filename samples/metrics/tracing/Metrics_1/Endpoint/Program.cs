@@ -29,13 +29,13 @@ class Program
 
         try
         {
-            Console.WriteLine("Endpoint Started. Press any key to send a message");
-            Console.WriteLine("Press [ESC] to quit");
+            Console.WriteLine("Endpoint started. Press 'enter' to send a message");
+            Console.WriteLine("Press any other key to quit");
 
             while (true)
             {
                 var key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.Escape)
+                if (key.Key != ConsoleKey.Enter)
                 {
                     break;
                 }
