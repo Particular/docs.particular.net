@@ -1,4 +1,4 @@
-SenderConnectionStrings---
+---
 title: SQL Server Transport and SQL Persistence
 summary: Integrating SQL Server transport with SQL persistence
 reviewed: 2017-03-06
