@@ -28,7 +28,7 @@ snippet: EmptyHandler
 
 In NServiceBus Version 5 and below callbacks are built into the core NuGet.
 
-In NServiceBus Version 6 and above callbacks are shipped as `NServiceBus.Callbacks` NuGet package.
+In NServiceBus Version 6 and above callbacks are shipped as `NServiceBus.Callbacks` NuGet package. This package has to be referenced by the requesting endpoint.
 
 
 ## Using Callbacks
@@ -50,6 +50,8 @@ snippet: IntCallback
 
 snippet: IntCallbackResponse
 
+partial: int-reply
+
 
 ### Enum
 
@@ -59,6 +61,8 @@ The enum response scenario allows any enum value to be returned in a strong type
 #### Send and Callback
 
 snippet: EnumCallback
+
+partial: enum-reply
 
 
 #### Response
