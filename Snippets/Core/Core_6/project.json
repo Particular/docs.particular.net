@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "Microsoft.ServiceFabric.Services": "2.*",
     "NServiceBus": "6.*",
     "NServiceBus.Autofac": "6.*",
     "NServiceBus.Callbacks": "1.*",
