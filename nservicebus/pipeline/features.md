@@ -1,7 +1,7 @@
 ---
 title: Features
 summary: Implement a Feature for advanced extension of NServiceBus.
-reviewed: 2016-08-24
+reviewed: 2017-03-30
 component: Core
 versions: '[5.0,)'
 tags:
@@ -16,21 +16,21 @@ related:
  - samples/startup-shutdown-sequence
 ---
 
-While NServiceBus provides some simple interfaces to plug in the code at certain steps in the life-cycle, Features offer a more complete approach to write and distribute custom extensions.
+While NServiceBus provides interfaces to plug in code at certain steps in the life-cycle, Features offer a more complete approach to write and distribute custom extensions.
 
 Features allow:
 
- * Configure required dependencies for the Feature.
- * Enable or disable a Feature via configuration or based on conditions and dependencies.
- * Get full access to the pipeline, settings and the container.
+ * Configure required dependencies.
+ * Enabling or disabling via configuration or based on conditions and dependencies.
+ * Full access to the pipeline, settings and the container.
 
 
 ## Feature API
 
 To create a new feature create a class which inherits from `Feature`. This offers two basic extensibility points:
 
- * The constructor of the class will always be executed and should be used to determine whether to enable or disable the feature, configure default settings and registering startup tasks.
- * The `Setup` method is called if all defined conditions are met and the feature is marked as *enabled*. Use this method to configure and initialize all required components for the feature.
+ * The constructor of the class will always be executed and should be used to determine whether to enable or disable the feature and configure default settings.
+ * The `Setup` method is called if all defined conditions are met and the feature is marked as *enabled*. Use this method to configure and initialize all required components for the feature such as startup tasks.
 
 snippet: MinimalFeature
 
@@ -52,7 +52,7 @@ The API also allows to declare optional dependencies on one or more of listed fe
 
 In order for a feature to take part in the endpoint construction it has to first become *enabled* and then, only if it has been enabled, qualify for *activation*. By default features are disabled unless explicitly enabled.
 
-This can be overridden and a feature can be enabled by default (like most of the core features are):
+This can be overridden and a feature can be enabled by default (like most of NServiceBus' features are):
 
 snippet: FeatureEnabledByDefault
 
@@ -66,14 +66,14 @@ snippet: EnablingOtherFeatures
 
 ### Enabling features from the outside
 
-To manually activate or deactivate features, and most of the internal NServiceBus features, in the endpoint configuration:
+To manually activate or deactivate features, and most of the internal NServiceBus features, use the provided extension methods on the endpoint configuration:
 
 snippet: EnableDisableFeatures
 
 
 ### Prerequisites
 
-When the enabling algorithm can't find any more feature that should be enabled, it begins the second stage which does the *prerequisite* checking. Each feature can declare the prerequisites as predicates that needs to be satisfied for that feature to be able to be activated
+When the enabling algorithm can't find any more feature that should be enabled, it begins the second stage which does the *prerequisite* checking. Each feature can declare its prerequisites as predicates that needs to be satisfied for that feature to be able to be activated
 
 snippet: FeatureWithPrerequisites
 
@@ -82,7 +82,7 @@ NOTE: The differentiation between *explicit* settings and *default* settings com
 
 ### Activation
 
-Final stage is the activation where each feature has its chance to set up the bus. The features are activated in order of dependencies which means that when a given feature is activating, all the features it depends on have already been activated.
+Final stage is the activation where each feature has its chance to set up the endpoint. The features are activated in order of dependencies which means that when a given feature is activating, all the features it depends on have already been activated.
 
 In order for a feature to be activated it needs to satisfy the following criteria:
 
@@ -94,7 +94,7 @@ In order for a feature to be activated it needs to satisfy the following criteri
 
 ## Feature setup
 
-`Setup` has to be implemented in the feature and will be called if the feature is enabled. It supports complete configuration of the feature, hook into the pipeline or registering services on the container. The `FeatureConfigurationContext` parameter on the method contains:
+`Setup` has to be implemented in the feature and will be called if the feature is enabled. It supports configuration of the feature, hook into the pipeline or registering services on the container. The `FeatureConfigurationContext` parameter on the method contains:
 
  * Settings: read or write settings which should be available to other components or read access settings provided by NServiceBus.
  * Container: register services with the dependency injection container which can be injected to other components.
@@ -107,7 +107,7 @@ Note: Features are automatically detected and registered by NServiceBus when the
 
 ## Feature settings
 
-The settings are a good way to share data and configuration between the feature and the endpoint configuration, or various features. Settings can be accessed via the `FeatureConfigurationContext.Settings` property during the *setup phase*. Settings can be configured using *defaults* or `EndpointConfiguration`:
+The settings are a good way to share data and configuration between the feature and the endpoint configuration, or various features. Settings can be accessed via the `FeatureConfigurationContext.Settings` property during the *setup phase*. Settings can be configured using *defaults* or `EndpointConfiguration`.
 
 
 ### Defaults
