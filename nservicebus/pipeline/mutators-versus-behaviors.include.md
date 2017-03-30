@@ -17,7 +17,9 @@ Note that these are relative differences. So, for example, a Behavior is only "h
 | Complexity to implement        | Low     | High     |
 | Flexibility                    | Low     | High     |
 | Location in pipeline           | Fixed   | Flexible |
-| Complexity to test             | Low     | High     |
+| Complexity to test             | Low     | Medium*  |
 | Can control nested action      | No      | Yes      |
 | Effects call stack depth       | No      | Yes      |
 | Can replace existing Behavior  | No      | Yes      |
+
+* For more information refer to the [testing behaviors](/samples/unit-testing/sample.md) unit testing sample.
