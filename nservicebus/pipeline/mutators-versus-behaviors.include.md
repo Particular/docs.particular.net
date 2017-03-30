@@ -22,4 +22,4 @@ Note that these are relative differences. So, for example, a Behavior is only "h
 | Effects call stack depth       | No      | Yes      |
 | Can replace existing Behavior  | No      | Yes      |
 
-* For more information refer to the [testing behaviors](/samples/unit-testing/sample.md) unit testing sample.
+* For more information refer to the [testing behaviors](/samples/unit-testing/sample) unit testing sample.
