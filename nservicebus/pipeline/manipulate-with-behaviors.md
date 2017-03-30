@@ -3,7 +3,7 @@ title: Manipulate Pipeline with Behaviors
 summary: Manipulating the message handling pipeline with Behaviors
 component: Core
 versions: '[4.0,)'
-reviewed: 2016-12-01
+reviewed: 2017-30-03
 tags:
 - Pipeline
 related:
@@ -23,7 +23,7 @@ Extending the pipeline is done with a custom behavior implementing `Behavior<TCo
 
 snippet: SamplePipelineBehavior
 
-In the above code snippet the `SampleBehavior` class derives from the Behavior contract and target the incoming context. This tells the framework to execute this behavior after the incoming raw message has been deserialized and a matching message type has been found. At runtime, the pipeline will call the `Invoke` method of each registered behavior passing in as arguments the current message context and an action to invoke the next behavior in the pipeline.
+In the above code snippet the `SampleBehavior` class derives from the Behavior contract and targets the incoming context. This tells the framework to execute this behavior after the incoming raw message has been deserialized and a matching message type has been found. At runtime, the pipeline will call the `Invoke` method of each registered behavior passing in as arguments the current message context and an action to invoke the next behavior in the pipeline.
 
 Warning: Each behavior is responsible to call the next step in the pipeline chain by invoking `next()`.
 
