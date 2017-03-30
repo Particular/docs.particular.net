@@ -16,7 +16,7 @@ The pipeline raises the following notification events:
 
 ## Receive pipeline completed
 
-Every time a receive pipeline is completed, a `ReceivePipelineCompleted` event will be raised. This event will occur even if the message fails to be processed.
+Every time a receive pipeline is completed, a `ReceivePipelineCompleted` event will be raised. This event will not occur when message processing fails e.g. inside a handler.
 
 Use the following configuration code to subscribe to this event:
 
