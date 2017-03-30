@@ -269,6 +269,9 @@
       Title: Web Application
     - Url: nservicebus/hosting/service-fabric-hosting
       Title: Service Fabric
+      Articles:
+      - Url: nservicebus/hosting/service-fabric-hosting/hosting-gateway
+        Title: Hosting Gateway
     - Url: nservicebus/hosting/publishing-from-web-applications
       Title: Publishing from Web Applications
     - Url: nservicebus/wcf
