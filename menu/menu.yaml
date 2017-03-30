@@ -715,7 +715,7 @@
     - Url: nservicebus/ravendb/licensing
       Title: Licensing
   - Url: nservicebus/service-fabric
-    Title: Serice Fabric      
+    Title: Service Fabric
     Articles:
     - Url: nservicebus/service-fabric/sagas
       Title: Sagas
