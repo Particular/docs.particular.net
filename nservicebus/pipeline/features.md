@@ -20,9 +20,9 @@ While NServiceBus provides interfaces to plug in code at certain steps in the li
 
 Features allow:
 
- * Configure required dependencies.
+ * Configuring required dependencies.
  * Enabling or disabling via configuration or based on conditions and dependencies.
- * Full access to the pipeline, settings and the container.
+ * Accessing the pipeline, settings and the container.
 
 
 ## Feature API
