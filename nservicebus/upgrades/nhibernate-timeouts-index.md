@@ -37,7 +37,7 @@ Steps:
  * Update to latest patch release
  * Deploy the new version
  * Check if a warning related to this schema issue is visible
-   * Or manually inspect the schema in your database
+   * Or manually inspect the schema in the database
  * Follow the procedure on how to resolve schema issues for the database engine used (Microsoft SQL Server or Oracle)
    * If any other database engine is used then these changes must be applied manually
 
@@ -48,7 +48,7 @@ If there are endpoints that created an incorrect index definition then this is d
 
 > Could not find TimeoutEntity_EndpointIdx index. This may cause significant performance degradation of message deferral. Consult NServiceBus NHibernate persistence documentation for details on how to create this index.
 
-If this log event is written to your log file then read the following guidance on how to apply corrections.
+If this log event is written to the log file then read the following guidance on how to apply corrections.
 
 
 ## Potential issues
@@ -60,7 +60,7 @@ Any of the following issues can be present:
 - index `TimeoutEntity_EndpointIdx` has an incorrect column order (should be Endpoint, Time)
 
 
-How to correct these depend on the database engine that you are using.
+How to apply corrections depends on the database engine that is used.
 
 
 ## Resolving schema issues on Microsoft SQL Server
