@@ -67,34 +67,46 @@ How to apply corrections depends on the database engine that is used.
 
 This assumes that both the index column order and clustered index are incorrect. To resolve this all existing indexes need to be dropped and recreated.
 
-WARNING: This procedure requires downtime. Make sure that all affected endpoint instances are not running or that the database is running in single-user mode. This is needed because indexes are temporarily removed that guarantee consistency.
+NOTE: This procedure does not require any downtime. It is advisable to execute it when affected endpoint instances are not under heavy load.
 
 NOTE: Make sure that the correct database is selected. If a custom schema name is used then update the dbo schema with the custom schema identifier.
 
 NOTE: Run this script on a testing or staging environment first to verify that it works as expected.
 
 ```sql
-BEGIN TRAN
+declare @schema nvarchar(max) = 'nsb' -- Update 'dbo' with custom schema if needed
+declare @sql nvarchar(max)
+declare @pkindex nvarchar(max)
 
-DROP INDEX [TimeoutEntity_SagaIdIdx] ON [dbo].[TimeoutEntity];
-GO
+select @pkindex = si.name
+from sys.tables st
+  join sys.indexes si on st.object_id = si.object_id
+  join sys.schemas ss on st.schema_id = ss.schema_id
+where st.name = 'TimeoutEntity'
+  and si.is_primary_key = 1
+  and ss.name = @schema
 
-DROP INDEX [TimeoutEntity_EndpointIdx] ON [dbo].[TimeoutEntity];
-GO
+begin tran
 
-ALTER TABLE [dbo].[TimeoutEntity] DROP CONSTRAINT PK__TimeoutE__3214EC06D068BEFC
-GO
+select @sql = 'drop index[TimeoutEntity_SagaIdIdx] on [' + @schema + '].[TimeoutEntity]'
+exec sp_executeSQL @sql
 
-ALTER TABLE [dbo].[TimeoutEntity] ADD CONSTRAINT PK__TimeoutE__3214EC06D068BEFC PRIMARY KEY NONCLUSTERED (Id)
-GO
+select @sql = 'drop index [TimeoutEntity_EndpointIdx] on [' + @schema + '].[TimeoutEntity]'
+exec sp_executeSQL @sql
 
-CREATE NONCLUSTERED INDEX [TimeoutEntity_SagaIdIdx] ON [dbo].[TimeoutEntity]([SagaId] ASC);
-GO
+select @sql = 'alter table [' + @schema + '].[TimeoutEntity] drop constraint ' + @pkindex
+exec sp_executeSQL @sql
 
-CREATE CLUSTERED INDEX [TimeoutEntity_EndpointIdx] ON [dbo].[TimeoutEntity]([Endpoint] ASC, [Time] ASC);
-GO
+select @sql = 'alter table [' + @schema + '].[TimeoutEntity] add constraint ' + @pkindex + ' primary key nonclustered (Id)'
+exec sp_executeSQL @sql
 
-COMMIT TRAN
+select @sql = 'create nonclustered index [TimeoutEntity_SagaIdIdx] on [' + @schema + '].[TimeoutEntity]([SagaId]);'
+exec sp_executeSQL @sql
+
+select @sql = 'create clustered index [TimeoutEntity_EndpointIdx] on [' + @schema + '].[TimeoutEntity]([Endpoint], [Time]);'
+exec sp_executeSQL @sql
+
+commit tran
 ```
 
 If any of the following messages is shown then the currently selected database is incorrect or the schema in the scripts is incorrect because a custom schema is used. Update the schema in the SQL statements to resolve this issue.
@@ -108,7 +120,7 @@ If any of the following messages is shown then the currently selected database i
 
 The incorrect index definition on Oracle only applies to the column order. An existing `TIMEOUTENTITY_ENDPOINTIDX` index has to be dropped, and a new index with correct column order needs to be created:
 
-NOTE: This procedure does not require any downtime. It is still advisable to execute it when corresponding endpoint instances are not under heavy load.
+NOTE: This procedure does not require any downtime. It is advisable to execute it when affected endpoint instances are not under heavy load.
 
 NOTE: Run this script on a testing or staging environment first to verify that it works as expected.
 
