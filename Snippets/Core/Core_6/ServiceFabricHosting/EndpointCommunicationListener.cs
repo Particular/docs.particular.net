@@ -1,9 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Fabric;
-using System.Threading;
-using System.Threading.Tasks;
-using Core6.ServiceFabricHosting;
-using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 
 namespace Core6.ServiceFabricHosting
@@ -19,11 +15,6 @@ namespace Core6.ServiceFabricHosting
     public class StatelessEndpointCommunicationListener : ICommunicationListener
     {
         IEndpointInstance endpointInstance;
-
-        public StatelessEndpointCommunicationListener(IReliableStateManager stateManager)
-        {
-            throw new System.NotImplementedException();
-        }
 
         public async Task<string> OpenAsync(CancellationToken cancellationToken)
         {
@@ -62,7 +53,6 @@ namespace Core6.ServiceFabricHosting
         public StatefulEndpointCommunicationListener(IReliableStateManager stateManager)
         {
             this.stateManager = stateManager;
-            throw new System.NotImplementedException();
         }
 
         public async Task<string> OpenAsync(CancellationToken cancellationToken)
@@ -109,16 +99,14 @@ namespace Core6.ServiceFabricHosting
         {
             listener = new StatefulEndpointCommunicationListener(StateManager);
             return new List<ServiceReplicaListener>
-        {
-            new ServiceReplicaListener(context => listener)
-        };
+            {
+                new ServiceReplicaListener(context => listener)
+            };
         }
 
         protected override async Task RunAsync(CancellationToken cancellationToken)
         {
             await listener.RunAsync();
-
-            await base.RunAsync(cancellationToken);
         }
     }
 
