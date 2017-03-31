@@ -109,13 +109,6 @@ exec sp_executeSQL @sql
 commit tran
 ```
 
-If any of the following messages is shown then the currently selected database is incorrect or the schema in the scripts is incorrect because a custom schema is used. Update the schema in the SQL statements to resolve this issue.
-
-- Cannot drop the index 'dbo.TimeoutEntity.TimeoutEntity_SagaIdIdx', because it does not exist or you do not have permission.
-- Cannot drop the index 'dbo.TimeoutEntity.TimeoutEntity_EndpointIdx', because it does not exist or you do not have permission.
-- Cannot find the object "dbo.TimeoutEntity" because it does not exist or you do not have permissions.
-
-
 ## Resolving incorrect index definition on Oracle
 
 The incorrect index definition on Oracle only applies to the column order. An existing `TIMEOUTENTITY_ENDPOINTIDX` index has to be dropped, and a new index with correct column order needs to be created:
