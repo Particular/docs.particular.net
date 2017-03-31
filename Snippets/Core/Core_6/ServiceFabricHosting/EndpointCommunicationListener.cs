@@ -16,8 +16,8 @@
             var endpointName = "Sales";
 
             var endpointConfiguration = new EndpointConfiguration(endpointName);
-            
-            // regular endpoint configuration
+
+            // endpoint configuration
 
             endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
