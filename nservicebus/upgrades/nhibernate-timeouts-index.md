@@ -20,7 +20,7 @@ This issue causes performance degradation if the table contains a large number o
 
 ## Compatibility
 
-This issue has been resolved in the following patch versions as defined in our [support policy](support-policy.md):
+This issue has been resolved in the following patch versions as defined in the NServiceBus [support policy](support-policy.md):
 
 - NServiceBus.NHibernate 7.1.4
 - NServiceBus.NHibernate 7.0.6
@@ -44,7 +44,7 @@ Steps:
 
 ## Check at startup
 
-If there are endpoints that created an incorrect index definition then this is detected in all fixed supported versions for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created and started. If you are affected you will get the following log event with log level warning:
+If there are endpoints that created an incorrect index definition then this is detected in all fixed supported versions for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created and started. If that instance is affected the following log event with log level warning is written:
 
 > Could not find TimeoutEntity_EndpointIdx index. This may cause significant performance degradation of message deferral. Consult NServiceBus NHibernate persistence documentation for details on how to create this index.
 
