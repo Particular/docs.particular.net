@@ -39,18 +39,18 @@ This sample contains four projects.
 
 The Client application submits the orders for processing by the server. Client routing is configured to send `PlaceOrder` commands to two instances of `Server` endpoint:
 
-snippet:Routing
+snippet: Routing
 
 The following code enables fair load distribution (as opposed to default round-robin algorithm):
 
-snippet:FairDistributionClient
+snippet: FairDistributionClient
 
 
 ### Server
 
 The Server application processes the `PlaceOrder` commands. On the server side there is no need to register the custom distribution strategy:
 
-snippet:FairDistributionServer
+snippet: FairDistributionServer
 
 NOTE: In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, in this sample the scale out is simulated by having two separate projects, Server and Server2.
 
@@ -64,21 +64,21 @@ The shared project contains definitions for messages and the custom routing logi
 
 All outgoing messages are marked with sequence numbers to keep track of how many message are in-flight at any given point in time. Separate sequences are maintained for each destination queue. The number of in-flight messages is estimated as the difference between the last sequence number sent and the last sequence number acknowledged.
 
-snippet:MarkMessages
+snippet: MarkMessages
 
 
 ### Acknowledging message delivery
 
 After receiving every `N` messages, the downstream endpoint instance sends back an acknowledgement (ACK) message containing the highest sequence number it has processed so far. The ACK messages are sent separately to each upstream endpoint instance.
 
-snippet:ProcessMarkers
+snippet: ProcessMarkers
 
 
 ### Processing acknowledgments
 
 When the ACK message is received, the upstream endpoint calculates the number of messages that are currently in-flight between itself and the downstream endpoint.
 
-snippet:ProcessACKs
+snippet: ProcessACKs
 
 
 ### Smart routing
@@ -87,7 +87,7 @@ The calculated number of in-flight messages is then used to distribute messages 
 
 The bigger the `N` value (number of messages between every ACK), the bigger may be the difference between input queues lengths. On the other hand, lower `N` values cause more traffic as more ACKs are being sent upstream.    
 
-snippet:GetLeastBusy
+snippet: GetLeastBusy
 
 
 ## Real-world deployment

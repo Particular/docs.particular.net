@@ -25,7 +25,7 @@ include: uow-access-to-context
 The Unit Of Work logs both the begin and end.
 
 
-snippet:CustomManageUnitOfWork
+snippet: CustomManageUnitOfWork
 
 ### Component Registration
 
@@ -36,11 +36,11 @@ snippet: componentRegistration
 
 The `SuccessHandler` logs the fact that a message has been received.
 
-snippet:SuccessHandler
+snippet: SuccessHandler
 
 
 ### ThrowHandler
 
 The `ThrowHandler` logs the fact that a message has been received, and then throws an exception
 
-snippet:ThrowHandler
+snippet: ThrowHandler

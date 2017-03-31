@@ -83,7 +83,7 @@ When installing the host as a Windows Service, the profiles used during installa
 
 ## Logging
 
-partial:logging
+partial: logging
 
 
 The rolling file logs are written to the `logfile` in the same directory as the executable. The file grows to a maximum size of 1MB, then a new file is created. A maximum of 10 files is kept, then the oldest file is erased. If not specified otherwise, the logging threshold is set to the `Warn` level. To configure the logging threshold see [changing logging level via config file](/nservicebus/logging/#logging-levels-changing-the-logging-level-via-app-config).

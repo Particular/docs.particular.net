@@ -25,7 +25,7 @@ If the transport is configured to use [TransactionScope mode](/nservicebus/trans
 
 The delayed messages will be stored for the specified delay time, using persistance implementation specified in the configuration:
 
-snippet:configure-persistence-timeout
+snippet: configure-persistence-timeout
 
 
 ### Retrieving expired timeouts
@@ -37,4 +37,4 @@ If the transport is configured to use [TransactionScope mode](/nservicebus/trans
 
 ### Handling of persistence errors
 
-partial:circuit-breaker
+partial: circuit-breaker

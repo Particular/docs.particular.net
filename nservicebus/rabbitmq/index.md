@@ -18,7 +18,7 @@ Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) 
 
 To use RabbitMQ as the underlying transport:
 
-snippet:rabbitmq-config-basic
+snippet: rabbitmq-config-basic
 
 The RabbitMQ transport requires a connection string to connect to the broker. See [Connection settings](/nservicebus/rabbitmq/connection-settings.md) for options on how to provide the connection string.
 

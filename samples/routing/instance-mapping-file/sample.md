@@ -46,7 +46,7 @@ snippet: instanceMapping
 
 The Client application submits the orders for processing by the back-end systems by sending a `PlaceOrder` command. The client, as well as all other endpoints, uses the file based instance mapping:
 
-snippet:FileInstanceMapping
+snippet: FileInstanceMapping
 
 
 ### Sales

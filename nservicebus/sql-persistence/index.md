@@ -30,14 +30,14 @@ Install the [NServiceBus.Persistence.Sql](https://www.nuget.org/packages/NServic
 
 ### SQL Server
 
-snippet:SqlPersistenceUsageSqlServer
+snippet: SqlPersistenceUsageSqlServer
 
 
 ### MySQL
 
 Using the [MySql.Data NuGet Package](https://www.nuget.org/packages/MySql.Data/).
 
-snippet:SqlPersistenceUsageMySql
+snippet: SqlPersistenceUsageMySql
 
 {{Note: The following settings are required for [MySQL connections string](https://dev.mysql.com/doc/connector-net/en/connector-net-connection-options.html).
 
@@ -103,7 +103,7 @@ snippet: SqlServerScripts
 snippet: MySqlScripts
 
 
-partial:promote
+partial: promote
 
 
 ## Installation

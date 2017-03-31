@@ -1,4 +1,5 @@
-﻿namespace Core6.Audit
+﻿#pragma warning disable 618
+namespace Core6.Audit
 {
     using System;
     using NServiceBus.Config;

@@ -16,6 +16,6 @@ To override the machine name resolution, provide a factory method to `RuntimeEnv
 
 Check [how to find FQDM of local machine](http://stackoverflow.com/questions/804700/how-to-find-fqdn-of-local-machine-in-c-net) for a good starting point on how to get the FQDM of the local machine.
 
-snippet:MsmqMachineNameFQDN
+snippet: MsmqMachineNameFQDN
 
 The [routing](/nservicebus/messaging/routing.md) configuration and any explicit queue destinations will also need to use FQDM.

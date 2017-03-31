@@ -1,4 +1,5 @@
-﻿namespace Core6.UpgradeGuides.Split.WireEncryptedProperty
+﻿#pragma warning disable 618
+namespace Core6.UpgradeGuides.Split.WireEncryptedProperty
 {
     #region SplitMessageWithEncryptedProperty
     using NServiceBus;

@@ -20,4 +20,4 @@ The Azure host is terminated on critical errors by default. When host is termina
 
 The Azure host is not terminated on critical errors by default and only shuts down the bus. This would cause the role not to process messages until the role host is restarted. To address this, probably undesired behavior, implement a critical errors action that shuts down the host process instead.
 
-snippet:DefineCriticalErrorActionForAzureHost
+snippet: DefineCriticalErrorActionForAzureHost

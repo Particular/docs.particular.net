@@ -1,15 +1,19 @@
 ﻿using System;
+using Microsoft.ServiceFabric.Data;
 using NServiceBus;
+using NServiceBus.Persistence.ServiceFabric;
 
 public static class EndpointConfigurationExtensions
 {
-    public static TransportExtensions<AzureServiceBusTransport> ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration)
+    public static TransportExtensions<AzureServiceBusTransport> ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration, IReliableStateManager stateManager)
     {
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        var persistence = endpointConfiguration.UsePersistence<ServiceFabricPersistence>();
+        persistence.StateManager(stateManager);
+
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.DisableLegacyRetriesSatellite();
 

@@ -7,7 +7,7 @@ The following options for transaction scopes used during message processing can 
 
 NServiceBus will by default use the `ReadCommitted` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel). Change the isolation level using
 
-snippet:CustomTransactionIsolationLevel
+snippet: CustomTransactionIsolationLevel
 
 
 ### Transaction timeout
@@ -16,6 +16,6 @@ NServiceBus will use the [default transaction timeout](https://msdn.microsoft.co
 
 Change the transaction timeout using
 
-snippet:CustomTransactionTimeout
+snippet: CustomTransactionTimeout
 
 Via a [config file](https://msdn.microsoft.com/en-us/library/1xtk877y.aspx) using a the [Timeout property of the DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.timeout.aspx).

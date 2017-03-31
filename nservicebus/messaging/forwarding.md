@@ -23,4 +23,4 @@ partial: headers
 
 ## Configuring Message Forwarding
 
-partial:config
+partial: config

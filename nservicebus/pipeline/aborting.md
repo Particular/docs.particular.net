@@ -2,7 +2,7 @@
 title: Aborting Pipeline execution
 summary: How to tell NServiceBus to abort processing any more handlers in the pipeline
 component: Core
-reviewed: 2016-08-24
+reviewed: 2017-03-30
 tags:
 - Pipeline
 - Security
@@ -15,7 +15,9 @@ From the context of a Handler further Handler execution can be aborted by callin
 
 snippet: AbortHandler
 
+Aborting the pipeline does not fail the message processing. The message that was processed will be marked as successfully completed.
+
 Warning: Handler execution order by default is non-deterministic. To configure the ordering see [Handler Ordering](/nservicebus/handlers/handler-ordering.md).
 
 
-partial:behavior
+partial: behavior

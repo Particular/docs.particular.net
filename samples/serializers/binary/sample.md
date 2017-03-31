@@ -15,9 +15,9 @@ This sample uses the Binary Formatter serializer in the core.
 
 ## Configuring to use Binary
 
-snippet:config
+snippet: config
 
 
 ## The message send
 
-snippet:message
+snippet: message

@@ -22,39 +22,33 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        var message = new MessageWithSecretData
         {
-            var message = new MessageWithSecretData
+            Secret = "betcha can't guess my secret",
+            SubProperty = new MySecretSubProperty
             {
-                Secret = "betcha can't guess my secret",
-                SubProperty = new MySecretSubProperty
+                Secret = "My sub secret"
+            },
+            CreditCards = new List<CreditCardDetails>
+            {
+                new CreditCardDetails
                 {
-                    Secret = "My sub secret"
+                    ValidTo = DateTime.UtcNow.AddYears(1),
+                    Number = "312312312312312"
                 },
-                CreditCards = new List<CreditCardDetails>
+                new CreditCardDetails
                 {
-                    new CreditCardDetails
-                    {
-                        ValidTo = DateTime.UtcNow.AddYears(1),
-                        Number = "312312312312312"
-                    },
-                    new CreditCardDetails
-                    {
-                        ValidTo = DateTime.UtcNow.AddYears(2),
-                        Number = "543645546546456"
-                    }
+                    ValidTo = DateTime.UtcNow.AddYears(2),
+                    Number = "543645546546456"
                 }
-            };
-            await endpointInstance.Send("Samples.Encryption.Endpoint2", message)
-                .ConfigureAwait(false);
+            }
+        };
+        await endpointInstance.Send("Samples.Encryption.Endpoint2", message)
+            .ConfigureAwait(false);
 
-            Console.WriteLine("MessageWithSecretData sent. Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("MessageWithSecretData sent. Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

@@ -7,9 +7,6 @@ using NServiceBus.Persistence.Sql;
 #region timeoutSaga2
 namespace MyNamespace2
 {
-    [SqlSaga(
-        CorrelationProperty = nameof(SagaData.TheId)
-    )]
     public class MyTimeoutSagaVersion2 :
         SqlSaga<MyTimeoutSagaVersion2.SagaData>,
         IAmStartedByMessages<StartTimeoutSaga>,
@@ -17,10 +14,12 @@ namespace MyNamespace2
     {
         static ILog log = LogManager.GetLogger<MyTimeoutSagaVersion2>();
 
-        protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
+        protected override void ConfigureMapping(IMessagePropertyMapper mapper)
         {
-            mapper.MapMessage<StartTimeoutSaga>(_ => _.TheId);
+            mapper.ConfigureMapping<StartTimeoutSaga>(_ => _.TheId);
         }
+
+        protected override string CorrelationPropertyName => nameof(SagaData.TheId);
 
         public Task Handle(StartTimeoutSaga message, IMessageHandlerContext context)
         {

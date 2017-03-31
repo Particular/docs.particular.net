@@ -15,6 +15,6 @@ This sample shows how to customize logging when running inside the NServiceBus h
 
 Open the app.config file. See the Logging configuration section at the top as well as its contents:
 
-snippet:ThresholdConfig
+snippet: ThresholdConfig
 
 This code instructs NServiceBus to only output logs at a level of INFO or higher.

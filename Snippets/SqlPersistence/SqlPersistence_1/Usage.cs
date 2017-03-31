@@ -17,7 +17,7 @@ class Usage
         #region SqlPersistenceUsageSqlServer
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var connection = @"Data Source=.\SQLEXPRESS;Initial Catalog=sqlpersistencesample;Integrated Security=True";
+        var connection = @"Data Source=.\SQLEXPRESS;Initial Catalog=dbname;Integrated Security=True";
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
@@ -59,7 +59,7 @@ class Usage
     {
         #region SqlPersistenceUsageMySql
 
-        var connection = "server=localhost;user=root;database=sqlpersistencesample;port=3306;password=Password1;AllowUserVariables=True;AutoEnlist=false";
+        var connection = "server=localhost;user=root;database=dbname;port=3306;password=pass;AllowUserVariables=True;AutoEnlist=false";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlVariant(SqlVariant.MySql);
         persistence.ConnectionBuilder(

@@ -54,58 +54,52 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        try
+        await Console.Out.WriteLineAsync("Press 'e' to send a large amount of messages")
+            .ConfigureAwait(false);
+        await Console.Out.WriteLineAsync("Press any other key to exit")
+            .ConfigureAwait(false);
+
+        while (true)
         {
-            await Console.Out.WriteLineAsync("Press 'e' to send a large amount of messages")
-                .ConfigureAwait(false);
-            await Console.Out.WriteLineAsync("Press any other key to exit")
+            var key = Console.ReadKey();
+            await Console.Out.WriteLineAsync()
                 .ConfigureAwait(false);
 
-            while (true)
+            var eventId = Guid.NewGuid();
+
+            if (key.Key != ConsoleKey.E)
             {
-                var key = Console.ReadKey();
-                await Console.Out.WriteLineAsync()
-                    .ConfigureAwait(false);
-
-                var eventId = Guid.NewGuid();
-
-                if (key.Key != ConsoleKey.E)
-                {
-                    break;
-                }
-
-                var stopwatch = Stopwatch.StartNew();
-
-                #region fast-send
-
-                var tasks = new List<Task>();
-                for (var i = 0; i < NumberOfMessages; i++)
-                {
-                    var task = endpointInstance.Send(new SomeMessage());
-                    tasks.Add(task);
-                }
-
-                await Console.Out.WriteLineAsync("Waiting for completion...")
-                    .ConfigureAwait(false);
-                // by awaiting the sends as one unit, this code allows the ASB SDK's client side batching to kick in and bundle sends
-                // this results in less latency overhead per individual sends and thus higher performance
-                await Task.WhenAll(tasks)
-                    .ConfigureAwait(false);
-
-                #endregion
-
-                stopwatch.Stop();
-                var elapsedSeconds = stopwatch.ElapsedTicks/(double) Stopwatch.Frequency;
-                var msgsPerSecond = NumberOfMessages/elapsedSeconds;
-                await Console.Out.WriteLineAsync($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {msgsPerSecond} messages per second")
-                    .ConfigureAwait(false);
+                break;
             }
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+
+            var stopwatch = Stopwatch.StartNew();
+
+            #region fast-send
+
+            var tasks = new List<Task>();
+            for (var i = 0; i < NumberOfMessages; i++)
+            {
+                var task = endpointInstance.Send(new SomeMessage());
+                tasks.Add(task);
+            }
+
+            await Console.Out.WriteLineAsync("Waiting for completion...")
+                .ConfigureAwait(false);
+            // by awaiting the sends as one unit, this code allows the ASB SDK's client side batching to kick in and bundle sends
+            // this results in less latency overhead per individual sends and thus higher performance
+            await Task.WhenAll(tasks)
+                .ConfigureAwait(false);
+
+            #endregion
+
+            stopwatch.Stop();
+            var elapsedSeconds = stopwatch.ElapsedTicks/(double) Stopwatch.Frequency;
+            var msgsPerSecond = NumberOfMessages/elapsedSeconds;
+            await Console.Out.WriteLineAsync($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {msgsPerSecond} messages per second")
                 .ConfigureAwait(false);
         }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
     static async Task EnsureReceiverQueueExists(string receiverPath, string connectionString)

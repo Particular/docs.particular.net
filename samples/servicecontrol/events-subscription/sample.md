@@ -58,7 +58,7 @@ The solution consists of two projects. The `NServiceBusEndpoint` is a simple end
 
 The retries are disabled in the sample for simplicity, therefore the message is immediately moved to the error queue after processing failure:
 
-snippet:DisableRetries
+snippet: DisableRetries
 
 The `MessageFailed` event is published for any standard NServiceBus endpoint that is monitored by ServiceControl.
 
@@ -71,4 +71,4 @@ NOTE: Heartbeat control messages are sent [every 30 seconds by default](/service
 
 In order to get notifications when the exposed ServiceControl events occur, create an NServiceBus endpoint. Then reference the `ServiceControl.Contracts` NuGet package and implement a handler which handles ServiceControl events:
 
-snippet:ServiceControlEventsHandlers
+snippet: ServiceControlEventsHandlers

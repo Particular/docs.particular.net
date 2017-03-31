@@ -21,7 +21,7 @@ It is optional to use Serilog as the main NServiceBus logger. i.e. no need to in
 
 #### Create an instance of a Serilog Logger
 
-snippet:SerilogTracingLogger
+snippet: SerilogTracingLogger
 
 
 ### Configure the Tracing feature to use that logger

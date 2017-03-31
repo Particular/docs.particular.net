@@ -17,11 +17,11 @@ The sample consists of two console applications, a simple receiver endpoint and 
 
 When integrating native RabbitMQ senders with NServiceBus endpoints, the first thing required is to ensure that the native senders are configured to put the messages in the queue where the endpoint is listening. By default, NServiceBus endpoints will listen on a queue with the same name as the endpoint, so set the endpoint name using:
 
-snippet:ConfigureRabbitQueueName
+snippet: ConfigureRabbitQueueName
 
 With this in place, the native sender can place a message in this queue using:
 
-snippet:SendMessage
+snippet: SendMessage
 
 
 ### Message serialization
@@ -30,11 +30,11 @@ In this sample, XML is used to format the payload since NServiceBus is able to a
 
 Note: The root node should be the fully qualified type name (including namespace if it has one) of the message.
 
-snippet:CreateNativePayload
+snippet: CreateNativePayload
 
 The next step is to define a message contract in the receiver that matches the XML-formatted payload. The contract that matches the payload used in this sample looks like this:
 
-snippet:DefineNSBMessage
+snippet: DefineNSBMessage
 
 
 ### Uniquely identifying messages
@@ -43,4 +43,4 @@ NServiceBus requires all messages to be uniquely identified in order to be able 
 
 To set this up for this sample, generate a unique ID on the sender side and attach it to the `MessageId` property:
 
-snippet:GenerateUniqueMessageId
+snippet: GenerateUniqueMessageId

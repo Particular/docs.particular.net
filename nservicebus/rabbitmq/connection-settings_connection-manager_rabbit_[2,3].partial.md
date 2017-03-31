@@ -11,4 +11,4 @@ The default connection manager that comes with the transport is usually good eno
 
 In order for the transport to use the above, register it as shown below:
 
-snippet:rabbitmq-config-useconnectionmanager
+snippet: rabbitmq-config-useconnectionmanager

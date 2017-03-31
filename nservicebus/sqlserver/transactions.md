@@ -36,7 +36,7 @@ See also a sample covering this mode of operation using either [SQL Persistence]
 
 In this mode the message is received inside a native ADO.NET transaction
 
-partial:native
+partial: native
 
 
 ### Unreliable (Transactions Disabled)

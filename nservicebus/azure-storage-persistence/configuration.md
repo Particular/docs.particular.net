@@ -8,9 +8,9 @@ tags:
 reviewed: 2016-11-07
 ---
 
-partial:sections
+partial: sections
 
-partial:code
+partial: code
 
 ### Configuration Properties
 

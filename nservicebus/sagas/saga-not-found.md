@@ -11,7 +11,7 @@ related:
 
 The messages which are handled by sagas can either start a new saga (if handled by `IAmStartedByMessages<T>`) or update the existing saga (if handled by `IHandleMessages<T>`). If the incoming message should be handled by a saga, but is not expected to start a new one, then NServiceBus uses provided [correlation rules](/nservicebus/sagas/#correlating-messages-to-a-saga) to find an existing saga. If no existing saga can be found then all implementations of `IHandleSagaNotFound` are executed.
 
-snippet:saga-not-found
+snippet: saga-not-found
 
 Note that in the example above the message will be considered successfully processed and sent to the audit queue even if no saga was found. Throw an exception from the `IHandleSagaNotFound` implementation to cause the message to end up in the error queue.
 

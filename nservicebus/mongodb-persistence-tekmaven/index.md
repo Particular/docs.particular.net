@@ -57,7 +57,7 @@ For Sagas to work correctly the following needs to be enforced:
 
 For example:
 
-snippet:MongoSampleSaga
+snippet: MongoSampleSaga
 
 
 ## Dealing with concurrency

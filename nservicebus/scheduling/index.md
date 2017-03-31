@@ -25,7 +25,7 @@ When a new scheduled task is created it is given a unique ID and stored in the e
 
 The difference between the following two examples is that in the latter a name is given for the task. The name can be used for logging.
 
-snippet:ScheduleTask
+snippet: ScheduleTask
 
 
 ## When not to use it

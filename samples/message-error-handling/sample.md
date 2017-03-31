@@ -12,7 +12,7 @@ related:
  - nservicebus/pipeline/customizing-error-handling
 ---
 
-partial:usage
+partial: usage
 
 This sample shows how based on the exception type a message can be retried, sent to the error queue or ignored. Beware of swallowing the exceptions though, since it is almost never intended and the message will be removed from the queue, as if it has been processed successfully. 
 

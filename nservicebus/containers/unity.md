@@ -13,12 +13,12 @@ NServiceBus can be configured to use [Unity](https://github.com/unitycontainer/u
 
 ### Default Usage
 
-snippet:Unity
+snippet: Unity
 
 
 ### Existing Container Instance
 
-snippet:Unity_Existing
+snippet: Unity_Existing
 
 
 ### DependencyLifecycle Mapping

@@ -8,7 +8,7 @@ By default the Outbox records are persisted in the following way:
 
 Following API can be used to provide a different mapping of Outbox data to the underlying storage:
 
-snippet:OutboxNHibernateCustomMapping
+snippet: OutboxNHibernateCustomMapping
 
 Should custom mapping be required, the following characteristics of the original mapping needs to be preserved:
 

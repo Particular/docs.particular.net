@@ -3,4 +3,4 @@ Uses the .NET [BinaryFormatter](https://msdn.microsoft.com/en-us/library/system.
 
 ### Usage
 
-snippet:BinarySerialization
+snippet: BinarySerialization

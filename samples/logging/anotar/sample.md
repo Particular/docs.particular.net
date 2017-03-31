@@ -19,7 +19,7 @@ Anotar simplifies logging through a static class and some IL manipulation done b
 
 When the Anotar NuGet package is pulled in Fody will create a configuration file (`FodyWeavers.xml`) with the following:
 
-snippet:weavers
+snippet: weavers
 
 This tells the underlying Fody IL weaving engine to inject Anotar into the build pipeline.
 
@@ -28,8 +28,8 @@ This tells the underlying Fody IL weaving engine to inject Anotar into the build
 
 To use Anotar write a log entry via any of the static methods. For example in a handler:
 
-snippet:handler
+snippet: handler
 
 This will result in the following being compiled
 
-snippet:resulthandler
+snippet: resulthandler

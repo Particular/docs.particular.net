@@ -6,4 +6,4 @@ Creating this envelope can cause uneeded complexity should headers not be needed
 
 The snippet below shows custom unwrapping logic that enables both NServiceBus formatted and plain JSON messages to be consumed.
 
-snippet:CustomEnvelopeUnwrapper 
+snippet: CustomEnvelopeUnwrapper 

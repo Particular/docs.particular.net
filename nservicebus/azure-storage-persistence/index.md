@@ -8,6 +8,9 @@ tags:
  - Persistence
  - Performance
  - Hosting
+related:
+ - nservicebus/upgrades/asp-saga-deduplication
+ - nservicebus/upgrades/asp-saga-pruning
 redirects:
  - nservicebus/using-azure-storage-persistence-in-nservicebus
  - nservicebus/azure/azure-storage-persistence
@@ -22,7 +25,7 @@ First add a reference to the assembly that contains the Azure storage persisters
 
 If self hosting, configure the persistence technology using the configuration API.
 
-snippet:PersistanceWithAzure
+snippet: PersistanceWithAzure
 
 
 ### Saga correlation

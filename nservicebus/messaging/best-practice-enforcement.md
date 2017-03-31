@@ -16,8 +16,8 @@ NOTE: In Versions 6 and above the default behavior can be overridden.
 
 To disable this feature at the endpoint level using:
 
-snippet:DisableBestPracticeEnforcementPerEndpoint
+snippet: DisableBestPracticeEnforcementPerEndpoint
 
 or at the message level using:
 
-snippet:DisableBestPracticeEnforcementPerMessage
+snippet: DisableBestPracticeEnforcementPerMessage

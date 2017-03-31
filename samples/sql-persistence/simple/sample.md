@@ -72,20 +72,20 @@ Configure the endpoint to use SQL Persistence.
 
 #### MS SQL Server
 
-snippet:sqlServerConfig
+snippet: sqlServerConfig
 
 
 ### MySql
 
-snippet:MySqlConfig
+snippet: MySqlConfig
 
 
 ### Order Saga Data
 
-snippet:sagadata
+snippet: sagadata
 
 
 ### Order Saga
 
-snippet:thesaga
+snippet: thesaga
 

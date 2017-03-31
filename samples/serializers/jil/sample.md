@@ -11,19 +11,19 @@ related:
 
 ## Configuring to use Jil
 
-snippet:config
+snippet: config
 
 
 ## Diagnostic Mutator
 
 A helper that will Write out the contents of any incoming message.
 
-snippet:mutator
+snippet: mutator
 
 
 ## The message send
 
-snippet:message
+snippet: message
  
 
 ## The Output

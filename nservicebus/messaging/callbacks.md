@@ -21,14 +21,14 @@ DANGER: If the server process returns multiple responses, NServiceBus cannot kno
 
 To handle responses from the processing endpoint, the sending endpoint must have it's own queue. Therefore, the sending endpoint cannot be configured as a [SendOnly endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting). Messages arriving in this queue are handled using a message handler, similar to that of the processing endpoint, as shown:
 
-snippet:EmptyHandler
+snippet: EmptyHandler
 
 
 ## Prerequisites for callback functionality
 
 In NServiceBus Version 5 and below callbacks are built into the core NuGet.
 
-In NServiceBus Version 6 and above callbacks are shipped as `NServiceBus.Callbacks` NuGet package.
+In NServiceBus Version 6 and above callbacks are shipped as `NServiceBus.Callbacks` NuGet package. This package has to be referenced by the requesting endpoint.
 
 
 ## Using Callbacks
@@ -43,12 +43,14 @@ The integer response scenario allows any integer value to be returned in a stron
 
 #### Send and Callback
 
-snippet:IntCallback
+snippet: IntCallback
 
 
 #### Response
 
-snippet:IntCallbackResponse
+snippet: IntCallbackResponse
+
+partial: int-reply
 
 
 ### Enum
@@ -58,12 +60,14 @@ The enum response scenario allows any enum value to be returned in a strong type
 
 #### Send and Callback
 
-snippet:EnumCallback
+snippet: EnumCallback
+
+partial: enum-reply
 
 
 #### Response
 
-snippet:EnumCallbackResponse
+snippet: EnumCallbackResponse
 
 
 ### Object
@@ -75,21 +79,21 @@ The Object response scenario allows an object instance to be returned.
 
 This feature leverages the message Reply mechanism of the bus and hence the response need to be a message.
 
-snippet:CallbackResponseMessage
+snippet: CallbackResponseMessage
 
 
 #### Send and Callback
 
-snippet:ObjectCallback
+snippet: ObjectCallback
 
-partial:fakeHandler
+partial: fakeHandler
 
 
 #### Response
 
-snippet:ObjectCallbackResponse
+snippet: ObjectCallbackResponse
 
-partial:cancellation
+partial: cancellation
 
 
 ## When to use callbacks
@@ -104,4 +108,4 @@ When using callbacks in a ASP.NET Web/MVC/Web API, the NServiceBus callbacks can
 ## Message routing
 
 
-partial:route
+partial: route

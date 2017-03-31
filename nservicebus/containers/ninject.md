@@ -14,12 +14,12 @@ NServiceBus can be configured to use [Ninject](http://www.ninject.org/) as a dep
 
 ### Default Usage
 
-snippet:Ninject
+snippet: Ninject
 
 
 ### Existing Container Instance
 
-snippet:Ninject_Existing
+snippet: Ninject_Existing
 
 
 partial: uow

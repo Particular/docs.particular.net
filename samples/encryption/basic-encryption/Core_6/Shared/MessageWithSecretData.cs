@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 #region Message
 using NServiceBus;
+#pragma warning disable 618
 
 public class MessageWithSecretData :
     IMessage

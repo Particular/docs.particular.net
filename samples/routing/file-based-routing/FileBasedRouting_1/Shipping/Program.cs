@@ -21,7 +21,8 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        transport.Routing().UseFileBasedRouting(@"..\..\..\endpoints.xml");
+        var routing = transport.Routing();
+        routing.UseFileBasedRouting(@"..\..\..\endpoints.xml");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

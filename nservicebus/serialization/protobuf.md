@@ -10,7 +10,7 @@ Serializes messages using [protobuf-net](https://github.com/mgravell/protobuf-ne
 
 ## Usage
 
-snippet:ProtobufSerialization
+snippet: ProtobufSerialization
 
 include: interface-not-supported
 
@@ -24,6 +24,6 @@ snippet: ProtoBufCustomSettings
 
 include: custom-contenttype-key
 
-snippet:ProtoBufContentTypeKey
+snippet: ProtoBufContentTypeKey
 
 

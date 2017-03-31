@@ -24,7 +24,7 @@ The "With Delayed Retries" endpoint uses the standard Delayed Retries settings.
 
 The "Disable Delayed Retries" endpoint disables Delayed Retries with the following
 
-snippet:Disable
+snippet: Disable
 
 
 ## The output

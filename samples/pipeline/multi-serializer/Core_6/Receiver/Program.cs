@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 
 class Program
 {
@@ -12,6 +13,9 @@ class Program
 
     static async Task AsyncMain()
     {
+        var defaultFactory = LogManager.Use<DefaultFactory>();
+        defaultFactory.Level(LogLevel.Info);
+
         Console.Title = "Samples.MultiSerializer.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiSerializer.Receiver");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -19,15 +23,9 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop().
-                ConfigureAwait(false);
-        }
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop().
+            ConfigureAwait(false);
     }
 }

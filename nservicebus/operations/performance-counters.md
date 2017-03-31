@@ -2,7 +2,7 @@
 title: Performance Counters
 summary: Monitoring through the use of performance counters.
 reviewed: 2016-11-01
-component: PerformanceCounters
+component: PerfCounters
 redirects:
  - nservicebus/monitoring-nservicebus-endpoints
  - nservicebus/operations/monitoring-endpoints
@@ -38,7 +38,7 @@ Critical Time is the time from a message being sent until successfully processed
 
 This counter can be enabled using the the following code:
 
-snippet:enable-criticaltime
+snippet: enable-criticaltime
 
 In the NServiceBus Host this counter is enabled by default.
 

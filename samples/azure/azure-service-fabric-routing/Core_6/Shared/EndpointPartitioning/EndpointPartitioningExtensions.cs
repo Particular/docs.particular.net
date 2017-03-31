@@ -14,12 +14,16 @@ public static class EndpointPartitioningExtensions
         var endpointName = settings.EndpointName();
         var distributionStrategy = new PartitionAwareDistributionStrategy(endpointName, _ => localPartitionKey, DistributionStrategyScope.Send);
 
-        settings.GetOrCreate<DistributionPolicy>().SetDistributionStrategy(distributionStrategy);
+        var distributionPolicy = settings.GetOrCreate<DistributionPolicy>();
+        distributionPolicy.SetDistributionStrategy(distributionStrategy);
 
         var destinationEndpointInstances = allPartitionKeys.Select(key => new EndpointInstance(endpointName, key)).ToList();
 
-        settings.GetOrCreate<EndpointInstances>().AddOrReplaceInstances(endpointName, destinationEndpointInstances);
+        var endpointInstances = settings.GetOrCreate<EndpointInstances>();
+        endpointInstances.AddOrReplaceInstances(endpointName, destinationEndpointInstances);
 
-        endpointConfiguration.Pipeline.Register(new HardcodeReplyToAddressToLogicalAddress(settings.InstanceSpecificQueue()), "Hardcodes the ReplyToAddress to the instance specific address of this endpoint.");
+        var pipeline = endpointConfiguration.Pipeline;
+        var addressToLogicalAddress = new HardcodeReplyToAddressToLogicalAddress(settings.InstanceSpecificQueue());
+        pipeline.Register(addressToLogicalAddress, "Hardcodes the ReplyToAddress to the instance specific address of this endpoint.");
     }
 }

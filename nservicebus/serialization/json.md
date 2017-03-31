@@ -12,7 +12,7 @@ Using [Json](https://en.wikipedia.org/wiki/Json) via an [ILMerged](https://githu
 
 ## Usage
 
-snippet:JsonSerialization
+snippet: JsonSerialization
 
 
 partial: version

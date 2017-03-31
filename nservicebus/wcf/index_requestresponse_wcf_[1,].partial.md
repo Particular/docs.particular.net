@@ -7,12 +7,12 @@ NOTE: The receiving endpoint requires a reference to `NServiceBus.Callbacks`.
 
 #### Expose service
 
-snippet:WcfIntCallback
+snippet: WcfIntCallback
 
 
 #### Response
 
-snippet:WcfIntCallbackResponse
+snippet: WcfIntCallbackResponse
 
 
 ### Enum
@@ -24,12 +24,12 @@ NOTE: The receiving endpoint requires a reference to `NServiceBus.Callbacks`.
 
 #### Expose service
 
-snippet:WcfEnumCallback
+snippet: WcfEnumCallback
 
 
 #### Response
 
-snippet:WcfEnumCallbackResponse
+snippet: WcfEnumCallbackResponse
 
 
 ### Object
@@ -43,14 +43,14 @@ NOTE: The receiving endpoint does not require a reference to `NServiceBus.Callba
 
 This feature leverages the message Reply mechanism of the bus and hence the response need to be a message.
 
-snippet:WcfCallbackResponseMessage
+snippet: WcfCallbackResponseMessage
 
 
 #### Expose service
 
-snippet:WcfObjectCallback
+snippet: WcfObjectCallback
 
 
 #### Response
 
-snippet:WcfObjectCallbackResponse
+snippet: WcfObjectCallbackResponse

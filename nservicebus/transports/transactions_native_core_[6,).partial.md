@@ -4,7 +4,7 @@ In this mode the receive operation is wrapped in a transport's native transactio
 
 Use the following code to use this mode:
 
-snippet:TransportTransactionReceiveOnly
+snippet: TransportTransactionReceiveOnly
 
 
 #### Consistency guarantees
@@ -25,7 +25,7 @@ Some transports support enlisting outgoing operations in the current receive tra
 
 Use the following code to use this mode:
 
-snippet:TransportTransactionAtomicSendsWithReceive
+snippet: TransportTransactionAtomicSendsWithReceive
 
 
 #### Consistency guarantees

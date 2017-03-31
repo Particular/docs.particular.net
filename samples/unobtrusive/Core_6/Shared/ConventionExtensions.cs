@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Text;
 using NServiceBus;
+using NServiceBus.Encryption.MessageProperty;
 
 public static class ConventionExtensions
 {
@@ -7,6 +9,15 @@ public static class ConventionExtensions
 
     public static void ApplyCustomConventions(this EndpointConfiguration endpointConfiguration)
     {
+        var encryptionService = new RijndaelEncryptionService(
+            encryptionKeyIdentifier: "2015-10",
+            key: Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
+        endpointConfiguration.EnableMessagePropertyEncryption(encryptionService,
+            encryptedPropertyConvention: info =>
+            {
+                return info.Name.StartsWith("Encrypted");
+            });
+
         var conventions = endpointConfiguration.Conventions();
         conventions.DefiningCommandsAs(
             type =>
@@ -24,11 +35,6 @@ public static class ConventionExtensions
             type =>
             {
                 return type.Namespace == "Messages";
-            });
-        conventions.DefiningEncryptedPropertiesAs(
-            property =>
-            {
-                return property.Name.StartsWith("Encrypted");
             });
         conventions.DefiningDataBusPropertiesAs(
             property =>

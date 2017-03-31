@@ -27,7 +27,7 @@ snippet: TheSagaNHibernate
 
 include: sagafinder-process
 
-snippet:CustomSagaFinderNHibernate
+snippet: CustomSagaFinderNHibernate
 
 include: sagafinder-ifindsagas
 

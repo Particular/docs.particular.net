@@ -27,38 +27,32 @@ class Program
             .ConfigureAwait(false);
         var distributionEndpoint = await Endpoint.Start(distributionConfig)
             .ConfigureAwait(false);
-        try
-        {
-            Console.WriteLine("Press enter to send a message");
-            Console.WriteLine("Press any key to exit");
+        Console.WriteLine("Press enter to send a message");
+        Console.WriteLine("Press any key to exit");
 
-            while (true)
+        while (true)
+        {
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key != ConsoleKey.Enter)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    return;
-                }
-                var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                Console.WriteLine($"Placing order {orderId}");
-                var message = new PlaceOrder
-                {
-                    OrderId = orderId,
-                    Value = random.Next(100)
-                };
-                await mainEndpoint.Send(message)
-                    .ConfigureAwait(false);
+                break;
             }
-        }
-        finally
-        {
-            await mainEndpoint.Stop()
+            var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+            Console.WriteLine($"Placing order {orderId}");
+            var message = new PlaceOrder
+            {
+                OrderId = orderId,
+                Value = random.Next(100)
+            };
+            await mainEndpoint.Send(message)
                 .ConfigureAwait(false);
-            await distributionEndpoint.Stop()
-                .ConfigureAwait(false);
         }
+        await mainEndpoint.Stop()
+            .ConfigureAwait(false);
+        await distributionEndpoint.Stop()
+            .ConfigureAwait(false);
     }
 
     static EndpointConfiguration DistributionConfig(string endpointName)
@@ -73,7 +67,8 @@ class Program
         var typesToExclude = AllTypes
             .Where(t => t.Namespace != "DataDistribution")
             .ToArray();
-        distributionConfig.ExcludeTypes(typesToExclude);
+        var assemblyScanner = distributionConfig.AssemblyScanner();
+        assemblyScanner.ExcludeTypes(typesToExclude);
         #endregion
 
         var transport = distributionConfig.UseTransport<MsmqTransport>();
@@ -95,7 +90,8 @@ class Program
         var typesToExclude = AllTypes
             .Where(t => t.Namespace == "DataDistribution")
             .ToArray();
-        mainConfig.ExcludeTypes(typesToExclude);
+        var assemblyScanner = mainConfig.AssemblyScanner();
+        assemblyScanner.ExcludeTypes(typesToExclude);
         var transport = mainConfig.UseTransport<MsmqTransport>();
         var mainRouting = transport.Routing();
         mainRouting.RouteToEndpoint(

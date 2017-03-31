@@ -17,12 +17,12 @@ Illustrates customizing NLog usage by configuring NLog targets and rules.
 
 ### Configure NLog
 
-snippet:ConfigureNLog
+snippet: ConfigureNLog
 
 
 ### Pass that configuration to NServiceBus
 
-snippet:UseConfig
+snippet: UseConfig
 
 
 include: verifyLoggingSample

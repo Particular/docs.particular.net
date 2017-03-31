@@ -25,6 +25,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SQLOutboxEF.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region ReceiverConfiguration
 
@@ -45,7 +46,8 @@ class Program
             {
                 return new SqlConnection(connectionString);
             });
-        persistence.TablePrefix("receiver.");
+        persistence.Schema("receiver");
+        persistence.TablePrefix("");
 
         endpointConfiguration.EnableOutbox();
 
@@ -54,15 +56,9 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        try
-        {
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

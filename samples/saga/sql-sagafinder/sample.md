@@ -26,12 +26,12 @@ Configure the endpoint to use SQL Persistence.
 
 ### MS SQL Server
 
-snippet:sqlServerConfig
+snippet: sqlServerConfig
 
 
 ### MySql
 
-snippet:MySqlConfig
+snippet: MySqlConfig
 
 
 include: sagafinder-thesaga
@@ -48,9 +48,9 @@ A Saga Finder is only required for the `PaymentTransactionCompleted` message sin
 
 ### MS SQL Server
 
-snippet:SqlServerSagaFinder
+snippet: SqlServerSagaFinder
 
 
 ### MySql
 
-snippet:MySqlSagaFinder
+snippet: MySqlSagaFinder

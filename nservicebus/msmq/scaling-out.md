@@ -14,4 +14,4 @@ redirects:
 ---
 
 
-partial:overview
+partial: overview

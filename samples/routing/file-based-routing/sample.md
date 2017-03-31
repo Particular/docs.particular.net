@@ -39,8 +39,8 @@ Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Confi
 
 This sample contains four projects. All these project make use of a shared routing file.
 
-snippet:endpoints
+snippet: endpoints
 
 For the purpose of the sample, the file is stored in the local file system. The routing mechanism based on the contents of the file is enabled by following code:
 
-snippet:FileBasedRouting
+snippet: FileBasedRouting

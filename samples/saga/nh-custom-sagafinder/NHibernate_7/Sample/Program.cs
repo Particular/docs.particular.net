@@ -13,11 +13,15 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.NHibernateCustomSagaFinder";
-        var endpointConfiguration = new EndpointConfiguration("Samples.NHibernateCustomSagaFinder");
+        var endpointName = "Samples.NHibernateCustomSagaFinder";
+        Console.Title = endpointName;
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
+
+        var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+        routing.RegisterPublisher(typeof(Program).Assembly, endpointName);
 
         #region NHibernateSetup
 
@@ -28,22 +32,16 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        try
+        var startOrder = new StartOrder
         {
-            var startOrder = new StartOrder
-            {
-                OrderId = "123"
-            };
-            await endpointInstance.SendLocal(startOrder)
-                .ConfigureAwait(false);
+            OrderId = "123"
+        };
+        await endpointInstance.SendLocal(startOrder)
+            .ConfigureAwait(false);
 
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
-        finally
-        {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

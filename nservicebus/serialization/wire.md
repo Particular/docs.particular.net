@@ -11,7 +11,7 @@ Serializes messages with the [Wire](https://github.com/akkadotnet/Wire) binary f
 
 ## Usage
 
-snippet:WireSerialization
+snippet: WireSerialization
 
 include: interface-not-supported
 
@@ -25,4 +25,4 @@ snippet: WireCustomSettings
 
 include: custom-contenttype-key
 
-snippet:WireContentTypeKey
+snippet: WireContentTypeKey

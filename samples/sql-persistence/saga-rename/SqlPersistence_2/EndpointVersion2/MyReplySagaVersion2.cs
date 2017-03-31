@@ -7,9 +7,6 @@ using NServiceBus.Persistence.Sql;
 #region replySaga2
 namespace MyNamespace2
 {
-    [SqlSaga(
-        CorrelationProperty = nameof(SagaData.TheId)
-    )]
     public class MyReplySagaVersion2 :
         SqlSaga<MyReplySagaVersion2.SagaData>,
         IAmStartedByMessages<StartReplySaga>,
@@ -17,11 +14,13 @@ namespace MyNamespace2
     {
         static ILog log = LogManager.GetLogger<MyReplySagaVersion2>();
 
-        protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
+        protected override void ConfigureMapping(IMessagePropertyMapper mapper)
         {
-            mapper.MapMessage<StartReplySaga>(_ => _.TheId);
-            mapper.MapMessage<Reply>(_ => _.TheId);
+            mapper.ConfigureMapping<StartReplySaga>(_ => _.TheId);
+            mapper.ConfigureMapping<Reply>(_ => _.TheId);
         }
+
+        protected override string CorrelationPropertyName => nameof(SagaData.TheId);
 
         public Task Handle(StartReplySaga message, IMessageHandlerContext context)
         {

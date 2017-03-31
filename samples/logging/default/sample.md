@@ -21,4 +21,4 @@ Inside the `[path_to_the_sample]\Core_6\Sample\bin\[Debug/Release]` directory sh
 
 ### Enabling Logging
 
-snippet:ConfigureLogging
+snippet: ConfigureLogging

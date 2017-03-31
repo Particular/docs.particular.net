@@ -78,14 +78,12 @@ public class ScriptWriter
             Write(directory, variant, "SagaGetBySagaId", sagaCommandBuilder.BuildGetBySagaIdCommand("EndpointName_SagaName"));
             Write(directory, variant, "SagaSave", sagaCommandBuilder.BuildSaveCommand("CorrelationProperty", "TransitionalCorrelationProperty", "EndpointName_SagaName"));
             Write(directory, variant, "SagaUpdate", sagaCommandBuilder.BuildUpdateCommand("TransitionalCorrelationProperty", "EndpointName_SagaName"));
+            Write(directory, variant, "SagaSelect", sagaCommandBuilder.BuildSelectFromCommand("EndpointName_SagaName"));
         }
     }
 
     #region CreationScriptSaga
 
-    [SqlSaga(
-        CorrelationProperty = "OrderNumber",
-        TransitionalCorrelationProperty = "OrderId")]
     public class OrderSaga :
         SqlSaga<OrderSaga.OrderSagaData>
     {
@@ -96,11 +94,16 @@ public class ScriptWriter
             public Guid OrderId { get; set; }
         }
 
+        protected override string CorrelationPropertyName => nameof(OrderSagaData.OrderNumber);
+
+        protected override string TransitionalCorrelationPropertyName => nameof(OrderSagaData.OrderId);
+
         #endregion
 
-        protected override void ConfigureMapping(MessagePropertyMapper<OrderSagaData> mapper)
+        protected override void ConfigureMapping(IMessagePropertyMapper mapper)
         {
         }
+
     }
 
     static void Write(string testDirectory, BuildSqlVariant variant, string suffix, string script)

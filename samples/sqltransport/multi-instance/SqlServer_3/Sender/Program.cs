@@ -33,23 +33,17 @@ public class Program
 
         Console.WriteLine("Press <enter> to send a message");
         Console.WriteLine("Press any other key to exit");
-        try
+        while (true)
         {
-            while (true)
+            if (Console.ReadKey().Key != ConsoleKey.Enter)
             {
-                if (Console.ReadKey().Key != ConsoleKey.Enter)
-                {
-                    return;
-                }
-                await PlaceOrder(endpointInstance)
-                    .ConfigureAwait(false);
+                break;
             }
-        }
-        finally
-        {
-            await endpointInstance.Stop()
+            await PlaceOrder(endpointInstance)
                 .ConfigureAwait(false);
         }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
     static async Task PlaceOrder(IEndpointInstance endpoint)

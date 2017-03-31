@@ -9,7 +9,7 @@ tags:
 
 Some scenarios require an in-memory persistence such as the development environment or a lightweight client not interested in durability across restarts:
 
-snippet:ConfiguringInMemory
+snippet: ConfiguringInMemory
 
 WARNING: Because there is no clustering / replication happening between NServiceBus instances, when a process is down, all the information stored in the InMemory persistence of that process is lost.
 

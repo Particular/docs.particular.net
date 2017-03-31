@@ -25,12 +25,12 @@ A send involves the following actions:
 
 #### In C&#35;
 
-snippet:rabbit-nativesend
+snippet: rabbit-nativesend
 
 
 ### Using the native send helper methods
 
-snippet:rabbit-nativesend-usage
+snippet: rabbit-nativesend-usage
 
 In this example, the value `MyNamespace.MyMessage` represents the .NET type of the message. See the [headers documentation](/nservicebus/messaging/headers.md) for more information on the `EnclosedMessageTypes` header.
 
@@ -46,12 +46,12 @@ This code shows an example of how to perform the following actions:
  * Extract the failed queue from the headers.
  * Forward that message to the failed queue name so it can be retried.
 
-snippet:rabbit-return-to-source-queue
+snippet: rabbit-return-to-source-queue
 
 
 ### Using the retry helper methods
 
-snippet:rabbit-return-to-source-queue-usage
+snippet: rabbit-return-to-source-queue-usage
 
 
 ## Create queues
@@ -61,7 +61,7 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 
 ### The create queue helper methods
 
-snippet:rabbit-create-queues
+snippet: rabbit-create-queues
 
 
 ### Creating queues for an endpoint
@@ -73,12 +73,12 @@ snippet: rabbit-create-queues-for-endpoint
 
 ### Using the create create endpoint queues
 
-snippet:rabbit-create-queues-endpoint-usage
+snippet: rabbit-create-queues-endpoint-usage
 
 
 ### To create shared queues
 
-snippet:rabbit-create-queues-shared-usage
+snippet: rabbit-create-queues-shared-usage
 
 
 ## Create HA policy
@@ -91,16 +91,16 @@ To configure HA policy, refer to the [RabbitMQ HA documentation](https://www.rab
 
 ### The delete helper queue methods
 
-snippet:rabbit-delete-queues
+snippet: rabbit-delete-queues
 
 
 ### To delete all queues for a given endpoint
 
 snippet: rabbit-delete-queues-for-endpoint
 
-snippet:rabbit-delete-queues-endpoint-usage
+snippet: rabbit-delete-queues-endpoint-usage
 
 
 ### To delete shared queues
 
-snippet:rabbit-delete-queues-shared-usage
+snippet: rabbit-delete-queues-shared-usage

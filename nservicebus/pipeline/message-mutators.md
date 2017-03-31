@@ -2,7 +2,7 @@
 title: Message Mutators
 summary: Message Mutators allow mutation of messages in the pipeline
 component: Core
-reviewed: 2016-12-01
+reviewed: 2017-07-03
 tags:
  - Mutator
 redirects:
@@ -23,17 +23,15 @@ Message mutators change/react to individual messages being sent or received. The
 
 Mutators can be used to perform actions such as validation of outgoing/incoming messages.
 
-NServiceBus uses this type of mutator internally to do things like property encryption and serialization/deserialization of properties to and from the DataBus.
-
 
 ### IMutateIncomingMessages
 
-snippet:IMutateIncomingMessages
+snippet: IMutateIncomingMessages
 
 
 ### IMutateOutgoingMessages
 
-snippet:IMutateOutgoingMessages
+snippet: IMutateOutgoingMessages
 
 
 partial: imessagemutator
@@ -41,17 +39,18 @@ partial: imessagemutator
 
 ## Transport Messages Mutators
 
-Create transport message mutators by implementing the `IMutateIncomingTransportMessages` or `IMutateOutgoingTransportMessages` interfaces. This type of mutator works on the entire transport message and is useful for compression, header manipulation, etc.
+Transport message mutators work on the serialized transport message and are useful for compression, header manipulation, etc.
+Create transport message mutators by implementing the `IMutateIncomingTransportMessages` or `IMutateOutgoingTransportMessages` interfaces.
 
 
 ### IMutateIncomingTransportMessages
 
-snippet:IMutateIncomingTransportMessages
+snippet: IMutateIncomingTransportMessages
 
 
 ### IMutateOutgoingTransportMessages
 
-snippet:IMutateOutgoingTransportMessages
+snippet: IMutateOutgoingTransportMessages
 
 
 partial: imutatetransportmessages
@@ -59,9 +58,9 @@ partial: imutatetransportmessages
 
 ## Registering a Mutator
 
-Mutators are **NOT** automatically registered in the container, so to have them invoked, register them in the [container](/nservicebus/containers/).
+Mutators are **NOT** automatically registered in the container, so to have them invoked, register them in the `EndpointConfiguration`:
 
-snippet:MutatorRegistration
+snippet: MutatorRegistration
 
 NOTE: Mutators are non-deterministic in terms of order of execution. If more fine grained control is required over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/manipulate-with-behaviors.md).
 

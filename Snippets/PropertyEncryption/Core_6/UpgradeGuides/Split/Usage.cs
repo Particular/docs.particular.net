@@ -1,4 +1,5 @@
-﻿namespace Core6.UpgradeGuides.Split
+﻿#pragma warning disable 618
+namespace Core6.UpgradeGuides.Split
 {
     using System.Collections.Generic;
     using System.Text;

@@ -14,15 +14,15 @@ Note: When logging level is defined in both app.config and code the code wins.
 
 #### Via config API
 
-snippet:OverrideLoggingLevelInCode
+snippet: OverrideLoggingLevelInCode
 
 
 #### Via app.config
 
-snippet:OverrideLoggingDefaultsInAppConfig
+snippet: OverrideLoggingDefaultsInAppConfig
 
 
 #### Via IProvideConfiguration
 
-snippet:LoggingThresholdFromIProvideConfiguration
+snippet: LoggingThresholdFromIProvideConfiguration
 

@@ -4,11 +4,11 @@ Secure connections to the broker using [Transport Layer Security (TLS)](http://w
 
 An example connection string using these settings:
 
-snippet:rabbitmq-connection-tls
+snippet: rabbitmq-connection-tls
 
 In Versions 4.3 and above, client certificates can be specified via code instead of using `CertPath` and `CertPassphrase`:
 
-snippet:rabbitmq-config-client-certificates
+snippet: rabbitmq-config-client-certificates
 
 NOTE: If a certificate is specified via the code API, the `CertPath` and `CertPassphrase` connection string settings are ignored.
 

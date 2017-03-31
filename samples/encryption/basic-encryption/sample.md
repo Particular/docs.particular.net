@@ -43,14 +43,14 @@ CreditCard: 543645546546456 is valid to 3/11/2016 5:21:59 AM
 
 Starting with the Shared project, open the `MessageWithSecretData.cs` file and look at the following code:
 
-snippet:Message
+snippet: Message
 
 
 ### How is encryption configured.
 
 Open either one of the `Program.cs`. Notice the line
 
-snippet:enableEncryption
+snippet: enableEncryption
 
 This code indicates that encryption should be enabled.
 

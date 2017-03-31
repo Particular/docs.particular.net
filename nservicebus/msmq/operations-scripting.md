@@ -23,12 +23,12 @@ A send involves the following actions:
 
 #### In C&#35;
 
-snippet:msmq-nativesend
+snippet: msmq-nativesend
 
 
 #### In PowerShell
 
-snippet:msmq-nativesend-powershell
+snippet: msmq-nativesend-powershell
 
 
 ### Using the native send helper methods
@@ -36,12 +36,12 @@ snippet:msmq-nativesend-powershell
 
 #### In C&#35;
 
-snippet:msmq-nativesend-usage
+snippet: msmq-nativesend-usage
 
 
 #### In PowerShell
 
-snippet:msmq-nativesend-powershell-usage
+snippet: msmq-nativesend-powershell-usage
 
 
 ## Return message to source queue
@@ -58,17 +58,17 @@ A retry involves the following actions:
 
 #### In C&#35;
 
-snippet:msmq-return-to-source-queue
+snippet: msmq-return-to-source-queue
 
 
 #### In PowerShell
 
-snippet:msmq-return-to-source-queue-powershell
+snippet: msmq-return-to-source-queue-powershell
 
 
 ### Using the retry helper methods
 
-snippet:msmq-return-to-source-queue-usage
+snippet: msmq-return-to-source-queue-usage
 
 
 ## Create queues
@@ -86,12 +86,12 @@ See also: [Queue Permissions](/nservicebus/msmq/#permissions)
 
 #### In C&#35;
 
-snippet:msmq-create-queues
+snippet: msmq-create-queues
 
 
 #### In PowerShell
 
-snippet:msmq-create-queues-powershell
+snippet: msmq-create-queues-powershell
 
 
 ### Creating queues for an endpoint
@@ -114,12 +114,12 @@ snippet: msmq-create-queues-for-endpoint-powershell
 
 #### In C&#35;
 
-snippet:msmq-create-queues-endpoint-usage
+snippet: msmq-create-queues-endpoint-usage
 
 
 #### In PowerShell
 
-snippet:msmq-create-queues-endpoint-usage-powershell
+snippet: msmq-create-queues-endpoint-usage-powershell
 
 
 ### To create shared queues
@@ -127,12 +127,12 @@ snippet:msmq-create-queues-endpoint-usage-powershell
 
 #### In C&#35;
 
-snippet:msmq-create-queues-shared-usage
+snippet: msmq-create-queues-shared-usage
 
 
 #### In PowerShell
 
-snippet:msmq-create-queues-shared-usage-powershell
+snippet: msmq-create-queues-shared-usage-powershell
 
 
 ## Delete queues
@@ -143,21 +143,21 @@ snippet:msmq-create-queues-shared-usage-powershell
 
 #### In C&#35;
 
-snippet:msmq-delete-queues
+snippet: msmq-delete-queues
 
 
 #### In PowerShell
 
-snippet:msmq-delete-queues-powershell
+snippet: msmq-delete-queues-powershell
 
 
 ### To delete all queues for a given endpoint
 
 snippet: msmq-delete-queues-for-endpoint
 
-snippet:msmq-delete-queues-endpoint-usage
+snippet: msmq-delete-queues-endpoint-usage
 
 
 ### To delete shared queues
 
-snippet:msmq-delete-queues-shared-usage
+snippet: msmq-delete-queues-shared-usage

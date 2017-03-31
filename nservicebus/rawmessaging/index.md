@@ -12,20 +12,20 @@ reviewed: 2016-12-03
 
 Configuration of raw endpoints is similar to the standard NServiceBus [endpoint configuration](/nservicebus/endpoints/specify-endpoint-name.md):
 
-snippet:Configuration
+snippet: Configuration
 
 
 ## Sending
 
 The following code sends a message to another endpoint:
 
-snippet:Sending
+snippet: Sending
 
 
 ## Receiving
 
 The following code implements the callback invoked when a message arrives at a raw endpoint:
 
-snippet:Receiving
+snippet: Receiving
 
 Notice the method gets a `dispatcher` object which can be used to send messages. The transport transaction object can be passed from the receiving context to the dispatcher, in order to ensure transactions span both send and receive. Make sure that the underlying transport infrastructure supports the [`SendsAtomicWithReceives` mode](/nservicebus/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive), when using this option.

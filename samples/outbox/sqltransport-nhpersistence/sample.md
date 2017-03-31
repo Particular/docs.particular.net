@@ -41,9 +41,9 @@ NOTE: The handling code has built-in chaotic behavior. There is a 50% chance tha
 
 The retries are disabled using the following settings:
 
-partial:RetriesConfigurationXml
+partial: RetriesConfigurationXml
 
-partial:RetriesConfiguration
+partial: RetriesConfiguration
 
 
 ## Code walk-through
@@ -59,31 +59,31 @@ This sample contains three projects:
 
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport with NHibernate persistence and Outbox.
 
-partial:SenderConfiguration
+partial: SenderConfiguration
 
 
 ### Receiver project
 
 The Receiver mimics a back-end system. It is also configured to use SQL Server transport with NHibernate persistence and Outbox.
 
-snippet:ReceiverConfiguration
+snippet: ReceiverConfiguration
 
 In order for the Outbox to work, the business data has to reuse the same connection string as NServiceBus persistence:
 
-snippet:NHibernate
+snippet: NHibernate
 
 When the message arrives at the Receiver, it is dequeued using a native SQL Server transaction. Then a `TransactionScope` is created that encompasses
 
  * persisting business data:
 
-snippet:StoreUserData
+snippet: StoreUserData
 
  * persisting saga data of `OrderLifecycleSaga`,
  * storing the reply message and the timeout request in the outbox:
 
-snippet:Reply
+snippet: Reply
 
-snippet:Timeout
+snippet: Timeout
 
 Finally the messages in the Outbox are pushed to their destinations. The timeout message gets stored in NServiceBus timeout store and is sent back to the saga after requested delay of 5 seconds.
 

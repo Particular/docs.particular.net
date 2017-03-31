@@ -50,7 +50,7 @@ Use `ExpectReply` instead of `ExpectReturn`.
 
 `ExpectSendToSites` and `ExpectNotSendToSites` methods have been removed from the Testing Framework. Handlers using the Gateway can still be tested using the `ExpectSend` overload which provides the `SendOption`:
 
-snippet:ExpectSendToSiteV6
+snippet: ExpectSendToSiteV6
 
 
 ## Testing Sagas
@@ -78,4 +78,4 @@ The message ID can be manually configured using the `ConfigureMessageHandler` op
 
 Both Saga and Handler tests contain a `ConfigureHandlerContext` method to enable custom configuration of the `IMessageHandlerContext` which is passed to the invoked handler methods.
 
-snippet:ConfigureSagaMessageId
+snippet: ConfigureSagaMessageId

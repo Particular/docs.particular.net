@@ -26,7 +26,7 @@ snippet: specific-profile
 
 This is a simple helper that takes in a threshold as a parameter and configures logging based on that parameter.
 
-snippet:LoggingHelper
+snippet: LoggingHelper
 
 
 ### Profile Handlers
@@ -36,12 +36,12 @@ Inside the `LoggingHandlers` directory there are `IConfigureLoggingForProfile`s 
 
 #### Integration
 
-snippet:IntegrationHandler
+snippet: IntegrationHandler
 
 
 #### Lite
 
-snippet:LiteHandler
+snippet: LiteHandler
 
 
 #### Production
