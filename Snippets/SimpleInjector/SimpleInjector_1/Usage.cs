@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 using SimpleInjector;
-using SimpleInjector.Extensions.ExecutionContextScoping;
+using SimpleInjector.Lifestyles;
 
 class Usage
 {
@@ -15,7 +15,7 @@ class Usage
         #region simpleinjector_Existing
 
         var container = new Container();
-        container.Options.DefaultScopedLifestyle = new ExecutionContextScopeLifestyle();
+        container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
         container.Register(
             instanceCreator: () =>
