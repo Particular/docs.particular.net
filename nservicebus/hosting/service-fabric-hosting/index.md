@@ -12,7 +12,7 @@ NServiceBus endpoints can be hosted with Service Fabric using Reliable Services,
 1. Stateful services
 1. Guest executable 
 
-To decide what option to use, please refer to [Service Fabric documentation](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview).
+To decide what option to use, refer to [Service Fabric documentation](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview).
 
 Note: Actor model is another Service Fabric programming model that is currently not supported by NServiceBus.
 
