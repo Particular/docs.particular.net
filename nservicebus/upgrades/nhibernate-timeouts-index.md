@@ -36,15 +36,15 @@ Steps:
 
  * Update to latest patch release
  * Deploy the new version
- * Check if you get a warning related to this schema issue
+ * Check if a warning related to this schema issue is visible
    * Or manually inspect the schema in your database
- * Follow procedure on how to resolve schema issues for your database engine (Microsoft SQL Server or Oracle)
-   * If you are using any other database engine then you have to apply these changes in the database dialect for your engine manually
+ * Follow the procedure on how to resolve schema issues for the database engine used (Microsoft SQL Server or Oracle)
+   * If any other database engine is used then these changes must be applied manually
 
 
 ## Check at startup
 
-If you have endpoints with an incorrect index definition then this is detected in all fixed supported versions (at March 1th, 2017) for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created and started. If you are affected you will get the following log event with log level warning:
+If there are endpoints that created an incorrect index definition then this is detected in all fixed supported versions for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created and started. If you are affected you will get the following log event with log level warning:
 
 > Could not find TimeoutEntity_EndpointIdx index. This may cause significant performance degradation of message deferral. Consult NServiceBus NHibernate persistence documentation for details on how to create this index.
 
@@ -65,13 +65,13 @@ How to correct these depend on the database engine that you are using.
 
 ## Resolving schema issues on Microsoft SQL Server
 
-This assumes that both the index column order and clustered index are incorrect. To resolve this we will drop all existing indexes and recreate them.
+This assumes that both the index column order and clustered index are incorrect. To resolve this all existing indexes need to be dropped and recreated.
 
-WARNING: This procedure requires downtime. Make sure that all affected endpoint instances are not running or that the database is running in single-user mode. This is needed because we are dropping index that guarantees consistency.
+WARNING: This procedure requires downtime. Make sure that all affected endpoint instances are not running or that the database is running in single-user mode. This is needed because indexes are temporarily removed that guarantee consistency.
 
-NOTE: Make sure that the correct database is selected. If you are using a custom schema name then update the dbo schema with your custom schema identifier.
+NOTE: Make sure that the correct database is selected. If a custom schema name is used then update the dbo schema with the custom schema identifier.
 
-NOTE: Please first run this script on your testing stage first in order to verify the script works as expected to reduce downtime.
+NOTE: Run this script on a testing or staging environment first to verify that it works as expected.
 
 ```sql
 BEGIN TRAN
@@ -97,7 +97,7 @@ GO
 COMMIT TRAN
 ```
 
-If you get any of the following messages then your current database is incorrect or you are using a custom schema. Please update the schema in the SQL statements.
+If any of the following messages is shown then the currently selected database is incorrect or the schema in the scripts is incorrect because a custom schema is used. Update the schema in the SQL statements to resolve this issue.
 
 - Cannot drop the index 'dbo.TimeoutEntity.TimeoutEntity_SagaIdIdx', because it does not exist or you do not have permission.
 - Cannot drop the index 'dbo.TimeoutEntity.TimeoutEntity_EndpointIdx', because it does not exist or you do not have permission.
@@ -110,7 +110,7 @@ The incorrect index definition on Oracle only applies to the column order. An ex
 
 NOTE: This procedure does not require any downtime. It is still advisable to execute it when corresponding endpoint instances are not under heavy load.
 
-NOTE: Please  run this script on your testing or staging environment first to verify that it works as expected.
+NOTE: Run this script on a testing or staging environment first to verify that it works as expected.
 
 ```sql
 DROP INDEX TIMEOUTENTITY_ENDPOINTIDX;
