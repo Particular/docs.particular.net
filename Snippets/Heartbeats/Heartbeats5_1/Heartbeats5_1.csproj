@@ -29,6 +29,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EndpointWithPlugin.config.xml" />
     <Content Include="heartbeatsIntervalConfig.xml" />
     <Content Include="heartbeatsTtlConfig.xml" />
   </ItemGroup>
