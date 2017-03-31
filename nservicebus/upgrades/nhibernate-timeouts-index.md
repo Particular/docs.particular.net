@@ -74,7 +74,7 @@ NOTE: Make sure that the correct database is selected. If a custom schema name i
 NOTE: Run this script on a testing or staging environment first to verify that it works as expected.
 
 ```sql
-declare @schema nvarchar(max) = 'nsb' -- Update 'dbo' with custom schema if needed
+declare @schema nvarchar(max) = 'dbo' -- Update 'dbo' with custom schema if needed
 declare @sql nvarchar(max)
 declare @pkindex nvarchar(max)
 
