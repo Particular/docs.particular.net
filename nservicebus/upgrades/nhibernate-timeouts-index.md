@@ -15,7 +15,7 @@ This guidance explains how to resolve an incorrectly created index when passing 
 
 - https://github.com/Particular/NServiceBus.NHibernate/issues/252
 
-This issue causes performance degradation if the table contains a large number of rows. Inserts and queries are inefficient due to the incorrect order of columns. This results in unnecessary locking which limits the processing throughput of timeouts.
+This issue causes performance degradation if the table contains a large number of rows. Inserts and queries are inefficient due to the incorrect order of columns in the index. This results in unnecessary locking which limits the processing throughput of timeouts.
 
 
 ## Compatibility
@@ -44,7 +44,7 @@ Steps:
 
 ## Check at startup
 
-If there are endpoints that created an incorrect index definition then this is detected in all fixed supported versions for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created and started. If that instance is affected the following log event with log level warning is written:
+If there are endpoints that created an incorrect index definition then this is detected in all fixed supported versions for 6.2.x, 7.0.x and 7.1.x. The detection routine is run when the endpoint instance is created and started. If that instance is affected the following  warning is logged:
 
 > Could not find TimeoutEntity_EndpointIdx index. This may cause significant performance degradation of message deferral. Consult NServiceBus NHibernate persistence documentation for details on how to create this index.
 
@@ -55,8 +55,8 @@ If this log event is written to the log file then read the following guidance on
 
 Any of the following issues can be present:
 
-- table `TimeoutEntity` has a clustered primary key
-- index `TimeoutEntity_EndpointIdx` is non-clustered
+- table `TimeoutEntity` has a clustered primary key (on Microsoft SQL Server)
+- index `TimeoutEntity_EndpointIdx` is non-clustered (on Microsoft SQL Server)
 - index `TimeoutEntity_EndpointIdx` has an incorrect column order (should be Endpoint, Time)
 
 
