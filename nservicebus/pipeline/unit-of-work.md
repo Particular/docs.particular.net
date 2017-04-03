@@ -2,7 +2,7 @@
 title: Unit of Work
 summary: Implementing a unit of work in NServiceBus
 component: Core
-reviewed: 2016-08-25
+reviewed: 2017-03-30
 redirects:
  - nservicebus/unit-of-work-in-nservicebus
 related:
@@ -13,9 +13,9 @@ related:
 partial: transaction-scope
 
 
-## Implementing custom units of work
+## Implementing custom unit of work
 
-A unit of work allows for shared code, that wraps handlers, to be reused in a way that doesn't pollute the individual handler code. For example, committing NHibernate transactions, or calling `SaveChanges` on the RavenDB session.
+A unit of work allows for shared code, that wraps handlers, to be reused in a way that doesn't pollute the individual handler code. For example, committing NHibernate transactions, or calling `SaveChanges` on a RavenDB session.
 
 
 ### IManageUnitsOfWork
@@ -37,7 +37,7 @@ partial: imanageunitsofwork-outbox
 partial: nulltask
 
 
-### Registering a unit of work
+### Registering custom unit of work
 
 After implementing a `IManageUnitsOfWork`, it needs to be registered:
 
