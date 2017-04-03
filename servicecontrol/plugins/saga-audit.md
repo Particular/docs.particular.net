@@ -54,9 +54,7 @@ Disable plugin in production via config:
  1. If there is an automated deployment processes in place, ensure that this dll is no longer included.
  1. Restart the endpoint.
 
-When the plugin is configured via code the endpoint has a direct reference to it. Removing the dll from the bin directory will prevent the endpoint from starting unless the configuration code is also removed. Rather create a configurable option in the config with which the plugin can be enabled or disabled. Configure this option during deployment to disable it in production.
-
-snippet: SagaAudit_Configurable
+partial: remove-code-config
 
 Disabling the SagaAudit plugin will stop sending the saga state change messages to ServiceControl reducing message load to ServiceControl. Turn it back on if or when needed.
 
