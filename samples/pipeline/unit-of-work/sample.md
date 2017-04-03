@@ -13,7 +13,7 @@ related:
 
 ## Introduction
 
-This sample leverages the pipeline provide unit of work management for message handlers. Using the pipeline instead of the [`IManageUnitsOfWork`](/nservicebus/pipeline/unit-of-work.md#implementing-custom-units-of-work-imanageunitsofwork) abstraction is necessary when access to the incoming message and/or headers is required.
+This sample leverages the pipeline provide unit of work management for message handlers. Using the pipeline instead of the [`IManageUnitsOfWork`](/nservicebus/pipeline/unit-of-work.md#implementing-custom-unit-of-work-imanageunitsofwork) abstraction is necessary when access to the incoming message and/or headers is required.
 
 This sample simulates a multi-tenant solution where the session provide to handlers is connects to individual tenant databases based on the value of a `tenant` header on the incoming message.
 
