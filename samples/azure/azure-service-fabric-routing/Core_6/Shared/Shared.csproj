@@ -56,9 +56,8 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.2.0\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Persistence.ServiceFabric, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.ServiceFabric.1.0.0-beta0001\lib\net452\NServiceBus.Persistence.ServiceFabric.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Persistence.ServiceFabric, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=AMD64">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.ServiceFabric.1.0.0-beta0002\lib\net452\NServiceBus.Persistence.ServiceFabric.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -88,7 +87,6 @@
     <Compile Include="ReceiverSideDistribution\Configuration\PartitionAwareReceiverSideDistributionConfiguration.cs" />
     <Compile Include="ReceiverSideDistribution\PartitionMappingFailedException.cs" />
     <Compile Include="EndpointPartitioning\HardcodeReplyToAddressToLogicalAddress.cs" />
-    <Compile Include="SagaEntry.cs" />
     <Compile Include="SenderSideDistribution\Configuration\PartitionAwareSenderSideDistributionConfiguration.cs" />
     <Compile Include="SenderSideDistribution\Configuration\SenderSideDistributionExtensions.cs" />
     <Compile Include="ReceiverSideDistribution\Pipeline\DistributeMessagesBasedOnHeader.cs" />
