@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EndpointPartitioning\EndpointPartitioningExtensions.cs" />
+    <Compile Include="EndpointPartitioning\HardcodeReplyToAddressToLogicalAddressFeature.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="ReceiverSideDistribution\Configuration\PartitionAwareReceiverSideDistributionConfiguration.cs" />
     <Compile Include="ReceiverSideDistribution\PartitionMappingFailedException.cs" />
