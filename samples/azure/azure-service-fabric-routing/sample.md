@@ -1,5 +1,5 @@
 ---
-title: Azure Service Fabric Partition Aware Routing
+title: Service Fabric Partition Aware Routing
 summary: Implementing partition aware routing for services hosted inside Service Fabric cluster.
 reviewed: 2017-03-03
 component: Core
