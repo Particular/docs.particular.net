@@ -24,12 +24,8 @@ class CandidateVoteCountService :
         };
     }
 
-    protected override async Task RunAsync(CancellationToken cancellationToken)
+    protected override Task RunAsync(CancellationToken cancellationToken)
     {
-        await listener.Run()
-            .ConfigureAwait(false);
-
-        await base.RunAsync(cancellationToken)
-            .ConfigureAwait(false);
+        return listener.Run();
     }
 }

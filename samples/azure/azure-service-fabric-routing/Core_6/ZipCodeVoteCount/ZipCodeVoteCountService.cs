@@ -23,10 +23,8 @@ class ZipCodeVoteCountService :
         };
     }
 
-    protected override async Task RunAsync(CancellationToken cancellationToken)
+    protected override Task RunAsync(CancellationToken cancellationToken)
     {
-        await listener.Run();
-
-        await base.RunAsync(cancellationToken);
+        return listener.Run();
     }
 }
