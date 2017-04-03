@@ -45,6 +45,7 @@
     <Content Include="Channels\Channels.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Channels\Wildcard.config.xml" />
     <Content Include="Sites\Sites.xml">
       <SubType>Designer</SubType>
     </Content>

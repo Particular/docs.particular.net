@@ -19,4 +19,4 @@ To host the NServiceBus Gateway in an endpoint deployed to Service Fabric, the f
 
 4. Configure the gateway channel address to use a URL with wildcard as the public IP address will differ from the one that the HTTP communication listener is effectively listening on. 
 
-Snippet: configureGatewayChannel
+Snippet: configureWildcardGatewayChannel
