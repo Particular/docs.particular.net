@@ -57,6 +57,4 @@ WARNING: While executables can be packaged and deployed to Service Fabric withou
 
 Service Fabric can be deployed to run in any environment that contains a set of interconnected Windows Server machines. See [official documentation](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-creation-for-windows-server) for details.
 
-Service Fabric standalone cluster can also be [deployed in Linux](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started-linux).
-
 On Azure, Service Fabric can be hosted with [Azure Service Fabric service](https://azure.microsoft.com/en-us/services/service-fabric/).
