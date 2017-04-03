@@ -1,0 +1,37 @@
+﻿namespace Gateway_2
+{
+    using System.Threading.Tasks;
+    using System.Fabric;
+    using System.Threading;
+    using Microsoft.ServiceFabric.Services.Communication.Runtime;
+
+    #region GatewayCommunicationListener
+    public class GatewayCommunicationListener : ICommunicationListener
+    {
+        readonly StatelessServiceContext _serviceContext;
+
+        public GatewayCommunicationListener(StatelessServiceContext serviceContext)
+        {
+            _serviceContext = serviceContext;
+        }
+
+        public void Abort()
+        {
+        }
+
+        public Task CloseAsync(CancellationToken cancellationToken)
+        {
+            return Task.FromResult(true);
+        }
+
+        public async Task<string> OpenAsync(CancellationToken cancellationToken)
+        {
+            var endpoint = _serviceContext.CodePackageActivationContext.GetEndpoint("RemoteEndpoint");
+
+            string uriPrefix = $"{endpoint.Protocol}://+:{endpoint.Port}/RemoteSite/";
+
+            return uriPrefix.Replace("+", FabricRuntime.GetNodeContext().IPAddressOrFQDN);
+        }
+    }
+    #endregion
+}

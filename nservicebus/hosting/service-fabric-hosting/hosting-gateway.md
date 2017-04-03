@@ -12,11 +12,16 @@ Alternatively the [nservicebus gateway](/nservicebus/gateway/) can be leveraged 
 To host the NServiceBus Gateway in an endpoint deployed to Service Fabric, the following has to be taken into account:
 
 1. Host the gateway as a [stateless service](/nservicebus/hosting/service-fabric/hosting/#stateful service), and use [partition aware routing](/samples/azure/azure-service-fabric-routing/) within to forward messages to other parts of the cluster.
-2. Make sure the endpoint is present on all service fabric cluster instances, by specifying -1 for the `InstanceCount` value.
-3. Add a second communication listener that opens up communication on the gateway address using the local FQDN
-
-(Similar to https://github.com/adam3039/SampleNsbAsfProject/blob/master/WebApi/OwinCommunicationListener.cs#L95, just return the right address but don't open a port as the gateway is already doing that)
-
-4. Configure the gateway channel address to use a URL with wildcard as the public IP address will differ from the one that the HTTP communication listener is effectively listening on. 
+2. Because the service instance are hosted behind a load balancer, it is required to configure the gateway channel address to use a URL with wildcard. The reason is that the public IP address is the one from the cluster load balancer and will therefore differ from the one that the gateway communication listener will effectively be listening on. 
 
 Snippet: configureWildcardGatewayChannel
+
+3. Open the correct port for the gateway on the cluster load balancer by specifying an `Endpoint` entry in the service manifest.
+
+Snippet: serviceManifestEndpoint
+
+4. Add a second communication listener that returns the gateway address using the local FQDN instead of the + sign so that the service fabric instance is aware of the local address.
+
+Snippet: GatewayCommunicationListener
+
+5. Make sure the host service is present on all service fabric cluster instances, by specifying -1 for the `InstanceCount` value.
