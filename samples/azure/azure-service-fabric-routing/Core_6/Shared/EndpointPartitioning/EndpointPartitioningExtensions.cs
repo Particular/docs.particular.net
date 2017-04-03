@@ -22,8 +22,6 @@ public static class EndpointPartitioningExtensions
         var endpointInstances = settings.GetOrCreate<EndpointInstances>();
         endpointInstances.AddOrReplaceInstances(endpointName, destinationEndpointInstances);
 
-        var pipeline = endpointConfiguration.Pipeline;
-        var addressToLogicalAddress = new HardcodeReplyToAddressToLogicalAddress(settings.InstanceSpecificQueue());
-        pipeline.Register(addressToLogicalAddress, "Hardcodes the ReplyToAddress to the instance specific address of this endpoint.");
+        endpointConfiguration.EnableFeature<HardcodeReplyToAddressToLogicalAddressFeature>();
     }
 }
