@@ -6,6 +6,7 @@ using Microsoft.ServiceFabric.Data;
 using Microsoft.ServiceFabric.Data.Collections;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using NServiceBus;
+using NServiceBus.Persistence.ServiceFabric;
 
 public class EndpointCommunicationListener :
     ICommunicationListener
@@ -114,10 +115,13 @@ public class EndpointCommunicationListener :
             throw new Exception(message);
         }
 
-        var zipcodeVotes = await stateManager.GetOrAddAsync<IReliableDictionary<Guid, SagaEntry>>("candidate-votes")
+        var candidatesVotes = await stateManager.TryGetAsync<IReliableDictionary<Guid, SagaEntry>>("candidate-votes")
             .ConfigureAwait(false);
-        await zipcodeVotes.ClearAsync()
-            .ConfigureAwait(false);
+        if (candidatesVotes.HasValue)
+        {
+            await candidatesVotes.Value.ClearAsync()
+                .ConfigureAwait(false);
+        }
 
         endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
