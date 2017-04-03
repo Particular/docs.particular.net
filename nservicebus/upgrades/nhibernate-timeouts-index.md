@@ -118,7 +118,7 @@ NOTE: This procedure does not require any downtime. It is advisable to execute i
 NOTE: Run this script on a testing or staging environment first to verify that it works as expected.
 
 ```sql
-DROP INDEX TIMEOUTENTITY_ENDPOINTIDX;
+drop index TIMEOUTENTITY_ENDPOINTIDX;
 
-CREATE INDEX TIMEOUTENTITY_ENDPOINTIDX ON TIMEOUTENTITY (ENDPOINT ASC, TIME ASC);
+create index TIMEOUTENTITY_ENDPOINTIDX on TIMEOUTENTITY (ENDPOINT asc, TIME asc);
 ```
