@@ -9,7 +9,7 @@ When adopting Service Fabric, it's not uncommon that the Service Fabric hosted e
 
 Alternatively the [nservicebus gateway](/nservicebus/gateway/) can be leveraged as an intermediary to solve this problem. It provides reliable request reply semantics, with deduplication, between sites.
 
-To host NServiceBus Gateway in an endpoint deployed to Service Fabric, the following has to be taken into account:
+To host the NServiceBus Gateway in an endpoint deployed to Service Fabric, the following has to be taken into account:
 
 1. Host the gateway as a [stateless service](/nservicebus/hosting/service-fabric/hosting/#stateful service), and use [partition aware routing](/samples/azure/azure-service-fabric-routing/) within to forward messages to other parts of the cluster.
 2. Make sure the endpoint is present on all service fabric cluster instances, by specifying -1 for the `InstanceCount` value.
@@ -17,10 +17,6 @@ To host NServiceBus Gateway in an endpoint deployed to Service Fabric, the follo
 
 (Similar to https://github.com/adam3039/SampleNsbAsfProject/blob/master/WebApi/OwinCommunicationListener.cs#L95, just return the right address but don't open a port as the gateway is already doing that)
 
-4. Configure the gateway channel address to use a URL with wildcard as the public IP address will differ from the one that the HTTP communication listener is effectively listening on. (TODO: xml below should be a snippet)
+4. Configure the gateway channel address to use a URL with wildcard as the public IP address will differ from the one that the HTTP communication listener is effectively listening on. 
 
-```xml
-<Channel Address="http://+:25899/RemoteSite/"
-             ChannelType="Http"
-             Default="true"/>
-```
+Snippet: configureGatewayChannel

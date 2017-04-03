@@ -279,6 +279,9 @@
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="ServiceFabricHosting\Gateway.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="UpgradeGuides\5to6\null.xml" />
     <None Include="project.json" />
   </ItemGroup>
