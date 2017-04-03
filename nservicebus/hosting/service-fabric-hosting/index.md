@@ -1,4 +1,3 @@
-
 ---
 title: Service Fabric Hosting
 related:
