@@ -69,7 +69,7 @@ NOTE: Mutators are non-deterministic in terms of order of execution. If more fin
 
 If a incoming mutator throws an exception, the message aborts, rolls back to the queue, and [recoverability](/nservicebus/recoverability/) is applied.
 
-If a outgoing mutator throws an exception, the exception bubbles up to the method performing the Send or Publish. If the operation is performed on a context in the pipeline, the message aborts, rolls back to the queue, and [recoverability](/nservicebus/recoverability/) is applied. If the operation is performed on the message session the exception might bubble up to the user code or tear down the application domain if not properly handled. 
+If an outgoing mutator throws an exception, the exception bubbles up to the method performing the Send or Publish. If the operation is performed on a context in the pipeline the message aborts, rolls back to the queue, and [recoverability](/nservicebus/recoverability/) is applied. If the operation is performed on the message session the exception might bubble up to the user code or tear down the application domain if not properly handled. 
 
 partial: nonnulltask
 
