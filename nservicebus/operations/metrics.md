@@ -27,7 +27,7 @@ Metrics data can be written to the [NServiceBus Log](/nservicebus/logging/).
 
 snippet: Metrics-Log
 
-NOTE: Metrics will be written to the log at the INFO log level.
+NOTE: By default metrics will be written to the log at the `DEBUG` log level. The API allows this parameter to be customized.
 
 ### To trace log
 
