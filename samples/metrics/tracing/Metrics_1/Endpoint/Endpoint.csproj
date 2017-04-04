@@ -30,7 +30,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Metrics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Metrics.1.0.0-alpha0051\lib\net452\NServiceBus.Metrics.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Metrics.1.0.0-alpha0054\lib\net452\NServiceBus.Metrics.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
