@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "6.*",
+    "NServiceBus.Metrics": "1.0.0-alpha0054"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
