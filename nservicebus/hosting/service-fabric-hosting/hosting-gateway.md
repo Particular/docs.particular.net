@@ -20,7 +20,7 @@ Snippet: configureWildcardGatewayChannel
 
 Snippet: serviceManifestEndpoint
 
-4. Add a second communication listener that returns the gateway address using the local FQDN instead of the + sign so that the service fabric instance is aware of the local address.
+4. Add a second communication listener that returns the gateway address using the local FQDN instead of the + sign, so that service fabric instance can set up the correct ACL on the host machine.
 
 Snippet: GatewayCommunicationListener
 
