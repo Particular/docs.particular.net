@@ -15,7 +15,7 @@ Execute the following script against the database which is configured for NHiber
 ```sql
 DELETE
 FROM <database>
-WHERE SubscriberEndpoint = '<distributorAddress>'
+WHERE SubscriberEndpoint = '<subscriberAddress>'
 ```
 
 Where:
