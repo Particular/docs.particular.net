@@ -1,7 +1,7 @@
 ---
 title: Metrics
 summary: Measuring the performance and health of an endpoint.
-reviewed: 2017-03-24
+reviewed: 2017-04-04
 component: Metrics
 related:
  - samples/metrics
@@ -17,9 +17,7 @@ snippet: Metrics-Enable
 
 ## Reporting metrics data
 
-Metrics can be reported to a number of different locations. Each location is updated on a separate interval. If an interval is not specified then the default interval of 30 seconds is used. To change the default interval:
-
-snippet: Metrics-DefaultInterval
+Metrics can be reported to a number of different locations. Each location is updated on a separate interval. 
 
 ### To NServiceBus log
 
@@ -29,17 +27,13 @@ snippet: Metrics-Log
 
 NOTE: By default metrics will be written to the log at the `DEBUG` log level. The API allows this parameter to be customized.
 
+snippet: Metrics-Log-Info
+
 ### To trace log
 
 Metrics data can be written to [System.Diagnostics.Trace](https://msdn.microsoft.com/en-us/library/system.diagnostics.trace.aspx).
 
 snippet: Metrics-Tracing
-
-### To ServiceControl
-
-Metrics data can be sent to ServiceControl.
-
-snippet: Metrics-ServiceControl
 
 ### To Windows Performance Counters
 

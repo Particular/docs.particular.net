@@ -3,6 +3,8 @@ using NServiceBus;
 
 namespace Metrics_1
 {
+    using NServiceBus.Logging;
+
     public class Configuration
     {
         public void ConfigureEndpoint()
@@ -15,30 +17,21 @@ namespace Metrics_1
 
             #endregion
 
-            #region Metrics-DefaultInterval
-
-            metricsOptions.SetDefaultInterval(TimeSpan.FromSeconds(45));
-
-            #endregion
-
             #region Metrics-Log
 
             metricsOptions.EnableLogTracing(TimeSpan.FromMinutes(5));
 
             #endregion
 
-            #region Metrics-Tracing
+            #region Metrics-Log-Info
 
-            metricsOptions.EnableMetricTracing(TimeSpan.FromSeconds(5));
+            metricsOptions.EnableLogTracing(TimeSpan.FromMinutes(5), LogLevel.Info);
 
             #endregion
 
-            #region Metrics-ServiceControl
+            #region Metrics-Tracing
 
-            metricsOptions.SendMetricDataToServiceControl(
-                "serviceControl-metrics-address",
-                TimeSpan.FromSeconds(50)
-            );
+            metricsOptions.EnableMetricTracing(TimeSpan.FromSeconds(5));
 
             #endregion
         }
