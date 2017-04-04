@@ -8,11 +8,11 @@
     #region GatewayCommunicationListener
     public class GatewayCommunicationListener : ICommunicationListener
     {
-        readonly StatelessServiceContext _serviceContext;
+        readonly StatelessServiceContext serviceContext;
 
         public GatewayCommunicationListener(StatelessServiceContext serviceContext)
         {
-            _serviceContext = serviceContext;
+            this.serviceContext = serviceContext;
         }
 
         public void Abort()
@@ -26,7 +26,7 @@
 
         public async Task<string> OpenAsync(CancellationToken cancellationToken)
         {
-            var endpoint = _serviceContext.CodePackageActivationContext.GetEndpoint("RemoteEndpoint");
+            var endpoint = serviceContext.CodePackageActivationContext.GetEndpoint("RemoteEndpoint");
 
             string uriPrefix = $"{endpoint.Protocol}://+:{endpoint.Port}/RemoteSite/";
 

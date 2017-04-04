@@ -5,7 +5,7 @@ related:
 reviewed: 2017-03-30
 ---
 
-When adopting Service Fabric, it's not uncommon that the Service Fabric hosted endpoints need to interact with endpoints outside of the cluster. This can get tricky especially when the endpoints inside Service Fabric are stateful. When integrating using client side distribution, or when using the Service Fabric built in [reverse proxy](https://docs.microsoft.com/nl-nl/azure/service-fabric/service-fabric-reverseproxy) to expose the endpoints as web services, then the partition information needs to be provided by the consumer, which is often not desired.
+When adopting Service Fabric, it's not uncommon that the Service Fabric hosted endpoints need to interact with endpoints outside of the cluster. This can get tricky especially when the endpoints inside Service Fabric are stateful. When integrating using client side distribution, or when using the Service Fabric built in [reverse proxy](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reverseproxy) to expose the endpoints as web services, then the partition information needs to be provided by the consumer, which is often not desired.
 
 Alternatively the [nservicebus gateway](/nservicebus/gateway/) can be leveraged as an intermediary to solve this problem. It provides reliable request reply semantics, with deduplication, between sites.
 

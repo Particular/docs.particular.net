@@ -61,8 +61,8 @@ namespace Core6.ServiceFabricHosting
 
             endpointConfiguration = new EndpointConfiguration(endpointName);
 
-            // endpoint configuration with access to state manager
-            
+            // configure endpoint with state manager dependency
+
             return endpointName;
         }
 
