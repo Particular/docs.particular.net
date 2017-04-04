@@ -3,7 +3,7 @@ Callback responses are routed based on the `ReplyTo` header of the request. In o
 
 snippet: Callbacks-InstanceId
 
-The endpoint queue name will include the specified suffix. When upgrading from lower versions the original input queue (without a suffix) will still exist, and the additional queue with the suffix will be created. 
+Next to the original default queue, an additional queue will be created specifically for callback messages. This additional queue name will include the specified suffix. When upgrading from lower versions the original input queue (without a suffix) will still exist, and the additional queue will be created. 
 
 Uniquely addressable endpoints can consume messages from both shared and unique queues. Replies will automatically be sent to the instance specific queue.
 
