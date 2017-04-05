@@ -120,6 +120,8 @@
       Articles:
       - Url: nservicebus/upgrades/nhibernate-6to7
         Title: Version 6 to 7
+      - Url: nservicebus/upgrades/nhibernate-timeouts-index
+        Title: Resolving incorrect timeout table indexes
     - Title: RabbitMQ Transport
       Articles:
       - Url: nservicebus/upgrades/rabbitmq-3to4
