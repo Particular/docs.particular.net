@@ -104,9 +104,9 @@ namespace Core6.ServiceFabricHosting
             };
         }
 
-        protected override async Task RunAsync(CancellationToken cancellationToken)
+        protected override Task RunAsync(CancellationToken cancellationToken)
         {
-            await listener.RunAsync();
+            return listener.RunAsync();
         }
     }
 

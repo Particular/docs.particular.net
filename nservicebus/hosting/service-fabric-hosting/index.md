@@ -18,7 +18,7 @@ Note: The Actor model is another Service Fabric programming model that is curren
 
 ### Stateless service
 
-Hosting with a Stateless service is very similar to any other Azure-based hosting (using [Cloud services](/nservicebus/hosting/cloud-services-host) or [self-hosting](/nservicebus/hosting/#self-hosting) with [Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/)). Endpoints are stateless and use storage external to Service Fabric for managing data needed for their operation. Endpoints can be scaled out, leveraging competing consumer at the transport level.
+Hosting with a Stateless service is very similar to any other Azure-based hosting (using [Cloud services](/nservicebus/hosting/cloud-services-host) or [self-hosting](/nservicebus/hosting/#self-hosting) with [Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/)). Endpoints are stateless and use storage external to Service Fabric for managing data needed for their operation. Endpoints can be scaled out, leveraging [competing consumer](/nservicebus/transports/scale-out#broker-transports/) at the transport level.
 
 With stateless services, the number of instances of a service can range from one to the number of nodes in a cluster (-1). Endpoints are self hosted and should be started using a custom Service Fabric [`ICommunicationListener`](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-communication) implementation.
 
@@ -36,7 +36,7 @@ Due to characteristics of Stateful Services i.e. data partitioning and local dat
 
 - Service partitioning schema must be well defined before the first deployment occurs (repartitioning requires all data to be deleted)
 - Messages must be routed among the shards according to the partitioning schema
-- There can only be one NServiceBus endpoint running per service partition (in the master instance)
+- NServiceBus endpoint should be running only on primary replicas
 
 See [Service Fabric Partition Aware Routing](/samples/azure/azure-service-fabric-routing) for more information on how to host NServiceBus with stateful services and to learn how to configure routing between service partitions and persist data in reliable collections.
 
