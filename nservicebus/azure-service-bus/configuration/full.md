@@ -7,7 +7,7 @@ tags:
 - Azure
 redirects:
 - nservicebus/azure-service-bus/configuration/configuration
-reviewed: 2016-12-08
+reviewed: 2017-04-05
 ---
 
 
@@ -160,6 +160,8 @@ The Azure Service Bus transport can guarantee transactional behavior by combinin
  * The source and destination are in the same namespace,
  * Messages are received using `ReceiveMode.PeekLock` mode,
  * The transport explicitly sends messages via the receive queue.
+ * The destination entity does not excced its maximum size.
+
 
 Enable the latter using the following configuration setting:
 

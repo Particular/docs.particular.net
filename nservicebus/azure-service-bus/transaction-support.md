@@ -1,6 +1,6 @@
 ---
 title: Transaction Support
-reviewed: 2016-04-20
+reviewed: 2017-04-05
 component: ASB
 versions: '[7,)'
 tags:
@@ -23,6 +23,8 @@ include: send-atomic-with-receive-note
 The `SendsAtomicWithReceive` guarantee is achieved by setting the `ViaEntityPath` property on outbound message senders. Its value is set to the receiving queue.
 
 If the `ViaEntityPath` is not empty, then messages will be added to the receive queue. The messages will be forwarded to their actual destination (inside the broker) only when the complete operation is called on the received brokered message. The message won't be forwarded if the lock duration limit is exceeded (30 seconds by default) or if the message is explicitly abandoned.
+
+DANGER: if destination queue exceeds its maximum size, transaction will **NOT** fail, but the messages will not be forwarded and will dead-lettered by the broker.
 
 
 ## Receive Only
