@@ -72,7 +72,7 @@ public class ScriptWriter
                 new MessageType("MessageTypeName", new Version())
             }));
 
-            var sagaCommandBuilder = new SagaCommandBuilder();
+            var sagaCommandBuilder = new SagaCommandBuilder(variant);
             Write(directory, variant, "SagaComplete", sagaCommandBuilder.BuildCompleteCommand("EndpointName_SagaName"));
             Write(directory, variant, "SagadGetByProperty", sagaCommandBuilder.BuildGetByPropertyCommand("PropertyName", "EndpointName_SagaName"));
             Write(directory, variant, "SagaGetBySagaId", sagaCommandBuilder.BuildGetBySagaIdCommand("EndpointName_SagaName"));

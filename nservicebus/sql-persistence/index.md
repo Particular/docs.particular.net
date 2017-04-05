@@ -19,8 +19,9 @@ The SQL Persistence uses [Json.NET](http://www.newtonsoft.com/json) to serialize
 
  * [SQL Server](https://www.microsoft.com/en-au/sql-server/) ([Version 2012](https://docs.microsoft.com/en-us/sql/release-notes/sql-server-2012-release-notes) and above due to the use of the [THROW functionality](https://msdn.microsoft.com/en-us/library/ee677615.aspx)).
  * [MySQL](https://www.mysql.com/) ([Version 5.7](https://dev.mysql.com/doc/relnotes/mysql/5.7/en/) and above due to the use of [JSON Data Type](https://dev.mysql.com/doc/refman/5.7/en/json.html)).
+ * [Oracle](https://www.oracle.com/database/index.html) ([Version 11g Release 2](https://docs.oracle.com/cd/E11882_01/readmes.112/e41331/chapter11204.htm) and above).
 
-WARNING: Although this persistence will run on the free version of the above engines, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express) and [MySQL Community Edition](https://www.mysql.com/products/community/), it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place from either [MySQL support](https://www.mysql.com/support/), [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx) or another third party support provider.
+WARNING: Although this persistence will run on the free version of the above engines, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express), [MySQL Community Edition](https://www.mysql.com/products/community/), and [Oracle XE](http://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html), it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place from either [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx), [MySQL support](https://www.mysql.com/support/), [Oracle Support](https://www.oracle.com/support/index.html), or another third party support provider.
 
 
 ## Usage
@@ -43,6 +44,15 @@ snippet: SqlPersistenceUsageMySql
 
  * `AllowUserVariables=True`: since the Persistence uses [user variables](https://dev.mysql.com/doc/refman/5.7/en/user-variables.html).
  * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .net connector does not currently support.}}
+
+
+### Oracle
+
+Using the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/packages/Oracle.ManagedDataAccess).
+
+snippet: SqlPersistenceUsageOracle
+
+NOTE: The `Enlist=false` setting is required for the [Oracle connection string](https://docs.oracle.com/database/121/ODPNT/featConnecting.htm) to prevent auto-enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which prevents the persistence from enlisting at the correct moment.
 
 
 ## NuGet Packages
@@ -69,7 +79,7 @@ This package contains several parts
 
 This package contains all APIs that enable the generation of SQL installation scripts using code, i.e. without using the NServiceBus.Persistence.Sql.MsBuild NuGet package.
 
-DANGER: NServiceBus.Persistence.Sql.ScriptBuilder is currently not ready for general usage. It has been made public, and deployed to NuGet, primarily to enable the generation of documentation in a repeatable way. For example it is used to generate the SQL scripts in both the [MS SQL Server Scripts](/nservicebus/sql-persistence/sqlserver-scripts.md) and [MySql Scripts](/nservicebus/sql-persistence/mysql-scripts.md) pages. In future releases, the API may evolve in ways that do not follow the standard of [Release Policy - Semantic Versioning](/nservicebus/upgrades/release-policy.md#semantic-versioning). Raise an issue in the [NServiceBus.Persistence.Sql Repository](https://github.com/Particular/NServiceBus.Persistence.Sql/issues) to discuss this in more detail.
+DANGER: NServiceBus.Persistence.Sql.ScriptBuilder is currently not ready for general usage. It has been made public, and deployed to NuGet, primarily to enable the generation of documentation in a repeatable way. For example it is used to generate the SQL scripts in both the [MS SQL Server Scripts](/nservicebus/sql-persistence/sqlserver-scripts.md),[MySql Scripts](/nservicebus/sql-persistence/mysql-scripts.md), and [Oracle Scripts](/nservicebus/sql-ersistence/oracle-scripts.md) pages. In future releases, the API may evolve in ways that do not follow the standard of [Release Policy - Semantic Versioning](/nservicebus/upgrades/release-policy.md#semantic-versioning). Raise an issue in the [NServiceBus.Persistence.Sql Repository](https://github.com/Particular/NServiceBus.Persistence.Sql/issues) to discuss this in more detail.
 
 
 ## Script Creation
@@ -82,6 +92,7 @@ For example for a project named `ClassLibrary` build in Debug mode the following
 
  * `ClassLibrary\bin\Debug\NServiceBus.Persistence.Sql\MsSqlServer`
  * `ClassLibrary\bin\Debug\NServiceBus.Persistence.Sql\MySql`
+ * `ClassLibrary\bin\Debug\NServiceBus.Persistence.Sql\Oracle`
 
 Scripts will also be included in the list of project output files. So this means those files produced will be copied to the output directory of any project that references it.
 
@@ -101,6 +112,11 @@ snippet: SqlServerScripts
 ### To Produce only MySQL scripts
 
 snippet: MySqlScripts
+
+
+### To produce only Oracle scripts
+
+snippet: OracleScripts
 
 
 partial: promote
@@ -152,6 +168,11 @@ snippet: ExecuteScriptsSqlServer
 ##### MySQL
 
 snippet: ExecuteScriptsMySql
+
+
+##### Oracle
+
+snippet: ExecuteScriptsOracle
 
 
 ## SqlStorageSession

@@ -3,7 +3,8 @@
 #region AllSqlScripts
 [assembly: SqlPersistenceSettings(
     MsSqlServerScripts = true,
-    MySqlScripts = true)]
+    MySqlScripts = true,
+    OracleScripts = true)]
 #endregion
 /**
 
@@ -14,6 +15,9 @@
 #region MySqlScripts
 [assembly: SqlPersistenceSettings(MySqlScripts = true)]
 #endregion
+
+#region OracleScripts
+[assembly: SqlPersistenceSettings(OracleScripts = true)]
 
 #region PromoteScripts
 [assembly: SqlPersistenceSettings(
