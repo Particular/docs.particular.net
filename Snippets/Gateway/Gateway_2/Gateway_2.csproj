@@ -36,6 +36,7 @@
     <Compile Include="Channels\ConfigurationSource\Usage.cs" />
     <Compile Include="Channels\ProvideConfiguration.cs" />
     <Compile Include="MyMessage.cs" />
+    <Compile Include="ServiceFabric.cs" />
     <Compile Include="Sites\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Sites\ConfigurationSource\Usage.cs" />
     <Compile Include="Sites\ProvideConfiguration.cs" />
@@ -45,6 +46,8 @@
     <Content Include="Channels\Channels.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Channels\Wildcard.config.xml" />
+    <Content Include="ServiceFabric\ServiceManifest.xml" />
     <Content Include="Sites\Sites.xml">
       <SubType>Designer</SubType>
     </Content>

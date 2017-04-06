@@ -69,6 +69,11 @@ The only configuration when running in this mode is the destination when [Sendin
 NServiceBus can be hosted in any web technology that support .NET. See [Web Application Hosting](web-application.md).
 
 
+### Service Fabric Hosting
+
+[Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/) can be used to host NServiceBus endpoints in several ways. See [Service Fabric Hosting](/nservicebus/hosting/service-fabric-hosting).
+
+
 ### Multi-Hosting
 
 "Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .NET process.

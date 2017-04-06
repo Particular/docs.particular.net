@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode configureWildcardGatewayChannel -->
+<configuration>
+  <configSections>
+    <section name="GatewayConfig"
+             type="NServiceBus.Config.GatewayConfig, NServiceBus.Gateway"/>
+  </configSections>
+  <GatewayConfig>
+    <Channels>
+      <Channel Address="http://+:25899/RemoteSite/"
+               ChannelType="Http"
+               Default="true"/>
+    </Channels>
+  </GatewayConfig>
+</configuration>
+<!--endcode-->
