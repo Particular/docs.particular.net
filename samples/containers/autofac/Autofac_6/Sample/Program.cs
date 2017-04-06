@@ -19,8 +19,16 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Autofac");
 
         var builder = new ContainerBuilder();
+
+        builder.Register(x =>
+        {
+            return Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
+        }).As<IEndpointInstance>();
+
         builder.RegisterInstance(new MyService());
+
         var container = builder.Build();
+
         endpointConfiguration.UseContainer<AutofacBuilder>(
             customizations: customizations =>
             {
@@ -34,8 +42,7 @@ static class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = container.Resolve<IEndpointInstance>();
         var myMessage = new MyMessage();
         await endpointInstance.SendLocal(myMessage)
             .ConfigureAwait(false);
