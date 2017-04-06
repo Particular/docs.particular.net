@@ -767,6 +767,9 @@
       Title: Logging
     - Url: serviceinsight/no-data-available
       Title: Data not available
+    - Url: serviceinsight/troubleshooting
+      Title: Troubleshooting
+
 
 - Name: ServicePulse
   Topics:
