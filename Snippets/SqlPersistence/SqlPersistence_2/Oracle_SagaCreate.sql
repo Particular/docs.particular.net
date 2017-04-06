@@ -69,10 +69,10 @@ end if;
 
 /* WriteCreateIndex OrderNumber */
 
-select count(*) into n from user_indexes where index_name = 'ORDERSAGA_CP';
+select count(*) into n from user_indexes where table_name = 'ORDERSAGA' and index_name = 'SAGAIDX_599F57BA89CF9D164E3CFF';
 if(n = 0)
 then
-  sqlStatement := 'create unique index ORDERSAGA_CP on ORDERSAGA (CORR_ORDERNUMBER ASC)';
+  sqlStatement := 'create unique index SAGAIDX_599F57BA89CF9D164E3CFF on ORDERSAGA (CORR_ORDERNUMBER ASC)';
 
   execute immediate sqlStatement;
 end if;
@@ -110,10 +110,10 @@ end if;
 
 /* CreateIndex OrderId */
 
-select count(*) into n from user_indexes where index_name = 'ORDERSAGA_TP';
+select count(*) into n from user_indexes where table_name = 'ORDERSAGA' and index_name = 'SAGAIDX_FD8BAD844CFBBE419E43FE';
 if(n = 0)
 then
-  sqlStatement := 'create unique index ORDERSAGA_TP on ORDERSAGA (CORR_ORDERID ASC)';
+  sqlStatement := 'create unique index SAGAIDX_FD8BAD844CFBBE419E43FE on ORDERSAGA (CORR_ORDERID ASC)';
 
   execute immediate sqlStatement;
 end if;
@@ -126,7 +126,7 @@ select count(*) into n
 from ALL_TAB_COLUMNS
 where TABLE_NAME = 'ORDERSAGA' and COLUMN_NAME LIKE 'CORR_%' and
         column_name <> 'CORR_ORDERNUMBER' and
-        column_name <> N'CORR_ORDERID';
+        column_name <> 'CORR_ORDERID';
   
 if(n > 0)
 then
@@ -135,7 +135,7 @@ then
   from ALL_TAB_COLUMNS
   where TABLE_NAME = 'ORDERSAGA' and COLUMN_NAME LIKE 'CORR_%' and
         column_name <> 'CORR_ORDERNUMBER' and
-        column_name <> N'CORR_ORDERID';
+        column_name <> 'CORR_ORDERID';
     
   execute immediate sqlStatement;
 
