@@ -19,7 +19,7 @@ public class CorrelationPropertyTypeConverterWriter
         {
             writer.WriteLine(@"
 
-#### Ms Sql Server
+#### Microsoft SQL Server
 
 | CorrelationPropertyType | Sql Type |
 |--|--|");
@@ -31,13 +31,25 @@ public class CorrelationPropertyTypeConverterWriter
 
             writer.WriteLine(@"
 
-#### My Sql
+#### MySQL
 
 | CorrelationPropertyType | Sql Type |
 |--|--|");
             foreach (var type in GetValues().Where(x => x != CorrelationPropertyType.DateTimeOffset))
             {
                 var columnType = MySqlCorrelationPropertyTypeConverter.GetColumnType(type);
+                writer.WriteLine($"| `{type}` | `{columnType}` |");
+            }
+
+            writer.WriteLine(@"
+
+#### Oracle
+
+| CorrelationPropertyType | Sql Type |
+|--|--|");
+            foreach (var type in GetValues().Where(x => x != CorrelationPropertyType.DateTimeOffset))
+            {
+                var columnType = OracleCorrelationPropertyTypeConverter.GetColumnType(type);
                 writer.WriteLine($"| `{type}` | `{columnType}` |");
             }
         }
