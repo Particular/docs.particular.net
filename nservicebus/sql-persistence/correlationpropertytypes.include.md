@@ -1,6 +1,6 @@
 
 
-#### Ms Sql Server
+#### Microsoft SQL Server
 
 | CorrelationPropertyType | Sql Type |
 |--|--|
@@ -11,7 +11,7 @@
 | `Guid` | `uniqueidentifier` |
 
 
-#### My Sql
+#### MySQL
 
 | CorrelationPropertyType | Sql Type |
 |--|--|
@@ -19,3 +19,13 @@
 | `DateTime` | `datetime` |
 | `Int` | `bigint(20)` |
 | `Guid` | `varchar(38) character set ascii` |
+
+
+#### Oracle
+
+| CorrelationPropertyType | Sql Type |
+|--|--|
+| `String` | `NVARCHAR2(200)` |
+| `DateTime` | `TIMESTAMP` |
+| `Int` | `NUMBER(19)` |
+| `Guid` | `VARCHAR2(38)` |
