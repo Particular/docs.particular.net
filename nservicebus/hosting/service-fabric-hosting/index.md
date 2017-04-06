@@ -36,7 +36,7 @@ Due to characteristics of Stateful Services i.e. data partitioning and local dat
 
 - Service partitioning schema must be well defined before the first deployment occurs (repartitioning requires all data to be deleted)
 - Messages must be routed among the shards according to the partitioning schema
-- A single instance of NServiceBus endpoint will be running on the primary replica for each partition
+- A single instance of an NServiceBus endpoint will be running on the primary replica for each partition
 
 See [Service Fabric Partition Aware Routing](/samples/azure/azure-service-fabric-routing) for more information on how to host NServiceBus with stateful services and to learn how to configure routing between service partitions and persist data in reliable collections.
 
