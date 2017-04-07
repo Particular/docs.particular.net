@@ -47,7 +47,7 @@ The topology will create entities it needs, based on the following settings:
 
  * `Queues()`: Settings for queues.
  * `Topics()`: Settings for topics.
- * `()`: Settings for subscriptions.
+ * `Subscriptions()`: Settings for subscriptions.
 
 
 ### Queues
