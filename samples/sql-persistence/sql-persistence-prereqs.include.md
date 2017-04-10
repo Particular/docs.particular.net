@@ -17,6 +17,7 @@ Or, alternatively, change the connection string to point to different MySQL inst
 
 ### Oracle
 
+ 1. Ensure an instance of Oracle Database (11g or later) is installed and accessible as on `localhost` on port `1521` with service name `XE`.
  1. Add the username to access the instance to an environment variable named `OracleUserName`.
  1. Add the password to access the instance to an environment variable named `OraclePassword`.
 
