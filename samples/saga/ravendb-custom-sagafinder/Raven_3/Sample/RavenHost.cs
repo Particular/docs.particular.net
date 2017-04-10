@@ -19,7 +19,11 @@ class RavenHost :
             {
                 Port = 32076,
                 PluginsDirectory = Environment.CurrentDirectory,
-                HostName = "localhost"
+                HostName = "localhost",
+                Settings =
+                {
+                    { "Raven/ActiveBundles", "Unique Constraints" }
+                }
             }
         };
         documentStore.RegisterListener(new UniqueConstraintsStoreListener());
