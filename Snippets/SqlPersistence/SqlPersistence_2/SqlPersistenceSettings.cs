@@ -18,6 +18,7 @@
 
 #region OracleScripts
 [assembly: SqlPersistenceSettings(OracleScripts = true)]
+#endregion
 
 #region PromoteScripts
 [assembly: SqlPersistenceSettings(
