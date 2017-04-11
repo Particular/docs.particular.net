@@ -13,7 +13,7 @@ related:
 ## Prerequisites
 
 
-include: sql-persistence-prereqs
+partial: prereqs
 
 
 ## Code walk-through

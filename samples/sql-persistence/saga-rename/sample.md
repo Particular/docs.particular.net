@@ -12,7 +12,7 @@ related:
 
 ## Prerequisites
 
-include: sql-persistence-prereqs
+partial: prereqs
 
 
 ## Scenario
