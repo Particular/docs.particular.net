@@ -46,14 +46,7 @@ snippet: SqlPersistenceUsageMySql
  * `AllowUserVariables=True`: since the Persistence uses [user variables](https://dev.mysql.com/doc/refman/5.7/en/user-variables.html).
  * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .net connector does not currently support.}}
 
-
-### Oracle
-
-Using the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/packages/Oracle.ManagedDataAccess).
-
-snippet: SqlPersistenceUsageOracle
-
-NOTE: The `Enlist=false` setting is required for the [Oracle connection string](https://docs.oracle.com/database/121/ODPNT/featConnecting.htm) to prevent auto-enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which prevents the persistence from enlisting at the correct moment.
+partial: usageoracle
 
 
 ## NuGet Packages
@@ -105,20 +98,16 @@ Scripts creation can configured via the use of `[SqlPersistenceSettings]` applie
 snippet: AllSqlScripts
 
 
-### To Produce only MS SQL Server scripts
+### To produce only MS SQL Server scripts
 
 snippet: SqlServerScripts
 
 
-### To Produce only MySQL scripts
+### To produce only MySQL scripts
 
 snippet: MySqlScripts
 
-
-### To produce only Oracle scripts
-
-snippet: OracleScripts
-
+partial: scriptsoracle
 
 partial: promote
 
@@ -170,10 +159,7 @@ snippet: ExecuteScriptsSqlServer
 
 snippet: ExecuteScriptsMySql
 
-
-##### Oracle
-
-snippet: ExecuteScriptsOracle
+partial: executescriptsoracle
 
 
 ## SqlStorageSession
