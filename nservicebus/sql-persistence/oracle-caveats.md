@@ -21,7 +21,7 @@ The following table shows table names created for an endpoint named `My.Endpoint
 | Timeouts      |  `_TO` | `MY_ENDPOINT_TO` | `MY_ENDPOINT_TO_PK`<br/>`MY_ENDPOINT_TK`<br/>`MY_ENDPOINT_SK` |
 | Outbox        |  `_OD` | `MY_ENDPOINT_OD` | `MY_ENDPOINT_OD_PK`<br/>`MY_ENDPOINT_IX` |
 
-If an endpoint name is longer than 24 characters, an exception will be thrown, and a substitute [table prefix](index.md#installation-table-prefix) must be specified in the endpoint configuration:
+If an endpoint name is longer than 24 characters, an exception will be thrown, and a substitute [table prefix](/nservicebus/sql-persistence/#installation-table-prefix) must be specified in the endpoint configuration:
 
 snippet: TablePrefix
 
@@ -29,7 +29,7 @@ snippet: TablePrefix
 
 Tables generated for sagas reserve 27 characters for the saga name, leaving 3 characters for the `_PK` suffix for the table's primary key.
 
-In order to accommodate as many characters for the saga name as possible, the [table prefix](index.md#installation-table-prefix) is not represented in the resulting table name.
+In order to accommodate as many characters for the saga name as possible, the [table prefix](/nservicebus/sql-persistence/#installation-table-prefix) is not represented in the resulting table name.
 
 | Saga Class Name |   Table Name  |    Primary Key   |
 |-----------------|:-------------:|:----------------:|

@@ -14,7 +14,7 @@ NOTE: This sample uses 3 "Phase" Endpoint Projects to illustrate the iterations 
 
 ## Prerequisites
 
-include: sql-persistence-prereqs
+partial: prereqs
 
 
 ## Scenario

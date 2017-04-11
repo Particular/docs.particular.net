@@ -46,14 +46,7 @@ snippet: SqlPersistenceUsageMySql
  * `AllowUserVariables=True`: since the Persistence uses [user variables](https://dev.mysql.com/doc/refman/5.7/en/user-variables.html).
  * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .net connector does not currently support.}}
 
-
-### Oracle
-
-Using the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/packages/Oracle.ManagedDataAccess).
-
-snippet: SqlPersistenceUsageOracle
-
-NOTE: The `Enlist=false` setting is required for the [Oracle connection string](https://docs.oracle.com/database/121/ODPNT/featConnecting.htm) to prevent auto-enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which prevents the persistence from enlisting at the correct moment.
+partial: usageoracle
 
 
 ## NuGet Packages
@@ -80,7 +73,7 @@ This package contains several parts
 
 This package contains all APIs that enable the generation of SQL installation scripts using code, i.e. without using the NServiceBus.Persistence.Sql.MsBuild NuGet package.
 
-DANGER: NServiceBus.Persistence.Sql.ScriptBuilder is currently not ready for general usage. It has been made public, and deployed to NuGet, primarily to enable the generation of documentation in a repeatable way. For example it is used to generate the SQL scripts in both the [MS SQL Server Scripts](/nservicebus/sql-persistence/sqlserver-scripts.md),[MySql Scripts](/nservicebus/sql-persistence/mysql-scripts.md), and [Oracle Scripts](/nservicebus/sql-ersistence/oracle-scripts.md) pages. In future releases, the API may evolve in ways that do not follow the standard of [Release Policy - Semantic Versioning](/nservicebus/upgrades/release-policy.md#semantic-versioning). Raise an issue in the [NServiceBus.Persistence.Sql Repository](https://github.com/Particular/NServiceBus.Persistence.Sql/issues) to discuss this in more detail.
+DANGER: NServiceBus.Persistence.Sql.ScriptBuilder is currently not ready for general usage. It has been made public, and deployed to NuGet, primarily to enable the generation of documentation in a repeatable way. For example it is used to generate the SQL scripts in the [MS SQL Server Scripts](/nservicebus/sql-persistence/sqlserver-scripts.md), [MySql Scripts](/nservicebus/sql-persistence/mysql-scripts.md), and [Oracle Scripts](/nservicebus/sql-persistence/oracle-scripts.md) pages. In future releases, the API may evolve in ways that do not follow the standard of [Release Policy - Semantic Versioning](/nservicebus/upgrades/release-policy.md#semantic-versioning). Raise an issue in the [NServiceBus.Persistence.Sql Repository](https://github.com/Particular/NServiceBus.Persistence.Sql/issues) to discuss this in more detail.
 
 
 ## Script Creation
@@ -105,20 +98,16 @@ Scripts creation can configured via the use of `[SqlPersistenceSettings]` applie
 snippet: AllSqlScripts
 
 
-### To Produce only MS SQL Server scripts
+### To produce only MS SQL Server scripts
 
 snippet: SqlServerScripts
 
 
-### To Produce only MySQL scripts
+### To produce only MySQL scripts
 
 snippet: MySqlScripts
 
-
-### To produce only Oracle scripts
-
-snippet: OracleScripts
-
+partial: scriptsoracle
 
 partial: promote
 
@@ -170,10 +159,7 @@ snippet: ExecuteScriptsSqlServer
 
 snippet: ExecuteScriptsMySql
 
-
-##### Oracle
-
-snippet: ExecuteScriptsOracle
+partial: executescriptsoracle
 
 
 ## SqlStorageSession
