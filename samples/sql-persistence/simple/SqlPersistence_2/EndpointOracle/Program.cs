@@ -30,7 +30,7 @@ internal class Program
         {
             throw new Exception("Could not extract 'OracleUserName' from Environment variables.");
         }
-        var connection = $"Data Source=(DESCRIPTION=(ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = XE)));User Id={username}; Password={password}; Enlist=dynamic";
+        var connection = $"Data Source=localhost;User Id={username}; Password={password}; Enlist=false";
         persistence.SqlVariant(SqlVariant.Oracle);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
