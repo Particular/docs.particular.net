@@ -1826,6 +1826,10 @@ No versions released.
   </tr>
 </table>
 
+#### NServiceBus.Metrics
+
+No versions released.
+
 #### NServiceBus.Metrics.PerformanceCounters
 
 <table>
