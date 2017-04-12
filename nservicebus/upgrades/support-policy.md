@@ -56,7 +56,7 @@ Therefore the recommended approach is to upgrade 1 major version at a time, incl
 
 **Does this policy apply to the [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/), or [ServicePulse](/servicepulse/) applications?**
 
-No, the policy applies only to the supported NServiceBus packages listed on the [NServiceBus Package Support Details](supported-packages.md) page.
+No, the policy applies only to the supported NServiceBus packages listed on the [NServiceBus Packages Supported Versions](supported-versions.md) page.
 
 **Which version of NServiceBus should be used to start a new project?**
 
@@ -74,4 +74,4 @@ In accordance with the [release policy](release-policy.md), important fixes are 
 
 Component packages, such as [transports](/nservicebus/transports/), [persistence](/nservicebus/persistence/), [containers](/nservicebus/containers/), or [serializers](/nservicebus/serialization/), have much less upgrade risk than the NServiceBus package. Therefore, the commitment to backporting fixes affecting the NServiceBus package is higher than for the many component packages.
 
-The support dates for NServiceBus and each component package can be found on the [supported packages](supported-packages.md) page.
+The support dates for NServiceBus and each component package can be found on the [supported versions](supported-versions.md) page.
