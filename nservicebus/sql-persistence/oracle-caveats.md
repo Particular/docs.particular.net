@@ -37,13 +37,15 @@ In order to accommodate as many characters for the saga name as possible, the [t
 
 A 3-character suffix is not enough to uniquely identify multiple correlation properties in a deterministic way, so unfortunately index names for sagas cannot be named after the owner table in the same way as for other persisters.
 
-Index names for correlation properties are constructed using the prefix `SAGAIDX_` plus the first 22 characters of a SHA1 hash of the saga name and correlation property name. The owning table for a particular index can be discovered by querying the database:
+Index names for correlation properties are constructed using the prefix `SAGAIDX_` plus a deterministic hash of the saga name and correlation property name. The owning table for a particular index can be discovered by querying the database:
 
 ```sql
 select TABLE_NAME
 from ALL_INDEXES
 where INDEX_NAME = 'SAGAIDX_525D1D4DC0C3DCD96947E1';
 ```
+
+NOTE: If saga name or correlation property name change, the name of the index will also change.
 
 If a saga name is longer than 27 characters, an exception will be thrown, and a [substitute table name must be specified](saga.md#table-structure-table-name).
 
