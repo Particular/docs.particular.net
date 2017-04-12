@@ -40,7 +40,7 @@ The callback functionality can be split into three categories based on the type 
 
 The integer response scenario allows any integer value to be returned in a strong typed manner.
 
-WARN: Note that this type of callback won't cause response messages to end up in the [error queue](/nservicebus/recoverability) if no callback is registered since there there is no way those messages can be recovered.
+WARNING: Note that this type of callback won't cause response messages to end up in the [error queue](/nservicebus/recoverability) if no callback is registered since there there is no way those messages can be recovered.
 
 #### Send and Callback
 
