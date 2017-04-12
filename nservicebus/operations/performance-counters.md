@@ -22,6 +22,8 @@ NServiceBus includes several performance counters. They are installed in the `NS
 
 Since all performance counters in Windows are exposed via Windows Management Instrumentation (WMI), it is very straightforward to pull this information into the existing monitoring infrastructure.
 
+NOTE: The NServiceBus performance counters only indicate activity on the logical endpoint queue and endpoint instance specific queue. Any activity on the satellites is not visible.
+
 
 ## Critical Time
 
