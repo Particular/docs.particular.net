@@ -76,7 +76,7 @@ NServiceBus can be hosted in any web technology that support .NET. See [Web Appl
 
 ### Multi-Hosting
 
-"Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .NET process.
+"Multi-hosting" refers to hosting multiple NServiceBus endpoints in a single .NET process.
 
 partial: multi
 
