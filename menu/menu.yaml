@@ -30,6 +30,7 @@
     Articles:
     - Url: nservicebus/upgrades/support-policy
       Title: Support Policy
+      Articles:
       - Url: nservicebus/upgrades/supported-versions
         Title: Supported versions
       - Url: nservicebus/upgrades/all-versions
