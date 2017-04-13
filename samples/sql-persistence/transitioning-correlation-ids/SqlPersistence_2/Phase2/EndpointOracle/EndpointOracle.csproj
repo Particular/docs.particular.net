@@ -58,7 +58,6 @@
     <Compile Include="..\..\Phase1\EndpointOracle\Program.cs">
       <Link>Program.cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendMessage.cs" />
   </ItemGroup>
   <ItemGroup>
