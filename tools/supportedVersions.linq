@@ -153,7 +153,7 @@ public static class TextWriterExtensions
         }
 
         output.WriteLine("| Version | Released     | Supported until | Explanation                     |");
-        output.WriteLine("| ------- |:------------:|:---------------:| ------------------------------- |");
+        output.WriteLine("|:-------:|:------------:|:---------------:|:-------------------------------:|");
 
         foreach (var version in relevantVersions.OrderByDescending(version => version.First.Identity.Version))
         {
