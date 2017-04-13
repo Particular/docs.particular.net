@@ -27,11 +27,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointSqlServerPhase3", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedPhase3", "Phase3\Shared\SharedPhase3.csproj", "{7EA5D1D1-0860-4269-B1D6-056F09B08C68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointOracle", "Phase1\EndpointOracle\EndpointOracle.csproj", "{44E0BDCF-5461-4F0E-A0C6-A32F8388EEA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointOraclePhase1", "Phase1\EndpointOracle\EndpointOraclePhase1.csproj", "{44E0BDCF-5461-4F0E-A0C6-A32F8388EEA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointOracle", "Phase2\EndpointOracle\EndpointOracle.csproj", "{9B87B80E-DE32-471D-A0D3-03A6B8C70A3C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointOraclePhase2", "Phase2\EndpointOracle\EndpointOraclePhase2.csproj", "{9B87B80E-DE32-471D-A0D3-03A6B8C70A3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointOracle", "Phase3\EndpointOracle\EndpointOracle.csproj", "{510F7022-B9CB-4DE4-B21C-FA7AD127C037}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointOraclePhase3", "Phase3\EndpointOracle\EndpointOraclePhase3.csproj", "{510F7022-B9CB-4DE4-B21C-FA7AD127C037}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
