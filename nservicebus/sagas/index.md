@@ -110,7 +110,13 @@ The usual way is to correlate on some kind of ID and let the user control how to
 
 WARNING: Other than interacting with its own internal state, a saga should **not** access a database, call out to web services, or access other resources - neither directly nor indirectly by having such dependencies injected into it.
 
-Instead, a saga should send messages to perform those actions. The corresponding message handler would access databases, call web services, or access other resources. Usually those message handlers will send response messages back to the saga, as described in the previous section. These message handlers can be hosted in separate endpoints or in the same endpoint depending on other architectural decisions.
+Instead, if a saga needs data as a part of its message processing logic, the best way to address that is to have the saga be started by an earlier message and then collect all the data it needs by handling all the messages over time that provide that data. This may result in sagas that "live forever", i.e. don't have a message that would cause them to `MarkAsComplete()`.
+
+Since sagas, when they're not processing messages, are effectively a record in a database, leaving a saga running "forever" is equivalent to not deleting a record from a database. This is similar to how regular business entities in a system are not deleted.
+
+This approach often results in sagas whose responsibility grows enough to be considered an [Aggregate Root in Domain-Driven Design](https://martinfowler.com/bliki/DDD_Aggregate.html).
+
+When it comes to integration scenarios, like calling external systems, dedicated sagas should be designed to manage the interaction - yet those sagas shouldn't perform the external calls directly. Instead, those sagas should send messages to other endpoints which will perform those actions. It is common for those endpoints to send response messages back to the saga, as described in the previous section. These endpoints can be hosted in separate processes or in the same process as the saga depending on other architectural decisions.
 
 
 ## Querying Saga Data
