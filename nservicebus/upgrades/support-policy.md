@@ -62,10 +62,6 @@ No, the policy applies only to the supported NServiceBus packages listed on the 
 
 It's preferable to use the newest major version of NServiceBus when starting a new project. The support policy guarantees that the major version will be supported for at least 2 years after it is replaced by a new major version.
 
-**Which version of NServiceBus should be used when adding to an existing project?**
-
-When adding new functionality to an existing project, it's generally easiest to use the same version of NServiceBus already in use by other endpoints, as long as that version of NServiceBus is still supported. It is also possible to use a newer version of NServiceBus in a specific endpoint as a step towards [upgrading](#upgrading) the entire system.
-
 **Why are fixes backported to old minor versions?**
 
 In accordance with the [release policy](release-policy.md), important fixes are backported to older (but still supported) minor versions to reduce the risk of upgrading. A component can be upgraded to a newer patch release without requiring an upgrade to the newest minor version containing new functionality.
