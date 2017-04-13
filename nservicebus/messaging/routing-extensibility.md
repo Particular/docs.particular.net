@@ -13,7 +13,7 @@ Extending the routing with a custom data source makes sense in following scenari
 
  * When centralizing all routing information in a database.
  * When dynamically calculating routes based on endpoint discovery protocol (similar of [UDDI](https://en.wikipedia.org/wiki/Web_Services_Discovery)).
- * When using a convention based on massage naming.
+ * When using a convention based on message naming.
 
 partial: content 
 
