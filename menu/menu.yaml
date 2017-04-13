@@ -34,6 +34,8 @@
         Title: Supported versions
       - Url: nservicebus/upgrades/all-versions
         Title: All versions
+    - Url: nservicebus/upgrades/release-policy
+      Title: Release Policy
     - Url: security-advisories
       Title: Security Advisories
       Articles:
