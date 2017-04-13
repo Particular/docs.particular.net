@@ -12,13 +12,13 @@ related:
 
 Supported versions of NServiceBus and its associated packages are determined by the release date of the package that replaces them. After a specific version of a package is replaced by a newer version, the older package will remain supported for a fixed period of time afterward. This enables starting a project with the newest versions at the time, with the confidence that those versions will be supported well into the future, regardless of the release schedule for new components.
 
-For the core NServiceBus package:
+### NServiceBus package
 
 * Major versions are supported for a period of 2 years after the release of the next major version.
 * Minor versions of a supported major version are supported for a period of 6 months after the release of the next minor version.
 * Only the latest patch release of each supported minor version is supported.
 
-For component packages that depend upon NServiceBus:
+### Component packages that depend upon NServiceBus
 
 * Major versions are supported for a period of 1 year after the release of the next major version.
 * Minor versions of a supported major version are supported for a period of 3 months after the release of the next minor version.
