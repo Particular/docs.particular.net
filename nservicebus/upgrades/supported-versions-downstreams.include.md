@@ -2,875 +2,266 @@
 
 #### NServiceBus.Azure.Transports.WindowsAzureServiceBus
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>7.2.x</td>
-    <td>2017-03-21</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>7.1.x</td>
-    <td>2016-12-05</td>
-    <td>2017-06-21</td>
-    <td>Superseded by 7.2.x</td>
-  </tr>
-  <tr>
-    <td><strike>7.0.x</strike></td>
-    <td><strike>2016-10-11</strike></td>
-    <td><strike>2017-03-05</strike></td>
-    <td><strike>Superseded by 7.1.x</strike></td>
-  </tr>
-  <tr>
-    <td>6.4.x</td>
-    <td>2016-01-12</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 7.2.x   | 2017-03-21   | -               | -                               |
+| 7.1.x   | 2016-12-05   | 2017-06-21      | Superseded by 7.2.x             |
+| ~7.0.x~ | ~2016-10-11~ | ~2017-03-05~    | ~Superseded by 7.1.x~           |
+| 6.4.x   | 2016-01-12   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 #### NServiceBus.Azure.Transports.WindowsAzureStorageQueues
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>7.2.x</td>
-    <td>2017-03-24</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>7.0.x</td>
-    <td>2016-10-11</td>
-    <td>2017-06-24</td>
-    <td>Superseded by 7.2.x</td>
-  </tr>
-  <tr>
-    <td>6.2.x</td>
-    <td>2015-02-13</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 7.2.x   | 2017-03-24   | -               | -                               |
+| 7.0.x   | 2016-10-11   | 2017-06-24      | Superseded by 7.2.x             |
+| 6.2.x   | 2015-02-13   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 #### NServiceBus.RabbitMQ
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>4.3.x</td>
-    <td>2017-04-05</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>4.2.x</td>
-    <td>2016-11-30</td>
-    <td>2017-07-05</td>
-    <td>Superseded by 4.3.x</td>
-  </tr>
-  <tr>
-    <td><strike>4.1.x</strike></td>
-    <td><strike>2016-10-31</strike></td>
-    <td><strike>2017-02-28</strike></td>
-    <td><strike>Superseded by 4.2.x</strike></td>
-  </tr>
-  <tr>
-    <td><strike>4.0.x</strike></td>
-    <td><strike>2016-10-11</strike></td>
-    <td><strike>2017-01-31</strike></td>
-    <td><strike>Superseded by 4.1.x</strike></td>
-  </tr>
-  <tr>
-    <td>3.5.x</td>
-    <td>2016-09-20</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-  <tr>
-    <td><strike>3.4.x</strike></td>
-    <td><strike>2016-09-12</strike></td>
-    <td><strike>2016-12-20</strike></td>
-    <td><strike>Superseded by 3.5.x</strike></td>
-  </tr>
-  <tr>
-    <td><strike>3.3.x</strike></td>
-    <td><strike>2016-05-26</strike></td>
-    <td><strike>2016-12-12</strike></td>
-    <td><strike>Superseded by 3.4.x</strike></td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 4.3.x   | 2017-04-05   | -               | -                               |
+| 4.2.x   | 2016-11-30   | 2017-07-05      | Superseded by 4.3.x             |
+| ~4.1.x~ | ~2016-10-31~ | ~2017-02-28~    | ~Superseded by 4.2.x~           |
+| ~4.0.x~ | ~2016-10-11~ | ~2017-01-31~    | ~Superseded by 4.1.x~           |
+| 3.5.x   | 2016-09-20   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
+| ~3.4.x~ | ~2016-09-12~ | ~2016-12-20~    | ~Superseded by 3.5.x~           |
+| ~3.3.x~ | ~2016-05-26~ | ~2016-12-12~    | ~Superseded by 3.4.x~           |
 
 #### NServiceBus.SqlServer
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>3.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>2.2.x</td>
-    <td>2015-09-25</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 3.0.x   | 2016-10-11   | -               | -                               |
+| 2.2.x   | 2015-09-25   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 ### Persistence packages
 
 #### NServiceBus.NHibernate
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>7.1.x</td>
-    <td>2017-01-19</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>7.0.x</td>
-    <td>2016-10-11</td>
-    <td>2017-04-19</td>
-    <td>Superseded by 7.1.x</td>
-  </tr>
-  <tr>
-    <td>6.2.x</td>
-    <td>2015-05-27</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 7.1.x   | 2017-01-19   | -               | -                               |
+| 7.0.x   | 2016-10-11   | 2017-04-19      | Superseded by 7.1.x             |
+| 6.2.x   | 2015-05-27   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 #### NServiceBus.Persistence.AzureStorage
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>1.2.x</td>
-    <td>2017-03-24</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2016-10-11</td>
-    <td>2017-06-24</td>
-    <td>Superseded by 1.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 1.2.x   | 2017-03-24   | -               | -                               |
+| 1.0.x   | 2016-10-11   | 2017-06-24      | Superseded by 1.2.x             |
 
 #### NServiceBus.Persistence.Sql
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2017-02-02</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 1.0.x   | 2017-02-02   | -               | -                               |
 
 #### NServiceBus.RavenDB
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>4.1.x</td>
-    <td>2016-12-14</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td><strike>4.0.x</strike></td>
-    <td><strike>2016-10-11</strike></td>
-    <td><strike>2017-03-14</strike></td>
-    <td><strike>Superseded by 4.1.x</strike></td>
-  </tr>
-  <tr>
-    <td>3.2.x</td>
-    <td>2017-04-10</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-  <tr>
-    <td>3.0.x</td>
-    <td>2015-05-07</td>
-    <td>2017-07-10</td>
-    <td>Superseded by 3.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 4.1.x   | 2016-12-14   | -               | -                               |
+| ~4.0.x~ | ~2016-10-11~ | ~2017-03-14~    | ~Superseded by 4.1.x~           |
+| 3.2.x   | 2017-04-10   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
+| 3.0.x   | 2015-05-07   | 2017-07-10      | Superseded by 3.2.x             |
 
 ### Serializer packages
 
 #### NServiceBus.Newtonsoft.Json
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>1.1.x</td>
-    <td>2017-03-21</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2016-10-11</td>
-    <td>2017-06-21</td>
-    <td>Superseded by 1.1.x</td>
-  </tr>
-  <tr>
-    <td>0.3.x</td>
-    <td>2016-08-25</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-  <tr>
-    <td><strike>0.2.x</strike></td>
-    <td><strike>2015-09-15</strike></td>
-    <td><strike>2016-11-25</strike></td>
-    <td><strike>Superseded by 0.3.x</strike></td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 1.1.x   | 2017-03-21   | -               | -                               |
+| 1.0.x   | 2016-10-11   | 2017-06-21      | Superseded by 1.1.x             |
+| 0.3.x   | 2016-08-25   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
+| ~0.2.x~ | ~2015-09-15~ | ~2016-11-25~    | ~Superseded by 0.3.x~           |
 
 ### Container packages
 
 #### NServiceBus.Autofac
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>6.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>5.1.x</td>
-    <td>2016-09-19</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-  <tr>
-    <td><strike>5.0.x</strike></td>
-    <td><strike>2014-09-29</strike></td>
-    <td><strike>2016-12-19</strike></td>
-    <td><strike>Superseded by 5.1.x</strike></td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 6.0.x   | 2016-10-11   | -               | -                               |
+| 5.1.x   | 2016-09-19   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
+| ~5.0.x~ | ~2014-09-29~ | ~2016-12-19~    | ~Superseded by 5.1.x~           |
 
 #### NServiceBus.CastleWindsor
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>6.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>5.0.x</td>
-    <td>2014-09-29</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 6.0.x   | 2016-10-11   | -               | -                               |
+| 5.0.x   | 2014-09-29   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 #### NServiceBus.Ninject
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>6.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>5.1.x</td>
-    <td>2015-08-14</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 6.0.x   | 2016-10-11   | -               | -                               |
+| 5.1.x   | 2015-08-14   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 #### NServiceBus.Spring
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>7.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>6.0.x</td>
-    <td>2015-06-25</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 7.0.x   | 2016-10-11   | -               | -                               |
+| 6.0.x   | 2015-06-25   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 #### NServiceBus.StructureMap
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>6.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>5.1.x</td>
-    <td>2016-10-04</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-  <tr>
-    <td><strike>5.0.x</strike></td>
-    <td><strike>2014-09-29</strike></td>
-    <td><strike>2017-01-04</strike></td>
-    <td><strike>Superseded by 5.1.x</strike></td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 6.0.x   | 2016-10-11   | -               | -                               |
+| 5.1.x   | 2016-10-04   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
+| ~5.0.x~ | ~2014-09-29~ | ~2017-01-04~    | ~Superseded by 5.1.x~           |
 
 #### NServiceBus.Unity
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>7.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>6.2.x</td>
-    <td>2015-10-08</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 7.0.x   | 2016-10-11   | -               | -                               |
+| 6.2.x   | 2015-10-08   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 ### Logger packages
 
 #### NServiceBus.CommonLogging
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>4.0.x</td>
-    <td>2016-11-16</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>3.0.x</td>
-    <td>2016-10-11</td>
-    <td>2017-11-16</td>
-    <td>Superseded by 4.0.x</td>
-  </tr>
-  <tr>
-    <td>2.1.x</td>
-    <td>2015-02-18</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 4.0.x   | 2016-11-16   | -               | -                               |
+| 3.0.x   | 2016-10-11   | 2017-11-16      | Superseded by 4.0.x             |
+| 2.1.x   | 2015-02-18   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 #### NServiceBus.Log4Net
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>2.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2014-09-29</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 2.0.x   | 2016-10-11   | -               | -                               |
+| 1.0.x   | 2014-09-29   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 #### NServiceBus.NLog
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>2.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>1.1.x</td>
-    <td>2015-06-12</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 2.0.x   | 2016-10-11   | -               | -                               |
+| 1.1.x   | 2015-06-12   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 ### Databus packages
 
 #### NServiceBus.DataBus.AzureBlobStorage
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>1.1.x</td>
-    <td>2017-03-24</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2016-10-11</td>
-    <td>2017-06-24</td>
-    <td>Superseded by 1.1.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 1.1.x   | 2017-03-24   | -               | -                               |
+| 1.0.x   | 2016-10-11   | 2017-06-24      | Superseded by 1.1.x             |
 
 ### Host packages
 
 #### NServiceBus.Bootstrap.WindowsService
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>2.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>1.1.x</td>
-    <td>2015-06-28</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 2.0.x   | 2016-10-11   | -               | -                               |
+| 1.1.x   | 2015-06-28   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 #### NServiceBus.Host
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>7.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>6.0.x</td>
-    <td>2014-11-25</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 7.0.x   | 2016-10-11   | -               | -                               |
+| 6.0.x   | 2014-11-25   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 #### NServiceBus.Hosting.Azure
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>7.1.x</td>
-    <td>2017-03-24</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>7.0.x</td>
-    <td>2016-10-11</td>
-    <td>2017-06-24</td>
-    <td>Superseded by 7.1.x</td>
-  </tr>
-  <tr>
-    <td>6.2.x</td>
-    <td>2015-02-13</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 7.1.x   | 2017-03-24   | -               | -                               |
+| 7.0.x   | 2016-10-11   | 2017-06-24      | Superseded by 7.1.x             |
+| 6.2.x   | 2015-02-13   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 ### Other packages
 
 #### NServiceBus.Callbacks
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>1.1.x</td>
-    <td>2017-01-16</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2016-10-11</td>
-    <td>2017-04-16</td>
-    <td>Superseded by 1.1.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 1.1.x   | 2017-01-16   | -               | -                               |
+| 1.0.x   | 2016-10-11   | 2017-04-16      | Superseded by 1.1.x             |
 
 #### NServiceBus.Callbacks.Testing
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>1.1.x</td>
-    <td>2017-01-16</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 1.1.x   | 2017-01-16   | -               | -                               |
 
 #### NServiceBus.Distributor.MSMQ
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>5.0.x</td>
-    <td>2014-10-02</td>
-    <td>2018-10-11</td>
-    <td>Bounded by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 5.0.x   | 2014-10-02   | 2018-10-11      | Bounded by NServiceBus 5.2.x    |
 
 #### NServiceBus.Encryption.MessageProperty
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2017-02-09</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 1.0.x   | 2017-02-09   | -               | -                               |
 
 #### NServiceBus.Gateway
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>2.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2014-09-29</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 2.0.x   | 2016-10-11   | -               | -                               |
+| 1.0.x   | 2014-09-29   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 #### NServiceBus.Metrics.PerformanceCounters
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2017-03-28</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 1.0.x   | 2017-03-28   | -               | -                               |
 
 #### NServiceBus.Testing
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>6.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>5.2.x</td>
-    <td>2016-04-29</td>
-    <td>2018-10-11</td>
-    <td>Extended by NServiceBus 5.2.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 6.0.x   | 2016-10-11   | -               | -                               |
+| 5.2.x   | 2016-04-29   | 2018-10-11      | Extended by NServiceBus 5.2.x   |
 
 #### NServiceBus.Wcf
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2016-10-11</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 1.0.x   | 2016-10-11   | -               | -                               |
 
 #### ServiceControl.Contracts
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>1.1.x</td>
-    <td>2015-02-05</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 1.1.x   | 2015-02-05   | -               | -                               |
 
 #### ServiceControl.Plugin.Nsb6.CustomChecks
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>3.0.x</td>
-    <td>2017-02-07</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>2.0.x</td>
-    <td>2016-10-24</td>
-    <td>2018-02-07</td>
-    <td>Superseded by 3.0.x</td>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2016-10-11</td>
-    <td>2017-10-24</td>
-    <td>Superseded by 2.0.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 3.0.x   | 2017-02-07   | -               | -                               |
+| 2.0.x   | 2016-10-24   | 2018-02-07      | Superseded by 3.0.x             |
+| 1.0.x   | 2016-10-11   | 2017-10-24      | Superseded by 2.0.x             |
 
 #### ServiceControl.Plugin.Nsb6.Heartbeat
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>3.0.x</td>
-    <td>2017-02-07</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>2.0.x</td>
-    <td>2016-10-24</td>
-    <td>2018-02-07</td>
-    <td>Superseded by 3.0.x</td>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2016-10-11</td>
-    <td>2017-10-24</td>
-    <td>Superseded by 2.0.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 3.0.x   | 2017-02-07   | -               | -                               |
+| 2.0.x   | 2016-10-24   | 2018-02-07      | Superseded by 3.0.x             |
+| 1.0.x   | 2016-10-11   | 2017-10-24      | Superseded by 2.0.x             |
 
 #### ServiceControl.Plugin.Nsb6.SagaAudit
 
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Released</th>
-    <th>Supported until</th>
-    <th>Explanation</th>
-  </tr>
-  <tr>
-    <td>3.0.x</td>
-    <td>2017-02-07</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>2.0.x</td>
-    <td>2016-10-24</td>
-    <td>2018-02-07</td>
-    <td>Superseded by 3.0.x</td>
-  </tr>
-  <tr>
-    <td>1.0.x</td>
-    <td>2016-10-11</td>
-    <td>2017-10-24</td>
-    <td>Superseded by 2.0.x</td>
-  </tr>
-</table>
+| Version | Released     | Supported until | Explanation                     |
+| ------- |:------------:|:---------------:| ------------------------------- |
+| 3.0.x   | 2017-02-07   | -               | -                               |
+| 2.0.x   | 2016-10-24   | 2018-02-07      | Superseded by 3.0.x             |
+| 1.0.x   | 2016-10-11   | 2017-10-24      | Superseded by 2.0.x             |
 

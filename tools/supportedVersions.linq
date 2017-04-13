@@ -152,29 +152,26 @@ public static class TextWriterExtensions
             return;
         }
 
-        output.WriteLine("<table>");
-        output.WriteLine("  <tr>");
-        output.WriteLine("    <th>Version</th>");
-        output.WriteLine("    <th>Released</th>");
-        output.WriteLine("    <th>Supported until</th>");
-        output.WriteLine("    <th>Explanation</th>");
-        output.WriteLine("  </tr>");
+        output.WriteLine("| Version | Released     | Supported until | Explanation                     |");
+        output.WriteLine("| ------- |:------------:|:---------------:| ------------------------------- |");
 
         foreach (var version in relevantVersions.OrderByDescending(version => version.First.Identity.Version))
         {
             var isSupported = !version.PatchingEnd.HasValue || version.PatchingEnd.Value > utcTomorrow;
-            var open = isSupported ? "" : "<strike>";
-            var close = isSupported ? "" : "</strike>";
+            var open = isSupported ? "" : "~";
+            var close = isSupported ? "" : "~";
 
-            output.WriteLine("  <tr>");
-            output.WriteLine($"    <td>{open}{version.First.Identity.Version.ToMinorString()}{close}</td>");
-            output.WriteLine($"    <td>{open}{version.First.Published.Value.UtcDateTime.Date.ToString("yyyy-MM-dd")}{close}</td>");
-            output.WriteLine($"    <td>{open}{version.PatchingEnd?.ToString("yyyy-MM-dd") ?? "-"}{close}</td>");
-            output.WriteLine($"    <td>{open}{(version.PatchingEnd.HasValue ? version.PatchingEndReason : "-")}{close}</td>");
-            output.WriteLine("  </tr>");
+            output.Write($"| ");
+            output.Write($"{open}{version.First.Identity.Version.ToMinorString()}{close}".PadRight(7));
+            output.Write($" | ");
+            output.Write($"{open}{version.First.Published.Value.UtcDateTime.Date.ToString("yyyy-MM-dd")}{close}".PadRight(12));
+            output.Write($" | ");
+            output.Write($"{open}{version.PatchingEnd?.ToString("yyyy-MM-dd") ?? "-"}{close}".PadRight(15));
+            output.Write($" | ");
+            output.Write($"{open}{(version.PatchingEnd.HasValue ? version.PatchingEndReason : "-")}{close}".PadRight(31));
+            output.WriteLine(" |");
         }
 
-        output.WriteLine("</table>");
         output.WriteLine();
     }
 }
