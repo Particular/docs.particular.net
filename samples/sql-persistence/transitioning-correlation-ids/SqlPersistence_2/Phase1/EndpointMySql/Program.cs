@@ -17,6 +17,9 @@ partial class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.TransitionCorrelation.EndpointMySql");
 
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
