@@ -1,7 +1,9 @@
 startcode MySql_OutboxCreateSql
-set @tableName = concat('`', @tablePrefix, 'OutboxData`');
+set @tableNameQuoted = concat('`', @tablePrefix, 'OutboxData`');
+set @tableNameNonQuoted = concat(@tablePrefix, 'OutboxData');
+
 set @createTable =  concat('
-    create table if not exists ', @tableName, '(
+    create table if not exists ', @tableNameQuoted, '(
         MessageId nvarchar(200) not null,
         Dispatched bit not null default 0,
         DispatchedAt datetime,
@@ -21,11 +23,11 @@ from information_schema.statistics
 where
     table_schema = database() and
     index_name = 'Index_DispatchedAt' and
-    table_name = @tableName;
+    table_name = @tableNameNonQuoted;
 
 set @query = IF(
     @exist <= 0,
-    concat('create index Index_DispatchedAt on ', @tableName, '(DispatchedAt)'), 'select \'Index Exists\' status');
+    concat('create index Index_DispatchedAt on ', @tableNameQuoted, '(DispatchedAt)'), 'select \'Index Exists\' status');
 
 prepare script from @query;
 execute script;
@@ -38,11 +40,11 @@ from information_schema.statistics
 where
     table_schema = database() and
     index_name = 'Index_Dispatched' and
-    table_name = @tableName;
+    table_name = @tableNameNonQuoted;
 
 set @query = IF(
     @exist <= 0,
-    concat('create index Index_Dispatched on ', @tableName, '(Dispatched)'), 'select \'Index Exists\' status');
+    concat('create index Index_Dispatched on ', @tableNameQuoted, '(Dispatched)'), 'select \'Index Exists\' status');
 
 prepare script from @query;
 execute script;

@@ -14,7 +14,7 @@ declare @createTable nvarchar(max);
 set @createTable = '
     create table ' + @tableName + '(
         Subscriber nvarchar(200) not null,
-        Endpoint nvarchar(200) null,
+        Endpoint nvarchar(200),
         MessageType nvarchar(200) not null,
         PersistenceVersion varchar(23) not null,
         primary key clustered

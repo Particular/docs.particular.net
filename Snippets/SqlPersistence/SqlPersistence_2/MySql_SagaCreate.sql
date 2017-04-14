@@ -2,7 +2,8 @@ startcode MySql_SagaCreateSql
 
 /* TableNameVariable */
 
-set @tableName = concat('`', @tablePrefix, 'OrderSaga`');
+set @tableNameQuoted = concat('`', @tablePrefix, 'OrderSaga`');
+set @tableNameNonQuoted = concat(@tablePrefix, 'OrderSaga');
 
 
 /* Initialize */
@@ -20,7 +21,7 @@ end;
 /* CreateTable */
 
 set @createTable = concat('
-    create table if not exists ', @tableName, '(
+    create table if not exists ', @tableNameQuoted, '(
         Id varchar(38) not null,
         Metadata json not null,
         Data json not null,
@@ -41,11 +42,11 @@ into @exist
 from information_schema.columns
 where table_schema = database() and
       column_name = 'Correlation_OrderNumber' and
-      table_name = @tableName;
+      table_name = @tableNameNonQuoted;
 
 set @query = IF(
     @exist <= 0,
-    concat('alter table ', @tableName, ' add column Correlation_OrderNumber bigint(20)'), 'select \'Column Exists\' status');
+    concat('alter table ', @tableNameQuoted, ' add column Correlation_OrderNumber bigint(20)'), 'select \'Column Exists\' status');
 
 prepare script from @query;
 execute script;
@@ -58,7 +59,7 @@ set @column_type_OrderNumber = (
   from information_schema.columns
   where
     table_schema = database() and
-    table_name = @tableName and
+    table_name = @tableNameNonQuoted and
     column_name = 'Correlation_OrderNumber'
 );
 
@@ -79,11 +80,11 @@ from information_schema.statistics
 where
     table_schema = database() and
     index_name = 'Index_Correlation_OrderNumber' and
-    table_name = @tableName;
+    table_name = @tableNameNonQuoted;
 
 set @query = IF(
     @exist <= 0,
-    concat('create unique index Index_Correlation_OrderNumber on ', @tableName, '(Correlation_OrderNumber)'), 'select \'Index Exists\' status');
+    concat('create unique index Index_Correlation_OrderNumber on ', @tableNameQuoted, '(Correlation_OrderNumber)'), 'select \'Index Exists\' status');
 
 prepare script from @query;
 execute script;
@@ -96,11 +97,11 @@ into @exist
 from information_schema.columns
 where table_schema = database() and
       column_name = 'Correlation_OrderId' and
-      table_name = @tableName;
+      table_name = @tableNameNonQuoted;
 
 set @query = IF(
     @exist <= 0,
-    concat('alter table ', @tableName, ' add column Correlation_OrderId varchar(38) character set ascii'), 'select \'Column Exists\' status');
+    concat('alter table ', @tableNameQuoted, ' add column Correlation_OrderId varchar(38) character set ascii'), 'select \'Column Exists\' status');
 
 prepare script from @query;
 execute script;
@@ -113,7 +114,7 @@ set @column_type_OrderId = (
   from information_schema.columns
   where
     table_schema = database() and
-    table_name = @tableName and
+    table_name = @tableNameNonQuoted and
     column_name = 'Correlation_OrderId'
 );
 
@@ -134,11 +135,11 @@ from information_schema.statistics
 where
     table_schema = database() and
     index_name = 'Index_Correlation_OrderId' and
-    table_name = @tableName;
+    table_name = @tableNameNonQuoted;
 
 set @query = IF(
     @exist <= 0,
-    concat('create unique index Index_Correlation_OrderId on ', @tableName, '(Correlation_OrderId)'), 'select \'Index Exists\' status');
+    concat('create unique index Index_Correlation_OrderId on ', @tableNameQuoted, '(Correlation_OrderId)'), 'select \'Index Exists\' status');
 
 prepare script from @query;
 execute script;
@@ -146,11 +147,11 @@ deallocate prepare script;
 
 /* PurgeObsoleteIndex */
 
-select concat('drop index ', index_name, ' on ', @tableName, ';')
+select concat('drop index ', index_name, ' on ', @tableNameQuoted, ';')
 from information_schema.statistics
 where
     table_schema = database() and
-    table_name = @tableName and
+    table_name = @tableNameNonQuoted and
     index_name like 'Index_Correlation_%' and
     index_name <> 'Index_Correlation_OrderNumber' and
     index_name <> 'Index_Correlation_OrderId' and
@@ -172,7 +173,7 @@ select concat('alter table ', @tableName, ' drop column ', column_name, ';')
 from information_schema.columns
 where
     table_schema = database() and
-    table_name = @tableName and
+    table_name = @tableNameNonQuoted and
     column_name like 'Correlation_%' and
     column_name <> 'Correlation_OrderNumber' and
     column_name <> 'Correlation_OrderId'
