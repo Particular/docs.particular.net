@@ -20,6 +20,9 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
         #region MySqlConfig
+        
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var password = Environment.GetEnvironmentVariable("MySqlPassword");
