@@ -5,13 +5,13 @@ related:
 reviewed: 2017-04-06
 ---
 
-The SQL Persistence provides true autonomy between endpoints by using separate tables for every endpoint based on the endpoint name. However, due to Oracle's 30-character limit on table names and index names, the SQL Persistence must make some compromises.
+The SQL Persistence provides autonomy between endpoints by using separate tables for every endpoint based on the endpoint name. However, due to Oracle's 30-character limit on table names and index names, the SQL Persistence must make some compromises.
 
 ## Table Names
 
 NOTE: For a complete example of the schema created by the SQL Persistence for Oracle, see [Oracle Scripts](oracle-scripts.md).
 
-For storing subscriptions, timeouts, and outbox data, SQL Persistence will reserve 24 characters for the endpoint name, leaving 3 characters for the persister type, and and additional 3 characters for an index type.Names are then constructed as `{EndpointName}{PersisterTypeSuffix}{KeyType}`.
+For storing subscriptions, timeouts, and outbox data, SQL Persistence will reserve 24 characters for the endpoint name, leaving 3 characters for the persister type, and and additional 3 characters for an index type. Names are then constructed as `{EndpointName}{PersisterTypeSuffix}{KeyType}`.
 
 The following table shows table names created for an endpoint named `My.Endpoint`:
 
