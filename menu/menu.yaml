@@ -93,6 +93,8 @@
       Articles:
       - Url: nservicebus/upgrades/host-6to7
         Title: Version 6 to 7
+    - Title: Azure package deprecated
+      Url: nservicebus/upgrades/azure-deprecation
     - Title: Azure BlobStorage DataBus
       Articles:
       - Url: nservicebus/upgrades/absdatabus-6to1
