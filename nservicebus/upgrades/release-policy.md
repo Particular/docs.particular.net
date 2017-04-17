@@ -21,11 +21,11 @@ For those not familiar with SemVer here is a short primer:
 
 Given a version number `{major}.{minor}.{patch}`, increment the:
 
- * `{major}` version when make incompatible API changes,
- * `{minor}` version when add functionality in a backwards-compatible manner, and
- * `{patch}` version when make backwards-compatible bug fixes.
+ * `{major}` version when making incompatible API changes,
+ * `{minor}` version when adding functionality in a backwards-compatible manner, and
+ * `{patch}` version when making backwards-compatible bug fixes.
 
-Following SemVer 2.0 enable quickly determining the urgency, risk and effort of the upgrade.
+Following SemVer 2.0 enables quickly determining the urgency, risk and effort of the upgrade.
 
 
 ### Backport important bugfixes
@@ -35,12 +35,6 @@ While not stipulated by SemVer all important fixes to all supported versions of 
 See [support policy](/nservicebus/upgrades/support-policy.md) for more details on supported versions.
 
 By using a supported version critical bugfixes are received without the associated risk and effort of upgrading to a higher `{major}.{minor}` version.
-
-Some examples:
-
- * Version 4.0 was released on 2013-07-11 and Version 4 will therefore be supported until 2016-07-11 but only if on the latest minor or a minor version released within the last year.
- * Version 4.6 was released on 2014-05-01 this means that its latest patch release will be supported till 2015-05-01. This means that there will be no fixes minor versions after 2015-05-01. It is required to update to at least a newer minor version that is still supported as this version will receive a patch release.
- * A newer patch release will automatically mean that the previous patch release will be obsolete. Particular will apply a bugfix on the latest patch release but will not officially release a patch for a obsolete patch release. In other words, version X.Y.3 will not be patched (to version X.Y.3.1) when version X.Y.4 is the latest patch. That would then be released as version X.Y.5
 
 It is strongly recommended to upgrade frequently enough to stay on a supported version. For the best upgrade experience, upgrade from one major version to the next major version. For example, when using NServiceBus Version 4.7.2 and intending to upgrade to NServiceBus Version 6.0.0, first upgrade to the latest NServiceBus Version 5.x release (e.g. Version 5.2.19) and follow the suggested API upgrade guides and deprecation messages. Then repeat the exercise to upgrade from Version 5.x to Version 6.0.0.
 
