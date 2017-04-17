@@ -13,7 +13,7 @@ To reduce scope and risk small components are released with a regular cadence. P
 While this may seem to result in a large number of releases only a small fraction of these will actually affect the system.
 
 
-### Semantic Versioning
+## Semantic Versioning
 
 [SemVer](http://semver.org/) is a simple set of rules and requirements that dictate how version numbers are assigned and incremented.
 
@@ -28,7 +28,7 @@ Given a version number `{major}.{minor}.{patch}`, increment the:
 Following SemVer 2.0 enables quickly determining the urgency, risk and effort of the upgrade.
 
 
-### Backport important bugfixes
+## Backport important bugfixes
 
 While not stipulated by SemVer all important fixes to all supported versions of NServiceBus are backported.
 
@@ -41,7 +41,7 @@ It is strongly recommended to upgrade frequently enough to stay on a supported v
 [Contact support](https://particular.net/support) if there are any bugfixes that needs to be back-ported to a specific version.
 
 
-### Deprecation
+## Deprecation
 
 Public APIs are deprecated using [ObsoleteAttribute](https://msdn.microsoft.com/en-us/library/system.obsoleteattribute.aspx) messages. Continued usage of a deprecated API will result in either a compiler warning or error.
 
@@ -90,7 +90,7 @@ Since all critical issues will be back-ported, choose to upgrade when convenient
 Since a new `major` version will contain breaking changes and will likely require modifications to the consuming code. Because of the extent of code changes in a major version, it is recommendation that a full regression test of the system is done.
 
 
-### Release quality
+## Release quality
 
 The release cycle consists of the following quality stages:
 
