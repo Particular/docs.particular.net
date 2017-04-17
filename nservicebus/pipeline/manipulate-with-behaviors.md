@@ -3,7 +3,7 @@ title: Manipulate Pipeline with Behaviors
 summary: Manipulating the message handling pipeline with Behaviors
 component: Core
 versions: '[4.0,)'
-reviewed: 2017-30-03
+reviewed: 2017-04-17
 tags:
 - Pipeline
 related:
