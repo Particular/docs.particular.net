@@ -4,7 +4,6 @@ summary: Instructions on how to move from the NServiceBus.Azure package to the n
 reviewed: 2017-02-10
 related:
  - nservicebus/upgrades/5to6
- - nservicebus/upgrades/absdatabus-6to1
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5
