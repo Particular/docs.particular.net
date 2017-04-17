@@ -152,23 +152,23 @@ public static class TextWriterExtensions
             return;
         }
 
-        output.WriteLine("| Version | Released     | Supported until | Explanation                     |");
-        output.WriteLine("|:-------:|:------------:|:---------------:|:-------------------------------:|");
+        output.WriteLine("| Version   | Released       | Supported until   | Explanation                       |");
+        output.WriteLine("|:---------:|:--------------:|:-----------------:|:---------------------------------:|");
 
         foreach (var version in relevantVersions.OrderByDescending(version => version.First.Identity.Version))
         {
             var isSupported = !version.PatchingEnd.HasValue || version.PatchingEnd.Value > utcTomorrow;
-            var open = isSupported ? "" : "~";
-            var close = isSupported ? "" : "~";
+            var open = isSupported ? "" : "~~";
+            var close = isSupported ? "" : "~~";
 
             output.Write($"| ");
-            output.Write($"{open}{version.First.Identity.Version.ToMinorString()}{close}".PadRight(7));
+            output.Write($"{open}{version.First.Identity.Version.ToMinorString()}{close}".PadRight(9));
             output.Write($" | ");
-            output.Write($"{open}{version.First.Published.Value.UtcDateTime.Date.ToString("yyyy-MM-dd")}{close}".PadRight(12));
+            output.Write($"{open}{version.First.Published.Value.UtcDateTime.Date.ToString("yyyy-MM-dd")}{close}".PadRight(14));
             output.Write($" | ");
-            output.Write($"{open}{version.PatchingEnd?.ToString("yyyy-MM-dd") ?? "-"}{close}".PadRight(15));
+            output.Write($"{open}{version.PatchingEnd?.ToString("yyyy-MM-dd") ?? "-"}{close}".PadRight(17));
             output.Write($" | ");
-            output.Write($"{open}{(version.PatchingEnd.HasValue ? version.PatchingEndReason : "-")}{close}".PadRight(31));
+            output.Write($"{open}{(version.PatchingEnd.HasValue ? version.PatchingEndReason : "-")}{close}".PadRight(33));
             output.WriteLine(" |");
         }
 
