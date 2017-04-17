@@ -4,6 +4,10 @@ reviewed: 2017-01-26
 summary: In this 15-20 minute tutorial, you'll learn how to send messages between multiple endpoints and control the logical routing of messages between endpoints.
 redirects:
 - tutorials/nservicebus-101/lesson-3
+extensions:
+- !!tutorial
+  nextText: "Next Lesson: Publishing events"
+  nextUrl: tutorials/intro-to-nservicebus/4-publishing-events
 ---
 
 Up until this point, we have constrained our activities to a single endpoint, but this is not how real systems behave. The strength of a messaging system is the ability to run code in multiple processes, on multiple servers, which can all collaborate by exchanging messages.

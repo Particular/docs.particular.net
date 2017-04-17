@@ -4,6 +4,10 @@ reviewed: 2017-01-26
 summary: In this 15-20 minute tutorial, you'll learn how to define NServiceBus messages and handlers, and send and receive a message.
 redirects:
 - tutorials/nservicebus-101/lesson-2
+extensions:
+- !!tutorial
+  nextText: "Next Lesson: Multiple endpoints"
+  nextUrl: tutorials/intro-to-nservicebus/3-multiple-endpoints
 ---
 
 Sending and receiving messages is a central characteristic of any NServiceBus system. Durable messages passed between processes allow reliable communication between those processes, even if one of them is temporarily unavailable. In this lesson we'll show how to send and process a message.
