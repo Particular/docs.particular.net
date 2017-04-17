@@ -94,11 +94,6 @@ Since a new `major` version will contain breaking changes and will likely requir
 
 The release cycle consists of the following quality stages:
 
- * Alpha
- * Beta (Optional)
- * Release Candidate (Optional)
- * Stable
-
 
 ### Alpha
 
