@@ -201,7 +201,7 @@
 - Key: Distributor
   Name: Distributor
   DocoUrl: nservicebus/msmq/distributor
-  GitHubOwner: Particular/nservicebus-maintainers
+  GitHubOwner: Particular/msmq-transport-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Distributor.Msmq
   NugetOrder:
@@ -743,7 +743,7 @@
   Name: MSMQ Transport
   DocoUrl: nservicebus/msmq
   Category: Transport
-  GitHubOwner: Particular/nservicebus-maintainers
+  GitHubOwner: Particular/msmq-transport-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
     - NServiceBus
@@ -752,7 +752,7 @@
   Name: MSMQ Persistence
   DocoUrl: nservicebus/msmq/subscription-persistence
   Category: Persistence
-  GitHubOwner: Particular/nservicebus-maintainers
+  GitHubOwner: Particular/msmq-transport-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
     - NServiceBus
