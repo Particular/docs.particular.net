@@ -13,7 +13,7 @@
             transport.ApplyLabelToMessages(
                 labelGenerator: headers =>
                 {
-                    return headers[NServiceBus.Headers.MessageId];
+                    return headers[Headers.MessageId];
                 });
 
             #endregion

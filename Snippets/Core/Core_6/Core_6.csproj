@@ -147,7 +147,6 @@
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
     <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
-    <Compile Include="Msmq\DLQOptInForTTBR.cs" />
     <Compile Include="UpgradeGuides\6to6.2\Upgrade.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameHelper.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointNameRequired.cs" />

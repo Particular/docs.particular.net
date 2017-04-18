@@ -40,6 +40,7 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
+    <Compile Include="DLQOptInForTTBR.cs" />
     <Compile Include="FQDM.cs" />
     <Compile Include="InstanceMapping.cs" />
     <Compile Include="RoutingAPIs.cs" />
