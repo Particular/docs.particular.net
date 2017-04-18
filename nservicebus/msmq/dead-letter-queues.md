@@ -2,7 +2,7 @@
 title: MSMQ Dead Letter Queues
 summary: Controlling MSMQ Dead Letter Queue behavior
 reviewed: 2017-02-13
-component: core
+component: MsmqTransport
 tags:
  - Transport
 ---
