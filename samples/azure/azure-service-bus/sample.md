@@ -31,7 +31,7 @@ snippet: Config
 
 Some things to note:
 
- * The use of the `SamplesAzureServiceBusConnection` environment variable mention above.
+ * The use of the `SamplesAzureServiceBusConnection` environment variable mentioned above.
  * The use of `UseSingleBrokerQueue` prevents the Azure transport individualizing queue names by appending the machine name.
 
 
