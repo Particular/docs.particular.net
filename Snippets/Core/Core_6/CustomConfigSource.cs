@@ -49,7 +49,6 @@
 
     class CustomRijndaelEncryptionServiceConfigProvider :
         IProvideConfiguration<RijndaelEncryptionServiceConfig>
-
     {
         public RijndaelEncryptionServiceConfig GetConfiguration()
         {

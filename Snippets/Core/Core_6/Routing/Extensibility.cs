@@ -195,7 +195,7 @@
             {
             }
 
-            // Method will not be called since SelectDestination doesnt call base.SelectDestination
+            // Method will not be called since SelectDestination doesn't call base.SelectDestination
             public override string SelectReceiver(string[] receiverAddresses)
             {
                 throw new NotImplementedException();
