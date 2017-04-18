@@ -39,8 +39,8 @@ partial: things-to-note
 
 The following queues for the two endpoints can be seen in the Azure Portal or a 3rd party tool:
 
-- `samples.azure.servicebus.endpoint1`
-- `samples.azure.servicebus.endpoint2`
-- `error`
+ * `samples.azure.servicebus.endpoint1`
+ * `samples.azure.servicebus.endpoint2`
+ * `error`
 
 partial: note-on-extra-queues
