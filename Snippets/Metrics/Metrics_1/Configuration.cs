@@ -3,6 +3,7 @@ using NServiceBus;
 
 namespace Metrics_1
 {
+    using System.Threading.Tasks;
     using NServiceBus.Logging;
 
     public class Configuration
@@ -32,6 +33,16 @@ namespace Metrics_1
             #region Metrics-Tracing
 
             metricsOptions.EnableMetricTracing(TimeSpan.FromSeconds(5));
+
+            #endregion
+
+            #region Metrics-Custom-Function
+
+            metricsOptions.EnableCustomReport(data =>
+            {
+                // process metrics
+                return Task.CompletedTask;
+            }, TimeSpan.FromSeconds(5));
 
             #endregion
         }
