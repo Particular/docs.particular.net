@@ -37,8 +37,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Persistence.Sql, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.2.0.0\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.2.0.0-pullrequest0076\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
       <Private>True</Private>
+    </Reference>
     <Reference Include="NServiceBus.Persistence.Sql, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.2.0.0-pullrequest0076\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
     </Reference>
@@ -61,9 +62,7 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.2.0.0\build\NServiceBus.Persistence.Sql.MsBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.2.0.0\build\NServiceBus.Persistence.Sql.MsBuild.targets'))" />
-  </Target>
-  <Import Project="..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.2.0.0\build\NServiceBus.Persistence.Sql.MsBuild.targets" Condition="Exists('..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.2.0.0\build\NServiceBus.Persistence.Sql.MsBuild.targets')" />
     <Error Condition="!Exists('..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.2.0.0-pullrequest0076\build\NServiceBus.Persistence.Sql.MsBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.2.0.0-pullrequest0076\build\NServiceBus.Persistence.Sql.MsBuild.targets'))" />
   </Target>
+  <Import Project="..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.2.0.0\build\NServiceBus.Persistence.Sql.MsBuild.targets" Condition="Exists('..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.2.0.0\build\NServiceBus.Persistence.Sql.MsBuild.targets')" />
 </Project>
