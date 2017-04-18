@@ -1,20 +1,17 @@
-﻿using System;
-using NServiceBus;
-
-namespace Metrics_1
+﻿namespace Metrics_1
 {
+    using System;
     using System.Threading.Tasks;
+    using NServiceBus;
     using NServiceBus.Logging;
 
     public class Configuration
     {
-        public void ConfigureEndpoint()
+        public void ConfigureEndpoint(EndpointConfiguration endpointConfiguration)
         {
-            var endpointConfig = new EndpointConfiguration("EndpointName");
-
             #region Metrics-Enable
 
-            var metricsOptions = endpointConfig.EnableMetrics();
+            var metricsOptions = endpointConfiguration.EnableMetrics();
 
             #endregion
 
@@ -38,11 +35,13 @@ namespace Metrics_1
 
             #region Metrics-Custom-Function
 
-            metricsOptions.EnableCustomReport(data =>
-            {
-                // process metrics
-                return Task.CompletedTask;
-            }, TimeSpan.FromSeconds(5));
+            metricsOptions.EnableCustomReport(
+                func: data =>
+                {
+                    // process metrics
+                    return Task.CompletedTask;
+                },
+                interval: TimeSpan.FromSeconds(5));
 
             #endregion
         }

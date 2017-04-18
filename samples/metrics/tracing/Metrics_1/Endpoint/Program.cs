@@ -12,19 +12,19 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Metrics.Tracing.Endpoint";
-        var endpointConfig = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
-        endpointConfig.SendFailedMessagesTo("error");
-        endpointConfig.UsePersistence<InMemoryPersistence>();
-        endpointConfig.EnableInstallers();
+        var endpointConfiguration = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
 
         #region EnableMetricTracing
 
-        var metricsOptions = endpointConfig.EnableMetrics();
+        var metricsOptions = endpointConfiguration.EnableMetrics();
         metricsOptions.EnableMetricTracing(TimeSpan.FromSeconds(5));
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfig)
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
         try
