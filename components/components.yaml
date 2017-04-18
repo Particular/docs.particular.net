@@ -21,7 +21,7 @@
 - Key: ABSDataBus
   Name: Azure Blob Storage Databus
   DocoUrl: nservicebus/azure
-  GitHubOwner: Particular/azure-storage-persistence-maintainers
+  GitHubOwner: Particular/azure-maintainers
   Category: Databus
   ProjectUrl: https://github.com/Particular/NServiceBus.DataBus.AzureBlobStorage
   NugetOrder:
@@ -84,7 +84,7 @@
 - Key: ASB
   Name: Azure Service Bus Transport
   DocoUrl: nservicebus/azure-service-bus
-  GitHubOwner: Particular/azure-service-bus-maintainers
+  GitHubOwner: Particular/azure-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureServiceBus
   NugetOrder:
@@ -93,7 +93,7 @@
 - Key: ASP
   Name: Azure Storage Persistence 
   DocoUrl: nservicebus/azure-storage-persistence
-  GitHubOwner: Particular/azure-storage-persistence-maintainers
+  GitHubOwner: Particular/azure-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.AzureStorage
   NugetOrder:
@@ -103,7 +103,7 @@
 - Key: ASQ
   Name: Azure Storage Queues Transport
   DocoUrl: nservicebus/azure-storage-queues
-  GitHubOwner: Particular/azure-storage-queues-maintainers
+  GitHubOwner: Particular/azure-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureStorageQueues
   NugetOrder:
@@ -162,7 +162,7 @@
 - Key: CloudServicesHost
   Name: Azure Cloud Service Host
   DocoUrl: nservicebus/hosting/cloud-services-host
-  GitHubOwner: Particular/azure-host-maintainers
+  GitHubOwner: Particular/azure-maintainers
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Host.AzureCloudService
   NugetOrder:
