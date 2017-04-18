@@ -25,7 +25,7 @@
 
 | CorrelationPropertyType | Sql Type |
 |--|--|
-| `String` | `NVARCHAR2(200)` |
-| `DateTime` | `TIMESTAMP` |
-| `Int` | `NUMBER(19)` |
-| `Guid` | `VARCHAR2(38)` |
+| `String` | `nvarchar2(200)` |
+| `DateTime` | `timestamp` |
+| `Int` | `number(19)` |
+| `Guid` | `varchar2(38)` |
