@@ -35,6 +35,12 @@ Metrics data can be written to [System.Diagnostics.Trace](https://msdn.microsoft
 
 snippet: Metrics-Tracing
 
+### To custom function
+
+Metrics data can be consumed by a custom function.
+
+snippet: Metrics-Custom-Function
+
 ### To Windows Performance Counters
 
 Some of the data captured by the NServiceBus.Metrics component can be forwarded to Windows Performance Counters. See [Performance Counters](./performance-counters.md) for more information.
