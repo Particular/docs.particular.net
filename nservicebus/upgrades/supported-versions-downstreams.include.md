@@ -43,7 +43,7 @@
 | Version   | Released       | Supported until   | Explanation                       |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 7.1.x     | 2017-01-19     | -                 | -                                 |
-| 7.0.x     | 2016-10-11     | 2017-04-19        | Superseded by 7.1.x               |
+| ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-04-19~~    | ~~Superseded by 7.1.x~~           |
 | 6.2.x     | 2015-05-27     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 #### NServiceBus.Persistence.AzureStorage
