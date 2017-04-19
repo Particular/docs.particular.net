@@ -65,19 +65,17 @@ NOTE: In cases when Immediate and/or Delayed Retry capabilities have been turned
 
 ### Partial customization
 
-Sometimes only a partial customization of the default Recoverability Policy is desired. In order to achieve partial customization the `DefaultRecoverabilityPolicy` needs to be called in the customized Recoverability Policy delegate.
+Sometimes only a partial customization of the default Recoverability Policy is desired. In order to achieve partial customization the `DefaultRecoverabilityPolicy` needs to be called in the customized Recoverability Policy delegate. If when certain exceptions like `MyBusinessException` happen messages that triggered such an exception should be moved to error queue then a policy might look like:
+
+snippet: CustomExceptionPolicyHandler
 
 In the following example the default Recoverability Policy is tweaked to do three Immediate Retries and three Delayed Retries with a time increase of two seconds. The configuration looks like the following:
 
 snippet: PartiallyCustomizedPolicyRecoverabilityConfiguration
 
-If when certain exceptions like `MyBusinessException` happen messages that triggered such an exception should be moved to error queue. And if for exceptions like `MyOtherBusinessException` the default Delayed Retries time increase should be always five seconds but for all other cases the Default Recoverability Policy should be applied then the code can look like the following:
+And if for exceptions like `MyOtherBusinessException`, in addition to moving `MyBusinessException` directly to the error queue, the default Delayed Retries time increase should be always five seconds but for all other cases the Default Recoverability Policy should be applied then the code can look like the following:
 
 snippet: PartiallyCustomizedPolicy
-
-If the Default Recoverability Policy just needs to be tweaked for `MyBusinessException` then a policy might look like:
-
-snippet: CustomExceptionPolicyHandler
 
 If more control over Recoverability is desired the Recoverability delegate can be overridden completely.
 
