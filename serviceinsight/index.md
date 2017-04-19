@@ -59,8 +59,6 @@ The Endpoint Explorer indicates the connection to the ServiceControl instance pr
 
 Select endpoints to filter the message list. Select the root ServiceControl connection and the tree view to make the list expand to include all messages.
 
-NOTE: Endpoints will not appear unless messages are successfully completed and _audited_.
-
 ## Flow Diagram
 
 The flow diagram provides extensive message and system information. When messages are selected in the message list, the flow diagram illustrates the message and all related messages from the same conversation, along with the nature of the messages and the endpoints involved.
