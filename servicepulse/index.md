@@ -25,6 +25,8 @@ The Dashboard provides a visual overview of the current state of the monitored N
 
 ServicePulse automatically detects what endpoints exist in the system by analyzing metadata from [audited messages](/nservicebus/operations/auditing.md). All detected endpoints will, by default, be listed in the Endpoints tab, but will not be automatically monitored.
 
+NOTE: Endpoints will not appear unless messages are successfully completed and _audited_.
+
 In order to monitor endpoints health and activity it is necessary to [configure them for monitoring](/servicepulse/how-to-configure-endpoints-for-monitoring.md).
 
 **Learn more:**
