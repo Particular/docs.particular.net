@@ -1,6 +1,4 @@
 ﻿using NServiceBus;
-using NServiceBus.Configuration.AdvanceExtensibility;
-using NServiceBus.Distributor.MSMQ;
 
 class Usage
 {
@@ -23,25 +21,6 @@ class Usage
         #region ConfiguringWorker
 
         busConfiguration.EnlistWithMSMQDistributor();
-
-        #endregion
-    }
-
-    void IsEnabled(BusConfiguration busConfiguration)
-    {
-        #region IsDistributorEnabled
-
-        var isDistributorEnabled = busConfiguration
-            .GetSettings()
-            .GetOrDefault<bool>(typeof(Distributor).FullName);
-
-        #endregion
-
-        #region IsWorkerEnabled
-
-        var isWorkerEnabled = busConfiguration
-            .GetSettings()
-            .GetOrDefault<bool>(typeof(WorkerNode).FullName);
 
         #endregion
     }
