@@ -68,7 +68,6 @@ Automatically removing these attachments can cause problems in many situations. 
  * The supported data bus implementations do not participate in distributed transactions. If for some reason, the message handler throws an exception and the transaction rolls back, the delete operation on the attachment cannot be rolled back. Therefore, when the message is retried, the attachment will no longer be present causing additional problems.
  * The message can be deferred so that the file will be processed later. Removing the file after deferring the message, results in a message without the corresponding file.
  * Functional requirements might dictate the message to be available for a longer duration.
- * If the outbox feature in NServiceBus is enabled, the message will be removed from the incoming queue, but it might not have been processed yet.
  * If the DataBus feature is used in combination with multiple subscribers, the subscribers cannot determine who should remove the file.
  * If a messages fails it will be handled by [recoverability](/nservicebus/recoverability/). This message can then be retried some period after that failure. The databus files need to exist for that message to be re-processed correctly.
 
