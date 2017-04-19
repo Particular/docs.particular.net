@@ -1,6 +1,6 @@
 ---
 title: Azure Service Bus Transport
-reviewed: 2016-07-06
+reviewed: 2017-04-18
 component: ASB
 related:
 - nservicebus/azure-service-bus
@@ -32,11 +32,15 @@ snippet: Config
 Some things to note:
 
  * The use of the `SamplesAzureServiceBusConnection` environment variable mentioned above.
- * The use of `UseSingleBrokerQueue` prevents the Azure transport individualizing queue names by appending the machine name.
+partial: things-to-note
 
 
-## The Data in Azure Storage
+## Viewing message in-flight
 
-The queues for the two endpoints can be seen in the Azure Portal.
+The following queues for the two endpoints can be seen in the Azure Portal or a 3rd party tool:
 
-![](queues.png)
+ * `samples.azure.servicebus.endpoint1`
+ * `samples.azure.servicebus.endpoint2`
+ * `error`
+
+partial: note-on-extra-queues
