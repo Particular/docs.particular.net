@@ -4,7 +4,7 @@ class Usage
 {
     Usage(Configure configure)
     {
-        #region ConfiguringDistributor
+        #region ConfiguringDistributor [4.0,4.3)
 
         // Running the Distributor and a Worker
         configure.AsMasterNode();
@@ -16,7 +16,7 @@ class Usage
 
         #endregion
 
-        #region ConfiguringWorker
+        #region ConfiguringWorker [4.0,4.3)
 
         configure.EnlistWithDistributor();
 

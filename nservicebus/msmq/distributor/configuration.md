@@ -6,10 +6,23 @@ tags:
  - Scalability
 ---
 
+## Versions
+
+### NServiceBus 4.2 and below
+
+In Version 4.2 and below Distributor was included in the NServiceBus package.
+
+### NServiceBus 4.3 to 5.0
+
+In Version 4.3 the built-in Distributor has been deprecated. The new dedicated [NServiceBus.Distributor.MSMQ](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) package should be used instead.
+
+### NServiceBus 6.0 and above
+
+Running an embedded distributor (also known as Master mode) is not supported in Versions 6 and higher. Instead, a stand alone Distributor endpoint running NServiceBus 5 should be used. 
+
+Worker configuration sections like `MasterNodeConfig` are obsoleted and `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor` should be used instead. For more information refer to [Upgrading a Distributor-based scaled out endpoint to Version 6](/samples/scaleout/distributor-upgrade/) documentation.
+
 ## Distributor configuration
-
-include: distributor-inV6
-
 
 ### When hosting endpoints in NServiceBus.Host.exe
 
@@ -50,7 +63,7 @@ Configure the name of the master node server as shown in this `app.config` examp
 </configuration>
 ```
 
-Read about the `DistributorControlAddress` and the `DistributorDataAddress` in the [Routing with the Distributor](#routing-with-the-distributor) section.
+Read about the `DistributorControlAddress` and the `DistributorDataAddress` in the [Routing with the Distributor](/nservicebus/msmq/distributor/#routing-with-the-distributor) section.
 
 
 ### When self-hosting
