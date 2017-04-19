@@ -32,7 +32,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.EntityFrameworkUnitOfWork.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
-
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
 

@@ -8,6 +8,9 @@ using NServiceBus.Transport.SQLServer;
 
 class Program
 {
+    const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+    static readonly string[] locations = {"London", "Paris", "Oslo", "Madrid"};
+
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
@@ -16,7 +19,6 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.EntityFrameworkUnitOfWork.Sender";
-        const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
 
         var hibernateConfig = new Configuration();
@@ -31,6 +33,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.EntityFrameworkUnitOfWork.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.DefaultSchema("sender");
@@ -57,10 +60,12 @@ class Program
                     return;
                 }
                 var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                var shipTo = locations[random.Next(locations.Length)];
                 var orderSubmitted = new OrderSubmitted
                 {
                     OrderId = orderId,
-                    Value = random.Next(100)
+                    Value = random.Next(100),
+                    ShipTo = shipTo
                 };
                 await endpointInstance.Publish(orderSubmitted)
                     .ConfigureAwait(false);

@@ -14,6 +14,7 @@ public class CreateShipmentHandler :
             var shipment = new Shipment()
             {
                 OrderId = message.OrderId,
+                Location = message.ShipTo
             };
             context.DataContext().Shipments.Add(shipment);
         }

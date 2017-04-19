@@ -23,7 +23,7 @@ class EntityFrameworkUnitOfWork
         Context.Database.UseTransaction(null);
 
         //Call SaveChanges before completing storage session
-        storageSession.RegisterCommitHook(() => Context.SaveChangesAsync());
+        storageSession.OnSaveChanges(x => Context.SaveChangesAsync());
     }
 }
 
