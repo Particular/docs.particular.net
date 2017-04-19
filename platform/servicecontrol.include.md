@@ -10,6 +10,8 @@ To enable [ServiceControl](/servicecontrol) to gather this information, configur
  * configure [recoverability](/nservicebus/recoverability) to store information on messages failures;
  * [install plugins on the endpoints](/servicecontrol/plugins/) to monitor their health and sagas and use custom checks.
 
+NOTE: ServiceControl _consumes_ messages that arrive in either the configured audit or error queues. If you require a copy of those messages for your own processing, configure [audit forwarding](/servicecontrol/creating-config-file.md#servicecontrolforwardauditmessages) and/or [error queue forwarding](/servicecontrol/creating-config-file.md#servicecontrolforwarderrormessages).
+
 By default ServiceControl stores information for 30 days, but it can be [customized](/servicecontrol/creating-config-file.md).
 
 Refer to the [Optimizing for use in different environments](/servicecontrol/servicecontrol-in-practice.md) article for more information about practical considerations.
