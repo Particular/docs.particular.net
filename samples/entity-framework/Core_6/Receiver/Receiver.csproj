@@ -74,7 +74,6 @@
     <Compile Include="Shipment.cs" />
     <Compile Include="UnitOfWork\EntityFrameworkUnitOfWork.cs" />
     <Compile Include="UnitOfWork\EntityFrameworkUnitOfWorkContextExtensions.cs" />
-    <Compile Include="UnitOfWork\UnitOfWorkInitializeBehavior.cs" />
     <Compile Include="UnitOfWork\UnitOfWorkSetupBehaviorBehavior.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -52,7 +52,6 @@ class Program
         #region ReceiverConfiguration
 
         endpointConfiguration.Pipeline.Register(new UnitOfWorkSetupBehaviorBehavior(), "Sets up unit of work for the message");
-        endpointConfiguration.Pipeline.Register(new UnitOfWorkInitializeBehavior(), "Initializes unit of work for the message");
 
         #endregion
 

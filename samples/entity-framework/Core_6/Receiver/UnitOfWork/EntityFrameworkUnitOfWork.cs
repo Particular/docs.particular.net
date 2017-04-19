@@ -1,29 +1,27 @@
 using NServiceBus;
+using NServiceBus.Persistence;
 using NServiceBus.Pipeline;
 
 #region UnitOfWork
 
 class EntityFrameworkUnitOfWork
 {
-    public ReceiverDataContext Context { get; private set; }
+    ReceiverDataContext context;
 
-    public void Initialize(IInvokeHandlerContext context)
+    public ReceiverDataContext GetDataContext(SynchronizedStorageSession storageSession)
     {
-        if (Context != null)
+        if (context == null)
         {
-            //Only the first handler in transaction initializes the Unit of Work
-            return;
+            var dbConnection = storageSession.Session().Connection;
+            context = new ReceiverDataContext(dbConnection);
+
+            //Don't use transaction because connection is enlisted in the TransactionScope
+            context.Database.UseTransaction(null);
+
+            //Call SaveChanges before completing storage session
+            storageSession.OnSaveChanges(x => context.SaveChangesAsync());
         }
-        var storageSession = context.SynchronizedStorageSession;
-
-        var dbConnection = storageSession.Session().Connection;
-        Context = new ReceiverDataContext(dbConnection);
-
-        //Don't use transaction because connection is enlisted in the TransactionScope
-        Context.Database.UseTransaction(null);
-
-        //Call SaveChanges before completing storage session
-        storageSession.OnSaveChanges(x => Context.SaveChangesAsync());
+        return context;
     }
 }
 

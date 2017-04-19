@@ -1,10 +1,11 @@
 ---
 title: EntityFramework integration
 summary: Integrating EntityFramework with NHibernate NServiceBus persistence.
-reviewed: 2016-03-21
+reviewed: 2017-04-19
 component: NHibernate
 tags:
-- Outbox
+- EntityFramework
+- NHibernate
 related:
 - nservicebus/nhibernate
 ---
@@ -29,8 +30,8 @@ related:
 
  1. The Receiver displays information that an order was submitted.
  1. The Sender displays information that the order was accepted.
- 1. Finally, after a couple of seconds, the Receiver displays confirmation that the timeout message has been received.
- 1. Open SQL Server Management Studio and go to the receiver database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`)
+ 1. Finally, after a couple of seconds, the Receiver displays confirmation that the order has been completed.
+ 1. Open SQL Server Management Studio and go to the receiver database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`), in the orders table (`dbo.Orders`) and in the shipments table (`dbo.Shipments`).
 
 
 ## Code walk-through
@@ -76,7 +77,7 @@ snippet:StoreShipment
 
 ### Unit of work
 
-The integration with Entity Framework allows users to take advantage of *Unit of Work* semantics of Entity Framework's `DataContext`. A single instance of the context is shared between all the handlers and the `SaveChanges` method is called after all handlers do their work. This is possible thanks to cooperation of a number of classes
+The integration with Entity Framework allows users to take advantage of *Unit of Work* semantics of Entity Framework's `DataContext`. A single instance of the context is shared between all the handlers and the `SaveChanges` method is called after all handlers do their work.
 
 #### Setting up
 
@@ -84,18 +85,10 @@ The setup behavior makes sure that there is an instance of unit of work wrapper 
 
 snippet:SetupBehavior
 
-#### Initialization
-
-The initializing behavior is called before each handler is executed. It makes sure that the unit of work wrapper class has been initialized.
-
 #### Creating data context
 
-The data context is created only once, before executing the first handler.
+The data context is created only once, before it is first accessed from a handler.
 
 snippet:UnitOfWork
 
-The initialization code captures the connection from the NHibernate persistence storage session and registers `SaveChangesAsync` to be called when the storage session completes. 
-
-## How it works
-
-All the data manipulations happen atomically because SQL Server 2008 and later allows multiple (but not overlapping) instances of `SqlConnection` to enlist in a single `TransactionScope` without the need to escalate to DTC. The SQL Server manages these transactions like they were just one `SqlTransaction`.
+The initialization code captures the connection from the NHibernate persistence storage session and registers `SaveChangesAsync` to be called when the storage session completes successfully (`OnSaveChanges`). 
