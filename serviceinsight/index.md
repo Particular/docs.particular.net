@@ -18,6 +18,7 @@ The flow diagram provides a detailed visual overview of the messages, collated b
 
 As endpoints are selected, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint.
 
+NOTE: Endpoint lists, message information, and message flows will not be populated until messages have been successfully processed by ServiceControl.
 
 ## The Message Window
 
