@@ -58,6 +58,7 @@ The Endpoint Explorer indicates the connection to the ServiceControl instance pr
 
 Select endpoints to filter the message list. Select the root ServiceControl connection and the tree view to make the list expand to include all messages.
 
+NOTE: Endpoints will not appear unless messages are successfully completed and _audited_.
 
 ## Flow Diagram
 
