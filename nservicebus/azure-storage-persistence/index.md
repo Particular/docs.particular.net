@@ -28,9 +28,7 @@ snippet: PersistanceWithAzure
 
 ### Saga correlation
 
-NOTE: In Versions 6 and above of NServiceBus, all correlated properties are [unique by default](/nservicebus/upgrades/5to6/handlers-and-sagas.md#saga-api-changes-unique-attribute-no-longer-needed) so there is no longer a configuration setting.
-
-One of the limitations of the Azure Storage Persistence is support for only one `[Unique]` property (a saga property which value is guaranteed to be unique across all sagas of this type).
+partial: correlation
 
 To ensure that only one saga can be created for one correlation property value, secondary indexes have been introduced. Their entities are stored in the same table as a saga. When a saga is completed, a secondary index entity is removed as well. It's possible, but highly unlikely, that the saga's completion can leave an orphaned secondary index record. This does not impact the behavior of the persistence as it can detect orphaned records, but may leave a dangling entity in a table with a following `WARN` entry in logs: `Removal of the secondary index entry for the following saga failed: {sagaId}`.
 
