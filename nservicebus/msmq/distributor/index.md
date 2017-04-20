@@ -47,11 +47,11 @@ For more information about Pub/Sub in a distributor scenario see the [Distributo
 
 For each message being processed, the Distributor performs a few additional operations: it receives a ready message from a Worker, sends the work message to the Worker and receives a ready message post processing. That means that using Distributor introduces a certain processing overhead, that is independent of how much actual work is done. Therefore the Distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short lived units of work (a quick read from the database and dispatching a message using `Bus.Send` or  `Bus.Publish`).
 
-To get a sense of the expected performance take the regular endpoint performance and divide it by 4.
+To get a sense of the expected performance take maximum MSMQ throughput of a given machine (e.g. by running NServiceBus with `NOOP` handlers) and divide it by 4.
 
-If scale out small units of work is required consider splitting the handlers into smaller vertical slices of functionality and deploying them on their own endpoints.
+If scaling out small units of work is required consider splitting the handlers into smaller vertical slices of functionality and deploying them on their own endpoints.
 
-WARNING: The default concurrency of Distributor is set to 1. That means the messages are processed sequentially. Make sure that the [**MaximumConcurrencyLevel** has been increased in the configuration](/nservicebus/operations/tuning.md#tuning-concurrency) on the Distributor endpoint. 
+WARNING: The default concurrency of Distributor is set to 1. That means the messages are processed sequentially. Make sure that the [**MaximumConcurrencyLevel** has been increased in the configuration](/nservicebus/operations/tuning.md#tuning-concurrency) on the Distributor endpoint. A good rule of thumb to set this value to 2-4 times the amount of cores of a given machine. Inspect disk, CPU and network resources until one of these reaches its maximum capacity.
 
 Increasing the concurrency on the workers might not lead to increased performance if the executed code is multi-threaded, e.g. if the worker does CPU-intensive work using all the available cores such as video encoding.
 
@@ -95,4 +95,4 @@ Check out [John Breakwell's blog](https://blogs.msdn.microsoft.com/johnbreakwell
 
 If the Distributor goes down, even if its worker nodes remain running, they do not receive any messages. It is important to run the Distributor on a cluster that has its its queues configured as clustered resources.
 
-Since the Distributor performs no CPU or memory intensive work, several Distributor processes can be placed on the same clustered server. Be aware that the network IO may end up being the bottleneck for the Distributor, so take into account message sizes and throughput when sizing the infrastructure.
+The distributor is disk and network IO restricted. If a single endpoint does not saturate either of these then it is possible to host multiple distributor processes on a single server.

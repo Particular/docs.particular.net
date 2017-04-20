@@ -9,7 +9,17 @@ tags:
 
 ## When to scale out
 
-Scaling out is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](/nservicebus/operations/performance-counters.md) on the endpoint. 
+### Throughput
+
+Scaling out is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](/nservicebus/operations/performance-counters.md) on the endpoint.
+
+### High-availability
+
+Some scaling out techniques improve the availability characteristic as well as throughput. When scaling out for higher availability keep in mind the components that are single points of failure e.g.
+ * Distributor when using MSMQ
+ * Message broker
+
+and use appropriate risk mitigation technique (e.g. use failover cluster to host Distributor or cluster mode if a given broker supports one).  
 
 ## Bus transports
 
