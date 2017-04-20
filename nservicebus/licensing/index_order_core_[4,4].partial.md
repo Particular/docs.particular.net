@@ -6,11 +6,9 @@
 | File located at `{AppDomain.CurrentDomain.BaseDirectory}\NServiceBus\License.xml` |       |
 | File located at `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml`     |       |
 | `HKEY_CURRENT_USER\Software\ParticularSoftware\NServiceBus\License`               |       |
-| `HKEY_CURRENT_USER\Software\Wow6432Node\ParticularSoftware\NServiceBus\License`   |   1   |
 | `HKEY_LOCAL_MACHINE\Software\ParticularSoftware\NServiceBus\License`              |       |
 | `HKEY_LOCAL_MACHINE\Software\Wow6432Node\ParticularSoftware\NServiceBus\License`  |   1   |
 | `HKEY_CURRENT_USER\Software\NServiceBus\{Version}\License`                        |   2   |
-| `HKEY_CURRENT_USER\Software\Wow6432Node\NServiceBus\{Version}\License`            |  1, 2 |
 | `HKEY_LOCAL_MACHINE\Software\NServiceBus\{Version}\License`                       |   2   |
 | `HKEY_LOCAL_MACHINE\Software\Wow6432Node\NServiceBus\{Version}\License`           |  1, 2 |
 

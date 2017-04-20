@@ -2,7 +2,6 @@
 | Location                                                                          | Notes |
 |-----------------------------------------------------------------------------------|:-----:|
 | `HKEY_CURRENT_USER\Software\ParticularSoftware\License`                           |       |
-| `HKEY_CURRENT_USER\Software\Wow6432Node\ParticularSoftware\License`               |   1   |
 | `HKEY_LOCAL_MACHINE\Software\ParticularSoftware\License`                          |       |
 | `HKEY_LOCAL_MACHINE\Software\Wow6432Node\ParticularSoftware\License`              |   1   |
 | License XML defined by `NServiceBus/License` appSetting                           |       |

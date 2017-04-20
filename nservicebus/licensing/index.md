@@ -87,5 +87,4 @@ This section details where NServiceBus will look for license information, and in
 
 In order to find the license, NServiceBus will examine:
 
-
 partial: order
