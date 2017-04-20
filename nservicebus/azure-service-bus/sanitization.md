@@ -12,7 +12,7 @@ reviewed: 2016-09-22
 
 ## Azure Service Bus entity naming rules
 
-Azure Service Bus transport works with the Messaging namespaces and operates on four types of entities: queues, topics, subscriptions, and rules. Entities have path and name rules applied to:
+Azure Service Bus transport works with the Messaging namespaces and operates on four types of entities: queues, topics, subscriptions, and rules. Entities have their paths and names derived from NServiceBus endpoints and events names. Entities have path and name rules applied to:
 
  1. Allowed characters
  1. Maximum length
