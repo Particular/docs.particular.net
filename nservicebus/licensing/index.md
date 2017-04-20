@@ -2,7 +2,7 @@
 title: Licensing
 summary: Outlines license usage, management, and restrictions
 component: core
-reviewed: 2016-09-27
+reviewed: 2017-04-20
 redirects:
  - nservicebus/licensing-limitations
  - nservicebus/licensing/licensing-limitations
