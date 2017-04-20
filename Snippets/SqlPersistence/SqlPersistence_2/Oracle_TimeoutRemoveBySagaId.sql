@@ -1,5 +1,5 @@
 startcode Oracle_TimeoutRemoveBySagaIdSql
 
-delete from EndpointNameTO
+delete from "ENDPOINTNAMETO"
 where SagaId = :SagaId
 endcode

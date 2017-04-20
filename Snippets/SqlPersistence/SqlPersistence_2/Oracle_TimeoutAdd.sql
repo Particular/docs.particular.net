@@ -1,6 +1,6 @@
 startcode Oracle_TimeoutAddSql
 
-insert into EndpointNameTO
+insert into "ENDPOINTNAMETO"
 (
     Id,
     Destination,

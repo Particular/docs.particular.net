@@ -1,5 +1,5 @@
 startcode Oracle_TimeoutCreateSql
-declare 
+declare
   tableName varchar2(30) := UPPER(:1) || 'TO';
   timeIndex varchar2(30) := tableName || '_TK';
   sagaIndex varchar2(30) := tableName || '_SK';
@@ -9,36 +9,36 @@ begin
   select count(*) into n from user_tables where table_name = tableName;
   if(n = 0)
   then
-    
+
     execute immediate
-       'CREATE TABLE ' || tableName || ' 
-		(
-		  ID VARCHAR2(38) NOT NULL 
-		, DESTINATION NVARCHAR2(200) NOT NULL 
-		, SAGAID VARCHAR2(38) 
-		, STATE BLOB 
-		, EXPIRETIME DATE 
-		, HEADERS CLOB NOT NULL 
-		, PERSISTENCEVERSION VARCHAR2(23) NOT NULL 
-		, CONSTRAINT ' || tableName || '_PK PRIMARY KEY 
-		  (
-			ID 
-		  )
-		  ENABLE 
-		)';
-    
+       'create table "' || tableName || '"
+       (
+         id varchar2(38) not null,
+         destination nvarchar2(200) not null,
+         sagaid varchar2(38),
+         state blob,
+         expiretime date,
+         headers clob not null,
+         persistenceversion varchar2(23) not null,
+         constraint "' || tableName || '_PK" primary key 
+         (
+           id
+         )
+         enable
+       )';
+
   end if;
 
   select count(*) into n from user_indexes where index_name = timeIndex;
   if(n = 0)
   then
-	execute immediate 'create index ' || timeIndex || ' on ' || tableName || ' (EXPIRETIME ASC)';
+    execute immediate 'create index "' || timeIndex || '" on "' || tableName || '" (expiretime asc)';
   end if;
 
   select count(*) into n from user_indexes where index_name = sagaIndex;
   if(n = 0)
   then
-	execute immediate 'create index ' || sagaIndex || ' on ' || tableName || ' (SAGAID ASC)';
+    execute immediate 'create index "' || sagaIndex || '" on "' || tableName || '" (sagaid asc)';
   end if;
 end;
 endcode

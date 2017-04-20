@@ -1,6 +1,6 @@
 startcode Oracle_SagaUpdateSql
 
-update EndpointName_SagaName
+update "ENDPOINTNAME_SAGANAME"
 set
     Data = :Data,
     PersistenceVersion = :PersistenceVersion,

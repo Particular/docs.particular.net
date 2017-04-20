@@ -10,7 +10,7 @@ begin
   select count(*) into n from user_tables where table_name = 'ORDERSAGA';
   if(n > 0)
   then
-    execute immediate 'drop table ORDERSAGA';
+    execute immediate 'drop table "ORDERSAGA"';
   end if;
 end;
 

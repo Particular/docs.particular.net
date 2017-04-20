@@ -1,6 +1,6 @@
 startcode Oracle_SubscriptionGetSubscribersSql
 
 select distinct Subscriber, Endpoint
-from EndpointNameSS
+from "ENDPOINTNAMESS"
 where MessageType in (:type0)
 endcode

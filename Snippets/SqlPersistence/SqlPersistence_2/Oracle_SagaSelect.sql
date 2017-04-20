@@ -6,6 +6,6 @@ select
     Concurrency,
     Metadata,
     Data
-from EndpointName_SagaName
+from "ENDPOINTNAME_SAGANAME"
 
 endcode

@@ -6,7 +6,7 @@ select
     Concurrency,
     Metadata,
     Data
-from EndpointName_SagaName
+from "ENDPOINTNAME_SAGANAME"
 where CORR_PROPERTYNAME = :propertyValue
 
 endcode

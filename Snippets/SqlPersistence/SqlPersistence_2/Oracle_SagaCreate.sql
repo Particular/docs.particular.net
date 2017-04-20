@@ -4,7 +4,7 @@ startcode Oracle_SagaCreateSql
 
 /* Initialize */
 
-declare 
+declare
   sqlStatement varchar2(500);
   dataType varchar2(30);
   n number(10);
@@ -17,50 +17,50 @@ begin
   then
     
     sqlStatement :=
-       'CREATE TABLE ORDERSAGA 
-		(
-          ID VARCHAR2(38) NOT NULL 
-        , METADATA CLOB NOT NULL 
-        , DATA CLOB NOT NULL 
-        , PERSISTENCEVERSION VARCHAR2(23) NOT NULL 
-        , SAGATYPEVERSION VARCHAR2(23) NOT NULL 
-        , CONCURRENCY NUMBER(9) NOT NULL 
-        , CONSTRAINT ORDERSAGA_PK PRIMARY KEY 
+       'create table "ORDERSAGA"
+       (
+          id varchar2(38) not null,
+          metadata clob not null,
+          data clob not null,
+          persistenceversion varchar2(23) not null,
+          sagatypeversion varchar2(23) not null,
+          concurrency number(9) not null,
+          constraint "ORDERSAGA_PK" primary key
           (
-            ID 
+            id
           )
-          ENABLE 
+          enable
         )';
-    
+
     execute immediate sqlStatement;
-    
+
   end if;
 
 /* AddProperty OrderNumber */
 
-select count(*) into n from ALL_TAB_COLUMNS where TABLE_NAME = 'ORDERSAGA' and COLUMN_NAME = 'CORR_ORDERNUMBER';
+select count(*) into n from all_tab_columns where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERNUMBER';
 if(n = 0)
 then
-  sqlStatement := 'alter table ORDERSAGA add ( CORR_ORDERNUMBER NUMBER(19) )';
-  
+  sqlStatement := 'alter table "ORDERSAGA" add ( CORR_ORDERNUMBER NUMBER(19) )';
+
   execute immediate sqlStatement;
 end if;
 
 /* VerifyColumnType Int */
 
-select DATA_TYPE ||
-  case when CHAR_LENGTH > 0 then 
-    '(' || CHAR_LENGTH || ')' 
+select data_type ||
+  case when char_length > 0 then
+    '(' || char_length || ')'
   else
-    case when DATA_PRECISION is not null then
-      '(' || DATA_PRECISION ||
-        case when DATA_SCALE is not null and DATA_SCALE > 0 then
-          ',' || DATA_SCALE
+    case when data_precision is not null then
+      '(' || data_precision ||
+        case when data_scale is not null and data_scale > 0 then
+          ',' || data_scale
         end || ')'
     end
   end into dataType
-from ALL_TAB_COLUMNS 
-where TABLE_NAME = 'ORDERSAGA' and COLUMN_NAME = 'CORR_ORDERNUMBER';
+from all_tab_columns 
+where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERNUMBER';
 
 if(dataType <> 'NUMBER(19)')
 then
@@ -72,36 +72,36 @@ end if;
 select count(*) into n from user_indexes where table_name = 'ORDERSAGA' and index_name = 'SAGAIDX_599F57BA89CF9D164E3CFF';
 if(n = 0)
 then
-  sqlStatement := 'create unique index SAGAIDX_599F57BA89CF9D164E3CFF on ORDERSAGA (CORR_ORDERNUMBER ASC)';
+  sqlStatement := 'create unique index "SAGAIDX_599F57BA89CF9D164E3CFF" on "ORDERSAGA" (CORR_ORDERNUMBER ASC)';
 
   execute immediate sqlStatement;
 end if;
 
 /* AddProperty OrderId */
 
-select count(*) into n from ALL_TAB_COLUMNS where TABLE_NAME = 'ORDERSAGA' and COLUMN_NAME = 'CORR_ORDERID';
+select count(*) into n from all_tab_columns where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERID';
 if(n = 0)
 then
-  sqlStatement := 'alter table ORDERSAGA add ( CORR_ORDERID VARCHAR2(38) )';
-  
+  sqlStatement := 'alter table "ORDERSAGA" add ( CORR_ORDERID VARCHAR2(38) )';
+
   execute immediate sqlStatement;
 end if;
 
 /* VerifyColumnType Guid */
 
-select DATA_TYPE ||
-  case when CHAR_LENGTH > 0 then 
-    '(' || CHAR_LENGTH || ')' 
+select data_type ||
+  case when char_length > 0 then
+    '(' || char_length || ')'
   else
-    case when DATA_PRECISION is not null then
-      '(' || DATA_PRECISION ||
-        case when DATA_SCALE is not null and DATA_SCALE > 0 then
-          ',' || DATA_SCALE
+    case when data_precision is not null then
+      '(' || data_precision ||
+        case when data_scale is not null and data_scale > 0 then
+          ',' || data_scale
         end || ')'
     end
   end into dataType
-from ALL_TAB_COLUMNS 
-where TABLE_NAME = 'ORDERSAGA' and COLUMN_NAME = 'CORR_ORDERID';
+from all_tab_columns 
+where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERID';
 
 if(dataType <> 'VARCHAR2(38)')
 then
@@ -113,7 +113,7 @@ end if;
 select count(*) into n from user_indexes where table_name = 'ORDERSAGA' and index_name = 'SAGAIDX_FD8BAD844CFBBE419E43FE';
 if(n = 0)
 then
-  sqlStatement := 'create unique index SAGAIDX_FD8BAD844CFBBE419E43FE on ORDERSAGA (CORR_ORDERID ASC)';
+  sqlStatement := 'create unique index "SAGAIDX_FD8BAD844CFBBE419E43FE" on "ORDERSAGA" (CORR_ORDERID ASC)';
 
   execute immediate sqlStatement;
 end if;
@@ -123,25 +123,25 @@ end if;
 /* PurgeObsoleteProperties */
 
 select count(*) into n
-from ALL_TAB_COLUMNS
-where TABLE_NAME = 'ORDERSAGA' and COLUMN_NAME LIKE 'CORR_%' and
+from all_tab_columns
+where table_name = 'ORDERSAGA' and column_name like 'CORR_%' and
         column_name <> 'CORR_ORDERNUMBER' and
         column_name <> 'CORR_ORDERID';
-  
+
 if(n > 0)
 then
 
-  select 'alter table ORDERSAGA drop column ' || COLUMN_NAME into sqlStatement
-  from ALL_TAB_COLUMNS
-  where TABLE_NAME = 'ORDERSAGA' and COLUMN_NAME LIKE 'CORR_%' and
+  select 'alter table "ORDERSAGA" drop column ' || column_name into sqlStatement
+  from all_tab_columns
+  where table_name = 'ORDERSAGA' and column_name like 'CORR_%' and
         column_name <> 'CORR_ORDERNUMBER' and
         column_name <> 'CORR_ORDERID';
-    
+
   execute immediate sqlStatement;
 
 end if;
 
-/* CreateComplete */
+/* CompleteSagaScript */
 end;
 
 endcode

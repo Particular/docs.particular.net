@@ -1,5 +1,5 @@
 startcode Oracle_TimeoutRemoveByIdSql
 
-delete from EndpointNameTO
+delete from "ENDPOINTNAMETO"
 where Id = :Id
 endcode

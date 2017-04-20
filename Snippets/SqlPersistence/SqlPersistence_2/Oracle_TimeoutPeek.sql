@@ -6,6 +6,6 @@ select
     State,
     ExpireTime,
     Headers
-from EndpointNameTO
+from "ENDPOINTNAMETO"
 where Id = :Id
 endcode

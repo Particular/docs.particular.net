@@ -1,6 +1,6 @@
 startcode Oracle_OutboxSetAsDispatchedSql
 
-update EndpointNameOD
+update "ENDPOINTNAMEOD"
 set
     Dispatched = 1,
     DispatchedAt = :DispatchedAt,

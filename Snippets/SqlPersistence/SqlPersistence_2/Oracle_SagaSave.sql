@@ -1,6 +1,6 @@
 startcode Oracle_SagaSaveSql
 
-insert into EndpointName_SagaName
+insert into "ENDPOINTNAME_SAGANAME"
 (
     Id,
     Metadata,
