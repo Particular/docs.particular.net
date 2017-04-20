@@ -12,7 +12,7 @@ To enable [ServiceControl](/servicecontrol) to gather this information, configur
 
 NOTE: All endpoints should be configured to forward to the same audit, error, and ServiceControl plugin queues unless the system has been sharded between multiple ServiceControl instances.
 
-NOTE: ServiceControl _consumes_ messages that arrive in either the configured audit or error queues. If a copy of those messages is required for further processing, configure [audit forwarding](/servicecontrol/creating-config-file.md#servicecontrolforwardauditmessages) and/or [error queue forwarding](/servicecontrol/creating-config-file.md#servicecontrolforwarderrormessages).
+NOTE: ServiceControl _consumes_ messages that arrive in either the configured audit or error queues. If a copy of those messages is required for further processing, configure [audit forwarding](/servicecontrol/creating-config-file.md#transport-servicecontrolforwardauditmessages) and/or [error queue forwarding](/servicecontrol/creating-config-file.md#transport-servicecontrolforwarderrormessages).
 
 By default ServiceControl stores information for 30 days, but it can be [customized](/servicecontrol/creating-config-file.md).
 
