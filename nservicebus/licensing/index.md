@@ -32,32 +32,33 @@ partial: validity
 partial: limitations
 
 
-## License Management
+## License management
+
+There are several options available for installing the license file.
+
 
 partial: code
 
 
-### Using the Registry
+### Using the registry
 
-NOTE: Using the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md) is the preferred and simplest method of adding the license file. 
-
-Using the registry allows all platform tools (endpoints, [ServiceControl](/servicecontrol/license.md), and [ServiceInsight](/serviceinsight/license.md)) to access the same license.
+Storing the license file in the registry allows all platform tools (endpoints, [ServiceControl](/servicecontrol/license.md), and [ServiceInsight](/serviceinsight/license.md)) to access the same license.
 
 partial: registry
 
 partial: registry-caveats
 
 
-### Using a License sub-directory
+### Using a license subdirectory
 
 A file located at `[AppDomain.CurrentDomain.BaseDirectory]/License/License.xml` will be automatically detected.
 
 
-### Using the app.config settings
+### Using app.config appSettings
 
 It is possible to specify the license in `app.config`:
 
- - Use the key `NServiceBus/LicensePath` to specify the path where NServiceBus looks for the license. For example:
+ - Use the key `NServiceBus/LicensePath` to specify the path where NServiceBus looks for the license:
 
 ```xml
 <appSettings>
@@ -65,7 +66,7 @@ It is possible to specify the license in `app.config`:
        value="C:\NServiceBus\License\License.xml" />
 </appSettings>
 ```
- - Use the key `NServiceBus/License` to transfer the actual XML-encoded contents of the license. For example:
+ - Use the key `NServiceBus/License` to store the XML-encoded contents of the license directly in `app.config`:
 
 ```xml
 <appSettings>
