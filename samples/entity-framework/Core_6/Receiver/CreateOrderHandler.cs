@@ -11,7 +11,7 @@ public class CreateOrderHandler :
     {
         log.Info($"Order {message.OrderId} worth {message.Value} submitted");
 
-        #region StoreOrde
+        #region StoreOrder
         {
             var order = new Order
             {
