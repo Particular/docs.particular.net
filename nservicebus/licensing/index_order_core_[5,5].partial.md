@@ -1,4 +1,3 @@
-
 | Location                                                                          | Notes |
 |-----------------------------------------------------------------------------------|:-----:|
 | `HKEY_CURRENT_USER\Software\ParticularSoftware\License`                           |       |
