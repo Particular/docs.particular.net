@@ -2,6 +2,7 @@
 title: Oracle Scripts
 component: SqlPersistence
 reviewed: 2017-04-05
+versions: '[2.1,)'
 ---
 
 
