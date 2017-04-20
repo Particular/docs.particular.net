@@ -65,7 +65,7 @@ NOTE: In cases when Immediate and/or Delayed Retry capabilities have been turned
 
 ### Partial customization
 
-Sometimes only a partial customization of the default Recoverability Policy is desired. In order to achieve partial customization the `DefaultRecoverabilityPolicy` needs to be called in the customized Recoverability Policy delegate. If when certain exceptions like `MyBusinessException` happen messages that triggered such an exception should be moved to error queue then a policy might look like:
+Sometimes only a partial customization of the default Recoverability Policy is desired. In order to achieve partial customization the `DefaultRecoverabilityPolicy` needs to be called in the customized Recoverability Policy delegate. If, when certain exceptions like `MyBusinessException` happen messages that triggered, such an exception should be moved to error queue then a policy might look like:
 
 snippet: CustomExceptionPolicyHandler
 
@@ -88,8 +88,9 @@ snippet: FullyCustomizedPolicyRecoverabilityConfiguration
 The configuration will be passed into the custom policy. 
 
 The following custom policy:
-- for unrecoverable exceptions such as `MyBusinessException` immediately moves failed messages to a custom error queue 
-- for `MyOtherBusinessException` does Delayed Retries with a constant time increase of five seconds 
-- for all other cases immediately moves failed messages to the configured standard error queue.
+
+ * for unrecoverable exceptions such as `MyBusinessException` immediately moves failed messages to a custom error queue 
+ * for `MyOtherBusinessException` does Delayed Retries with a constant time increase of five seconds 
+ * for all other cases immediately moves failed messages to the configured standard error queue.
 
 snippet: FullyCustomizedPolicy
