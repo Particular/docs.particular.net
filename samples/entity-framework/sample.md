@@ -54,11 +54,11 @@ The Sender does not store any data. It mimics the front-end system where orders 
 
 The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence. It uses EntityFramework to store business data (orders and shipments).
 
-snippet:ReceiverConfiguration
+snippet: ReceiverConfiguration
 
 In order for the Outbox to work, the business data has to reuse the same connection string as NServiceBus persistence:
 
-snippet:EntityFramework
+snippet: EntityFramework
 
 When the message arrives at the Receiver, `TransactionScope` is created to ensure consistency of the whole message handling process
 
@@ -66,11 +66,11 @@ When the message arrives at the Receiver, `TransactionScope` is created to ensur
  * a new saga instance is created and stored by NHibernate persistence
  * a new `Order` entity is created
 
-snippet:StoreOrder
+snippet: StoreOrder
 
  * a new `Shipment` entity is created
 
-snippet:StoreShipment
+snippet: StoreShipment
 
  * a reply message is inserted to the queue
  * a timeout request is inserted to the queue
@@ -83,12 +83,12 @@ The integration with Entity Framework allows users to take advantage of *Unit of
 
 The setup behavior makes sure that there is an instance of unit of work wrapper class before the handlers are called. 
 
-snippet:SetupBehavior
+snippet: SetupBehavior
 
 #### Creating data context
 
 The data context is created only once, before it is first accessed from a handler.
 
-snippet:UnitOfWork
+snippet: UnitOfWork
 
 The initialization code captures the connection from the NHibernate persistence storage session and registers `SaveChangesAsync` to be called when the storage session completes successfully (`OnSaveChanges`). 
