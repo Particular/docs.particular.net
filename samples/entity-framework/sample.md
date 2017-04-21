@@ -20,7 +20,7 @@ related:
  1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
  1. The text `Press <enter> to send a message` should be displayed in the Sender's console window.
  1. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
- 1. Hit `<enter>` to send a new message.
+ 1. In the Sender console hit `<enter>` to send a new message.
 
 
 ## Verifying that the sample works correctly
@@ -39,7 +39,7 @@ This sample contains three projects:
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
  * Receiver - A console application responsible for processing the order message.
 
-Sender and Receiver use different schemas in the same database. Apart from business data the database also contains tables representing queues for the NServiceBus endpoint and tables for NServiceBus persistence.
+Sender and Receiver use different schemas in the same database. The database is used for storing technical data by NServiceBus infrastructure, i.e. SQL Server transport and NHibernate persistance, and for storing business data.
 
 
 ### Sender project
