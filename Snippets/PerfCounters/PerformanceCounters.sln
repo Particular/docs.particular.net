@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 12.0.31101.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_4", "Core_4\Core_4.csproj", "{07F27696-5C5E-42E9-A8B0-6837946A5C00}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_6", "Core_6\Core_6.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfCounters_1", "PerfCounters_1\PerfCounters_1.csproj", "{D0572FD8-7EED-4CD0-907D-2483E2458D69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfCounters_1_1", "PerfCounters_1_1\PerfCounters_1_1.csproj", "{CA8398F5-E4F3-4C81-9492-82FF4C3D48BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +30,8 @@ Global
 		{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0572FD8-7EED-4CD0-907D-2483E2458D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D0572FD8-7EED-4CD0-907D-2483E2458D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA8398F5-E4F3-4C81-9492-82FF4C3D48BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA8398F5-E4F3-4C81-9492-82FF4C3D48BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

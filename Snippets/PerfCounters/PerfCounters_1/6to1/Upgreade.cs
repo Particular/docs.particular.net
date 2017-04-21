@@ -1,4 +1,4 @@
-﻿namespace Core6
+﻿namespace PerfCounters
 {
     using System;
     using NServiceBus;
