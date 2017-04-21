@@ -1,0 +1,13 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "6.*",
+    "NServiceBus.Metrics.PerformanceCounters": "1.0.1-metrics-dependen0001",
+    "NUnit": "3.*"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
