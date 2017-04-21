@@ -4,6 +4,8 @@
 
 This packages installs into the MSBuild pipeline and generates all performance counter installation scripts at compile time. It does this by interrogating types (in the target assembly) and attributes (from the `NServiceBus.Metrics.PerformanceCounter` as well as `NServiceBus.Metrics` NuGet package) to infer what scripts to create. It is required for any project where those performance counter installation scripts are required. This package has a dependency on the `NServiceBus.Metrics.PerformanceCounter` NuGet package
 
+NOTE: Performance Counters **Versions 1.1 and above:** is dependent on `NServiceBus.Metrics` in calculating counters values.  
+
 ### Script Creation
 
 Performance counter installation scripts are created at compile time by the `NServiceBus.Metrics.PerformanceCounters.MsBuild` NuGet package.
