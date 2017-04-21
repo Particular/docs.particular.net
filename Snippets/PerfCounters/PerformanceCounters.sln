@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_6", "Core_6\Core_6.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfCounters_1", "PerfCounters_1\PerfCounters_1.csproj", "{D0572FD8-7EED-4CD0-907D-2483E2458D69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfCounters_1_1", "PerfCounters_1_1\PerfCounters_1_1.csproj", "{CA8398F5-E4F3-4C81-9492-82FF4C3D48BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfCounters_1_1", "PerfCounters_1.1\PerfCounters_1_1.csproj", "{CA8398F5-E4F3-4C81-9492-82FF4C3D48BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
