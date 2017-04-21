@@ -51,7 +51,7 @@ To get a sense of the expected performance take maximum MSMQ throughput of a giv
 
 If scaling out small units of work is required consider splitting the handlers into smaller vertical slices of functionality and deploying them on their own endpoints.
 
-WARNING: The default concurrency of Distributor is set to 1. That means the messages are processed sequentially. Make sure that the [**MaximumConcurrencyLevel** has been increased in the configuration](/nservicebus/operations/tuning.md#tuning-concurrency) on the Distributor endpoint. A good rule of thumb to set this value to 2-4 times the amount of cores of a given machine. Inspect disk, CPU and network resources until one of these reaches its maximum capacity.
+WARNING: The default concurrency of Distributor is set to 1. That means the messages are processed sequentially. Make sure that the [**MaximumConcurrencyLevel** has been increased in the configuration](/nservicebus/operations/tuning.md#tuning-concurrency) on the Distributor endpoint. A good rule of thumb to set this value to 2-4 times the amount of cores of a given machine. While fine-tuning, inspect disk, CPU and network resources until one of these reaches its maximum capacity.
 
 Increasing the concurrency on the workers might not lead to increased performance if the executed code is multi-threaded, e.g. if the worker does CPU-intensive work using all the available cores such as video encoding.
 
