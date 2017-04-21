@@ -3,9 +3,6 @@ title: EntityFramework integration
 summary: Integrating EntityFramework with NHibernate NServiceBus persistence.
 reviewed: 2017-04-19
 component: NHibernate
-tags:
-- EntityFramework
-- NHibernate
 related:
 - nservicebus/nhibernate
 ---

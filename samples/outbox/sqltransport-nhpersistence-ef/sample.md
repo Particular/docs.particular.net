@@ -5,8 +5,6 @@ reviewed: 2016-03-21
 component: SqlServer
 tags:
 - Outbox
-- EntityFramework
-- NHibernate
 related:
 - nservicebus/nhibernate
 - nservicebus/sqlserver

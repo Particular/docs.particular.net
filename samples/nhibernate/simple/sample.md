@@ -6,7 +6,6 @@ component: NHibernate
 tags:
  - Saga
  - Timeout
- - NHibernate
 related:
  - nservicebus/sagas
  - nservicebus/persistence
