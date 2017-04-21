@@ -1,10 +1,9 @@
 ﻿{
   "dependencies": {
     "MySql.Data": "6.*",
-    "NServiceBus.Persistence.Sql": "2.1.0-unstable0003",
-    "NServiceBus.Persistence.Sql.ScriptBuilder": "2.1.0-unstable0003",
-    "NUnit": "3.*",
-    "Oracle.ManagedDataAccess": "12.1.24160719"
+    "NServiceBus.Persistence.Sql": "2.0.0",
+    "NServiceBus.Persistence.Sql.ScriptBuilder": "2.0.0",
+    "NUnit": "3.*"
   },
   "frameworks": {
     "net461": {}

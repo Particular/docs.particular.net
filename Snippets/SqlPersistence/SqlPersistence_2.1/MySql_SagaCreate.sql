@@ -189,4 +189,6 @@ prepare script from @dropPropertiesQuery;
 execute script;
 deallocate prepare script;
 
+/* CompleteSagaScript */
+
 endcode

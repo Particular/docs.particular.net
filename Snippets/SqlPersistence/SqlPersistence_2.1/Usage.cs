@@ -8,6 +8,8 @@ using Newtonsoft.Json.Converters;
 using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.Sql;
+using Oracle.ManagedDataAccess.Client;
+
 
 class Usage
 {
@@ -72,6 +74,23 @@ class Usage
 
         #endregion
     }
+
+    void OracleUsage(EndpointConfiguration endpointConfiguration)
+    {
+        #region SqlPersistenceUsageOracle
+
+        var connection = "Data Source=localhost;User Id=username;Password=pass;Enlist=false;";
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.SqlVariant(SqlVariant.Oracle);
+        persistence.ConnectionBuilder(
+            connectionBuilder: () =>
+            {
+                return new OracleConnection(connection);
+            });
+
+        #endregion
+    }
+
 
     void CustomSettings(EndpointConfiguration endpointConfiguration)
     {
@@ -239,6 +258,33 @@ class Usage
             }
         }
 
+        #endregion
+
+        #region ExecuteScriptsOracle
+        using (var connection = new OracleConnection("ConnectionString"))
+        {
+            connection.Open();
+            using (var transaction = connection.BeginTransaction())
+            {
+                foreach (var createScript in Directory.EnumerateFiles(
+                    path: scriptDirectory,
+                    searchPattern: "*_Create.sql",
+                    searchOption: SearchOption.AllDirectories))
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandText = File.ReadAllText(createScript);
+                        var parameter = command.CreateParameter();
+                        parameter.ParameterName = "tablePrefix";
+                        parameter.Value = tablePrefix;
+                        command.Parameters.Add(parameter);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                transaction.Commit();
+            }
+        }
         #endregion
     }
 

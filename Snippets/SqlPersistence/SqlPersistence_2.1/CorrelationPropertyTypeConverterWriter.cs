@@ -40,6 +40,18 @@ public class CorrelationPropertyTypeConverterWriter
                 var columnType = MySqlCorrelationPropertyTypeConverter.GetColumnType(type);
                 writer.WriteLine($"| `{type}` | `{columnType}` |");
             }
+
+            writer.WriteLine(@"
+
+#### Oracle
+
+| CorrelationPropertyType | Sql Type |
+|--|--|");
+            foreach (var type in GetValues().Where(x => x != CorrelationPropertyType.DateTimeOffset))
+            {
+                var columnType = OracleCorrelationPropertyTypeConverter.GetColumnType(type);
+                writer.WriteLine($"| `{type}` | `{columnType}` |");
+            }
         }
     }
 

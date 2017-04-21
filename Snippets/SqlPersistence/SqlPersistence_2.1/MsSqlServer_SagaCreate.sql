@@ -166,4 +166,6 @@ select @dropPropertiesQuery =
 );
 exec sp_executesql @dropPropertiesQuery
 
+/* CompleteSagaScript */
+
 endcode
