@@ -5,6 +5,3 @@ Overrides the default time to wait before triggering a circuit breaker that init
 The default value is 2 minutes.
 
 snippet: sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
-
-
-partial: pause-time
