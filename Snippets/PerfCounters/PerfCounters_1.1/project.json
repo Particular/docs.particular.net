@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
     "NServiceBus": "6.*",
-    "NServiceBus.Metrics.PerformanceCounters": "1.1.0-pullrequest0008",
+    "NServiceBus.Metrics.PerformanceCounters": "1.1.0",
     "NUnit": "3.*"
   },
   "frameworks": {
