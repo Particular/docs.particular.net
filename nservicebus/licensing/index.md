@@ -34,19 +34,17 @@ partial: limitations
 
 ## License management
 
-There are several options available for installing the license file.
-
-
-partial: code
+There are several options available for installing the license file. While all of these work for NServiceBus, the registry is the only option that lets the other platform tools, [ServiceControl](/servicecontrol/license.md), and [ServiceInsight](/serviceinsight/license.md), share the same license file.
 
 
 ### Using the registry
 
-Storing the license file in the registry allows all platform tools (endpoints, [ServiceControl](/servicecontrol/license.md), and [ServiceInsight](/serviceinsight/license.md)) to access the same license.
-
 partial: registry
 
 partial: registry-caveats
+
+
+partial: code
 
 
 ### Using a license subdirectory
