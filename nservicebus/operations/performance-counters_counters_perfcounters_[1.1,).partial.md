@@ -4,6 +4,14 @@ All counters are defined in the NuGet package dependency [NServiceBus.Metrics](h
 
 For more information about the metrics defined consult the [Metrics](metrics.md) documentation page.
 
+### Configuration
+
+This counters can be enabled using the the following code:
+
+snippet: enable-criticaltime
+
+In the NServiceBus Host this counters are enabled by default.
+
 ### Update counters
 
 The counters are periodically updated every two seconds per default. To override the update interval use:
