@@ -175,7 +175,7 @@ public static class TextWriterExtensions
             return;
         }
 
-        output.WriteLine("| Version   | Released       | Supported until   | Explanation                       |");
+        output.WriteLine("| Version   | Released       | Supported until   | Notes                             |");
         output.WriteLine("|:---------:|:--------------:|:-----------------:|:---------------------------------:|");
 
         foreach (var version in relevantVersions.OrderByDescending(version => version.First.Identity.Version))
