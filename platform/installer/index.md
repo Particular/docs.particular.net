@@ -54,15 +54,7 @@ The Platform Installer will prompt for which items to install. Individual compon
 
 #### NServiceBus Performance Counters
 
-This installation adds the performance counters category "NServiceBus" with the following counters:
-
- * `Critical Time` - The age of the oldest message in the queue.
- * `SLA violation countdown` - The number of seconds until the SLA for this endpoint is breached.
- * `# of msgs successfully processed / sec` - The current number of messages processed successfully by the transport per second.
- * `# of msgs pulled from the input queue /sec` - The current number of messages pulled from the input queue by the transport per second.
- * `# of msgs failures / sec` - The current number of failed processed messages by the transport per second.
-
-This installation is optional.
+If the monitoring using performance counters will be used. Refer to [Performance Counter installation section](/nservicebus/operations/performance-counters.md). 
 
 
 #### Configure Microsoft Message Queuing
