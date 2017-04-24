@@ -11,28 +11,7 @@ related:
 
 ## Install Counters
 
-Use the [NServiceBus PowerShell Commands](/nservicebus/operations/management-using-powershell.md) to install the performance counters.
-
-```ps
-Import-Module NServiceBus.PowerShell
-Install-NServiceBusPerformanceCounters
-```
-
-To list the installed counters use
-
-```ps
-Get-Counter -ListSet NServiceBus | Select-Object -ExpandProperty Counter
-```
-
-The following will result
-
-```no-highlight
-\NServiceBus(*)\Critical Time
-\NServiceBus(*)\SLA violation countdown
-\NServiceBus(*)\# of msgs successfully processed / sec
-\NServiceBus(*)\# of msgs pulled from the input queue /sec
-\NServiceBus(*)\# of msgs failures / sec
-```
+Refer to [Performance Counters](/nservicebus/operations/performance-counters.md) to see how to install the performance counters.
 
 
 ## Enabling Counters For The Endpoint
