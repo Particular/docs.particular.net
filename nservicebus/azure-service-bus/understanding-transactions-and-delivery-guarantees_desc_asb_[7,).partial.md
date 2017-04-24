@@ -27,6 +27,6 @@ Schematically it works like this:
 
 Combining these capabilities, allows Azure Service Bus Transport to support `SendAtomicWithReceive`, `ReceiveOnly` and `None` transaction mode levels.
 
-NOTE: When developing a satellite it needs to be taken into account that `SendAtomicWithReceive` will wrap the satellite in a transaction scope which cannot be by other transactional resources in the satellite, therefor a suppress scope must be added around the invocation of any other transactional resources used inside the satellite implementation.
+NOTE: When developing a satellite or behavior it needs to be taken into account that `SendAtomicWithReceive` will wrap the satellite in a transaction scope which cannot be used by other transactional resources in the satellite, therefor a suppress scope must be added around the invocation of any other transactional resources used inside the satellite implementation.
 
 include: send-atomic-with-receive-note
