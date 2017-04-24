@@ -30,6 +30,8 @@ For more details on topologies refer to the [Azure Service Bus Transport Topolog
 
 ## Sanitization
 
+Azure Service Bus entities have path and name rules that limit the allowed characters and maximum length.  NServiceBase derives entity names from endpoint and event names; these derived names may fail Azure Service Bus validation.  Sanitization is a process that modifies entity names so that the broker can use them.
+
 In Versions 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. In Versions 7 and above, the sanitization has to be enabled and configured explicitly.
 
 In order to maintain backward compatibility, [register a custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#automated-sanitization-backward-compatibility-with-versions-6-and-below).
