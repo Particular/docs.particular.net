@@ -46,13 +46,24 @@ async Task Main()
     corePackage.Dump(utcTomorrow);
 
     var downstreamPackages =
-        (await Task.WhenAll(GetComponents(componentsPath, corePackageId).Select(async package =>
-           new Package
-           {
-               Id = package.NugetOrder.First(),
-               Category = package.Category,
-               Versions = await packageMetadata.GetVersions(package.NugetOrder.First(), logger, downstreamMajorOverlapYears, downstreamMinorOverlapMonths, corePackage.Versions)
-           })))
+        (await Task.WhenAll(GetComponents(componentsPath, corePackageId)
+            .SelectMany(component => component.NugetOrder
+                .Where(packageId => packageId != corePackageId)
+                .Select(packageId =>
+                    new
+                    {
+                        Id = packageId,
+                        Category = component.Category,
+                    }))
+            .Distinct()
+            .Select(async package =>
+                new Package
+                {
+                    Id = package.Id,
+                    Category = package.Category,
+                    Versions = await packageMetadata.GetVersions(package.Id, logger, downstreamMajorOverlapYears, downstreamMinorOverlapMonths, corePackage.Versions)
+                })))
+        .OrderBy(package => package.Id)
         .ToList();
 
     foreach (var package in downstreamPackages)
@@ -316,11 +327,7 @@ static IEnumerable<SerializationComponent> GetComponents(string path, string cor
     }
 
     return components
-        .Where(component => component.UsesNuget && component.SupportLevel == SupportLevel.Regular)
-        .Where(component => (component.NugetOrder.FirstOrDefault() ?? corePackageId) != corePackageId)
-        .GroupBy(package => package.NugetOrder.First())
-        .Select(group => group.First())
-        .OrderBy(package => package.NugetOrder.First());
+        .Where(component => component.UsesNuget && component.SupportLevel == SupportLevel.Regular);
 }
 
 public class Package

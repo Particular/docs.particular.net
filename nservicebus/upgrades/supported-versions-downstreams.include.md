@@ -38,6 +38,13 @@
 
 ### Persistence packages
 
+#### NServiceBus.Azure
+
+| Version   | Released       | Supported until   | Explanation                       |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 7.0.x     | 2017-02-27     | -                 | -                                 |
+| 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
+
 #### NServiceBus.NHibernate
 
 | Version   | Released       | Supported until   | Explanation                       |
@@ -151,6 +158,13 @@
 
 ### Databus packages
 
+#### NServiceBus.Azure
+
+| Version   | Released       | Supported until   | Explanation                       |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 7.0.x     | 2017-02-27     | -                 | -                                 |
+| 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
+
 #### NServiceBus.DataBus.AzureBlobStorage
 
 | Version   | Released       | Supported until   | Explanation                       |
@@ -216,6 +230,13 @@
 | 2.0.x     | 2016-10-11     | -                 | -                                 |
 | 1.0.x     | 2014-09-29     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
+#### NServiceBus.Host
+
+| Version   | Released       | Supported until   | Explanation                       |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 7.0.x     | 2016-10-11     | -                 | -                                 |
+| 6.0.x     | 2014-11-25     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
+
 #### NServiceBus.Metrics.PerformanceCounters
 
 | Version   | Released       | Supported until   | Explanation                       |
@@ -240,6 +261,27 @@
 | Version   | Released       | Supported until   | Explanation                       |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.1.x     | 2015-02-05     | -                 | -                                 |
+
+#### ServiceControl.Plugin.Nsb5.CustomChecks
+
+| Version   | Released       | Supported until   | Explanation                       |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 2.0.x     | 2017-02-08     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
+| 1.0.x     | 2014-09-30     | 2018-02-08        | Superseded by 2.0.x               |
+
+#### ServiceControl.Plugin.Nsb5.Heartbeat
+
+| Version   | Released       | Supported until   | Explanation                       |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 3.0.x     | 2017-02-08     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
+| 2.0.x     | 2015-09-14     | 2018-02-08        | Superseded by 3.0.x               |
+
+#### ServiceControl.Plugin.Nsb5.SagaAudit
+
+| Version   | Released       | Supported until   | Explanation                       |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 2.0.x     | 2017-02-08     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
+| 1.0.x     | 2014-09-30     | 2018-02-08        | Superseded by 2.0.x               |
 
 #### ServiceControl.Plugin.Nsb6.CustomChecks
 
