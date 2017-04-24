@@ -14,6 +14,11 @@
 
 async Task Main()
 {
+    var endOfLifePackages = new Dictionary<string, string>
+    {
+        { "NServiceBus.Azure", "This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServiceBus.Persistence.AzureStorage." }
+    };
+
     var source = "https://api.nuget.org/v3/index.json";
     var componentsPath = Path.Combine(Util.CurrentQuery.Location, @"..\components\components.yaml");
 
@@ -40,19 +45,30 @@ async Task Main()
     {
         Id = corePackageId,
         Category = ComponentCategory.Core,
-        Versions = await packageMetadata.GetVersions(corePackageId, logger, coreMajorOverlapYears, coreMinorOverlapMonths, new List<Version>())
+        Versions = await packageMetadata.GetVersions(corePackageId, logger, coreMajorOverlapYears, coreMinorOverlapMonths, new List<Version>(), endOfLifePackages)
     };
 
     corePackage.Dump(utcTomorrow);
 
     var downstreamPackages =
-        (await Task.WhenAll(GetComponents(componentsPath, corePackageId).Select(async package =>
-           new Package
-           {
-               Id = package.NugetOrder.First(),
-               Category = package.Category,
-               Versions = await packageMetadata.GetVersions(package.NugetOrder.First(), logger, downstreamMajorOverlapYears, downstreamMinorOverlapMonths, corePackage.Versions)
-           })))
+        (await Task.WhenAll(GetComponents(componentsPath, corePackageId)
+            .SelectMany(component => component.NugetOrder
+                .Where(packageId => packageId != corePackageId)
+                .Select(packageId =>
+                    new
+                    {
+                        Id = packageId,
+                        Category = component.Category,
+                    }))
+            .Distinct()
+            .Select(async package =>
+                new Package
+                {
+                    Id = package.Id,
+                    Category = package.Category,
+                    Versions = await packageMetadata.GetVersions(package.Id, logger, downstreamMajorOverlapYears, downstreamMinorOverlapMonths, corePackage.Versions, endOfLifePackages)
+                })))
+        .OrderBy(package => package.Id)
         .ToList();
 
     foreach (var package in downstreamPackages)
@@ -67,13 +83,13 @@ async Task Main()
 
     using (var output = new StreamWriter(downstreamsPath, append: false))
     {
-        output.Write(downstreamPackages, utcTomorrow, utcTomorrow.AddMonths(-downstreamMonthsToShowUnsupportedVersions), false);
+        output.Write(downstreamPackages, utcTomorrow, utcTomorrow.AddMonths(-downstreamMonthsToShowUnsupportedVersions), false, endOfLifePackages);
     }
 
     using (var output = new StreamWriter(allVersionsPath, append: false))
     {
         output.Write(corePackage, utcTomorrow, null, true);
-        output.Write(downstreamPackages, utcTomorrow, null, true);
+        output.Write(downstreamPackages, utcTomorrow, null, true, endOfLifePackages);
     }
 }
 
@@ -91,7 +107,7 @@ public static class TextWriterExtensions
                 output.WriteLine();
             });
 
-    public static void Write(this TextWriter output, IEnumerable<Package> packages, DateTimeOffset utcTomorrow, DateTimeOffset? earliest, bool force)
+    public static void Write(this TextWriter output, IEnumerable<Package> packages, DateTimeOffset utcTomorrow, DateTimeOffset? earliest, bool force, Dictionary<string, string> endOfLifePackages)
     {
         foreach (ComponentCategory category in Enum.GetValues(typeof(ComponentCategory)))
         {
@@ -121,6 +137,13 @@ public static class TextWriterExtensions
                         {
                             output.WriteLine($"#### {package.Id}");
                             output.WriteLine();
+
+                            if (endOfLifePackages.TryGetValue(package.Id, out var reason))
+                            {
+                                output.WriteLine($"_{reason}_");
+                                output.WriteLine();
+                            }
+                            
                             packageHeadingWritten = true;
                         }
                     });
@@ -152,7 +175,7 @@ public static class TextWriterExtensions
             return;
         }
 
-        output.WriteLine("| Version   | Released       | Supported until   | Explanation                       |");
+        output.WriteLine("| Version   | Released       | Supported until   | Notes                             |");
         output.WriteLine("|:---------:|:--------------:|:-----------------:|:---------------------------------:|");
 
         foreach (var version in relevantVersions.OrderByDescending(version => version.First.Identity.Version))
@@ -179,7 +202,7 @@ public static class TextWriterExtensions
 public static class PackageMetadataResourceExtensions
 {
     public static async Task<List<Version>> GetVersions(
-        this PackageMetadataResource resource, string packageId, ILogger logger, int majorOverlapYears, int minorOverlapMonths, List<Version> upstreamVersions)
+        this PackageMetadataResource resource, string packageId, ILogger logger, int majorOverlapYears, int minorOverlapMonths, List<Version> upstreamVersions, Dictionary<string, string> endOfLifePackages)
     {
         var minors = (await resource.GetMetadataAsync(packageId, false, false, logger, CancellationToken.None))
             .OrderBy(package => package.Identity.Version)
@@ -258,6 +281,12 @@ public static class PackageMetadataResourceExtensions
                     patchingEndReason = $"Bounded by {boundedBy.ToString()}";
                 }
 
+                if (patchingEnd == null && endOfLifePackages.ContainsKey(packageId))
+                {
+                    patchingEnd = minor.Last.Published.Value.UtcDateTime.Date;
+                    patchingEndReason = $"End of life";
+                }
+
                 return new Version
                 {
                     First = minor.First,
@@ -316,11 +345,7 @@ static IEnumerable<SerializationComponent> GetComponents(string path, string cor
     }
 
     return components
-        .Where(component => component.UsesNuget && component.SupportLevel == SupportLevel.Regular)
-        .Where(component => (component.NugetOrder.FirstOrDefault() ?? corePackageId) != corePackageId)
-        .GroupBy(package => package.NugetOrder.First())
-        .Select(group => group.First())
-        .OrderBy(package => package.NugetOrder.First());
+        .Where(component => component.UsesNuget && component.SupportLevel == SupportLevel.Regular);
 }
 
 public class Package

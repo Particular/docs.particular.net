@@ -1,6 +1,6 @@
 ### NServiceBus
 
-| Version   | Released       | Supported until   | Explanation                       |
+| Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 6.2.x     | 2017-03-28     | -                 | -                                 |
 | 6.1.x     | 2016-12-13     | 2017-09-28        | Superseded by 6.2.x               |
