@@ -29,7 +29,7 @@ To create a redirect click the `Create Redirect` button. A dialog will appear.
 
 Choose a source queue from the dropdown. Enter the queue name for the target of the redirect in `To Physical Address` input. To immediately retry all unresolved failed messages from the sources address check the box with the label `Immediately retry any matching failed messages`.
 
-Any existing redirects can be deleted using `End Redirect` link. This action requires an confirmation. 
+Any existing redirects can be deleted using `End Redirect` link. This action requires a confirmation. 
 
 To change the target of a redirect, click the `Modify Redirect` link. Only the target queue can be modified, the source queue remains read-only.
 
