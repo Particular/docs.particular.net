@@ -12,12 +12,12 @@ snippet: enable-criticaltime
 
 In the NServiceBus Host this counters are enabled by default.
 
-Setting up sla value can be done using following code:
+Setting up SLA value can be done using following code:
 
 snippet: enable-sla
 
 ### Update counters
 
-The counters are periodically updated every two seconds per default. To override the update interval use:
+The counters are periodically updated every two seconds by default. To override the update interval:
 
 snippet: update-counters-every
