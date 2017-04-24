@@ -18,6 +18,7 @@ The flow diagram provides a detailed visual overview of the messages, collated b
 
 As endpoints are selected, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint.
 
+NOTE: Endpoint lists, message information, and message flows will not be populated until messages have been successfully processed by ServiceControl.
 
 ## The Message Window
 
@@ -57,7 +58,6 @@ The Endpoint Explorer indicates the connection to the ServiceControl instance pr
 ![Endpoint Explorer](images/overview-endpointexplore-machinename.png)
 
 Select endpoints to filter the message list. Select the root ServiceControl connection and the tree view to make the list expand to include all messages.
-
 
 ## Flow Diagram
 
