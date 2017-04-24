@@ -4,4 +4,4 @@ To start the endpoint as a Distributor run the host from the command line, as fo
 NServiceBus.Host.exe NServiceBus.Distributor
 ```
 
-The NServiceBus.Distributor profile instructs the NServiceBus framework to start a Distributor on this endpoint, waiting for workers to enlist to it. Unlike the NServiceBus.Master profile, the NServiceBus.Distributor profile does not execute a Worker on its node.
+The NServiceBus.Distributor profile instructs the NServiceBus framework to start a distributor process on this endpoint, waiting for workers to enlist to it. Unlike the NServiceBus.Master profile, the NServiceBus.Distributor profile does not execute a worker.

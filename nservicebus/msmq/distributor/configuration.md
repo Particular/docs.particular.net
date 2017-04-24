@@ -18,7 +18,7 @@ In Version 4.3 the built-in Distributor has been deprecated. The new dedicated [
 
 ### NServiceBus 6.0 and above
 
-Running an embedded distributor (also known as Master mode) is not supported in Versions 6 and higher. Instead, a stand alone Distributor endpoint running NServiceBus 5 should be used. 
+Running an embedded distributor process alongside the worker (also known as Master mode) is not supported in Versions 6 and higher. Instead, a stand alone Distributor endpoint running NServiceBus 5 should be used. 
 
 Worker configuration sections like `MasterNodeConfig` are obsoleted and `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor` should be used instead. For more information refer to [Upgrading a Distributor-based scaled out endpoint to Version 6](/samples/scaleout/distributor-upgrade/) documentation.
 
@@ -72,4 +72,4 @@ If self-hosting the endpoint here is the code required to enlist the endpoint wi
 
 snippet: ConfiguringWorker
 
-Similar to self hosting, ensure the `app.config` of the Worker contains the `MasterNodeConfig` section to point to the host name where the master node (and a Distributor) are running.
+Similar to self hosting, ensure the `app.config` of the worker contains the `MasterNodeConfig` section to point to the host name where the distributor process is running.
