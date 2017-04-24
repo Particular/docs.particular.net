@@ -40,9 +40,11 @@
 
 #### NServiceBus.Azure
 
+_This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServiceBus.Persistence.AzureStorage._
+
 | Version   | Released       | Supported until   | Explanation                       |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 7.0.x     | 2017-02-27     | -                 | -                                 |
+| ~~7.0.x~~ | ~~2017-02-27~~ | ~~2017-02-27~~    | ~~End of life~~                   |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 #### NServiceBus.NHibernate
@@ -160,9 +162,11 @@
 
 #### NServiceBus.Azure
 
+_This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServiceBus.Persistence.AzureStorage._
+
 | Version   | Released       | Supported until   | Explanation                       |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 7.0.x     | 2017-02-27     | -                 | -                                 |
+| ~~7.0.x~~ | ~~2017-02-27~~ | ~~2017-02-27~~    | ~~End of life~~                   |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 #### NServiceBus.DataBus.AzureBlobStorage
