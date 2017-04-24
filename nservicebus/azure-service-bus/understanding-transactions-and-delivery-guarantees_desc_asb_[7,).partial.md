@@ -1,3 +1,5 @@
+NOTE: This is advanced documentation and only of significant relevance when developing custom behaviors or satellites. To make a long story short: As from version 7, transactional operations are enlisted in the receive scope, if present (only in `SendAtomicWithReceive` mode). And all transactional operations performed in the pipeline must be wrapped by a suppress scope. Read on to learn why.
+
 In contrast to previous versions, NServiceBus version 6 and above provides the transport full control on how it implements the transactional support. A transaction scope is no longer mandatory in order to orchestrate dispatching of messages with complete/rollback behavior. The Azure Service Bus transport now no longer enlists in the same transaction scope that is used to access the database in handler implementations. 
 
 In fact it no longer uses a transaction scope at all except when configured using the `SendAtomicWithReceive` transaction mode. In this case it opens a new receive scope and ensures this new scope does not automatically promote the handler scope by wrapping the handler scope in a suppress scope. 
