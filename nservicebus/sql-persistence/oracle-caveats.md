@@ -11,15 +11,15 @@ The SQL Persistence provides autonomy between endpoints by using separate tables
 
 NOTE: For a complete example of the schema created by the SQL Persistence for Oracle, see [Oracle Scripts](oracle-scripts.md).
 
-For storing subscriptions, timeouts, and outbox data, SQL Persistence will reserve 24 characters for the endpoint name, leaving 3 characters for the persister type, and and additional 3 characters for an index type. Names are then constructed as `{EndpointName}{PersisterTypeSuffix}{KeyType}`.
+For storing subscriptions, timeouts, and outbox data, SQL Persistence will reserve 24 characters for the endpoint name, leaving 3 characters for the persistence type, and and additional 3 characters for an index type. Names are then constructed as `{EndpointName}{PersistenceTypeSuffix}{KeyType}`.
 
 The following table shows table names created for an endpoint named `My.Endpoint`:
 
-| Persister     | Suffix |    Table Name    |       Indexes       |
-|---------------|:------:|:----------------:|:-------------------:|
-| Subscriptions |  `_SS` | `MY_ENDPOINT_SS` | `MY_ENDPOINT_SS_PK` |
-| Timeouts      |  `_TO` | `MY_ENDPOINT_TO` | `MY_ENDPOINT_TO_PK`<br/>`MY_ENDPOINT_TK`<br/>`MY_ENDPOINT_SK` |
-| Outbox        |  `_OD` | `MY_ENDPOINT_OD` | `MY_ENDPOINT_OD_PK`<br/>`MY_ENDPOINT_IX` |
+| Persistence type | Suffix |    Table Name    |       Indexes       |
+|------------------|:------:|:----------------:|:-------------------:|
+| Subscriptions    |  `_SS` | `MY_ENDPOINT_SS` | `MY_ENDPOINT_SS_PK` |
+| Timeouts         |  `_TO` | `MY_ENDPOINT_TO` | `MY_ENDPOINT_TO_PK`<br/>`MY_ENDPOINT_TK`<br/>`MY_ENDPOINT_SK` |
+| Outbox           |  `_OD` | `MY_ENDPOINT_OD` | `MY_ENDPOINT_OD_PK`<br/>`MY_ENDPOINT_IX` |
 
 If an endpoint name is longer than 24 characters, an exception will be thrown, and a substitute [table prefix](/nservicebus/sql-persistence/#installation-table-prefix) must be specified in the endpoint configuration:
 
@@ -35,7 +35,7 @@ In order to accommodate as many characters for the saga name as possible, the [t
 |-----------------|:-------------:|:----------------:|
 | OrderPolicy     | `ORDERPOLICY` | `ORDERPOLICY_PK` |
 
-A 3-character suffix is not enough to uniquely identify multiple correlation properties in a deterministic way, so unfortunately index names for sagas cannot be named after the owner table in the same way as for other persisters.
+A 3-character suffix is not enough to uniquely identify multiple correlation properties in a deterministic way, so unfortunately index names for sagas cannot be named after the owner table in the same way as for other persistence types.
 
 Index names for correlation properties are constructed using the prefix `SAGAIDX_` plus a deterministic hash of the saga name and correlation property name. The owning table for a particular index can be discovered by querying the database:
 
