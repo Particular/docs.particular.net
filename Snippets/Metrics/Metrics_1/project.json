@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
-    "NServiceBus": "6.*",
-    "NServiceBus.Metrics": "1.0.0-alpha0065"
+    "NServiceBus": "6.2.1",
+    "NServiceBus.Metrics": "1.0.0"
   },
   "frameworks": {
     "net461": {}
