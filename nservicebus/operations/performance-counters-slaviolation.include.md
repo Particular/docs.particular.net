@@ -4,8 +4,7 @@
 
 **Added in:** Version 3
 
-Acts as an early warning system to inform on the number of seconds left until the SLA for the endpoint is breached. This gives a system-wide counter that can be monitored without putting the SLA into the monitoring software. Just set that alarm to trigger when the counter goes below X, which is the time that the operations team needs to be able to take actions to prevent the SLA from being breached.
-
+Acts as an early warning system to inform on the number of seconds left until the SLA for the endpoint is breached. The counter display the number of seconds that is left between to breach configured SLA value for given endpoint. The higher the value the less risk there is to breach SLA for given endpoint. 
 
 ### Configuration
 
