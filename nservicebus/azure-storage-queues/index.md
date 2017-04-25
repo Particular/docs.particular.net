@@ -1,4 +1,4 @@
----
+s---
 title: Azure Storage Queues Transport
 summary: Using Azure Storage Queues as transport
 component: ASQ
@@ -6,7 +6,7 @@ tags:
  - Azure
 related:
  - samples/azure/storage-queues
-reviewed: 2016-10-19
+reviewed: 2017-04-24
 ---
 
 Azure Storage Queues is a service hosted on the Azure platform, used for storing large numbers of messages. The messages can be accessed from anywhere in the world via authenticated calls using HTTP or HTTPS.
@@ -18,10 +18,10 @@ The main disadvantages of this service is latency introduced by remoteness and t
 include: azure-transports
 
 
-## Enable the transport
+## Configuring the endpoint
 
-Then at configuration time set ASB as the transport:
+To use Azure Storage Queues as the underlying transport configure it in the following way:
 
 snippet: AzureStorageQueueTransportWithAzure
 
-Then set up appropriate [connection strings](/nservicebus/azure-storage-queues/configuration.md#connection-strings), and ensure they are [secure](/nservicebus/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts).
+Then set up appropriate [connection strings](/nservicebus/azure-storage-queues/configuration.md#connection-strings) and consider using aliase to make them [more secure](/nservicebus/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts).
