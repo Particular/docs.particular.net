@@ -30,8 +30,7 @@ This process aims to allow upgrade without message loss and minimal downtime. If
  * Apply the following steps for each worker, one after another:
   * Shut down the worker.
   * [Upgrade to NServiceBus Version 6](#upgrade-endpoint-to-version-6).
-  * [Configure it to enlist it with the distributor](/nservicebus/msmq/distributor/#worker-configuration-when-
-  * g).
+  * [Configure it to enlist it with the distributor](/nservicebus/msmq/distributor/configuration.md#worker-configuration-when-self-hosting).
   * Start the worker again.
  * Configure [sender-side distribution](/nservicebus/msmq/sender-side-distribution.md) for all endpoints sending commands or publishing events to the scaled out endpoint. Leave one instance of the scaled-out endpoint excluded from the sender-side distribution for now.
  * Detach the workers from the Distributor by applying the following steps to the instances enlisted to the Distributor. But **skip this step for the instance that was not included in the sender-side distribution** to ensure the distributor queue can be drained.
@@ -164,4 +163,4 @@ Remove the Distributor from publisher's subscription storages by removing all su
 Environments consisting entirely of NServiceBus Version 6 endpoints no longer require Distributor endpoints. NServiceBus Version 5 endpoints can communicate directly to NServiceBus Version 6 endpoints but the sender-side distribution feature of Version 6 is not compatible with endpoints using NServiceBus Version 5.
 
  * NServiceBus Version 6 endpoints need to route their messages to a Distributor when communicating with scaled out NServiceBus Version 5 instances.
- * NServiceBus Version 5 endpoints need to route their messages to a Distributor when communicating with scaled out NServiceBus Version 6 instances. In this scenario, the NServiceBus Version 6 instances need to [enlist with a NServiceBus Version 5 Distributor](/nservicebus/msmq/distributor/#worker-configuration-when-self-hosting).
+ * NServiceBus Version 5 endpoints need to route their messages to a Distributor when communicating with scaled out NServiceBus Version 6 instances. In this scenario, the NServiceBus Version 6 instances need to [enlist with a NServiceBus Version 5 Distributor](/nservicebus/msmq/distributor/configuration.md#worker-configuration-when-self-hosting).

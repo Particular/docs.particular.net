@@ -641,6 +641,8 @@
     - Url: nservicebus/msmq/distributor
       Title: Scaling with the Distributor
       Articles:
+      - Url: nservicebus/msmq/distributor/configuration
+        Title: Configuration
       - Url: nservicebus/msmq/distributor/when-worker-goes-down
         Title: When a worker goes down
       - Url: nservicebus/msmq/distributor/disconnect-workers

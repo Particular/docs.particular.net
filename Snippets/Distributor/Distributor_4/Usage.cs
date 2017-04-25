@@ -1,5 +1,4 @@
 ﻿using NServiceBus;
-using NServiceBus.Settings;
 
 class Usage
 {
@@ -22,21 +21,5 @@ class Usage
         configure.EnlistWithMSMQDistributor();
 
         #endregion
-    }
-
-    void IsEnabled()
-    {
-        #region IsDistributorEnabled
-
-        var isDistributorEnabled = SettingsHolder.GetOrDefault<bool>("Distributor.Enabled");
-
-        #endregion
-
-        #region IsWorkerEnabled
-
-        var isWorkerEnabled = SettingsHolder.GetOrDefault<bool>("Worker.Enabled");
-
-        #endregion
-
     }
 }
