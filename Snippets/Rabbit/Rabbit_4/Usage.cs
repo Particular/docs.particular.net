@@ -161,15 +161,4 @@ class Usage
 
         #endregion
     }
-
-    void AllEndpointsSupportDelayedDelivery(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-delay-all-endpoints-support-delayed-delivery 4.3
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        var delayedDelivery = transport.DelayedDelivery();
-        delayedDelivery.AllEndpointsSupportDelayedDelivery();
-
-        #endregion
-    }
 }
