@@ -1,4 +1,4 @@
-s---
+---
 title: Azure Storage Queues Transport
 summary: Using Azure Storage Queues as transport
 component: ASQ
