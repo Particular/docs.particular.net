@@ -17,7 +17,7 @@ Note that the pipeline is not straight, there is a [fork in the pipeline](/nserv
 
 This is important, as it allows the transport to flow it's transaction scope from the incoming section to the outgoing section. While at the same time it can prevent the receive scope from promoting the handler scope by putting a suppress scope around the handler invocation section of the pipeline.
 
-Flowing the receive scope into the outgoing section is a requirement to allow the Azure Service Bus transport to take advantage of, a little-known capability of the Azure Service Bus SDK, [the via entity path / transfer queue](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions). 
+Flowing the receive scope into the outgoing pipeline is a requirement to allow the Azure Service Bus transport to take advantage of, a little-known capability of the Azure Service Bus SDK, [the via entity path / transfer queue](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions). 
 
 Using this feature, send operations to different Azure Service Bus entities can be executed via a single entity, usually the receive queue, and be completed in a single operation together with the acknowledgment that the receive operation has completed.  
 
