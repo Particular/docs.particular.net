@@ -32,8 +32,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AsyncFriendlyStackTrace, Version=1.4.1.0, Culture=neutral, PublicKeyToken=f5fdf019656607c4, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\AsyncFriendlyStackTrace.1.4.1\lib\net45\AsyncFriendlyStackTrace.dll</HintPath>
+    <Reference Include="AsyncFriendlyStackTrace, Version=1.5.0.0, Culture=neutral, PublicKeyToken=f5fdf019656607c4, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\AsyncFriendlyStackTrace.1.5.0\lib\net45\AsyncFriendlyStackTrace.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c">
