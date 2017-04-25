@@ -22,7 +22,7 @@ NServiceBus includes several performance counters. They are installed in the `NS
 
 Since all performance counters in Windows are exposed via Windows Management Instrumentation (WMI), it is very straightforward to pull this information into the existing monitoring infrastructure.
 
-partial:note
+partial: note
 
 ## Critical Time
 
