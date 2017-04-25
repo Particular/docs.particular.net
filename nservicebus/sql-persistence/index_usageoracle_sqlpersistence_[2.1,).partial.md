@@ -5,4 +5,4 @@ Using the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/package
 
 snippet: SqlPersistenceUsageOracle
 
-NOTE: The `Enlist=false` setting is required for the [Oracle connection string](https://docs.oracle.com/database/121/ODPNT/featConnecting.htm) to prevent auto-enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which prevents the persistence from enlisting at the correct moment.
+NOTE: The ODP.NET managed driver requires `Enlist=false` or `Enlist=dynamic` setting in the [Oracle connection string](https://docs.oracle.com/database/121/ODPNT/featConnecting.htm) to allow the persister to enlist in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) at the correct moment.

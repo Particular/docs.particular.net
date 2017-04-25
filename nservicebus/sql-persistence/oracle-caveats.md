@@ -7,11 +7,12 @@ reviewed: 2017-04-06
 
 The SQL Persistence provides autonomy between endpoints by using separate tables for every endpoint based on the endpoint name. However, due to Oracle's 30-character limit on table names and index names, the SQL Persistence must make some compromises.
 
+
 ## Table Names
 
 NOTE: For a complete example of the schema created by the SQL Persistence for Oracle, see [Oracle Scripts](oracle-scripts.md).
 
-For storing subscriptions, timeouts, and outbox data, SQL Persistence will reserve 24 characters for the endpoint name, leaving 3 characters for the persistence type, and and additional 3 characters for an index type. Names are then constructed as `{EndpointName}{PersistenceTypeSuffix}{KeyType}`.
+For storing subscriptions, timeouts, and outbox data, SQL Persistence will reserve 24 characters for the endpoint name, leaving 3 characters for the persistence type, and additional 3 characters for an index type. Names are then constructed as `{EndpointName}{PersistenceTypeSuffix}{KeyType}`.
 
 The following table shows table names created for an endpoint named `My.Endpoint`:
 
@@ -25,11 +26,12 @@ If an endpoint name is longer than 24 characters, an exception will be thrown, a
 
 snippet: TablePrefix
 
+
 ### Sagas
 
 Tables generated for sagas reserve 27 characters for the saga name, leaving 3 characters for the `_PK` suffix for the table's primary key.
 
-In order to accommodate as many characters for the saga name as possible, the [table prefix](/nservicebus/sql-persistence/#installation-table-prefix) is not represented in the resulting table name.
+In order to accommodate as many characters for the saga name as possible, the [table prefix](/nservicebus/sql-persistence/#installation-table-prefix) is omitted from the saga table name.
 
 | Saga Class Name |   Table Name  |    Primary Key   |
 |-----------------|:-------------:|:----------------:|
@@ -48,6 +50,7 @@ where INDEX_NAME = 'SAGAIDX_525D1D4DC0C3DCD96947E1';
 NOTE: If saga name or correlation property name change, the name of the index will also change.
 
 If a saga name is longer than 27 characters, an exception will be thrown, and a [substitute table name must be specified](saga.md#table-structure-table-name).
+
 
 ## Custom Finders
 
