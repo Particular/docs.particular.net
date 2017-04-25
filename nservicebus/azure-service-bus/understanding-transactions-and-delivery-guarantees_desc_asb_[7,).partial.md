@@ -1,14 +1,14 @@
 NOTE: This is advanced documentation and only of significant relevance when developing custom behaviors or satellites. To make a long story short: As from version 7, transactional operations are enlisted in the receive scope, if present (only in `SendAtomicWithReceive` mode). And all transactional operations performed in the pipeline must be wrapped by a suppress scope. Read on to learn why.
 
-In contrast to previous versions, NServiceBus version 6 and above provides the transport 'full control' on how it implements the transactional support. A transaction scope is no longer mandatory in order to orchestrate dispatching of messages with complete/rollback behavior. As from version 7 of the Azure Service Bus transport it no longer enlists in the same transaction scope used to access the database in handler implementations. 
+In contrast to previous versions, NServiceBus version 6 and above provides the transport 'full control' on how it implements the transactional support. A transaction scope is no longer mandatory in order to orchestrate dispatching of messages with complete/rollback behavior. 
 
-In fact, it no longer uses a transaction scope at all except when configured using the `SendAtomicWithReceive` transaction mode. In this case, it opens a new receive scope and ensures this new scope does not automatically promote the handler scope by wrapping the handler scope in a suppress scope. 
+As from version 7 onwards, the Azure Service Bus transport only uses a transaction scope when the `SendAtomicWithReceive` transaction mode is active. It also no longer enlists in the same transaction scope used to access the database in handler implementations. Instead it opens a new receive scope and ensures this new scope does not automatically promote the handler scope by wrapping the handler scope in a suppress scope. 
 
 The new architecture for `SendAtomicWithReceive` is schematically represented in the diagram:
 
 ![Transactions v7](transactions-v7.png)
 
-As illustrated in the diagram, the NServiceBus pipeline consists of 3 major parts:
+As illustrated in the diagram, the NServiceBus pipeline consists of three major parts:
 * The incoming pipeline section, which is invoked by the transport whenever a message is received.
 * The handler invocation section responsible for invoking the implementations of `IHandleMessages`.
 * And finally the outgoing section, responsible for sending out messages through the transport.
