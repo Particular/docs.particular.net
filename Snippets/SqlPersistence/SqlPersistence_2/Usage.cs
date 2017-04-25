@@ -9,7 +9,6 @@ using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.Sql;
 
-
 class Usage
 {
     void SqlServerUsage(EndpointConfiguration endpointConfiguration)
@@ -73,7 +72,6 @@ class Usage
 
         #endregion
     }
-
 
     void CustomSettings(EndpointConfiguration endpointConfiguration)
     {

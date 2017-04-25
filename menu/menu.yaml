@@ -698,6 +698,8 @@
       Title: MS SQL Server Scripts
     - Url: nservicebus/sql-persistence/mysql-scripts
       Title: MySQL Scripts
+    - Url: nservicebus/sql-persistence/oracle-scripts
+      Title: Oracle Scripts
   - Url: nservicebus/azure-storage-persistence
     Title: Azure Storage
     Articles:

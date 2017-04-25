@@ -19,7 +19,7 @@ public class CorrelationPropertyTypeConverterWriter
         {
             writer.WriteLine(@"
 
-#### Ms Sql Server
+#### Microsoft SQL Server
 
 | CorrelationPropertyType | Sql Type |
 |--|--|");
@@ -31,7 +31,7 @@ public class CorrelationPropertyTypeConverterWriter
 
             writer.WriteLine(@"
 
-#### My Sql
+#### MySQL
 
 | CorrelationPropertyType | Sql Type |
 |--|--|");

@@ -104,7 +104,7 @@ Incrementing counter used to provide [optimistic concurrency](https://en.wikiped
 
 #### Correlation Ids
 
-There is between 0 and 2 correlation id columns named `Correlation_[PROPERTYNAME]`. The type will correspond to the .net type of .net type of the mapped property on the saga data.
+There is between 0 and 2 correlation id columns named `Correlation_[PROPERTYNAME]`. The type will correspond to the .NET type of the mapped property on the saga data.
 
 For each Correlation Id there will be a corresponding index named `Index_Correlation_[PROPERTYNAME]`.
 
