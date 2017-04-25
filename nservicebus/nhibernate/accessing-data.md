@@ -19,3 +19,5 @@ Regardless of how the `ISession` object is accessed, it is fully managed by NSer
 partial: customizing-session
 
 partial: limitations
+
+partial: transactionscope
