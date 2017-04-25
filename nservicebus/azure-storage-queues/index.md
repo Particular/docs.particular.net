@@ -1,4 +1,4 @@
----
+s---
 title: Azure Storage Queues Transport
 summary: Using Azure Storage Queues as transport
 component: ASQ
@@ -24,4 +24,4 @@ To use Azure Storage Queues as the underlying transport configure it in the foll
 
 snippet: AzureStorageQueueTransportWithAzure
 
-Then set up appropriate [connection strings](/nservicebus/azure-storage-queues/configuration.md#connection-strings) and consider using aliase to make them [secure](/nservicebus/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts).
+Then set up appropriate [connection strings](/nservicebus/azure-storage-queues/configuration.md#connection-strings) and consider using aliase to make them [more secure](/nservicebus/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts).
