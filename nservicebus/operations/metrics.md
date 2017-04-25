@@ -7,8 +7,10 @@ related:
  - samples/metrics
 ---
 
-Metrics collects information to measure endpoint health and performance.
-
+`NServiceBus.Metrics` collects information to measure endpoint health and performance. When a system is broken down into multiple processes, each with its own queue, then bottlenecks may be identified by tracking:
+ - the length of each queue
+ - incoming rate of messages for each queue
+ - processing rate for each queue.
 
 ## Enabling NServiceBus.Metrics
 
