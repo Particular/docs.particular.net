@@ -49,7 +49,7 @@ The display of failed message groups can be changed via the "Group by" drop down
 
  * **Exception Type and Stack Trace** - groups messages both by exception type and stack trace. It is the default way of categorizing failed messages.   
  * **Message Type** - groups messages by message type. 
- * **Endpoint Address** - groups messages by endpoint address where failure occured.
+ * **Endpoint Address** - groups messages by endpoint address where the failure occurred.
  
 Note: the number of listed groups may differ depending on the selected classifications type view.
 
