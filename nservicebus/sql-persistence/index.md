@@ -160,20 +160,3 @@ snippet: ExecuteScriptsSqlServer
 snippet: ExecuteScriptsMySql
 
 partial: executescriptsoracle
-
-
-## SqlStorageSession
-
-The current [DbConnection](https://msdn.microsoft.com/en-us/library/system.data.common.dbconnection.aspx) and [DbTransaction](https://msdn.microsoft.com/en-us/library/system.data.common.dbtransaction.aspx) can be accessed via the current context.
-
-
-### Using in a Handler
-
-snippet: handler-sqlPersistenceSession
-
-
-### Using in a Saga
-
-include: saga-business-data-access
-
-snippet: saga-sqlPersistenceSession

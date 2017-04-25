@@ -688,6 +688,8 @@
   - Url: nservicebus/sql-persistence
     Title: SQL
     Articles:
+    - Url: nservicebus/sql-persistence/accessing-data
+      Title: Business data
     - Url: nservicebus/sql-persistence/saga
       Title: Sagas
     - Url: nservicebus/sql-persistence/subscriptions
