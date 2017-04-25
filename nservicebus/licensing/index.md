@@ -2,7 +2,7 @@
 title: Licensing
 summary: Outlines license usage, management, and restrictions
 component: core
-reviewed: 2016-09-27
+reviewed: 2017-04-20
 redirects:
  - nservicebus/licensing-limitations
  - nservicebus/licensing/licensing-limitations
@@ -32,32 +32,31 @@ partial: validity
 partial: limitations
 
 
-## License Management
+## License management
 
-partial: code
+There are several options available for installing the license file. While all of these work for NServiceBus, the registry is the only option that lets the other platform tools, [ServiceControl](/servicecontrol/license.md), and [ServiceInsight](/serviceinsight/license.md), share the same license file.
 
 
-### Using the Registry
-
-NOTE: Using the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md) is the preferred and simplest method of adding the license file. 
-
-Using the registry allows all platform tools (endpoints, [ServiceControl](/servicecontrol/license.md), and [ServiceInsight](/serviceinsight/license.md)) to access the same license.
+### Using the registry
 
 partial: registry
 
 partial: registry-caveats
 
 
-### Using a License sub-directory
+partial: code
+
+
+### Using a license subdirectory
 
 A file located at `[AppDomain.CurrentDomain.BaseDirectory]/License/License.xml` will be automatically detected.
 
 
-### Using the app.config settings
+### Using app.config appSettings
 
 It is possible to specify the license in `app.config`:
 
- - Use the key `NServiceBus/LicensePath` to specify the path where NServiceBus looks for the license. For example:
+ - Use the key `NServiceBus/LicensePath` to specify the path where NServiceBus looks for the license:
 
 ```xml
 <appSettings>
@@ -65,7 +64,7 @@ It is possible to specify the license in `app.config`:
        value="C:\NServiceBus\License\License.xml" />
 </appSettings>
 ```
- - Use the key `NServiceBus/License` to transfer the actual XML-encoded contents of the license. For example:
+ - Use the key `NServiceBus/License` to store the XML-encoded contents of the license directly in `app.config`:
 
 ```xml
 <appSettings>
@@ -85,6 +84,5 @@ license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;201
 This section details where NServiceBus will look for license information, and in what order. For example, an expired license in `HKEY_CURRENT_USER` would overrule a valid license in `HKEY_LOCAL_MACHINE`. Note that these vary somewhat in older versions.
 
 In order to find the license, NServiceBus will examine:
-
 
 partial: order

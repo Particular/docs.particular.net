@@ -1,2 +1,1 @@
-
-File located at `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml`
+A file located at `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml`
