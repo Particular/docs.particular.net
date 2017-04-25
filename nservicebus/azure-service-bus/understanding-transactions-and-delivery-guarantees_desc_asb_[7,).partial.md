@@ -9,17 +9,17 @@ The new architecture for `SendAtomicWithReceive` is schematically represented in
 ![Transactions v7](transactions-v7.png)
 
 As illustrated in the diagram, the NServiceBus pipeline consists of 3 major parts:
-* The receive section, which is invoked by the transport
+* The incoming pipeline section, which is invoked by the transport whenever a message is received.
 * The handler invocation section responsible for invoking the implementations of `IHandleMessages`.
-* And finally the dispatch section, responsible for sending out messages through the transport.
+* And finally the outgoing section, responsible for sending out messages through the transport.
 
-Note that the pipeline is not straight, there is a [fork in the pipeline](/nservicebus/pipeline/steps-stages-connectors.md) that is separating the user code invocation path from the dispatching path. Dispatching only happens after the handler invocation section has returned, and all implementations of `IHandleMessages` have been executed.
+Note that the pipeline is not straight, there is a [fork in the pipeline](/nservicebus/pipeline/steps-stages-connectors.md) that is separating the handler invocation path from the outgoing path. Dispatching only happens after the handler invocation section has returned, and all implementations of `IHandleMessages` have been executed.
 
-This is important as it allows the transport to flow it's transaction scope from the receive section to the dispatch section. While at the same time it can prevent that scope from promoting the handler scope by putting a suppress scope around that section of the pipeline.
+This is important, as it allows the transport to flow it's transaction scope from the incoming section to the outgoing section. While at the same time it can prevent the receive scope from promoting the handler scope by putting a suppress scope around the handler invocation section of the pipeline.
 
-Flowing the receive scope into the dispatch section is a requirement to allow the Azure Service Bus transport to take advantage of, a little-known capability of the Azure Service Bus SDK, [the via entity path / transfer queue](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions). 
+Flowing the receive scope into the outgoing section is a requirement to allow the Azure Service Bus transport to take advantage of, a little-known capability of the Azure Service Bus SDK, [the via entity path / transfer queue](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions). 
 
-Using this feature, send operations to different Azure Service Bus entities can be executed via a single entity, usually the receive queue and be completed in a single operation together with the acknowledgment that the receive operation has completed.  
+Using this feature, send operations to different Azure Service Bus entities can be executed via a single entity, usually the receive queue, and be completed in a single operation together with the acknowledgment that the receive operation has completed.  
 
 Schematically it works like this:
 
