@@ -10,6 +10,17 @@ void Main()
 	FixResharperSettings();
 	CleanUpSolutions();
 	CleanUpProjects();
+	DeleteAssemblyInfo();
+}
+
+void DeleteAssemblyInfo()
+{
+	foreach (var assemblyInfo in Directory.EnumerateFiles(docsDirectory, "AssemblyInfo.cs", SearchOption.AllDirectories))
+	{
+		if (Path.GetDirectoryName(assemblyInfo) == "Properties")
+		{
+			File.Delete(assemblyInfo);
+		}
 }
 
 void CleanUpSolutions()
@@ -37,7 +48,24 @@ void CleanUpProjects()
 	foreach (var projectFile in Directory.EnumerateFiles(docsDirectory, "*.csproj", SearchOption.AllDirectories))
 	{
 		var xdocument = XDocument.Load(projectFile);
+
+		foreach (var element in xdocument.DescendantNodes().OfType<XComment>().ToList())
+		{
+			if (element.Value.Contains("To modify your build process"))
+			{
+				element.Remove();
+			}
+		}
+
+		var assemblyInfoNode = xdocument.Descendants(xmlns + "Compile")
+			.SingleOrDefault(x => (string)x.Attribute("Include") == @"Properties\AssemblyInfo.cs");
+		if (assemblyInfoNode != null)
+		{
+			assemblyInfoNode.Remove();
+		}
+
 		var propertyGroups = xdocument.Descendants(xmlns + "PropertyGroup").ToList();
+		
 
 		xdocument.Descendants(xmlns + "NuGetPackageImportStamp")
 			.Remove();
