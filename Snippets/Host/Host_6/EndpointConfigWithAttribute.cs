@@ -3,7 +3,8 @@
 #region EndpointNameByAttribute
 [EndpointName("MyEndpointName")]
 public class EndpointConfigWithAttribute :
-    IConfigureThisEndpoint
+    IConfigureThisEndpoint,
+    AsA_Server
 {
     // ... the config
     #endregion
