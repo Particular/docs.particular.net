@@ -34,10 +34,10 @@
       <HintPath>..\..\..\packages\NServiceBus.6.2.1\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Persistence.Sql, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Persistence.Sql.2.1.0-unstable0003\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.Persistence.Sql.2.1.0\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Persistence.Sql.ScriptBuilder, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NServiceBus.Persistence.Sql.ScriptBuilder.2.1.0-unstable0003\lib\net452\NServiceBus.Persistence.Sql.ScriptBuilder.dll</HintPath>
+      <HintPath>..\..\..\packages\NServiceBus.Persistence.Sql.ScriptBuilder.2.1.0\lib\net452\NServiceBus.Persistence.Sql.ScriptBuilder.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
