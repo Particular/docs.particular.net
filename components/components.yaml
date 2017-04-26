@@ -791,7 +791,7 @@
 - Key: ServiceFabricPersistence
   Name: Service Fabric Persistence 
   DocoUrl: nservicebus/service-fabric
-  GitHubOwner: Particular/service-fabric-maintainers
+  GitHubOwner: Particular/azure-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.ServiceFabric
   NugetOrder:
