@@ -17,10 +17,11 @@ void DeleteAssemblyInfo()
 {
 	foreach (var assemblyInfo in Directory.EnumerateFiles(docsDirectory, "AssemblyInfo.cs", SearchOption.AllDirectories))
 	{
-		if (Path.GetDirectoryName(assemblyInfo) == "Properties")
+		if (Path.GetDirectoryName(assemblyInfo).EndsWith("Properties"))
 		{
 			File.Delete(assemblyInfo);
 		}
+	}
 }
 
 void CleanUpSolutions()
