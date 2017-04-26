@@ -5,6 +5,24 @@ void Main()
 {
 	var toolsDiretory = Path.GetDirectoryName(Util.CurrentQueryPath);
 	var docsDirectory = Directory.GetParent(toolsDiretory).FullName;
+
+	foreach (var solutionFile in Directory.EnumerateFiles(docsDirectory, "*.sln", SearchOption.AllDirectories))
+	{
+		var lines = File.ReadAllLines(solutionFile);
+		File.Delete(solutionFile);
+		using (var writer = new StreamWriter(solutionFile))
+		{
+			foreach (var line in lines)
+			{
+				if (line.Contains(".Release"))
+				{
+					//continue;
+				}
+				writer.WriteLine(line);
+			}
+		}
+	}
+	return;
 	foreach (var projectFile in Directory.EnumerateFiles(docsDirectory, "*.csproj", SearchOption.AllDirectories))
 	{
 		var xdocument = XDocument.Load(projectFile);
@@ -14,16 +32,20 @@ void Main()
 			.Remove();
 
 		foreach (var element in propertyGroups)
-		{
+		{ 
 			var condition = element.Attribute("Condition");
-			if (condition != null)
+			if (condition == null) 
 			{
-				if (
-					condition.Value != " '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " &&
-					condition.Value != " '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ")
-				{
-					continue;
-				}
+				continue;
+			}
+
+			if (condition.Value == " '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ")
+			{
+				element.Remove();
+			}
+
+			if (condition.Value != " '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ")
+			{
 				var treatAsErrors = element.Element(xmlns + "TreatWarningsAsErrors");
 				if (treatAsErrors == null)
 				{
@@ -33,7 +55,7 @@ void Main()
 				{
 					treatAsErrors.Value = "true";
 				}
-				
+
 				var langVersion = element.Element(xmlns + "LangVersion");
 				if (langVersion == null)
 				{
