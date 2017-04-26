@@ -16,13 +16,12 @@ void Main()
 			{
 				if (line.Contains(".Release"))
 				{
-					//continue;
+					continue;
 				}
 				writer.WriteLine(line);
 			}
 		}
 	}
-	return;
 	foreach (var projectFile in Directory.EnumerateFiles(docsDirectory, "*.csproj", SearchOption.AllDirectories))
 	{
 		var xdocument = XDocument.Load(projectFile);
