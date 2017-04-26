@@ -38,6 +38,10 @@ void CleanUpSolutions()
 				{
 					continue;
 				}
+				if (line.Contains("Release|"))
+				{
+					continue;
+				}
 				writer.WriteLine(line);
 			}
 		}

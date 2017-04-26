@@ -18,7 +18,6 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
