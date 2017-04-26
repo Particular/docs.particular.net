@@ -241,11 +241,18 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 7.0.x     | 2016-10-11     | -                 | -                                 |
 | 6.0.x     | 2014-11-25     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
+#### NServiceBus.Metrics
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 1.0.x     | 2017-04-25     | -                 | -                                 |
+
 #### NServiceBus.Metrics.PerformanceCounters
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.0.x     | 2017-03-28     | -                 | -                                 |
+| 1.1.x     | 2017-04-25     | -                 | -                                 |
+| 1.0.x     | 2017-03-28     | 2017-07-25        | Superseded by 1.1.x               |
 
 #### NServiceBus.Testing
 

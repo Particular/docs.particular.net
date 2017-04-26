@@ -473,13 +473,16 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 #### NServiceBus.Metrics
 
-No versions released.
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 1.0.x     | 2017-04-25     | -                 | -                                 |
 
 #### NServiceBus.Metrics.PerformanceCounters
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.0.x     | 2017-03-28     | -                 | -                                 |
+| 1.1.x     | 2017-04-25     | -                 | -                                 |
+| 1.0.x     | 2017-03-28     | 2017-07-25        | Superseded by 1.1.x               |
 
 #### NServiceBus.Testing
 
