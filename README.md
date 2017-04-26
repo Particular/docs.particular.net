@@ -1017,7 +1017,9 @@ Under https://github.com/Particular/docs.particular.net/tree/master/tools there 
 Uses nuget.exe to update all NuGet packages in all solutions to the newest patch version. This script takes 10-20 minutes depending on bandwidth. The script will **not** update to the newest minor or major versions.
 
 
-## resharpersettings.linq
+## projectStandards.linq
+
+Remove redundant content from sln and csproj files.
 
 Enforces the [Resharper](https://www.jetbrains.com/resharper/) settings to be correct for every solution. The standard is a placeholder .settings file that pull in the [Shared.DotSettings](https://github.com/Particular/docs.particular.net/blob/master/tools/Shared.DotSettings) file as a layer.
 
