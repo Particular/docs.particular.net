@@ -10,7 +10,7 @@ related:
 
 ## Code walk-through
 
-When integrating with 3rd party systems, often messages fail fail when those systems are down. The Particular Platform has extensibility to enable the monitoring 3rd party systems which are exposed as HTTP endpoints. This sample shows how to achieve this with custom checks.
+When integrating with 3rd party systems, often messages fail when those systems are down. The Particular Platform has extensibility to enable the monitoring 3rd party systems which are exposed as HTTP endpoints. This sample shows how to achieve this with custom checks.
 
 
 ### 3rd Party System console
