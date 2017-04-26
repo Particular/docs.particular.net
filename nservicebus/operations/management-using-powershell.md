@@ -15,7 +15,7 @@ The PowerShell module provides cmdlets to assist with:
 
  * Installing Microsoft Message Queuing Service (MSMQ)
  * Configuring Microsoft Distributed Transaction Coordinator (MSDTC)
- * Installing performance counters for NServiceBus
+ * Installing performance counters for NServiceBus _(obsolete)_
  * Setting the addresses of the default Error and Audit queues for use by deployed Endpoints
  * Importing a Particular Platform license into the Registry
  * Removing a worker from a [Distributor](/nservicebus/msmq/distributor/)
@@ -43,7 +43,7 @@ Import-Module NServiceBus.PowerShell
 
 The installation adds the NServiceBus.PowerShell module location to the `PSModulePath` environment variable. If the module isn't available restarting the Windows session may be required for this change to take effect.
 
-As most of the cmdlets require elevated privileges the module should be used in a PowerShell session that is launched as `Run As Administrator`.
+As most of the cmdlets require elevated privileges the module should be used in a PowerShell session that is launched with `Run As Administrator`.
 
 
 ## Help
