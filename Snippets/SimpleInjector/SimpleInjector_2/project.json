@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus.SimpleInjector": "2.0.0"
+    "NServiceBus.SimpleInjector": "2.1.0"
   },
   "frameworks": {
     "net461": {}

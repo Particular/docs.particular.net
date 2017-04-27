@@ -1,4 +1,5 @@
 ﻿using NServiceBus;
+using NServiceBus.SimpleInjector;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 
@@ -16,6 +17,8 @@ class Usage
 
         var container = new Container();
         container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+        container.Options.AllowOverridingRegistrations = true;
+        container.Options.AutoWirePropertiesImplicitly();
 
         container.Register(
             instanceCreator: () =>

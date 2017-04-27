@@ -1,7 +1,7 @@
 ---
 title: Simple Injector Usage
 component: SimpleInjector
-reviewed: 2016-10-31
+reviewed: 2017-04-27
 tags:
 - dependency injection
 related:
