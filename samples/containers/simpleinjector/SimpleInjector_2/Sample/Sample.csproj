@@ -32,8 +32,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.SimpleInjector, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.SimpleInjector.2.0.1\lib\net452\NServiceBus.SimpleInjector.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.SimpleInjector.2.1.0\lib\net452\NServiceBus.SimpleInjector.dll</HintPath>
     </Reference>
     <Reference Include="SimpleInjector, Version=4.0.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\SimpleInjector.4.0.3\lib\net45\SimpleInjector.dll</HintPath>
