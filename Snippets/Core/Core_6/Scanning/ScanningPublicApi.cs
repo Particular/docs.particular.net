@@ -73,7 +73,7 @@ namespace Core6.Scanning
         {
             #region 5to6ScanningUpgrade
 
-            endpointConfiguration.ExcludeAssemblies(
+            endpointConfiguration.AssemblyScanner().ExcludeAssemblies(
                 "BadAssembly1.dll",
                 "BadAssembly2.dll");
 
