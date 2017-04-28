@@ -15,7 +15,7 @@ WARNING: This sample runs on the full .NET Framework 4.6.1 but utilizes both .NE
 
 ## Using the full .NET Framework runtime
 
-The default *ASP.NET Core Web Application (.NET Framework)* Visual Studio project template is used.
+The default *ASP.NET Core Web Application (.NET Framework)* Visual Studio 2017 project template is used.
 
 
 ## Running the solution
@@ -26,6 +26,8 @@ An async [WebAPI](https://www.asp.net/web-api) controller handles the request. I
 
 
 ## Prerequisites
+
+  - Visual Studio 2017 is required to run this sample.
 
 ### Initialize the WebAPI endpoint
 
