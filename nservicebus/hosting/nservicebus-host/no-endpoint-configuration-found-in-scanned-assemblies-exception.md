@@ -1,6 +1,6 @@
 ---
 title: No Endpoint Configuration Found in Scanned Assemblies
-summary: Troubleshooting when NServiceBus is not able to find the endpoint configuration (IConfigureThisEndoint)
+summary: Troubleshooting when no IConfigureThisEndoint can be found
 component: Host
 reviewed: 2016-11-01
 redirects:
