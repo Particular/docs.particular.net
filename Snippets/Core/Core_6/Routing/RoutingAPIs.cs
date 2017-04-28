@@ -6,9 +6,11 @@ namespace Core6.Routing
 
     class RoutingAPIs
     {
-        void LogicalRouting(TransportExtensions transportExtensions)
+        void LogicalRouting(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-Logical
+
+            var transportExtensions = endpointConfiguration.UseTransport<MyTransport>();
 
             var routing = transportExtensions.Routing();
             routing.RouteToEndpoint(
@@ -27,9 +29,11 @@ namespace Core6.Routing
             #endregion
         }
 
-        void SubscribeRouting(TransportExtensions<MsmqTransport> transportExtensions)
+        void SubscribeRouting(EndpointConfiguration endpointConfiguration)
         {
             #region Routing-RegisterPublisher
+
+            var transportExtensions = endpointConfiguration.UseTransport<MyTransport>();
 
             var routing = transportExtensions.Routing();
             routing.RegisterPublisher(

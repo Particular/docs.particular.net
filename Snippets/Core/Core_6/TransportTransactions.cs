@@ -3,6 +3,7 @@
     using System;
     using System.Transactions;
     using NServiceBus;
+    using NServiceBus.Routing;
     using NServiceBus.Settings;
     using NServiceBus.Transport;
 
@@ -84,7 +85,7 @@
     }
 
     public class MyTransport :
-        TransportDefinition
+        TransportDefinition, IMessageDrivenSubscriptionTransport
     {
         public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
         {
