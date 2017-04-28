@@ -148,7 +148,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 2.0.x     | 2017-04-14     | -                 | -                                 |
+| 2.1.x     | 2017-04-28     | -                 | -                                 |
+| 2.0.x     | 2017-04-14     | 2017-07-28        | Superseded by 2.1.x               |
 | 1.0.x     | 2017-02-02     | 2018-04-14        | Superseded by 2.0.x               |
 
 #### NServiceBus.RavenDB
