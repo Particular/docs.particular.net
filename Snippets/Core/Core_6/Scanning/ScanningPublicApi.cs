@@ -32,7 +32,9 @@ namespace Core6.Scanning
 
         void ScanningExcludeByWildcard(EndpointConfiguration endpointConfiguration)
         {
-            #region ScanningAssebliesWildcard
+            #region ScanningAssembliesWildcard
+
+            var assemblyScanner = endpointConfiguration.AssemblyScanner();
 
             var excludeRegexs = new List<string>
             {
@@ -48,7 +50,7 @@ namespace Core6.Scanning
                 {
                     if (Regex.IsMatch(fileName, pattern, RegexOptions.IgnoreCase))
                     {
-                        endpointConfiguration.ExcludeAssemblies(fileName);
+                        assemblyScanner.ExcludeAssemblies(fileName);
                         break;
                     }
                 }
@@ -71,7 +73,7 @@ namespace Core6.Scanning
         {
             #region 5to6ScanningUpgrade
 
-            endpointConfiguration.ExcludeAssemblies(
+            endpointConfiguration.AssemblyScanner().ExcludeAssemblies(
                 "BadAssembly1.dll",
                 "BadAssembly2.dll");
 
