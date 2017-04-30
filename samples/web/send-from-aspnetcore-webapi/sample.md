@@ -2,7 +2,7 @@
 title: Using NServiceBus in an ASP.NET Core WebAPI Application
 summary: Illustrates how to send messages to a NServiceBus endpoint from a ASP.NET Core WebAPI application.
 component: Core
-reviewed: 2016-09-27
+reviewed: 2017-04-27
 related:
 - nservicebus/hosting
 ---
@@ -10,80 +10,12 @@ related:
 
 This sample shows how to send messages to an NServiceBus endpoint from an ASP.NET Core WebAPI application. 
 
-WARNING: This sample runs on the full .NET framework 4.6.1 but utilizes both .NET Core and .NET Framework dependencies, i.e. ASP.NET Core and NServiceBus. So while .NET Core dependencies can be consumed by the .NET Framework runtime, the .NET Core runtime is not currently supported.
+WARNING: This sample runs on the full .NET Framework 4.6.1 but utilizes both .NET Standard and .NET Framework dependencies, i.e. ASP.NET Core and NServiceBus. So while .NET Standard dependencies can be consumed by the .NET Framework runtime, the .NET Core runtime is not currently supported.
 
 
-## Converting to the full .NET Framework runtime
+## Using the full .NET Framework runtime
 
-If the default *ASP.NET Core Web Application .NET Core* Visual Studio Project template is used, there are two actions that will be required prior to adding the NServiceBus dependency. 
-
-
-### Change the target framework
-
-To reference both .NET Core and .NET Framework dependencies, a project needs to have the framework configured to `net461`.
-
-If this is not done, the following build error will occur
-
-```no-highlight
-NU1002 The dependency NServiceBus does not support framework .NETCoreApp,Version=v1.0.project.json
-``` 
-
-To convert to .NET Framework 4.6.1, open the project.json file and locate the following
-
-```json
-"frameworks": {
- "netcoreapp1.0": {
-   "imports": [
-      "dotnet5.6",
-      "portable-net45+win8"
-    ]
-  }
-},
-```
-
-Replace those lines with
-
-```json
-"frameworks": {
-  "net461": {}
-},
-```
-
-
-### Change the NuGet dependencies
-
-
-#### Update existing Nuget packages
-
-The project template will default to the following dependencies
-
- * Microsoft.NETCore.App 1.0
- * Microsoft.AspNetCore.\* 1.0
- * Microsoft.Extensions.\* 1.0
-
-These are not compatible with .NET Framework 4.6.1 and will need to be updated. Use one of the following to update those packages to at least 1.1.
-
- * [NuGet Package Manager UI - Updating a package](https://docs.nuget.org/ndocs/tools/package-manager-ui#updating-a-package)
- * [NuGet Package Manager Console - Updating a package](https://docs.nuget.org/ndocs/tools/package-manager-console#updating-a-package)
-
-
-#### Add IIS integration
-
-Add the [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/) NuGet pacakge. It is required for the .NET Framework runtime to host a .NET Core website in IIS.
-
-
-#### Remove Microsoft.NETCore.App 
-
-The [Microsoft.NETCore.App](https://www.nuget.org/packages/Microsoft.NETCore.App/) NuGet package is not compatible with the .NET Framework runtime. However, it is not required for this sample and can be removed.
-
-Remove the following from the project.json file.
-
-```json
-"Microsoft.NETCore.App": {
-  "version": "1.1.0",
-  "type": "platform"
-}
-```
+The default *ASP.NET Core Web Application (.NET Framework)* Visual Studio 2017 project template is used.
 
 
 ## Running the solution
@@ -95,8 +27,7 @@ An async [WebAPI](https://www.asp.net/web-api) controller handles the request. I
 
 ## Prerequisites
 
-- Install [.NET Core](https://www.microsoft.com/net/core#windows)
-
+  - Visual Studio 2017 is required to run this sample.
 
 ### Initialize the WebAPI endpoint
 
