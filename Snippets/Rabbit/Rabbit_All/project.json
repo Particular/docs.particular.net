@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "NServiceBus.RabbitMQ": "4.3.0-RC*",
+    "NServiceBus.RabbitMQ": "4.*",
     "NUnit": "3.*"
   },
   "frameworks": {
