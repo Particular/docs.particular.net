@@ -57,7 +57,7 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 
 ### [SQL Persistence](/nservicebus/sql-persistence/)
 
- * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.aspxx)
+ * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.aspx)
  * [SQL Server Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
 
 
@@ -75,7 +75,7 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 
 ### [NHibernate Persistence](/nservicebus/nhibernate/)
 
- * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.aspxx)
+ * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.aspx)
  * [SQL Server Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
 
 
