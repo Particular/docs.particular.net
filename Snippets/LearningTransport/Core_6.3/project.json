@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "NServiceBus": "6.3.0-pullrequest4550"
+  },
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
