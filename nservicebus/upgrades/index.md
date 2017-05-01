@@ -44,6 +44,6 @@ The recommended approach is to upgrade by one major version at a time, e.g. from
 
 See also:
 
- * [NuGet Package Manager Dialog - Updating a Package](https://docs.nuget.org/ndocs/tools/package-manager-ui#updating-a-package)
- * [NuGet Package Manager Console - Updating a Package](https://docs.nuget.org/ndocs/tools/package-manager-console#updating-a-package)
+ * [NuGet Package Manager Dialog - Updating a Package](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui#updating-a-package)
+ * [NuGet Package Manager Console - Updating a Package](https://docs.microsoft.com/en-us/nuget/tools/package-manager-console#updating-a-package)
 

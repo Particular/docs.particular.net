@@ -22,4 +22,4 @@ This SDK is also available many other languages:
 
 For other language it is possible to perform these actions using the [REST API](https://docs.microsoft.com/en-us/rest/api/servicebus/).
 
-If operations need to be executed at the command line, refer to the [PowerShell Samples](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-powershell-how-to-provision) or the cross platform [Azure Xplat CLI](https://www.npmjs.com/package/azure-cli) for more information.
+If operations need to be executed at the command line, refer to the [PowerShell Samples](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-manage-with-ps) or the cross platform [Azure Xplat CLI](https://www.npmjs.com/package/azure-cli) for more information.

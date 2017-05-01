@@ -16,7 +16,7 @@ WARNING: This upgrade is only required by Endpoints that are using both [Microso
 
 NOTE: This is a optional performance optimization that is only necessary for high throughput endpoints. All new endpoints created with Version 1.0.1 and above will have this optimization applied.
 
-As the `MessageId` is not guaranteed to be sequential a [nonclustered index](https://msdn.microsoft.com/en-AU/library/ms190457.aspx) gives better performance. Applying this change results in the table being treated as a [heap](https://msdn.microsoft.com/en-AU/library/hh213609.aspx).
+As the `MessageId` is not guaranteed to be sequential a [nonclustered index](https://docs.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described) gives better performance. Applying this change results in the table being treated as a [heap](https://docs.microsoft.com/en-us/sql/relational-databases/indexes/heaps-tables-without-clustered-indexes).
 
 
 ### Performing the upgrade
@@ -41,9 +41,9 @@ snippet: ConvertOutboxToNonclustered
 
 This script takes a [tablePrefix](/nservicebus/sql-persistence/#installation-table-prefix) as a parameter and then performs the following actions:
 
- * Find the index name by querying [sys.tables](https://msdn.microsoft.com/en-us/library/ms187406.aspx) and [sys.indexes](https://msdn.microsoft.com/en-us/library/ms173760.aspx).
+ * Find the index name by querying [sys.tables](https://docs.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-tables-transact-sql) and [sys.indexes](https://docs.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-indexes-transact-sql).
  * Execute a dynamic [DROP CONSTRAINT](https://docs.microsoft.com/en-us/sql/relational-databases/tables/delete-check-constraints) command.
- * Execute a dynamic [ADD CONSTRAINT](https://msdn.microsoft.com/en-us/library/ms190024.aspx) command.
+ * Execute a dynamic [ADD CONSTRAINT](https://docs.microsoft.com/en-us/sql/relational-databases/tables/create-unique-constraints) command.
 
 This script can be executed as part of a deployment using the following code:
 

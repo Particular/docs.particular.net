@@ -38,7 +38,7 @@ snippet: PurgeTextSql
 
 ## Receive message
 
-NOTE: The T-SQL statements for sending and receiving messges execute with [`NOCOUNT ON`](https://msdn.microsoft.com/en-us/library/ms189837.aspx) option. However, this does not affect the original value of this setting. The original value is saved at the beginning and restored after executing the statement. 
+NOTE: The T-SQL statements for sending and receiving messges execute with [`NOCOUNT ON`](https://docs.microsoft.com/en-us/sql/t-sql/statements/set-nocount-transact-sql) option. However, this does not affect the original value of this setting. The original value is saved at the beginning and restored after executing the statement. 
 
 Retrieves a message from the queue.
 

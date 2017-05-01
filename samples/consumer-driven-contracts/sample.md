@@ -10,7 +10,7 @@ WARNING: Consumer Driven Contracts currently only work when using [XML Serialize
 
 ## Introduction to Consumer Driven Contracts
 
-This sample shows a [consumer driven contracts](http://martinfowler.com/articles/consumerDrivenContracts.html)(CDD) approach to messaging. The essence of consumer driven contracts is that the ownership of the contract is inverted. Instead of the producer defining the contract consumers are now the ones defining the contract they expect and it's up to the producer to fulfill it.
+This sample shows a [consumer driven contracts](https://martinfowler.com/articles/consumerDrivenContracts.html)(CDD) approach to messaging. The essence of consumer driven contracts is that the ownership of the contract is inverted. Instead of the producer defining the contract consumers are now the ones defining the contract they expect and it's up to the producer to fulfill it.
 
 In NServiceBus terminology "Producers" are called "Publishers" and "Consumers" are called "Subscribers". Contracts translates to message contracts and is defined using plain C# types. So to honor a consumer contract the producer would just make the relevant message contract inherit from the consumer contract type.
 

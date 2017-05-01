@@ -53,7 +53,7 @@ For example, the act of publishing prices from the headquarters has logical sign
 
 partial: direct
 
-This model is recommended as it provides all the benefits of durable messaging between unreliably connected machines; at several sites, the same as within a single site. It is possible to read a great deal of information on [setting up and managing a Windows VPN](https://technet.microsoft.com/en-US/network/dd420463).
+This model is recommended as it provides all the benefits of durable messaging between unreliably connected machines; at several sites, the same as within a single site. It is possible to read a great deal of information on [setting up and managing a Windows VPN](https://technet.microsoft.com/en-us/library/hh831539.aspx).
 
 In cases with only access to HTTP(S) for connections between sites, it is possible to enable the NServiceBus Gateway on each site so it transmits messages from a queue in one site to a queue in another site, including the hash of the messages to ensure that the message is transmitted correctly. The following diagram shows how it works:
 

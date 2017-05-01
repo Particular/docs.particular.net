@@ -12,7 +12,7 @@ reviewed: 2016-09-21
 
 By default the Azure Service Bus transport authenticates to the service using the information embedded in the connection string. But it's also possible to let it authenticate using any of the authentication mechanisms supported by [Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-authentication-and-authorization).
 
-This is useful when, for example, delegating authentication and authorization to a Federated Identity infrastructure such as Active Directory Access Control Service or [Active Directory Federation Services](https://technet.microsoft.com/en-us/windowsserver/dd448613.aspx).
+This is useful when, for example, delegating authentication and authorization to a Federated Identity infrastructure such as Active Directory Access Control Service or [Active Directory Federation Services](https://technet.microsoft.com/en-us/windows).
 
 Changing the authentication mechanism is done using the [Azure Service Bus SDK's TokenProvider class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.tokenprovider). The Azure Service Bus SDK requires an instance of this class at 2 different levels.
 

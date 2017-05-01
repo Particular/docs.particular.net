@@ -154,7 +154,7 @@ where json_value(Headers,'$."NServiceBus.OriginatingSagaType"')
     like 'MyNamespace1.MyTimeoutSagaVersion1%'
 ```
 
-If a saga is extremely long running then the data can be migrated programmatically in SQL using [json_modify](https://msdn.microsoft.com/en-us/library/dn921892.aspx) and [json_value](https://docs.microsoft.com/en-us/sql/t-sql/functions/json-value-transact-sql). For example:
+If a saga is extremely long running then the data can be migrated programmatically in SQL using [json_modify](https://docs.microsoft.com/en-us/sql/t-sql/functions/json-modify-transact-sql) and [json_value](https://docs.microsoft.com/en-us/sql/t-sql/functions/json-value-transact-sql). For example:
 
 ```sql
 update Samples_RenameSaga_TimeoutData

@@ -36,7 +36,7 @@ When using the RavenDB saga persister, no action is required since the NServiceB
 
 When using the NHibernate saga persister, NHibernate will compare the values of all saga properties to previous values (optimistic-all option) to ensure that the saga data was not updated in the background while the message handler was executing. Comparing all values can be inefficient, especially if there are many columns in the saga table or the values contain long strings. For more efficient concurrency control, add a ["Version" property to the saga data](/nservicebus/nhibernate/saga-concurrency.md#explicit-version) so that the comparison can be made on a single version column instead.
 
-Another option is to use a [transaction isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](https://msdn.microsoft.com/en-us/library/ms173763.aspx) with considerable performance degradation.
+Another option is to use a [transaction isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](https://docs.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql) with considerable performance degradation.
 
 NOTE: "Serializable" is the default isolation level for TransactionScopes.
 
