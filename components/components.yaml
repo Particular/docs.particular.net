@@ -7,6 +7,17 @@
   NugetOrder:
     - NServiceBus
 
+- Key: Aggregates
+  Name: Aggregates.NET
+  DocoUrl: https://github.com/volak/Aggregates.NET
+  LicenseUrl: https://github.com/volak/Aggregates.NET/blob/master/LICENSE
+  GitHubOwner: volak
+  SupportLevel: Community
+  Category: Other
+  ProjectUrl: https://github.com/volak/Aggregates.NET
+  NugetOrder:
+    - Aggregates.NET
+
 - Key: Anotar
   Name: Anotar Logger
   DocoUrl: https://github.com/Fody/Anotar
@@ -49,37 +60,6 @@
 #  ProjectUrl: https://github.com/rosieks/NServiceBus.OracleAQ
 #  NugetOrder:
 #    - NServiceBus.OracleAQ
-
-- Key: PropertyEncryption
-  Name: Message Property Encryption
-  DocoUrl: nservicebus/security/property-encryption
-  Category: Other
-  GitHubOwner: Particular/encryption-maintainers
-  ProjectUrl: https://github.com/Particular/NServiceBus.Encryption.MessageProperty
-  NugetOrder:
-    - NServiceBus.Encryption.MessageProperty
-    - NServiceBus
-
-- Key: PerfCounters
-  Name: Performance Counters
-  DocoUrl: nservicebus/operations/performance-counters
-  Category: Other
-  GitHubOwner: Particular/metrics-maintainers
-  ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.PerformanceCounters
-  NugetOrder:
-    - NServiceBus.Metrics.PerformanceCounters
-    - NServiceBus
-
-- Key: PostgreSQL
-  Name: PostgreSQL Persistence
-  DocoUrl: https://github.com/fhalim/NServiceBus.PostgreSQL
-  GitHubOwner: fhalim
-  Category: Persistence
-  LicenseUrl: https://github.com/fhalim/NServiceBus.PostgreSQL/blob/master/LICENSE.txt
-  SupportLevel: Community
-  ProjectUrl: https://github.com/fhalim/NServiceBus.PostgreSQL
-  NugetOrder:
-    - NServiceBus.PostgreSQL
 
 - Key: ASB
   Name: Azure Service Bus Transport
@@ -128,6 +108,15 @@
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.Bond
   NugetOrder:
     - NServiceBus.Bond
+
+- Key: Binary
+  Name: Binary Serializer
+  DocoUrl: nservicebus/serialization/binary
+  Category: Serializer
+  GitHubOwner: Particular/nservicebus-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
 
 - Key: Callbacks
   Name: Callbacks
@@ -189,6 +178,17 @@
     - ServiceControl.Plugin.Nsb4.CustomChecks
     - ServiceControl.Plugin.Nsb3.CustomChecks
 
+- Key: DistributedEventBroker
+  Name: Appccelerate DistributedEventBroker
+  DocoUrl: http://www.appccelerate.com/distributedeventbrokertransports.html
+  LicenseUrl: https://github.com/appccelerate/distributedeventbroker.nservicebus/blob/master/LICENSE
+  GitHubOwner: appccelerate
+  SupportLevel: Community
+  Category: Other
+  ProjectUrl: https://github.com/appccelerate/distributedeventbroker.nservicebus
+  NugetOrder:
+    - Appccelerate.DistributedEventBroker.NServiceBus
+
 - Key: FileShareDataBus
   Name: File Share Databus
   DocoUrl: nservicebus/messaging/databus/file-share
@@ -197,6 +197,15 @@
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
     - NServiceBus
+
+- Key: FileBasedRouting
+  Name: FileBasedRouting
+  DocoUrl: nservicebus/messaging/file-based-routing  
+  Category: Other
+  SupportLevel: Labs
+  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.FileBasedRouting
+  NugetOrder:
+    - NServiceBus.FileBasedRouting
 
 - Key: Distributor
   Name: Distributor
@@ -251,29 +260,6 @@
   NugetOrder:
     - NServiceBus.EventStore
 
-- Key: Kafka
-  Name: Kafka Transport
-  DocoUrl: nservicebus/kafka
-  GitHubOwner: PabloCastilla
-  Category: Transport
-  SupportLevel: Community
-  LicenseUrl: https://github.com/pablocastilla/NServiceBus.Kafka/blob/master/LICENSE
-  ProjectUrl: https://github.com/pablocastilla/NServiceBus.Kafka
-  NugetOrder:
-    - NServiceBus.Transports.Kafka
-
-- Key: RawMessaging
-  Name: NServiceBus raw messaging
-  DocoUrl: nservicebus/rawmessaging
-  GitHubOwner: SzymonPobiega
-  Category: Other
-  SupportLevel: Community
-  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.Raw/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Raw
-  NugetOrder:
-    - NServiceBus.Raw
-    - NServiceBus.Raw.DelayedRetries
-
 - Key: Gateway
   Name: Gateway
   DocoUrl: nservicebus/gateway
@@ -283,17 +269,6 @@
   NugetOrder:
     - NServiceBus.Gateway
     - NServiceBus
-
-- Key: HandlerOrdering
-  Name: Handler ordering by interface
-  DocoUrl: samples/handler-ordering-by-interface
-  GitHubOwner: SimonCropp
-  Category: Other
-  SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/HandlerOrdering/License.txt
-  ProjectUrl: https://github.com/SimonCropp/HandlerOrdering/
-  NugetOrder:
-    - NServiceBus.HandlerOrdering
 
 - Key: Heartbeats
   Name: ServiceControl Heartbeats
@@ -316,6 +291,17 @@
   NugetOrder:
     - NServiceBus.Host
 
+- Key: HandlerOrdering
+  Name: Handler ordering by interface
+  DocoUrl: samples/handler-ordering-by-interface
+  GitHubOwner: SimonCropp
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/SimonCropp/HandlerOrdering/License.txt
+  ProjectUrl: https://github.com/SimonCropp/HandlerOrdering/
+  NugetOrder:
+    - NServiceBus.HandlerOrdering
+
 - Key: Jil
   Name: Jil Serializer
   DocoUrl: nservicebus/serialization/jil
@@ -327,6 +313,26 @@
   NugetOrder:
     - NServiceBus.Jil
 
+- Key: Json
+  Name: Json Serializer
+  DocoUrl: nservicebus/serialization/json
+  Category: Serializer
+  GitHubOwner: Particular/nservicebus-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
+
+- Key: Kafka
+  Name: Kafka Transport
+  DocoUrl: nservicebus/kafka
+  GitHubOwner: PabloCastilla
+  Category: Transport
+  SupportLevel: Community
+  LicenseUrl: https://github.com/pablocastilla/NServiceBus.Kafka/blob/master/LICENSE
+  ProjectUrl: https://github.com/pablocastilla/NServiceBus.Kafka
+  NugetOrder:
+    - NServiceBus.Transports.Kafka
+
 - Key: Log4Net
   Name: Log4Net Logger
   DocoUrl: nservicebus/logging/log4net
@@ -336,6 +342,44 @@
   NugetOrder:
     - NServiceBus.Log4Net
     - NServiceBus
+
+- Key: Metrics
+  Name: Metrics
+  DocoUrl: nservicebus/operations/metrics
+  GitHubOwner: Particular/metrics-maintainers
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Metrics
+  NugetOrder:
+    - NServiceBus.Metrics
+
+- Key: MsmqTransport
+  Name: MSMQ Transport
+  DocoUrl: nservicebus/msmq
+  Category: Transport
+  GitHubOwner: Particular/msmq-transport-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
+
+- Key: MsmqPersistence
+  Name: MSMQ Persistence
+  DocoUrl: nservicebus/msmq/subscription-persistence
+  Category: Persistence
+  GitHubOwner: Particular/msmq-transport-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
+
+- Key: MessageRouting
+  Name: MessageRouting
+  DocoUrl: https://github.com/jbogard/NServiceBus.MessageRouting
+  GitHubOwner: jbogard
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/jbogard/NServiceBus.MessageRouting/license.txt
+  ProjectUrl: https://github.com/jbogard/NServiceBus.MessageRouting
+  NugetOrder:
+    - NServiceBus.MessageRouting
 
 - Key: MessagePack
   Name: MessagePack Serializer
@@ -390,14 +434,27 @@
   NugetOrder:
     - NServiceBus.Persistence.MongoDb
 
-- Key: SqlPersistence
-  Name: Sql Persistence
-  DocoUrl: nservicebus/sql-persistence
-  GitHubOwner: Particular/sqlpersistence-maintainers
-  Category: Persistence
-  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.Sql
+- Key: Mandrill
+  Name: Mandrill
+  DocoUrl: https://github.com/feinoujc/NServiceBus.Mandrill
+  LicenseUrl: https://github.com/feinoujc/NServiceBus.Mandrill/blob/master/LICENSE
+  GitHubOwner: feinoujc
+  Category: Other
+  SupportLevel: Community
+  ProjectUrl: https://github.com/feinoujc/NServiceBus.Mandrill
   NugetOrder:
-    - NServiceBus.Persistence.Sql
+    - NServiceBus.Mandrill
+
+- Key: Mailer
+  Name: NServiceBus Mailer
+  DocoUrl: nservicebus/mailer
+  LicenseUrl: https://github.com/HEskandari/NServiceBus.Mailer/blob/master/license.txt
+  GitHubOwner: HEskandari
+  Category: Other
+  SupportLevel: Community
+  ProjectUrl: https://github.com/HEskandari/NServiceBus.Mailer
+  NugetOrder:
+    - NServiceBus.Mailer
 
 - Key: Newtonsoft
   Name: Newtonsoft Serializer
@@ -426,6 +483,17 @@
   NugetOrder:
     - NServiceBus.Ninject
 
+- Key: NES
+  Name: .NET Event Sourcing
+  DocoUrl: https://github.com/elliotritchie/NES
+  GitHubOwner: elliotritchie
+  LicenseUrl: https://github.com/elliotritchie/NES/blob/master/license.txt
+  SupportLevel: Community
+  Category: Other
+  ProjectUrl: https://github.com/elliotritchie/NES
+  NugetOrder:
+    - NES.NServiceBus
+
 - Key: NLog
   Name: NLog Logger
   DocoUrl: nservicebus/logging/nlog
@@ -435,6 +503,37 @@
   NugetOrder:
     - NServiceBus.NLog
     - NServiceBus
+
+- Key: PropertyEncryption
+  Name: Message Property Encryption
+  DocoUrl: nservicebus/security/property-encryption
+  Category: Other
+  GitHubOwner: Particular/encryption-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus.Encryption.MessageProperty
+  NugetOrder:
+    - NServiceBus.Encryption.MessageProperty
+    - NServiceBus
+
+- Key: PerfCounters
+  Name: Performance Counters
+  DocoUrl: nservicebus/operations/performance-counters
+  Category: Other
+  GitHubOwner: Particular/metrics-maintainers
+  ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.PerformanceCounters
+  NugetOrder:
+    - NServiceBus.Metrics.PerformanceCounters
+    - NServiceBus
+
+- Key: PostgreSQL
+  Name: PostgreSQL Persistence
+  DocoUrl: https://github.com/fhalim/NServiceBus.PostgreSQL
+  GitHubOwner: fhalim
+  Category: Persistence
+  LicenseUrl: https://github.com/fhalim/NServiceBus.PostgreSQL/blob/master/LICENSE.txt
+  SupportLevel: Community
+  ProjectUrl: https://github.com/fhalim/NServiceBus.PostgreSQL
+  NugetOrder:
+    - NServiceBus.PostgreSQL
 
 - Key: ProtoBuf
   Name: ProtoBuf Serializer
@@ -464,6 +563,39 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.RavenDB
   NugetOrder:
     - NServiceBus.RavenDB
+
+- Key: RawMessaging
+  Name: NServiceBus raw messaging
+  DocoUrl: nservicebus/rawmessaging
+  GitHubOwner: SzymonPobiega
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.Raw/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Raw
+  NugetOrder:
+    - NServiceBus.Raw
+    - NServiceBus.Raw.DelayedRetries
+
+- Key: RabbitOperations
+  Name: Rabbit Operations
+  DocoUrl: http://rabbitoperations.southsidesoft.com
+  GitHubOwner: SouthsideSoftware
+  SupportLevel: Community
+  Category: Other
+  UsesNuget: false
+  ProjectUrl: https://github.com/SouthsideSoftware/RabbitOperations
+  LicenseUrl: https://github.com/SouthsideSoftware/RabbitOperations/blob/master/LICENSE
+  NugetOrder:
+    - RabbitOperations
+
+- Key: SqlPersistence
+  Name: Sql Persistence
+  DocoUrl: nservicebus/sql-persistence
+  GitHubOwner: Particular/sqlpersistence-maintainers
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.Sql
+  NugetOrder:
+    - NServiceBus.Persistence.Sql
 
 - Key: SagaAudit
   Name: ServiceControl SagaAudit
@@ -516,51 +648,6 @@
   ProjectUrl: https://github.com/Particular/ServiceControl
   NugetOrder:
     - ServiceControl
-
-- Key: RabbitOperations
-  Name: Rabbit Operations
-  DocoUrl: http://rabbitoperations.southsidesoft.com
-  GitHubOwner: SouthsideSoftware
-  SupportLevel: Community
-  Category: Other
-  UsesNuget: false
-  ProjectUrl: https://github.com/SouthsideSoftware/RabbitOperations
-  LicenseUrl: https://github.com/SouthsideSoftware/RabbitOperations/blob/master/LICENSE
-  NugetOrder:
-    - RabbitOperations
-
-- Key: NES
-  Name: .NET Event Sourcing
-  DocoUrl: https://github.com/elliotritchie/NES
-  GitHubOwner: elliotritchie
-  LicenseUrl: https://github.com/elliotritchie/NES/blob/master/license.txt
-  SupportLevel: Community
-  Category: Other
-  ProjectUrl: https://github.com/elliotritchie/NES
-  NugetOrder:
-    - NES.NServiceBus
-
-- Key: Aggregates
-  Name: Aggregates.NET
-  DocoUrl: https://github.com/volak/Aggregates.NET
-  LicenseUrl: https://github.com/volak/Aggregates.NET/blob/master/LICENSE
-  GitHubOwner: volak
-  SupportLevel: Community
-  Category: Other
-  ProjectUrl: https://github.com/volak/Aggregates.NET
-  NugetOrder:
-    - Aggregates.NET
-
-- Key: DistributedEventBroker
-  Name: Appccelerate DistributedEventBroker
-  DocoUrl: http://www.appccelerate.com/distributedeventbrokertransports.html
-  LicenseUrl: https://github.com/appccelerate/distributedeventbroker.nservicebus/blob/master/LICENSE
-  GitHubOwner: appccelerate
-  SupportLevel: Community
-  Category: Other
-  ProjectUrl: https://github.com/appccelerate/distributedeventbroker.nservicebus
-  NugetOrder:
-    - Appccelerate.DistributedEventBroker.NServiceBus
 
 - Key: ServiceControlContracts
   Name: ServiceControl Contracts
@@ -651,6 +738,15 @@
   NugetOrder:
     - NServiceBus.Serializers.SystemXml
 
+- Key: ServiceFabricPersistence
+  Name: Service Fabric Persistence 
+  DocoUrl: nservicebus/service-fabric
+  GitHubOwner: Particular/azure-maintainers
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.ServiceFabric
+  NugetOrder:
+    - NServiceBus.Persistence.ServiceFabric
+
 - Key: Testing
   Name: Testing
   DocoUrl: nservicebus/testing
@@ -690,69 +786,11 @@
     - NServiceBus.Wcf
     - NServiceBus.Host
 
-- Key: Mandrill
-  Name: Mandrill
-  DocoUrl: https://github.com/feinoujc/NServiceBus.Mandrill
-  LicenseUrl: https://github.com/feinoujc/NServiceBus.Mandrill/blob/master/LICENSE
-  GitHubOwner: feinoujc
-  Category: Other
-  SupportLevel: Community
-  ProjectUrl: https://github.com/feinoujc/NServiceBus.Mandrill
-  NugetOrder:
-    - NServiceBus.Mandrill
-
-- Key: Mailer
-  Name: NServiceBus Mailer
-  DocoUrl: nservicebus/mailer
-  LicenseUrl: https://github.com/HEskandari/NServiceBus.Mailer/blob/master/license.txt
-  GitHubOwner: HEskandari
-  Category: Other
-  SupportLevel: Community
-  ProjectUrl: https://github.com/HEskandari/NServiceBus.Mailer
-  NugetOrder:
-    - NServiceBus.Mailer
-
 - Key: Xml
   Name: Xml Serializer
   DocoUrl: nservicebus/serialization/xml
   Category: Serializer
   GitHubOwner: Particular/nservicebus-maintainers
-  ProjectUrl: https://github.com/Particular/NServiceBus
-  NugetOrder:
-    - NServiceBus
-
-- Key: Binary
-  Name: Binary Serializer
-  DocoUrl: nservicebus/serialization/binary
-  Category: Serializer
-  GitHubOwner: Particular/nservicebus-maintainers
-  ProjectUrl: https://github.com/Particular/NServiceBus
-  NugetOrder:
-    - NServiceBus
-
-- Key: Json
-  Name: Json Serializer
-  DocoUrl: nservicebus/serialization/json
-  Category: Serializer
-  GitHubOwner: Particular/nservicebus-maintainers
-  ProjectUrl: https://github.com/Particular/NServiceBus
-  NugetOrder:
-    - NServiceBus
-
-- Key: MsmqTransport
-  Name: MSMQ Transport
-  DocoUrl: nservicebus/msmq
-  Category: Transport
-  GitHubOwner: Particular/msmq-transport-maintainers
-  ProjectUrl: https://github.com/Particular/NServiceBus
-  NugetOrder:
-    - NServiceBus
-
-- Key: MsmqPersistence
-  Name: MSMQ Persistence
-  DocoUrl: nservicebus/msmq/subscription-persistence
-  Category: Persistence
-  GitHubOwner: Particular/msmq-transport-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
     - NServiceBus
@@ -767,41 +805,3 @@
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.ZeroFormatter
   NugetOrder:
     - NServiceBus.ZeroFormatter
-
-- Key: MessageRouting
-  Name: MessageRouting
-  DocoUrl: https://github.com/jbogard/NServiceBus.MessageRouting
-  GitHubOwner: jbogard
-  Category: Other
-  SupportLevel: Community
-  LicenseUrl: https://github.com/jbogard/NServiceBus.MessageRouting/license.txt
-  ProjectUrl: https://github.com/jbogard/NServiceBus.MessageRouting
-  NugetOrder:
-    - NServiceBus.MessageRouting
-
-- Key: FileBasedRouting
-  Name: FileBasedRouting
-  DocoUrl: nservicebus/messaging/file-based-routing  
-  Category: Other
-  SupportLevel: Labs
-  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.FileBasedRouting
-  NugetOrder:
-    - NServiceBus.FileBasedRouting
-
-- Key: ServiceFabricPersistence
-  Name: Service Fabric Persistence 
-  DocoUrl: nservicebus/service-fabric
-  GitHubOwner: Particular/azure-maintainers
-  Category: Persistence
-  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.ServiceFabric
-  NugetOrder:
-    - NServiceBus.Persistence.ServiceFabric
-
-- Key: Metrics
-  Name: Metrics
-  DocoUrl: nservicebus/operations/metrics
-  GitHubOwner: Particular/metrics-maintainers
-  Category: Other
-  ProjectUrl: https://github.com/Particular/NServiceBus.Metrics
-  NugetOrder:
-    - NServiceBus.Metrics
