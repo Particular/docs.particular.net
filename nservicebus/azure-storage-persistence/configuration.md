@@ -38,6 +38,7 @@ The following settings are available for changing the behavior of subscription p
   * defaults to `true`.
  * `TableName`: Specifies the name of the table for storing subscriptions
   * defaults to `Subscription`.
+ * `CacheFor`: (Added in Version 1.3) By default every time a message is published the subscription storage is queried. In scenarios where the list of subscribers rarely changes this query is often redundant and can slow down message processing. `CacheFor` allows subscriptions to be cached for a given period of time, hence helping reduce the impact of redundant queries to the subscription store.
 
 
 #### Timeout Configuration
