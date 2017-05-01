@@ -42,7 +42,7 @@ snippet: ConvertOutboxToNonclustered
 This script takes a [tablePrefix](/nservicebus/sql-persistence/#installation-table-prefix) as a parameter and then performs the following actions:
 
  * Find the index name by querying [sys.tables](https://msdn.microsoft.com/en-us/library/ms187406.aspx) and [sys.indexes](https://msdn.microsoft.com/en-us/library/ms173760.aspx).
- * Execute a dynamic [DROP CONSTRAINT](https://msdn.microsoft.com/en-us/library/ms187626.aspx) command.
+ * Execute a dynamic [DROP CONSTRAINT](https://docs.microsoft.com/en-us/sql/relational-databases/tables/delete-check-constraints) command.
  * Execute a dynamic [ADD CONSTRAINT](https://msdn.microsoft.com/en-us/library/ms190024.aspx) command.
 
 This script can be executed as part of a deployment using the following code:

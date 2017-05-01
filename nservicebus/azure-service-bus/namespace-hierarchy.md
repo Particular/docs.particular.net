@@ -24,7 +24,7 @@ https://mynamespace.servicebus.Windows.net/acceptance/tenant1/sales
 https://mynamespace.servicebus.Windows.net/acceptance/tenant1/operations
 ```
 
-For more information about this feature refer to the [Addressing and Protocol](https://msdn.microsoft.com/en-us/library/azure/hh780781.aspx) article on MSDN.
+For more information about this feature refer to the [Addressing and Protocol](https://docs.microsoft.com/en-us/rest/api/servicebus/Addressing-and-Protocol) article on MSDN.
 
 
 ## Positioning an endpoint in the hierarchy

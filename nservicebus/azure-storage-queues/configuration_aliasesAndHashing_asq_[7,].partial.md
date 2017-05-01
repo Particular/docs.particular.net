@@ -13,6 +13,6 @@ See also [Using aliases for connection strings to storage accounts for Scale Out
 
 ## Hashing algorithms
 
-If a queue name is longer than [63 characters](https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/Naming-Queues-and-Metadata), the Azure Storage Queues Transport uses a hashing algorithm to rename it. The default algorithm is `MD5`. In order to use `SHA1`, apply the following configuration:
+If a queue name is longer than [63 characters](https://docs.microsoft.com/en-us/rest/api/storageservices/naming-queues-and-metadata), the Azure Storage Queues Transport uses a hashing algorithm to rename it. The default algorithm is `MD5`. In order to use `SHA1`, apply the following configuration:
 
 snippet: AzureStorageQueueUseSha1

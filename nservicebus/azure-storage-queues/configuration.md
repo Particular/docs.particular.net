@@ -41,7 +41,7 @@ Defaults: `false`, i.e. messages are not removed when endpoint starts.
 
 #### MessageInvisibleTime
 
-The [visibilitytimeout mechanism](https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/Get-Messages), supported by Azure Storage Queues, causes the message to become *invisible* after read for a specified period of time. If the processing unit fails to delete the message in the specified time, the message will reappear on the queue. Then another process can retry the message.
+The [visibilitytimeout mechanism](https://docs.microsoft.com/en-us/rest/api/storageservices/get-messages), supported by Azure Storage Queues, causes the message to become *invisible* after read for a specified period of time. If the processing unit fails to delete the message in the specified time, the message will reappear on the queue. Then another process can retry the message.
 
 Defaults: 30000 ms (i.e. 30 seconds)
 

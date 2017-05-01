@@ -36,7 +36,7 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 ### [SQL Server Transport](/nservicebus/sqlserver/)
 
  * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.asp)
- * [SQL Server Encryption](https://msdn.microsoft.com/en-us/library/bb510663.aspx)
+ * [SQL Server Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
 
 
 ### [MSMQ Transport](/nservicebus/msmq/)
@@ -58,7 +58,7 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 ### [SQL Persistence](/nservicebus/sql-persistence/)
 
  * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.aspx)
- * [SQL Server Encryption](https://msdn.microsoft.com/en-us/library/bb510663.aspx)
+ * [SQL Server Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
 
 
 ### [Azure Storage Persistence](/nservicebus/azure-storage-persistence/)
@@ -76,7 +76,7 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 ### [NHibernate Persistence](/nservicebus/nhibernate/)
 
  * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.aspx)
- * [SQL Server Encryption](https://msdn.microsoft.com/en-us/library/bb510663.aspx)
+ * [SQL Server Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
 
 
 ## [Service Control](/servicecontrol/)

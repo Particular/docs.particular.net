@@ -17,7 +17,7 @@ NServiceBus is an abstraction over ASB. It takes advantage of ASB's built-in fea
 
 Note: Publish/Subscribe and Timeouts (including message deferral) are supported natively by the ASB transport and do not require NServiceBus persistence.
 
- * The main advantage of ASB is that it offers a highly reliable and low latency remote messaging infrastructure. A single message can be up to 256 KB in size (1 MB for Premium), and a queue can store many messages at once, up to 5 GB size in total. Furthermore, it is capable of emulating local transactions using its queue [peek-lock mechanism](https://msdn.microsoft.com/en-us/library/azure/hh780722.aspx).
+ * The main advantage of ASB is that it offers a highly reliable and low latency remote messaging infrastructure. A single message can be up to 256 KB in size (1 MB for Premium), and a queue can store many messages at once, up to 5 GB size in total. Furthermore, it is capable of emulating local transactions using its queue [peek-lock mechanism](https://docs.microsoft.com/en-us/rest/api/servicebus/peek-lock-message-non-destructive-read).
  * The main disadvantage of ASB is its dependency on TCP (for low latency), which may require opening outbound ports on the firewall. Additionally, in some systems the price for the service (at the per message level) may be significant.
 
 
