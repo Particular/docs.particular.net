@@ -139,7 +139,6 @@
     <Compile Include="CriticalErrors.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
-    <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\MyMessage.cs" />
     <Compile Include="Pipeline\NewStep\NewPipelineStep.cs" />

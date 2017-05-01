@@ -1,7 +1,7 @@
 ---
 title: In Memory Persistence
 summary: In memory persistence stores data in a non-durable manner for development time only
-component: Core
+component: InMemoryPersistence
 reviewed: 2016-08-24
 tags:
 - Persistence

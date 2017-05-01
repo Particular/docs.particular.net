@@ -131,7 +131,6 @@
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\UsingLogging.cs" />
-    <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\MyMessage.cs" />
     <Compile Include="Routing\BasicOperations.cs" />

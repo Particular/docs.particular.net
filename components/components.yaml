@@ -302,6 +302,15 @@
   NugetOrder:
     - NServiceBus.HandlerOrdering
 
+- Key: InMemoryPersistence
+  Name: InMemory Persistence 
+  DocoUrl: nservicebus/persistence/in-memory
+  GitHubOwner: Particular/nservicebus-maintainers
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
+
 - Key: Jil
   Name: Jil Serializer
   DocoUrl: nservicebus/serialization/jil

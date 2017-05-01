@@ -118,7 +118,6 @@
     <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="InstallSomething.cs" />
     <Compile Include="Outbox\Usage.cs" />
-    <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />
