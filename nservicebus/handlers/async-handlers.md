@@ -11,21 +11,23 @@ versions: '[6.0,)'
 
 WARNING: It is difficult to give generic advice on how asynchronous code should be structured. It is important to understand compute-bound vs. IO-bound operations. Avoid copy-pasting snippets without further analysis if they provide benefit for the involved business scenarios. Don't assume. Measure it.
 
-[Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/) will be invoked from an IO thread pool thread. Typically message handlers and sagas issue IO bound work like sending or publishing messages, storing information into databases, calling web services and more. In other cases, message handlers are used to schedule compute-bound work. To be able to write efficient message handlers and sagas it is crucial to understand the difference between compute-bound and IO bound work and the thread pools involved.
+[Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/) will be invoked from a thread pool thread. Depending on the transport implementation a worker thread pool thread or an IO thread pool thread might be used. Typically message handlers and sagas issue IO bound work like sending or publishing messages, storing information into databases, calling web services and more. In other cases, message handlers are used to schedule compute-bound work. To be able to write efficient message handlers and sagas it is crucial to understand the difference between compute-bound and IO bound work.
 
 
-### Thread Pools
+### Thread Pool
 
-There are two thread pools. The worker thread pool and the IO thread pool.
+A thread pool is associated with a process and manages the execution of asynchronous callbacks on behalf of the application. Its primary purpose is to reduce the number of application threads and provide efficient management of threads. The thread pool distinguishes asynchronous callbacks into two categories: IO-bound and compute bound. It manages a pool of threads which are associated to one of these categories.
 
 Further reading:
 
+ * [Overview of the Threadpool](https://msdn.microsoft.com/en-us/magazine/ff960958.aspx)
+ * [CLR 4.0 Threadpool improvements](https://blogs.msdn.microsoft.com/ericeil/2009/04/23/clr-4-0-threadpool-improvements-part-1/)
  * [Thread Pools](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686760.aspx)
  * [Thread Pooling](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686756.aspx)
  * [IO Completion Ports](https://msdn.microsoft.com/en-us/library/windows/desktop/aa365198.aspx)
 
 
-#### Worker thread pool
+#### Worker threads pool
 
 Parallel / Compute-bound blocking work happens on the worker thread pool. Things like [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx), [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx), [`Parallel.For`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.parallel.for.aspx) schedule tasks on the worker thread pool.
 
@@ -39,7 +41,7 @@ Alternatively, if compute bound work is scheduled the worker thread pool will st
  * Make them coarse-grained instead of fine-grained.
 
 
-#### IO-thread pool
+#### IO-threads pool
 
 IO-bound work is scheduled on the IO-thread pool. The IO-bound thread pool has a fixed number of worker threads (usually number of cores) which can work concurrently on thousands of IO-bound tasks. IO-bound work under Windows uses so-called [IO completion ports (IOCP)](https://msdn.microsoft.com/en-us/library/windows/desktop/aa365198.aspx) to get notifications when an IO-bound operation is completed. IOCP enable efficient offloading of IO-bound work from the user code to the kernel, driver, and hardware without blocking the user code until the IO work is done. To achieve that the user code registers notifications in the form of a callback. The callback occurs on an IO thread which is a pool thread managed by the IO system that is made available to the user code.
 
