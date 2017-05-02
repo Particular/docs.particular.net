@@ -29,7 +29,6 @@ The NServiceBus Prerequisites option in the Platform Install configures the syst
 
  * Adds, configures and starts the MSMQ service.
  * Configures and starts the Microsoft Distributed Coordinator Service.
- * Adds NServiceBus Performance Counters.
 
 These actions are available via [NServiceBus PowerShell Module](https://github.com/Particular/NServiceBus.PowerShell/releases/latest). This module is available as standalone installation. Once the module is installed, open a PowerShell prompt as a Administrator and issue the following commands:
 
@@ -37,20 +36,19 @@ These actions are available via [NServiceBus PowerShell Module](https://github.c
 Import-Module NServiceBus.PowerShell
 Install-NServiceBusDTC
 Install-NServiceBusMSMQ
-Install-NServiceBusPerformanceCounters
 ```
 
 
 ### ServiceControl
 
-This MSI can be downloaded directly from here: [ServiceControl Releases](https://github.com/Particular/ServiceControl/releases/latest).
+This MSI can be downloaded directly from [ServiceControl Releases](https://github.com/Particular/ServiceControl/releases/latest).
 
 
 ### ServiceInsight
 
-This MSI can be downloaded directly from here: [ServiceInsight Releases](https://github.com/Particular/ServiceInsight/releases/latest).
+This MSI can be downloaded directly from [ServiceInsight Releases](https://github.com/Particular/ServiceInsight/releases/latest).
 
 
 ### ServicePulse
 
-This MSI can be downloaded directly from here: [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases/latest).
+This MSI can be downloaded directly from [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases/latest).
