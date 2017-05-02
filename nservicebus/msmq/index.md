@@ -19,7 +19,7 @@ The supported configuration is to only have the base MSMQ service installed with
 Alternatively the MSMQ service can be manually installed:
 
 
-### Windows 2008 R2 and Windows 2012
+### Windows 2012
 
 From Server Manager's Add Roles and Features Wizard enable `Message Queue Server`. All other MSMQ options should be disabled.
 

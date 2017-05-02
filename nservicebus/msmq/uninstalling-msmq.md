@@ -57,17 +57,6 @@ Alternatively this can be done from PowerShell via the following command:
 A reboot may be required to finalize the changes.
 
 
-#### Windows 2008 R2
-
- * Open Server Manager
- * Select `Features` entry in the left hand pane
- * Click `Remove Features` in the right hand pane or from choose it from the right click context menu
- * Scroll down and deselect the `Message Queuing` option and then click `Next`
- * Click the `Remove` Button to complete the removal.
-
-Reboot to finalize the changes.
-
-
 #### Windows 8
 
  * Open the Programs option from Control Panel
