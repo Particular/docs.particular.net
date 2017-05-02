@@ -48,3 +48,16 @@ WARNING: If an `EndpointConfig.cs` file already exists in the project, be carefu
 The WCF integration using `WcfService` has been moved from the host to the separate NuGet package [NServiceBus.Wcf](https://www.nuget.org/packages/NServiceBus.Wcf/). That package must be used in order to use the WCF integration functionality when targeting NServiceBus versions 6 and above. The NServiceBus.Wcf NuGet package **has no dependency** on the NServiceBus.Host NuGet package and can also be used in self-hosting scenarios.
 
 The WCF integration has been augmented with additional functionality such as the ability to reply with messages to the client, cancel requests and reroute to other endpoints. More information can be found in [Wcf](/nservicebus/wcf).
+
+### Ambiguous type compilation error
+
+By default referenced assemblies are imported into the [global namespace](https://docs.microsoft.com/en-us/dotnet/articles/csharp/programming-guide/namespaces/how-to-use-the-global-namespace-alias). This might lead to ambiguous type reference problems when implementing `WcfService<TRequest, TResponse>` or `IWcfService<TRequest, TResponse>`. To resolve the ambiguous type reference do the following:
+
+- In the Solution Explorer right click under References on the `NServiceBus.Wcf` reference and switch to the properties pane, or use `Alt+Enter`
+- Under the alias property set an alias for the assembly, for example `wcf`
+- In the declaration of the WCF services use:
+
+```
+extern alias wcf;
+using wcf::NServiceBus;
+```
