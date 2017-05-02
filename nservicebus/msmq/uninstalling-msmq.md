@@ -68,7 +68,7 @@ A reboot may be required to finalize the changes.
 Reboot to finalize the changes.
 
 
-#### Windows 7 and 8
+#### Windows 8
 
  * Open the Programs option from Control Panel
  * Under Programs and Features click on `Turn Windows features on or off`
