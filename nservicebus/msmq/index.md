@@ -19,7 +19,7 @@ The supported configuration is to only have the base MSMQ service installed with
 Alternatively the MSMQ service can be manually installed:
 
 
-### Windows 2008 R2 and Windows 2012
+### Windows 2012
 
 From Server Manager's Add Roles and Features Wizard enable `Message Queue Server`. All other MSMQ options should be disabled.
 
@@ -38,17 +38,6 @@ The DISM command line equivalent is:
 
 ```dos
 DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
-```
-
-
-### Windows 7
-
-From the Control Panel, choose Programs. Then run the Windows Features Wizard by click on `Turn Windows Features On or Off`. Enable `Microsoft Message Queue (MSMQ) Server Core`. All other MSMQ sub-options should be disabled.
-
-The DISM command line equivalent is:
-
-```dos
-DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server
 ```
 
 
