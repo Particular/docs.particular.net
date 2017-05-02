@@ -20,6 +20,8 @@ There are two thread pools. The worker thread pool and the IO thread pool.
 
 Further reading:
 
+ * [Overview of the Threadpool](https://msdn.microsoft.com/en-us/magazine/ff960958.aspx)
+ * [CLR 4.0 Threadpool improvements](https://blogs.msdn.microsoft.com/ericeil/2009/04/23/clr-4-0-threadpool-improvements-part-1/)
  * [Thread Pools](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686760.aspx)
  * [Thread Pooling](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686756.aspx)
  * [IO Completion Ports](https://msdn.microsoft.com/en-us/library/windows/desktop/aa365198.aspx)
