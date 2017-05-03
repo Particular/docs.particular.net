@@ -14,7 +14,7 @@ This sample show how to use the Learning Transport and how the messages are pers
 
 ## Sample Structure
 
-The sample has two endpoint, `Endpoint1` and `Endpoint2`. Both endpoitns are configured to use the Learning Transport:
+The sample has two endpoint, `Endpoint1` and `Endpoint2`. Both are configured to use the Learning Transport:
 
 snippet: UseTransport
 
