@@ -4,7 +4,7 @@ component: LearningTransport
 reviewed: 2017-05-01
 ---
 
-The Learning Transport stores all message actions in the local file system relative to the current solution directory.
+The Learning Transport simulates queuing infrastructure by storing all message actions in the local file system. All files and directories are relative to the current solution directory.
 
 include: learning-transport-warning
 
