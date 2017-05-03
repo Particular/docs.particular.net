@@ -1,0 +1,1 @@
+DANGER: The [Learning Transport](/nservicebus/learning-transport/) is not for production use. It is designed for short term learning and experimentation purposes. It should also not be used as a longer-term development transport, i.e. the same transport used in production should be used in development and debug scenarios.
