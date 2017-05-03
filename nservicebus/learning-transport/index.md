@@ -16,7 +16,7 @@ Some recommended use cases are:
  * Building a [spike](https://en.wikipedia.org/wiki/Spike_(software_development)) or [demo](https://simple.wikipedia.org/wiki/Demo_(software)).
  * Reproducing a bug that is not related to a production transport, for example when raising a support case.
 
-Currently [ServiceControl](/servicecontrol/) (and hence [ServicePulse](/servicepulse/) and [ServiceInsight](https://docs.particular.net/serviceinsight/)) are not supported.
+Currently [ServiceControl](/servicecontrol/) (and hence [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/)) are not supported.
 
 
 ## Usage
