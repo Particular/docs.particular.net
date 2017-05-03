@@ -1,6 +1,6 @@
 ---
 title: Transports
-reviewed: 2016-10-26
+reviewed: 2017-05-03
 redirects:
  - nservicebus/nservicebus-and-websphere-sonic
 related:
@@ -15,6 +15,11 @@ NServiceBus is built on top of existing queuing technologies. In NServiceBus the
 NServiceBus transports can be divided into several categories.
 
 
+### Learning Transport
+
+The [Learning Transport](/nservicebus/learning-transport/) is for education purposes only and does not fit into the below categories.
+
+
 ### Bus transports
 
 Bus transports are inherently distributed. Each endpoint instance might potentially connect to a different node of the bus. Messages are routed transparently between the nodes but physical routing layer needs to contain information to which bus node particular endpoint is connected to.
@@ -22,7 +27,6 @@ Bus transports are inherently distributed. Each endpoint instance might potentia
 Bus transports include:
 
  * [MSMQ](/nservicebus/msmq)
- * [Learning Transport](/nservicebus/learning-transport/)
 
 
 ### Broker transports
@@ -39,14 +43,13 @@ Broker transports include:
 
 ### Unicast-only transports
 
-Unicast-only transports do not have a notion of topic; only queues. Because of that they allow only point-to-point communication. Sending message to multiple receivers (e.g. publishing an event) is composed of multiple transport-level  sends. Unicast-only transports require a subscription storage to be configured.
+Unicast-only transports do not have a notion of topic; only queues. Because of that they allow only point-to-point communication. Sending message to multiple receivers (e.g. publishing an event) is composed of multiple transport-level sends. Unicast-only transports require a subscription storage to be configured.
 
 Unicast-only transports include:
 
  * [Azure Storage Queues](/nservicebus/azure-storage-queues/)
  * [MSMQ](/nservicebus/msmq/)
  * [SQL Server](/nservicebus/sqlserver/)
- * [Learning Transport](/nservicebus/learning-transport/)
 
 
 ### Multicast-enabled transports
