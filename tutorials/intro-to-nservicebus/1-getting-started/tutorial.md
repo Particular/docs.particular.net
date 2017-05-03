@@ -12,29 +12,14 @@ extensions:
 
 include: nsb101-intro-paragraph
 
-In this first lesson, which should take 10-15 minutes, you will learn how to set up a new development machine for NServiceBus and create your very first messaging endpoint.
+In this first lesson, which should take 10-15 minutes, you will create your very first messaging endpoint.
 
-
-## Before we get started
-
-NServiceBus has very few prerequisites. All it needs is the .NET Framework and message queuing infrastructure.
-
-Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md), this tutorial uses Visual Studio 2015 and .NET Framework 4.6.1, which includes some useful async-related APIs.
-
-NServiceBus needs queuing infrastructure (a [transport](/transports/)) to move messages around. By default, this tutorial will use **Microsoft Message Queuing (MSMQ)**, which is included with every version of Windows, although it is not installed by default.
-
-NOTE: If MSMQ is not an option for your environment, the [SQL Server Transport](/transports/sql/) can be used as a message transport instead. To get started using SQL Server instead of MSMQ, review the [SQL Server transport setup instructions](../using-sql-transport.md). Throughout the rest of the tutorial, instructions that differ between the SQL and MSMQ transports will be highlighted in an informational box like this one.
-
-To install MSMQ on your machine, you have two options:
-
-* [Download and run the Particular Platform Installer](https://particular.net/start-platform-download). This will install the MSMQ Windows Feature, configure the Distributed Transaction Coordinator (DTC) so that queues and databases can all work together within a single atomic transaction, and install tools from Particular ([ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/), and [ServicePulse](/servicepulse/)) that we'll use later in this tutorial.
-* [Install and configure MSMQ manually](/transports/msmq/#nservicebus-configuration).
-
-NOTE: It's enough at this point to simply install the Platform Installer tools. At the end of the install process, a button will offer the option to start ServiceControl Management to install or update a ServiceControl instance. This isn't required right now, but we'll return to this topic in [Lesson 5](../5-retrying-errors/) when we explore how to replay failed messages.
 
 ## Exercise
 
 Let's build something simple to give NServiceBus a try.
+
+Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md), this tutorial assumes at least Visual Studio 2015 and .NET Framework 4.6.1.
 
 
 ### Create a solution
@@ -42,6 +27,7 @@ Let's build something simple to give NServiceBus a try.
 First, let's create a basic solution and include the dependencies we need.
 
  1. In Visual Studio, create a new project and select the **Console Application** project type.
+ 1. Be sure to select the correct .NET Framework version from the dropdown at the top of the dialog. You'll want at least .NET Framework 4.6.1 for access to the convenient `Task.CopmletedTask` API.
  1. Set the project name to **ClientUI**.
  1. Set the solution name to **RetailDemo**.
 
@@ -51,11 +37,7 @@ Next, we need to add the NServiceBus NuGet package as a dependency. From the [Nu
 Install-Package NServiceBus -ProjectName ClientUI
 ```
 
-This adds a reference to the NServiceBus.Core assembly to the project.
-
-NOTE: If you are using the SQL Server transport, you also need to install the `NServiceBus.SqlServer` package before continuing. See [Using the SQL Server transport - Adding the NuGet package](/tutorials/intro-to-nservicebus/using-sql-transport.md#modifying-each-endpoint-adding-the-nuget-package) for more details.
-
-With the proper dependencies in place, we're ready to start writing code.
+This adds a reference to the NServiceBus.Core assembly to the project. Now we're ready to start writing code.
 
 
 ### Configure an endpoint
@@ -93,13 +75,11 @@ The `EndpointConfiguration` class is where we define all the settings that deter
 
 #### Transport
 
-snippet: MsmqTransport
+snippet: LearningTransport
 
-This setting defines the [**transport**](/transports/) that NServiceBus will use to send and receive messages. We are using the `MsmqTransport`, which is bundled within the NServiceBus core library. All other transports require different NuGet packages.
+This setting defines the [**transport**](/transports/) that NServiceBus will use to send and receive messages. We are using the `LearningTransport`, which is bundled within the NServiceBus core library as a starter transport to learn how to use NServiceBus without any additional dependencies. All other transports are provided using different NuGet packages.
 
 Capturing the `transport` settings in a variable as shown will make things easier in [Lesson 3](../3-multiple-endpoints/) when we start defining message routing rules.
-
-NOTE: If using the SQL Server transport, you must use the `SqlServerTransport` and provide a connection string to the database. See [Using the SQL Server transport - Configuring the transport](/tutorials/intro-to-nservicebus/using-sql-transport.md#modifying-each-endpoint-configuring-the-transport) for more details.
 
 
 #### Serializer
@@ -109,27 +89,6 @@ snippet: Serializer
 When sending messages, an endpoint needs to serialize message objects to a stream, and then deserialize the stream back to a message object on the receiving end. The choice of [**serializer**](/nservicebus/serialization/) governs what format that will take. Each endpoint in a system needs to use the same serializer in order to be able to understand each other.
 
 Here, we are choosing the `XmlSerializer`.
-
-
-#### Persistence
-
-snippet: Persistence
-
-A [**persistence**](/persistence/) is required to store some data in between handling messages. We will explore the reasons for this in future lessons but for now, we'll use an [implementation that stores everything in memory](/persistence/in-memory.md). This has the advantage during development of allowing us to iterate quickly by providing us with a clean slate every time we start up. Of course, as everything persisted is lost when the endpoint shuts down, it is not safe for production use, so we will want to replace it with a different persistence option before deployment.
-
-
-#### Error queue
-
-snippet: ErrorQueue
-
-Processing a message can fail for several reasons. It could be due to a coding bug, a database deadlock, or unanticipated data inside a message. Automatic retries will make dealing with non-deterministic exceptions a non-issue, but for very serious errors, the message could get stuck at the top of the queue and be retried indefinitely. This type of message, known as a **poison message**, would block all other messages behind it. When these occur, NServiceBus needs to be able to set it aside in a different queue to allow other work to get done. This queue is referred to as the **error queue** and is commonly named `error`. We will discuss [**recoverability**](/nservicebus/recoverability/) more in [Lesson 5: Retrying errors](../5-retrying-errors/).
-
-
-#### Installers
-
-snippet: EnableInstallers
-
-This setting instructs the endpoint to run [installers](/nservicebus/operations/installers.md) on startup. Installers are used to set up anything the endpoint requires to run. The most common example is creating necessary queues, such as the endpoint's input queue where it will receive messages.
 
 
 ### Starting up
@@ -147,18 +106,7 @@ When you run the endpoint for the first time, the endpoint will:
  * Display its logging information, which is written to a file as well as the console. NServiceBus also logs to multiple levels, so you can [change the log level](/nservicebus/logging/) from `INFO` to log level `DEBUG` in order to get more information.
  * Display the [status of your license](/nservicebus/licensing/).
  * Attempt to add the current user to the "Performance Monitor Users" group so that it can write [performance counters](/nservicebus/operations/performance-counters.md) to track its health and progress.
- * Create several queues:, if they do not already exist: 
-   * `error`
-   * `clientui`
-   * `clientui.retries`
-   * `clientui.timeouts`
-   * `clientui.timeoutsdispatcher`
-
-Now might be a good time to go look at your list of queues. There are a [variety of options for viewing MSMQ queues and messages](/transports/msmq/viewing-message-content-in-msmq.md) that you can pick from. In addition to the queues mentioned above, you may also see an `error.log` queue and queues starting with `particular.servicecontrol` if you [installed a ServiceControl instance](/servicecontrol/installation.md) while installing the Particular Service Platform.
-
-When using the MSMQ transport, queues are created with [permissive settings](/transports/msmq/#permissions) that make things easier during development. In a production scenario these queues should be created with the minimum required privileges. The endpoint will write a log entry on startup when permissive settings are detected to remind you to do this.
-
-NOTE: If you are using the SQL Server transport, take a look in your SQL database, where NServiceBus has created each of the queues listed above as a separate table.
+ * Create fake, file-based "queues" in a `.learningtransport` directory inside your solution directory. It would be a good idea to add `.learningtransport` to your source control system's ignore file.
 
 
 ## Summary

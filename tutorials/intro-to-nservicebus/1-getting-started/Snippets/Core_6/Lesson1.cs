@@ -30,11 +30,8 @@
 
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
 
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.EnableInstallers();
         }
         #endregion
 
@@ -48,24 +45,12 @@
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
             #endregion
 
-            #region MsmqTransport
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            #region LearningTransport
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
             #endregion
 
             #region Serializer
             endpointConfiguration.UseSerialization<XmlSerializer>();
-            #endregion
-
-            #region Persistence
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            #endregion
-
-            #region ErrorQueue
-            endpointConfiguration.SendFailedMessagesTo("error");
-            #endregion
-
-            #region EnableInstallers
-            endpointConfiguration.EnableInstallers();
             #endregion
 
             #region Startup

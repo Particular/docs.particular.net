@@ -4,8 +4,6 @@ using NServiceBus;
 
 namespace Sales
 {
-    #region SalesProgram
-
     class Program
     {
         static void Main()
@@ -19,8 +17,19 @@ namespace Sales
 
             var endpointConfiguration = new EndpointConfiguration("Sales");
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            #region MsmqConfig
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.SendFailedMessagesTo("error");
+            endpointConfiguration.EnableInstallers();
+            #endregion
 
+            #region NoDelayedRetries
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
+            #endregion
+
+            endpointConfiguration.UseSerialization<JsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
@@ -32,6 +41,4 @@ namespace Sales
                 .ConfigureAwait(false);
         }
     }
-
-    #endregion
 }
