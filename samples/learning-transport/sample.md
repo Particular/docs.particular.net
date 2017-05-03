@@ -26,7 +26,7 @@ There is also a `Shared` project that contains the message definition.
 
 ### Endpoint1 sends messages
 
-`Endpoint1` starts the message flow with a send of `TheMessage` to `Endpoint2`. The message can be optionally sent with a delay.
+`Endpoint1` starts the message flow with a send of `TheMessage` to `Endpoint2`. The message can be optionally sent with a [delay](/nservicebus/messaging/delayed-delivery.md).
 
 snippet: StartMessageInteraction
 
@@ -75,9 +75,9 @@ Note that `Endpoint2` does not yet have `.committed` or `.pending` as those dire
     +---.delayed
     \---.pending
 \---Endpoint2
-    |   d262f682-7508-4b7f-aef1-9cbfc6072240.txt
+    |   d262f682-7508-4b7f-aef1-9cbfc6072240.metadata.txt
     \---.bodies
-            d262f682-7508-4b7f-aef1-9cbfc6072240.txt
+            d262f682-7508-4b7f-aef1-9cbfc6072240.body.txt
 ```
 
 
@@ -91,10 +91,10 @@ Note that `Endpoint2` does not yet have `.committed` or `.pending` as those dire
     \---.pending
 \---Endpoint2
     +---.bodies
-    |       d262f682-7508-4b7f-aef1-9cbfc6072240.txt
+    |       d262f682-7508-4b7f-aef1-9cbfc6072240.body.txt
     \---.delayed
         \---20170502224103
-                d262f682-7508-4b7f-aef1-9cbfc6072240.txt
+                d262f682-7508-4b7f-aef1-9cbfc6072240.metadata.txt
 ```
 
 Note that delayed messages are stored in a sub-directory named based on the timestamp for which the message should be processed.
@@ -117,12 +117,12 @@ During message processing the message will be moved into the `.pending` director
     \---.pending
 \---Endpoint2
     +---.bodies
-    |       d262f682-7508-4b7f-aef1-9cbfc6072240.txt
+    |       d262f682-7508-4b7f-aef1-9cbfc6072240.body.txt
     +---.committed
     +---.delayed
     \---.pending
         \---6c36d1a8-58a1-4dd5-861f-1439f3907fc9
-                d262f682-7508-4b7f-aef1-9cbfc6072240.txt
+                d262f682-7508-4b7f-aef1-9cbfc6072240.metadata.txt
 ```
 
 
