@@ -28,7 +28,8 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Press enter to send a message");
+        Console.WriteLine("Press S to send a message");
+        Console.WriteLine("Press D to send a delayed message");
         Console.WriteLine("Press any key to exit");
 
         #region StartMessageInteraction
@@ -36,6 +37,7 @@ class Program
         while (true)
         {
             var key = Console.ReadKey();
+            Console.WriteLine();
             if (key.Key == ConsoleKey.D)
             {
                 var message = new TheMessage();
@@ -45,7 +47,7 @@ class Program
                 await endpointInstance.Send(message, sendOptions)
                     .ConfigureAwait(false);
 
-                Console.WriteLine("Sent a message");
+                Console.WriteLine("Sent a delayed message");
                 continue;
             }
             if (key.Key == ConsoleKey.S)
