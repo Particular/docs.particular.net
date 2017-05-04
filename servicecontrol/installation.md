@@ -47,9 +47,9 @@ Metrics are reported via the [Performance Counters](/nservicebus/operations/perf
 
 For instructions on how to install the Performance Counters without the Platform Installer refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
 
-The installation of the NServiceBus Performance Counters is optional for Versions 1.7 and above. 
+The installation of the NServiceBus Performance Counters is optional for Versions 1.7 and above.
 
-Performance Counters are an optional component in the Platform Installer. See [Platform Installer - Performance Counters](/platform/installer/#select-items-to-install-nservicebus-performance-counters).
+Performance Counters are not installed by the [Platform Installer](/platform/installer/).
 
 
 ## Using ServiceControl Management to upgrade ServiceControl instances

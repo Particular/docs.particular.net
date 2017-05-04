@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Fabric;
-using Microsoft.ServiceFabric.Services.Runtime;
-
-namespace Core6.ServiceFabricHosting
+﻿namespace Core6.ServiceFabricHosting
 {
+    using System.Collections.Generic;
+    using System.Fabric;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.ServiceFabric.Data;
     using Microsoft.ServiceFabric.Services.Communication.Runtime;
+    using Microsoft.ServiceFabric.Services.Runtime;
     using NServiceBus;
 
     #region StatelessEndpointCommunicationListener
 
-    public class StatelessEndpointCommunicationListener : ICommunicationListener
+    public class StatelessEndpointCommunicationListener :
+        ICommunicationListener
     {
         IEndpointInstance endpointInstance;
 
@@ -44,9 +44,10 @@ namespace Core6.ServiceFabricHosting
 
     #region StatefulEndpointCommunicationListener
 
-    public class StatefulEndpointCommunicationListener : ICommunicationListener
+    public class StatefulEndpointCommunicationListener :
+        ICommunicationListener
     {
-        readonly IReliableStateManager stateManager;
+        IReliableStateManager stateManager;
         IEndpointInstance endpointInstance;
         EndpointConfiguration endpointConfiguration;
 
@@ -87,7 +88,8 @@ namespace Core6.ServiceFabricHosting
 
     #region StatefulService
 
-    class MyStatefulService : StatefulService
+    class MyStatefulService :
+        StatefulService
     {
         StatefulEndpointCommunicationListener listener;
 
@@ -112,5 +114,3 @@ namespace Core6.ServiceFabricHosting
 
     #endregion
 }
-
-
