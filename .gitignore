@@ -5,6 +5,7 @@ binaries
 *.vshost.*
 *.lock.json
 .nu
+.learningtransport
 _UpgradeReport.*
 *.cache
 *~

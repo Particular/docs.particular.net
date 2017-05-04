@@ -22,6 +22,7 @@ Bus transports are inherently distributed. Each endpoint instance might potentia
 Bus transports include:
 
  * [MSMQ](/nservicebus/msmq)
+ * [Learning Transport](/nservicebus/learning-transport/)
 
 
 ### Broker transports
@@ -30,10 +31,10 @@ Broker transports are inherently centralized. Even if there are multiple servers
 
 Broker transports include:
 
- * [SQL Server](/nservicebus/sqlserver/)
- * [RabbitMQ](/nservicebus/rabbitmq/)
  * [Azure Service Bus](/nservicebus/azure-service-bus/)
  * [Azure Storage Queues](/nservicebus/azure-storage-queues/)
+ * [SQL Server](/nservicebus/sqlserver/)
+ * [RabbitMQ](/nservicebus/rabbitmq/)
 
 
 ### Unicast-only transports
@@ -42,9 +43,10 @@ Unicast-only transports do not have a notion of topic; only queues. Because of t
 
 Unicast-only transports include:
 
+ * [Azure Storage Queues](/nservicebus/azure-storage-queues/)
  * [MSMQ](/nservicebus/msmq/)
  * [SQL Server](/nservicebus/sqlserver/)
- * [Azure Storage Queues](/nservicebus/azure-storage-queues/)
+ * [Learning Transport](/nservicebus/learning-transport/)
 
 
 ### Multicast-enabled transports
@@ -53,8 +55,8 @@ Multicast-enabled transports have some notion of a topic or a similar concept th
 
 Multicast-enabled transports include:
 
- * [RabbitMQ](/nservicebus/rabbitmq/)
  * [Azure Service Bus](/nservicebus/azure-service-bus/)
+ * [RabbitMQ](/nservicebus/rabbitmq/)
 
 
 ## Community run transports

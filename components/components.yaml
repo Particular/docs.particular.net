@@ -342,6 +342,15 @@
   NugetOrder:
     - NServiceBus.Transports.Kafka
 
+- Key: LearningTransport
+  Name: Learning Transport
+  DocoUrl: nservicebus/learning-transport
+  GitHubOwner: Particular/nservicebus-maintainers
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
+
 - Key: Log4Net
   Name: Log4Net Logger
   DocoUrl: nservicebus/logging/log4net
