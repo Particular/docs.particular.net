@@ -53,7 +53,7 @@ exec sp_executeSQL @sql
 
 ```
 
-## Add unique constraint on correlation property column
+### Add unique constraint on correlation property column
 
 NOTE: If adding unique constraint fails with `The CREATE UNIQUE INDEX statement terminated because a duplicate key was found for the object name ...` message please make sure that all duplicated rows detected have been merged.
 
