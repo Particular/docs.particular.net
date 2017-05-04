@@ -39,21 +39,26 @@ Steps:
  * Update endpoint to latest patch release
  * Deploy the new version
 
-### Checking if table hold duplicates
+### Checking if table hold duplicates on Microsoft SQL Server
 
 Duplicates in saga mapping table can be detected using following query. It requires providing `sagaMappingTableName` and `correlationPropetyColumnName`:
 
 ```sql
 declare @sagaMappingTableName nvarchar(max) = ...
-declare @correlationPropetyColumnName nvarchar(max) = ...
+declare @correlationPropretyColumnName nvarchar(max) = ...
 declare @sql nvarchar(max)
 
-select @sql = 'select ' + @correlationPropetyColumnName + ', count(*) as SagaRows from ' + @sagaMappingTableName + ' group by ' + @correlationPropetyColumnName + ' having count(*) > 1'
+select @sql = 'select ' + @correlationPropertyColumnName + ', count(*) as SagaRows from ' + @sagaMappingTableName + ' group by ' + @correlationPropertyColumnName + ' having count(*) > 1'
 exec sp_executeSQL @sql
 
 ```
 
-### Add unique constraint on correlation property column
+If the query returns any results each row will represent single logical saga instance. First column of the result will show the correlation property value for logical saga instance.
+
+### Checking if table hold duplicates on Oracle
+
+
+### Add unique constraint on correlation property column on Microsoft SQL Server
 
 NOTE: If adding unique constraint fails with `The CREATE UNIQUE INDEX statement terminated because a duplicate key was found for the object name ...` message please make sure that all duplicated rows detected have been merged.
 
@@ -62,10 +67,12 @@ Unique constraint on correlation property column can be added with following que
 
 ```sql
 declare @sagaMappingTableName nvarchar(max) = ...
-declare @correlationPropetyColumnName nvarchar(max) = ...
+declare @correlationPropertyColumnName nvarchar(max) = ...
 declare @sql nvarchar(max)
 
 
-select @sql = 'alter table ' + @sagaMappingTableName + ' add unique nonclustered ( ' + @correlationPropetyColumnName + ' asc )with (pad_index = off, statistics_norecompute = off, sort_in_tempdb = off, ignore_dup_key = off, online = off, allow_row_locks = on, allow_page_locks = on)'
+select @sql = 'alter table ' + @sagaMappingTableName + ' add unique nonclustered ( ' + @correlationPropertyColumnName + ' asc )with (pad_index = off, statistics_norecompute = off, sort_in_tempdb = off, ignore_dup_key = off, online = off, allow_row_locks = on, allow_page_locks = on)'
 exec sp_executeSQL @sql
 ```
+
+### Add unique constraint on correlation property column on Oracle
