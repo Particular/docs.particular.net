@@ -53,9 +53,9 @@ A serialized representation of a messages metadata.
  * File convention is `[MessageId].metadata.txt`.
 
 
-### error Directory
+### Error Directory
 
-When a message fails processing both its metadata and body files will be moved to "error" directory. The name of the directory will be derived from [configured error queue address](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address)
+When a message fails processing both its metadata and body files will be moved to the "error" directory. The name of the directory will be derived from [configured error queue address](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address). The default error queue name, and hence directory name, is "error".
 
 
 ### Endpoint Structure
