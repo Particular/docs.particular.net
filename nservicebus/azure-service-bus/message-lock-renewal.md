@@ -6,7 +6,7 @@ versions: '[7,)'
 tags:
 - Azure
 - Transport
-reviewed: 2016-09-07
+reviewed: 2017-05-05
 related:
 - samples/azure/azure-service-bus-long-running
 ---
