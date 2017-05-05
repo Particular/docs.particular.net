@@ -45,15 +45,8 @@ Each row in the result set represents a single logical saga instance that was du
 
 #### Microsoft SQL Server
 
-```sql
-declare @sagaDataTableName nvarchar(max) = ...
-declare @correlationPropertyColumnName nvarchar(max) = ...
-declare @sql nvarchar(max)
+snippet: DetectSagaDataDuplicates_MsSqlServer
 
-select @sql = 'select ' + @correlationPropertyColumnName + ', count(*) as SagaRows from ' + @sagaDataTableName + ' group by ' + @correlationPropertyColumnName + ' having SagaRows > 1'
-exec sp_executeSQL @sql
-
-```
 #### Oracle
 ```sql
 ```
@@ -66,15 +59,7 @@ Unique constraint on correlation property column can be added with following que
 
 NOTE: If adding a unique constraint fails with the error `The CREATE UNIQUE INDEX statement terminated because a duplicate key was found for the object name ...` ensure that all duplicated rows detected have been merged.
 
-```sql
-declare @sagaDataTableName nvarchar(max) = ...
-declare @correlationPropertyColumnName nvarchar(max) = ...
-declare @sql nvarchar(max)
-
-
-select @sql = 'alter table ' + @sagaDataTableName + ' add unique nonclustered ( ' + @correlationPropertyColumnName + ' asc )with (pad_index = off, statistics_norecompute = off, sort_in_tempdb = off, ignore_dup_key = off, online = off, allow_row_locks = on, allow_page_locks = on)'
-exec sp_executeSQL @sql
-```
+snippet: AddUniqueConstraintOnSagaDataTable_MsSqlServer
 
 #### Oracle
 
