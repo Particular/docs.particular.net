@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PlaceOrder.cs" />
-    <Compile Include="OrderBilled.cs" />
     <Compile Include="OrderPlaced.cs" />
   </ItemGroup>
   <ItemGroup>

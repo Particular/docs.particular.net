@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrderBilledHandler.cs" />
     <Compile Include="OrderPlacedHandler.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

@@ -19,8 +19,6 @@ namespace Shipping
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
-            var routing = transport.Routing();
-
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.EnableInstallers();

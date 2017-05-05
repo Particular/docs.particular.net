@@ -12,13 +12,8 @@ namespace Billing
 
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
         {
-            log.Info($"Received OrderPlaced, OrderId = {message.OrderId} - Charging credit card...");
-
-            var orderBilled = new OrderBilled
-            {
-                OrderId = message.OrderId
-            };
-            return context.Publish(orderBilled);
+            log.Info($"Billing has received OrderPlaced, OrderId = {message.OrderId}");
+            return Task.CompletedTask;
         }
     }
 }
