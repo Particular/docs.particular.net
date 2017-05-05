@@ -55,7 +55,7 @@ A serialized representation of a messages metadata.
 
 ### error Directory
 
-When a message fails processing both its metadata and body files will be moved to the `error` directory.
+When a message fails processing both its metadata and body files will be moved to "error" directory. The name of the directory will be derived from [configured error queue address](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address)
 
 
 ### Endpoint Structure
