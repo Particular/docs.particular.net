@@ -26,11 +26,18 @@ Currently [ServiceControl](/servicecontrol/) (and hence [ServicePulse](/servicep
 snippet: LearningTransport
 
 
+### Storage Directory
+
+By default all required information is stored in a `.learningtransport` directory that exists at the solution root.
+
+To configure the storage location:
+
+snippet: LearningTransport-StorageDirectory
+
+WARNING: When using source control the storage directory should be excluded and never committed.
+
+
 ## File System Structure
-
-All required information is stored in a `.learningtransport` directory that exists at the solution root.
-
-WARNING: When using source control the `.learningtransport` directory should be excluded and never committed.
 
 
 ### Message File Types

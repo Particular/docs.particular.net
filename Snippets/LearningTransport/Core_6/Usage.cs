@@ -12,5 +12,15 @@
 
             #endregion
         }
+
+        void StorageDirectory(EndpointConfiguration endpointConfiguration)
+        {
+            #region LearningTransport-StorageDirectory
+
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.StorageDirectory("PathToStoreTransportFiles");
+
+            #endregion
+        }
     }
 }
