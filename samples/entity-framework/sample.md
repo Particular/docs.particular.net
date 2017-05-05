@@ -21,6 +21,8 @@ related:
  1. The text `Press <enter> to send a message` should be displayed in the Sender's console window.
  1. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
  1. In the Sender console hit `<enter>` to send a new message.
+ 
+NOTE: In case of exceptions when running the sample make sure there are no tables in the database used by the code (`nservicebus`). Entity Framework by defult can't update table schema so if the tables have old schema, the code won't run properly.
 
 
 ## Verifying that the sample works correctly
