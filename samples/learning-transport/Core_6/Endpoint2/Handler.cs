@@ -11,7 +11,11 @@ public class Handler :
 
     public async Task Handle(TheMessage message, IMessageHandlerContext context)
     {
-        log.Info($"Received. MessageId:{context.MessageId}. Going to sleep for 10 seconds.");
+        if (message.ThrowException)
+        {
+        log.Info($"Received. MessageId:{context.MessageId}. Going to throw an exception.");
+            throw new Exception("The exception message.");
+        }
         await Task.Delay(TimeSpan.FromSeconds(10)).ConfigureAwait(false);
         log.Info($"Finished handling. MessageId:{context.MessageId}");
     }

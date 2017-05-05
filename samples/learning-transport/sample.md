@@ -26,14 +26,14 @@ There is also a `Shared` project that contains the message definition.
 
 ### Endpoint1 sends messages
 
-`Endpoint1` starts the message flow with a send of `TheMessage` to `Endpoint2`. The message can be optionally sent with a [delay](/nservicebus/messaging/delayed-delivery.md).
+`Endpoint1` starts the message flow with a send of `TheMessage` to `Endpoint2`. The message can be optionally sent with a [delay](/nservicebus/messaging/delayed-delivery.md) or can be configured to throw an exception in the handler.
 
 snippet: StartMessageInteraction
 
 
 ### Endpoint2 Handles and logs
 
-`Endpoint2` has a Handler for `TheMessage` that logs and adds a delay to the message processing. The delay allows a window of time in which to analyze the file system.
+`Endpoint2` has a Handler for `TheMessage` that logs and adds a delay to the message processing. The delay allows a window of time in which to analyze the file system. The thrown exception allows visualization of the learning transports [error handling](/nservicebus/recoverability/configure-error-handling.md) characteristics.
 
 snippet: Handler
 
@@ -68,16 +68,19 @@ Note that `Endpoint2` does not yet have `.committed` or `.pending` as those dire
 
 #### Immediate Message
 
+Note that the same structure will exist for both exception and non exception scenarios.
+
 ```no-highlight
 +---Endpoint1
     +---.bodies
     +---.committed
     +---.delayed
     \---.pending
-\---Endpoint2
++---Endpoint2
     |   d262f682-7508-4b7f-aef1-9cbfc6072240.metadata.txt
     \---.bodies
             d262f682-7508-4b7f-aef1-9cbfc6072240.body.txt
+\---error
 ```
 
 
@@ -89,12 +92,13 @@ Note that `Endpoint2` does not yet have `.committed` or `.pending` as those dire
     +---.committed
     +---.delayed
     \---.pending
-\---Endpoint2
++---Endpoint2
     +---.bodies
     |       d262f682-7508-4b7f-aef1-9cbfc6072240.body.txt
     \---.delayed
         \---20170502224103
                 d262f682-7508-4b7f-aef1-9cbfc6072240.metadata.txt
+\---error
 ```
 
 Note that delayed messages are stored in a sub-directory named based on the timestamp for which the message should be processed.
@@ -115,7 +119,7 @@ During message processing the message will be moved into the `.pending` director
     +---.committed
     +---.delayed
     \---.pending
-\---Endpoint2
++---Endpoint2
     +---.bodies
     |       d262f682-7508-4b7f-aef1-9cbfc6072240.body.txt
     +---.committed
@@ -123,10 +127,11 @@ During message processing the message will be moved into the `.pending` director
     \---.pending
         \---6c36d1a8-58a1-4dd5-861f-1439f3907fc9
                 d262f682-7508-4b7f-aef1-9cbfc6072240.metadata.txt
+\---error
 ```
 
 
-#### After message processing
+#### After successful message processing
 
 After message processing the directory structure will be cleaned up.
 
@@ -136,9 +141,30 @@ After message processing the directory structure will be cleaned up.
     +---.committed
     +---.delayed
     \---.pending
-\---Endpoint2
++---Endpoint2
     +---.bodies
     +---.committed
     +---.delayed
     \---.pending
+\---error
+```
+
+
+#### After message is sent to the error queue
+
+```no-highlight
++---Endpoint1
+    +---.bodies
+    +---.committed
+    +---.delayed
+    \---.pending
++---Endpoint2
+    +---.bodies
+    +---.committed
+    +---.delayed
+    \---.pending
+\---error
+    |   d262f682-7508-4b7f-aef1-9cbfc6072240.metadata.txt
+    \---.bodies
+            d262f682-7508-4b7f-aef1-9cbfc6072240.body.txt
 ```

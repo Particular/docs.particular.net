@@ -53,6 +53,11 @@ A serialized representation of a messages metadata.
  * File convention is `[MessageId].metadata.txt`.
 
 
+### error Directory
+
+When a message fails processing both its metadata and body files will be moved to the `error` directory.
+
+
 ### Endpoint Structure
 
 Each endpoint will have a corresponding directory under `.learningtransport` with the following structure

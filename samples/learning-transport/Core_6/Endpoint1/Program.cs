@@ -30,6 +30,7 @@ class Program
 
         Console.WriteLine("Press S to send a message");
         Console.WriteLine("Press D to send a delayed message");
+        Console.WriteLine("Press E to send a message that will throw an exception");
         Console.WriteLine("Press any key to exit");
 
         #region StartMessageInteraction
@@ -59,6 +60,20 @@ class Program
                     .ConfigureAwait(false);
 
                 Console.WriteLine("Sent a message");
+                continue;
+            }
+            if (key.Key == ConsoleKey.E)
+            {
+                var message = new TheMessage
+                {
+                    ThrowException = true
+                };
+                var sendOptions = new SendOptions();
+                sendOptions.SetDestination("Endpoint2");
+                await endpointInstance.Send(message, sendOptions)
+                    .ConfigureAwait(false);
+
+                Console.WriteLine("Sent a message that will throw");
                 continue;
             }
             break;

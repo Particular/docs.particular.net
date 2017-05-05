@@ -18,6 +18,16 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.DisableLegacyRetriesSatellite();
+        recoverability.Immediate(
+            settings =>
+            {
+                settings.NumberOfRetries(0);
+            });
+        recoverability.Delayed(
+            settings =>
+            {
+                settings.NumberOfRetries(0);
+            });
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
