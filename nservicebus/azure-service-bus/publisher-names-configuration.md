@@ -6,7 +6,7 @@ versions: "[7,)"
 tags:
 - Azure
 - Transport
-reviewed: 2016-08-08
+reviewed: 2017-05-05
 ---
 
 When the [`EndpointOrientedTopology`](/nservicebus/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology) is selected, a mapping between publisher names and event types has to be properly configured, in order to ensure that subscriber can receive event messages. 

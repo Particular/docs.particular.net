@@ -7,7 +7,7 @@ tags:
  - Azure
  - Transport
  - Security
-reviewed: 2016-09-21
+reviewed: 2017-05-05
 ---
 
 By default the Azure Service Bus transport authenticates to the service using the information embedded in the connection string. But it's also possible to let it authenticate using any of the authentication mechanisms supported by [Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-authentication-and-authorization).

@@ -6,7 +6,7 @@ versions: '[7,)'
 tags:
 - Azure
 - Transport
-reviewed: 2016-09-22
+reviewed: 2017-05-05
 ---
 
 This article describes the relationship between [recoverability behavior](/nservicebus/recoverability/) and the Azure Service Bus native retry behavior.

@@ -2,7 +2,7 @@
 title: Operational Scripting
 summary: Examples and scripts that facilitate deployment and operational actions against Azure Service Bus
 component: ASB
-reviewed: 2016-09-05
+reviewed: 2017-05-05
 tags:
  - Azure
 related: 
