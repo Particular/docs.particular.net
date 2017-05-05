@@ -2,7 +2,7 @@
 title: Custom Sanitization with Azure Service Bus Transport
 summary: Sanitizing entity path/names with Azure Service Bus Transport.
 component: ASB
-reviewed: 2016-07-06
+reviewed: 2017-05-05
 related:
  - nservicebus/azure-service-bus
  - nservicebus/azure-service-bus/sanitization
