@@ -24,7 +24,7 @@ This issue has been resolved in the following patch versions as defined in the N
 - NServiceBus.NHibernate 7.2.1
 - NServiceBus.NHibernate 7.1.6
 
-Affected versions (7.1 and later) that are still [supported](nservicebus/upgrades/supported-versions.md#persistence-packages-nservicebus-nhibernate) should be updated to the latest patch release.
+Affected versions (7.1 and later) that are still [supported](/nservicebus/upgrades/supported-versions.md#persistence-packages-nservicebus-nhibernate) should be updated to the latest patch release.
 
 ## Upgrade steps
 
