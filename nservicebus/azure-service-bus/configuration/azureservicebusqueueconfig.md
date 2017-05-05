@@ -5,7 +5,7 @@ component: ASB
 versions: '[5,6)'
 tags:
 - Azure
-reviewed: 2016-09-21
+reviewed: 2017-05-05
 ---
 
 ## AzureServiceBusQueueConfig (Version 6 and below)
