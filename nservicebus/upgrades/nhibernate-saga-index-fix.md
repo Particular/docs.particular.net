@@ -64,7 +64,7 @@ Unique constraint on correlation property column can be added with following que
 
 #### Microsoft SQL Server
 
-NOTE: If adding unique constraint fails with `The CREATE UNIQUE INDEX statement terminated because a duplicate key was found for the object name ...` message please make sure that all duplicated rows detected have been merged.
+NOTE: If adding a unique constraint fails with the error `The CREATE UNIQUE INDEX statement terminated because a duplicate key was found for the object name ...` ensure that all duplicated rows detected have been merged.
 
 ```sql
 declare @sagaDataTableName nvarchar(max) = ...
