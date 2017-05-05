@@ -48,12 +48,12 @@ Each row in the result set represents a single logical saga instance that was du
 snippet: DetectSagaDataDuplicates_MsSqlServer
 
 #### Oracle
-```sql
-```
+
+snippet:  DetectSagaDataDuplicates_Oracle
 
 ### Add unique constraint on correlation property column
 
-Unique constraint on correlation property column can be added with following query - it requires providing values for `sagaMappingTableName` and `correlationPropertyColumnName` variables.
+Unique constraint on correlation property column can be added with following query - it requires providing values for `sagaDataTableName` and `correlationPropertyColumnName` variables.
 
 #### Microsoft SQL Server
 
@@ -63,5 +63,6 @@ snippet: AddUniqueConstraintOnSagaDataTable_MsSqlServer
 
 #### Oracle
 
-```sql
-```
+NOTE: Oracle requires that a unique constraint has a name. Use the `uniqueConstraintName` variable to set the name of the constraint.
+
+snippet: AddUniqueConstraintOnSagaDataTable_Oracle
