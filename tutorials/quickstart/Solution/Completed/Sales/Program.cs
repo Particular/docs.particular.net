@@ -17,9 +17,7 @@ namespace Sales
 
             var endpointConfiguration = new EndpointConfiguration("Sales");
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
-
-            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
