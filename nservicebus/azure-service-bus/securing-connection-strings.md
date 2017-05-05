@@ -6,7 +6,7 @@ tags:
 - Azure
 - Transport
 - Security
-reviewed: 2016-08-24
+reviewed: 2017-05-05
 related:
 - nservicebus/upgrades/asb-6to7
 redirects:
