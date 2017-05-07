@@ -1,112 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SqlServer_All</RootNamespace>
+    <TargetFramework>net461</TargetFramework>
     <AssemblyName>SqlServer_All</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <PackageId>SqlServer_All</PackageId>
+    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <NoWarn />
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="2.*" />
+    <PackageReference Include="NUnit" Version="3.*" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Management.Automation" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\GlobalSuppressions.cs">
-      <Link>GlobalSuppressions.cs</Link>
-    </Compile>
-    <Compile Include="EfEdmx\EntityConnectionCreation.cs" />
-    <Compile Include="EfEdmx\MySample.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MySample.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EfEdmx\MySample.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MySample.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EfEdmx\MySample.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MySample.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="EfEdmx\MySampleContainer.cs" />
-    <Compile Include="EfEdmx\Person.cs">
-      <DependentUpon>MySample.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Operations\ErrorQueue\ErrorQueue.cs" />
-    <Compile Include="Operations\ErrorQueue\Tests.cs" />
-    <Compile Include="Operations\NativeSend\NativeSend.cs" />
-    <Compile Include="Operations\NativeSend\Tests.cs" />
-    <Compile Include="Operations\QueueCreation\CreateEndpointQueues.cs" />
-    <Compile Include="Operations\QueueCreation\QueueCreationUtils.cs" />
-    <Compile Include="Operations\QueueCreation\QueueCreationUtilsUsage.cs" />
-    <Compile Include="Operations\QueueCreation\Tests.cs" />
-    <Compile Include="Operations\QueueDeletion\DeleteEndpointQueues.cs" />
-    <Compile Include="Operations\QueueDeletion\QueueDeletionUtils.cs" />
-    <Compile Include="Operations\QueueDeletion\QueueDeletionUtilsUsage.cs" />
-    <Compile Include="Operations\QueueDeletion\Tests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="EfEdmx\MySample.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MySample.Context.cs</LastGenOutput>
-      <DependentUpon>MySample.edmx</DependentUpon>
-    </Content>
-    <Content Include="EfEdmx\MySample.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MySample.cs</LastGenOutput>
-      <DependentUpon>MySample.edmx</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="EfEdmx\MySample.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MySample.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="EfEdmx\MySample.edmx.diagram">
-      <DependentUpon>MySample.edmx</DependentUpon>
-    </None>
-    <None Include="Operations\NativeSend\NativeSend.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="project.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.csproj">
-      <Project>{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

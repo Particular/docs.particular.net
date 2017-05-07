@@ -1,63 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EF1F97BF-AAD9-456C-B8E6-3C7182B0B9F1}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASB_7</RootNamespace>
+    <TargetFramework>net461</TargetFramework>
     <AssemblyName>ASB_7</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <PackageId>ASB_7</PackageId>
+    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="7.*" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.XML" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="project.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ConnectionString.config.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AddressingStrategies\IndividualizationExtensions.cs" />
-    <Compile Include="AddressingStrategies\Individualization.cs" />
-    <Compile Include="AddressingStrategies\Composition.cs" />
-    <Compile Include="AddressingStrategies\NamespacePartitioningExtension.cs" />
-    <Compile Include="AddressingStrategies\NamespacePartitioning.cs" />
-    <Compile Include="AddressingStrategies\SanitizationExtension.cs" />
-    <Compile Include="AddressingStrategies\Sanitization.cs" />
-    <Compile Include="Composition.cs" />
-    <Compile Include="CustomOversizedBrokeredMessageHandler.cs" />
-    <Compile Include="DeadLetterQueueForwarding.cs" />
-    <Compile Include="GettingStarted.cs" />
-    <Compile Include="MultipleNamespaces.cs" />
-    <Compile Include="OversizedMessages.cs" />
-    <Compile Include="Performance.cs" />
-    <Compile Include="Sanitization.cs" />
-    <Compile Include="SecureCredentials.cs" />
-    <Compile Include="AddressingStrategies\CompositionExtension.cs" />
-    <Compile Include="TokenProvider.cs" />
-    <Compile Include="Usage.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
