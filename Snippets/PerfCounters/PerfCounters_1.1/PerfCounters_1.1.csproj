@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <AssemblyName>PerfCounters_1.1</AssemblyName>
     <PackageId>PerfCounters_1.1</PackageId>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
@@ -13,7 +13,7 @@
     <PackageReference Include="NUnit" Version="3.*" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

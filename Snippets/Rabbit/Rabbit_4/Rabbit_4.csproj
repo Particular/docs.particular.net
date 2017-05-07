@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <AssemblyName>Rabbit_4</AssemblyName>
     <PackageId>Rabbit_4</PackageId>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
@@ -11,7 +11,7 @@
     <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

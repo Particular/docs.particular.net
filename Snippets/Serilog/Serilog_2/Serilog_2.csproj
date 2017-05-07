@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <AssemblyName>Serilog_2</AssemblyName>
     <PackageId>Serilog_2</PackageId>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
@@ -18,7 +18,7 @@
     <PackageReference Include="Serilog.Sinks.Seq" Version="3.*" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <AssemblyName>MsmqTransport_All</AssemblyName>
     <PackageId>MsmqTransport_All</PackageId>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
@@ -12,11 +12,7 @@
     <PackageReference Include="Mono.Cecil" Version="0.*" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NUnit" Version="3.*" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
+    <PackageReference Include="System.Management.Automation" Version="6.*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,12 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="System.Management.Automation">
-      <HintPath>..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\System.Management.Automation\1.0.0.0__31bf3856ad364e35\System.Management.Automation.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Messaging">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Messaging.dll</HintPath>
-    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Transactions" />
   </ItemGroup>
 
