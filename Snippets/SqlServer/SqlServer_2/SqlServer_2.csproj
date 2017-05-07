@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <AssemblyName>SqlServer_2</AssemblyName>
     <PackageId>SqlServer_2</PackageId>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>

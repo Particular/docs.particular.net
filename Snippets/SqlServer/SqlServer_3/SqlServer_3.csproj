@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <AssemblyName>SqlServer_3</AssemblyName>
     <PackageId>SqlServer_3</PackageId>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
@@ -15,6 +15,10 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
 
 </Project>
