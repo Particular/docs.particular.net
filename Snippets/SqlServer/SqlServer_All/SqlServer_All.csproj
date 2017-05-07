@@ -12,6 +12,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="NServiceBus.SqlServer" Version="2.*" />
     <PackageReference Include="NUnit" Version="3.*" />
+    <PackageReference Include="System.Management.Automation" Version="6.1.7601.17515" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
@@ -24,8 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="System.Management" />
-    <Reference Include="System.Management.Automation" />
     <Reference Include="System.Transactions" />
   </ItemGroup>
 
