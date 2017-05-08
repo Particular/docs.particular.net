@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 class MissingAwait
 {
-
+    /**
     #region TaskMethodMissingAwait
 
     public static Task TaskMethodMissingAwait()
@@ -15,6 +15,7 @@ class MissingAwait
 
     #endregion
 
+    **/
     #region AsyncMethodMissingAwait
 
     public static async Task AsyncMethodMissingAwait()

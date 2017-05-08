@@ -1,53 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9000E8E8-675F-4DB0-A869-6848350F9B46}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Testing_4</RootNamespace>
+    <TargetFramework>net462</TargetFramework>
     <AssemblyName>Testing_4</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <PackageId>Testing_4</PackageId>
+    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="NServiceBus.Testing" Version="4.*" />
+    <PackageReference Include="NUnit" Version="3.*" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AdditionalServices\Tests.cs" />
-    <Compile Include="HeaderManipulation\RequestMessage.cs" />
-    <Compile Include="HeaderManipulation\ResponseMessage.cs" />
-    <Compile Include="HeaderManipulation\Tests.cs" />
-    <Compile Include="Saga\MyCommand.cs" />
-    <Compile Include="Saga\MyOtherEvent.cs" />
-    <Compile Include="Saga\MyEvent.cs" />
-    <Compile Include="Saga\MyResponse.cs" />
-    <Compile Include="Saga\MySagaData.cs" />
-    <Compile Include="Saga\StartsSaga.cs" />
-    <Compile Include="Saga\Tests.cs" />
-    <Compile Include="ServiceLayer\RequestMessage.cs" />
-    <Compile Include="ServiceLayer\ResponseMessage.cs" />
-    <Compile Include="ServiceLayer\Tests.cs" />
-    <Compile Include="Unobtrusive.cs" />
-    <Compile Include="Usage.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="project.json" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

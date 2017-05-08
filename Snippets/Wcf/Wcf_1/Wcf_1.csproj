@@ -1,60 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Wcf1</RootNamespace>
-    <AssemblyName>Core6</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFramework>net462</TargetFramework>
+    <AssemblyName>Wcf_1</AssemblyName>
+    <PackageId>Wcf_1</PackageId>
+    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>1998</NoWarn>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="NServiceBus.Callbacks" Version="1.*" />
+    <PackageReference Include="NServiceBus.Wcf" Version="1.*" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.ServiceModel" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Binding\Message.cs" />
-    <Compile Include="Binding\Usage.cs" />
-    <Compile Include="Cancellation\Message.cs" />
-    <Compile Include="Cancellation\Usage.cs" />
-    <Compile Include="Enum\Handler.cs" />
-    <Compile Include="Enum\Message.cs" />
-    <Compile Include="Enum\Status.cs" />
-    <Compile Include="Enum\Usage.cs" />
-    <Compile Include="ExposeWcf.cs" />
-    <Compile Include="Int\Handler.cs" />
-    <Compile Include="Int\Message.cs" />
-    <Compile Include="Int\Usage.cs" />
-    <Compile Include="Object\Handler.cs" />
-    <Compile Include="Object\Message.cs" />
-    <Compile Include="Object\ResponseMessage.cs" />
-    <Compile Include="Object\Usage.cs" />
-    <Compile Include="Routing\Handler.cs" />
-    <Compile Include="Routing\Message.cs" />
-    <Compile Include="Routing\Usage.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="project.json" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
