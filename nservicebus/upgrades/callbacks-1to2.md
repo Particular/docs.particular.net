@@ -21,7 +21,7 @@ Enabling callbacks in default mode requires the endpoint to be made [uniquely ad
 
 Endpoints only replying to callbacks with object messages like the following:
 
-snippet: ObjectCallbackResponse
+snippet: 1to2-Callbacks-ObjectCallbackResponse
 
 don't require a reference to the callbacks package. 
 
