@@ -22,7 +22,7 @@ related:
  1. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
  1. In the Sender console hit `<enter>` to send a new message.
  
-NOTE: In case of exceptions when running the sample, make sure there are no tables in the database used by the code (`nservicebus`). Entity Framework by defult can't update table schemas. If the tables use an old schema, the code won't be executed properly.
+NOTE: In case of exceptions when running the sample, delete tables from the database used by the code (`nservicebus`). Entity Framework by defult can't update table schemas. If tables use the old schema, the code won't be executed properly.
 
 
 ## Verifying that the sample works correctly
