@@ -5,7 +5,5 @@
     <AssemblyName>ServiceControl_All</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>

@@ -8,8 +8,6 @@
     <PackageReference Include="NServiceBus" Version="4.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="1.*" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.ServiceProcess" />

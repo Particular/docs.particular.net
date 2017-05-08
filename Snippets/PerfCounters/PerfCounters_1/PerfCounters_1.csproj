@@ -8,7 +8,5 @@
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="1.*" />
     <PackageReference Include="NUnit" Version="3.*" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>

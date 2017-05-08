@@ -7,7 +7,5 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NUnit" Version="3.*" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>

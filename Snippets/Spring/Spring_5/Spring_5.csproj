@@ -7,7 +7,5 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Spring" Version="5.*" />
     <PackageReference Include="Spring.Core" Version="2.*" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>
