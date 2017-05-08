@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <AssemblyName>CallbacksTesting_2</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Callbacks.Testing" Version="2.*" />
+    <PackageReference Include="NServiceBus.Testing" Version="6.*" />
+  </ItemGroup>
+</Project>
