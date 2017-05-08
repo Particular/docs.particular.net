@@ -51,7 +51,7 @@ The SQL Persistence consists of several [Nuget Packages](https://www.nuget.org/p
 
 ### [NServiceBus.Persistence.Sql.MsBuild](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild/)
 
-This packages installs into the MSBuild pipeline and generates all SQL installation scripts at compile time. It does this by interrogating types (in the target assembly) and attributes (from the `NServiceBus.Persistence.Sql` NuGet package) to infer what scripts to create. It is required for any project where those SQL installation scripts are required. For Saga Scripts it will be any project that contains Saga classes. For Timeouts, Subscriptions and Outbox Scripts it will be the endpoint hosting project. This package has a dependency on the `NServiceBus.Persistence.Sql` NuGet package
+This packages installs into the [MSBuild](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild) pipeline and generates all SQL installation scripts at compile time. It does this by interrogating types (in the target assembly) and attributes (from the `NServiceBus.Persistence.Sql` NuGet package) to infer what scripts to create. It is required for any project where those SQL installation scripts are required. For Saga Scripts it will be any project that contains Saga classes. For Timeouts, Subscriptions and Outbox Scripts it will be the endpoint hosting project. This package has a dependency on the `NServiceBus.Persistence.Sql` NuGet package
 
 
 ### [NServiceBus.Persistence.Sql](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/)
@@ -72,6 +72,9 @@ DANGER: NServiceBus.Persistence.Sql.ScriptBuilder is currently not ready for gen
 
 
 ## Script Creation
+
+WARNING: Projects using `project.json` are **not** supported. The `project.json` approach was an experiment by Microsoft at a new project system that was not based on MSBuild. Since `project.json` did not support running MSBuild files shipped inside a NuGet the SQL Persistence Script Creation does not work. This experiment has since been abandoned. To fix this either migrate back to the old Visual Studio 2015 project format (`.csproj` and `packages.config`) or migrate to the new [Visual Studio 2017 project format](https://docs.microsoft.com/en-us/dotnet/articles/core/tools/project-json-to-csproj). [dotnet-migrate](https://docs.microsoft.com/en-us/dotnet/articles/core/tools/dotnet-migrate) can help migrating to the new `.csproj` format.
+
 
 SQL installation scripts are created at compile time by the `NServiceBus.Persistence.Sql.MsBuild` NuGet package.
 
