@@ -8,8 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ServiceControl.Plugin.Nsb6.Heartbeat" Version="1.*" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

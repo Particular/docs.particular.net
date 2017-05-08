@@ -10,8 +10,6 @@
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="1.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="1.*" />
     <PackageReference Include="NUnit" Version="3.*" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

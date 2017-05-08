@@ -8,12 +8,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Gateway" Version="1.*" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>

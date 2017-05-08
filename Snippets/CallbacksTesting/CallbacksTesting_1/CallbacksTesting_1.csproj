@@ -8,8 +8,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Callbacks.Testing" Version="1.*" />
     <PackageReference Include="NServiceBus.Testing" Version="6.*" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

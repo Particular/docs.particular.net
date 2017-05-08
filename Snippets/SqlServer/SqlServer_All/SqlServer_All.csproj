@@ -12,15 +12,9 @@
     <PackageReference Include="NServiceBus.SqlServer" Version="2.*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="System.Management.Automation" Version="6.*" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System.Transactions" />
   </ItemGroup>
 </Project>

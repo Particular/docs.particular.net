@@ -9,8 +9,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Testing" Version="4.*" />
     <PackageReference Include="NUnit" Version="3.*" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

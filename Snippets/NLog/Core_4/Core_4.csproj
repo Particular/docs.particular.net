@@ -9,8 +9,6 @@
   <ItemGroup>
     <PackageReference Include="NLog" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="4.*" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

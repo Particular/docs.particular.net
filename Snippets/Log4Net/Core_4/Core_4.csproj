@@ -9,8 +9,6 @@
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="4.*" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

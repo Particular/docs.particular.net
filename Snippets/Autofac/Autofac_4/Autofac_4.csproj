@@ -11,8 +11,6 @@
     <PackageReference Include="NServiceBus" Version="4.*" />
     <PackageReference Include="NServiceBus.Autofac" Version="4.*" />
     <PackageReference Include="NServiceBus.Interfaces" Version="4.*" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

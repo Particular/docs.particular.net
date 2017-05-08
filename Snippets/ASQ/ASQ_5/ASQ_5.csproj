@@ -9,8 +9,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="5.*" />
     <PackageReference Include="NServiceBus.Hosting.Azure" Version="5.*" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

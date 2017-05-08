@@ -9,8 +9,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Spring" Version="4.*" />
     <PackageReference Include="Spring.Core" Version="2.*" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
