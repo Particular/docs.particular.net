@@ -2,6 +2,6 @@ NOTE: When replying with an `int` value, the replying endpoint also needs to ref
 
 snippet: EnableCallbacks-NoRequests
 
-If the endpoint only replies to callbacks use the reply-only mode as shown below:
+If the endpoint only replies to callbacks enable the callbacks as shown below:
 
 snippet: EnableCallbacks-NoRequests

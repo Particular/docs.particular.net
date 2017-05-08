@@ -11,7 +11,7 @@ upgradeGuideCoreVersions:
 
 ## Enable callbacks
 
-Callbacks have been made opt-in. In order to make callbacks work they have to be enabled. 
+Callbacks have been made opt-in. In order to make callbacks work they have to be enabled explicitly. 
 
 snippet: 1to2-Callbacks-InstanceId-Default
 
