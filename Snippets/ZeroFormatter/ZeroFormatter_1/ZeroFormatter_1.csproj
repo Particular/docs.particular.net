@@ -6,7 +6,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.ZeroFormatter" Version="1.*" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>

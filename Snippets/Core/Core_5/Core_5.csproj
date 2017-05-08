@@ -13,8 +13,6 @@
     <PackageReference Include="Rx-Linq" Version="2.*" />
     <PackageReference Include="Rx-Main" Version="2.*" />
     <PackageReference Include="Rx-PlatformServices" Version="2.*" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
     <ProjectReference Include="..\..\MsmqTransport\MsmqTransport_All\MsmqTransport_All.csproj" />
     <Reference Include="System.Configuration" />

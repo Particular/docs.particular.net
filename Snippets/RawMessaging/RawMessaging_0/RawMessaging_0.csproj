@@ -6,7 +6,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Raw" Version="0.*" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>

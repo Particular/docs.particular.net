@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26403.7
-MinimumVisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 15.0.26403.7
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlPersistence_1", "SqlPersistence_1\SqlPersistence_1.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlPersistence_2", "SqlPersistence_2\SqlPersistence_2.csproj", "{AF39A002-63FF-4AFA-9631-BF844878A603}"

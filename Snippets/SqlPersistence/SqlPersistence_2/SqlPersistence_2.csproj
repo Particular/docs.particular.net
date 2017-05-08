@@ -9,7 +9,5 @@
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.0.0" />
     <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="2.0.0" />
     <PackageReference Include="NUnit" Version="3.*" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>
