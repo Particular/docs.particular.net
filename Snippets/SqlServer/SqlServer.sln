@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26114.2
-MinimumVisualStudioVersion = 10.0.40219.1
+MinimumVisualStudioVersion = 15.0.26114.2
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServer_2", "SqlServer_2\SqlServer_2.csproj", "{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServer_3", "SqlServer_3\SqlServer_3.csproj", "{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}"
