@@ -30,6 +30,7 @@ In NServiceBus Version 5 and below callbacks are built into the core NuGet.
 
 In NServiceBus Version 6 and above callbacks are shipped as `NServiceBus.Callbacks` NuGet package. This package has to be referenced by the requesting endpoint.
 
+partial: enabling-callbacks
 
 ## Using Callbacks
 
