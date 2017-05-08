@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.SimpleInjector" Version="2.1.0" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

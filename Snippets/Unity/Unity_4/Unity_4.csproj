@@ -9,7 +9,7 @@
     <PackageReference Include="NServiceBus" Version="4.*" />
     <PackageReference Include="NServiceBus.Unity" Version="4.*" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

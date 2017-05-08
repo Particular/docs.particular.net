@@ -9,7 +9,7 @@
     <PackageReference Include="NServiceBus.Spring" Version="3.*" />
     <PackageReference Include="Spring.Core" Version="2.*" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

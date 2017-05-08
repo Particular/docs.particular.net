@@ -9,7 +9,7 @@
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.*" />
     <PackageReference Include="NServiceBus.Gateway" Version="2.0.*" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

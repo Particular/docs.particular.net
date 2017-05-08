@@ -9,7 +9,7 @@
     <PackageReference Include="NServiceBus.SqlServer" Version="3.*" />
     <PackageReference Include="NUnit" Version="3.*" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

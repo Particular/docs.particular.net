@@ -10,7 +10,7 @@
     <PackageReference Include="NServiceBus" Version="6.2.1" />
     <PackageReference Include="NServiceBus.Metrics" Version="1.0.0" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

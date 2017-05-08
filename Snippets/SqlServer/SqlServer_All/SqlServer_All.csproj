@@ -13,7 +13,7 @@
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="System.Management.Automation" Version="6.*" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>

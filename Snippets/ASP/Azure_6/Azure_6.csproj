@@ -8,7 +8,7 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Azure" Version="6.*" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
