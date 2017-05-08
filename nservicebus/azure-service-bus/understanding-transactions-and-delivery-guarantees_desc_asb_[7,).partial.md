@@ -10,15 +10,15 @@ Schematically it works like this:
 
 ## Undesired side effects
 
-Transaction scopes automatically flow along the downstream execution path, and implicitly enlists any transactional resource in the ambient transaction.
+Transaction scopes automatically flow along the downstream execution path, and implicitly enlist any transactional resource in the ambient transaction.
 
-On the other hand, the ASB SDK actively evaluates how many transactional resources are enlisted in the ambient transaction and throws an exception if it sees more than one.
+On the other hand, the ASB SDK actively evaluates how many transactional resources are enlisted in the ambient transaction and throws an exception if it detects more than one.
 
-Both of these behaviors combined make that it is impossible to enlist any database operation, or additional direct send operation using ASB SDK in this transaction.
+Both of these behaviors make it impossible to enlist any database operation, or additional direct send operation using ASB SDK in this transaction.
 
 ## Use suppress scopes
 
-The best way to deal with this problem is to ensure that every transactional operation is wrapped in a suppress scope that internally opens a new transaction scope.
+To deal with this problem ensure that every transactional operation is wrapped in a suppress scope that internally opens a new transaction scope.
 
 The ASB transport already does this automatically for any invocation of `IHandleMessages` by injecting a suppress scope into the handler invocation pipeline. 
 
