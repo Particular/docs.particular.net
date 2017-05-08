@@ -1,65 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{100E3F2F-409C-4E7F-AEAD-599179DC0C69}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace />
+    <TargetFramework>net462</TargetFramework>
     <AssemblyName>SqlPersistence_1</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="6.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="1.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="1.*" />
+    <PackageReference Include="NUnit" Version="3.*" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="SqlPersistenceSettings.cs" />
-    <Compile Include="CorrelationPropertyTypeConverterWriter.cs" />
-    <Compile Include="ScriptWriter.cs" />
-    <Compile Include="Session\Handler.cs" />
-    <Compile Include="Session\Saga.cs" />
-    <Compile Include="Session\MyMessage.cs" />
-    <Compile Include="UpgradeGuides\1to101\Upgrade101.cs" />
-    <Compile Include="TableSuffix.cs" />
-    <Compile Include="IlRequirement\OrderSaga.cs" />
-    <Compile Include="UpgradeGuides\1to2\Correlation\MySaga.cs" />
-    <Compile Include="UpgradeGuides\1to2\Correlation\MyMessage.cs" />
-    <Compile Include="UpgradeGuides\1to2\Mapping\MyMessage.cs" />
-    <Compile Include="UpgradeGuides\1to2\Mapping\MySaga.cs" />
-    <Compile Include="UpgradeGuides\1to2\SagaAttribute.cs" />
-    <Compile Include="UpgradeGuides\1to2\SqlPersistenceSettings.cs" />
-    <Compile Include="UpgradeGuides\1to2\Upgrade1to2.cs" />
-    <Compile Include="UsingSaga\SagaWithCorrelation.cs" />
-    <Compile Include="UsingSaga\SagaWithCorrelationAndTransitional.cs" />
-    <Compile Include="UsingSaga\SagaWithNoMessageMapping.cs" />
-    <Compile Include="UsingSaga\StartSagaMessage.cs" />
-    <Compile Include="UsingSaga\OrderSaga.cs" />
-    <Compile Include="StartOrder.cs" />
-    <Compile Include="Usage.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="project.json" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="UpgradeGuides\1to101\ConvertOutboxToNonclustered.sql" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

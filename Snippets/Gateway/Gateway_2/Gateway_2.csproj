@@ -1,60 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gateway_2</RootNamespace>
+    <TargetFramework>net462</TargetFramework>
     <AssemblyName>Gateway_2</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>1998</NoWarn>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.*" />
+    <PackageReference Include="NServiceBus.Gateway" Version="2.0.*" />
     <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Channels\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Channels\ConfigurationSource\Usage.cs" />
-    <Compile Include="Channels\ProvideConfiguration.cs" />
-    <Compile Include="MyMessage.cs" />
-    <Compile Include="ServiceFabric.cs" />
-    <Compile Include="Sites\ConfigurationSource\ConfigurationSource.cs" />
-    <Compile Include="Sites\ConfigurationSource\Usage.cs" />
-    <Compile Include="Sites\ProvideConfiguration.cs" />
-    <Compile Include="Usage.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Channels\Channels.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Channels\Wildcard.config.xml" />
-    <Content Include="ServiceFabric\ServiceManifest.xml" />
-    <Content Include="Sites\Sites.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="UpgradeGuide\1to2\Channel.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="project.json" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,10 +2,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyName>Core_3</AssemblyName>
+    <AssemblyName>PerfCounters_1.1</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="3.*" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="1.1.0" />
+    <PackageReference Include="NUnit" Version="3.*" />
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
