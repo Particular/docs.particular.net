@@ -4,7 +4,6 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Ninject_5</AssemblyName>
     <PackageId>Ninject_5</PackageId>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Ninject" Version="5.*" />

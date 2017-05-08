@@ -4,7 +4,6 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Distributor_5</AssemblyName>
     <PackageId>Distributor_5</PackageId>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Distributor.MSMQ" Version="5.*" />

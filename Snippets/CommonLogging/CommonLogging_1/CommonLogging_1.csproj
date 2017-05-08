@@ -4,7 +4,6 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>CommonLogging_1</AssemblyName>
     <PackageId>CommonLogging_1</PackageId>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.CommonLogging" Version="1.*" />

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>MessagePack_1</AssemblyName>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.MessagePack" Version="1.*" />

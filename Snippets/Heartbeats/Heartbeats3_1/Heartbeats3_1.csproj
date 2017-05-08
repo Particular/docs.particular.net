@@ -4,7 +4,6 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Heartbeats3_1</AssemblyName>
     <PackageId>Heartbeats3_1</PackageId>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

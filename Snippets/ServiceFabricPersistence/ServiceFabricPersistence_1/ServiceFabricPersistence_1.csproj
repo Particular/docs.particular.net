@@ -4,7 +4,6 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>ServiceFabricPersistence_1</AssemblyName>
     <PackageId>ServiceFabricPersistence_1</PackageId>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ServiceFabric.Data" Version="2.*" />

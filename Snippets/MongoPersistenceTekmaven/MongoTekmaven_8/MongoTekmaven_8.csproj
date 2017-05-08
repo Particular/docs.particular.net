@@ -4,7 +4,6 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>MongoTekmaven_8</AssemblyName>
     <PackageId>MongoTekmaven_8</PackageId>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Persistence.MongoDb" Version="8.*" />

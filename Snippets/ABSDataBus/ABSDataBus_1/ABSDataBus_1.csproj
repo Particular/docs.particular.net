@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>ABSDataBus_1</AssemblyName>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="1.*" />

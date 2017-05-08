@@ -4,7 +4,6 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>SimpleInjector_1</AssemblyName>
     <PackageId>SimpleInjector_1</PackageId>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.SimpleInjector" Version="1.0.10" />

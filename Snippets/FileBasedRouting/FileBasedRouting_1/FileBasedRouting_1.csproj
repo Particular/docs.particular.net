@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net46</TargetFramework>
     <AssemblyName>FileBasedRouting_1</AssemblyName>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.FileBasedRouting" Version="1.*" />

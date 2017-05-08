@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>CallbacksTesting_1</AssemblyName>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Callbacks.Testing" Version="1.*" />

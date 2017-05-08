@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>SqlServer_3</AssemblyName>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.SqlServer" Version="3.*" />

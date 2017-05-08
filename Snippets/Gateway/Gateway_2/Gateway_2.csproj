@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Gateway_2</AssemblyName>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.*" />

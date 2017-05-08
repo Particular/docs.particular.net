@@ -4,7 +4,6 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>ASQ_5</AssemblyName>
     <PackageId>ASQ_5</PackageId>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="5.*" />

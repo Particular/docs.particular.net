@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
     <AssemblyName>EventStoreTransport_1</AssemblyName>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <Reference Include="System" />
