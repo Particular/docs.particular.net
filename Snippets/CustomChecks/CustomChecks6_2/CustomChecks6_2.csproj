@@ -1,19 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>CustomChecks6_2</AssemblyName>
-    <PackageId>CustomChecks6_2</PackageId>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="ServiceControl.Plugin.Nsb6.CustomChecks" Version="2.*" />
   </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-
 </Project>

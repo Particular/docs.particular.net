@@ -1,12 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Serilog_2</AssemblyName>
-    <PackageId>Serilog_2</PackageId>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="NServiceBus.Serilog" Version="2.*" />
     <PackageReference Include="Serilog" Version="2.3.0" />
@@ -17,10 +15,8 @@
     <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="3.*" />
   </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-
 </Project>

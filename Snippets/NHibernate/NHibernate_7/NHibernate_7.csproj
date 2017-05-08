@@ -1,19 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>NHibernate_7</AssemblyName>
     <PackageId>NHibernate_7</PackageId>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />
   </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-
 </Project>

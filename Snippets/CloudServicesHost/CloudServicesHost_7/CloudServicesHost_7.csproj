@@ -1,24 +1,19 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>CloudServicesHost_7</AssemblyName>
-    <PackageId>CloudServicesHost_7</PackageId>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="NServiceBus.Hosting.Azure" Version="7.*" />
     <PackageReference Include="Unofficial.Microsoft.WindowsAzure.ServiceRuntime" Version="2.*" />
   </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="System.Web" />
   </ItemGroup>
-
 </Project>

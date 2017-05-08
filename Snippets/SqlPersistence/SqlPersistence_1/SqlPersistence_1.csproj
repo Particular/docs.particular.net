@@ -1,22 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>SqlPersistence_1</AssemblyName>
-    <PackageId>SqlPersistence_1</PackageId>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="6.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="1.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="1.*" />
     <PackageReference Include="NUnit" Version="3.*" />
   </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-
 </Project>
