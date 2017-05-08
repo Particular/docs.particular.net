@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Wire_2</AssemblyName>
-    <PackageId>Wire_2</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Wire" Version="2.*" />

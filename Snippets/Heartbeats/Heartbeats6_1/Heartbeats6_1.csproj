@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Heartbeats6_1</AssemblyName>
-    <PackageId>Heartbeats6_1</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ServiceControl.Plugin.Nsb6.Heartbeat" Version="1.*" />

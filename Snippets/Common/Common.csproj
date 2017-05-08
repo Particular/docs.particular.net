@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Common</AssemblyName>
-    <PackageId>Common</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>PropertyEncryption_All</AssemblyName>
-    <PackageId>PropertyEncryption_All</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

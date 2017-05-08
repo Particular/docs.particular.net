@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>SerilogTracing_2</AssemblyName>
-    <PackageId>SerilogTracing_2</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Serilog.Tracing" Version="2.*" />

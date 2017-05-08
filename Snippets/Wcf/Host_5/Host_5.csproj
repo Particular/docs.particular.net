@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Host_5</AssemblyName>
-    <PackageId>Host_5</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Host" Version="5.*" />

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>SagaAudit4_1</AssemblyName>
-    <PackageId>SagaAudit4_1</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ServiceControl.Plugin.Nsb4.SagaAudit" Version="1.*" />

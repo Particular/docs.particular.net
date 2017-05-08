@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>NHibernate_7</AssemblyName>
-    <PackageId>NHibernate_7</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />

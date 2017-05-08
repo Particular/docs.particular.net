@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>CommonLogging_1</AssemblyName>
-    <PackageId>CommonLogging_1</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.CommonLogging" Version="1.*" />

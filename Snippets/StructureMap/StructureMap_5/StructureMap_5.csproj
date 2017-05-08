@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>StructureMap_5</AssemblyName>
-    <PackageId>StructureMap_5</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.StructureMap" Version="5.*" />

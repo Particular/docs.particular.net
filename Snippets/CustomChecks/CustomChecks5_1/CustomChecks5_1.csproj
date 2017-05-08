@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>CustomChecks5_1</AssemblyName>
-    <PackageId>CustomChecks5_1</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ServiceControl.Plugin.Nsb5.CustomChecks" Version="1.*" />
