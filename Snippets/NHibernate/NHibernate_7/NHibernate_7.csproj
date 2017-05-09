@@ -4,42 +4,6 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>NHibernate_7</AssemblyName>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Session\OrderSaga.cs" />
-    <Compile Include="Session\OrderHandler.cs" />
-    <Compile Include="Concurrency\SagaDataWithLockMode.cs" />
-    <Compile Include="Concurrency\SagaDataWithRowVersion.cs" />
-    <Compile Include="Outbox.cs" />
-    <Compile Include="Session\Order.cs" />
-    <Compile Include="Session\OrderMessage.cs" />
-    <Compile Include="Usage.cs" />
-    <Compile Include="UsageSqlAzure.cs" />
-    <Compile Include="DisableSchemaUpdate.cs" />
-    <Compile Include="UpgradeGuides\6to7\AccessingSession.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="nhibernate.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="OutboxTimeToKeep.xml" />
-    <Content Include="UpgradeGuides\MissingUniqueConstraintOnSagaDataTables\unique_constraints.sql" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />
   </ItemGroup>
