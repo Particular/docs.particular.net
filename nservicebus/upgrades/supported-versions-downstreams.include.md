@@ -207,14 +207,16 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.1.x     | 2017-01-16     | -                 | -                                 |
+| 2.0.x     | 2017-05-08     | -                 | -                                 |
+| 1.1.x     | 2017-01-16     | 2018-05-08        | Superseded by 2.0.x               |
 | ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-04-16~~    | ~~Superseded by 1.1.x~~           |
 
 #### NServiceBus.Callbacks.Testing
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.1.x     | 2017-01-16     | -                 | -                                 |
+| 2.0.x     | 2017-05-08     | -                 | -                                 |
+| 1.1.x     | 2017-01-16     | 2018-05-08        | Superseded by 2.0.x               |
 
 #### NServiceBus.Distributor.MSMQ
 
