@@ -1,19 +1,44 @@
-In NServiceBus version 6 and above transports fully control the transactional support. A transaction scope is no longer mandatory in order to orchestrate dispatching of messages with complete/rollback behavior. The Azure Service Bus transport only uses a transaction scope to implement the `SendAtomicWithReceive` transaction mode. Other modes work without using transaction scope. 
+When running in `SendAtomicWithReceive` mode, the Azure Service Bus (ASB) transport opens a transaction scope that cannot be enlisted by any other resource manager. As a result any custom behaviors or satellites need to explicitly wrap their transaction scope with a suppress scope.
 
-The new architecture for `SendAtomicWithReceive` is schematically represented in the diagram:
+This transaction scope is a requirement to allow the ASB transport to take advantage of [the via entity path / transfer queue](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions) feature. This capability allows the transport to provide better delivery guarantees by reducing the number of duplicates sent out in case of exceptions occurring after the send operation.
 
-![Transactions v7](transactions-v7.png)
-
-Note the [fork in the pipeline](/nservicebus/pipeline/steps-stages-connectors.md) which is separating the user code invocation path from the dispatching path. By putting a suppress scope around this section of the pipeline, the transport can prevent any other transactional resource from enlisting in the scope.
-
-Furthermore, the Azure Service Bus transport also takes advantage of a little-known capability of the Azure Service Bus SDK, [the via entity path / transfer queue](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions). Using this feature, send operations to different Azure Service Bus entities can be executed via a single entity, usually the receive queue.  
+Using a transfer queue, send operations to different ASB entities can be executed via a single entity, the receive queue, and be completed in a single operation together with the acknowledgment that the receive operation has completed. Therefor messages are only sent when the receive operation completes. 
 
 Schematically it works like this:
 
 ![Send Via](send-via.png)
 
-Combining these capabilities, allows Azure Service Bus Transport to support `SendAtomicWithReceive`, `ReceiveOnly` and `None` transaction mode levels.
+## Undesired side effects
 
-NOTE: When developing a satellite it needs to be taken into account that `SendAtomicWithReceive` will wrap the satellite in a transaction scope which cannot be reused by other transactional resources, there a suppress scope should be added around the invocation of any other transactional resources.
+Transaction scopes automatically flow along the downstream execution path, and implicitly enlist any transactional resource in the ambient transaction.
+
+On the other hand, the ASB SDK actively evaluates how many transactional resources are enlisted in the ambient transaction and throws an exception if it detects more than one.
+
+Both of these behaviors make it impossible to enlist any database operation, or additional direct send operation using ASB SDK in this transaction.
+
+## Use suppress scopes
+
+To deal with this problem ensure that every transactional operation is wrapped in a suppress scope that internally opens a new transaction scope.
+
+The ASB transport already does this automatically for any invocation of `IHandleMessages` by injecting a suppress scope into the handler invocation pipeline. 
+
+The new pipeline architecture for `SendAtomicWithReceive` is schematically represented in the following diagram:
+
+![Transactions v7](transactions-v7.png)
+
+From a transport and transaction management perspective, the NServiceBus pipeline can be divided into three parts:
+* The incoming pipeline, which is invoked by the transport whenever a message is received.
+* The handler invocation pipeline responsible for invoking the implementations of `IHandleMessages`.
+* And finally the outgoing pipeline, responsible for sending out messages through the transport.
+
+Note that the pipeline is not straight, there is a [fork in the pipeline](/nservicebus/pipeline/steps-stages-connectors.md) that is separating the handler invocation path from the outgoing path. Dispatching only happens after the handler invocation pipeline has returned, and all implementations of `IHandleMessages` have been executed successfully.
+
+This is important, as it allows the transport to flow its transaction scope from the incoming pipeline to the outgoing pipeline. While at the same time it can prevent the receive scope from promoting the handler scope by putting a suppress scope around the handler invocation pipeline.
+
+But for custom behaviors or satellites that are plugging into the incoming or outgoing pipeline this suppress scope needs to be added explicitly.
+
+A schematic representation of such a behavior is depicted in the following diagram:
+
+![Transactions v7](transactions-v7-behavior.png)
 
 include: send-atomic-with-receive-note

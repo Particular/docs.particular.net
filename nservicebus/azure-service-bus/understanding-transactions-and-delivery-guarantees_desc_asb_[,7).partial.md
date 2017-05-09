@@ -1,3 +1,5 @@
+NOTE: This is advanced documentation and only of significant relevance when developing custom behaviors or satellites. To make a long story short: In version 6 and below of the transport, transactional operations are enlisted in the handler scope, not in the receive scope. Read on to learn why.
+
 NServiceBus relies on transaction scopes to control how it behaves when it comes to transactions, message dispatching and commit/rollback guarantees. 
 
 The architecture is schematically represented in the diagram:
