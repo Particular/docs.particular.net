@@ -131,6 +131,8 @@
         Title: Version 6 to 7
       - Url: nservicebus/upgrades/nhibernate-timeouts-index
         Title: Resolving incorrect timeout table indexes
+      - Url: nservicebus/upgrades/nhibernate-saga-index-fix
+        Title: Adding unique constraints on saga data tables
     - Title: RabbitMQ Transport
       Articles:
       - Url: nservicebus/upgrades/rabbitmq-3to4
