@@ -7,7 +7,7 @@ related:
 ---
 
 
-include: learning-transport-warning
+include: learning-warning
 
 This sample show how to use the Learning Transport and how the messages are persisted to the file system.
 
