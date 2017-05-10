@@ -27,9 +27,8 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.2.1\lib\net452\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.3.0-alpha0134\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -37,6 +36,7 @@
   <ItemGroup>
     <Compile Include="CancelOrder.cs" />
     <Compile Include="CompleteOrder.cs" />
+    <Compile Include="LearningLocationHelper.cs" />
     <Compile Include="OrderSaga.cs" />
     <Compile Include="OrderSagaData.cs" />
     <Compile Include="Program.cs" />

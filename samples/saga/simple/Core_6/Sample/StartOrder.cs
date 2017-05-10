@@ -1,7 +1,8 @@
+using System;
 using NServiceBus;
 
 public class StartOrder :
     IMessage
 {
-    public string OrderId { get; set; }
+    public Guid OrderId { get; set; }
 }

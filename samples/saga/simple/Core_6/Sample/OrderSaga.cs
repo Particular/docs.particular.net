@@ -23,27 +23,39 @@ public class OrderSaga :
     public async Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
-        log.Info($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
+        log.Info($"StartOrder received with OrderId {message.OrderId}");
+
+        log.Info($@"Sending a CompleteOrder that will be delayed by 10 seconds
+Stop the endpoint now to see the saga data in:
+{LearningLocationHelper.GetSagaLocation<OrderSaga>(Data.Id)}");
         var completeOrder = new CompleteOrder
         {
             OrderId = Data.OrderId
         };
-        await context.SendLocal(completeOrder)
+        var sendOptions = new SendOptions();
+        sendOptions.DelayDeliveryWith(TimeSpan.FromSeconds(10));
+        sendOptions.RouteToThisEndpoint();
+        await context.Send(completeOrder, sendOptions)
             .ConfigureAwait(false);
-        await RequestTimeout<CancelOrder>(context, TimeSpan.FromMinutes(30))
+
+        var timeout = DateTime.UtcNow.AddSeconds(30);
+        log.Info($@"Requesting a CancelOrder that will be executed in 30 seconds.
+Stop the endpoint now to see the timeout data in the delayed directory
+{LearningLocationHelper.TransportDelayedDirectory(timeout)}");
+        await RequestTimeout<CancelOrder>(context, timeout)
             .ConfigureAwait(false);
     }
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        log.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
+        log.Info($"CompleteOrder received with OrderId {message.OrderId}");
         MarkAsComplete();
         return Task.CompletedTask;
     }
 
     public Task Timeout(CancelOrder state, IMessageHandlerContext context)
     {
-        log.Info($"Complete not received soon enough OrderId {Data.OrderId}");
+        log.Info($"CompleteOrder not received soon enough OrderId {Data.OrderId}. Calling MarkAsComplete");
         MarkAsComplete();
         return Task.CompletedTask;
     }
