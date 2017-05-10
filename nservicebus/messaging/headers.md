@@ -84,8 +84,6 @@ Identifier of the conversation that this message is part of. It enables the trac
 
 The first message that is sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are subsequently sent, thus forming a _conversation_. Each message that is sent within a conversation also has a `RelatedTo` value that identifies the originating message that caused it to be sent. 
 
-The `Conversation Id` header can be manipulated to create custom conversations which are meaningful from the domain perspective (e.g. using Order Id as the `Conversation Id` to track the life cycle of the order).
-
 
 ### NServiceBus.RelatedTo
 
