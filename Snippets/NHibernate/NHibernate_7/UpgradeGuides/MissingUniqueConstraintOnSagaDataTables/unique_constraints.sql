@@ -5,7 +5,7 @@ declare @sagaDataTableName nvarchar(max) = '...'
 declare @correlationPropertyColumnName nvarchar(max) = '...'
 declare @sql nvarchar(max)
 
-select @sql = 'select ' + @correlationPropertyColumnName + ', count(*) as SagaRows from ' + @sagaDataTableName + ' group by ' + @correlationPropertyColumnName + ' having SagaRows > 1'
+select @sql = 'select ' + @correlationPropertyColumnName + ', count(*) as SagaRows from ' + @sagaDataTableName + ' group by ' + @correlationPropertyColumnName + ' having count(*) > 1'
 exec sp_executeSQL @sql
 endcode
 
