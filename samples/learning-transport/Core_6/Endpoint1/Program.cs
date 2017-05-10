@@ -20,7 +20,6 @@ class Program
 
         #endregion
 
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.DisableLegacyRetriesSatellite();
