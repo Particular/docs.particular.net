@@ -20,7 +20,8 @@ related:
 
 1. An endpoint plugin DLL must be deployed in the binaries directory of each NServiceBus endpoint (required for endpoint availability and custom checks monitoring).
 1. Supported NServiceBus Endpoints:
-    * NServiceBus Version 5.0.0 or higher;
+    * NServiceBus Version 6.0.0 or higher;
+    * NServiceBus Version 5.0.0 or higher;    
     * NServiceBus Version 4.0.0 or higher;
     * NServiceBus Version 3.0.4 or higher;
 1. Auditing must be enabled for all monitored endpoints (see [Auditing With NServiceBus](/nservicebus/operations/auditing.md)).
@@ -29,6 +30,10 @@ related:
 **Deploying Endpoint Plugins in each Endpoint**
 
 1. The endpoint plugin consists of these NuGet packages:
+    * NServiceBus Version 6.x:
+        * [`ServiceControl.Plugin.Nsb6.Heartbeat`](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.Heartbeat/)
+        * [`ServiceControl.Plugin.Nsb6.CustomChecks`](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.CustomChecks/)
+        * [`ServiceControl.Plugin.Nsb6.SagaAudit`](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.SagaAudit/)
     * NServiceBus Version 5.x:
         * [`ServiceControl.Plugin.Nsb5.Heartbeat`](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat/)
         * [`ServiceControl.Plugin.Nsb5.CustomChecks`](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks/)
@@ -42,11 +47,16 @@ related:
         * [`ServiceControl.Plugin.Nsb3.CustomChecks`](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks/)
 
 1. Install the plugins from NuGet in the endpoints:
-     * `install-package ServiceControl.Plugin.Nsb5.Heartbeat`
-     * `install-package ServiceControl.Plugin.Nsb5.CustomChecks`
+     * `install-package ServiceControl.Plugin.Nsb6.Heartbeat`
+     * `install-package ServiceControl.Plugin.Nsb6.CustomChecks`
   
      If saga visualization in ServiceInsight,
-     * `install-package ServiceControl.Plugin.Nsb5.SagaAudit`
+     * `install-package ServiceControl.Plugin.Nsb6.SagaAudit`
+
+     * or use the appropriate Version 4 package if the endpoint targets NServiceBus Version 5:
+	     * `install-package ServiceControl.Plugin.Nsb5.Heartbeat`
+	     * `install-package ServiceControl.Plugin.Nsb5.CustomChecks`
+             * `install-package ServiceControl.Plugin.Nsb5.SagaAudit`
 
      * or use the appropriate Version 4 package if the endpoint targets NServiceBus Version 4:
 	     * `install-package ServiceControl.Plugin.Nsb4.Heartbeat`
