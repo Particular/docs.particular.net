@@ -3,6 +3,7 @@ title: Learning Persistence
 component: LearningPersistence
 reviewed: 2017-05-01
 related:
+ - samples/saga/simple
 ---
 
 include: learning-persistence-description
