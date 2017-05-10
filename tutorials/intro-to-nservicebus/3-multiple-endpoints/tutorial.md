@@ -191,5 +191,3 @@ The value in this approach is the ability to take a part of your system offline 
 In this lesson, we learned about sending messages between endpoints. We already knew the basics of how to send and handle messages, but we learned how to control the logical message routing so that when we send a message, the system will know where that message should go.
 
 In the next lesson, we'll learn about events, a different kind of message that can be published to multiple subscribers using the Publish/Subscribe pattern. We'll also learn how the decoupling provided by this pattern allows us to structure our distributed systems in a more logical and maintainable way.
-
-When you're ready, move on to [**Lesson 4: Publishing events**](../4-publishing-events/).

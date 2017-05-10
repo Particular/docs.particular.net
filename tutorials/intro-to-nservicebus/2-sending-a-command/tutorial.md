@@ -185,5 +185,3 @@ Note how after sending a message, the prompt from `ClientUI.Program` is displaye
 In this lesson we learned about messages, message assemblies, and message handlers. We created a message and a handler and we used `SendLocal()` to send the message to the same endpoint.
 
 In the next lesson, we'll create a second messaging endpoint, move our message handler over to it, and then configure the ClientUI to send the message to the new endpoint. We'll also be able to observe what happens when we send messages while the receiver endpoint is offline.
-
-When you're ready, move on to [**Lesson 3: Multiple endpoints**](../3-multiple-endpoints/).

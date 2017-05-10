@@ -164,5 +164,3 @@ NOTE: If you are using the SQL Server transport, take a look in your SQL databas
 ## Summary
 
 In this lesson we created a simple messaging endpoint to make sure it works. In the next lesson, we'll define a message, a message handler, and then send the message and watch it get processed.
-
-When you're ready, move on to [**Lesson 2: Sending a command**](../2-sending-a-command/).

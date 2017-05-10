@@ -200,5 +200,3 @@ You'll note that in the sample solution, the message for each handler says "Shou
 In this lesson we learned all about events, how they differ from commands, and how that enables us to create systems that are more decoupled and adhere better to the Single Responsibility Principle. We published an `OrderPlaced` event from the Sales endpoint, and created the Billing and Shipping endpoints to subscribe to that event. We also published the `OrderBilled` event from the Billing endpoint, and subscribed to it in Shipping.
 
 In the final lesson for this tutorial, we'll see what happens when we introduce errors into our system, and see how we can automatically retry those messages to make a truly resilient system.
-
-When you're ready, move on to [**Lesson 5: Retrying errors**](../5-retrying-errors/).
