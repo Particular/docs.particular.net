@@ -342,6 +342,15 @@
   NugetOrder:
     - NServiceBus.Transports.Kafka
 
+- Key: LearningPersistence
+  Name: Learning Persistence 
+  DocoUrl: nservicebus/learning-persistence
+  GitHubOwner: Particular/nservicebus-maintainers
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
+
 - Key: LearningTransport
   Name: Learning Transport
   DocoUrl: nservicebus/learning-transport
