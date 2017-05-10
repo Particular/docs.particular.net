@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Features;
-using NServiceBus.Persistence;
 
 class Program
 {
@@ -16,22 +14,15 @@ class Program
     {
         Console.Title = "Samples.SimpleSaga";
         var endpointConfiguration = new EndpointConfiguration("Samples.SimpleSaga");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EnableInstallers();
 
-        var recoverability = endpointConfiguration.Recoverability();
-        recoverability.DisableLegacyRetriesSatellite();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region config
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
-        endpointConfiguration.DisableFeature<MessageDrivenSubscriptions>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         #endregion
-
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
