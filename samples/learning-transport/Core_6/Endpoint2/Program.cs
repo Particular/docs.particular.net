@@ -16,7 +16,6 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         var recoverability = endpointConfiguration.Recoverability();
-        recoverability.DisableLegacyRetriesSatellite();
         recoverability.Immediate(
             settings =>
             {

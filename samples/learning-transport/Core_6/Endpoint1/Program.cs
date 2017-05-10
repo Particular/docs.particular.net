@@ -21,8 +21,6 @@ class Program
         #endregion
 
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        var recoverability = endpointConfiguration.Recoverability();
-        recoverability.DisableLegacyRetriesSatellite();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
