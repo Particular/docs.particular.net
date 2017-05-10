@@ -4,6 +4,7 @@ component: LearningTransport
 reviewed: 2017-05-01
 related:
  - samples/learning-transport
+ - nservicebus/learning-persistence
 ---
 
 The Learning Transport simulates queuing infrastructure by storing all message actions in the local file system. All files and directories are relative to the current solution directory.

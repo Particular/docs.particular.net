@@ -4,6 +4,7 @@ component: LearningPersistence
 reviewed: 2017-05-01
 related:
  - samples/saga/simple
+ - nservicebus/learning-transport
 ---
 
 include: learning-persistence-description
