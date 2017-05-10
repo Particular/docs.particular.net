@@ -4,6 +4,4 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Heartbeats4_1</AssemblyName>
   </PropertyGroup>
-  <ItemGroup>
-  </ItemGroup>
 </Project>

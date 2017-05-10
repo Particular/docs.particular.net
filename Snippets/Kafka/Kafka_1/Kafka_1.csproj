@@ -7,6 +7,4 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Transports.Kafka" Version="0.*" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-  </ItemGroup>
 </Project>

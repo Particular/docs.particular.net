@@ -4,6 +4,4 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>ServiceInsight_All</AssemblyName>
   </PropertyGroup>
-  <ItemGroup>
-  </ItemGroup>
 </Project>

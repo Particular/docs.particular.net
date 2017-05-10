@@ -7,6 +7,4 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.FileBasedRouting" Version="1.*" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-  </ItemGroup>
 </Project>

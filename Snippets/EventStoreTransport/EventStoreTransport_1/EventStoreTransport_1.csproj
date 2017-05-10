@@ -4,6 +4,4 @@
     <TargetFramework>net452</TargetFramework>
     <AssemblyName>EventStoreTransport_1</AssemblyName>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-  </ItemGroup>
 </Project>

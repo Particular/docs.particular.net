@@ -1,12 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <AssemblyName>Core_6.3</AssemblyName>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.3.0-alpha0134" />
   </ItemGroup>
-
 </Project>

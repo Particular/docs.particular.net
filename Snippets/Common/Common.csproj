@@ -4,6 +4,4 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Common</AssemblyName>
   </PropertyGroup>
-  <ItemGroup>
-  </ItemGroup>
 </Project>
