@@ -28,7 +28,7 @@ snippet: LearningTransport
 
 ### Storage Directory
 
-By default all required information is stored in a `.learningtransport` directory that exists at the solution root.
+By default all data is stored in a `.learningtransport` directory that exists at the solution root.
 
 To configure the storage location:
 
