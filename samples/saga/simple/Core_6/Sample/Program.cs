@@ -14,7 +14,9 @@ class Program
     {
         Console.Title = "Samples.SimpleSaga";
         var endpointConfiguration = new EndpointConfiguration("Samples.SimpleSaga");
-        
+
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+
         #region config
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
