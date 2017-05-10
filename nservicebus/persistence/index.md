@@ -23,6 +23,11 @@ Various features require persistence.
 ## Available Persistences
 
 
+### [Learning Persistence](/nservicebus/learning-persistence/)
+
+include: learning-persistence-description
+
+
 ### [In-Memory](in-memory.md)
 
 A volatile RAM based storage mainly used for development purposes. Can also be used where the storage is not required to persist between process restarts.

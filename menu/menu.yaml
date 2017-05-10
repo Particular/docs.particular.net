@@ -691,6 +691,8 @@
     Articles:
     - Url: nservicebus/persistence/order
       Title: Persistence order
+  - Url: nservicebus/learning-persistence
+    Title: Learning Persistence
   - Url: nservicebus/persistence/in-memory
     Title: In Memory
   - Url: nservicebus/sql-persistence
