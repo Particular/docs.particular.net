@@ -667,6 +667,8 @@
       Articles:
       - Url: nservicebus/msmq/distributor/configuration
         Title: Configuration
+      - Url: nservicebus/msmq/distributor/deploying-to-a-cluster
+        Title: Deploying to Failover Cluster
       - Url: nservicebus/msmq/distributor/when-worker-goes-down
         Title: When a worker goes down
       - Url: nservicebus/msmq/distributor/disconnect-workers
