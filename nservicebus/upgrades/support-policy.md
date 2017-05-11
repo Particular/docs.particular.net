@@ -26,7 +26,7 @@ Supported versions of NServiceBus and its associated packages are determined by 
 * A version can only be supported if the NServiceBus package on which it depends is also currently supported.
 * If the version is the most recent version which works with a given version of NServiceBus, the version will be supported for as long as that version of NServiceBus is supported.
 
-WARNING: If a version is not listed or has expired, but support is required contact [Particular support](https://particular.net/support).
+WARNING: If support is required for a version that is not listed or has expired, contact [Particular Software Support](https://particular.net/support).
 
 Particular will apply critical bug fixes to all supported versions. If the bug also impacts a non supported version, the recommended approach is to upgrade to a supported version which contains the fix.
 
