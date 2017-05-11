@@ -4,6 +4,10 @@ reviewed: 2017-01-26
 summary: In this 15-20 minute tutorial, you'll learn how to define NServiceBus messages and handlers, and send and receive a message.
 redirects:
 - tutorials/nservicebus-101/lesson-2
+extensions:
+- !!tutorial
+  nextText: "Next Lesson: Multiple endpoints"
+  nextUrl: tutorials/intro-to-nservicebus/3-multiple-endpoints
 ---
 
 Sending and receiving messages is a central characteristic of any NServiceBus system. Durable messages passed between processes allow reliable communication between those processes, even if one of them is temporarily unavailable. In this lesson we'll show how to send and process a message.
@@ -181,5 +185,3 @@ Note how after sending a message, the prompt from `ClientUI.Program` is displaye
 In this lesson we learned about messages, message assemblies, and message handlers. We created a message and a handler and we used `SendLocal()` to send the message to the same endpoint.
 
 In the next lesson, we'll create a second messaging endpoint, move our message handler over to it, and then configure the ClientUI to send the message to the new endpoint. We'll also be able to observe what happens when we send messages while the receiver endpoint is offline.
-
-When you're ready, move on to [**Lesson 3: Multiple endpoints**](../3-multiple-endpoints/).

@@ -4,6 +4,10 @@ reviewed: 2017-01-26
 summary: In this 25-30 minute tutorial, you'll learn how to use the Publish/Subscribe pattern in NServiceBus to define, publish, and subscribe to an event.
 redirects:
 - tutorials/nservicebus-101/lesson-4
+extensions:
+- !!tutorial
+  nextText: "Next Lesson: Retrying errors"
+  nextUrl: tutorials/intro-to-nservicebus/5-retrying-errors
 ---
 
 So far in this tutorial, we have only sent **commands** – one-way messages from a sender to a specific receiver. There's another type of message we have yet to cover called an **event**. In many ways events are just like commands. They're simple classes and you deal with them in much the same way. But from an architectural standpoint commands and events are *polar opposites*. This creates a useful dichotomy. We can take advantage of the properties of events to open up new possibilities in how we design software.
@@ -196,5 +200,3 @@ You'll note that in the sample solution, the message for each handler says "Shou
 In this lesson we learned all about events, how they differ from commands, and how that enables us to create systems that are more decoupled and adhere better to the Single Responsibility Principle. We published an `OrderPlaced` event from the Sales endpoint, and created the Billing and Shipping endpoints to subscribe to that event. We also published the `OrderBilled` event from the Billing endpoint, and subscribed to it in Shipping.
 
 In the final lesson for this tutorial, we'll see what happens when we introduce errors into our system, and see how we can automatically retry those messages to make a truly resilient system.
-
-When you're ready, move on to [**Lesson 5: Retrying errors**](../5-retrying-errors/).
