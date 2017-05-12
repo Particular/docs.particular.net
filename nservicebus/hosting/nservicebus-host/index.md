@@ -49,9 +49,6 @@ or during installation by passing values to [`/scannedAssemblies:` parameters](/
 partial: initialization
 
 
-partial: roles
-
-
 ### Endpoint Name
 
 
@@ -81,6 +78,9 @@ The default [Critical Error Action](/nservicebus/hosting/critical-errors.md) for
 snippet: DefaultHostCriticalErrorAction
 
 The default callback should be overriden, if some custom code should be executed before exiting the process, such as persisting some in-memory data, flushing the loggers, etc. Refer to the [Critical Errors](/nservicebus/hosting/critical-errors.md) article for more information.
+
+
+partial: roles
 
 
 ## Performance Counters
