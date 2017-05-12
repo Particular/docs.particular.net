@@ -36,7 +36,7 @@ partial: matrix
 
 In this mode the transport receive operation is wrapped in a [`TransactionScope`](https://msdn.microsoft.com/en-us/library/system.transactions.transactionscope). Other operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole.
 
-If required the transaction is escalated to a distributed one (following two-phase commit protocol) depends on the transport and persistence choice. For example it is not needed when using [SQL Server transport](/nservicebus/sqlserver/) with [NHibernate persistence](/nservicebus/nhibernate/) both using the same database. In this case the ADO.NET driver guarantees that everything happens inside a single database transaction, ACID guarantees are held for the whole processing.
+If required, the transaction is escalated to a distributed transaction (following two-phase commit protocol coordinated by MS DTC) if both the transport and the persistence support it. A fully distributed transaction is not always required, for example when using [SQL Server transport](/nservicebus/sqlserver/) with [NHibernate persistence](/nservicebus/nhibernate/) both using the same database connection string. In this case the ADO.NET driver guarantees that everything happens inside a single database transaction and ACID guarantees are held for the whole processing.
 
 NOTE: MSMQ will escalate to a distributed transaction right away since it doesn't support promotable transaction enlistments.
 
@@ -45,27 +45,26 @@ NOTE: MSMQ will escalate to a distributed transaction right away since it doesn'
 snippet: TransportTransactionScope
 
 
-#### Consistency guarantees
+#### Atomicity and consistency guarantees
 
-In this mode handlers will execute inside the `TransactionScope` created by the transport. This means that all the data updates are executed as a whole or rolled back as a whole.
+In this mode handlers will execute inside a `TransactionScope` created by the transport. This means that all the data updates and queue operations are all committed or all rolled back.
 
-Distributed transactions do not guarantee atomicity for an outside observer. For example outgoing messages might be dispatched and processed by some other endpoint before changes to the database get committed. However it is guaranteed that eventually all resources will sync up to reflect the outcome of the transaction.
+**A distributed transaction between the queueing system and the persistent storage guarantees _atomic commits_ but does not guarantee _consistency_.**
 
 Consider a message exchange scenario with a saga that models a simple order lifecycle:
 
 1. `OrderSaga` receives a `StartOrder` message
 1. New `OrderSagaData` instance is created and stored in RavenDB.
-1. At this point RavenDB transaction is prepared but not committed.
 1. `OrderSaga` sends `VerifyPayment` message to `PaymentService`.
-1. At this point MSMQ transactions (send and receive) are prepared but not yet committed.
-1. NServiceBus completes the distributed transaction and the DTC orders MSMQ and RavenDB to commit their local transactions.
-1. MSMQ is a local resource and commits very fast. `StartOrder` message is removed from the input queue and `VerifyPayment` is immediately sent to `PaymentService`.
-1. At this point RavenDB transaction received order to commit but has not yet persisted the `OrderSagaData` instance.
-1. `PaymentService` receives `VerifyPayment` message and immediately responds with `CompleteOrder` message to the originating `OrderSaga`.
+1. NServiceBus completes the distributed transaction and the DTC instructs MSMQ and RavenDB resource managers to commit their local transactions.
+1. `StartOrder` message is removed from the input queue and `VerifyPayment` is immediately sent to `PaymentService`.
+1. RavenDB transaction is committed and changes are written to the transaction log.
+1. `PaymentService` receives `VerifyPayment` message and immediately responds with a `CompleteOrder` message to the originating `OrderSaga`.
 1. `OrderSaga` receives the `CompleteOrder` message and attempts to complete the saga.
-1. At this point RavenDB has still not persisted the `OrderSagaData` instance and the `OrderSaga` fails to find an instance of the saga to complete.
+1. `OrderSaga` queries RavenDB to find the `OrderSagaData` instance to complete.
+1. RavenDB returns an empty result set and `OrderSaga` fails to complete. This may be caused either by the DTC or the snapshot isolation guarantee provided by the underlying storage engine (Esent).
 
-In the example above atomicity is preserved from the `OrderSaga` perspective: receiving `StartOrder` message, storing `OrderSagaData` in RavenDB and sending `VerifyPayment` message are one atomic operation. State of the system is not consistent for an outside observer such as the `PaymentService` and results in unexpected behavior: `CompleteOrder` message is sent even though the `OrderSagaData` does not yet exist in RavenDB and cannot be completed.
+In the example above the `TransactionScope` guarantees atomicity for the `OrderSaga`: consuming the incoming `StartOrder` message, storing `OrderSagaData` in RavenDB and sending the outgoing `VerifyPayment` message are _committed_ as one atomic operation. _Consistency_, however, is not immediately preserved because the saga data is not yet available for reading even though the incoming message has already been processed. `OrderSaga` is thus _eventually consistent_: the `CompleteOrder` message needs to be [retried](/nservicebus/recoverability/) until RavenDB successfuly returns an `OrderSagaData` instance.
 
 NOTE: This mode requires the selected storage to support participating in distributed transactions.
 
