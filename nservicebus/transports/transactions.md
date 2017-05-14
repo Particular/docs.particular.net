@@ -51,7 +51,7 @@ In this mode handlers will execute inside a `TransactionScope` created by the tr
 
 **A distributed transaction between the queueing system and the persistent storage guarantees _atomic commits_ but guarantees only _eventual consistency_.**
 
-Consider a message exchange scenario with a saga that models a simple order lifecycle:
+Consider a system using MSMQ transport and RavenDB persistence implementing the following message exchange scenario with a saga that models a simple order lifecycle:
 
 1. `OrderSaga` receives a `StartOrder` message
 1. New `OrderSagaData` instance is created and stored in RavenDB.
