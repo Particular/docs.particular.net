@@ -11,7 +11,7 @@ public class CreateShipmentHandler :
     {
         #region StoreShipment
         {
-            var shipment = new Shipment()
+            var shipment = new Shipment
             {
                 OrderId = message.OrderId,
                 Location = message.ShipTo

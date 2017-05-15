@@ -11,8 +11,10 @@ public class CompleteOrderHandler
     {
         var dataContext = context.DataContext();
 
-        var order = await dataContext.Orders.FindAsync(message.OrderId);
-        var shipment = await dataContext.Shipments.FindAsync(message.OrderId);
+        var order = await dataContext.Orders.FindAsync(message.OrderId)
+            .ConfigureAwait(false);
+        var shipment = await dataContext.Shipments.FindAsync(message.OrderId)
+            .ConfigureAwait(false);
 
         log.Info($"Completing order {order.OrderId} worth {order.Value} by shipping to {shipment.Location}.");
     }
