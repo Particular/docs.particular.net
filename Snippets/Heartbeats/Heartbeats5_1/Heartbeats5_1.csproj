@@ -2,6 +2,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyName>Heartbeats5_1</AssemblyName>
   </PropertyGroup>
 </Project>
