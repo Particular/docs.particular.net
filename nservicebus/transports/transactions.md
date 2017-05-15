@@ -58,11 +58,12 @@ Consider a system using MSMQ transport and RavenDB persistence implementing the 
 1. `OrderSaga` sends `VerifyPayment` message to `PaymentService`.
 1. NServiceBus completes the distributed transaction and the DTC instructs MSMQ and RavenDB resource managers to commit their local transactions.
 1. `StartOrder` message is removed from the input queue and `VerifyPayment` is immediately sent to `PaymentService`.
-1. RavenDB transaction is committed and changes are written to the transaction log.
+1. RavenDB acknowledges the transaction commit and begins writing `OrderSagaData` to disk.
 1. `PaymentService` receives `VerifyPayment` message and immediately responds with a `CompleteOrder` message to the originating `OrderSaga`.
 1. `OrderSaga` receives the `CompleteOrder` message and attempts to complete the saga.
 1. `OrderSaga` queries RavenDB to find the `OrderSagaData` instance to complete.
-1. RavenDB returns an empty result set and `OrderSaga` fails to complete. Such a behavior is possible when using the DTC or with relational databases that do not use locks for insert.
+1. RavenDB has not finished writing `OrderSagaData` to disk and returns an empty result set.
+1. `OrderSaga` fails to complete.
 
 In the example above the `TransactionScope` guarantees atomicity for the `OrderSaga`: consuming the incoming `StartOrder` message, storing `OrderSagaData` in RavenDB and sending the outgoing `VerifyPayment` message are _committed_ as one atomic operation. The saga data may not be immediately available for reading even though the incoming message has already been processed. `OrderSaga` is thus only _eventually consistent_. The `CompleteOrder` message needs to be [retried](/nservicebus/recoverability/) until RavenDB successfuly returns an `OrderSagaData` instance.
 
