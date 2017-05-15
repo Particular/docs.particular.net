@@ -11,7 +11,7 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
 
         endpointConfiguration.CustomCheckPlugin("Particular.ServiceControl");
 
