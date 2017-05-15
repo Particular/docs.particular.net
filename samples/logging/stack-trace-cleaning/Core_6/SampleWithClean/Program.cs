@@ -48,8 +48,8 @@ class Program
         #endregion
 
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         DisableRetries(endpointConfiguration);
 
         #region customization-config
@@ -82,7 +82,6 @@ class Program
             {
                 delayed.NumberOfRetries(0);
             });
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         #endregion
     }
