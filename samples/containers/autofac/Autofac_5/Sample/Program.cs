@@ -15,21 +15,28 @@ static class Program
 
         var builder = new ContainerBuilder();
         builder.RegisterInstance(new MyService());
-        var container = builder.Build();
-        busConfiguration.UseContainer<AutofacBuilder>(
-            customizations: customizations =>
-            {
-                customizations.ExistingLifetimeScope(container);
-            });
 
-        #endregion
+        builder
+            .Register(x => Bus.Create(busConfiguration).Start())
+            .SingleInstance();
 
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-
-        using (var bus = Bus.Create(busConfiguration).Start())
+        using (var container = builder.Build())
         {
+            busConfiguration.UseContainer<AutofacBuilder>(
+                customizations: customizations =>
+                {
+                    // Child container needed as otherwise creation will hang
+                    var childContainer = container.BeginLifetimeScope();
+                    customizations.ExistingLifetimeScope(childContainer); 
+                });
+
+            #endregion
+
+            busConfiguration.UseSerialization<JsonSerializer>();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.EnableInstallers();
+
+            var bus = container.Resolve<IBus>();
             var myMessage = new MyMessage();
             bus.SendLocal(myMessage);
             Console.WriteLine("Press any key to exit");
