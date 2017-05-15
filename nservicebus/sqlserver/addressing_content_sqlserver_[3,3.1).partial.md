@@ -19,11 +19,19 @@ The address is resolved into a qualified table name that includes both table nam
 
 ### Schema
 
-Schema name is optional. Even if it is present in the address, it might be overridden by configuration. The following API can be used to specify schema for a given destination logical endpoint when [logical routing](/nservicebus/messaging/routing.md#command-routing) is used.
+The SQL Server transport needs to know what schema to use for a queue table when sending messages. The following API can be used to specify the schema for an endpoint when [routing](/nservicebus/messaging/routing.md) is used to find a destination queue table for a message:
 
 snippet: sqlserver-multischema-config-for-endpoint
 
-When sending to a specific queue using transport address or when configuring schema for replies to older versions of NServiceBus, the queue-based API should be used instead of endpoint-based one:
+There are several cases when routing is not used and the transport needs some help to find out the schema for a specific queue table:
+
+  - [Error queue](/nservicebus/recoverability/configure-error-handling#configure-the-error-queue-address)
+  - [Audit queue](/nservicebus/operations/auditing#configuring-auditing)
+  - [ServiceControl queue](/servicecontrol/plugins/heartbeat#configuration-servicecontrol-queue)
+  - [Overriding the default routing mechanism](/nservicebus/messaging/send-a-message#overriding-the-default-routing)
+  - Replies to endpoints using SQL Server transport version 2 or earlier
+
+Use the following API to configure the schema for a specific queue:
 
 snippet: sqlserver-multischema-config-for-queue
 
