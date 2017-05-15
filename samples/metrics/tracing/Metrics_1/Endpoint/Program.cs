@@ -13,9 +13,8 @@ class Program
     {
         Console.Title = "Samples.Metrics.Tracing.Endpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         #region EnableMetricTracing
 

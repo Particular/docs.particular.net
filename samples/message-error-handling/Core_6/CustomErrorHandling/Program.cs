@@ -16,13 +16,12 @@ static class Program
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Warn);
 
-        var configure = new EndpointConfiguration("Samples.CustomErrorHandling");
-        configure.UseSerialization<JsonSerializer>();
-        configure.UsePersistence<InMemoryPersistence>();
-        configure.EnableInstallers();
-        configure.SendFailedMessagesTo("error");
+        var endpointConfiguration = new EndpointConfiguration("Samples.CustomErrorHandling");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
-        var recoverability = configure.Recoverability();
+        var recoverability = endpointConfiguration.Recoverability();
         recoverability.Delayed(
             customizations: delayedRetriesSettings =>
             {
@@ -31,14 +30,14 @@ static class Program
 
         #region Registering-Behavior
 
-        var pipeline = configure.Pipeline;
+        var pipeline = endpointConfiguration.Pipeline;
         pipeline.Register(
             behavior: new CustomErrorHandlingBehavior(),
             description: "Manages thrown exceptions instead of delayed retries.");
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(configure)
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press enter to send a message that will throw an exception or \r\n" +
                           "Press [E] key to send a message failing with the custom exception.");
