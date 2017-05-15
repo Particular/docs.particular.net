@@ -21,10 +21,9 @@ static class Program
 
         #endregion
 
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
-
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        transport.NoPayloadSizeRestriction();
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         #region messagesend

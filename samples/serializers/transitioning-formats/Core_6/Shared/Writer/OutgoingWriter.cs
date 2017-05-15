@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ public class OutgoingWriter :
     {
         var builder = new StringBuilder(Environment.NewLine);
         var routingStrategy = context.RoutingStrategies.Single();
-        var targetEndpoint = routingStrategy.Apply(null);
+        var targetEndpoint = routingStrategy.Apply(new Dictionary<string, string>());
         builder.AppendLine($"TargetEndpoint: {targetEndpoint}");
         var bodyAsString = Encoding.UTF8
             .GetString(context.Body);

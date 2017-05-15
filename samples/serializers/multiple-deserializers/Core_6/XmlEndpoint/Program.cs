@@ -17,9 +17,8 @@ static class Program
         endpointConfiguration.UseSerialization<XmlSerializer>();
         endpointConfiguration.RegisterOutgoingMessageLogger();
         #endregion
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

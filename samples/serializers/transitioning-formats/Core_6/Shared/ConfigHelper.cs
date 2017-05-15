@@ -10,8 +10,7 @@ public static class ConfigHelper
 
         #endregion
 
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
     }
 }

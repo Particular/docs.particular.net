@@ -18,9 +18,8 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.MessagePack");
         endpointConfiguration.UseSerialization<MessagePackSerializer>();
         #endregion
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
