@@ -16,9 +16,8 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
         dataBus.BasePath("..\\..\\..\\storage");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
