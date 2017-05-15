@@ -103,7 +103,7 @@ snippet: RetryRetries
 
 ServiceControl Transport Adapter can operate in different consistency modes, depending on the transport configuration on both sides. By default the highest supported mode for the transport is used.
 
-If both transports support the [`TransactionScope` transaction mode](https://docs.particular.net/nservicebus/transports/transactions#transactions-transaction-scope-distributed-transaction) the Transport Adapter guarantees to not introduce any duplicates while forwarding messages between the queues. This is very important for the endpoints that can't cope with duplicates and rely on the DTC to ensure *exactly-once* message delivery.
+If both transports support the [`TransactionScope` transaction mode](/nservicebus/transports/transactions.md#transactions-transaction-scope-distributed-transaction) the Transport Adapter guarantees to not introduce any duplicates while forwarding messages between the queues. This is very important for the endpoints that can't cope with duplicates and rely on the DTC to ensure *exactly-once* message delivery.
 
 In case at least one of the transport does not support the `TransactionScope` mode or is explicitly configured to a lower mode, the Transport Adapter guarantees *at-least-once* message delivery. This means that the messages won't be lost during forwarding (with the exception of control messages, as described above) but duplicates may be introduced on any side. 
 
