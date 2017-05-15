@@ -10,3 +10,4 @@ Thread:7 Endpoint is processing messages
 Thread:7 Calling IEndpointInstance.Stop
 Thread:7 Inside FeatureStartupTask.OnStop
 Thread:7 Finished
+endcode
