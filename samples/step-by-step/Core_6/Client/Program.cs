@@ -21,7 +21,6 @@ class Program
         var endpointConfiguration = new EndpointConfiguration(
             endpointName: "Samples.StepByStep.Client");
 
-
         endpointConfiguration.SendFailedMessagesTo("error");
 
         // Use JSON to serialize and deserialize messages (which are just
@@ -31,16 +30,21 @@ class Program
         // Ask NServiceBus to automatically create message queues
         endpointConfiguration.EnableInstallers();
 
-        // Store information in memory for this example, rather than in
+        // Store messages on disk for this example, rather than in
+        // a real queue.
+        endpointConfiguration.UseTransport<LearningTransport>();
+
+        // Store information on disk for this example, rather than in
         // a database. In this sample, only subscription information is stored
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
 
         // Initialize the endpoint with the finished configuration
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         try
         {
-            await SendOrder(endpointInstance);
+            await SendOrder(endpointInstance)
+                .ConfigureAwait(false);
         }
         finally
         {

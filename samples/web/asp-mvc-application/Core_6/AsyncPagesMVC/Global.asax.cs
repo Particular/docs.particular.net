@@ -47,15 +47,14 @@ public class MvcApplication :
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UseContainer<AutofacBuilder>(
             customizations: customizations =>
             {
                 customizations.ExistingLifetimeScope(container);
             });
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 

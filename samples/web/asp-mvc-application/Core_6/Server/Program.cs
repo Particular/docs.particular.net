@@ -14,11 +14,9 @@ class Program
         Console.Title = "Samples.Mvc.Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.Server");
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

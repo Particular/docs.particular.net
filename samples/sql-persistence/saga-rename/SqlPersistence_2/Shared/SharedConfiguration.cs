@@ -24,6 +24,7 @@ public static class SharedConfiguration
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         #endregion
     }

@@ -15,9 +15,9 @@ class Program
     {
         Console.Title = "Samples.UsernameHeader.Endpoint1";
         var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint1");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         #region ComponentRegistration
 

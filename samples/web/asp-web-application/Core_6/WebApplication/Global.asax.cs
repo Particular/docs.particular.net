@@ -19,9 +19,8 @@ public class Global :
         var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         Endpoint = NServiceBus.Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 

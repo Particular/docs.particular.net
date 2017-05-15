@@ -17,7 +17,7 @@ partial class Program
 
         var endpointConfiguration = new EndpointConfiguration("EndpointOracle");
 
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
