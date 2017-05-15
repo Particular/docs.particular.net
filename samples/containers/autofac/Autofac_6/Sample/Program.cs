@@ -21,9 +21,11 @@ static class Program
         var builder = new ContainerBuilder();
 
         builder.Register(x =>
-        {
-            return Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
-        }).As<IEndpointInstance>();
+            {
+                return Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
+            })
+            .As<IEndpointInstance>()
+            .SingleInstance();
 
         builder.RegisterInstance(new MyService());
 
@@ -49,5 +51,29 @@ static class Program
         Console.ReadKey();
         await endpointInstance.Stop()
             .ConfigureAwait(false);
+        using (var container = builder.Build())
+        {
+            endpointConfiguration.UseContainer<AutofacBuilder>(
+                customizations: customizations =>
+                {
+                    customizations.ExistingLifetimeScope(container);
+                });
+
+            #endregion
+
+            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.EnableInstallers();
+            endpointConfiguration.SendFailedMessagesTo("error");
+
+            var endpointInstance = container.Resolve<IEndpointInstance>();
+            var myMessage = new MyMessage();
+            await endpointInstance.SendLocal(myMessage)
+                .ConfigureAwait(false);
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
+        }
     }
 }
