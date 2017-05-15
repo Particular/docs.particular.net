@@ -16,9 +16,8 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Headers");
 
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         endpointConfiguration.RegisterComponents(components =>
         {

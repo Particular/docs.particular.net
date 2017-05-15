@@ -13,9 +13,9 @@ class Program
     {
         Console.Title = "Samples.MessageMutators";
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageMutators");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         #region ComponentRegistration
 
