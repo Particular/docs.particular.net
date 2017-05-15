@@ -25,10 +25,10 @@ snippet: sqlserver-multischema-config-for-endpoint
 
 There are several cases when routing is not used and the transport needs some help to find out the schema for a specific queue table:
 
-  - [Error queue](/nservicebus/recoverability/configure-error-handling#configure-the-error-queue-address)
-  - [Audit queue](/nservicebus/operations/auditing#configuring-auditing)
-  - [ServiceControl queue](/servicecontrol/plugins/heartbeat#configuration-servicecontrol-queue)
-  - [Overriding the default routing mechanism](/nservicebus/messaging/send-a-message#overriding-the-default-routing)
+  - [Error queue](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address)
+  - [Audit queue](/nservicebus/operations/auditing.md#configuring-auditing)
+  - [ServiceControl queue](/servicecontrol/plugins/heartbeat.md#configuration-servicecontrol-queue)
+  - [Overriding the default routing mechanism](/nservicebus/messaging/send-a-message.md#overriding-the-default-routing)
   - Replies to endpoints using SQL Server transport version 2 or earlier
 
 Use the following API to configure the schema for a specific queue:
