@@ -14,10 +14,8 @@ class Program
         Console.Title = "Samples.Callbacks.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
-
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableCallbacks(makesRequests: false);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
