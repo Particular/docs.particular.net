@@ -28,7 +28,7 @@ class Program
 
         #endregion
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         var recoverability = endpointConfiguration.Recoverability();

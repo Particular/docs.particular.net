@@ -24,7 +24,7 @@ class Program
         transport.ConnectionString(connectionString);
         transport.UseForwardingTopology();
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         var recoverability = endpointConfiguration.Recoverability();
