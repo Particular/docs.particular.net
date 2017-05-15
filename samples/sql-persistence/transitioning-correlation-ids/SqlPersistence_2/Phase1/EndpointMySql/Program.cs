@@ -18,8 +18,6 @@ partial class Program
         var endpointConfiguration = new EndpointConfiguration("EndpointMySql");
 
         endpointConfiguration.UseTransport<LearningTransport>();
-
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();

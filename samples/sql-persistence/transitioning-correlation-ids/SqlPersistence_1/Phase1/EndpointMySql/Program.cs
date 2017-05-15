@@ -15,12 +15,9 @@ partial class Program
     {
         Console.Title = "EndpointMySql";
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.TransitionCorrelation.EndpointMySql");
+        var endpointConfiguration = new EndpointConfiguration("EndpointMySql");
 
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
-
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();

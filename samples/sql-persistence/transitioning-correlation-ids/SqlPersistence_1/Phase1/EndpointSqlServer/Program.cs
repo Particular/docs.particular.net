@@ -15,9 +15,9 @@ partial class Program
     {
         Console.Title = "EndpointSqlServer";
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.TransitionCorrelation.EndpointSqlServer");
+        var endpointConfiguration = new EndpointConfiguration("EndpointSqlServer");
 
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
 

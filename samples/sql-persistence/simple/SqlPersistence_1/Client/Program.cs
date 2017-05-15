@@ -12,11 +12,11 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlPersistence.Client";
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.Client");
+        var endpointConfiguration = new EndpointConfiguration("Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

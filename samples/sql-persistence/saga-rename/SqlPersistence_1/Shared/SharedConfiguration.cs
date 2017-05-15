@@ -18,7 +18,7 @@ public static class SharedConfiguration
                 return new SqlConnection(connection);
             });
 
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
