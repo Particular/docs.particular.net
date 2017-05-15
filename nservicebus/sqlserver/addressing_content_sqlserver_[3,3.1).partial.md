@@ -29,7 +29,7 @@ There are several cases when routing is not used and the transport needs some he
   - [Audit queue](/nservicebus/operations/auditing.md#configuring-auditing)
   - [ServiceControl queue](/servicecontrol/plugins/heartbeat.md#configuration-servicecontrol-queue)
   - [Overriding the default routing mechanism](/nservicebus/messaging/send-a-message.md#overriding-the-default-routing)
-  - Replies to endpoints using SQL Server transport version 2 or earlier
+  - Replies to endpoints using SQL Server transport Version 2 and below
 
 Use the following API to configure the schema for a specific queue:
 
