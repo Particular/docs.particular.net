@@ -17,9 +17,9 @@ class Program
         #region enableEncryption
         endpointConfiguration.ConfigurationEncryption();
         #endregion
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.SendFailedMessagesTo("error");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         var message = new MessageWithSecretData

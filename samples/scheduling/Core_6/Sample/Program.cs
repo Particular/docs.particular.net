@@ -17,10 +17,9 @@ class Program
     {
         Console.Title = "Samples.Scheduling";
         var endpointConfiguration = new EndpointConfiguration("Samples.Scheduling");
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

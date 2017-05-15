@@ -13,8 +13,8 @@ class Program
     {
         Console.Title = "Samples.Unobtrusive.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Client");
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
         dataBus.BasePath(@"..\..\..\DataBusShare\");
         endpointConfiguration.SendFailedMessagesTo("error");

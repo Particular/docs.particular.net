@@ -22,6 +22,7 @@ class Program
         endpointConfiguration.OverrideLocalAddress("Samples.SagaMigration.Server.New");
 #endif
 
+        endpointConfiguration.UseTransport<LearningTransport>();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
@@ -29,7 +30,6 @@ class Program
                 return new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;");
             });
         persistence.TablePrefix("New");
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpoint = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

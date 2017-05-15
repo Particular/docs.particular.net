@@ -14,9 +14,9 @@ class Program
         Console.Title = "Samples.Encryption.Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.Encryption.Endpoint2");
         endpointConfiguration.ConfigurationEncryption();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.SendFailedMessagesTo("error");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
