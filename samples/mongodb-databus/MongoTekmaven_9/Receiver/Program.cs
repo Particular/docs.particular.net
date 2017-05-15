@@ -20,7 +20,7 @@ class Program
         persistence.SetConnectionString("mongodb://localhost:27017/SamplesMongoDBServer");
         var dataBus = endpointConfiguration.UseDataBus<MongoDbDataBus>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<LearningTransport>();
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
