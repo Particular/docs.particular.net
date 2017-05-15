@@ -115,7 +115,7 @@ namespace SCTransportAdapter_0
 
             #endregion
 
-            #region PosionQueue
+            #region PoisonQueue
 
             config.PoisonMessageQueue = "poison_queue"; //Default poisin
 
