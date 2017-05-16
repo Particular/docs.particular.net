@@ -4,7 +4,7 @@ summary: placeholder
 component: SCTransportAdapter
 ---
 
-The ServiceControl Transport Adapter decouples ServiceControl from the specifics of the business endpoint transport. 
+The ServiceControl Transport Adapter decouples ServiceControl from the specifics of business endpoints transport to support scenarios where the endpoints' transport uses routing features not compatible with ServiceControl or where endpoints use mixed transports and/or multiple instances of message broker.
 
 
 ## Usage scenarios
@@ -33,7 +33,7 @@ The following code shows the configuration of the transport adapter in the advan
 
 snippet: AdvancedFeatures
 
-The `UseSpecificRouting` any advanced routing configuration. Notice that this configuration is only applied to the endpoint-side transport.
+In the snippet above `UseSpecificRouting` represents any advanced routing configuration applicable for a given transport that is not compatible with ServiceControl. Notice that this configuration is only applied to the endpoint-side transport.
 
 
 ### Multiple instances of message broker
@@ -64,7 +64,7 @@ snippet: ErrorQueues
 snippet: ControlQueues
 
 
-### Poison
+### Poison message queue
 
 The poison message queue is a special queue which is used when messages cannot be received from the transport because they are corrupted (e.g. message headers are malformed).
 
@@ -92,9 +92,9 @@ snippet: ControlRetries
 If the adapter still cannot forward the message, it will be dropped.
 
 
-### Retry messages
+### Retrying failed messages
 
-Retry messages are messages selected for retry processing in their destination endpoint via ServicePulse. Retry messages use an immediate retry mechanism similar to control messages but in case of failure they are routed back to ServiceControl and reappear in ServicePulse. The following API controls the maximum number of attempts to forward a retry message:
+Transport Adapter will attempt to retry delivering failed messages selected for retry for the configured number of times. If messages processing still fails, the messages will be routed back to ServiceControl and will reappear in ServicePulse. Following API controls the maximum number of attempts to forward a retry message:
 
 snippet: RetryRetries 
 
