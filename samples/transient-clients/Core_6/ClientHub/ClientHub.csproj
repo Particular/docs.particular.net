@@ -90,7 +90,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StockTicksHub.cs" />
-    <Compile Include="StockUpdatedHandler.cs" />
+    <Compile Include="StockTickHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
