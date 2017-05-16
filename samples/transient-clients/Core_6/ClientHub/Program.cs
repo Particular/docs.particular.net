@@ -16,28 +16,28 @@ static class Program
     {
         Console.Title = "Samples.TransientClients.ClientHub";
 
+        var endpointConfiguration = new EndpointConfiguration("Samples.TransientClients.ClientHub");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        var routing = transport.Routing();
+
+        routing.RegisterPublisher(
+            eventType: typeof(StockTick),
+            publisherEndpoint: "Samples.TransientClients.Publisher");
+
+        endpointConfiguration.SendFailedMessagesTo("error");
+
+        endpointConfiguration.Conventions().DefiningEventsAs(t => t == typeof(StockTick));
+
+        endpointConfiguration.EnableInstallers();
+
         var url = "http://localhost:8080";
 
         using (WebApp.Start<OwinStartup>(url))
         {
             Console.WriteLine($"SignalR server running at {url}");
-
-            var endpointConfiguration = new EndpointConfiguration("Samples.TransientClients.ClientHub");
-            endpointConfiguration.UseSerialization<JsonSerializer>();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            var routing = transport.Routing();
-
-            routing.RegisterPublisher(
-                eventType: typeof(StockTick),
-                publisherEndpoint: "Samples.TransientClients.Publisher");
-
-            endpointConfiguration.SendFailedMessagesTo("error");
-
-            endpointConfiguration.Conventions().DefiningEventsAs(t => t == typeof(StockTick));
-
-            endpointConfiguration.EnableInstallers();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
@@ -51,8 +51,7 @@ static class Program
                 .ConfigureAwait(false);
         }
     }
-
-    public class OwinStartup
+    class OwinStartup
     {
         public void Configuration(IAppBuilder app)
         {
