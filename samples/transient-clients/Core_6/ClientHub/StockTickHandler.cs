@@ -7,11 +7,11 @@ public class StockTickHandler : IHandleMessages<StockTick>
 {
     private readonly IHubContext hub = GlobalHost.ConnectionManager.GetHubContext<StockTicksHub>();
 
+    #region StockTickHandler
     public Task Handle(StockTick message, IMessageHandlerContext context)
     {
         Console.WriteLine($"StockTick event received for Symbol {message.Symbol} with timestamp: {message.Timestamp:O}. Press any key to exit.");
         return hub.Clients.All.StockTick(message);
     }
-
-
+    #endregion
 }
