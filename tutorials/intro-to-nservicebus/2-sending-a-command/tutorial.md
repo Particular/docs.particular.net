@@ -39,7 +39,7 @@ snippet: ComplexCommand
 
 Messages are a contract between two endpoints. Any change to the message will likely involve a change on both the sender and receiver side. The more properties you have on a message, the more reasons it has to change, so keep your messages as slim as possible.
 
-Also, you should not embed logic within your message classes. Each message should contain only automatic properties and not computed properties or methods. Also, it is a good practice to instantiate collection properties from a default parameterless constructor as shown above, so that you never have to deal with a potentially null collection.
+Also, you should not embed logic within your message classes. Each message should contain only automatic properties and not computed properties or methods.It is a good practice to initialize collection properties as shown above, so that you never have to deal with a potentially null collection.
 
 In essence, messages should be carriers for data only. By keeping your messages small and giving them clear purpose, you'll make your code easy to understand and evolve.
 
