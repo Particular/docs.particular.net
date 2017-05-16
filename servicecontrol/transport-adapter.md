@@ -1,6 +1,6 @@
 ---
 title: ServiceControl Transport Adapter
-summary: placeholder
+summary: How do decouple ServiceControl from endpoints' transport
 component: SCTransportAdapter
 ---
 
