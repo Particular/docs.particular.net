@@ -6,47 +6,44 @@ tags:
 - Saga
 redirects:
 - nservicebus/nservicebus-sagas-and-concurrency
-reviewed: 2016-10-03
+reviewed: 2017-05-16
 ---
 
-If the endpoint runs with more than one worker thread or is scaled out, it is possible that multiple messages will hit the same saga instance simultaneously. To give ACID semantics in this situation, NServiceBus uses the underlying storage to produce consistent behavior, only allowing one of the threads to commit. NServiceBus handles most of this automatically but there are some caveats.
+If the endpoint is configured to allow concurrent processing of messages (default) or is scaled out, it is possible that multiple messages will hit the same saga instance simultaneously. To give ACID semantics in this situation, NServiceBus uses the underlying storage to produce consistent behavior, only allowing one of messages to complete. NServiceBus handles most of this automatically but there are some caveats.
 
 Concurrent access to saga instances is divided into two scenarios;
 
- * When there is no existing saga instance and multiple threads try to create a new instance of what should be the same saga instance.
- * Where a saga instance already exists in storage and multiple threads try to update that same instance.
+ * Concurrently trying to create the same instance of a new saga.
+ * Concurrently trying to update the same instance of an existing saga.
 
+Each saga persister will honor the follwing semantics, see the specific persister documentation for implementation details.
 
 ## Concurrent access to non-existing saga instances
 
-Sagas are started by the message types that a handled with `IAmStartedByMessages<T>`. If more than one are processed concurrently and are mapped to the same saga instance there is a risk that more than one thread tries to create a new saga instance.
+Sagas are started by the message types that a handled with `IAmStartedByMessages<T>`. If messages mapped to the same saga instance are processed concurrently there is a risk that duplicates of the instance will be created.
 
-In this case only one thread is allowed to commit. The others roll back and the built-in retries in NServiceBus kick in. On the next retry, the saga instance is found, the race condition is solved, and that saga instance is updated instead. Of course this can result in concurrency problems but they are solved, as mentioned below.
-
-NServiceBus solves this by automatically creating a unique constraint in the database for the correlation property. With this constraint in place, only one thread is allowed to create a new saga instance.
+In this case only one message is allowed to complete processing. The others roll back and the built-in retries in NServiceBus kick in. On the next retry, the saga instance is found, the race condition is solved, and that saga instance is updated instead, see below.
 
 partial: unique
 
-
 ## Concurrent access to existing saga instances
 
-This works predictably due to reliance on the underlying database providing optimistic concurrency support. When more than one thread, or endpoint instance, tries to update the same saga instance, the database detects it and only allows one of them to commit. If this happens the retries will occur and the race condition be solved.
+When messages concurrently tries to update the same saga instance the storage will either detect and throw a concurrency exception or serialize access to the instance. Concurrency exceptions will be automatically resolved by the NServiceBus retries will.
 
+//todo: Move to ravendb docs
 When using the RavenDB saga persister, no action is required since the NServiceBus framework (on RavenDB) turns on [UseOptimisticConcurrency](https://ravendb.net/docs/search/latest/csharp?searchTerm=how-to%20enable-optimistic-concurrency).
 
+//todo: Move to ravendb docs
 When using the NHibernate saga persister, NHibernate will compare the values of all saga properties to previous values (optimistic-all option) to ensure that the saga data was not updated in the background while the message handler was executing. Comparing all values can be inefficient, especially if there are many columns in the saga table or the values contain long strings. For more efficient concurrency control, add a ["Version" property to the saga data](/nservicebus/nhibernate/saga-concurrency.md#explicit-version) so that the comparison can be made on a single version column instead.
 
 Another option is to use a [transaction isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](https://docs.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql) with considerable performance degradation.
 
-NOTE: "Serializable" is the default isolation level for TransactionScopes.
-
-In NServiceBus Version 4 the default isolation level is
-"ReadCommitted", which is a more sensible default.
+NOTE: While `Serializable` is the default isolation level for TransactionScopes NServiceBus Version 4 and higher will default the default isolation level to `ReadCommitted`.
 
 
 ### High load scenarios
 
-Under extreme high load like batch processing, trying to access the same Saga's data could lead to a situation where messages ends up in the error queue even though both first and second level retries are enabled.
+Under extreme high load like batch processing, concurrent access to saga instance might lead to messages being moved to the error queue due to the NServiceBus retries being exhausted.
 
 In that scenario consider re-designing the process.
 
