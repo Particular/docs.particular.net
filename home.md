@@ -167,7 +167,7 @@ span.blue {
     <div class="col-md-6">
       <a href="https://www.pluralsight.com/courses/microservices-nservicebus6-scaling-applications">
         <img src="/home/pluralsight_v1.svg" width="36" height="36">
-        <h3>Pluralsight: Scaling Applications with<br> Microservices and NServiceBus</h3>
+        <h3>Pluralsight: Scaling Applications with<br> Microservices and NServiceBus 6</h3>
       </a>
     </div>
   </div>
