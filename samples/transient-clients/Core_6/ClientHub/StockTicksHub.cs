@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNet.SignalR;
 
 public class StockTicksHub : Hub<IEmitStockTicks> { }
 
 public interface IEmitStockTicks
 {
-    void StockTick(StockTick tick);
+    Task ForwardStockTick(StockTick tick);
 }
