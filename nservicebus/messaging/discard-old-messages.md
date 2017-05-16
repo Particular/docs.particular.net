@@ -47,7 +47,7 @@ NOTE: Discarding old messages at startup should be used only in special scenario
 
 To discard old messages at startup:
 
-snippet:   
+snippet: PurgeMessagesAtStartup
 
 
 ## Caveats
