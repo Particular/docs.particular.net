@@ -33,8 +33,6 @@ static class Program
 
     static async Task Start(IEndpointInstance endpointInstance)
     {
-        #region PublishLoop
-
         var rand = new Random();
 
         Console.WriteLine("Press any key to start publishing");
@@ -59,8 +57,6 @@ static class Program
                 Console.WriteLine($"Published StockUpdated Event with Symbol {stockSymbol}. Press escape to stop publishing events.");
             }
         } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
-
-        #endregion
     }
 
     private static string[] Symbols = new[]
