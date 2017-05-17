@@ -6,7 +6,7 @@ related:
  - samples/show-case
 ---
 
-This sample demonstrates occasionally connected clients that only need to received event updates while connected. In this case it is best not to connect the clients directly to your bus, but instead use a push technology, such as [SignalR](http://signalr.net/), to update clients while they are connected.
+This sample demonstrates occasionally connected clients that only need to received event updates while connected. In this case it is best not to connect the clients directly to the bus, but instead use a push technology, such as [SignalR](http://signalr.net/), to update clients while they are connected.
 
 Clients that received stock ticker updates are a common usage of this pattern, and this sample provides a simple version of that scenario.
 
@@ -45,6 +45,6 @@ In this sample the SignalR client is implemented as a .NET console application. 
 
 ## Scaling Out SignalR with NServiceBus
 
-When the number of connected clients exceeds the capability of a single SignalR server you will need to scale out SignalR. Using a backplane to scale out SignalR is described in the ["Introduction to Scaleout in SignalR"](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-in-signalr) article by Microsoft.
+When the number of connected clients exceeds the capability of a single SignalR server it will be necessary to scale out SignalR. Using a backplane to scale out SignalR is described in the ["Introduction to Scaleout in SignalR"](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-in-signalr) article by Microsoft.
 
 Since the SignalR server can also be NServiceBus subscribers, each scaled out instance of the server also receives and can forward the event. 
