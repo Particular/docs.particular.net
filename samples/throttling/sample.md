@@ -5,7 +5,6 @@ component: Core
 tags:
 - Throttling
 related:
-- samples/throttling
 - nservicebus/pipeline/manipulate-with-behaviors
 - nservicebus/operations/tuning
 ---
