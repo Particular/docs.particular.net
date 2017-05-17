@@ -36,7 +36,7 @@ snippet: AdvancedFeatures
 In the snippet above `UseSpecificRouting` represents any advanced routing configuration applicable for a given transport that is not compatible with ServiceControl. Notice that this configuration is only applied to the endpoint-side transport.
 
 
-### Multiple instances of message broker
+### Multiple instances of a message broker
 
 In some very large systems a single instance of a message broker can't cope with all the traffic. Endpoints can be grouped around broker instances. ServiceControl, however, is limited to a single connection. 
 
@@ -58,21 +58,21 @@ The transport adapter allows configuration of the addresses of the forwarded que
 NOTE: The default values are only suitable in cases where both sides of the adapter use different transports or at least different broker instances. In case the adapter runs on a single transport and instance, the queue names on one side need to be altered.
 
 
-### Audit Queues
+### Audit queues
 
 Default: `audit`
 
 snippet: AuditQueues
 
 
-### Error Queues
+### Error queues
 
 Default: `error`
 
 snippet: ErrorQueues
 
 
-### ControlQueues
+### Control queues
 
 Default: `Particular.ServiceControl`
 
