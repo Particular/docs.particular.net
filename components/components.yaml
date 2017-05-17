@@ -882,3 +882,14 @@
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.ZeroFormatter
   NugetOrder:
     - NServiceBus.ZeroFormatter
+
+- Key: WormHole
+  Name: Worm Hole Gateway
+  DocoUrl: nservicebus/community/wormhole
+  GitHubOwner: SzymonPobiega
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.WormHole/blob/master/LICENSE
+  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.WormHole
+  NugetOrder:
+    - NServiceBus.WormHole
