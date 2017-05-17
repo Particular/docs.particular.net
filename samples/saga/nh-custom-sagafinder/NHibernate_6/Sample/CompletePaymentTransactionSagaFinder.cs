@@ -1,17 +1,18 @@
 ﻿using NServiceBus.Persistence.NHibernate;
 using NServiceBus.Saga;
 
-class PaymentTransactionCompletedSagaFinder :
-    IFindSagas<OrderSagaData>.Using<PaymentTransactionCompleted>
+#region finder
+class CompletePaymentTransactionSagaFinder :
+    IFindSagas<OrderSagaData>.Using<CompletePaymentTransaction>
 {
     NHibernateStorageContext storageContext;
 
-    public PaymentTransactionCompletedSagaFinder(NHibernateStorageContext storageContext)
+    public CompletePaymentTransactionSagaFinder(NHibernateStorageContext storageContext)
     {
         this.storageContext = storageContext;
     }
 
-    public OrderSagaData FindBy(PaymentTransactionCompleted message)
+    public OrderSagaData FindBy(CompletePaymentTransaction message)
     {
         var session = storageContext.Session;
         return session.QueryOver<OrderSagaData>()
@@ -19,3 +20,4 @@ class PaymentTransactionCompletedSagaFinder :
             .SingleOrDefault();
     }
 }
+#endregion

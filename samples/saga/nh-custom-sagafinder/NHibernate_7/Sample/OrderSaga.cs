@@ -3,24 +3,26 @@ using NServiceBus.Logging;
 using System;
 using System.Threading.Tasks;
 
-#region TheSagaNHibernate
+#region saga
 
 public class OrderSaga :
     Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
-    IHandleMessages<PaymentTransactionCompleted>,
+    IHandleMessages<CompletePaymentTransaction>,
     IHandleMessages<CompleteOrder>
 {
     static ILog log = LogManager.GetLogger<OrderSaga>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
-        // NOP
+        mapper.ConfigureMapping<StartOrder>(_ => _.OrderId)
+            .ToSaga(_=> _.OrderId);
+        mapper.ConfigureMapping<CompleteOrder>(_ => _.OrderId)
+            .ToSaga(_ => _.OrderId);
     }
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)
     {
-        Data.OrderId = message.OrderId;
         Data.PaymentTransactionId = Guid.NewGuid().ToString();
 
         log.Info($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
@@ -31,7 +33,7 @@ public class OrderSaga :
         return context.SendLocal(issuePaymentRequest);
     }
 
-    public Task Handle(PaymentTransactionCompleted message, IMessageHandlerContext context)
+    public Task Handle(CompletePaymentTransaction message, IMessageHandlerContext context)
     {
         log.Info($"Transaction with Id {Data.PaymentTransactionId} completed for order id {Data.OrderId}");
         var completeOrder = new CompleteOrder
@@ -45,7 +47,6 @@ public class OrderSaga :
     {
         log.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
-
         return Task.CompletedTask;
     }
 

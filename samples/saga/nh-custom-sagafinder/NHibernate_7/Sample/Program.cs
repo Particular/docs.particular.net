@@ -18,12 +18,9 @@ class Program
         var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<LearningTransport>();
 
-        var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
-        routing.RegisterPublisher(typeof(Program).Assembly, endpointName);
-
-        #region NHibernateSetup
+        #region config
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=NHCustomSagaFinder;Integrated Security=True");

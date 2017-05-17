@@ -18,16 +18,16 @@ include: sagafinder-into
 
 This sample requires [NHibernate persistence](https://www.nuget.org/packages/NServiceBus.NHibernate/) package and a running Microsoft SQL Server instance configured accordingly. The sample NHibernate setup can be configured according to the environment:
 
-snippet: NHibernateSetup
+snippet: config
 
 
 include: sagafinder-thesaga
 
-snippet: TheSagaNHibernate
+snippet: saga
 
 include: sagafinder-process
 
-snippet: CustomSagaFinderNHibernate
+snippet: finder
 
 include: sagafinder-ifindsagas
 

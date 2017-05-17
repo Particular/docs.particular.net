@@ -4,11 +4,12 @@ using NServiceBus.Extensibility;
 using NServiceBus.Persistence;
 using NServiceBus.Sagas;
 
-class PaymentTransactionCompletedSagaFinder :
-    IFindSagas<OrderSagaData>.Using<PaymentTransactionCompleted>
+#region finder
+class CompletePaymentTransactionSagaFinder :
+    IFindSagas<OrderSagaData>.Using<CompletePaymentTransaction>
 {
 
-    public Task<OrderSagaData> FindBy(PaymentTransactionCompleted message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
+    public Task<OrderSagaData> FindBy(CompletePaymentTransaction message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
     {
         var session = storageSession.Session();
         var orderSagaData = session.QueryOver<OrderSagaData>()
@@ -18,3 +19,4 @@ class PaymentTransactionCompletedSagaFinder :
     }
 
 }
+#endregion

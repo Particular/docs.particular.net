@@ -13,7 +13,7 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
-        #region NHibernateSetup
+        #region config
 
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=NHCustomSagaFinder;Integrated Security=True");

@@ -12,10 +12,10 @@ class IssuePaymentRequestHandler :
 
     public void Handle(IssuePaymentRequest message)
     {
-        var paymentTransactionCompleted = new PaymentTransactionCompleted
+        var completePayment = new CompletePaymentTransaction
         {
             PaymentTransactionId = message.PaymentTransactionId
         };
-        bus.Publish(paymentTransactionCompleted);
+        bus.SendLocal(completePayment);
     }
 }

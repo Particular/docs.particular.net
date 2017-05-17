@@ -37,18 +37,18 @@ snippet: ravenhost
 include: sagafinder-thesaga
 
 
-snippet: TheSagaRavenDB
+snippet: saga
 
 
 include: sagafinder-process
 
-snippet: OrderSagaDataRavenDB
+snippet: data
 
 A properties uniqueness can be expressed by using the `UniqueConstraint` attribute provided by the RavenDB bundle.
 
 At start-up the sample will send a `StartOrder` message, since the saga data class is decorated with custom attributes it is required to also plug custom logic to find a saga data instance:
 
-snippet: CustomSagaFinderWithUniqueConstraintRavenDB
+snippet: finder
 
 
 include: sagafinder-ifindsagas

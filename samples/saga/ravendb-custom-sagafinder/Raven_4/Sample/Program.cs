@@ -20,8 +20,9 @@ class Program
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.EnableInstallers();
-            endpointConfiguration.SendFailedMessagesTo("error");
+            endpointConfiguration.UseTransport<LearningTransport>();
 
+            #region config
             var documentStore = new DocumentStore
             {
                 Url = "http://localhost:32076",
@@ -35,9 +36,7 @@ class Program
             persistence.DoNotSetupDatabasePermissions();
             persistence.SetDefaultDocumentStore(documentStore);
 
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            var routing = transport.Routing();
-            routing.RegisterPublisher(typeof(Program).Assembly, endpointName);
+            #endregion
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);

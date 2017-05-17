@@ -4,12 +4,12 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus.Persistence.Sql;
 
-#region TheSaga
+#region saga
 
 public class OrderSaga :
     SqlSaga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
-    IHandleMessages<PaymentTransactionCompleted>,
+    IHandleMessages<CompletePaymentTransaction>,
     IHandleMessages<CompleteOrder>
 {
     static ILog log = LogManager.GetLogger<OrderSaga>();
@@ -34,7 +34,7 @@ public class OrderSaga :
         return context.SendLocal(issuePaymentRequest);
     }
 
-    public Task Handle(PaymentTransactionCompleted message, IMessageHandlerContext context)
+    public Task Handle(CompletePaymentTransaction message, IMessageHandlerContext context)
     {
         log.Info($"Transaction with Id {Data.PaymentTransactionId} completed for order id {Data.OrderId}");
         var completeOrder = new CompleteOrder

@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 
-public class PaymentTransactionCompleted :
+public class CompletePaymentTransaction :
     IMessage
 {
     public string PaymentTransactionId { get; set; }

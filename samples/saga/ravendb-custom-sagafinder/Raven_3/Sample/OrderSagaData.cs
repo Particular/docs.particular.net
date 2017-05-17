@@ -2,7 +2,7 @@
 using NServiceBus.Saga;
 using Raven.Client.UniqueConstraints;
 
-#region OrderSagaDataRavenDB
+#region data
 
 public class OrderSagaData :
     IContainSagaData

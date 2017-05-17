@@ -36,7 +36,7 @@ snippet: MySqlConfig
 
 include: sagafinder-thesaga
 
-snippet: TheSaga
+snippet: saga
 
 include: sagafinder-process
 
@@ -48,9 +48,9 @@ A Saga Finder is only required for the `PaymentTransactionCompleted` message sin
 
 ### MS SQL Server
 
-snippet: SqlServerSagaFinder
+snippet: SqlServerFinder
 
 
 ### MySql
 
-snippet: MySqlSagaFinder
+snippet: MySqlFinder

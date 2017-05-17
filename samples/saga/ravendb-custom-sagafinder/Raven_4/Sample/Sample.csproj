@@ -69,18 +69,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompleteOrder.cs" />
-    <Compile Include="PaymentTransactionCompletedSagaFinder.cs" />
-    <Compile Include="CompleteOrderSagaFinder.cs" />
+    <Compile Include="CompletePaymentTransactionSagaFinder.cs" />
     <Compile Include="IssuePaymentRequest.cs" />
     <Compile Include="IssuePaymentRequestHandler.cs" />
     <Compile Include="OrderSaga.cs" />
     <Compile Include="OrderSagaData.cs" />
-    <Compile Include="PaymentTransactionCompleted.cs" />
+    <Compile Include="CompletePaymentTransaction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="RavenHost.cs" />
     <Compile Include="SagaNotFoundHandler.cs" />
     <Compile Include="StartOrder.cs" />
-    <Compile Include="StartOrderSagaFinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\..\packages\RavenDB.Database.3.5.3\tools\Raven.Studio.Html5.zip">

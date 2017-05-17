@@ -7,11 +7,11 @@ class IssuePaymentRequestHandler :
 
     public Task Handle(IssuePaymentRequest message, IMessageHandlerContext context)
     {
-        var transactionCompleted = new PaymentTransactionCompleted
+        var completePayment = new CompletePaymentTransaction
         {
             PaymentTransactionId = message.PaymentTransactionId
         };
-        return context.SendLocal(transactionCompleted);
+        return context.SendLocal(completePayment);
     }
 
 }

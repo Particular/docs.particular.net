@@ -4,11 +4,11 @@ using NServiceBus.Extensibility;
 using NServiceBus.Persistence;
 using NServiceBus.Sagas;
 
-#region MySqlSagaFinder
+#region MySqlFinder
 class OrderSagaFinder :
-    IFindSagas<OrderSagaData>.Using<PaymentTransactionCompleted>
+    IFindSagas<OrderSagaData>.Using<CompletePaymentTransaction>
 {
-    public Task<OrderSagaData> FindBy(PaymentTransactionCompleted message, SynchronizedStorageSession session, ReadOnlyContextBag context)
+    public Task<OrderSagaData> FindBy(CompletePaymentTransaction message, SynchronizedStorageSession session, ReadOnlyContextBag context)
     {
         return session.GetSagaData<OrderSagaData>(
             context: context,

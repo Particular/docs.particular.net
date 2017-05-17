@@ -3,19 +3,22 @@ using NServiceBus.Logging;
 using NServiceBus.Saga;
 using System;
 
-#region TheSagaRavenDB
+#region saga
 
 public class OrderSaga :
     Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
-    IHandleMessages<PaymentTransactionCompleted>,
+    IHandleMessages<CompletePaymentTransaction>,
     IHandleMessages<CompleteOrder>
 {
     static ILog log = LogManager.GetLogger<OrderSaga>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
-        // NOP
+        mapper.ConfigureMapping<StartOrder>(_ => _.OrderId)
+            .ToSaga(_ => _.OrderId);
+        mapper.ConfigureMapping<CompleteOrder>(_ => _.OrderId)
+            .ToSaga(_ => _.OrderId);
     }
 
     public void Handle(StartOrder message)
@@ -31,7 +34,7 @@ public class OrderSaga :
         Bus.SendLocal(issuePaymentRequest);
     }
 
-    public void Handle(PaymentTransactionCompleted message)
+    public void Handle(CompletePaymentTransaction message)
     {
         log.Info($"Transaction with Id {Data.PaymentTransactionId} completed for order id {Data.OrderId}");
         var completeOrder = new CompleteOrder

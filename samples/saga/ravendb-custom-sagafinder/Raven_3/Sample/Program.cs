@@ -18,6 +18,7 @@ class Program
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.EnableInstallers();
 
+            #region config
             var documentStore = new DocumentStore
             {
                 Url = "http://localhost:32076",
@@ -31,6 +32,7 @@ class Program
             persistence.DoNotSetupDatabasePermissions();
             persistence.SetDefaultDocumentStore(documentStore);
 
+            #endregion
             using (var bus = Bus.Create(busConfiguration).Start())
             {
                 var startOrder = new StartOrder
