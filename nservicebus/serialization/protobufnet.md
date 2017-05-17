@@ -1,12 +1,15 @@
 ---
-title: Protocol Buffers Serializer
-component: ProtoBuf
-reviewed: 2016-10-31
+title: ProtocolBuf-Net Serializer
+component: ProtoBufNet
+reviewed: 2017-05-17
 related:
- - samples/serializers/protobuf
+ - samples/serializers/protobufnet
+ - nservicebus/serialization/protobufgoogle
 ---
 
 Serializes messages using [protobuf-net](https://github.com/mgravell/protobuf-net).
+
+include: protobufmultiple
 
 ## Usage
 

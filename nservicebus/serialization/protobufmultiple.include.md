@@ -1,0 +1,1 @@
+NOTE: There are two serializers that target Protocol Buffer. The [ProtoBuf-Google serailizer](protobufnet.md) targets the [Google.Protobuf NuGet package](https://www.nuget.org/packages/Google.Protobuf), while the [ProtoBuf-Net serailizer](protobufnet.md) targets the [protobuf-net NuGet package](https://www.nuget.org/packages/protobuf-net).

@@ -49,7 +49,8 @@ NLog: NServiceBus.NLog
 OracleAQ: NServiceBus.OracleAQ
 PostgreSQL: NServiceBus.PostgreSQL
 PerfCounters: NServiceBus.Metrics.PerformanceCounters
-ProtoBuf: NServiceBus.ProtoBuf
+ProtoBufNet: NServiceBus.ProtoBuf
+ProtoBufGoogle: NServiceBus.ProtoBufGoogle
 PropertyEncryption: NServiceBus.Encryption.MessageProperty
 RawMessaging: NServiceBus.Raw
 RawDelayedRetries: NServiceBus.Raw.DelayedRetries

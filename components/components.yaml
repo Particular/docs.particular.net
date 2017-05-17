@@ -562,16 +562,27 @@
   NugetOrder:
     - NServiceBus.PostgreSQL
 
-- Key: ProtoBuf
-  Name: ProtoBuf Serializer
-  DocoUrl: nservicebus/serialization/protobuf
+- Key: ProtoBufNet
+  Name: ProtoBuf-Net Serializer
+  DocoUrl: nservicebus/serialization/protobufnet
   GitHubOwner: SimonCropp
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.ProtoBuf/blob/master/LICENSE
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.ProtoBuf/
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.ProtoBufNet/blob/master/LICENSE
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.ProtoBufNet/
   NugetOrder:
     - NServiceBus.ProtoBuf
+
+- Key: ProtoBufGoogle
+  Name: ProtoBuf-Google Serializer
+  DocoUrl: nservicebus/serialization/protobufgoogle
+  GitHubOwner: SimonCropp
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.ProtoBufGoogle/blob/master/LICENSE
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.ProtoBufGoogle/
+  NugetOrder:
+    - NServiceBus.ProtoBufGoogle
 
 - Key: Rabbit
   Name: RabbitMQ Transport

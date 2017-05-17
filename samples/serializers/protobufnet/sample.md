@@ -1,8 +1,8 @@
 ---
-title: ProtoBuf Serializer Usage
-summary: Using the ProtoBuf serializer in an endpoint.
-reviewed: 2016-10-31
-component: ProtoBuf
+title: ProtoBuf-Net Serializer Usage
+summary: Using the ProtoBuf-Net serializer in an endpoint.
+reviewed: 2017-05-17
+component: ProtoBufNet
 related:
 - nservicebus/serialization
 ---
