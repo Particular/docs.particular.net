@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.ProtoBuf;
+using NServiceBus.ProtoBufGoogle;
 
 static class Program
 {
@@ -13,10 +12,10 @@ static class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.Serialization.ProtoBuf";
+        Console.Title = "Samples.Serialization.ProtoBufGoogle";
         #region config
-        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ProtoBuf");
-        endpointConfiguration.UseSerialization<ProtoBufSerializer>();
+        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ProtoBufGoogle");
+        endpointConfiguration.UseSerialization<ProtoBufGoogleSerializer>();
         #endregion
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
@@ -24,12 +23,12 @@ static class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         #region messagesend
+
         var message = new CreateOrder
         {
             OrderId = 9,
-            Date = DateTime.Now,
             CustomerId = 12,
-            OrderItems = new List<OrderItem>
+            OrderItems =
             {
                 new OrderItem
                 {
@@ -40,7 +39,7 @@ static class Program
                 {
                     ItemId = 5,
                     Quantity = 4
-                },
+                }
             }
         };
         await endpointInstance.SendLocal(message)

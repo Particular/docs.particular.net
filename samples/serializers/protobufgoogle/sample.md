@@ -12,11 +12,24 @@ related:
 snippet: config
 
 
-## The message definition
-
-snippet: message
-
-
 ## The message send
 
 snippet: messagesend
+
+
+## The message definition
+
+The sample uses a `.proto` file to generate the message contract.
+
+snippet:proto
+
+This is done using `proroc.exe`
+
+```dos
+protoc.exe -I=C:\Code\Sample --csharp_out=C:\Code\Sample C:\Code\Sample\CreateOrder.proto
+```
+
+With the resultant class definitions residing in `CreateOrder.cs`
+
+
+include: protobufgoogleinfo

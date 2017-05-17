@@ -9,6 +9,8 @@ related:
 
 Serializes messages using [protobuf-net](https://github.com/mgravell/protobuf-net).
 
+include: protobufmultiple
+
 ## Usage
 
 snippet: ProtobufSerialization

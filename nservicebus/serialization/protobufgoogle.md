@@ -9,6 +9,9 @@ related:
 
 Serializes messages using [Google Protocol Buffers](https://developers.google.com/protocol-buffers/docs/reference/csharp-generated).
 
+include: protobufmultiple
+
+
 ## Usage
 
 snippet: ProtobufSerialization
@@ -20,11 +23,8 @@ include: interface-not-supported
 
 Customizes the instance of `SerializerOptions` used for serialization.
 
-snippet: ProtoBufCustomSettings
-
-
 include: custom-contenttype-key
 
 snippet: ProtoBufContentTypeKey
 
-
+include: protobufgoogleinfo
