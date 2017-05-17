@@ -57,9 +57,24 @@ The transport adapter allows configuration of the addresses of the forwarded que
 
 NOTE: The default values are only suitable in cases where both sides of the adapter use different transports or at least different broker instances. In case the adapter runs on a single transport and instance, the queue names on one side need to be altered.
 
+
+### Audit Queues
+
+Default: `audit`
+
 snippet: AuditQueues
 
+
+### Error Queues
+
+Default: `error`
+
 snippet: ErrorQueues
+
+
+### ControlQueues
+
+Default: `Particular.ServiceControl`
 
 snippet: ControlQueues
 
@@ -67,6 +82,8 @@ snippet: ControlQueues
 ### Poison message queue
 
 The poison message queue is a special queue which is used when messages cannot be received from the transport because they are corrupted (e.g. message headers are malformed).
+
+Default: `poison`
 
 snippet: PoisonQueue
 
