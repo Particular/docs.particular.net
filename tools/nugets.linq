@@ -18,7 +18,7 @@ void Main()
 	Directory.SetCurrentDirectory(docsDirectory);
 
 	Parallel.ForEach(solutionFiles,
-	new ParallelOptions() { MaxDegreeOfParallelism = 20 },
+	new ParallelOptions() { MaxDegreeOfParallelism = 5 },
 	(solutionFile) =>
 		{
 			Debug.WriteLine(solutionFile);
