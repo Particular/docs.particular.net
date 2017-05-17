@@ -26,7 +26,8 @@ The following serializers **do not support** messages defined as interfaces.
 
  * [Bond](/nservicebus/serialization/bond.md)
  * [MessagePack](/nservicebus/serialization/message-pack.md)
- * [Protobuf](/nservicebus/serialization/protobuf.md)
+ * [Protobuf-Net](/nservicebus/serialization/protobufnet.md)
+ * [Protobuf-Google](/nservicebus/serialization/protobufgoogle.md)
  * [Wire](/nservicebus/serialization/wire.md)
  * [ZeroFormatter](/nservicebus/serialization/zeroformatter.md)
 
