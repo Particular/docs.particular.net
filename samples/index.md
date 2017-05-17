@@ -55,7 +55,15 @@ All samples target **C# 6.0** to take advantage of the newer language features. 
 
 ### [Transport](/nservicebus/transports/)
 
-Samples default to using the using [MSMQ](/nservicebus/msmq/). **See [MSMQ NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) to configure MSMQ in a way that is compatible with NServiceBus.**
+
+#### Versions 6 and above
+
+Samples default to using the using [Learning Transport](/nservicebus/learning-transport/) as it has the least friction for experimentation. **The [Learning Transport](/nservicebus/learning-transport/) is not for production use**.
+
+
+#### Versions 5 and below
+
+Samples default to using the using the [MSMQ Transport](/nservicebus/msmq/). See [MSMQ NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) to configure MSMQ in a way that is compatible with NServiceBus.
 
 On startup each sample will create the required queues. By default the samples use the prefix `samples.` for all queue names. There is no process to clean up these queues, as such after running samples those queues remain in MSMQ. To clean up these queues manually use a [MSMQ management tool](/nservicebus/msmq/viewing-message-content-in-msmq.md) or [programmatically using the native MSMQ API](/nservicebus/msmq/operations-scripting.md#delete-queues).
 
@@ -74,6 +82,11 @@ foreach ($queue in [System.Messaging.MessageQueue]::GetPrivateQueuesByMachine(".
 ```
 
 
+### [Persistence](/nservicebus/persistence/)
+
+Samples default to either the [Learning Persistence](/nservicebus/learning-persistence/) or the [InMemory Persistence](/nservicebus/persistence/in-memory.md) since both have no requirement on installed infrastructure. **The [Learning Persistence](/nservicebus/learning-persistence/) is not for production use**.
+
+
 ### Console Hosting
 
 Samples default to [Self Hosting](/nservicebus/hosting/) in a console since it is the most explicit and contains fewer moving pieces. This would not be a real choice for a production system and the other [Hosting Options](/nservicebus/hosting/) should be considered.
@@ -82,11 +95,6 @@ Samples default to [Self Hosting](/nservicebus/hosting/) in a console since it i
 ### [Logging](/nservicebus/logging/)
 
 Samples default to logging at the `Info` level to the console. In production the preferred approach is some combination `Warning` and `Error` with a combination of targets.
-
-
-### [Persistence](/nservicebus/persistence/)
-
-Samples default to [InMemory Persistence](/nservicebus/persistence/in-memory.md) since this has the no requirement on installed infrastructure. Since it is not durable across restarts a durable storage should be chosen for production.
 
 
 ### [Serializer](/nservicebus/serialization/)
