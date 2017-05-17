@@ -13,6 +13,9 @@ static class Program
     {
         Console.Title = "Samples.TransientClients.Client";
 
+        Console.WriteLine("Press any key to connect.");
+        Console.ReadKey(true);
+
         using (var hubConnection = new HubConnection("http://localhost:9756"))
         {
             var stockHubProxy = hubConnection.CreateHubProxy("StockTicksHub");
