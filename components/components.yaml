@@ -696,6 +696,15 @@
   NugetOrder:
     - ServiceControl.Contracts
 
+- Key: SCTransportAdapter
+  Name: ServiceControl Transport Adapter
+  DocoUrl: servicecontrol/transport-adapter
+  GitHubOwner: Particular/servicecontrol-maintainers
+  Category: Other
+  ProjectUrl: https://github.com/Particular/ServiceControl.TransportAdapter
+  NugetOrder:
+    - ServiceControl.TransportAdapter
+
 - Key: ServicePulse
   Name: ServicePulse
   DocoUrl: servicepulse

@@ -867,6 +867,11 @@
         Title: CustomChecks Plugin
       - Url: servicecontrol/plugins/saga-audit
         Title: SagaAudit Plugin
+    - Url: servicecontrol/transport-adapter
+      Title: Transport adapter
+      Articles:
+      - Url: servicecontrol/transport-adapter/incompatible-features
+        Title: Incompatible transport features
   - Title: Management
     Articles:
     - Url: servicecontrol/securing-servicecontrol
