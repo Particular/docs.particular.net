@@ -44,12 +44,12 @@ static class Program
             {
                 var stockSymbol = Symbols[rand.Next(0, Symbols.Length - 1)];
 
-                var orderReceived = new StockTick
+                var stockTick = new StockTick
                 {
                     Symbol = stockSymbol,
                     Timestamp = DateTime.UtcNow
                 };
-                await endpointInstance.Publish(orderReceived)
+                await endpointInstance.Publish(stockTick)
                     .ConfigureAwait(false);
 
                 await Task.Delay(500)
