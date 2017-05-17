@@ -6,6 +6,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ServiceFabric.Data" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Persistence.ServiceFabric" Version="1.0.0-alpha0186" />
+    <PackageReference Include="NServiceBus.Persistence.ServiceFabric" Version="1.0.0-beta0002" />
   </ItemGroup>
 </Project>
