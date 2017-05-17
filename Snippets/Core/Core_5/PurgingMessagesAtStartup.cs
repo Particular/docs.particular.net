@@ -4,11 +4,10 @@
 
     class PurgingMessagesAtStartup
     {
-        PurgingMessagesAtStartup()
+        PurgingMessagesAtStartup(BusConfiguration busConfiguration)
         {
             #region PurgeMessagesAtStartup
 
-            var busConfiguration = new BusConfiguration();
             busConfiguration.PurgeOnStartup(true);
 
             #endregion

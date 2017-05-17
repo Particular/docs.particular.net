@@ -4,11 +4,10 @@
 
     class PurgingMessagesAtStartup
     {
-        PurgingMessagesAtStartup()
+        PurgingMessagesAtStartup(EndpointConfiguration endpointConfiguration)
         {
             #region PurgeMessagesAtStartup
 
-            var endpointConfiguration = new EndpointConfiguration("endpoint_name");
             endpointConfiguration.PurgeOnStartup(true);
 
             #endregion

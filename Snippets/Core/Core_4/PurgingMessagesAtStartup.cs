@@ -4,11 +4,10 @@
 
     class PurgingMessagesAtStartup
     {
-        PurgingMessagesAtStartup()
+        PurgingMessagesAtStartup(Configure configure)
         {
             #region PurgeMessagesAtStartup
 
-            var configure = Configure.With();
             configure.PurgeOnStartup(true);
 
             #endregion
