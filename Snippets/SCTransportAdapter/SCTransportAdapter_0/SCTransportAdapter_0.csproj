@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net452</TargetFramework>
+    <AssemblyName>Kafka_1</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Metrics.NET" Version="0.5.0-pre" />
+    <PackageReference Include="NServiceBus.Raw" Version="0.2.1" />
+    <PackageReference Include="ServiceControl.Contracts" Version="1.0.0" />
+    <PackageReference Include="ServiceControl.TransportAdapter" Version="0.3.0" />
+  </ItemGroup>
+</Project>
