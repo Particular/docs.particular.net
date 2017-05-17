@@ -34,7 +34,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ProtoBufGoogle, Version=1.0.0.0, Culture=neutral, PublicKeyToken=13558604351ce6cb, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.ProtoBufGoogle.1.0.0-beta0001\lib\net452\NServiceBus.ProtoBufGoogle.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.ProtoBufGoogle.1.0.0\lib\net452\NServiceBus.ProtoBufGoogle.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
