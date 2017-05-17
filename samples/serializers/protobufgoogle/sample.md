@@ -21,7 +21,7 @@ snippet: messagesend
 
 The sample uses a `.proto` file to generate the message contract.
 
-snippet:proto
+snippet: proto
 
 This is done using `proroc.exe`
 
