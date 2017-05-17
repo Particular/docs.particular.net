@@ -10,6 +10,6 @@ public class StockTicksHub :
 
 public interface IEmitStockTicks
 {
-    Task ForwardStockTick(StockTick tick);
+    Task PushStockTick(StockTick tick);
 }
 #endregion

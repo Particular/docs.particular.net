@@ -16,7 +16,7 @@ static class Program
         using (var hubConnection = new HubConnection("http://localhost:9756"))
         {
             var stockHubProxy = hubConnection.CreateHubProxy("StockTicksHub");
-            stockHubProxy.On<StockTick>("StockTick",
+            stockHubProxy.On<StockTick>("PushStockTick",
                 onData: stock =>
                 {
                     Console.WriteLine($"Stock update for {stock.Symbol} at {stock.Timestamp:O}. Press any key to exit.");

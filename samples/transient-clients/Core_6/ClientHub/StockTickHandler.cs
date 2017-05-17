@@ -14,7 +14,7 @@ public class StockTickHandler :
     public Task Handle(StockTick message, IMessageHandlerContext context)
     {
         log.Info($"StockTick event received for Symbol {message.Symbol} with timestamp: {message.Timestamp:O}. Press any key to exit.");
-        return hub.Clients.All.StockTick(message);
+        return hub.Clients.All.PushStockTick(message);
     }
 }
 
