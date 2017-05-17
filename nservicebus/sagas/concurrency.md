@@ -7,6 +7,10 @@ tags:
 redirects:
 - nservicebus/nservicebus-sagas-and-concurrency
 reviewed: 2017-05-16
+related:
+- nservicebus/nhibernate/saga-concurrency
+- nservicebus/ravendb/saga-concurrency
+- nservicebus/sql-persistence/saga-concurrency
 ---
 
 If the endpoint is configured to allow concurrent processing of messages (default) or is scaled out, it is possible that multiple messages will hit the same saga instance simultaneously. To give ACID semantics in this situation, NServiceBus uses the underlying storage to produce consistent behavior, only allowing one of messages to complete. NServiceBus handles most of this automatically but there are some caveats.
@@ -16,7 +20,7 @@ Concurrent access to saga instances is divided into two scenarios;
  * Concurrently trying to create the same instance of a new saga.
  * Concurrently trying to update the same instance of an existing saga.
 
-Each saga persister will honor the follwing semantics, see the specific persister documentation for implementation details.
+Each saga persister will honor the following semantics, see the specific persister documentation for implementation details.
 
 ## Concurrent access to non-existing saga instances
 
@@ -29,12 +33,6 @@ partial: unique
 ## Concurrent access to existing saga instances
 
 When messages concurrently tries to update the same saga instance the storage will either detect and throw a concurrency exception or serialize access to the instance. Concurrency exceptions will be automatically resolved by the NServiceBus retries will.
-
-//todo: Move to ravendb docs
-When using the RavenDB saga persister, no action is required since the NServiceBus framework (on RavenDB) turns on [UseOptimisticConcurrency](https://ravendb.net/docs/search/latest/csharp?searchTerm=how-to%20enable-optimistic-concurrency).
-
-//todo: Move to ravendb docs
-When using the NHibernate saga persister, NHibernate will compare the values of all saga properties to previous values (optimistic-all option) to ensure that the saga data was not updated in the background while the message handler was executing. Comparing all values can be inefficient, especially if there are many columns in the saga table or the values contain long strings. For more efficient concurrency control, add a ["Version" property to the saga data](/nservicebus/nhibernate/saga-concurrency.md#explicit-version) so that the comparison can be made on a single version column instead.
 
 Another option is to use a [transaction isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](https://docs.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql) with considerable performance degradation.
 
