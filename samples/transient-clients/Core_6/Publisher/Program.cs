@@ -55,7 +55,7 @@ static class Program
                 await Task.Delay(500)
                     .ConfigureAwait(false);
 
-                Console.WriteLine($"Published StockUpdated Event with Symbol {stockSymbol}. Press escape to stop publishing events.");
+                Console.WriteLine($"Published StockTick Event with Symbol {stockSymbol}. Press escape to stop publishing events.");
             }
         } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
     }
