@@ -13,7 +13,7 @@ static class Program
     {
         Console.Title = "Samples.TransientClients.Client";
 
-        using (var hubConnection = new HubConnection("http://localhost:8080"))
+        using (var hubConnection = new HubConnection("http://localhost:9756"))
         {
             var stockHubProxy = hubConnection.CreateHubProxy("StockTicksHub");
             stockHubProxy.On<StockTick>("StockTick",
