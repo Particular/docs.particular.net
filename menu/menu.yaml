@@ -415,8 +415,10 @@
       Title: Wire
     - Url: nservicebus/serialization/message-pack
       Title: Message Pack
-    - Url: nservicebus/serialization/protobuf
-      Title: ProtoBuf
+    - Url: nservicebus/serialization/protobufgoogle
+      Title: ProtoBuf-Google
+    - Url: nservicebus/serialization/protobufnet
+      Title: ProtoBuf-Net
     - Url: nservicebus/serialization/bond
       Title: Bond
     - Url: nservicebus/serialization/zeroformatter
