@@ -1,6 +1,7 @@
 ---
 title: Transient Client Sample
 reviewed: 2017-05-16
+component: Core
 related: 
  - nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
  - samples/show-case
