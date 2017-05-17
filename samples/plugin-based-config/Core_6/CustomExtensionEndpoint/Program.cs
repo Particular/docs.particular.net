@@ -15,9 +15,8 @@ static class Program
     {
         Console.Title = "Samples.CustomExtensionEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomExtensionEndpoint");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         await RunCustomizeConfiguration(endpointConfiguration)
             .ConfigureAwait(false);
         await RunBeforeEndpointStart()

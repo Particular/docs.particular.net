@@ -23,8 +23,9 @@ class RavenHost :
                 Settings =
                 {
                     { "Raven/ActiveBundles", "Unique Constraints" }
-                }
-            },
+                },
+                DefaultStorageTypeName = "esent"
+            }
         };
         documentStore.RegisterListener(new UniqueConstraintsStoreListener());
         documentStore.Initialize();

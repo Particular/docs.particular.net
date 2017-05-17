@@ -85,8 +85,8 @@ static class Program
 
     static async Task<TResponse> Send<TRequest, TResponse>(TRequest request)
     {
-        using (ChannelFactory<ICallbackService<TRequest, TResponse>> channelFactory = ClientChannelBuilder.GetChannelFactory<TRequest, TResponse>(serverUrl))
-        using (ICallbackService<TRequest, TResponse> client = channelFactory.CreateChannel())
+        using (var channelFactory = ClientChannelBuilder.GetChannelFactory<TRequest, TResponse>(serverUrl))
+        using (var client = channelFactory.CreateChannel())
         {
             return await client.SendRequest(request)
                 .ConfigureAwait(false);

@@ -15,9 +15,8 @@ class Program
         Console.Title = "Samples.RoutingSlips.ResultHost";
         var endpointConfiguration = new EndpointConfiguration("Samples.RoutingSlips.ResultHost");
 
-        endpointConfiguration.UseTransport<MsmqTransport>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableFeature<RoutingSlips>();
 
         var endpoint = await Endpoint.Start(endpointConfiguration)

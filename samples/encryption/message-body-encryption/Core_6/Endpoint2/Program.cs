@@ -13,9 +13,9 @@ class Program
     {
         Console.Title = "Samples.MessageBodyEncryption.Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageBodyEncryption.Endpoint2");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.RegisterMessageEncryptor();
-        endpointConfiguration.SendFailedMessagesTo("error");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");

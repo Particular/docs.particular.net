@@ -2,7 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyName>Autofac_6</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.*" />

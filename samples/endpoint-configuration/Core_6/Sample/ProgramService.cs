@@ -105,15 +105,13 @@ class ProgramService :
 
         #region transport
 
-        endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         #endregion
 
         #region persistence
 
-        endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
 
         #endregion
 

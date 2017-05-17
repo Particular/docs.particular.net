@@ -18,7 +18,7 @@ static class Program
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         var routing = transport.Routing();
         routing.RegisterPublisher(
-            eventType: typeof(OrderReceived), 
+            eventType: typeof(OrderReceived),
             publisherEndpoint: "Samples.PubSub.Publisher");
 
         endpointConfiguration.SendFailedMessagesTo("error");

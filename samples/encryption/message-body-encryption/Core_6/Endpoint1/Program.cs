@@ -13,15 +13,15 @@ class Program
     {
         Console.Title = "Samples.MessageBodyEncryption.Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageBodyEncryption.Endpoint1");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         #region RegisterMessageEncryptor
 
         endpointConfiguration.RegisterMessageEncryptor();
 
         #endregion
-
-        endpointConfiguration.SendFailedMessagesTo("error");
+        
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         var completeOrder = new CompleteOrder

@@ -17,10 +17,7 @@ class Program
 
         #region MySqlConfig
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.EndpointMySql");
-
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+        var endpointConfiguration = new EndpointConfiguration("EndpointMySql");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var password = Environment.GetEnvironmentVariable("MySqlPassword");
@@ -43,7 +40,7 @@ class Program
 
         #endregion
 
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
 

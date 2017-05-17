@@ -15,9 +15,8 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.WcfCallbacks.Endpoint");
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         #region startbus
 

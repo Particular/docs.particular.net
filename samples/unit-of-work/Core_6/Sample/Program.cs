@@ -13,9 +13,9 @@ class Program
     {
         Console.Title = "Samples.UnitOfWork";
         var endpointConfiguration = new EndpointConfiguration("Samples.UnitOfWork");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Immediate(
             customizations: immediate =>

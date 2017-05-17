@@ -2,7 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyName>Testing_6</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Gateway" Version="2.0.*" />

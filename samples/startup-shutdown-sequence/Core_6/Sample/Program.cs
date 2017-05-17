@@ -19,8 +19,8 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.StartupShutdown");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.EnableFeature<MyFeature>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         Logger.WriteLine("Calling Endpoint.Start");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

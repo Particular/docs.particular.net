@@ -15,9 +15,8 @@ class Program
         Console.Title = "Samples.FaultTolerance.Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.FaultTolerance.Server");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         #region disable
         //var recoverability = endpointConfiguration.Recoverability();

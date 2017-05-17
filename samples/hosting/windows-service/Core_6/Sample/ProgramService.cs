@@ -46,7 +46,8 @@ class ProgramService :
         var endpointConfiguration = new EndpointConfiguration("Samples.WindowsServiceAndConsole");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();
         endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

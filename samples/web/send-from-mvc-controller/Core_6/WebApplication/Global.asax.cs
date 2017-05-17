@@ -18,9 +18,8 @@ public class MvcApplication :
         var endpointConfiguration = new EndpointConfiguration("Samples.MvcInjection.WebApplication");
 
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 

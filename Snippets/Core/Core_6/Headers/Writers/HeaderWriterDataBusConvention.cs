@@ -4,7 +4,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
-    using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
@@ -16,13 +15,6 @@
 
         string endpointName = "HeaderWriterDataBusConventionV6";
 
-        [SetUp]
-        [TearDown]
-        public void Setup()
-        {
-            DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName);
-        }
-
         [Test]
         public async Task Write()
         {
@@ -31,14 +23,13 @@
             dataBus.BasePath(@"..\..\..\storage");
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
             endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.EnableInstallers();
+            endpointConfiguration.UsePersistence<LearningPersistence>();
+            endpointConfiguration.UseTransport<LearningTransport>();
             var conventions = endpointConfiguration.Conventions();
             conventions.DefiningDataBusPropertiesAs(property =>
             {
                 return property.Name.StartsWith("LargeProperty");
             });
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterComponents(
                 registration: components =>
                 {

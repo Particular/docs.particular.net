@@ -14,8 +14,8 @@ class Program
         Console.Title = "Samples.SagaMigration.Client";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SagaMigration.Client");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpoint = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

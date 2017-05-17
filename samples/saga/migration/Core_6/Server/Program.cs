@@ -15,9 +15,9 @@ class Program
         Console.Title = "Samples.SagaMigration.Server";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SagaMigration.Server");
+        endpointConfiguration.UseTransport<LearningTransport>();
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;");
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpoint = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

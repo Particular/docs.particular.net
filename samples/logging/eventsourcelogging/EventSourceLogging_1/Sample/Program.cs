@@ -50,9 +50,8 @@ class Program
 
     static void ApplyBasicConfig(EndpointConfiguration endpointConfiguration)
     {
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
     }
 }

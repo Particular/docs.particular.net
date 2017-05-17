@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Raven.Client.Embedded;
 
 #region ravenhost
+
 class RavenHost :
     IDisposable
 {
@@ -18,7 +19,8 @@ class RavenHost :
             {
                 Port = 32076,
                 PluginsDirectory = Environment.CurrentDirectory,
-                HostName = "localhost"
+                HostName = "localhost",
+                DefaultStorageTypeName = "esent"
             }
         };
         documentStore.Initialize();
@@ -35,4 +37,5 @@ class RavenHost :
         documentStore?.Dispose();
     }
 }
+
 #endregion

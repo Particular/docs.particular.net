@@ -23,8 +23,8 @@ public class Startup
         #region EndpointConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.SendOnly();
 
         #endregion

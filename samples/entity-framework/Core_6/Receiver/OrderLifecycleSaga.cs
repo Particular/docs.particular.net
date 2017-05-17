@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 public class OrderLifecycleSaga :
     Saga<OrderLifecycleSagaData>,
@@ -30,9 +29,10 @@ public class OrderLifecycleSaga :
 
     public Task Timeout(OrderTimeout state, IMessageHandlerContext context)
     {
-        return context.SendLocal(new CompleteOrder
+        var completeOrder = new CompleteOrder
         {
             OrderId = Data.OrderId
-        });
+        };
+        return context.SendLocal(completeOrder);
     }
 }

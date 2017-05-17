@@ -22,9 +22,8 @@ static class Program
 
         Console.Title = "Samples.MefExtensionEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.MefExtensionEndpoint");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         await RunCustomizeConfiguration(compositionContainer, endpointConfiguration)
             .ConfigureAwait(false);
         await RunBeforeEndpointStart(compositionContainer)

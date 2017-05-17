@@ -2,6 +2,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyName>PropertyEncryption_All</AssemblyName>
   </PropertyGroup>
 </Project>

@@ -74,9 +74,8 @@ class Program
         var assemblyScanner = endpointConfiguration.AssemblyScanner();
         assemblyScanner.ExcludeAssemblies("Instance2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         return Endpoint.Start(endpointConfiguration);
 
@@ -89,9 +88,8 @@ class Program
         var assemblyScanner = endpointConfiguration.AssemblyScanner();
         assemblyScanner.ExcludeAssemblies("Instance1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         return Endpoint.Start(endpointConfiguration);
     }

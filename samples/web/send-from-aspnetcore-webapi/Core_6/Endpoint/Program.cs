@@ -13,9 +13,8 @@ static class Program
     {
         Console.Title = "Samples.ASPNETCore.Endpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Endpoint");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

@@ -15,8 +15,8 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Throttling.Sender");
 
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         #region Sending
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

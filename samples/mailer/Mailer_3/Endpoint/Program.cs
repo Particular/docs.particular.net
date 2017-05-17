@@ -22,9 +22,8 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Mailer");
 
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UseTransport<MsmqTransport>();
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         #region EnableMailer
 

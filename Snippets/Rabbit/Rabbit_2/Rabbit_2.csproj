@@ -2,7 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyName>Rabbit_2</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.RabbitMQ" Version="2.*" />

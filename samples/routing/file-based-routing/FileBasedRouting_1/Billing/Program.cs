@@ -16,14 +16,11 @@ class Program
         Console.Title = "Samples.FileBasedRouting.Billing";
         var endpointConfiguration = new EndpointConfiguration("Samples.FileBasedRouting.Billing");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
-
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
         var routing = transport.Routing();
         routing.UseFileBasedRouting(@"..\..\..\endpoints.xml");
-        
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");

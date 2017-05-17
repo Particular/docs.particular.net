@@ -2,7 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyName>Raven_3</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.RavenDB" Version="3.*" />

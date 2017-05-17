@@ -34,20 +34,10 @@ Completing these steps will serve as an introduction to many important NServiceB
 
 [Download the .NET Framework Version 4.6.1](https://www.microsoft.com/en-us/download/details.aspx?id=49982) and install it.
 
-### MSMQ
 
-INFO: While this sample requires MSMQ as the queuing transport, it is possible to use NServiceBus with a variety of other transports such as [RabbitMQ](/nservicebus/rabbitmq/), [Azure Service Bus](/nservicebus/azure-service-bus/), [Azure Storage Queues](/nservicebus/azure-storage-queues/), and [SQL Server](/nservicebus/sqlserver/). If any of these transports are already available, it is simple to configure the endpoints to use them instead of MSMQ. 
+### Learning Transport
 
-Microsoft Message Queuing (MSMQ) must be properly installed and configured. The easiest way to do this is with the appropriate command line below. Alternatively, it can be installed via the Windows Features tool. For more details on installing and configuring MSMQ see [MSMQ Transport](/nservicebus/msmq/).
-
-
-To enable MSMQ on Windows 8.x or 10 run the following command on the command line:
-
-```dos
-DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
-```
-
-For other Windows versions see [MSMQ Transport / Configuration](/nservicebus/msmq/#nservicebus-configuration).
+INFO: While this sample uses the [Learning Transport](/nservicebus/learning-transport/) as the queuing transport, it is possible to use NServiceBus with a variety of other [transports](/nservicebus/transports/).
 
 
 ## Project structure
@@ -100,7 +90,17 @@ Next, define the `OrderPlaced` event by creating a class that implements `IEvent
 snippet: OrderPlaced
 
 
-partial: errorqueue
+## Error Queue
+
+Each endpoint configures [recoverability](/nservicebus/recoverability/):
+
+```cs
+endpointConfiguration.SendFailedMessagesTo("error");
+```
+
+This defines where messages are sent when they cannot be processed due to repetitive exceptions during message processing.
+
+NOTE: It is also possible to [recoverability](/nservicebus/recoverability/) in an App.config file or the the `IProvideConfiguration` interface using [override app.config settings](/nservicebus/hosting/custom-configuration-providers.md), which allows sharing the same configuration across all endpoints.
 
 
 ## The Client
@@ -134,7 +134,7 @@ snippet: PlaceOrderHandler
 
 This class is the message handler that processes the `PlaceOrder` command being sent by the Client. A handler is where a message is processed; very often this will involve saving information from the message into a database, calling a web service, or some other business function. In this example, the message is logged, so the fact the message was received will be visible in the Console window. Next, the handler publishes a new `OrderPlaced` event.
 
-partial: dependencyinjection
+The handler class is automatically discovered by NServiceBus because it implements the `IHandleMessages<T>` interface. The [dependency injection system](/nservicebus/containers/) (which supports constructor or property injection) injects the `IMessageHandlerContext` instance into the handler to access messaging operations. When a `PlaceOrder` command is received, NServiceBus will create a new instance of the `PlaceOrderHandler` class and invoke the `Handle` method.
 
 The next step is to create a subscriber for this event.
 
@@ -171,7 +171,7 @@ NOTE: The `Assembly` and `Type` values must exactly match the full name (includi
 
 The important part is in the `MessageEndpointMappings` section. The `add` directive identifies messages of type `OrderPlaced` within the `Shared` assembly. The `Endpoint` attribute determines that subscription requests should be sent to the `Samples.StepByStep.Server` endpoint. Since that endpoint is responsible for publishing `OrderPlaced` events, the subscription requests must be directed there as well.
 
-When the Subscriber endpoint initializes, it will read this configuration. Because the endpoint also contains a message handler for `OrderPlaced`, it will send a special subscription message to the `Samples.StepByStep.Server` endpoint. When that endpoint receives the subscription request, it will store it locally. In this sample, in-memory storage will be used, but in a production system a database would be used instead. When publishing a message, it can consult the subscriber list and send a copy to every subscriber that expressed interest.
+When the Subscriber endpoint initializes, it will read this configuration. Because the endpoint also contains a message handler for `OrderPlaced`, it will send a special subscription message to the `Samples.StepByStep.Server` endpoint. When that endpoint receives the subscription request, it will store it locally. In this sample, the [Learning Persistence](/nservicebus/learning-persistence/) storage will be used, but in a production system a database would be used instead. When publishing a message, it can consult the subscriber list and send a copy to every subscriber that expressed interest.
 
 
 ## Running the solution

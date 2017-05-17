@@ -16,8 +16,13 @@ public class MvcApplication :
         RouteTable.Routes.MapRoute(
             name: "Default",
             url: "{controller}/{action}/{id}",
-            defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            defaults: new
+            {
+                controller = "Home",
+                action = "Index",
+                id = UrlParameter.Optional
+            }
+        );
     }
 
     protected void Application_End()
@@ -29,9 +34,8 @@ public class MvcApplication :
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.WebSender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.EnableCallbacks();

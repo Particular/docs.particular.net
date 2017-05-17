@@ -3,7 +3,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
-    using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
@@ -15,23 +14,15 @@
 
         const string endpointName = "HeaderWriterAuditV6";
 
-        [SetUp]
-        [TearDown]
-        public void Setup()
-        {
-            DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName);
-        }
-
         [Test]
         public async Task Write()
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterAudit>();
             endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.EnableInstallers();
-            endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.AuditProcessedMessagesTo(endpointName);
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.UsePersistence<LearningPersistence>();
+            endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.RegisterComponents(
                 registration: components =>
                 {

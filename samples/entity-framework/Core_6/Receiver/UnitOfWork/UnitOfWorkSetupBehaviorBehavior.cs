@@ -4,7 +4,7 @@ using NServiceBus.Pipeline;
 
 #region SetupBehavior
 
-public class UnitOfWorkSetupBehaviorBehavior 
+public class UnitOfWorkSetupBehaviorBehavior
     : Behavior<IIncomingLogicalMessageContext>
 {
     public override async Task Invoke(

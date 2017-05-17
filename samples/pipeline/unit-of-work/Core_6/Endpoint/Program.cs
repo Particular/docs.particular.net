@@ -14,9 +14,9 @@ class Program
         Console.Title = "Samples.Pipeline.UnitOfWork.Endpoint";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Pipeline.UnitOfWork.Endpoint");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         #region configuration
         var sessionProvider = new MySessionProvider();
@@ -40,7 +40,8 @@ class Program
                 var options = new SendOptions();
                 options.SetHeader("tenant", "tenant" + i);
                 options.RouteToThisEndpoint();
-                await endpointInstance.Send(new MyMessage(), options);
+                await endpointInstance.Send(new MyMessage(), options)
+                    .ConfigureAwait(false);
             }
         }
 

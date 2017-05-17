@@ -41,8 +41,8 @@ class Program
         NServiceBus.Logging.LogManager.Use<NLogFactory>();
         var endpointConfiguration = new EndpointConfiguration("Samples.SampleWithoutClean");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Immediate(
             customizations: immediate =>
@@ -54,8 +54,6 @@ class Program
             {
                 delayed.NumberOfRetries(0);
             });
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

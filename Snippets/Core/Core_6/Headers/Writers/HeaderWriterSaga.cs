@@ -4,7 +4,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
-    using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
@@ -15,22 +14,14 @@
         static CountdownEvent CountdownEvent = new CountdownEvent(4);
         string endpointName = "HeaderWriterSagaV6";
 
-        [SetUp]
-        [TearDown]
-        public void Setup()
-        {
-            DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName);
-        }
-
         [Test]
         public async Task Write()
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterSaga>();
             endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.UsePersistence<LearningPersistence>();
+            endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.RegisterComponents(
                 registration: components =>
                 {
@@ -39,7 +30,7 @@
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
-            await endpointInstance.SendLocal(new StartSaga1Message())
+            await endpointInstance.SendLocal(new StartSaga1Message{ Guid = Guid.NewGuid() })
                 .ConfigureAwait(false);
             CountdownEvent.Wait();
         }
@@ -47,11 +38,13 @@
         class StartSaga1Message :
             IMessage
         {
+            public Guid Guid { get; set; }
         }
 
         class SendFromSagaMessage :
             IMessage
         {
+            public Guid Guid { get; set; }
         }
 
         class Saga1 :
@@ -62,19 +55,22 @@
         {
             public Task Handle(StartSaga1Message message, IMessageHandlerContext context)
             {
-                return context.SendLocal(new SendFromSagaMessage());
+                return context.SendLocal(new SendFromSagaMessage{Guid = Guid.NewGuid()});
             }
 
             public class SagaData :
                 IContainSagaData
             {
                 public Guid Id { get; set; }
+                public Guid Guid { get; set; }
                 public string Originator { get; set; }
                 public string OriginalMessageId { get; set; }
             }
 
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
             {
+                mapper.ConfigureMapping<StartSaga1Message>(message => message.Guid)
+                    .ToSaga(data => data.Guid);
             }
 
             public Task Handle(ReplyFromSagaMessage message, IMessageHandlerContext context)
@@ -95,6 +91,7 @@
         {
             public async Task Handle(SendFromSagaMessage message, IMessageHandlerContext context)
             {
+                Data.Guid = message.Guid;
                 var replyFromSagaMessage = new ReplyFromSagaMessage();
                 await context.Reply(replyFromSagaMessage)
                     .ConfigureAwait(false);
@@ -109,12 +106,15 @@
                 IContainSagaData
             {
                 public Guid Id { get; set; }
+                public Guid Guid { get; set; }
                 public string Originator { get; set; }
                 public string OriginalMessageId { get; set; }
             }
 
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
             {
+                mapper.ConfigureMapping<SendFromSagaMessage>(message => message.Guid)
+                    .ToSaga(data => data.Guid);
             }
 
 

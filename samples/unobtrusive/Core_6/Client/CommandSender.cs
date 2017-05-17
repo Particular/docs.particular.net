@@ -11,7 +11,6 @@ public class CommandSender
     {
         Console.WriteLine("Press 'C' to send a command");
         Console.WriteLine("Press 'R' to send a request");
-        Console.WriteLine("Press 'E' to send a message that is marked as Express");
         Console.WriteLine("Press 'D' to send a large message that is marked to be sent using Data Bus");
         Console.WriteLine("Press 'X' to send a message that is marked with expiration time.");
         Console.WriteLine("Press any other key to exit");
@@ -29,10 +28,6 @@ public class CommandSender
                     continue;
                 case ConsoleKey.R:
                     await SendRequest(endpointInstance)
-                        .ConfigureAwait(false);
-                    continue;
-                case ConsoleKey.E:
-                    await Express(endpointInstance)
                         .ConfigureAwait(false);
                     continue;
                 case ConsoleKey.D:
@@ -72,20 +67,6 @@ public class CommandSender
             LargeDataBus = new byte[1024*1024*5]
         };
         await endpointInstance.Send(largeMessage)
-            .ConfigureAwait(false);
-
-        Console.WriteLine($"Request sent id: {requestId}");
-    }
-
-    static async Task Express(IEndpointInstance endpointInstance)
-    {
-        var requestId = Guid.NewGuid();
-
-        var requestExpress = new RequestExpress
-        {
-            RequestId = requestId
-        };
-        await endpointInstance.Send(requestExpress)
             .ConfigureAwait(false);
 
         Console.WriteLine($"Request sent id: {requestId}");

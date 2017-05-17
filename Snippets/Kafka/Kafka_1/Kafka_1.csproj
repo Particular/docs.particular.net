@@ -2,7 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
-    <AssemblyName>Kafka_1</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Transports.Kafka" Version="0.*" />

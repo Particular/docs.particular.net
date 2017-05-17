@@ -17,7 +17,7 @@ class Program
 
         #region sqlServerConfig
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.EndpointSqlServer");
+        var endpointConfiguration = new EndpointConfiguration("EndpointSqlServer");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var connection = @"Data Source=.\SQLEXPRESS;Initial Catalog=SqlPersistenceSample;Integrated Security=True";
@@ -30,7 +30,7 @@ class Program
 
         #endregion
 
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
 

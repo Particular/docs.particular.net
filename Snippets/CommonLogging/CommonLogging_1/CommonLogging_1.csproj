@@ -2,7 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyName>CommonLogging_1</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.CommonLogging" Version="1.*" />

@@ -15,10 +15,9 @@ class Program
         Console.Title = "Samples.PipelineStream.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineStream.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.SetStreamStorageLocation("..\\..\\..\\storage");
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

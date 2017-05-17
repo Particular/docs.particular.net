@@ -35,7 +35,6 @@
     <Compile Include="MessageThatExpires.cs" />
     <Compile Include="MyCommand.cs" />
     <Compile Include="Request.cs" />
-    <Compile Include="RequestExpress.cs" />
     <Compile Include="Response.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

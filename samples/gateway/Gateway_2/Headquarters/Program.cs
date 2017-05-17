@@ -18,7 +18,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.EnableFeature<Gateway>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<LearningTransport>();
 
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

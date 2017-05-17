@@ -20,18 +20,16 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.FileBasedRouting.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
 
         #region FileBasedRouting
 
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
         var routing = transport.Routing();
         routing.UseFileBasedRouting(@"..\..\..\endpoints.xml");
-        
+
         #endregion
-        
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press enter to send a message");

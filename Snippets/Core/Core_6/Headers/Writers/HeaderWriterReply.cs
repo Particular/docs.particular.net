@@ -3,7 +3,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
-    using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
@@ -14,13 +13,6 @@
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
         string endpointName = "HeaderWriterReplyV6";
 
-        [SetUp]
-        [TearDown]
-        public void Setup()
-        {
-            DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName);
-        }
-
         [Test]
         public async Task Write()
         {
@@ -29,9 +21,8 @@
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterReply>(callbackTypes);
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.MakeInstanceUniquelyAddressable("A");
-            endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.UsePersistence<LearningPersistence>();
+            endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.RegisterComponents(
                 registration: components =>
                 {

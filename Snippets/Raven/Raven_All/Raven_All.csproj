@@ -2,7 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyName>Raven_All</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.*" />
