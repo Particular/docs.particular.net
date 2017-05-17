@@ -1,11 +1,12 @@
 ---
 title: RavenDB Persistence Saga concurrency
-component: RavenDB
 versions: '[6,]'
 reviewed: 2017-05-17
 tags:
  - Persistence
  - Saga
+related:
+ - nservicebus/sagas/concurrency
 ---
 
 RavenDB honors the required [concurrency semantics](/nservicebus/sagas/concurrency.md) in the following way.

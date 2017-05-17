@@ -1,11 +1,12 @@
 ---
 title: SqlPersistence Persistence Saga concurrency
-component: SqlPersistence
 versions: '[1,]'
 reviewed: 2017-05-17
 tags:
  - Persistence
  - Saga
+related:
+ - nservicebus/sagas/concurrency
 ---
 
 SqlPersistence honors the required [concurrency semantics](/nservicebus/sagas/concurrency.md) in the following way.
