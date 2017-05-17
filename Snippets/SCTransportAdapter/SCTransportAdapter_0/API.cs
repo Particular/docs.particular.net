@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NServiceBus.Settings;
 using NServiceBus.Transport;
 using ServiceControl.TransportAdapter;
@@ -17,107 +13,120 @@ namespace SCTransportAdapter_0
         const string CONNECTION_STRING = "Common connection string";
         const string OTHER_TRANSPORT_CONNECTION_STRING = "Other transport connection string";
 
-        public void MixedTransports()
+        void MixedTransports()
         {
             #region MixedTransports
 
-            var config = new TransportAdapterConfig<MyOtherTransport, MyTransport>(
-                "MyOtherTransport");
+            var config = new TransportAdapterConfig<MyOtherTransport, MyTransport>("MyOtherTransport");
 
-            config.CustomizeEndpointTransport(t =>
-            {
-                t.ConnectionString(OTHER_TRANSPORT_CONNECTION_STRING);
-            });
+            config.CustomizeEndpointTransport(
+                customization: transportExtensions =>
+                {
+                    transportExtensions.ConnectionString(OTHER_TRANSPORT_CONNECTION_STRING);
+                });
 
-            config.CustomizeServiceControlTransport(t =>
-            {
-                t.ConnectionString(CONNECTION_STRING);
-            });
+            config.CustomizeServiceControlTransport(
+                customization: transportExtensions =>
+                {
+                    transportExtensions.ConnectionString(CONNECTION_STRING);
+                });
 
             #endregion
         }
 
-        public void AdvancedFeatures()
+        void AdvancedFeatures()
         {
             #region AdvancedFeatures
 
-            var config = new TransportAdapterConfig<MyTransport, MyTransport>(
-                "TransportAdapter")
+            var config = new TransportAdapterConfig<MyTransport, MyTransport>("TransportAdapter")
             {
                 EndpointSideAuditQueue = "audit_in",
                 EndpointSideErrorQueue = "error_in",
                 ServiceControlSideControlQueue = "control_in"
             };
 
-            config.CustomizeEndpointTransport(t =>
-            {
-                t.ConnectionString(CONNECTION_STRING);
-                t.UseSpecificRouting();
-            });
+            config.CustomizeEndpointTransport(
+                customization: transportExtensions =>
+                {
+                    transportExtensions.ConnectionString(CONNECTION_STRING);
+                    transportExtensions.UseSpecificRouting();
+                });
 
-            config.CustomizeServiceControlTransport(t =>
-            {
-                t.ConnectionString(CONNECTION_STRING);
-            });
+            config.CustomizeServiceControlTransport(
+                customization: transportExtensions =>
+                {
+                    transportExtensions.ConnectionString(CONNECTION_STRING);
+                });
 
             #endregion
 
         }
 
-        public void MultipleBrokers()
+        void MultipleBrokers()
         {
             #region MultiInstance
 
             var aConfig = new TransportAdapterConfig<MyTransport, MyTransport>("A");
-            aConfig.CustomizeEndpointTransport(t =>
-            {
-                t.ConnectionString(BROKER_A_CONNECTION_STRING);
-            });
-            aConfig.CustomizeServiceControlTransport(t =>
-            {
-                t.ConnectionString(SC_CONNECTION_STRING);
-            });
+            aConfig.CustomizeEndpointTransport(
+                customization: transportExtensions =>
+                {
+                    transportExtensions.ConnectionString(BROKER_A_CONNECTION_STRING);
+                });
+            aConfig.CustomizeServiceControlTransport(
+                customization: transportExtensions =>
+                {
+                    transportExtensions.ConnectionString(SC_CONNECTION_STRING);
+                });
 
             var bConfig = new TransportAdapterConfig<MyTransport, MyTransport>("B");
-            bConfig.CustomizeEndpointTransport(t =>
-            {
-                t.ConnectionString(BROKER_B_CONNECTION_STRING);
-            });
-            bConfig.CustomizeServiceControlTransport(t =>
-            {
-                t.ConnectionString(SC_CONNECTION_STRING);
-            });
+            bConfig.CustomizeEndpointTransport(
+                customization: transportExtensions =>
+                {
+                    transportExtensions.ConnectionString(BROKER_B_CONNECTION_STRING);
+                });
+            bConfig.CustomizeServiceControlTransport(
+                customization: transportExtensions =>
+                {
+                    transportExtensions.ConnectionString(SC_CONNECTION_STRING);
+                });
 
             #endregion
         }
 
-        public void Configuration(TransportAdapterConfig<MyTransport, MyTransport> config)
+        void Configuration(TransportAdapterConfig<MyTransport, MyTransport> config)
         {
 
             #region AuditQueues
 
-            config.EndpointSideAuditQueue = "audit_in"; //Default: audit
-            config.ServiceControlSideAuditQueue = "audit_out"; //Default: audit
+            // Default: audit
+            config.EndpointSideAuditQueue = "audit_in";
+            // Default: audit
+            config.ServiceControlSideAuditQueue = "audit_out";
 
             #endregion
 
             #region ErrorQueues
 
-            config.EndpointSideErrorQueue = "error_in"; //Default: error
-            config.ServiceControlSideErrorQueue = "error_out"; //Default: error
+            // Default: error
+            config.EndpointSideErrorQueue = "error_in";
+            // Default: error
+            config.ServiceControlSideErrorQueue = "error_out";
 
             #endregion
 
             #region ControlQueues
 
-            config.EndpointSideControlQueue = "control_in"; //Default: Particular.ServiceControl
-            config.ServiceControlSideControlQueue = "control_out"; //Default: Particular.ServiceControl
+            // Default: Particular.ServiceControl
+            config.EndpointSideControlQueue = "control_in";
+            // Default: Particular.ServiceControl
+            config.ServiceControlSideControlQueue = "control_out";
 
             #endregion
 
             #region PoisonQueue
 
-            config.PoisonMessageQueue = "poison_queue"; //Default poisin
+            // Default poison
+            config.PoisonMessageQueue = "poison_queue";
 
             #endregion
 
@@ -144,7 +153,7 @@ namespace SCTransportAdapter_0
             public override string ExampleConnectionStringForErrorMessage => null;
         }
 
-        
+
 
         public class MyOtherTransport : TransportDefinition
         {
