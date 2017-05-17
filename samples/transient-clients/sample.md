@@ -14,13 +14,16 @@ Before running the sample, look over the solution structure, the projects, and t
 
 The `ClientHub` project also hosts a SignalR server. The `Client` project is a command line app that hosts a SignalR client.
 
+
 ## Sharing Message Types with SignalR
 
 The `StockEvents` project contains the definition a message class that is shared with both NServiceBus endpoints, the SignalR hub, and the SignalR client. Open "StockTick" to see the message that will be published by this sample. Note that this event is defined using [Unobtrusive Mode Message Conventions](/nservicebus/messaging/unobtrusive-mode.md), allowing the `Client` project to reference the message type without needing a reference to NServiceBus.
 
+
 ## Hosting SignalR with NServiceBus
 
 This sample shows how to host a self-hosted SignalR 2 server side-by-side with a NServiceBus endpoint. For more information on using SignalR Self-Host see the Microsoft tutorial ["SignalR Self-Host"](https://docs.microsoft.com/en-us/aspnet/signalr/overview/deployment/tutorial-signalr-self-host).
+
 
 ## Bridging the Bus to Clients using SignalR
 
@@ -34,9 +37,11 @@ When the `StockTick` event is handled, it invokes the `ForwardStockTick` method 
 
 snippet: StockTickHandler
 
+
 ## Web Applications
 
 In this sample the SignalR client is implemented as a .NET console application. The client could just as easily be implemented using the JavaScript client and used in a web application.
+
 
 ## Scaling Out SignalR with NServiceBus
 

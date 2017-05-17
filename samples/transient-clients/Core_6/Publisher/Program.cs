@@ -52,14 +52,15 @@ static class Program
                 await endpointInstance.Publish(orderReceived)
                     .ConfigureAwait(false);
 
-                await Task.Delay(500);
+                await Task.Delay(500)
+                    .ConfigureAwait(false);
 
                 Console.WriteLine($"Published StockUpdated Event with Symbol {stockSymbol}. Press escape to stop publishing events.");
             }
         } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
     }
 
-    private static string[] Symbols = new[]
+    static string[] Symbols =
     {
         "MSFT",
         "AAPL",

@@ -45,7 +45,8 @@ static class Program
             Console.WriteLine("Press any key to exit");
             Console.ReadKey(true);
 
-            await endpointInstance.Unsubscribe<StockTick>();
+            await endpointInstance.Unsubscribe<StockTick>()
+                .ConfigureAwait(false);
 
             await endpointInstance.Stop()
                 .ConfigureAwait(false);

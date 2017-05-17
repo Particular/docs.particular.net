@@ -13,16 +13,21 @@ static class Program
     {
         Console.Title = "Samples.TransientClients.Client";
 
-        var url = "http://localhost:8080";
+        using (var hubConnection = new HubConnection("http://localhost:8080"))
+        {
+            var stockHubProxy = hubConnection.CreateHubProxy("StockTicksHub");
+            stockHubProxy.On<StockTick>("StockTick",
+                onData: stock =>
+                {
+                    Console.WriteLine($"Stock update for {stock.Symbol} at {stock.Timestamp:O}. Press any key to exit.");
+                });
+            await hubConnection.Start()
+                .ConfigureAwait(false);
 
-        var hubConnection = new HubConnection(url);
-        var stockHubProxy = hubConnection.CreateHubProxy("StockTicksHub");
-        stockHubProxy.On<StockTick>("StockTick", stock => Console.WriteLine($"Stock update for {stock.Symbol} at {stock.Timestamp:O}. Press any key to exit."));
-        await hubConnection.Start();
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey(true);
 
-        Console.WriteLine("Press any key to exit.");
-        Console.ReadKey(true);
-
-        hubConnection.Stop();
+            hubConnection.Stop();
+        }
     }
 }
