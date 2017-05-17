@@ -1,8 +1,8 @@
 ---
-title: ProtoBuf Serializer Usage
-summary: Using the ProtoBuf serializer in an endpoint.
-reviewed: 2016-10-31
-component: ProtoBuf
+title: ProtocolBuf-Google Serializer Usage
+summary: Using the ProtoBuf-Google serializer in an endpoint.
+reviewed: 2017-05-17
+component: ProtoBufGoogle
 related:
 - nservicebus/serialization
 ---
