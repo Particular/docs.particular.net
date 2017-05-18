@@ -16,7 +16,8 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>();
         dataBus.ConnectionString("UseDevelopmentStorage=true");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 

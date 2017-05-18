@@ -18,6 +18,8 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        transport.Routing().RouteToEndpoint(typeof(StartOrder), "Samples.Azure.StoragePersistence.Server");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
