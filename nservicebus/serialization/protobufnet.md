@@ -1,5 +1,5 @@
 ---
-title: ProtocolBuf-Net Serializer
+title: ProtoBuf-Net Serializer
 component: ProtoBufNet
 reviewed: 2017-05-17
 related:
