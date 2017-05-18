@@ -19,9 +19,11 @@ partial: config
 
 ### Monitoring DLQ
 
-Misconfiguration of [routing](/nservicebus/messaging/routing) may result in messages ending up in the DLQ. It is very important to monitor the DLQ in order to detect potential routing configuration errors or other situations that may lead to messages being moved to the dead letter queue.
+MSMQ moves messages that cannot be delivered to their destination to the DLQ. This may be due to misconfiguration of [routing](/nservicebus/messaging/routing) or queues being purged. See [Dead-Letter Queues](https://msdn.microsoft.com/en-us/library/ms706227.aspx) for a comprehensive list of conditions under which messages may be moved to the DLQ.
 
-NOTE: While there is usually a single error queue for the entire system, each machine has a separate dead letter queue. This means that the DLQ on each machine has to be monitored individually.
+It is very important to monitor the DLQ in order to detect potential routing configuration errors or other situations that may lead to messages being moved to the dead-letter queue.
+
+NOTE: While there is usually a central error queue managed by NServiceBus, each machine has a separate dead-letter queue. This means that the DLQ on each machine has to be monitored individually.
 
 #### Reading messages from DLQ
 
