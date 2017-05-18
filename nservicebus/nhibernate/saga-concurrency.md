@@ -6,6 +6,8 @@ reviewed: 2016-10-19
 tags:
  - Persistence
  - Saga
+related:
+ - nservicebus/sagas/concurrency
 ---
 
 One of the most critical things about persistence of sagas is proper concurrency control. Sagas guarantee business data consistency across long running processes using compensation actions. A failure in concurrency management that leads to creation of an extra instance of a saga instead of routing a message to an existing instance could lead to business data corruption.

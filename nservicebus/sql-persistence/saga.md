@@ -6,6 +6,7 @@ related:
  - samples/sql-persistence/transitioning-correlation-ids
  - samples/saga/sql-sagafinder
  - samples/saga/migration
+ - nservicebus/sql-persistence/saga-concurrency
 reviewed: 2016-11-29
 ---
 
@@ -95,11 +96,6 @@ The Assembly version of the SQL Persister.
 #### SagaTypeVersion
 
 The Assembly version of the Assembly where the Saga exists.
-
-
-#### Concurrency
-
-Incrementing counter used to provide [optimistic concurrency](https://en.wikipedia.org/wiki/Optimistic_concurrency_control).
 
 
 #### Correlation Ids
