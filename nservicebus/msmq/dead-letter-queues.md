@@ -15,3 +15,23 @@ NOTE: If DLQ is enabled messages will remain in the senders outgoing queue until
 
 
 partial: config
+
+
+### Monitoring DLQ
+
+Misconfiguration of [routing](/nservicebus/messaging/routing) may result in messages ending up in the DLQ. It is very important to monitor the DLQ in order to detect potential routing configuration errors or other situations that may lead to messages being moved to the dead letter queue.
+
+NOTE: While there is usually a single error queue for the entire system, each machine has a separate dead letter queue. This means that the DLQ on each machine has to be monitored individually.
+
+#### Reading messages from DLQ
+
+The following addresses can be used to read messages from DLQ on a given machine:
+
+```
+DIRECT=OS:{MACHINE-NAME}\SYSTEM$;DEADLETTER 
+DIRECT=OS:{MACHINE-NAME}\SYSTEM$;DEADXACT
+```
+
+#### Performance counters
+
+The [**MSMQ Queue**](https://technet.microsoft.com/en-us/library/cc771098.aspx#Anchor_2) performance object contains counters that can be used to monitor the number of messages in different queue. Value of the **Messages in Queue** counter of the **Computer Queues** instance denotes the number of messages in the DLQ on a given machine.
