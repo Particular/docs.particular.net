@@ -23,7 +23,7 @@ The sample uses a `.proto` file to generate the message contract.
 
 snippet: proto
 
-This is done using `proroc.exe`
+This is done using `protoc.exe`
 
 ```dos
 protoc.exe -I=C:\Code\Sample --csharp_out=C:\Code\Sample C:\Code\Sample\CreateOrder.proto
