@@ -15,10 +15,20 @@
 
         void StorageDirectory(EndpointConfiguration endpointConfiguration)
         {
-            #region LearningTransport-StorageDirectory
+            #region StorageDirectory
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
             transport.StorageDirectory("PathToStoreTransportFiles");
+
+            #endregion
+        }
+
+        void NoPayloadSizeRestriction(EndpointConfiguration endpointConfiguration)
+        {
+            #region NoPayloadSizeRestriction
+
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.NoPayloadSizeRestriction();
 
             #endregion
         }

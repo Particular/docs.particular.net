@@ -29,9 +29,16 @@ By default all data is stored in a `.learningtransport` directory that exists at
 
 To configure the storage location:
 
-snippet: LearningTransport-StorageDirectory
+snippet: StorageDirectory
 
 WARNING: When using source control the storage directory should be excluded and never committed.
+
+
+### Payload size restriction
+
+To simulate a real transport, the serialized message size supported by the learning transport is limited to 64 kB. To remove this restriction:
+
+snippet: NoPayloadSizeRestriction
 
 
 ## File System Structure
