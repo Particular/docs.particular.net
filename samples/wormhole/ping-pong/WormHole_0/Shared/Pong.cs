@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 
-public class Pong : IEvent
+public class Pong : IMessage
 {
     public string Payload { get; set; }
 }

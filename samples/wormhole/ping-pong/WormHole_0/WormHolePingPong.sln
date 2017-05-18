@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayA", "GatewayA\GatewayA.csproj", "{AD0409EA-1B9F-48B0-B920-215F4239D285}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayB", "GatewayB\GatewayB.csproj", "{A4A997F9-75F0-4D52-A374-307C22AD668E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,8 @@ Global
 		{F8E8FC3E-0EDA-4B77-A2DE-A3C35DF616AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD0409EA-1B9F-48B0-B920-215F4239D285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD0409EA-1B9F-48B0-B920-215F4239D285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4A997F9-75F0-4D52-A374-307C22AD668E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4A997F9-75F0-4D52-A374-307C22AD668E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

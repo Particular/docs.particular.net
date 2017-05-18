@@ -35,7 +35,7 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        Console.WriteLine("Press <enter> to sent a message");
+        Console.WriteLine("Press <enter> to send a message");
         while (true)
         {
             Console.ReadLine();

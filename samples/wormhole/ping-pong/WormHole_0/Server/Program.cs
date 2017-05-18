@@ -27,7 +27,6 @@ class Program
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
-        endpointConfiguration.HeartbeatPlugin("Particular.ServiceControl");
         endpointConfiguration.EnableInstallers();
 
         endpointConfiguration.UseWormHoleGateway("Gateway.SiteB");
