@@ -1,0 +1,1 @@
+Error queue address is mandatory can be configured in several ways.
