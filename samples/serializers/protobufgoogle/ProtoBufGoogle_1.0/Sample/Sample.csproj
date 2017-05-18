@@ -43,7 +43,7 @@
     <Compile Include="CreateOrder.partial.cs" />
     <Compile Include="Program.cs" />
     <None Include="packages.config" />
-    <Content Include="CreateOrder.proto.txt" />
+    <None Include="CreateOrder.proto" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
