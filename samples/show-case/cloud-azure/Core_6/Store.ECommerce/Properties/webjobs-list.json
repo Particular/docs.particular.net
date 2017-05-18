@@ -12,6 +12,21 @@
     },
     {
       "filePath": "../Store.ContentManagement/Store.ContentManagement.csproj"
+    },
+    {
+      "filePath": "../Store.CustomerRelations/Store.CustomerRelations.csproj"
+    },
+    {
+      "filePath": "../Store.Operations/Store.Operations.csproj"
+    },
+    {
+      "filePath": "../Store.Sales/Store.Sales.csproj"
+    },
+    {
+      "filePath": "../Store.CustomerRelations/Store.CustomerRelations.csproj"
+    },
+    {
+      "filePath": "../Store.ContentManagement/Store.ContentManagement.csproj"
     }
   ]
 }
