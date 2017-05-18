@@ -57,6 +57,11 @@ So downtime is proportional to the time taken for the MSMQ service to restart on
 
 Remote queues are not supported for MSMQ as this conflicts with the [Distributed Bus architectural style](/nservicebus/architecture/) that is predicated on concepts of durability, autonomy and avoiding a single point of failure. For scenarios where a [Broker style architecture](/nservicebus/architecture/) is required use transports like [Sql Server](/nservicebus/sqlserver/) and [RabbitMQ](/nservicebus/rabbitmq/).
 
+## Error queue configuration
+
+The transport requires all endpoints to configure the error queue address. The centralized error queue is a recommended setup for production scenarios.
+
+See the [recoverability documentation](/nservicebus/recoverability/configure-error-handling.md) for details on how to configure the error queue address.
 
 ## Public Queues
 
