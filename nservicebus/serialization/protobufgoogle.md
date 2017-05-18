@@ -1,5 +1,5 @@
 ---
-title: ProtocolBuf-Google Serializer
+title: ProtoBuf-Google Serializer
 component: ProtoBufGoogle
 reviewed: 2017-05-17
 related:
