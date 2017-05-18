@@ -19,11 +19,12 @@ partial: config
 
 ### Monitoring DLQ
 
-MSMQ moves messages that cannot be delivered to their destination to the DLQ. This may be due to misconfiguration of [routing](/nservicebus/messaging/routing) or queues being purged. See [Dead-Letter Queues](https://msdn.microsoft.com/en-us/library/ms706227.aspx) for a comprehensive list of conditions under which messages may be moved to the DLQ.
+MSMQ moves messages that cannot be delivered to their destination to the DLQ. This may be due to misconfiguration of [routing](/nservicebus/messaging/routing.md) or queues being purged. See [Dead-Letter Queues](https://msdn.microsoft.com/en-us/library/ms706227.aspx) for a comprehensive list of conditions under which messages may be moved to the DLQ.
 
 It is very important to monitor the DLQ in order to detect potential routing configuration errors or other situations that may lead to messages being moved to the dead-letter queue.
 
 NOTE: While there is usually a central error queue managed by NServiceBus, each machine has a separate dead-letter queue. This means that the DLQ on each machine has to be monitored individually.
+
 
 #### Reading messages from DLQ
 
@@ -34,6 +35,7 @@ DIRECT=OS:{MACHINE-NAME}\SYSTEM$;DEADLETTER
 DIRECT=OS:{MACHINE-NAME}\SYSTEM$;DEADXACT
 ```
 
+
 #### Performance counters
 
-The [**MSMQ Queue**](https://technet.microsoft.com/en-us/library/cc771098.aspx#Anchor_2) performance object contains counters that can be used to monitor the number of messages in different queue. Value of the **Messages in Queue** counter of the **Computer Queues** instance denotes the number of messages in the DLQ on a given machine.
+The [**MSMQ Queue**](https://technet.microsoft.com/en-us/library/cc771098.aspx#Anchor_2) performance object contains counters that can be used to monitor the number of messages in various queues. Value of the **Messages in Queue** counter of the **Computer Queues** instance tracks the number of messages in the DLQ on a given machine.
