@@ -24,7 +24,7 @@ snippet: LearningTransport
 
 ### Concurrency
 
-By default the transport runs with concurrency limited to 1. See the [tuning](/nservicebus/operations/tuning) for details on how to configure concurrency levels.
+By default the transport runs with concurrency limited to 1. See the [tuning](/nservicebus/operations/tuning.md) for details on how to configure concurrency levels.
 
 Note: Production transports will run with higher concurrency setting by default
 
