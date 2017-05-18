@@ -31,10 +31,9 @@ protoc.exe -I=C:\Code\Sample --csharp_out=C:\Code\Sample C:\Code\Sample\CreateOr
 
 With the resultant class definitions residing in `CreateOrder.cs`
 
-
-include: protobufgoogleinfo
-
-
 To mark the generated class as an NServiceBus `IMessage` a partial class is used.
 
 snippet: partial
+
+include: protobufgoogleinfo
+
