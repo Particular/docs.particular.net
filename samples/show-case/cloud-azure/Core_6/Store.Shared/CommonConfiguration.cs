@@ -5,10 +5,10 @@ using NServiceBus.Encryption.MessageProperty;
 
 public static class CommonConfiguration
 {
-    public static void ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration, Action<TransportExtensions<AzureStorageQueueTransport>> messageEndpointMappings = null)
+    public static void ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration,  
+        Action<TransportExtensions<AzureStorageQueueTransport>> messageEndpointMappings = null,
+        string connectionString = "UseDevelopmentStorage=true")
     {
-        var connectionString = "UseDevelopmentStorage=true";
-
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString(connectionString);
 
