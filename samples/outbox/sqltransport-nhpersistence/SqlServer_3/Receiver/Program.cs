@@ -23,7 +23,7 @@ class Program
         var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
-            x.ConnectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True";
+            x.ConnectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True;Max Pool Size=100; Min Pool Size=100";
             x.Dialect<MsSql2012Dialect>();
         });
         var mapper = new ModelMapper();
@@ -39,14 +39,16 @@ class Program
         #region ReceiverConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True");
-
+        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True;Max Pool Size=100; Min Pool Size=100");
+        
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);
 
         endpointConfiguration.EnableOutbox();
 
         #endregion
+
+        transport.Routing().RouteToEndpoint(typeof(OrderAccepted).Assembly, "Samples.SQLNHibernateOutbox.Sender");
 
         #region RetriesConfiguration
 
