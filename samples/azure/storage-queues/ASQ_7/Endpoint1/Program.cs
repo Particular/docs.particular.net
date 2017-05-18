@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Features;
+using AzureStorageQueueTransport = NServiceBus.AzureStorageQueueTransport;
 
 class Program
 {
-
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
@@ -21,7 +22,9 @@ class Program
 
         #endregion
 
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.DisableFeature<TimeoutManager>();
+        endpointConfiguration.DisableFeature<MessageDrivenSubscriptions>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
