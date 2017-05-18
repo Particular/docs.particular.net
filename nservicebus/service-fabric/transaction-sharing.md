@@ -18,6 +18,12 @@ include: saga-business-data-access
 
 snippet: ServiceFabricPersistenceSynchronizedSession-Saga
 
-Warning: Shared transaction should not be committed (`CommitAsync()`) or disposed (`Dispose()`) in the handler or the saga. When data needs to be persisted to a custom collection during handler or saga execution, a new transaction should be created using the `StateManager` property of the incoming session.
+Warning: Shared transaction should not be committed (`CommitAsync()`) or disposed (`Dispose()`) in the handler or the saga. 
+
+### Using a custom transaction
+
+When data needs to be persisted to a custom collection during handler or saga execution, a new transaction should be created using the `StateManager` property of the incoming session.
+
+Service Fabric transactions should be as short lived as possible and touch only a single resource to reduce lock contention and avoid timeouts.
 
 snippet: CustomTransaction
