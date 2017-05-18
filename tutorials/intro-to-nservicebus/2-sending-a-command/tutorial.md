@@ -96,7 +96,7 @@ To share message between endpoints they need to be self-contained within a separ
  1. In the solution, create a new project and select the **Class Library** project type.
  1. Set the name of the project to **Messages**.
  1. Remove the automatically created **Class1.cs** file from the project.
- 1. Add the NServiceBus NuGet package to the Messages project.
+ 1. Add the NServiceBus NuGet package to the **Messages** project.
  1. In the **ClientUI** project, add a reference to the **Messages** project.
 
 
