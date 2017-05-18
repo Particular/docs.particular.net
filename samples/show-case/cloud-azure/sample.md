@@ -44,6 +44,7 @@ include: showcase-featureusage
 
 This sample has been designed to run in a development environment under the Azure Storage Emulator. In order to deploy the sample to the cloud the following should be considered:
 
+ 1. Application setting with the key `AzureWebJobsEnv` must be set to a value other than `Development`.
  1. An [Azure Storage account must be created](https://docs.microsoft.com/en-us/azure/storage/storage-create-storage-account#create-a-storage-account).
- 1. Each endpoint is hardcoded to use the development storage. The connection string passed into the Azure Storage Queues transport and the Azure Storage persistence in `CommonConfiguration.ApplyCommonConfiguration()` must be updated to point to the Storage Account configured in step 1.
+ 1. By default, each endpoint is using the development storage. Application setting with the key `NServiceBus.ConnectionString` must be defined and its value set to the Storage Account connection string configured in step 1.
  1. In order to support the elastic scale capabilities of the Azure platform, a [SignalR backplane](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-in-signalr) must be added to the `ECommerce` endpoint.
