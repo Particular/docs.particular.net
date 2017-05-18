@@ -22,6 +22,11 @@ Currently [ServiceControl](/servicecontrol/) (and hence [ServicePulse](/servicep
 
 snippet: LearningTransport
 
+### Concurrency
+
+By default the transport runs with concurrency limited to 1. See the [tuning](/nservicebus/operations/tuning) for details on how to configure concurrency levels.
+
+Note: Production transports will run with higher concurrency setting by default
 
 ### Storage Directory
 
