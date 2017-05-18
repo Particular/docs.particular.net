@@ -19,7 +19,7 @@ As shown in this diagram, the **ClientUI** endpoint, which serves as a stand-in 
 
 ![Initial Solution](before.svg)
 
-The solution mimics a real-life retail system, where the command to place an order occurs as a result of a customer interaction, and the actual processing occurs in the background. By publishing an event, the code to bill the credit card is isolated from the code to place the order, reducing coupling and making the system easier to maintain over the long term. Later in this tutorial, we'll see how to add a second subscriber in a **Shipping** endpoint which would begin the process of shipping the order.
+The solution mimics a real-life retail system, where [the command to place an order](/nservicebus/messaging/messages-events-commands.md#command) is sent as a result of a customer interaction, and the actual processing occurs in the background. By publishing an [event](/nservicebus/messaging/messages-events-commands.md#event), the code to bill the credit card is isolated from the code to place the order, reducing coupling and making the system easier to maintain over the long term. Later in this tutorial, we'll see how to add a second subscriber in a **Shipping** endpoint which would begin the process of shipping the order.
 
 
 ## Running the solution
@@ -80,8 +80,34 @@ By using automatic retries, you can avoid losing data or having your system left
 
 ## Easy to extend
 
-Stub: Instructions for adding Shipping service with subscriber for OrderPlaced
+As mentioned previously, publishing events using the Publish/Subscribe pattern reduces coupling and makes maintaining a system easier over the long term. Let's look at how you can add an additional subscriber without needing to modify any of the existing code.
+
+
+### Creating a new endpoint
+
+Let's create a new messaging endpoint called **Shipping** that will also subscribe to the `OrderPlaced` event. First we'll create the project and set up its dependencies:
+
+1. In the solution, create a new **Console Application** project named **Shipping**.
+1. In the **Shipping** project, add the NServiceBus NuGet package, which is already present in the other projects in the solution:
+    ```
+    Install-Package NServiceBus -ProjectName Shipping
+    ```
+1. In the **Shipping** project, add a reference to the **Messages** project, so that we have access to the `OrderPlaced` event.
+
+Now that we have a project for the Shipping endpoint, we need to add some code to configure and start an NServiceBus endpoint:
+
+snippet: ShippingProgram
+
+You'll want the Shipping endpoint to run when you debug the solution, so use Visual Studio's [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx) to configure the Shipping endpoint to start along with ClientUI, Sales, and Billing.
+
+
+### Creating a new message handler
+
+Continuing here...
+
 
 ## Summary
 
 Summarize, link to CTA
+
+ -- idea from Weronika - link to "All my errors are severe"?
