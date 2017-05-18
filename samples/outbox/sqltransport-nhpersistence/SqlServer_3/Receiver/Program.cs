@@ -40,13 +40,15 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(@"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True");
-
+        
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);
 
         endpointConfiguration.EnableOutbox();
 
         #endregion
+
+        transport.Routing().RouteToEndpoint(typeof(OrderAccepted).Assembly, "Samples.SQLNHibernateOutbox.Sender");
 
         #region RetriesConfiguration
 
