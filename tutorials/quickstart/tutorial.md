@@ -2,6 +2,9 @@
 title: "NServiceBus Quick Start"
 reviewed: 2017-05-05
 summary: TODO
+extensions:
+- !!tutorial
+  downloadAtTop: true
 ---
 
 In this tutorial, you'll see firsthand how a software system built on asynchronous messaging using NServiceBus is superior to integrating with HTTP-based web services. You'll discover how using NServiceBus gives you the advantages of reliability and extensibility you just can't achieve building services as REST endpoints.
@@ -77,6 +80,8 @@ As you watch the **Sales** window, 80% of the messages will go through as normal
 
 By using automatic retries, you can avoid losing data or having your system left in an inconsistent state on account of a stray database deadlock. No more spelunking through the database trying to fix business processes gone wrong!
 
+Of course, there are other exceptions that are harder to recover from than simple database deadlocks. NServiceBus contains [recoverability tools](/nservicebus/recoverability/) to handle all of them and ensure that no message is ever left behind or forgotten.
+
 
 ## Easy to extend
 
@@ -89,7 +94,7 @@ Let's create a new messaging endpoint called **Shipping** that will also subscri
 
 1. In the solution, create a new **Console Application** project named **Shipping**.
 1. In the **Shipping** project, add the NServiceBus NuGet package, which is already present in the other projects in the solution:
-    ```
+    ```no-highlight
     Install-Package NServiceBus -ProjectName Shipping
     ```
 1. In the **Shipping** project, add a reference to the **Messages** project, so that we have access to the `OrderPlaced` event.
@@ -103,11 +108,46 @@ You'll want the Shipping endpoint to run when you debug the solution, so use Vis
 
 ### Creating a new message handler
 
-Continuing here...
+Next, we need a message handler to process the `OrderPlaced` event. When NServiceBus starts up, it will detect the message handler and handle subscribing to the event automatically.
+
+To create the message handler:
+
+1. In the **Shipping** project, create a new class named `OrderPlacedHandler`.
+1. Mark the handler class as public, and implement the `IHandleMessages<OrderPlaced>`.
+1. Add a logger instance, which will allow you to take advantage of the smae logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the entries written with the logger will appear in the log file in addition to the console. Use this code to add the logger instance to your handler class:
+    ```cs
+    static ILog logger = LogManager.GetLogger<OrderPlacedHandler>();
+    ```
+1. Within the `Handle` method, use the logger to record the receipt of the `OrderPlaced` message, including the value of the `OrderId` message property:
+    ```cs
+    logger.Info($"Received OrderPlaced, OrderId = {message.OrderId}");
+    ```
+1. Since everything we have done in this handler method is synchronous, return `Task.CompletedTask`.
+
+When complete, your `OrderPlacedHandler` class should look like this:
+
+snippet: OrderPlacedHandler
+
+
+### Run the updated solution
+
+Now run the solution, and assuming you remembered to [update the startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), a window for the **Shipping** endpoint will open in addition to the other three.
+
+As you place orders by pressing `P` in the **ClientUI** window, you will see the **Shipping** endpoint reacting to the `OrderPlaced` as well:
+
+    INFO  Shipping.OrderPlacedHandler Shipping has received OrderPlaced, OrderId = 25c5ba63-eed8-4531-9caa-ffe353105ee1
+
+**Shipping** is now receiving the event published by **Sales**, without ever having to change the code in the **Sales** endpoint. Additional subscribers could be added, for example, to email a receipt to the customer, notify a fulfillment agency via a web service, update a wish list or gift registry, or update "frequently bought together" information. Each business activity would occur in its own isolated message handler, not dependent upon anything else in the system.
 
 
 ## Summary
 
-Summarize, link to CTA
+In this tutorial, you explored the basics of how an NServiceBus messaging system works.
 
- -- idea from Weronika - link to "All my errors are severe"?
+Through the use of asynchronous messaging, you saw how a failure in one part of a system can be isolated and not lead to the entire system failing, bringing a level of resilience and reliability not possible with a REST-based web service.
+
+You saw how automatic retries provides protection from transient failures like database deadlocks. By implementing a multi-step process as a series of message handlers, each step can execute independently and retry if a failure occurs. This means that a stray exception won't abort an entire process, leaving the system in an inconsistent state.
+
+You also implemented an additional event subscriber, showing how you can decouple independent bits of a business process from each other. The ability to publish one event and then implement resulting steps in separate message handlers makes it much easier to maintain and evolve each piece independently, without introducing bugs in a monolithic process.
+
+If you'd like to learn more about NServiceBus, check out our [Introduction to NServiceBus tutorial](https://docs.particular.net/tutorials/intro-to-nservicebus/). In it, you'll learn how to build the same RetailDemo solution from the ground up, while learning the messaging concepts you'll need to know to build complex software systems with NServiceBus.

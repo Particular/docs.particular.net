@@ -3,6 +3,8 @@ using Messages;
 using NServiceBus;
 using NServiceBus.Logging;
 
+#region OrderPlacedHandler
+
 namespace Shipping
 {
     public class OrderPlacedHandler :
@@ -17,3 +19,5 @@ namespace Shipping
         }
     }
 }
+
+#endregion
