@@ -7,7 +7,7 @@ Transports need to implement a custom queue creator.
 
 The queue creation process is always executed sequentially.
 
-Here a sample of a queue creator
+Here is a sample of a queue creator
 
 snippet: CustomQueueCreator
 
