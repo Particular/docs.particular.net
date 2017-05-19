@@ -23,7 +23,14 @@ public class MvcApplication :
     {
         var endpointConfiguration = new EndpointConfiguration("Store.ECommerce");
         endpointConfiguration.PurgeOnStartup(true);
-        endpointConfiguration.ApplyCommonConfiguration();
+        endpointConfiguration.ApplyCommonConfiguration(transport =>
+        {
+            var routing = transport.Routing();
+            routing.RouteToEndpoint(typeof(Store.Messages.Commands.SubmitOrder).Assembly, "Store.Messages.Commands", "Store.Sales");
+            routing.RegisterPublisher(typeof(Store.Messages.Events.DownloadIsReady), "Store.ContentManagement");
+            routing.RegisterPublisher(typeof(Store.Messages.Events.OrderCancelled), "Store.Sales");
+            routing.RegisterPublisher(typeof(Store.Messages.Events.OrderPlaced), "Store.Sales");
+        });
 
         EndpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

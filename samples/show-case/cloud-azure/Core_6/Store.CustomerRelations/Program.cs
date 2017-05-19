@@ -26,7 +26,14 @@ public class Program
     {
         Console.Title = "Samples.Store.CustomerRelations";
         var endpointConfiguration = new EndpointConfiguration("Store.CustomerRelations");
-        endpointConfiguration.ApplyCommonConfiguration();
+        endpointConfiguration.ApplyCommonConfiguration(transport =>
+        {
+            var routing = transport.Routing();
+            routing.RegisterPublisher(typeof(Store.Messages.Events.ClientBecamePreferred).Assembly, "Store.Messages.Events", "Store.Sales");
+            routing.RegisterPublisher(typeof(Store.Messages.Events.ClientBecamePreferred), "Store.CustomerRelations");
+        });
+
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 

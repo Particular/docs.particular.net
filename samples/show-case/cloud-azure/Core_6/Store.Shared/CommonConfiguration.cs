@@ -1,15 +1,25 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
+using Microsoft.Azure;
 using NServiceBus;
 using NServiceBus.Encryption.MessageProperty;
 
 public static class CommonConfiguration
 {
-    public static void ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration)
+    public static void ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration,  
+        Action<TransportExtensions<AzureStorageQueueTransport>> messageEndpointMappings = null)
     {
-        var connectionString = "UseDevelopmentStorage=true";
+        var connectionString = CloudConfigurationManager.GetSetting("NServiceBus.ConnectionString");
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            connectionString = "UseDevelopmentStorage=true";
+        }
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString(connectionString);
+
+        messageEndpointMappings?.Invoke(transport);
+
         var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
         persistence.ConnectionString(connectionString);
         var defaultKey = "2015-10";
