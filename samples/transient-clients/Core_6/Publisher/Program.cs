@@ -19,7 +19,11 @@ static class Program
 
         endpointConfiguration.SendFailedMessagesTo("error");
 
+        #region MessageConventionsForNonNSB
+
         endpointConfiguration.Conventions().DefiningEventsAs(t => t == typeof(StockTick));
+
+        #endregion
 
         endpointConfiguration.EnableInstallers();
 
