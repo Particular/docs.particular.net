@@ -3,15 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCTransportAdapter_0", "SCTransportAdapter_0\SCTransportAdapter_0.csproj", "{B399667B-E1EF-4096-B175-AD099090129E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCTransportAdapter_1", "SCTransportAdapter_1\SCTransportAdapter_1.csproj", "{7DBB1E57-F928-43B7-B6A3-0A46CE21B02B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B399667B-E1EF-4096-B175-AD099090129E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B399667B-E1EF-4096-B175-AD099090129E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DBB1E57-F928-43B7-B6A3-0A46CE21B02B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DBB1E57-F928-43B7-B6A3-0A46CE21B02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DBB1E57-F928-43B7-B6A3-0A46CE21B02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DBB1E57-F928-43B7-B6A3-0A46CE21B02B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
