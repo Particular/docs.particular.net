@@ -21,6 +21,7 @@ static class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+
         var routing = transport.Routing();
 
         routing.RegisterPublisher(
@@ -44,9 +45,6 @@ static class Program
             Console.WriteLine("NServiceBus subscriber running");
             Console.WriteLine("Press any key to exit");
             Console.ReadKey(true);
-
-            await endpointInstance.Unsubscribe<StockTick>()
-                .ConfigureAwait(false);
 
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
