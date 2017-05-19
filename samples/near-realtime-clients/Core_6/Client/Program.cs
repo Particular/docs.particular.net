@@ -11,7 +11,7 @@ static class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.TransientClients.Client";
+        Console.Title = "Samples.NearRealTimeClients.Client";
 
         Console.WriteLine("Press any key to connect.");
         Console.ReadKey(true);

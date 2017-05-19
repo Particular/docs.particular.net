@@ -11,8 +11,8 @@ static class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.TransientClients.Publisher";
-        var endpointConfiguration = new EndpointConfiguration("Samples.TransientClients.Publisher");
+        Console.Title = "Samples.NearRealTimeClients.Publisher";
+        var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.Publisher");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<MsmqTransport>();

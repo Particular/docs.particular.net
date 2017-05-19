@@ -14,9 +14,9 @@ static class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.TransientClients.ClientHub";
+        Console.Title = "Samples.NearRealTimeClients.ClientHub";
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.TransientClients.ClientHub");
+        var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.ClientHub");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
@@ -25,7 +25,7 @@ static class Program
 
         routing.RegisterPublisher(
             eventType: typeof(StockTick),
-            publisherEndpoint: "Samples.TransientClients.Publisher");
+            publisherEndpoint: "Samples.NearRealTimeClients.Publisher");
 
         endpointConfiguration.SendFailedMessagesTo("error");
 
