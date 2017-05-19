@@ -150,4 +150,4 @@ You saw how automatic retries provides protection from transient failures like d
 
 You also implemented an additional event subscriber, showing how you can decouple independent bits of a business process from each other. The ability to publish one event and then implement resulting steps in separate message handlers makes it much easier to maintain and evolve each piece independently, without introducing bugs in a monolithic process.
 
-If you'd like to learn more about NServiceBus, check out our [Introduction to NServiceBus tutorial](https://docs.particular.net/tutorials/intro-to-nservicebus/). In it, you'll learn how to build the same RetailDemo solution from the ground up, while learning the messaging concepts you'll need to know to build complex software systems with NServiceBus.
+If you'd like to learn more about NServiceBus, check out our [Introduction to NServiceBus tutorial](/tutorials/intro-to-nservicebus/). In it, you'll learn how to build the same RetailDemo solution from the ground up, while learning the messaging concepts you'll need to know to build complex software systems with NServiceBus.
