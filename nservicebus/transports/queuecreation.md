@@ -10,4 +10,6 @@ partial: warning
 
 partial: scripts
 
-partial: content
+partial: declaration
+
+partial: creation
