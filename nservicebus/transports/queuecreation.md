@@ -2,7 +2,7 @@
 title: Creating queues
 summary: Explains how queues are created
 component: Core
-reviewed: 2016-09-08
+reviewed: 2017-05-19
 versions: '[4,]'
 ---
 
