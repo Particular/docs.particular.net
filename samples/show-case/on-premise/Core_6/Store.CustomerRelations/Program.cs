@@ -4,7 +4,6 @@ using NServiceBus;
 
 class Program
 {
-
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
