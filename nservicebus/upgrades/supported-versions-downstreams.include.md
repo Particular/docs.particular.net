@@ -321,3 +321,10 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 2.0.x     | 2016-10-24     | 2018-02-07        | Superseded by 3.0.x               |
 | 1.0.x     | 2016-10-11     | 2017-10-24        | Superseded by 2.0.x               |
 
+#### ServiceControl.TransportAdapter
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 0.2.x     | 2017-01-25     | -                 | -                                 |
+| ~~0.1.x~~ | ~~2017-01-23~~ | ~~2017-04-25~~    | ~~Superseded by 0.2.x~~           |
+

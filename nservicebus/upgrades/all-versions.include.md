@@ -2,7 +2,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 6.2.x     | 2017-03-28     | -                 | -                                 |
+| 6.3.x     | 2017-05-19     | -                 | -                                 |
+| 6.2.x     | 2017-03-28     | 2017-11-19        | Superseded by 6.3.x               |
 | 6.1.x     | 2016-12-13     | 2017-09-28        | Superseded by 6.2.x               |
 | 6.0.x     | 2016-10-11     | 2017-06-13        | Superseded by 6.1.x               |
 | 5.2.x     | 2015-02-12     | 2018-10-11        | Superseded by 6.0.x               |
@@ -601,4 +602,11 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 3.0.x     | 2017-02-07     | -                 | -                                 |
 | 2.0.x     | 2016-10-24     | 2018-02-07        | Superseded by 3.0.x               |
 | 1.0.x     | 2016-10-11     | 2017-10-24        | Superseded by 2.0.x               |
+
+#### ServiceControl.TransportAdapter
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 0.2.x     | 2017-01-25     | -                 | -                                 |
+| ~~0.1.x~~ | ~~2017-01-23~~ | ~~2017-04-25~~    | ~~Superseded by 0.2.x~~           |
 
