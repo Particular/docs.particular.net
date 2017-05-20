@@ -1,7 +1,7 @@
 ---
 title: On Premise Show Case
 summary: Implements a fictional store utilizing several features of NServiceBus.
-reviewed: 2016-03-21
+reviewed: 2017-05-20
 component: Core
 ---
 
