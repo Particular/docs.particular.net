@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaptureMessageSessionBehavior.cs" />
+    <Compile Include="DispatchLegacyBusMessgesBehavior.cs" />
     <Compile Include="DownstreamMessage.cs" />
     <Compile Include="DownstreamMessageHandler.cs" />
     <Compile Include="ForwardCultureBehavior.cs" />

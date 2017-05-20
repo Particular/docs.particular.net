@@ -30,17 +30,14 @@ class Program
         config.Pipeline.Register(new ForwardCultureBehavior(), "Copies the culture of incoming message to the outgoing messages.");
         config.Pipeline.Register(new SetPrincipalBehavior(), "Sets principal value based on headers.");
         config.Pipeline.Register(new ForwardUserBehavior(), "Copies the user name from the incoming message to the outgoing message.");
+        config.Pipeline.Register(new DispatchLegacyBusMessgesBehavior(), "Dispatches messages sent by legacy bus replacement.");
 
         config.RegisterComponents(c =>
         {
             c.ConfigureComponent<MyFacade>(DependencyLifecycle.InstancePerCall);
             c.ConfigureComponent<MyService>(DependencyLifecycle.InstancePerCall);
             c.ConfigureComponent<MyOtherService>(DependencyLifecycle.InstancePerCall);
-            c.ConfigureComponent(b =>
-            {
-                var context = CaptureMessageSessionBehavior.CurrentSession.Value;
-                return new LegacyBus(context);
-            }, DependencyLifecycle.InstancePerCall);
+            c.ConfigureComponent<LegacyBus>(DependencyLifecycle.InstancePerUnitOfWork);
         });
 
         var endpoint = await Endpoint.Start(config);
