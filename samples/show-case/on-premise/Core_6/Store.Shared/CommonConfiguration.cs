@@ -1,12 +1,15 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using NServiceBus;
 using NServiceBus.Encryption.MessageProperty;
 
 public static class CommonConfiguration
 {
-    public static void ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration)
+    public static void ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration,
+        Action<TransportExtensions<LearningTransport>> messageEndpointMappings = null)
     {
-        endpointConfiguration.UseTransport<LearningTransport>();
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        messageEndpointMappings?.Invoke(transport);
         endpointConfiguration.UsePersistence<LearningPersistence>();
         var defaultKey = "2015-10";
         var ascii = Encoding.ASCII;

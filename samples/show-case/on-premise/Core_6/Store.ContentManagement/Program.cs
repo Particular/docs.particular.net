@@ -14,7 +14,11 @@ class Program
     {
         Console.Title = "Samples.Store.ContentManagement";
         var endpointConfiguration = new EndpointConfiguration("Store.ContentManagement");
-        endpointConfiguration.ApplyCommonConfiguration();
+        endpointConfiguration.ApplyCommonConfiguration(transport =>
+        {
+            var routing = transport.Routing();
+            routing.RouteToEndpoint(typeof(Store.Messages.RequestResponse.ProvisionDownloadRequest), "Store.Operations");
+        });
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

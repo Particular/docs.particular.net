@@ -52,9 +52,6 @@
     <Compile Include="ProvisionDownloadResponseHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="app.manifest" />
     <None Include="packages.config" />
   </ItemGroup>
