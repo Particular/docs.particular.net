@@ -1,0 +1,3 @@
+Adapter\Adapter.csproj
+Sales\Sales.csproj
+Shipping\Shipping.csproj
