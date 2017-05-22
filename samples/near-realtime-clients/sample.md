@@ -1,6 +1,6 @@
 ---
 title: Near Real Time Transient Client Sample
-reviewed: 2017-0real5-16
+reviewed: 2017-05-22
 component: Core
 related: 
  - nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
@@ -20,7 +20,7 @@ This sample demonstrates how to use a SignalR server, that also acts as an NServ
 
 ## Sample Project Structure
 
-Before running the sample, look over the solution structure, the projects, and the classes. The projects `Publisher` and `ClientHub` each command line apps that host an instance of NServiceBus.
+Before running the sample, look over the solution structure, the projects, and the classes. The projects `Publisher` and `ClientHub` are each command-line apps that host an instance of NServiceBus.
 
 The `ClientHub` project also hosts a SignalR server. The `Client` project is a command line app that hosts a SignalR client.
 
