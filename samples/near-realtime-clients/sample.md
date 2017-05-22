@@ -8,7 +8,7 @@ related:
  - samples/show-case
 ---
 
-For near real-time, occasionally connected clients, messages are only relevant for a short period of time. Clients that received near real time stock ticker updates are a common example of these types of clients.
+For near real-time, occasionally connected clients, messages are only relevant for a short period of time. Clients that received near real-time stock ticker updates are a common example of these types of clients.
 
 One of the basic features of message queuing is the ability for the receiving endpoints to maintain service even when offline.  In this scenario, the long lasting, durable nature of message queuing can result in a backlog of irrelevant messages, which if disconnected long enough can result in queue quotas being exceeded, and can ultimately result in exceptions on the message sender possibly impacting other parts of the system.
 
@@ -16,7 +16,7 @@ A possible answer is to [unsubscribe](/nservicebus/messaging/publish-subscribe/c
 
 Another solution is to avoid implementing each client as an NServiceBus endpoint, but instead use a push technology, such as [SignalR](http://signalr.net/), to update clients only while they are connected.
 
-This sample demonstrates how to use a SignalR server, that also acts as an NServiceBus endpoint, to push subscribed NServiceBus events to any connected SignalR clients.
+This sample demonstrates how to use a SignalR server, which also acts as an NServiceBus endpoint, to push subscribed NServiceBus events to any connected SignalR clients.
 
 ## Sample Project Structure
 
@@ -56,13 +56,13 @@ snippet: StockTickHandler
 
 ## Web Applications
 
-In this sample the SignalR client is implemented as a .NET console application. The client could just as easily be implemented using the JavaScript SignalR client hosted in a web application.
+In this sample, the SignalR client is implemented as a .NET console application. The client could just as easily be implemented using the JavaScript SignalR client hosted in a web application.
 
 
 
 ## Scaling Out SignalR with NServiceBus
 
-When the number of connected clients exceeds the capability of a single SignalR server it will be necessary to scale out the SignalR server. Scaling out SignalR is described in the [Introduction to Scaleout in SignalR](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-in-signalr) article by Microsoft.
+When the number of connected clients exceeds the capability of a single SignalR server, it will be necessary to scale out the SignalR server. Scaling out SignalR is described in the [Introduction to Scaleout in SignalR](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-in-signalr) article by Microsoft.
 
 Since each SignalR server can also be an NServiceBus subscriber, each scaled out instance of the server also receives and pushes events to its connected clients. This, along with a load balancer to distribute clients between the servers, is sufficient as long as the SignalR server is simply relaying NServiceBus events to the clients.
 
