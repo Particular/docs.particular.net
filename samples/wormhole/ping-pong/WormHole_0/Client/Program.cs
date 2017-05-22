@@ -39,12 +39,11 @@ class Program
         while (true)
         {
             Console.ReadLine();
-            var payload = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-            var message = new Ping
-            {
-                Payload = payload
-            };
-            await endpointInstance.Send(message)
+            var id = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+            var message = new Ping();
+            var options = new SendOptions();
+            options.SetMessageId(id);
+            await endpointInstance.Send(message, options)
                 .ConfigureAwait(false);
         }
     }

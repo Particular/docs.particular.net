@@ -8,10 +8,7 @@ class PingHandler : IHandleMessages<Ping>
     
     public Task Handle(Ping message, IMessageHandlerContext context)
     {
-        log.Info($"Ping {message.Payload}!");
-        return context.Reply(new Pong
-        {
-            Payload = message.Payload
-        });
+        log.Info($"Ping {context.MessageId}!");
+        return context.Reply(new Pong());
     }
 }

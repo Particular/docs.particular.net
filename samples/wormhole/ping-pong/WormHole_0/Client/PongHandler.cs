@@ -8,7 +8,7 @@ class PongHandler : IHandleMessages<Pong>
     
     public Task Handle(Pong message, IMessageHandlerContext context)
     {
-        log.Info($"Ping {message.Payload}!");
+        log.Info($"Ping {context.MessageHeaders[Headers.CorrelationId]}!");
         return Task.FromResult(0);
     }
 }
