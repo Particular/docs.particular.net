@@ -1,5 +1,6 @@
 ---
 title: Near Real Time Transient Client Sample
+summary: Shows how to relay NServiceBus events to occasionally-connected clients via SignalR.
 reviewed: 2017-05-22
 component: Core
 related: 
