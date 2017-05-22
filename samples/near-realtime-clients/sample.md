@@ -12,7 +12,7 @@ For near real-time, occasionally connected clients, messages are only relevant f
 
 One of the basic features of message queuing is the ability for the receiving endpoints to maintain service even when offline.  In this scenario, the long lasting, durable nature of message queuing can result in a backlog of irrelevant messages, which if disconnected long enough can result in queue quotas being exceeded, and can ultimately result in exceptions on the message sender possibly impacting other parts of the system.
 
-A possible answer is to [unsubscribe](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed#manually-subscribing-to-a-message) on shutdown, which is fragile since the client may not successfully complete the unsubscribe when a crash occurs.
+A possible answer is to [unsubscribe](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message) on shutdown, which is fragile since the client may not successfully complete the unsubscribe when a crash occurs.
 
 Another solution is to avoid implementing each client as an NServiceBus endpoint, but instead use a push technology, such as [SignalR](http://signalr.net/), to update clients only while they are connected.
 
