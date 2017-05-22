@@ -10,7 +10,7 @@ related:
 
 For near real-time, occasionally connected clients, messages are only relevant for a short period of time. Clients that received near real time stock ticker updates are a common example of these types of clients.
 
-One of the basic features of message queuing is the ability for the receiving endpoints to maintain service even when offline.  In this scenario, the long lasting, durable nature of message queuing can result in a backlog of irrelevant messages, which if disconnected long enough can result in queue quotas being exceeded, and can ultimately result in exceptions on the message sender possibly impacting other parts of your system.
+One of the basic features of message queuing is the ability for the receiving endpoints to maintain service even when offline.  In this scenario, the long lasting, durable nature of message queuing can result in a backlog of irrelevant messages, which if disconnected long enough can result in queue quotas being exceeded, and can ultimately result in exceptions on the message sender possibly impacting other parts of the system.
 
 A possible answer is to [unsubscribe](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed#manually-subscribing-to-a-message) on shutdown, which is fragile since the client may not successfully complete the unsubscribe when a crash occurs.
 
@@ -64,6 +64,6 @@ In this sample the SignalR client is implemented as a .NET console application. 
 
 When the number of connected clients exceeds the capability of a single SignalR server it will be necessary to scale out the SignalR server. Scaling out SignalR is described in the [Introduction to Scaleout in SignalR](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-in-signalr) article by Microsoft.
 
-Since each SignalR server can also be an NServiceBus subscriber, each scaled out instance of the server also receives and pushes events to it's connected clients. This, along with a load balancer to distribute clients between the servers, is sufficient as long as you are simply pushing NServiceBus events to the clients.
+Since each SignalR server can also be an NServiceBus subscriber, each scaled out instance of the server also receives and pushes events to its connected clients. This, along with a load balancer to distribute clients between the servers, is sufficient as long as the SignalR server is simply relaying NServiceBus events to the clients.
 
-If your SignalR usage extends beyond simply pushing NServiceBus events, then scaling out using a backplane will likely be necessary. In this case, using a backplane will result in duplicate messages, since each SignalR server is also a subscriber and will forward pushed events to other SignalR servers on the backplane. Instead, only deploy a single SignalR server that is also an NServiceBus subscriber. This will prevent duplicates, but at the expense of an additional message hop as the message is forwarded through the backplane to the clients.
+If SignalR usage extends beyond simply pushing NServiceBus events, then scaling out using a backplane will likely be necessary. In this case, using a backplane will result in duplicate messages, since each SignalR server is also a subscriber and will forward pushed events to other SignalR servers on the backplane. Instead, only deploy a single SignalR server that is also an NServiceBus subscriber. This will prevent duplicates, but at the expense of an additional message hop as the message is forwarded through the backplane to the clients.
