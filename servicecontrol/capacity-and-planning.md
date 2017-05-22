@@ -57,7 +57,7 @@ NOTE: ServiceControl HTTP API is subject to changes and enhancements that may no
 
 ServiceControl consumes audited, error and control messages in its database. It does so for all the endpoints that are configured to forward these messages to the queues monitored by ServiceControl. This means that the throughput (measured in received and processed messages per second) required by ServiceControl is the aggregate throughput of all the endpoints forwarding messages to its queues.
 
-The throughput of ServiceControl is dependent on multiple factors. Messages size and network bandwidth have significant affect on throughput. Another factor is the transport type used by the system.
+The throughput of ServiceControl is dependent on multiple factors. Messages size and network bandwidth have significant effect on throughput. Another factor is the transport type used by the system.
 
 
 #### Transport type
