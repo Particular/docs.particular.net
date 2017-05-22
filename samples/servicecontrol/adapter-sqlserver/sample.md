@@ -7,13 +7,20 @@ related:
  - servicecontrol/plugins
 ---
 
+
+The purpose of the adapter is to isolate ServiceControl from specifics of physical deployment topology of the business endpoints (such as [multi-instance](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) mode. In order to do so, the adapter provides a ServiceControl interface to the business endpoints.
+
+
 ## Prerequisistes
 
  1. [Install ServiceControl](/servicecontrol/installation.md).
- 1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using SQL Server transport.
+ 1. Create `ServiceControl` database on the local SQL Server instance. 
+ 1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using SQL Server transport:
 	 
-	* Use `Particular.ServiceControl.SQL` as the instance name (make sure there is no other instance of SC running with the same name).
-	* Use local `ServiceControl` on local SQL Server Express as the database (ServiceControl Manager will automatically create queue tables in the database). 
+	* Add a new ServiceControl instance: 
+	   * Use `Particular.ServiceControl.SQL` as the instance name (make sure there is no other instance of SC running with the same name).
+	   * Use "User" account and provide credentials to allow for integrated authentication.
+	   * Specify "Data Source=.\SQLEXPRESS;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10" as a connection string. ServiceControl Manager will automatically create queue tables in the database.
  1. Ensure the `ServiceControl` process is running before running the sample.
  1. In the same SQL Server instance, create databases for the endpoints: `sales`, `shipping` and `adapter`  
  1. [Install ServicePulse](/servicepulse/installation.md)
@@ -24,7 +31,7 @@ NOTE: In order to connect to a different SQL Server instance, ensure all databas
 ## Running the project
 
  1. Start the projects: Adapter, Sales and Shipping (right-click on the project, select the `Debug > Start new instance` option). Make sure adapter starts first because on start-up it creates a queue that is used for heartbeats.
- 1. Open ServicePulse and select the Endpoints Overview. `Samples.ServiceControl.SqlServerTransportAdapter.Shipping` endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed
+ 1. Open ServicePulse (by default it's available at http://localhost:9090/#/dashboard) and select the Endpoints Overview. `Samples.ServiceControl.SqlServerTransportAdapter.Shipping` endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed
  1. Go to the Sales console and press `o` to create an order.
  1. Notice the Shipping endpoint receives the `OrderAccepted` event from Sales and publishes `OrderShipped` event.
  1. Notice the Sales endpoint logs that it processed the `OrderShipped` event. 
@@ -92,8 +99,6 @@ snippet: ControlQueueOverride
 
 
 ## How it works
-
-The purpose of the adapter is to isolate ServiceControl from specifics of physical deployment topology of the business endpoints (such as [multi-instance](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) mode. In order to do so, the adapter provides a ServiceControl interface to the business endpoints.
 
 
 ### Heartbeats
