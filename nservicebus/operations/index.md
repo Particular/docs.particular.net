@@ -36,10 +36,9 @@ Operational documentation is best reviewed from the perceptive of the selected t
 
  * [Deployment options](/nservicebus/sqlserver/deployment-options.md)
  * [Scripting](/nservicebus/sqlserver/operations-scripting.md)
- * 
+
 
 ### [MSMQ Transport](/nservicebus/msmq/)
-
 
  * [Scripting](/nservicebus/msmq/operations-scripting.md)
 
