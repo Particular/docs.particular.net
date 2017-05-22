@@ -79,21 +79,22 @@ A _link_ is a communication channel between a sender of the message and its rece
 
 Each sender maintains a monotonic counter of messages sent over each of its outgoing links and transmits the value of this counter to the receiver in a message header. The receiver tracks the counter value for the last message received over each link. This allows both communicating endpoints to track how many messages were sent and received over each link.
 
-ServiceControl collects these metrics for all links and calculates the estimates length of the input queue for each receiver based on how many messages were sent in total over all incoming links and how many of those messages have already been received.
+ServiceControl collects these metrics for all links and estimates the length of the input queue for each receiver based on how many messages were sent in total over all incoming links and how many of those messages have already been received.
 
 #### Example
 
-Consider the following values reported to ServiceControl:
+The system consists of two endpoints, Sales and Shipping. The Sales endpoint is scaled out and deployed to two machines, `1` and `2`. Consider the following values reported to ServiceControl:
 
 | Link ID                        | Max sent counter | Max received counter | Messages in queue from this link |
 |--------------------------------|:----------------:|:--------------------:|:--------------------------------:|
-| `Sales-client1.example.com`    | 10               | 6                    | 4                                |
-| `Sales-client2.example.com`    | 5                | 1                    | 4                                |
-| `Shipping-client1.example.com` | 1                | 1                    | 0                                |
+| `Sales@1-Shipping`             | 10               | 6                    | 4                                |
+| `Sales@2-Shipping`             | 5                | 1                    | 4                                |
+| `Shipping-Sales@1`             | 1                | 1                    | 0                                |
+| `Shipping-Sales@2`             | 3                | 1                    | 2                                |
 
 Based on the data above, ServiceControl can estimate the following values of queue length for `Sales` and `Shipping` endpoints:
 
 | Endpoint | Queue length |
 |----------|:------------:|
 | Sales    | 8            |
-| Shipping | 0            |
+| Shipping | 2            |
