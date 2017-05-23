@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode configureAuditUsingXml -->
+<configuration>
+  <configSections>
+    <section name="AuditConfig"
+             type="NServiceBus.Config.AuditConfig, NServiceBus.Core"/>
+  </configSections>
+  <AuditConfig QueueName="targetAuditQueue"
+               OverrideTimeToBeReceived="00:10:00"/>
+</configuration>
+<!--endcode-->
