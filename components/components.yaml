@@ -893,3 +893,4 @@
   ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.WormHole
   NugetOrder:
     - NServiceBus.WormHole
+    - NServiceBus.WormHole.Gateway
