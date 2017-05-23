@@ -12,7 +12,7 @@ related:
 
 ## Introduction
 
-The sample demonstrates how to send messages to `NServiceBus` endpoint running with `SqlServer` transport. It shows how to generate messages using either ADO.NET or T-SQL statements. 
+This sample demonstrates how to send messages to an `NServiceBus` endpoint running on the `SqlServerTransport` directly from the database using T-SQL statements. It also shows how to do that using ADO.NET.
 
 
 ## Running the sample
