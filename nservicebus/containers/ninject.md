@@ -1,7 +1,7 @@
 ---
 title: Ninject
 summary: Configure NServiceBus to use Ninject as a container.
-reviewed: 2016-08-23
+reviewed: 2017-05-23
 component: Ninject
 tags:
 - Dependency Injection
@@ -27,7 +27,7 @@ partial: uow
 
 ### DependencyLifecycle Mapping
 
-The [DependencyLifecycle](/nservicebus/containers/#dependency-lifecycle) map to Ninject in the following way.
+The [DependencyLifecycle](/nservicebus/containers/#dependency-lifecycle) maps to Ninject in the following way.
 
 | DependencyLifecycle                                                                                             | Ninject Equivalent                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
