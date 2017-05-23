@@ -8,10 +8,15 @@ related:
 - nservicebus/sqlserver
 - nservicebus/nhibernate
 ---
+
+
 ## Introduction
-The sample demonstrates how to send messages to `NServiceBus` endpoint running with `SqlServer` transport. It shows how to generate messages using either ADO.NET or T-Sql statements. 
+
+The sample demonstrates how to send messages to `NServiceBus` endpoint running with `SqlServer` transport. It shows how to generate messages using either ADO.NET or T-SQL statements. 
+
 
 ## Running the sample
+
  1. Ensure a SQL Server Express is running and accessible as `.\SQLEXPRESS`.
  1. Create a database `samples`
  1. Start the Receiver project.
