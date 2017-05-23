@@ -13,7 +13,7 @@ class Composition
         hierarchy.PathGenerator(
             pathGenerator: entityName =>
             {
-                return "production/tenant1/";
+                return "production/tenant1";
             });
 
         #endregion
