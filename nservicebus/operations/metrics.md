@@ -83,18 +83,16 @@ ServiceControl collects these metrics for all links and estimates the length of 
 
 #### Example
 
-The system consists of two endpoints, Sales and Shipping. The Sales endpoint is scaled out and deployed to two machines, `1` and `2`. Consider the following values reported to ServiceControl:
+The system consists of two endpoints, Sales and Shipping. Sales send messages to Shipping to notify it about some business events. The Sales endpoint is scaled out and deployed to two machines, `1` and `2`. Consider the following values reported to ServiceControl:
 
 | Link ID                        | Max sent counter | Max received counter | Messages in queue from this link |
 |--------------------------------|:----------------:|:--------------------:|:--------------------------------:|
 | `Sales@1-Shipping`             | 20               | 17                   | 3                                |
 | `Sales@2-Shipping`             | 33               | 31                   | 2                                |
-| `Shipping-Sales@1`             | 101              | 101                  | 0                                |
-| `Shipping-Sales@2`             | 24               | 23                   | 1                                |
+
 
 Based on the data above, ServiceControl can estimate the following values of queue length for `Sales` and `Shipping` endpoints:
 
 | Endpoint | Queue length terms  | Calculated queue length |
 |----------|:-------------------:|:-----------------------:|
 | Sales    | 3 + 2               | 5                       |
-| Shipping | 0 + 1               | 1                       |
