@@ -885,7 +885,7 @@
 
 - Key: WormHole
   Name: Worm Hole Gateway
-  DocoUrl: nservicebus/community/wormhole
+  DocoUrl: nservicebus/wormhole
   GitHubOwner: SzymonPobiega
   Category: Other
   SupportLevel: Community

@@ -37,7 +37,7 @@ namespace WormHole_0
 
             #endregion
 
-            #region  RemoteSiteB
+            #region RemoteSiteB
 
             configSiteB.ConfigureRemoteSite("SiteA", "Gateway.SiteA");
 
