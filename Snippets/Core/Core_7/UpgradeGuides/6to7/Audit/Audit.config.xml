@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--startcode 6to7configureAuditUsingXmlAppSettings -->
+<!--startcode 6to7AuditAppSettings -->
 <configuration>
   <appSettings>
     <add key="AuditQueue" value="targetAuditQueue" />

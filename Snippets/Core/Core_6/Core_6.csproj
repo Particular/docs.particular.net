@@ -23,4 +23,7 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UpgradeGuides\6to7\Routing\" />
+  </ItemGroup>
 </Project>

@@ -19,97 +19,88 @@ The Configuration APIs `IProvideConfiguration`, `IConfigurationSource` and `Cust
 
 ### [Audit](/nservicebus/operations/auditing.md)
 
+Configuring Audit via the following APIs have been deprecated:
 
-#### ProvideConfiguration
+ * `IProvideConfiguration<AuditConfig>`
+ * `AuditConfig` in an app.cofig `configSections`
 
-`IProvideConfiguration<AuditConfig>` is deprecated.
-
-snippet: 6to7AuditProvideConfiguration
-
-
-#### Using XML
+Instead use one of the following:
 
 
-Using `section name="AuditConfig"` in app.config is deprecated.
+#### Configure by the code API
 
-snippet: 6to7configureAuditUsingXml
-
-It can be replaced with a combination of a custom appSettings and then using the code API.
-
-snippet: 6to7configureAuditUsingXmlAppSettings
+snippet: 6to7AuditCode
 
 
-snippet: 6to7configureAuditUsingXmlReadAppSettings
+#### Read from an AppSettings and configure by the code API
+
+snippet: 6to7AuditAppSettings
+
+snippet: 6to7AuditReadAppSettings
 
 
 ### [Logging](/nservicebus/logging/)
 
+Configuring Logging via the following APIs have been deprecated:
 
-#### ProvideConfiguration
-
-`IProvideConfiguration<Logging>` is deprecated.
-
-snippet: 6to7LoggingThresholdFromIProvideConfiguration
+ * `IProvideConfiguration<Logging>`
+ * `Logging` in an app.cofig `configSections`
 
 
-#### Using XML
+Instead use one of the following:
 
 
-Using `section name="Logging"` in app.config is deprecated.
+#### Configure by the code API
 
-snippet: 6to7OverrideLoggingDefaultsInAppConfig
+snippet: 6to7LoggingCode
 
-It can be replaced with a combination of a custom appSettings and then using the code API.
 
-snippet: 6to7OverrideLoggingDefaultsInAppSettings
+#### Read from an AppSettings and configure by the code API
 
-snippet: 6to7OverrideLoggingDefaultsReadAppSettings
+snippet: 6to7LoggingAppSettings
+
+snippet: 6to7LoggingReadAppSettings
 
 
 ### [Error Queue](/nservicebus/recoverability/configure-error-handling.md)
 
+Configuring the error queue via the following APIs have been deprecated:
 
-#### ProvideConfiguration
+ * `IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>`
+ * `MessageForwardingInCaseOfFaultConfig` in an app.cofig `configSections`
+ * Returning a `MessageForwardingInCaseOfFaultConfig` from a `IConfigurationSource`
 
-`IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>` is deprecated.
+Instead use one of the following:
 
-snippet: 6to7ErrorQueueConfigurationProvider
+#### Configure by the code API
 
-
-
-#### Using XML
-
-snippet: 6to7configureErrorQueueViaXml
-
-It can be replaced with a combination of a custom appSettings and then using the code API.
-
-snippet: 6to7configureErrorQueueViaAppSettings
-
-snippet: 6to7configureErrorQueueReadAppSettings
+snippet: 6to7ErrorCode
 
 
-#### IConfigurationSource
+#### Read from an AppSettings and configure by the code API
 
-Returning a `MessageForwardingInCaseOfFaultConfig` from a `IConfigurationSource` is deprecated.
+snippet: 6to7ErrorAppSettings
 
-snippet: 6to7ErrorQueueConfigurationSource
-
-It can be replaced with a combination of a custom appSettings and then using the code API.
-
-snippet: 6to7UseCustomConfigurationSourceForErrorQueueConfig
-
-snippet: 6to7UseCustomConfigurationSourceForErrorQueueConfigNew
+snippet: 6to7ErrorReadAppSettings
 
 
 ### [Endpoint Mappings](/nservicebus/messaging/routing.md)
 
-Using `section name="UnicastBusConfig"` and `MessageEndpointMappings` in app.config is deprecated.
+Configuring the error queue via the following APIs have been deprecated:
 
-snippet: 6to7endpoint-mapping-appconfig
+ * `IProvideConfiguration<UnicastBusConfig>`
+ * `UnicastBusConfig` in an app.cofig `configSections`
+ * Returning a `UnicastBusConfig` from a `IConfigurationSource`
 
-It can be replaced with [Command routing](/nservicebus/messaging/routing-extensibility.md#routing-apis-command-routing) and [Event routing](/nservicebus/messaging/routing-extensibility.md#routing-apis-event-routing)
+It can be replaced with a combination of the following
+
+
+#### [Command routing](/nservicebus/messaging/routing-extensibility.md#routing-apis-command-routing) 
 
 snippet: 6to7endpoint-mapping-Routing-Logical
+
+
+#### [Event routing](/nservicebus/messaging/routing-extensibility.md#routing-apis-event-routing)
 
 snippet: 6to7endpoint-mapping-Routing-RegisterPublisher
 

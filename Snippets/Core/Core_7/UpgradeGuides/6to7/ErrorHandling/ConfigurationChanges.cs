@@ -9,7 +9,7 @@ namespace Core_7.UpgradeGuides._6to7.ErrorHandling
 
         void ProvideConfiguration(EndpointConfiguration endpointConfiguration)
         {
-            #region 6to7ErrorQueueConfigurationProvider
+            #region 6to7ErrorCode
             endpointConfiguration.SendFailedMessagesTo("error");
 
             #endregion
@@ -17,19 +17,13 @@ namespace Core_7.UpgradeGuides._6to7.ErrorHandling
 
         void AppConfig(EndpointConfiguration endpointConfiguration)
         {
-            #region 6to7configureErrorQueueReadAppSettings
+            #region 6to7ErrorReadAppSettings
             var appSettings = ConfigurationManager.AppSettings;
             var errorQueue = appSettings.Get("errorQueue");
             endpointConfiguration.SendFailedMessagesTo(errorQueue);
             #endregion
         }
 
-        void ConfigurationSource(EndpointConfiguration endpointConfiguration)
-        {
-            #region 6to7UseCustomConfigurationSourceForErrorQueueConfigNew
-            endpointConfiguration.SendFailedMessagesTo("error");
-            #endregion
-        }
     }
 }
 
