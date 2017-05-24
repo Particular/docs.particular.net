@@ -70,19 +70,23 @@ Although MSMQ has the concept of both [Public and Private queues](https://techne
 
 ## Permissions
 
-| Group | Permissions |
-|---|---|
+| Group          | Permissions          |
+|----------------|----------------------|
 | Owning account | Write, Receive, Peek |
-| Administrators | Full |
-| Anonymous | Write  |
-| Everyone | Write |
+| Administrators | Full                 |
+| Anonymous      | Write                |
+| Everyone       | Write                |
 
 To retrieve the group names the [WellKnownSidType](https://msdn.microsoft.com/en-us/library/system.security.principal.wellknownsidtype.aspx) enumeration is used.
 
 MSMQ permissions are defined in the [MessageQueueAccessRights](https://msdn.microsoft.com/en-us/library/system.messaging.messagequeueaccessrights.aspx) enumeration.
 
-NOTE: Write access is granted to both `Everyone` and `Anonymous`. The reason for this is so that a given endpoint can receive messages from other endpoints running under different accounts. To further lock down MSMQ write permissions remove `Everyone` and `Anonymous` and instead grant specific access to a know subset of account.
+NOTE: Write access is granted to both `Everyone` and `Anonymous`. Endpoints can receive messages from other endpoints running under different accounts. To increase security and further lock down MSMQ write permissions remove `Everyone` and `Anonymous` and grant specific permissions to a subset of accounts.
 
-NOTE: From Version 6 if the above default permissions are set, a log message will be written during the transport startup, reminding that the queue is configured with default permissions. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
+NOTE: From Version 6, if the default queue permissions are set, a log message will be written during the transport startup, reminding that the queue has default permissions. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
+
+Example of the warning that is logged:
+
+> WARN NServiceBus.QueuePermissions - Queue [private$\xxxx] is running with [Everyone] with AccessRights set to [GenericWrite]. Consider setting appropriate permissions, if required by the organization. For more information, consult the documentation.
 
 See also [Message Queuing Security Overview in Windows Server 2008](https://technet.microsoft.com/en-us/library/cc771268.aspx).
