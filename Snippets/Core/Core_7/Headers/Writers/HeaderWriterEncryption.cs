@@ -7,25 +7,33 @@
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
+    using NServiceBus.Encryption.MessageProperty;
 
     [TestFixture]
     public class HeaderWriterEncryption
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterEncryptionV6";
+        string endpointName = "HeaderWriterEncryptionV7";
 
         [Test]
         public async Task Write()
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
-#pragma warning disable 618
-            endpointConfiguration.RijndaelEncryptionService("2015-10", Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
-#pragma warning restore 618
+            var ascii = Encoding.ASCII;
+            var encryptionService = new RijndaelEncryptionService(
+                encryptionKeyIdentifier: "2015-10",
+                key: ascii.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
+
+            endpointConfiguration.EnableMessagePropertyEncryption(
+                encryptionService: encryptionService,
+                encryptedPropertyConvention: propertyInfo =>
+                {
+                    return propertyInfo.Name.EndsWith("EncryptedProperty");
+                }
+            );
+
             var conventions = endpointConfiguration.Conventions();
-#pragma warning disable 618
-            conventions.DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
-#pragma warning restore 618
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.UsePersistence<LearningPersistence>();

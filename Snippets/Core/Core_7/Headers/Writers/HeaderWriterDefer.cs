@@ -14,7 +14,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
         public static bool Received;
-        static string EndpointName = "HeaderWriterDeferV6";
+        static string EndpointName = "HeaderWriterDeferV7";
 
         [SetUp]
         [TearDown]

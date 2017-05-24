@@ -11,7 +11,7 @@
     public class HeaderWriterReply
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        string endpointName = "HeaderWriterReplyV6";
+        string endpointName = "HeaderWriterReplyV7";
 
         [Test]
         public async Task Write()

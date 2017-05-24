@@ -12,7 +12,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        const string endpointName = "HeaderWriterAuditV6";
+        const string endpointName = "HeaderWriterAuditV7";
 
         [Test]
         public async Task Write()

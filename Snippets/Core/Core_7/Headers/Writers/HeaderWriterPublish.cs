@@ -13,7 +13,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        static string EndpointName = "HeaderWriterPublishV6";
+        static string EndpointName = "HeaderWriterPublishV7";
 
         [SetUp]
         [TearDown]

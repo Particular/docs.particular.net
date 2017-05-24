@@ -13,7 +13,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterDataBusConventionV6";
+        string endpointName = "HeaderWriterDataBusConventionV7";
 
         [Test]
         public async Task Write()

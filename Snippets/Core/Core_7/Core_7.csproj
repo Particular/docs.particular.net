@@ -11,6 +11,7 @@
     <PackageReference Include="NServiceBus.Callbacks" Version="1.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="4.*" />
+    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="Rx-Core" Version="2.*" />
     <PackageReference Include="Rx-Interfaces" Version="2.*" />

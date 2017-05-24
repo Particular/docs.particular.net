@@ -13,7 +13,7 @@
     public class HeaderWriterError
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        string endpointName = "HeaderWriterErrorV6";
+        string endpointName = "HeaderWriterErrorV7";
 
         [SetUp]
         [TearDown]

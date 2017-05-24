@@ -12,7 +12,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterSendV6";
+        string endpointName = "HeaderWriterSendV7";
 
         [Test]
         public async Task Write()
