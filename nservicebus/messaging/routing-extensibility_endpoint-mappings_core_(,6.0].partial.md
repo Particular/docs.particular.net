@@ -13,6 +13,12 @@ or a configuration provider:
 
 snippet: endpoint-mapping-configurationprovider
 
+or in the app.config
+
+snippet: endpoint-mapping-appconfig
+
 The `MessageEndpointMappings` collection can be populated based on any external source. It is read during the endpoint start-up, before any messages are sent.
 
 NOTE: The route table is not updated during run-time, even if the contents of the mappings collection change. In case the routing data changes frequently, consider implementing a mechanism that would restart the endpoint when the change is detected.
+
+NOTE: For backwards compatibility a `Messages` attribute can be used instead of `Type` and `Namespace` attributes. 

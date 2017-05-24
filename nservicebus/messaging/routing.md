@@ -35,13 +35,7 @@ As described [here](/nservicebus/messaging/messages-events-commands.md), NServic
 
 partial: commands
 
-Each entry in the collection has to specify the assembly where the messages are defined. In addition to that, a type name or the namespace name can be also specified for additional filtering. 
-
-NOTE: For backwards compatibility a `Messages` attribute can be used instead of `Type` and `Namespace` attributes. 
-
-snippet: endpoint-mapping-appconfig
-
-The per-namespace routes override assembly-level routes and the per-type routes override both namespace and assembly routes. 
+Each entry in the collection has to specify the assembly where the messages are defined. In addition to that, a type name or the namespace name can be also specified for additional filtering. The per-namespace routes override assembly-level routes and the per-type routes override both namespace and assembly routes. 
 
 
 ### Overriding the destination
@@ -51,7 +45,7 @@ In specific cases, like sending to self or to a particular queue (e.g. for integ
 
 ## Event routing
 
-Events can be received by multiple logical endpoints, however even in case of scale out each event will be received only by one physical instance of any logical subscriber. Before the message is published and delivered, the subscriber has to express its interest in a given type of event. 
+Events can be received by multiple logical endpoints, however even in case of scale out each event will be received only by one physical instance of any logical subscriber. Before the message is published and delivered, the subscriber has to express its interest in a given type of event.
 
 
 ### Native
