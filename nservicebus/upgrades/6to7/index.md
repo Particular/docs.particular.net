@@ -67,6 +67,7 @@ snippet: 6to7ErrorQueueConfigurationProvider
 snippet: 6to7configureErrorQueueViaXml
 
 snippet: 6to7configureErrorQueueViaAppSettings
+
 snippet: 6to7configureErrorQueueReadAppSettings
 
 

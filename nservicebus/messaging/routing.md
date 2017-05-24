@@ -60,6 +60,7 @@ Events can be received by multiple logical endpoints, however even in case of sc
 
 Note: Azure Service Bus `EndpontOrientedTopology` requires [publishers names](/nservicebus/azure-service-bus/publisher-names-configuration.md) to be configured.
 
+
 ### Message-driven
 
 [Other transports](/nservicebus/transports/#types-of-transports-unicast-only-transports) do not support Publish-Subscribe natively. These transports emulate the publish behavior by sending message to each subscriber directly. To do this, the publisher endpoint has to know its subscribers and subscribers have to notify the publisher about their interest in a given event type. The notification message (known as *subscribe* message) has to be routed to the publisher.
