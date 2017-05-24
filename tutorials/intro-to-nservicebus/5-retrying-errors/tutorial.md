@@ -210,8 +210,8 @@ Because we're just getting started with NServiceBus development, we don't need t
 Now, we're ready to create and start the service:
 
  1. Click the **Add** button to install the ServiceControl instance as a Windows service.
- 1. When complete, the **ServiceControl Management** tool will display the high-level details of the ServiceControl instance, but the instance will be in the **Stopped** state.
- 1. In the upper-right corner of the ServiceControl instance details, click the **Start** button (the button with the *Play* icon) to start the service. You can also start the service from the Windows Services manager.
+ 1. When complete, the **ServiceControl Management** tool will display the high-level details of the ServiceControl instance, and the instance should be in the **Started** state.
+     - If for any reason the instance does not start automatically, click the **Start** button (the button with the *Play* icon) in the upper right corner of the instance details. You can also start the service from the Windows Services manager.
 
 To check that everything is working properly, you can click on the link shown under **URL**, which will return a JSON response if ServiceControl is working properly. This is the API that is used to serve information to the [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/) tools.
 
