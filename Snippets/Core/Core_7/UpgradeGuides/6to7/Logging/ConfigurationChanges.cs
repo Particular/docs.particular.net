@@ -17,8 +17,9 @@
         public void AppConfig()
         {
             #region 6to7LoggingReadAppSettings
+            var appSettings = ConfigurationManager.AppSettings;
+            var level = (LogLevel)Enum.Parse(typeof(LogLevel), appSettings.Get("LoggingThreshold"));
             var logFactory = LogManager.Use<DefaultFactory>();
-            var level = (LogLevel)Enum.Parse(typeof(LogLevel), ConfigurationManager.AppSettings.Get("LoggingThreshold"));
             logFactory.Level(level);
             #endregion
         }
