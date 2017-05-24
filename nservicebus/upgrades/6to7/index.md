@@ -23,6 +23,7 @@ Configuring Audit via the following APIs have been deprecated:
 
  * `IProvideConfiguration<AuditConfig>`
  * `AuditConfig` in an app.config `configSections`
+ * Returning a `AuditConfig` from a `IConfigurationSource`
 
 Instead use one of the following:
 
