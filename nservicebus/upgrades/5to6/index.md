@@ -10,7 +10,7 @@ upgradeGuideCoreVersions:
 ---
 
 
-Upgrading a major dependency like NServiceBus requires careful planning, see the [general recommendations](/nservicebus/upgrades/) article to learn more about the optimal upgrade process.
+include: upgrade-major
 
 
 ## Move to .NET 4.5.2
@@ -31,16 +31,8 @@ See also:
 NOTE: While a minimum of .NET 4.5.2 is required, it is recommended to update to at least [.NET 4.6.1](https://www.microsoft.com/en-au/download/details.aspx?id=49981) since this gives access to [Task.CompletedTask](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.completedtask.aspx).
 
 
-## Update NServiceBus dependencies
+include: dependencies
 
-All NServiceBus dependencies for an endpoint project are managed via NuGet. Open the Manage NuGet Packages window for the endpoint project, switch to the Updates tab and look for packages that start with NServiceBus. Update each one to the latest Version 6 package.
-
-Once packages have been updated the project will contain quite a few errors. This is expected as a lot of things have changed.
-
-See also:
-
- * [NuGet Package Manager Dialog - Updating a Package](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui#updating-a-package)
- * [NuGet Package Manager Console - Updating a Package](https://docs.microsoft.com/en-us/nuget/tools/package-manager-console#updating-a-package)
 
 
 ## Update Endpoint configuration
