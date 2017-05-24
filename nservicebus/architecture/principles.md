@@ -1,36 +1,32 @@
 ---
 title: Architectural Principles
 summary: NServiceBus helps write code that is robust in production environments, preventing data loss under failure conditions.
-reviewed: 2016-08-10
+reviewed: 2017-05-24
 redirects:
  - nservicebus/architectural-principles
 ---
 
-Autonomy and loose coupling at design time and at run time are not things that any technology can give.
+Messaging can be used to ensure autonomy and loose coupling in your systems, both at design time and at run time. However, in order to benefit from those qualities one needs to carefully design their applications and ensure good practices are followed.
 
-Service-oriented architecture (SOA) and event-driven architecture together provide the basis for identifying where to use NServiceBus.
-
-Strategic Domain-Driven Design helps bridge the business/IT divide and drives the choice of business events published using NServiceBus.
+Service-oriented architecture (SOA) and event-driven architecture provide the basis for identifying where to use messaging frameworks, such as NServiceBus. Strategic Domain-Driven Design helps bridge the gap between business and IT. It's an essential strategy for identyfing service boundaries and finding meaningful business events.
 
 
 ## How NServiceBus aligns with SOA
 
 <iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/113515335?autoplay=1" webkitallowfullscreen width="400"></iframe>
 
-In this presentation, Udi Dahan explains the disadvantages of classical web services thinking that places services at a layer below the user interface and above the business logic. Instead, he describes an approach that cuts across all layers of an application, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
+In this presentation Udi Dahan explains the process of finding the right service boundaries. The presentation starts with introduction to SOA, explains challenges with traditional layered architectures and covers an approach that cuts across all application layers, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
 
 
 ## Drilling down into details
 
-One of the problems with the distributed systems built today is that they are fragile. As one part of the system slows down, the effect tends to ripple out and cripple the entire system. One of the primary design goals of NServiceBus is to eliminate that, guiding developers to write code that is robust in production environments. That robustness prevents data loss under failure conditions.
+One of the problems in many systems is that they are fragile. One part of the system slows down, affecting other parts of the system, ultimetaly crashing the entire system. 
 
-To make effective use of NServiceBus, it is necessary to understand the distributed systems architecture it is designed to support. In other words, if designing the system according to the principles laid out below, NServiceBus will make life a lot easier. On the other hand, if these principles are not followed, NServiceBus will probably make it harder.
+One of the primary design goals of NServiceBus is to eliminate that flaw by guiding developers to write code that is robust in production environments. That robustness prevents data loss under failure conditions.
 
-The extensibility features in NServiceBus allow customizing its behavior to suit the specific needs, yet they are documented separately.
+To make effective use of NServiceBus, it is necessary to understand the distributed systems architecture it is designed to support. Those basic principles are explained briefly in this article. For an in-depth knowledge see the [ADSD course](https://particular.net/adsd).  
 
-The communications pattern that enables robustness is one-way messaging, also known as "fire and forget". This is discussed in more detail shortly.
-
-Since the amount of time it can take to communicate with another machine across the network is both unknown and unbounded, communications are based on a store-and-forward model, as shown in the following figure.
+The basic communication pattern that enables robustness is one-way messaging, also known as "fire and forget". Since the amount of time it can take to communicate with another machine across the network is unknown and unbounded, asynchronous communication in NServiceBus is based on a store-and-forward model.
 
 
 ## Messaging versus RPC
