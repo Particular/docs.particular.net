@@ -2,6 +2,8 @@
 title: ServiceControl Transport Adapter
 summary: How do decouple ServiceControl from endpoints' transport
 component: SCTransportAdapter
+related:
+ - samples/servicecontrol/adapter-sqlserver
 ---
 
 The ServiceControl Transport Adapter decouples ServiceControl from the specifics of business endpoints transport to support scenarios where the endpoints' transport uses physical routing features [not compatible with ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md) or where endpoints use mixed transports and/or multiple instances of message broker.
