@@ -10,7 +10,7 @@
             endpointConfiguration.LimitMessageProcessingConcurrencyTo(5);
             #endregion
 
-            #region TuningTimeoutManagerConcurrency 6.1
+            #region TuningTimeoutManagerConcurrency
 
             var timeoutManager = endpointConfiguration.TimeoutManager();
             timeoutManager.LimitMessageProcessingConcurrencyTo(4);
