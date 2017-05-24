@@ -163,9 +163,16 @@
             {
             }
 
+            // Method will not be called since SelectDestination doesn't call base.SelectDestination
             public override string SelectReceiver(string[] receiverAddresses)
             {
-                return receiverAddresses[random.Next(receiverAddresses.Length)];
+                throw new NotImplementedException();
+            }
+
+            public override string SelectDestination(DistributionContext context)
+            {
+                // access to headers, payload...
+                return context.ReceiverAddresses[random.Next(context.ReceiverAddresses.Length)];
             }
         }
 
@@ -182,32 +189,4 @@
         }
     }
 
-    public class Extensibility_62
-    {
-        #region RoutingExtensibility-DistributionStrategy [6.2,)
-
-        class RandomStrategy :
-            DistributionStrategy
-        {
-            static Random random = new Random();
-
-            public RandomStrategy(string endpoint, DistributionStrategyScope scope) : base(endpoint, scope)
-            {
-            }
-
-            // Method will not be called since SelectDestination doesn't call base.SelectDestination
-            public override string SelectReceiver(string[] receiverAddresses)
-            {
-                throw new NotImplementedException();
-            }
-
-            public override string SelectDestination(DistributionContext context)
-            {
-                // access to headers, payload...
-                return context.ReceiverAddresses[random.Next(context.ReceiverAddresses.Length)];
-            }
-        }
-
-        #endregion
-    }
 }
