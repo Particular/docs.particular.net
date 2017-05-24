@@ -27,7 +27,7 @@ The reasoning behind removing the registration from the IoC Container was not ex
 
 It is no longer possible to customize `ISession` creation process. As such, the extension method call `UseCustomSessionCreationMethod()` is no longer needed and should be removed.
 
-Since most of the methods available on the `ISessionFactory` are related to caching and with this [existing NHibernate bug](https://nhibernate.jira.com/browse/NH-3023) (also listed [here](/nservicebus/nhibernate/accessing-data.md) as a known limitation), the benefit of having customizable `ISession` creation is debatable. To customize the created `ISession` object, for example to apply a filter on the session level, the code needs to be moved to the handler and applied to the `ISession` object on the Context.
+Since most of the methods available on the `ISessionFactory` are related to caching and with this [existing NHibernate bug](https://nhibernate.jira.com/browse/NH-3023) (see also [accessing data](/nservicebus/nhibernate/accessing-data.md)), the benefit of having customizable `ISession` creation is debatable. To customize the created `ISession` object, for example to apply a filter on the session level, the code needs to be moved to the handler and applied to the `ISession` object on the Context.
 
 
 ## Unique attribute no longer needed

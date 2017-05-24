@@ -1,3 +1,3 @@
 NServiceBus routing consists of two layers, logical and physical. Logical routing defines which logical endpoint should receive a given outgoing message. Physical routing defines to which actual physical instance of the selected endpoint should the message be delivered. While logical routing is a developer's concern, physical routing is controlled by operations. 
 
-[Broker transports](/nservicebus/transports/#types-of-transports-broker-transports) handle the physical routing automatically. Other transport might require specific configuration. To read more about physical routing with MSMQ go [here](/nservicebus/msmq/routing.md).
+[Broker transports](/nservicebus/transports/#types-of-transports-broker-transports) handle the physical routing automatically. Other transport might require specific configuration. See also [MSMQ Routing](/nservicebus/msmq/routing.md).

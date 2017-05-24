@@ -31,7 +31,7 @@ partial: concepts
 
 ## Command routing
 
-As described [here](/nservicebus/messaging/messages-events-commands.md), NServiceBus distinguishes several types of messages. Command messages are always routed to a single logical endpoint. 
+As described in [messages, events and commands](/nservicebus/messaging/messages-events-commands.md), NServiceBus distinguishes several types of messages. Command messages are always routed to a single logical endpoint. 
 
 partial: commands
 
