@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode 6to7configureErrorQueueViaAppSettings-->
+<configuration>
+  <appSettings>
+    <add key="ErrorQueue" value="error" />
+  </appSettings>
+</configuration>
+<!--endcode-->

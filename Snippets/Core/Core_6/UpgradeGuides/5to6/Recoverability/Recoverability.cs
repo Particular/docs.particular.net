@@ -82,16 +82,5 @@
             #endregion
         }
 
-        void DisableLegacyRetriesSatellite(EndpointConfiguration endpointConfiguration)
-        {
-#pragma warning disable 618
-            #region 5to6-DisableLegacyRetriesSatellite
-
-            var recoverability = endpointConfiguration.Recoverability();
-            recoverability.DisableLegacyRetriesSatellite();
-
-            #endregion
-#pragma warning restore 618
-        }
     }
 }

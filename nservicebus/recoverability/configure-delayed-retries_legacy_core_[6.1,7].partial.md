@@ -7,6 +7,6 @@ Letting the receiver continue to run might have negative performance implication
 
 The `.Retries` receiver can be disabled via code using:
 
-snippet: 5to6-DisableLegacyRetriesSatellite
+snippet: DisableLegacyRetriesSatellite
 
 INFO: This API will be obsoleted in Version 7 and removed afterwards.
