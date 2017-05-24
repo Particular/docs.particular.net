@@ -87,12 +87,12 @@ The system consists of two endpoints, Sales and Shipping. Sales send messages to
 
 | Link ID                        | Max sent counter | Max received counter | Messages in queue from this link |
 |--------------------------------|:----------------:|:--------------------:|:--------------------------------:|
-| `Sales@1-Shipping`             | 20               | 17                   | 3                                |
-| `Sales@2-Shipping`             | 33               | 31                   | 2                                |
+| `Sales@1->Shipping`             | 20               | 17                   | 3                                |
+| `Sales@2->Shipping`             | 33               | 31                   | 2                                |
 
 
-Based on the data above, ServiceControl can estimate the following values of queue length for `Sales` and `Shipping` endpoints:
+Based on the data above, ServiceControl can estimate the following values of queue length for `Shipping` endpoints:
 
 | Endpoint | Queue length terms  | Calculated queue length |
 |----------|:-------------------:|:-----------------------:|
-| Sales    | 3 + 2               | 5                       |
+| Shipping    | 3 + 2               | 5                       |
