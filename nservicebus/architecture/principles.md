@@ -15,7 +15,7 @@ Strategic Domain-Driven Design helps bridge the business/IT divide and drives th
 
 ## How NServiceBus aligns with SOA
 
-<iframe src="//fast.wistia.net/embed/iframe/6g70txthct" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="480"></iframe>
+<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/113515335?autoplay=1" webkitallowfullscreen width="400"></iframe>
 
 In this presentation, Udi Dahan explains the disadvantages of classical web services thinking that places services at a layer below the user interface and above the business logic. Instead, he describes an approach that cuts across all layers of an application, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
 
@@ -41,9 +41,13 @@ It's very simple and straightforward to build an application and get it working 
 
 NServiceBus directs away from these problems right from the beginning. There's no such thing as a blocking call when one uses one-way messaging. Common, transient errors can be resolved automatically, it's also very easy to recover from failures that require some manual intervention. Above all, even when something goes wrong, no data gets lost. 
 
-In order to learn more about the relationship between messaging and reliable, scalable, highly-available systems, watch Udi Dahan's presentation:
+In order to learn more about the relationship between messaging and reliable, scalable, highly-available systems, watch those presentations:
 
-<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/6222577" webkitallowfullscreen width="400"></iframe>
+Handling failures with NServiceBus:
+
+<iframe src="https://embed-ssl.wistia.com/deliveries/7001d1a04a69c758b40582809142de5c5f47d2aa.jpg?image_crop_resized=298x174" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="480"></iframe>
+
+See also other webinars and presentations in the [Videos and Presentations](https://particular.net/videos-and-presentations) page.
 
 
 ### Store and forward messaging
