@@ -35,9 +35,8 @@ snippet: asb-hierarchy-composition
 
 Note that the path generator is a lambda function, so it will be invoked each time the transport wants to determine the location of a given entity. This function must meet the following rules:
 
- * Return the path to the entity.
- * **Does not** appending the entity name itself.
- * **Does not** append a trailing slash (`/`).
+ * Returns the path to the entity with a trailing slash (`/`).
+ * **Does not** append the entity name itself.
 
 
 ## Implementing a custom composition strategy
