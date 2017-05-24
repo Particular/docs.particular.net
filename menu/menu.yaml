@@ -46,6 +46,8 @@
         Title: 2016-07-05
     - Url: nservicebus/upgrades/callbacks-1to2
       Title: Callbacks 1 to 2
+    - Url: nservicebus/upgrades/6to7
+      Title: NServiceBus 6 to 7
     - Url: nservicebus/upgrades/6to6.2
       Title: NServiceBus 6 to 6.2
     - Url: nservicebus/upgrades/5to6
