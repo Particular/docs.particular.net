@@ -4,6 +4,7 @@ component: SCTransportAdapter
 reviewed: 2017-05-11
 related:
  - servicecontrol
+ - servicecontrol/transport-adapter
  - servicecontrol/plugins
 ---
 
