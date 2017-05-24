@@ -1,4 +1,4 @@
-﻿namespace Core6.DataBus.Custom
+﻿namespace Core7.DataBus.Custom
 {
     using NServiceBus;
 

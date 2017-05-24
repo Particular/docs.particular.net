@@ -1,4 +1,4 @@
-﻿namespace Core_7.UpgradeGuides._6to7.Logging
+﻿namespace Core7.UpgradeGuides._6to7.Logging
 {
     using System;
     using System.Configuration;

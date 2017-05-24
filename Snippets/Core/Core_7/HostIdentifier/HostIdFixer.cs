@@ -1,4 +1,4 @@
-﻿namespace Core6.HostIdentifier
+﻿namespace Core7.HostIdentifier
 {
     using System;
     using NServiceBus;

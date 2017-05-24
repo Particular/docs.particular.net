@@ -1,4 +1,4 @@
-﻿namespace Core6.ServiceFabricHosting
+﻿namespace Core7.ServiceFabricHosting
 {
     using System.Collections.Generic;
     using System.Fabric;

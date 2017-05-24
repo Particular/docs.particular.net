@@ -1,4 +1,4 @@
-namespace Core6.Pipeline.Abort
+namespace Core7.Pipeline.Abort
 {
     class MyMessage
     {

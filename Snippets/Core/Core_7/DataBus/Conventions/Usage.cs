@@ -1,4 +1,4 @@
-﻿namespace Core6.DataBus.Conventions
+﻿namespace Core7.DataBus.Conventions
 {
     using NServiceBus;
 

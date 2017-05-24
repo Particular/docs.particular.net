@@ -1,6 +1,7 @@
 ﻿namespace Core6.Forwarding
 {
     using NServiceBus;
+
     class Usage
     {
         Usage(EndpointConfiguration endpointConfiguration)

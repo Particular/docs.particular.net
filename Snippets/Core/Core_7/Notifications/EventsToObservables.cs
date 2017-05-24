@@ -1,4 +1,4 @@
-﻿namespace Core6.Notifications
+﻿namespace Core7.Notifications
 {
     using System;
     using System.Reactive.Linq;

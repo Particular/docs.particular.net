@@ -1,4 +1,4 @@
-﻿namespace Core6
+﻿namespace Core6.Handlers
 {
     using System;
     using System.Diagnostics;
@@ -6,7 +6,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using NServiceBus;
-    using IMessage = NServiceBus.IMessage;
 
     #region HandlerWhichIntegratesWithEvent
 
@@ -175,8 +174,4 @@
         }
     }
 
-    public class MyMessage :
-        IMessage
-    {
-    }
 }

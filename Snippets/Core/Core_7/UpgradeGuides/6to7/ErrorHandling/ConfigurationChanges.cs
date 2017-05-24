@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 618
-namespace Core_7.UpgradeGuides._6to7.ErrorHandling
+namespace Core7.UpgradeGuides._6to7.ErrorHandling
 {
     using System.Configuration;
     using NServiceBus;

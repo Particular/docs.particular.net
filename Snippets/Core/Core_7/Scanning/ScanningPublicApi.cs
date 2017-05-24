@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 618
-namespace Core6.Scanning
+namespace Core7.Scanning
 {
     using System;
     using System.Collections.Generic;

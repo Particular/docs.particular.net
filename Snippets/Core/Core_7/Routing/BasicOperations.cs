@@ -1,4 +1,4 @@
-﻿namespace Core6.Routing
+﻿namespace Core7.Routing
 {
     using System.Threading.Tasks;
     using NServiceBus;

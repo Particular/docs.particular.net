@@ -1,5 +1,5 @@
 ﻿// ReSharper disable UnusedParameter.Local
-namespace Core6.Features
+namespace Core7.Features
 {
     using System;
     using System.Threading.Tasks;

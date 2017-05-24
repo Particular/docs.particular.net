@@ -1,4 +1,4 @@
-﻿namespace Core6.Pipeline
+﻿namespace Core7.Pipeline
 {
     using NServiceBus;
     using NServiceBus.Features;

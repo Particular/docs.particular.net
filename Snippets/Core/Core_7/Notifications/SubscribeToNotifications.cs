@@ -1,11 +1,10 @@
 ﻿// ReSharper disable UnusedParameter.Local
-namespace Core6.BusNotifications
+namespace Core7.Notifications
 {
     using System.Text;
     using NServiceBus;
     using NServiceBus.Faults;
     using NServiceBus.Logging;
-
 
     class SubscribeToNotifications
     {

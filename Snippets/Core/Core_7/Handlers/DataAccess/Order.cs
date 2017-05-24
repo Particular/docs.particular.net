@@ -1,4 +1,4 @@
-namespace Core6.Handlers.DataAccess
+namespace Core7.Handlers.DataAccess
 {
     using System;
 

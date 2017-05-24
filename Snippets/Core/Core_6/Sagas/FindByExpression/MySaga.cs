@@ -1,8 +1,7 @@
-﻿using NServiceBus;
-
-namespace Core6.Sagas.FindByExpression
+﻿namespace Core6.Sagas.FindByExpression
 {
     using System.Threading.Tasks;
+    using NServiceBus;
 
     public class MySaga :
         Saga<MySagaData>,

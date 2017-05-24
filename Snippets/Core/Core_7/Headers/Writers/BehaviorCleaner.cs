@@ -1,4 +1,4 @@
-﻿namespace Core6.Headers.Writers
+﻿namespace Core7.Headers.Writers
 {
     using System.IO;
     using System.Text;

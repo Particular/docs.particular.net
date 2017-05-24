@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 618
-namespace Core_7.UpgradeGuides._6to7.Audit
+namespace Core7.UpgradeGuides._6to7.Audit
 {
     using System;
     using System.Configuration;

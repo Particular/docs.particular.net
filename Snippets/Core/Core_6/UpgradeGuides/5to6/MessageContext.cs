@@ -1,8 +1,8 @@
 ﻿namespace Core6.UpgradeGuides._5to6
 {
     using System.Threading.Tasks;
+    using Core6.Handlers;
     using NServiceBus;
-    using Handlers;
 
     public class MessageContext :
         IHandleMessages<MyMessage>

@@ -1,4 +1,4 @@
-﻿namespace Core6.Serialization
+﻿namespace Core7.Serialization
 {
     using System;
     using System.Collections.Generic;

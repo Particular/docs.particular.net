@@ -1,4 +1,4 @@
-﻿namespace Core6.Mutators.Instance
+﻿namespace Core7.Mutators.Instance
 {
     using System.Threading.Tasks;
     using NServiceBus.MessageMutator;

@@ -1,9 +1,8 @@
-﻿using NServiceBus.Features;
-
-namespace Core6.Extending
+﻿namespace Core6.Features
 {
     using NServiceBus;
     using NServiceBus.Configuration.AdvanceExtensibility;
+    using NServiceBus.Features;
 
     #region MinimalFeature
     public class MinimalFeature :

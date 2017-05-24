@@ -1,4 +1,4 @@
-﻿namespace Core6.UpgradeGuides._5to6
+﻿namespace Core6.UpgradeGuides._5to6.Recoverability
 {
     using System;
     using NServiceBus;

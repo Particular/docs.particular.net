@@ -1,4 +1,4 @@
-namespace Core6.PubSub.WithConvention
+namespace Core7.PubSub.WithConvention
 {
     using NServiceBus;
 

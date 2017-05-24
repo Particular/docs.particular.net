@@ -6,6 +6,7 @@
     using System.Reflection;
     using System.Web;
     using NServiceBus;
+
     #region 5to6EndpointNameHelper
     public static class EndpointNameHelper
     {

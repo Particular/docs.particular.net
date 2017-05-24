@@ -1,4 +1,4 @@
-﻿namespace Core6.Transports.QueueCreation
+﻿namespace Core6.UpgradeGuides._5to6
 {
     using System;
     using NServiceBus;

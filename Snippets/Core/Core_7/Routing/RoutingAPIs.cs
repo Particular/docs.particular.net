@@ -1,6 +1,6 @@
 ﻿// ReSharper disable UnusedParameter.Local
 
-namespace Core6.Routing
+namespace Core7.Routing
 {
     using NServiceBus;
 

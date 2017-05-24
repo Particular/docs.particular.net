@@ -1,4 +1,4 @@
-﻿namespace Core_7.UpgradeGuides._6to7
+﻿namespace Core7.UpgradeGuides._6to7
 {
 
     class Upgrade

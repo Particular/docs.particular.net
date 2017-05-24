@@ -1,4 +1,4 @@
-namespace Core6.Sagas.Reply
+namespace Core7.Sagas.Reply
 {
     public class StartMessage
     {

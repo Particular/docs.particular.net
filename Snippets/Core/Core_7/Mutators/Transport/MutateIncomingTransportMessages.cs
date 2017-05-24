@@ -1,4 +1,4 @@
-﻿namespace Core6.Mutators.Transport
+﻿namespace Core7.Mutators.Transport
 {
     using System.Threading.Tasks;
     using NServiceBus.MessageMutator;

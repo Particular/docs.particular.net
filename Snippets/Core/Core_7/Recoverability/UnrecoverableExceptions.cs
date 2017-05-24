@@ -1,4 +1,4 @@
-﻿namespace Core6.Recoverability
+﻿namespace Core7.Recoverability
 {
     using System;
     using NServiceBus;

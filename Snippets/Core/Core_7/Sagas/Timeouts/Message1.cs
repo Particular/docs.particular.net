@@ -1,4 +1,4 @@
-﻿namespace Core6.Sagas.Timeouts
+﻿namespace Core7.Sagas.Timeouts
 {
     public class Message1
     {

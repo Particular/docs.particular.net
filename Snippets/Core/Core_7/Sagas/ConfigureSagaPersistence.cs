@@ -1,4 +1,4 @@
-﻿namespace Core6.Sagas
+﻿namespace Core7.Sagas
 {
     using NServiceBus;
     using NServiceBus.Persistence;

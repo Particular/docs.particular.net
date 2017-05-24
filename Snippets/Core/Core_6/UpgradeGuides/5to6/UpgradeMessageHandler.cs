@@ -2,8 +2,8 @@
 {
     using System.Threading.Tasks;
     using Common;
+    using Core6.Handlers;
     using NServiceBus;
-    using Handlers;
 
     #region 5to6-messagehandler
 

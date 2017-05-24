@@ -1,8 +1,7 @@
-﻿using NServiceBus;
-
-namespace Core6.Sagas.SimpleSaga
+﻿namespace Core6.Sagas.SimpleSaga
 {
     using System.Threading.Tasks;
+    using NServiceBus;
 
     #region simple-saga
 

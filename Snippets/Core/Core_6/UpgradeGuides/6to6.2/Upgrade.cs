@@ -1,4 +1,4 @@
-﻿namespace Core6.UpgradeGuides._6to6_2
+﻿namespace Core6.UpgradeGuides._6to6._2
 {
     using System.Threading.Tasks;
     using NServiceBus;

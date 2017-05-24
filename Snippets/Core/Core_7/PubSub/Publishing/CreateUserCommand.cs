@@ -1,4 +1,4 @@
-namespace Core6.PubSub.Publishing
+namespace Core7.PubSub.Publishing
 {
     using NServiceBus;
 

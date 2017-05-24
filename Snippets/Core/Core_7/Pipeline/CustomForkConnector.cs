@@ -1,4 +1,4 @@
-namespace Core6.Pipeline
+namespace Core7.Pipeline
 {
     using System;
     using System.Threading.Tasks;

@@ -1,4 +1,4 @@
-﻿namespace Core6.Recoverability.Delayed.CustomPolicies
+﻿namespace Core7.Recoverability.Delayed.CustomPolicies
 {
     using System;
 

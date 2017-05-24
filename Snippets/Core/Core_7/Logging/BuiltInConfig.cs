@@ -1,4 +1,4 @@
-﻿namespace Core6.Logging
+﻿namespace Core7.Logging
 {
     using NServiceBus.Logging;
 

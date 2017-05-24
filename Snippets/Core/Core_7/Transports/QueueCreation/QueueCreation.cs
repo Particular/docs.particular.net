@@ -1,4 +1,4 @@
-﻿namespace Core6.Transports
+﻿namespace Core7.Transports.QueueCreation
 {
     using System.Threading.Tasks;
     using NServiceBus;

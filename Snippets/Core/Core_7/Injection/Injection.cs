@@ -1,4 +1,4 @@
-﻿namespace Core5.Injection
+﻿namespace Core7.Injection
 {
     using System.Net.Mail;
     using System.Threading.Tasks;

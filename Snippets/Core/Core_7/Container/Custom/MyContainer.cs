@@ -1,4 +1,4 @@
-namespace Core6.Container.Custom
+namespace Core7.Container.Custom
 {
     using System;
     using System.Collections.Generic;

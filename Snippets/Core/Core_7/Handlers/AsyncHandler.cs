@@ -1,4 +1,4 @@
-﻿namespace Core6.Handlers
+﻿namespace Core7.Handlers
 {
     using System.Threading;
     using System.Threading.Tasks;

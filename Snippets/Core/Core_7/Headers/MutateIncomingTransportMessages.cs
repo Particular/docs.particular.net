@@ -1,4 +1,4 @@
-﻿namespace Core6.Headers
+﻿namespace Core7.Headers
 {
     using System.Threading.Tasks;
     using NServiceBus;

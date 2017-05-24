@@ -1,8 +1,7 @@
 ﻿// ReSharper disable UnusedParameter.Local
 
-namespace Core_7.UpgradeGuides._6to7.Routing
+namespace Core7.UpgradeGuides._6to7.Routing
 {
-    using Core6;
     using NServiceBus;
 
     class RoutingAPIs

@@ -1,13 +1,13 @@
-﻿namespace Core6.Headers.Writers
+﻿namespace Core7.Headers.Writers
 {
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
     using NServiceBus;
+    using NServiceBus.Encryption.MessageProperty;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
-    using NServiceBus.Encryption.MessageProperty;
 
     [TestFixture]
     public class HeaderWriterEncryption

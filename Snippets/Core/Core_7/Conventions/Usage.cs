@@ -1,4 +1,4 @@
-namespace Core6.Conventions
+namespace Core7.Conventions
 {
     using System;
     using NServiceBus;

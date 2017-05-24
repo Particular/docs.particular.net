@@ -1,4 +1,4 @@
-﻿namespace Core6.PubSub.WithEvent
+﻿namespace Core7.PubSub.WithEvent
 {
     using NServiceBus;
 

@@ -1,4 +1,4 @@
-﻿namespace Core6.NonDurable.ExpressMessages
+﻿namespace Core7.NonDurable
 {
     using NServiceBus;
 

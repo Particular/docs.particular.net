@@ -1,4 +1,4 @@
-﻿namespace Core6.Sagas.FindSagas
+﻿namespace Core7.Sagas.FindSagas
 {
     using System.Threading.Tasks;
     using NServiceBus.Extensibility;

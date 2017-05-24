@@ -1,4 +1,4 @@
-﻿namespace Core6
+﻿namespace Core7
 {
     using System;
     using System.Transactions;

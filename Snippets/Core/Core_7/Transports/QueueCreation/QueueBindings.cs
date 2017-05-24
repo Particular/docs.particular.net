@@ -1,7 +1,7 @@
-﻿namespace Core6.Transports
+﻿namespace Core7.Transports.QueueCreation
 {
-    using NServiceBus.Transport;
     using NServiceBus.Features;
+    using NServiceBus.Transport;
 
     #region queuebindings
 
