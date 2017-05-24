@@ -22,7 +22,7 @@ The Configuration APIs `IProvideConfiguration`, `IConfigurationSource` and `Cust
 Configuring Audit via the following APIs have been deprecated:
 
  * `IProvideConfiguration<AuditConfig>`
- * `AuditConfig` in an app.cofig `configSections`
+ * `AuditConfig` in an app.config `configSections`
 
 Instead use one of the following:
 
@@ -44,7 +44,7 @@ snippet: 6to7AuditReadAppSettings
 Configuring Logging via the following APIs have been deprecated:
 
  * `IProvideConfiguration<Logging>`
- * `Logging` in an app.cofig `configSections`
+ * `Logging` in an app.config `configSections`
 
 
 Instead use one of the following:
@@ -67,7 +67,7 @@ snippet: 6to7LoggingReadAppSettings
 Configuring the error queue via the following APIs have been deprecated:
 
  * `IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>`
- * `MessageForwardingInCaseOfFaultConfig` in an app.cofig `configSections`
+ * `MessageForwardingInCaseOfFaultConfig` in an app.config `configSections`
  * Returning a `MessageForwardingInCaseOfFaultConfig` from a `IConfigurationSource`
 
 Instead use one of the following:
@@ -89,7 +89,7 @@ snippet: 6to7ErrorReadAppSettings
 Configuring the error queue via the following APIs have been deprecated:
 
  * `IProvideConfiguration<UnicastBusConfig>`
- * `UnicastBusConfig` in an app.cofig `configSections`
+ * `UnicastBusConfig` in an app.config `configSections`
  * Returning a `UnicastBusConfig` from a `IConfigurationSource`
 
 It can be replaced with a combination of the following
