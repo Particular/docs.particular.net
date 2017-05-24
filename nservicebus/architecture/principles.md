@@ -33,13 +33,11 @@ The basic communication pattern that enables robustness is one-way messaging, al
 
 NServiceBus enforces queued messaging, which has profound architectural implications. The principles and patterns underlying queued messaging are decades old and battle-tested through countless technological shifts.
 
-It's very simple and straightforward to build an application and get it working using traditional RPC techniques that WCF supports. However, scalability and fault-tolerance are inherently hindered. When using blocking calls it's close to impossible to solve these problems, and even throwing more hardware at it has little effect. WCF doesn't force developers down this path, but it also doesn't prevent them.
+It's very simple to build an application and get it working using traditional RPC techniques that WCF supports. However, scalability and fault-tolerance are inherently hindered when using blocking calls. Scaling up and throwing more hardware at the problem has little effect.
 
-NServiceBus directs away from these problems right from the beginning. There's no such thing as a blocking call when one uses one-way messaging. Common, transient errors can be resolved automatically, it's also very easy to recover from failures that require some manual intervention. Above all, even when something goes wrong, no data gets lost. 
+NServiceBus allows to avoid these problems right from the beginning. There's no such thing as a blocking call when one uses one-way messaging. Common, transient errors can be resolved automatically with retries, it's also very easy to recover from failures that require some manual intervention. Above all, even when a part of the system crashes, no data gets lost. 
 
-In order to learn more about the relationship between messaging and reliable, scalable, highly-available systems, watch those presentations:
-
-Handling failures with NServiceBus:
+In order to learn more about the relationship between messaging and reliable, scalable, highly-available systems, watch the presentation about handling failures with NServiceBus:
 
 <iframe src="https://embed-ssl.wistia.com/deliveries/7001d1a04a69c758b40582809142de5c5f47d2aa.jpg?image_crop_resized=298x174" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="480"></iframe>
 
@@ -50,22 +48,22 @@ See also other webinars and presentations in the [Videos and Presentations](http
 
 ![Store and Forward Messaging](store-and-forward.png)
 
-In this model, when the client process calls an API to send a message to the server process, the API returns control to the calling thread before the message is sent. At that point, the transfer of the message across the network becomes the responsibility of the messaging technology. There may be various kinds of communications interference, the server machine may be down, or a firewall may be slowing down the transfer. Also, even though the message may have reached the target machine, the target process may currently be down.
+In this model, when the client processes calls an API to send a message to the server process, the API returns control to the calling thread before the message is sent. At that point the transfer of the message across the network becomes the responsibility of the messaging technology. There may be various kinds of communications interference, e.g. the server machine may be down, or a firewall may be slowing down the transfer. Also, even though the message may have reached the target machine, the target process may currently be down.
 
-While all of this is going on, the client process is oblivious. Critical resources like threads (and it's allocated memory) are not held waiting for the call to complete. This prevents the client process from losing stability as a result of having many threads and all their memory used up waiting for a response from the other machine or process.
+The client process is oblivious to all those problems, as soon as the message is sent messaging infrastructure takes over. As a result critical resources like threads are not held waiting for the message processing to complete. This prevents the client process from losing stability while waiting for a response from another machine or process.
 
 
 ### Request/response and one-way messaging
 
-The common pattern of Request/Response, which is more accurately described as Synchronous Remote Procedure Call, is handled differently when using one way messaging. Instead of letting the stack of the calling thread manage the state of the communications interaction, it is done explicitly. From a network perspective, request/response is just two one-way interactions, as shown in the next figure.
+The common pattern of Request/Response, which is more accurately described as synchronous Remote Procedure Call, is handled differently when using one way messaging. From a network perspective, request/response is just two one-way interactions, as illustrated in the diagram:
 
 ![Full duplex Request-Response messaging](full-duplex-messaging.png)
 
-This communication is especially critical for servers as clients behind problematic network connections now have little effect on the server's stability. If a client crashes between the time that it sent the request until the server sends a response, the server will not have resources tied up waiting minutes and minutes until the connection times out.
+This communication is especially critical for servers as clients behind problematic network connections now have little effect on the server's stability. If a client crashes after it sent the request but before the server sent a response, the server will not have resources tied up waiting until the connection times out.
 
-When used in concert with Durable Messaging, system-wide robustness increases even more.
+When used in combination with Durable Messaging, the system-wide robustness increases even more.
 
-Durable messaging differs from regular store-and-forward messaging in that the messages are persisted to disk locally before attempting to be sent. This means that if after the calling thread has had control returned to it, the process crashes and the message sent is not lost. In server-to-server scenarios, where a server can complete a local transaction but might crash a second later, one-way durable messaging makes it easier to create an overall robust system even in the face of unreliable building blocks.
+Durable messaging differs from regular store-and-forward messaging in that the messages are persisted to disk locally before attempting to be sent. This means that the process crashes before the message is processed, the message is not lost. In server-to-server scenarios, where a server can complete a local transaction but might crash a second later, one-way durable messaging makes it easier to create an overall robust system even using unreliable building blocks.
 
 A different communication style involves one-to-many communication.
 
