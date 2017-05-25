@@ -35,6 +35,11 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         endpointConfiguration.SendFailedMessagesTo("error");
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        var routing = transport.Routing();
+        routing.RegisterPublisher(
+            eventType: typeof(OrderSubmitted),
+            publisherEndpoint: "Samples.MultiTenant.Sender");
 
         #region ReceiverConfiguration
 
