@@ -14,8 +14,18 @@ class Program
         Console.Title = "Samples.Versioning.V1Subscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V1Subscriber");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.SendFailedMessagesTo("error");
+
+        #region V1SubscriberMapping
+
+        var routing = transport.Routing();
+        routing.RegisterPublisher(
+            assembly: typeof(V1.Messages.ISomethingHappened).Assembly,
+            publisherEndpoint: "Samples.Versioning.V2Publisher");
+
+        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

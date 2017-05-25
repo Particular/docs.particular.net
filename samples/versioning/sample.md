@@ -1,7 +1,7 @@
 ---
 title: Versioning
 summary: Message evolution over time using interfaces.
-reviewed: 2016-03-21
+reviewed: 2017-05-21
 component: Core
 redirects:
  - nservicebus/versioning-sample
@@ -17,11 +17,11 @@ snippet: V2Message
 
 There are two subscribers as before, but now one subscriber is subscribed to the version 1 message schema, `V1Subscriber`; and the other subscriber is subscribed to the Version 2 message schema, `V2Subscriber`.
 
-NOTE: Subscribers have a message handler for the messages from their respective versions. Yet there is a slight difference in their config files; `V1Subscriber` has the following in its `UnicastBusConfig`:
+NOTE: Subscribers have a message handler for the messages from their respective versions. Yet there is a slight difference in their subscriptions configuration; `V1Subscriber` has:
 
 snippet: V1SubscriberMapping
 
-While `V2Subscriber` has this in its `UnicastBusConfig`:
+While `V2Subscriber` has:
 
 snippet: V2SubscriberMapping
 

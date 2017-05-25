@@ -14,8 +14,9 @@ class Program
         Console.Title = "Samples.Versioning.V2Publisher";
         var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V2Publisher");
         endpointConfiguration.UseSerialization<JsonSerializer>();
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
