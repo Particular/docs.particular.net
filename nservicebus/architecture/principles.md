@@ -6,7 +6,7 @@ redirects:
  - nservicebus/architectural-principles
 ---
 
-Messaging can be used to ensure autonomy and loose coupling in your systems, both at design time and at run time. However, in order to benefit from those qualities one needs to carefully design their applications and ensure good practices are followed.
+Messaging can be used to ensure autonomy and loose coupling in systems, both at design time and at run time. However, in order to benefit from those qualities one needs to carefully design their applications and ensure good practices are followed.
 
 Service-oriented architecture (SOA) and event-driven architecture provide the basis for identifying where to use messaging frameworks, such as NServiceBus. Strategic Domain-Driven Design helps bridge the gap between business and IT. It's an essential strategy for identyfing service boundaries and finding meaningful business events.
 
@@ -70,44 +70,43 @@ A different communication style involves one-to-many communication.
 
 ### Publish/subscribe
 
-In this style, the sender of the message often does not know the specifics of those that wish to receive the message. This additional loose coupling comes at the cost of subscribers explicitly opting-in to receiving messages, as shown in the following diagram.
+In this pattern the sender of the message isn't aware of subscribers detials. The additional loose coupling comes at the cost of subscribers explicitly opting-in to receiving messages, as shown in the diagram below.
 
 
 #### Subscriptions
 
 ![Subscription process](/nservicebus/messaging/publish-subscribe/subscribe.png)
 
-Subscribers need to know which endpoint is responsible for a given message. This information is usually made available as part of the contract, specifying to which endpoint a subscriber should send its request. As a part of the subscription message, a subscriber passes its
-"return address", the endpoint at which it wants to receive messages.
+Subscribers need to know which endpoint is responsible for publishing a given message. This information is usually available as part of the contract, specifying to which endpoint a subscriber should send its request. Part of the subscription message is a subscriber's "return address", i.e. the address of the endpoint which wants to receive messages.
 
-Keep in mind that the publisher may choose to store the information concerning which subscriber is interested in which message in a highly available manner. This allows multiple processes on multiple machines to publish messages to all subscribers, regardless if one received the subscription message or not.
+Keep in mind that the publisher may choose to store the information concerning which subscriber is interested in which message in a highly available manner. This allows multiple processes on multiple machines to publish messages to all subscribers, even if the particular publisher didn't receive the given subscription request.
 
-Subscribers don't necessarily have to subscribe themselves. Through the use of the Return Address pattern, one central configuration station could send multiple messages to each publisher, specifying which subscriber endpoints to subscribe to which message.
+Subscribers don't have to subscribe themselves. Through the use of the Return Address pattern, one central configuration station could send multiple messages to each publisher, specifying which subscriber endpoints to subscribe to which message.
 
-Another option that can be used is for multiple physical subscribers to make themselves appear as one single logical subscriber. This makes it possible to load balance the handling of messages between multiple physical subscribers without any explicit coordination on the part of the publisher or the part of any one subscriber. All that is needed is for all subscribers to specify the same return address in the subscription message.
+Another approach that can be used is to have multiple physical subscribers which act as a single logical subscriber. This makes possible to load balance the handling of messages between multiple physical subscribers without any explicit coordination on the part of the publisher or any one subscriber. All that is needed is that all subscribers should specify the same logical return address in the subscription message.
 
 
 #### Publishing
 
 ![Publishing process](publish.png)
 
-Publishing a message involves having the message arrive at all endpoints that previously subscribed to that type of message.
+Publishing a message involves sending that message to all endpoints that previously subscribed to that message type.
 
-Messages that are published often represent events or things that have happened; for instance, Order Cancelled, Product Out of Stock, and Shipping Delayed. Sometimes, the cause of an event is the handling of a previous command message, for instance Cancel Order. A publisher is not required to publish a message as a part of handling a command message although it is the simplest solution.
+Messages that are published often represent events, i.e. things that have happened. For instance, Order Cancelled, Product Out of Stock, and Shipping Delayed. Sometimes an event is generated as a result of handling a previous command message, for instance Order Cancelled event for Cancel Order command. A publisher is not required to publish a message after handling a command message although it is a common scenario.
 
-Since many command messages can be received in a short period of time, publishing a message to all subscribers for every command message multiplies the incoming load and, as such, is a less than optimal solution. A better solution has the publisher rolling up all the changes that occurred in a given period of time into a single published message. The appropriate period of time depends on the Service Level Agreement of the publisher and its commitment to the freshness of the data. For instance, in the financial domain the publishing period may be 10ms, while in the business of consumer e-commerce, a minute may be acceptable.
+Since many command messages can be received in a short period of time, publishing an event to all subscribers for every command message multiplies the incoming load and, as such, is a less than optimal solution. A better solution has the publisher batching all the changes that occurred in a given period of time into a single published message. The appropriate period of time depends on the Service Level Agreement of the publisher and its commitment to the freshness of the data. For instance, in the financial domain the publishing period may be 10 ms, while in the business of consumer e-commerce, a minute may be acceptable.
 
-Another advantage of publishing messages on a timer is that that activity can be offloaded from the endpoint/server processing command messages, effectively scaling out over more servers.
+Another advantage of publishing messages in delayed batched is that this activity can be offloaded from the endpoint which is processing command messages, effectively allowing to scale out over more servers.
 
 
 ### Command query separation
 
-Many systems provide users with the ability to search, filter, and sort data. While one-way messaging and publish/subscribe are core components of the implementation of these features, the way they are combined is not at all like a regular client-server request/response.
+Many systems provide users with the ability to search, filter, and sort data. While one-way messaging and publish/subscribe are core underlying patterns of these features, they aren't executed in a regular client-server request/response fashion.
 
-In regular client-server development, the server provides the client with all CRUD (create, read, update, and delete) capabilities. However, when users look at data they do not often require it to be up-to-date to the second (given that they often look at the same screen for several seconds to minutes at a time). As such, retrieving data from the same table as that being used for highly consistent transaction processing creates contention, resulting in poor performance for all CRUD actions under higher load.
+In regular client-server system, the server exposes all CRUD (create, read, update, and delete) operations to the client. However, when users read data they often don't require it to be always up-to-date, data may be stale for short periods of time. At the same time, retrieving data from the same table that's being used for highly consistent transaction processing creates contention, resulting in poor performance for all CRUD actions under higher load.
 
-A solution that avoids this problem separates commands and queries at the system level, even above that of client and server. In this solution there are two "services" that span both client and server: one in charge of commands (create, update, delete), and the other in charge of queries (read). These services communicate only via messages; one cannot access the database of the other, as shown in the following diagram:
+A solution that avoids this problem separates commands and queries at the system level, even above client and server. In this solution there are two "services" that span both client and server: one in charge of commands (create, update, delete), and the other in charge of queries (read). These services communicate only via messages and keep their data separate, possibly even in separate databases. One service cannot access the data of the other, as shown in the following diagram:
 
 ![Command Query Separation](cqs.png)
 
-The command service publishes messages about changes to data, to which the query service subscribes. When the query service receives such notifications, it saves the data in its own data store which may well have a different schema (optimized for queries like a star schema). The query service may also keep all data in memory if the data is small enough.
+The command service publishes messages with data changes, to which the query service subscribes. When the query service receives such notifications, it saves the data in its own data store which may have a different schema (optimized for queries like a star schema). The query service may also keep all data in memory if the data is small enough.
