@@ -96,8 +96,6 @@ Messages that are published often represent events, i.e. things that have happen
 
 Since many command messages can be received in a short period of time, publishing an event to all subscribers for every command message multiplies the incoming load and, as such, is a less than optimal solution. A better solution has the publisher batching all the changes that occurred in a given period of time into a single published message. The appropriate period of time depends on the Service Level Agreement of the publisher and its commitment to the freshness of the data. For instance, in the financial domain the publishing period may be 10 ms, while in the business of consumer e-commerce, a minute may be acceptable.
 
-Another advantage of publishing messages in delayed batched is that this activity can be offloaded from the endpoint which is processing command messages, effectively allowing to scale out over more servers.
-
 
 ### Command query separation
 
