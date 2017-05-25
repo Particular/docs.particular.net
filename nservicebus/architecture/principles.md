@@ -1,115 +1,110 @@
 ---
 title: Architectural Principles
 summary: NServiceBus helps write code that is robust in production environments, preventing data loss under failure conditions.
-reviewed: 2016-08-10
+reviewed: 2017-05-24
 redirects:
  - nservicebus/architectural-principles
 ---
 
-Autonomy and loose coupling at design time and at run time are not things that any technology can give.
+Messaging can be used to ensure autonomy and loose coupling in systems, both at design time and at run time. However, in order to benefit from those qualities one needs to carefully design their applications and ensure good practices are followed.
 
-Service-oriented architecture (SOA) and event-driven architecture together provide the basis for identifying where to use NServiceBus.
-
-Strategic Domain-Driven Design helps bridge the business/IT divide and drives the choice of business events published using NServiceBus.
+Service-oriented architecture (SOA) and event-driven architecture provide the basis for identifying where to use messaging frameworks, such as NServiceBus. Strategic Domain-Driven Design helps bridge the gap between business and IT. It's an essential strategy for identyfing service boundaries and finding meaningful business events.
 
 
 ## How NServiceBus aligns with SOA
 
-<iframe src="//fast.wistia.net/embed/iframe/6g70txthct" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="480"></iframe>
+<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/113515335?autoplay=1" webkitallowfullscreen width="400"></iframe>
 
-In this presentation, Udi Dahan explains the disadvantages of classical web services thinking that places services at a layer below the user interface and above the business logic. Instead, he describes an approach that cuts across all layers of an application, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
+In this presentation Udi Dahan explains the process of finding the right service boundaries. The presentation starts with introduction to SOA, explains challenges with traditional layered architectures and covers an approach that cuts across all application layers, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
 
 
 ## Drilling down into details
 
-One of the problems with the distributed systems built today is that they are fragile. As one part of the system slows down, the effect tends to ripple out and cripple the entire system. One of the primary design goals of NServiceBus is to eliminate that, guiding developers to write code that is robust in production environments. That robustness prevents data loss under failure conditions.
+One of the problems in many systems is that they are fragile. One part of the system slows down, affecting other parts of the system, ultimetaly crashing the entire system. 
 
-To make effective use of NServiceBus, it is necessary to understand the distributed systems architecture it is designed to support. In other words, if designing the system according to the principles laid out below, NServiceBus will make life a lot easier. On the other hand, if these principles are not followed, NServiceBus will probably make it harder.
+One of the primary design goals of NServiceBus is to eliminate that flaw by guiding developers to write code that is robust in production environments. That robustness prevents data loss under failure conditions.
 
-The extensibility features in NServiceBus allow customizing its behavior to suit the specific needs, yet they are documented separately.
+To make effective use of NServiceBus, it is necessary to understand the distributed systems architecture it is designed to support. Those basic principles are explained briefly in this article. For an in-depth knowledge see the [ADSD course](https://particular.net/adsd).  
 
-The communications pattern that enables robustness is one-way messaging, also known as "fire and forget". This is discussed in more detail shortly.
-
-Since the amount of time it can take to communicate with another machine across the network is both unknown and unbounded, communications are based on a store-and-forward model, as shown in the following figure.
+The basic communication pattern that enables robustness is one-way messaging, also known as "fire and forget". Since the amount of time it can take to communicate with another machine across the network is unknown and unbounded, asynchronous communication in NServiceBus is based on a store-and-forward model.
 
 
 ## Messaging versus RPC
 
 NServiceBus enforces queued messaging, which has profound architectural implications. The principles and patterns underlying queued messaging are decades old and battle-tested through countless technological shifts.
 
-It's very simple and straightforward to build an application and get it working using traditional RPC techniques that WCF supports. However, scalability and fault-tolerance are inherently hindered. When using blocking calls it's close to impossible to solve these problems, and even throwing more hardware at it has little effect. WCF doesn't force developers down this path, but it also doesn't prevent them.
+It's very simple to build an application and get it working using traditional RPC techniques that WCF supports. However, scalability and fault-tolerance are inherently hindered when using blocking calls. Scaling up and throwing more hardware at the problem has little effect.
 
-NServiceBus directs away from these problems right from the beginning. There's no such thing as a blocking call when one uses one-way messaging. Common, transient errors can be resolved automatically, it's also very easy to recover from failures that require some manual intervention. Above all, even when something goes wrong, no data gets lost. 
+NServiceBus allows to avoid these problems right from the beginning. There's no such thing as a blocking call when one uses one-way messaging. Common, transient errors can be resolved automatically with retries, it's also very easy to recover from failures that require some manual intervention. Above all, even when a part of the system crashes, no data gets lost. 
 
-In order to learn more about the relationship between messaging and reliable, scalable, highly-available systems, watch Udi Dahan's presentation:
+In order to learn more about the relationship between messaging and reliable, scalable, highly-available systems, watch the presentation about handling failures with NServiceBus:
 
-<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/6222577" webkitallowfullscreen width="400"></iframe>
+<iframe src="https://embed-ssl.wistia.com/deliveries/7001d1a04a69c758b40582809142de5c5f47d2aa.jpg?image_crop_resized=298x174" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="480"></iframe>
+
+See also other webinars and presentations in the [Videos and Presentations](https://particular.net/videos-and-presentations) page.
 
 
 ### Store and forward messaging
 
 ![Store and Forward Messaging](store-and-forward.png)
 
-In this model, when the client process calls an API to send a message to the server process, the API returns control to the calling thread before the message is sent. At that point, the transfer of the message across the network becomes the responsibility of the messaging technology. There may be various kinds of communications interference, the server machine may be down, or a firewall may be slowing down the transfer. Also, even though the message may have reached the target machine, the target process may currently be down.
+In this model, when the client processes calls an API to send a message to the server process, the API returns control to the calling thread before the message is sent. At that point the transfer of the message across the network becomes the responsibility of the messaging technology. There may be various kinds of communications interference, e.g. the server machine may be down, or a firewall may be slowing down the transfer. Also, even though the message may have reached the target machine, the target process may currently be down.
 
-While all of this is going on, the client process is oblivious. Critical resources like threads (and it's allocated memory) are not held waiting for the call to complete. This prevents the client process from losing stability as a result of having many threads and all their memory used up waiting for a response from the other machine or process.
+The client process is oblivious to all those problems, as soon as the message is sent messaging infrastructure takes over. As a result critical resources like threads are not held waiting for the message processing to complete. This prevents the client process from losing stability while waiting for a response from another machine or process.
 
 
 ### Request/response and one-way messaging
 
-The common pattern of Request/Response, which is more accurately described as Synchronous Remote Procedure Call, is handled differently when using one way messaging. Instead of letting the stack of the calling thread manage the state of the communications interaction, it is done explicitly. From a network perspective, request/response is just two one-way interactions, as shown in the next figure.
+The common pattern of Request/Response, which is more accurately described as synchronous Remote Procedure Call, is handled differently when using one way messaging. From a network perspective, request/response is just two one-way interactions, as illustrated in the diagram:
 
 ![Full duplex Request-Response messaging](full-duplex-messaging.png)
 
-This communication is especially critical for servers as clients behind problematic network connections now have little effect on the server's stability. If a client crashes between the time that it sent the request until the server sends a response, the server will not have resources tied up waiting minutes and minutes until the connection times out.
+This communication is especially critical for servers as clients behind problematic network connections now have little effect on the server's stability. If a client crashes after it sent the request but before the server sent a response, the server will not have resources tied up waiting until the connection times out.
 
-When used in concert with Durable Messaging, system-wide robustness increases even more.
+When used in combination with Durable Messaging, the system-wide robustness increases even more.
 
-Durable messaging differs from regular store-and-forward messaging in that the messages are persisted to disk locally before attempting to be sent. This means that if after the calling thread has had control returned to it, the process crashes and the message sent is not lost. In server-to-server scenarios, where a server can complete a local transaction but might crash a second later, one-way durable messaging makes it easier to create an overall robust system even in the face of unreliable building blocks.
+Durable messaging differs from regular store-and-forward messaging in that the messages are persisted to disk locally before attempting to be sent. This means that the process crashes before the message is processed, the message is not lost. In server-to-server scenarios, where a server can complete a local transaction but might crash a second later, one-way durable messaging makes it easier to create an overall robust system even using unreliable building blocks.
 
 A different communication style involves one-to-many communication.
 
 
 ### Publish/subscribe
 
-In this style, the sender of the message often does not know the specifics of those that wish to receive the message. This additional loose coupling comes at the cost of subscribers explicitly opting-in to receiving messages, as shown in the following diagram.
+In this pattern the sender of the message isn't aware of subscribers detials. The additional loose coupling comes at the cost of subscribers explicitly opting-in to receiving messages, as shown in the diagram below.
 
 
 #### Subscriptions
 
 ![Subscription process](/nservicebus/messaging/publish-subscribe/subscribe.png)
 
-Subscribers need to know which endpoint is responsible for a given message. This information is usually made available as part of the contract, specifying to which endpoint a subscriber should send its request. As a part of the subscription message, a subscriber passes its
-"return address", the endpoint at which it wants to receive messages.
+Subscribers need to know which endpoint is responsible for publishing a given message. This information is usually available as part of the contract, specifying to which endpoint a subscriber should send its request. Part of the subscription message is a subscriber's "return address", i.e. the address of the endpoint which wants to receive messages.
 
-Keep in mind that the publisher may choose to store the information concerning which subscriber is interested in which message in a highly available manner. This allows multiple processes on multiple machines to publish messages to all subscribers, regardless if one received the subscription message or not.
+Keep in mind that the publisher may choose to store the information concerning which subscriber is interested in which message in a highly available manner. This allows multiple processes on multiple machines to publish messages to all subscribers, even if the particular publisher didn't receive the given subscription request.
 
-Subscribers don't necessarily have to subscribe themselves. Through the use of the Return Address pattern, one central configuration station could send multiple messages to each publisher, specifying which subscriber endpoints to subscribe to which message.
+Subscribers don't have to subscribe themselves. Through the use of the Return Address pattern, one central configuration station could send multiple messages to each publisher, specifying which subscriber endpoints to subscribe to which message.
 
-Another option that can be used is for multiple physical subscribers to make themselves appear as one single logical subscriber. This makes it possible to load balance the handling of messages between multiple physical subscribers without any explicit coordination on the part of the publisher or the part of any one subscriber. All that is needed is for all subscribers to specify the same return address in the subscription message.
+Another approach that can be used is to have multiple physical subscribers which act as a single logical subscriber. This makes possible to load balance the handling of messages between multiple physical subscribers without any explicit coordination on the part of the publisher or any one subscriber. All that is needed is that all subscribers should specify the same logical return address in the subscription message.
 
 
 #### Publishing
 
 ![Publishing process](publish.png)
 
-Publishing a message involves having the message arrive at all endpoints that previously subscribed to that type of message.
+Publishing a message involves sending that message to all endpoints that previously subscribed to that message type.
 
-Messages that are published often represent events or things that have happened; for instance, Order Cancelled, Product Out of Stock, and Shipping Delayed. Sometimes, the cause of an event is the handling of a previous command message, for instance Cancel Order. A publisher is not required to publish a message as a part of handling a command message although it is the simplest solution.
+Messages that are published often represent events, i.e. things that have happened. For instance, Order Cancelled, Product Out of Stock, and Shipping Delayed. Sometimes an event is generated as a result of handling a previous command message, for instance Order Cancelled event for Cancel Order command. A publisher is not required to publish a message after handling a command message although it is a common scenario.
 
-Since many command messages can be received in a short period of time, publishing a message to all subscribers for every command message multiplies the incoming load and, as such, is a less than optimal solution. A better solution has the publisher rolling up all the changes that occurred in a given period of time into a single published message. The appropriate period of time depends on the Service Level Agreement of the publisher and its commitment to the freshness of the data. For instance, in the financial domain the publishing period may be 10ms, while in the business of consumer e-commerce, a minute may be acceptable.
-
-Another advantage of publishing messages on a timer is that that activity can be offloaded from the endpoint/server processing command messages, effectively scaling out over more servers.
+Since many command messages can be received in a short period of time, publishing an event to all subscribers for every command message multiplies the incoming load and, as such, is a less than optimal solution. A better solution has the publisher batching all the changes that occurred in a given period of time into a single published message. The appropriate period of time depends on the Service Level Agreement of the publisher and its commitment to the freshness of the data. For instance, in the financial domain the publishing period may be 10 ms, while in the business of consumer e-commerce, a minute may be acceptable.
 
 
 ### Command query separation
 
-Many systems provide users with the ability to search, filter, and sort data. While one-way messaging and publish/subscribe are core components of the implementation of these features, the way they are combined is not at all like a regular client-server request/response.
+Many systems provide users with the ability to search, filter, and sort data. While one-way messaging and publish/subscribe are core underlying patterns of these features, they aren't executed in a regular client-server request/response fashion.
 
-In regular client-server development, the server provides the client with all CRUD (create, read, update, and delete) capabilities. However, when users look at data they do not often require it to be up-to-date to the second (given that they often look at the same screen for several seconds to minutes at a time). As such, retrieving data from the same table as that being used for highly consistent transaction processing creates contention, resulting in poor performance for all CRUD actions under higher load.
+In regular client-server system, the server exposes all CRUD (create, read, update, and delete) operations to the client. However, when users read data they often don't require it to be always up-to-date, data may be stale for short periods of time. At the same time, retrieving data from the same table that's being used for highly consistent transaction processing creates contention, resulting in poor performance for all CRUD actions under higher load.
 
-A solution that avoids this problem separates commands and queries at the system level, even above that of client and server. In this solution there are two "services" that span both client and server: one in charge of commands (create, update, delete), and the other in charge of queries (read). These services communicate only via messages; one cannot access the database of the other, as shown in the following diagram:
+A solution that avoids this problem separates commands and queries at the system level, even above client and server. In this solution there are two "services" that span both client and server: one in charge of commands (create, update, delete), and the other in charge of queries (read). These services communicate only via messages and keep their data separate, possibly even in separate databases. One service cannot access the data of the other, as shown in the following diagram:
 
 ![Command Query Separation](cqs.png)
 
-The command service publishes messages about changes to data, to which the query service subscribes. When the query service receives such notifications, it saves the data in its own data store which may well have a different schema (optimized for queries like a star schema). The query service may also keep all data in memory if the data is small enough.
+The command service publishes messages with data changes, to which the query service subscribes. When the query service receives such notifications, it saves the data in its own data store which may have a different schema (optimized for queries like a star schema). The query service may also keep all data in memory if the data is small enough.
