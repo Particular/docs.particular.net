@@ -100,9 +100,10 @@ WARNING: The default configuration for ServiceControl only allows access to REST
 
 It is also recommended that the IIS web site be configured to use SSL if an authorization provider is used.
 
+
 ### Role-based security
 
-After executing the steps outlined above, ServicePulse requires authentication before accessing any functionality. It does not check any authorization rules though so each authenticated user can do everything. In order to restrict access to specific features, the `IIS URL Authorization` feature can be used. Following snippet can be placed in the `web.config` file in the root of the web site to restrict access based on roles.
+After executing the steps outlined above, ServicePulse requires authentication before accessing any functionality. It does not check any authorization rules though, so every authenticated user can do anything. The `IIS URL Authorization` feature can be used to restrict access to specific features. The following snippet can be placed in the `web.config` file in the root of the web site to restrict access based on roles:
 
 snippet: RoleBasedSecurity
 
