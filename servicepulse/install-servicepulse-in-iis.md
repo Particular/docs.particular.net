@@ -101,6 +101,18 @@ WARNING: The default configuration for ServiceControl only allows access to REST
 It is also recommended that the IIS web site be configured to use SSL if an authorization provider is used.
 
 
+### Role-based security
+
+After executing the steps outlined above, ServicePulse requires authentication before accessing any functionality. It does not check any authorization rules though, so every authenticated user can do anything. The `IIS URL Authorization` feature can be used to restrict access to specific features. The following snippet can be placed in the `web.config` file in the root of the web site to restrict access based on roles:
+
+snippet: RoleBasedSecurity
+
+There are three roles defined:
+ * `SPReaders` members can read all the content but cannot trigger any actions
+ * `SPFailedMessages` members can manage the failed messages (retry, archive, groups etc.)
+ * `SPMonitoring` members can manage monitoring (e.g. enabling/disabling heartbeat monitoring for a particular endpoint)
+
+
 ### Configuring Reverse Proxy in a non-root directory
 
 Due to a [bug in SignalR](https://github.com/SignalR/SignalR/issues/3649) in Microsoft.AspNet.SignalR.JS version 2.2.0, usage of IIS as a reverse proxy in a virtual directory requires an additional URL Rewrite Rule on the `/api/` sub directory. This rule makes sure that SignalR uses the correct path when hosted within a virtual directory. This rule should look as follows:
