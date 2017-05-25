@@ -16,16 +16,16 @@ By default, the RabbitMQ transport uses the `ConventionalRoutingTopology`, which
 
 ### Sending using Conventional Routing Topology
 
-Each endpoint creates its own fanout exchange and queue, using its name as the name of the exchange and queue. It also creates a binding between the exchange and queue. Messages are sent to the endpoint by sending them to the endpoint's exchange, and the binding routes the message to the endpoint's queue.
+Each endpoint creates its own fanout exchange and queue, using its own name as the name of the exchange and queue. It also creates a binding between the exchange and queue. Messages are sent to the endpoint by sending them to the endpoint's exchange. The binding then routes the message to the endpoint's queue.
 
 
 ### Publishing using Conventional Routing Topology
 
-For each type being published, a series of fanout exchanges are created to model the inheritance hierarchy of the type. For each type involved, an exchange is created, named in the following format: `Namespace:TypeName`. Bindings are created between the types, going from child to parent, until the entire hierarchy has been modeled. Exchanges are created for each interface the type implements as well.
+For each type being published, a series of fanout exchanges are created to model the inheritance hierarchy of the type. For each type involved, an exchange is created, named in the following format: `Namespace:TypeName`. Bindings are created between the types, going from child to parent, until the entire hierarchy has been modeled. Exchanges are also created for each interface the type implements.
 
-When an endpoint subscribes to an event, first it verifies that the above infrastructure exists, and creates it if it doesn't. Then, it adds a binding from the exchange corresponding to the subscribed type to its own exchange.
+When an endpoint subscribes to an event, it first ensures that the above infrastructure exists. It then adds a binding from the exchange corresponding to the subscribed type to its own exchange.
 
-When an endpoint publishes an event, first it verifies that the above infrastructure exists, and creates it if it doesn't. Then it sends the message to the exchange corresponding to the type being published.
+When an endpoint publishes an event, it first ensures that the above infrastructure exists. It then sends the message to the exchange corresponding to the type being published.
 
 
 ## Direct Routing Topology
