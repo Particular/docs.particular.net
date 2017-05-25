@@ -50,7 +50,7 @@ Some of the data captured by the NServiceBus.Metrics component can be forwarded 
 
 ## Metrics captured
 
-The NServiceBus.Metrics component captures a number of different metrics about a running endpoint.
+NServiceBus and ServiceControl capture a number of different metrics about a running endpoint.
 
 ### Processing time
 
@@ -71,4 +71,28 @@ These statistics encompass a number of different metrics, including:
 - Number of message processing failures
 - Number of messages successfully processed
 
+### Queue length
 
+This metric tracks estimated number of messages in the input queue of an endpoint.
+
+A _link_ is a communication channel between a sender of the message and its receiver. Each link is uniquely identified by some combination of destination address, message assembly, and the [host identifier](/nservicebus/hosting/override-hostid.md#host-identifier) of the sender. The exact composition of link identifiers depends on the transport properties and type of message being sent.
+
+Each sender maintains a monotonic counter of messages sent over each of its outgoing links and transmits the value of this counter to the receiver in a message header. The receiver tracks the counter value for the last message received over each link. This allows both communicating endpoints to track how many messages were sent and received over each link.
+
+ServiceControl collects these metrics for all links and estimates the length of the input queue for each receiver based on how many messages were sent in total over all incoming links and how many of those messages have already been received.
+
+#### Example
+
+The system consists of two endpoints, Sales and Shipping. Sales send messages to Shipping to notify it about some business events. The Sales endpoint is scaled out and deployed to two machines, `1` and `2`. Consider the following values reported to ServiceControl:
+
+| Link ID                        | Max sent counter | Max received counter | Messages in queue from this link |
+|--------------------------------|:----------------:|:--------------------:|:--------------------------------:|
+| `Sales@1->Shipping`             | 20               | 17                   | 3                                |
+| `Sales@2->Shipping`             | 33               | 31                   | 2                                |
+
+
+Based on the data above, ServiceControl can estimate the following values of queue length for `Shipping` endpoints:
+
+| Endpoint | Queue length terms  | Calculated queue length |
+|----------|:-------------------:|:-----------------------:|
+| Shipping    | 3 + 2               | 5                       |
