@@ -1,5 +1,8 @@
 ﻿namespace Core7
 {
+    using NServiceBus;
+    using NServiceBus.Persistence;
+
     class Usage
     {
         Usage(EndpointConfiguration endpointConfiguration)
