@@ -21,9 +21,11 @@ static class Program
         var builder = new ContainerBuilder();
 
         builder.Register(x =>
-        {
-            return Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
-        }).As<IEndpointInstance>();
+            {
+                return Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
+            })
+            .As<IEndpointInstance>()
+            .SingleInstance();
 
         builder.RegisterInstance(new MyService());
 
