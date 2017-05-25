@@ -17,7 +17,6 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseDataBus<FileShareDataBus>()
             .BasePath(@"..\..\..\DataBusShare\");
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         endpointConfiguration.ApplyCustomConventions();
 
