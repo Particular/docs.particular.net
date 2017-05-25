@@ -1,4 +1,4 @@
-﻿namespace Core5.Serialization
+﻿namespace Core5
 {
     using NServiceBus;
 

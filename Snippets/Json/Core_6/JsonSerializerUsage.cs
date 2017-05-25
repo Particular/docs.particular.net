@@ -1,4 +1,4 @@
-﻿namespace Core6.Serialization
+﻿namespace Core6
 {
     using System.Text;
     using NServiceBus;

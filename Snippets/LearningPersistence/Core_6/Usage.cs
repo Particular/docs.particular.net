@@ -1,4 +1,4 @@
-﻿namespace LearningPersistence
+﻿namespace Core6
 {
     using NServiceBus;
 

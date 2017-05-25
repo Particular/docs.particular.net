@@ -1,4 +1,4 @@
-﻿namespace Core4.Persistence.InMemory
+﻿namespace Core4
 {
     using NServiceBus;
 

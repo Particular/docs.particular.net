@@ -1,4 +1,4 @@
-namespace Core3.DataBus.CleanupStrategy
+namespace Core3.CleanupStrategy
 {
     using System;
     using System.IO;

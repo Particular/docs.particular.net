@@ -1,4 +1,4 @@
-﻿namespace Core6.Persistence.InMemory
+﻿namespace Core6
 {
     using NServiceBus;
     using NServiceBus.Persistence;

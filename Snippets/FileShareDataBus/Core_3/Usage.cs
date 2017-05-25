@@ -1,4 +1,4 @@
-﻿namespace Core3.DataBus.FileShare
+﻿namespace Core3
 {
     using NServiceBus;
 

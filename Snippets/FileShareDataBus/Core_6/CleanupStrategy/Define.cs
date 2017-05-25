@@ -1,4 +1,4 @@
-namespace Core6.DataBus.CleanupStrategy
+namespace Core6.CleanupStrategy
 {
     using NServiceBus;
 

@@ -1,4 +1,4 @@
-﻿namespace Core3.Serialization
+﻿namespace Core3
 {
     using NServiceBus;
 

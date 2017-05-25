@@ -2,6 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
+    <RootNamespace>Core3</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="3.*" />

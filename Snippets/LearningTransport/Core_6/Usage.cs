@@ -1,4 +1,4 @@
-﻿namespace LearningTransport
+﻿namespace Core6
 {
     using NServiceBus;
 

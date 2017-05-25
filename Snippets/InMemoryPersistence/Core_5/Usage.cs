@@ -1,4 +1,4 @@
-﻿namespace Core5.Persistence.InMemory
+﻿namespace Core5
 {
     using NServiceBus;
     using NServiceBus.Persistence;
