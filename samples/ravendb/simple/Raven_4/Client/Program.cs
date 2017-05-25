@@ -16,7 +16,7 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
@@ -39,7 +39,7 @@ class Program
             {
                 OrderId = orderId
             };
-            await endpointInstance.Send(startOrder)
+            await endpointInstance.Send("Samples.RavenDB.Server", startOrder)
                 .ConfigureAwait(false);
             Console.WriteLine($"StartOrder Message sent with OrderId {orderId}");
         }

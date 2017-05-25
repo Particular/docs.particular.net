@@ -39,7 +39,7 @@ class Program
             {
                 OrderId = orderId
             };
-            await endpointInstance.Send(startOrder)
+            await endpointInstance.Send("Samples.NHibernate.Server", startOrder)
                 .ConfigureAwait(false);
             Console.WriteLine($"StartOrder Message sent with OrderId {orderId}");
         }
