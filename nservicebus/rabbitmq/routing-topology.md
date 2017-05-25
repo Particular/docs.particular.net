@@ -11,19 +11,21 @@ The RabbitMQ transport has the concept of a routing topology, which controls how
 
 ## Conventional Routing Topology
 
-By default, the RabbitMQ transport uses the `ConventionalRoutingTopology`, which creates separate [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) for each message type being published in the system and for each endpoint.
+By default, the RabbitMQ transport uses the `ConventionalRoutingTopology`, which relies on [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) to route messages. 
 
 
 ### Sending using Conventional Routing Topology
 
-Every endpoint creates a queue and an exchange with names equal to the endpoint name and a binding is set up to move all messages to that queue. When an endpoint sends a message it sends it to an exchange with a name matching the destination endpoint name and the message is then moved to the queue of the same name.
+Each endpoint creates its own fanout exchange and queue, using its own name as the name of the exchange and queue. It also creates a binding between the exchange and queue. Messages are sent to the endpoint by sending them to the endpoint's exchange. The binding then routes the message to the endpoint's queue.
 
 
 ### Publishing using Conventional Routing Topology
 
-Every endpoint, before publishing an event, creates a fanout exchange for the event and it's base types. Every exchange has a name of the form `Namespace.TypeName`, corresponding to the type of the event. Bindings are created to ensure that base type events also are moved to the exchanges for the derived types when they are published. An endpoint that subscribes to a given event type looks for the exchange with the appropriate name and creates a binding to move messages of that type to its queue.
+For each type being published, a series of fanout exchanges are created to model the inheritance hierarchy of the type. For each type involved, an exchange is created, named in the following format: `Namespace:TypeName`. Bindings are created between the types, going from child to parent, until the entire hierarchy has been modeled. Exchanges are also created for each interface the type implements.
 
-This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchanges based on the event types that it has handlers for.
+When an endpoint subscribes to an event, it first ensures that the above infrastructure exists. It then adds a binding from the exchange corresponding to the subscribed type to its own exchange.
+
+When an endpoint publishes an event, it first ensures that the above infrastructure exists. It then sends the message to the exchange corresponding to the type being published.
 
 
 ## Direct Routing Topology
