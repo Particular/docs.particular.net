@@ -32,8 +32,6 @@ class Program
 
         #endregion
 
-        endpointConfiguration.SendFailedMessagesTo("error");
-
         #region DisableAutoSubscripton
 
         endpointConfiguration.DisableFeature<AutoSubscribe>();
