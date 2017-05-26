@@ -13,7 +13,7 @@ Service-oriented architecture (SOA) and event-driven architecture provide the ba
 
 ## How NServiceBus aligns with SOA
 
-<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/113515335?autoplay=1" webkitallowfullscreen width="400"></iframe>
+<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/113515335" webkitallowfullscreen width="400"></iframe>
 
 In this presentation Udi Dahan explains the process of finding the right service boundaries. The presentation starts with introduction to SOA, explains challenges with traditional layered architectures and covers an approach that cuts across all application layers, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
 
@@ -39,7 +39,7 @@ NServiceBus allows to avoid these problems right from the beginning. There's no 
 
 In order to learn more about the relationship between messaging and reliable, scalable, highly-available systems, watch the presentation about handling failures with NServiceBus:
 
-<iframe src="https://embed-ssl.wistia.com/deliveries/7001d1a04a69c758b40582809142de5c5f47d2aa.jpg?image_crop_resized=298x174" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="480"></iframe>
+<iframe src="//fast.wistia.net/embed/iframe/7kr0n04vi5" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="480"></iframe>
 
 See also other webinars and presentations in the [Videos and Presentations](https://particular.net/videos-and-presentations) page.
 
