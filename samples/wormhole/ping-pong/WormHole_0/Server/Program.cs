@@ -29,7 +29,11 @@ class Program
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
 
+        #region ConfigureServer
+
         endpointConfiguration.UseWormHoleGateway("Gateway.SiteB");
+
+        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

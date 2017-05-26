@@ -1,109 +1,80 @@
 ---
-title: Using adapter to centralize monitoring of multi-instance SQL Server
-component: SCTransportAdapter
-reviewed: 2017-05-11
+title: Using Worm Hole to send messages between geographically distributed sites
+component: WormHole
+reviewed: 2017-05-26
 related:
- - servicecontrol
- - servicecontrol/plugins
+ - nservicebus/wormhole
 ---
 
 ## Prerequisistes
 
- 1. [Install ServiceControl](/servicecontrol/installation.md).
- 1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using SQL Server transport.
-	 
-	* Use `Particular.ServiceControl.SQL` as the instance name (make sure there is no other instance of SC running with the same name).
-	* Use local `ServiceControl` on local SQL Server Express as the database (ServiceControl Manager will automatically create queue tables in the database). 
- 1. Ensure the `ServiceControl` process is running before running the sample.
- 1. In the same SQL Server instance, create databases for the endpoints: `sales`, `shipping` and `adapter`  
- 1. [Install ServicePulse](/servicepulse/installation.md)
+Open the solution in VisualStudio running as Administrator because the gateways need to register the listening URL. Alternatively use add the registrations manually: 
 
-NOTE: In order to connect to a different SQL Server instance, ensure all database connection strings are updated in the sample.
+```
+netsh add urlacl url=http://+:7777/Gateway.SiteA/ user=DOMAIN\user
+netsh add urlacl url=http://+:7777/Gateway.SiteB/ user=DOMAIN\user
+``` 
 
 ## Running the project
 
- 1. Start the projects: Adapter, Sales and Shipping (right-click on the project, select the `Debug > Start new instance` option). Make sure adapter starts first because on start-up it creates a queue that is used for heartbeats.
- 1. Open ServicePulse and select the Endpoints Overview. `Samples.ServiceControl.SqlServerTransportAdapter.Shipping` endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed
- 1. Go to the Sales console and press `o` to create an order.
- 1. Notice the Shipping endpoint receives the `OrderAccepted` event from Sales and publishes `OrderShipped` event.
- 1. Notice the Sales endpoint logs that it processed the `OrderShipped` event. 
- 1. Go to the Sales console and press `f` to simulate message processing failure.
- 1. Press `o` to create another order. Notice the `OrderShipped` event fails processing in Sales and is moved to the error queue
- 1. Press `f` again to disable message processing failure simulation in Sales.
- 1. Go to the Shipping console and press `f` to simulate message processing failure.
- 1. Go back to Sales and press `o` to create yet another order. Notice the `OrderAccepted` event fails in Shipping and is moved to the error queue.
- 1. Press `f` again to disable message processing failure simulation in Shipping.
- 1. Open ServicePulse and select the Failed Messages view.
- 1. Notice the existence of one failed message group with two messages. Open the group.
- 1. One of the messages is `OrderAccepted` which failed in `Shipping`, the other is `OrderShipped` which failed in `Sales`.
- 1. Press the "Retry all" button.
- 1. Go to the Shipping console and verify that the `OrderAccepted` event has been successfully processed.
- 1. Go to the Sales console and verify that both `OrderShipped` events have been successfully processed.
- 1. Shut down the Shipping endpoint.
- 1. Open ServicePulse and notice a red label next to the heart icon. Click on the that icon to open the Endpoints Overview. Notice that `Samples.ServiceControl.SqlServerTransportAdapter.Shipping` is now displayed in the Inactive Endpoints tab.
+ 1. Start the projects: Client, Server and both gateways (right-click on the project, select the `Debug > Start new instance` option).
+ 2. Press `enter` a couple of times.
+ 3. Observe the `PingHandler` logging processed message IDs in the Server window.
+ 4. Observe the `PongHandler` logging processed message IDs in the Client window.
 
 
 ## Code walk-through 
 
-The solution consists of four projects.
+The solution consists of five projects.
+
 
 ### Shared
 
-The Shared project contains the message contracts and the physical topology definition. The topology is defined in the `Connections` class via a method that takes the name of the queue table ([physical address](/nservicebus/sqlserver/addressing.md)) and returns the connection string to be used to access that queue.
+The Shared project contains the message contracts.
 
-snippet: GetConnectionString
 
-The `StartsWith` comparison ensures that the [satellite](/nservicebus/satellites/) queues are correctly addressed. The `poison` queue is used by the adapter for unrecoverable failures. 
+### Client
 
-This topology is used in business endpoints (Sales, Shipping) as well as in the Adapter.
+The Client project contains an NServiceBus endpoint that sends the `Ping` messages and expects `Pong` responses. It is configured to send the `Ping` messages through a local gateway:
 
-### Sales and Shipping
+snippet: ConfigureClient
 
-The Sales and Shipping projects contain endpoints that simulate execution of business process. The process consists of two events: `OrderAccepted` published by Sales and subscribed by Shipping and `OrderShipped` published by Shipping and subscribed by Sales.
 
-The Sales and Shipping endpoints use separate databases and their transports are configured in the [multi-instance](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) mode using the topology definition from the `Connections` class.
+### GatewayA
 
-The business endpoints include message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality.
+The GatewayA project sets up the client-side gateway. This gateway is set up to be able to route messages to a remote site `B`. 
 
-The Shipping endpoint has the Heartbeats plug-in installed to enable uptime monitoring via ServicePulse.
+snippet: ConfigureGatewayA
 
-### Adapter
+It does not contain any forwarding configuration because the `Pong` message is routed automatically thanks to the `reply-to` header support.
 
-The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has two sides: endpoint-facing and ServiceControl-facing. Each side can use different transport but in this sample both use SQL Server transport:
 
-snippet: AdapterTransport
+### GatewayB
 
-because the purpose is to keep ServiceControl unaware of specific details of endpoints' transport topology.
-The endpoint-facing side config enables the [multi-instance](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) mode of SQL Server transport using the shared topology.
+The GatewayB project sets up the server-side gateway. This gateway is set up to be able to route messages to a remote site `A` and to forward the `Ping` messages to the Server endpoint:
 
-snippet: EndpointSideConfig
+snippet: ConfigureGatewayB
 
-The ServiceSontrol-facing side config specifies the connection string to the database used by ServiceControl:
 
-snippet: SCSideConfig
+### Server
 
-Because the ServiceControl has been installed under a non-default instance name (`Particular.ServiceControl.SQL`) the control queue name needs to be overridden in the adapter configuration:
+The Server project contains an NServiceBus endpoint that processes the `Ping` messages and sends the `Pong` messages as a response. It is configured to recognize GatewayB as the local gateway:
 
-snippet: ControlQueueOverride
+snippet: ConfigureServer
+
+It does not need to configure routing of `Pong` messages because it is routed automatically thanks to the `reply-to` header support.
+
 
 ## How it works
 
-The purpose of the adapter is to isolate ServiceControl from specifics of physical deployment topology of the business endpoints (such as [multi-instance](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) mode. In order to do so, the adapter provides a ServiceControl interface to the business endpoints.
+The Client sends the `Ping` message to the gateway using local transport. The message carries a special header that denotes which site or sites the message should be delivered to.
 
-### Heartbeats
+When the gateway in the origin site (GatewayA) picks up the message it looks at the header and dispatches the message to the gateways in the destination site(s) using the tunnel transport (HTTP in this sample). Before dispatching, the gateway stamps the message with a header denoting the origin site.
 
-The heartbeat messages arrive at adapter's `Particular.ServiceControl` queue. From there there are moved to `Particular.ServiceControl.SQL` queue in ServiceControl database. In case of problems (e.g. destination database being down) the forward attempts are repeated configurable number of times after which messages are dropped to prevent the queue from growing indefinitely.
+When the gateway in the destination site (GatewayB) receives the message it looks at the type of the message and calculates the receiving endpoint name based on the forwarding rules configured. 
 
-### Audits
+When the Server receives the `Ping` message it replies with a `Pong` message. A behavior injected into the Server's send pipeline ensures that the ultimate destination is set from the `reply-to` headers and the destination site is set to the original origin site.
 
-The audit messages arrive at adapter's `audit` queue. From there there are moved to `audit` queue in ServiceControl database and ingested by ServiceControl.
+When the Server-side gateway picks up the `Pong` messages it looks at the destination sites header and forwards the message accordingly.
 
-### Retries
-
-If a message fails all recoverability attempts in a business endpoint, it is moved to the `error` queue located in the adapter database. The adapter enriches the message by adding `ServiceControl.RetryTo` header pointing to the adapter's input queue in ServiceControl database (`ServiceControl.SqlServer.Adapter.Retry`). Next the message is moved to the `error` queue in ServiceControl database and ingested into ServiceControl RavenDB store. 
-
-When retrying, ServiceControl looks for `ServiceControl.RetryTo` header and, if it finds it, it sends the message to the queue from that header instead of the ultimate destination.
-
-The adapter picks up the message and forwards it to the destination using its endpoint-facing transport.
-
-
+When the Client-side gateway receives the message, it looks at the ultimate destination header and forwards the message accordingly to the Client endpoint.

@@ -18,7 +18,13 @@ class Program
         Console.Title = "Samples.WormHole.PingPong.GatewayA";
 
         var gatewayConfig = new WormHoleGatewayConfiguration<MsmqTransport, HttpTransport>("Gateway.SiteA", "SiteA");
+
+        #region ConfigureGatewayA
+
         gatewayConfig.ConfigureRemoteSite("SiteB", "Gateway.SiteB");
+
+        #endregion
+
         var gateway = await gatewayConfig.Start().ConfigureAwait(false);
 
         Console.WriteLine("Press <enter> to exit");
