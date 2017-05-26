@@ -11,6 +11,8 @@ NOTE: When running under ASP.NET the `instance-mapping.xml` file may not be loca
 
 snippet: InstanceMappingFile
 
+NOTE: The endpoint names are case sensitive e.g. if endpoint name is used in routing API and the instance mapping file, the file entries will be used only when there is a case sensitive match. 
+
 The mapping file is processed before the endpoint starts up and then re-processed at regular intervals so the changes in the document are reflected in the behavior of NServiceBus automatically. If the document is not present in its configured location when endpoint starts up, NServiceBus will not search again for the file at runtime. If it is deleted when the endpoint is already running, it will continue to run normally with the last successfully read routes.
 
 There are many different options to consider when deploying routing configuration.
