@@ -1,5 +1,5 @@
 ---
-title: Using Worm Hole to send messages between geographically distributed sites
+title: Using Worm Hole to send messages between distributed sites
 component: WormHole
 reviewed: 2017-05-26
 related:

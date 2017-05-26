@@ -1,5 +1,5 @@
 ---
-title: Sending messages between geographically separate sites using Worm Hole Gateway
+title: Worm Hole Gateway
 summary: How to send messages between geographically separate sites using Worm Hole Gateway 
 component: WormHole
 reviewed: 2017-05-20
@@ -86,7 +86,7 @@ snippet: DestinationEndpoints
 
 snippet: SSD
 
-NOTE: The snippet above contains a hard-coded list of instances. In real system it might be better to load the list of instances from a configuration file or database. The [file-based routing](/nservicebus/messaging/file-based-routing) extensions is a good starting point to see how this can be implemented.
+NOTE: The snippet above contains a hard-coded list of instances. In real system it might be better to load the list of instances from a configuration file or database. The [file-based routing](/nservicebus/messaging/file-based-routing.md) extensions is a good starting point to see how this can be implemented.
 
 ## De-duplication
 
