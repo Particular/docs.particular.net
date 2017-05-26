@@ -86,3 +86,4 @@ Wire: NServiceBus.Wire
 Wcf: NServiceBus.Wcf
 ZeroFormatter: NServiceBus.ZeroFormatter
 WormHole: NServiceBus.WormHole
+WormHoleGateway: NServiceBus.WormHole.Gateway
