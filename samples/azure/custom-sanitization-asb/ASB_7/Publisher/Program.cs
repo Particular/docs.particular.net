@@ -25,7 +25,6 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Delayed(
             customizations: settings =>
