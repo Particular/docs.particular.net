@@ -53,16 +53,13 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        await Console.Out.WriteLineAsync("Press 'e' to send a large amount of messages")
-            .ConfigureAwait(false);
-        await Console.Out.WriteLineAsync("Press any other key to exit")
-            .ConfigureAwait(false);
+        Console.WriteLine("Press 'e' to send a large amount of messages");
+        Console.WriteLine("Press any other key to exit");
 
         while (true)
         {
             var key = Console.ReadKey();
-            await Console.Out.WriteLineAsync()
-                .ConfigureAwait(false);
+            Console.WriteLine();
 
             var eventId = Guid.NewGuid();
 
@@ -74,23 +71,23 @@ class Program
             var stopwatch = Stopwatch.StartNew();
 
             #region slow-send
+
             for (var i = 0; i < NumberOfMessages; i++)
             {
-                await Console.Out.WriteLineAsync("Sending a message...");
+                Console.WriteLine("Sending a message...");
 
                 // by awaiting each individual send, no client side batching can take place
                 // latency is incurred for each send and thus lowest performance possible
                 await endpointInstance.Send(new SomeMessage())
                     .ConfigureAwait(false);
             }
+
             #endregion
 
             stopwatch.Stop();
-            var elapsedSeconds = stopwatch.ElapsedTicks / (double)Stopwatch.Frequency;
-            var msgsPerSecond = NumberOfMessages / elapsedSeconds;
-            await Console.Out.WriteLineAsync($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {msgsPerSecond} messages per second")
-                .ConfigureAwait(false);
-
+            var elapsedSeconds = stopwatch.ElapsedTicks / (double) Stopwatch.Frequency;
+            var messagesPerSecond = NumberOfMessages / elapsedSeconds;
+            Console.WriteLine($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {messagesPerSecond} messages per second");
         }
         await endpointInstance.Stop()
             .ConfigureAwait(false);

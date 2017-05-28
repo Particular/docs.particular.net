@@ -18,7 +18,7 @@ public class HomeController :
         var statusTask = bus.Send("Samples.Callbacks.Receiver", message)
             .Register<Status>()
             .ConfigureAwait(false);
-        return View("SendEnumMessage", await statusTask);
+        return View("SendEnumMessage", await statusTask.ConfigureAwait(false));
     }
 
     #endregion
@@ -32,7 +32,7 @@ public class HomeController :
         var responseTask = bus.Send("Samples.Callbacks.Receiver", message)
             .Register()
             .ConfigureAwait(false);
-        return View("SendIntMessage", await responseTask);
+        return View("SendIntMessage", await responseTask.ConfigureAwait(false));
     }
 
     #endregion
@@ -50,7 +50,7 @@ public class HomeController :
                     return (ObjectResponseMessage) completion.Messages[0];
                 })
             .ConfigureAwait(false);
-        return View("SendObjectMessage", await responseTask);
+        return View("SendObjectMessage", await responseTask.ConfigureAwait(false));
     }
 
     #endregion

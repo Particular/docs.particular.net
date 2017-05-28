@@ -26,6 +26,7 @@ class MissingAwait
 
     #endregion
 
+    // ReSharper disable ConsiderUsingConfigureAwait
     #region AsyncMethodMissingOneAwait
 
     public static async Task AsyncMethodMissingOneAwait()
@@ -36,5 +37,6 @@ class MissingAwait
     }
 
     #endregion
+    // ReSharper restore ConsiderUsingConfigureAwait
 
 }

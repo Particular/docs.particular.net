@@ -29,7 +29,8 @@ namespace ClientUI
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
-            await RunLoop(endpointInstance);
+            await RunLoop(endpointInstance)
+                .ConfigureAwait(false);
 
             await endpointInstance.Stop()
                 .ConfigureAwait(false);

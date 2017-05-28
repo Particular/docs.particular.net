@@ -43,11 +43,11 @@ class Program
             }
             if (toggle)
             {
-                await SendToABC(endpoint);
+                await SendToABC(endpoint).ConfigureAwait(false);
             }
             else
             {
-                await SendToAC(endpoint);
+                await SendToAC(endpoint).ConfigureAwait(false);
             }
 
             toggle = !toggle;

@@ -21,7 +21,8 @@ public class SendMessageController :
     public async Task<string> Get()
     {
         var message = new MyMessage();
-        await messageSession.Send(message);
+        await messageSession.Send(message)
+            .ConfigureAwait(false);
         return "Message sent to endpoint";
     }
     #endregion

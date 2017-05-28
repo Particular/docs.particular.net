@@ -73,6 +73,7 @@
     }
     #endregion
 
+    // ReSharper disable ConsiderUsingConfigureAwait
     #region HandlerAwaitsTheTask
     public class HandlerAwaitsTheTask :
         IHandleMessages<MyMessage>
@@ -83,6 +84,7 @@
         }
     }
     #endregion
+    // ReSharper restore ConsiderUsingConfigureAwait
 
     #region HandlerConfigureAwaitSpecified
     public class HandlerConfigureAwaitSpecified :
@@ -98,6 +100,7 @@
     }
     #endregion
 
+    // ReSharper disable ConsiderUsingConfigureAwait
     #region HandlerConfigureAwaitNotSpecified
     public class HandlerConfigureAwaitNotSpecified :
         IHandleMessages<MyMessage>
@@ -109,6 +112,7 @@
         }
     }
     #endregion
+    // ReSharper restore ConsiderUsingConfigureAwait
 
     #region BatchedDispatchHandler
     public class BatchedDispatchHandler :

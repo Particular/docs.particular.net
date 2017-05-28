@@ -38,7 +38,7 @@
         async Task Shutdown(IEndpointInstance endpointInstance)
         {
             #region Hosting-Shutdown
-            await endpointInstance.Stop();
+            await endpointInstance.Stop().ConfigureAwait(false);
             #endregion
         }
 

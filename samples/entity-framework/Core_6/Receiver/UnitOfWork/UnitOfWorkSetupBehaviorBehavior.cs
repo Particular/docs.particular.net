@@ -12,7 +12,7 @@ public class UnitOfWorkSetupBehaviorBehavior
     {
         var uow = new EntityFrameworkUnitOfWork();
         context.Extensions.Set(uow);
-        await next();
+        await next().ConfigureAwait(false);
         context.Extensions.Remove<EntityFrameworkUnitOfWork>();
     }
 }

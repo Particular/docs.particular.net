@@ -11,7 +11,8 @@ class MyMessageHandler1 :
 
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        await context.Store(new MyEntity());
+        await context.Store(new MyEntity())
+            .ConfigureAwait(false);
 
         log.Info($"{nameof(MyMessageHandler1)}({context.MessageId}) got UOW instance {context.GetSession()}");
     }

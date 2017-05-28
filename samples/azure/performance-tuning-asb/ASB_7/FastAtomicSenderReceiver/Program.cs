@@ -71,10 +71,8 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        await Console.Out.WriteLineAsync("Receiver is ready to receive messages")
-            .ConfigureAwait(false);
-        await Console.Out.WriteLineAsync("Press any key to exit")
-            .ConfigureAwait(false);
+        Console.WriteLine("Receiver is ready to receive messages");
+        Console.WriteLine("Press any key to exit");
         Console.ReadKey();
         await endpointInstance.Stop()
             .ConfigureAwait(false);

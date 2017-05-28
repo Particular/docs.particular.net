@@ -32,7 +32,8 @@ namespace Exercise
             Console.ReadLine();
 
             // Replace with:
-            await RunLoop(endpointInstance);
+            await RunLoop(endpointInstance)
+                .ConfigureAwait(false);
 
             await endpointInstance.Stop()
                 .ConfigureAwait(false);

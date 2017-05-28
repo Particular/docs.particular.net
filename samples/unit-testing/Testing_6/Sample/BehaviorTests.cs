@@ -17,7 +17,8 @@ public class BehaviorTests
             Message = new OutgoingLogicalMessage(typeof(MyResponse), new MyResponse())
         };
 
-        await behavior.Invoke(context, () => Task.CompletedTask);
+        await behavior.Invoke(context, () => Task.CompletedTask)
+            .ConfigureAwait(false);
 
         Assert.AreEqual("custom header value", context.Headers["custom-header"]);
     }
@@ -34,7 +35,8 @@ public class BehaviorTests
             Message = new OutgoingLogicalMessage(messageType, Activator.CreateInstance(messageType))
         };
 
-        await behavior.Invoke(context, () => Task.CompletedTask);
+        await behavior.Invoke(context, () => Task.CompletedTask)
+            .ConfigureAwait(false);
 
         Assert.IsFalse(context.Headers.ContainsKey("custom-header"));
     }

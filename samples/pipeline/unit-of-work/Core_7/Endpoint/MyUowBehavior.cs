@@ -17,19 +17,19 @@ class MyUowBehavior :
     {
         var tenant = context.MessageHeaders["tenant"];
 
-        using (var session = await sessionProvider.Open(tenant))
+        using (var session = await sessionProvider.Open(tenant).ConfigureAwait(false))
         {
             context.Extensions.Set<IMySession>(session);
 
             try
             {
-                await next();
+                await next().ConfigureAwait(false);
 
-                await session.Commit();
+                await session.Commit().ConfigureAwait(false);
             }
             catch (Exception)
             {
-                await session.Rollback();
+                await session.Rollback().ConfigureAwait(false);
 
                 throw;
             }

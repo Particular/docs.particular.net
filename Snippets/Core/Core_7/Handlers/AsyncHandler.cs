@@ -79,7 +79,8 @@
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            await SomeLibrary.SomeAsyncMethod(message);
+            await SomeLibrary.SomeAsyncMethod(message)
+                .ConfigureAwait(false);
         }
     }
     #endregion
@@ -98,6 +99,7 @@
     }
     #endregion
 
+    // ReSharper disable ConsiderUsingConfigureAwait
     #region HandlerConfigureAwaitNotSpecified
     public class HandlerConfigureAwaitNotSpecified :
         IHandleMessages<MyMessage>
@@ -109,6 +111,7 @@
         }
     }
     #endregion
+    // ReSharper restore ConsiderUsingConfigureAwait
 
     #region BatchedDispatchHandler
     public class BatchedDispatchHandler :

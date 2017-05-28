@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ApprovalTests;
 using Mono.Cecil;
 using NUnit.Framework;
+// ReSharper disable ConsiderUsingConfigureAwait
 #pragma warning disable 4014
 
 [TestFixture]

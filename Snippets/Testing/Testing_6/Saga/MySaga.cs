@@ -11,17 +11,20 @@ namespace Testing_6.Saga
     {
         public async Task Handle(StartsSaga message, IMessageHandlerContext context)
         {
-            await ReplyToOriginator(context, new MyResponse());
-            await context.Publish(new MyEvent());
-            await context.Send(new MyCommand());
-            await RequestTimeout(context, TimeSpan.FromDays(7), message);
+            await ReplyToOriginator(context, new MyResponse())
+                .ConfigureAwait(false);
+            await context.Publish(new MyEvent())
+                .ConfigureAwait(false);
+            await context.Send(new MyCommand())
+                .ConfigureAwait(false);
+            await RequestTimeout(context, TimeSpan.FromDays(7), message)
+                .ConfigureAwait(false);
         }
 
-        public async Task Timeout(StartsSaga state, IMessageHandlerContext context)
+        public Task Timeout(StartsSaga state, IMessageHandlerContext context)
         {
-            await context.Publish<MyOtherEvent>();
-
             MarkAsComplete();
+            return context.Publish<MyOtherEvent>();
         }
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)

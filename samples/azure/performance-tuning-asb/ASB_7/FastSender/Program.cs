@@ -54,16 +54,13 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        await Console.Out.WriteLineAsync("Press 'e' to send a large amount of messages")
-            .ConfigureAwait(false);
-        await Console.Out.WriteLineAsync("Press any other key to exit")
-            .ConfigureAwait(false);
+        Console.WriteLine("Press 'e' to send a large amount of messages");
+        Console.WriteLine("Press any other key to exit");
 
         while (true)
         {
             var key = Console.ReadKey();
-            await Console.Out.WriteLineAsync()
-                .ConfigureAwait(false);
+            Console.WriteLine();
 
             var eventId = Guid.NewGuid();
 
@@ -83,8 +80,7 @@ class Program
                 tasks.Add(task);
             }
 
-            await Console.Out.WriteLineAsync("Waiting for completion...")
-                .ConfigureAwait(false);
+            Console.WriteLine("Waiting for completion...");
             // by awaiting the sends as one unit, this code allows the ASB SDK's client side batching to kick in and bundle sends
             // this results in less latency overhead per individual sends and thus higher performance
             await Task.WhenAll(tasks)
@@ -93,10 +89,9 @@ class Program
             #endregion
 
             stopwatch.Stop();
-            var elapsedSeconds = stopwatch.ElapsedTicks/(double) Stopwatch.Frequency;
-            var msgsPerSecond = NumberOfMessages/elapsedSeconds;
-            await Console.Out.WriteLineAsync($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {msgsPerSecond} messages per second")
-                .ConfigureAwait(false);
+            var elapsedSeconds = stopwatch.ElapsedTicks / (double) Stopwatch.Frequency;
+            var messagesPerSecond = NumberOfMessages / elapsedSeconds;
+            Console.WriteLine($"sending {NumberOfMessages} messages took {stopwatch.ElapsedMilliseconds} milliseconds, or {messagesPerSecond} messages per second");
         }
         await endpointInstance.Stop()
             .ConfigureAwait(false);
