@@ -1,5 +1,5 @@
 ---
-title: Using adapter to centralize monitoring of multi-instance SQL Server
+title: Centralize monitoring of multi-instance SQL Server with the ServiceControl adapter 
 component: SCTransportAdapter
 reviewed: 2017-05-11
 related:
