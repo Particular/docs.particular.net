@@ -325,6 +325,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 0.2.x     | 2017-01-25     | -                 | -                                 |
+| 1.0.x     | 2017-05-22     | -                 | -                                 |
+| 0.2.x     | 2017-01-25     | 2018-05-22        | Superseded by 1.0.x               |
 | ~~0.1.x~~ | ~~2017-01-23~~ | ~~2017-04-25~~    | ~~Superseded by 0.2.x~~           |
 
