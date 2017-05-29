@@ -22,7 +22,7 @@ Warning: Shared transaction should not be committed (`CommitAsync()`) or dispose
 
 ### Using a custom transaction
 
-When data needs to be persisted to a custom collection during handler or saga execution, a new transaction should be created using the `StateManager` property of the incoming session.
+When data needs to be persisted to a custom collection during handler or saga execution but it should not be connected to the provided transaction, then a new transaction can be created using the `StateManager` property of the incoming session. E.g. when the information needs to be stored regardless of the outcome of the handler's execution.
 
 Service Fabric transactions should be as short lived as possible and touch only a single resource to reduce lock contention and avoid timeouts.
 
