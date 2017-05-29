@@ -24,21 +24,28 @@ related:
 Install ServicePulse using the [Particular Service Platform Installer](/platform/installer) (recommended) or independently using the following procedure:
 
  1. Download and install [ServiceControl](https://github.com/Particular/ServiceControl/releases)
- 1. Download and install ServicePulse
- 1. The following installation parameters are used by the ServicePulse installer:
-   * ServicePulse Instance URI:
-      * Default is `http://localhost:9090/`
-      * This is the localhost address and port that will be used for accessing the ServicePulse web application
-   * ServiceControl instance URI:
-      * Default is `http://localhost:33333/api/`
-      * The URI that will be accessed by ServicePulse web app in order to communicate with the ServiceControl instance
-      * Review [ServiceControl release notes](https://github.com/Particular/ServiceControl/releases) for more details on installing and configuring ServiceControl for use by ServicePulse
+ 1. Download and install [ServicePulse](https://github.com/Particular/ServicePulse/releases)
  1. After accepting the license terms and conditions, click "Install" (installer will require elevated privileges)
- 1. The installation process performs the following actions:
-  * Installs the Windows Service "Particular ServicePulse" which hosts the web application
-  * Open the ServicePulse web application using the default browser
+ 1. The installation process installs the Windows Service "Particular ServicePulse" and then opens the ServicePulse web application using the default browser.
  1. After installing ServicePulse, see the following sections to configure the existing endpoints to be monitored via ServicePulse.
 
+### Available installation parameters
+
+- `Quiet`  
+Allows ServicePulse to be installed in the background. The installation user interface will be unavailable.
+- `Log [file location]`  
+Provides the location on disk for the logfile to be generated.  
+- `INST_PORT_PULSE [port number]`  
+Provides the port number that ServicePulse web application will run on.  
+Default : 9090
+- `INST_URI [uri]`  
+Provides location of the ServiceControl API  
+Default : http://localhost:33333/api/
+
+Example
+```
+.\Particular.ServicePulse.exe /Quiet /Log C:\temp\servicepulse-installer.log INST_PORT_PULSE=12345 INST_URI=http://localhost:33333/api/
+```
 
 ## Configuring ServicePulse
 
