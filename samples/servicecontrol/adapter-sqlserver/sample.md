@@ -12,7 +12,7 @@ related:
 
 This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using SQL Server transport in a multi-database mode.
 
-The purpose of the adapter is to isolate ServiceControl from the specifics of the physical deployment topology of the business endpoints (such as [multi-instance](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) mode). 
+The purpose of the adapter is to isolate ServiceControl from the specifics of the physical deployment topology of the business endpoints (such as [multi-instance](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance.md) mode). 
 
 
 ## Prerequisistes
