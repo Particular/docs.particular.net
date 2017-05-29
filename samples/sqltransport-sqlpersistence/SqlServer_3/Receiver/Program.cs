@@ -22,13 +22,14 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
-        var connectionString = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True";
+        var connectionString = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True;Min Pool Size=2;Max Pool Size=100";
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connectionString);
         transport.DefaultSchema("receiver");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
         transport.UseSchemaForQueue("Samples.SqlTransportSqlPersistence.Sender", "sender");
+        transport.Routing().RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlTransportSqlPersistence.Sender");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlVariant(SqlVariant.MsSqlServer);
