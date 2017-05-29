@@ -92,6 +92,13 @@ snippet: PoisonQueue
 Such messages cannot be forwarded to the error queue because ServiceControl won't be able to receive them. During normal operations the NServiceBus system never generates such malformed messages. They can be a generated, for example, by a misbehaving integration component.
 
 
+## Life cycle and hosting
+
+Transport Adapter is a library package that is hosting-agnostic. In a production scenario the adapter should be hosted either as a Windows Service or via a cloud-specific hosting mechanism (e.g. Azure Worker Role). Following snippet demonstrates a life cycle of an adapter. The `Start` and `Stop` methods need to be bound to host-specific events (e.g. Windows Service start up callback).
+
+snippet: Lifecycle
+
+
 ## Failure handling
 
 ServiceControl Transport Adapter uses different failure handling strategies for different types of messages.

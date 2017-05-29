@@ -5,6 +5,8 @@ using ServiceControl.TransportAdapter;
 
 namespace SCTransportAdapter_0
 {
+    using System.Threading.Tasks;
+
     public class API
     {
         string BrokerOneConnectionString = "Broker One connection string";
@@ -133,6 +135,23 @@ namespace SCTransportAdapter_0
             #region RetryRetries
 
             transportAdapterConfig.RetryForwardingImmediateRetries = 10;
+
+            #endregion
+        }
+
+        async Task Lifecycle()
+        {
+            #region Lifecycle
+
+            var config = new TransportAdapterConfig<MyTransport, MyOtherTransport>("Adapter");
+
+            var adapter = TransportAdapter.Create(config);
+
+            //Starting up
+            await adapter.Start();
+
+            //Shutting down
+            await adapter.Stop();
 
             #endregion
         }
