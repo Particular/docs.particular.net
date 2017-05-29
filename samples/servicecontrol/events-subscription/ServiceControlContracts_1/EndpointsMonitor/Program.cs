@@ -18,6 +18,12 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.Routing().RegisterPublisher(
+            typeof(ServiceControl.Contracts.MessageFailed).Assembly,
+            "Particular.ServiceControl"
+        );
+
         var conventions = endpointConfiguration.Conventions();
         conventions.DefiningEventsAs(
             type =>
