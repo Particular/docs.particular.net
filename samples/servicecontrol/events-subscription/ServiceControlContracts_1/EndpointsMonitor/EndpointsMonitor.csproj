@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="CustomEventsHandler.cs" />
     <Compile Include="Program.cs" />
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
