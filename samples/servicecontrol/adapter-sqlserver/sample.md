@@ -60,8 +60,11 @@ NOTE: In order to connect to a different SQL Server instance, ensure all databas
 
 ## Code walk-through 
 
-The solution consists of four projects.
+The following diagram shows the topology of the solution:
 
+![Topology diagram](diagram.svg)
+
+The code base consists of four projects.
 
 ### Shared
 
