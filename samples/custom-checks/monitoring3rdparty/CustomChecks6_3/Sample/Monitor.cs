@@ -20,7 +20,6 @@ class ThirdPartyMonitor :
     {
     }
 
-
     public override async Task<CheckResult> PerformCheck()
     {
         try
