@@ -3,6 +3,7 @@ using NServiceBus;
 using NServiceBus.Settings;
 using NServiceBus.TransportTests;
 
+#region TransportTestConfiguration
 public class ConfigureFileTransportInfrastructure : IConfigureTransportInfrastructure
 {
     public TransportConfigurationResult Configure(SettingsHolder settings, TransportTransactionMode transactionMode)
@@ -19,3 +20,4 @@ public class ConfigureFileTransportInfrastructure : IConfigureTransportInfrastru
         return Task.CompletedTask;
     }
 }
+#endregion
