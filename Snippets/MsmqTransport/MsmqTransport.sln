@@ -14,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsmqTransport_All", "MsmqTr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_7", "Core_7\Core_7.csproj", "{48F2E6B5-DBB3-4B2F-A260-C206FC664C6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsmqTransport_1", "MsmqTransport_1\MsmqTransport_1.csproj", "{48F2E6B5-DBB3-4B2F-A260-C206FC664C6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
