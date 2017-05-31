@@ -384,15 +384,6 @@
   DocoUrl: nservicebus/msmq
   Category: Transport
   GitHubOwner: Particular/msmq-transport-maintainers
-  ProjectUrl: https://github.com/Particular/NServiceBus
-  NugetOrder:
-    - NServiceBus
-
-- Key: MSMQ
-  Name: MSMQ Transport
-  DocoUrl: nservicebus/msmq
-  GitHubOwner: Particular/msmq-transport-maintainers
-  Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.Transport.Msmq
   NugetOrder:
     - NServiceBus.Transport.Msmq
