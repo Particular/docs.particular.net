@@ -101,7 +101,7 @@ As mentioned previously, publishing events using the [Publish-Subscribe pattern]
 
 Let's create a new messaging endpoint called **Shipping** that will also subscribe to the `OrderPlaced` event. First we'll create the project and set up its dependencies:
 
-1. In the solution, create a new **Console Application** project named **Shipping**.
+1. In the solution, create a new **Console Application** project named **Shipping**. If you're using Visual Studio 2017 choose **Console App (.NET Framework)** project type.
 1. In the **Shipping** project, add the `NServiceBus` NuGet package, which is already present in the other projects in the solution. In the Package Manager Console window type:
     ```no-highlight
     Install-Package NServiceBus -ProjectName Shipping
