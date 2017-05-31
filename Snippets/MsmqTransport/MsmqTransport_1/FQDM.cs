@@ -8,14 +8,6 @@
     {
         void FQDM()
         {
-            //#region MsmqMachineNameFQDN
-
-            //RuntimeEnvironment.MachineNameAction = () =>
-            //{
-            //    return Dns.GetHostEntry(Environment.MachineName).HostName;
-            //};
-
-            //#endregion
         }
     }
 }
