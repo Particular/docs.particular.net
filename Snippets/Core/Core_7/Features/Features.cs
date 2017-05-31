@@ -1,7 +1,7 @@
 ﻿namespace Core7.Features
 {
     using NServiceBus;
-    using NServiceBus.Configuration.AdvanceExtensibility;
+    using NServiceBus.Configuration.AdvancedExtensibility;
     using NServiceBus.Features;
 
     #region MinimalFeature

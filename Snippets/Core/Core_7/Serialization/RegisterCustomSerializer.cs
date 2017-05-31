@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.IO;
     using NServiceBus;
-    using NServiceBus.Configuration.AdvanceExtensibility;
+    using NServiceBus.Configuration.AdvancedExtensibility;
     using NServiceBus.MessageInterfaces;
     using NServiceBus.Serialization;
     using NServiceBus.Settings;
