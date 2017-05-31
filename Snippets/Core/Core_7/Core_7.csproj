@@ -6,9 +6,6 @@
     <RootNamespace>Core7</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Routing\Extensibility.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-alpha*" />
     <PackageReference Include="NServiceBus.Autofac" Version="6.*" />
