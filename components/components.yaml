@@ -387,6 +387,7 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Transport.Msmq
   NugetOrder:
     - NServiceBus.Transport.Msmq
+    - NServiceBus
 
 - Key: MsmqPersistence
   Name: MSMQ Persistence
