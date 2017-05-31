@@ -33,7 +33,7 @@
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterMessageMutator(new Mutator());
-            var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+            var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
             routing.RouteToEndpoint(GetType().Assembly, EndpointName);
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
