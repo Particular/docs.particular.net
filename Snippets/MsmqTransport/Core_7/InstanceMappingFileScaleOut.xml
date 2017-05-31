@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <!-- startcode InstanceMappingFile-ScaleOut -->
+  <endpoints>
+    <endpoint name="Sales">
+      <instance machine="VM-S-1"/>
+      <instance machine="VM-S-2"/>
+      <instance machine="VM-S-3"/>
+    </endpoint>
+  </endpoints>
+  <!-- endcode -->
+</root>
