@@ -384,8 +384,9 @@
   DocoUrl: nservicebus/msmq
   Category: Transport
   GitHubOwner: Particular/msmq-transport-maintainers
-  ProjectUrl: https://github.com/Particular/NServiceBus
+  ProjectUrl: https://github.com/Particular/NServiceBus.Transport.Msmq
   NugetOrder:
+    - NServiceBus.Transport.Msmq
     - NServiceBus
 
 - Key: MsmqPersistence

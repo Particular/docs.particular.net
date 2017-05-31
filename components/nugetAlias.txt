@@ -41,6 +41,7 @@ Metrics: NServiceBus.Metrics
 MessageRouting: NServiceBus.MessageRouting
 MongoSbmako: NServiceBus.MongoDB
 MongoTekmaven: NServiceBus.Persistence.MongoDb
+MsmqTransport: NServiceBus.Transport.Msmq
 Newtonsoft: NServiceBus.Newtonsoft.Json
 NES: NES.NServiceBus
 NHibernate: NServiceBus.NHibernate

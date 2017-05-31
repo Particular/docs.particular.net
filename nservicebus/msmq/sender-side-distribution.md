@@ -3,7 +3,7 @@ title: Scaling out with sender-side distribution
 summary: How to scale out with sender-side distribution when using the MSMQ transport.
 component: MsmqTransport
 reviewed: 2016-11-07
-versions: "[6,)"
+versions: '[6,7)'
 tags:
  - scalability
  - Routing
