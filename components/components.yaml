@@ -388,6 +388,15 @@
   NugetOrder:
     - NServiceBus
 
+- Key: MSMQ
+  Name: MSMQ Transport
+  DocoUrl: nservicebus/msmq
+  GitHubOwner: Particular/msmq-transport-maintainers
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus.Transport.Msmq
+  NugetOrder:
+    - NServiceBus.Transport.Msmq
+
 - Key: MsmqPersistence
   Name: MSMQ Persistence
   DocoUrl: nservicebus/msmq/subscription-persistence
