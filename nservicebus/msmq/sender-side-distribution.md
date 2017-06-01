@@ -48,6 +48,19 @@ snippet: InstanceMappingFile-ScaleOut
 To read more about the instance mapping, refer to the [MSMQ routing page](/nservicebus/msmq/routing.md).
 
 
+### Message distribution
+
+Every message is always delivered to a single physical instance of the logical endpoint. When scaling out there are multiple instances of a single logical endpoint registered in the routing system. Each outgoing message has to undergo the distribution process to determine which instance is going to receive this particular message. By default a round-robin algorithm is used to determine the destination. Routing extensions can override this behavior by registering a custom `DistributionStrategy` for a given destination endpoint.
+
+snippet: RoutingExtensibility-Distribution
+
+snippet: RoutingExtensibility-DistributionStrategy
+
+In Version 6.2 and above it is possible to override the virtual method `SelectDestination`. The method provides access to the `DistributionStrategyContext` that enables implementing more advanced distribution scenarios, such as distributing based on the headers of the message. When `SelectDestination` is overridden, do not call `base.SelectDestination` since the base method calls `SelectReceiver` for backward compatibility reasons. `SelectReceiver` can throw a `NotImplementedException`.
+
+To learn more about creating custom distribution strategies see the [fair distribution sample](/samples/routing/fair-distribution/).
+
+
 ## Limitations
 
 Sender-side distribution does not use message processing confirmations (the Distributor approach). Therefore the sender has no feedback on the availability of workers and, by default, sends the messages in a round-robin behavior. Should one of the nodes stop processing, the messages will start piling up in its input queue. As such nodes running in sender-side distribution mode require more careful monitoring compared to distributor workers.

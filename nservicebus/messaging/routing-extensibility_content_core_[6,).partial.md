@@ -49,21 +49,4 @@ When using a [bus transport](/nservicebus/transports/#types-of-transports-bus-tr
 
 Routing extensions can influence the physical routing by modifying the endpoint instances collection. This is especially important for [bus transports](/nservicebus/transports/#types-of-transports-bus-transports) in a dynamically changing environment such as the cloud. Endpoints can be elastically scaled out and in and the routing, to be able to stay in sync, needs to derive the physical information from the current state of the environment, not from a static file.
 
-snippet: RoutingExtensibility-Instances
-
-The source parameter has the same meaning and effect as in the routes collection.
-
-The instances collection is thread-safe. It allows registering multiple instance of a given endpoint. In case there is more than one, message distribution is involved.
-
-
-### Message distribution
-
-Every message is always delivered to a single physical instance of the logical endpoint. When scaling out an endpoint with a [bus transport](/nservicebus/transports/#types-of-transports-bus-transports) there are multiple instances of a single logical endpoint registered in the routing system. Each outgoing message has to undergo the distribution process to determine which instance is going to receive this particular message. By default a round-robin algorithm is used to determine the destination. Routing extensions can override this behavior by registering a custom `DistributionStrategy` for a given destination endpoint.
-
-snippet: RoutingExtensibility-Distribution
-
-snippet: RoutingExtensibility-DistributionStrategy
-
-In Version 6.2 and above it is possible to override the virtual method `SelectDestination`. The method provides access to the `DistributionStrategyContext` that enables implementing more advanced distribution scenarios, such as distributing based on the headers of the message. When `SelectDestination` is overridden, do not call `base.SelectDestination` since the base method calls `SelectReceiver` for backward compatibility reasons. `SelectReceiver` can throw a `NotImplementedException`.
-
-To learn more about creating custom distribution strategies see the [fair distribution sample](/samples/routing/fair-distribution/).
+See the article dedicated to [MSMQ Transport](/nservicebus/msmq/routing.md#custom-instance-mapping) for details. 

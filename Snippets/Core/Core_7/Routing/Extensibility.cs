@@ -5,7 +5,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Configuration.AdvanceExtensibility;
+    using NServiceBus.Configuration.AdvancedExtensibility;
     using NServiceBus.Features;
     using NServiceBus.Routing;
     using NServiceBus.Routing.MessageDrivenSubscriptions;
@@ -106,7 +106,7 @@
                 protected override Task OnStop(IMessageSession session) => Task.CompletedTask;
             }
         }
-        
+
         class PublishersTable :
             Feature
         {
