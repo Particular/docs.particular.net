@@ -415,6 +415,8 @@
       Title: Jil
     - Url: nservicebus/serialization/wire
       Title: Wire
+    - Url: nservicebus/serialization/Hyperion
+      Title: Hyperion
     - Url: nservicebus/serialization/message-pack
       Title: Message Pack
     - Url: nservicebus/serialization/protobufgoogle
