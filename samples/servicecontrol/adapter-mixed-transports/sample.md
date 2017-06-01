@@ -84,7 +84,7 @@ snippet: EndpointSideConfig
 
 ## How it works
 
-Refer to [SQL Server multi-instance monitoring](/samples/servicecontrol/adapter-sqlserver/sample.md/#how-it-works) sample to learn more about how the Transport Adapter mediates between the endpoints and the ServiceControl. 
+Refer to [SQL Server multi-instance monitoring](/samples/servicecontrol/adapter-sqlserver/#how-it-works) sample to learn more about how the Transport Adapter mediates between the endpoints and the ServiceControl. 
 
 ### Duplicates
 
