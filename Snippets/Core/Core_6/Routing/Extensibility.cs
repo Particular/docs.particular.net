@@ -106,6 +106,23 @@
                 protected override Task OnStop(IMessageSession session) => Task.CompletedTask;
             }
         }
+        
+        class PublishersTable :
+            Feature
+        {
+            #region RoutingExtensibility-Publishers
+            protected override void Setup(FeatureConfigurationContext context)
+            {
+                var publishers = context.Settings.Get<Publishers>();
+                var publisherAddress = PublisherAddress.CreateFromEndpointName("PublisherEndpoint");
+                publishers.AddOrReplacePublishers("MySource",
+                    new List<PublisherTableEntry>
+                    {
+                        new PublisherTableEntry(typeof(MyEvent), publisherAddress)
+                    });
+            }
+            #endregion
+        }
 
         class MyCommand :
             ICommand
