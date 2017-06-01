@@ -30,6 +30,7 @@ Heartbeats3: ServiceControl.Plugin.Nsb3.Heartbeat
 Heartbeats4: ServiceControl.Plugin.Nsb4.Heartbeat
 Heartbeats5: ServiceControl.Plugin.Nsb5.Heartbeat
 Heartbeats6: ServiceControl.Plugin.Nsb6.Heartbeat
+Hyperion: NServiceBus.Hyperion
 Host: NServiceBus.Host
 Jil: NServiceBus.Jil
 Kafka: NServiceBus.Transports.Kafka

@@ -302,6 +302,17 @@
   NugetOrder:
     - NServiceBus.HandlerOrdering
 
+- Key: Hyperion
+  Name: Hyperion Serializer
+  DocoUrl: nservicebus/serialization/hyperion
+  GitHubOwner: SimonCropp
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Hyperion/blob/master/LICENSE.txt
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Hyperion
+  NugetOrder:
+    - NServiceBus.Hyperion
+
 - Key: InMemoryPersistence
   Name: InMemory Persistence 
   DocoUrl: nservicebus/persistence/in-memory
