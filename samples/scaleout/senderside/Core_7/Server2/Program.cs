@@ -17,6 +17,7 @@ class Program
         var discriminator = ConfigurationManager.AppSettings["InstanceId"];
         endpointConfiguration.MakeInstanceUniquelyAddressable(discriminator);
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.SendFailedMessagesTo("error");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
