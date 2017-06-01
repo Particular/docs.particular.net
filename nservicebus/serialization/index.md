@@ -20,6 +20,7 @@ NServiceBus takes instances of .NET objects (messages, events and commands) and 
  * [ProtoBuf-Google](protobufgoogle.md)
  * [Message Pack](message-pack.md)
  * [Wire](wire.md)
+ * [Hyperion](hyperion.md)
  * [Jil](jil.md)
  * [Bond](bond.md)
  * [ZeroFormatter](zeroformatter.md)
