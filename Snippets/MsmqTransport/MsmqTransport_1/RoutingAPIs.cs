@@ -2,7 +2,10 @@
 
 namespace Core6.Routing
 {
+    using System.Collections.Generic;
     using NServiceBus;
+    using NServiceBus.Features;
+    using NServiceBus.Routing;
 
     class RoutingAPIs
     {
@@ -23,6 +26,22 @@ namespace Core6.Routing
             //#endregion
         }
 
+        class Instances :
+            Feature
+        {
+            #region RoutingExtensibility-Instances
+            protected override void Setup(FeatureConfigurationContext context)
+            {
+                var endpointInstances = context.Settings.Get<EndpointInstances>();
+                endpointInstances.AddOrReplaceInstances("MySource",
+                    new List<EndpointInstance>
+                    {
+                        new EndpointInstance("MyEndpoint").AtMachine("VM-1"),
+                        new EndpointInstance("MyEndpoint").AtMachine("VM-2")
+                    });
+            }
+            #endregion
+        }
         class AcceptOrder
         {
         }

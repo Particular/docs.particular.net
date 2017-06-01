@@ -44,7 +44,15 @@ snippet: InstanceMappingFile-FilePath
 
 ## Custom instance mapping
 
-The instance mapping aspect of routing, as well as all other aspects, can be customized if the standard built-in file-based mapping is not feasible (e.g. in elastically scaled-out environments). For details see the [routing extensibility page](/nservicebus/messaging/routing-extensibility.md).
+Physical routing is responsible for mapping the destination logical endpoint to the actual transport address (queue name).
+
+The instance mapping aspect of routing, as well as all other aspects, can be customized if the standard built-in file-based mapping is not feasible (e.g. in elastically scaled-out environments). 
+
+snippet: RoutingExtensibility-Instances
+
+The source parameter has the same meaning and effect as in the routes collection.
+
+The instances collection is thread-safe. It allows registering multiple instance of a given endpoint. In case there is more than one, message distribution is involved.
 
 
 ## Using message-endpoint mappings

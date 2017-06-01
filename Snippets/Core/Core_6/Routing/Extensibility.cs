@@ -107,40 +107,6 @@
             }
         }
 
-        class PublishersTable :
-            Feature
-        {
-            #region RoutingExtensibility-Publishers
-            protected override void Setup(FeatureConfigurationContext context)
-            {
-                var publishers = context.Settings.Get<Publishers>();
-                var publisherAddress = PublisherAddress.CreateFromEndpointName("PublisherEndpoint");
-                publishers.AddOrReplacePublishers("MySource",
-                    new List<PublisherTableEntry>
-                    {
-                        new PublisherTableEntry(typeof(MyEvent), publisherAddress)
-                    });
-            }
-            #endregion
-        }
-
-        class Instances :
-            Feature
-        {
-            #region RoutingExtensibility-Instances
-            protected override void Setup(FeatureConfigurationContext context)
-            {
-                var endpointInstances = context.Settings.Get<EndpointInstances>();
-                endpointInstances.AddOrReplaceInstances("MySource",
-                    new List<EndpointInstance>
-                    {
-                        new EndpointInstance("MyEndpoint").AtMachine("VM-1"),
-                        new EndpointInstance("MyEndpoint").AtMachine("VM-2")
-                    });
-            }
-            #endregion
-        }
-
         class MyCommand :
             ICommand
         {

@@ -49,8 +49,4 @@ When using a [bus transport](/nservicebus/transports/#types-of-transports-bus-tr
 
 Routing extensions can influence the physical routing by modifying the endpoint instances collection. This is especially important for [bus transports](/nservicebus/transports/#types-of-transports-bus-transports) in a dynamically changing environment such as the cloud. Endpoints can be elastically scaled out and in and the routing, to be able to stay in sync, needs to derive the physical information from the current state of the environment, not from a static file.
 
-snippet: RoutingExtensibility-Instances
-
-The source parameter has the same meaning and effect as in the routes collection.
-
-The instances collection is thread-safe. It allows registering multiple instance of a given endpoint. In case there is more than one, message distribution is involved.
+See the article dedicated to [MSMQ Transport](/nservicebus/msmq/routing.md#custom-instance-mapping) for details. 
