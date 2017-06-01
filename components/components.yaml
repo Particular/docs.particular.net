@@ -678,6 +678,15 @@
   NugetOrder:
     - NServiceBus.Bootstrap.WindowsService
 
+- Key: ServiceTemplate
+  Name: Windows Service 'dotnet new' Template
+  DocoUrl: nservicebus/hosting/windows-service-template
+  GitHubOwner: Particular/bootstrap-windowsservice-maintainers
+  Category: Host
+  ProjectUrl: https://github.com/Particular/NServiceBus.Templates/
+  NugetOrder:
+    - NServiceBus.Template.WindowsService
+
 - Key: ServiceControl
   Name: ServiceControl
   DocoUrl: servicecontrol
