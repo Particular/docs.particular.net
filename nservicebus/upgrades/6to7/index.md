@@ -112,6 +112,7 @@ include: dependencies
 
 The `.GetSettings()` extension metod has been moved from `NServiceBus.Configuration.AdvanceExtensibility` to the `NServiceBus.Configuration.AdvancedExtensibility` namespace. More details on advanced access to settings [here](/nservicebus/pipeline/features.md#feature-settings-endpointconfiguration).
 
+
 ## Assembly scanning
 
-64-bit assemblies are no longer silently excluded from scanning when process is x86. Instead startup will fail with a `System.BadImageFormatException`. Use the [exclude API](/nservicebus/hosting/assembly-scanning.md#assemblies-to-scan) should the assembly not be scanned to avoid the exception. 
+64-bit assemblies are no longer silently excluded from scanning when running in a x86 process. Instead startup will fail with a `System.BadImageFormatException`. Use the [exclude API](/nservicebus/hosting/assembly-scanning.md#assemblies-to-scan) to exclude the assembly and avoid the exception. 
