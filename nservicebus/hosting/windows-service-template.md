@@ -8,7 +8,16 @@ tags:
 
 The `dotnet new` [template](https://github.com/Particular/NServiceBus.Templates) makes it easier to create a Windows Service host for NServiceBus. Following snippet shows how to install the template and instantiate a Visual Studio project based on that template
 
-```
-dotnet new --install NServiceBus.Template.WindowsService::*
-dotnet new nsbservice --name MyWindowsService
-```
+
+## Installation
+
+Install using the following:
+
+snippet: install
+
+
+## Usage
+
+The template can then be used via the following.
+
+snippet: usage
