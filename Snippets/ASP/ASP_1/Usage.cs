@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 using NServiceBus.Persistence;
 
 class Usage
@@ -45,6 +46,9 @@ class Usage
         persistence.ConnectionString("connectionString");
         persistence.TableName("tableName");
         persistence.CreateSchema(true);
+
+        // Added in Version 1.3
+        persistence.CacheFor(TimeSpan.FromMinutes(1));
 
         #endregion
     }
