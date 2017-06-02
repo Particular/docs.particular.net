@@ -21,6 +21,7 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.EnableOutbox();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
