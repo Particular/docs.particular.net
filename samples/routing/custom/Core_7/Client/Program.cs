@@ -20,6 +20,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Client");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 

@@ -16,6 +16,7 @@ class Program
         endpointConfiguration.OverrideLocalAddress("Samples.FairDistribution.Server-2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
