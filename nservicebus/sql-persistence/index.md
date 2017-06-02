@@ -29,6 +29,8 @@ Install the [NServiceBus.Persistence.Sql](https://www.nuget.org/packages/NServic
 
 snippet: SqlPersistenceUsageSqlServer
 
+include: mssql-dtc-warning
+
 
 ### MySQL
 
