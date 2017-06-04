@@ -2,7 +2,7 @@
 title: Simple Injector
 summary: Configure NServiceBus to use Simple Injector as a container.
 component: SimpleInjector
-reviewed: 2017-04-27
+reviewed: 2017-06-04
 tags:
  - Dependency Injection
 related:
