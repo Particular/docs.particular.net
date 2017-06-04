@@ -4,6 +4,6 @@
     <TargetFramework>net462</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.SimpleInjector" Version="2.1.0" />
+    <PackageReference Include="NServiceBus.SimpleInjector" Version="2.1.2" />
   </ItemGroup>
 </Project>
