@@ -36,10 +36,10 @@ NOTE: In order to connect to a different SQL Server instance, ensure all databas
  1. Open ServicePulse (by default it's available at http://localhost:9090/#/dashboard) and select the Endpoints Overview. `Samples.ServiceControl.MixedTransportAdapter.Shipping` endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed
  1. Go to the Sales console and press `o` to send a message.
  1. Notice the Sales endpoint receives its own message and successfully processed it.
- 2. Press `f` to simulate message processing failure. 
+ 1. Press `f` to simulate message processing failure. 
  1. Go to the Sales console and also press `f` to simulate message processing failure.
  1. Press `o` in both Sales and Shipping to create more messages
- 2. Notice both messages failed processing in their respective endpoints.
+ 1. Notice both messages failed processing in their respective endpoints.
  1. Open ServicePulse and select the Failed Messages view.
  1. Notice the existence of one failed message group with two messages. Open the group.
  1. Press the "Retry all" button.
