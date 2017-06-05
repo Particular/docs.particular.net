@@ -7,6 +7,17 @@
       Title: Service Platform
     - Url: tutorials/intro-to-nservicebus
       Title: Messaging Basics Tutorial
+      Articles:
+      - Url: tutorials/intro-to-nservicebus/1-getting-started
+        Title: Getting Started
+      - Url: tutorials/intro-to-nservicebus/2-sending-a-command
+        Title: Sending a command
+      - Url: tutorials/intro-to-nservicebus/3-multiple-endpoints
+        Title: Multiple endpoints
+      - Url: tutorials/intro-to-nservicebus/4-publishing-events
+        Title: Publishing events
+      - Url: tutorials/intro-to-nservicebus/5-retrying-errors
+        Title: Retrying errors
     - Url: samples/step-by-step
       Title: Step by Step Sample
     - Url: samples/endpoint-configuration
