@@ -1,5 +1,7 @@
 ## dotnet new information
 
+WARNING: The `dotnet` command line operations can be executed from within a [Visual Studio 2017 Package Manager Console](https://docs.microsoft.com/en-us/nuget/tools/package-manager-console) or a [Visual Studio 2017 Developer Command Prompt](https://msdn.microsoft.com/en-us/library/ms229859.aspx).
+
 
 ### Reference material
 

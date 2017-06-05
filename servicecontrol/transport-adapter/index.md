@@ -96,12 +96,7 @@ Such messages cannot be forwarded to the error queue because ServiceControl won'
 
 Transport Adapter is a library package that is hosting-agnostic. In a production scenario the adapter should be hosted either as a Windows Service or via a cloud-specific hosting mechanism (e.g. Azure Worker Role). 
 
-The `dotnet new` [template](https://github.com/Particular/NServiceBus.Templates) makes it easier to create a Windows Service host for the Transport Adapter. Following snippet shows how to install the template and instantiate a Visual Studio project based on that template
-
-```
-dotnet new --install NServiceBus.Templates.TransportAdapter.WindowsService::*
-dotnet new sc-adapter-service --name MyAdapter
-```
+The [Transport Adapter `dotnet new` template](template.md) makes it easier to create a Windows Service host for the Transport Adapter.
 
 Regardless of the hosting mechanism, the Transport Adapter follows the same life cycle. The following snippet demonstrates it. The `Start` and `Stop` methods need to be bound to host-specific events (e.g. Windows Service start up callback).
 

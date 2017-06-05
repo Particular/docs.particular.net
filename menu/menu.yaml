@@ -878,6 +878,8 @@
       Articles:
       - Url: servicecontrol/transport-adapter/incompatible-features
         Title: Incompatible transport features
+      - Url: servicecontrol/transport-adapter/template
+        Title: dotnet new Template
   - Title: Management
     Articles:
     - Url: servicecontrol/securing-servicecontrol

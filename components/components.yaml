@@ -726,6 +726,15 @@
   NugetOrder:
     - ServiceControl.TransportAdapter
 
+- Key: SCTransportAdapterTemplate
+  Name: ServiceControl Transport Adapter 'dotnet new' Template
+  DocoUrl: servicecontrol/transport-adapter/template
+  GitHubOwner: Particular/servicecontrol-maintainers
+  Category: Host
+  ProjectUrl: https://github.com/Particular/NServiceBus.Templates/
+  NugetOrder:
+    - NServiceBus.Templates.TransportAdapter.WindowsService
+
 - Key: ServicePulse
   Name: ServicePulse
   DocoUrl: servicepulse
