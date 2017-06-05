@@ -47,7 +47,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 7.2.x     | 2017-03-24     | -                 | -                                 |
+| 7.3.x     | 2017-06-02     | -                 | -                                 |
+| 7.2.x     | 2017-03-24     | 2017-09-02        | Superseded by 7.3.x               |
 | 7.0.x     | 2016-10-11     | 2017-06-24        | Superseded by 7.2.x               |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 | ~~6.1.x~~ | ~~2014-11-14~~ | ~~2015-05-13~~    | ~~Superseded by 6.2.x~~           |
@@ -87,6 +88,10 @@
 | ~~1.2.x~~ | ~~2014-03-21~~ | ~~2016-09-29~~    | ~~Extended by NServiceBus 4.7.x~~ |
 | ~~1.1.x~~ | ~~2013-11-18~~ | ~~2014-06-21~~    | ~~Superseded by 1.2.x~~           |
 | ~~1.0.x~~ | ~~2013-07-11~~ | ~~2014-02-18~~    | ~~Superseded by 1.1.x~~           |
+
+#### NServiceBus.Transport.Msmq
+
+No versions released.
 
 ### Persistence packages
 
@@ -138,7 +143,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.2.x     | 2017-03-24     | -                 | -                                 |
+| 1.3.x     | 2017-06-02     | -                 | -                                 |
+| 1.2.x     | 2017-03-24     | 2017-09-02        | Superseded by 1.3.x               |
 | 1.0.x     | 2016-10-11     | 2017-06-24        | Superseded by 1.2.x               |
 
 #### NServiceBus.Persistence.ServiceFabric
@@ -414,6 +420,14 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | ~~3.2.x~~ | ~~2012-05-22~~ | ~~2013-01-29~~    | ~~Superseded by 3.3.x~~           |
 | ~~3.1.x~~ | ~~2012-05-21~~ | ~~2012-08-22~~    | ~~Superseded by 3.2.x~~           |
 | ~~3.0.x~~ | ~~2012-04-02~~ | ~~2012-08-21~~    | ~~Superseded by 3.1.x~~           |
+
+#### NServiceBus.Template.TransportAdapter.WindowsService
+
+No versions released.
+
+#### NServiceBus.Template.WindowsService
+
+No versions released.
 
 ### Other packages
 

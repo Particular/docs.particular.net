@@ -13,7 +13,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 7.2.x     | 2017-03-24     | -                 | -                                 |
+| 7.3.x     | 2017-06-02     | -                 | -                                 |
+| 7.2.x     | 2017-03-24     | 2017-09-02        | Superseded by 7.3.x               |
 | 7.0.x     | 2016-10-11     | 2017-06-24        | Superseded by 7.2.x               |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
@@ -60,7 +61,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.2.x     | 2017-03-24     | -                 | -                                 |
+| 1.3.x     | 2017-06-02     | -                 | -                                 |
+| 1.2.x     | 2017-03-24     | 2017-09-02        | Superseded by 1.3.x               |
 | 1.0.x     | 2016-10-11     | 2017-06-24        | Superseded by 1.2.x               |
 
 #### NServiceBus.Persistence.Sql
