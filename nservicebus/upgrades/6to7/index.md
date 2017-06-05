@@ -106,11 +106,9 @@ snippet: 6to7endpoint-mapping-Routing-Logical
 snippet: 6to7endpoint-mapping-Routing-RegisterPublisher
 
 
-include: dependencies
+## Access to settings
 
-### Access to settings
-
-The `.GetSettings()` extension metod has been moved from `NServiceBus.Configuration.AdvanceExtensibility` to the `NServiceBus.Configuration.AdvancedExtensibility` namespace. More details on advanced access to settings [here](/nservicebus/pipeline/features.md#feature-settings-endpointconfiguration).
+The `.GetSettings()` extension method has been moved from `NServiceBus.Configuration.AdvanceExtensibility` to the `NServiceBus.Configuration.AdvancedExtensibility` namespace. More details on advanced access to settings can be found [here](/nservicebus/pipeline/features.md#feature-settings-endpointconfiguration).
 
 
 ## Assembly scanning
