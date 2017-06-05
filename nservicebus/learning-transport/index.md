@@ -21,7 +21,7 @@ Currently [ServiceControl](/servicecontrol/) (and hence [ServicePulse](/servicep
 
 The learning transport simulates a [multicast transport](nservicebus/transports/index.md#types-of-transports-multicast-enabled-transports) this means that routing configuration isn't needed in order to publish events. 
 
-See our [native pubsub](/nservicebus/messaging/publish-subscribe/index.md#mechanics-native) documentation for further details.
+See our [native pubsub](/nservicebus/messaging/publish-subscribe/#mechanics-native) documentation for further details.
 
 ## Usage
 
