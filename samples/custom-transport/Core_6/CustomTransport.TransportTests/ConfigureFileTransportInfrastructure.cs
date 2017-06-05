@@ -1,18 +1,14 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Settings;
-using NServiceBus.TransportTests;
+using NServiceBus.AcceptanceTesting.Support;
 
 #region TransportTestConfiguration
-public class ConfigureFileTransportInfrastructure : IConfigureTransportInfrastructure
+public class ConfigureFileTransportInfrastructure : IConfigureEndpointTestExecution
 {
-    public TransportConfigurationResult Configure(SettingsHolder settings, TransportTransactionMode transactionMode)
+    public Task Configure(string endpointName, EndpointConfiguration configuration, RunSettings settings, PublisherMetadata publisherMetadata)
     {
-        return new TransportConfigurationResult
-        {
-            PurgeInputQueueOnStartup = true,
-            TransportInfrastructure = new FileTransportInfrastructure()
-        };
+        configuration.UseTransport<FileTransport>();
+        return Task.CompletedTask;
     }
 
     public Task Cleanup()
@@ -20,4 +16,5 @@ public class ConfigureFileTransportInfrastructure : IConfigureTransportInfrastru
         return Task.CompletedTask;
     }
 }
+
 #endregion

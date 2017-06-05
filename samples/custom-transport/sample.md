@@ -10,7 +10,9 @@ related:
 This sample show how to build a Transport using the file system as a data store.
 
 
-DANGER: This is for learning purposes only and NOT for use in production.
+DANGER: This is for learning purposes only and NOT for use in production. 
+
+**This sample requires Visual Studio 2017.**
 
 
 ## Sample Structure
@@ -65,6 +67,13 @@ Now start `Endpoint2`. The reply message will appear in its file system `%temp%\
 The `TransportDefinition` allows a Transport to define how it interacts with the core of NServiceBus.
 
 snippet: TransportDefinition
+
+
+### TestSuiteConstraints
+
+The TestSuiteConstraints defines the scenarios supported by the transport
+
+snippet: TestSuiteConstraints
 
 
 ### Storage location
