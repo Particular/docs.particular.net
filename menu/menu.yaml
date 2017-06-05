@@ -333,13 +333,13 @@
   - Url: nservicebus/handlers-and-sagas
     Title: Handlers and Sagas
     Articles:
+    - Url: nservicebus/handlers/async-handlers
+      Title: Asynchronous Handlers
     - Url: nservicebus/handlers
       Title: Handlers
       Articles:
       - Url: nservicebus/handlers/accessing-data
-        Title: Accessing data	  
-      - Url: nservicebus/handlers/async-handlers
-        Title: Asynchronous Handlers
+        Title: Accessing data
       - Url: nservicebus/handlers/handler-ordering
         Title: Handler Order
     - Url: nservicebus/sagas
@@ -355,8 +355,6 @@
         Title: Not Found
       - Url: nservicebus/sagas/concurrency
         Title: Concurrency
-      - Url: nservicebus/handlers/async-handlers
-        Title: Asynchronous Handlers
       - Url: nservicebus/sagas/reply-replaytooriginator-differences
         Title: Reply and ReplyToOriginator differences
   - Url: nservicebus/testing
