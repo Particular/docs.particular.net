@@ -106,14 +106,28 @@ snippet: 6to7endpoint-mapping-Routing-Logical
 snippet: 6to7endpoint-mapping-Routing-RegisterPublisher
 
 
-## Access to settings
+## Renamed APIs
 
-The `.GetSettings()` extension method has been moved from `NServiceBus.Configuration.AdvanceExtensibility` to the `NServiceBus.Configuration.AdvancedExtensibility` namespace. More details on advanced access to settings can be found [here](/nservicebus/pipeline/features.md#feature-settings-endpointconfiguration).
+
+### Access to settings
+
+The `GetSettings` extension method has been moved from `NServiceBus.Configuration.AdvanceExtensibility` to the `NServiceBus.Configuration.AdvancedExtensibility` namespace. More details on advanced access to settings can be found [here](/nservicebus/pipeline/features.md#feature-settings-endpointconfiguration).
+
+
+###  ContextBag extensions
+
+The `RemoveDeliveryConstaint` extension method has been renamed to `RemoveDeliveryConstraint`.
+
+
+### IncomingMessage extensions
+
+The `GetMesssageIntent` extension method has been renamed to `GetMessageIntent`.
 
 
 ## Assembly scanning
 
 64-bit assemblies are no longer silently excluded from scanning when running in a x86 process. Instead startup will fail with a `System.BadImageFormatException`. Use the [exclude API](/nservicebus/hosting/assembly-scanning.md#assemblies-to-scan) to exclude the assembly and avoid the exception. 
+
 
 ## Legacy .Retries message receiver
 
