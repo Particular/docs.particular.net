@@ -1,7 +1,7 @@
 ## dotnet new information
 
 
-DANGER: `dotnet new` is still in preview. As such expect so suffer some friction due to bugs, lacking or incorrect documentation and the changing nature of the features and APIs.
+DANGER: `dotnet new` is still in preview. As such expect to suffer some friction due to bugs, lacking or incorrect documentation and the changing nature of the features and APIs.
 
 
 ### Command execution
