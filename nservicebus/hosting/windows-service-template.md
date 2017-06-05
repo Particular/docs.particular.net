@@ -21,3 +21,5 @@ snippet: install
 The template can then be used via the following.
 
 snippet: usage
+
+include: dotnetnew
