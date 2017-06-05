@@ -114,3 +114,7 @@ The `.GetSettings()` extension method has been moved from `NServiceBus.Configura
 ## Assembly scanning
 
 64-bit assemblies are no longer silently excluded from scanning when running in a x86 process. Instead startup will fail with a `System.BadImageFormatException`. Use the [exclude API](/nservicebus/hosting/assembly-scanning.md#assemblies-to-scan) to exclude the assembly and avoid the exception. 
+
+## Legacy .Retries message receiver
+
+The [.Retries message receiver](/nservicebus/recoverability/configure-delayed-retries.md?version=core_6#custom-retry-policy-legacy-retries-message-receiver) added to assist in migrating from Version 5 to Version 6 has been removed. The API to disable it has also been removed.
