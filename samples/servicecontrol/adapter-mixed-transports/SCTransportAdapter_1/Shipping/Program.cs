@@ -24,10 +24,11 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         var chaos = new ChaosGenerator();
-        endpointConfiguration.RegisterComponents(c =>
-        {
-            c.ConfigureComponent(() => chaos, DependencyLifecycle.SingleInstance);
-        });
+        endpointConfiguration.RegisterComponents(
+            registration: components =>
+            {
+                components.ConfigureComponent(() => chaos, DependencyLifecycle.SingleInstance);
+            });
 
         endpointConfiguration.Recoverability()
             .Immediate(immediate => immediate.NumberOfRetries(0))

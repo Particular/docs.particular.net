@@ -25,23 +25,25 @@ class Program
 
         #region EndpointSideConfig
 
-        transportAdapterConfig.CustomizeEndpointTransport(transport =>
-        {
-            transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=shipping;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
-            //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
-            transport.GetSettings().Set<EndpointInstances>(new EndpointInstances());
-        });
+        transportAdapterConfig.CustomizeEndpointTransport(
+            customization: transport =>
+            {
+                transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=shipping;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+                //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
+                transport.GetSettings().Set<EndpointInstances>(new EndpointInstances());
+            });
 
         #endregion
 
-        transportAdapterConfig.CustomizeServiceControlTransport(transport =>
-        {
-            //HACK: Latest MSMQ requires this setting. To be moved to the transport adapter core.
-            transport.GetSettings().Set("errorQueue", "poison");
-        });
+        transportAdapterConfig.CustomizeServiceControlTransport(
+            customization: transport =>
+            {
+                //HACK: Latest MSMQ requires this setting. To be moved to the transport adapter core.
+                transport.GetSettings().Set("errorQueue", "poison");
+            });
 
 #pragma warning restore 618
-        
+
         var adapter = TransportAdapter.Create(transportAdapterConfig);
 
         await adapter.Start()

@@ -1,5 +1,5 @@
 ---
-title: Monitor mixed transport solution with the ServiceControl adapter
+title: Monitor mixed transports with ServiceControl adapter
 summary: Centralize monitoring of mixed transport solution with the ServiceControl adapter
 component: SCTransportAdapter
 reviewed: 2017-06-01
@@ -10,7 +10,7 @@ related:
 ---
 
 
-This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using mixed transports. The main transport for the solution is MSMQ and this is the transport used by the ServiceControl. Some endpoints, however, use SQL Server transport. 
+This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using mixed transports. The main transport for the solution is MSMQ and this is the transport used by the ServiceControl. Some endpoints, however, use SQL Server transport.
 
 
 ## Prerequisistes
@@ -18,14 +18,14 @@ This sample shows how to configure ServiceControl to monitor endpoints and retry
  1. [Install ServiceControl](/servicecontrol/installation.md). 
  2. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using MSMQ transport:
 	 
-   * Add a new ServiceControl instance: 
+   * Add a new ServiceControl instance:
    * Use default `Particular.ServiceControl` as the instance name (make sure there is no other instance of SC running with the same name).
 
 NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default port number for API. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
  
  3. Ensure the `ServiceControl` process is running before running the sample.
- 4. In the local SQL Server Express instance, create database for the shipping endpoint: `shipping`.  
- 6. [Install ServicePulse](/servicepulse/installation.md)
+ 4. In the local SQL Server Express instance, create database for the shipping endpoint: `shipping`.
+ 5. [Install ServicePulse](/servicepulse/installation.md)
 
 NOTE: In order to connect to a different SQL Server instance, ensure all database connection strings are updated in the sample.
 
@@ -33,12 +33,12 @@ NOTE: In order to connect to a different SQL Server instance, ensure all databas
 ## Running the project
 
  1. Start the projects: Adapter, Sales and Shipping (right-click on the project, select the `Debug > Start new instance` option). Make sure adapter starts first because on start-up it creates a queue that is used for heartbeats.
- 1. Open ServicePulse (by default it's available at http://localhost:9090/#/dashboard) and select the Endpoints Overview. `Samples.ServiceControl.MixedTransportAdapter.Shipping` endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed
+ 1. Open ServicePulse (by default it's available at http://localhost:9090/#/dashboard) and select the Endpoints Overview. `Samples.ServiceControl.MixedTransportAdapter.Shipping` endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed.
  1. Go to the Sales console and press `o` to send a message.
  1. Notice the Sales endpoint receives its own message and successfully processed it.
- 1. Press `f` to simulate message processing failure. 
+ 1. Press `f` to simulate message processing failure.
  1. Go to the Sales console and also press `f` to simulate message processing failure.
- 1. Press `o` in both Sales and Shipping to create more messages
+ 1. Press `o` in both Sales and Shipping to create more messages.
  1. Notice both messages failed processing in their respective endpoints.
  1. Open ServicePulse and select the Failed Messages view.
  1. Notice the existence of one failed message group with two messages. Open the group.
@@ -57,6 +57,7 @@ The following diagram shows the topology of the solution:
 
 The code base consists of three projects.
 
+
 ### Sales
 
 The Sales project contains endpoint that simulates execution of business process by sending a message to itself. It  includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality. The Sales endpoint uses the MSMQ transport (same as ServiceControl).
@@ -64,7 +65,7 @@ The Sales project contains endpoint that simulates execution of business process
 
 ### Shipping
 
-The Shipping project also contains endpoint that simulates execution of business process by sending a message to itself. It  includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality. 
+The Shipping project also contains endpoint that simulates execution of business process by sending a message to itself. It  includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality.
 
 The Shipping endpoint uses the SQL Server transport and requires an adapter in order to communicate with ServiceControl.
 
@@ -84,9 +85,9 @@ snippet: EndpointSideConfig
 
 ## How it works
 
-Refer to [SQL Server multi-instance monitoring](/samples/servicecontrol/adapter-sqlserver/#how-it-works) sample to learn more about how the Transport Adapter mediates between the endpoints and the ServiceControl. 
+Refer to [SQL Server multi-instance monitoring](/samples/servicecontrol/adapter-sqlserver/#how-it-works) sample to learn more about how the Transport Adapter mediates between the endpoints and the ServiceControl.
+
 
 ### Duplicates
 
 By default NServiceBus transports use the highest supported transaction modes. In case of MSMQ and SQL Server transports this means `TransactionScope`. Because of that the Adapter requires the Distributed Transaction Coordinator (DTC) service to be configured. In this mode there is no risk of creating duplicate messages when moving messages between the transports. This is especially important for the messages that are selected for retry.
-
