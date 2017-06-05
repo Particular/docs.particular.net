@@ -21,6 +21,7 @@ The `dotnet` command line operations can be executed from within a [Visual Studi
 To list the currently installed templates run `dotnet new` with no parameters
 
 
+
 ### Template install
 
 ```
@@ -35,10 +36,24 @@ dotnet new --install TemplatePackageName::*
 
 This command is currently in preview and [not documented](https://github.com/dotnet/docs/issues/2315).
 
+### Install Location
+
+The downloaded NuGets are cached on on disk at:
+
+```
+%USERPROFILE%\.templateengine\dotnetcli\vDOTNETVERSION\packages
+```
+
+With the list of installed templates listed in:
+
+```
+%USERPROFILE%\.templateengine\dotnetcli\vDOTNETVERSION\settings.json
+```
+
 
 ### Template uinstall
 
-There is currently [no method for uninstalling a specific template](https://github.com/dotnet/templating/issues/893). The current hack recommended by Microsoft is  is to use reset the installed templates to default list using:
+There is currently [no method for uninstalling a specific template](https://github.com/dotnet/templating/issues/893). The current hack recommended by Microsoft is to use reset the installed templates to default list using:
 
 ```
 dotnet new --debug:reinit
