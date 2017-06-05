@@ -733,7 +733,7 @@
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Templates/
   NugetOrder:
-    - NServiceBus.Templates.TransportAdapter.WindowsService
+    - NServiceBus.Template.TransportAdapter.WindowsService
 
 - Key: ServicePulse
   Name: ServicePulse

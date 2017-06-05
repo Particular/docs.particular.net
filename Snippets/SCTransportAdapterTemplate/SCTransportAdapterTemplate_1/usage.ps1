@@ -1,5 +1,5 @@
 ﻿# startcode install
-dotnet new --install NServiceBus.Templates.TransportAdapter.WindowsService::*
+dotnet new --install NServiceBus.Template.TransportAdapter.WindowsService::*
 # endcode
 
 # startcode usage
