@@ -17,6 +17,11 @@ include: learning-usages
 
 Currently [ServiceControl](/servicecontrol/) (and hence [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/)) are not supported.
 
+### Publish and subscribe
+
+The learning transport simulates a [multicast transport](/nservicebus/transports/#types-of-transports-multicast-enabled-transports) this means that routing configuration isn't needed in order to publish events. 
+
+See the [native pubsub](/nservicebus/messaging/publish-subscribe/#mechanics-native) documentation for further details.
 
 ## Usage
 
@@ -48,6 +53,9 @@ snippet: NoPayloadSizeRestriction
 
 ## File System Structure
 
+### Subscription metadata
+
+Native publish and subscribe is simulated by storing subscriber metadata in a `.events` folder in the root storage directory. Subscribers will write their address to a file named `{storage directory}\.events\{message type fullname}\{endpointname}.subscription`. Publishers will send copies of each published event to all registered subscribers.
 
 ### Message File Types
 
