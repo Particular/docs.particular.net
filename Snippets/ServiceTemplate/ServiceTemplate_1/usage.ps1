@@ -1,5 +1,5 @@
 ﻿# startcode install
-dotnet new --install NServiceBus.Template.WindowsService::*
+dotnet new --install NServiceBus.Template.WindowsService::1.0.1-alpha*
 # endcode
 
 # startcode usage
