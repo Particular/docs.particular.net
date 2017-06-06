@@ -285,7 +285,7 @@
       Title: Windows Service
       Articles:
       - Url: nservicebus/hosting/windows-service-template
-        Title: 'dotnet new' Template
+        Title: dotnet new Template
     - Url: nservicebus/hosting/override-hostid
       Title: Overriding the host identifier
     - Url: nservicebus/hosting/custom-configuration-providers
