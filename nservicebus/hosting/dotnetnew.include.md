@@ -24,13 +24,13 @@ To list the currently installed templates run `dotnet new` with no parameters
 
 ### Template install
 
-```
+```ps
 dotnet new --install TemplatePackageName::Version
 ```
 
 The wildcard `*` can be used to target the current released version.
 
-```
+```ps
 dotnet new --install TemplatePackageName::*
 ```
 
@@ -40,13 +40,13 @@ This command is currently in preview and [not documented](https://github.com/dot
 
 The downloaded NuGets are cached on on disk at:
 
-```
+```no-highlight
 %USERPROFILE%\.templateengine\dotnetcli\vDOTNETVERSION\packages
 ```
 
 With the list of installed templates listed in:
 
-```
+```no-highlight
 %USERPROFILE%\.templateengine\dotnetcli\vDOTNETVERSION\settings.json
 ```
 
@@ -55,6 +55,6 @@ With the list of installed templates listed in:
 
 There is currently [no method for uninstalling a specific template](https://github.com/dotnet/templating/issues/893). The current hack recommended by Microsoft is to use reset the installed templates to default list using:
 
-```
+```ps
 dotnet new --debug:reinit
 ```
