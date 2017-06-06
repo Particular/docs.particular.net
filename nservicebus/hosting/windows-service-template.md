@@ -24,7 +24,7 @@ The template can then be used via the following.
 
 snippet: usage
 
-This will create a new directory named `MyAdapter` containing a Windows Service `.csproj` also named `MyAdapter`.
+This will create a new directory named `MyAdapter` containing a Windows Service `.csproj` also named `MyWindowsService`.
 
 To add to an existing solution:
 
