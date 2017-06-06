@@ -6,11 +6,12 @@ DANGER: `dotnet new` is still in preview. As such expect to suffer some friction
 
 ### Command execution
 
-The `dotnet` command line operations can be executed from within a [Visual Studio 2017 Package Manager Console](https://docs.microsoft.com/en-us/nuget/tools/package-manager-console) or a [Visual Studio 2017 Developer Command Prompt](https://msdn.microsoft.com/en-us/library/ms229859.aspx).
+The `dotnet` command line operations can be executed from within any Console and the [Visual Studio 2017 Developer Command Prompt](https://msdn.microsoft.com/en-us/library/ms229859.aspx).
 
 
 ### Reference material
 
+ * [dotnet command documentation](https://docs.microsoft.com/en-nz/dotnet/core/tools/dotnet)
  * [dotnet-new documentation](https://docs.microsoft.com/en-nz/dotnet/core/tools/dotnet-new)
  * [Template spec](https://github.com/dotnet/templating/wiki/%22Runnable-Project%22-Templates)
  * [How to create templates](https://blogs.msdn.microsoft.com/dotnet/2017/04/02/how-to-create-your-own-templates-for-dotnet-new/)
@@ -24,14 +25,16 @@ To list the currently installed templates run `dotnet new` with no parameters
 
 ### Template install
 
+Where `[TemplatePackageName]` is the name of the NuGet package that contains the template and `[Version]` is a NuGet version number.
+
 ```ps
-dotnet new --install TemplatePackageName::Version
+dotnet new --install [TemplatePackageName]::[Version]
 ```
 
 The wildcard `*` can be used to target the current released version.
 
 ```ps
-dotnet new --install TemplatePackageName::*
+dotnet new --install [TemplatePackageName]::*
 ```
 
 This command is currently in preview and [not documented](https://github.com/dotnet/docs/issues/2315).
