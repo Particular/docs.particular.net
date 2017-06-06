@@ -89,7 +89,7 @@ System.Exception: Oops
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e1d86cb9-c393-475b-9be0-5407e9e529e0
 ```
 
-NOTE: If you forgot to detach the debugger, you'll need to click the `Continue` button before the message will be printed in the **Sales** window.
+NOTE: If you forgot to detach the debugger, you'll need to click the **Continue** button before the message will be printed in the **Sales** window.
 
 5. Comment the code inside the **ThrowTransientException** region, so no exceptions are thrown in the future.
 
@@ -102,10 +102,14 @@ Of course, there are other exceptions that may be harder to recover from than si
 
 As mentioned previously, publishing events using the [Publish-Subscribe pattern](/nservicebus/messaging/publish-subscribe/) reduces coupling and makes maintaining a system easier in the long run. Let's look at how we can add an additional subscriber without needing to modify any existing code.
 
+As shown in the diagram, we'll be adding a new messaging endpoint called **Shipping** that will also subscribe to the `OrderPlaced` event.
+
+![Completed Solution](after.svg)
+
 
 ### Create a new endpoint
 
-Let's create a new messaging endpoint called **Shipping** that will also subscribe to the `OrderPlaced` event. First we'll create the project and set up its dependencies:
+First we'll create the **Shipping** project and set up its dependencies:
 
 1. In the solution, create a new **Console App (.NET Framework)** project (or just **Console Application**) named **Shipping**.
 1. In the **Shipping** project, add the `NServiceBus` NuGet package, which is already present in the other projects in the solution. In the Package Manager Console window type:
