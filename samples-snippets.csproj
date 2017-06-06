@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="RestorePackages;Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <UsingTask TaskName="NugetRestore" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+  <ParameterGroup>  
+    <SolutionFiles ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />  
+  </ParameterGroup>    
+    <Task>
+      <Using Namespace="System.Threading"/>    
+      <Using Namespace="System.Threading.Tasks"/>
+      <Using Namespace="System.Diagnostics.Process"/>
+      <Using Namespace="System.IO"/>
+      <Using Namespace="System.Linq"/>
+      <Using Namespace="Microsoft.Build.Framework"/>
+      <Using Namespace="Microsoft.Build.Utilities"/>
+      <Code Type="Class" Language="cs">
+        <![CDATA[
+
+public class NugetRestore : Microsoft.Build.Utilities.Task, Microsoft.Build.Framework.ICancelableTask
+{
+    private System.Threading.CancellationTokenSource cts = new System.Threading.CancellationTokenSource();
+
+    private Microsoft.Build.Framework.ITaskItem[] solutionFiles;
+
+    [Microsoft.Build.Framework.Required]
+    public Microsoft.Build.Framework.ITaskItem[] SolutionFiles { 
+        get { return solutionFiles; } 
+        set { solutionFiles = value; }
+    }
+
+    public void Cancel() 
+    {
+        cts.Cancel();
+    }
+
+    public override bool Execute()
+    {
+        var toolsDiretory = "./tools";
+        var docsDirectory = System.IO.Directory.GetParent(toolsDiretory).FullName;
+        var nuget = System.IO.Path.Combine(toolsDiretory, "nuget.exe");
+        var packagesDirectory = System.IO.Path.Combine(docsDirectory, "packages");
+        var samplesDirectory = System.IO.Path.Combine(docsDirectory, "samples");
+        var tutorialsDirectory = System.IO.Path.Combine(docsDirectory, "tutorials");
+        var nugetConfigFile = System.IO.Path.Combine(docsDirectory, "nuget.config");
+
+        System.IO.Directory.SetCurrentDirectory(docsDirectory);
+
+        try
+        { 
+            Execute(nuget, "locals all -clear");
+        }
+        catch (System.Exception ex)
+        {
+            Log.LogMessage("Unable to clear local cache");
+            if (ex.InnerException != null)
+            {
+                Log.LogError(ex.InnerException.ToString());
+            }
+        }
+
+        var po = new System.Threading.Tasks.ParallelOptions() { 
+            CancellationToken = cts.Token,
+            MaxDegreeOfParallelism = 8 
+        };
+
+        try
+        {
+            System.Threading.Tasks.Parallel.ForEach(SolutionFiles,
+            po,
+            (solutionFile) =>
+                {
+                    po.CancellationToken.ThrowIfCancellationRequested();
+
+                    var file = solutionFile.ItemSpec;
+                    Log.LogMessage(file);
+                    try
+                    { 
+                        Execute(nuget, "restore " + file + " -packagesDirectory " + packagesDirectory + " -configfile " + nugetConfigFile);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Log.LogMessage(file + ": " + ex.ToString());
+                        if (ex.InnerException != null)
+                        {
+                            Log.LogError(ex.InnerException.ToString());
+                        }
+                    }
+                }
+            );
+        }
+        catch (System.OperationCanceledException e)
+        {
+            Log.LogWarning("User cancelled");
+            return false;
+        }
+        finally
+        {
+            cts.Dispose();
+        }            
+
+        return true;
+    }
+
+    void Execute(string file, string arguments)
+    {
+        var commandline = file + " " + arguments;
+        Log.LogMessage(commandline);
+
+        using (System.Diagnostics.Process process = new System.Diagnostics.Process())
+        {
+            process.StartInfo.FileName = file;
+            process.StartInfo.Arguments = arguments;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.CreateNoWindow = true;
+
+            var output = new System.Text.StringBuilder();
+            var error = new System.Text.StringBuilder();
+
+            process.OutputDataReceived += (sender, e) =>
+            {
+                if (e.Data != null)
+                {
+                    output.AppendLine(e.Data);
+                }
+            };
+            process.ErrorDataReceived += (sender, e) =>
+            {
+                if (e.Data != null)
+                {
+                    error.AppendLine(e.Data);
+                }
+            };
+
+            process.Start();
+
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+            if (process.WaitForExit(30000))
+            {
+                Log.LogMessage("Finished. ExitCode: " + process.ExitCode);
+            }
+            else
+            {
+                Log.LogMessage("Timed Out: " + error);
+            }
+            Log.LogMessage("Error: " + error);
+            Log.LogMessage("output: " + output);
+        }
+    }
+}]]>
+      </Code>
+    </Task>
+  </UsingTask>
+  <ItemGroup>
+    <Solution Include="samples/**/*.sln">
+      <Properties>Configuration=Debug;Platform=Any CPU</Properties>
+    </Solution>
+    <Solution Include="Snippets/**/*.sln">
+      <Properties>Configuration=Debug;Platform=Any CPU</Properties>
+    </Solution>    
+  </ItemGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+  </PropertyGroup>
+  <Target Name="RestorePackages">
+    <NugetRestore SolutionFiles="@(Solution)"/>
+  </Target>  
+  <Target Name="Build">
+    <MSBuild Projects="@(Solution)" BuildInParallel="true" Targets="Build" />
+  </Target>
+  <Target Name="Clean">
+    <MSBuild Projects="@(Solution)" BuildInParallel="true" Targets="Clean" />
+  </Target>
+  <Target Name="Rebuild">
+    <MSBuild Projects="@(Solution)" BuildInParallel="true" Targets="Rebuild" />
+  </Target>
+</Project>
