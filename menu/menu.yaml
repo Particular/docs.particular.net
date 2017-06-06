@@ -283,8 +283,9 @@
       Title: Decommissioning Endpoints
     - Url: nservicebus/hosting/windows-service
       Title: Windows Service
-    - Url: nservicebus/hosting/windows-service-template
-      Title: Windows Service 'dotnet new' Template
+      Articles:
+      - Url: nservicebus/hosting/windows-service-template
+        Title: 'dotnet new' Template
     - Url: nservicebus/hosting/override-hostid
       Title: Overriding the host identifier
     - Url: nservicebus/hosting/custom-configuration-providers
