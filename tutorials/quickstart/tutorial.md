@@ -1,7 +1,7 @@
 ---
 title: "NServiceBus Quick Start"
 reviewed: 2017-06-05
-summary: In this tutorial, we'll see why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
+summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
 extensions:
 - !!tutorial
   downloadAtTop: true
@@ -9,7 +9,7 @@ extensions:
 
 In this tutorial, we'll see why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services. We'll also show how NServiceBus guarantees reliability and extensibility that can't be achieved with REST.
 
-This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer a more in-depth tutorial, check out [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/). It will teach you the NServiceBus API and important concepts you need to learn to build successful message-based software systems.
+This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) tutorial. It will teach you the NServiceBus API and important concepts you need to learn to build successful message-based software systems.
 
 To get started download the solution above, extract the archive, and then open the **Before/RetailDemo.sln** file with Visual Studio 2015 or later.
 
@@ -64,7 +64,7 @@ Let's consider more carefully what happened. First, we had two processes communi
 
 Have you ever had business processes get interrupted by transient errors like database deadlocks? Transient errors often leave a system in an inconsistent state. For example, the order could be persisted in the database but not yet submitted to the payment processor. In such a situation you might have to investigate the database like a forensic analyst, trying to figure out where the process went wrong, and how to manually jump-start it so that the process can complete.
 
-With NServiceBus we don't need manual interventions. If an exception is thrown, then the message handler will automatically retry processing it. That addresses transient failures like database deadlocks, connection issues across machines, conflicts when accessing file to write, etc.
+With NServiceBus you don't need manual interventions. If an exception is thrown, then the message handler will automatically retry processing it. That addresses transient failures like database deadlocks, connection issues across machines, conflicts when accessing file to write, etc.
 
 Let's simulate a transient failure in the **Sales** endpoint and see retries in action:
 
@@ -159,4 +159,4 @@ We saw how automatic retries provide protection from transient failures like dat
 
 We also implemented an additional event subscriber, showing how to decouple independent bits of business logic from each other. The ability to publish one event and then implement resulting steps in separate message handlers makes the system much easier to maintain and evolve.
 
-If you'd like to learn more about NServiceBus, check out the [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) tutorial. In it, you'll learn how to build the same `RetailDemo` solution from scratch, while learning the messaging concepts you'll need to know to build complex software systems with NServiceBus.
+If you'd like to learn more about NServiceBus, check out the [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) tutorial. In it, you'll learn how to build the same `RetailDemo` solution from scratch, while learning the messaging concepts you'll need to know to build even more complex software systems with NServiceBus.
