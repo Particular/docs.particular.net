@@ -2,6 +2,8 @@
 title: Windows Service 'dotnet new' Template
 reviewed: 2017-06-01
 component: ServiceTemplate
+related:
+ - servicecontrol/transport-adapter/template
 tags:
 - Hosting
 ---
