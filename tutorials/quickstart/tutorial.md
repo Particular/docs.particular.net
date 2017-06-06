@@ -34,11 +34,15 @@ In the **ClientUI** application, press `P` to place an order, and watch what hap
 
 It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint. In the **Sales** endpoint window you should see:
 
-    INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = 9b16a5ce-e6ae-4447-a911-b7d6e265a1f0
+```no-highlight
+INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = 9b16a5ce-e6ae-4447-a911-b7d6e265a1f0
+```
 
 Then the **Sales** endpoint will publish an **OrderPlaced** event, which will be received by the **Billing** endpoint. In the **Billing** endpoint window you should see:
 
-    INFO  Billing.OrderPlacedHandler Billing has received OrderPlaced, OrderId = 9b16a5ce-e6ae-4447-a911-b7d6e265a1f0
+```no-highlight
+INFO  Billing.OrderPlacedHandler Billing has received OrderPlaced, OrderId = 9b16a5ce-e6ae-4447-a911-b7d6e265a1f0
+```
 
 Press the `P` key repeatedly in the **ClientUI** window and watch the messages flow between endpoints.
 
@@ -78,10 +82,12 @@ snippet: ThrowTransientException
 
 As you will see in the **Sales** window, 80% of the messages will go through as normal, but when an exception occurs, the output will be different:
 
-    INFO  NServiceBus.RecoverabilityExecutor Immediate Retry is going to retry message '43400b29-c235-471f-ab4f-a7760145ea88' because of an exception:
-    System.Exception: Oops
-       at <long stack trace>
-    INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e1d86cb9-c393-475b-9be0-5407e9e529e0
+```no-highlight
+INFO  NServiceBus.RecoverabilityExecutor Immediate Retry is going to retry message '43400b29-c235-471f-ab4f-a7760145ea88' because of an exception:
+System.Exception: Oops
+    at <long stack trace>
+INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e1d86cb9-c393-475b-9be0-5407e9e529e0
+```
 
 NOTE: If you forgot to detach the debugger, you'll need to click the `Continue` button before the message will be printed in the **Sales** window.
 
@@ -144,7 +150,9 @@ Now run the solution, and assuming you remembered to [update the startup project
 
 As you place orders by pressing `P` in the **ClientUI** window, you will see the **Shipping** endpoint reacting to `OrderPlaced` events:
 
-    INFO  Shipping.OrderPlacedHandler Shipping has received OrderPlaced, OrderId = 25c5ba63-eed8-4531-9caa-ffe353105ee1
+```no-highlight
+INFO  Shipping.OrderPlacedHandler Shipping has received OrderPlaced, OrderId = 25c5ba63-eed8-4531-9caa-ffe353105ee1
+```
 
 **Shipping** is now receiving events published by **Sales** without having to change the code in the **Sales** endpoint. Additional subscribers could be added, for example, to email a receipt to the customer, notify a fulfillment agency via a web service, update a wish list or gift registry, or update data on items that are frequently bought together. Each business activity would occur in its own isolated message handler and doesn't depend on what happens in other parts of the system.
 
