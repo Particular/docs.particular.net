@@ -7,7 +7,7 @@ redirects:
  - nservicebus/msmq-information
 ---
 
-MSMQ is the default transport used by NServiceBus.
+partial: default
 
 
 ## NServiceBus Configuration

@@ -132,3 +132,13 @@ The `GetMesssageIntent` extension method has been renamed to `GetMessageIntent`.
 ## Legacy .Retries message receiver
 
 The [.Retries message receiver](/nservicebus/recoverability/configure-delayed-retries.md?version=core_6#custom-retry-policy-legacy-retries-message-receiver) added to assist in migrating from Version 5 to Version 6 has been removed. The API to disable it has also been removed.
+
+
+## MSMQ
+
+The [MSMQ transport](/nservicebus/msmq) is no longer part of the NServiceBus NuGet package. It has been moved into a separate package, [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/).
+
+
+## Default transport
+
+There is no longer a default transport, so an exception will be thrown if an endpoint is created or started without configuring a transport.
