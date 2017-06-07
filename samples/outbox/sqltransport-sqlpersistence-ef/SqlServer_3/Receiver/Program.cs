@@ -49,6 +49,9 @@ class Program
         persistence.Schema("receiver");
         persistence.TablePrefix("");
 
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.DisableCache();
+
         endpointConfiguration.EnableOutbox();
 
         #endregion

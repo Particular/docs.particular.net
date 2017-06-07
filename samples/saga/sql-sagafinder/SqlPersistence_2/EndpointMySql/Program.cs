@@ -18,6 +18,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.MySql");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.SendFailedMessagesTo("error");
         #region MySqlConfig
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
