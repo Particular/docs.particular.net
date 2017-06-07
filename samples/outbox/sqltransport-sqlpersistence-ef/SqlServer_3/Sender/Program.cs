@@ -42,6 +42,9 @@ class Program
             });
         persistence.Schema("sender");
         persistence.TablePrefix("");
+        
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.DisableCache();
 
         endpointConfiguration.EnableOutbox();
 

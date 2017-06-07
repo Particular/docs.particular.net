@@ -30,6 +30,7 @@ class Program
         transport.UseSchemaForQueue("audit", "dbo");
         transport.UseSchemaForQueue("Samples.SqlTransportSqlPersistence.Sender", "sender");
         transport.Routing().RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlTransportSqlPersistence.Sender");
+        transport.Routing().RegisterPublisher(typeof(OrderSubmitted).Assembly, "Samples.SqlTransportSqlPersistence.Sender");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlVariant(SqlVariant.MsSqlServer);
@@ -47,6 +48,7 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
+        await endpointInstance.Subscribe<OrderSubmitted>().ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
         await endpointInstance.Stop()
