@@ -48,7 +48,6 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        await endpointInstance.Subscribe<OrderSubmitted>().ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
         await endpointInstance.Stop()
