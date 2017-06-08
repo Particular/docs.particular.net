@@ -21,8 +21,6 @@ TODO: code snippet with a setting `MessageStoreProcessingResolution`
 
 The poller picks and dispatches messages in batches of ....
 
-TTBR setting is honored in delayed messages, meaning that if a message is not picked up by the time specified using TTBR it won't be dispatched. 
-
 
 ## Backwards compatibility
 
