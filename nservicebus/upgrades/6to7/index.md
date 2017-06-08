@@ -153,4 +153,4 @@ See the [NServiceBus.Encryption.MessageProperty upgrade guide](/nservicebus/upgr
 
 ## Custom Correlation ID
 
-Setting a custom [correlation ID](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-correlationid) is considered dangerous. Therefore, the `sendOptions.SetCorrelationId` and `sendOptions.GetCorrelationId` APIs have been removed.
+Setting a custom [correlation ID](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-correlationid) is considered dangerous. Therefore, the `SendOptions.SetCorrelationId` and `SendOptions.GetCorrelationId` APIs have been removed.
