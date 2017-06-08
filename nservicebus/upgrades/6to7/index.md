@@ -149,3 +149,8 @@ There is no longer a default transport, so an exception will be thrown if an end
 The [Message Property Encryption feature](/nservicebus/security/property-encryption.md) has been moved from the NServiceBus package. It is now available as a separate NuGet package, [NServiceBus.Encryption.MessageProperty](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/).
 
 See the [NServiceBus.Encryption.MessageProperty upgrade guide](/nservicebus/upgrades/externalize-encryption.md) for more details.
+
+
+## Custom Correlation ID
+
+Setting a custom [correlation ID](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-correlationid) is considered dangerous. Therefore, the `sendOptions.SetCorrelationId` and `sendOptions.GetCorrelationId` APIs have been removed.
