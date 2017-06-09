@@ -1,6 +1,6 @@
 Two different windows services that act as the brain in the Particular Service Platform.
 
-ServiceControl collects information about messages flowing through your system by injesting faulted messages forwarded to the error queue and audits of successful messages forwarded to the audit queue. In addition ServiceControl gathers additional information regarding sagas, endpoints heartbeats and custom checks sent to the ServiceControl queue via plugins. 
+ServiceControl collects information about messages flowing through the system by injesting faulted messages forwarded to the error queue and audits of successful messages forwarded to the audit queue. In addition ServiceControl gathers additional information regarding sagas, endpoints heartbeats and custom checks sent to the ServiceControl queue via plugins. 
 
 ServiceMonitor collects metric data provided by NServiceBus endpoints to monitor endpoint health and performance via messages sent to the monitoring queue.
 
@@ -12,7 +12,7 @@ It is important to understand that the data is still collected even if ServiceCo
 
 ## ServiceControl
 
-To enable [ServiceControl](/servicecontrol) to collect information on your system, configure the solution endpoints appropriately:
+To enable [ServiceControl](/servicecontrol) to collect information on the system, configure the solution endpoints appropriately:
 
  * [enable auditing](/nservicebus/operations/auditing.md) to collect data on individual messages;
  * configure [recoverability](/nservicebus/recoverability) to store information on messages failures;
@@ -28,6 +28,6 @@ Refer to the [Optimizing for use in different environments](/servicecontrol/serv
 
 ## ServiceMonitor
 
-To enable [ServiceMonitor](/servicecontrol) to send metrics data on your endpoints [add the NServiceBus.Metrics](https://docs.particular.net/nservicebus/operations/metrics) package to the endpoint configuration.
+To enable [ServiceMonitor](/servicecontrol) to collect metrics data [add the NServiceBus.Metrics](/nservicebus/operations/metrics) package to the solution endpoints and [configure them to send metrics data to ServiceMonitor](/servicecontrol/configure-nservicebusmetrics-for-servicemonitor.md).
 
-NOTE: All endpoints should be configured to send metrics to the same ServiceMonitor instance, unless the system has been shareded between multiple ServiceMonitor instances.
+NOTE: All endpoints should be configured to send metrics to the same ServiceMonitor instance, unless the system has been sharded between multiple ServiceMonitor instances.
