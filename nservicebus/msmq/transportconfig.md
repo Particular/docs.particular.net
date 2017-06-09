@@ -13,8 +13,7 @@ redirects:
  - nservicebus/msmqtransportconfig
 ---
 
-MSMQ transport is built into the core NServiceBus NuGet package.
-
+partial: intro
 
 ## Receiving algorithm
 
