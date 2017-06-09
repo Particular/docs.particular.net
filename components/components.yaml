@@ -885,7 +885,7 @@
 
 - Key: Bridge
   Name: Transport Bridge
-  DocoUrl: nservicebus/messaging/bridge
+  DocoUrl: nservicebus/bridge
   GitHubOwner: SzymonPobiega
   Category: Other
   SupportLevel: Community
