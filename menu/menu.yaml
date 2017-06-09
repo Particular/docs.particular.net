@@ -130,6 +130,8 @@
         Title: Version 6 to 7
     - Title: Azure Service Bus Transport
       Articles:
+      - Url: nservicebus/upgrades/asb-7to8
+        Title: Version 7 to 8      
       - Url: nservicebus/upgrades/asb-6to7
         Title: Version 6 to 7
     - Title: Azure Cloud Services Host
