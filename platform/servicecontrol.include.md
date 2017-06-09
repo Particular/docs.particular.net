@@ -1,10 +1,18 @@
-ServiceControl is the monitoring brain in the Particular Service Platform. It collects data on every single message flowing through the system (Audit Queue), errors (Error Queue), as well as additional information regarding sagas, endpoints heartbeats and custom checks (Control Queue). The information is then exposed to [ServicePulse](/servicepulse) and [ServiceInsight](/serviceinsight) via an HTTP API and SignalR notifications.
+Two different windows services that act as the brain in the Particular Service Platform.
 
-NOTE: ServiceControl HTTP API is subject to changes and enhancements that may not be fully backward compatible. Use of this HTTP API is discouraged by 3rd parties.
+ServiceControl collects information about messages flowing through your system by injesting faulted messages forwarded to the error queue and audits of successful messages forwarded to the audit queue. In addition ServiceControl gathers additional information regarding sagas, endpoints heartbeats and custom checks sent to the ServiceControl queue via plugins. 
 
-It is important to understand that the data is still collected even if ServiceControl is down. When it starts working again, it will process all the information that was saved in the meantime.
+ServiceMonitor collects metric data provided by NServiceBus endpoints to monitor endpoint health and performance via messages sent to the monitoring queue.
 
-To enable [ServiceControl](/servicecontrol) to gather this information, configure the solution appropriately:
+All of these services expose their data to [ServicePulse](/servicepulse) and [ServiceInsight](/serviceinsight) via an HTTP API and SignalR notifications.
+
+NOTE: The ServiceControl and ServiceMonitor HTTP APIs are subject to changes and enhancements that may not be fully backward compatible. Use of these HTTP APIs is discouraged by 3rd parties.
+
+It is important to understand that the data is still collected even if ServiceControl or ServiceMonitor are down. When the service starts working again, it will process all the information that was saved in the meantime.
+
+## ServiceControl
+
+To enable [ServiceControl](/servicecontrol) to collect information on your system, configure the solution endpoints appropriately:
 
  * [enable auditing](/nservicebus/operations/auditing.md) to collect data on individual messages;
  * configure [recoverability](/nservicebus/recoverability) to store information on messages failures;
@@ -17,3 +25,9 @@ NOTE: ServiceControl _consumes_ messages that arrive in either the configured au
 By default ServiceControl stores information for 30 days, but it can be [customized](/servicecontrol/creating-config-file.md).
 
 Refer to the [Optimizing for use in different environments](/servicecontrol/servicecontrol-in-practice.md) article for more information about practical considerations.
+
+## ServiceMonitor
+
+To enable [ServiceMonitor](/servicecontrol) to send metrics data on your endpoints [add the NServiceBus.Metrics](https://docs.particular.net/nservicebus/operations/metrics) package to the endpoint configuration.
+
+NOTE: All endpoints should be configured to send metrics to the same ServiceMonitor instance, unless the system has been shareded between multiple ServiceMonitor instances.
