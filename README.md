@@ -546,7 +546,7 @@ For tutorials chained together to form multiple lessons, navigation can be creat
   nextUrl: tutorials/intro-to-nservicebus/2-sending-a-command
 ```
 
-The `nextText` parameter is optional, and will default to the if title of the linked page if omitted.
+The `nextText` parameter is optional, and will default to the title of the linked page if omitted.
 
 
 ## Markdown partials
