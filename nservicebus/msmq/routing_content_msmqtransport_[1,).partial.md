@@ -5,7 +5,7 @@ The preferred way of configuring the physical routing is via the instance mappin
 
 ## Instance mapping file
 
-The instance mapping file is a simple XML file that has to be located either on a local hard drive or a network drive. When using MSMQ as the transport, NServiceBus will automatically look for an `instance-mapping.xml` file in `AppDomain.BaseDirectoy`.
+The instance mapping file is a simple XML file that has to be located either on a local hard drive or a network drive. When using MSMQ as the transport, NServiceBus will automatically look for an `instance-mapping.xml` file in `AppDomain.BaseDirectory`.
 
 NOTE: When running under ASP.NET the `instance-mapping.xml` file may not be located in `AppDomain.BaseDirectory`. In this case specify the path using the [`FilePath`](#instance-mapping-file-filepath) setting.
 
@@ -35,7 +35,7 @@ snippet: InstanceMappingFile-RefreshInterval
 
 ### FilePath
 
-Specifies the path and file name of the instance mapping file. This can be a relative or an absolute file path. Relative file paths are resolved from `AppDomain.BaseDirectoy`.
+Specifies the path and file name of the instance mapping file. This can be a relative or an absolute file path. Relative file paths are resolved from `AppDomain.BaseDirectory`.
 
 Default: `instance-mapping.xml`
 
