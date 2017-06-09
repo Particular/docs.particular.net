@@ -882,3 +882,15 @@
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.ZeroFormatter
   NugetOrder:
     - NServiceBus.ZeroFormatter
+
+- Key: Bridge
+  Name: Transport Bridge
+  DocoUrl: nservicebus/messaging/bridge
+  GitHubOwner: SzymonPobiega
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.Bridge/blob/master/LICENSE
+  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Bridge
+  NugetOrder:
+    - NServiceBus.Bridge
+    - NServiceBus.Bridge.Ramp

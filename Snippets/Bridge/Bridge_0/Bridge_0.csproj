@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Bridge" Version="0.1.0" />
+    <PackageReference Include="NServiceBus.Bridge.Ramp" Version="0.1.0" />
+  </ItemGroup>
+</Project>
