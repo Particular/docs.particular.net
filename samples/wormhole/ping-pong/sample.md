@@ -1,6 +1,6 @@
 ---
-title: Using Worm Hole to send messages between distributed sites
-component: WormHole
+title: Using Wormhole to send messages between distributed sites
+component: Wormhole
 reviewed: 2017-05-26
 related:
  - nservicebus/wormhole

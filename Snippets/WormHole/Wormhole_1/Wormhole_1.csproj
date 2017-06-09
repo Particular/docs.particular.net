@@ -5,8 +5,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.3.1" />
-    <PackageReference Include="NServiceBus.WormHole" Version="0.1.1" />
-    <PackageReference Include="NServiceBus.WormHole.Gateway" Version="0.1.1" />
+    <PackageReference Include="NServiceBus.WormHole" Version="1.0.0" />
+    <PackageReference Include="NServiceBus.WormHole.Gateway" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

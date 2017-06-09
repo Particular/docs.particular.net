@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.WormHole;
+using NServiceBus.Wormhole;
 
 class Program
 {
@@ -12,9 +12,9 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.WormHole.PingPong.Server";
+        Console.Title = "Samples.Wormhole.PingPong.Server";
         var endpointConfiguration = new EndpointConfiguration(
-            "Samples.WormHole.PingPong.Server");
+            "Samples.Wormhole.PingPong.Server");
 
         endpointConfiguration.UseTransport<MsmqTransport>();
 
@@ -31,7 +31,7 @@ class Program
 
         #region ConfigureServer
 
-        endpointConfiguration.UseWormHoleGateway("Gateway.SiteB");
+        endpointConfiguration.UseWormholeGateway("Gateway.SiteB");
 
         #endregion
 

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AD0409EA-1B9F-48B0-B920-215F4239D285}</ProjectGuid>
+    <ProjectGuid>{A4A997F9-75F0-4D52-A374-307C22AD668E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GatewayA</RootNamespace>
-    <AssemblyName>GatewayA</AssemblyName>
+    <RootNamespace>GatewayB</RootNamespace>
+    <AssemblyName>GatewayB</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,21 +45,15 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.2.1\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Raw, Version=0.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Raw.0.2.1\lib\net452\NServiceBus.Raw.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Raw, Version=1.0.0.0, Culture=neutral, PublicKeyToken=215652b07edbd86c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Raw.1.0.0\lib\net452\NServiceBus.Raw.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.Http, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Transports.Http.0.1.1\lib\net46\NServiceBus.Transports.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.WormHole, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.WormHole.0.1.1\lib\net46\NServiceBus.WormHole.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NServiceBus.WormHole.Gateway, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.WormHole.Gateway.0.1.1\lib\net46\NServiceBus.WormHole.Gateway.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Wormhole.Gateway, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Wormhole.Gateway.1.0.0\lib\net46\NServiceBus.Wormhole.Gateway.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">

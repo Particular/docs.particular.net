@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.WormHole;
+using NServiceBus.Wormhole;
 
 class Program
 {
@@ -13,10 +13,10 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.WormHole.PingPong.Client";
+        Console.Title = "Samples.Wormhole.PingPong.Client";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
-        var endpointConfiguration = new EndpointConfiguration("Samples.WormHole.PingPong.Client");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Wormhole.PingPong.Client");
 
         endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -32,7 +32,7 @@ class Program
 
         #region ConfigureClient
 
-        endpointConfiguration.UseWormHoleGateway("Gateway.SiteA")
+        endpointConfiguration.UseWormholeGateway("Gateway.SiteA")
             .RouteToSite<Ping>("SiteB");
 
         #endregion
