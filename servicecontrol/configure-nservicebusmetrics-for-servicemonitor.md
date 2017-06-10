@@ -4,7 +4,7 @@ summary: How to configure NServiceBus.Metrics to report data to ServiceMonitor
 reviewed: 2017-06-09
 ---
 
-In order for ServiceMonitor to receive metrics data endpoints must be configured to use [NServiceBus.Metrics](/nservicebus/operations/metrics) and to send that data to the ServiceMonitor input queue.
+In order for ServiceMonitor to receive metrics data endpoints must be configured to use [NServiceBus.Metrics](/nservicebus/operations/metrics.md) and to send that data to the ServiceMonitor input queue.
 
 ## Enabling NServiceBus.Metrics
 
