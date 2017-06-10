@@ -78,6 +78,7 @@ RabbitOperations: RabbitOperations
 SimpleInjector: NServiceBus.SimpleInjector
 Spring: NServiceBus.Spring
 SqlServer: NServiceBus.SqlServer
+Sqs: NServiceBus.AmazonSQS
 StructureMap: NServiceBus.StructureMap
 SystemXml: NServiceBus.Serializers.SystemXml
 Testing: NServiceBus.Testing

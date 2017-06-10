@@ -1,3 +1,11 @@
+---
+title: Why Use SQS As Your Transport?
+summary: Explore when it makes sense to use SQS as a transport.
+versions: '[5,6]'
+tags:
+- AWS
+---
+
 If you're running a system using NServiceBus that is deployed on auto-scaled EC2 instances, using SQS gives you the least amount of friction in terms of development and operations.
 
 ## AWS Auto-Scaling Doesn't Play Nice With Local MSMQ
