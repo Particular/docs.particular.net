@@ -1,7 +1,7 @@
 ---
 title: Configuration Options
 summary: Configuration options for the SQS transport.
-versions: '[5,6]'
+versions: '[1,)'
 tags:
 - AWS
 ---
@@ -10,11 +10,11 @@ tags:
 
 **Optional**
 
-**Default**: EnvironmentVariables.
+**Default**: `EnvironmentVariables`.
 
 This tells the endpoint where to look for AWS credentials. This can be one of:
-* EnvironmentVariables: The endpoint will extract an AWS Access Key ID and AWS Secret Access Key from the environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY respectively. 
-* InstanceProfile: the endpoint will use the credentials of the first EC2 role attached to the EC2 instance. Naturally this only valid when running the endpoint on an EC2 instance. 
+* `EnvironmentVariables`: The endpoint will extract an AWS Access Key ID and AWS Secret Access Key from the environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY respectively. 
+* `InstanceProfile`: the endpoint will use the credentials of the first EC2 role attached to the EC2 instance. Naturally this only valid when running the endpoint on an EC2 instance. 
 
 **Example**: To use the credentials of an EC2 role, specify:
 

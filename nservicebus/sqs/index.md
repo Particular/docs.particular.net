@@ -1,7 +1,7 @@
 ---
 title: Amazon SQS Transport
 summary: A transport for Amazon Web Services Simple Queue Service.
-versions: '[5,6]'
+versions: '[1,)'
 tags:
 - AWS
 ---
