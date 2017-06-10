@@ -28,6 +28,6 @@ Refer to the [Optimizing for use in different environments](/servicecontrol/serv
 
 ## ServiceMonitor
 
-To enable [ServiceMonitor](/servicecontrol) to collect metrics data [add the NServiceBus.Metrics](/nservicebus/operations/metrics) package to the solution endpoints and [configure them to send metrics data to ServiceMonitor](/servicecontrol/configure-nservicebusmetrics-for-servicemonitor.md).
+To enable [ServiceMonitor](/servicecontrol) to collect metrics data [add the NServiceBus.Metrics](/nservicebus/operations/metrics.md) package to the solution endpoints and [configure them to send metrics data to ServiceMonitor](/servicecontrol/configure-nservicebusmetrics-for-servicemonitor.md).
 
 NOTE: All endpoints should be configured to send metrics to the same ServiceMonitor instance, unless the system has been sharded between multiple ServiceMonitor instances.
