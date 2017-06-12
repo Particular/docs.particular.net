@@ -1,6 +1,6 @@
 ---
 title: Managing Instances via PowerShell
-reviewed: 2016-11-09
+reviewed: 2017-06-12
 tags:
  - Installation
  - PowerShell
@@ -10,6 +10,8 @@ tags:
 ## ServiceControl PowerShell
 
 ServiceControl 1.7 introduced a new graphical management utility to add, remove, update and delete instances of the ServiceControl service. These actions and some additional tools have also exposed via PowerShell module called `ServiceControlMgmt`.
+
+ServiceControl 1.42 added the ability to create and manage ServiceMonitor instances via Powershell.
 
 
 ## Prerequisites
@@ -34,6 +36,10 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 
 | Alias                  | Cmdlet                                        |
 | ---------------------- | --------------------------------------------- |
+| mon-add                | New-MonitoringInstance                        |
+| mon-delete             | Remove-MonitoringInstance                     |
+| mon-instances          | Get-MonitoringInstances                       |
+| mon-upgrade            | Invoke-MonitoringInstanceUpgrade              |
 | sc-add                 | New-ServiceControlInstance                    |
 | sc-addfromunattendfile | New-ServiceControlInstanceFromUnattendedFile  |
 | sc-addlicense          | Import-ServiceControlLicense                  |
@@ -51,7 +57,7 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 | user-sid               | Get-SecurityIdentifier                        |
 
 
-### Examples
+## Examples
 
 To following commands show some uses of some of the cmdlets provided in the module. All of the cmdlets have local help which can be accessed via the standard PowerShell help command
 
@@ -59,8 +65,9 @@ To following commands show some uses of some of the cmdlets provided in the modu
 Get-Help Get-ServiceControlInstances
 ```
 
+### ServiceControl instances
 
-### Adding an instance
+#### Adding an instance
 
 ```ps
 New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -Transport MSMQ -ErrorQueue error1 -AuditQueue audit1
@@ -68,8 +75,7 @@ New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceCont
 
 There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or hostname.
 
-
-### Removing an instance
+#### Removing an instance
 
 The following commands show how to remove a ServiceControl instance(s). To List existing instances of the ServiceControl service use `Get-ServiceControlInstances`.
 
@@ -88,7 +94,7 @@ Get-ServiceControlInstances | Remove-ServiceControlInstance -RemoveDB -RemoveLog
 There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or host name.
 
 
-### Upgrading an instance
+#### Upgrading an instance
 
 The following command will list the ServiceControl instances current installed and their version number.
 
@@ -102,7 +108,45 @@ To upgrade and instance to the latest version of the binaries run.
 Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade>
 ```
 
-The upgrade will stop the service if it is running. Additional parameters for `Invoke-ServiceControlInstanceUpgrade` may be required. The configuration file of the existing version is examined prior to deter,in e if all the required settings are present. If a configuration setting is missing  then the cmdlet will throw an error indicating the required additional parameter.
+The upgrade will stop the service if it is running. Additional parameters for `Invoke-ServiceControlInstanceUpgrade` may be required. The configuration file of the existing version is examined prior to determine if all the required settings are present. If a configuration setting is missing  then the cmdlet will throw an error indicating the required additional parameter.
+
+
+### ServiceMonitor instances
+
+#### Adding an instance
+
+```ps
+New-MonitoringInstance -Name Test.ServiceMonitor -InstallPath C:\ServiceMonitor\Bin -LogPath C:\ServiceMonitor\Logs -Port 33335 -Transport MSMQ
+```
+
+There are additional parameters available to set additional configuration options such as hostname, transport connection string, and error queue.
+
+
+#### Removing an instance
+
+Remove the instance that was created in the Add sample and delete the logs:
+
+```ps
+Remove-MonitoringInstance -Name Test.ServiceMonitor -RemoveLogs
+```
+
+To List existing instances of the ServiceMonitor service use `Get-MonitoringInstances`.
+
+#### Upgrading an instance
+
+The following command will list the ServiceMonitor instances current installed and their version number.
+
+```ps
+Get-MonitoringInstances | Select Name, Version
+```
+
+To upgrade and instance to the latest version of the binaries run.
+
+```ps
+Invoke-MonitoringInstanceUpgrade -Name <Instance To upgrade>
+```
+
+The upgrade will stop the service if it is running. Additional parameters for `Invoke-MonitoringInstanceUpgrade` may be required. The configuration file of the existing version is examined prior to determine if all the required settings are present. If a configuration setting is missing  then the cmdlet will throw an error indicating the required additional parameter.
 
 
 ### Licensing
