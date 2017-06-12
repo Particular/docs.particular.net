@@ -4,6 +4,6 @@
     <TargetFramework>net462</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="7.*" />
   </ItemGroup>
 </Project>

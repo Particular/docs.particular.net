@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 7 to 8
 summary: Instructions on how to upgrade Azure Service Bus Transport Version 7 to 8.
-reviewed: 2017-05-05
+reviewed: 2017-05-12
 component: ASB
 related:
  - nservicebus/azure-service-bus
@@ -15,10 +15,10 @@ upgradeGuideCoreVersions:
 
 ## [Forwarding Topology](/nservicebus/azure-service-bus/topologies/) number of entities in bundle removed
 
-In Versions 8 and above the API to configure number of entities in a bundle has been removed:
+In Versions 8 and above the API to configure bundle prefix and number of entities in a bundle has been removed:
 
 snippet: 7to8-number-of-entities-bundle
 
-The default number of entities in a bundle is set to one. For existing transports which have been running with multiple bundles the transport automatically picks up previously configured bundles.
+The default number of entities in a bundle is set to one. For existing endpoints which have been running with multiple entities in a bundle, the transport automatically picks up previously configured entities. The default topic name for bundle is set to `bundle-1`.
 
 For more details on topologies refer to the [Azure Service Bus Transport Topologies](/nservicebus/azure-service-bus/topologies/) article.
