@@ -3,38 +3,51 @@ title: SQL Server Native Delayed Delivery
 summary: Describes the native delayed delivery implementation in the SQL Server transport
 reviewed: 2017-06-05
 component: SqlServer
-versions: '[3,)'
+versions: '[4,)'
 ---
 
-In Versions 3.1 and above, the SQL Server transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure which can delay messages using native SQL Server transport features.
+In Versions 4.0 and above, the SQL Server transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure which can delay messages using native SQL Server transport features.
 
 
 ## How it works
 
-The transport creates an additional queue that stores delayed messages. By default it's called `...`, the suffix can be modified using the following setting:
+The transport creates an additional queue that stores delayed messages. The table name has the format `endpoint-name.suffix`, using the suffix specified in the configuration:
 
-TODO: code snippet with a setting `MessageStoreTableSuffix`
+TODO: code snippet with a setting `TableSuffix('xyz')`
 
-The timeouts poller checks for expired messages every X seconds, as specified using XYZ setting:
+The timeouts poller checks for expired messages at specified interval:
 
-TODO: code snippet with a setting `MessageStoreProcessingResolution`
+TODO: code snippet with a setting `ProcessingInterval(TimeSpan x)`
 
-The poller picks and dispatches messages in batches of ....
+The poller picks and dispatches messages in batches of specified size:
+
+TODO: code snippet with a setting `BatchSize(int size)`
 
 
 ## Backwards compatibility
 
-When upgrading to a version of the transport that supports delayed delivery natively, it is safe to operate a combination of native-delay and non-native-delay endpoints at the same time. Native endpoints can send delayed messages to endpoints that are not yet aware of the native delay infrastructure. Native endpoints can continue to receive delayed messages from non-native endpoints as well.
+When upgrading to a version of the transport that supports native delayed delivery, it is safe to operate a combination of endpoints using native delayed delivery and endpoints using persistence-based delayed delivery at the same time:
+- Endpoints with native delayed delivery can send delayed messages to endpoints using persistence-based delayed delivery. 
+- Endpoints with native delayed delivery can continue to receive delayed messages from endpoints using persistence-based delayed delivery.
 
 
 ### Disabling the timeout manager
 
-To assist with the upgrade process, the timeout manager is still enabled by default, so any delayed messages already stored in the endpoint's persistence database before the upgrade will be sent when their timeouts expire. Any delayed messages sent after the upgrade will be sent through the delay infrastructure even though the timeout manager is enabled.
+To assist with the upgrade process, the timeout manager is still enabled by default. Any delayed messages stored in the endpoint's persistence database before the upgrade will be sent when their timeouts expire. Any delayed messages sent after the upgrade will be sent through the native delayed delivery infrastructure, even though the timeout manager is enabled.
 
 Once an endpoint has no more delayed messages in its persistence database, there is no more need for the timeout manager. It can be disabled by calling:
 
 TODO: code snippet with a setting disabling timeout manager
 
-At this point, the `.Timeouts` and `.TimeoutsDispatcher` exchanges and queues for the endpoint can be deleted from the broker. In addition, the endpoint no longer requires timeout persistence, so those storage entities can be removed from the persistence database as well.
+At this point, all the `.Timeouts` and `.TimeoutsDispatcher` tables for the endpoint can be deleted from the database. In addition, the endpoint no longer requires timeout persistence, so those storage entities can be removed from the persistence database as well.
 
-NOTE: Newly created endpoints that have never been deployed without native delayed delivery should also set this value to prevent the timeout manager from running.
+NOTE: Newly created endpoints that have never been deployed without native delayed delivery should also disable Timeout Manager from running.
+
+
+## Upgrade
+
+For details regarding upgrade and installation, refer to the dedicated [upgrade guide]() link.
+
+TODO: create a short upgrade guide, cover 
+- timeouts migration for specific persistences/transports
+- matrix explaining what versions of persistences/transports support native and persistence-based delayed delivery
