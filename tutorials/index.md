@@ -8,6 +8,11 @@ summary: Step-by-step tutorials to help you learn how to use NServiceBus, with d
 Step-by-step tutorials to help you learn how to use NServiceBus. Tutorials include concepts, detailed instructions for how to build a sample project, and a downloadable solution with the completed example.
 
 
+### [NServiceBus Quick Start](quickstart/)
+
+include: quickstart-tutorial-intro-paragraph
+
+
 ### [Introduction to NServiceBus](intro-to-nservicebus/)
 
 include: nsb101-intro-paragraph

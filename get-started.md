@@ -19,7 +19,9 @@ These articles are recommended to gain an understanding of the key concepts and 
 
 ## Tutorials
 
-The [Introduction to NServiceBus tutorial](/tutorials/intro-to-nservicebus/) gives a guided walk through of building an NServiceBus system and introduces the basic concepts of messaging. Each lesson includes a downloadable solution with the completed exercise.
+The [NServiceBus Quick Start](/tutorials/quickstart/) tutorial gives a quick overview of the benefits of using NServiceBus, and shows how software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
+
+The [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) tutorial gives a guided walk-through of building an NServiceBus system and introduces the basic concepts of messaging. Each lesson includes a downloadable solution with the completed exercise.
 
 The [Scaling Applications with Microservices and NServiceBus 6](https://www.pluralsight.com/courses/microservices-nservicebus6-scaling-applications) Pluralsight course provides guidance on MicroServices and how to build them using NServiceBus.
 
