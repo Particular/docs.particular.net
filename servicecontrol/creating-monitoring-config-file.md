@@ -18,34 +18,36 @@ The following documents should be reviewed prior to modifying configuration sett
  * [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
 
-#### Monitoring/HttpHostname
+### Monitoring/HttpHostname
 
-The hostname to bind the embedded HTTP server to, modify to bind to a specific hostname, eg. `sc.mydomain.com`.
+The hostname to bind the embedded HTTP server to, modify to bind to a specific hostname, eg. `monitoring.mydomain.com`.
 
 Type: string
 
 Default: `localhost`
 
-#### Monitoring/HttpPort
+NOTE: This setting must have a value in order for the ServiceControl Monitoring instance to be available from remote machines. 
+
+### Monitoring/HttpPort
 
 The port to bind the embedded HTTP server.
 
 Type: int
 
-Default: `33333`.
+Default: `33633`.
 
-#### Monitoring/LogPath
+## Logging
 
-The path for the ServiceControl Monitor logs.
+### Monitoring/LogPath
+
+The path for the ServiceControl Monitoring instance logs.
 
 Type: string
 
-Default: `%LOCALAPPDATA%\Particular\Particular.ServiceControl.Monitoring\logs`
-
-Note: %LOCALAPPDATA% is a user specific environment variable.
+Default: The folder that contains the ServiceControl Monitoring instance executable.
 
 
-#### Monitoring/LogLevel
+### Monitoring/LogLevel
 
 Controls the LogLevel of the ServiceControl Monitor logs.
 
@@ -61,7 +63,7 @@ This setting will default to `Warn` if an invalid value is assigned.
 ## Transport
 
 
-#### Monitoring/TransportType
+### Monitoring/TransportType
 
 The transport type to run ServiceControl Monitor with.
 
@@ -70,14 +72,14 @@ Type: string
 Default: `NServiceBus.MsmqTransport, NServiceBus.Core`
 
 
-#### NServiceBus/Transport
+### NServiceBus/Transport
 
 The connection string for the transport. This setting should be placed in `connectionStrings` section of configuration file.
 
 Type: string
 
 
-#### Monitoring/ErrorQueue
+### Monitoring/ErrorQueue
 
 The error queue name.
 
