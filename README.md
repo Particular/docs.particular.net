@@ -1022,7 +1022,7 @@ Another option is using [LucidChart](https://www.lucidchart.com). LucidChart all
 
 For consistency, prefer American English.
 
-Avoid personal voice. I.e. no "we", "you", "your", "our" etc.
+No personal voice. I.e. no "we", "you", "your", "our" etc.
 
 
 ## Version Language
