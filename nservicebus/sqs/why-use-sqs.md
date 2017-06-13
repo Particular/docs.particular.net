@@ -1,16 +1,17 @@
 ---
 title: Why Use SQS?
 summary: Explore when it makes sense to use SQS as a transport.
-versions: '[1,)'
+component: SQS
 tags:
 - AWS
 ---
 
 When building a system using NServiceBus that is deployed on auto-scaled EC2 instances, using SQS as a transport provides the least amount of friction in terms of development and operations.
 
+
 ## AWS Auto-Scaling Doesn't Play Nice With Local MSMQ
 
-Consider the following idiomatic NServiceBus setup on AWS. An endpoint is deployed on an EC2 instance. The EC2 instance has an EBS volume attached. The endpoint uses local MSMQ's that are stored on the EBS volume. 
+Consider the following idiomatic NServiceBus setup on AWS. An endpoint is deployed on an EC2 instance. The EC2 instance has an EBS volume attached. The endpoint uses local MSMQ's that are stored on the EBS volume.
 
 This approach gives great sending performance (as sending only needs to write to the local drive) and great durability of messages (as EBS is geo-redundant by default). This approach will work really well for a ["pet"](http://www.lauradhamilton.com/servers-pets-versus-cattle) EC2 instance.
 
@@ -20,7 +21,8 @@ AS can be configured to not terminate any EBS volumes when scaling down, however
 
 To solve these problems, the guidance from Amazon is, very simply, "use SQS as the transport!" Using SQS as the transport will help get the most out of AWS and the Auto Scaling feature in particular.
 
-## Why is Auto Scaling Important?
+
+## Importance of Auto Scaling
 
 Auto Scaling matters because it minimizes infrastructure costs and gives the system self-healing capabilities.
 
@@ -32,15 +34,15 @@ Auto-scaling periodically performs a customisable health check on each server in
 
 To put it simply, systems built on AWS that don't use Auto Scaling may cost a lot more to run, and they may not be as resilient as they could be.
 
+
 ## Comparing Infrastructure Costs With Other Message Brokers on AWS
 
-Deploying a message broker (e.g., RabbitMQ) on EC2 is a viable alternative to SQS. Comparing the costs of SQS with other message brokers deployed on EC2 is not straightforward: SQS is billed per API call whereas the EC2 instances running the message broker are billed per hour. 
+Deploying a message broker (e.g., RabbitMQ) on EC2 is a viable alternative to SQS. Comparing the costs of SQS with other message brokers deployed on EC2 is not straightforward: SQS is billed per API call whereas the EC2 instances running the message broker are billed per hour.
 
-To compare costs fairly, the message broker shuld have similar availability and durability characteristics as SQS. A hypothetical message broker for comparison purposes should be run on at least two EC2 instances, running 24*7, in separate Availability Zones, each with an EBS volume for durable storage of messages. The cost of running these instances can e calculated from the [AWS Pricing Calculator](https://calculator.s3.amazonaws.com/). For the sake of an example, consider two t2.micro instances that cost around $30 per month.
+To compare costs fairly, the message broker should have similar availability and durability characteristics as SQS. A hypothetical message broker for comparison purposes should be run on at least two EC2 instances, running 24*7, in separate Availability Zones, each with an EBS volume for durable storage of messages. The cost of running these instances can e calculated from the [AWS Pricing Calculator](https://calculator.s3.amazonaws.com/). For the sake of an example, consider two t2.micro instances that cost around $30 per month.
 
-The cost of running the message broker can be compared to the how many SQS API calls can be made for the same cost. Continuing the above example, spending $30 per month on SQS allows for 75 million API calls per month. The throughput of the hypthetical message broker can then be measured to see if it can handle the same load as SQS with the same cost (for example, 75 million API calls per month).
+The cost of running the message broker can be compared to the how many SQS API calls can be made for the same cost. Continuing the above example, spending $30 per month on SQS allows for 75 million API calls per month. The throughput of the hypothetical message broker can then be measured to see if it can handle the same load as SQS with the same cost (for example, 75 million API calls per month).
 
-Very broadly speaking, SQS is cheaper to run when compared to other message brokers on EC2 until the volume of messages approaches millions per hour. 
+Very broadly speaking, SQS is cheaper to run when compared to other message brokers on EC2 until the volume of messages approaches millions per hour.
 
-Note that this comparison only takes into account the dollar cost paid to AWS, and does not factor in the time and effort required to set up, maintain, secure and monitor a message broker on EC2. 
-
+Note that this comparison only takes into account the dollar cost paid to AWS, and does not factor in the time and effort required to set up, maintain, secure and monitor a message broker on EC2.

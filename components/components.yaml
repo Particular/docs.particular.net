@@ -39,7 +39,7 @@
     - NServiceBus.DataBus.AzureBlobStorage
     - NServiceBus.Azure
 
-- Key: AmazonSQS
+- Key: SQS
   Name: Amazon SQS Transport
   DocoUrl: https://github.com/ahofman/NServiceBus.AmazonSQS
   GitHubOwner: ahofman

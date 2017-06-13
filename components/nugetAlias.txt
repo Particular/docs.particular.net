@@ -1,6 +1,5 @@
 ABSDataBus: NServiceBus.DataBus.AzureBlobStorage
 Aggregates: Aggregates.NET
-AmazonSQS: NServiceBus.AmazonSQS
 Anotar: Anotar.NServiceBus.Fody
 ASB: NServiceBus.Azure.Transports.WindowsAzureServiceBus
 ASQ: NServiceBus.Azure.Transports.WindowsAzureStorageQueues 
