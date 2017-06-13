@@ -20,13 +20,13 @@ tags:
 
  * Like other message brokers, there is no local store-and-forward mechanism available. If an endpoint cannot reach SQS, either due to network problems or if SQS is unavailable, the endpoint will not be able to send nor receive messages. 
  * Can be relatively expensive when using larger volumes of messages.
- * Weaker transaction support than other message brokers.
 
 ## Getting Started
 
 ### Set Up An AWS Account
-You will need an [AWS IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_Introduction.html) account with a pair of [Access Keys](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html) to use NServiceBus.AmazonSQS. 
-The account needs the following permissions:
+
+To use NServiceBus.AmazonSQS, an [AWS IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_Introduction.html) account with a pair of [Access Keys](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html) is required. 
+The IAM account requires the following permissions:
 
  * SQS::CreateQueue
  * SQS::DeleteMessage
@@ -42,7 +42,7 @@ The account needs the following permissions:
  * S3::PutLifecycleConfiguration
  * S3::ListAllMyBuckets
 
-Once you have a pair of Access Keys (Access Key ID and Secret Access Key), you will need to store them in environment variables of the machine that is running your endpoint:
+By default, NServiceBus.AmazonSQS will look for the Access Key ID and Secret Access Key in system environment variables of the machine that is running the endpoint:
 
  * Access Key ID goes in AWS_ACCESS_KEY_ID 
  * Secret Access Key goes in AWS_SECRET_ACCESS_KEY
