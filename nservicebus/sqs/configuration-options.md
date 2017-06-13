@@ -30,11 +30,11 @@ partial: maxReceiveMessageBatchSize
 
 **Default**: 4.
 
-This is the maximum number of days that a message will be retained within SQS and S3. If you send a message, and that message is not received and successfully processed within the specified time, the message will be lost. This value applies to both SQS and S3 - messages in SQS will be deleted after this amount of time expires, and large message bodies stored in S3 will automatically be deleted after this amount of time expires.
+This is the maximum number of days that a message will be retained within SQS and S3. When a sent message is not received and successfully processed within the specified time, the message will be lost. This value applies to both SQS and S3 - messages in SQS will be deleted after this amount of time expires, and large message bodies stored in S3 will automatically be deleted after this amount of time expires.
 
 The maximum value is 14 days. 
 
-**Example**: To set this to the maximum value, you would specify:
+**Example**: To set this to the maximum value, specify:
     
     MaxTTLDays=14;
 
@@ -46,18 +46,18 @@ The maximum value is 14 days.
 
 **Default**: None.
  
-When specified, this string value will be prepended to the name of every SQS queue referenced by the endpoint. This is useful when deploying many instances of the same application in the same AWS region (say, a development instance, a QA instance and a production instance), and you need to differentiate the queue names somehow. 
+When specified, this string value will be prepended to the name of every SQS queue referenced by the endpoint. This is useful when deploying many instances of the same application in the same AWS region (say, a development instance, a QA instance and a production instance), and the queue names need to be distinguished somehow.
 
-**Example**: For a development instance, you might specify:
+**Example**: For a development instance, specify:
 
     QueueNamePrefix=DEV-;
 
-Queue names for the endpoint called "MyEndpoint" might then look like:
+Queue names for the endpoint called "SampleEndpoint" might then look like:
 
-    DEV-MyEndpoint
-    DEV-MyEndpoint-Retries
-    DEV-MyEndpoint-Timeouts
-    DEV-MyEndpoint-TimeoutsDispatcher
+    DEV-SampleEndpoint
+    DEV-SampleEndpoint-Retries
+    DEV-SampleEndpoint-Timeouts
+    DEV-SampleEndpoint-TimeoutsDispatcher
 
 ***
 
@@ -69,7 +69,7 @@ Queue names for the endpoint called "MyEndpoint" might then look like:
 
 This is the Amazon Web Services [Region](http://docs.aws.amazon.com/general/latest/gr/rande.html) in which to access the SQS service. Must be a valid [AWS region code.](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions)
 
-**Example**: For the Sydney region, you would specify 
+**Example**: For the Sydney region, specify 
 
     Region=ap-southeast-2; 
 
@@ -85,7 +85,7 @@ This is the name of an S3 Bucket that will be used to store message bodies for m
 
 If the specified bucket doesn't exist, NServiceBus.AmazonSQS will create it when the endpoint starts up. 
 
-**Example**: To use a bucket named nsb-sqs-messages, you would specify:
+**Example**: To use a bucket named nsb-sqs-messages, specify:
 
     S3BucketForLargeMessages=nsb-sqs-messages;
 
@@ -100,7 +100,7 @@ If the specified bucket doesn't exist, NServiceBus.AmazonSQS will create it when
 
 This is the path within the specified S3 Bucket to store large message bodies. It is an error to specify this option without specifying a value for S3BucketForLargeMessages.
 
-**Example**: To specify a path of "my/sample/path", you would specify:
+**Example**: To specify a path of "my/sample/path", specify:
 
     S3BucketForLargeMessages=my-bucket;S3KeyPrefix=my/sample/path;
 
