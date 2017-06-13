@@ -1,8 +1,8 @@
 ﻿using NServiceBus;
 
-class ObsoletedForwardingTopologySettings
+class ObsoletedInV7
 {
-    ObsoletedForwardingTopologySettings(EndpointConfiguration endpointConfiguration)
+    public void ObsoletedForwardingTopologySettings(EndpointConfiguration endpointConfiguration)
     {
 #pragma warning disable 618
 
