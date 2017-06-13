@@ -29,17 +29,8 @@ NOTE: The `SupportedBrokeredMessageBodyTypes.Stream` body format is recommended,
 
 To specify how the `BrokeredMessage` body is stored and retrieved, override the default conventions.
 
+
 partial: converter
-
-
-#### Outgoing message:
-
-snippet: ASB-outgoing-message-convention
-
-
-#### Incoming message:
-
-snippet: ASB-incoming-message-convention
 
 
 ### Brokered Message content serialization

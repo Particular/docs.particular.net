@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 7 to 8
 summary: Instructions on how to upgrade Azure Service Bus Transport Version 7 to 8.
-reviewed: 2017-05-12
+reviewed: 2017-05-13
 component: ASB
 related:
  - nservicebus/azure-service-bus
@@ -22,3 +22,11 @@ snippet: 7to8-number-of-entities-bundle
 The bundle is set to one entity. For existing endpoints running with multiple entities in a bundle, the transport automatically picks up previously configured entities. The default topic name for bundle is set to `bundle-1`.
 
 For more details on topologies refer to the [Azure Service Bus Transport Topologies](/nservicebus/azure-service-bus/topologies/) article.
+
+## BrokeredMessage conventions
+
+API to specify how the `BrokeredMessage` body is stored and retrieved by overriding the default conventions is obsoleted and the following methods were deprecated:
+
+snippet: asb-incoming-message-convention
+
+snippet: asb-outgoing-message-convention
