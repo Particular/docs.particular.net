@@ -77,9 +77,9 @@ partial: disable
 
 ## Expired heartbeat messages forwarded to Dead letter queue
 
-Heartbeat messages have a time to be received (TTBR) set based on the TTL value. If ServiceControl does not consume the heartbeat messages before the TTBR expires then transports that support a dead letter queue (DLQ) will move these messages to the DLQ. This can happen when ServiceControl is stopped or very busy. The dead letter queue needs to be monitored and cleaned up.
+Heartbeat messages have a time to be received (TTBR) set based on the TTL value.  If ServiceControl does not consume the heartbeat messages before the TTBR expires then transports that support a dead letter queue (DLQ) will discard these messages. However if the endpoint that is sending the heartbeat messages is using NServiceBus Versions 6.1 or below, these messages will be moved to the DLQ. This can happen when ServiceControl is stopped or very busy. In this case, the dead letter queue needs to be monitored and cleaned up.
 
 
 ### MSMQ
 
-If this dead letter queue behavior is not required then it can disabled. This frequently happens with MSMQ as NServiceBus configures the usage of the DLQ by default. Read [MSMQ connection strings](/nservicebus/msmq/connection-strings.md) on how to disabled dead letter queue usage.
+When using NServiceBus Versions 6.1 or below, if this dead letter queue behavior is not required then it can disabled. This frequently happens with MSMQ as NServiceBus configures the usage of the DLQ by default. Read [MSMQ connection strings](/nservicebus/msmq/connection-strings.md) on how to disabled dead letter queue usage.
