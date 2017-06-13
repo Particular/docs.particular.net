@@ -5,3 +5,5 @@ In some environments it might be necessary to adapt to database server settings,
 That can be done by passing the transport a custom factory method which will provide connection strings at runtime, and which can perform custom actions:
 
 snippet: sqlserver-custom-connection-factory
+
+NOTE: If opening the connection fails, the custom connection factory must dispose the connection object and rethrow the exception.
