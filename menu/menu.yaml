@@ -259,7 +259,7 @@
       - Url: nservicebus/gateway/scale-out
         Title: Scale-Out
     - Url: nservicebus/wormhole
-      Title: Worm Hole
+      Title: Wormhole Gateway
     - Url: nservicebus/outbox
       Title: Outbox
     - Url: nservicebus/messaging/databus

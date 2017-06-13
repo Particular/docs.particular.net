@@ -8,16 +8,16 @@ related:
 
 ## Prerequisistes
 
-Open the solution in VisualStudio running as Administrator because the gateways need to register the listening URL. Alternatively use add the registrations manually: 
+Open the solution in Visual Studio running as Administrator because the gateways need to register the listening URL, or add the registrations manually: 
 
 ```
-netsh add urlacl url=http://+:7777/Gateway.SiteA/ user=DOMAIN\user
-netsh add urlacl url=http://+:7777/Gateway.SiteB/ user=DOMAIN\user
+netsh http add urlacl url=http://+:7777/Gateway.SiteA/ user=DOMAIN\user
+netsh http add urlacl url=http://+:7777/Gateway.SiteB/ user=DOMAIN\user
 ``` 
 
 ## Running the project
 
- 1. Start the projects: Client, Server and both gateways (right-click on the project, select the `Debug > Start new instance` option).
+ 1. Start the projects in debug mode.
  2. Press `enter` a couple of times.
  3. Observe the `PingHandler` logging processed message IDs in the Server window.
  4. Observe the `PongHandler` logging processed message IDs in the Client window.
@@ -74,6 +74,8 @@ When the gateway in the origin site (GatewayA) picks up the message it looks at 
 When the gateway in the destination site (GatewayB) receives the message it looks at the type of the message and calculates the receiving endpoint name based on the forwarding rules configured. 
 
 When the Server receives the `Ping` message it replies with a `Pong` message. A behavior injected into the Server's send pipeline ensures that the ultimate destination is set from the `reply-to` headers and the destination site is set to the original origin site.
+
+NOTE: The `Wormhole` needs to be configured for all the communicating endpoints, not only the ones sending the messages.
 
 When the Server-side gateway picks up the `Pong` messages it looks at the destination sites header and forwards the message accordingly.
 
