@@ -5,6 +5,8 @@
     Articles:
     - Url: platform
       Title: Service Platform
+    - Url: tutorials/quickstart
+      Title: Quick Start Tutorial
     - Url: tutorials/intro-to-nservicebus
       Title: Messaging Basics Tutorial
       Articles:
