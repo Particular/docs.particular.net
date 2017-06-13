@@ -200,7 +200,7 @@ class Usage
     {
 #pragma warning disable 618
 
-        #region asb-incoming-message-convention [7.0.0, 7.1.0)
+        #region asb-incoming-message-convention [7.0,7.1.0)
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
@@ -216,7 +216,7 @@ class Usage
     {
 #pragma warning disable 618
 
-        #region asb-outgoing-message-convention  [7.0.0, 7.1.0)
+        #region asb-outgoing-message-convention [7.0,7.1.0)
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
