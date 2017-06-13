@@ -19,10 +19,10 @@ The following procedure is a high-level guide on how to deploy distributors onto
  * Setup a new cluster group. A cluster Group is a group of resources that have a unique NETBIOS network name and can be addressed externally.
  * Install clustered Message Queuing (MSMQ) and Distributed Transaction Coordinator(MSDTC) into the new cluster group
   * Install the Message Queuing Services on each node
-  * Use the Failover Cluster Manager to add Message Queuing as a clustered role (https://blogs.msdn.microsoft.com/asiatech/2016/01/14/build-clustered-msmq-role-on-a-windows-server-2012-r2-failover-cluster/)
+  * Use the Failover Cluster Manager to [add Message Queuing as a clustered role](https://blogs.msdn.microsoft.com/asiatech/2016/01/14/build-clustered-msmq-role-on-a-windows-server-2012-r2-failover-cluster/)
   * Use the Failover Cluster Manager to add Distributed Transaction Coordinator as a clustered role
  * Install distributors as a clustered Generic Service 
-  * [Install the distributor as a standard windows service]((/nservicebus/hosting/windows-service#installation)) on each node
+  * [Install the distributor as a standard windows service](/nservicebus/hosting/#self-hosting-windows-service-hosting) on each node
   * Add it as clustered "Generic service" using the Failover Cluster Manager 
   * Add dependencies to the following cluster group resources: network name, MSMQ, and MSDTC 
   * Check "use network name as computer name" 
