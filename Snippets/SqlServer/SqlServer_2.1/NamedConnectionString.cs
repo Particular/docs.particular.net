@@ -31,10 +31,20 @@
             transport.UseCustomSqlConnectionFactory(
                 connectionString =>
                 {
-                    var newConnection = new SqlConnection(connectionString);
-                    newConnection.Open();
-                    // custom operations
-                    return newConnection;
+                    var connection = new SqlConnection(connectionString);
+                    try
+                    {
+                        connection.Open();
+
+                        // custom operations
+
+                        return connection;
+                    }
+                    catch
+                    {
+                        connection.Dispose();
+                        throw;
+                    }
                 });
 
             #endregion
