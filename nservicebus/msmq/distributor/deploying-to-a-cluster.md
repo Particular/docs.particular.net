@@ -11,6 +11,9 @@ Distributors are a single-point-of-failure if deployed to just a single machine.
 
 The following procedure is a high-level guide on how to deploy distributors onto a Microsoft Windows Failover cluster.
 
+* This procedure assumes that the MSMQ transport uses distributed transactions (default). If running with SendsAtomicWithReceive all steps related to the Distributed Transaction Coordinator (MSDTC) can be skipped.
+* This procedure assumes only a single cluster group, meaning MSMQ and MSDTC are installed once on a cluster node. This results in both MSMQ and MSDTC will be active on the same node for improved performance and that it can never happen that MSMQ is active on node A and MSDTC is active on node B.
+
 ## Windows Failover Cluster setup for distributors
 
  * Set up a Failover (active/passive) Windows Failover cluster:
