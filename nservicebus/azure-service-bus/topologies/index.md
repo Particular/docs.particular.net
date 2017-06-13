@@ -25,6 +25,8 @@ The `EndpointOrientedTopology` is backward compatible with the Azure Service Bus
 
 The `ForwardingTopology` was introduced to take advantage of the broker nature of the Azure Service Bus and to leverage its native capabilities. It is the recommended option for new projects.
 
+NOTE: Although the ForwardingTopology is recommended it is currently not compatible with ServiceControl.
+
 Both topologies create a single input queue per endpoint and implement [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) mechanism. However, there is a significant difference in the way that mechanism is implemented.
 
 No default topology is set by the Azure Service Bus transport. Topology has to be explicitly configured using [configuration API](/nservicebus/azure-service-bus/configuration/full.md).
