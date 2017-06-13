@@ -19,6 +19,6 @@ In Versions 8 and above the API to configure bundle prefix and number of entitie
 
 snippet: 7to8-number-of-entities-bundle
 
-The default number of entities in a bundle is set to one. For existing endpoints which have been running with multiple entities in a bundle, the transport automatically picks up previously configured entities. The default topic name for bundle is set to `bundle-1`.
+The bundle is set to one entity. For existing endpoints running with multiple entities in a bundle, the transport automatically picks up previously configured entities. The default topic name for bundle is set to `bundle-1`.
 
 For more details on topologies refer to the [Azure Service Bus Transport Topologies](/nservicebus/azure-service-bus/topologies/) article.
