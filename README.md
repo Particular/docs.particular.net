@@ -711,7 +711,7 @@ If a snippet has no version defined then the version will be derived by walking 
 
 If a file named `prerelease.txt` exists in a versioned directory then a `-pre` will be added to the version.
 
-For example, if there is a directory `docs.particular.net\Snippets\Snippets_6\` and it contains a `prerelease.txt` file then the version will be `(≥ 6.0.0-pre)`
+For example, if there is a directory `docs.particular.net\Snippets\{Component}\Snippets_6\` and it contains a `prerelease.txt` file then the version will be `(≥ 6.0.0-pre)`
 
 
 ### Using Snippets
