@@ -61,6 +61,9 @@ class Usage
         persistence.ConnectionString("connectionString");
         persistence.CreateSchema(true);
 
+        // Added in Version 1.4
+        persistence.AssumeSecondaryIndicesExist();
+
         #endregion
     }
 

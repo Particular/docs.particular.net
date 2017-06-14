@@ -24,6 +24,7 @@ The following settings are available for changing the behavior of saga persisten
   * NServiceBus.Azure defaults to `UseDevelopmentStorage=true`.
   * NServiceBus.Persistence.AzureStorage Version 1 defaults to `null`.
  * `CreateSchema`: Instructs the persister to create the table automatically. Defaults to `true`.
+ * `AssumeSecondaryIndicesExist`: (Added in Version 1.4) By default every new saga scans for a secondary index. To avoid unnecessary performance tax, this option allows to skip the scans assuming all saga instances are in valid form and have secondary indices. 
 
 
 #### Subscription Configuration
