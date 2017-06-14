@@ -77,7 +77,7 @@ partial: disable
 
 ## Expired heartbeat messages
 
-Heartbeat messages have a time to be received (TTBR) set based on the TTL value.  If ServiceControl does not consume the heartbeat messages before the TTBR expires then those messages may be discarded. Transports like MSMQ and ASB support DLQ and if configured the messages will be forwarded to the DLQ instead. 
+Heartbeat messages have a time to be received (TTBR) set based on the TTL value.  If ServiceControl does not consume the heartbeat messages before the TTBR expires then those messages may be discarded. Transports like MSMQ and ASB support DLQ and the expired heartbeat messages can be explicitly configured to be forwarded to the DLQ instead of being discarded. 
 
 
 ### MSMQ
