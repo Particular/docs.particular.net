@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Transports.SQLServer;
@@ -66,27 +65,4 @@ class Program
             }
         }
     }
-
-    #region GetConnectionString2
-
-    static readonly string[] AdapterQueues = { "audit", "error", "poison", "Particular.ServiceControl" };
-
-    static ConnectionInfo GetConnectionInfo(string destination)
-    {
-        if (destination.StartsWith("Samples.ServiceControl.SqlServerTransportAdapter.Sales", StringComparison.OrdinalIgnoreCase))
-        {
-            return ConnectionInfo.Create().UseSchema("sales");
-        }
-        if (destination.StartsWith("Samples.ServiceControl.SqlServerTransportAdapter.Shipping", StringComparison.OrdinalIgnoreCase))
-        {
-            return ConnectionInfo.Create().UseSchema("shipping");
-        }
-        if (AdapterQueues.Any(q => string.Equals(q, destination, StringComparison.OrdinalIgnoreCase)))
-        {
-            return ConnectionInfo.Create().UseSchema("adapter");
-        }
-        throw new Exception($"Unknown destination: {destination}");
-    }
-
-    #endregion
 }
