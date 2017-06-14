@@ -25,7 +25,7 @@ NOTE: Both the sender (native or NServiceBus) and the receiver must have a consi
 
 By default, the `BrokeredMessage` body is assumed to be a byte array to remain backward compatible with previous versions of the transport. It is recommended that the body can be retrieved using `Stream` for new implementations, as it incurs less of a memory overhead during serialization. It is especially for useful scenarios, such as native integration, as most non .NET ASB SDK's only support the `Stream` body format.
 
-NOTE: Although `SupportedBrokeredMessageBodyTypes.Stream` is our recommended body format this mode is current not compatible with ServiceControl.
+NOTE: The `SupportedBrokeredMessageBodyTypes.Stream` body format is recommended, but this mode is current NOT compatible with ServiceControl.
 
 To specify how the `BrokeredMessage` body is stored and retrieved, override the default conventions.
 
