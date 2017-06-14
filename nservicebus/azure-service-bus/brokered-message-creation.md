@@ -27,9 +27,6 @@ By default, the `BrokeredMessage` body is assumed to be a byte array to remain b
 
 NOTE: The `SupportedBrokeredMessageBodyTypes.Stream` body format is recommended, but this mode is currently NOT compatible with ServiceControl.
 
-To specify how the `BrokeredMessage` body is stored and retrieved, override the default conventions.
-
-
 partial: converter
 
 
