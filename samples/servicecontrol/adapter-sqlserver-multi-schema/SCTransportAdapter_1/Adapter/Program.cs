@@ -22,16 +22,18 @@ class Program
 
         #endregion
 
-#pragma warning disable 618
-
         #region EndpointSideConfig
 
         transportAdapterConfig.CustomizeEndpointTransport(transport =>
         {
-            transport.DefaultSchema("adapter");
-            transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+            transport.ConnectionString(
+                @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
 
-            //Because SQL Server transport < 3 did not include schema information in the address
+            //Use custom schema
+            transport.DefaultSchema("adapter");
+
+            //Necassary to correctly route retried messages because 
+            //SQL Server transport 2.x did not include schema information in the address
             transport.UseSchemaForQueue("Samples.ServiceControl.SqlServerTransportAdapter.Shipping", "shipping");
 
             //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
@@ -40,14 +42,13 @@ class Program
 
         #endregion
 
-#pragma warning restore 618
-
         #region SCSideConfig
 
         transportAdapterConfig.CustomizeServiceControlTransport(
             customization: transport =>
             {
-                transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+                transport.ConnectionString(
+                    @"Data Source=.\SQLEXPRESS;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
                
                 //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
                 transport.GetSettings().Set<EndpointInstances>(new EndpointInstances());

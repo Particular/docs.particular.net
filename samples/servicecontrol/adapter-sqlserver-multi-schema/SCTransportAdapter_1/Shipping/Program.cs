@@ -13,18 +13,23 @@ class Program
         endpointConfiguration.EndpointName("Samples.ServiceControl.SqlServerTransportAdapter.Shipping");
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-
-        //Use schema shipping for this endpoint
-        transport.DefaultSchema("shipping");
         transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
 
-        //Use this callback to get the connection information for other queues
+        #region SchemaV5
+
+        //Use custom schema shipping for this endpoint
+        transport.DefaultSchema("shipping");
+
         transport.UseSpecificConnectionInformation(
+            //Configure schema for the sales endpoint so that the subscribe message is sent to the correct address
             EndpointConnectionInfo.For("Samples.ServiceControl.SqlServerTransportAdapter.Sales").UseSchema("sales"),
+            //Configure schemas for the ServiceControl queues to point to the adapter
             EndpointConnectionInfo.For("audit").UseSchema("adapter"),
             EndpointConnectionInfo.For("error").UseSchema("adapter"),
             EndpointConnectionInfo.For("Particular.ServiceControl").UseSchema("adapter")
             );
+
+        #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 

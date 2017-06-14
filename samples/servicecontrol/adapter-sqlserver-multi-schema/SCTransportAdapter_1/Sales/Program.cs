@@ -22,18 +22,23 @@ class Program
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.Routing().RegisterPublisher(typeof(OrderShipped),
             "Samples.ServiceControl.SqlServerTransportAdapter.Shipping");
-
-        transport.DefaultSchema("sales");
         transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
 
-        //Configure schemas
+
+        #region SchemaV6
+
+        //Use custom schema shipping for this endpoint
+        transport.DefaultSchema("sales");
+
+        //Configure schemas for the ServiceControl queues to point to the adapter
         transport.UseSchemaForQueue("audit", "adapter");
         transport.UseSchemaForQueue("error", "adapter");
         transport.UseSchemaForQueue("Particular.ServiceControl", "adapter");
-        
-        //Use schema shipping when publishing to the Shipping endpoint's queue
-        //SQL Server Transport < 3.0 did not include the schema in the subscribe message
+
+        //Configure schema for the shipping endpoint so that the subscribe message is sent to the correct address
         transport.UseSchemaForQueue("Samples.ServiceControl.SqlServerTransportAdapter.Shipping", "shipping");
+
+        #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
