@@ -21,7 +21,7 @@ tags:
 
 ### Disadvantages 
 
- * Like other message brokers, there is no local store-and-forward mechanism available. If an endpoint cannot reach SQS, either due to network problems or if SQS is unavailable, the endpoint will not be able to send nor receive messages. 
+ * Like other message brokers, there is no local store-and-forward mechanism available. If an endpoint cannot reach SQS, either due to network problems or if SQS is unavailable, the endpoint will not be able to send nor receive messages.
  * Can be relatively expensive when using larger volumes of messages.
 
 
@@ -30,10 +30,11 @@ tags:
 
 ### Set Up An AWS Account
 
-To use NServiceBus.AmazonSQS, an [AWS IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_Introduction.html) account with a pair of [Access Keys](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html) is required. 
-The IAM account requires the following permissions:
+To use NServiceBus.AmazonSQS, an [AWS IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_Introduction.html) account with a pair of [Access Keys](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html) is required.
 
- * SQS::CreateQueue
+The IAM account requires the following [SQS permissions](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html) and [S3 permissions](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html):
+
+ * [SQS::CreateQueue](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html)
  * SQS::DeleteMessage
  * SQS::GetQueueUrl
  * SQS::ReceiveMessage
@@ -49,7 +50,7 @@ The IAM account requires the following permissions:
 
 By default, NServiceBus.AmazonSQS will look for the Access Key ID and Secret Access Key in system environment variables of the machine that is running the endpoint:
 
- * Access Key ID goes in AWS_ACCESS_KEY_ID 
- * Secret Access Key goes in AWS_SECRET_ACCESS_KEY
+ * Access Key ID goes in `AWS_ACCESS_KEY_ID`
+ * Secret Access Key goes in `AWS_SECRET_ACCESS_KEY`
 
 snippet: SqsTransport
