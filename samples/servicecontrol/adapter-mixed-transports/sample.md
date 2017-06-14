@@ -82,10 +82,7 @@ The following code configures the adapter to use SQL Server transport when commu
 
 snippet: EndpointSideConfig
 
-
-## How it works
-
-Refer to [SQL Server multi-instance monitoring](/samples/servicecontrol/adapter-sqlserver/#how-it-works) sample to learn more about how the Transport Adapter mediates between the endpoints and the ServiceControl.
+include: adapter-how-it-works
 
 
 ### Duplicates

@@ -1,7 +1,7 @@
 ## Running the project
 
  1. Start the projects: Adapter, Sales and Shipping (right-click on the project, select the `Debug > Start new instance` option). Make sure adapter starts first because on start-up it creates a queue that is used for heartbeats.
- 1. Open ServicePulse (by default it's available at http://localhost:9090/#/dashboard) and select the Endpoints Overview. `Samples.ServiceControl.SqlServerTransportAdapter.Shipping` endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed
+ 1. Open ServicePulse (by default it's available at http://localhost:9090/#/dashboard) and select the Endpoints Overview. The Shipping endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed
  1. Go to the Sales console and press `o` to create an order.
  1. Notice the Shipping endpoint receives the `OrderAccepted` event from Sales and publishes `OrderShipped` event.
  1. Notice the Sales endpoint logs that it processed the `OrderShipped` event. 
@@ -18,4 +18,4 @@
  1. Go to the Shipping console and verify that the `OrderAccepted` event has been successfully processed.
  1. Go to the Sales console and verify that both `OrderShipped` events have been successfully processed.
  1. Shut down the Shipping endpoint.
- 1. Open ServicePulse and notice a red label next to the heart icon. Click on the that icon to open the Endpoints Overview. Notice that `Samples.ServiceControl.SqlServerTransportAdapter.Shipping` is now displayed in the Inactive Endpoints tab.
+ 1. Open ServicePulse and notice a red label next to the heart icon. Click on the that icon to open the Endpoints Overview. Notice that the Shipping is now displayed in the Inactive Endpoints tab.
