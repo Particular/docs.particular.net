@@ -40,7 +40,7 @@ public class MvcApplication :
         // Register the MVC controllers.
         builder.RegisterControllers(typeof(MvcApplication).Assembly);
         // Register the endpoint as a factory as the instance isn't created yet.
-        builder.Register(ctx => endpoint);
+        builder.Register(ctx => endpoint).SingleInstance();
         
         var container = builder.Build();
 
