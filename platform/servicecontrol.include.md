@@ -10,7 +10,7 @@ It is important to understand that the data is still collected even if all Servi
 
 ## ServiceControl instances
 
-To enable [ServiceControl](/servicecontrol) to collect information on the system, [create a ServiceControl instance](/servicecontroll/installation.md) and configure the solution endpoints appropriately:
+To enable [ServiceControl](/servicecontrol) to collect information on the system, [create a ServiceControl instance](/servicecontrol/installation.md) and configure the solution endpoints appropriately:
 
  * [enable auditing](/nservicebus/operations/auditing.md) to collect data on individual messages;
  * configure [recoverability](/nservicebus/recoverability) to store information on messages failures;
@@ -26,6 +26,6 @@ Refer to the [Optimizing for use in different environments](/servicecontrol/serv
 
 ## ServiceControl Monitoring instances
 
-To enable [ServiceControl](/servicecontrol) to collect metrics data [create a ServiceControl Monitoring instance](/servicecontroll/installation.md) and [configure solution endpoints to send metrics data to it](/servicecontrol/configure-endpoints-for-monitoring.md).
+To enable [ServiceControl](/servicecontrol) to collect metrics data [create a ServiceControl Monitoring instance](/servicecontrol/installation.md) and [configure solution endpoints to send metrics data to it](/servicecontrol/configure-endpoints-for-monitoring.md).
 
 NOTE: All endpoints should be configured to send metrics to the same ServiceControl Monitoring instance, unless the system has been sharded between multiple ServiceControl Monitoring instances..
