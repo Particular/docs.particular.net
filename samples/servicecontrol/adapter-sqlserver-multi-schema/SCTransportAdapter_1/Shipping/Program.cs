@@ -26,21 +26,23 @@ class Program
             EndpointConnectionInfo.For("audit").UseSchema("adapter"),
             EndpointConnectionInfo.For("error").UseSchema("adapter"),
             EndpointConnectionInfo.For("Particular.ServiceControl").UseSchema("adapter")
-            );
+        );
 
         #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         var chaos = new ChaosGenerator();
-        endpointConfiguration.RegisterComponents(c =>
-        {
-            c.ConfigureComponent(() => chaos, DependencyLifecycle.SingleInstance);
-        });
+        endpointConfiguration.RegisterComponents(
+            registration: components =>
+            {
+                components.ConfigureComponent(() => chaos, DependencyLifecycle.SingleInstance);
+            });
 
         endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
-        endpointConfiguration.Conventions().DefiningEventsAs(t => t == typeof(OrderAccepted) || t == typeof(OrderShipped));
+        var conventions = endpointConfiguration.Conventions();
+        conventions.DefiningEventsAs(t => t == typeof(OrderAccepted) || t == typeof(OrderShipped));
 
         endpointConfiguration.EnableInstallers();
 

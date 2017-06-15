@@ -24,21 +24,22 @@ class Program
 
         #region EndpointSideConfig
 
-        transportAdapterConfig.CustomizeEndpointTransport(transport =>
-        {
-            transport.ConnectionString(
-                @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+        transportAdapterConfig.CustomizeEndpointTransport(
+            customization: transport =>
+            {
+                transport.ConnectionString(
+                    @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
 
-            //Use custom schema
-            transport.DefaultSchema("adapter");
+                //Use custom schema
+                transport.DefaultSchema("adapter");
 
-            //Necassary to correctly route retried messages because 
-            //SQL Server transport 2.x did not include schema information in the address
-            transport.UseSchemaForQueue("Samples.ServiceControl.SqlServerTransportAdapter.Shipping", "shipping");
+                //Necassary to correctly route retried messages because
+                //SQL Server transport 2.x did not include schema information in the address
+                transport.UseSchemaForQueue("Samples.ServiceControl.SqlServerTransportAdapter.Shipping", "shipping");
 
-            //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
-            transport.GetSettings().Set<EndpointInstances>(new EndpointInstances());
-        });
+                //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
+                transport.GetSettings().Set<EndpointInstances>(new EndpointInstances());
+            });
 
         #endregion
 
@@ -49,9 +50,10 @@ class Program
             {
                 transport.ConnectionString(
                     @"Data Source=.\SQLEXPRESS;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
-               
+
                 //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
-                transport.GetSettings().Set<EndpointInstances>(new EndpointInstances());
+                var settings = transport.GetSettings();
+                settings.Set<EndpointInstances>(new EndpointInstances());
             });
 
         #endregion
