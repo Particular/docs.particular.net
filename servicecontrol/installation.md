@@ -7,7 +7,7 @@ redirects:
  - servicecontrol/multi-transport-support
 ---
 
-The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI. This installation can be executed standalone or via the [Platform Installer](/platform/installer/). The installation package include a utility to manage the installation, upgrade and remove of ServiceControl services. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
+The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI. This installation can be executed standalone or via the [Platform Installer](/platform/installer/). The installation package includes a utility to manage the installation, upgrade and remove of ServiceControl instances. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
 
 
 ## Prerequisites
@@ -52,15 +52,15 @@ The installation of the NServiceBus Performance Counters is optional for Version
 Performance Counters are not installed by the [Platform Installer](/platform/installer/).
 
 
-## Using ServiceControl Management to upgrade ServiceControl/ServiceMonitor instances
+## Using ServiceControl Management to upgrade ServiceControl instances
 
-ServiceControl Management provides a simple means of setting up one or more instances of the ServiceControl or ServiceMonitor services. For production systems it is recommended to limit the number of instances of each service per machine to one.
+ServiceControl Management provides a simple means of setting up one or more instances of the ServiceControl or ServiceControl Monitoring services. For production systems it is recommended to limit the number of instances of each service per machine to one.
 
 WARNING: The ability to add multiple instances is primarily intended to assist development and test environments.
 
 ServiceControl Management can be launched automatically at the end of the installation process to enable adding or upgrading ServiceControl instances.
 
-ServiceControl Management will display the instances of the ServiceControl and ServiceMonitor services installed. If the version of the binaries used by an instance are older that those shipped with ServiceControl Management an upgrade link will be shown against the version label.
+ServiceControl Management will display the instances of the ServiceControl and ServiceControl Monitoring services installed. If the version of the binaries used by an instance are older that those shipped with ServiceControl Management an upgrade link will be shown against the version label.
 
 ![](managementutil-upgradelink.png 'width=500')
 
@@ -76,7 +76,7 @@ Clicking the upgrade link will
 
 ## Using ServiceControl Management to add ServiceControl instances
 
-If this is a new installation of ServiceControl click on the `Add New Instance` button in the center of the screen or the "+ NEW" link at the top of the screen, and select `ServiceControl Instance`. Both options launch the same "New ServiceControl instance form". Complete the form to register a new ServiceControl service.
+Click on the "+ NEW" link at the top of the screen, and select `ServiceControl Instance` to launch the "New ServiceControl instance" form. Complete the form to register a new ServiceControl service.
 
 ### Service Name and Plugins
 
@@ -84,10 +84,10 @@ When adding the first instance of the ServiceControl service the default service
 
 The endpoint plugins such as the heartbeat and custom check plugins assume that the ServiceControl queue name is the default. If a custom service name was used then see [ServiceControl Endpoint Plugins](/servicecontrol/plugins/) for more details on how to configure the endpoint plugins to use the custom queue name.
 
-## Using ServiceControl Management to add ServiceMonitor instances
+## Using ServiceControl Management to add ServiceControl Monitoring instances
 
-If this is a new installation of ServiceMonitor click on the `Add New Instance` button in the center of the screen or the "+ NEW" link at the top of the screen, and select `ServiceMonitor Instance`. Both options launch the same "New ServiceMonitor instance form". Complete the form to register a new ServiceMonitor service.
+Click on the "+ NEW" link at the top of the screen, and select `Monitoring Instance` to launce the "New Monitoring instance" form. Complete the form to register a new ServiceControl Monitoring service.
 
 ### Service Name and Plugins
 
-When adding the first instance of the ServiceMonitor service the default service name is "Particular.ServiceMonitor". It is possible choose to change this name to a custom service name. In doing so this is also changing the queue name associated with this instance of ServiceMonitor. Endpoints configured to send metrics to this instance of ServiceMonitor will need to be configured with this instances queue name.
+When adding the first instance of the ServiceControl Monitoring service the default service name is `Particular.Monitoring`. It is possible choose to change this name to a custom service name. In doing so this is also changing the queue name associated with this instance of ServiceControl Monitoring. Endpoints configured to send metrics to this instance of ServiceControl Monitoring will need to be [configured with this instances queue name](./configure-endpoints-for-monitoring.md).

@@ -11,7 +11,7 @@ tags:
 
 ServiceControl 1.7 introduced a new graphical management utility to add, remove, update and delete instances of the ServiceControl service. These actions and some additional tools have also exposed via PowerShell module called `ServiceControlMgmt`.
 
-ServiceControl 1.42 added the ability to create and manage ServiceMonitor instances via Powershell.
+ServiceControl 1.42 added the ability to create and manage ServiceControl Monitoring instances via Powershell.
 
 
 ## Prerequisites
@@ -111,12 +111,12 @@ Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade>
 The upgrade will stop the service if it is running. Additional parameters for `Invoke-ServiceControlInstanceUpgrade` may be required. The configuration file of the existing version is examined prior to determine if all the required settings are present. If a configuration setting is missing  then the cmdlet will throw an error indicating the required additional parameter.
 
 
-### ServiceMonitor instances
+### ServiceControl Monitoring instances
 
 #### Adding an instance
 
 ```ps
-New-MonitoringInstance -Name Test.ServiceMonitor -InstallPath C:\ServiceMonitor\Bin -LogPath C:\ServiceMonitor\Logs -Port 33335 -Transport MSMQ
+New-MonitoringInstance -Name Test.Monitoring -InstallPath C:\ServiceControlMonitor\Bin -LogPath C:\ServiceMonitor\Logs -Port 33335 -Transport MSMQ
 ```
 
 There are additional parameters available to set additional configuration options such as hostname, transport connection string, and error queue.
@@ -127,14 +127,14 @@ There are additional parameters available to set additional configuration option
 Remove the instance that was created in the Add sample and delete the logs:
 
 ```ps
-Remove-MonitoringInstance -Name Test.ServiceMonitor -RemoveLogs
+Remove-MonitoringInstance -Name Test.Monitoring -RemoveLogs
 ```
 
-To List existing instances of the ServiceMonitor service use `Get-MonitoringInstances`.
+To List existing instances of the ServiceControl Monitoring service use `Get-MonitoringInstances`.
 
 #### Upgrading an instance
 
-The following command will list the ServiceMonitor instances current installed and their version number.
+The following command will list the ServiceControl Monitoring instances current installed and their version number.
 
 ```ps
 Get-MonitoringInstances | Select Name, Version

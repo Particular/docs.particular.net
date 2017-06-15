@@ -7,7 +7,7 @@ reviewed: 2017-06-09
 
 ## Configuration Settings
 
-The configuration of a ServiceControl Monitor instance can be adjusted via ServiceControl Management or by directly modifying the `ServiceControl.Monitoring.exe.config` file. The settings listed are applicable to the app settings section of the configuration file unless otherwise specified.
+The configuration of a ServiceControl Monitoring instance can be adjusted via ServiceControl Management or by directly modifying the `ServiceControl.Monitoring.exe.config` file. The settings listed are applicable to the app settings section of the configuration file unless otherwise specified.
 
 
 ## Host Settings
