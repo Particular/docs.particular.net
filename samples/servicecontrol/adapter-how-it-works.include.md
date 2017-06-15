@@ -3,11 +3,12 @@
 
 ### Heartbeats
 
-The heartbeat messages arrive at adapter's `Particular.ServiceControl` queue. From there they are moved to `Particular.ServiceControl.SQL` queue in ServiceControl database. In case of problems (e.g. destination database being down) the forward attempts are repeated configurable number of times after which messages are dropped to prevent the queue from growing indefinitely.
+The heartbeat messages arrive at the adapter's `Particular.ServiceControl` queue. They are then moved to `Particular.ServiceControl.SQL` queue in ServiceControl database. In case of problems (e.g. destination database being down) the forward attempts are repeated configurable number of times after which messages are dropped to prevent the queue from growing indefinitely.
+
 
 ### Audits
 
-The audit messages arrive at adapter's `audit` queue. From there they are moved to `audit` queue in ServiceControl database and are ingested by ServiceControl.
+The audit messages arrive at adapter's `audit` queue. They are then moved to the `audit` queue in ServiceControl database and are ingested by ServiceControl.
 
 
 ### Retries
