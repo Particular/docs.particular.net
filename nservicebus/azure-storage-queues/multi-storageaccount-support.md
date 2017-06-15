@@ -22,6 +22,7 @@ All messages in a queue are accessed via a single queue partition. A single queu
 
 When the number of messages exceeds this quota, storage service responds with an [HTTP 503 Server Busy message](https://docs.microsoft.com/en-us/azure/media-services/media-services-encoding-error-codes). This message indicates that the platform is throttling the queue. If a single storage account is unable to handle an application's request rate, an application could also leverage several different storage accounts using a storage account per endpoint. This ensures application scalability without choking a single storage account. This also allows discrete control over queue processing, based on the sensitivity and priority of the messages that are handled by different endpoints. High priority endpoints could have more workers dedicated to them than low priority endpoints.
 
+NOTE: Using multiple storage accounts is currently NOT compatible with ServiceControl. A [ServiceControl transport adapter](/servicecontrol/transport-adapter/), or multiple installations of ServiceControl, is required in order to leverage both.
 
 ## Scaling Out
 
