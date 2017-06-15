@@ -41,7 +41,7 @@
 
 - Key: SQS
   Name: Amazon SQS Transport
-  DocoUrl: https://github.com/ahofman/NServiceBus.AmazonSQS
+  DocoUrl: nservicebus/sqs
   GitHubOwner: ahofman
   Category: Transport
   LicenseUrl: https://opensource.org/licenses/Apache-2.0
