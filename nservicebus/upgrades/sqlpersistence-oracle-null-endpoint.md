@@ -39,7 +39,7 @@ Steps:
 
 ## Updating database schema on Oracle Database
 
-Schema created on Oracle Database does not allow `NULL` in `ENDPOINT` column and this patch requires that it does. The following script illustrates an example DDL statement for endpoint named `Publisher`.
+The schema created on Oracle Database does not allow `NULL` in the `ENDPOINT` column and this patch requires that it does. The following script illustrates an example DDL statement for an endpoint named `Publisher`.
 
 NOTE: This procedure does not require any downtime. It is advisable to execute it when affected endpoint instances are not under heavy load.
 
