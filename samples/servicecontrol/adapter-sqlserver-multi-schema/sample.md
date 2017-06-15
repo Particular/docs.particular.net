@@ -18,10 +18,10 @@ The purpose of the adapter is to isolate ServiceControl from the specifics of th
 ## Prerequisistes
 
  1. [Install ServiceControl](/servicecontrol/installation.md).
- 2. Create `ServiceControl` database on the local SQL Server instance. 
+ 2. Create `ServiceControl` database on the local SQL Server instance.
  3. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using SQL Server transport:
 	 
-   * Add a new ServiceControl instance: 
+   * Add a new ServiceControl instance:
    * Use `Particular.ServiceControl.SQL` as the instance name (make sure there is no other instance of SC running with the same name).
    * Use "User" account and provide credentials to allow for integrated authentication.
    * Specify `Data Source=.\SQLEXPRESS;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10` as a connection string. ServiceControl Manager will automatically create queue tables in the database.
@@ -30,8 +30,8 @@ NOTE: If other ServiceControl instances have been running on this machine, it's 
  
  4. Ensure the `ServiceControl` process is running before running the sample.
  5. In the same SQL Server instance create databases `nservicebus`.
- 6. In this database create three schemas: `sales`, `shipping` and `adapter`.  
- 7. [Install ServicePulse](/servicepulse/installation.md)
+ 6. In this database create three schemas: `sales`, `shipping` and `adapter`.
+ 7. [Install ServicePulse](/servicepulse/installation.md).
 
 NOTE: In order to connect to a different SQL Server instance, ensure all database connection strings are updated in the sample.
 

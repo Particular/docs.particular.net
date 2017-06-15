@@ -1,12 +1,12 @@
 ## Running the project
 
- 1. Start the projects: Adapter, Sales and Shipping (right-click on the project, select the `Debug > Start new instance` option). Make sure adapter starts first because on start-up it creates a queue that is used for heartbeats.
- 1. Open ServicePulse (by default it's available at http://localhost:9090/#/dashboard) and select the Endpoints Overview. The Shipping endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed
+ 1. Start the projects: Adapter, Sales and Shipping (right-click on the project, select the `Debug > Start new instance` option). Ensure the adapter starts first because on start-up it creates a queue that is used for heartbeats.
+ 1. Open ServicePulse (by default it's available at `http://localhost:9090/#/dashboard`) and select the Endpoints Overview. The Shipping endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed.
  1. Go to the Sales console and press `o` to create an order.
  1. Notice the Shipping endpoint receives the `OrderAccepted` event from Sales and publishes `OrderShipped` event.
- 1. Notice the Sales endpoint logs that it processed the `OrderShipped` event. 
+ 1. Notice the Sales endpoint logs that it processed the `OrderShipped` event.
  1. Go to the Sales console and press `f` to simulate message processing failure.
- 1. Press `o` to create another order. Notice the `OrderShipped` event fails processing in Sales and is moved to the error queue
+ 1. Press `o` to create another order. Notice the `OrderShipped` event fails processing in Sales and is moved to the error queue.
  1. Press `f` again to disable message processing failure simulation in Sales.
  1. Go to the Shipping console and press `f` to simulate message processing failure.
  1. Go back to Sales and press `o` to create yet another order. Notice the `OrderAccepted` event fails in Shipping and is moved to the error queue.
