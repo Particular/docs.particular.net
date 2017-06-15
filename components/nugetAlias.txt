@@ -1,6 +1,5 @@
 ABSDataBus: NServiceBus.DataBus.AzureBlobStorage
 Aggregates: Aggregates.NET
-AmazonSQS: NServiceBus.AmazonSQS
 Anotar: Anotar.NServiceBus.Fody
 ASB: NServiceBus.Azure.Transports.WindowsAzureServiceBus
 ASQ: NServiceBus.Azure.Transports.WindowsAzureStorageQueues 
@@ -78,6 +77,7 @@ RabbitOperations: RabbitOperations
 SimpleInjector: NServiceBus.SimpleInjector
 Spring: NServiceBus.Spring
 SqlServer: NServiceBus.SqlServer
+Sqs: NServiceBus.AmazonSQS
 StructureMap: NServiceBus.StructureMap
 SystemXml: NServiceBus.Serializers.SystemXml
 Testing: NServiceBus.Testing
