@@ -17,6 +17,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Sales");
         endpointConfiguration.OverrideLocalAddress("Samples.CustomRouting.Sales-2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseTransport<MsmqTransport>();
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(AutomaticRoutingConst.ConnectionString);
         endpointConfiguration.EnableInstallers();

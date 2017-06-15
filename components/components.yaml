@@ -39,9 +39,9 @@
     - NServiceBus.DataBus.AzureBlobStorage
     - NServiceBus.Azure
 
-- Key: AmazonSQS
+- Key: SQS
   Name: Amazon SQS Transport
-  DocoUrl: https://github.com/ahofman/NServiceBus.AmazonSQS
+  DocoUrl: nservicebus/sqs
   GitHubOwner: ahofman
   Category: Transport
   LicenseUrl: https://opensource.org/licenses/Apache-2.0
@@ -301,6 +301,17 @@
   ProjectUrl: https://github.com/SimonCropp/HandlerOrdering/
   NugetOrder:
     - NServiceBus.HandlerOrdering
+
+- Key: Hyperion
+  Name: Hyperion Serializer
+  DocoUrl: nservicebus/serialization/hyperion
+  GitHubOwner: SimonCropp
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Hyperion/blob/master/LICENSE.txt
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Hyperion
+  NugetOrder:
+    - NServiceBus.Hyperion
 
 - Key: InMemoryPersistence
   Name: InMemory Persistence 
@@ -678,6 +689,15 @@
   NugetOrder:
     - NServiceBus.Bootstrap.WindowsService
 
+- Key: ServiceTemplate
+  Name: Windows Service 'dotnet new' Template
+  DocoUrl: nservicebus/hosting/windows-service-template
+  GitHubOwner: Particular/bootstrap-windowsservice-maintainers
+  Category: Host
+  ProjectUrl: https://github.com/Particular/NServiceBus.Templates/
+  NugetOrder:
+    - NServiceBus.Template.WindowsService
+
 - Key: ServiceControl
   Name: ServiceControl
   DocoUrl: servicecontrol
@@ -705,6 +725,15 @@
   ProjectUrl: https://github.com/Particular/ServiceControl.TransportAdapter
   NugetOrder:
     - ServiceControl.TransportAdapter
+
+- Key: SCTransportAdapterTemplate
+  Name: ServiceControl Transport Adapter 'dotnet new' Template
+  DocoUrl: servicecontrol/transport-adapter/template
+  GitHubOwner: Particular/servicecontrol-maintainers
+  Category: Host
+  ProjectUrl: https://github.com/Particular/NServiceBus.Templates/
+  NugetOrder:
+    - NServiceBus.Template.TransportAdapter.WindowsService
 
 - Key: ServicePulse
   Name: ServicePulse

@@ -12,8 +12,8 @@ ServiceControl utilizes an embedded RavenDB for data storage. To backup or resto
   ![](managementutil-instance.png 'width=500')
  1. Stop the service from the action icons.
  1. Click the link under data path to go to the data directory.
- 1. Copy the contents of the data directory.
- 1. Start the service again once the copy is complete
+ 1. Copy or archive the contents of the data directory.
+ 1. Start the service again once the copy is complete.
 
 
 ### Restore

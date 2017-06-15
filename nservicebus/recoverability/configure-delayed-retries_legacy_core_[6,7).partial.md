@@ -9,4 +9,4 @@ The `.Retries` receiver can be disabled via code using:
 
 snippet: DisableLegacyRetriesSatellite
 
-INFO: This API will be obsoleted in Version 7 and removed afterwards.
+INFO: This .Retries message receiver and the API to disable it will be removed in Version 7.

@@ -5,8 +5,21 @@
     Articles:
     - Url: platform
       Title: Service Platform
+    - Url: tutorials/quickstart
+      Title: Quick Start Tutorial
     - Url: tutorials/intro-to-nservicebus
       Title: Messaging Basics Tutorial
+      Articles:
+      - Url: tutorials/intro-to-nservicebus/1-getting-started
+        Title: Getting Started
+      - Url: tutorials/intro-to-nservicebus/2-sending-a-command
+        Title: Sending a command
+      - Url: tutorials/intro-to-nservicebus/3-multiple-endpoints
+        Title: Multiple endpoints
+      - Url: tutorials/intro-to-nservicebus/4-publishing-events
+        Title: Publishing events
+      - Url: tutorials/intro-to-nservicebus/5-retrying-errors
+        Title: Retrying errors
     - Url: samples/step-by-step
       Title: Step by Step Sample
     - Url: samples/endpoint-configuration
@@ -272,6 +285,9 @@
       Title: Decommissioning Endpoints
     - Url: nservicebus/hosting/windows-service
       Title: Windows Service
+      Articles:
+      - Url: nservicebus/hosting/windows-service-template
+        Title: dotnet new Template
     - Url: nservicebus/hosting/override-hostid
       Title: Overriding the host identifier
     - Url: nservicebus/hosting/custom-configuration-providers
@@ -333,13 +349,13 @@
   - Url: nservicebus/handlers-and-sagas
     Title: Handlers and Sagas
     Articles:
+    - Url: nservicebus/handlers/async-handlers
+      Title: Asynchronous Handlers
     - Url: nservicebus/handlers
       Title: Handlers
       Articles:
       - Url: nservicebus/handlers/accessing-data
-        Title: Accessing data	  
-      - Url: nservicebus/handlers/async-handlers
-        Title: Asynchronous Handlers
+        Title: Accessing data
       - Url: nservicebus/handlers/handler-ordering
         Title: Handler Order
     - Url: nservicebus/sagas
@@ -355,8 +371,6 @@
         Title: Not Found
       - Url: nservicebus/sagas/concurrency
         Title: Concurrency
-      - Url: nservicebus/handlers/async-handlers
-        Title: Asynchronous Handlers
       - Url: nservicebus/sagas/reply-replaytooriginator-differences
         Title: Reply and ReplyToOriginator differences
   - Url: nservicebus/testing
@@ -415,6 +429,8 @@
       Title: Jil
     - Url: nservicebus/serialization/wire
       Title: Wire
+    - Url: nservicebus/serialization/Hyperion
+      Title: Hyperion
     - Url: nservicebus/serialization/message-pack
       Title: Message Pack
     - Url: nservicebus/serialization/protobufgoogle
@@ -682,6 +698,13 @@
       Title: Scripting
     - Url: nservicebus/rabbitmq/rabbitmqclient-nuget
       Title: RabbitMQ.Client NuGet usage
+  - Url: nservicebus/sqs
+    Title: Amazon SQS
+    Articles:
+    - Url: nservicebus/sqs/configuration-options
+      Title: Configuration Options
+    - Url: nservicebus/sqs/why-use-sqs
+      Title: Why use SQS
   - Url: nservicebus/eventstoretransport
     Title: Event Store
   - Url: nservicebus/kafka
@@ -878,6 +901,8 @@
       Articles:
       - Url: servicecontrol/transport-adapter/incompatible-features
         Title: Incompatible transport features
+      - Url: servicecontrol/transport-adapter/template
+        Title: dotnet new Template
   - Title: Management
     Articles:
     - Url: servicecontrol/securing-servicecontrol

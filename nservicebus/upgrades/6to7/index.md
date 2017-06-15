@@ -106,8 +106,51 @@ snippet: 6to7endpoint-mapping-Routing-Logical
 snippet: 6to7endpoint-mapping-Routing-RegisterPublisher
 
 
-include: dependencies
+## Renamed APIs
+
 
 ### Access to settings
 
-The `.GetSettings()` extension metod has been moved from `NServiceBus.Configuration.AdvanceExtensibility` to the `NServiceBus.Configuration.AdvancedExtensibility` namespace. More details on advanced access to settings [here](/nservicebus/pipeline/features.md#feature-settings-endpointconfiguration).
+The `GetSettings` extension method has been moved from `NServiceBus.Configuration.AdvanceExtensibility` to the `NServiceBus.Configuration.AdvancedExtensibility` namespace. More details on advanced access to settings can be found [here](/nservicebus/pipeline/features.md#feature-settings-endpointconfiguration).
+
+
+###  ContextBag extensions
+
+The `RemoveDeliveryConstaint` extension method has been renamed to `RemoveDeliveryConstraint`.
+
+
+### IncomingMessage extensions
+
+The `GetMesssageIntent` extension method has been renamed to `GetMessageIntent`.
+
+
+## Assembly scanning
+
+64-bit assemblies are no longer silently excluded from scanning when running in a x86 process. Instead startup will fail with a `System.BadImageFormatException`. Use the [exclude API](/nservicebus/hosting/assembly-scanning.md#assemblies-to-scan) to exclude the assembly and avoid the exception. 
+
+
+## Legacy .Retries message receiver
+
+The [.Retries message receiver](/nservicebus/recoverability/configure-delayed-retries.md?version=core_6#custom-retry-policy-legacy-retries-message-receiver) added to assist in migrating from Version 5 to Version 6 has been removed. The API to disable it has also been removed.
+
+
+## MSMQ
+
+The [MSMQ transport](/nservicebus/msmq) is no longer part of the NServiceBus NuGet package. It has been moved into a separate package, [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/).
+
+
+## Default transport
+
+There is no longer a default transport, so an exception will be thrown if an endpoint is created or started without configuring a transport.
+
+
+## Message Property Encryption
+
+The [Message Property Encryption feature](/nservicebus/security/property-encryption.md) has been moved from the NServiceBus package. It is now available as a separate NuGet package, [NServiceBus.Encryption.MessageProperty](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/).
+
+See the [NServiceBus.Encryption.MessageProperty upgrade guide](/nservicebus/upgrades/externalize-encryption.md) for more details.
+
+
+## Custom Correlation ID
+
+Setting a custom [correlation ID](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-correlationid) is considered dangerous. Therefore, the `SendOptions.SetCorrelationId` and `SendOptions.GetCorrelationId` APIs have been removed.

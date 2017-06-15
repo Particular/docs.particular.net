@@ -1,5 +1,5 @@
 ---
-title: Monitoring endpoints with ServiceControl events
+title: Monitor with ServiceControl events
 component: ServiceControlContracts
 reviewed: 2016-08-31
 tags:

@@ -1,6 +1,5 @@
 ABSDataBus: NServiceBus.DataBus.AzureBlobStorage
 Aggregates: Aggregates.NET
-AmazonSQS: NServiceBus.AmazonSQS
 Anotar: Anotar.NServiceBus.Fody
 ASB: NServiceBus.Azure.Transports.WindowsAzureServiceBus
 ASQ: NServiceBus.Azure.Transports.WindowsAzureStorageQueues 
@@ -30,6 +29,7 @@ Heartbeats3: ServiceControl.Plugin.Nsb3.Heartbeat
 Heartbeats4: ServiceControl.Plugin.Nsb4.Heartbeat
 Heartbeats5: ServiceControl.Plugin.Nsb5.Heartbeat
 Heartbeats6: ServiceControl.Plugin.Nsb6.Heartbeat
+Hyperion: NServiceBus.Hyperion
 Host: NServiceBus.Host
 Jil: NServiceBus.Jil
 Kafka: NServiceBus.Transports.Kafka
@@ -63,9 +63,11 @@ SagaAudit4: ServiceControl.Plugin.Nsb4.SagaAudit
 Serilog: NServiceBus.Serilog
 SerilogTracing: NServiceBus.Serilog.Tracing
 ServiceBootstrap: NServiceBus.Bootstrap.WindowsService
+ServiceTemplate: NServiceBus.Template.WindowsService
 ServiceControl: ServiceControl
 ServiceControlContracts: ServiceControl.Contracts
 SCTransportAdapter: ServiceControl.TransportAdapter
+SCTransportAdapterTemplate: NServiceBus.Template.TransportAdapter.WindowsService
 ServiceFabricPersistence: NServiceBus.Persistence.ServiceFabric
 ServicePulse: ServicePulse
 ServiceInsight: ServiceInsight
@@ -75,6 +77,7 @@ RabbitOperations: RabbitOperations
 SimpleInjector: NServiceBus.SimpleInjector
 Spring: NServiceBus.Spring
 SqlServer: NServiceBus.SqlServer
+Sqs: NServiceBus.AmazonSQS
 StructureMap: NServiceBus.StructureMap
 SystemXml: NServiceBus.Serializers.SystemXml
 Testing: NServiceBus.Testing

@@ -400,7 +400,7 @@ And checking `Ignore YAML Front-matter`
 
 ### EIP terms and ideas we don't use but can
 
- * [Message Bus](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBus.html) - we dropped using the *bus* world when referring to an *endpoint* (which is correct) but I think we can take advantage of this definition of the bus because it is aligned with our concepts.
+ * [Message Bus](http://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBus.html) - we dropped using the *bus* word when referring to an *endpoint* (which is correct) but I think we can take advantage of this definition of the bus because it is aligned with our concepts.
  * [Dead Letter Channel](http://www.enterpriseintegrationpatterns.com/patterns/messaging/DeadLetterChannel.html) - only MSMQ implements it, we don't have it on NServiceBus level
  * [Datatype Channel](http://www.enterpriseintegrationpatterns.com/patterns/messaging/DatatypeChannel.html) - is a channel reserved for a single data/message type. This is something we should be selling users as a good practice
  * [Channel Adapter](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ChannelAdapter.html) - this seems to be similar to the ADSD idea for integration components that pull data from various services in order to combine them into a message
@@ -488,6 +488,65 @@ Avoid using screenshots in samples unless it adds significant value over what ca
  * Add significantly to the page load time.
 
 The most common misuse of screenshots is when capturing console output. **DO NOT DO THIS**. Put the text inside a formatted code section instead.
+
+
+## Tutorials
+
+Tutorials are similar to samples but optimized for new users to follow in a step-by-step fashion. Tutorials differ from samples in the following ways:
+
+* Markdown file must be named `tutorial.md`
+* No component specified in the header
+* Focus on only the most recent version
+* Rendered without button toolbar and component information at the top
+* By default, solution download button is rendered at the end
+* Utilizes two collections of snippets, from the solution and also from an optional Snippets solution, allowing more granular or multi-phase snippets
+* Allows use of personal voice (you/your/we/etc.) within `/tutorials` directory to foster collaborative tone with user
+
+
+### Directory structure
+
+An example directory structure for a tutorial might look like this:
+
+```
+{tutorial-name}/
+  Snippets/ (optional)
+    Snippets.sln
+    Core_6
+  Solution/
+    {SolutionName}.sln
+  tutorial.md
+```
+
+Tutorials can be grouped together in a parent directory with a normal article serving as a table of contents.
+
+
+### Metadata options
+
+These YAML metadata options affect rendering for tutorials only.
+
+
+#### Download at top
+
+By default a tutorial assumes the user will build their own solution from scratch, and only offers the completed download at the bottom. If the tutorial requires a "starter" solution, a banner can be placed at the top of the page notifying the user and providing the download link.
+
+```
+extensions:
+- !!tutorial
+  downloadAtTop: true
+```
+
+
+### Multi-lesson tutorials
+
+For tutorials chained together to form multiple lessons, navigation can be created to combine a button linking to the next lesson with the Download Solution link.
+
+```
+- !!tutorial
+  nextText: "Next Lesson: Sending a command"
+  nextUrl: tutorials/intro-to-nservicebus/2-sending-a-command
+```
+
+The `nextText` parameter is optional, and will default to the title of the linked page if omitted.
 
 
 ## Markdown partials
@@ -652,7 +711,7 @@ If a snippet has no version defined then the version will be derived by walking 
 
 If a file named `prerelease.txt` exists in a versioned directory then a `-pre` will be added to the version.
 
-For example, if there is a directory `docs.particular.net\Snippets\Snippets_6\` and it contains a `prerelease.txt` file then the version will be `(≥ 6.0.0-pre)`
+For example, if there is a directory `docs.particular.net\Snippets\{Component}\Snippets_6\` and it contains a `prerelease.txt` file then the version will be `(≥ 6.0.0-pre)`
 
 
 ### Using Snippets
@@ -963,7 +1022,7 @@ Another option is using [LucidChart](https://www.lucidchart.com). LucidChart all
 
 For consistency, prefer American English.
 
-Avoid personal voice. I.e. no "we", "you", "your", "our" etc.
+No personal voice. I.e. no "we", "you", "your", "our" etc.
 
 
 ## Version Language

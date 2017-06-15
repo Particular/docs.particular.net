@@ -44,6 +44,8 @@ NOTE: MSMQ will escalate to a distributed transaction right away since it doesn'
 
 snippet: TransportTransactionScope
 
+include: mssql-dtc-warning
+
 
 #### Atomicity and consistency guarantees
 
@@ -70,6 +72,7 @@ In the example above the `TransactionScope` guarantees atomicity for the `OrderS
 NOTE: This mode requires the selected storage to support participating in distributed transactions.
 
 partial: native
+
 
 ### Unreliable (Transactions Disabled)
 

@@ -32,7 +32,7 @@ class Program
         transport.DefaultSchema("sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
-
+        
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(
@@ -70,6 +70,7 @@ class Program
             };
             await endpointInstance.Publish(orderSubmitted)
                 .ConfigureAwait(false);
+            Console.WriteLine("Published OrderSubmitted message");
         }
         await endpointInstance.Stop()
             .ConfigureAwait(false);
