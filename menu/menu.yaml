@@ -698,6 +698,13 @@
       Title: Scripting
     - Url: nservicebus/rabbitmq/rabbitmqclient-nuget
       Title: RabbitMQ.Client NuGet usage
+  - Url: nservicebus/sqs
+    Title: Amazon SQS
+    Articles:
+    - Url: nservicebus/sqs/configuration-options
+      Title: Configuration Options
+    - Url: nservicebus/sqs/why-use-sqs
+      Title: Why use SQS
   - Url: nservicebus/eventstoretransport
     Title: Event Store
   - Url: nservicebus/kafka
