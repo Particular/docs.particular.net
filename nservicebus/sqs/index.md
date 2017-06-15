@@ -6,7 +6,7 @@ tags:
 - AWS
 ---
 
-[Simple Queue Service (SQS)](https://aws.amazon.com/sqs/) is a message queue service provided by Amazon Web Services.
+[Simple Queue Service (SQS)](https://aws.amazon.com/sqs/) is a message queue service provided by [Amazon Web Services](https://aws.amazon.com/).
 
 
 ## Advantages and Disadvantages 
@@ -34,7 +34,7 @@ To use NServiceBus.AmazonSQS, an [AWS IAM](http://docs.aws.amazon.com/IAM/latest
 
 The IAM account requires the following [SQS permissions](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html) and [S3 permissions](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html):
 
- * [SQS::CreateQueue](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html)
+ * SQS::CreateQueue
  * SQS::DeleteMessage
  * SQS::GetQueueUrl
  * SQS::ReceiveMessage
