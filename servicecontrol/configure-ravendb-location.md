@@ -4,11 +4,9 @@ summary: Increase space for monitored data by configuring ServiceControl to save
 reviewed: 2016-11-09
 ---
 
-Each ServiceControl service stores its data in a RavenDB embedded database. The location of the database is set at install time.
+Each standard ServiceControl instance stores its data in a RavenDB embedded database. The location of the database is set at install time.
 
-To see the current database location, open ServiceControl Management and view the location is listed in the instance details.
-
-![](managementutil-instance-datapath.png 'width=500')
+To see the current database location, [check the `ServiceControl/DbPath` setting in the ServiceControl instance config file](creating-config-file.md).
 
 
 ### Setting a Different Location for RavenDB Embedded Database

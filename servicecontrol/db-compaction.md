@@ -15,7 +15,6 @@ ServiceControl's embedded RavenDB database can be compacted in one of two ways. 
 
 * Open ServiceControl Management.
 * Stop the Service from the actions icons.
-* Note down the "DATA PATH" for the service.   ![](managementutil-instance-datapath.png 'width=500')
 
 WARNING: For the `esentutl` command line utility to work properly, ServiceControl service needs to be shutdown properly without any errors.
 
@@ -28,6 +27,9 @@ WARNING: For the `esentutl` command line utility to work properly, ServiceContro
 ### Step 3: Administrator command prompt
 
  * Open an elevated command prompt and navigate to the ServiceControl "DATA PATH" directory
+
+NOTE: To see the current database location, [check the `ServiceControl/DbPath` setting in the ServiceControl instance config file](creating-config-file.md).
+
  * Run **`esentutl /r RVN /l logs /s system`** and wait for it to finish. This will ensure that the database is in a consistent state and is ready for defragmentation.
  * Here is the result of running it:  
 
