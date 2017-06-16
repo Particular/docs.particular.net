@@ -21,7 +21,8 @@ static class Program
 
         #region MessageConventionsForNonNSB
 
-        endpointConfiguration.Conventions().DefiningEventsAs(t => t == typeof(StockTick));
+        var conventions = endpointConfiguration.Conventions();
+        conventions.DefiningEventsAs(type => type == typeof(StockTick));
 
         #endregion
 

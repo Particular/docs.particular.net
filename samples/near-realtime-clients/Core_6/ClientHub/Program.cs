@@ -30,7 +30,8 @@ static class Program
 
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        endpointConfiguration.Conventions().DefiningEventsAs(t => t == typeof(StockTick));
+        var conventions = endpointConfiguration.Conventions();
+        conventions.DefiningEventsAs(type => type == typeof(StockTick));
 
         endpointConfiguration.EnableInstallers();
 
