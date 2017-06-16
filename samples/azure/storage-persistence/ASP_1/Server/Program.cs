@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Persistence;
 
 class Program
 {
@@ -19,6 +20,9 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.StoragePersistence.Server");
         var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
         persistence.ConnectionString("UseDevelopmentStorage=true");
+
+        endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>()
+            .AssumeSecondaryIndicesExist();
 
         #endregion
 
