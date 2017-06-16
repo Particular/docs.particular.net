@@ -21,10 +21,10 @@ class Program
         endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        endpointConfiguration.Recoverability()
-            .Immediate(immediate => immediate.NumberOfRetries(0))
-            .Delayed(delayed => delayed.NumberOfRetries(0))
-            .DisableLegacyRetriesSatellite();
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
+        recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
+        recoverability.DisableLegacyRetriesSatellite();
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
@@ -32,8 +32,8 @@ class Program
 
         #region ConfigureClient
 
-        endpointConfiguration.UseWormholeGateway("Gateway.SiteA")
-            .RouteToSite<Ping>("SiteB");
+        var wormholeRoutingSettings = endpointConfiguration.UseWormholeGateway("Gateway.SiteA");
+        wormholeRoutingSettings.RouteToSite<Ping>("SiteB");
 
         #endregion
 

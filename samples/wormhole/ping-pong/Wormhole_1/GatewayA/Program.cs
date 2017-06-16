@@ -23,11 +23,13 @@ class Program
 
         #endregion
 
-        var gateway = await gatewayConfig.Start().ConfigureAwait(false);
+        var gateway = await gatewayConfig.Start()
+            .ConfigureAwait(false);
 
         Console.WriteLine("Press <enter> to exit");
         Console.ReadLine();
 
-        await gateway.Stop().ConfigureAwait(false);
+        await gateway.Stop()
+            .ConfigureAwait(false);
     }
 }

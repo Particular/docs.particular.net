@@ -1,29 +1,30 @@
 ---
 title: Using Wormhole to send messages between distributed sites
 component: Wormhole
-reviewed: 2017-05-26
+reviewed: 2017-06-16
 related:
  - nservicebus/wormhole
 ---
 
 ## Prerequisistes
 
-Open the solution in Visual Studio running as Administrator because the gateways need to register the listening URL, or add the registrations manually: 
+Open the solution in Visual Studio running as Administrator because the gateways need to register the listening URL, or add the registrations manually:
 
 ```
 netsh http add urlacl url=http://+:7777/Gateway.SiteA/ user=DOMAIN\user
 netsh http add urlacl url=http://+:7777/Gateway.SiteB/ user=DOMAIN\user
-``` 
+```
+
 
 ## Running the project
 
  1. Start the projects in debug mode.
- 2. Press `enter` a couple of times.
- 3. Observe the `PingHandler` logging processed message IDs in the Server window.
- 4. Observe the `PongHandler` logging processed message IDs in the Client window.
+ 1. Press `enter` a couple of times.
+ 1. Observe the `PingHandler` logging processed message IDs in the Server window.
+ 1. Observe the `PongHandler` logging processed message IDs in the Client window.
 
 
-## Code walk-through 
+## Code walk-through
 
 The solution consists of five projects.
 
@@ -42,7 +43,7 @@ snippet: ConfigureClient
 
 ### GatewayA
 
-The GatewayA project sets up the client-side gateway. This gateway is set up to be able to route messages to a remote site `B`. 
+The GatewayA project sets up the client-side gateway. This gateway is set up to be able to route messages to a remote site `B`.
 
 snippet: ConfigureGatewayA
 

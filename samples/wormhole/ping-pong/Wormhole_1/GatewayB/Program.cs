@@ -15,7 +15,6 @@ class Program
     {
         Console.Title = "Samples.Wormhole.PingPong.GatewayA";
 
-
         var gatewayConfig = new WormholeGatewayConfiguration<MsmqTransport, HttpTransport>("Gateway.SiteB", "SiteB");
 
         #region ConfigureGatewayB
@@ -25,11 +24,13 @@ class Program
 
         #endregion
 
-        var gateway = await gatewayConfig.Start().ConfigureAwait(false);
-       
+        var gateway = await gatewayConfig.Start()
+            .ConfigureAwait(false);
+
         Console.WriteLine("Press <enter> to exit");
         Console.ReadLine();
 
-        await gateway.Stop().ConfigureAwait(false);
+        await gateway.Stop()
+            .ConfigureAwait(false);
     }
 }

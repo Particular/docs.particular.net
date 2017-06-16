@@ -1,5 +1,6 @@
 ﻿using NServiceBus;
 
-public class Pong : IMessage
+public class Pong :
+    IMessage
 {
 }

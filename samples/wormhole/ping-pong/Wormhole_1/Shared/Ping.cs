@@ -1,5 +1,6 @@
 ﻿using NServiceBus;
 
-public class Ping : IMessage
+public class Ping :
+    IMessage
 {
 }
