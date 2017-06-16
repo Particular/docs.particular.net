@@ -107,3 +107,25 @@ snippet: Dispatcher
 The message pump is responsible for reading message from the underlying transport and pushing them into the [Message Handling Pipeline](/nservicebus/pipeline/).
 
 snippet: MessagePump
+
+
+## Transport Tests
+
+NServiceBus provides a test suite targeting transport implementations to verify the implementation.
+
+
+### Pulling in the tests
+
+The tests are shipped in the `NServiceBus.TransportTests.Sources` NuGet package. This package can be installed into a dedicated test project, in this sample, `CustomTransport.TransportTests` is used to contain the transport tests.
+
+
+### Configuring the tests
+
+The transport tests need to be configured to use the custom transport by implementing `IConfigureTransportInfrastructure`:
+
+snippet: TransportTestConfiguration
+
+
+### Running the tests
+
+The transport tests can be run with all test runners supporting NUnit.
