@@ -11,19 +11,19 @@ namespace Core6.Routing
     {
         void MapMessagesToLogicalEndpoints(EndpointConfiguration endpointConfiguration)
         {
-            //#region Routing-MapMessagesToLogicalEndpoints
+            #region Routing-MapMessagesToLogicalEndpoints
 
-            //var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            //var routing = transport.Routing();
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var routing = transport.Routing();
 
-            //routing.RouteToEndpoint(
-            //    messageType: typeof(AcceptOrder),
-            //    destination: "Sales");
-            //routing.RouteToEndpoint(
-            //    messageType: typeof(SendOrder),
-            //    destination: "Shipping");
+            routing.RouteToEndpoint(
+                messageType: typeof(AcceptOrder),
+                destination: "Sales");
+            routing.RouteToEndpoint(
+                messageType: typeof(SendOrder),
+                destination: "Shipping");
 
-            //#endregion
+            #endregion
         }
 
         class Instances :
