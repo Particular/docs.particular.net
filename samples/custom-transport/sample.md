@@ -10,7 +10,9 @@ related:
 This sample show how to build a Transport using the file system as a data store.
 
 
-DANGER: This is for learning purposes only and NOT for use in production.
+DANGER: This is for learning purposes only and NOT for use in production. 
+
+**This sample requires Visual Studio 2017.**
 
 
 ## Sample Structure
@@ -67,6 +69,13 @@ The `TransportDefinition` allows a Transport to define how it interacts with the
 snippet: TransportDefinition
 
 
+### TestSuiteConstraints
+
+The TestSuiteConstraints defines the scenarios supported by the transport
+
+snippet: TestSuiteConstraints
+
+
 ### Storage location
 
 This transport is hard coded to persist message to `%TEMP%FileTransport/ADDRESS/`.
@@ -107,3 +116,25 @@ snippet: Dispatcher
 The message pump is responsible for reading message from the underlying transport and pushing them into the [Message Handling Pipeline](/nservicebus/pipeline/).
 
 snippet: MessagePump
+
+
+## Transport Tests
+
+NServiceBus provides a test suite targeting transport implementations to verify the implementation.
+
+
+### Pulling in the tests
+
+The tests are shipped in the `NServiceBus.TransportTests.Sources` NuGet package. This package can be installed into a dedicated test project, in this sample, `CustomTransport.TransportTests` is used to contain the transport tests.
+
+
+### Configuring the tests
+
+The transport tests need to be configured to use the custom transport by implementing `IConfigureTransportInfrastructure`:
+
+snippet: TransportTestConfiguration
+
+
+### Running the tests
+
+The transport tests can be run with all test runners supporting NUnit.
