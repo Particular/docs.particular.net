@@ -4,6 +4,6 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus" Version="6.3.4" />
   </ItemGroup>
 </Project>
