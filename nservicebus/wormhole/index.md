@@ -13,7 +13,7 @@ reviewed: 2017-06-16
 | Transports              | HTTP / Custom                           | All NServiceBus Transports / HTTP                                                       |
 | Topology                | Gateway-in-Endpoint                     | gateway-per-site                                                                        |
 | Specify Destination     | When sending                            | Via configuration or message content                                                           |
-| Failure handling        | <ul><li>Immediate retries</li><li>Delayed retries</li></ul> | <ul><li>Immediate retries</li></ul>                                 |
+| Failure handling        | <ul style="padding-left: 20px;"><li>Immediate retries</li><li>Delayed retries</li></ul> | <ul style="padding-left: 20px;"><li>Immediate retries</li></ul>                                 |
 | Automatic deduplication | Built-in via persistence                | No                                                                                      |
 
 
