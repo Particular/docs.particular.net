@@ -28,7 +28,6 @@
 | ~~4.0.x~~ | ~~2016-10-11~~ | ~~2017-01-31~~    | ~~Superseded by 4.1.x~~           |
 | 3.5.x     | 2016-09-20     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 | ~~3.4.x~~ | ~~2016-09-12~~ | ~~2016-12-20~~    | ~~Superseded by 3.5.x~~           |
-| ~~3.3.x~~ | ~~2016-05-26~~ | ~~2016-12-12~~    | ~~Superseded by 3.4.x~~           |
 
 #### NServiceBus.SqlServer
 
@@ -61,7 +60,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.3.x     | 2017-06-02     | -                 | -                                 |
+| 1.4.x     | 2017-06-16     | -                 | -                                 |
+| 1.3.x     | 2017-06-02     | 2017-09-16        | Superseded by 1.4.x               |
 | 1.2.x     | 2017-03-24     | 2017-09-02        | Superseded by 1.3.x               |
 | 1.0.x     | 2016-10-11     | 2017-06-24        | Superseded by 1.2.x               |
 
