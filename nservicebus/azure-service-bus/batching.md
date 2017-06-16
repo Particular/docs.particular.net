@@ -33,6 +33,10 @@ Azure Service Bus optimizes multiple message sends from a handler by batching se
 
 NOTE: `BrokeredMessage` size is different between [tiers](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging) of Azure Service Bus.
 
+Batch size that can be sent from within a handler also depends on the `TransportTransactionMode`.
+
+WARNING: When `TransportTransactionMode.SendsAtomicWithReceive` is used, Azure Service Bus limits number of outgoing operations from a handler context to 100. If number of outgoing operations exceeds the limit, `TransactionContainsTooManyMessages` exception will be thrown and incoming message will be eventually moved to the error queue. To send more than 100 outgoing operations, lower transport transaction mode. 
+
 When batching messages sent from a handler, the underlying implementation of batching serializes messages. A serialized batch is usually bigger than the original messages combined. To ensure successful batch sending operation, batch should not exceed the `BrokeredMessage` size. To cater for the overhead caused by serialization, the final batch size is estimated using `MessageSizePaddingPercentage` setting. By default, it's set to 5%. It can be configured using [`MessageSizePaddingPercentage`](/nservicebus/azure-service-bus/configuration/full.md#controlling-connectivity-message-senders) configuration of the Message Senders.
 
 By default, message batches exceeding the maximum allowed size by Azure Service Bus, will throw a `MessageTooLargeException`. The default behavior can by changed with [`OversizedBrokeredMessageHandler<T>(T)`](/nservicebus/azure-service-bus/configuration/full.md#controlling-connectivity-message-senders) configuration of the Message Senders.
@@ -73,5 +77,3 @@ The default value for `MessageSizePaddingPercentage` is 5%. The custom percentag
 | 100K  | 137,937 | 146,464 | 7% |
 | 170K  | 233,509 | 246,815 | 6% |
 | 180K  | 247,161 | 261,149  | 6% |
-
-WARNING: When `TransportTransactionMode.SendsAtomicWithReceive` is used, Azure Service Bus limits number of outgoing operations from a handler context to 100. If number of outgoing operations exceeds the limit, `TransactionContainsTooManyMessages` exception will be thrown and incoming message will be eventually moved to the error queue. To send more than 100 outgoing operations, lower transport transaction mode. 

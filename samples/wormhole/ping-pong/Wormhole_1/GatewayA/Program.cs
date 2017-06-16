@@ -1,0 +1,35 @@
+﻿using System;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Transports.Http;
+using NServiceBus.Wormhole.Gateway;
+
+class Program
+{
+    static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
+        Console.Title = "Samples.Wormhole.PingPong.GatewayA";
+
+        var gatewayConfig = new WormholeGatewayConfiguration<MsmqTransport, HttpTransport>("Gateway.SiteA", "SiteA");
+
+        #region ConfigureGatewayA
+
+        gatewayConfig.ConfigureRemoteSite("SiteB", "Gateway.SiteB");
+
+        #endregion
+
+        var gateway = await gatewayConfig.Start()
+            .ConfigureAwait(false);
+
+        Console.WriteLine("Press <enter> to exit");
+        Console.ReadLine();
+
+        await gateway.Stop()
+            .ConfigureAwait(false);
+    }
+}

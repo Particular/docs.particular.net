@@ -39,12 +39,20 @@ class NamedConnectionString
             var connectionString = connectionStrings.ConnectionString;
 
             var connection = new SqlConnection(connectionString);
-            await connection.OpenAsync()
-                .ConfigureAwait(false);
+            try
+            {
+                await connection.OpenAsync()
+                    .ConfigureAwait(false);
 
-            // perform custom operations
+                // perform custom operations
 
-            return connection;
+                return connection;
+            }
+            catch
+            {
+                connection.Dispose();
+                throw;
+            }
         });
 
         #endregion

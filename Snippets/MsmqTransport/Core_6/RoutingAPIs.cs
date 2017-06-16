@@ -6,7 +6,6 @@ namespace Core6.Routing
     using NServiceBus;
     using NServiceBus.Features;
     using NServiceBus.Routing;
-    using NServiceBus.Routing.MessageDrivenSubscriptions;
 
     class RoutingAPIs
     {
@@ -52,7 +51,7 @@ namespace Core6.Routing
         class SendOrder
         {
         }
-        
+
         class MyEvent :
             IEvent
         {

@@ -40,9 +40,12 @@ public class MvcApplication :
         // Register the MVC controllers.
         builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-        // Set the dependency resolver to be Autofac.
+        // Register the endpoint as a factory as the instance isn't created yet.
+        builder.Register(ctx => endpoint).SingleInstance();
+        
         var container = builder.Build();
 
+        // Set the dependency resolver to be Autofac.
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
@@ -57,13 +60,6 @@ public class MvcApplication :
         endpointConfiguration.UseTransport<LearningTransport>();
 
         endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
-
-        var updater = new ContainerBuilder();
-        updater.RegisterInstance(endpoint);
-        updater.RegisterControllers(typeof(MvcApplication).Assembly);
-        var updated = updater.Build();
-
-        DependencyResolver.SetResolver(new AutofacDependencyResolver(updated));
 
         AreaRegistration.RegisterAllAreas();
         RegisterRoutes(RouteTable.Routes);

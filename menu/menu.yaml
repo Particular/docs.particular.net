@@ -5,6 +5,8 @@
     Articles:
     - Url: platform
       Title: Service Platform
+    - Url: tutorials/quickstart
+      Title: Quick Start Tutorial
     - Url: tutorials/intro-to-nservicebus
       Title: Messaging Basics Tutorial
       Articles:
@@ -258,6 +260,8 @@
         Title: Troubleshooting
       - Url: nservicebus/gateway/scale-out
         Title: Scale-Out
+    - Url: nservicebus/wormhole
+      Title: Wormhole Gateway
     - Url: nservicebus/outbox
       Title: Outbox
     - Url: nservicebus/messaging/databus
@@ -696,6 +700,13 @@
       Title: Scripting
     - Url: nservicebus/rabbitmq/rabbitmqclient-nuget
       Title: RabbitMQ.Client NuGet usage
+  - Url: nservicebus/sqs
+    Title: Amazon SQS
+    Articles:
+    - Url: nservicebus/sqs/configuration-options
+      Title: Configuration Options
+    - Url: nservicebus/sqs/why-use-sqs
+      Title: Why use SQS
   - Url: nservicebus/eventstoretransport
     Title: Event Store
   - Url: nservicebus/kafka

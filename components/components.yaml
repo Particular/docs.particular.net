@@ -39,9 +39,9 @@
     - NServiceBus.DataBus.AzureBlobStorage
     - NServiceBus.Azure
 
-- Key: AmazonSQS
+- Key: SQS
   Name: Amazon SQS Transport
-  DocoUrl: https://github.com/ahofman/NServiceBus.AmazonSQS
+  DocoUrl: nservicebus/sqs
   GitHubOwner: ahofman
   Category: Transport
   LicenseUrl: https://opensource.org/licenses/Apache-2.0
@@ -882,3 +882,15 @@
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.ZeroFormatter
   NugetOrder:
     - NServiceBus.ZeroFormatter
+
+- Key: Wormhole
+  Name: Wormhole Gateway
+  DocoUrl: nservicebus/wormhole
+  GitHubOwner: SzymonPobiega
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.Wormhole/blob/master/LICENSE
+  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Wormhole
+  NugetOrder:
+    - NServiceBus.Wormhole
+    - NServiceBus.Wormhole.Gateway

@@ -32,7 +32,7 @@ Operational documentation is best reviewed from the perceptive of the selected t
  * [Use multiple accounts for scale out](/nservicebus/azure-storage-queues/multi-storageaccount-support.md)
 
 
-### SQL Server Transport
+### [SQL Server Transport](/nservicebus/sqlserver/)
 
  * [Deployment options](/nservicebus/sqlserver/deployment-options.md)
  * [Scripting](/nservicebus/sqlserver/operations-scripting.md)
