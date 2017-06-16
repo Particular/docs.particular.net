@@ -17,12 +17,12 @@ Neither [direct topology](/nservicebus/rabbitmq/routing-topology.md#direct-routi
 
 ## Azure Service Bus
 
-* Using [aliases](/nservicebus/azure-service-bus/securing-connection-strings.md) instead of connectionstring will make it impossible to retry messages from service control.
-* Leveraging [multiple namespaces in a topology](/nservicebus/azure-service-bus/multiple-namespaces-support.md) will require a setup of multiple service control instances.
+* Using [aliases](/nservicebus/azure-service-bus/securing-connection-strings.md) instead of connectionstring will make it impossible to retry messages from ServiceControl.
+* Leveraging [multiple namespaces in a topology](/nservicebus/azure-service-bus/multiple-namespaces-support.md) will require a setup of multiple ServiceControl instances.
 * Customizing [brokered message creation](/nservicebus/azure-service-bus/brokered-message-creation.md) may lead to incompatible wire formats and deserialization errors.
 
 ## Azure Storage Queues
 
-* Using [aliases](/nservicebus/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts) instead of connectionstring will make it impossible to retry messages from service control.
-* Leveraging [multiple storage accounts](/nservicebus/azure-storage-queues/multi-storageaccount-support.md) will require a setup of multiple service control instances.
+* Using [aliases](/nservicebus/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts) instead of connectionstring will make it impossible to retry messages from ServiceControl.
+* Leveraging [multiple storage accounts](/nservicebus/azure-storage-queues/multi-storageaccount-support.md) will require a setup of multiple ServiceControl instances.
 * Choosing a [non default serializer for the message wrapper](/nservicebus/azure-storage-queues/configuration.md#configuration-parameters-serializemessagewrapperwith) or using a [custom envelopewrapper](/nservicebus/azure-storage-queues/configuration.md#custom-envelope-unwrapper) may lead to incompatible wire formats.
