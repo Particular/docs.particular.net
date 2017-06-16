@@ -6,25 +6,22 @@ using NServiceBus.Wormhole.Gateway;
 
 public class EndpointSide
 {
-    public void Configure(EndpointConfiguration config)
+    public void Configure(EndpointConfiguration endpointConfiguration)
     {
-
         #region DestinationSites
 
-        var routing = config.UseWormholeGateway("Gateway.SiteA");
+        var routing = endpointConfiguration.UseWormholeGateway("Gateway.SiteA");
 
         routing.RouteToSite<MyMessage>("SiteB");
         routing.RouteToSite<OtherMessage>(m => m.Destination);
 
         #endregion
-
     }
 
     public void ConfigureGateways(
         WormholeGatewayConfiguration<MsmqTransport, MsmqTransport> configSiteA,
         WormholeGatewayConfiguration<MsmqTransport, MsmqTransport> configSiteB)
     {
-
         #region RemoteSiteA
 
         configSiteA.ConfigureRemoteSite("SiteB", "Gateway.SiteB");
@@ -36,12 +33,10 @@ public class EndpointSide
         configSiteB.ConfigureRemoteSite("SiteA", "Gateway.SiteA");
 
         #endregion
-
     }
 
     public void ConfigureDestinationGateway(WormholeGatewayConfiguration<MsmqTransport, MsmqTransport> config)
     {
-
         #region DestinationEndpoints
 
         config.ForwardToEndpoint(MessageType.Parse("MyMessage, Messages"), "EndpointA");
@@ -52,15 +47,15 @@ public class EndpointSide
 
         #region SSD
 
-        config.EndpointInstances.AddOrReplaceInstances("SSD",
-            new List<EndpointInstance>
+        config.EndpointInstances.AddOrReplaceInstances(
+            sourceKey: "SSD",
+            endpointInstances: new List<EndpointInstance>
             {
-                    new EndpointInstance(endpoint: "ScaledOutEndpoint").AtMachine("Host1"),
-                    new EndpointInstance(endpoint: "ScaledOutEndpoint").AtMachine("Host2")
+                new EndpointInstance(endpoint: "ScaledOutEndpoint").AtMachine("Host1"),
+                new EndpointInstance(endpoint: "ScaledOutEndpoint").AtMachine("Host2")
             });
 
         #endregion
-
     }
 
     class MyMessage : IMessage

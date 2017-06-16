@@ -1,19 +1,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wormhole_1", "Wormhole_1\Wormhole_1.csproj", "{AA684AD6-808E-4E27-B2DA-912F0E7F6A95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AA684AD6-808E-4E27-B2DA-912F0E7F6A95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA684AD6-808E-4E27-B2DA-912F0E7F6A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA684AD6-808E-4E27-B2DA-912F0E7F6A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA684AD6-808E-4E27-B2DA-912F0E7F6A95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

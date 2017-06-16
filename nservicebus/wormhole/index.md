@@ -2,17 +2,17 @@
 title: Wormhole Gateway
 summary: How to send messages between geographically separate sites using Wormhole Gateway 
 component: Wormhole
-reviewed: 2017-05-20
+reviewed: 2017-06-16
 ---
 
-`NServiceBus.Wormhole` is an alternative to the [Gateway](/nservicebus/gateway/). Both components allow connecting NServiceBus endpoints across geographical boundaries. The following table compares the most important aspects of both technologies.
+`NServiceBus.Wormhole` is an alternative to the [Gateway](/nservicebus/gateway/). Both components support connecting NServiceBus endpoints across geographical boundaries. The following table compares the most important aspects of both technologies.
 
 |                         | Gateway                                 | Wormhole                                                                                |
 |-------------------------|-----------------------------------------|-----------------------------------------------------------------------------------------|
 | Encryption              | Transport-level                         | No                                                                                      |
 | Transports              | HTTP / Custom                           | All NServiceBus Transports / HTTP                                                       |
 | Topology                | Gateway-in-Endpoint                     | gateway-per-site                                                                        |
-| Specify Destination     | When sending                            | Via config or message content                                                           |
+| Specify Destination     | When sending                            | Via configuration or message content                                                           |
 | Failure handling        | <ul><li>Immediate retries</li><li>Delayed retries</li></ul> | <ul><li>Immediate retries</li></ul>                                 |
 | Automatic deduplication | Built-in via persistence                | No                                                                                      |
 
@@ -51,6 +51,7 @@ The downside of the Azure transports is the need for for the connection to be op
 
 
 The routing in Wormhole is broken down into three areas:
+
  * The origin endpoint has to be configured to route messages of a given type to the local gateway
  * The origin site gateway has to have a tunnel configured for the destination site
  * The destination site gateway has to know which endpoint should receive the message
@@ -69,7 +70,7 @@ In order to pass messages between the sites the Wormhole gateways need to know t
 
 snippet: RemoteSiteA
 
-snippet: RemoteSiteB  
+snippet: RemoteSiteB
 
 
 ### Destination gateway
@@ -78,16 +79,18 @@ The gateway in the destination site has to be configured to route the message to
 
 snippet: DestinationEndpoints
 
+
 #### Sender-side distribution
 
 [Bus transports](/nservicebus/transports/#types-of-transports-bus-transports), such as MSMQ allow scaling out via [sender-side distribution](/nservicebus/msmq/sender-side-distribution.md). The Wormhole allows configuring the sender-side distribution in the destination site.
 
 snippet: SSD
 
-NOTE: The snippet above contains a hard-coded list of instances. In a real system it might be better to load the list of instances from a configuration file or database. The [file-based routing](/nservicebus/messaging/file-based-routing.md) extension is a good starting point to see how this can be implemented.
+NOTE: The snippet above contains a hard-coded list of instances. In a real system it is better to load the list of instances from a configuration file or database. The [file-based routing](/nservicebus/messaging/file-based-routing.md) extension is a good starting point to see how this can be implemented.
+
 
 ## De-duplication
 
-The messages travelling through a Wormhole can get duplicated along the way, between the endpoints and the Wormhole nodes or in the Wormhole tunnel. Even when using a DTC-capable transport like MSMQ or SQL Server on both ends, the message can get duplicated when entering or existing the tunnel. The Wormhole does not come with an integrated message de-duplication mechanism.
+The messages traveling through a Wormhole can get duplicated along the way, between the endpoints and the Wormhole nodes or in the Wormhole tunnel. Even when using a DTC-capable transport, like MSMQ or SQL Server, on both ends, the message can get duplicated when entering or exiting the tunnel. The Wormhole does not come with an integrated message deduplication mechanism.
 
-Wormhole does, however, preserve the message ID between the source and the ultimate destination. The message ID can be used to de-duplicate at the destination. If the destination endpoint uses the [Outbox](/nservicebus/outbox/) the de-duplication will be done automatically by means of the Outbox mechanism.
+Wormhole does, however, preserve the message ID between the source and the ultimate destination. The message ID can be used to deduplicate at the destination. If the destination endpoint uses the [Outbox](/nservicebus/outbox/) the deduplication will be done automatically by means of the Outbox mechanism.
