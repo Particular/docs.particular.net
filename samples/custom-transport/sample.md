@@ -69,13 +69,6 @@ The `TransportDefinition` allows a Transport to define how it interacts with the
 snippet: TransportDefinition
 
 
-### TestSuiteConstraints
-
-The TestSuiteConstraints defines the scenarios supported by the transport
-
-snippet: TestSuiteConstraints
-
-
 ### Storage location
 
 This transport is hard coded to persist message to `%TEMP%FileTransport/ADDRESS/`.
