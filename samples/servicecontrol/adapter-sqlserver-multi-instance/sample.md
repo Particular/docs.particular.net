@@ -34,28 +34,7 @@ NOTE: If other ServiceControl instances have been running on this machine, it's 
 
 NOTE: In order to connect to a different SQL Server instance, ensure all database connection strings are updated in the sample.
 
-
-## Running the project
-
- 1. Start the projects: Adapter, Sales and Shipping (right-click on the project, select the `Debug > Start new instance` option). Make sure adapter starts first because on start-up it creates a queue that is used for heartbeats.
- 1. Open ServicePulse (by default it's available at http://localhost:9090/#/dashboard) and select the Endpoints Overview. `Samples.ServiceControl.SqlServerTransportAdapter.Shipping` endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed
- 1. Go to the Sales console and press `o` to create an order.
- 1. Notice the Shipping endpoint receives the `OrderAccepted` event from Sales and publishes `OrderShipped` event.
- 1. Notice the Sales endpoint logs that it processed the `OrderShipped` event. 
- 1. Go to the Sales console and press `f` to simulate message processing failure.
- 1. Press `o` to create another order. Notice the `OrderShipped` event fails processing in Sales and is moved to the error queue
- 1. Press `f` again to disable message processing failure simulation in Sales.
- 1. Go to the Shipping console and press `f` to simulate message processing failure.
- 1. Go back to Sales and press `o` to create yet another order. Notice the `OrderAccepted` event fails in Shipping and is moved to the error queue.
- 1. Press `f` again to disable message processing failure simulation in Shipping.
- 1. Open ServicePulse and select the Failed Messages view.
- 1. Notice the existence of one failed message group with two messages. Open the group.
- 1. One of the messages is `OrderAccepted` which failed in `Shipping`, the other is `OrderShipped` which failed in `Sales`.
- 1. Press the "Retry all" button.
- 1. Go to the Shipping console and verify that the `OrderAccepted` event has been successfully processed.
- 1. Go to the Sales console and verify that both `OrderShipped` events have been successfully processed.
- 1. Shut down the Shipping endpoint.
- 1. Open ServicePulse and notice a red label next to the heart icon. Click on the that icon to open the Endpoints Overview. Notice that `Samples.ServiceControl.SqlServerTransportAdapter.Shipping` is now displayed in the Inactive Endpoints tab.
+include: adapter-running-project
 
 
 ## Code walk-through 
@@ -106,23 +85,4 @@ Because the ServiceControl has been installed under a non-default instance name 
 
 snippet: ControlQueueOverride
 
-
-## How it works
-
-
-### Heartbeats
-
-The heartbeat messages arrive at adapter's `Particular.ServiceControl` queue. From there they are moved to `Particular.ServiceControl.SQL` queue in ServiceControl database. In case of problems (e.g. destination database being down) the forward attempts are repeated configurable number of times after which messages are dropped to prevent the queue from growing indefinitely.
-
-### Audits
-
-The audit messages arrive at adapter's `audit` queue. From there they are moved to `audit` queue in ServiceControl database and are ingested by ServiceControl.
-
-
-### Retries
-
-If a message fails all recoverability attempts in a business endpoint, it is moved to the `error` queue located in the adapter database. The adapter enriches the message by adding `ServiceControl.RetryTo` header pointing to the adapter's input queue in ServiceControl database (`ServiceControl.SqlServer.Adapter.Retry`). Then the message is moved to the `error` queue in ServiceControl database and ingested into ServiceControl RavenDB store. 
-
-When retrying, ServiceControl looks for `ServiceControl.RetryTo` header and, if it finds it, it sends the message to the queue from that header instead of the ultimate destination.
-
-The adapter picks up the message and forwards it to the destination using its endpoint-facing transport.
+include: adapter-how-it-works

@@ -3,7 +3,8 @@ title: ServiceControl Transport Adapter
 summary: How do decouple ServiceControl from endpoints' transport
 component: SCTransportAdapter
 related:
- - samples/servicecontrol/adapter-sqlserver
+ - samples/servicecontrol/adapter-sqlserver-multi-schema
+ - samples/servicecontrol/adapter-sqlserver-multi-instance
  - samples/servicecontrol/adapter-mixed-transports
 ---
 
