@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Configuration.AdvanceExtensibility;
 using NServiceBus.Transports.Http;
 using NServiceBus.Wormhole.Gateway;
 
@@ -22,6 +23,9 @@ class Program
         gatewayConfig.ConfigureRemoteSite("SiteB", "Gateway.SiteB");
 
         #endregion
+
+        //Hack necessary to make 6.3.x MSMQ work
+        gatewayConfig.CustomizeLocalTransport((c, t) => t.GetSettings().Set("errorQueue", "poison"));
 
         var gateway = await gatewayConfig.Start()
             .ConfigureAwait(false);

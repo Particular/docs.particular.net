@@ -44,13 +44,14 @@
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.2.4\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
+    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Raw, Version=1.0.0.0, Culture=neutral, PublicKeyToken=215652b07edbd86c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Raw.1.0.0\lib\net452\NServiceBus.Raw.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Transports.Http, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Transports.Http.0.1.1\lib\net46\NServiceBus.Transports.Http.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Transports.Http, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Transports.Http.1.0.0\lib\net46\NServiceBus.Transports.Http.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Wormhole.Gateway, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Wormhole.Gateway.1.0.0\lib\net46\NServiceBus.Wormhole.Gateway.dll</HintPath>
@@ -134,6 +135,7 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="packages.config" />
   </ItemGroup>
