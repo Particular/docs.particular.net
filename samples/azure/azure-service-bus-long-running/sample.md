@@ -1,7 +1,7 @@
 ---
 title: Long running operations with Azure Service Bus Transport
 component: ASB
-reviewed: 2016-09-12
+reviewed: 2017-06-16
 related:
 - nservicebus/azure-service-bus
 ---
@@ -50,7 +50,11 @@ Processor ->> Client: LongProcessingFinished / LongProcessingFailed
 
 ## Performing processing outside of a message handler
 
-When processing is taking a long time, [message lock renewal](/nservicebus/azure-service-bus/message-lock-renewal.md) can be used, but should be avoided to keep message locking to the minimum. The alternative approach is to perform a long running operation in an external service, outside of a message handler context and notify the interested parts of the results. 
+When processing is taking a long time, [message lock renewal](/nservicebus/azure-service-bus/message-lock-renewal.md) can be used, but should be avoided to keep message locking to the minimum. 
+
+include: autorenewtimeout-warning
+
+The alternative approach is to perform a long running operation in an external service, outside of a message handler context and notify the interested parts of the results. 
 
 This sample is using a standalone process `Processor` to run an emulated long running work and raises events for successful or failed outcomes. `Server` and `Processor` use Azure Storage table to communicate `RequestRecord`s in the `Requests` table.
 
