@@ -12,11 +12,12 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Msmq.Simple";
-        #region ConfigureMsmq
+        #region ConfigureMsmqEndpoint
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Msmq.Simple");
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-    
+
+        // As MSMQ is the default transport, calling endpointConfiguration.UseTransport<MsmqTransport>() isn't necessary.
+        
         #endregion
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
