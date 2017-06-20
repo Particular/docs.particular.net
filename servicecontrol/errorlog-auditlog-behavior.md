@@ -17,6 +17,7 @@ This behavior can be set through ServiceControl Management.
 
 ![](managementutil-queueconfig.png 'width=500')
 
+NOTE: ServiceControl Monitoring instances also contain a configuration option for an error queue. ServiceControl Monitoring instances do not read from their error queue. This error queue is used for messages that the ServiceControl Monitoring instance cannot process. The ServiceControl Monitoring error queue can be the same queue that the standard ServiceControl instance consumes.  
 
 ### Error and Audit Forwarding Queues
 
