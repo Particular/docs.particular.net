@@ -27,19 +27,7 @@ By default, the `BrokeredMessage` body is assumed to be a byte array to remain b
 
 NOTE: The `SupportedBrokeredMessageBodyTypes.Stream` body format is recommended, but this mode is currently NOT compatible with ServiceControl. A [ServiceControl transport adapter](/servicecontrol/transport-adapter/) is required in order to leverage both.
 
-To specify how the `BrokeredMessage` body is stored and retrieved, override the default conventions.
-
 partial: converter
-
-
-#### Outgoing message:
-
-snippet: ASB-outgoing-message-convention
-
-
-#### Incoming message:
-
-snippet: ASB-incoming-message-convention
 
 
 ### Brokered Message content serialization

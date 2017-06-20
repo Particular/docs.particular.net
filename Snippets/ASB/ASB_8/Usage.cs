@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
-using Microsoft.ServiceBus.Messaging;
 using NServiceBus;
-using NServiceBus.Transport.AzureServiceBus;
 
 class Usage
 {
@@ -20,15 +17,6 @@ class Usage
     void SettingConnectionString(EndpointConfiguration endpointConfiguration)
     {
         #region setting_asb_connection_string
-
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.ConnectionString("Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
-
-        #endregion
-    }
-    void SettingConnectionString_UpgradeGuide(EndpointConfiguration endpointConfiguration)
-    {
-        #region 6to7_setting_asb_connection_string
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         transport.ConnectionString("Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
@@ -195,57 +183,4 @@ class Usage
 
         #endregion
     }
-
-    void IncomingBrokeredMessageBody(EndpointConfiguration endpointConfiguration)
-    {
-#pragma warning disable 618
-
-        #region asb-incoming-message-convention [7.0,7.1.0)
-
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-
-        transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
-        // OR
-        transport.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
-        #endregion
-#pragma warning restore 618
-
-    }
-
-    void OutgoingBrokeredMessageBody(EndpointConfiguration endpointConfiguration)
-    {
-#pragma warning disable 618
-
-        #region asb-outgoing-message-convention [7.0,7.1.0)
-
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-
-        transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
-        // OR
-        transport.UseOutgoingMessageToBrokeredMessageConverter<CustomOutgoingMessageConversion>();
-
-        #endregion
-#pragma warning restore 618
-    }
-
-
-#pragma warning disable 618
-    public class CustomIncomingMessageConversion :
-        IConvertBrokeredMessagesToIncomingMessages
-    {
-        public IncomingMessageDetails Convert(BrokeredMessage brokeredMessage)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class CustomOutgoingMessageConversion :
-        IConvertOutgoingMessagesToBrokeredMessages
-    {
-        public IEnumerable<BrokeredMessage> Convert(IEnumerable<BatchedOperation> outgoingOperations, RoutingOptions routingOptions)
-        {
-            throw new NotImplementedException();
-        }
-    }
-#pragma warning restore 618
 }

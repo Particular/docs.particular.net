@@ -7,7 +7,7 @@ tags:
 - Azure
 redirects:
 - nservicebus/azure-service-bus/configuration/configuration
-reviewed: 2017-04-05
+reviewed: 2017-06-08
 ---
 
 
@@ -22,15 +22,6 @@ A topology defines what the underlying layout of Azure Service Bus messaging ent
 
  * `UseForwardingTopology()`: Selects `ForwardingTopology` as the topology to be used by the transport.
  * `UseEndpointOrientedTopology()`: Selects `UseEndpointOrientedTopology` as the topology to be used by the transport.
-
-
-### Forwarding Topology
-
-
-The [Forwarding Topology](/nservicebus/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology) defines a queue per endpoint and a shared set of topics to do the publishing. It can be configured using the following settings:
-
- * `NumberOfEntitiesInBundle(int)`: The number of topics in the bundle, defaults to 2.
- * `BundlePrefix(string)`: The prefix used in the entity name to differentiate entities from the bundle from other entities.
 
 
 ### Endpoint Oriented Topology
