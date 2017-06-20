@@ -23,6 +23,8 @@ The poller picks and dispatches messages in batches of specified size:
 
 TODO: code snippet with a setting `BatchSize(int size)`
 
+When the delay time lapses, SQL Server transport moves a batch of messages to the input queue. Note that this means the exact time of delivering delayed message is always approximate.
+
 
 ## Backwards compatibility
 
