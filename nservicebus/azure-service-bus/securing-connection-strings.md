@@ -34,6 +34,7 @@ When this setting is enabled, `ReplyTo` header will no longer contain raw connec
 [queue name]@[alias]
 ```
 
+NOTE: Using namespace aliases is currently NOT compatible with ServiceControl. A [ServiceControl transport adapter](/servicecontrol/transport-adapter/) is required in order to leverage both.
 
 ## Configuration
 

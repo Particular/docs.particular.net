@@ -19,6 +19,7 @@ Azure Service Bus transport supports configuring multiple Azure Service Bus name
 
 The namespace partitioning strategy can be configured using the `NamespacePartitioning()` configuration API section, where the cross namespace routing can be configured using the `NamespaceRouting()` API section. NServiceBus provides a few namespace partitioning strategies implementations. It's also possible to implement a [custom partitioning strategy](/nservicebus/azure-service-bus/addressing-logic.md#namespace-partitioning-implementing-a-custom-namespace-partitioning-strategy) if needed.
 
+NOTE: Using multiple namespace is currently NOT compatible with ServiceControl. A [ServiceControl transport adapter](/servicecontrol/transport-adapter/) or multiple installations of ServiceControl is required in order to leverage both.
 
 ## Single namespace partitioning
 

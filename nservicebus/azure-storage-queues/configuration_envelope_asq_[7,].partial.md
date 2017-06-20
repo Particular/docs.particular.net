@@ -7,3 +7,5 @@ Creating this envelope can cause uneeded complexity should headers not be needed
 The snippet below shows custom unwrapping logic that enables both NServiceBus formatted and plain JSON messages to be consumed.
 
 snippet: CustomEnvelopeUnwrapper 
+
+NOTE: This feature is currently NOT compatible with ServiceControl. A [ServiceControl transport adapter](/servicecontrol/transport-adapter/) is required in order to leverage both.
