@@ -37,7 +37,7 @@ class Program
 
         Console.WriteLine($"Watching MSMQ: {queuePath} for messages. Received messages will be sent to the SqlRelay");
         Console.WriteLine("Press any key to quit.");
-        var key = Console.ReadKey();
+        Console.ReadKey();
     }
 
     static void MsmqBridgeOnReceiveCompleted(object sender, ReceiveCompletedEventArgs receiveCompletedEventArgs)
@@ -109,7 +109,7 @@ class Program
 
     static void SendMessageToSql(string connectionString, string queue, byte[] messageBody, Dictionary<string, string> headers)
     {
-        string insertSql =
+        var insertSql =
             $@"INSERT INTO [{queue}] (
         Id,
         Recoverable,

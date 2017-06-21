@@ -19,7 +19,7 @@ class Program
         busConfiguration.EnableInstallers();
         #endregion
 
-        using (var bus = Bus.Create(busConfiguration).Start())
+        using (Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

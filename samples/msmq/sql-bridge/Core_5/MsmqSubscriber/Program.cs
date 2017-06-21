@@ -16,7 +16,7 @@ class Program
         persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=PersistenceForMsmqTransport;Integrated Security=True");
 
         #endregion
-        using (var bus = Bus.Create(busConfiguration).Start())
+        using (Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("\r\nPress any key to stop program\r\n");
             Console.ReadKey();

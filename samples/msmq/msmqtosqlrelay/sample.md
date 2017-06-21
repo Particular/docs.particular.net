@@ -1,7 +1,7 @@
 ---
 title: MsmqToSql Relay
 summary: Setup a SQL Relay so it can receive events from a MSMQ publisher.
-reviewed: 2016-03-21
+reviewed: 2017-06-21
 component: Core
 related:
 - transports
@@ -29,7 +29,7 @@ snippet: event
 ## MsmqPublisher
 
  * This endpoint uses MSMQ as the transport. It publishes events every time `Enter` key is pressed.
- * This endpoint uses NHibernate persistence. It uses a database called, `PersistenceForMsmqTransport` for the persistence. Use the script `CreateDatabase.sql` contained in this project to create the `PersistenceForMsmqTransport` database and the tables required for NHibernatePersistence. Alternatively running the MsmqPublisher within VisualStudio in debug mode will also create the necessary tables for Subscription and Timeout storage.
+ * This endpoint uses NHibernate persistence. It uses a database called, `PersistenceForMsmqTransport` for the persistence. Use the script `CreateDatabase.sql` contained in this project to create the `PersistenceForMsmqTransport` database and the tables required for NHibernatePersistence. Alternatively running the MsmqPublisher within Visual Studio in debug mode will also create the necessary tables for Subscription and Timeout storage.
 
 snippet: CreateDatabase
 

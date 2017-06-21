@@ -1,7 +1,7 @@
 ---
 title: SQL Bridge
 summary: Setup a SQL subscriber so it can subscribe to events from a MSMQ publisher.
-reviewed: 2016-03-21
+reviewed: 2017-06-21
 component: Core
 related:
 - transports
@@ -30,7 +30,7 @@ snippet: event
 ## MsmqPublisher
 
 
-### The publisher configuration.
+### The publisher configuration
 
 snippet: publisher-config
 

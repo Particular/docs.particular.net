@@ -37,7 +37,7 @@ class Program
 
         Console.WriteLine($"Watching MSMQ: {queuePath} for messages. Received messages will be sent to the SqlRelay");
         Console.WriteLine("Press any key to quit.");
-        var key = Console.ReadKey();
+        Console.ReadKey();
     }
 
 

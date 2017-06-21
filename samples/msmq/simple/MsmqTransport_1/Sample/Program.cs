@@ -16,7 +16,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Msmq.Simple");
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-    
+
         #endregion
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();

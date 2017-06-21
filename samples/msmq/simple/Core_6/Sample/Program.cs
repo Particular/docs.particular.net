@@ -16,8 +16,9 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Msmq.Simple");
 
-        // As MSMQ is the default transport, calling endpointConfiguration.UseTransport<MsmqTransport>() isn't necessary.
-        
+        // MSMQ is the default transport
+        // calling endpointConfiguration.UseTransport<MsmqTransport>() isn't necessary.
+
         #endregion
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();

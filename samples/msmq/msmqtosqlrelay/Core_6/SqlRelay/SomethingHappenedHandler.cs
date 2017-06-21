@@ -9,12 +9,11 @@ class SomethingHappenedHandler :
 {
     static ILog log = LogManager.GetLogger<SomethingHappenedHandler>();
 
-    public async Task Handle(SomethingHappened message, IMessageHandlerContext context)
+    public Task Handle(SomethingHappened message, IMessageHandlerContext context)
     {
         log.Info("Sql Relay has now received this event from the MSMQ. Publishing this event for downstream SQLSubscribers");
         // relay this event to other interested SQL subscribers
-        await context.Publish(message)
-            .ConfigureAwait(false);
+        return context.Publish(message);
     }
 }
 #endregion

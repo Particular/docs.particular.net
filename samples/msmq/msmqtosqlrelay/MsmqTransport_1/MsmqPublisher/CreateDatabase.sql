@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[Subscription](
 	[LogicalEndpoint] [varchar](450),
 	[Version] [varchar](450),
 	[TypeName] [varchar](450),
-	PRIMARY KEY CLUSTERED 
+	PRIMARY KEY CLUSTERED
 	(
 		[SubscriberEndpoint] ASC,
 		[MessageType] ASC
@@ -29,7 +29,7 @@ CREATE TABLE [dbo].[TimeoutEntity](
 	[Time] [datetime],
 	[Headers] [nvarchar](max),
 	[Endpoint] [nvarchar](440),
-	PRIMARY KEY NONCLUSTERED 
+	PRIMARY KEY NONCLUSTERED
 	(
 		[Id] ASC
 	)
