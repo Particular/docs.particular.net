@@ -12,7 +12,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.Msmq.Simple";
-        #region ConfigureMsmq
+        #region ConfigureMsmqEndpoint
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Msmq.Simple");
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
