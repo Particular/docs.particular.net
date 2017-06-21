@@ -37,7 +37,7 @@ Because the version has been baked in to the RavenDB document id since the very 
  
 ## Non-versioned subscriptions support
 
-As of `NServiceBus.RavenDB` V4.2.0 support for non-versioned subscriptions has beed introduced. Non-versioned subscription are an opt-in feature due to their incompatibility with the default subscription storage behavior. To enable support for storing subscriptions without storing the message version configure your endpoint as follows:
+As of `NServiceBus.RavenDB` V4.2.0 support for non-versioned subscriptions has beed introduced. Non-versioned subscription are an opt-in feature due to their incompatibility with the default subscription storage behavior. To enable support for storing subscriptions without storing the message version change endpoint configuration as follows:
 
 ```
 <insert code snippet here>
