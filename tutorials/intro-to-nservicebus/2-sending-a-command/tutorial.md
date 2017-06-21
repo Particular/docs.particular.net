@@ -165,7 +165,7 @@ snippet: AddRunLoopToAsyncMain
 
 Now we can run the solution. Whenever we press `P` on the console, a command message is sent and then processed by a handler class in the same project.
 
-```no-highlight
+```
 INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
 p
 INFO  ClientUI.Program Sending PlaceOrder command, OrderId = 1fb61e01-34a3-4562-82b1-85278565b59d

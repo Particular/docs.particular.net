@@ -36,7 +36,7 @@ WARNING: This sample uses `Console.Writeline` instead of standard logging only f
 
 In this endpoint, the message is retried successively without any delay and then after the final failure it is forwarded to the configured error queue. 
 
-```no-highlight
+```
 Handling MyMessage with MessageId:b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8
 Handling MyMessage with MessageId:b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8
 Handling MyMessage with MessageId:b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8
@@ -52,7 +52,7 @@ System.Exception: An exception occurred in the handler.
 
 In this endpoint, the message is tried successively first and then delayed for the configured amount of time and then retried again. After the final configured retry the message is moved to the error queue. The sample displays the retry number for clarity. 
 
-```no-highlight
+```
 This is retry number 1
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f

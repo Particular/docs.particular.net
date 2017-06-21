@@ -29,13 +29,13 @@ The MSMQ MMC snap-in can be used to manage queues.
 
 Use one of the following based on the OS
 
-```no-highlight
+```
 Start > Run > compmgmt.msc (Computer Management) > Features > Message Queuing
 ```
 
 or
 
-```no-highlight
+```
 Start > Run > compmgmt.msc (Computer Management) > Services and Applications > Message Queuing
 ```
 

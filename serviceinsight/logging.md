@@ -19,6 +19,6 @@ Note that all the HTTP communications with ServiceControl are logged; the reques
 
 If access to more detailed log entries is required, the complete log entries can be found at the following location and file format, stored on the machine:
 
-```no-highlight
+```
 %LocalAppData%/Particular/ServiceInsight/log-{date}.txt
 ```

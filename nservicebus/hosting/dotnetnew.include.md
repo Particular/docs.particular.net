@@ -44,13 +44,13 @@ This command is currently in preview and [not documented](https://github.com/dot
 
 The downloaded NuGets are cached on on disk at:
 
-```no-highlight
+```
 %USERPROFILE%\.templateengine\dotnetcli\vDOTNETVERSION\packages
 ```
 
 With the list of installed templates listed in:
 
-```no-highlight
+```
 %USERPROFILE%\.templateengine\dotnetcli\vDOTNETVERSION\settings.json
 ```
 

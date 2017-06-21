@@ -56,7 +56,7 @@ Get-Command -Module NServiceBus.PowerShell
 
 Help for each cmdlet is incorporated within the module. Help can be accessed via the standard [PowerShell Get-Help Command](https://technet.microsoft.com/en-us/library/ee176848.aspx). For example `Get-Help Set-NServiceBusLocalMachineSettings` returns the following information
 
-```no-highlight
+```
 NAME
     Set-NServiceBusLocalMachineSettings
 
@@ -80,7 +80,7 @@ DESCRIPTION
 
 Multiple versions of the [RavenDB](/nservicebus/ravendb/version-compatibility.md) client are supported. Previous versions of the PowerShell module included cmdlets to install and test RavenDB V2.0.2375. To avoid confusion these cmdlets were removed in Version 5.0:
 
-```no-highlight
+```
 Install-NServiceBusRavenDB
 Test-NServiceBusRavenDBInstallation
 ```

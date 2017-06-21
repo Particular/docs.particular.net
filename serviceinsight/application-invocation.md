@@ -14,7 +14,7 @@ The benefits of this feature can be leveraged without installing ServicePulse.
 
 Click the link in ServicePulse, it opens a link in the browser, like this:
 
-```no-highlight
+```
 si://localhost:33333/api?search=487b5055-11bb-4a70-a4fd-a2c00125aa43
 ```
 

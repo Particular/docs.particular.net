@@ -32,7 +32,7 @@ Look at `V2Publisher`, which is very similar to the publisher from the PubSub sa
 
 ## Publisher output
 
-```no-highlight
+```
 Press 'Enter' to publish a message, Ctrl + C to exit.
 Published event.
 ```
@@ -40,7 +40,7 @@ Published event.
 
 ## V1Subscriber output
 
-```no-highlight
+```
 Press any key to stop program
 Something happened with some data 1 and no more info
 ```
@@ -48,7 +48,7 @@ Something happened with some data 1 and no more info
 
 ## V2Subscriber output
 
-```no-highlight
+```
 Press any key to stop program
 Something happened with some data 1 and more information It's a secret.
 ```

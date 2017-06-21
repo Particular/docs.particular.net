@@ -74,7 +74,7 @@ runas /user:MyDomain\MyTestUser cmd.exe
 
 If the command returns the error below then the user account cannot be tested this way without adjusting the logon rights. Normally this only occurs if the computer is configured as a domain controller or the System Administrator has restricted logon access using group policies.
 
-```no-highlight
+```
 1385: Logon failure: the user has not been granted the requested logon type at this computer.
 ```
 

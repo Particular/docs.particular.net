@@ -34,13 +34,13 @@ In the **ClientUI** application, press `P` to place an order, and watch what hap
 
 It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint. In the **Sales** endpoint window you should see:
 
-```no-highlight
+```
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = 9b16a5ce-e6ae-4447-a911-b7d6e265a1f0
 ```
 
 Then the **Sales** endpoint will publish an **OrderPlaced** event, which will be received by the **Billing** endpoint. In the **Billing** endpoint window you should see:
 
-```no-highlight
+```
 INFO  Billing.OrderPlacedHandler Billing has received OrderPlaced, OrderId = 9b16a5ce-e6ae-4447-a911-b7d6e265a1f0
 ```
 
@@ -82,7 +82,7 @@ snippet: ThrowTransientException
 
 As you will see in the **Sales** window, 80% of the messages will go through as normal, but when an exception occurs, the output will be different:
 
-```no-highlight
+```
 INFO  NServiceBus.RecoverabilityExecutor Immediate Retry is going to retry message '43400b29-c235-471f-ab4f-a7760145ea88' because of an exception:
 System.Exception: Oops
     at <long stack trace>
@@ -113,7 +113,7 @@ First we'll create the **Shipping** project and set up its dependencies:
 
 1. In the solution, create a new **Console App (.NET Framework)** project (or just **Console Application**) named **Shipping**.
 1. In the **Shipping** project, add the `NServiceBus` NuGet package, which is already present in the other projects in the solution. In the Package Manager Console window type:
-    ```no-highlight
+    ```
     Install-Package NServiceBus -ProjectName Shipping
     ```
 1. In the **Shipping** project, add a reference to the **Messages** project, so that we have access to the `OrderPlaced` event.
@@ -154,7 +154,7 @@ Now run the solution, and assuming you remembered to [update the startup project
 
 As you place orders by pressing `P` in the **ClientUI** window, you will see the **Shipping** endpoint reacting to `OrderPlaced` events:
 
-```no-highlight
+```
 INFO  Shipping.OrderPlacedHandler Shipping has received OrderPlaced, OrderId = 25c5ba63-eed8-4531-9caa-ffe353105ee1
 ```
 

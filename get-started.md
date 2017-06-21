@@ -45,7 +45,7 @@ NServiceBus consists of a many components (some optional) which are deployed thr
 
 The majority of the NuGet packages are listed under the [NServiceBus NuGet User](https://www.nuget.org/profiles/nservicebus) with the main library is deployed via the [NServiceBus NuGet package](https://www.nuget.org/packages/NServiceBus/).
 
-```no-highlight
+```
 PM> Install-Package NServiceBus
 ```
 

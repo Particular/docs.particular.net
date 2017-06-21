@@ -25,7 +25,7 @@ This sample also requests a 30 second `CancelOrder` timeout that will mark the s
 
 The output to the console will be
 
-```no-highlight
+```
 Storage locations:
 Learning Persister: SolutionDir\Sample\bin\Debug\.sagas
 Learning Transport: SolutionDir\

@@ -48,7 +48,7 @@ Start `Endpoint1`
 Note that a `.learningtransport` directory exists at the solution root. It will have the following structure:
 
 <!-- tree /A /F |clip-->
-```no-highlight
+```
 \---Endpoint1
     +---.bodies
     +---.committed
@@ -70,7 +70,7 @@ Note that `Endpoint2` does not yet have `.committed` or `.pending` as those dire
 
 Note that the same structure will exist for both exception and non exception scenarios.
 
-```no-highlight
+```
 +---Endpoint1
     +---.bodies
     +---.committed
@@ -86,7 +86,7 @@ Note that the same structure will exist for both exception and non exception sce
 
 #### Delayed Message
 
-```no-highlight
+```
 +---Endpoint1
     +---.bodies
     +---.committed
@@ -113,7 +113,7 @@ Start `Endpoint2`. Processing of the message will begin immediately.
 
 During message processing the message will be moved into the `.pending` directory.
 
-```no-highlight
+```
 +---Endpoint1
     +---.bodies
     +---.committed
@@ -135,7 +135,7 @@ During message processing the message will be moved into the `.pending` director
 
 After message processing the directory structure will be cleaned up.
 
-```no-highlight
+```
 +---Endpoint1
     +---.bodies
     +---.committed
@@ -152,7 +152,7 @@ After message processing the directory structure will be cleaned up.
 
 #### After message is sent to the error queue
 
-```no-highlight
+```
 +---Endpoint1
     +---.bodies
     +---.committed

@@ -107,13 +107,13 @@ Similarly to the code above it is possible to subscribe to the event, handle it,
 
 ServiceControl uses [Event Publishing](/nservicebus/messaging/publish-subscribe/) to expose information to subscribers. When using a [persistence based transport](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven) an internal reference will be kept to each subscriber. If a subscriber, for an event, cannot be contacted then a [log entry](logging.md) will be written with the following error:
 
-```no-highlight
+```
 Failed dispatching external integration event
 ```
 
 An event will also be published and displayed in ServicePulse dashboard with the following text:
 
-```no-highlight
+```
 'EVENTTYPE' failed to be published to other integration points. Reason for failure: REASON.
 ```
 

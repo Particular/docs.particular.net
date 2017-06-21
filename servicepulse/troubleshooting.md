@@ -41,7 +41,7 @@ Possible RavenDB index is corruption, to fix this:
 
 After a period of inactivity, a web application endpoint is failing with the message:
 
-```no-highlight
+```
 Endpoint has failed to send expected heartbeat to ServiceControl. It is possible that the endpoint could be down or is unresponsive. If this condition persists restart the endpoint.
 ```
 

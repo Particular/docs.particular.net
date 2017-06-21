@@ -18,7 +18,7 @@ redirects:
 
 Versions 6 and below allows routing of messages across different namespaces by adding connection string information behind the `@` sign in any address notation. As address information is included in messages headers, the headers include both the queue name as well as the connection string. For instance, the `ReplyTo` header value has of the following structure:
 
-```no-highlight
+```
 [queue name]@Endpoint=sb://[namespace name].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[key]
 ```
 
@@ -30,7 +30,7 @@ snippet: enable_use_namespace_alias_instead_of_connection_string
 
 When this setting is enabled, `ReplyTo` header will no longer contain raw connection string and will be structured as following
 
-```no-highlight
+```
 [queue name]@[alias]
 ```
 

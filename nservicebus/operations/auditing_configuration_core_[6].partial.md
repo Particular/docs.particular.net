@@ -32,12 +32,12 @@ If the auditing settings are in `app.config`, remove them or comment them out.
 
 If the machine level auditing is turned on, clear the value for the string value `AuditQueue` under
 
-```no-highlight
+```
 HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceBus
 ```
 
 If running 64 bit, in addition to the above, also clear the value for `AuditQueue` under
 
-```no-highlight
+```
 HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ParticularSoftware\ServiceBus
 ```

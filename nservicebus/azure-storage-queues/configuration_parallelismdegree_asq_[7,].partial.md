@@ -4,7 +4,7 @@ The number of parallel receive operations that the transport is issuing against 
 
 The value is dynamically calculated based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
 
-```no-highlight
+```
 Degree of parallelism = square root of MaxConcurrency
 ```
 

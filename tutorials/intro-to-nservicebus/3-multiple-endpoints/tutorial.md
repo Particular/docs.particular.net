@@ -87,7 +87,7 @@ First, let's create the project for our new endpoint.
 
  1. Create a new **Console Application** project named **Sales**.
  1. In the **Sales** project, add the NServiceBus NuGet package:
-      ```no-highlight
+      ```
       Install-Package NServiceBus -ProjectName Sales
       ```
  1. In the **Sales** project, add a reference to the **Messages** project, so that we have access to the `PlaceOrder` message.
@@ -159,7 +159,7 @@ INFO: You can also keep console windows from showing up in random screen locatio
 
 In the **ClientUI** window, we see this output:
 
-```no-highlight
+```
 INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
 p
 INFO  ClientUI.Program Sending PlaceOrder command, OrderId = af0d1aa7-1611-4aa0-b83d-05e2d931d532
@@ -173,7 +173,7 @@ Everything is the same, except the command is not processed here.
 
 In the **Sales** window, we see this:
 
-```no-highlight
+```
 Press Enter to exit.
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = af0d1aa7-1611-4aa0-b83d-05e2d931d532
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e19d6160-595a-4c30-98b5-ea07bc44a6f8

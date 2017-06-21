@@ -77,7 +77,7 @@ After running the tool it generates one key and outputs this key in multiple for
 
 Output
 
-```no-highlight
+```
 Strip 8th bit: True
 Strip control: True
 Key bit length: 256

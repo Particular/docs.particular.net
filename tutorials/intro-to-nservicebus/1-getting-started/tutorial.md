@@ -47,7 +47,7 @@ First, let's create a basic solution and include the dependencies we need.
 
 Next, we need to add the NServiceBus NuGet package as a dependency. From the [NuGet Package Manager Console](https://docs.microsoft.com/en-us/nuget/tools/package-manager-console), type the following:
 
-```no-highlight
+```
 Install-Package NServiceBus -ProjectName ClientUI
 ```
 

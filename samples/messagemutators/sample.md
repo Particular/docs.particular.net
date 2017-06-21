@@ -20,7 +20,7 @@ This sample shows how to create a custom [message mutator](/nservicebus/pipeline
  1. Press 's' and 'Enter' in the window. Then press 'e' followed by 'Enter'.
     The Console  output will look something like this (the exception message is expected):
 
-```no-highlight
+```
 Press 's' to send a valid message, press 'e' to send a failed message. To exit, 'q'
 
 s

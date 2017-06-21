@@ -82,7 +82,7 @@ DISM /Online /Get-Features /Format:Table | FINDSTR "^MSMQ-"
 
 The output will be similar to this:
 
-```no-highlight
+```
 MSMQ-Container                                        | Enabled
 MSMQ-Server                                           | Enabled
 MSMQ-Triggers                                         | Disabled

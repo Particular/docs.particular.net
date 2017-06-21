@@ -114,7 +114,7 @@ Version 6 automatically correlates incoming message properties to its saga data 
 
 {{NOTE: Correlated properties must have a non [default](https://msdn.microsoft.com/en-us/library/83fhsxwc.aspx) value, i.e. not null and not empty, assigned when persisted. If not the following exception will be thrown: 
 
-```no-highlight
+```
 The correlated property 'MyPropery' on saga 'MySaga' does not have a value.
 A correlated property must have a non default (i.e. non null and non-empty) value assigned when a new saga instance is created.
 ```
@@ -126,7 +126,7 @@ snippet: 5to6-NoSagaDataCorrelationNeeded
 
 Versions 6 and above will only support correlating messages to a single saga property. Correlating on more than one property is still supported by creating a custom [saga finder](/nservicebus/sagas/saga-finding.md). If sagas with multiple correlations mappings to different properties are detected the following exception will be thrown:
 
-```no-highlight
+```
 Sagas can only have mappings that correlate on a single saga property. Use custom finders to correlate *message types* to saga *saga type*
 ```
 

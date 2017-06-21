@@ -31,7 +31,7 @@ WARNING: For the `esentutl` command line utility to work properly, ServiceContro
  * Run **`esentutl /r RVN /l logs /s system`** and wait for it to finish. This will ensure that the database is in a consistent state and is ready for defragmentation.
  * Here is the result of running it:  
 
-```no-highlight
+```
 Extensible Storage Engine Utilities for Microsoft(R) Windows(R)
 Version 10.0
 Copyright (C) Microsoft Corporation. All Rights Reserved.
@@ -48,7 +48,7 @@ Operation completed successfully in 0.78 seconds.
 
 * Now run **`esentutl /d Data`** and wait for it to finish. Here is the result of running it:  
 
-```no-highlight
+```
 Extensible Storage Engine Utilities for Microsoft(R) Windows(R)
 Version 10.0
 Copyright (C) Microsoft Corporation. All Rights Reserved.

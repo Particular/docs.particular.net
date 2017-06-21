@@ -159,7 +159,7 @@ snippet: BillingRouting
 
 Now when we run the solution, we'll see the following output in the **Billing** window:
 
-```no-highlight
+```
 INFO  Billing.OrderPlacedHandler Received OrderPlaced, OrderId = 01698293-9da9-4606-8468-2b7f1b86b380 - Charging credit card...
 ```
 
@@ -185,7 +185,7 @@ This is also a good opportunity to check your understanding. If you can complete
 
 If everything worked, you should now see output like this in your **Shipping** window:
 
-```no-highlight
+```
 INFO  Shipping.OrderPlacedHandler Received OrderPlaced, OrderId = 96ee660a-5dd7-4772-9058-863d303ee0aa - Should we ship now?
 INFO  Shipping.OrderBilledHandler Received OrderBilled, OrderId = 96ee660a-5dd7-4772-9058-863d303ee0aa - Should we ship now?
 ```

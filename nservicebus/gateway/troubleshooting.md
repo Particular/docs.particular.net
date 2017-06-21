@@ -12,7 +12,7 @@ redirects:
 
 At startup the Gateway will attempt to recreate the urlacls so that the process can listen on a specific port. If it already exists warning is logged. In this case the following will appear in the configured log.
 
-```no-highlight
+```
 WARN NServiceBus.Installation.GatewayHttpListenerInstaller
 Failed to grant to grant user 'Machine\UserName' HttpListener permissions. Processing will continue.
 Try running the following command from an admin console:
@@ -27,7 +27,7 @@ This warning can usually be safely ignored. However when urlacls are corrupted t
 
 To verify this problem navigate to the url (in this case `http://localhost:25894/MyEndpoint/`) in a browser. If the gateway is listening the following will be received:
 
-```no-highlight
+```
 EndpointName:MyEndpoint - Status: Ok
 ```
 

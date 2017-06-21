@@ -11,13 +11,13 @@ reviewed: 2017-03-16
 
 At the core of the Azure Service Bus service, there is a Service Registry which tracks the location of each queue, topic, relay or eventhub in the service. This Service Registry provides a DNS integrated hierarchical naming system, that has a root entry point (called a namespace) at a URI with the following scheme.
 
-```no-highlight
+```
 https://{serviceNamespace}.servicebus.windows.net/{path}
 ```
 
 The {path} parameter can be specified at any depth, allowing the hierarchy to be extended with application specific sub trees. This is very useful for large systems to group, manage and secure resources more efficiently, for example:
 
-```no-highlight
+```
 https://mynamespace.servicebus.Windows.net/production/tenant1/sales
 https://mynamespace.servicebus.Windows.net/production/tenant1/operations
 https://mynamespace.servicebus.Windows.net/acceptance/tenant1/sales

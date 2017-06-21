@@ -92,7 +92,7 @@ The saga classes that do have a correlation property will have their data de-dup
 
 The de-duplication utility will have fixed the data for all saga instances that it could. There can, however, be situations where the utility was unable to resolve the correct saga instance. When this happens the de-duplication tool will download conflicting sagas to the working directory that was provided as a command line parameter. Every set of conflicting sagas is downloaded to a separate directory containing files named with conflicting sagas identifiers. For example, running the utility with `directory=data` against an assembly that has a `TwoInstanceSagaState` class that implements `IContainSagaData` will result in a following structure:
 
-```no-highlight
+```
 data
 └───TwoInstanceSagaState
     └───d10c2f15-06d2-1370-e0ee-781710b5d598
@@ -142,7 +142,7 @@ Once all conflicting sagas have been resolved, run the following command: `NServ
 
 Once the patch process has been completed there will be exceptions thrown, and logged, when duplicates are found in the course of normal message processing. The exception that is logged will be `DuplicateSagaFoundException` and will have the following message structure:
 
-```no-highlight
+```
 Sagas of type {sagaType.Name} with the following identifiers '<comma separated list of message identifiers>' are considered duplicates because of the violation of the Unique property {propertyName}.
 ```
 

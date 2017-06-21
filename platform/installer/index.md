@@ -119,7 +119,7 @@ As mentioned above, in some circumstances Click-Once can be problematic. The fol
 
 Error shown:
 
-```no-highlight
+```
 An error occurred trying to download
 'https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application'.
 
@@ -129,7 +129,7 @@ See the setup log file located at
 
 Log file content:
 
-```no-highlight
+```
 URLDownloadToCacheFile failed with HRESULT '-2146697208'
 Error: An error occurred trying to download
 'https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application'.

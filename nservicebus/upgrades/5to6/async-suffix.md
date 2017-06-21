@@ -137,7 +137,7 @@ snippet: MissingTaskUsageDetectorUsage
 
 The resulting error will be:
 
-```no-highlight
+```
 Type 'ClassName' contains a call to 'ClassWithAsync.MethodWithAsync' near line 21 where no usage of the returned Task is detected.
 ```
 

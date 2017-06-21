@@ -18,7 +18,7 @@ The `%LOCALAPPDATA%` defines a user-specific location on disk, so the logging lo
 
 #### For LocalSystem:
 
-```no-highlight
+```
 %WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs
 ```
 
@@ -27,7 +27,7 @@ Note: Browsing to this location can be problematic as the default NTFS permissio
 
 #### For a user account:
 
-```no-highlight
+```
 %PROFILEPATH%\AppData\Local\Particular\ServiceControl\logs
 ```
 

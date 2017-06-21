@@ -101,7 +101,7 @@ Worker ->> Server: Ready for work
 
 ### Sender Output
 
-```no-highlight
+```
 Press 'Enter' to send a message.
 Press any other key to exit.
 
@@ -115,7 +115,7 @@ Received OrderPlaced. OrderId: 40585dff-3749-4db1-b21a-25694468f042. Worker: Wor
 
 ### Server Output
 
-```no-highlight
+```
 Press any key to exit
 2015-08-21 17:07:19.775 INFO  NServiceBus.Distributor.MSMQ.MsmqWorkerAvailabilityManager Worker at 'Sample.Scaleout.Worker2' has been registered with 1 capacity.
 2015-08-21 17:07:19.802 INFO  NServiceBus.Distributor.MSMQ.MsmqWorkerAvailabilityManager Worker at 'Sample.Scaleout.Worker1' has been registered with 1 capacity.
@@ -124,7 +124,7 @@ Press any key to exit
 
 ### Worker1 Output
 
-```no-highlight
+```
 2015-08-21 17:07:18.906 INFO  NServiceBus.Unicast.Transport.TransportReceiver Worker started, failures will be redirected to Sample.Scaleout.Server
 Press any key to exit
 Processing received order....
@@ -134,7 +134,7 @@ Sent Order placed event for orderId [40585dff-3749-4db1-b21a-25694468f042].
 
 ### Worker2 Output
 
-```no-highlight
+```
 2015-08-21 17:07:18.818 INFO  NServiceBus.Unicast.Transport.TransportReceiver Worker started, failures will be redirected to Sample.Scaleout.Server
 Press any key to exit
 Processing received order....

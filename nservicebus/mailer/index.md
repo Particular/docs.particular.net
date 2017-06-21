@@ -85,7 +85,7 @@ In this scenario it is not valid to retry the message since it would result in t
 
 So the approach taken is to forward the original message to the failed recipients after prefixing the body with the following text
 
-```no-highlight
+```
 This message was forwarded due to the original email failing to send
 -----Original Message-----
 To: XXX

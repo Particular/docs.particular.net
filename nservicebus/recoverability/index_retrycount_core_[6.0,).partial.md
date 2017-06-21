@@ -1,7 +1,7 @@
 
 The total number of possible retries can be calculated with the following formula
 
-```no-highlight
+```
 Total Attempts = (ImmediateRetries:NumberOfRetries + 1) * (DelayedRetries:NumberOfRetries + 1)
 ```
 

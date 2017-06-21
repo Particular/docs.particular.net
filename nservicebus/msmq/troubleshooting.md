@@ -36,7 +36,7 @@ The problems outlined above are the leading cause of distributor issues, due to 
 
 This exception may occur if trying to send messages to a machine that has been off-line for a while, or the system is suffering from a larger than expected load spike, or when message queuing quota has exceeded its limit:
 
-```no-highlight
+```
 System.Messaging.MessageQueueException (0x80004005): Insufficient resources to perform operation.
 at System.Messaging.MessageQueue.SendInternal(Object obj, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
 ```

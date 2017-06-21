@@ -628,7 +628,6 @@ File extensions scanned for snippets include:
 |--------------|----------------|
 | c#           | `cs`           |
 | xml          | `xml`          |
-| no format    | `no-highlight` |
 | command line | `dos`          |
 | powershell   | `ps`           |
 | json         | `json`         |

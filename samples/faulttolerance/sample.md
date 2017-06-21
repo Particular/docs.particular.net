@@ -19,7 +19,7 @@ Run the solution and hit Enter on the 'Client' console a couple of times to make
 
 **Client Output**
 
-```no-highlight
+```
 Press 'Enter' to send a message.
 Press any key to exit
 Sent a new message with id: 5a1ca67b03ae4b38b99e1fd66ebc97eb
@@ -29,7 +29,7 @@ Sent a new message with id: 2c9f0f60763243aeb16e1688f31b1f53
 
 **Server Output**
 
-```no-highlight
+```
 Press any key to exit
 Message received. Id: 00000000-0000-0000-0000-000000000000
 Message received. Id: 5a1ca67b-03ae-4b38-b99e-1fd66ebc97eb
@@ -69,7 +69,7 @@ The endpoint should scroll through a bunch of warnings, ultimately putting out a
 
 **Server Output**
 
-```no-highlight
+```
 at NServiceBus.Unicast.Transport.TransportReceiver.OnTransportMessageReceived(TransportMessage msg) in
 \NServiceBus.Core\Unicast\Transport\TransportReceiver.cs:line 411
 at NServiceBus.Unicast.Transport.TransportReceiver.ProcessMessage(TransportMessage message) in

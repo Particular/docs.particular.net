@@ -52,7 +52,7 @@ Note that while the phrasing is "forwarding a message" in the implementation it 
 
 {{Warning: Since MSMQ forces the same TimeToBeReceived on all messages in the a transaction, OverrideTimeToBeReceived is not supported when using the [MSMQ Transport](/nservicebus/msmq/). If OverrideTimeToBeReceived is detected when using MSMQ an exception, with the following text, will be thrown:
 
-```no-highlight
+```
 Setting a custom OverrideTimeToBeReceived for audits is not supported on transactional MSMQ
 ```
 }}

@@ -19,7 +19,7 @@ Two console applications will start up.
 
 Which outputs
 
-```no-highlight
+```
 MessageWithSecretData sent.
 ```
 
@@ -28,7 +28,7 @@ MessageWithSecretData sent.
 
 Which outputs
 
-```no-highlight
+```
 I know the secret - it's 'betcha can't guess my secret'
 SubSecret: My sub secret
 CreditCard: 312312312312312 is valid to 3/11/2015 5:21:59 AM
