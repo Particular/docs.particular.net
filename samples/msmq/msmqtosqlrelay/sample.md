@@ -7,6 +7,8 @@ related:
 - transports
 - transports/msmq
 - transports/sql
+redirects:
+- samples/msmqtosqlrelay
 ---
 
 
