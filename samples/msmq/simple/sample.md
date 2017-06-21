@@ -1,25 +1,25 @@
 ---
-title: Simple RabbitMQ Transport usage
-reviewed: 2016-10-18
-component: Rabbit
+title: Simple MSMQ Transport usage
+reviewed: 2017-06-20
+component: MSMQ
 related:
-- nservicebus/rabbitmq
-- nservicebus/rabbitmq/connection-settings
+- nservicebus/msmq
 ---
 
 
 ## Prerequisites
 
-Ensure an instance of RabbitMQ is running and accessible.
+Ensure that MSMQ has been installed.
 
 
 ## Code walk-through
 
-This sample shows basic usage of RabbitMQ as a transport for NServiceBus. The application sends an empty message to itself, via the RabbitMQ broker, and writes to the console when the message is received.
+This sample shows basic usage of MSMQ as a transport for NServiceBus. The application sends an empty message to itself, via the MSMQ transport, and writes to the console when the message is received.
 
 
 ### Configuration
 
-snippet: ConfigureRabbit
+snippet: ConfigureMsmq
 
-The username and password can also be configured via the connection string. If these are not present, the connection string effectively defaults to `host=localhost;username=guest;password=guest`.
+Other settings such as DeadLetterQueue, Journal behavior, etc., can also be configured via the [connection string](/nservicebus/msmq/connection-strings.md).
+
