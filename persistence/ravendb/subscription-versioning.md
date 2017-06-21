@@ -9,7 +9,7 @@ redirects:
  - nservicebus/ravendb/subscription-versioning
 ---
 
-The behavior of the RavenDB subscription persistence differs from other persisters in the way it handles versioning of message assemblies. It's important to understand this difference, especially when using a deployment solution that automatically increments assembly version numbers with each build.
+The default behavior of the RavenDB subscription persistence differs from other persisters in the way it handles versioning of message assemblies. It's important to understand this difference, especially when using a deployment solution that automatically increments assembly version numbers with each build.
 
 
 ## Technical details
@@ -34,3 +34,13 @@ Because the version has been baked in to the RavenDB document id since the very 
 
  1. If possible, do not version message assemblies at all. Design message contracts to be backward and forward compatible so that explicit versioning is not required.
  1. Instead of versioning with the [AssemblyVersionAttribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyversionattribute.aspx), use the [AssemblyFileVersionAttribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyfileversionattribute.aspx) or [AssemblyInformationalVersionAttribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyinformationalversionattribute.aspx) instead, while leaving the `AssemblyVersionAttribute` fixed. The RavenDB persister only uses the Major version of the `AssemblyVersionAttribute` as part of the subscription document id.
+ 
+## Non-versioned subscriptions support
+
+As of `NServiceBus.RavenDB` V4.2.0 support for non-versioned subscriptions has beed introduced. Non-versioned subscription are an opt-in feature due to their incompatibility with the default subscription storage behavior. To enable support for storing subscriptions without storing the message version configure your endpoint as follows:
+
+```
+<insert code snippet here>
+```
+
+NOTE: due to the breaking nature of this feature it is important to take into account the impact of enabling it on pre-existing installations. Once enabled all the stored subscriptions, if any, will be immidiately ignored and publishers will stop publishing events until all subscribers are restarted and new subscription requests reach the pusblisher endpoint. Opting in this new feature has no effects for newly deployed publisher endpoints that never received any subscription requests.
