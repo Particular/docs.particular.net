@@ -19,6 +19,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("MsmqPublisher");
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=PersistenceForMsmqTransport;Integrated Security=True");
