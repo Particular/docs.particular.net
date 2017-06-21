@@ -1,7 +1,7 @@
 ---
 title: Simple MSMQ Transport usage
 reviewed: 2017-06-20
-component: MSMQ
+component: MsmqTransport
 related:
 - nservicebus/msmq
 ---
