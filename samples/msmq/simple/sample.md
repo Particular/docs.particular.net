@@ -19,7 +19,7 @@ This sample shows basic usage of MSMQ as a transport for NServiceBus. The applic
 
 ### Configuration
 
-snippet: ConfigureMsmq
+snippet: ConfigureMsmqEndpoint
 
 Other settings such as DeadLetterQueue, Journal behavior, etc., can also be configured via the [connection string](/nservicebus/msmq/connection-strings.md).
 
