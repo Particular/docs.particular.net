@@ -6,7 +6,7 @@ reviewed: 2016-10-19
 redirects:
  - nservicebus/relational-persistence-using-nhibernate
  - nservicebus/nhibernate/configuration
- - nservicebus/nhibernate/
+ - nservicebus/nhibernate
 related:
 - samples/nhibernate
 ---
