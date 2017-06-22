@@ -58,8 +58,9 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Persistence.ServiceFabric, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=AMD64">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.ServiceFabric.1.0.0-beta0002\lib\net452\NServiceBus.Persistence.ServiceFabric.dll</HintPath>
+    <Reference Include="NServiceBus.Persistence.ServiceFabric, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.ServiceFabric.1.0.0-beta0003\lib\net452\NServiceBus.Persistence.ServiceFabric.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
