@@ -10,7 +10,7 @@ related:
  - nservicebus/messaging/databus/mongodb-tekmaven
 reviewed: 2016-11-01
 redirects:
- - nservicebus/mongodb-persistence-tekmaven/
+ - nservicebus/mongodb-persistence-tekmaven
 ---
 
 Uses [MongoDB](https://www.mongodb.com/) for storage.
