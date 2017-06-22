@@ -24,7 +24,7 @@ Various features require persistence.
 ## Available Persistences
 
 
-### [Learning Persistence](/nservicebus/learning-persistence/)
+### [Learning Persistence](/persistence/learning-persistence/)
 
 include: learning-persistence-description
 
@@ -39,12 +39,12 @@ A volatile RAM based storage mainly used for development purposes. Can also be u
 Uses [Json.NET](http://www.newtonsoft.com/json) to serialize data and store in a SQL database.
 
 
-### [Azure Storage](/nservicebus/azure-storage-persistence/)
+### [Azure Storage](/persistence/azure-storage-persistence/)
 
 Uses Azure Tables Storage for storage.
 
 
-### [RavenDB](/nservicebus/ravendb/)
+### [RavenDB](/persistence/ravendb/)
 
 Uses the [RavenDB document database](https://ravendb.net/) for storage.
 
@@ -54,7 +54,7 @@ Uses the [RavenDB document database](https://ravendb.net/) for storage.
 A persister built on top of [Service Fabric Reliable Collections](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
 
 
-### [NHibernate](/nservicebus/nhibernate/)
+### [NHibernate](/persistence/nhibernate/)
 
 Uses custom [NHibernate](http://nhibernate.info/) to persist data to an ADO.net data store (e.g. SQL Server).
 

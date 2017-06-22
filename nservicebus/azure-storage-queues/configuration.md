@@ -4,7 +4,7 @@ component: ASQ
 tags:
 - Azure
 related:
-- nservicebus/azure-storage-persistence/performance-tuning
+- persistence/azure-storage-persistence/performance-tuning
 reviewed: 2017-04-24
 ---
 

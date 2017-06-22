@@ -10,7 +10,7 @@ tags:
 related:
 - nservicebus/sagas
 - nservicebus/azure
-- nservicebus/azure-storage-persistence
+- persistence/azure-storage-persistence
 ---
 
 

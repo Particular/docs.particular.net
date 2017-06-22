@@ -721,71 +721,71 @@
     Title: Kafka
 
 - Name: Persistence
-  Url: nservicebus/persistence
+  Url: persistence
   Topics:
-  - Url: nservicebus/persistence
+  - Url: persistence
     Title: General
     Articles:
-    - Url: nservicebus/persistence/order
+    - Url: persistence/persistence/order
       Title: Persistence order
-  - Url: nservicebus/learning-persistence
+  - Url: persistence/learning-persistence
     Title: Learning Persistence
-  - Url: nservicebus/persistence/in-memory
+  - Url: persistence/persistence/in-memory
     Title: In Memory
-  - Url: nservicebus/sql-persistence
+  - Url: persistence/sql-persistence
     Title: SQL
     Articles:
-    - Url: nservicebus/sql-persistence/accessing-data
+    - Url: persistence/sql-persistence/accessing-data
       Title: Business data
-    - Url: nservicebus/sql-persistence/saga
+    - Url: persistence/sql-persistence/saga
       Title: Sagas
-    - Url: nservicebus/sql-persistence/saga-concurrency
+    - Url: persistence/sql-persistence/saga-concurrency
       Title: Saga concurrency
-    - Url: nservicebus/sql-persistence/subscriptions
+    - Url: persistence/sql-persistence/subscriptions
       Title: Subscriptions
-    - Url: nservicebus/sql-persistence/installer-workflow
+    - Url: persistence/sql-persistence/installer-workflow
       Title: Installer Workflow
-    - Url: nservicebus/sql-persistence/oracle-caveats
+    - Url: persistence/sql-persistence/oracle-caveats
       Title: Oracle Caveats
-    - Url: nservicebus/sql-persistence/sqlserver-scripts
+    - Url: persistence/sql-persistence/sqlserver-scripts
       Title: MS SQL Server Scripts
-    - Url: nservicebus/sql-persistence/mysql-scripts
+    - Url: persistence/sql-persistence/mysql-scripts
       Title: MySQL Scripts
-    - Url: nservicebus/sql-persistence/oracle-scripts
+    - Url: persistence/sql-persistence/oracle-scripts
       Title: Oracle Scripts
-  - Url: nservicebus/azure-storage-persistence
+  - Url: persistence/azure-storage-persistence
     Title: Azure Storage
     Articles:
-    - Url: nservicebus/azure-storage-persistence/configuration
+    - Url: persistence/azure-storage-persistence/configuration
       Title: Configuration
-    - Url: nservicebus/azure/understanding-transactionality-in-azure
+    - Url: persistence/azure/understanding-transactionality-in-azure
       Title: Transactions in Azure
-    - Url: nservicebus/azure-storage-persistence/performance-tuning
+    - Url: persistence/azure-storage-persistence/performance-tuning
       Title: Performance Tuning
-    - Url: nservicebus/azure-storage-persistence/scripting
+    - Url: persistence/azure-storage-persistence/scripting
       Title: Scripting
-  - Url: nservicebus/ravendb
+  - Url: persistence/ravendb
     Title: RavenDB
     Articles:
-    - Url: nservicebus/ravendb/connection
+    - Url: persistence/ravendb/connection
       Title: Connection Options
-    - Url: nservicebus/ravendb/saga-concurrency
+    - Url: persistence/ravendb/saga-concurrency
       Title: Saga concurrency
-    - Url: nservicebus/ravendb/operations-scripting
+    - Url: persistence/ravendb/operations-scripting
       Title: Scripting
-    - Url: nservicebus/ravendb/installation
+    - Url: persistence/ravendb/installation
       Title: Installation
-    - Url: nservicebus/ravendb/manual-dtc-settings
+    - Url: persistence/ravendb/manual-dtc-settings
       Title: Configure DTC
-    - Url: nservicebus/ravendb/outbox
+    - Url: persistence/ravendb/outbox
       Title: Outbox
-    - Url: nservicebus/ravendb/version-compatibility
+    - Url: persistence/ravendb/version-compatibility
       Title: RavenDB Client Versions
-    - Url: nservicebus/ravendb/reroute-existing-timeouts
+    - Url: persistence/ravendb/reroute-existing-timeouts
       Title: Reroute Existing Timeouts
-    - Url: nservicebus/ravendb/subscription-versioning
+    - Url: persistence/ravendb/subscription-versioning
       Title: Subscription versioning
-    - Url: nservicebus/ravendb/licensing
+    - Url: persistence/ravendb/licensing
       Title: Licensing
   - Url: nservicebus/service-fabric
     Title: Service Fabric
@@ -796,22 +796,22 @@
       Title: Outbox
     - Url: nservicebus/service-fabric/transaction-sharing
       Title: Transaction Sharing
-  - Url: nservicebus/nhibernate
+  - Url: persistence/nhibernate
     Title: NHibernate
     Articles:
-    - Url: nservicebus/nhibernate/accessing-data
+    - Url: persistence/nhibernate/accessing-data
       Title: Business data
-    - Url: nservicebus/nhibernate/saga-concurrency
+    - Url: persistence/nhibernate/saga-concurrency
       Title: Saga concurrency
-    - Url: nservicebus/nhibernate/outbox
+    - Url: persistence/nhibernate/outbox
       Title: Outbox
-    - Url: nservicebus/nhibernate/sql-azure
+    - Url: persistence/nhibernate/sql-azure
       Title: SQL Azure
-    - Url: nservicebus/nhibernate/scripting
+    - Url: persistence/nhibernate/scripting
       Title: Scripting
-  - Url: nservicebus/msmq/subscription-persistence
+  - Url: persistence/msmq/subscription-persistence
     Title: MSMQ Subscription
-  - Url: nservicebus/mongodb-persistence-tekmaven
+  - Url: persistence/mongodb-persistence-tekmaven
     Title: MongoDB
 
 - Name: ServiceInsight

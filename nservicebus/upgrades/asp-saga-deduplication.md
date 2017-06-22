@@ -5,7 +5,7 @@ reviewed: 2016-05-12
 component: ASP
 related:
  - nservicebus/sagas
- - nservicebus/azure-storage-persistence
+ - persistence/azure-storage-persistence
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

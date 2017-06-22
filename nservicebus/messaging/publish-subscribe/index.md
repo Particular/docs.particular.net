@@ -43,11 +43,11 @@ Persistence-based message-driven publish-subscribe is controlled by *subscribe* 
 
 Available subscription persistences include
 
- * [MSMQ](/nservicebus/msmq)
- * [RavenDB](/nservicebus/ravendb)
- * [NHibernate](/nservicebus/nhibernate)
- * [InMemory](/nservicebus/persistence/in-memory.md)
- * [Azure Storage](/nservicebus/azure-storage-persistence)
+ * [MSMQ](/persistence/msmq)
+ * [RavenDB](/persistence/ravendb)
+ * [NHibernate](/persistence/nhibernate)
+ * [InMemory](/persistence/in-memory.md)
+ * [Azure Storage](/persistence/azure-storage-persistence)
 
 The message-driven publish-subscribe is used by the [unicast transports](/nservicebus/transports/#types-of-transports-unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
 
