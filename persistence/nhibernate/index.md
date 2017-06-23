@@ -43,7 +43,7 @@ snippet: ConfiguringNHibernate
 
 ## Connection strings
 
-It is possible to pass connection string in the `app.config` file, as described in the [Using configuration convention](/nservicebus/nhibernate/#customizing-the-configuration-using-configuration-convention) section.
+It is possible to pass connection string in the `app.config` file, as described in the [Using configuration convention](/persistence/nhibernate/#customizing-the-configuration-using-configuration-convention) section.
 
 
 partial: code-connection
