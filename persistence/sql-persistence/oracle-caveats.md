@@ -24,7 +24,7 @@ The following table shows table names created for an endpoint named `My.Endpoint
 | Timeouts         |  `_TO` | `MY_ENDPOINT_TO` | `MY_ENDPOINT_TO_PK`<br/>`MY_ENDPOINT_TK`<br/>`MY_ENDPOINT_SK` |
 | Outbox           |  `_OD` | `MY_ENDPOINT_OD` | `MY_ENDPOINT_OD_PK`<br/>`MY_ENDPOINT_IX` |
 
-If an endpoint name is longer than 24 characters, an exception will be thrown, and a substitute [table prefix](/nservicebus/sql-persistence/#installation-table-prefix) must be specified in the endpoint configuration:
+If an endpoint name is longer than 24 characters, an exception will be thrown, and a substitute [table prefix](/persisstence/sql-persistence/#installation-table-prefix) must be specified in the endpoint configuration:
 
 snippet: TablePrefix
 
