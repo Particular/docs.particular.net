@@ -21,7 +21,7 @@ Ensure that an instance of the [Azure Storage Emulator](https://docs.microsoft.c
 
 ## Azure Storage Persistence
 
-This sample utilizes the [Azure Storage Persistence](/nservicebus/azure-storage-persistence/).
+This sample utilizes the [Azure Storage Persistence](/persistence/azure-storage-persistence/).
 
 
 ## Code walk-through
