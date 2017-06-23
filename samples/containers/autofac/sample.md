@@ -13,6 +13,7 @@ related:
 
 snippet: ContainerConfiguration
 
+partial: assignment
 
 ### Injecting the dependency in the handler
 

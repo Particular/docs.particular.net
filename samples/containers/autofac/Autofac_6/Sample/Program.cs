@@ -20,10 +20,8 @@ static class Program
 
         var builder = new ContainerBuilder();
 
-        builder.Register(x =>
-            {
-                return Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
-            })
+        IEndpointInstance endpoint = null;
+        builder.Register(x => endpoint)
             .As<IEndpointInstance>()
             .SingleInstance();
 
@@ -42,6 +40,11 @@ static class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
+
+        #region EndpointAssignment
+        endpoint = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
+        #endregion
 
         var endpointInstance = container.Resolve<IEndpointInstance>();
         var myMessage = new MyMessage();
