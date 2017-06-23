@@ -5,7 +5,7 @@ component: raven
 reviewed: 2016-10-05
 related:
  - nservicebus/licensing
- - nservicebus/ravendb/installation
+ - persistence/ravendb/installation
 redirects:
  - nservicebus/ravendb/licensing
 ---
