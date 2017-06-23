@@ -16,7 +16,6 @@ related:
  - samples/step-by-step
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/headers
- - nservicebus/persistence
  - nservicebus/msmq/distributor/publish-subscribe
  - nservicebus/msmq/subscription-authorisation
 ---
