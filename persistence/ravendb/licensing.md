@@ -6,7 +6,8 @@ reviewed: 2016-10-05
 related:
  - nservicebus/licensing
  - nservicebus/ravendb/installation
- - nservicebus/ravendb/licensing
+ redirects:
+- nservicebus/ravendb/licensing
  ---
 
 ## License Agreements
