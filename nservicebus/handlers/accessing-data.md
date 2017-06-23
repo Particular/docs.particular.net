@@ -5,8 +5,8 @@ component: Core
 versions: '[5,)'
 reviewed: 2016-10-25
 related:
- - nservicebus/nhibernate/accessing-data
- - nservicebus/ravendb
+ - persistence/nhibernate/accessing-data
+ - persistence/ravendb
 tags:
  - Persistence
  - Saga
