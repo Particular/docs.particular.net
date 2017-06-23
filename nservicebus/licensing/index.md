@@ -13,7 +13,7 @@ related:
  - nservicebus/upgrades/support-policy
  - servicecontrol/license
  - serviceinsight/license
- - nservicebus/ravendb/licensing
+ - persistence/ravendb/licensing
 ---
 
 
