@@ -726,11 +726,11 @@
   - Url: persistence
     Title: General
     Articles:
-    - Url: persistence/persistence/order
+    - Url: persistence/order
       Title: Persistence order
   - Url: persistence/learning-persistence
     Title: Learning Persistence
-  - Url: persistence/persistence/in-memory
+  - Url: persistence/in-memory
     Title: In Memory
   - Url: persistence/sql-persistence
     Title: SQL
