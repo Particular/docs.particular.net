@@ -11,6 +11,7 @@ redirects:
 related:
 - nservicebus/outbox
 - nservicebus/msmq
+- persistence
 ---
 
 NServiceBus relies on a few key pieces of infrastructure in order to run properly. This page gives an overview of the requirements for running NServiceBus on the Windows platform.
