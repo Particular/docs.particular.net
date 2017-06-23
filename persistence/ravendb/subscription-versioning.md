@@ -34,5 +34,5 @@ Because the version has been baked in to the RavenDB document id since the very 
 
  1. If possible, do not version message assemblies at all. Design message contracts to be backward and forward compatible so that explicit versioning is not required.
  1. Instead of versioning with the [AssemblyVersionAttribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyversionattribute.aspx), use the [AssemblyFileVersionAttribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyfileversionattribute.aspx) or [AssemblyInformationalVersionAttribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyinformationalversionattribute.aspx) instead, while leaving the `AssemblyVersionAttribute` fixed. The RavenDB persister only uses the Major version of the `AssemblyVersionAttribute` as part of the subscription document id.
- 
+
 partial: non-versioned-subscriptions
