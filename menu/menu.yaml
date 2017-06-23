@@ -758,7 +758,7 @@
     Articles:
     - Url: persistence/azure-storage-persistence/configuration
       Title: Configuration
-    - Url: persistence/azure/understanding-transactionality-in-azure
+    - Url: nservicebus/azure/understanding-transactionality-in-azure
       Title: Transactions in Azure
     - Url: persistence/azure-storage-persistence/performance-tuning
       Title: Performance Tuning
