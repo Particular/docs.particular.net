@@ -6,7 +6,7 @@ related:
  - samples/sql-persistence/transitioning-correlation-ids
  - samples/saga/sql-sagafinder
  - samples/saga/migration
- - nservicebus/sql-persistence/saga-concurrency
+ - persistence/sql-persistence/saga-concurrency
 redirects:
  - nservicebus/sql-persistence/saga
 reviewed: 2016-11-29
@@ -64,7 +64,7 @@ While inferring the Correlation Id from the IL of `ConfigureHowToFindSaga` is po
 
 The name used for a saga table consist of two parts.
 
- * The prefix of the table name is the [Table Prefix](/nservicebus/sql-persistence/#installation-table-prefix) defined at the endpoint level.
+ * The prefix of the table name is the [Table Prefix](/persistence/sql-persistence/#installation-table-prefix) defined at the endpoint level.
  * The suffix of the table name is **either** the saga [Type.Name](https://msdn.microsoft.com/en-us/library/system.type.name.aspx) **or**, if defined, the Table Suffix defined at the saga level.
 
 snippet: tableSuffix
