@@ -10,7 +10,7 @@ redirects:
  - nservicebus/sql-persistence/installer-workflow
 ---
 
-WARNING: Read about [SQL Persistence NuGet Packages](/nservicebus/sql-persistence/#nuget-packages) before proceeding.
+WARNING: Read about [SQL Persistence NuGet Packages](/persistence/sql-persistence/#nuget-packages) before proceeding.
 
 
 ## Contrasting Workflows
