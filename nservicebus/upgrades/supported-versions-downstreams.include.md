@@ -5,7 +5,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 7.2.x     | 2017-03-21     | -                 | -                                 |
-| 7.1.x     | 2016-12-05     | 2017-06-21        | Superseded by 7.2.x               |
+| ~~7.1.x~~ | ~~2016-12-05~~ | ~~2017-06-21~~    | ~~Superseded by 7.2.x~~           |
 | ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-03-05~~    | ~~Superseded by 7.1.x~~           |
 | 6.4.x     | 2016-01-12     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
@@ -15,7 +15,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 7.3.x     | 2017-06-02     | -                 | -                                 |
 | 7.2.x     | 2017-03-24     | 2017-09-02        | Superseded by 7.3.x               |
-| 7.0.x     | 2016-10-11     | 2017-06-24        | Superseded by 7.2.x               |
+| ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 7.2.x~~           |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 #### NServiceBus.RabbitMQ
@@ -27,7 +27,6 @@
 | ~~4.1.x~~ | ~~2016-10-31~~ | ~~2017-02-28~~    | ~~Superseded by 4.2.x~~           |
 | ~~4.0.x~~ | ~~2016-10-11~~ | ~~2017-01-31~~    | ~~Superseded by 4.1.x~~           |
 | 3.5.x     | 2016-09-20     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
-| ~~3.4.x~~ | ~~2016-09-12~~ | ~~2016-12-20~~    | ~~Superseded by 3.5.x~~           |
 
 #### NServiceBus.SqlServer
 
@@ -63,7 +62,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 1.4.x     | 2017-06-16     | -                 | -                                 |
 | 1.3.x     | 2017-06-02     | 2017-09-16        | Superseded by 1.4.x               |
 | 1.2.x     | 2017-03-24     | 2017-09-02        | Superseded by 1.3.x               |
-| 1.0.x     | 2016-10-11     | 2017-06-24        | Superseded by 1.2.x               |
+| ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 1.2.x~~           |
 
 #### NServiceBus.Persistence.Sql
 
@@ -89,7 +88,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.1.x     | 2017-03-21     | -                 | -                                 |
-| 1.0.x     | 2016-10-11     | 2017-06-21        | Superseded by 1.1.x               |
+| ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-06-21~~    | ~~Superseded by 1.1.x~~           |
 
 ### Container packages
 
@@ -99,7 +98,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 6.0.x     | 2016-10-11     | -                 | -                                 |
 | 5.1.x     | 2016-09-19     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
-| ~~5.0.x~~ | ~~2014-09-29~~ | ~~2016-12-19~~    | ~~Superseded by 5.1.x~~           |
 
 #### NServiceBus.CastleWindsor
 
@@ -177,7 +175,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.1.x     | 2017-03-24     | -                 | -                                 |
-| 1.0.x     | 2016-10-11     | 2017-06-24        | Superseded by 1.1.x               |
+| ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 1.1.x~~           |
 
 ### Host packages
 
@@ -200,7 +198,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 7.1.x     | 2017-03-24     | -                 | -                                 |
-| 7.0.x     | 2016-10-11     | 2017-06-24        | Superseded by 7.1.x               |
+| ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 7.1.x~~           |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 ### Other packages
