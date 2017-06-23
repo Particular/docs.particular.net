@@ -5,7 +5,7 @@ component: MongoDatabusTekmaven
 tags:
  - DataBus
 related:
- - nservicebus/mongodb-persistence-tekmaven
+ - persistence/mongodb-persistence-tekmaven
 ---
 
 Uses [MongoDB](https://www.mongodb.com/) for DataBus storage.
@@ -16,4 +16,4 @@ Uses [MongoDB](https://www.mongodb.com/) for DataBus storage.
 snippet: MongoDataBusUsage
 
 
-Note that the connection string used for the databus is shared by the [MongoDB Persistence](/nservicebus/mongodb-persistence-tekmaven).
+Note that the connection string used for the databus is shared by the [MongoDB Persistence](/persistence/mongodb-persistence-tekmaven).
