@@ -33,7 +33,7 @@ snippet: TablePrefix
 
 Tables generated for sagas reserve 27 characters for the saga name, leaving 3 characters for the `_PK` suffix for the table's primary key.
 
-In order to accommodate as many characters for the saga name as possible, the [table prefix](/nservicebus/sql-persistence/#installation-table-prefix) is omitted from the saga table name.
+In order to accommodate as many characters for the saga name as possible, the [table prefix](/persistence/sql-persistence/#installation-table-prefix) is omitted from the saga table name.
 
 | Saga Class Name |   Table Name  |    Primary Key   |
 |-----------------|:-------------:|:----------------:|
