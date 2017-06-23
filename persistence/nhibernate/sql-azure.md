@@ -7,7 +7,7 @@ reviewed: 2016-11-04
 tags:
  - Persistence
 related:
- - nservicebus/nhibernate/accessing-data
+ - persistence/nhibernate/accessing-data
 redirects:
  - nservicebus/nhibernate/sql-azure
 ---
