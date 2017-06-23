@@ -9,7 +9,7 @@ redirects:
  - nservicebus/ravendb/installation
 ---
 
-Starting from NServiceBus Version 5.0 RavenDB is no longer the default persistence option in NServiceBus. A user has to explicitly select persistence. For more information, on the various available persistence options, read: [Persistence in NServiceBus](/nservicebus/persistence/).
+Starting from NServiceBus Version 5.0 RavenDB is no longer the default persistence option in NServiceBus. A user has to explicitly select persistence. For more information, on the various available persistence options, read: [Persistence in NServiceBus](/persistence/).
 
 RavenDB-related code has been moved to a separate package  [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) and it is up to a user to install the RavenDB server from the [official download page](https://ravendb.net/download), following instructions on RavenDB website.
 
@@ -46,7 +46,7 @@ It is highly recommended to backup all databases before upgrading.
 
 ## RavenDB versions compatible
 
-For a more detailed overview over the compatibility see [RavenDB version compatibility](/nservicebus/ravendb/version-compatibility.md).
+For a more detailed overview over the compatibility see [RavenDB version compatibility](/persistence/ravendb/version-compatibility.md).
 
 [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) greater or equal to Version 3.0.0 requires RavenDB Version 3.0 build 3660 or higher build number for Version 3.0.
 
