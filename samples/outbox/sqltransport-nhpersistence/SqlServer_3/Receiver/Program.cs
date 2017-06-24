@@ -18,6 +18,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SQLNHibernateOutbox.Receiver";
+
         #region NHibernate
 
         var hibernateConfig = new Configuration();
@@ -36,11 +37,12 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SQLNHibernateOutbox.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
+
         #region ReceiverConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(@"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True;Max Pool Size=100; Min Pool Size=100");
-        
+
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);
 
@@ -48,13 +50,22 @@ class Program
 
         #endregion
 
-        transport.Routing().RouteToEndpoint(typeof(OrderAccepted).Assembly, "Samples.SQLNHibernateOutbox.Sender");
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(typeof(OrderAccepted).Assembly, "Samples.SQLNHibernateOutbox.Sender");
 
         #region RetriesConfiguration
 
-        endpointConfiguration.Recoverability()
-            .Immediate(immediate => immediate.NumberOfRetries(0))
-            .Delayed(delayed => delayed.NumberOfRetries(0));
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Immediate(
+            customizations: immediate =>
+            {
+                immediate.NumberOfRetries(0);
+            });
+        recoverability.Delayed(
+            customizations: delayed =>
+            {
+                delayed.NumberOfRetries(0);
+            });
 
         #endregion
 

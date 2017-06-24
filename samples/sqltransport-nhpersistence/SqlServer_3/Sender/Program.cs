@@ -45,7 +45,8 @@ class Program
 
         #endregion
 
-        transport.Routing().RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlNHibernate.Sender");
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlNHibernate.Sender");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

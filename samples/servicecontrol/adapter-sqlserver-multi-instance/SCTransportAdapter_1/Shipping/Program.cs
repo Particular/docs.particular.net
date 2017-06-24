@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Features;
 using NServiceBus.Transport.SQLServer;
 
 class Program
@@ -18,7 +17,8 @@ class Program
             "Samples.ServiceControl.SqlServerTransportAdapter.Shipping");
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.Routing().RegisterPublisher(typeof(OrderAccepted),
+        var routing = transport.Routing();
+        routing.RegisterPublisher(typeof(OrderAccepted),
             "Samples.ServiceControl.SqlServerTransportAdapter.Sales");
         transport.EnableLegacyMultiInstanceMode(Connections.GetConnection);
 
@@ -30,10 +30,10 @@ class Program
             c.ConfigureComponent(() => chaos, DependencyLifecycle.SingleInstance);
         });
 
-        endpointConfiguration.Recoverability()
-            .Immediate(immediate => immediate.NumberOfRetries(0))
-            .Delayed(delayed => delayed.NumberOfRetries(0))
-            .DisableLegacyRetriesSatellite();
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
+        recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
+        recoverability.DisableLegacyRetriesSatellite();
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");

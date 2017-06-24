@@ -22,12 +22,16 @@ class Program
         #region ReceiverConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.Routing().RouteToEndpoint(typeof(OrderAccepted),"Samples.SqlServer.StoreAndForwardSender");
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(
+            messageType: typeof(OrderAccepted),
+            destination: "Samples.SqlServer.StoreAndForwardSender");
 
         transport.EnableLegacyMultiInstanceMode(async address =>
         {
             string connectionString;
-            if (address.StartsWith("Samples.SqlServer.StoreAndForwardReceiver") || address == "error")
+            if (address.StartsWith("Samples.SqlServer.StoreAndForwardReceiver") ||
+                address == "error")
             {
                 connectionString = ReceiverConnectionString;
             }

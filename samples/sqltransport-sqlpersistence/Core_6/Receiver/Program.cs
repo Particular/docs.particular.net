@@ -22,22 +22,23 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
-        var connectionString = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True;Min Pool Size=2;Max Pool Size=100";
+        var connection = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True;Min Pool Size=2;Max Pool Size=100";
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(connectionString);
+        transport.ConnectionString(connection);
         transport.DefaultSchema("receiver");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
         transport.UseSchemaForQueue("Samples.SqlTransportSqlPersistence.Sender", "sender");
-        transport.Routing().RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlTransportSqlPersistence.Sender");
-        transport.Routing().RegisterPublisher(typeof(OrderSubmitted).Assembly, "Samples.SqlTransportSqlPersistence.Sender");
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlTransportSqlPersistence.Sender");
+        routing.RegisterPublisher(typeof(OrderSubmitted).Assembly, "Samples.SqlTransportSqlPersistence.Sender");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
-                return new SqlConnection(connectionString);
+                return new SqlConnection(connection);
             });
         persistence.Schema("receiver");
         persistence.TablePrefix("");

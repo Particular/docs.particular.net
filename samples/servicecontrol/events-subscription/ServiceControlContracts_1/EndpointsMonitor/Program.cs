@@ -19,7 +19,8 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        transport.Routing().RegisterPublisher(
+        var routing = transport.Routing();
+        routing.RegisterPublisher(
             typeof(ServiceControl.Contracts.MessageFailed).Assembly,
             "Particular.ServiceControl"
         );

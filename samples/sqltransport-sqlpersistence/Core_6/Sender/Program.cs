@@ -26,19 +26,19 @@ class Program
 
         #region SenderConfiguration
 
-        var connectionString = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True;Min Pool Size=2;Max Pool Size=100";
+        var connection = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True;Min Pool Size=2;Max Pool Size=100";
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(connectionString);
+        transport.ConnectionString(connection);
         transport.DefaultSchema("sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
-        
+
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
-                return new SqlConnection(connectionString);
+                return new SqlConnection(connection);
             });
         persistence.Schema("sender");
         persistence.TablePrefix("");

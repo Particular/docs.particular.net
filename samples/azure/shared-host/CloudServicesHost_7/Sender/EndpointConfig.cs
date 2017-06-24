@@ -18,7 +18,10 @@ public class EndpointConfig :
         #region AzureMultiHost_MessageMapping
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.Routing().RouteToEndpoint(typeof(Ping), "Receiver");
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(
+            messageType: typeof(Ping),
+            destination: "Receiver");
 
         #endregion
 

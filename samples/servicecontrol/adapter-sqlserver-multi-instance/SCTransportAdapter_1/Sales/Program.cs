@@ -21,7 +21,8 @@ class Program
             "Samples.ServiceControl.SqlServerTransportAdapter.Sales");
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.Routing().RegisterPublisher(typeof(OrderShipped),
+        var routing = transport.Routing();
+        routing.RegisterPublisher(typeof(OrderShipped),
             "Samples.ServiceControl.SqlServerTransportAdapter.Shipping");
         transport.EnableLegacyMultiInstanceMode(Connections.GetConnection);
 

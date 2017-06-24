@@ -31,9 +31,9 @@ class Program
 
         #endregion
 
-        endpointConfiguration.Recoverability()
-            .Immediate(immediate => immediate.NumberOfRetries(0))
-            .Delayed(delayed => delayed.NumberOfRetries(0));
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
+        recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();

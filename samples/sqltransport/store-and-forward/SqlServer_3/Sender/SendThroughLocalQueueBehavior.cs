@@ -46,14 +46,11 @@ class SendThroughLocalQueueRoutingToDispatchConnector :
         if (unicastTag == null)
         {
             var multicastTag = originalTag as MulticastAddressTag;
-            if (multicastTag != null)
-            {
-                headers["$.store-and-forward.eventtype"] = multicastTag.MessageType.AssemblyQualifiedName;
-            }
-            else
+            if (multicastTag == null)
             {
                 throw new Exception($"Unsupported type of address tag: {originalTag.GetType().FullName}");
             }
+            headers["$.store-and-forward.eventtype"] = multicastTag.MessageType.AssemblyQualifiedName;
         }
         else
         {
