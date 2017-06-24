@@ -8,7 +8,7 @@ public class OrderSubmittedHandler :
 {
     static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
 
-    public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
+    public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         log.Info($"Order {message.OrderId} worth {message.Value} submitted");
 
@@ -17,13 +17,15 @@ public class OrderSubmittedHandler :
         var session = context.SynchronizedStorageSession.SqlPersistenceSession();
         var connection = session.Connection as SqlConnection;
 
-        const string sqlCommand = "INSERT INTO [receiver].[Orders] (OrderId, Value) VALUES (@OrderId, @Value)";
+        var sqlCommand = "insert into [receiver].[Orders] (OrderId, Value) values (@OrderId, @Value)";
 
         using (var dbCommand = new SqlCommand(sqlCommand, connection))
         {
-            dbCommand.Parameters.AddWithValue("OrderId", message.OrderId);
-            dbCommand.Parameters.AddWithValue("Value", message.Value);
-            dbCommand.ExecuteNonQuery();
+            var parameters = dbCommand.Parameters;
+            parameters.AddWithValue("OrderId", message.OrderId);
+            parameters.AddWithValue("Value", message.Value);
+            await dbCommand.ExecuteNonQueryAsync()
+                .ConfigureAwait(false);
         }
 
         #endregion
@@ -34,7 +36,8 @@ public class OrderSubmittedHandler :
         {
             OrderId = message.OrderId,
         };
-        return context.Reply(orderAccepted);
+        await context.Reply(orderAccepted)
+            .ConfigureAwait(false);
 
         #endregion
     }
