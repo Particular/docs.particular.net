@@ -17,8 +17,6 @@ public class OrderSubmittedHandlerEf :
 
         var session = context.SynchronizedStorageSession.SqlPersistenceSession();
 
-        var connection = (SqlConnection)session.Connection;
-        var transaction = (SqlTransaction)session.Transaction;
         var order = new Order
         {
             OrderId = message.OrderId,
@@ -27,7 +25,7 @@ public class OrderSubmittedHandlerEf :
 
         using (var orderContext = new OrderEfContext(session.Connection))
         {
-            orderContext.Database.UseTransaction(transaction);
+            orderContext.Database.UseTransaction(session.Transaction);
             await orderContext.OrdersEf.AddAsync(order)
                 .ConfigureAwait(false);
             await orderContext.SaveChangesAsync()

@@ -18,8 +18,9 @@ public class OrderSubmittedHandlerRaw :
         var connection = (SqlConnection)session.Connection;
         var transaction = (SqlTransaction)session.Transaction;
 
-        var command = "insert into receiver.OrdersRaw (OrderId, Value) values (@OrderId, @Value)";
-
+        var command = @"insert into receiver.OrdersRaw
+                                    (orderid, value)
+                        values      (@OrderId, @Value)";
         using (var dbCommand = new SqlCommand(command, connection, transaction))
         {
             var parameters = dbCommand.Parameters;

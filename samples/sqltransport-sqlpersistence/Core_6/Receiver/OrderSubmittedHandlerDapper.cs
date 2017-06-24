@@ -23,7 +23,10 @@ public class OrderSubmittedHandlerDapper :
             OrderId = message.OrderId,
             Value = message.Value
         };
-        var command = "insert into receiver.OrdersDapper (OrderId, Value) values (@OrderId, @Value)";
+
+        var command = @"insert into receiver.OrdersDapper
+                                    (orderid, value)
+                        values      (@OrderId, @Value)";
         return connection.ExecuteAsync(command, order, transaction);
 
         #endregion
