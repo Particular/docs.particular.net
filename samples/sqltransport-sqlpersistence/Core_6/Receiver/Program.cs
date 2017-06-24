@@ -5,33 +5,33 @@ using NServiceBus;
 using NServiceBus.Persistence.Sql;
 using NServiceBus.Transport.SQLServer;
 
-class Program
+public static class Program
 {
-    static void Main()
+    public static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
     }
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.SqlTransportSqlPersistence.Receiver";
+        Console.Title = "Samples.Sql.Receiver";
 
         #region ReceiverConfiguration
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlTransportSqlPersistence.Receiver");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Sql.Receiver");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
-        var connection = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True;Min Pool Size=2;Max Pool Size=100";
+        var connection = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True";
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connection);
         transport.DefaultSchema("receiver");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
-        transport.UseSchemaForQueue("Samples.SqlTransportSqlPersistence.Sender", "sender");
+        transport.UseSchemaForQueue("Samples.Sql.Sender", "sender");
         var routing = transport.Routing();
-        routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlTransportSqlPersistence.Sender");
-        routing.RegisterPublisher(typeof(OrderSubmitted).Assembly, "Samples.SqlTransportSqlPersistence.Sender");
+        routing.RouteToEndpoint(typeof(OrderReceived), "Samples.Sql.Sender");
+        routing.RegisterPublisher(typeof(OrderSubmitted).Assembly, "Samples.Sql.Sender");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlVariant(SqlVariant.MsSqlServer);

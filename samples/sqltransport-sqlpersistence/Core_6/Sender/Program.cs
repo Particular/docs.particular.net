@@ -6,12 +6,12 @@ using NServiceBus;
 using NServiceBus.Transport.SQLServer;
 using NServiceBus.Persistence.Sql;
 
-class Program
+public static class Program
 {
     const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
     static Random random;
 
-    static void Main()
+    public static void Main()
     {
         random = new Random();
         AsyncMain().GetAwaiter().GetResult();
@@ -19,14 +19,14 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.SqlTransportSqlPersistence.Sender";
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlTransportSqlPersistence.Sender");
+        Console.Title = "Samples.Sql.Sender";
+        var endpointConfiguration = new EndpointConfiguration("Samples.Sql.Sender");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
         #region SenderConfiguration
 
-        var connection = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True;Min Pool Size=2;Max Pool Size=100";
+        var connection = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True";
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connection);
         transport.DefaultSchema("sender");
