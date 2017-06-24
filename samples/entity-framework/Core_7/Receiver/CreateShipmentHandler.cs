@@ -10,14 +10,14 @@ public class CreateShipmentHandler :
     public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         #region StoreShipment
+
+        var shipment = new Shipment
         {
-            var shipment = new Shipment
-            {
-                OrderId = message.OrderId,
-                Location = message.ShipTo
-            };
-            context.DataContext().Shipments.Add(shipment);
-        }
+            OrderId = message.OrderId,
+            Location = message.ShipTo
+        };
+        context.DataContext().Shipments.Add(shipment);
+
         #endregion
 
         return Task.CompletedTask;

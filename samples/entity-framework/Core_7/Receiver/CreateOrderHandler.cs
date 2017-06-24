@@ -12,14 +12,14 @@ public class CreateOrderHandler :
         log.Info($"Order {message.OrderId} worth {message.Value} submitted");
 
         #region StoreOrder
+
+        var order = new Order
         {
-            var order = new Order
-            {
-                OrderId = message.OrderId,
-                Value = message.Value
-            };
-            context.DataContext().Orders.Add(order);
-        }
+            OrderId = message.OrderId,
+            Value = message.Value
+        };
+        context.DataContext().Orders.Add(order);
+
         #endregion
 
         return Task.CompletedTask;
