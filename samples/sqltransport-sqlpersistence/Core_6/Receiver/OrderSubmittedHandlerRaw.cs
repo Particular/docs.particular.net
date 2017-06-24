@@ -12,7 +12,7 @@ public class OrderSubmittedHandlerRaw :
     {
         log.Info($"Order {message.OrderId} worth {message.Value} being persisted by raw sql");
 
-        #region StoreUserDataRaw
+        #region StoreDataRaw
 
         var session = context.SynchronizedStorageSession.SqlPersistenceSession();
         var connection = (SqlConnection)session.Connection;

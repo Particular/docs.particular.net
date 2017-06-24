@@ -13,7 +13,7 @@ public class OrderSubmittedHandlerDapper :
     {
         log.Info($"Order {message.OrderId} worth {message.Value} being persisted by dapper");
 
-        #region StoreUserDataDapper
+        #region StoreDataDapper
 
         var session = context.SynchronizedStorageSession.SqlPersistenceSession();
         var connection = (SqlConnection)session.Connection;

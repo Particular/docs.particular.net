@@ -1,33 +1,8 @@
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using NServiceBus;
 using NServiceBus.Logging;
-
-public class OrderEfContext : DbContext
-{
-    DbConnection connection;
-
-    public DbSet<Order> OrdersEf { get; set; }
-
-    public OrderEfContext(DbConnection connection)
-    {
-        this.connection = connection;
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-    {
-        options.ConfigureWarnings(x => x.Ignore(RelationalEventId.AmbientTransactionWarning));
-        options.UseSqlServer(connection);
-    }
-
-    protected override void OnModelCreating(ModelBuilder model)
-    {
-        model.HasDefaultSchema("receiver");
-    }
-}
 
 public class OrderSubmittedHandlerEf :
     IHandleMessages<OrderSubmitted>
@@ -38,7 +13,7 @@ public class OrderSubmittedHandlerEf :
     {
         log.Info($"Order {message.OrderId} worth {message.Value} being persisted by EF");
 
-        #region StoreUserDataEf
+        #region StoreDataEf
 
         var session = context.SynchronizedStorageSession.SqlPersistenceSession();
 
