@@ -18,7 +18,7 @@ related:
 ## Running the project
 
  1. Start both projects.
- 1. Hit `<enter>` in Sender's console window to send a new message.
+ 1. Hit enter in Sender's console window to send a new message.
 
 
 ## Verifying that the sample works correctly

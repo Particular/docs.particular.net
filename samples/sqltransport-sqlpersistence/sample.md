@@ -24,7 +24,7 @@ snippet: OrdersTableSQL
 
  1. Start the Sender and Receiver projects.
  1. In the Sender's console notice the `Press <enter> to send a message` text when the app is ready.
- 1. Hit <enter>.
+ 1. Hit enter.
  1. On the Receiver console notice that order was submitted.
  1. On the Sender console notice that the order was accepted.
  1. Finally, after a couple of seconds, on the Receiver console notice that the timeout message has been received.

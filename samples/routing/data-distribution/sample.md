@@ -21,7 +21,7 @@ Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Confi
 
  1. Start all the projects by hitting F5.
  1. The text `Press <enter> to send a message` should be displayed in the Client.1 and Client.2 console windows.
- 1. Press `<enter>` a couple of times in both Client windows.
+ 1. Press enter a couple of times in both Client windows.
 
 
 ### Verifying that the sample works correctly

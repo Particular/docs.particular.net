@@ -19,14 +19,14 @@ Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Confi
 
  1. Start all the projects by hitting F5.
  1. The text `Press <enter> to send a message` should be displayed in the Client's console window.
- 1. Hold down `<enter>` for a few seconds to send many messages.
+ 1. Hold down enter for a few seconds to send many messages.
 
 
 ### Verifying that the sample works correctly
 
  1. Notice more messages are being sent to Server.1 than to Server.2
  1. Use a [MSMQ viewing tool](/nservicebus/msmq/viewing-message-content-in-msmq.md) to inspect queue contents.
- 1. Keep hitting `<enter>` and observe number of messages in Server.1 and Server.2 queues.
+ 1. Keep hitting enter and observe number of messages in Server.1 and Server.2 queues.
  1. Notice that although Server.2 processes messages 50% slower than Server.1, the numbers of messages in both queues are almost equal.
 
 

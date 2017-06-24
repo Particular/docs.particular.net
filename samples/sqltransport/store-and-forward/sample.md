@@ -22,16 +22,16 @@ redirects:
  1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
  1. Start the Receiver project.
  1. In the Sender's console is the text `Press <enter> to send a message` when the app is ready.
- 1. Hit `<enter>`.
+ 1. Hit enter.
 
 
 ## Verifying that the sample works correctly
 
  1. The Receiver displays information that the order was submitted.
  1. The Sender displays information that the order was accepted.
- 1. Hit `<enter>` in the Receiver console to shut it down.
+ 1. Hit enter in the Receiver console to shut it down.
  1. Go to the SQL Server Management Studio and delete the `receiver` database.
- 1. Hit `<enter>` again in the Sender console
+ 1. Hit enter again in the Sender console
  1. Notice the retry mechanism kicks in after a 10 seconds and retries sending the message to the destination database.
  1. Create the `receiver` database again and restart the Receiver project.
  1. Notice that the message has been delivered to the Receiver.

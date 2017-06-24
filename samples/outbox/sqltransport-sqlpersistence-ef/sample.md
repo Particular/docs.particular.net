@@ -23,7 +23,7 @@ related:
 
  1. Start the Solution
  1. The text `Press <enter> to send a message` should be displayed in the Sender's console window.
- 1. Hit `<enter>` to send a new message.
+ 1. Hit enter to send a new message.
 
 
 ## Verifying that the sample works correctly

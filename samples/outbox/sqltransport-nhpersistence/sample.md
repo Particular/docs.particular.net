@@ -26,7 +26,7 @@ redirects:
  1. The text `Press <enter> to send a message` should be displayed in the Sender's console window.
  1. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
  1. The Sender should display subscription confirmation `Subscribe from Receiver on message type OrderSubmitted`.
- 1. Hit `<enter>` to send a new message.
+ 1. Hit enter to send a new message.
 
 
 ## Verifying that the sample works correctly
