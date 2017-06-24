@@ -1,4 +1,3 @@
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
@@ -15,18 +14,17 @@ public class OrderSubmittedHandlerRaw :
         #region StoreDataRaw
 
         var session = context.SynchronizedStorageSession.SqlPersistenceSession();
-        var connection = (SqlConnection)session.Connection;
-        var transaction = (SqlTransaction)session.Transaction;
 
-        var command = @"insert into receiver.OrdersRaw
-                                    (orderid, value)
-                        values      (@OrderId, @Value)";
-        using (var dbCommand = new SqlCommand(command, connection, transaction))
+        var sql = @"insert into receiver.OrdersRaw
+                                (OrderId, Value)
+                    values      (@OrderId, @Value)";
+        using (var command = session.Connection.CreateCommand())
         {
-            var parameters = dbCommand.Parameters;
-            parameters.AddWithValue("OrderId", message.OrderId);
-            parameters.AddWithValue("Value", message.Value);
-            await dbCommand.ExecuteNonQueryAsync()
+            command.CommandText = sql;
+            command.Transaction = session.Transaction;
+            command.AddParameter("OrderId", message.OrderId);
+            command.AddParameter("Value", message.Value);
+            await command.ExecuteNonQueryAsync()
                 .ConfigureAwait(false);
         }
 

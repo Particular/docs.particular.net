@@ -1,4 +1,3 @@
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Dapper;
 using NServiceBus;
@@ -16,18 +15,20 @@ public class OrderSubmittedHandlerDapper :
         #region StoreDataDapper
 
         var session = context.SynchronizedStorageSession.SqlPersistenceSession();
-        var connection = (SqlConnection)session.Connection;
-        var transaction = (SqlTransaction)session.Transaction;
+
         var order = new Order
         {
             OrderId = message.OrderId,
             Value = message.Value
         };
 
-        var command = @"insert into receiver.OrdersDapper
-                                    (orderid, value)
-                        values      (@OrderId, @Value)";
-        return connection.ExecuteAsync(command, order, transaction);
+        var sql = @"insert into receiver.OrdersDapper
+                                (OrderId, Value)
+                    values      (@OrderId, @Value)";
+        return session.Connection.ExecuteAsync(
+            sql: sql,
+            param: order,
+            transaction: session.Transaction);
 
         #endregion
     }
