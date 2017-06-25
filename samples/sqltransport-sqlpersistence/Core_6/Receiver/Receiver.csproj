@@ -19,6 +19,6 @@
     <PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="4.5.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <None Update="SubmittedOrder.sql" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="Startup.sql" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Transport.SQLServer;
@@ -45,6 +46,9 @@ public static class Program
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
         #endregion
+        var allText = File.ReadAllText("Startup.sql");
+        await SqlHelper.ExecuteSql(connection, allText)
+            .ConfigureAwait(false);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
@@ -73,4 +77,6 @@ public static class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
+
+
 }

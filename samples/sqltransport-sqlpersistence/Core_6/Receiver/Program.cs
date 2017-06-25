@@ -51,7 +51,8 @@ public static class Program
 
         #endregion
 
-        await CreateSubmittedOrderTable(connection)
+        var allText = File.ReadAllText("Startup.sql");
+        await SqlHelper.ExecuteSql(connection, allText)
             .ConfigureAwait(false);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
@@ -61,18 +62,4 @@ public static class Program
             .ConfigureAwait(false);
     }
 
-    static async Task CreateSubmittedOrderTable(string connection)
-    {
-        using (var sqlConnection = new SqlConnection(connection))
-        {
-            await sqlConnection.OpenAsync()
-                .ConfigureAwait(false);
-            using (var command = sqlConnection.CreateCommand())
-            {
-                command.CommandText = File.ReadAllText("SubmittedOrder.sql");
-                await command.ExecuteNonQueryAsync()
-                    .ConfigureAwait(false);
-            }
-        }
-    }
 }
