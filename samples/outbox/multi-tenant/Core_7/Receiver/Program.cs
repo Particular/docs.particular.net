@@ -51,24 +51,15 @@ class Program
 
         endpointConfiguration.EnableOutbox();
 
-        var settingsHolder = endpointConfiguration.GetSettings();
-        settingsHolder.Set("NHibernate.Timeouts.AutoUpdateSchema", true);
-        settingsHolder.Set("NHibernate.Subscriptions.AutoUpdateSchema", true);
+        var settings = endpointConfiguration.GetSettings();
+        settings.Set("NHibernate.Timeouts.AutoUpdateSchema", true);
+        settings.Set("NHibernate.Subscriptions.AutoUpdateSchema", true);
 
         #endregion
 
-        #region ReplaceOpenSqlConnection
+        ReplaceOpenSqlConnection(endpointConfiguration);
 
-        endpointConfiguration.Pipeline.Register<ExtractTenantConnectionStringBehavior.Registration>();
-
-        #endregion
-
-        #region RegisterPropagateTenantIdBehavior
-
-        endpointConfiguration.Pipeline.Register<PropagateOutgoingTenantIdBehavior.Registration>();
-        endpointConfiguration.Pipeline.Register<PropagateIncomingTenantIdBehavior.Registration>();
-
-        #endregion
+        RegisterPropagateTenantIdBehavior(endpointConfiguration);
 
 
         var startableEndpoint = await Endpoint.Create(endpointConfiguration)
@@ -91,6 +82,27 @@ class Program
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
         }
+    }
+
+    static void RegisterPropagateTenantIdBehavior(EndpointConfiguration endpointConfiguration)
+    {
+        #region RegisterPropagateTenantIdBehavior
+
+        var pipeline = endpointConfiguration.Pipeline;
+        pipeline.Register<PropagateOutgoingTenantIdBehavior.Registration>();
+        pipeline.Register<PropagateIncomingTenantIdBehavior.Registration>();
+
+        #endregion
+    }
+
+    static void ReplaceOpenSqlConnection(EndpointConfiguration endpointConfiguration)
+    {
+        #region ReplaceOpenSqlConnection
+
+        var pipeline = endpointConfiguration.Pipeline;
+        pipeline.Register<ExtractTenantConnectionStringBehavior.Registration>();
+
+        #endregion
     }
 
     static Configuration CreateBasicNHibernateConfig()

@@ -46,12 +46,12 @@ class Program
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
 
-        endpointConfiguration
-            .UsePersistence<NHibernatePersistence>();
+        endpointConfiguration.UsePersistence<NHibernatePersistence>();
 
         #region ReceiverConfiguration
 
-        endpointConfiguration.Pipeline.Register(new UnitOfWorkSetupBehaviorBehavior(), "Sets up unit of work for the message");
+        var pipeline = endpointConfiguration.Pipeline;
+        pipeline.Register(new UnitOfWorkSetupBehaviorBehavior(), "Sets up unit of work for the message");
 
         #endregion
 
