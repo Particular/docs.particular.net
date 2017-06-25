@@ -1,4 +1,3 @@
-﻿using System.Configuration;
 using System.Data.SqlClient;
 using NServiceBus;
 using NServiceBus.Transport.SQLServer;
@@ -35,10 +34,7 @@ class NamedConnectionString
         transport.UseCustomSqlConnectionFactory(
             sqlConnectionFactory: async () =>
         {
-            var connectionStrings = ConfigurationManager.ConnectionStrings["myConnectionString"];
-            var connectionString = connectionStrings.ConnectionString;
-
-            var connection = new SqlConnection(connectionString);
+            var connection = new SqlConnection("SomeConnectionString");
             try
             {
                 await connection.OpenAsync()
