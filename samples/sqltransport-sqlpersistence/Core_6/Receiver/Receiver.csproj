@@ -4,8 +4,11 @@
     <TargetFramework>net462</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <OutputType>exe</OutputType>
-
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="OrderSubmittedHandlerDapper.cs" />
+    <Compile Remove="OrderSubmittedHandlerRaw.cs" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dapper" Version="1.50.2" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
@@ -13,7 +16,9 @@
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.1.3" />
     <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="2.1.3" />
     <PackageReference Include="NServiceBus.SqlServer" Version="3.0.1" />
+    <PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="4.5.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
+    <None Update="SubmittedOrder.sql" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

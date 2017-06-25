@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
@@ -24,6 +25,8 @@ public static class Program
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
         var connection = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True";
+
+
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connection);
         transport.DefaultSchema("receiver");
@@ -48,11 +51,28 @@ public static class Program
 
         #endregion
 
+        await CreateSubmittedOrderTable(connection)
+            .ConfigureAwait(false);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
         await endpointInstance.Stop()
             .ConfigureAwait(false);
+    }
+
+    static async Task CreateSubmittedOrderTable(string connection)
+    {
+        using (var sqlConnection = new SqlConnection(connection))
+        {
+            await sqlConnection.OpenAsync()
+                .ConfigureAwait(false);
+            using (var command = sqlConnection.CreateCommand())
+            {
+                command.CommandText = File.ReadAllText("SubmittedOrder.sql");
+                await command.ExecuteNonQueryAsync()
+                    .ConfigureAwait(false);
+            }
+        }
     }
 }

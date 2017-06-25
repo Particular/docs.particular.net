@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Transport.SQLServer;
@@ -8,7 +7,6 @@ using NServiceBus.Persistence.Sql;
 
 public static class Program
 {
-    const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
     static Random random;
 
     public static void Main()
@@ -63,10 +61,9 @@ public static class Program
                 break;
             }
 
-            var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
             var orderSubmitted = new OrderSubmitted
             {
-                OrderId = orderId,
+                OrderId = Guid.NewGuid(),
                 Value = random.Next(100)
             };
             await endpointInstance.Publish(orderSubmitted)

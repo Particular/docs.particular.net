@@ -36,7 +36,7 @@ public class OrderLifecycleSaga :
     public class SagaData :
         ContainSagaData
     {
-        public string OrderId { get; set; }
+        public Guid OrderId { get; set; }
     }
 }
 #endregion
