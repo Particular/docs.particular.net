@@ -6,7 +6,7 @@ using NServiceBus.Logging;
 namespace Raw
 {
 
-    public class OrderSubmittedHandlerRaw :
+    public class OrderSubmittedHandler :
         IHandleMessages<OrderSubmitted>
     {
         static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
