@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Transport.SQLServer;
-using NServiceBus.Persistence.Sql;
 
 public static class Program
 {
@@ -33,19 +31,11 @@ public static class Program
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
 
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.SqlVariant(SqlVariant.MsSqlServer);
-        persistence.ConnectionBuilder(
-            connectionBuilder: () =>
-            {
-                return new SqlConnection(connection);
-            });
-        persistence.Schema("sender");
-        persistence.TablePrefix("");
-        var subscriptions = persistence.SubscriptionSettings();
-        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         #endregion
+
+
         var allText = File.ReadAllText("Startup.sql");
         await SqlHelper.ExecuteSql(connection, allText)
             .ConfigureAwait(false);

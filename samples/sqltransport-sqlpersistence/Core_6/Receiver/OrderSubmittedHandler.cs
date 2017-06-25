@@ -8,7 +8,7 @@ public class OrderSubmittedHandler :
     {
         #region Reply
 
-        var orderAccepted = new OrderReceived
+        var orderAccepted = new OrderAccepted
         {
             OrderId = message.OrderId
         };

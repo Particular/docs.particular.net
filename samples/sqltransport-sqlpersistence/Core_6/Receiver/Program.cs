@@ -34,7 +34,7 @@ public static class Program
         transport.UseSchemaForQueue("audit", "dbo");
         transport.UseSchemaForQueue("Samples.Sql.Sender", "sender");
         var routing = transport.Routing();
-        routing.RouteToEndpoint(typeof(OrderReceived), "Samples.Sql.Sender");
+        routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.Sql.Sender");
         routing.RegisterPublisher(typeof(OrderSubmitted).Assembly, "Samples.Sql.Sender");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();

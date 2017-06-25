@@ -8,16 +8,16 @@ related:
 - nservicebus/sqlserver
 ---
 
-In this sample, the SQL Server Transport is used in conjunction with SQL Persistence. The sample shows how to use the same database connection for both transport and persistence operations, and how to access the SQL connection from within a message handler to persist business objects to the database.
+In this sample, the [SQL Server Transport](/nservicebus/sqlserver/) is used in conjunction with [SQL Persistence](/nservicebus/sql-persistence/). The sample shows how to use the same database connection for both transport and persistence operations, and how to access (using multiple [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping)) the current SQL connection and transaction from within a message handler to persist business objects to the database.
 
 
 ## Prerequisites
 
- 1. Make sure an instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
- 1. Create a database named `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under the *Security* directory in the SQL Server Management Studio database tree).
- 1. Execute the **Receiver.Orders.sql** script, found in the solution root directory, against the database to create the `[receiver].[Orders]` table:
+An instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
 
-snippet: OrdersTableSQL
+At startup each endpoint will create its requires SQL assets. For example Receiver will execute the following:
+
+snippet: ReceiverSQLAssets
 
 
 ## Procedure
@@ -39,12 +39,12 @@ This sample contains three projects:
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
  * Receiver - A console application responsible for processing the order message.
 
-Sender and Receiver use different schemas within one database. This creates a separation on logical level (schemas can be secured independently) while retaining the benefits of having a single physical database. Each schema contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence. If no schema is specified, the transport will default to using the `dbo` schema.
+Sender and Receiver use different schemas within one database. This creates a separation on logical level (schemas can be secured independently) while retaining the benefits of having a single physical database. Each schema contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence.
 
 
 ### Sender project
 
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed as messages to the back-end. It is configured to use the SQL Server transport with SQL persistence. The transport is configured to use a non-standard schema `sender` and to send messages addressed to the `receiver` endpoint to a different schema.
+The Sender mimics the front-end system where orders are submitted by the users and passed as messages to the back-end. It is configured to use the [SQL Server Transport](/nservicebus/sqlserver/) and the [In Memory Persistence](/nservicebus/persistence/in-memory). In Memory Persistence is used since for the purposes of this sample Sender does not need to persist and data. The transport is configured to use `sender` for the schema and to send messages addressed to the `receiver` endpoint to a different schema.
 
 snippet: SenderConfiguration
 
@@ -53,7 +53,7 @@ The connection strings for both persistence and transport are the same.
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use the SQL Server transport with SQL persistence, but with a different schema.
+The Receiver mimics a back-end system. It is also configured to use the [SQL Server Transport](/nservicebus/sqlserver/) and the [SQL Persistence](/nservicebus/sql-persistence/), but with a different schema.
 
 snippet: ReceiverConfiguration
 

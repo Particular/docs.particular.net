@@ -3,11 +3,11 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 public class OrderAcceptedHandler :
-    IHandleMessages<OrderReceived>
+    IHandleMessages<OrderAccepted>
 {
     static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
 
-    public Task Handle(OrderReceived message, IMessageHandlerContext context)
+    public Task Handle(OrderAccepted message, IMessageHandlerContext context)
     {
         log.Info($"Order {message.OrderId} accepted.");
         return Task.CompletedTask;
