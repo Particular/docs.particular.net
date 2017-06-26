@@ -24,6 +24,8 @@ Configuring Audit via the following APIs have been deprecated:
  * `IProvideConfiguration<AuditConfig>`
  * `AuditConfig` in an app.config `configSections`
  * Returning a `AuditConfig` from a `IConfigurationSource`
+ * `HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceBus\AuditQueue` registry key
+ 
 
 Instead use one of the following:
 
@@ -70,6 +72,7 @@ Configuring the error queue via the following APIs have been deprecated:
  * `IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>`
  * `MessageForwardingInCaseOfFaultConfig` in an app.config `configSections`
  * Returning a `MessageForwardingInCaseOfFaultConfig` from a `IConfigurationSource`
+ * `HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceBus\ErrorQueue` registry key
 
 Instead use one of the following:
 
