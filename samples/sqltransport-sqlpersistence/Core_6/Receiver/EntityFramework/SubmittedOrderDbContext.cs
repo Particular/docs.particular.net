@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace EntityFramework
 {
-    #region SubmittedOrderContext
+    #region SubmittedOrderDbContext
 
     public class SubmittedOrderDbContext : DbContext
     {

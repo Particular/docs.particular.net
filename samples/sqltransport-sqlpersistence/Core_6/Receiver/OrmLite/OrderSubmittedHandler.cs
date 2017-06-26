@@ -21,7 +21,7 @@ namespace OrmLite
         {
             log.Info($"Order {message.OrderId} worth {message.Value} persisted by OrmLite");
 
-            #region StoreDataDapper
+            #region StoreDataOrmLite
 
             var session = context.SynchronizedStorageSession.SqlPersistenceSession();
 
