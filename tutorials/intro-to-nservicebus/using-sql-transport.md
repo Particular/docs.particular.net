@@ -47,7 +47,7 @@ With this, which will select the SQL Server transport, and configure a connectio
 
 ```cs
 var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-transport.ConnectionString(@"Server=.\sqlexpress;Initial Catalog=NServiceBusAcademy;Trusted_Connection=true;Max Pool Size=100;");
+transport.ConnectionString(@"Server=.\sqlexpress;Initial Catalog=NServiceBusAcademy;Trusted_Connection=true");
 ```
 
 The connection string provided assumes use of SQL Express. You may need to change the connection string as appropriate to connect to your SQL Server instance.
