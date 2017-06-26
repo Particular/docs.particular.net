@@ -10,9 +10,9 @@ redirects:
 - nservicebus/no-dtc
 related:
 - samples/outbox
-- nservicebus/nhibernate/outbox
+- persistence/nhibernate/outbox
 - nservicebus/service-fabric/outbox
-- nservicebus/ravendb/outbox
+- persistence/ravendb/outbox
 ---
 
 Outbox allows endpoints to run with similar reliability to DTC while not actually using DTC.
@@ -53,11 +53,11 @@ Note: On the wire level the Outbox guarantees `at-least-once` message delivery, 
 
 partial: enable-outbox
 
-To learn about Outbox configuration options such as time to keep deduplication data or deduplication data clean up interval, refer to the dedicated pages for [NHibernate](/nservicebus/nhibernate/outbox.md), [RavenDB](/nservicebus/ravendb/outbox.md) or [ServiceFabric](/nservicebus/service-fabric/outbox.md) persistence.
+To learn about Outbox configuration options such as time to keep deduplication data or deduplication data clean up interval, refer to the dedicated pages for [NHibernate](/persistence/nhibernate/outbox.md), [RavenDB](/persistence/ravendb/outbox.md) or [ServiceFabric](/nservicebus/service-fabric/outbox.md) persistence.
 
 
 ## Persistence
 
 The Outbox feature requires persistence in order to store the messages and enable deduplication.
 
-Refer to the dedicated pages for [NHibernate](/nservicebus/nhibernate/outbox.md), [RavenDB](/nservicebus/ravendb/outbox.md) or [ServiceFabric](/nservicebus/service-fabric/outbox.md) persistence.
+Refer to the dedicated pages for [NHibernate](/persistence/nhibernate/outbox.md), [RavenDB](/persistence/ravendb/outbox.md) or [ServiceFabric](/nservicebus/service-fabric/outbox.md) persistence.
