@@ -12,7 +12,7 @@
     {
         public void CustomMapping(EndpointConfiguration endpointConfiguration)
         {
-            #region OutboxNHibernateCustomMapping
+            #region OutboxNHibernateCustomMappingConfig
 
             var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
             persistence.UseOutboxRecord<MyOutboxRecord, MyOutboxRecordMapping>();
