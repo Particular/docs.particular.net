@@ -745,6 +745,8 @@
       Title: Subscriptions
     - Url: nservicebus/sql-persistence/installer-workflow
       Title: Installer Workflow
+    - Url: nservicebus/sql-persistence/oracle-caveats
+      Title: Oracle Caveats
     - Url: nservicebus/sql-persistence/sqlserver-scripts
       Title: MS SQL Server Scripts
     - Url: nservicebus/sql-persistence/mysql-scripts
