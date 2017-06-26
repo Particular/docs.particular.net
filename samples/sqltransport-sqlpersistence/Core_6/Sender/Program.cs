@@ -26,7 +26,7 @@ class Program
 
         #region SenderConfiguration
 
-        var connection = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True;Min Pool Size=2;Max Pool Size=100";
+        var connection = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True";
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connection);
         transport.DefaultSchema("sender");

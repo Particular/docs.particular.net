@@ -24,7 +24,7 @@ class Program
         var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
-            x.ConnectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True;Max Pool Size=100; Min Pool Size=100";
+            x.ConnectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True";
             x.Dialect<MsSql2012Dialect>();
         });
         var mapper = new ModelMapper();
@@ -41,7 +41,7 @@ class Program
         #region ReceiverConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True;Max Pool Size=100; Min Pool Size=100");
+        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True");
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);

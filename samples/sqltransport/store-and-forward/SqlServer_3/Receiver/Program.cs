@@ -66,6 +66,6 @@ class Program
             .ConfigureAwait(false);
     }
 
-    const string ReceiverConnectionString = @"Data Source=.\SqlExpress;Database=receiver;Integrated Security=True;Min Pool Size=2;Max Pool Size=100";
-    const string SenderConnectionString = @"Data Source=.\SqlExpress;Database=sender;Integrated Security=True;Min Pool Size=2;Max Pool Size=100";
+    const string ReceiverConnectionString = @"Data Source=.\SqlExpress;Database=receiver;Integrated Security=True";
+    const string SenderConnectionString = @"Data Source=.\SqlExpress;Database=sender;Integrated Security=True";
 }
