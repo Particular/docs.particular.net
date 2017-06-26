@@ -47,7 +47,7 @@ snippet: delayed-delivery-datetime
 
 ## Caveats
 
-Delayed delivery of messages is supported when the one following requirements are met:
+Delayed delivery of messages is supported when one of the following requirements are met:
 
  * The transport supports delayed delivery natively.
  * The Timeout Manager feature is enabled and the endpoint is not a send-only endpoint.
