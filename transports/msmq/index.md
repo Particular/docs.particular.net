@@ -71,12 +71,14 @@ Although MSMQ has the concept of both [Public and Private queues](https://techne
 
 ## Permissions
 
-| Group          | Permissions          |
-|----------------|----------------------|
-| Owning account | Write, Receive, Peek |
-| Administrators | Full                 |
-| Anonymous      | Write                |
-| Everyone       | Write                |
+| Group          | Permissions         | Description                       |
+|----------------|---------------------|-----------------------------------|
+| Owning account | Send, Receive, Peek | Set by NServiceBus                |
+| Administrators | Full                | Set by NServiceBus                |
+| Anonymous      | Send                | Set by NServiceBus prior to 6.1.0 |
+| Everyone       | Send                | Set by NServiceBus prior to 6.1.0 |
+
+NOTE: If you are running in *Workgroup* mode then Windows will grant Send permissions to Anonymous. Everyone is added by default by Windows but not with Send or Receive permisssions. Prior to NServiceBus 6.1.0 Send permissions for Anonymous and Everyone were granted at queue creation but this behavior was altered to not accidentally open up permissions.
 
 To retrieve the group names the [WellKnownSidType](https://msdn.microsoft.com/en-us/library/system.security.principal.wellknownsidtype.aspx) enumeration is used.
 
