@@ -6,6 +6,8 @@ component: Rabbit
 related:
  - nservicebus/upgrades/5to6
  - transports/rabbitmq/connection-settings
+redirects:
+ - nservicebus/upgrades/rabbitmq-3to4
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

@@ -143,10 +143,10 @@ This covers the basic steps required to update an endpoint to Version 6. Each of
 #### Transports
 
  * MSMQ - There are no special upgrade requirements for endpoints using the MSMQ transport. If the solution being upgraded includes the distributor component then see [Upgrading an endpoint using Distributor from Version 5 to 6](/samples/scaleout/distributor-upgrade/).
- * [Azure Service Bus](../asb-6to7.md)
- * [Azure Storage Queues](../asq-6to7.md)
- * [RabbitMQ](../rabbitmq-3to4.md)
- * [SQL Server](../sqlserver-2to3.md)
+ * [Azure Service Bus](/transports/upgrades/asb-6to7.md)
+ * [Azure Storage Queues](/transports/upgrades/asq-6to7.md)
+ * [RabbitMQ](/transports/upgrades/rabbitmq-3to4.md)
+ * [SQL Server](/transports/upgrades/sqlserver-2to3.md)
 
 
 #### Persistence

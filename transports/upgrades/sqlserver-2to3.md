@@ -4,6 +4,8 @@ reviewed: 2016-09-13
 component: SqlServer
 related:
  - nservicebus/upgrades/5to6
+redirects:
+ - nservicebus/upgrades/sqlserver-2to3
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

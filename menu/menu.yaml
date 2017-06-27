@@ -116,16 +116,6 @@
       Articles:
       - Url: nservicebus/upgrades/absdatabus-6to1
         Title: Migrating off NServiceBus.Azure
-    - Title: Azure Storage Queues Transport
-      Articles:
-      - Url: nservicebus/upgrades/asq-6to7
-        Title: Version 6 to 7
-    - Title: Azure Service Bus Transport
-      Articles:
-      - Url: nservicebus/upgrades/asb-7to8
-        Title: Version 7 to 8      
-      - Url: nservicebus/upgrades/asb-6to7
-        Title: Version 6 to 7
     - Title: Azure Cloud Services Host
       Articles:
       - Url: nservicebus/upgrades/acs-host-6to7
@@ -134,20 +124,6 @@
       Articles:
       - Url: nservicebus/upgrades/gateway-1to2
         Title: Version 1 to 2
-    - Title: RabbitMQ Transport
-      Articles:
-      - Url: nservicebus/upgrades/rabbitmq-3to4
-        Title: Version 3 to 4
-      - Url: nservicebus/upgrades/rabbitmq-4.0to4.1
-        Title: Version 4.0 to 4.1
-    - Title: SQL Server Transport
-      Articles:
-      - Url: nservicebus/upgrades/sqlserver-2to3
-        Title: Version 2 to 3
-      - Url: nservicebus/upgrades/sqlserver-2.x-2.2.4
-        Title: Version 2.x to 2.2.4
-      - Url: nservicebus/upgrades/sqlserver-1.x-1.2.5
-        Title: Version 1.x to 1.2.5
     - Title: NServiceBus Testing
       Articles:
       - Url: nservicebus/upgrades/testing-5to6
@@ -511,6 +487,33 @@
       Title: Scaling out
     - Url: transports/queuecreation
       Title: Creating queues
+  - Url: nservicebus/upgrades
+    Title: Upgrade Guides
+    Articles:
+    - Title: Azure Storage Queues Transport
+      Articles:
+      - Url: transports/upgrades/asq-6to7
+        Title: Version 6 to 7
+    - Title: Azure Service Bus Transport
+      Articles:
+      - Url: transports/upgrades/asb-7to8
+        Title: Version 7 to 8      
+      - Url: transports/upgrades/asb-6to7
+        Title: Version 6 to 7
+    - Title: RabbitMQ Transport
+      Articles:
+      - Url: transports/upgrades/rabbitmq-3to4
+        Title: Version 3 to 4
+      - Url: transports/upgrades/rabbitmq-4.0to4.1
+        Title: Version 4.0 to 4.1
+    - Title: SQL Server Transport
+      Articles:
+      - Url: transports/upgrades/sqlserver-2to3
+        Title: Version 2 to 3
+      - Url: transports/upgrades/sqlserver-2.x-2.2.4
+        Title: Version 2.x to 2.2.4
+      - Url: transports/upgrades/sqlserver-1.x-1.2.5
+        Title: Version 1.x to 1.2.5
   - Url: transports/learning
     Title: Learning Transport
   - Url: transports/azure-service-bus

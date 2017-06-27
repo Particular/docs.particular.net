@@ -6,6 +6,8 @@ component: ASB
 related:
  - transports/azure-service-bus
  - nservicebus/upgrades/5to6
+redirects:
+ - nservicebus/upgrades/asb-6to7
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

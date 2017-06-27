@@ -98,4 +98,4 @@ The Receiver mimics a back-end system. The following code configures it to use t
 
 snippet: ReceiverConfiguration
 
-NOTE: Multi-instance mode is deprecated in Version 3 of SQL Server transport and will be removed in the next major version. By that time an alternative store-and-forward solution will be provided. For more information refer to the [SQL Server transport Version 2 to Version 3 upgrade guide](/nservicebus/upgrades/sqlserver-2to3.md#namespace-changes-multi-instance-support).
+NOTE: Multi-instance mode is deprecated in Version 3 of SQL Server transport and will be removed in the next major version. By that time an alternative store-and-forward solution will be provided. For more information refer to the [SQL Server transport Version 2 to Version 3 upgrade guide](/transports/upgrades/sqlserver-2to3.md#namespace-changes-multi-instance-support).

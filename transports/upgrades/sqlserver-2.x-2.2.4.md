@@ -5,6 +5,8 @@ reviewed: 2016-07-04
 component: SqlServer
 related:
  - security-advisories/sqlserver-sqlinjection
+redirects:
+ - nservicebus/upgrades/sqlserver-2.x-2.2.4
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

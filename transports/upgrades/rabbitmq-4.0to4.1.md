@@ -5,6 +5,8 @@ reviewed: 2016-10-26
 component: Rabbit
 related:
  - transports/rabbitmq/routing-topology
+redirects:
+ - nservicebus/upgrades/rabbitmq-4.0to4.1
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
