@@ -700,7 +700,7 @@
     Articles:
     - Url: persistence/order
       Title: Persistence order
-  - Url: nservicebus/upgrades
+  - Url: persistence/upgrades
     Title: Upgrade Guides
     Articles:
     - Title: Azure Storage
