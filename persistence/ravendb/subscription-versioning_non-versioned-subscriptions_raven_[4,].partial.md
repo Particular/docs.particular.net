@@ -1,6 +1,6 @@
 ## Non-versioned subscriptions support
 
-In V4.2 and above support for non-versioned subscriptions has been introduced. Non-versioned subscription are an opt-in feature due to their incompatibility with the default subscription storage behavior. To enable support for storing subscriptions without storing the message version change endpoint configuration as follows:
+In Versions 4.2 and above support for non-versioned subscriptions has been introduced. Non-versioned subscription are an opt-in feature due to their incompatibility with the default subscription storage behavior. To enable support for storing subscriptions without storing the message version change endpoint configuration as follows:
 
 snippet: DisableSubscriptionVersioning
 
