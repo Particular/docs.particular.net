@@ -10,7 +10,7 @@ redirects:
 - samples/saga/complexfindinglogic
 related:
 - nservicebus/sagas
-- nservicebus/learning-persistence
+- persistence/learning-persistence
 - nservicebus/learning-transport
 ---
 
@@ -57,6 +57,6 @@ snippet: thesaga
 
 ## Location Helper
 
-This is a helper class used by the sample to derive the storage locations of the [Learning Transport](/nservicebus/learning-transport/) and the [Learning Persistence](/nservicebus/learning-persistence/).
+This is a helper class used by the sample to derive the storage locations of the [Learning Transport](/nservicebus/learning-transport/) and the [Learning Persistence](/persistence/learning-persistence/).
 
 snippet: LearningLocationHelper

@@ -6,7 +6,7 @@ component: SqlServer
 related:
 - nservicebus/msmq
 - nservicebus/sqlserver
-- nservicebus/nhibernate
+- persistence/nhibernate
 ---
 
 

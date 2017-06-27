@@ -4,7 +4,7 @@ summary: Integrating SQL Server transport with NHibernate persistence without ou
 reviewed: 2016-03-21
 component: SqlServer
 related:
-- nservicebus/nhibernate
+- persistence/nhibernate
 - nservicebus/sqlserver
 ---
 

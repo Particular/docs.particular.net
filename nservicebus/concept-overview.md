@@ -108,7 +108,7 @@ Allows the forwarding of every message received by an endpoint to a configured q
 Serialization is the process of converting an in memory object representing a message into a stream of bytes in order to transmit it via the Transport. For Endpoint Instances to communicate they need to share a common serialization technology.
 
 
-### [Persistence](/nservicebus/persistence/)
+### [Persistence](/persistence/)
 
 Several NServiceBus features rely on persistent storage to function. This includes Sagas, Timeouts, Gateway, Outbox and Subscriptions (with transports that do not support Pub/Sub natively).
 

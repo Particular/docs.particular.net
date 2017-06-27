@@ -10,7 +10,7 @@ NServiceBus is an implementation of a [message based architecture](http://www.en
 For example
 
  * [Messages, events and commands](/nservicebus/messaging/messages-events-commands.md) are an implementation of the [Message](http://www.enterpriseintegrationpatterns.com/patterns/messaging/Message.html), [Event](http://www.enterpriseintegrationpatterns.com/patterns/messaging/EventMessage.html) and [Command](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CommandMessage.html) patterns.
- * [Persistence](/nservicebus/persistence/) is an implementation of the [Shared Database Pattern](http://www.enterpriseintegrationpatterns.com/patterns/messaging/SharedDataBaseIntegration.html)
+ * [Persistence](/persistence/) is an implementation of the [Shared Database Pattern](http://www.enterpriseintegrationpatterns.com/patterns/messaging/SharedDataBaseIntegration.html)
  * [Publish Subscribe](/nservicebus/messaging/publish-subscribe/) is an implementation of the [Durable Subscription Pattern](http://www.enterpriseintegrationpatterns.com/patterns/messaging/DurableSubscription.html)
 
 

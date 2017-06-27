@@ -34,7 +34,7 @@ include: learning-persistence-description
 A volatile RAM based storage mainly used for development purposes. Can also be used where the storage is not required to persist between process restarts.
 
 
-### [SQL Persistence](/nservicebus/sql-persistence/)
+### [SQL Persistence](/persistence/sql-persistence/)
 
 Uses [Json.NET](http://www.newtonsoft.com/json) to serialize data and store in a SQL database.
 
@@ -59,7 +59,7 @@ A persister built on top of [Service Fabric Reliable Collections](https://docs.m
 Uses custom [NHibernate](http://nhibernate.info/) to persist data to an ADO.net data store (e.g. SQL Server).
 
 
-### [MSMQ](/nservicebus/msmq/subscription-persistence.md)
+### [MSMQ](/persistence/msmq/subscription-persistence.md)
 
 A subscription only storage on top of MSMQ.
 

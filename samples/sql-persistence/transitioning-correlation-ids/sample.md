@@ -7,7 +7,7 @@ related:
 ---
 
 
-This sample illustrates an approach for transitioning between different [Correlation Ids](/nservicebus/sql-persistence/saga.md#correlation-ids) in way that requires no endpoint downtime and no migration of saga data stored in sql.
+This sample illustrates an approach for transitioning between different [Correlation Ids](/persistence/sql-persistence/saga.md#correlation-ids) in way that requires no endpoint downtime and no migration of saga data stored in sql.
 
 NOTE: This sample uses 3 "Phase" Endpoint Projects to illustrate the iterations of a single endpoint in one solution.
 

@@ -52,7 +52,7 @@ Note: The below [persistence-based publish-subscribe](/nservicebus/messaging/pub
 
 ### Subscribe
 
-`Subscriber` sends a subscription message to `Publisher` which is stored in the [persistence](/nservicebus/persistence/) of `Publisher`. 
+`Subscriber` sends a subscription message to `Publisher` which is stored in the [persistence](/persistence/) of `Publisher`. 
 
 ```mermaid
 sequenceDiagram

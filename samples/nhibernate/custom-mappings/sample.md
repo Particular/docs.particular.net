@@ -4,7 +4,7 @@ summary: Create a custom mapping to change how NHibernate creates the database s
 reviewed: 2016-03-21
 component: NHibernate
 related:
- - nservicebus/nhibernate
+ - persistence/nhibernate
 ---
 
 

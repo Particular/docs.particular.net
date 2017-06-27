@@ -8,7 +8,7 @@ tags:
 - SagaFinder
 related:
 - nservicebus/sagas
-- nservicebus/nhibernate
+- persistence/nhibernate
 ---
 
 include: sagafinder-into

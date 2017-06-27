@@ -11,7 +11,7 @@ upgradeGuideCoreVersions:
 
 ## Subscription Caching configuration now required
 
-[Subscription Caching](/nservicebus/sql-persistence/subscriptions.md) is now a required configuration option. 
+[Subscription Caching](/persistence/sql-persistence/subscriptions.md) is now a required configuration option. 
 
 Ether configure a period of time cache for:
 
@@ -83,7 +83,7 @@ WARNING: An exception will be thrown if any of ], [ or &grave; are detected in t
 
 ## Missing Indexes
 
-Some missing indexes have been added. These indexes will be added the next time the [installers](/nservicebus/sql-persistence/#installation) are executed. No explicit SQL migration is required.
+Some missing indexes have been added. These indexes will be added the next time the [installers](/persistence/sql-persistence/#installation) are executed. No explicit SQL migration is required.
 
 
 ### TimeoutData

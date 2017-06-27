@@ -20,5 +20,5 @@ When performing endpoint decommission the following aspects should be considered
 
  1. Routing should be adjusted to make sure that no new messages will be delivered to that endpoint
  1. Make sure that endpoint processed all messages from it's queue
- 1. [Timeouts are rerouted to other endpoint instances](/nservicebus/ravendb/reroute-existing-timeouts.md)
+ 1. [Timeouts are rerouted to other endpoint instances](/persistence/ravendb/reroute-existing-timeouts.md)
  1. If any errors are discovered in the ServicePulse/ServiceControl tools a [redirect functionality](/servicepulse/redirect.md) can be used to reroute messages to another endpoint instance.

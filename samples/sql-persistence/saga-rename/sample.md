@@ -32,7 +32,7 @@ This Saga will be renamed from `MyNamespace1.MyTimeoutSagaVersion1` to `MyNamesp
 
 This scenario is necessary to illustrate how, when the timeout message is received, its header needs to be translated over the new saga name.
 
-The saga type is stored in the Headers of the TimeoutData Table ([Sql Server](/nservicebus/sql-persistence/sqlserver-scripts.md#build-time-timeout-create-table) and [MySql](/nservicebus/sql-persistence/mysql-scripts.md#build-time-timeout-create-table)) but will be converted back to a [message header](/nservicebus/messaging/headers.md#saga-related-headers-requesting-a-timeout-from-a-saga) when the timeout is executed.
+The saga type is stored in the Headers of the TimeoutData Table ([Sql Server](/persistence/sql-persistence/sqlserver-scripts.md#build-time-timeout-create-table) and [MySql](/persistence/sql-persistence/mysql-scripts.md#build-time-timeout-create-table)) but will be converted back to a [message header](/nservicebus/messaging/headers.md#saga-related-headers-requesting-a-timeout-from-a-saga) when the timeout is executed.
 
 
 ### Reply Saga

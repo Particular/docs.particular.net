@@ -8,7 +8,7 @@ tags:
  - Timeout
 related:
  - nservicebus/sagas
- - nservicebus/ravendb
+ - persistence/ravendb
 reviewed: 2016-10-05
 ---
 
