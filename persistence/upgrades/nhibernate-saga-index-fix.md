@@ -19,7 +19,7 @@ This issue may cause multiple rows in saga data table that represent the same lo
 
 ## Compatibility
 
-This issue has been resolved in the following patch versions as defined in the NServiceBus [support policy](support-policy.md):
+This issue has been resolved in the following patch versions as defined in the NServiceBus [support policy](/nservicebus/upgrades/support-policy.md):
 
 - NServiceBus.NHibernate 7.2.1
 - NServiceBus.NHibernate 7.1.6

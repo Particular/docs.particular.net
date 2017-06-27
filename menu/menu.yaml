@@ -116,14 +116,6 @@
       Articles:
       - Url: nservicebus/upgrades/absdatabus-6to1
         Title: Migrating off NServiceBus.Azure
-    - Title: Azure Storage Persistence
-      Articles:
-      - Url: nservicebus/upgrades/asp-6to1
-        Title: NServiceBus.Azure Version 6
-      - Url: nservicebus/upgrades/asp-saga-pruning
-        Title: Version 6.2.4 to 6.2.5
-      - Url: nservicebus/upgrades/asp-saga-deduplication
-        Title: Version 6.2.3 to 6.2.4
     - Title: Azure Storage Queues Transport
       Articles:
       - Url: nservicebus/upgrades/asq-6to7
@@ -142,24 +134,12 @@
       Articles:
       - Url: nservicebus/upgrades/gateway-1to2
         Title: Version 1 to 2
-    - Title: NHibernate Persistence
-      Articles:
-      - Url: nservicebus/upgrades/nhibernate-6to7
-        Title: Version 6 to 7
-      - Url: nservicebus/upgrades/nhibernate-timeouts-index
-        Title: Resolving incorrect timeout table indexes
-      - Url: nservicebus/upgrades/nhibernate-saga-index-fix
-        Title: Adding unique constraints on saga data tables
     - Title: RabbitMQ Transport
       Articles:
       - Url: nservicebus/upgrades/rabbitmq-3to4
         Title: Version 3 to 4
       - Url: nservicebus/upgrades/rabbitmq-4.0to4.1
         Title: Version 4.0 to 4.1
-    - Title: RavenDB Persistence
-      Articles:
-      - Url: nservicebus/upgrades/ravendb-3to4
-        Title: Version 3 to 4
     - Title: SQL Server Transport
       Articles:
       - Url: nservicebus/upgrades/sqlserver-2to3
@@ -168,14 +148,6 @@
         Title: Version 2.x to 2.2.4
       - Url: nservicebus/upgrades/sqlserver-1.x-1.2.5
         Title: Version 1.x to 1.2.5
-    - Title: SQL Persistence
-      Articles:
-      - Url: nservicebus/upgrades/sqlpersistence-1to2
-        Title: Version 1 to 2
-      - Url: nservicebus/upgrades/sqlpersistence-1.0.0-1.0.1
-        Title: Version 1 to 1.0.1
-      - Url: nservicebus/upgrades/sqlpersistence-oracle-null-endpoint
-        Title: Support NServiceBus 5 subscribers
     - Title: NServiceBus Testing
       Articles:
       - Url: nservicebus/upgrades/testing-5to6
@@ -728,6 +700,37 @@
     Articles:
     - Url: persistence/order
       Title: Persistence order
+  - Url: nservicebus/upgrades
+    Title: Upgrade Guides
+    Articles:
+    - Title: Azure Storage
+      Articles:
+      - Url: persistence/upgrades/asp-6to1
+        Title: NServiceBus.Azure Version 6
+      - Url: persistence/upgrades/asp-saga-pruning
+        Title: Version 6.2.4 to 6.2.5
+      - Url: persistence/upgrades/asp-saga-deduplication
+        Title: Version 6.2.3 to 6.2.4
+    - Title: NHibernate
+      Articles:
+      - Url: persistence/upgrades/nhibernate-6to7
+        Title: Version 6 to 7
+      - Url: persistence/upgrades/nhibernate-timeouts-index
+        Title: Resolving incorrect timeout table indexes
+      - Url: persistence/upgrades/nhibernate-saga-index-fix
+        Title: Adding unique constraints on saga data tables
+    - Title: RavenDB
+      Articles:
+      - Url: persistence/upgrades/ravendb-3to4
+        Title: Version 3 to 4
+    - Title: SQL
+      Articles:
+      - Url: persistence/upgrades/sqlpersistence-1to2
+        Title: Version 1 to 2
+      - Url: persistence/upgrades/sqlpersistence-1.0.0-1.0.1
+        Title: Version 1 to 1.0.1
+      - Url: persistence/upgrades/sqlpersistence-oracle-null-endpoint
+        Title: Support NServiceBus 5 subscribers
   - Url: persistence/learning
     Title: Learning Persistence
   - Url: persistence/in-memory

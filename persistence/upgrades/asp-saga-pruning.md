@@ -15,7 +15,7 @@ This document explains how to upgrade and patch a system for [Azure Storage Pers
 
 WARNING: When upgrading to NServiceBus.Persistence.AzureStorage Version 1 and above, the following upgrade will need to be performed prior to beginning any other upgrade steps.
 
-WARNING: The [saga de-duplication patch](/nservicebus/upgrades/asp-saga-deduplication.md) process must have been completed at least once prior to proceeding with this update.
+WARNING: The [saga de-duplication patch](/persistence/upgrades/asp-saga-deduplication.md) process must have been completed at least once prior to proceeding with this update.
 
 
 ## How to know if a system may be affected

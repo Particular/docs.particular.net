@@ -5,14 +5,14 @@ reviewed: 2016-06-23
 component: ASP
 related:
  - persistence/azure-storage
- - nservicebus/upgrades/asp-saga-deduplication
+ - persistence/upgrades/asp-saga-deduplication
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5
  - 6
 ---
 
-WARNING: Upgrades from NServiceBus.Azure Versions 6.2.3 and below will need to apply the [saga de-duplication patch](/nservicebus/upgrades/asp-saga-deduplication.md) followed by applying the [saga index patch](/nservicebus/upgrades/asp-saga-pruning.md) before completing the remainder of these upgrade steps.
+WARNING: Upgrades from NServiceBus.Azure Versions 6.2.3 and below will need to apply the [saga de-duplication patch](/persistence/upgrades/asp-saga-deduplication.md) followed by applying the [saga index patch](/persistence/upgrades/asp-saga-pruning.md) before completing the remainder of these upgrade steps.
 
 
 ## Changing Nuget Packages and namespaces

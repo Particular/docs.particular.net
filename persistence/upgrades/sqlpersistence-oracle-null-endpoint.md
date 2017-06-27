@@ -19,7 +19,7 @@ This issue makes it impossible for subscriber endpoints using NServiceBus 5 and 
 
 ## Compatibility
 
-This issue has been resolved in the following patch versions as defined in the NServiceBus [support policy](support-policy.md):
+This issue has been resolved in the following patch versions as defined in the NServiceBus [support policy](/nservicebus/upgrades/support-policy.md):
 
 - NServiceBus.Persistence.Sql 2.1.2
 - NServiceBus.Persistence.Sql 2.0.1

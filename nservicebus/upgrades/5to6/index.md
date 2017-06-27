@@ -151,9 +151,9 @@ This covers the basic steps required to update an endpoint to Version 6. Each of
 
 #### Persistence
 
- * [Azure Storage](../asp-6to1.md)
- * [NHibernate](../nhibernate-6to7.md)
- * [RavenDB](../ravendb-3to4.md)
+ * [Azure Storage](/persistence/upgrades/asp-6to1.md)
+ * [NHibernate](/persistence/upgrades/nhibernate-6to7.md)
+ * [RavenDB](/persistence/upgrades/ravendb-3to4.md)
 
 
 #### Others

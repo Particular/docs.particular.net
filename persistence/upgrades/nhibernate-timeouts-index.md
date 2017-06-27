@@ -20,7 +20,7 @@ This issue causes performance degradation if the table contains a large number o
 
 ## Compatibility
 
-This issue has been resolved in the following patch versions as defined in the NServiceBus [support policy](support-policy.md):
+This issue has been resolved in the following patch versions as defined in the NServiceBus [support policy](/nservicebus/upgrades/support-policy.md):
 
 - NServiceBus.NHibernate 7.1.4
 - NServiceBus.NHibernate 7.0.6

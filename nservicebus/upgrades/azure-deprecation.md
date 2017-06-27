@@ -12,5 +12,5 @@ upgradeGuideCoreVersions:
 
 `NServiceBus.Azure` package is no longer provided. All functionality has been moved to individual packages as listed below.
 
-* Persistence - `NServiceBus.Persistence.AzureStorage` see the [Azure Storage Persistence upgrade guide](/nservicebus/upgrades/asp-6to1.md) for more details.
+* Persistence - `NServiceBus.Persistence.AzureStorage` see the [Azure Storage Persistence upgrade guide](/persistence/upgrades/asp-6to1.md) for more details.
 * DataBus - `NServiceBus.DataBus.AzureBlobStorage` see the [Azure Blob Storage DataBus upgrade guide](/nservicebus/upgrades/absdatabus-6to1.md) for more details.
