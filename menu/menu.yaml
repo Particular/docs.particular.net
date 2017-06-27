@@ -787,14 +787,14 @@
       Title: Subscription versioning
     - Url: persistence/ravendb/licensing
       Title: Licensing
-  - Url: nservicebus/service-fabric
+  - Url: persistence/service-fabric
     Title: Service Fabric
     Articles:
-    - Url: nservicebus/service-fabric/sagas
+    - Url: persistence/service-fabric/sagas
       Title: Sagas
-    - Url: nservicebus/service-fabric/outbox
+    - Url: persistence/service-fabric/outbox
       Title: Outbox
-    - Url: nservicebus/service-fabric/transaction-sharing
+    - Url: persistence/service-fabric/transaction-sharing
       Title: Transaction Sharing
   - Url: persistence/nhibernate
     Title: NHibernate
