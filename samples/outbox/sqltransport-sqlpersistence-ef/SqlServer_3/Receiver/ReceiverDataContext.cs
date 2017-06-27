@@ -1,24 +1,38 @@
-using System.Data.Entity;
-using System.Data;
 using System.Data.Common;
+using Microsoft.EntityFrameworkCore;
 
 public class ReceiverDataContext :
     DbContext
 {
     #region EntityFramework
-    public ReceiverDataContext(string connection)
-        : base(connection)
+    public ReceiverDataContext(DbConnection connection)
     {
+        this.connection = connection;
     }
-    public ReceiverDataContext(IDbConnection connection)
-        : base((DbConnection) connection, false)
+    public ReceiverDataContext(string connectionString)
     {
+        this.connectionString = connectionString;
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!string.IsNullOrEmpty(connectionString))
+        {
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+        else
+        {
+            optionsBuilder.UseSqlServer(connection);
+        }
+    }
+
+    DbConnection connection;
+    string connectionString;
     #endregion
 
     public DbSet<Order> Orders { get; set; }
 
-    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         
