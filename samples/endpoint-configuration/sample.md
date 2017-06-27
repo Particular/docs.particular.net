@@ -67,9 +67,9 @@ This sample uses the [JSON](/nservicebus/serialization/json.md).
 snippet: serialization
 
 
-## Select and configure a [Transport](/nservicebus/transports)
+## Select and configure a [Transport](/transports)
 
-This sample uses the [MSMQ Transport](/nservicebus/msmq/).
+This sample uses the [MSMQ Transport](/transports/msmq/).
 
 snippet: transport
 

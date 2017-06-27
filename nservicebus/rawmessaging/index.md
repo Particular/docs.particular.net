@@ -5,7 +5,7 @@ component: RawMessaging
 reviewed: 2016-12-03
 ---
 
-`NServiceBus.Raw` allows sending and receiving raw messages using [NServiceBus transport infrastructure](/nservicebus/transports/). It is flexible in terms of message manipulation, therefore is a good fit for integrations with 3rd party systems, building gateways and bridges.
+`NServiceBus.Raw` allows sending and receiving raw messages using [NServiceBus transport infrastructure](/transports/). It is flexible in terms of message manipulation, therefore is a good fit for integrations with 3rd party systems, building gateways and bridges.
 
 
 ## Configuration
@@ -28,4 +28,4 @@ The following code implements the callback invoked when a message arrives at a r
 
 snippet: Receiving
 
-Notice the method gets a `dispatcher` object which can be used to send messages. The transport transaction object can be passed from the receiving context to the dispatcher, in order to ensure transactions span both send and receive. Make sure that the underlying transport infrastructure supports the [`SendsAtomicWithReceives` mode](/nservicebus/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive), when using this option.
+Notice the method gets a `dispatcher` object which can be used to send messages. The transport transaction object can be passed from the receiving context to the dispatcher, in order to ensure transactions span both send and receive. Make sure that the underlying transport infrastructure supports the [`SendsAtomicWithReceives` mode](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive), when using this option.

@@ -4,7 +4,7 @@ summary: Instructions on how to upgrade Azure Service Bus Transport Version 6 to
 reviewed: 2017-05-05
 component: ASB
 related:
- - nservicebus/azure-service-bus
+ - transports/azure-service-bus
  - nservicebus/upgrades/5to6
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -13,19 +13,19 @@ upgradeGuideCoreVersions:
 ---
 
 
-## [Topology](/nservicebus/azure-service-bus/topologies/) is mandatory
+## [Topology](/transports/azure-service-bus/topologies/) is mandatory
 
 In Versions 7 and above the topology selection is mandatory:
 
 snippet: topology-selection-upgrade-guide
 
-The [`EndpointOrientedTopology`](/nservicebus/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology)  is backward compatible with versions 6 and below of the transport. The [`ForwardingTopology`](/nservicebus/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology) is the recommended option for new projects.
+The [`EndpointOrientedTopology`](/transports/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology)  is backward compatible with versions 6 and below of the transport. The [`ForwardingTopology`](/transports/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology) is the recommended option for new projects.
 
-When selecting `EndpointOrientedTopology`, it is also necessary to configure [publisher names](/nservicebus/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers are subscribed to the correct publisher:
+When selecting `EndpointOrientedTopology`, it is also necessary to configure [publisher names](/transports/azure-service-bus/publisher-names-configuration.md), in order to ensure that subscribers are subscribed to the correct publisher:
 
 snippet: publisher_names_mapping_upgrade_guide
 
-For more details on topologies refer to the [Azure Service Bus Transport Topologies](/nservicebus/azure-service-bus/topologies/) article.
+For more details on topologies refer to the [Azure Service Bus Transport Topologies](/transports/azure-service-bus/topologies/) article.
 
 
 ## Sanitization
@@ -34,16 +34,16 @@ Azure Service Bus entities have path and name rules that limit the allowed chara
 
 In Versions 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. In Versions 7 and above, the sanitization has to be enabled and configured explicitly.
 
-In order to maintain backward compatibility, [register a custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#automated-sanitization-backward-compatibility-with-versions-6-and-below).
+In order to maintain backward compatibility, [register a custom sanitization strategy](/transports/azure-service-bus/sanitization.md#automated-sanitization-backward-compatibility-with-versions-6-and-below).
 
-In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a [custom sanitization strategy](/nservicebus/azure-service-bus/sanitization.md#sanitization).
+In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a [custom sanitization strategy](/transports/azure-service-bus/sanitization.md#sanitization).
 
 
 ## New Configuration API
 
 In Versions 6 and below the transport was configured using an XML configuration section called `AzureServiceBusQueueConfig`. This section has been removed in favor of a more granular, code based configuration API.
 
-The new configuration API is accessible through extension methods on the `UseTransport<AzureServiceBusTransport>()` extension point in the endpoint configuration. Refer to the [Full Configuration Page](/nservicebus/azure-service-bus/configuration/full.md) for more details.
+The new configuration API is accessible through extension methods on the `UseTransport<AzureServiceBusTransport>()` extension point in the endpoint configuration. Refer to the [Full Configuration Page](/transports/azure-service-bus/configuration/full.md) for more details.
 
 
 ### Setting The Connection String
@@ -60,7 +60,7 @@ The default values of the following settings have been changed:
  * `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200. 
  * `MaxDeliveryCount` is set to number of immediate retries + 1. For system queues the value has changed from 6 to 10.
 
-For more details refer to the [ASB Batching](/nservicebus/azure-service-bus/batching.md) and [ASB Retry behavior](/nservicebus/azure-service-bus/retries.md) articles. 
+For more details refer to the [ASB Batching](/transports/azure-service-bus/batching.md) and [ASB Retry behavior](/transports/azure-service-bus/retries.md) articles. 
 
 ### Setting Entity Property Values
 
@@ -77,7 +77,7 @@ and the size of the topics can be configured using the `MaxSizeInMegabytes` sett
 snippet: setting_topic_properties
 
 
-## [Securing Credentials](/nservicebus/azure-service-bus/securing-connection-strings.md)
+## [Securing Credentials](/transports/azure-service-bus/securing-connection-strings.md)
 
 include: asb-credential-warning
 
@@ -89,4 +89,4 @@ In order to enhance security and to avoid sharing sensitive information using `U
 
 ## BrokeredMessage conventions
 
-In versions 6 and below, `BrokeredMessage` conventions were specified using `BrokeredMessageBodyConversion` class. In versions 7 and above, it has been replaced by [configuration API](/nservicebus/azure-service-bus/brokered-message-creation.md).
+In versions 6 and below, `BrokeredMessage` conventions were specified using `BrokeredMessageBodyConversion` class. In versions 7 and above, it has been replaced by [configuration API](/transports/azure-service-bus/brokered-message-creation.md).

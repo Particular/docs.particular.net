@@ -55,7 +55,7 @@ Any usages of `Address` should be replaced by `string`.
 
 ## Native sends via MSMQ
 
-`MsmqMessageSender` and `MsmqSettings` are no longer available. Refer to [native sends](/nservicebus/msmq/operations-scripting.md#native-send) for other ways of sending raw messages via MSMQ.
+`MsmqMessageSender` and `MsmqSettings` are no longer available. Refer to [native sends](/transports/msmq/operations-scripting.md#native-send) for other ways of sending raw messages via MSMQ.
 
 
 ## Delayed Delivery

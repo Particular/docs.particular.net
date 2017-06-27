@@ -21,13 +21,13 @@ upgradeGuideCoreVersions:
 `IOutboxStorage` introduced a new parameter `OutboxStorageOptions`. This parameter gives access to the pipeline context. This enables outbox storage methods to manipulate everything that exists in the context during message pipeline execution.
 
 
-## [Queue creation](/nservicebus/transports/queuecreation.md)
+## [Queue creation](/transports/queuecreation.md)
 
 In Version 5 the implementation of the interface `ICreateQueues` was called for each queue that needed to be created. In Version 6 `ICreateQueues` has been redesigned. The implementation of the interface gets called once but with all queues provided on the `QueueBindings` object. It is now up to the implementation of that interface if the queues are created asynchronously in a sequential order or even in parallel.
 
 snippet: 5to6-QueueCreation
 
-See also [transport-specific queue creation](/nservicebus/msmq/operations-scripting.md#create-queues).
+See also [transport-specific queue creation](/transports/msmq/operations-scripting.md#create-queues).
 
 
 ## [Features](/nservicebus/pipeline/features.md)

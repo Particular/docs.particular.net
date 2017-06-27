@@ -18,7 +18,7 @@ The sample demonstrates how to use a file to describe the logical routing topolo
 
 ## Prerequisites
 
-Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) section.
+Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/transports/msmq/#nservicebus-configuration) section.
 
 
 ## Running the project

@@ -5,7 +5,7 @@ reviewed: 2016-04-27
 component: SqlServer
 related:
 - nservicebus/outbox
-- nservicebus/sqlserver
+- transports/sqlserver
 redirects:
 - samples/sqltransport-outbox-store-and-forward
 - samples/outbox/store-and-forward
@@ -39,7 +39,7 @@ redirects:
 
 ## Code walk-through
 
-When SQL Server transport is used in the [*multi-instance* mode](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance), the messages are inserted directly into the remote destination database's table. If the receiving endpoint's database is down or inaccessible, e.g. because of network failures, the sending endpoint can't send messages to it. In such situations the exception is thrown from the `Send()` or the `Publish()` methods, resulting in a potential message loss.
+When SQL Server transport is used in the [*multi-instance* mode](/transports/sqlserver/deployment-options.md#modes-overview-multi-instance), the messages are inserted directly into the remote destination database's table. If the receiving endpoint's database is down or inaccessible, e.g. because of network failures, the sending endpoint can't send messages to it. In such situations the exception is thrown from the `Send()` or the `Publish()` methods, resulting in a potential message loss.
 
 The message loss problem can be prevented by adding [store-and-forward functionality](/nservicebus/architecture/principles.md#messaging-versus-rpc-store-and-forward-messaging) to the SQL Server transport, as explained in this sample.
 
@@ -94,7 +94,7 @@ NOTE: When both sender's and receiver's databases cannot be accessed in a distri
 
 ### Receiver project
 
-The Receiver mimics a back-end system. The following code configures it to use the [*multi-instance* mode](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) of the SQL Server transport.
+The Receiver mimics a back-end system. The following code configures it to use the [*multi-instance* mode](/transports/sqlserver/deployment-options.md#modes-overview-multi-instance) of the SQL Server transport.
 
 snippet: ReceiverConfiguration
 

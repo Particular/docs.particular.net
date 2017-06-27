@@ -18,7 +18,7 @@ The PowerShell module provides cmdlets to assist with:
  * Installing performance counters for NServiceBus _(obsolete)_
  * Setting the addresses of the default Error and Audit queues for use by deployed Endpoints
  * Importing a Particular Platform license into the Registry
- * Removing a worker from a [Distributor](/nservicebus/msmq/distributor/)
+ * Removing a worker from a [Distributor](/transports/msmq/distributor/)
 
 
 ## Prerequisites

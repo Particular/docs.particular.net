@@ -139,7 +139,7 @@ The [.Retries message receiver](/nservicebus/recoverability/configure-delayed-re
 
 ## MSMQ
 
-The [MSMQ transport](/nservicebus/msmq) is no longer part of the NServiceBus NuGet package. It has been moved into a separate package, [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/).
+The [MSMQ transport](/transports/msmq) is no longer part of the NServiceBus NuGet package. It has been moved into a separate package, [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/).
 
 
 ## Default transport

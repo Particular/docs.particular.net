@@ -16,8 +16,8 @@ related:
  - samples/step-by-step
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/headers
- - nservicebus/msmq/distributor/publish-subscribe
- - nservicebus/msmq/subscription-authorisation
+ - transports/msmq/distributor/publish-subscribe
+ - transports/msmq/subscription-authorisation
 ---
 
 NServiceBus has a built in implementation of the [Publish-subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
@@ -48,7 +48,7 @@ Available subscription persistences include
  * [InMemory](/persistence/in-memory.md)
  * [Azure Storage](/persistence/azure-storage)
 
-The message-driven publish-subscribe is used by the [unicast transports](/nservicebus/transports/#types-of-transports-unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
+The message-driven publish-subscribe is used by the [unicast transports](/transports/#types-of-transports-unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
 
 
 #### Subscribe
@@ -75,7 +75,7 @@ The publisher's address is provided via [routing configuration](/nservicebus/mes
 
 #### Publish
 
-The publish workflow for [unicast transports](/nservicebus/transports/#types-of-transports-unicast-only-transports) is as follows
+The publish workflow for [unicast transports](/transports/#types-of-transports-unicast-only-transports) is as follows
 
  1. Some code (e.g. a saga or a handler) request that a message be published.
  1. Publisher queries the storage for a list of subscribers.
@@ -96,7 +96,7 @@ Publisher ->> Subscriber2: Send Message1
 
 ### Native
 
-For multicast transports that [support publish–subscribe natively](/nservicebus/transports/#types-of-transports-multicast-enabled-transports) neither persistence nor control message exchange is required to complete the publish-subscribe workflow. 
+For multicast transports that [support publish–subscribe natively](/transports/#types-of-transports-multicast-enabled-transports) neither persistence nor control message exchange is required to complete the publish-subscribe workflow. 
 
 
 #### Subscribe

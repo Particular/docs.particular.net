@@ -29,7 +29,7 @@ snippet: MixedTransports
 
 ### Advanced transport features
 
-Some transports offer advanced features which are not supported by ServiceControl (e.g. [RabbitMQ custom routing topologies](/nservicebus/rabbitmq/routing-topology.md#custom-routing-topology)).
+Some transports offer advanced features which are not supported by ServiceControl (e.g. [RabbitMQ custom routing topologies](/transports/rabbitmq/routing-topology.md#custom-routing-topology)).
 
 In this case a transport adapter can be used to translate between the customized transport on one side and ServiceControl using the default transport settings on the other side.
 
@@ -52,7 +52,7 @@ snippet: MultiInstance
 
 Notice that both adapter configurations use the same connection string for the ServiceControl and a different connection string for the endpoint-side transport.
 
-NOTE: Some transports, such as [SQL Server transport](/nservicebus/sqlserver/), offer a native multi-instance mode. This mode is considered an advanced routing feature and allows use of a single instance of the transport adapter even though there are multiple instances of the broker.
+NOTE: Some transports, such as [SQL Server transport](/transports/sqlserver/), offer a native multi-instance mode. This mode is considered an advanced routing feature and allows use of a single instance of the transport adapter even though there are multiple instances of the broker.
 
 
 ## Queue configuration
@@ -135,7 +135,7 @@ snippet: RetryRetries
 
 ServiceControl Transport Adapter can operate in different consistency modes depending on the transport configuration on both sides. By default, the highest supported mode for the transport is used.
 
-If both transports support the [`TransactionScope` transaction mode](/nservicebus/transports/transactions.md#transactions-transaction-scope-distributed-transaction) the transport adapter guarantees not to introduce any duplicates while forwarding messages between the queues. This is very important for the endpoints that can't cope with duplicates and rely on the DTC to ensure *exactly-once* message delivery.
+If both transports support the [`TransactionScope` transaction mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) the transport adapter guarantees not to introduce any duplicates while forwarding messages between the queues. This is very important for the endpoints that can't cope with duplicates and rely on the DTC to ensure *exactly-once* message delivery.
 
 In case at least one of the transports does not support the `TransactionScope` mode or is explicitly configured to a lower mode, the transport adapter guarantees *at-least-once* message delivery. This means that the messages won't be lost during forwarding (with the exception of control messages, as described above) but duplicates may be introduced on any side. 
 

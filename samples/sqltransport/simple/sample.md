@@ -4,7 +4,7 @@ summary: A simple send and receive scenario with the SQL Server Transport.
 reviewed: 2016-04-27
 component: SqlServer
 related:
-- nservicebus/sqlserver
+- transports/sqlserver
 ---
 
 

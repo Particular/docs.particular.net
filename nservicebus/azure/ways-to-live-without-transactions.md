@@ -8,7 +8,7 @@ tags:
  - DTC
 ---
 
-In case of other [transports](/nservicebus/transports/) NServiceBus, by default, relies on [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx) to make distributed system reliable and ensure consistency. In the Azure DTC should be avoided and many services don't support transactions, as explained in [Understanding transactionality in azure](understanding-transactionality-in-azure.md).
+In case of other [transports](/transports/) NServiceBus, by default, relies on [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx) to make distributed system reliable and ensure consistency. In the Azure DTC should be avoided and many services don't support transactions, as explained in [Understanding transactionality in azure](understanding-transactionality-in-azure.md).
 
 This article lists the options available to avoid the need for transactions and discusses their advantages and disadvantages. Which approach would be the best depends on the specific system.
 

@@ -16,7 +16,7 @@ Messages matching the following criteria will be auto subscribed at startup.
 
  1. Defined as an event either using `IEvent` or by the `.DefiningEventsAs` convention.
  1. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given event.
- 1. If the selected transport [does not support publish-subscribe natively](/nservicebus/transports/#types-of-transports-unicast-only-transports), the publisher for that message needs to be specified via the [routing](/nservicebus/messaging/routing.md) API.
+ 1. If the selected transport [does not support publish-subscribe natively](/transports/#types-of-transports-unicast-only-transports), the publisher for that message needs to be specified via the [routing](/nservicebus/messaging/routing.md) API.
 
 
 ### Exclude sagas from auto subscribe

@@ -4,7 +4,7 @@ summary: Consuming messages published by non NServiceBus endpoints.
 component: ASB
 reviewed: 2017-02-10
 related:
- - nservicebus/azure-service-bus
+ - transports/azure-service-bus
 ---
 
 ## Prerequisites

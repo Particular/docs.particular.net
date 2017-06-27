@@ -500,196 +500,196 @@
       Title: Decommissioning Endpoints
       
 - Name: Transports
-  Url: nservicebus/transports
+  Url: transports
   Topics:
-  - Url: nservicebus/transports
+  - Url: transports
     Title: General
     Articles:
-    - Url: nservicebus/transports/transactions
+    - Url: transports/transactions
       Title: Transactions
-    - Url: nservicebus/transports/scale-out
+    - Url: transports/scale-out
       Title: Scaling out
-    - Url: nservicebus/transports/queuecreation
+    - Url: transports/queuecreation
       Title: Creating queues
-  - Url: nservicebus/learning-transport
+  - Url: transports/learning
     Title: Learning Transport
-  - Url: nservicebus/azure-service-bus
+  - Url: transports/azure-service-bus
     Title: Azure Service Bus
     Articles:
-    - Url: nservicebus/azure-service-bus/topologies
+    - Url: transports/azure-service-bus/topologies
       Title: Topologies
-    - Url: nservicebus/azure-service-bus/configuration
+    - Url: transports/azure-service-bus/configuration
       Title: Configuration
       Articles:
-      - Url: nservicebus/azure-service-bus/configuration/full
+      - Url: transports/azure-service-bus/configuration/full
         Title: Full API
-      - Url: nservicebus/azure-service-bus/retries
+      - Url: transports/azure-service-bus/retries
         Title: Retry behavior
-      - Url: nservicebus/azure-service-bus/sanitization
+      - Url: transports/azure-service-bus/sanitization
         Title: Sanitization
-      - Url: nservicebus/azure-service-bus/addressing-logic
+      - Url: transports/azure-service-bus/addressing-logic
         Title: Addressing Logic
-      - Url: nservicebus/azure-service-bus/securing-connection-strings
+      - Url: transports/azure-service-bus/securing-connection-strings
         Title: Securing Namespace Connections
-      - Url: nservicebus/azure-service-bus/namespace-hierarchy
+      - Url: transports/azure-service-bus/namespace-hierarchy
         Title: Namespace hierarchy
-      - Url: nservicebus/azure-service-bus/token-provider
+      - Url: transports/azure-service-bus/token-provider
         Title: Token Provider
     - Title: Routing
       Articles:
-      - Url: nservicebus/azure-service-bus/publisher-names-configuration
+      - Url: transports/azure-service-bus/publisher-names-configuration
         Title: Publishers name configuration
-      - Url: nservicebus/azure-service-bus/multiple-namespaces-support
+      - Url: transports/azure-service-bus/multiple-namespaces-support
         Title: Multiple namespaces
       - Url: nservicebus/azure/data-distribution
         Title: Data distribution
-    - Url: nservicebus/azure-service-bus/performance-tuning
+    - Url: transports/azure-service-bus/performance-tuning
       Title: Performance Tuning
       Articles:
-      - Url: nservicebus/azure-service-bus/batching
+      - Url: transports/azure-service-bus/batching
         Title: Batching
-      - Url: nservicebus/azure-service-bus/message-lock-renewal
+      - Url: transports/azure-service-bus/message-lock-renewal
         Title: Message lock renewal
-    - Url: nservicebus/azure-service-bus/transaction-support
+    - Url: transports/azure-service-bus/transaction-support
       Title: Transaction Support
       Articles:
       - Url: nservicebus/azure/understanding-transactionality-in-azure
         Title: Transactions in Azure
       - Url: nservicebus/azure/ways-to-live-without-transactions
         Title: Avoiding Transactions
-      - Url: nservicebus/azure-service-bus/understanding-transactions-and-delivery-guarantees
+      - Url: transports/azure-service-bus/understanding-transactions-and-delivery-guarantees
         Title: Internal transaction and delivery guarantees
-    - Url: nservicebus/azure-service-bus/error-handling
+    - Url: transports/azure-service-bus/error-handling
       Title: Error Handling
       Articles:
-      - Url: nservicebus/azure-service-bus/dlq-forwarding
+      - Url: transports/azure-service-bus/dlq-forwarding
         Title: Forwarding
-      - Url: nservicebus/azure-service-bus/oversized-sends
+      - Url: transports/azure-service-bus/oversized-sends
         Title: Oversized Sends
-    - Url: nservicebus/azure-service-bus/native-integration
+    - Url: transports/azure-service-bus/native-integration
       Title: Native Integration
       Articles:
-      - Url: nservicebus/azure-service-bus/brokered-message-creation
+      - Url: transports/azure-service-bus/brokered-message-creation
         Title: Brokered Message Creation
-      - Url: nservicebus/azure-service-bus/operational-scripting
+      - Url: transports/azure-service-bus/operational-scripting
         Title: Operational Scripting
-    - Url: nservicebus/azure-service-bus/faq
+    - Url: transports/azure-service-bus/faq
       Title: FAQ
-  - Url: nservicebus/azure-storage-queues
+  - Url: transports/azure-storage-queues
     Title: Azure Storage Queues
     Articles:
-    - Url: nservicebus/azure-storage-queues/faq
+    - Url: transports/azure-storage-queues/faq
       Title: FAQ
-    - Url: nservicebus/azure-storage-queues/transaction-support
+    - Url: transports/azure-storage-queues/transaction-support
       Title: Transaction Support
     - Url: nservicebus/azure/understanding-transactionality-in-azure
       Title: Transactions in Azure
     - Url: nservicebus/azure/ways-to-live-without-transactions
       Title: Avoiding Transactions
-    - Url: nservicebus/azure-storage-queues/configuration
+    - Url: transports/azure-storage-queues/configuration
       Title: Configuration
-    - Url: nservicebus/azure-storage-queues/performance-tuning
+    - Url: transports/azure-storage-queues/performance-tuning
       Title: Performance Tuning
-    - Url: nservicebus/azure-storage-queues/multi-storageaccount-support
+    - Url: transports/azure-storage-queues/multi-storageaccount-support
       Title: Multiple storage accounts
     - Url: nservicebus/azure/data-distribution
       Title: Data distribution
-  - Url: nservicebus/sqlserver
+  - Url: transports/sqlserver
     Title: SQL Server
     Articles:
-    - Url: nservicebus/sqlserver/design
+    - Url: transports/sqlserver/design
       Title: Design
-    - Url: nservicebus/sqlserver/connection-settings
+    - Url: transports/sqlserver/connection-settings
       Title: Connection Settings
-    - Url: nservicebus/sqlserver/addressing
+    - Url: transports/sqlserver/addressing
       Title: Addressing
-    - Url: nservicebus/sqlserver/transactions
+    - Url: transports/sqlserver/transactions
       Title: Transaction support
-    - Url: nservicebus/sqlserver/concurrency
+    - Url: transports/sqlserver/concurrency
       Title: Concurrency handling
-    - Url: nservicebus/sqlserver/deployment-options
+    - Url: transports/sqlserver/deployment-options
       Title: Deployment options
-    - Url: nservicebus/sqlserver/operations-scripting
+    - Url: transports/sqlserver/operations-scripting
       Title: Scripting
-    - Url: nservicebus/sqlserver/entity-framework
+    - Url: transports/sqlserver/entity-framework
       Title: Entity Framework caveats
-    - Url: nservicebus/sqlserver/callbacks
+    - Url: transports/sqlserver/callbacks
       Title: Callback support
-    - Url: nservicebus/sqlserver/queuepeek
+    - Url: transports/sqlserver/queuepeek
       Title: Queue Peek Settings
-  - Url: nservicebus/msmq
+  - Url: transports/msmq
     Title: MSMQ
     Articles:
-    - Url: nservicebus/msmq/routing
+    - Url: transports/msmq/routing
       Title: Physical routing
-    - Url: nservicebus/msmq/connection-strings
+    - Url: transports/msmq/connection-strings
       Title: Connection strings
-    - Url: nservicebus/msmq/dead-letter-queues
+    - Url: transports/msmq/dead-letter-queues
       Title: Dead Letter Queues
-    - Url: nservicebus/msmq/viewing-message-content-in-msmq
+    - Url: transports/msmq/viewing-message-content-in-msmq
       Title: Viewing content
-    - Url: nservicebus/msmq/transportconfig
+    - Url: transports/msmq/transportconfig
       Title: Configuration
-    - Url: nservicebus/msmq/troubleshooting
+    - Url: transports/msmq/troubleshooting
       Title: Troubleshooting
-    - Url: nservicebus/msmq/subscription-authorisation
+    - Url: transports/msmq/subscription-authorisation
       Title: Subscription Authorization
-    - Url: nservicebus/msmq/operations-scripting
+    - Url: transports/msmq/operations-scripting
       Title: Scripting
-    - Url: nservicebus/msmq/uninstalling-msmq
+    - Url: transports/msmq/uninstalling-msmq
       Title: Uninstalling MSMQ
-    - Url: nservicebus/msmq/full-qualified-domain-name
+    - Url: transports/msmq/full-qualified-domain-name
       Title: Fully Qualified Domain Names
-    - Url: nservicebus/msmq/scaling-out
+    - Url: transports/msmq/scaling-out
       Title: Scaling out
-    - Url: nservicebus/msmq/sender-side-distribution
+    - Url: transports/msmq/sender-side-distribution
       Title: Scaling out with Sender-Side Distribution
-    - Url: nservicebus/msmq/distributor
+    - Url: transports/msmq/distributor
       Title: Scaling with the Distributor
       Articles:
-      - Url: nservicebus/msmq/distributor/configuration
+      - Url: transports/msmq/distributor/configuration
         Title: Configuration
-      - Url: nservicebus/msmq/distributor/deploying-to-a-cluster
+      - Url: transports/msmq/distributor/deploying-to-a-cluster
         Title: Deploying to Failover Cluster
-      - Url: nservicebus/msmq/distributor/when-worker-goes-down
+      - Url: transports/msmq/distributor/when-worker-goes-down
         Title: When a worker goes down
-      - Url: nservicebus/msmq/distributor/disconnect-workers
+      - Url: transports/msmq/distributor/disconnect-workers
         Title: Disconnect Workers
-      - Url: nservicebus/msmq/distributor/publish-subscribe
+      - Url: transports/msmq/distributor/publish-subscribe
         Title: Publish-Subscribe
-      - Url: nservicebus/msmq/distributor/error-handling
+      - Url: transports/msmq/distributor/error-handling
         Title: Error handling
-  - Url: nservicebus/rabbitmq
+  - Url: transports/rabbitmq
     Title: RabbitMQ
     Articles:
-    - Url: nservicebus/rabbitmq/connection-settings
+    - Url: transports/rabbitmq/connection-settings
       Title: Connection settings
-    - Url: nservicebus/rabbitmq/routing-topology
+    - Url: transports/rabbitmq/routing-topology
       Title: Routing topology
-    - Url: nservicebus/rabbitmq/delayed-delivery
+    - Url: transports/rabbitmq/delayed-delivery
       Title: Delayed Delivery
-    - Url: nservicebus/rabbitmq/message-id-strategy
+    - Url: transports/rabbitmq/message-id-strategy
       Title: Message Id strategy
-    - Url: nservicebus/rabbitmq/callbacks
+    - Url: transports/rabbitmq/callbacks
       Title: Callback support
-    - Url: nservicebus/rabbitmq/transactions-and-delivery-guarantees
+    - Url: transports/rabbitmq/transactions-and-delivery-guarantees
       Title: Transactions and delivery guarantees
-    - Url: nservicebus/rabbitmq/cluster
+    - Url: transports/rabbitmq/cluster
       Title: In a cluster
-    - Url: nservicebus/rabbitmq/operations-scripting
+    - Url: transports/rabbitmq/operations-scripting
       Title: Scripting
-    - Url: nservicebus/rabbitmq/rabbitmqclient-nuget
+    - Url: transports/rabbitmq/rabbitmqclient-nuget
       Title: RabbitMQ.Client NuGet usage
-  - Url: nservicebus/sqs
+  - Url: transports/sqs
     Title: Amazon SQS
     Articles:
-    - Url: nservicebus/sqs/configuration-options
+    - Url: transports/sqs/configuration-options
       Title: Configuration Options
-    - Url: nservicebus/sqs/why-use-sqs
+    - Url: transports/sqs/why-use-sqs
       Title: Why use SQS
-  - Url: nservicebus/eventstoretransport
+  - Url: transports/eventstore
     Title: Event Store
-  - Url: nservicebus/kafka
+  - Url: transports/kafka
     Title: Kafka
 
 - Name: Persistence

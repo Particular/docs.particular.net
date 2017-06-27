@@ -4,8 +4,8 @@ summary: How messages belong to the same conversation are routed depending on th
 component: Distributor
 reviewed: 2016-11-30
 related:
- - nservicebus/msmq/sender-side-distribution
- - nservicebus/msmq/distributor
+ - transports/msmq/sender-side-distribution
+ - transports/msmq/distributor
  - samples/scaleout/distributor
  - samples/scaleout/senderside
 ---
@@ -15,7 +15,7 @@ The sample demonstrates differences in behavior of some of NServiceBus APIs that
 
 ## Prerequisites
 
-Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) section.
+Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/transports/msmq/#nservicebus-configuration) section.
 
 
 ## Running the sample
@@ -40,8 +40,8 @@ Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Confi
  
 This sample contains five NServiceBus console applications
 
- * `Sender.V5` sends commands to the scaled out endpoint via [Distributor](/nservicebus/msmq/distributor/).
- * `Sender.V6` sends commands to the scaled out endpoint directly using [Sender-Side Distribution](/nservicebus/msmq/sender-side-distribution.md)
+ * `Sender.V5` sends commands to the scaled out endpoint via [Distributor](/transports/msmq/distributor/).
+ * `Sender.V6` sends commands to the scaled out endpoint directly using [Sender-Side Distribution](/transports/msmq/sender-side-distribution.md)
  * `Distributor`
  * `Worker.1` and `Worker.2` process commands simulating order flow, they represent the scaled out endpoint
 

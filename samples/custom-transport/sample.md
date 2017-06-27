@@ -4,7 +4,7 @@ summary: Building a Transport using the file system as a store.
 reviewed: 2016-03-21
 component: Core
 related:
-- nservicebus/transports
+- transports
 ---
 
 This sample show how to build a Transport using the file system as a data store.
@@ -85,7 +85,7 @@ snippet: HeaderSerializer
 
 ### QueueCreation
 
-At startup a transport can optionally [create queues](/nservicebus/transports/queuecreation.md).
+At startup a transport can optionally [create queues](/transports/queuecreation.md).
 
 snippet: QueueCreation
 

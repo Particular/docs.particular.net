@@ -22,7 +22,7 @@ In implementing the above workflow various aspects are highlighted:
 
 ### Azure Storage Queues Transport
 
-All endpoints in the solution communicate using the [Azure Storage Queues transport](/nservicebus/azure-storage-queues/). The sample has been configured to use the Azure Storage Emulator.
+All endpoints in the solution communicate using the [Azure Storage Queues transport](/transports/azure-storage-queues/). The sample has been configured to use the Azure Storage Emulator.
 
 
 ### Azure Storage Persistence

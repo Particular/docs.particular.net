@@ -4,7 +4,7 @@ summary: Implementing partition aware routing for services hosted inside Service
 reviewed: 2017-03-03
 component: Core
 related:
-- nservicebus/azure-service-bus
+- transports/azure-service-bus
 ---
 
 WARNING: This sample currently makes use of a pre-release version of NServiceBus.Persistence.ServiceFabric.
@@ -184,7 +184,7 @@ The Sender Side Distribution works in the following way:
 
 ### Partition aware distribution strategy
 
-The Sender Side Distribution feature adds a [custom distribution strategy](/nservicebus/msmq/sender-side-distribution.md#mapping-physical-endpoint-instances-message-distribution) `PartitionAwareDistributionStrategy` into the outgoing pipeline, which is responsible for selecting a destination queue for each message sent to a specific endpoint. When a destination is to be selected for a given outgoing message, the mapping function is applied to obtain the partition key value. The message has its `partition-key` header value set and the partition specific queue is selected as a destination address.
+The Sender Side Distribution feature adds a [custom distribution strategy](/transports/msmq/sender-side-distribution.md#mapping-physical-endpoint-instances-message-distribution) `PartitionAwareDistributionStrategy` into the outgoing pipeline, which is responsible for selecting a destination queue for each message sent to a specific endpoint. When a destination is to be selected for a given outgoing message, the mapping function is applied to obtain the partition key value. The message has its `partition-key` header value set and the partition specific queue is selected as a destination address.
 
 
 ### Configuration

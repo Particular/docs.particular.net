@@ -4,7 +4,7 @@ summary: Instructions on how to upgrade Azure Storage Queues Transport Version 6
 reviewed: 2016-04-20
 component: ASQ
 related:
-- nservicebus/azure-storage-queues
+- transports/azure-storage-queues
 - nservicebus/upgrades/5to6
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -17,7 +17,7 @@ upgradeGuideCoreVersions:
 
 In Versions 6 and below the Azure Storage Queues transport was configured using an XML configuration section called `AzureStorageQueueTransportConfiguration`. This section has been removed in favor of a more granular, code based configuration API.
 
-The new configuration API is accessible through extension methods on the `UseTransport<AzureStorageQueueTransport>()` extension point in the endpoint configuration. See also [Azure Storage Queues Configuration](/nservicebus/azure-storage-queues/configuration.md).
+The new configuration API is accessible through extension methods on the `UseTransport<AzureStorageQueueTransport>()` extension point in the endpoint configuration. See also [Azure Storage Queues Configuration](/transports/azure-storage-queues/configuration.md).
 
 snippet: 6to7AzureStorageQueueTransportWithAzure
 
@@ -26,12 +26,12 @@ snippet: 6to7AzureStorageQueueTransportWithAzure
 
 Setting the configuration values can now be done via API in the following way:
 
- * [ConnectionString](/nservicebus/azure-storage-queues/configuration.md#configuration-parameters-connectionstring)
- * [BatchSize](/nservicebus/azure-storage-queues/configuration.md#configuration-parameters-batchsize)
- * [MaximumWaitTimeWhenIdle](/nservicebus/azure-storage-queues/configuration.md#configuration-parameters-maximumwaittimewhenidle)
- * [DegreeOfReceiveParallelism](/nservicebus/azure-storage-queues/configuration.md#configuration-parameters-degreeofreceiveparallelism)
- * [PeekInterval](/nservicebus/azure-storage-queues/configuration.md#configuration-parameters-peekinterval)
- * [MessageInvisibleTime](/nservicebus/azure-storage-queues/configuration.md#configuration-parameters-messageinvisibletime)
+ * [ConnectionString](/transports/azure-storage-queues/configuration.md#configuration-parameters-connectionstring)
+ * [BatchSize](/transports/azure-storage-queues/configuration.md#configuration-parameters-batchsize)
+ * [MaximumWaitTimeWhenIdle](/transports/azure-storage-queues/configuration.md#configuration-parameters-maximumwaittimewhenidle)
+ * [DegreeOfReceiveParallelism](/transports/azure-storage-queues/configuration.md#configuration-parameters-degreeofreceiveparallelism)
+ * [PeekInterval](/transports/azure-storage-queues/configuration.md#configuration-parameters-peekinterval)
+ * [MessageInvisibleTime](/transports/azure-storage-queues/configuration.md#configuration-parameters-messageinvisibletime)
 
 Can be set using corresponding extension methods like in an example:
 
@@ -54,8 +54,8 @@ snippet: AzureStorageQueuePurgeOnStartup
 
 The default values of the following settings have been changed:
 
- * [ConnectionString](/nservicebus/azure-storage-queues/configuration.md#configuration-parameters-connectionstring) which had a default value of `UseDevelopmentStorage=true`, was removed and became obligatory.
- * [BatchSize](/nservicebus/azure-storage-queues/configuration.md#configuration-parameters-batchsize) changed from 10 to 32.
+ * [ConnectionString](/transports/azure-storage-queues/configuration.md#configuration-parameters-connectionstring) which had a default value of `UseDevelopmentStorage=true`, was removed and became obligatory.
+ * [BatchSize](/transports/azure-storage-queues/configuration.md#configuration-parameters-batchsize) changed from 10 to 32.
 
 
 ## Serialization

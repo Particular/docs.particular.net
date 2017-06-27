@@ -12,7 +12,7 @@ The sample demonstrates how NServiceBus routing model can be extended with a cus
 
 ## Prerequisites
 
-Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) section.
+Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/transports/msmq/#nservicebus-configuration) section.
 
 
 ## Running the project
@@ -25,7 +25,7 @@ Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Confi
 ### Verifying that the sample works correctly
 
  1. Notice more messages are being sent to Server.1 than to Server.2
- 1. Use a [MSMQ viewing tool](/nservicebus/msmq/viewing-message-content-in-msmq.md) to inspect queue contents.
+ 1. Use a [MSMQ viewing tool](/transports/msmq/viewing-message-content-in-msmq.md) to inspect queue contents.
  1. Keep hitting enter and observe number of messages in Server.1 and Server.2 queues.
  1. Notice that although Server.2 processes messages 50% slower than Server.1, the numbers of messages in both queues are almost equal.
 

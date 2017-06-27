@@ -4,7 +4,7 @@ summary: SqlServer transport running in Multi-Instance Mode
 reviewed: 2016-09-13
 component: SqlServer
 related:
- - nservicebus/sqlserver/deployment-options
+ - transports/sqlserver/deployment-options
 ---
 
 
@@ -40,7 +40,7 @@ partial: passconnection
 
 ### Sender project
 
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport and run in the [*multi-instance*](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) mode. `ConnectionProvider.GetConnection` method is used for providing connections.
+The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport and run in the [*multi-instance*](/transports/sqlserver/deployment-options.md#modes-overview-multi-instance) mode. `ConnectionProvider.GetConnection` method is used for providing connections.
 
 snippet: SenderConfiguration
 
@@ -51,7 +51,7 @@ snippet: SendMessage
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is configured to use SQLServer transport in the [*multi-instance*](/nservicebus/sqlserver/deployment-options.md#modes-overview-multi-instance) mode.
+The Receiver mimics a back-end system. It is configured to use SQLServer transport in the [*multi-instance*](/transports/sqlserver/deployment-options.md#modes-overview-multi-instance) mode.
 
 snippet: ReceiverConfiguration
 
@@ -69,6 +69,6 @@ snippet: SenderConnectionProvider
 
 ## How it works
 
-Sender and Receiver use [different catalogs](/nservicebus/sqlserver/deployment-options.md) on the same SQL Server instance. The tables representing queues for a particular endpoint are created in the appropriate catalog, i.e. in the `receivercatalog` for the Receiver endpoint and in the `sendercatalog` for the Sender endpoint. It is possible to register a custom `SqlConnection` factory that provides connection instance per given transport address. The operations performed on queues stored in different catalogs are atomic because SQL Server allows multiple `SqlConnection` enlisting in a single distributed transaction.
+Sender and Receiver use [different catalogs](/transports/sqlserver/deployment-options.md) on the same SQL Server instance. The tables representing queues for a particular endpoint are created in the appropriate catalog, i.e. in the `receivercatalog` for the Receiver endpoint and in the `sendercatalog` for the Sender endpoint. It is possible to register a custom `SqlConnection` factory that provides connection instance per given transport address. The operations performed on queues stored in different catalogs are atomic because SQL Server allows multiple `SqlConnection` enlisting in a single distributed transaction.
 
 NOTE: In this sample DTC is required by the Receiver because it operates on two different catalogs when receiving Sender's request. It picks message from input queue stored in `receivercatalog` and sends back reply to Sender's input queue stored in `sendercatalog`. In addition `error` queue is stored also in `sendercatalog` so without DTC Receiver will not be able handle failed messages properly.

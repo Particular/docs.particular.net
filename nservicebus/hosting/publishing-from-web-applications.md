@@ -22,7 +22,7 @@ Given these facts, conventional wisdom has suggested that when in the context of
 
 But, things change:
 
- * NServiceBus 4.0 introduced the ability to have [transports besides MSMQ](/nservicebus/transports/). Not all of the transports handle Publish/Subscribe in the same way as MSMQ - some even support it natively.
+ * NServiceBus 4.0 introduced the ability to have [transports besides MSMQ](/transports/). Not all of the transports handle Publish/Subscribe in the same way as MSMQ - some even support it natively.
  * Cloud transports generally have an associated cost per interaction. This means that requiring an unnecessary send before publish costs extra money to operate.
  * In NServiceBus 4.0 and 5.0, the process of creating a send-only endpoint (which is still capable of publishing messages, but does not have an input queue or process incoming messages) was made much easier.
 
@@ -36,9 +36,9 @@ First it's important to understand how [publish/subscribe](/nservicebus/messagin
 
 An endpoint must register its interest in a message by subscribing to a specific message type. How this occurs is dependent upon the message transport being used.
 
-Some transports ([Azure Service Bus](/nservicebus/azure-service-bus/), [RabbitMQ](/nservicebus/rabbitmq/)) support publish/subscribe natively. This means that when an endpoint wants to subcribe to an event, it contacts the broker directly, and the broker keeps track of subscribers for each event.
+Some transports ([Azure Service Bus](/transports/azure-service-bus/), [RabbitMQ](/transports/rabbitmq/)) support publish/subscribe natively. This means that when an endpoint wants to subcribe to an event, it contacts the broker directly, and the broker keeps track of subscribers for each event.
 
-For transports that lack native pub/sub capabilities ([MSMQ](/nservicebus/msmq/), [SQL](/nservicebus/sqlserver/), [Azure Storage Queues](/nservicebus/azure-storage-queues/)) NServiceBus provides similar semantics by using storage-driven publishing with message-driven subscriptions. This means that each endpoint is responsible for maintaining its own subscription storage, usually in a database. When an endpoint wants to subscribe to an event, it sends a subscription request message to the owner endpoint, which will update its own subscription storage.
+For transports that lack native pub/sub capabilities ([MSMQ](/transports/msmq/), [SQL](/transports/sqlserver/), [Azure Storage Queues](/transports/azure-storage-queues/)) NServiceBus provides similar semantics by using storage-driven publishing with message-driven subscriptions. This means that each endpoint is responsible for maintaining its own subscription storage, usually in a database. When an endpoint wants to subscribe to an event, it sends a subscription request message to the owner endpoint, which will update its own subscription storage.
 
 
 ### Publishing

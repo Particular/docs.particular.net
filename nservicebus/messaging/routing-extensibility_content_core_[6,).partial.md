@@ -28,7 +28,7 @@ snippet: RoutingExtensibility-TriggerEndpointShutdown
 
 ### Event routing
 
-Event routing differs depending on the transport capabilities. [Multicast transports](/nservicebus/transports/#types-of-transports-multicast-enabled-transports) which support [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) pattern natively implement the event routing themselves. Refer to specific transport documentation for details on extensibility points.
+Event routing differs depending on the transport capabilities. [Multicast transports](/transports/#types-of-transports-multicast-enabled-transports) which support [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) pattern natively implement the event routing themselves. Refer to specific transport documentation for details on extensibility points.
 
 Transports without that support rely on NServiceBus core routing for event delivery. The key concept is the collection of publishers. For each event it contains information on the logical endpoint that publishes it. Routing extensions can access the publishers collections from `EndpointConfiguration` or from the `Feature` set up code:
 
@@ -43,10 +43,10 @@ The publishers collection is thread-safe and all operations on that collection a
 
 Physical routing is responsible for mapping the destination logical endpoint to the actual transport address (queue name).
 
-When using a [broker transport](/nservicebus/transports/#types-of-transports-broker-transports), the physical routing is entirely managed by NServiceBus and does not require any configuration.
+When using a [broker transport](/transports/#types-of-transports-broker-transports), the physical routing is entirely managed by NServiceBus and does not require any configuration.
 
-When using a [bus transport](/nservicebus/transports/#types-of-transports-bus-transports), the physical routing is important because the transport address has to contain the information about the node of the bus that the endpoint is using. In MSMQ each machine runs a single node of the MSMQ system.
+When using a [bus transport](/transports/#types-of-transports-bus-transports), the physical routing is important because the transport address has to contain the information about the node of the bus that the endpoint is using. In MSMQ each machine runs a single node of the MSMQ system.
 
-Routing extensions can influence the physical routing by modifying the endpoint instances collection. This is especially important for [bus transports](/nservicebus/transports/#types-of-transports-bus-transports) in a dynamically changing environment such as the cloud. Endpoints can be elastically scaled out and in and the routing, to be able to stay in sync, needs to derive the physical information from the current state of the environment, not from a static file.
+Routing extensions can influence the physical routing by modifying the endpoint instances collection. This is especially important for [bus transports](/transports/#types-of-transports-bus-transports) in a dynamically changing environment such as the cloud. Endpoints can be elastically scaled out and in and the routing, to be able to stay in sync, needs to derive the physical information from the current state of the environment, not from a static file.
 
-See the article dedicated to [MSMQ Transport](/nservicebus/msmq/routing.md#custom-instance-mapping) for details. 
+See the article dedicated to [MSMQ Transport](/transports/msmq/routing.md#custom-instance-mapping) for details. 

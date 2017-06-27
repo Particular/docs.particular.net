@@ -82,7 +82,7 @@ snippet: DestinationEndpoints
 
 #### Sender-side distribution
 
-[Bus transports](/nservicebus/transports/#types-of-transports-bus-transports), such as MSMQ allow scaling out via [sender-side distribution](/nservicebus/msmq/sender-side-distribution.md). The Wormhole allows configuring the sender-side distribution in the destination site.
+[Bus transports](/transports/#types-of-transports-bus-transports), such as MSMQ allow scaling out via [sender-side distribution](/transports/msmq/sender-side-distribution.md). The Wormhole allows configuring the sender-side distribution in the destination site.
 
 snippet: SSD
 

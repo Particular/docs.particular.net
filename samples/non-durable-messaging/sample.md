@@ -5,7 +5,7 @@ reviewed: 2017-04-18
 component: MsmqTransport
 related:
  - nservicebus/messaging/non-durable-messaging
- - nservicebus/msmq/connection-strings
+ - transports/msmq/connection-strings
 ---
 
 ## Code walk-through

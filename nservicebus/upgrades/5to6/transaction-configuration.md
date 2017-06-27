@@ -59,18 +59,18 @@ snippet: 5to6WrapHandlersExecutionInATransactionScope
 
 ## Forwarding messages to error queue when transactions are disabled
 
-When transactions are disabled and if any errors are encountered during the processing of the message then the messages will be forwarded to the error queue. In Version 5, this message would have been lost. For more details, read the [new behavior changes in Version 6](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled).
+When transactions are disabled and if any errors are encountered during the processing of the message then the messages will be forwarded to the error queue. In Version 5, this message would have been lost. For more details, read the [new behavior changes in Version 6](/transports/transactions.md#transactions-unreliable-transactions-disabled).
 
 
 ## Suppressing the ambient transaction
 
 `config.Transactions().DoNotWrapHandlersExecutionInATransactionScope()` has been removed since transaction scopes are no longer used by non DTC transports to delay the dispatch of all outgoing operations until handlers have been executed.
 
-In Version 6, handlers will only be wrapped in a [TransactionScope](https://msdn.microsoft.com/en-us/library/system.transactions.transactionscope.aspx) if the given transport chooses to do so. Transports that do this in their default configuration include [MSMQ](/nservicebus/msmq/) and [SQL Server](/nservicebus/sqlserver/). This means that performing storage operations against data sources that also support transaction scopes will escalate to a distributed transaction. Opting out of this behavior can be done with the following:
+In Version 6, handlers will only be wrapped in a [TransactionScope](https://msdn.microsoft.com/en-us/library/system.transactions.transactionscope.aspx) if the given transport chooses to do so. Transports that do this in their default configuration include [MSMQ](/transports/msmq/) and [SQL Server](/transports/sqlserver/). This means that performing storage operations against data sources that also support transaction scopes will escalate to a distributed transaction. Opting out of this behavior can be done with the following:
 
 snippet: 5to6DoNotWrapHandlersInTransaction
 
-For more information see [Transport transaction - Sends atomic with Receive](/nservicebus/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive).
+For more information see [Transport transaction - Sends atomic with Receive](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive).
 
 Version 6 leans on native transport transaction and the new [batched dispatch](/nservicebus/messaging/batched-dispatch.md) support to achieve the same level of consistency with better performance.
 

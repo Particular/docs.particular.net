@@ -6,8 +6,8 @@ component: Core
 tags:
  - Scalability
 related:
- - nservicebus/msmq/scaling-out
- - nservicebus/msmq/sender-side-distribution
+ - transports/msmq/scaling-out
+ - transports/msmq/sender-side-distribution
  - samples/scaleout/distributor
 ---
 
@@ -56,7 +56,7 @@ snippet: Logical-Routing
 
 ### Aware client
 
-In addition to the logical routing, the scale out-aware client uses an [instance mapping file](/nservicebus/msmq/routing.md) to tell NServiceBus about the specific instances of the server. This is done as shown below:
+In addition to the logical routing, the scale out-aware client uses an [instance mapping file](/transports/msmq/routing.md) to tell NServiceBus about the specific instances of the server. This is done as shown below:
 
 snippet: File-Based-Routing
 
@@ -77,4 +77,4 @@ WARNING: The competing consumers scale out approach only works with all scaled o
 
 ### Round robin
 
-In the `AwareClient` console, press enter a few times to generate message load. This results in both the `Server1` and `Server2` consoles processing the generated message load in an alternating fashion. This is because, the messages are sent in a round-robin fashion to `Server1` and `Server2` by the client using the [sender-side distribution feature](/nservicebus/msmq/sender-side-distribution.md).
+In the `AwareClient` console, press enter a few times to generate message load. This results in both the `Server1` and `Server2` consoles processing the generated message load in an alternating fashion. This is because, the messages are sent in a round-robin fashion to `Server1` and `Server2` by the client using the [sender-side distribution feature](/transports/msmq/sender-side-distribution.md).

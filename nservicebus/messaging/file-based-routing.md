@@ -63,4 +63,4 @@ In order to allow centralized configuration of the routing file, the file needs 
 
 ## Scaling out
 
-It's possible to use sender-side distribution to scale out messages and events to multiple instances of the same logical endpoint. This is done with the [instance mapping file](/nservicebus/msmq/routing.md).
+It's possible to use sender-side distribution to scale out messages and events to multiple instances of the same logical endpoint. This is done with the [instance mapping file](/transports/msmq/routing.md).

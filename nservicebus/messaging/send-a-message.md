@@ -29,7 +29,7 @@ partial: batch-sends-performance
 
 ## Inside the incoming message processing pipeline
 
-Messages often need to be sent as part of handling an incoming message. When running in a [transaction mode](/nservicebus/transports/transactions.md) that supports it, these send operations take part in the same transaction as that of the message handler, thereby ensuring that the send operations roll back if the handling of the message fails at any stage of the message processing pipeline.
+Messages often need to be sent as part of handling an incoming message. When running in a [transaction mode](/transports/transactions.md) that supports it, these send operations take part in the same transaction as that of the message handler, thereby ensuring that the send operations roll back if the handling of the message fails at any stage of the message processing pipeline.
 
 To send a message from inside a message handler:
 

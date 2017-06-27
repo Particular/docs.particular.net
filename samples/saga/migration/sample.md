@@ -13,7 +13,7 @@ related:
 
 ## Prerequisites
 
- 1. Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) section.
+ 1. Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/transports/msmq/#nservicebus-configuration) section.
  1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
  1. Create database called `nservicebus`.
 

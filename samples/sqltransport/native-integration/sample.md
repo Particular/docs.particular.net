@@ -4,8 +4,8 @@ summary: Integrating natively with the SQL Server transport.
 reviewed: 2016-03-30
 component: SqlServer
 related:
-- nservicebus/msmq
-- nservicebus/sqlserver
+- transports/msmq
+- transports/sqlserver
 - persistence/nhibernate
 ---
 

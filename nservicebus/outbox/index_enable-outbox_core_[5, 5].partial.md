@@ -6,6 +6,6 @@ In order to enable the Outbox for transports that support distributed transactio
 
 snippet: OutboxEnablingInAppConfig
 
-Note: When Outbox is enabled then NServiceBus automatically lowers the default delivery guarantee level to `ReceiveOnly`. A different level can be explicitly [specified in configuration](/nservicebus/transports/transactions.md).
+Note: When Outbox is enabled then NServiceBus automatically lowers the default delivery guarantee level to `ReceiveOnly`. A different level can be explicitly [specified in configuration](/transports/transactions.md).
 
 Warning: The double opt-in configuration for transports supporting DTC is ensuring that Outbox is not accidentally used in combination with DTC. If endpoints using Outbox send messages to endpoints using DTC, then messages might get duplicated. As a result, the same messages might be processed multiple times. 

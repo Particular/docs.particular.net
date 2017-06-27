@@ -7,7 +7,7 @@ tags:
 - Routing
 ---
 
-The sample demonstrates how the routing model can be extended to allow for configuration-free routing with [MSMQ transport](/nservicebus/msmq/). It does so by making endpoint instances publish metadata information about themselves:
+The sample demonstrates how the routing model can be extended to allow for configuration-free routing with [MSMQ transport](/transports/msmq/). It does so by making endpoint instances publish metadata information about themselves:
 
  * identity - logical name and physical address;
  * handled messages;

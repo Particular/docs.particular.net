@@ -1,1 +1,0 @@
-[MSMQ](/nservicebus/msmq)

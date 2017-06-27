@@ -49,7 +49,7 @@ In short, these are the exceptions that a developer needs to look at, triage, an
 
 ## Automatic retries
 
-In order to deal with exceptions that arise, the code for each handler is wrapped in a `try/catch` block, and [if the message transport supports it, a transaction as well](/nservicebus/transports/transactions.md). This means that only one of two things can happen:
+In order to deal with exceptions that arise, the code for each handler is wrapped in a `try/catch` block, and [if the message transport supports it, a transaction as well](/transports/transactions.md). This means that only one of two things can happen:
 
  1. The message is processed successfully. All database calls succeed, all outgoing messages are dispatched to the message transport, and the incoming message is removed from the queue.
  1. The message fails. All database transactions are rolled back, any calls to `.Send()` or `.Publish()` are cancelled, and the incoming message remains in the queue to attempt processing again.

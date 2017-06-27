@@ -6,7 +6,7 @@ component: Core
 tags:
 - Scalability
 related:
-- nservicebus/msmq/distributor
+- transports/msmq/distributor
 - samples/scaleout/distributor
 ---
 

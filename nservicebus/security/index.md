@@ -21,34 +21,34 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 ## Transports
 
 
-### [Azure Service Bus Transport](/nservicebus/azure-service-bus/)
+### [Azure Service Bus Transport](/transports/azure-service-bus/)
 
- * [Securing Connection Strings To Namespaces](/nservicebus/azure-service-bus/securing-connection-strings.md)
+ * [Securing Connection Strings To Namespaces](/transports/azure-service-bus/securing-connection-strings.md)
  * [Authentication and authorization](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-authentication-and-authorization)
 
 
-### [Azure Storage Queues Transport](/nservicebus/azure-storage-queues/)
+### [Azure Storage Queues Transport](/transports/azure-storage-queues/)
 
  * [Security Guide](https://docs.microsoft.com/en-us/azure/storage/storage-security-guide)
  * [Azure Storage Service Encryption for Data at Rest](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption)
 
 
-### [SQL Server Transport](/nservicebus/sqlserver/)
+### [SQL Server Transport](/transports/sqlserver/)
 
  * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.aspx)
  * [SQL Server Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
 
 
-### [MSMQ Transport](/nservicebus/msmq/)
+### [MSMQ Transport](/transports/msmq/)
 
  * [Message Queuing Security Overview](https://technet.microsoft.com/en-us/library/cc771268.aspx)
- * [Subscription authorisation](/nservicebus/msmq/subscription-authorisation.md)
- * [Permissions](/nservicebus/msmq/#permissions)
+ * [Subscription authorisation](/transports/msmq/subscription-authorisation.md)
+ * [Permissions](/transports/msmq/#permissions)
 
 
-### [RabbitMQ Transport](/nservicebus/rabbitmq/)
+### [RabbitMQ Transport](/transports/rabbitmq/)
 
- * [Transport Layer Security support](/nservicebus/rabbitmq/connection-settings.md#transport-layer-security-support)
+ * [Transport Layer Security support](/transports/rabbitmq/connection-settings.md#transport-layer-security-support)
  * [RabbitMQ TLS](http://www.rabbitmq.com/ssl.html)
 
 

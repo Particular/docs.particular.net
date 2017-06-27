@@ -28,13 +28,13 @@ Version 5 introduced an undocumented way to get the list of subscribers when pub
 
 ## AutoSubscribe
 
-The configuration option `DoNotRequireExplicitRouting()` has been obsoleted since transports with support for centralized pubsub will always auto subscribe all events without requiring explicit routing. Transports with message driven pubsub (like [MSMQ](/nservicebus/msmq/), [Sql Server](/nservicebus/sqlserver/) and [AzureStorageQueues](/nservicebus/azure-storage-queues/)) will not subscribe properly if there is no routing specified. If previously this was used it can now safely remove it.
+The configuration option `DoNotRequireExplicitRouting()` has been obsoleted since transports with support for centralized pubsub will always auto subscribe all events without requiring explicit routing. Transports with message driven pubsub (like [MSMQ](/transports/msmq/), [Sql Server](/transports/sqlserver/) and [AzureStorageQueues](/transports/azure-storage-queues/)) will not subscribe properly if there is no routing specified. If previously this was used it can now safely remove it.
 
 AutoSubscription happens during the startup phase of the bus. Previous versions of NServiceBus tried to subscribe multiple times on a background thread until the subscription either succeeded or failed. When the subscription failed, an error entry was written to the log file. This version of NServiceBus changes that behavior for transports with message driven pub-sub. The subscription is tried asynchronously on the startup thread. In the case when a subscriber starts and the publisher has never created its queues, the subscriber endpoint will not start and the caller will receive a `QueueNotFoundException` indicating what went wrong.
 
 
 ## MSMQ Subscription Authorization
 
-[MSMQ Subscription Authorization](/nservicebus/msmq/subscription-authorisation.md) is now done by the `SubscriptionAuthorizer` delegate at configuration time and not the `IAuthorizeSubscriptions` interface.
+[MSMQ Subscription Authorization](/transports/msmq/subscription-authorisation.md) is now done by the `SubscriptionAuthorizer` delegate at configuration time and not the `IAuthorizeSubscriptions` interface.
 
 snippet: 5to6-MsmqSubscriptionAuthorizer
