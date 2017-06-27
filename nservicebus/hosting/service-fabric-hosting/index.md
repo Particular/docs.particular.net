@@ -1,7 +1,7 @@
 ---
 title: Service Fabric Hosting
 related:
- - nservicebus/service-fabric
+ - persistence/service-fabric
  - samples/azure/azure-service-fabric-routing
 reviewed: 2017-03-30
 ---
@@ -40,7 +40,7 @@ Due to characteristics of Stateful Services i.e. data partitioning and local dat
 
 See [Service Fabric Partition Aware Routing](/samples/azure/azure-service-fabric-routing) for more information on how to host NServiceBus with stateful services and to learn how to configure routing between service partitions and persist data in reliable collections.
 
-NServiceBus provides persistence based on reliable collections for Sagas and Outbox data. See [Service Fabric persistence](/nservicebus/service-fabric) for details.
+NServiceBus provides persistence based on reliable collections for Sagas and Outbox data. See [Service Fabric persistence](/persistence/service-fabric) for details.
 
 
 ### Guest Executable
