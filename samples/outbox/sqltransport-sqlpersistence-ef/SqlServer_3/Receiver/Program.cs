@@ -19,7 +19,7 @@ class Program
         var connectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True";
         using (var receiverDataContext = new ReceiverDataContext(connectionString))
         {
-            await receiverDataContext.Database.EnsureCreatedAsync();
+            await receiverDataContext.Database.EnsureCreatedAsync().ConfigureAwait(false);
         }
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SQLOutboxEF.Receiver");

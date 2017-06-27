@@ -16,14 +16,19 @@ public class ReceiverDataContext :
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        if (!string.IsNullOrEmpty(connectionString))
-        {
-            optionsBuilder.UseSqlServer(connectionString);
-        }
-        else
+        if (IsConnectionProvided(connection))
         {
             optionsBuilder.UseSqlServer(connection);
         }
+        else
+        {
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+    }
+
+    static bool IsConnectionProvided(DbConnection connection)
+    {
+        return connection != null;
     }
 
     DbConnection connection;
