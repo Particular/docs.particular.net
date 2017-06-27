@@ -8,7 +8,7 @@ tags:
 - SagaFinder
 related:
 - nservicebus/sagas
-- persistence/sql-persistence
+- persistence/sql
 ---
 
 include: sagafinder-into

@@ -8,7 +8,7 @@ tags:
 related:
 - nservicebus/sagas
 - persistence/nhibernate
-- persistence/sql-persistence
+- persistence/sql
 ---
 
 ## Prerequisites
@@ -50,7 +50,7 @@ This sample contains four projects:
  * Contracts - contains definitions of messages exchanged between the Client and the Server.
  * Client - initiates a multi-message conversation with the server.
  * Server - implements a long running process via the Saga feature. Uses [NHibernate-based](/persistence/nhibernate) saga persister.
- * Server.New - implements the same functionality as Server but uses [SQL-based](/persistence/sql-persistence) saga persister.
+ * Server.New - implements the same functionality as Server but uses [SQL-based](/persistence/sql) saga persister.
 
 The sample shows how to gradually migrate from one saga persister to another without requiring an off-line migration procedure/script. In this example NHibernate and SQL persisters as source and target respectively but any persister can be used in any role i.e. the same method can be used to migrate e.g. from RavenDB to NHibernate persister.
 

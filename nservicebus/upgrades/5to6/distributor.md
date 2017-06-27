@@ -153,9 +153,9 @@ After:
 Remove the Distributor from publisher's subscription storages by removing all subscriptions related to the Distributor's address. See [NHibernate Persistence Scripting](/persistence/nhibernate/scripting.md) on how to remove subscriptions.
 
 
-### Removing subscriptions from [Azure Storage Persistence](/persistence/azure-storage-persistence)
+### Removing subscriptions from [Azure Storage Persistence](/persistence/azure-storage)
 
-Remove the Distributor from publisher's subscription storages by removing all subscriptions related to the Distributor's address. See [Azure Storage Persistence Scripting](/persistence/azure-storage-persistence/scripting.md) on how to remove subscriptions.
+Remove the Distributor from publisher's subscription storages by removing all subscriptions related to the Distributor's address. See [Azure Storage Persistence Scripting](/persistence/azure-storage/scripting.md) on how to remove subscriptions.
 
 
 ## Use of the Distributor in Mixed Version Environments

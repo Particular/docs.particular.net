@@ -5,7 +5,7 @@ component: MongoDatabusTekmaven
 tags:
  - DataBus
 related:
- - persistence/mongodb-persistence-tekmaven
+ - persistence/mongodb-tekmaven
  - nservicebus/messaging/databus
 ---
 
@@ -40,7 +40,7 @@ Both the `Sender` and `Receive` project need to share a common location to store
 
 snippet: ConfigureDataBus
 
-Note that the connection string used for the databus is shared by the [MongoDB Persistence](/persistence/mongodb-persistence-tekmaven).
+Note that the connection string used for the databus is shared by the [MongoDB Persistence](/persistence/mongodb-tekmaven).
 
 
 ### Sender project

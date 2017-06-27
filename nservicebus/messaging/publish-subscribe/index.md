@@ -46,7 +46,7 @@ Available subscription persistences include
  * [RavenDB](/persistence/ravendb)
  * [NHibernate](/persistence/nhibernate)
  * [InMemory](/persistence/in-memory.md)
- * [Azure Storage](/persistence/azure-storage-persistence)
+ * [Azure Storage](/persistence/azure-storage)
 
 The message-driven publish-subscribe is used by the [unicast transports](/nservicebus/transports/#types-of-transports-unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
 

@@ -72,7 +72,7 @@
 
 - Key: ASP
   Name: Azure Storage Persistence 
-  DocoUrl: persistence/azure-storage-persistence
+  DocoUrl: persistence/azure-storage
   GitHubOwner: Particular/azure-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.AzureStorage
@@ -355,7 +355,7 @@
 
 - Key: LearningPersistence
   Name: Learning Persistence 
-  DocoUrl: persistence/learning-persistence
+  DocoUrl: persistence/learning
   GitHubOwner: Particular/nservicebus-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -402,7 +402,7 @@
 
 - Key: MsmqPersistence
   Name: MSMQ Persistence
-  DocoUrl: persistence/msmq/subscription-persistence
+  DocoUrl: persistence/msmq/subscription
   Category: Persistence
   GitHubOwner: Particular/msmq-transport-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -453,7 +453,7 @@
 
 - Key: MongoPersistenceTekmaven
   Name: MongoDB Persistence (Ryan Hoffman)
-  DocoUrl: persistence/mongodb-persistence-tekmaven
+  DocoUrl: persistence/mongodb-tekmaven
   GitHubOwner: tekmaven
   Category: Persistence
   SupportLevel: Community
@@ -640,7 +640,7 @@
 
 - Key: SqlPersistence
   Name: Sql Persistence
-  DocoUrl: persistence/sql-persistence
+  DocoUrl: persistence/sql
   GitHubOwner: Particular/sqlpersistence-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.Sql

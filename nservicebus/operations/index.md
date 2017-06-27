@@ -53,17 +53,17 @@ Operational documentation is best reviewed from the perceptive of the selected t
 ## Persistences
 
 
-### [SQL Persistence](/persistence/sql-persistence/)
+### [SQL Persistence](/persistence/sql/)
 
- * [Installerworkflow](/persistence/sql-persistence/installer-workflow.md)
- * [MS SQL Server Scripts](/persistence/sql-persistence/sqlserver-scripts.md)
- * [MySql Scripts](/persistence/sql-persistence/mysql-scripts.md)
+ * [Installerworkflow](/persistence/sql/installer-workflow.md)
+ * [MS SQL Server Scripts](/persistence/sql/sqlserver-scripts.md)
+ * [MySql Scripts](/persistence/sql/mysql-scripts.md)
 
 
-### [Azure Storage Persistence](/persistence/azure-storage-persistence/)
+### [Azure Storage Persistence](/persistence/azure-storage/)
 
- * [Performance Tuning](/persistence/azure-storage-persistence/performance-tuning.md)
- * [Scripting](/persistence/azure-storage-persistence/scripting.md)
+ * [Performance Tuning](/persistence/azure-storage/performance-tuning.md)
+ * [Scripting](/persistence/azure-storage/scripting.md)
 
 
 ### [RavenDB Persistence](/persistence/ravendb/)

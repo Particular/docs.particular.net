@@ -728,41 +728,41 @@
     Articles:
     - Url: persistence/order
       Title: Persistence order
-  - Url: persistence/learning-persistence
+  - Url: persistence/learning
     Title: Learning Persistence
   - Url: persistence/in-memory
     Title: In Memory
-  - Url: persistence/sql-persistence
+  - Url: persistence/sql
     Title: SQL
     Articles:
-    - Url: persistence/sql-persistence/accessing-data
+    - Url: persistence/sql/accessing-data
       Title: Business data
-    - Url: persistence/sql-persistence/saga
+    - Url: persistence/sql/saga
       Title: Sagas
-    - Url: persistence/sql-persistence/saga-concurrency
+    - Url: persistence/sql/saga-concurrency
       Title: Saga concurrency
-    - Url: persistence/sql-persistence/subscriptions
+    - Url: persistence/sql/subscriptions
       Title: Subscriptions
-    - Url: persistence/sql-persistence/installer-workflow
+    - Url: persistence/sql/installer-workflow
       Title: Installer Workflow
-    - Url: persistence/sql-persistence/oracle-caveats
+    - Url: persistence/sql/oracle-caveats
       Title: Oracle Caveats
-    - Url: persistence/sql-persistence/sqlserver-scripts
+    - Url: persistence/sql/sqlserver-scripts
       Title: MS SQL Server Scripts
-    - Url: persistence/sql-persistence/mysql-scripts
+    - Url: persistence/sql/mysql-scripts
       Title: MySQL Scripts
-    - Url: persistence/sql-persistence/oracle-scripts
+    - Url: persistence/sql/oracle-scripts
       Title: Oracle Scripts
-  - Url: persistence/azure-storage-persistence
+  - Url: persistence/azure-storage
     Title: Azure Storage
     Articles:
-    - Url: persistence/azure-storage-persistence/configuration
+    - Url: persistence/azure-storage/configuration
       Title: Configuration
     - Url: nservicebus/azure/understanding-transactionality-in-azure
       Title: Transactions in Azure
-    - Url: persistence/azure-storage-persistence/performance-tuning
+    - Url: persistence/azure-storage/performance-tuning
       Title: Performance Tuning
-    - Url: persistence/azure-storage-persistence/scripting
+    - Url: persistence/azure-storage/scripting
       Title: Scripting
   - Url: persistence/ravendb
     Title: RavenDB
@@ -809,9 +809,9 @@
       Title: SQL Azure
     - Url: persistence/nhibernate/scripting
       Title: Scripting
-  - Url: persistence/msmq/subscription-persistence
+  - Url: persistence/msmq/subscription
     Title: MSMQ Subscription
-  - Url: persistence/mongodb-persistence-tekmaven
+  - Url: persistence/mongodb-tekmaven
     Title: MongoDB
 
 - Name: ServiceInsight

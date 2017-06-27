@@ -24,7 +24,7 @@ Various features require persistence.
 ## Available Persistences
 
 
-### [Learning Persistence](/persistence/learning-persistence/)
+### [Learning Persistence](/persistence/learning/)
 
 include: learning-persistence-description
 
@@ -34,12 +34,12 @@ include: learning-persistence-description
 A volatile RAM based storage mainly used for development purposes. Can also be used where the storage is not required to persist between process restarts.
 
 
-### [SQL Persistence](/persistence/sql-persistence/)
+### [SQL Persistence](/persistence/sql/)
 
 Uses [Json.NET](http://www.newtonsoft.com/json) to serialize data and store in a SQL database.
 
 
-### [Azure Storage](/persistence/azure-storage-persistence/)
+### [Azure Storage](/persistence/azure-storage/)
 
 Uses Azure Tables Storage for storage.
 
@@ -59,7 +59,7 @@ A persister built on top of [Service Fabric Reliable Collections](https://docs.m
 Uses custom [NHibernate](http://nhibernate.info/) to persist data to an ADO.net data store (e.g. SQL Server).
 
 
-### [MSMQ](/persistence/msmq/subscription-persistence.md)
+### [MSMQ](/persistence/msmq/subscription.md)
 
 A subscription only storage on top of MSMQ.
 

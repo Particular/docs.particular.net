@@ -84,7 +84,7 @@ foreach ($queue in [System.Messaging.MessageQueue]::GetPrivateQueuesByMachine(".
 
 ### [Persistence](/persistence/)
 
-Samples default to either the [Learning Persistence](/persistence/learning-persistence/) or the [InMemory Persistence](/persistence/in-memory.md) since both have no requirement on installed infrastructure. **The [Learning Persistence](/persistence/learning-persistence/) is not for production use**.
+Samples default to either the [Learning Persistence](/persistence/learning/) or the [InMemory Persistence](/persistence/in-memory.md) since both have no requirement on installed infrastructure. **The [Learning Persistence](/persistence/learning/) is not for production use**.
 
 
 ### Console Hosting
