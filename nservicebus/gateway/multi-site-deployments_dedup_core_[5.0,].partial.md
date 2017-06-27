@@ -1,1 +1,1 @@
-The gateway will use the storage type configured. At this stage [InMemory](/nservicebus/persistence/in-memory.md), [NHibernate](/nservicebus/nhibernate/) and [RavenDB](/nservicebus/ravendb/) are supported.
+The gateway will use the storage type configured. At this stage [InMemory](/persistence/in-memory.md), [NHibernate](/persistence/nhibernate/) and [RavenDB](/persistence/ravendb/) are supported.

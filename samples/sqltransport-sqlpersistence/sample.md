@@ -4,7 +4,7 @@ summary: Integrating SQL Server transport with SQL persistence
 reviewed: 2017-03-06
 component: Core
 related:
-- nservicebus/sql-persistence
+- persistence/sql
 - nservicebus/sqlserver
 ---
 

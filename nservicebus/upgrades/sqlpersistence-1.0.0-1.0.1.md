@@ -12,7 +12,7 @@ upgradeGuideCoreVersions:
 
 ## Convert Outbox Index to Nonclustered
 
-WARNING: This upgrade is only required by Endpoints that are using both [Microsoft SQL Server](/nservicebus/sql-persistence/#usage-sql-server) and [Outbox](/nservicebus/outbox/).
+WARNING: This upgrade is only required by Endpoints that are using both [Microsoft SQL Server](/persistence/sql/#usage-sql-server) and [Outbox](/nservicebus/outbox/).
 
 NOTE: This is a optional performance optimization that is only necessary for high throughput endpoints. All new endpoints created with Version 1.0.1 and above will have this optimization applied.
 
@@ -21,7 +21,7 @@ As the `MessageId` is not guaranteed to be sequential a [nonclustered index](htt
 
 ### Performing the upgrade
 
-Perform the steps described in this section for all endpoints that that are using [Microsoft SQL Server](/nservicebus/sql-persistence/#usage-sql-server), [Outbox](/nservicebus/outbox/) and Sql Persistence Version 1.0.0.
+Perform the steps described in this section for all endpoints that that are using [Microsoft SQL Server](/persistence/sql/#usage-sql-server), [Outbox](/nservicebus/outbox/) and Sql Persistence Version 1.0.0.
 
 NOTE: Since Version 1.0.1 does not require the nonclustered index to function, the conversion of indexes over to nonclustered can be done before **or** after the upgrade to 1.0.1.
 
@@ -39,7 +39,7 @@ Run the following upgrade script
 
 snippet: ConvertOutboxToNonclustered
 
-This script takes a [tablePrefix](/nservicebus/sql-persistence/#installation-table-prefix) as a parameter and then performs the following actions:
+This script takes a [tablePrefix](/persistence/sql/#installation-table-prefix) as a parameter and then performs the following actions:
 
  * Find the index name by querying [sys.tables](https://docs.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-tables-transact-sql) and [sys.indexes](https://docs.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-indexes-transact-sql).
  * Execute a dynamic [DROP CONSTRAINT](https://docs.microsoft.com/en-us/sql/relational-databases/tables/delete-check-constraints) command.

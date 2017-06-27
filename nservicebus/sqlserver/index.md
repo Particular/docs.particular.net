@@ -47,7 +47,7 @@ The typical process hosting NServiceBus operates and manages three different kin
  * Persistence data - required for correct operation of specific transport features, e.g. saga data, timeout manager state and subscriptions.
  * Business data - application-specific data, independent of NServiceBus, usually managed via code executed from inside message handlers.
 
-SQL Server Transport manages transport data, but it puts no constraints on the type and configuration of storage technology used for persistence or business data. It can work with any of the available persisters i.e. [NHibernate](/nservicebus/nhibernate) or [RavenDB](/nservicebus/ravendb/) for storing NServiceBus data, as well as any storage mechanisms for storing business data.
+SQL Server Transport manages transport data, but it puts no constraints on the type and configuration of storage technology used for persistence or business data. It can work with any of the available persisters i.e. [NHibernate](/persistence/nhibernate) or [RavenDB](/persistence/ravendb/) for storing NServiceBus data, as well as any storage mechanisms for storing business data.
 
 This section explains the important factors to consider when choosing technologies for managing business and persistence data to use in combination with the SQL Server transport.
 
@@ -98,7 +98,7 @@ Another options is to use the [Outbox](/nservicebus/outbox/) feature, that provi
 
 ## Persistence
 
-When the SQL Server transport is used in combination [NHibernate persistence](/nservicebus/nhibernate/) it allows for sharing database connections and optimizing transactions handling to avoid escalating to DTC. However, SQL Server Transport can be used with any other available persistence implementation.
+When the SQL Server transport is used in combination [NHibernate persistence](/persistence/nhibernate/) it allows for sharing database connections and optimizing transactions handling to avoid escalating to DTC. However, SQL Server Transport can be used with any other available persistence implementation.
 
 
 ## Transactions

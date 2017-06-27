@@ -2,4 +2,4 @@ A short explanation of each:
 
  *  Logs will be sent to the `Trace` infrastructure, which should have been configured with Azure diagnostic monitor trace listener by the Visual Studio tooling.
  * `UseTransport<AzureStorageQueueTransport>`: Sets [Azure storage queues](/nservicebus/azure-storage-queues/) as the [transport](/nservicebus/transports).
- * `UsePersistence<AzureStoragePersistence>`: Configures [Azure storage](/nservicebus/azure-storage-persistence/) for [persistence](/nservicebus/persistence).
+ * `UsePersistence<AzureStoragePersistence>`: Configures [Azure storage](/persistence/azure-storage/) for [persistence](/persistence).

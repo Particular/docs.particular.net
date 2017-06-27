@@ -48,7 +48,7 @@ Contains one handler.
 
 snippet: WorkerHandler
 
-WARNING: If publishing from a handler inside a worker then all workers mush share the same [subscription persistence](/nservicebus/persistence/).
+WARNING: If publishing from a handler inside a worker then all workers mush share the same [subscription persistence](/persistence/).
 
 
 ### Server

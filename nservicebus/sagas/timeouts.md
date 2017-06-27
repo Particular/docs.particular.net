@@ -54,8 +54,8 @@ As a shortcut the incoming message can be re-used as timeout state by passing it
 
 ### Persistence
 
-Some form of [Persistence](/nservicebus/persistence/) is required to store the timestamp and the state of a timeout.
+Some form of [Persistence](/persistence/) is required to store the timestamp and the state of a timeout.
 
-WARNING: A durable persistence (i.e. NOT [InMemory](/nservicebus/persistence/in-memory.md)) should be chosen before moving to production.
+WARNING: A durable persistence (i.e. NOT [InMemory](/persistence/in-memory.md)) should be chosen before moving to production.
 
 In order to learn how delayed delivery works in more detail, refer to the [Delayed Delivery - How it works](/nservicebus/messaging/delayed-delivery.md#how-it-works) section.

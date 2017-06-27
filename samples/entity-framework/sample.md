@@ -4,7 +4,7 @@ summary: Integrating EntityFramework with NHibernate NServiceBus persistence.
 reviewed: 2017-04-19
 component: NHibernate
 related:
-- nservicebus/nhibernate
+- persistence/nhibernate
 ---
 
 

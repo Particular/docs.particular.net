@@ -87,7 +87,7 @@ This is one of the methods on the saga base class that would be very difficult t
 
 ## Configuring Saga persistence
 
-Make sure to configure appropriate [saga persistence](/nservicebus/persistence/).
+Make sure to configure appropriate [saga persistence](/persistence/).
 
 snippet: saga-configure
 

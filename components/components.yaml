@@ -72,7 +72,7 @@
 
 - Key: ASP
   Name: Azure Storage Persistence 
-  DocoUrl: nservicebus/azure-storage-persistence
+  DocoUrl: persistence/azure-storage
   GitHubOwner: Particular/azure-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.AzureStorage
@@ -315,7 +315,7 @@
 
 - Key: InMemoryPersistence
   Name: InMemory Persistence 
-  DocoUrl: nservicebus/persistence/in-memory
+  DocoUrl: persistence/in-memory
   GitHubOwner: Particular/nservicebus-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -355,7 +355,7 @@
 
 - Key: LearningPersistence
   Name: Learning Persistence 
-  DocoUrl: nservicebus/learning-persistence
+  DocoUrl: persistence/learning
   GitHubOwner: Particular/nservicebus-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -402,7 +402,7 @@
 
 - Key: MsmqPersistence
   Name: MSMQ Persistence
-  DocoUrl: nservicebus/msmq/subscription-persistence
+  DocoUrl: persistence/msmq/subscription
   Category: Persistence
   GitHubOwner: Particular/msmq-transport-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -453,7 +453,7 @@
 
 - Key: MongoPersistenceTekmaven
   Name: MongoDB Persistence (Ryan Hoffman)
-  DocoUrl: nservicebus/mongodb-persistence-tekmaven
+  DocoUrl: persistence/mongodb-tekmaven
   GitHubOwner: tekmaven
   Category: Persistence
   SupportLevel: Community
@@ -506,7 +506,7 @@
 
 - Key: NHibernate
   Name: NHibernate Persistence
-  DocoUrl: nservicebus/nhibernate
+  DocoUrl: persistence/nhibernate
   GitHubOwner: Particular/nhibernate-persistence-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.NHibernate
@@ -607,7 +607,7 @@
 
 - Key: Raven
   Name: RavenDB Persistence
-  DocoUrl: nservicebus/ravendb
+  DocoUrl: persistence/ravendb
   GitHubOwner: Particular/ravendb-persistence-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.RavenDB
@@ -640,7 +640,7 @@
 
 - Key: SqlPersistence
   Name: Sql Persistence
-  DocoUrl: nservicebus/sql-persistence
+  DocoUrl: persistence/sql
   GitHubOwner: Particular/sqlpersistence-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.Sql
@@ -817,7 +817,7 @@
 
 - Key: ServiceFabricPersistence
   Name: Service Fabric Persistence 
-  DocoUrl: nservicebus/service-fabric
+  DocoUrl: persistence/service-fabric
   GitHubOwner: Particular/azure-maintainers
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.ServiceFabric

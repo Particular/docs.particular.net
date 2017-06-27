@@ -78,14 +78,14 @@ DESCRIPTION
 
 ### RavenDB cmdlets
 
-Multiple versions of the [RavenDB](/nservicebus/ravendb/version-compatibility.md) client are supported. Previous versions of the PowerShell module included cmdlets to install and test RavenDB V2.0.2375. To avoid confusion these cmdlets were removed in Version 5.0:
+Multiple versions of the [RavenDB](/persistence/ravendb/version-compatibility.md) client are supported. Previous versions of the PowerShell module included cmdlets to install and test RavenDB V2.0.2375. To avoid confusion these cmdlets were removed in Version 5.0:
 
 ```
 Install-NServiceBusRavenDB
 Test-NServiceBusRavenDBInstallation
 ```
 
-For RavenDB installation instructions review [Installing RavenDB](/nservicebus/ravendb/installation.md)
+For RavenDB installation instructions review [Installing RavenDB](/persistence/ravendb/installation.md)
 
 
 ### Licensing

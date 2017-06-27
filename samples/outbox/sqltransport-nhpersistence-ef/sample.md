@@ -6,7 +6,7 @@ component: SqlServer
 tags:
 - Outbox
 related:
-- nservicebus/nhibernate
+- persistence/nhibernate
 - nservicebus/sqlserver
 - nservicebus/outbox
 redirects:

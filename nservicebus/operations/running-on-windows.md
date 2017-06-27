@@ -11,7 +11,7 @@ redirects:
 related:
 - nservicebus/outbox
 - nservicebus/msmq
-- nservicebus/persistence
+- persistence
 ---
 
 NServiceBus relies on a few key pieces of infrastructure in order to run properly. This page gives an overview of the requirements for running NServiceBus on the Windows platform.
@@ -37,9 +37,9 @@ In order to support guaranteed [once delivery of messages](/nservicebus/operatio
 In Versions 5 and above of NServiceBus there is a _non-DTC_ mode of operation available. In this mode NServiceBus uses a concept of outbox, a message store backed by same DB as the user code, to temporarily store messages that need to be sent as a result of processing an incoming message. To read more about this subject see [Outbox](/nservicebus/outbox/).
 
 
-## [Persistence](/nservicebus/persistence/)
+## [Persistence](/persistence/)
 
-In order to durably handle things like subscriptions, timeouts, and sagas, NServiceBus needs a storage mechanism that supports the DTC (or when in _non-DTC_ mode, uses the same DB as the user code). The default storage for NServiceBus 3 and 4 was RavenDB with an option of using relational databases via [NHibernate](/nservicebus/nhibernate/). Since Version 5 there is no default storage and a user has to explicitly choose either RavenDB, NHibernate or non-durable.
+In order to durably handle things like subscriptions, timeouts, and sagas, NServiceBus needs a storage mechanism that supports the DTC (or when in _non-DTC_ mode, uses the same DB as the user code). The default storage for NServiceBus 3 and 4 was RavenDB with an option of using relational databases via [NHibernate](/persistence/nhibernate/). Since Version 5 there is no default storage and a user has to explicitly choose either RavenDB, NHibernate or non-durable.
 
 
 ## Using PowerShell to setup the infrastructure manually

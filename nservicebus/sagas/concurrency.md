@@ -8,9 +8,9 @@ redirects:
 - nservicebus/nservicebus-sagas-and-concurrency
 reviewed: 2017-05-16
 related:
-- nservicebus/nhibernate/saga-concurrency
-- nservicebus/ravendb/saga-concurrency
-- nservicebus/sql-persistence/saga-concurrency
+- persistence/nhibernate/saga-concurrency
+- persistence/ravendb/saga-concurrency
+- persistence/sql/saga-concurrency
 ---
 
 If the endpoint is configured to allow concurrent processing of messages (default) or is scaled out, it is possible that multiple messages will hit the same saga instance simultaneously. To give ACID semantics in this situation, NServiceBus uses the underlying storage to produce consistent behavior, only allowing one of messages to complete. NServiceBus handles most of this automatically but there are some caveats.

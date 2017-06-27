@@ -55,25 +55,25 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 ## Persistences
 
 
-### [SQL Persistence](/nservicebus/sql-persistence/)
+### [SQL Persistence](/persistence/sql/)
 
  * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.aspx)
  * [SQL Server Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
 
 
-### [Azure Storage Persistence](/nservicebus/azure-storage-persistence/)
+### [Azure Storage Persistence](/persistence/azure-storage/)
 
  * [Security Guide](https://docs.microsoft.com/en-us/azure/storage/storage-security-guide)
  * [Azure Storage Service Encryption for Data at Rest](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption)
 
 
-### [RavenDB Persistence](/nservicebus/ravendb/)
+### [RavenDB Persistence](/persistence/ravendb/)
 
  * [RavenDB 'Security'](https://ravendb.net/docs/search/latest/csharp?searchTerm=security)
  * [RavenDB 'Encryption'](https://ravendb.net/docs/search/latest/csharp?searchTerm=encryption)
 
 
-### [NHibernate Persistence](/nservicebus/nhibernate/)
+### [NHibernate Persistence](/persistence/nhibernate/)
 
  * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.aspx)
  * [SQL Server Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)

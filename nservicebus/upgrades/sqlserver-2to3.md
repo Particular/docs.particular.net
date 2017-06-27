@@ -44,7 +44,7 @@ snippet: 2to3-enable-ambient-transaction
 
 The handler needs to open a connection to access the data but, assuming both handler and the transport are configured to use the same connection string, there is no DTC escalation. SQL Server 2008 and later can detect that both connections target the same resource and merges the two transaction into a single lightweight transaction.
 
-NOTE: The above statement is true only when not using the NHibernate persistence. NHibernate persistence opens its own connection within the context of the ambient transaction. See [access business data](/nservicebus/nhibernate/accessing-data.md) in context of processing a message with NHibernate persistence.
+NOTE: The above statement is true only when not using the NHibernate persistence. NHibernate persistence opens its own connection within the context of the ambient transaction. See [access business data](/persistence/nhibernate/accessing-data.md) in context of processing a message with NHibernate persistence.
 
 
 ### Multi-schema support

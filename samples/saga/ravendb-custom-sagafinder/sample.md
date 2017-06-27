@@ -7,7 +7,7 @@ tags:
  - SagaFinder
 related:
  - nservicebus/sagas
- - nservicebus/ravendb
+ - persistence/ravendb
 reviewed: 2017-02-24
 ---
 
@@ -20,7 +20,7 @@ This sample also use multiple Unique attributes using the default [RavenDB Uniqu
 
 ## RavenDB setup
 
-This sample requires [RavenDB persistence](/nservicebus/ravendb/) package and a running RavenDB instance configured accordingly.
+This sample requires [RavenDB persistence](/persistence/ravendb/) package and a running RavenDB instance configured accordingly.
 
 NServiceBus out of the box does not support saga data with multiple `Unique` attributes, in order to achieve that it is possible to utilize the default RavenDB `UniqueConstraint` Bundle. Follow the [instructions on the RavenDB site](https://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints) to correctly install the bundle in the RavenDB server. It is also required to configure the client side of the bundle by registering the `UniqueConstraintsStoreListener` as shown above.
 

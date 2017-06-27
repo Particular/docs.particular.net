@@ -6,7 +6,7 @@ component: Core
 tags:
 - Outbox
 related:
-- nservicebus/nhibernate
+- persistence/nhibernate
 ---
 
 ## Prerequisites

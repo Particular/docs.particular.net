@@ -53,27 +53,27 @@ Operational documentation is best reviewed from the perceptive of the selected t
 ## Persistences
 
 
-### [SQL Persistence](/nservicebus/sql-persistence/)
+### [SQL Persistence](/persistence/sql/)
 
- * [Installerworkflow](/nservicebus/sql-persistence/installer-workflow.md)
- * [MS SQL Server Scripts](/nservicebus/sql-persistence/sqlserver-scripts.md)
- * [MySql Scripts](/nservicebus/sql-persistence/mysql-scripts.md)
-
-
-### [Azure Storage Persistence](/nservicebus/azure-storage-persistence/)
-
- * [Performance Tuning](/nservicebus/azure-storage-persistence/performance-tuning.md)
- * [Scripting](/nservicebus/azure-storage-persistence/scripting.md)
+ * [Installerworkflow](/persistence/sql/installer-workflow.md)
+ * [MS SQL Server Scripts](/persistence/sql/sqlserver-scripts.md)
+ * [MySql Scripts](/persistence/sql/mysql-scripts.md)
 
 
-### [RavenDB Persistence](/nservicebus/ravendb/)
+### [Azure Storage Persistence](/persistence/azure-storage/)
 
- * [Scripting](/nservicebus/ravendb/operations-scripting.md)
- * [Configuring RavenDB DTC](/nservicebus/ravendb/manual-dtc-settings.md)
- * [Installing RavenDB](/nservicebus/ravendb/installation.md)
- * [Licensing](/nservicebus/ravendb/licensing.md)
+ * [Performance Tuning](/persistence/azure-storage/performance-tuning.md)
+ * [Scripting](/persistence/azure-storage/scripting.md)
 
 
-### [NHibernate Persistence](/nservicebus/nhibernate/)
+### [RavenDB Persistence](/persistence/ravendb/)
 
- * [Scripting](/nservicebus/nhibernate/scripting.md)
+ * [Scripting](/persistence/ravendb/operations-scripting.md)
+ * [Configuring RavenDB DTC](/persistence/ravendb/manual-dtc-settings.md)
+ * [Installing RavenDB](/persistence/ravendb/installation.md)
+ * [Licensing](/persistence/ravendb/licensing.md)
+
+
+### [NHibernate Persistence](/persistence/nhibernate/)
+
+ * [Scripting](/persistence/nhibernate/scripting.md)

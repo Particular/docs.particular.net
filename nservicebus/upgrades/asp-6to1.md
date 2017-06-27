@@ -4,7 +4,7 @@ summary: Instructions on how to migrate from NServiceBus.Azure Storage Persisten
 reviewed: 2016-06-23
 component: ASP
 related:
- - nservicebus/azure-storage-persistence
+ - persistence/azure-storage
  - nservicebus/upgrades/asp-saga-deduplication
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -36,4 +36,4 @@ changes to this code configuration:
 
 snippet: AzurePersistenceSubscriptionsAllConnectionsCustomization
 
-The new configuration APIs are accessible through extension methods on the `UsePersistence<AzureStoragePersistence, StorageType.Sagas>()`, `UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()`, and `UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()` extension points in the endpoint configuration. See [Azure Storage Persistence Code Configuration](/nservicebus/azure-storage-persistence/configuration.md#configuration-with-code) for more details on code configuration API use.
+The new configuration APIs are accessible through extension methods on the `UsePersistence<AzureStoragePersistence, StorageType.Sagas>()`, `UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()`, and `UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()` extension points in the endpoint configuration. See [Azure Storage Persistence Code Configuration](/persistence/azure-storage/configuration.md#configuration-with-code) for more details on code configuration API use.

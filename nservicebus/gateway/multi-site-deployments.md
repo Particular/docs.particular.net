@@ -112,7 +112,7 @@ Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/
 
 ## Automatic de-duplication
 
-Going through alternate channels like HTTP(S) means that the MSMQ safety guarantees of exactly-once message delivery are lost. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid being burdened with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/nservicebus/persistence/) so duplicates can be detected and discarded.
+Going through alternate channels like HTTP(S) means that the MSMQ safety guarantees of exactly-once message delivery are lost. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid being burdened with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/persistence/) so duplicates can be detected and discarded.
 
 
 partial: dedup

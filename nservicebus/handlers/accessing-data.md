@@ -5,8 +5,8 @@ component: Core
 versions: '[5,)'
 reviewed: 2016-10-25
 related:
- - nservicebus/nhibernate/accessing-data
- - nservicebus/ravendb
+ - persistence/nhibernate/accessing-data
+ - persistence/ravendb
 tags:
  - Persistence
  - Saga
@@ -54,8 +54,8 @@ partial: api
 
 The documentation below provides more detail on how to share the same data access context for business data and NServiceBus, when using:
 
- * [NHibernate](/nservicebus/nhibernate/accessing-data.md)
- * [RavenDB](/nservicebus/ravendb/#shared-session)
+ * [NHibernate](/persistence/nhibernate/accessing-data.md)
+ * [RavenDB](/persistence/ravendb/#shared-session)
 
 
 ### Transport in native transaction mode

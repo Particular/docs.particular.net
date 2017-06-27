@@ -1,7 +1,7 @@
 ---
 title: Hosting Gateway with Service Fabric
 related:
- - nservicebus/service-fabric
+ - persistence/service-fabric
 reviewed: 2017-03-30
 ---
 
