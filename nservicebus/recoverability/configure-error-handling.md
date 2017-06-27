@@ -18,9 +18,9 @@ related:
 
 When an endpoint fails to process a message successfully, NServiceBus [automatically retries](/nservicebus/recoverability/configure-immediate-retries.md) the message for the configured number of times. If the message could not be processed successfully even after the retried attempts, then NServiceBus forwards that message to the designated error queue.
 
-WARNING: When running with [transport transactions disabled](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled) NServiceBus will perform a best-effort error message forwarding, i.e. if moving to the error queue fails, the message will be lost.
+WARNING: When running with [transport transactions disabled](/transports/transactions.md#transactions-unreliable-transactions-disabled) NServiceBus will perform a best-effort error message forwarding, i.e. if moving to the error queue fails, the message will be lost.
 
-WARNING: When running with [transport transactions disabled](/nservicebus/transports/transactions.md#transactions-unreliable-transactions-disabled). Both [Immediate Retries](/nservicebus/recoverability/#immediate-retries) and [Delayed Retries](/nservicebus/recoverability/#delayed-retries) will be automatically disabled when transactions are turned off.
+WARNING: When running with [transport transactions disabled](/transports/transactions.md#transactions-unreliable-transactions-disabled). Both [Immediate Retries](/nservicebus/recoverability/#immediate-retries) and [Delayed Retries](/nservicebus/recoverability/#delayed-retries) will be automatically disabled when transactions are turned off.
 
 partial: ErrorQueueDefault
 
@@ -41,9 +41,9 @@ Monitoring and handling of failed messages with [ServicePulse](/servicepulse/) p
 
 If either ServicePulse or ServiceInsight are not available in the environment, the `retry` operation can be performed using the native management tools appropriate for the selected transport:
 
- * [Msmq Scripting](/nservicebus/msmq/operations-scripting.md)
- * [RabbitMq Scripting](/nservicebus/rabbitmq/operations-scripting.md)
- * [SqlServer Scripting](/nservicebus/sqlserver/operations-scripting.md)
+ * [Msmq Scripting](/transports/msmq/operations-scripting.md)
+ * [RabbitMq Scripting](/transports/rabbitmq/operations-scripting.md)
+ * [SqlServer Scripting](/transports/sqlserver/operations-scripting.md)
 
 
 ### ReturnToSourceQueue.exe

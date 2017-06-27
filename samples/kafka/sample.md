@@ -4,7 +4,7 @@ summary: A simple send and receive scenario with the Kafka Transport
 reviewed: 2017-01-16
 component: Kafka
 related:
-- nservicebus/kafka
+- transports/kafka
 ---
 
 

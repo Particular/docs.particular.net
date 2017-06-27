@@ -4,7 +4,7 @@ component: LearningPersistence
 reviewed: 2017-05-01
 related:
  - samples/saga/simple
- - nservicebus/learning-transport
+ - transports/learning
 redirects:
  - nservicebus/learning-persistence
 ---

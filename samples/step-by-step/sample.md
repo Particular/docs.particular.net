@@ -37,7 +37,7 @@ Completing these steps will serve as an introduction to many important NServiceB
 
 ### Learning Transport
 
-INFO: While this sample uses the [Learning Transport](/nservicebus/learning-transport/) as the queuing transport, it is possible to use NServiceBus with a variety of other [transports](/nservicebus/transports/).
+INFO: While this sample uses the [Learning Transport](/transports/learning/) as the queuing transport, it is possible to use NServiceBus with a variety of other [transports](/transports/).
 
 
 ## Project structure
@@ -161,7 +161,7 @@ The handler only logs the fact that the message was received. In a real system, 
 
 In fact, all of those activities could be handled by different subscribers to the same event. The fact that these disparate tasks can be accomplished in completely separate message handlers instead of one monolithic process is one of the many strengths of the Publish/Subscribe messaging pattern. Each subscriber is focused on one task, and any failure in one doesn't affect the others.
 
-Next, the subscriber needs to inform the publisher that it wants to receive `OrderPlaced` events when they are published. To do that, [subscriptions need to be configured](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md). However since this sample uses the [Learning Transport](/nservicebus/learning-transport) subscriptions are handled automatically.
+Next, the subscriber needs to inform the publisher that it wants to receive `OrderPlaced` events when they are published. To do that, [subscriptions need to be configured](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md). However since this sample uses the [Learning Transport](/transports/learning) subscriptions are handled automatically.
 
 When the Subscriber endpoint initializes, it will read this configuration. Because the endpoint also contains a message handler for `OrderPlaced`, it will send a special subscription message to the `Samples.StepByStep.Server` endpoint. When that endpoint receives the subscription request, it will store it locally. In this sample, the [Learning Persistence](/persistence/learning/) storage will be used, but in a production system a database would be used instead. When publishing a message, it can consult the subscriber list and send a copy to every subscriber that expressed interest.
 

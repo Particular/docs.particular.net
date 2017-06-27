@@ -13,7 +13,7 @@ The sample demonstrates how to use a file to describe the mapping between logica
 
 ## Prerequisites
 
-Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) section.
+Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/transports/msmq/#nservicebus-configuration) section.
 
 
 ## Running the project

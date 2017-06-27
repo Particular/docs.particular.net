@@ -61,7 +61,7 @@ Forwarding --> Dispatch
 
 
 click IH "/nservicebus/handlers-and-sagas"
-click Transport "/nservicebus/transports/"
+click Transport "/transports/"
 click Audit "/nservicebus/operations/auditing"
 click Forwarding "/nservicebus/messaging/forwarding"
 ```

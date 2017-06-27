@@ -54,7 +54,7 @@ The Platform Installer will prompt for which items to install. Individual compon
 
 #### Configure Microsoft Message Queuing
 
-This installation runs the appropriate [Deployment Image Servicing and Management (DISM.exe)](https://technet.microsoft.com/en-au/library/hh825236.aspx) command line to install the required Windows Features for [Message Queuing (MSMQ)](https://msdn.microsoft.com/en-us/library/ms711472.aspx). The installation will also check to ensure that any unsupported MSMQ Windows Features are not installed. This installation is only required if MSMQ is going to be used as the message transport. The other supported message transports are detailed in the [Transports](/nservicebus/transports/) documentation.
+This installation runs the appropriate [Deployment Image Servicing and Management (DISM.exe)](https://technet.microsoft.com/en-au/library/hh825236.aspx) command line to install the required Windows Features for [Message Queuing (MSMQ)](https://msdn.microsoft.com/en-us/library/ms711472.aspx). The installation will also check to ensure that any unsupported MSMQ Windows Features are not installed. This installation is only required if MSMQ is going to be used as the message transport. The other supported message transports are detailed in the [Transports](/transports/) documentation.
 
 
 #### Configure MSDTC for NServiceBus

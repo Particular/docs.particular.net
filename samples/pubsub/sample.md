@@ -47,7 +47,7 @@ Click the `1` key repeatedly in the `Publisher` process console window, and see 
 
 ## Message Flow
 
-Note: The below [persistence-based publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven) is the behavior for [unicast transports](/nservicebus/transports/#types-of-transports-unicast-only-transports).  [Broker transports](/nservicebus/transports/#types-of-transports-broker-transports) have [native publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-native) features.
+Note: The below [persistence-based publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven) is the behavior for [unicast transports](/transports/#types-of-transports-unicast-only-transports).  [Broker transports](/transports/#types-of-transports-broker-transports) have [native publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-native) features.
   
 
 ### Subscribe

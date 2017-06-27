@@ -4,9 +4,9 @@ summary: Determine which namespace Azure Service Bus Transport uses for partitio
 component: ASB
 reviewed: 2016-09-06
 related:
- - nservicebus/azure-service-bus
- - nservicebus/azure-service-bus/sanitization
- - nservicebus/azure-service-bus/topologies
+ - transports/azure-service-bus
+ - transports/azure-service-bus/sanitization
+ - transports/azure-service-bus/topologies
  - nservicebus/messaging/publish-subscribe
  - samples/azure/azure-service-bus
 ---

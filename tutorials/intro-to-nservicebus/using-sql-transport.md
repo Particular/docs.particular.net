@@ -55,4 +55,4 @@ The connection string provided assumes use of SQL Express. You may need to chang
 
 ## Further reading
 
-* [SQL Server Transport documentation](/nservicebus/sqlserver/)
+* [SQL Server Transport documentation](/transports/sqlserver/)

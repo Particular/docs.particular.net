@@ -3,7 +3,7 @@ title: Long running operations with Azure Service Bus Transport
 component: ASB
 reviewed: 2017-06-16
 related:
-- nservicebus/azure-service-bus
+- transports/azure-service-bus
 ---
 
 
@@ -50,7 +50,7 @@ Processor ->> Client: LongProcessingFinished / LongProcessingFailed
 
 ## Performing processing outside of a message handler
 
-When processing is taking a long time, [message lock renewal](/nservicebus/azure-service-bus/message-lock-renewal.md) can be used, but should be avoided to keep message locking to the minimum. 
+When processing is taking a long time, [message lock renewal](/transports/azure-service-bus/message-lock-renewal.md) can be used, but should be avoided to keep message locking to the minimum. 
 
 include: autorenewtimeout-warning
 

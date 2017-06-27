@@ -63,7 +63,7 @@ snippet: ConfigureEncryption
 
 Now run `Endpoint1` on its own (i.e. don't start `Endpoint2`).
 
-Go to the server queue (called `EncryptionSampleEndpoint1`) and [view the message content](/nservicebus/msmq/viewing-message-content-in-msmq.md).
+Go to the server queue (called `EncryptionSampleEndpoint1`) and [view the message content](/transports/msmq/viewing-message-content-in-msmq.md).
 
 The message will look like this:
 

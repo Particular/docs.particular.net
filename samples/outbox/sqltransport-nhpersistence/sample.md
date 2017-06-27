@@ -7,7 +7,7 @@ tags:
 - Outbox
 related:
 - nservicebus/outbox
-- nservicebus/sqlserver
+- transports/sqlserver
 - persistence/nhibernate
 redirects:
 - samples/sqltransport-nhpersistence-outbox

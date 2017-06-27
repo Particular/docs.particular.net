@@ -39,12 +39,12 @@ By default up to five immediate retries are performed if the message processing 
 
 Note: The configured value describes the minimum number of times a message will be retried if its processing consistently fails. Especially in environments with competing consumers on the same queue, there is an increased chance of retrying a failing message more times across the endpoints.
 
-Note: Depending on the concurrency and transactionality settings of the endpoint immediate retries might happen even if configured to be off. To ensure that no retries is performed the endpoints needs to be configured to be either [non transactional](/nservicebus/transports/transactions.md) or the [concurrency retricted to 1](/nservicebus/operations/tuning.md).
+Note: Depending on the concurrency and transactionality settings of the endpoint immediate retries might happen even if configured to be off. To ensure that no retries is performed the endpoints needs to be configured to be either [non transactional](/transports/transactions.md) or the [concurrency retricted to 1](/nservicebus/operations/tuning.md).
 
 
 ### Transport transaction requirements
 
-The Immediate Retry mechanism is implemented by making the message available for consumption again at the top of the queue, so that the endpoint can process it again without any delay. Immediate Retries cannot be used when [transport transaction](/nservicebus/transports/transactions.md) are disabled.
+The Immediate Retry mechanism is implemented by making the message available for consumption again at the top of the queue, so that the endpoint can process it again without any delay. Immediate Retries cannot be used when [transport transaction](/transports/transactions.md) are disabled.
 
 
 ## Delayed Retries
@@ -62,7 +62,7 @@ NOTE: Retrying messages for extended periods of time would hide failures from op
 
 ### Transport transaction requirements
 
-The Delayed Retries mechanism is implemented by rolling back the [transport transaction](/nservicebus/transports/transactions.md) and scheduling the message for [delayed-delivery](/nservicebus/messaging/delayed-delivery.md). Aborting the receive operation when transactions are turned off would result in a message loss. Therefore Delayed Retries cannot be used when transport transactions are disabled and delayed-delivery is not supported.
+The Delayed Retries mechanism is implemented by rolling back the [transport transaction](/transports/transactions.md) and scheduling the message for [delayed-delivery](/nservicebus/messaging/delayed-delivery.md). Aborting the receive operation when transactions are turned off would result in a message loss. Therefore Delayed Retries cannot be used when transport transactions are disabled and delayed-delivery is not supported.
 
 
 ## Fault handling
@@ -72,7 +72,7 @@ When messages failed during the immediate retries and delayed retries mechanism 
 
 ### Transport transaction requirements
 
-Fault handling doesn't require that the transport transaction is rolled back. A copy of the currently handled message is sent to the configured error queue and the current transaction will be marked as successfully processed. Therefore fault handling works with all supported [transport transaction modes](/nservicebus/transports/transactions.md).
+Fault handling doesn't require that the transport transaction is rolled back. A copy of the currently handled message is sent to the configured error queue and the current transaction will be marked as successfully processed. Therefore fault handling works with all supported [transport transaction modes](/transports/transactions.md).
 
 
 ## Recoverability Policy

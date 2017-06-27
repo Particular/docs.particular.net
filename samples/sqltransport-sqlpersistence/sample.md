@@ -5,7 +5,7 @@ reviewed: 2017-03-06
 component: Core
 related:
 - persistence/sql
-- nservicebus/sqlserver
+- transports/sqlserver
 ---
 
 In this sample, the SQL Server Transport is used in conjunction with SQL Persistence. The sample shows how to use the same database connection for both transport and persistence operations, and how to access the SQL connection from within a message handler to persist business objects to the database.

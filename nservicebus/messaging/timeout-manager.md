@@ -21,7 +21,7 @@ When NServiceBus detects that an outgoing message should be delayed, it routes i
 
 The `[endpoint_queue_name].Timeouts` queue is monitored by NServiceBus [internal receiver](/nservicebus/satellites). The receiver picks up timeout messages and stores them using the selected NServiceBus persistence. NHibernate persistence stores timeout messages in a table called `TimeoutEntity`, RavenDB persistence stores them as documents of a type `TimeoutData`. 
 
-If the transport is configured to use [TransactionScope mode](/nservicebus/transports/transactions.md#transactions-transaction-scope-distributed-transaction) and the selected persistence supports `TransactionScope` transactions then NServiceBus guarantees *exactly-once* semantics of the store operation, meaning that timeouts in the store will not get duplicated. Both NHibernate and RavenDB support it.
+If the transport is configured to use [TransactionScope mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) and the selected persistence supports `TransactionScope` transactions then NServiceBus guarantees *exactly-once* semantics of the store operation, meaning that timeouts in the store will not get duplicated. Both NHibernate and RavenDB support it.
 
 The delayed messages will be stored for the specified delay time, using persistance implementation specified in the configuration:
 
@@ -32,7 +32,7 @@ snippet: configure-persistence-timeout
 
 NServiceBus periodically retrieves expiring timeouts from persistence. When a timeout expires, then a message with that timeout ID is sent to the `[endpoint_queue_name].TimeoutsDipatcher` queue. That queue is monitored by NServiceBus internal receiver. When the receiver picks up a message, it looks up the corresponding timeout in the storage. If it finds it, it dispatches the timeout message to the destination queue.
 
-If the transport is configured to use [TransactionScope mode](/nservicebus/transports/transactions.md#transactions-transaction-scope-distributed-transaction) and the selected persistence supports `TransactionScope` transactions, then NServiceBus guarantees *exactly-once* semantics of the dispatch operations, meaning that outgoing expired delayed messages will not get duplicated. If any of these conditions is not met, the timeout messages might get duplicated and the receiving endpoint has to account for that.
+If the transport is configured to use [TransactionScope mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) and the selected persistence supports `TransactionScope` transactions, then NServiceBus guarantees *exactly-once* semantics of the dispatch operations, meaning that outgoing expired delayed messages will not get duplicated. If any of these conditions is not met, the timeout messages might get duplicated and the receiving endpoint has to account for that.
 
 
 ### Handling of persistence errors

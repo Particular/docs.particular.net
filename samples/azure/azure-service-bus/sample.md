@@ -3,7 +3,7 @@ title: Azure Service Bus Transport
 reviewed: 2017-04-18
 component: ASB
 related:
-- nservicebus/azure-service-bus
+- transports/azure-service-bus
 ---
 
 

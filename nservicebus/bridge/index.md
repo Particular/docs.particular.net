@@ -26,7 +26,7 @@ Here's a comparison between the gateway technologies ([Gateway](/nservicebus/gat
 
 The main difference is that the Bridge connects parts of the system that have no logical distinction so the bridging is a purely technical exercise. In other words, if both sides could agree on the same transport technology, the Bridge could be removed without any changes to the logic of the system. Gateways on the other hand are logically significant and the idea of *sites* has to be taken into account in the logic itself.
 
-The Bridge can handle both sends and publishes in a close-to-transparent manner, both for [unicast](/nservicebus/transports/#types-of-transports-unicast-only-transports) and [multicast](/nservicebus/transports/#types-of-transports-multicast-enabled-transports) transports.
+The Bridge can handle both sends and publishes in a close-to-transparent manner, both for [unicast](/transports/#types-of-transports-unicast-only-transports) and [multicast](/transports/#types-of-transports-multicast-enabled-transports) transports.
 
 
 ## Topology
@@ -51,7 +51,7 @@ snippet: lifecycle
 
 ## Subscribing
 
-Subscribing to an event through a Bridge is always done via a message-driven mechanism similar to the one used by the [unicast transports](/nservicebus/transports/#types-of-transports-unicast-only-transports). The subscription message contains additional information about the name of the publisher endpoint and is send to the Bridge instead of the actual publisher.
+Subscribing to an event through a Bridge is always done via a message-driven mechanism similar to the one used by the [unicast transports](/transports/#types-of-transports-unicast-only-transports). The subscription message contains additional information about the name of the publisher endpoint and is send to the Bridge instead of the actual publisher.
 
 
 ## Publishing

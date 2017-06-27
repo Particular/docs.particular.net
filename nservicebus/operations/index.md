@@ -18,36 +18,36 @@ Operational documentation is best reviewed from the perceptive of the selected t
 ## Transports
 
 
-### [Azure Service Bus Transport](/nservicebus/azure-service-bus/)
+### [Azure Service Bus Transport](/transports/azure-service-bus/)
 
- * [Messaging topology](/nservicebus/azure-service-bus/topologies/)
- * [Securing Connection Strings To Namespaces](/nservicebus/azure-service-bus/securing-connection-strings.md)
- * [Performance Tuning](/nservicebus/azure-service-bus/performance-tuning.md)
- * [Native Integration](/nservicebus/azure-service-bus/native-integration.md)
-
-
-### [Azure Storage Queues Transport](/nservicebus/azure-storage-queues/)
-
- * [Performance Tuning](/nservicebus/azure-storage-queues/performance-tuning.md)
- * [Use multiple accounts for scale out](/nservicebus/azure-storage-queues/multi-storageaccount-support.md)
+ * [Messaging topology](/transports/azure-service-bus/topologies/)
+ * [Securing Connection Strings To Namespaces](/transports/azure-service-bus/securing-connection-strings.md)
+ * [Performance Tuning](/transports/azure-service-bus/performance-tuning.md)
+ * [Native Integration](/transports/azure-service-bus/native-integration.md)
 
 
-### [SQL Server Transport](/nservicebus/sqlserver/)
+### [Azure Storage Queues Transport](/transports/azure-storage-queues/)
 
- * [Deployment options](/nservicebus/sqlserver/deployment-options.md)
- * [Scripting](/nservicebus/sqlserver/operations-scripting.md)
-
-
-### [MSMQ Transport](/nservicebus/msmq/)
-
- * [Scripting](/nservicebus/msmq/operations-scripting.md)
+ * [Performance Tuning](/transports/azure-storage-queues/performance-tuning.md)
+ * [Use multiple accounts for scale out](/transports/azure-storage-queues/multi-storageaccount-support.md)
 
 
-### [RabbitMQ Transport](/nservicebus/rabbitmq/)
+### [SQL Server Transport](/transports/sqlserver/)
 
- * [Routing topology](/nservicebus/rabbitmq/routing-topology.md)
- * [Scripting](/nservicebus/rabbitmq/operations-scripting.md)
- * [In a cluster](/nservicebus/rabbitmq/cluster.md)
+ * [Deployment options](/transports/sqlserver/deployment-options.md)
+ * [Scripting](/transports/sqlserver/operations-scripting.md)
+
+
+### [MSMQ Transport](/transports/msmq/)
+
+ * [Scripting](/transports/msmq/operations-scripting.md)
+
+
+### [RabbitMQ Transport](/transports/rabbitmq/)
+
+ * [Routing topology](/transports/rabbitmq/routing-topology.md)
+ * [Scripting](/transports/rabbitmq/operations-scripting.md)
+ * [In a cluster](/transports/rabbitmq/cluster.md)
 
 
 ## Persistences

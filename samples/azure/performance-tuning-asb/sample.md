@@ -4,7 +4,7 @@ summary: Samples that show the impact of different settings and api usage patter
 component: ASB
 reviewed: 2016-10-18
 related:
- - nservicebus/azure-service-bus
+ - transports/azure-service-bus
  - samples/azure/azure-service-bus
 ---
 

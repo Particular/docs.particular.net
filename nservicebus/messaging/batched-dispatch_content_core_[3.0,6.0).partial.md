@@ -4,4 +4,4 @@ To avoid ghost messages there are the following options:
 
  * Ensure to make send/publish messages after all storage operations have completed. This would have to be enforced in code reviews and can be hard to detect when there are multiple message handlers for the same message. See [message handler ordering](/nservicebus/handlers/handler-ordering.md) for more details on how to control make sure handlers are called in a deterministic way.
  * Turn on the [Outbox](/nservicebus/outbox) feature on since that essentially will make sure that outgoing operations are not dispatched until all handlers have completed successfully. Even using the [InMemory](/persistence/in-memory.md) storage for the outbox will provide this type of delayed dispatch.
- * Switch to either the [MSMQ Transport](/nservicebus/msmq/) or [SqlServer Transport](/nservicebus/sqlserver/).
+ * Switch to either the [MSMQ Transport](/transports/msmq/) or [SqlServer Transport](/transports/sqlserver/).

@@ -1,1 +1,1 @@
-NOTE: When using non-durable messaging, consider disabling [publisher confirms](/nservicebus/rabbitmq/connection-settings.md#publisher-confirms) to improve sending performance at the expense of reliability.
+NOTE: When using non-durable messaging, consider disabling [publisher confirms](/transports/rabbitmq/connection-settings.md#publisher-confirms) to improve sending performance at the expense of reliability.

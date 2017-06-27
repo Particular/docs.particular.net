@@ -4,7 +4,7 @@ reviewed: 2016-10-26
 component: Core
 related:
  - nservicebus/hosting/assembly-scanning
- - nservicebus/upgrades/sqlserver-2to3
+ - transports/upgrades/sqlserver-2to3
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

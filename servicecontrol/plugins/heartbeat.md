@@ -82,11 +82,11 @@ Heartbeat messages have a time to be received (TTBR) set based on the TTL value.
 
 ### MSMQ
 
-Although NServiceBus configures the use of DLQ by default, messages that are defined with TTBR will not be automatically forwarded to the DLQ and will be discarded. Configuration can be specified to [override this behavior](/nservicebus/msmq/dead-letter-queues.md#enabling-dlq-for-messages-with-ttbr) so that these messages can be forwarded to the DLQ.
+Although NServiceBus configures the use of DLQ by default, messages that are defined with TTBR will not be automatically forwarded to the DLQ and will be discarded. Configuration can be specified to [override this behavior](/transports/msmq/dead-letter-queues.md#enabling-dlq-for-messages-with-ttbr) so that these messages can be forwarded to the DLQ.
 
-WARN: When using NServiceBus Versions 6.1 or below, messages will be forwarded to the DLQ even if TTBR is set on the messages.  To avoid this behavior, DLQ can be disabled by configuring the [MSMQ connection strings](/nservicebus/msmq/connection-strings.md).  The heartbeat messages will be forwarded to the DLQ when ServiceControl is either stopped or very busy. In this case, the dead letter queue needs to be monitored and cleaned up.
+WARN: When using NServiceBus Versions 6.1 or below, messages will be forwarded to the DLQ even if TTBR is set on the messages.  To avoid this behavior, DLQ can be disabled by configuring the [MSMQ connection strings](/transports/msmq/connection-strings.md).  The heartbeat messages will be forwarded to the DLQ when ServiceControl is either stopped or very busy. In this case, the dead letter queue needs to be monitored and cleaned up.
 
 
 ### ASB
 
-Forwarding messages with expired TTL to DLQ is a configuration that needs to be set on the destination queue which is the ServiceControl queue for the heartbeat messages. In order to forward the heartbeat messages after the TTBR expiration to DLQ, ServiceControl needs to be [explicitly configured](/nservicebus/azure-service-bus/configuration/azureservicebusqueueconfig.md) by specifying `EnableDeadLetteringOnMessageExpiration`.
+Forwarding messages with expired TTL to DLQ is a configuration that needs to be set on the destination queue which is the ServiceControl queue for the heartbeat messages. In order to forward the heartbeat messages after the TTBR expiration to DLQ, ServiceControl needs to be [explicitly configured](/transports/azure-service-bus/configuration/azureservicebusqueueconfig.md) by specifying `EnableDeadLetteringOnMessageExpiration`.

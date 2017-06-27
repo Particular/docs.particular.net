@@ -46,7 +46,7 @@ Sending messages across sites has very different transport characteristics than 
 
 ## Using the gateway
 
-A gateway runs inside each host process. It gets its input from the current [transport](/nservicebus/transports/) queue and forwards the message over the desired channel to the receiving gateway. On the receiving side there's another gateway, listening on the input channel. It de-duplicates incoming messages and forwards them to the main input queue of its local endpoint:
+A gateway runs inside each host process. It gets its input from the current [transport](/transports/) queue and forwards the message over the desired channel to the receiving gateway. On the receiving side there's another gateway, listening on the input channel. It de-duplicates incoming messages and forwards them to the main input queue of its local endpoint:
 
 ![](gateway-headquarter-to-site-a.png "Physical view")
 

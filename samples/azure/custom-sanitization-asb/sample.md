@@ -4,9 +4,9 @@ summary: Sanitizing entity path/names with Azure Service Bus Transport.
 component: ASB
 reviewed: 2017-05-05
 related:
- - nservicebus/azure-service-bus
- - nservicebus/azure-service-bus/sanitization
- - nservicebus/azure-service-bus/topologies
+ - transports/azure-service-bus
+ - transports/azure-service-bus/sanitization
+ - transports/azure-service-bus/topologies
  - nservicebus/messaging/publish-subscribe
  - samples/azure/azure-service-bus
 ---

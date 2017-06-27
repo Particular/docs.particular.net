@@ -45,7 +45,7 @@ An Endpoint Instance is a run-time object that allows interaction with the bus. 
 The act of Hosting refers to running an Endpoint Instance in some process. This can be any .NET process such as a console application, a website, or a Windows service. Multiple Endpoint instances can be hosted in a single process.
 
 
-### [Transport](/nservicebus/transports/)
+### [Transport](/transports/)
 
 The Transport is the mechanism that NServiceBus Endpoint Instances use to communicate with each other. NServiceBus supports many different transports in a pluggable manner. For Endpoint Instances to communicate they need to share a common Transport technology.
 
@@ -133,7 +133,7 @@ NServiceBus has some sensible defaults for logging built in and, for more advanc
 An alternative to Distributed Transactions to provide exactly-once message processing semantics when accessing user data store as part of message processing.
 
 
-### [Distributor](/nservicebus/msmq/distributor/)
+### [Distributor](/transports/msmq/distributor/)
 
 A load balancing tool for message distribution.
 

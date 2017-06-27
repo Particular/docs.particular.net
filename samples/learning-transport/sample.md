@@ -3,7 +3,7 @@ title: Learning Transport
 reviewed: 2017-05-01
 component: LearningTransport
 related:
-- nservicebus/transports
+- transports
 ---
 
 

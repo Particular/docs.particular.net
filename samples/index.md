@@ -53,19 +53,19 @@ Unless otherwise specified (by an individual sample) the following are the defau
 All samples target **C# 6.0** to take advantage of the newer language features. If any help is required in converting to earlier versions of C# then [raise an issue](https://github.com/Particular/docs.particular.net/issues).
 
 
-### [Transport](/nservicebus/transports/)
+### [Transport](/transports/)
 
 
 #### Versions 6 and above
 
-Samples default to using the using [Learning Transport](/nservicebus/learning-transport/) as it has the least friction for experimentation. **The [Learning Transport](/nservicebus/learning-transport/) is not for production use**.
+Samples default to using the using [Learning Transport](/transports/learning/) as it has the least friction for experimentation. **The [Learning Transport](/transports/learning/) is not for production use**.
 
 
 #### Versions 5 and below
 
-Samples default to using the using the [MSMQ Transport](/nservicebus/msmq/). See [MSMQ NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) to configure MSMQ in a way that is compatible with NServiceBus.
+Samples default to using the using the [MSMQ Transport](/transports/msmq/). See [MSMQ NServiceBus Configuration](/transports/msmq/#nservicebus-configuration) to configure MSMQ in a way that is compatible with NServiceBus.
 
-On startup each sample will create the required queues. By default the samples use the prefix `samples.` for all queue names. There is no process to clean up these queues, as such after running samples those queues remain in MSMQ. To clean up these queues manually use a [MSMQ management tool](/nservicebus/msmq/viewing-message-content-in-msmq.md) or [programmatically using the native MSMQ API](/nservicebus/msmq/operations-scripting.md#delete-queues).
+On startup each sample will create the required queues. By default the samples use the prefix `samples.` for all queue names. There is no process to clean up these queues, as such after running samples those queues remain in MSMQ. To clean up these queues manually use a [MSMQ management tool](/transports/msmq/viewing-message-content-in-msmq.md) or [programmatically using the native MSMQ API](/transports/msmq/operations-scripting.md#delete-queues).
 
 For example this PowerShell will delete all queues prefixed with `private$\samples.`.
 

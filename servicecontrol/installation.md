@@ -28,13 +28,13 @@ ServiceControl makes use of an embedded version of RavenDB. To carry out [mainte
 
 ## Transport Support
 
-In Versions 1.7 and above the transport DLLs are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/nservicebus/transports/) listed below using the ServiceControl Management application:
+In Versions 1.7 and above the transport DLLs are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
 
- * [Microsoft Message Queuing (MSMQ)](/nservicebus/msmq/)
- * [Azure Storage Queues](/nservicebus/azure-storage-queues/)
- * [Azure Service Bus](/nservicebus/azure-service-bus/)
- * [SQL Server](/nservicebus/sqlserver/)
- * [RabbitMQ](/nservicebus/rabbitmq/)
+ * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
+ * [Azure Storage Queues](/transports/azure-storage-queues/)
+ * [Azure Service Bus](/transports/azure-service-bus/)
+ * [SQL Server](/transports/sqlserver/)
+ * [RabbitMQ](/transports/rabbitmq/)
 
 Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 

@@ -1,5 +1,0 @@
-In Versions 6 and below, the *Physical Addressing Logic* implementation made a number of implicit assumptions regarding names, such as length limitations, legal characters, differences between paths and names, etc. There was no way to explicitly control those settings, and over time subtle variations started to show up.
-
-For example `Mixed` namespaces allowed paths and names to have up to 290 characters, while `Messaging` namespaces are capped at 260 characters. Moreover, customers were sometimes forced to game the system for valid reasons. For example they needed to figure out how to embed slashes (`'/'`) in endpoint names to create sub-directories in the Azure Service Bus namespace registration system.
-
-To mitigate these changes, the transport started to expose certain checks as lambda expressions, which became collectively known as the [Naming Conventions](/nservicebus/azure-service-bus/naming-conventions.md).

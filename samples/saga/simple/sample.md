@@ -11,7 +11,7 @@ redirects:
 related:
 - nservicebus/sagas
 - persistence/learning
-- nservicebus/learning-transport
+- transports/learning
 ---
 
 
@@ -57,6 +57,6 @@ snippet: thesaga
 
 ## Location Helper
 
-This is a helper class used by the sample to derive the storage locations of the [Learning Transport](/nservicebus/learning-transport/) and the [Learning Persistence](/persistence/learning/).
+This is a helper class used by the sample to derive the storage locations of the [Learning Transport](/transports/learning/) and the [Learning Persistence](/persistence/learning/).
 
 snippet: LearningLocationHelper

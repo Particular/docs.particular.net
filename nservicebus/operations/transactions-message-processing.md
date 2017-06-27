@@ -12,7 +12,7 @@ related:
 
 NServiceBus offers four levels of consistency guarantees with regards to message processing. Levels availability depends on the selected transport. The default consistency level is TransactionScope (Distributed Transaction), but a different level can be specified using code configuration API. 
 
-See the [Transports Transactions](/nservicebus/transports/transactions.md) article to learn more about NServiceBus consistency guarantees.
+See the [Transports Transactions](/transports/transactions.md) article to learn more about NServiceBus consistency guarantees.
 
 By default, the transaction timeout limit is set to 10 minutes. See the [Override the System.Transactions default timeout of 10 minutes](https://blogs.msdn.microsoft.com/ajit/2008/06/18/override-the-system-transactions-default-timeout-of-10-minutes-in-the-code/) article to learn how to adjust that value.
 

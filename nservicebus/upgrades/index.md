@@ -6,6 +6,7 @@ redirects:
  - nservicebus/upgradeguides
 related:
  - persistence/upgrades
+ - transports/upgrades
 ---
 
 Every codebase is different and will have unique challenges when upgrading a major dependency like NServiceBus. It's important to have an upgrade plan and proceed in well defined steps while taking sufficient time to perform regression tests after each stage. 

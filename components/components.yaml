@@ -41,7 +41,7 @@
 
 - Key: SQS
   Name: Amazon SQS Transport
-  DocoUrl: nservicebus/sqs
+  DocoUrl: transports/sqs
   GitHubOwner: ahofman
   Category: Transport
   LicenseUrl: https://opensource.org/licenses/Apache-2.0
@@ -63,7 +63,7 @@
 
 - Key: ASB
   Name: Azure Service Bus Transport
-  DocoUrl: nservicebus/azure-service-bus
+  DocoUrl: transports/azure-service-bus
   GitHubOwner: Particular/azure-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureServiceBus
@@ -82,7 +82,7 @@
 
 - Key: ASQ
   Name: Azure Storage Queues Transport
-  DocoUrl: nservicebus/azure-storage-queues
+  DocoUrl: transports/azure-storage-queues
   GitHubOwner: Particular/azure-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureStorageQueues
@@ -209,7 +209,7 @@
 
 - Key: Distributor
   Name: Distributor
-  DocoUrl: nservicebus/msmq/distributor
+  DocoUrl: transports/msmq/distributor
   GitHubOwner: Particular/msmq-transport-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Distributor.Msmq
@@ -251,7 +251,7 @@
 
 - Key: EventStoreTransport
   Name: EventStore Transport
-  DocoUrl: nservicebus/eventstoretransport
+  DocoUrl: transports/eventstore
   GitHubOwner: SzymonPobiega
   Category: Transport
   SupportLevel: Community
@@ -344,7 +344,7 @@
 
 - Key: Kafka
   Name: Kafka Transport
-  DocoUrl: nservicebus/kafka
+  DocoUrl: transports/kafka
   GitHubOwner: PabloCastilla
   Category: Transport
   SupportLevel: Community
@@ -364,7 +364,7 @@
 
 - Key: LearningTransport
   Name: Learning Transport
-  DocoUrl: nservicebus/learning-transport
+  DocoUrl: transports/learning
   GitHubOwner: Particular/nservicebus-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -392,7 +392,7 @@
 
 - Key: MsmqTransport
   Name: MSMQ Transport
-  DocoUrl: nservicebus/msmq
+  DocoUrl: transports/msmq
   Category: Transport
   GitHubOwner: Particular/msmq-transport-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus.Transport.Msmq
@@ -598,7 +598,7 @@
 
 - Key: Rabbit
   Name: RabbitMQ Transport
-  DocoUrl: nservicebus/rabbitmq
+  DocoUrl: transports/rabbitmq
   GitHubOwner: Particular/rabbitmq-transport-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.RabbitMQ
@@ -789,7 +789,7 @@
 
 - Key: SqlServer
   Name: SQL Server Transport
-  DocoUrl: nservicebus/sqlserver
+  DocoUrl: transports/sqlserver
   GitHubOwner: Particular/sqlserver-transport-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.SqlServer
