@@ -487,7 +487,7 @@
       Title: Scaling out
     - Url: transports/queuecreation
       Title: Creating queues
-  - Url: nservicebus/upgrades
+  - Url: transports/upgrades
     Title: Upgrade Guides
     Articles:
     - Title: Azure Storage Queues Transport
