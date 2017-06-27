@@ -68,6 +68,7 @@ class MsmqReceiver :
             headers["NServiceBus.MessageId"] = GuidBuilder.BuildDeterministicGuid(msmqId).ToString();
         }
         log.Info("Forwarding message to all the SQL subscribers via a Publish");
+        message.TimeToBeReceived = TimeSpan.MaxValue;
         publisher.Publish(message, new PublishOptions(eventTypes.First()));
         return true;
     }
