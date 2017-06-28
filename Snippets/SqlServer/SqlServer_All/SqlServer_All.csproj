@@ -12,4 +12,9 @@
     <ProjectReference Include="..\..\Common\Common.csproj" />
     <Reference Include="System.Transactions" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Operations\NativeSend\NativeSend.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

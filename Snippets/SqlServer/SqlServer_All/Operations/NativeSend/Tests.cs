@@ -70,7 +70,7 @@ namespace SqlServer_All.Operations.NativeSend
                     {"NServiceBus.EnclosedMessageTypes", typeof(MessageToSend).FullName}
                 };
 
-                var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"Operations\NativeSend.ps1");
+                var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"Operations\NativeSend\NativeSend.ps1");
                 var script = File.ReadAllText(scriptPath);
 
                 using (var powershell = PowerShell.Create())
