@@ -77,7 +77,7 @@ If the endpoint is hosted using NServiceBus.Host, use the [`IWantToRunWhenEndpoi
 
 ## Dependency Injection
 
-In previous versions, the `IBus` interface was automatically registered in the IOC container. In Version 6, the new context-aware interfaces, for example, `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., will not be automatically registered in the [Container](/nservicebus/containers/).
+In previous versions, the `IBus` interface was automatically registered in the IOC container. In Version 6, the new context-aware interfaces, for example, `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., are not automatically registered in the [Container](/nservicebus/containers/).
 
 In Versions 5 and below, when a custom component was registered in the container, the custom component had access to the `IBus` instance via dependency injection.
 
