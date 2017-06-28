@@ -1,8 +1,2 @@
 
 snippet: ConfigMsmqErrorWithCode
-
-snippet: ErrorQueueRemoteMachineConfigurationProvider
-
-snippet: ErrorQueueRemoteMachineConfigurationSource
-
-snippet: UseCustomConfigurationSourceForErrorQueueRemoateMachineConfig
