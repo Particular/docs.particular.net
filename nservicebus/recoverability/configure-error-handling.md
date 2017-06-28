@@ -43,7 +43,7 @@ If either ServicePulse or ServiceInsight are not available in the environment, t
 
  * [Msmq Scripting](/transports/msmq/operations-scripting.md)
  * [RabbitMq Scripting](/transports/rabbitmq/operations-scripting.md)
- * [SqlServer Scripting](/transports/sqlserver/operations-scripting.md)
+ * [SqlServer Scripting](/transports/sql/operations-scripting.md)
 
 
 ### ReturnToSourceQueue.exe

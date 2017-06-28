@@ -5,7 +5,7 @@ reviewed: 2016-03-30
 component: SqlServer
 related:
 - transports/msmq
-- transports/sqlserver
+- transports/sql
 - persistence/nhibernate
 ---
 

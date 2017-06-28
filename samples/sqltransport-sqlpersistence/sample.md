@@ -5,10 +5,10 @@ reviewed: 2017-06-26
 component: Core
 related:
 - persistence/sql
-- transports/sqlserver
+- transports/sql
 ---
 
-In this sample, the [SQL Server Transport](/transports/sqlserver/) is used in conjunction with [SQL Persistence](/persistence/sql/). The sample shows how to use the same database connection for both transport and persistence operations, and how to access (using multiple [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping)) the current SQL connection and transaction from within a message handler to persist business objects to the database.
+In this sample, the [SQL Server Transport](/transports/sql/) is used in conjunction with [SQL Persistence](/persistence/sql/). The sample shows how to use the same database connection for both transport and persistence operations, and how to access (using multiple [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping)) the current SQL connection and transaction from within a message handler to persist business objects to the database.
 
 
 ## Prerequisites
@@ -44,7 +44,7 @@ Sender and Receiver use different schemas within one database. This creates a se
 
 ## Sender project
 
-The Sender mimics the front-end system where orders are submitted by the users and passed as messages to the back-end. It is configured to use the [SQL Server Transport](/transports/sqlserver/) and the [In Memory Persistence](/persistence/in-memory.md). In Memory Persistence is used since for the purposes of this sample Sender does not need to persist and data. The transport is configured to use `sender` for the schema.
+The Sender mimics the front-end system where orders are submitted by the users and passed as messages to the back-end. It is configured to use the [SQL Server Transport](/transports/sql/) and the [In Memory Persistence](/persistence/in-memory.md). In Memory Persistence is used since for the purposes of this sample Sender does not need to persist and data. The transport is configured to use `sender` for the schema.
 
 snippet: SenderConfiguration
 
@@ -53,7 +53,7 @@ The connection strings for both persistence and transport are the same.
 
 ## Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use the [SQL Server Transport](/transports/sqlserver/) and the [SQL Persistence](/persistence/sql/). The transport is configured to use `receiver` for the schema and to send messages addressed to the `receiver` endpoint to a different schema.
+The Receiver mimics a back-end system. It is also configured to use the [SQL Server Transport](/transports/sql/) and the [SQL Persistence](/persistence/sql/). The transport is configured to use `receiver` for the schema and to send messages addressed to the `receiver` endpoint to a different schema.
 
 snippet: ReceiverConfiguration
 

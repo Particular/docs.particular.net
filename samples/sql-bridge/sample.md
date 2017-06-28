@@ -6,7 +6,7 @@ component: Core
 related:
 - transports
 - transports/msmq
-- transports/sqlserver
+- transports/sql
 ---
 
 ## SQL Bridge (Transport Integration)

@@ -34,7 +34,7 @@ Broker transports include:
 
  * [Azure Service Bus](/transports/azure-service-bus/)
  * [Azure Storage Queues](/transports/azure-storage-queues/)
- * [SQL Server](/transports/sqlserver/)
+ * [SQL Server](/transports/sql/)
  * [RabbitMQ](/transports/rabbitmq/)
 
 
@@ -46,7 +46,7 @@ Unicast-only transports include:
 
  * [Azure Storage Queues](/transports/azure-storage-queues/)
  * [MSMQ](/transports/msmq/)
- * [SQL Server](/transports/sqlserver/)
+ * [SQL Server](/transports/sql/)
  * [Learning Transport](/transports/learning/)
 
 

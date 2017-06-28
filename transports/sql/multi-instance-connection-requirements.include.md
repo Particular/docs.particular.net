@@ -1,4 +1,4 @@
-In [*multi-catalog* and *multi-instance* modes](/transports/sqlserver/deployment-options.md) additional configuration is required for proper message routing:
+In [*multi-catalog* and *multi-instance* modes](/transports/sql/deployment-options.md) additional configuration is required for proper message routing:
 
  * The sending endpoint needs to know the connection string of the receiving endpoint.
  * The replying endpoint needs to know the connection string of the originator of the message for which the reply is being sent

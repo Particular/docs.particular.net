@@ -12,7 +12,7 @@ related:
 
 This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using SQL Server transport with endpoints using separate schemas for queues.
 
-The purpose of the adapter is to isolate ServiceControl from the specifics of the physical deployment topology of the business endpoints (such as [SQL Server multi-schema](/transports/sqlserver/deployment-options.md#modes-overview-multi-schema) mode) which are not supported out-of-the-box by ServiceControl.
+The purpose of the adapter is to isolate ServiceControl from the specifics of the physical deployment topology of the business endpoints (such as [SQL Server multi-schema](/transports/sql/deployment-options.md#modes-overview-multi-schema) mode) which are not supported out-of-the-box by ServiceControl.
 
 
 ## Prerequisistes
@@ -81,7 +81,7 @@ The following code configures the adapter to use a custom schema (`adapter`) wit
 
 snippet: EndpointSideConfig
 
-Starting from Version 6, the schema name [is included in the address](/transports/sqlserver/addressing.md?version=sqlserver_3).
+Starting from Version 6, the schema name [is included in the address](/transports/sql/addressing.md?version=sqlserver_3).
 
 The following code configures the adapter to communicate with ServiceControl:
 

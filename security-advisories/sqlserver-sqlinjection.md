@@ -7,7 +7,7 @@ tags:
  - Security
 ---
 
-This advisory discloses a security vulnerability that has been found in the [SQL Server Transport](/transports/sqlserver/) and fixed in a recently released version.
+This advisory discloses a security vulnerability that has been found in the [SQL Server Transport](/transports/sql/) and fixed in a recently released version.
 
  * If using the NServiceBus SQL Server Transport then all endpoints should upgraded to the latest version of the package to fix this vulnerability.
  * No other Transports or Persisters are affected.

@@ -33,7 +33,7 @@ In Versions 1.7 and above the transport DLLs are managed by the installation and
  * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
  * [Azure Storage Queues](/transports/azure-storage-queues/)
  * [Azure Service Bus](/transports/azure-service-bus/)
- * [SQL Server](/transports/sqlserver/)
+ * [SQL Server](/transports/sql/)
  * [RabbitMQ](/transports/rabbitmq/)
 
 Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).

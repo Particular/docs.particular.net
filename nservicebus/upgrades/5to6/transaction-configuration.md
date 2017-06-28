@@ -66,7 +66,7 @@ When transactions are disabled and if any errors are encountered during the proc
 
 `config.Transactions().DoNotWrapHandlersExecutionInATransactionScope()` has been removed since transaction scopes are no longer used by non DTC transports to delay the dispatch of all outgoing operations until handlers have been executed.
 
-In Version 6, handlers will only be wrapped in a [TransactionScope](https://msdn.microsoft.com/en-us/library/system.transactions.transactionscope.aspx) if the given transport chooses to do so. Transports that do this in their default configuration include [MSMQ](/transports/msmq/) and [SQL Server](/transports/sqlserver/). This means that performing storage operations against data sources that also support transaction scopes will escalate to a distributed transaction. Opting out of this behavior can be done with the following:
+In Version 6, handlers will only be wrapped in a [TransactionScope](https://msdn.microsoft.com/en-us/library/system.transactions.transactionscope.aspx) if the given transport chooses to do so. Transports that do this in their default configuration include [MSMQ](/transports/msmq/) and [SQL Server](/transports/sql/). This means that performing storage operations against data sources that also support transaction scopes will escalate to a distributed transaction. Opting out of this behavior can be done with the following:
 
 snippet: 5to6DoNotWrapHandlersInTransaction
 

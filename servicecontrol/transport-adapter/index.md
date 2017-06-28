@@ -52,7 +52,7 @@ snippet: MultiInstance
 
 Notice that both adapter configurations use the same connection string for the ServiceControl and a different connection string for the endpoint-side transport.
 
-NOTE: Some transports, such as [SQL Server transport](/transports/sqlserver/), offer a native multi-instance mode. This mode is considered an advanced routing feature and allows use of a single instance of the transport adapter even though there are multiple instances of the broker.
+NOTE: Some transports, such as [SQL Server transport](/transports/sql/), offer a native multi-instance mode. This mode is considered an advanced routing feature and allows use of a single instance of the transport adapter even though there are multiple instances of the broker.
 
 
 ## Queue configuration

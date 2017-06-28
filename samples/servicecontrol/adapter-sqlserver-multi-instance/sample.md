@@ -12,7 +12,7 @@ related:
 
 This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using SQL Server transport in a multi-database mode.
 
-The purpose of the adapter is to isolate ServiceControl from the specifics of the physical deployment topology of the business endpoints (such as [SQL Server multi-instance](/transports/sqlserver/deployment-options.md#modes-overview-multi-instance.md) mode). 
+The purpose of the adapter is to isolate ServiceControl from the specifics of the physical deployment topology of the business endpoints (such as [SQL Server multi-instance](/transports/sql/deployment-options.md#modes-overview-multi-instance.md) mode). 
 
 
 ## Prerequisistes
@@ -47,7 +47,7 @@ The code base consists of four projects.
 
 ### Shared
 
-The Shared project contains the message contracts and the physical topology definition. The topology is defined in the `Connections` class via a method that takes the name of the queue table ([physical address](/transports/sqlserver/addressing.md)) and returns the connection string to be used to access that queue.
+The Shared project contains the message contracts and the physical topology definition. The topology is defined in the `Connections` class via a method that takes the name of the queue table ([physical address](/transports/sql/addressing.md)) and returns the connection string to be used to access that queue.
 
 snippet: GetConnectionString
 
@@ -60,7 +60,7 @@ This topology is used in business endpoints (Sales, Shipping) as well as in the 
 
 The Sales and Shipping projects contain endpoints that simulate execution of business process. The process consists of two events: `OrderAccepted` published by Sales and subscribed by Shipping and `OrderShipped` published by Shipping and subscribed by Sales.
 
-The Sales and Shipping endpoints use separate databases and their transports are configured in the [multi-instance](/transports/sqlserver/deployment-options.md#modes-overview-multi-instance) mode using the topology definition from the `Connections` class.
+The Sales and Shipping endpoints use separate databases and their transports are configured in the [multi-instance](/transports/sql/deployment-options.md#modes-overview-multi-instance) mode using the topology definition from the `Connections` class.
 
 The business endpoints include message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality.
 
@@ -73,7 +73,7 @@ The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has
 
 snippet: AdapterTransport
 
-The following code configures the adapter to use [multi-instance](/transports/sqlserver/deployment-options.md#modes-overview-multi-instance) mode of SQL Server transport when communicating with the business endpoints.
+The following code configures the adapter to use [multi-instance](/transports/sql/deployment-options.md#modes-overview-multi-instance) mode of SQL Server transport when communicating with the business endpoints.
 
 snippet: EndpointSideConfig
 

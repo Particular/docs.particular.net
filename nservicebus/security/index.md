@@ -33,7 +33,7 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
  * [Azure Storage Service Encryption for Data at Rest](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption)
 
 
-### [SQL Server Transport](/transports/sqlserver/)
+### [SQL Server Transport](/transports/sql/)
 
  * [Overview of SQL Server Security](https://msdn.microsoft.com/en-us/library/bb669078.aspx)
  * [SQL Server Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)

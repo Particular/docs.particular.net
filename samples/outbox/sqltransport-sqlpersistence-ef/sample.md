@@ -6,7 +6,7 @@ component: SqlServer
 tags:
  - Outbox
 related:
- - transports/sqlserver
+ - transports/sql
  - nservicebus/outbox
 ---
 
@@ -47,7 +47,7 @@ Sender and Receiver use different schemas in the same database. Apart from busin
 
 ### Sender project
 
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use [SQLServer transport](/transports/sqlserver/) with [Sql persistence](/persistence/sql/) and Outbox.
+The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use [SQLServer transport](/transports/sql/) with [Sql persistence](/persistence/sql/) and Outbox.
 
 snippet: SenderConfiguration
 

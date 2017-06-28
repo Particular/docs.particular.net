@@ -32,10 +32,10 @@ Operational documentation is best reviewed from the perceptive of the selected t
  * [Use multiple accounts for scale out](/transports/azure-storage-queues/multi-storageaccount-support.md)
 
 
-### [SQL Server Transport](/transports/sqlserver/)
+### [SQL Server Transport](/transports/sql/)
 
- * [Deployment options](/transports/sqlserver/deployment-options.md)
- * [Scripting](/transports/sqlserver/operations-scripting.md)
+ * [Deployment options](/transports/sql/deployment-options.md)
+ * [Scripting](/transports/sql/operations-scripting.md)
 
 
 ### [MSMQ Transport](/transports/msmq/)

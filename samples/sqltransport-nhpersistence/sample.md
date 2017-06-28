@@ -5,7 +5,7 @@ reviewed: 2016-03-21
 component: SqlServer
 related:
 - persistence/nhibernate
-- transports/sqlserver
+- transports/sql
 ---
 
  1. Make sure an instance is SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a databases `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under *security* directory in SSMS database tree).

@@ -789,7 +789,7 @@
 
 - Key: SqlServer
   Name: SQL Server Transport
-  DocoUrl: transports/sqlserver
+  DocoUrl: transports/sql
   GitHubOwner: Particular/sqlserver-transport-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.SqlServer

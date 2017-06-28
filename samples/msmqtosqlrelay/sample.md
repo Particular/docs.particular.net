@@ -6,7 +6,7 @@ component: Core
 related:
 - transports
 - transports/msmq
-- transports/sqlserver
+- transports/sql
 ---
 
 
@@ -64,7 +64,7 @@ When messages arrive in the `MsmqToSqlRelay` queue, they are read using .NET Mes
 
 snippet: receive-from-msmq-using-native-messaging
 
-When a message arrives at the queue, the body and the header of the message is extracted and [using SQL Client API](/transports/sqlserver/operations-scripting.md), the information is stored in the SQL table, `SqlRelay`. 
+When a message arrives at the queue, the body and the header of the message is extracted and [using SQL Client API](/transports/sql/operations-scripting.md), the information is stored in the SQL table, `SqlRelay`. 
 
 snippet: read-message-and-push-to-sql
 

@@ -3,9 +3,6 @@ title: Connection Settings
 reviewed: 2016-09-07
 component: SqlServer
 redirects:
- - transports/sqlserver/concurrency
- - transports/sqlserver/configuration
-redirects:
 - nservicebus/sqlserver/connection-settings
 ---
 

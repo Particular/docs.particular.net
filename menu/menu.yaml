@@ -597,28 +597,28 @@
       Title: Multiple storage accounts
     - Url: nservicebus/azure/data-distribution
       Title: Data distribution
-  - Url: transports/sqlserver
+  - Url: transports/sql
     Title: SQL Server
     Articles:
-    - Url: transports/sqlserver/design
+    - Url: transports/sql/design
       Title: Design
-    - Url: transports/sqlserver/connection-settings
+    - Url: transports/sql/connection-settings
       Title: Connection Settings
-    - Url: transports/sqlserver/addressing
+    - Url: transports/sql/addressing
       Title: Addressing
-    - Url: transports/sqlserver/transactions
+    - Url: transports/sql/transactions
       Title: Transaction support
-    - Url: transports/sqlserver/concurrency
+    - Url: transports/sql/concurrency
       Title: Concurrency handling
-    - Url: transports/sqlserver/deployment-options
+    - Url: transports/sql/deployment-options
       Title: Deployment options
-    - Url: transports/sqlserver/operations-scripting
+    - Url: transports/sql/operations-scripting
       Title: Scripting
-    - Url: transports/sqlserver/entity-framework
+    - Url: transports/sql/entity-framework
       Title: Entity Framework caveats
-    - Url: transports/sqlserver/callbacks
+    - Url: transports/sql/callbacks
       Title: Callback support
-    - Url: transports/sqlserver/queuepeek
+    - Url: transports/sql/queuepeek
       Title: Queue Peek Settings
   - Url: transports/msmq
     Title: MSMQ

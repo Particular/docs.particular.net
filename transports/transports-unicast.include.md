@@ -1,1 +1,1 @@
- [MSMQ](/transports/msmq/), [SQL Server](/transports/sqlserver/), [Azure Storage Queues](/transports/azure-storage-queues/)
+ [MSMQ](/transports/msmq/), [SQL Server](/transports/sql/), [Azure Storage Queues](/transports/azure-storage-queues/)
