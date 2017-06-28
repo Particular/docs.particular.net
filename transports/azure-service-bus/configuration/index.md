@@ -6,7 +6,7 @@ tags:
 - Azure
 reviewed: 2017-05-05
 redirects:
- - nservicebus/azure-service-bus//configuration
+ - nservicebus/azure-service-bus/configuration
 ---
 
 ## Getting Started
