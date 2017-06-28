@@ -89,7 +89,7 @@ Scenario 2: If the custom component is accessed from within message handlers the
 
 Some of the dangers when using an `IMessageSession` interface inside a message handler to send or publish messages are:
 
- * Those messages will not participate in the same transaction scope as that of the message handler. This could result in messages dispatched or events published via the `IEndpointInstance` interface even if the message handler resulted in an exception and the operation was rolled back.
+ * Those messages will not participate in the same transaction scope as that of the message handler. This could result in messages dispatched or events published via the `IMessageSession` or `IEndpointInstance` interface even if the message handler resulted in an exception and the operation was rolled back.
  * Those messages will not be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md).
  * Those messages will not contain any important message header information that is available via the `IMessageHandlerContext` interface parameter, e.g., CorrelationId.
 
