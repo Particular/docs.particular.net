@@ -1,3 +1,2 @@
-### Using Code
 
 snippet: ConfigMsmqErrorWithCode
