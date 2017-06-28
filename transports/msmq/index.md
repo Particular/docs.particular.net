@@ -78,13 +78,26 @@ Although MSMQ has the concept of both [Public and Private queues](https://techne
 | Anonymous      | Send                | Set by NServiceBus prior to 6.1.0 |
 | Everyone       | Send                | Set by NServiceBus prior to 6.1.0 |
 
-NOTE: If you are running in *Workgroup* mode then Windows will grant Send permissions to Anonymous. Everyone is added by default by Windows but not with Send or Receive permisssions. Prior to NServiceBus 6.1.0 Send permissions for Anonymous and Everyone were granted at queue creation but this behavior was altered to not accidentally open up permissions.
+
+For endpoints using the publish-subscribe pattern, both the publisher and the subscriber must have permission to send messages to each other. This is to allow the Subscribe message to be sent from the subscribing endpoint to the publishing endpoint.
+
+When an NServiceBus endpoint creates a queue on a machine, the default permissions depend on whether the machine is connected to a domain or a workgroup.
+
+### Domain mode
+
+If the machine is connected to a domain, then only the domain user running the endpoint when the queue is created will have Send permissions granted. If multiple endpoints need to communicate and are running under the same domain account, no further configuration is required. If multiple endpoints need to communicate using different domain accounts then the Send permission on the receiving endpoint input queue needs to be granted to the domain account of the sending endpoint.
+
+### Workgroup mode
+
+If the machine is connected to a workgroup then the Send permission is granted to the Everyone and Anonymous user groups by Windows. Any endpoint will be able to send messages to any other endpoint without further configuration.
+
+NOTE: In versions 5.2.20 and 6.0.3 a bug was fixes where [installers always changed permissions on a queue, also if it already existed](https://github.com/Particular/NServiceBus/issues/4266).
 
 To retrieve the group names the [WellKnownSidType](https://msdn.microsoft.com/en-us/library/system.security.principal.wellknownsidtype.aspx) enumeration is used.
 
 MSMQ permissions are defined in the [MessageQueueAccessRights](https://msdn.microsoft.com/en-us/library/system.messaging.messagequeueaccessrights.aspx) enumeration.
 
-NOTE: Write access is granted to both `Everyone` and `Anonymous`. Endpoints can receive messages from other endpoints running under different accounts. To increase security and further lock down MSMQ write permissions remove `Everyone` and `Anonymous` and grant specific permissions to a subset of accounts.
+NOTE: To increase security and further lock down MSMQ send/receive permissions remove `Everyone` and `Anonymous` and grant specific permissions to a subset of accounts.
 
 NOTE: From Version 6, if the default queue permissions are set, a log message will be written during the transport startup, reminding that the queue has default permissions. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
 
