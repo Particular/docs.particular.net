@@ -16,7 +16,7 @@ class ServiceControlRemoteQueues
 }
 
 
-#region ErrorQueueRemoteMachineConfigurationProvider 6
+#region ErrorQueueRemoteMachineConfigurationProvider
 
 class ProvideConfiguration : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
 {
@@ -31,7 +31,7 @@ class ProvideConfiguration : IProvideConfiguration<MessageForwardingInCaseOfFaul
 
 #endregion
 
-#region ErrorQueueRemoteMachineConfigurationSource 6
+#region ErrorQueueRemoteMachineConfigurationSource
 public class ConfigurationSource : IConfigurationSource
 {
     public T GetConfiguration<T>() where T : class, new()
@@ -57,7 +57,7 @@ class CustomConfigurationSource
 {
     CustomConfigurationSource(EndpointConfiguration endpointConfiguration)
     {
-        #region UseCustomConfigurationSourceForErrorQueueRemoateMachineConfig 6
+        #region UseCustomConfigurationSourceForErrorQueueRemoateMachineConfig
 
         endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());
 
