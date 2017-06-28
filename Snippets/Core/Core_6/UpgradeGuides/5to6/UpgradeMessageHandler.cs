@@ -1,6 +1,5 @@
 ﻿namespace Core6.UpgradeGuides._5to6
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -169,11 +168,16 @@
     public class HandlerWithDependencyWhichUsesIBus :
         IHandleMessagesFromPreviousVersions<MyMessage>
     {
-        public MyDependency Dependency { get; set; }
+        MyDependency dependency;
+
+        public HandlerWithDependencyWhichUsesIBus(MyDependency dependency)
+        {
+            this.dependency = dependency;
+        }
 
         public void Handle(MyMessage message)
         {
-            Dependency.Do();
+            dependency.Do();
         }
     }
 
@@ -204,11 +208,16 @@
     public class HandlerWithDependencyWhichReturns :
         IHandleMessages<MyMessage>
     {
-        public MyReturningDependency Dependency { get; set; }
+        MyReturningDependency dependency;
+
+        public HandlerWithDependencyWhichReturns(MyReturningDependency dependency)
+        {
+            this.dependency = dependency;
+        }
 
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            foreach (var customerName in Dependency.Do())
+            foreach (var customerName in dependency.Do())
             {
                 await context.Publish(new CustomerChanged { Name = customerName })
                     .ConfigureAwait(false);
@@ -240,12 +249,17 @@
     public class HandlerWithDependencyWhichAccessesContext :
         IHandleMessages<MyMessage>
     {
-        public MyContextAccessingDependency Dependency { get; set; }
+        MyContextAccessingDependency dependency;
+
+        public HandlerWithDependencyWhichAccessesContext(MyContextAccessingDependency dependency)
+        {
+            this.dependency = dependency;
+        }
 
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             // float the context into the dependency via method injection
-            await Dependency.Do(context)
+            await dependency.Do(context)
                 .ConfigureAwait(false);
         }
     }
