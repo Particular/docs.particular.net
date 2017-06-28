@@ -53,10 +53,10 @@ namespace SqlServer_All.Operations.NativeSend
                 using (var command = new SqlCommand(insertSql, connection))
                 {
                     var parameters = command.Parameters;
-                    parameters.AddWithValue("Id", Guid.NewGuid());
-                    parameters.AddWithValue("Headers", serializeHeaders);
-                    parameters.AddWithValue("Body", bytes);
-                    parameters.AddWithValue("Recoverable", true);
+                    parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
+                    parameters.Add("Headers", SqlDbType.VarChar).Value = serializeHeaders;
+                    parameters.Add("Body", SqlDbType.VarBinary).Value = bytes;
+                    parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
                     await command.ExecuteNonQueryAsync()
                         .ConfigureAwait(false);
                 }
