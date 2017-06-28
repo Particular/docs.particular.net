@@ -12,15 +12,3 @@ class ServiceControlRemoteQueues
         # endregion
     }
 }
-
-class CustomConfigurationSource
-{
-    CustomConfigurationSource(EndpointConfiguration endpointConfiguration)
-    {
-        #region UseCustomConfigurationSourceForErrorQueueRemoateMachineConfig
-
-        endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());
-
-        #endregion
-    }
-}

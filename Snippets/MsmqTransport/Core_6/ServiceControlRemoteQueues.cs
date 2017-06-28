@@ -7,7 +7,7 @@ class ServiceControlRemoteQueues
 {
     ServiceControlRemoteQueues(EndpointConfiguration endpointConfiguration)
     {
-        # region ConfigMsmqErrorWithCode
+        # region ConfigMsmqErrorWithCode 
 
         endpointConfiguration.SendFailedMessagesTo("targetErrorQueue@machinename");
 
@@ -16,7 +16,7 @@ class ServiceControlRemoteQueues
 }
 
 
-#region ErrorQueueRemoteMachineConfigurationProvider
+#region ErrorQueueRemoteMachineConfigurationProvider 6
 
 class ProvideConfiguration : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
 {
@@ -31,7 +31,7 @@ class ProvideConfiguration : IProvideConfiguration<MessageForwardingInCaseOfFaul
 
 #endregion
 
-#region ErrorQueueRemoteMachineConfigurationSource
+#region ErrorQueueRemoteMachineConfigurationSource 6
 public class ConfigurationSource : IConfigurationSource
 {
     public T GetConfiguration<T>() where T : class, new()
@@ -57,7 +57,7 @@ class CustomConfigurationSource
 {
     CustomConfigurationSource(EndpointConfiguration endpointConfiguration)
     {
-        #region UseCustomConfigurationSourceForErrorQueueRemoateMachineConfig
+        #region UseCustomConfigurationSourceForErrorQueueRemoateMachineConfig 6
 
         endpointConfiguration.CustomConfigurationSource(new ConfigurationSource());
 
