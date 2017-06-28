@@ -24,7 +24,7 @@ public class OrderSubmittedHandler :
 
         #region StoreUserData
 
-        var dbConnection = storageContext.Connection as SqlConnection;
+        var dbConnection = (SqlConnection) storageContext.Connection;
         using (var receiverDataContext = new ReceiverDataContext(dbConnection))
         {
             var dbTransaction = (DbTransaction) storageContext.DatabaseTransaction;

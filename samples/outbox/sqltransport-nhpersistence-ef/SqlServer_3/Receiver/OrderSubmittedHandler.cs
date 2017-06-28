@@ -19,7 +19,7 @@ public class OrderSubmittedHandler :
 
         var storageContext = context.SynchronizedStorageSession.Session();
 
-        var dbConnection = storageContext.Connection as SqlConnection;
+        var dbConnection = (SqlConnection) storageContext.Connection;
         using (var receiverDataContext = new ReceiverDataContext(dbConnection))
         {
             var dbTransaction = ExtractTransactionFromSession(storageContext);
