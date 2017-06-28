@@ -1,8 +1,10 @@
 using NServiceBus;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NHibernate;
 using NServiceBus.Logging;
+using Microsoft.EntityFrameworkCore;
 
 public class OrderSubmittedHandler :
     IHandleMessages<OrderSubmitted>
@@ -17,7 +19,7 @@ public class OrderSubmittedHandler :
 
         var storageContext = context.SynchronizedStorageSession.Session();
 
-        var dbConnection = storageContext.Connection;
+        var dbConnection = storageContext.Connection as SqlConnection;
         using (var receiverDataContext = new ReceiverDataContext(dbConnection))
         {
             var dbTransaction = ExtractTransactionFromSession(storageContext);

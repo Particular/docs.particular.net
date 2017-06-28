@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus;
 using NServiceBus.Transport.SQLServer;
+using Configuration = NHibernate.Cfg.Configuration;
 
 class Program
 {
@@ -15,9 +17,11 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SQLNHibernateOutboxEF.Receiver";
-        using (var receiverDataContext = new ReceiverDataContext())
+
+        var connectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"].ConnectionString;
+        using (var receiverDataContext = new ReceiverDataContext(connectionString))
         {
-            receiverDataContext.Database.Initialize(true);
+            await receiverDataContext.Database.EnsureCreatedAsync().ConfigureAwait(false);
         }
 
         var hibernateConfig = new Configuration();

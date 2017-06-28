@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Configuration;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus;
 using NServiceBus.Transports.SQLServer;
 using NServiceBus.Persistence;
+using Configuration = NHibernate.Cfg.Configuration;
 
 class Program
 {
     static void Main()
     {
         Console.Title = "Samples.SQLNHibernateOutboxEF.Receiver";
-        using (var receiverDataContext = new ReceiverDataContext())
+
+        var connectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"].ConnectionString;
+        using (var receiverDataContext = new ReceiverDataContext(connectionString))
         {
-            receiverDataContext.Database.Initialize(true);
+            receiverDataContext.Database.EnsureCreated();
         }
 
         var hibernateConfig = new Configuration();
@@ -50,4 +54,4 @@ class Program
             Console.ReadKey();
         }
     }
-}
+};

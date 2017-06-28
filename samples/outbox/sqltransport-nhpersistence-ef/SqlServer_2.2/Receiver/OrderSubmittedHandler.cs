@@ -1,7 +1,9 @@
 using NServiceBus;
 using System.Data.Common;
+using System.Data.SqlClient;
 using NServiceBus.Logging;
 using NServiceBus.Persistence.NHibernate;
+using Microsoft.EntityFrameworkCore;
 
 public class OrderSubmittedHandler :
     IHandleMessages<OrderSubmitted>
@@ -22,7 +24,7 @@ public class OrderSubmittedHandler :
 
         #region StoreUserData
 
-        var dbConnection = storageContext.Connection;
+        var dbConnection = storageContext.Connection as SqlConnection;
         using (var receiverDataContext = new ReceiverDataContext(dbConnection))
         {
             var dbTransaction = (DbTransaction) storageContext.DatabaseTransaction;
