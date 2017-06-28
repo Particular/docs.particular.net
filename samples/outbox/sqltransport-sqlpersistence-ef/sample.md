@@ -54,11 +54,11 @@ snippet: SenderConfiguration
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use SQLServer transport with SQL persistence  and Outbox. It uses [EntityFramework](https://msdn.microsoft.com/en-us/library/gg696172.aspx) to store business data (orders).
+The Receiver mimics a back-end system. It is also configured to use SQLServer transport with SQL persistence  and Outbox. It uses [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) to store business data (orders).
 
 snippet: ReceiverConfiguration
 
-In order for the Outbox to work, the business data has to reuse the same connection string as NServiceBus persistence:
+In order for the Outbox to work, the business data has to reuse the same connection or connection string as NServiceBus persistence:
 
 snippet: EntityFramework
 
