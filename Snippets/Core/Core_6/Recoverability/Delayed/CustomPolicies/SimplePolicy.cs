@@ -22,13 +22,12 @@
         {
             var action = DefaultRecoverabilityPolicy.Invoke(config, context);
             var delayedRetryAction = action as DelayedRetry;
-            if (delayedRetryAction != null)
+            if (delayedRetryAction == null)
             {
-                // Override default delivery delay.
-                return RecoverabilityAction.DelayedRetry(TimeSpan.FromSeconds(5));
+                return action;
             }
-
-            return action;
+            // Override default delivery delay.
+            return RecoverabilityAction.DelayedRetry(TimeSpan.FromSeconds(5));
         }
 
         #endregion

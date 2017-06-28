@@ -35,9 +35,9 @@
         {
             // early decisions and return before custom policy is invoked
             // i.e. all unrecoverable exceptions should always go to customized error queue
-            foreach (var unrecoverableExceptionType in config.Failed.UnrecoverableExceptionTypes)
+            foreach (var exceptionType in config.Failed.UnrecoverableExceptionTypes)
             {
-                if (unrecoverableExceptionType.IsInstanceOfType(context.Exception))
+                if (exceptionType.IsInstanceOfType(context.Exception))
                 {
                     return RecoverabilityAction.MoveToError("customErrorQueue");
                 }
@@ -45,7 +45,8 @@
 
             // override delayed retry decision for custom exception
             // i.e. MyOtherBusinessException should do fixed backoff of 5 seconds
-            if (context.Exception is MyOtherBusinessException && context.DelayedDeliveriesPerformed <= config.Delayed.MaxNumberOfRetries)
+            if (context.Exception is MyOtherBusinessException &&
+                context.DelayedDeliveriesPerformed <= config.Delayed.MaxNumberOfRetries)
             {
                 return RecoverabilityAction.DelayedRetry(TimeSpan.FromSeconds(5));
             }
