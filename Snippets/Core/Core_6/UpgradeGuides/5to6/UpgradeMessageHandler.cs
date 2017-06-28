@@ -1,5 +1,8 @@
 ﻿namespace Core6.UpgradeGuides._5to6
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using Common;
     using Core6.Handlers;
@@ -138,6 +141,117 @@
 
     #endregion
 
+    #region 5to6-handler-with-dependency
+
+    public class MyDependency
+    {
+        IBus bus;
+
+        public MyDependency(IBus bus)
+        {
+            this.bus = bus;
+        }
+
+        public void Do()
+        {
+            foreach (var changedCustomer in LoadChangedCustomers())
+            {
+                bus.Publish(new CustomerChanged { Name = changedCustomer.Name });
+            }
+        }
+
+        static IEnumerable<Customer> LoadChangedCustomers()
+        {
+            return Enumerable.Empty<Customer>();
+        }
+    }
+
+    public class HandlerWithDependencyWhichUsesIBus :
+        IHandleMessagesFromPreviousVersions<MyMessage>
+    {
+        public MyDependency Dependency { get; set; }
+
+        public void Handle(MyMessage message)
+        {
+            Dependency.Do();
+        }
+    }
+
+    #endregion
+
+    #region 5to6-handler-with-dependency-which-returns
+
+    public class MyReturningDependency
+    {
+        IBus bus;
+
+        public MyReturningDependency(IBus bus)
+        {
+            this.bus = bus;
+        }
+
+        public IEnumerable<string> Do()
+        {
+            return LoadChangedCustomers().Select(changedCustomer => changedCustomer.Name);
+        }
+
+        static IEnumerable<Customer> LoadChangedCustomers()
+        {
+            return Enumerable.Empty<Customer>();
+        }
+    }
+
+    public class HandlerWithDependencyWhichReturns :
+        IHandleMessages<MyMessage>
+    {
+        public MyReturningDependency Dependency { get; set; }
+
+        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        {
+            foreach (var customerName in Dependency.Do())
+            {
+                await context.Publish(new CustomerChanged { Name = customerName })
+                    .ConfigureAwait(false);
+            }
+        }
+    }
+
+    #endregion
+
+    #region 5to6-handler-with-dependency-which-accesses-context
+
+    public class MyContextAccessingDependency
+    {
+        public async Task Do(IMessageHandlerContext context)
+        {
+            foreach (var changedCustomer in LoadChangedCustomers())
+            {
+                await context.Publish(new CustomerChanged { Name = changedCustomer.Name })
+                    .ConfigureAwait(false);
+            }
+        }
+
+        static IEnumerable<Customer> LoadChangedCustomers()
+        {
+            return Enumerable.Empty<Customer>();
+        }
+    }
+
+    public class HandlerWithDependencyWhichAccessesContext :
+        IHandleMessages<MyMessage>
+    {
+        public MyContextAccessingDependency Dependency { get; set; }
+
+        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        {
+            // float the context into the dependency via method injection
+            await Dependency.Do(context)
+                .ConfigureAwait(false);
+        }
+    }
+
+    #endregion
+
     public interface IHandleMessagesFromPreviousVersions<in TMessage>
     {
         void Handle(TMessage message);
@@ -147,5 +261,15 @@
     {
         void Send(object message);
         void Publish(object message);
+    }
+
+    public class Customer
+    {
+        public string Name { get; set; }
+    }
+
+    public class CustomerChanged
+    {
+        public string Name { get; set; }
     }
 }
