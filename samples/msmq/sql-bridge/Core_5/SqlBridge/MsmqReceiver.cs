@@ -59,10 +59,19 @@ class MsmqReceiver :
         return true;
     }
 
+    static Type[] ExtractEventTypes(Dictionary<string, string> headers)
+    {
+        return new []
+        {
+            Type.GetType(headers["NServiceBus.EnclosedMessageTypes"])
+        };
+    }
+
     static TransportMessage TranslateToSqlTransportMessage(TransportMessage msmqMessage)
     {
         var headers = msmqMessage.Headers;
         var msmqId = headers["NServiceBus.MessageId"];
+        var sqlId = msmqId;
 
         // Set the Id to a deterministic guid, as Sql message Ids are Guids and
         // Msmq message ids are guid\nnnn. Newer versions of NServiceBus already
@@ -71,26 +80,18 @@ class MsmqReceiver :
         // is important as it affects the retries if the message is rolled back.
         // If the Ids are different, then the recoverability won't know its the same message.
         Guid msmqGuid;
+
         if (!Guid.TryParse(msmqId, out msmqGuid))
         {
-            headers["NServiceBus.MessageId"] = GuidBuilder.BuildDeterministicGuid(msmqId).ToString();
+            sqlId = GuidBuilder.BuildDeterministicGuid(msmqId).ToString();
+            headers["NServiceBus.MessageId"] = sqlId;
         }
 
-        var sqlMessage = new TransportMessage(headers["NServiceBus.MessageId"], headers);
-
-        sqlMessage.Body = msmqMessage.Body;
-        sqlMessage.TimeToBeReceived = (msmqMessage.TimeToBeReceived < Message.InfiniteTimeout) ? msmqMessage.TimeToBeReceived : TimeSpan.MaxValue;
-
-        return sqlMessage;
-    }
-
-    static Type[] ExtractEventTypes(Dictionary<string, string> headers)
-    {
-        Type[] eventTypes =
+        return new TransportMessage(sqlId, headers)
         {
-            Type.GetType(headers["NServiceBus.EnclosedMessageTypes"])
+            Body = msmqMessage.Body,
+            TimeToBeReceived = (msmqMessage.TimeToBeReceived < Message.InfiniteTimeout) ? msmqMessage.TimeToBeReceived : TimeSpan.MaxValue
         };
-        return eventTypes;
     }
 
     // Address of the MSMQ that will be receiving all of the events from
