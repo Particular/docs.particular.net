@@ -48,7 +48,7 @@ namespace SqlServer_All.Operations.NativeSend
 
                 var headers = new Dictionary<string, string>
                 {
-                    {"NServiceBus.EnclosedMessageTypes", "NativeSendTests+MessageToSend"}
+                    {"NServiceBus.EnclosedMessageTypes", typeof(MessageToSend).FullName}
                 };
 
                 await NativeSend.SendMessage(connectionString, endpointName, message, headers)
@@ -67,7 +67,7 @@ namespace SqlServer_All.Operations.NativeSend
 
                 var headers = new Dictionary<string, string>
                 {
-                    {"NServiceBus.EnclosedMessageTypes", "NativeSendTests+MessageToSend"}
+                    {"NServiceBus.EnclosedMessageTypes", typeof(MessageToSend).FullName}
                 };
 
                 var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"Operations\NativeSend.ps1");
