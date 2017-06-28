@@ -1,6 +1,6 @@
 ---
 title: Migrate handlers and sagas to Version 6
-reviewed: 2016-08-29
+reviewed: 2017-06-28
 component: Core
 related:
  - nservicebus/handlers
@@ -13,7 +13,7 @@ upgradeGuideCoreVersions:
  - 6
 ---
 
-The handler method on `IHandleMessages<T>` now returns a Task. In order to leverage async code, add the `async` keyword to the handler method and use `await` for async methods. In order to convert the synchronous code add `return Task.FromResult(0);` or `return Task.CompletedTask` (.NET 4.6 and higher) to the handler methods.
+The handler method on `IHandleMessages<T>` now returns a Task. To leverage async code, add the `async` keyword to the handler method and use `await` for async methods. To convert the synchronous code add `return Task.FromResult(0);` or `return Task.CompletedTask` (.NET 4.6 and higher) to the handler methods.
 
 WARNING: Do not `return null` from the message handlers. A `null` will result in an Exception.
 
@@ -79,13 +79,15 @@ snippet: 5to6-handler-migration-step4
 
 After these steps start moving other code in the handler towards async if the code supports it when it is desired to fully leverage async/await. For example with Entity Framework instead of calling `SaveChanges` call `SaveChangesAsync` on the database context.
 
+For information about how to migrate handlers with dependencies that access the `IBus` interface, refer to [IBus interface has been deprecated](moving-away-from-ibus.md) guidance.
+
 
 ## Saga API Changes
 
 
 ### Remove NServiceBus.Saga namespace
 
-The `NServiceBus.Saga` namespace has been removed to stop it clashing with the `NServiceBus.Saga.Saga` class. For all commonly used APIs (eg the `Saga` class and `IContainSagaData ` interface) they have been moved into the `NServiceBus` namespace. Other more advanced APIs (eg the `IFinder` and `IHandleSagaNotFound` interfaces) have been moved into the `NServiceBus.Sagas` namespace.
+The `NServiceBus.Saga` namespace has been removed to stop it clashing with the `NServiceBus.Saga.Saga` class. For all commonly used APIs (e.g., the `Saga` class and `IContainSagaData ` interface) they have been moved into the `NServiceBus` namespace. Other more advanced APIs (e.g., the `IFinder` and `IHandleSagaNotFound` interfaces) have been moved into the `NServiceBus.Sagas` namespace.
 
 In most cases `using NServiceBus.Saga` can be replaced with `using NServiceBus`.
 
@@ -115,8 +117,8 @@ Version 6 automatically correlates incoming message properties to its saga data 
 {{NOTE: Correlated properties must have a non [default](https://msdn.microsoft.com/en-us/library/83fhsxwc.aspx) value, i.e. not null and not empty, assigned when persisted. If not the following exception will be thrown: 
 
 ```
-The correlated property 'MyPropery' on saga 'MySaga' does not have a value.
-A correlated property must have a non default (i.e. non null and non-empty) value assigned when a new saga instance is created.
+The correlated property 'MyPropery' on Saga 'MySaga' does not have a value.
+A correlated property must have a non-default (i.e. non-null and non-empty) value assigned when a new saga instance is created.
 ```
 
 Use a [custom finder](/nservicebus/sagas/saga-finding.md) for the received message to override this validation.
@@ -127,7 +129,7 @@ snippet: 5to6-NoSagaDataCorrelationNeeded
 Versions 6 and above will only support correlating messages to a single saga property. Correlating on more than one property is still supported by creating a custom [saga finder](/nservicebus/sagas/saga-finding.md). If sagas with multiple correlations mappings to different properties are detected the following exception will be thrown:
 
 ```
-Sagas can only have mappings that correlate on a single saga property. Use custom finders to correlate *message types* to saga *saga type*
+Sagas can only have mappings that correlate on a single saga property. Use custom finders to correlate *message types* to Saga *saga type*
 ```
 
 

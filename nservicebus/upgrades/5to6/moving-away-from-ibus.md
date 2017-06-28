@@ -1,6 +1,6 @@
 ---
 title: Moving away from IBus in Version 6
-reviewed: 2016-08-29
+reviewed: 2017-06-28
 component: Core
 summary: Describes how to send messages without the IBus
 redirects:
@@ -61,11 +61,11 @@ snippet: 5to6-bus-send-publish
 
 ### Sending messages outside message handlers
 
-A common use of `IBus` is to invoke bus operations outside of the pipeline (e.g. in handlers, sagas and pipeline extensions), such as sending a message from an ASP.NET request or from a client application. Instead of an `IBus` the `IMessageSession` offers all available messaging operations outside the message processing pipeline. For example:
+A common use of `IBus` is to invoke bus operations outside of the pipeline (e.g. in handlers, sagas and pipeline extensions), such as sending a message from an ASP.NET request or a client application. Instead of an `IBus,` the `IMessageSession` offers all available messaging operations outside the message processing pipeline. For example:
 
 snippet: 5to6-endpoint-send-messages-outside-handlers
 
-In this example a message is being sent during startup of an Endpoint. Hence the `IMessageSession` is available via the `IEndpointInstance` class from `Endpoint.Start`. Note that implicitly converting from `IEndpointInstance` to `IMessageSession` is optional but it is preferred as `IMessageSession` offers a more concise API for messaging interactions.
+In this example, a message is being sent during startup of an Endpoint. Hence the `IMessageSession` is available via the `IEndpointInstance` class from `Endpoint.Start`. Note that implicitly converting from `IEndpointInstance` to `IMessageSession` is optional but it is preferred as `IMessageSession` offers a more concise API for messaging interactions.
 
 For other scenarios (i.e. not at startup) that need access to `IMessageSession` there are two ways to achieve this:
 
@@ -77,29 +77,42 @@ If the endpoint is hosted using NServiceBus.Host, use the [`IWantToRunWhenEndpoi
 
 ## Dependency Injection
 
-In previous versions the `IBus` interface was automatically registered in the IOC container. In Version 6, the new context-aware interfaces, for example, `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., will not be automatically registered in the [Container](/nservicebus/containers/).
+In previous versions, the `IBus` interface was automatically registered in the IOC container. In Version 6, the new context-aware interfaces, for example, `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., are not automatically registered in the [Container](/nservicebus/containers/).
 
 In Versions 5 and below, when a custom component was registered in the container, the custom component had access to the `IBus` instance via dependency injection.
 
 WARNING: When upgrading such custom components to Version 6, it is **not safe** to simply replace all instances of `IBus` with `IMessageSession`. It depends on the usage of the `IBus` inside the custom component.
 
-Scenario 1: If the custom component was sending messages using the injected `IBus` from outside of message handlers, for example, in an MVC Controller class, then it is safe to register the `IMessageSession` when self hosting. This interface can then be used to send messages. See [Sending from an ASP.NET MVC Controller](/samples/web/send-from-mvc-controller/) for an example of this.
+Scenario 1: If the custom component was sending messages using the injected `IBus` from outside of message handlers, for example, in an MVC Controller class, then it is safe to register the `IMessageSession` when self-hosting. This interface can then be used to send messages. See [Sending from an ASP.NET MVC Controller](/samples/web/send-from-mvc-controller/) for an example of this.
 
 Scenario 2: If the custom component is accessed from within message handlers then the `IMessageHandlerContext` parameter should be passed to the custom component instead of the `IMessageSession` interface to either send or publish messages.
 
 Some of the dangers when using an `IMessageSession` interface inside a message handler to send or publish messages are:
 
- * Those messages will not participate in the same transaction scope as that of the message handler. This could result in messages dispatched or events published via the `IEndpointInstance` interface even if the message handler resulted in an exception and the operation was rolled back.
+ * Those messages will not participate in the same transaction scope as that of the message handler. This could result in messages dispatched or events published via the `IMessageSession` or `IEndpointInstance` interface even if the message handler resulted in an exception and the operation was rolled back.
  * Those messages will not be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md).
  * Those messages will not contain any important message header information that is available via the `IMessageHandlerContext` interface parameter, e.g., CorrelationId.
+
+### Accessing message handler context in the dependency hierarchy
+
+The snippet below shows a handler with a dependency that accesses the `IBus` interface. The dependency is injected into a handler and used from within the handler.
+
+snippet: 5to6-handler-with-dependency
+
+Since message handler context operations are asynchronous, it is advised to refactor the dependency to no longer use the bus operations towards a design in which the dependency returns information to the caller that can be used to determine what bus operations are required. The following snippet illustrates that:
+
+snippet: 5to6-handler-with-dependency-which-returns
+
+By using this approach, the asynchronous APIs won't ripple through all the layers, and the dependency can remain synchronous if desired. If such a change is not feasible or desired the context has to be floated into the dependency by using method injection like shown below:
+
+snippet: 5to6-handler-with-dependency-which-accesses-context
 
 
 ## UnicastBus made internal
 
-
 ### Accessing the builder
 
-When using the `IBuilder` interface outside the infrastructure of NServiceBus it was possible to use a hack by casting the `IBus` interface to `UnicastBus` and then accessing the `Builder` property like this:
+When using the `IBuilder` interface outside the infrastructure of NServiceBus, it was possible to use a hack by casting the `IBus` interface to `UnicastBus` and then accessing the `Builder` property like this:
 
 snippet: 5to6AccessBuilder
 
@@ -115,4 +128,4 @@ snippet: 5to6-Specifying-HostId-Using-Api
 
 ### Accessing ReadOnlySettings
 
-Accessing `ReadOnlySettings` using `UnicastBus.Settings` is no longer supported as these settings should only be accessed inside features, the pipeline and the start/stop infrastructure.
+Accessing `ReadOnlySettings` using `UnicastBus.Settings` is no longer supported as these settings should only be accessed inside features, the pipeline, and the start/stop infrastructure.
