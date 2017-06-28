@@ -82,7 +82,7 @@ class DeserializeConnector :
 
             if (
                 messageMetadata.Count == 0 &&
-                physicalMessage.GetMesssageIntent() != MessageIntentEnum.Publish)
+                physicalMessage.GetMessageIntent() != MessageIntentEnum.Publish)
             {
                 log.Warn($"Could not determine message type from message header '{messageTypeIdentifier}'. MessageId: {physicalMessage.MessageId}");
             }
