@@ -70,7 +70,6 @@ namespace SqlServer_All.Operations.ErrorQueue
                 using (var command = new SqlCommand(sql, connection))
                 {
                     var parameters = command.Parameters;
-                    command.CommandType = CommandType.Text;
                     parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = messageToRetry.Id;
                     parameters.Add("Headers", SqlDbType.VarChar).Value = messageToRetry.Headers;
                     parameters.Add("Body", SqlDbType.VarBinary).Value = messageToRetry.Body;

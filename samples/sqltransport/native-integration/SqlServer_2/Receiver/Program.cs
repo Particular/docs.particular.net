@@ -67,7 +67,6 @@ class Program
                 .ConfigureAwait(false);
             using (var command = new SqlCommand(insertSql, connection))
             {
-                command.CommandType = CommandType.Text;
                 var parameters = command.Parameters;
                 parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
                 parameters.Add("Headers", SqlDbType.VarChar).Value = "";

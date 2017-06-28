@@ -127,7 +127,6 @@ class Program
             using (var command = new SqlCommand(insertSql, connection))
             {
                 var parameters = command.Parameters;
-                command.CommandType = CommandType.Text;
                 parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
                 var serializeHeaders = JsonConvert.SerializeObject(headers);
                 parameters.Add("Headers", SqlDbType.VarChar).Value = serializeHeaders;

@@ -55,7 +55,6 @@ namespace SqlServer_All.Operations.NativeSend
                     using (var command = new SqlCommand(insertSql, connection))
                     {
                         var parameters = command.Parameters;
-                        command.CommandType = CommandType.Text;
                         parameters.AddWithValue("Id", Guid.NewGuid());
                         parameters.AddWithValue("Headers", serializeHeaders);
                         parameters.AddWithValue("Body", bytes);
