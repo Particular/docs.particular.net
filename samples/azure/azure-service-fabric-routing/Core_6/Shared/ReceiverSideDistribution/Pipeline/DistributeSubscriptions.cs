@@ -22,7 +22,7 @@ class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IInco
 
     public async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingPhysicalMessageContext, Task> next)
     {
-        var intent = context.Message.GetMessageIntent();
+        var intent = context.Message.GetMesssageIntent();
         var isSubscriptionMessage = intent == MessageIntentEnum.Subscribe || intent == MessageIntentEnum.Unsubscribe;
 
         if (isSubscriptionMessage)
