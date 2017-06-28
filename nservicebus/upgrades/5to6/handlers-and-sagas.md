@@ -79,6 +79,8 @@ snippet: 5to6-handler-migration-step4
 
 After these steps start moving other code in the handler towards async if the code supports it when it is desired to fully leverage async/await. For example with Entity Framework instead of calling `SaveChanges` call `SaveChangesAsync` on the database context.
 
+For information about how to migrate handlers with dependencies that access the `IBus` interface, refer to [IBus interface has been deprecated](moving-away-from-ibus.md) guidance.
+
 
 ## Saga API Changes
 
