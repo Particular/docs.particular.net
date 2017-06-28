@@ -28,17 +28,15 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Raw, Version=0.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Raw.0.2.1\lib\net452\NServiceBus.Raw.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Raw, Version=1.0.0.0, Culture=neutral, PublicKeyToken=215652b07edbd86c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Raw.1.0.0\lib\net452\NServiceBus.Raw.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transport.SQLServer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
       <HintPath>..\..\..\..\..\packages\NServiceBus.SqlServer.3.0.2\lib\net452\NServiceBus.Transport.SQLServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceControl.TransportAdapter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\ServiceControl.TransportAdapter.1.0.1\lib\net452\ServiceControl.TransportAdapter.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ServiceControl.TransportAdapter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\ServiceControl.TransportAdapter.1.0.2\lib\net452\ServiceControl.TransportAdapter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
