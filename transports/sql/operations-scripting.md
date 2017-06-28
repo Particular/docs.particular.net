@@ -2,12 +2,12 @@
 title: Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against the SQLServer Transport.
 component: SqlServer
-reviewed: 2016-03-11
+reviewed: 2017-06-28
 redirects:
  - nservicebus/sqlserver/operations-scripting
 ---
 
-The followings are example codes and scripts to facilitate deployment and operations against the SQL Server Transport.
+The following are example code and scripts to facilitate deployment and operations against the SQL Server Transport.
 
 
 ## Native Send
@@ -111,30 +111,14 @@ There are several ways to achieve this including using techniques like [Table Pa
 
 Create an `audit_archive` table with this SQL script.
 
-```sql
-CREATE TABLE [dbo].[audit_archive](
-	[Id] [uniqueidentifier] NOT NULL,
-	[CorrelationId] [varchar](255),
-	[ReplyToAddress] [varchar](255),
-	[Recoverable] [bit] NOT NULL,
-	[Expires] [datetime],
-	[Headers] [varchar](max) NOT NULL,
-	[Body] [varbinary](max),
-	[RowVersion] [bigint] NOT NULL
-) 
-ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-```
+snippet: audit-archive
 
 
 #### Move records to archive table
 
 This script moves the contents of the audit table into `audit_archive` table.
 
-```sql
-DELETE FROM [dbo].[audit]
-OUTPUT [deleted].*
-INTO [dbo].[audit_archive]
-```
+snippet: delete-audit
 
 This can be run with a scheduled job to clear the archive regularly.
 
@@ -152,6 +136,4 @@ bcp samples.dbo.audit_archive out archive.csv -c -q -T -S .\SQLExpress
 
 The audit records will still have to clear using the following script.
 
-```sql
-TRUNCATE TABLE  [dbo].[audit_archive];
-```
+snippet: truncate-audit
