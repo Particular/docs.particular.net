@@ -14,8 +14,8 @@ public class Usage
         #region Configuration
 
         var senderConfig = RawEndpointConfiguration.Create(
-            endpointName: "EndpointName", 
-            onMessage: OnMessage, 
+            endpointName: "EndpointName",
+            onMessage: OnMessage,
             poisonMessageQueue: "error");
         senderConfig.UseTransport<MsmqTransport>();
 
@@ -33,7 +33,7 @@ public class Usage
         };
         var request = new OutgoingMessage(
             messageId: Guid.NewGuid().ToString(),
-            headers: headers, 
+            headers: headers,
             body: body);
 
         var operation = new TransportOperation(
