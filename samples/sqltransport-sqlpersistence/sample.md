@@ -1,23 +1,23 @@
 ---
 title: SQL Server Transport and SQL Persistence
 summary: Integrating SQL Server transport with SQL persistence
-reviewed: 2017-03-06
+reviewed: 2017-06-26
 component: Core
 related:
 - persistence/sql
 - transports/sqlserver
 ---
 
-In this sample, the SQL Server Transport is used in conjunction with SQL Persistence. The sample shows how to use the same database connection for both transport and persistence operations, and how to access the SQL connection from within a message handler to persist business objects to the database.
+In this sample, the [SQL Server Transport](/transports/sqlserver/) is used in conjunction with [SQL Persistence](/persistence/sql/). The sample shows how to use the same database connection for both transport and persistence operations, and how to access (using multiple [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping)) the current SQL connection and transaction from within a message handler to persist business objects to the database.
 
 
 ## Prerequisites
 
- 1. Make sure an instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
- 1. Create a database named `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under the *Security* directory in the SQL Server Management Studio database tree).
- 1. Execute the **Receiver.Orders.sql** script, found in the solution root directory, against the database to create the `[receiver].[Orders]` table:
+An instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
 
-snippet: OrdersTableSQL
+At startup each endpoint will create its requires SQL assets. For example Receiver will execute the following:
+
+snippet: ReceiverSQLAssets
 
 
 ## Procedure
@@ -28,7 +28,7 @@ snippet: OrdersTableSQL
  1. On the Receiver console notice that order was submitted.
  1. On the Sender console notice that the order was accepted.
  1. Finally, after a couple of seconds, on the Receiver console notice that the timeout message has been received.
- 1. Open SQL Server Management Studio and go to the `shared` database. Verify that there is a row in the saga state table (`receiver.OrderLifecycleSaga`) and in the orders table (`receiver.Orders`)
+ 1. Open SQL Server Management Studio and go to the `shared` database. Verify that there is a row in the saga state table (`receiver.OrderLifecycleSaga`) and in the orders table (`receiver.SubmittedOrder`)
 
 
 ## Code walk-through
@@ -39,38 +39,34 @@ This sample contains three projects:
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
  * Receiver - A console application responsible for processing the order message.
 
-Sender and Receiver use different schemas within one database. This creates a separation on logical level (schemas can be secured independently) while retaining the benefits of having a single physical database. Each schema contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence. If no schema is specified, the transport will default to using the `dbo` schema.
+Sender and Receiver use different schemas within one database. This creates a separation on logical level (schemas can be secured independently) while retaining the benefits of having a single physical database. Each schema contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence.
 
 
-### Sender project
+## Sender project
 
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed as messages to the back-end. It is configured to use the SQL Server transport with SQL persistence. The transport is configured to use a non-standard schema `sender` and to send messages addressed to the `receiver` endpoint to a different schema.
+The Sender mimics the front-end system where orders are submitted by the users and passed as messages to the back-end. It is configured to use the [SQL Server Transport](/transports/sqlserver/) and the [In Memory Persistence](/persistence/in-memory.md). In Memory Persistence is used since for the purposes of this sample Sender does not need to persist and data. The transport is configured to use `sender` for the schema.
 
 snippet: SenderConfiguration
 
 The connection strings for both persistence and transport are the same.
 
 
-### Receiver project
+## Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use the SQL Server transport with SQL persistence, but with a different schema.
+The Receiver mimics a back-end system. It is also configured to use the [SQL Server Transport](/transports/sqlserver/) and the [SQL Persistence](/persistence/sql/). The transport is configured to use `receiver` for the schema and to send messages addressed to the `receiver` endpoint to a different schema.
 
 snippet: ReceiverConfiguration
 
 When the message arrives at the Receiver, a `TransactionScope` is created that encompasses
 
- * Dequeuing the message
- * Accessing the shared connection and persisting business data using [Dapper](https://github.com/StackExchange/Dapper)
- * Persisting saga data of `OrderLifecycleSaga`
- * Sending the reply message and the timeout request
+ * Dequeuing the message.
+ * Opening a [DBConnection](https://msdn.microsoft.com/en-us/library/system.data.common.dbconnection.aspx) and starting a [DBTransaction](https://msdn.microsoft.com/en-us/library/system.data.common.dbtransaction.aspx) and supplying both to all handlers and sagas.
+ * Persisting saga data of `OrderLifecycleSaga`.
+ * Sending the reply message and the timeout request.
 
 snippet: Reply
 
 snippet: Timeout
-
-The shared session is managed by NServiceBus, so there is no need to explicitly commit a transaction or dispose the connection.
-
-snippet: StoreUserData
 
 With SQL persistence, the `OrderLifecycleSaga` inherits from `SqlSaga`.
 
@@ -79,8 +75,85 @@ snippet: Saga
 
 ### Script Output
 
-Both Sender and Receiver projects contain an attribute in the **AssemblyInfo.cs** file which instructs the SQL persister to generate table creation scripts for only Microsoft SQL Server.
+Receiver contain an attribute in the **SqlPersistenceSettings.cs** file which instructs the SQL persister to generate table creation scripts for only Microsoft SQL Server.
 
 snippet: SqlPersistenceSettings
 
-After opening the Sender or Receiver project directory in Windows File Explorer, the SQL scripts generated by the SQL persister at build time can be viewed in the `bin\Debug\NServiceBus.Persistence.Sql` directory.
+The SQL scripts, generated by the SQL persister at build time, will be created in the following directory:
+
+```
+Receiver\bin\Debug\net462\NServiceBus.Persistence.Sql
+```
+
+
+### Accessing the ambient database details
+
+When persisting data to the same database it is recommended to use the same [DBConnection](https://msdn.microsoft.com/en-us/library/system.data.common.dbconnection.aspx) and  [DBTransaction](https://msdn.microsoft.com/en-us/library/system.data.common.dbtransaction.aspx) that is used by the underlying persistence and transport. The approach to this differs depending on the approach used to persist the data. Below are listed several approaches to data access including raw ADO.net and several popular ORM.
+
+NOTE: The connection and transaction are managed by NServiceBus, so there is no need to explicitly commit a transaction or dispose the connection. Using the database state managed by NServiceBus ensures that database interactions, both in handlers and sagas, execute in the same connection and transaction context.
+
+
+#### Raw [ADO.net](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview)
+
+
+##### Model
+
+snippet: SubmittedOrderRaw
+
+
+##### Persisting Data
+
+snippet: StoreDataRaw
+
+
+#### [Dapper](https://github.com/StackExchange/Dapper)
+
+
+##### Model
+
+snippet: SubmittedOrderDapper
+
+
+##### Persisting Data
+
+snippet: StoreDataDapper
+
+
+#### [EntityFramework](https://docs.microsoft.com/en-us/ef/core/)
+
+
+##### Model
+
+The schema is defined using an attribute. The table name is redefined as the class name as it is a required parameter.
+
+snippet: SubmittedOrderEF
+
+
+##### DBContext
+
+Entity Framework required an implementation of [DBContext](https://docs.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext) to persist data.
+
+Since, in the context of handlers, there is an ambient transaction, the `AmbientTransactionWarning` needs to be suppressed.
+
+snippet: SubmittedOrderDbContext
+
+
+##### Persisting Data
+
+snippet: StoreDataEf
+
+
+#### [ServiceStack OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite)
+
+
+##### Model
+
+The schema is defined using an attribute.
+
+snippet: SubmittedOrderOrmLite
+
+
+##### Persisting Data
+
+snippet: StoreDataOrmLite
+
