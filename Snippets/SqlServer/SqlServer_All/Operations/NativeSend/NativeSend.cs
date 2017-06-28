@@ -46,24 +46,20 @@ namespace SqlServer_All.Operations.NativeSend
                 @Body)";
             var serializeHeaders = Newtonsoft.Json.JsonConvert.SerializeObject(headers);
             var bytes = Encoding.UTF8.GetBytes(messageBody);
-            using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            using (var connection = new SqlConnection(connectionString))
             {
-                using (var connection = new SqlConnection(connectionString))
+                await connection.OpenAsync()
+                    .ConfigureAwait(false);
+                using (var command = new SqlCommand(insertSql, connection))
                 {
-                    await connection.OpenAsync()
+                    var parameters = command.Parameters;
+                    parameters.AddWithValue("Id", Guid.NewGuid());
+                    parameters.AddWithValue("Headers", serializeHeaders);
+                    parameters.AddWithValue("Body", bytes);
+                    parameters.AddWithValue("Recoverable", true);
+                    await command.ExecuteNonQueryAsync()
                         .ConfigureAwait(false);
-                    using (var command = new SqlCommand(insertSql, connection))
-                    {
-                        var parameters = command.Parameters;
-                        parameters.AddWithValue("Id", Guid.NewGuid());
-                        parameters.AddWithValue("Headers", serializeHeaders);
-                        parameters.AddWithValue("Body", bytes);
-                        parameters.AddWithValue("Recoverable", true);
-                        await command.ExecuteNonQueryAsync()
-                            .ConfigureAwait(false);
-                    }
                 }
-                scope.Complete();
             }
         }
 
