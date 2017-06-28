@@ -31,7 +31,7 @@ Function SendMessage
 
     $sqlCommand = $sqlConnection.CreateCommand()
 	$sqlCommand.CommandText =
-	    "INSERT INTO [$Queue] (Id, Recoverable, Headers, Body) VALUES (@Id, @Recoverable, @Headers, @Body)"
+	    "insert into [$Queue] (Id, Recoverable, Headers, Body) values (@Id, @Recoverable, @Headers, @Body)"
     $parameters = $sqlCommand.Parameters
 	$parameters.Add("Id", [System.Data.SqlDbType]::UniqueIdentifier).Value = [System.Guid]::NewGuid()
 	$serializedHeaders = ConvertTo-Json $Headers
@@ -49,7 +49,7 @@ Function Usage
 
 	SendMessage -ConnectionString "Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True" `
 				-Queue "sqlserverNativeSendTests" `
-				-MessageBody "{'Property':'Value'}" `
+				-MessageBody "{Property:'Value'}" `
 				-Headers @{"NServiceBus.EnclosedMessageTypes" = "Operations.SqlServer.NativeSendTests+MessageToSend"}
 
 	# Alternative usage using PowerShell Splatting (e.g. passing params as a hashtable)

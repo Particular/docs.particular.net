@@ -18,7 +18,7 @@ namespace SqlServer_All.Operations.NativeSend
             await SendMessage(
                     connectionString: @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True",
                     queue: "Samples.SqlServer.NativeIntegration",
-                    messageBody: "{\"Property\":\"PropertyValue\"}",
+                    messageBody: "{Property:'PropertyValue'}",
                     headers: new Dictionary<string, string>
                     {
                         {"NServiceBus.EnclosedMessageTypes", "MessageTypeToSend"}
@@ -33,16 +33,19 @@ namespace SqlServer_All.Operations.NativeSend
 
         public static async Task SendMessage(string connectionString, string queue, string messageBody, Dictionary<string, string> headers)
         {
-            var insertSql = $@"INSERT INTO [{queue}] (
+            var insertSql = $@"
+            insert into [{queue}] (
                 Id,
                 Recoverable,
                 Headers,
                 Body)
-            VALUES (
+            values (
                 @Id,
                 @Recoverable,
                 @Headers,
                 @Body)";
+            var serializeHeaders = Newtonsoft.Json.JsonConvert.SerializeObject(headers);
+            var bytes = Encoding.UTF8.GetBytes(messageBody);
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
                 using (var connection = new SqlConnection(connectionString))
@@ -53,11 +56,10 @@ namespace SqlServer_All.Operations.NativeSend
                     {
                         var parameters = command.Parameters;
                         command.CommandType = CommandType.Text;
-                        parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
-                        var serializeHeaders = Newtonsoft.Json.JsonConvert.SerializeObject(headers);
-                        parameters.Add("Headers", SqlDbType.VarChar).Value = serializeHeaders;
-                        parameters.Add("Body", SqlDbType.VarBinary).Value = Encoding.UTF8.GetBytes(messageBody);
-                        parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
+                        parameters.AddWithValue("Id", Guid.NewGuid());
+                        parameters.AddWithValue("Headers", serializeHeaders);
+                        parameters.AddWithValue("Body", bytes);
+                        parameters.AddWithValue("Recoverable", true);
                         await command.ExecuteNonQueryAsync()
                             .ConfigureAwait(false);
                     }
