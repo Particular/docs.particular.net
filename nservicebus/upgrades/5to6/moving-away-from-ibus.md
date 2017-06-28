@@ -99,11 +99,11 @@ The snippet below shows a handler with a dependency that accesses the `IBus` int
 
 snippet: 5to6-handler-with-dependency
 
-Since message handler context operations are asynchronous, it is adviced to refactor the dependency to no longer use the bus operations towards a design in which the dependency returns information to the caller that can be used to determine what bus operations are required. The following snippet illustrates that:
+Since message handler context operations are asynchronous, it is advised to refactor the dependency to no longer use the bus operations towards a design in which the dependency returns information to the caller that can be used to determine what bus operations are required. The following snippet illustrates that:
 
 snippet: 5to6-handler-with-dependency-which-returns
 
-By using this approach, the asynchronous APIs won't ripple through all the layer, and the dependency can remain synchronous if desired. If such a change is not feasible or desired the context has to be floated into the dependency by using method injection like shown below:
+By using this approach, the asynchronous APIs won't ripple through all the layers, and the dependency can remain synchronous if desired. If such a change is not feasible or desired the context has to be floated into the dependency by using method injection like shown below:
 
 snippet: 5to6-handler-with-dependency-which-accesses-context
 
