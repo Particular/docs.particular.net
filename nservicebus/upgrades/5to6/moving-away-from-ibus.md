@@ -93,9 +93,22 @@ Some of the dangers when using an `IMessageSession` interface inside a message h
  * Those messages will not be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md).
  * Those messages will not contain any important message header information that is available via the `IMessageHandlerContext` interface parameter, e.g., CorrelationId.
 
+### Accessing message handler context in the dependency hierarchy
+
+The snippet below shows a handler with a dependency that accesses the `IBus` interface. The dependency is injected into a handler and used from within the handler.
+
+snippet:5to6-handler-with-dependency
+
+Since message handler context operations are asynchronous, it is adviced to refactor the dependency to no longer use the bus operations towards a design in which the dependency returns information to the caller that can be used to determine what bus operations are required. The following snippet illustrates that:
+
+snippet:5to6-handler-with-dependency-which-returns
+
+By using this approach, the asynchronous APIs won't ripple through all the layer, and the dependency can remain synchronous if desired. If such a change is not feasible or desired the context has to be floated into the dependency by using method injection like shown below:
+
+snippet:5to6-handler-with-dependency-which-accesses-context
+
 
 ## UnicastBus made internal
-
 
 ### Accessing the builder
 
