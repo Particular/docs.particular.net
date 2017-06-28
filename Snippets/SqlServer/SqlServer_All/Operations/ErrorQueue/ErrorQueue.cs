@@ -14,7 +14,7 @@ namespace SqlServer_All.Operations.ErrorQueue
             #region sqlserver-return-to-source-queue-usage
 
             await ReturnMessageToSourceQueue(
-                    errorQueueConnectionString: @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True",
+                    errorQueueConnection: @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True",
                     errorQueueName: "errors",
                     retryConnectionString: @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True",
                     retryQueueName: "target",
@@ -28,7 +28,7 @@ namespace SqlServer_All.Operations.ErrorQueue
         #region sqlserver-return-to-source-queue
 
         public static async Task ReturnMessageToSourceQueue(
-            string errorQueueConnectionString,
+            string errorQueueConnection,
             string errorQueueName,
             string retryConnectionString,
             string retryQueueName,
@@ -36,7 +36,7 @@ namespace SqlServer_All.Operations.ErrorQueue
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
-                var messageToRetry = await ReadAndDelete(errorQueueConnectionString, errorQueueName, messageId)
+                var messageToRetry = await ReadAndDelete(errorQueueConnection, errorQueueName, messageId)
                     .ConfigureAwait(false);
                 await RetryMessage(retryConnectionString, retryQueueName,  messageToRetry)
                     .ConfigureAwait(false);
@@ -53,12 +53,13 @@ namespace SqlServer_All.Operations.ErrorQueue
 
         static async Task RetryMessage(string connectionString, string queueName, MessageToRetry messageToRetry)
         {
-            var sql = $@"INSERT INTO [{queueName}] (
+            var sql = $@"
+                insert into [{queueName}] (
                     Id,
                     Recoverable,
                     Headers,
                     Body)
-                VALUES (
+                values (
                     @Id,
                     @Recoverable,
                     @Headers,
@@ -82,11 +83,12 @@ namespace SqlServer_All.Operations.ErrorQueue
 
         static async Task<MessageToRetry> ReadAndDelete(string connectionString, string queueName, Guid messageId)
         {
-            var sql = $@"DELETE FROM [{queueName}]
-            OUTPUT
-                DELETED.Headers,
-                DELETED.Body
-            WHERE Id = @Id";
+            var sql = $@"
+            delete from [{queueName}]
+            output
+                deleted.Headers,
+                deleted.Body
+            where Id = @Id";
             using (var connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync()
@@ -97,18 +99,18 @@ namespace SqlServer_All.Operations.ErrorQueue
                     using (var reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow)
                         .ConfigureAwait(false))
                     {
-                        if (!await reader.ReadAsync()
+                        if (await reader.ReadAsync()
                             .ConfigureAwait(false))
                         {
-                            var message = $"Could not find error entry with messageId '{messageId}'";
-                            throw new Exception(message);
+                            return new MessageToRetry
+                            {
+                                Id = messageId,
+                                Headers = reader.GetString(0),
+                                Body = reader.GetSqlBinary(1).Value
+                            };
                         }
-                        return new MessageToRetry
-                        {
-                            Id = messageId,
-                            Headers = reader.GetString(0),
-                            Body = reader.GetSqlBinary(1).Value
-                        };
+                        var message = $"Could not find error entry with messageId '{messageId}'";
+                        throw new Exception(message);
                     }
                 }
             }

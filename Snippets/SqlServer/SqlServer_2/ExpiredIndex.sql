@@ -1,10 +1,10 @@
 ﻿--startcode sql-ExpiresIndex
-CREATE NONCLUSTERED INDEX [Index_Expires]
-ON [schema].[queuename]
+create nonclustered index [Index_Expires]
+on [schema].[queuename]
 (
-	[Expires] ASC
+	[Expires] asc
 )
-INCLUDE
+include
 (
 	[Id],
 	[RowVersion]

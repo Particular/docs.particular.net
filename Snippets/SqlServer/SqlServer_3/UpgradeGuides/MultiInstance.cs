@@ -15,7 +15,7 @@ class SqlServer
             sqlConnectionFactory: async address =>
             {
                 string connectionString;
-                if (address.Equals("RemoteEndpoint"))
+                if (address == "RemoteEndpoint")
                 {
                     connectionString = "SomeConnectionString";
                 }

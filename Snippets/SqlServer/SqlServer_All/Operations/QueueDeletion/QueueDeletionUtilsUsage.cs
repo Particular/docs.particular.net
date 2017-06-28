@@ -12,17 +12,17 @@ namespace SqlServer_All.Operations.QueueDeletion
 
             #region sqlserver-delete-queues-shared-usage
 
-            using (var sqlConnection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
-                await sqlConnection.OpenAsync()
+                await connection.OpenAsync()
                     .ConfigureAwait(false);
                 await QueueDeletionUtils.DeleteQueue(
-                        connection: sqlConnection,
+                        connection: connection,
                         schema: "dbo",
                         queueName: "audit")
                     .ConfigureAwait(false);
                 await QueueDeletionUtils.DeleteQueue(
-                        connection: sqlConnection,
+                        connection: connection,
                         schema: "dbo",
                         queueName: "error")
                     .ConfigureAwait(false);

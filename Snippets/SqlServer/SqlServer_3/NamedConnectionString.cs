@@ -33,23 +33,23 @@ class NamedConnectionString
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.UseCustomSqlConnectionFactory(
             sqlConnectionFactory: async () =>
-        {
-            var connection = new SqlConnection("SomeConnectionString");
-            try
             {
-                await connection.OpenAsync()
-                    .ConfigureAwait(false);
+                var connection = new SqlConnection("SomeConnectionString");
+                try
+                {
+                    await connection.OpenAsync()
+                        .ConfigureAwait(false);
 
-                // perform custom operations
+                    // perform custom operations
 
-                return connection;
-            }
-            catch
-            {
-                connection.Dispose();
-                throw;
-            }
-        });
+                    return connection;
+                }
+                catch
+                {
+                    connection.Dispose();
+                    throw;
+                }
+            });
 
         #endregion
     }

@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
-using System.Transactions;
 
 namespace SqlServer_All.Operations.NativeSend
 {
@@ -44,7 +43,7 @@ namespace SqlServer_All.Operations.NativeSend
                 @Recoverable,
                 @Headers,
                 @Body)";
-            var serializeHeaders = Newtonsoft.Json.JsonConvert.SerializeObject(headers);
+            var serializedHeaders = Newtonsoft.Json.JsonConvert.SerializeObject(headers);
             var bytes = Encoding.UTF8.GetBytes(messageBody);
             using (var connection = new SqlConnection(connectionString))
             {
@@ -54,7 +53,7 @@ namespace SqlServer_All.Operations.NativeSend
                 {
                     var parameters = command.Parameters;
                     parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
-                    parameters.Add("Headers", SqlDbType.VarChar).Value = serializeHeaders;
+                    parameters.Add("Headers", SqlDbType.VarChar).Value = serializedHeaders;
                     parameters.Add("Body", SqlDbType.VarBinary).Value = bytes;
                     parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
                     await command.ExecuteNonQueryAsync()

@@ -9,32 +9,33 @@ namespace SqlServer_All.Operations.QueueCreation
     {
         public static async Task CreateQueue(SqlConnection connection, string schema, string queueName)
         {
-            var sql = $@"IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{schema}].[{queueName}]') AND type in (N'U'))
-                BEGIN
-                CREATE TABLE [{schema}].[{queueName}](
-                    [Id] [uniqueidentifier] NOT NULL,
+            var sql = $@"
+            if not  exists (select * from sys.objects where object_id = object_id(N'[{schema}].[{queueName}]') and type in (N'U'))
+                begin
+                create table [{schema}].[{queueName}](
+                    [Id] [uniqueidentifier] not null,
                     [CorrelationId] [varchar](255),
                     [ReplyToAddress] [varchar](255),
-                    [Recoverable] [bit] NOT NULL,
+                    [Recoverable] [bit] not null,
                     [Expires] [datetime],
-                    [Headers] [varchar](max) NOT NULL,
+                    [Headers] [varchar](max) not null,
                     [Body] [varbinary](max),
-                    [RowVersion] [bigint] IDENTITY(1,1) NOT NULL
-                ) ON [PRIMARY];
-                CREATE CLUSTERED INDEX [Index_RowVersion] ON [{schema}].[{queueName}]
+                    [RowVersion] [bigint] identity(1,1) not null
+                ) on [primary];
+                create clustered index [Index_RowVersion] on [{schema}].[{queueName}]
                 (
-                    [RowVersion] ASC
-                ) ON [PRIMARY]
-        CREATE NONCLUSTERED INDEX [Index_Expires] ON [{schema}].[{queueName}]
+                    [RowVersion] asc
+                ) on [primary]
+            create nonclustered index [Index_Expires] on [{schema}].[{queueName}]
             (
-            [Expires] ASC
+                [Expires] asc
             )
-            INCLUDE
+            include
             (
-            [Id],
-            [RowVersion]
-        )
-                END";
+                [Id],
+                [RowVersion]
+            )
+            end";
             using (var command = new SqlCommand(sql, connection))
             {
                 await command.ExecuteNonQueryAsync()

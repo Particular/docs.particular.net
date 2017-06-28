@@ -13,12 +13,12 @@ namespace SqlServer_All.Operations.QueueCreation
 
             #region sqlserver-create-queues-endpoint-usage
 
-            using (var sqlConnection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
-                await sqlConnection.OpenAsync()
+                await connection.OpenAsync()
                     .ConfigureAwait(false);
                 await CreateQueuesForEndpoint(
-                        connection: sqlConnection,
+                        connection: connection,
                         schema: "dbo",
                         endpointName: "myendpoint")
                     .ConfigureAwait(false);
