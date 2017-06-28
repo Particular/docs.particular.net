@@ -7,23 +7,6 @@
     class Upgrade
     {
 
-
-        public void MyCustomAction()
-        {
-
-        }
-
-
-
-        public class MyMessage
-        {
-        }
-
-        public class OtherMessage
-        {
-        }
-        
-
         public void EncryptionServiceSimple()
         {
             #region 4to5EncryptionServiceSimple
