@@ -1,6 +1,6 @@
 ﻿-- startcode CreateDatabaseForSqlPersistence
-USE [master]
-GO
-CREATE DATABASE [PersistenceForSqlTransport]
-GO
+use [master]
+go
+create database [PersistenceForSqlTransport]
+go
 -- endcode

@@ -1,39 +1,39 @@
 ﻿-- startcode CreateDatabase
-USE [master]
-GO
+use [master]
+go
 
-CREATE DATABASE [PersistenceForMsmqTransport]
-GO
+create database [PersistenceForMsmqTransport]
+go
 
-USE [PersistenceForMsmqTransport]
-GO
+use [PersistenceForMsmqTransport]
+go
 
-CREATE TABLE [dbo].[Subscription](
+create table [dbo].[Subscription](
 	[SubscriberEndpoint] [varchar](450) NOT NULL,
 	[MessageType] [varchar](450) NOT NULL,
 	[Version] [varchar](450),
 	[TypeName] [varchar](450),
-	PRIMARY KEY CLUSTERED
+	primary key clustered
 	(
-		[SubscriberEndpoint] ASC,
-		[MessageType] ASC
+		[SubscriberEndpoint],
+		[MessageType]
 	)
 )
 
-CREATE TABLE [dbo].[TimeoutEntity](
-	[Id] [uniqueidentifier] NOT NULL,
+create table [dbo].[TimeoutEntity](
+	[Id] [uniqueidentifier] not null,
 	[Destination] [nvarchar](1024),
 	[SagaId] [uniqueidentifier],
 	[State] [varbinary](max),
 	[Time] [datetime],
 	[Headers] [nvarchar](max),
 	[Endpoint] [nvarchar](440),
-	PRIMARY KEY NONCLUSTERED
+	primary key nonclustered
 	(
-		[Id] ASC
+		[Id]
 	)
 )
 
-GO
+go
 
 -- endcode

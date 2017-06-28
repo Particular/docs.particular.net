@@ -9,4 +9,3 @@ public class HeaderInfo
     // The value stored under the key in the header collection.
     public string Value { get; set; }
 }
-

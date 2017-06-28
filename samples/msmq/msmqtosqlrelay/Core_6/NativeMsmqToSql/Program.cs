@@ -109,17 +109,17 @@ class Program
 
     static void SendMessageToSql(string connectionString, string queue, byte[] messageBody, Dictionary<string, string> headers)
     {
-        var insertSql =
-            $@"INSERT INTO [{queue}] (
-        Id,
-        Recoverable,
-        Headers,
-        Body)
-    VALUES (
-        @Id,
-        @Recoverable,
-        @Headers,
-        @Body)";
+        var insertSql =$@"
+        insert into [{queue}] (
+            Id,
+            Recoverable,
+            Headers,
+            Body)
+        values (
+            @Id,
+            @Recoverable,
+            @Headers,
+            @Body)";
 
         using (var connection = new SqlConnection(connectionString))
         {

@@ -1,18 +1,18 @@
 ﻿-- startcode AddSubscriber
-Use PersistenceForMsmqTransport
-Go
+use PersistenceForMsmqTransport
+go
 
-INSERT INTO Subscription
-		([SubscriberEndpoint]
-		,[MessageType]
-		,[LogicalEndpoint]
-		,[Version]
-		,[TypeName])
-		VALUES
-		('MsmqToSqlRelay@localhost',
-		'Shared.SomethingHappened,0.0.0.0',
-		'MsmqToSqlRelay' ,
-		'0.0.0.0',
-		'Shared.SomethingHappened')
-GO
+insert into Subscription
+	([SubscriberEndpoint]
+	,[MessageType]
+	,[LogicalEndpoint]
+	,[Version]
+	,[TypeName])
+values
+	('MsmqToSqlRelay@localhost',
+	'Shared.SomethingHappened,0.0.0.0',
+	'MsmqToSqlRelay' ,
+	'0.0.0.0',
+	'Shared.SomethingHappened')
+go
 -- endcode
