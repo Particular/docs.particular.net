@@ -12,16 +12,22 @@ class Program
         AsyncMain().GetAwaiter().GetResult();
     }
 
+    static string connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
+
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlServer.NativeIntegration";
+
         #region EndpointConfiguration
+
         var busConfiguration = new BusConfiguration();
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=samples;Integrated Security=True");
+        transport.ConnectionString(connectionString);
         busConfiguration.EndpointName("Samples.SqlServer.NativeIntegration");
         busConfiguration.UseSerialization<JsonSerializer>();
+
         #endregion
+
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
@@ -59,8 +65,9 @@ class Program
 
         #region SendingUsingAdoNet
 
-        var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
-        var insertSql = "INSERT INTO [Samples.SqlServer.NativeIntegration] (Id, Recoverable, Headers, Body) VALUES (@Id, @Recoverable, @Headers, @Body)";
+        var insertSql = @"insert into [Samples.SqlServer.NativeIntegration]
+                                      (Id, Recoverable, Headers, Body)
+                               values (@Id, @Recoverable, @Headers, @Body)";
         using (var connection = new SqlConnection(connectionString))
         {
             await connection.OpenAsync()
@@ -70,7 +77,8 @@ class Program
                 var parameters = command.Parameters;
                 parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
                 parameters.Add("Headers", SqlDbType.VarChar).Value = "";
-                parameters.Add("Body", SqlDbType.VarBinary).Value = Encoding.UTF8.GetBytes(message);
+                var body = Encoding.UTF8.GetBytes(message);
+                parameters.Add("Body", SqlDbType.VarBinary).Value = body;
                 parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
                 await command.ExecuteNonQueryAsync()
                     .ConfigureAwait(false);

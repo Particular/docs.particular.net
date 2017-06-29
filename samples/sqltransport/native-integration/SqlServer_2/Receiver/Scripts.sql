@@ -1,38 +1,40 @@
 
 -- startcode SendFromTSQL
 -- TSql that can be pasted into Sql Server Query analyzer to send straight from the DB
-INSERT INTO [Samples.SqlServer.NativeIntegration] (Id, Recoverable, Headers, Body)
-VALUES (CONVERT(UNIQUEIDENTIFIER, HASHBYTES('MD5','MyUniqueId')),
+insert into [Samples.SqlServer.NativeIntegration]
+			(Id , Recoverable, Headers, Body)
+values (convert(uniqueidentifier, hashbytes('MD5','MyUniqueId')),
     'true',
     '',
-    CONVERT(varbinary(255), '{ $type: "PlaceOrder",OrderId: "Order from TSQL sender"}'))
+    convert(varbinary(255), '{ $type: "PlaceOrder", OrderId: "Order from TSQL sender"}'))
 -- endcode
 
 -- startcode CreateLegacyTable
 -- Create a "legacy" Orders table
-CREATE TABLE Orders(
-  Id int IDENTITY(1,1) NOT NULL,
-  OrderValue money NOT NULL
+create table Orders(
+  Id int identity(1,1) not null,
+  OrderValue money not null
 )
-GO
+go
 -- endcode
 
 
 -- startcode CreateTrigger
 -- Create a trigger to push a message out for each new order
-CREATE TRIGGER OrderAcceptedTrigger
+create trigger OrderAcceptedTrigger
   ON Orders
-  AFTER INSERT
-AS
-BEGIN
-  SET NOCOUNT ON;
+  after insert
+as
+begin
+  set nocount on;
 
-  INSERT INTO [Samples.SqlServer.NativeIntegration] (Id, Recoverable, Headers, Body)
-  SELECT CONVERT(UNIQUEIDENTIFIER, HASHBYTES('MD5',CONVERT(VARCHAR(255),i.Id))) as Id,
+  insert into [Samples.SqlServer.NativeIntegration]
+			  (Id, Recoverable, Headers, Body)
+  select convert(uniqueidentifier, hashbytes('MD5',convert(varchar(255),i.Id))) as Id,
   'true' as Recoverable,
   '' as Headers,
-  CONVERT(varbinary(255), '{ $type: "LegacyOrderDetected",OrderId: "Hello from legacy Order ' + CONVERT(VARCHAR(255),i.Id) + '"}')as Body
-  FROM inserted i
-END
-GO
+  convert(varbinary(255), '{ $type: "LegacyOrderDetected", OrderId: "Hello from legacy Order ' + convert(varchar(255),i.Id) + '"}') as Body
+  from inserted i
+end
+go
 -- endcode
