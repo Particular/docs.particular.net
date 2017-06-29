@@ -18,6 +18,8 @@ In order to provide reliable support for distributed transactions in RavenDB, a 
 
 Support for the Distributed Transaction Coordinator (DTC) in RavenDB is dependent upon the **ResourceManagerId** and **TransactionRecoveryStorage** settings.
 
+NOTE: When using the [Outbox feature](/nservicebus/outbox/) instead of distributed transactions, these settings are not required and should not be used. See [Outbox with RavenDB persistence](/persistence/ravendb/outbox.md) for more information.
+
 
 ### ResourceManagerId
 
