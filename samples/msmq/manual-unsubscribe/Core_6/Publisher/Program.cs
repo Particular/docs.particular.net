@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        MainAsync(args).GetAwaiter().GetResult();
+        MainAsync().GetAwaiter().GetResult();
     }
 
-    static async Task MainAsync(string[] args)
+    static async Task MainAsync()
     {
         var endpointConfiguration = new EndpointConfiguration("Publisher");
         endpointConfiguration.UseTransport<MsmqTransport>();
