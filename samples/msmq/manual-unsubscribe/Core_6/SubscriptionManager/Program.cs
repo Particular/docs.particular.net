@@ -33,7 +33,7 @@ namespace SubscriptionManager
             };
 
             await endpointInstance.Send("Publisher", unsubscribeMessage)
-                .ConfigureAwait(false); ;
+                .ConfigureAwait(false);
 
             await endpointInstance.Stop()
                     .ConfigureAwait(false);
