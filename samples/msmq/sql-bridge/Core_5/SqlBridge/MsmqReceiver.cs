@@ -90,6 +90,13 @@ class MsmqReceiver :
         return new TransportMessage(sqlId, headers)
         {
             Body = msmqMessage.Body,
+            // MSMQ and SQL Server transports signal lack of TimeToBeReceived differently.
+            // MSMQ uses Message.InfiniteTimeout value to indicate that a message should
+            // never be discarded. SQL Server transport expects TimeSpan.MaxValue to
+            // indicate the same behaviour. This would normally be handled by NServiceBus
+            // pipeline when transforming a transport message into a logical message.
+            // This sample skips the pipeline and deals with transport messages directly,
+            // thus making this translation required.
             TimeToBeReceived = (msmqMessage.TimeToBeReceived < Message.InfiniteTimeout) ? msmqMessage.TimeToBeReceived : TimeSpan.MaxValue
         };
     }
