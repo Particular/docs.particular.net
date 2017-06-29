@@ -5,36 +5,33 @@ using NServiceBus.Persistence.Legacy;
 using System;
 using System.Threading.Tasks;
 
-namespace Publisher
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            MainAsync(args).GetAwaiter().GetResult();
-        }
+        MainAsync(args).GetAwaiter().GetResult();
+    }
 
-        static async Task MainAsync(string[] args)
-        {
-            var endpointConfiguration = new EndpointConfiguration("Publisher");
-            endpointConfiguration.UseTransport<MsmqTransport>();
+    static async Task MainAsync(string[] args)
+    {
+        var endpointConfiguration = new EndpointConfiguration("Publisher");
+        endpointConfiguration.UseTransport<MsmqTransport>();
 
-            endpointConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>()
-                .SubscriptionQueue("Publisher.Subscriptions");
+        endpointConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>()
+            .SubscriptionQueue("Publisher.Subscriptions");
 
-            endpointConfiguration.DisableFeature<TimeoutManager>();
+        endpointConfiguration.DisableFeature<TimeoutManager>();
 
-            endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.AuditProcessedMessagesTo("audit");
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
+
+        Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
+        Console.ReadKey();
+
+        await endpointInstance.Stop()
                 .ConfigureAwait(false);
-
-            Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
-            Console.ReadKey();
-
-            await endpointInstance.Stop()
-                    .ConfigureAwait(false);
-        }
     }
 }

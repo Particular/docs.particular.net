@@ -2,13 +2,10 @@
 using NServiceBus;
 using System.Threading.Tasks;
 
-namespace Subscriber
+class SomethingHappenedHandler : IHandleMessages<SomethingHappened>
 {
-    class SomethingHappenedHandler : IHandleMessages<SomethingHappened>
+    public Task Handle(SomethingHappened message, IMessageHandlerContext context)
     {
-        public Task Handle(SomethingHappened message, IMessageHandlerContext context)
-        {
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
     }
 }
