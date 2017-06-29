@@ -90,4 +90,4 @@ Finally the messages in the Outbox are pushed to their destinations. The timeout
 
 ## How it works
 
-All the data manipulations happen atomically because SQL Server 2008 and later allows multiple (but not overlapping) instances of `SqlConnection` to enlist in a single `TransactionScope` without the need to escalate to DTC. The SQL Server manages these transactions like they were just one `SqlTransaction`.
+All the data manipulations happen atomically because all supported versions of SQL Server allow multiple (but not overlapping) instances of `SqlConnection` to enlist in a single `TransactionScope` without the need to escalate to DTC. The SQL Server manages these transactions like they were just one `SqlTransaction`.
