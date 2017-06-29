@@ -26,7 +26,4 @@ Sample configurations for those transports can be seen [here](nservicebus/recove
 
 If ServiceControl is installed on a different machine than endpoints using MSMQ Transport, then endpoints must be configured to send error and audit messages to a remote queue:
 
-
-snippet: ConfigMsmqErrorWithCode
-
 partial: snippets

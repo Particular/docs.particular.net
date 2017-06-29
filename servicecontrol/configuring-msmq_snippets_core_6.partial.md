@@ -1,4 +1,5 @@
 
+snippet: ConfigMsmqErrorWithCode
 
 snippet: ErrorQueueRemoteMachineConfigurationProvider
 
