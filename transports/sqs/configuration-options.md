@@ -2,6 +2,7 @@
 title: Configuration Options
 summary: Configuration options for the SQS transport.
 component: SQS
+reviewed: 2017-06-28
 tags:
 - AWS
 redirects:
@@ -50,7 +51,7 @@ MaxTTLDays=14;
 **Optional**
 
 **Default**: None.
- 
+
 This string value will be prepended to the name of every SQS queue referenced by the endpoint. This is useful when deploying many instances of the same application in the same AWS region (e.g. a development instance, a QA instance and a production instance), and the queue names need to be distinguished somehow.
 
 **Example**: For a development instance, specify:
