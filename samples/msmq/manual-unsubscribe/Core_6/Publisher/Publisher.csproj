@@ -36,10 +36,6 @@
   <ItemGroup>
     <Compile Include="ManualUnsubscribeHandler.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus">
@@ -51,6 +47,9 @@
       <Project>{5BD8646B-C93F-4E6A-B294-67A32346BE5D}</Project>
       <Name>Messages</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

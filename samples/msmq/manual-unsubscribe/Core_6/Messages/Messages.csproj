@@ -35,12 +35,14 @@
   <ItemGroup>
     <Compile Include="ManualUnsubscribe.cs" />
     <Compile Include="SomethingHappened.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus">
       <Version>6.3.4</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
