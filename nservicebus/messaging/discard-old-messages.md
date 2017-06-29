@@ -9,13 +9,13 @@ redirects:
  - nservicebus/how-do-i-discard-old-messages
 ---
 
-A message sent through the Particular Service Platform may have Time-To-Be-Received (TTBR) set, according to the users’ decision. TTBR indicates to the platform that a delayed message will be discarded, instead of processed, if not handled within a specified period. A discarded message might no longer have any business value, and discarding it frees up storage, CPU and memory resources.
+A message sent through the Particular Service Platform may have Time-To-Be-Received (TTBR) set, according to the users’ decision. TTBR indicates to the platform that a delayed message will be discarded, instead of processed, if not handled within a specified period. A discarded message might no longer have any business value, and discarding it frees up system resources.
 
-This is important mainly in environments with high volumes of messages where there is little business value in processing a delayed message since it will already be replaced by a newer, more relevant version.
+Setting TimeToBeReceived might be beneficial in environments with high volumes of messages where there is little business value in processing a delayed message since it will already be replaced by a newer, more relevant version.
 
-Only messages that have not been handled will have the TTBR set. A failed message moved to the error queue or a successfully processed message, including its possible audit message, is considered handled. By removing TTBR from handled messages, it is ensured that no message will be lost after it has been processed. The TTBR from the original message can always be inspected by looking at the `NServiceBus.TimeToBeReceived` [header](/nservicebus/messaging/headers.md).
+Only messages that have not been handled will have the TTBR set. A failed message moved to the error queue or a successfully processed message is considered handled, as well as its possible audit message. By removing TTBR from handled messages, it is ensured that no message will be lost after it has been processed. The TTBR from the original message can be inspected by looking at the `NServiceBus.TimeToBeReceived` [header](/nservicebus/messaging/headers.md).
 
-If a message cannot be received by the target process in the given time frame, including all time in queues and in-transit, it may be desirable to discard it by using TimeToBeReceived.
+If a message cannot be received by the target process in the given time frame, including all time in queues and in transit, it may be desirable to discard it by using TimeToBeReceived.
 
 
 To discard a message when a specific time interval has elapsed:
@@ -53,7 +53,7 @@ snippet: PurgeMessagesAtStartup
 
 ## Caveats
 
-TimeToBeReceived relies on underlying functionality in the transport infrastructure to discard expired messages. This feature's usefulness is highly affected by the actual implementation in the different transports.
+TimeToBeReceived relies on underlying functionality in the transport infrastructure to discard expired messages. This feature's runtime behavior is highly affected by the actual implementation in the different transports.
 
 
 ### MSMQ transport
