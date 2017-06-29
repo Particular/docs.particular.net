@@ -901,6 +901,8 @@
         Title: Logging
       - Url: servicecontrol/errorlog-auditlog-behavior
         Title: Forwarding Queues
+      - Url: servicecontrol/configuring-msmq
+        Title: Configuring MSMQ
     - Url: servicecontrol/troubleshooting
       Title: Troubleshooting
     - Url: servicecontrol/plugins
