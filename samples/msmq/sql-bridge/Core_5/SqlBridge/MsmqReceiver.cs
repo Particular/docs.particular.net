@@ -1,6 +1,8 @@
 ﻿using NServiceBus.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Messaging;
 using NServiceBus;
 using NServiceBus.Satellites;
 using NServiceBus.Transports;
@@ -46,15 +48,30 @@ class MsmqReceiver :
     // Will get invoked, whenever a new event is published by the Msmq publishers
     // and when they notify the bridge. The bridge is a MSMQ and the publishers
     // have an entry for this queue in their subscription storage.
-    public bool Handle(TransportMessage message)
+    public bool Handle(TransportMessage msmqMessage)
     {
-        var headers = message.Headers;
-        Type[] eventTypes =
+        var eventTypes = ExtractEventTypes(msmqMessage.Headers);
+        var sqlMessage = TranslateToSqlTransportMessage(msmqMessage);
+
+        log.Info("Forwarding message to all the SQL subscribers via a Publish");
+
+        publisher.Publish(sqlMessage, new PublishOptions(eventTypes.First()));
+        return true;
+    }
+
+    static Type[] ExtractEventTypes(Dictionary<string, string> headers)
+    {
+        return new []
         {
             Type.GetType(headers["NServiceBus.EnclosedMessageTypes"])
         };
+    }
 
+    static TransportMessage TranslateToSqlTransportMessage(TransportMessage msmqMessage)
+    {
+        var headers = msmqMessage.Headers;
         var msmqId = headers["NServiceBus.MessageId"];
+        var sqlId = msmqId;
 
         // Set the Id to a deterministic guid, as Sql message Ids are Guids and
         // Msmq message ids are guid\nnnn. Newer versions of NServiceBus already
@@ -62,15 +79,26 @@ class MsmqReceiver :
         // a valid Guid and if not, only then create a valid Guid. This check
         // is important as it affects the retries if the message is rolled back.
         // If the Ids are different, then the recoverability won't know its the same message.
-        Guid newGuid;
-        if (!Guid.TryParse(msmqId, out newGuid))
+        Guid msmqGuid;
+
+        if (!Guid.TryParse(msmqId, out msmqGuid))
         {
-            headers["NServiceBus.MessageId"] = GuidBuilder.BuildDeterministicGuid(msmqId).ToString();
+            sqlId = GuidBuilder.BuildDeterministicGuid(msmqId).ToString();
+            headers["NServiceBus.MessageId"] = sqlId;
         }
-        log.Info("Forwarding message to all the SQL subscribers via a Publish");
-        message.TimeToBeReceived = TimeSpan.MaxValue;
-        publisher.Publish(message, new PublishOptions(eventTypes.First()));
-        return true;
+
+        return new TransportMessage(sqlId, headers)
+        {
+            Body = msmqMessage.Body,
+            // MSMQ and SQL Server transports signal lack of TimeToBeReceived differently.
+            // MSMQ uses Message.InfiniteTimeout value to indicate that a message should
+            // never be discarded. SQL Server transport expects TimeSpan.MaxValue to
+            // indicate the same behaviour. This would normally be handled by NServiceBus
+            // pipeline when transforming a transport message into a logical message.
+            // This sample skips the pipeline and deals with transport messages directly,
+            // thus making this translation required.
+            TimeToBeReceived = (msmqMessage.TimeToBeReceived < Message.InfiniteTimeout) ? msmqMessage.TimeToBeReceived : TimeSpan.MaxValue
+        };
     }
 
     // Address of the MSMQ that will be receiving all of the events from

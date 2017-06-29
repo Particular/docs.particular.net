@@ -95,6 +95,8 @@ snippet: satellite
 
 Note: Since `SqlBridge` is not using the native MSMQ transport manually creating `SqlMsmqTransportBridge` queue will be required.
 
+Note: `TransportMessage` objects for different transports may use certain properties in an incompatible way (e.g. `TimeToBeReceived`) and values of such properties need to be translated before use on another transport.
+
 
 ## How does the advanced satellite work
 
