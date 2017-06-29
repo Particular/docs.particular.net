@@ -12,7 +12,7 @@ public class OrderSubmittedHandler :
     IBus bus;
     NHibernateStorageContext storageContext;
 
-    public OrderSubmittedHandler(IBus bus ,NHibernateStorageContext storageContext)
+    public OrderSubmittedHandler(IBus bus, NHibernateStorageContext storageContext)
     {
         this.bus = bus;
         this.storageContext = storageContext;

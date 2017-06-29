@@ -3,6 +3,7 @@ using System.Data.Common;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
 #region EntityFramework
+
 public class ReceiverDataContext :
     DbContext
 {
@@ -10,6 +11,7 @@ public class ReceiverDataContext :
     {
         this.connection = connection;
     }
+
     public ReceiverDataContext(string connectionString)
     {
         this.connectionString = connectionString;
@@ -42,4 +44,5 @@ public class ReceiverDataContext :
 
     public DbSet<Order> Orders { get; set; }
 }
+
 #endregion
