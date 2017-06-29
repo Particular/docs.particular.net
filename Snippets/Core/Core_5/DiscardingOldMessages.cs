@@ -26,7 +26,7 @@
                 {
                     if (type == typeof(MyMessage))
                     {
-                        return TimeSpan.FromHours(1);
+                        return TimeSpan.FromMinutes(1);
                     }
                     return TimeSpan.MaxValue;
                 });
