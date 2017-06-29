@@ -1,2 +1,2 @@
 
-snippet: ConfigMsmqErrorWithCode1
+snippet: ConfigMsmqErrorWithCode
