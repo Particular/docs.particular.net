@@ -5,10 +5,10 @@ class ServiceControlRemoteQueues
 {
     ServiceControlRemoteQueues(EndpointConfiguration endpointConfiguration)
     {
-        # region ConfigMsmqErrorWithCode
+        #region ConfigMsmqErrorWithCode
 
         endpointConfiguration.SendFailedMessagesTo("targetErrorQueue@machinename");
 
-        # endregion
+        #endregion
     }
 }
