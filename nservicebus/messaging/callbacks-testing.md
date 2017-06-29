@@ -1,7 +1,7 @@
 ---
 title: Client side Callbacks Testing
 summary: Shows how to unit test code that uses Callbacks.
-reviewed: 
+reviewed: 2017-06-29
 component: CallbacksTesting
 related:
 - samples/callbacks
@@ -18,7 +18,7 @@ The approach shown here works with the `NServiceBus.Callbacks` NuGet package ver
 
 ### Int
 
-The integer response scenario allows any integer value to be returned in a strong typed manner.
+The integer response scenario allows any integer value to be returned in a strongly typed manner.
 
 
 #### Testing
@@ -30,7 +30,7 @@ snippet: IntCallbackTesting
 
 ### Enum
 
-The enum response scenario allows any enum value to be returned in a strong typed manner.
+The enum response scenario allows any enum value to be returned in a strongly typed manner.
 
 
 #### Testing
@@ -54,7 +54,7 @@ snippet: ObjectCallbackTesting
 
 #### Testing with SendOptions
 
-The `When` definition provides a matcher overload which allows to match against the response and the send options passed into the callback function.
+The `When` definition provides a matcher overload which allows matching against the response and the send options passed into the callback function.
 
 snippet: ObjectCallbackTestingWithOptions
 
