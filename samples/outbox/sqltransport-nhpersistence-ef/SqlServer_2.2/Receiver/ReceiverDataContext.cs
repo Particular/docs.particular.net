@@ -2,10 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
+#region EntityFramework
 public class ReceiverDataContext :
     DbContext
 {
-    #region EntityFramework
     public ReceiverDataContext(DbConnection connection)
     {
         this.connection = connection;
@@ -17,7 +17,7 @@ public class ReceiverDataContext :
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        if (IsConnectionProvided(connection))
+        if (IsConnectionProvided())
         {
             optionsBuilder.UseSqlServer(connection);
         }
@@ -25,17 +25,21 @@ public class ReceiverDataContext :
         {
             optionsBuilder.UseSqlServer(connectionString);
         }
-        optionsBuilder.ConfigureWarnings(wcb => wcb.Ignore(RelationalEventId.AmbientTransactionWarning));
+        optionsBuilder.ConfigureWarnings(
+            warningsConfigurationBuilderAction: builder =>
+            {
+                builder.Ignore(RelationalEventId.AmbientTransactionWarning);
+            });
     }
 
-    static bool IsConnectionProvided(DbConnection connection)
+    bool IsConnectionProvided()
     {
         return connection != null;
     }
 
     DbConnection connection;
     string connectionString;
-    #endregion
 
     public DbSet<Order> Orders { get; set; }
 }
+#endregion

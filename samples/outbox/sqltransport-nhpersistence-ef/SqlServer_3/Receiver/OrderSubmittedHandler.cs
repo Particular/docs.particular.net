@@ -30,7 +30,9 @@ public class OrderSubmittedHandler :
                 OrderId = message.OrderId,
                 Value = message.Value
             };
-            receiverDataContext.Orders.Add(order);
+
+            await receiverDataContext.Orders.AddAsync(order)
+                .ConfigureAwait(false);
             await receiverDataContext.SaveChangesAsync()
                 .ConfigureAwait(false);
         }

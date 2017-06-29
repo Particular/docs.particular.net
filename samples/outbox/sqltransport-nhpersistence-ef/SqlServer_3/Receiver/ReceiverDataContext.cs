@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 
+#region EntityFramework
 public class ReceiverDataContext :
     DbContext
 {
-    #region EntityFramework
     public ReceiverDataContext(DbConnection connection)
     {
         this.connection = connection;
@@ -16,7 +16,7 @@ public class ReceiverDataContext :
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        if (IsConnectionProvided(connection))
+        if (IsConnectionProvided())
         {
             optionsBuilder.UseSqlServer(connection);
         }
@@ -26,14 +26,14 @@ public class ReceiverDataContext :
         }
     }
 
-    static bool IsConnectionProvided(DbConnection connection)
+    bool IsConnectionProvided()
     {
         return connection != null;
     }
 
     DbConnection connection;
     string connectionString;
-    #endregion
 
     public DbSet<Order> Orders { get; set; }
 }
+#endregion

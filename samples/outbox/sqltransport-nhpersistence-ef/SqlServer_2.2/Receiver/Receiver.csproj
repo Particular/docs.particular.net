@@ -14,7 +14,4 @@
     <PackageReference Include="NServiceBus.SqlServer" Version="2.2.5" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Configuration" />
-  </ItemGroup>
 </Project>

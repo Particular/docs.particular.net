@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus;
@@ -13,7 +12,7 @@ class Program
     {
         Console.Title = "Samples.SQLNHibernateOutboxEF.Receiver";
 
-        var connectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"].ConnectionString;
+        var connectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True";
         using (var receiverDataContext = new ReceiverDataContext(connectionString))
         {
             receiverDataContext.Database.EnsureCreated();

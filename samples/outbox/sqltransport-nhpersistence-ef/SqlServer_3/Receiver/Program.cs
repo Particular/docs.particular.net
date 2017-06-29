@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
@@ -18,7 +17,7 @@ class Program
     {
         Console.Title = "Samples.SQLNHibernateOutboxEF.Receiver";
 
-        var connectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"].ConnectionString;
+        var connectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True";
         using (var receiverDataContext = new ReceiverDataContext(connectionString))
         {
             await receiverDataContext.Database.EnsureCreatedAsync().ConfigureAwait(false);
