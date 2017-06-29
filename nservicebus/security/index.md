@@ -52,6 +52,11 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
  * [RabbitMQ TLS](http://www.rabbitmq.com/ssl.html)
 
 
+### [Amazon SQS Transport](/transports/sqs/)
+
+ * [Authentication and Access Control for Amazon SQS](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-authentication-and-access-control.html)
+
+
 ## Persistences
 
 
