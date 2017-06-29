@@ -2,11 +2,12 @@
 title: ServiceControl Transport Adapter Template
 summary: ServiceControl Transport Adapter dotnet new Template
 component: SCTransportAdapterTemplate
+reviewed: 2017-06-28
 related:
  - nservicebus/hosting/windows-service-template
 ---
 
-The Transport Adapter Template `dotnet new` template makes it easier to create a [Windows Service](https://msdn.microsoft.com/en-us/library/d56de412.aspx) host for the Transport Adapter.
+The Transport Adapter `dotnet new` template makes it easier to create a [Windows Service](https://msdn.microsoft.com/en-us/library/d56de412.aspx) host for the Transport Adapter.
 
 
 ## Installation
