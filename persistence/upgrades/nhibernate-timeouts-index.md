@@ -12,7 +12,7 @@ upgradeGuideCoreVersions:
 
 ## Summary
 
-This guidance explains how to resolve an incorrectly created index when [using a custom NHibernate configuration](https://docs.particular.net/persistence/nhibernate/#customizing-the-configuration-passing-configuration-in-code). This is described in the issue "[Incorrect schema creation for timeout entity causes performance degradation](https://github.com/Particular/NServiceBus.NHibernate/issues/252)".
+This guidance explains how to resolve an incorrectly created index when [using a custom NHibernate configuration](/persistence/nhibernate/#customizing-the-configuration-passing-configuration-in-code). This is described in the issue "[Incorrect schema creation for timeout entity causes performance degradation](https://github.com/Particular/NServiceBus.NHibernate/issues/252)".
 
 This issue causes performance degradation if the table contains a large number of rows. Inserts and queries are inefficient due to the incorrect order of columns in the index. This results in unnecessary locking which limits the processing throughput of timeouts.
 
