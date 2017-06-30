@@ -13,9 +13,9 @@ class Program
     {
         var endpointConfiguration = new EndpointConfiguration("Subscriber");
 
-        endpointConfiguration.UseTransport<MsmqTransport>()
-            .Routing()
-            .RegisterPublisher(typeof(Messages.SomethingHappened), "Publisher");
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        var routing = transport.Routing();
+        routing.RegisterPublisher(typeof(Messages.SomethingHappened), "Publisher");
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 

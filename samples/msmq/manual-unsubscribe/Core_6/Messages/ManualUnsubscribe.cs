@@ -2,7 +2,8 @@
 
 namespace Messages
 {
-    public class ManualUnsubscribe : IMessage
+    public class ManualUnsubscribe :
+        IMessage
     {
         public string MessageTypeName { get; set; }
         public string MessageVersion { get; set; }

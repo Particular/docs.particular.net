@@ -5,7 +5,8 @@ using NServiceBus.Unicast.Subscriptions;
 using NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions;
 using System.Threading.Tasks;
 
-class ManualUnsubscribeHandler : IHandleMessages<ManualUnsubscribe>
+class ManualUnsubscribeHandler :
+    IHandleMessages<ManualUnsubscribe>
 {
     ISubscriptionStorage subscriptionStorage;
 
@@ -14,12 +15,12 @@ class ManualUnsubscribeHandler : IHandleMessages<ManualUnsubscribe>
         this.subscriptionStorage = subscriptionStorage;
     }
 
-    public async Task Handle(ManualUnsubscribe message, IMessageHandlerContext context)
+    public Task Handle(ManualUnsubscribe message, IMessageHandlerContext context)
     {
-        await subscriptionStorage.Unsubscribe(
-                subscriber: new Subscriber(message.SubscriberTransportAddress, message.SubscriberEndpoint),
-                messageType: new MessageType(message.MessageTypeName, message.MessageVersion),
-                context: new ContextBag()
-            ).ConfigureAwait(false);
+        return subscriptionStorage.Unsubscribe(
+            subscriber: new Subscriber(message.SubscriberTransportAddress, message.SubscriberEndpoint),
+            messageType: new MessageType(message.MessageTypeName, message.MessageVersion),
+            context: new ContextBag()
+        );
     }
 }

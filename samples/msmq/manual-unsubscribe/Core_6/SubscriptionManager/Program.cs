@@ -13,16 +13,14 @@ class Program
     {
         var endpointConfiguration = new EndpointConfiguration("SubscriptionManager");
         endpointConfiguration.UseTransport<MsmqTransport>();
-
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        var unsubscribeMessage = new ManualUnsubscribe()
+        var unsubscribeMessage = new ManualUnsubscribe
         {
             MessageTypeName = "Messages.SomethingHappened",
             MessageVersion = "1.0.0",

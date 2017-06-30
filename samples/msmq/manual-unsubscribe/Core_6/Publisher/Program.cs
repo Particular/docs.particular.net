@@ -17,8 +17,8 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Publisher");
         endpointConfiguration.UseTransport<MsmqTransport>();
 
-        endpointConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>()
-            .SubscriptionQueue("Publisher.Subscriptions");
+        var persistence = endpointConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>();
+        persistence.SubscriptionQueue("Publisher.Subscriptions");
 
         endpointConfiguration.DisableFeature<TimeoutManager>();
 
