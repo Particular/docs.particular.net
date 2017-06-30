@@ -7,6 +7,11 @@ redirects:
  - nservicebus/nservicebus-net-framework-version-requirements
 ---
 
+### NServiceBus Version 7.x
+
+Requires [.NET Core 2.0] **or** [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642)
+
+
 ### NServiceBus Version 6.x
 
 Requires [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642)
