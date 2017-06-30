@@ -19,11 +19,6 @@ namespace EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.ConfigureWarnings(
-                warnings =>
-                {
-                    warnings.Ignore(RelationalEventId.AmbientTransactionWarning);
-                });
             options.UseSqlServer(connection);
         }
     }
