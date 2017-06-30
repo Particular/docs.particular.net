@@ -134,8 +134,6 @@ snippet: SubmittedOrderEF
 
 Entity Framework required an implementation of [DBContext](https://docs.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext) to persist data.
 
-Since, in the context of handlers, there is an ambient transaction, the `AmbientTransactionWarning` needs to be suppressed.
-
 snippet: SubmittedOrderDbContext
 
 
