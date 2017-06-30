@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.SqlClient;
+using System.IO;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus;
@@ -13,10 +15,9 @@ class Program
         Console.Title = "Samples.SQLNHibernateOutboxEF.Receiver";
 
         var connectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True";
-        using (var receiverDataContext = new ReceiverDataContext(connectionString))
-        {
-            receiverDataContext.Database.EnsureCreated();
-        }
+        var startupSql = File.ReadAllText("Startup.sql");
+
+        SqlHelper.ExecuteSql(connectionString, startupSql);
 
         var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(

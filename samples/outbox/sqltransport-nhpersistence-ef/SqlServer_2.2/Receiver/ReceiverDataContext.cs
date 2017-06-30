@@ -12,21 +12,9 @@ public class ReceiverDataContext :
         this.connection = connection;
     }
 
-    public ReceiverDataContext(string connectionString)
-    {
-        this.connectionString = connectionString;
-    }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        if (IsConnectionProvided())
-        {
-            optionsBuilder.UseSqlServer(connection);
-        }
-        else
-        {
-            optionsBuilder.UseSqlServer(connectionString);
-        }
+        optionsBuilder.UseSqlServer(connection);
         optionsBuilder.ConfigureWarnings(
             warningsConfigurationBuilderAction: builder =>
             {
@@ -34,13 +22,7 @@ public class ReceiverDataContext :
             });
     }
 
-    bool IsConnectionProvided()
-    {
-        return connection != null;
-    }
-
     DbConnection connection;
-    string connectionString;
 
     public DbSet<Order> Orders { get; set; }
 }

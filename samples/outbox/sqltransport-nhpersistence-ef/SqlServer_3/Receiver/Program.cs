@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
@@ -18,10 +19,10 @@ class Program
         Console.Title = "Samples.SQLNHibernateOutboxEF.Receiver";
 
         var connectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True";
-        using (var receiverDataContext = new ReceiverDataContext(connectionString))
-        {
-            await receiverDataContext.Database.EnsureCreatedAsync().ConfigureAwait(false);
-        }
+        var startupSql = File.ReadAllText("Startup.sql");
+
+        await SqlHelper.ExecuteSql(connectionString, startupSql)
+            .ConfigureAwait(false);
 
         var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
