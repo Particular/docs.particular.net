@@ -2,6 +2,7 @@
 title: Upgrade encryption configuration
 summary: Instructions on how to upgrade the Rijndael property encryption configuration to use key IDs.
 component: PropertyEncryption
+reviewed: 2017-06-30
 related:
  - nservicebus/security/generating-encryption-keys
 isUpgradeGuide: true
@@ -21,7 +22,7 @@ This upgrade document explains what steps to take when upgrading NServiceBus end
  * [NServiceBus 5.1.5](https://github.com/Particular/NServiceBus/releases/tag/5.1.5)
  * [NServiceBus 5.2.9](https://github.com/Particular/NServiceBus/releases/tag/5.2.9)
 
-To deploy this fix throughout a system, first upgrade endpoints with the latest versions of NServiceBus, then update endpoint configurations. Optionally, also want to generate new encryption keys.
+To deploy this fix throughout a system, first upgrade endpoints with the latest versions of NServiceBus, then update endpoint configurations. Optionally, also generate new encryption keys.
 
 
 ### Upgrade endpoints
@@ -37,7 +38,7 @@ For example, if currently using NServiceBus 4.7.x, an update to the latest patch
 
 ## Compatibility
 
-It is not required to upgrade all endpoints simultaneously. There has not been a change in encryption or decryption. If a key ID header is present in a message received by an endpoint that does not know this header then it will decrypt the message.
+It is not required to upgrade all endpoints simultaneously. There has not been a change in encryption or decryption. If a key ID header is present in a message received by an endpoint that does not know this header, it will still decrypt the message.
 
 
 ## Upgrade steps
@@ -59,7 +60,7 @@ The following configuration examples demonstrate how to update existing endpoint
 
 #### XML Configuration
 
-It is possible to choose to keep the current encryption key and will still be able to decrypt messages already in flight:
+It is possible to keep the current encryption key and still be able to decrypt messages in flight:
 
 ```xml
 <RijndaelEncryptionServiceConfig Key="do-not-use-this-encryption-key!!"
@@ -74,7 +75,7 @@ It is possible to choose to keep the current encryption key and will still be ab
 
 #### Code API (Versions 5 and above)
 
-When recompiling an obsolete warning will occur. Change the current method to the new one that has new arguments that allow to pass a dictionary to lookup keys and an optional list of keys that will be used to decrypt messages that do not have a key ID header.
+When recompiling an obsolete warning will occur. Change the current method to the new one that allows passing a dictionary to lookup keys and an optional list of keys that will be used to decrypt messages with no key ID header.
 
 NOTE: Keys need to be available in the expired keys list to be backward compatible.
 
@@ -104,9 +105,9 @@ busConfiguration.RijndaelEncryptionService(
 
 ## Generating new keys
 
-Generate a new encryption key if using ASCII keys with a key length of 16 characters to overcome the 7-bit limit that weakens the encryption key.
+Create a new encryption key if using ASCII keys with a key length of 16 characters to overcome the 7-bit limit that weakens the encryption key.
 
-Switch to Base64 256 bits keys if possible, or to at least ASCII 24 character keys to be backward compatible with pre Version 5 endpoints and have stronger encryption.
+Switch to Base64 256 bits keys if possible or to at least ASCII 24 character keys to be backward compatible with pre Version 5 endpoints and have stronger encryption.
 
 NOTE: Base64 keys can only be configured for NServiceBus Versions 5 and above, and are not compatible with earlier versions.
 
@@ -124,7 +125,7 @@ Investigate locations where such values are stored and check if these values are
  * correct length
  * correct character set (credit card should only contain numbers)
 
-Search in log files that indicate data validation issues. These could indicate that properties have been decrypted with an incorrect key.
+Search in log files that indicate data validation issues. These could suggest that properties have been decrypted with an incorrect key.
 
 
 ## Recovering data
