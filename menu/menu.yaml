@@ -732,7 +732,7 @@
         Title: Version 1 to 2
       - Url: persistence/upgrades/sqlpersistence-1.0.0-1.0.1
         Title: Version 1 to 1.0.1
-      - Url: persistence/upgrades/sqlpersistence-oracle-null-endpoint
+      - Url: persistence/upgrades/sqlpersistence-null-endpoint
         Title: Support NServiceBus 5 subscribers
   - Url: persistence/learning
     Title: Learning Persistence
