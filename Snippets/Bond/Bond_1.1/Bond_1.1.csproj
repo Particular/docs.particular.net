@@ -4,6 +4,6 @@
     <TargetFramework>net462</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Bond" Version="1.0.*" />
+    <PackageReference Include="NServiceBus.Bond" Version="1.*" />
   </ItemGroup>
 </Project>
