@@ -9,9 +9,8 @@ redirects:
 
 ### NServiceBus Version 7.x
 
-Requires .NET Core 2.0
+Requires [.NET Core 2.0] **or** [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642)
 
-NOTE: Version 7 will be released after het [official release of .NET Core 2.0 which is currently scheduled for Q3 2017](https://github.com/dotnet/core/blob/master/roadmap.md).
 
 ### NServiceBus Version 6.x
 
