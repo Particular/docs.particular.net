@@ -2,6 +2,7 @@
 title: Configuring Distributor and Workers
 summary: Describes how to configure the distributor and its workers.
 component: distributor
+reviewed: 2017-06-30
 tags:
  - Scalability
 redirects:
@@ -74,4 +75,4 @@ If self-hosting the endpoint here is the code required to enlist the endpoint wi
 
 snippet: ConfiguringWorker
 
-Similar to self hosting, ensure the `app.config` of the worker contains the `MasterNodeConfig` section to point to the host name where the distributor process is running.
+Similar to self-hosting, ensure the `app.config` of the worker contains the `MasterNodeConfig` section to point to the hostname where the distributor process is running.
