@@ -8,6 +8,7 @@ tags:
 - Transport
 redirects:
 - nservicebus/sqlserver/transactions
+- transports/sqlserver/transactions
 ---
 
 

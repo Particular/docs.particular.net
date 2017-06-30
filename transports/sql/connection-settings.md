@@ -4,6 +4,7 @@ reviewed: 2016-09-07
 component: SqlServer
 redirects:
 - nservicebus/sqlserver/connection-settings
+- transports/sqlserver/connection-settings
 ---
 
 ## Using connection pool

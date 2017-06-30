@@ -7,6 +7,7 @@ tags:
 redirects:
  - nservicebus/sqlserver/multiple-databases
  - nservicebus/sqlserver/deployment-options
+ - transports/sqlserver/deployment-options
 ---
 
 When using the default configuration, SQL Server Transport assumes that all tables used for storing messages for endpoints are located in a single catalog and within a single schema. The configuration can be changed to partition message storage between different schemas and catalogs. The schemas and catalogs can also be specified at a queue level. For example, the error and the audit queues can be configured to use a different schema and a different database catalog.

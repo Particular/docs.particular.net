@@ -8,6 +8,7 @@ tags:
 - Transport
 redirects:
  - nservicebus/sqlserver/concurrency
+ - transports/sqlserver/concurrency
 ---
 
 partial: content

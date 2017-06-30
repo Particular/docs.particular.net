@@ -6,6 +6,7 @@ related:
  - nservicebus/messaging/callbacks
 redirects:
  - nservicebus/sqlserver/callbacks
+ - transports/sqlserver/callbacks
 ---
 
 partial: content

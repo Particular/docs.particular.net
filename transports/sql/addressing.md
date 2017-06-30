@@ -7,6 +7,7 @@ tags:
 - Transport
 redirects:
  - nservicebus/sqlserver/addressing
+ - transports/sqlserver/addressing
 ---
 
 partial: content

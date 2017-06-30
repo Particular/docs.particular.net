@@ -5,6 +5,7 @@ component: SqlServer
 versions: '[3.0,)'
 redirects:
 - nservicebus/sqlserver/queuepeek
+- transports/sqlserver/queuepeek
 ---
 
 The SQL Server transport uses database tables as conceptual queues to read messages from. Current implementation uses a pull mechanism to 'Peek' if there are any messages waiting to get processed. There is a delay between each peek which defaults to one second. Depending on the system, the amount of messages and the load, the peek delay time may be tweaked. 

@@ -7,6 +7,7 @@ tags:
  - Transport
 redirects:
 - nservicebus/sqlserver/service-control
+- transports/sqlserver/service-control
 ---
 
 

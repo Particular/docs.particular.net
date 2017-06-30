@@ -4,6 +4,7 @@ reviewed: 2016-08-31
 component: SqlServer
 redirects:
  - nservicebus/sqlserver/entity-framework
+ - transports/sqlserver/entity-framework
 ---
 
 

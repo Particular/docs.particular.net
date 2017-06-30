@@ -8,6 +8,7 @@ tags:
 - Transport
 redirects:
  - nservicebus/sqlserver/design
+ - transports/sqlserver/design
 ---
 
 ### Primary queue

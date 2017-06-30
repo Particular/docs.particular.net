@@ -6,6 +6,7 @@ component: SqlServer
 redirects:
  - nservicebus/sqlserver/usage
  - nservicebus/sqlserver
+ - transports/sqlserver
 related:
  - samples/sqltransport-sqlpersistence
  - samples/outbox/sqltransport-nhpersistence

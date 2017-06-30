@@ -5,6 +5,7 @@ reviewed: 2017-03-08
 versions: '[3,)'
 redirects:
 - nservicebus/sqlserver/runtime-sql
+- transports/sqlserver/runtime-sql
 ---
 
 SQL used at runtime to perform various operations.

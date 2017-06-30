@@ -5,6 +5,7 @@ component: SqlServer
 reviewed: 2017-06-28
 redirects:
  - nservicebus/sqlserver/operations-scripting
+ - transports/sqlserver/operations-scripting
 ---
 
 The following are example code and scripts to facilitate deployment and operations against the SQL Server Transport.
