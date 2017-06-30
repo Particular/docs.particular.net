@@ -1,7 +1,7 @@
 ---
 title: Distributor and Publish-Subscribe
 summary: Distributor behavior in a publish-subscribe scenario
-reviewed: 2016-11-07
+reviewed: 2017-06-30
 related:
  - nservicebus/messaging/publish-subscribe
 redirects:
@@ -47,7 +47,7 @@ NOTE: It is very important that all workers share the same subscription persiste
 
 Compared to regular [publish workflow](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven-publish) the distributor variant contains an extra step -- forwarding the message from the distributor to the worker.
 
- 1. Some code (e.g. a saga or a handler) request that a message be published.
+ 1. Some code (e.g. a saga or a handler) request a message to be published.
  1. Publisher queries the storage for a list of subscribers.
  1. Publisher loops through the list and sends a copy of that message to each subscriber. In this case the only subscriber is `Subscriber@Distributor` which is the address of the distributor node for the `Subscriber` endpoint.
  1. Distributor takes the next worker from its ready queue and forwards the message to it. 
