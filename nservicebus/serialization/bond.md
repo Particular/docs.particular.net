@@ -26,6 +26,10 @@ The default serialization delegates are as follows.
 
 snippet: BondSerializationDelegates
 
+The serializers are cached as per the [Bond performance guidance](https://microsoft.github.io/bond/manual/bond_cs.html#performance).
+
+snippet: SerializerCache
+
 
 include: custom-contenttype-key
 

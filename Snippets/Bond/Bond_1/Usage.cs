@@ -23,18 +23,17 @@ class Usage
         serialization.SerializationDelegates(
             sertializationDelegatesBuilder: messageType =>
             {
+                var item = SerializerCache.GetSerializer(messageType);
                 return new SerializationDelegates(
                     serialize: (buffer, message) =>
                     {
                         var writer = new CompactBinaryWriter<OutputBuffer>(buffer);
-                        var serializer = new Serializer<CompactBinaryWriter<OutputBuffer>>(messageType);
-                        serializer.Serialize(message, writer);
+                        item.Serializer.Serialize(message, writer);
                     },
                     deserialize: buffer =>
                     {
                         var reader = new CompactBinaryReader<InputBuffer>(buffer);
-                        var deserializer = new Deserializer<CompactBinaryReader<InputBuffer>>(messageType);
-                        return deserializer.Deserialize(reader);
+                        return item.Deserializer.Deserialize(reader);
                     });
             });
 
