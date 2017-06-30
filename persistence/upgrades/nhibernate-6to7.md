@@ -5,6 +5,8 @@ reviewed: 2016-03-16
 component: NHibernate
 related:
  - nservicebus/upgrades/5to6
+redirects:
+ - nservicebus/upgrades/nhibernate-6to7
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

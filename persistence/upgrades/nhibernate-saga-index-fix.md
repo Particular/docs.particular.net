@@ -4,6 +4,8 @@ summary: Instructions on how to add missing unique constraints on saga correlati
 reviewed: 2017-06-30
 component: NHibernate
 isUpgradeGuide: true
+redirects:
+ - nservicebus/upgrades/nhibernate-saga-index-fix
 upgradeGuideCoreVersions:
  - 6
 ---

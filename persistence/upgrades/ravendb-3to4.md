@@ -6,6 +6,7 @@ related:
  - nservicebus/upgrades/5to6
 redirects:
  - nservicebus/ravendb/upgrades/3to4
+ - nservicebus/upgrades/ravendb-3to4
 reviewed: 2016-10-03
 isUpgradeGuide: true
 upgradeGuideCoreVersions:

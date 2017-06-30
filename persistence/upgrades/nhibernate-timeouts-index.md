@@ -4,6 +4,8 @@ summary: Instructions on how to resolve incorrect index definitions that can cau
 reviewed: 2017-06-30
 component: NHibernate
 isUpgradeGuide: true
+redirects:
+ - nservicebus/upgrades/nhibernate-timeouts-index
 upgradeGuideCoreVersions:
  - 5
  - 6

@@ -6,6 +6,8 @@ component: ASP
 related:
  - persistence/azure-storage
  - persistence/upgrades/asp-saga-deduplication
+redirects:
+ - nservicebus/upgrades/asp-6to1
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

@@ -4,6 +4,8 @@ summary: Instructions on how to upgrade to SQL Persistence version 1.0.1
 reviewed: 2017-02-27
 component: SqlPersistence
 isUpgradeGuide: true
+redirects:
+ - nservicebus/upgrades/sqlpersistence-1.0.0-1.0.1
 upgradeGuideCoreVersions:
  - 6
 ---

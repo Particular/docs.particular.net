@@ -4,6 +4,8 @@ summary: Instructions on how to support subscribers using NServiceBus 5 and lowe
 component: SqlPersistence
 reviewed: 2017-06-30
 isUpgradeGuide: true
+redirects:
+ - nservicebus/upgrades/sqlpersistence-null-endpoint
 upgradeGuideCoreVersions:
  - 6
 ---

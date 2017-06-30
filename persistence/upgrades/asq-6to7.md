@@ -6,6 +6,8 @@ component: ASQ
 related:
 - transports/azure-storage-queues
 - nservicebus/upgrades/5to6
+redirects:
+ - nservicebus/upgrades/asq-6to7
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

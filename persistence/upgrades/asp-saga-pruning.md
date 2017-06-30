@@ -6,6 +6,8 @@ component: ASP
 related:
  - nservicebus/sagas
  - persistence/azure-storage
+redirects:
+ - nservicebus/upgrades/asp-saga-pruning
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

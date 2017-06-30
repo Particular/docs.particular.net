@@ -4,6 +4,8 @@ summary: Instructions on how to upgrade to SQL Persistence version 2
 reviewed: 2017-03-09
 component: SqlPersistence
 isUpgradeGuide: true
+redirects:
+ - nservicebus/upgrades/sqlpersistence-1to2
 upgradeGuideCoreVersions:
  - 6
 ---
