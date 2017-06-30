@@ -81,6 +81,8 @@ Although MSMQ has the concept of both [Public and Private queues](https://techne
 
 For endpoints using the publish-subscribe pattern, both the publisher and the subscriber must have permission to send messages to each other. This is to allow the Subscribe message to be sent from the subscribing endpoint to the publishing endpoint.
 
+NOTE: In versions 5.2.20 and 6.0.3 a bug was fixed where installers always changed permissions on a queue, also if it already existed.
+
 When an NServiceBus endpoint creates a queue on a machine, the default permissions depend on whether the machine is connected to a domain or a workgroup.
 
 ### Domain mode
@@ -91,13 +93,12 @@ If the machine is connected to a domain, then only the domain user running the e
 
 If the machine is connected to a workgroup then the Send permission is granted to the Everyone and Anonymous user groups by Windows. Any endpoint will be able to send messages to any other endpoint without further configuration.
 
-NOTE: In versions 5.2.20 and 6.0.3 a bug was fixes where [installers always changed permissions on a queue, also if it already existed](https://github.com/Particular/NServiceBus/issues/4266).
 
 To retrieve the group names the [WellKnownSidType](https://msdn.microsoft.com/en-us/library/system.security.principal.wellknownsidtype.aspx) enumeration is used.
 
 MSMQ permissions are defined in the [MessageQueueAccessRights](https://msdn.microsoft.com/en-us/library/system.messaging.messagequeueaccessrights.aspx) enumeration.
 
-NOTE: To increase security and further lock down MSMQ send/receive permissions remove `Everyone` and `Anonymous` and grant specific permissions to a subset of accounts.
+NOTE: To increase security and further lock down MSMQ send/receive permissions remove `Everyone` and `Anonymous` and grant specific permissions to the subset of accounts that need them.
 
 NOTE: From Version 6, if the default queue permissions are set, a log message will be written during the transport startup, reminding that the queue has default permissions. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
 
