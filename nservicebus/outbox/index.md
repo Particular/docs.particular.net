@@ -19,7 +19,7 @@ The Outbox is an infrastructure feature designed to simulate the reliability of 
 
 The purpose of the DTC is to guarantee consistency between messaging operations and the data persistence. Messaging operations includes the message being processed as well as any messages being sent out as a result. Data persistence includes any business data persisted by a message handler, as well as any NServiceBus saga or timeout data stored at the same time. The DTC ensures that all these operations either complete successfully together, or are all rolled back.
 
-Instead of the DTC, the NServiceBus Outbox feature can be used to mimic this level of consistency without the need for distributed transactions. It does this by first storing any outgoing messages in the database, taking advantage of the same (non-distributed) local transaction to ensure that the messaging operations are stored atomically with any changes to business data and NServiceBus data. Once that transaction is successfully committed, the stored outgoing messages are dispatched to the message transport separately.
+Instead of the DTC, the NServiceBus Outbox feature can be used to mimic this level of consistency without the need for distributed transactions. It does this by first storing any outgoing messages in the database, taking advantage of the same (non-distributed) local transaction to ensure that the messaging operations are stored atomically with any changes to business data and NServiceBus data. Once that transaction is successfully committed, the stored outgoing messages are dispatched to their destinations separately.
 
 
 ## How it works
@@ -45,7 +45,8 @@ Note: On the wire level the Outbox guarantees `at-least-once` message delivery, 
 
 ## Important design considerations
 
- * Business data and Outbox deduplication data must be stored in the same database, in order to take advantage of the same local database transaction to store all data.
+WARNING: To take advantage of the same local database transaction to store all data and get a similar experience to using DTC, the business data and Outbox deduplication data *must be stored in the same database*.
+
  * The Outbox feature works only for messages sent from NServiceBus message handlers.
  * Endpoints using DTC can communicate with endpoints using Outbox only if either of the following conditions are satisfied:
    * Endpoints using Outbox don't send messages to endpoints using DTC. However, endpoints using DTC can send messages to endpoints using Outbox.
@@ -64,7 +65,7 @@ To learn about Outbox configuration options such as time to keep deduplication d
 
 When converting a system from using the DTC to the Outbox, care must be taken to ensure the system does not process duplicate messages incorrectly.
 
-Because the Outbox feature uses an "at least once" consistency guarantee at the transport level, endpoints that enable the Outbox will occasionally send duplicate messages. These duplicate messages will be properly handled by deduplication by other Outbox-enabled endpoints, but would be processed in duplicate by endpoints still using the DTC.
+Because the Outbox feature uses an "at least once" consistency guarantee at the transport level, endpoints that enable the Outbox will occasionally send duplicate messages. These duplicate messages will be properly handled by deduplication in other Outbox-enabled endpoints, but would be processed in duplicate by endpoints still using the DTC.
 
 In order to gradually convert an entire system from use of DTC to Outbox:
 
