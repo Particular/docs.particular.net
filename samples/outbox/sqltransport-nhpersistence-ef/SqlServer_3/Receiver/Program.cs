@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus;
 using NServiceBus.Transport.SQLServer;
+using Configuration = NHibernate.Cfg.Configuration;
 
 class Program
 {
@@ -15,10 +17,12 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SQLNHibernateOutboxEF.Receiver";
-        using (var receiverDataContext = new ReceiverDataContext())
-        {
-            receiverDataContext.Database.Initialize(true);
-        }
+
+        var connectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True";
+        var startupSql = File.ReadAllText("Startup.sql");
+
+        await SqlHelper.ExecuteSql(connectionString, startupSql)
+            .ConfigureAwait(false);
 
         var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>

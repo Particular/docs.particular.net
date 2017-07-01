@@ -1,6 +1,6 @@
 ---
-title: Outbox - SQL Transport, NHibernate and EF
-summary: Integrating SQL Transport with NHibernate persistence and Entity Framework user data store using outbox.
+title: Outbox - SQL Transport, NHibernate and EF Core
+summary: Integrating SQL Transport with NHibernate persistence and Entity Framework Core user data store using outbox.
 reviewed: 2016-03-21
 component: SqlServer
 tags:
@@ -62,7 +62,7 @@ snippet: SenderConnectionStrings
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence  and Outbox. It uses EntityFramework to store business data (orders).
+The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence  and Outbox. It uses [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) to store business data (orders).
 
 snippet: ReceiverConfiguration
 

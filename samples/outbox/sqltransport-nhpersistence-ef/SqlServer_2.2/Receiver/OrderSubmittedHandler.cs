@@ -1,7 +1,9 @@
 using NServiceBus;
 using System.Data.Common;
+using System.Data.SqlClient;
 using NServiceBus.Logging;
 using NServiceBus.Persistence.NHibernate;
+using Microsoft.EntityFrameworkCore;
 
 public class OrderSubmittedHandler :
     IHandleMessages<OrderSubmitted>
@@ -10,7 +12,7 @@ public class OrderSubmittedHandler :
     IBus bus;
     NHibernateStorageContext storageContext;
 
-    public OrderSubmittedHandler(IBus bus ,NHibernateStorageContext storageContext)
+    public OrderSubmittedHandler(IBus bus, NHibernateStorageContext storageContext)
     {
         this.bus = bus;
         this.storageContext = storageContext;
@@ -22,7 +24,7 @@ public class OrderSubmittedHandler :
 
         #region StoreUserData
 
-        var dbConnection = storageContext.Connection;
+        var dbConnection = (SqlConnection) storageContext.Connection;
         using (var receiverDataContext = new ReceiverDataContext(dbConnection))
         {
             var dbTransaction = (DbTransaction) storageContext.DatabaseTransaction;

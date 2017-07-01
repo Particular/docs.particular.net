@@ -1,19 +1,23 @@
 ﻿using System;
+using System.Data.SqlClient;
+using System.IO;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus;
 using NServiceBus.Transports.SQLServer;
 using NServiceBus.Persistence;
+using Configuration = NHibernate.Cfg.Configuration;
 
 class Program
 {
     static void Main()
     {
         Console.Title = "Samples.SQLNHibernateOutboxEF.Receiver";
-        using (var receiverDataContext = new ReceiverDataContext())
-        {
-            receiverDataContext.Database.Initialize(true);
-        }
+
+        var connectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True";
+        var startupSql = File.ReadAllText("Startup.sql");
+
+        SqlHelper.ExecuteSql(connectionString, startupSql);
 
         var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(
@@ -50,4 +54,4 @@ class Program
             Console.ReadKey();
         }
     }
-}
+};

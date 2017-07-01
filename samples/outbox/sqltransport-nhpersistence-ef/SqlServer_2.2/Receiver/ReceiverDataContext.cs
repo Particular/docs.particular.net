@@ -1,30 +1,30 @@
-using System.Data.Entity;
-using System.Data;
+using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+
+#region EntityFramework
 
 public class ReceiverDataContext :
     DbContext
 {
-    #region EntityFramework
-    public ReceiverDataContext()
-        : base("NServiceBus/Persistence")
+    public ReceiverDataContext(DbConnection connection)
     {
+        this.connection = connection;
     }
-    public ReceiverDataContext(IDbConnection connection)
-        : base((DbConnection) connection, false)
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        optionsBuilder.UseSqlServer(connection);
+        optionsBuilder.ConfigureWarnings(
+            warningsConfigurationBuilderAction: builder =>
+            {
+                builder.Ignore(RelationalEventId.AmbientTransactionWarning);
+            });
     }
-    #endregion
+
+    DbConnection connection;
 
     public DbSet<Order> Orders { get; set; }
-
-    protected override void OnModelCreating(DbModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
-
-        var orders = modelBuilder.Entity<Order>();
-        orders.ToTable("Orders");
-        orders.HasKey(x => x.OrderId);
-        orders.Property(x => x.Value);
-    }
 }
+
+#endregion
