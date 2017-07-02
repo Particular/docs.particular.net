@@ -48,7 +48,7 @@ Unicast-only transports include:
  * [MSMQ](/transports/msmq/)
  * [SQL Server](/transports/sql/)
  * [Learning Transport](/transports/learning/)
-
+ * [Amazon SQS](/transports/sqs/)
 
 ### Multicast-enabled transports
 

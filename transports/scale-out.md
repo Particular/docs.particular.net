@@ -30,6 +30,6 @@ In bus transports like MSMQ there is no central place from which multiple instan
 
 ## Broker transports
 
-The main difference when using broker transports (SQL Server, RabbitMQ, ASB and ASQ) is that queues are not attached to machines but rather are maintained by a central server (or cluster of servers). Such design enables usage of the competing consumers pattern for scaling out processing power. All instances connect to the same queue.
+The main difference when using broker transports (SQL Server, RabbitMQ, ASB, ASQ and SQS) is that queues are not attached to machines but rather are maintained by a central server (or cluster of servers). Such design enables usage of the competing consumers pattern for scaling out processing power. All instances connect to the same queue.
 
 partial: concurrency
