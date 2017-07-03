@@ -64,7 +64,7 @@ By default NServiceBus uses a `BinaryFormatter` to serialize and deserialize Dat
 
 ### Using a custom serializer
 
-To override the DataBus property serializer, create a class that implements `IDataBusSerializer` and add it to the NServiceBus [container](/nservicebus/containers/index.md).
+To override the DataBus property serializer, create a class that implements `IDataBusSerializer` and add it to the NServiceBus [container](/nservicebus/containers/).
 
 NOTE: Implementations of `IDataBusSerializer.Serialize(...)` must not close the `Stream` instance that is passed in. Implementations of `IDataBusSerializer.Deserialize(...)` may close the `Stream` instance that is passed in, but it is not required.
 
