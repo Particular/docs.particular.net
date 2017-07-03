@@ -8,6 +8,7 @@ redirects:
  - nservicebus/databus
 related:
  - samples/file-share-databus
+ - samples/databus/custom-serializer
  - samples/azure/blob-storage-databus
 ---
 
@@ -54,6 +55,20 @@ NServiceBus supports defining DataBus properties via convention. This allows def
 snippet: DefineMessageWithLargePayloadUsingConvention
 
 snippet: MessageWithLargePayloadUsingConvention
+
+
+## Serialization
+
+By default NServiceBus uses a `BinaryFormatter` to serialize and deserialize DataBus properties.
+
+
+### Using a custom serializer
+
+To override the DataBus property serializer, create a class that implements `IDataBusSerializer` and add it to the NServiceBus [container](/nservicebus/containers/index.md).
+
+NOTE: Implementations of `IDataBusSerializer.Serialize(...)` must not close the `Stream` instance that is passed in. Implementations of `IDataBusSerializer.Deserialize(...)` may close the `Stream` instance that is passed in, but it is not required.
+
+WARNING: Both the sender and the receiver must use the same DataBus serializer.
 
 
 ## DataBus attachments cleanup
