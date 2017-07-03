@@ -1,7 +1,7 @@
 ---
 title: DataBus Samples
 reviewed: 2017-07-03
-component: NServiceBus
+component: Core
 tags:
  - DataBus
 related:
