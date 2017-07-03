@@ -12,10 +12,17 @@ namespace Shared
     {
         public void Serialize(object databusProperty, Stream stream)
         {
-            using (var writer = new StreamWriter(stream, Encoding.UTF8, bufferSize: 1024, leaveOpen: true))
+            using (var writer = CreateNonClosingStreamWriter(stream))
             using (var jsonWriter = new JsonTextWriter(writer))
                 serializer.Serialize(jsonWriter, databusProperty);
         }
+
+        private StreamWriter CreateNonClosingStreamWriter(Stream stream)
+            => new StreamWriter(
+                stream,
+                Encoding.UTF8,
+                bufferSize: 1024,
+                leaveOpen: true);
 
         public object Deserialize(Stream stream)
         {

@@ -9,7 +9,7 @@ public class MessageWithLargePayloadHandler :
 
     public Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
     {
-        log.Info($"Message received, size of blob property: {message.LargeData.Value.Length} measurements");
+        log.Info($"Message received containing {message.LargeData.Value.Length} measurements");
         return Task.CompletedTask;
     }
 }
