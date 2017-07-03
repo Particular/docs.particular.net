@@ -6,6 +6,8 @@ namespace Shared
     using Newtonsoft.Json;
     using NServiceBus.DataBus;
 
+    #region CustomDataBusSerializer
+
     public class JsonDataBusSerializer : IDataBusSerializer
     {
         public void Serialize(object databusProperty, Stream stream)
@@ -29,4 +31,6 @@ namespace Shared
             }
         );
     }
+
+    #endregion
 }

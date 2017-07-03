@@ -16,12 +16,17 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
 
+        #region ConfigureReceiverCustomDataBus
+
         endpointConfiguration.RegisterComponents(
             cc => cc.ConfigureComponent<JsonDataBusSerializer>(DependencyLifecycle.SingleInstance)
         );
 
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
         dataBus.BasePath("..\\..\\..\\storage");
+
+        #endregion
+
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
