@@ -33,13 +33,13 @@
             return RequestTimeout(context, TimeSpan.FromHours(1), almostDoneMessage);
         }
 
-        public async Task Timeout(MyCustomTimeout state, IMessageHandlerContext context)
+        public Task Timeout(MyCustomTimeout state, IMessageHandlerContext context)
         {
-            if (!Data.Message2Arrived)
+            if (Data.Message2Arrived)
             {
-                await RequestTimeout(context, TimeSpan.FromHours(1), new TiredOfWaitingForMessage2())
-                    .ConfigureAwait(false);
+                return Task.CompletedTask;
             }
+            return RequestTimeout(context, TimeSpan.FromHours(1), new TiredOfWaitingForMessage2());
         }
     }
 
