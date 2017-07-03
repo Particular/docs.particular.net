@@ -44,4 +44,4 @@ Due to the behavioral differences between major versions it is advised to have t
 
 It is assumed that *NumberOfRetries* and *TimeIncrease* are the same on the distributor and the workers.
 
-NOTE: If settings are managed in XML configuration a comment stating that changes should be updated on the distributor and worker configuration files.
+NOTE: If settings are managed in XML configuration all changes in the distributor configuration need to be replicated to all nodes.

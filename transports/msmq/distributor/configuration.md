@@ -75,4 +75,4 @@ If self-hosting the endpoint here is the code required to enlist the endpoint wi
 
 snippet: ConfiguringWorker
 
-Similar to self-hosting, ensure the `app.config` of the worker contains the `MasterNodeConfig` section to point to the hostname where the distributor process is running.
+Similar to self-hosting, if running NServiceBus prior to Version 6, ensure the `app.config` of the worker contains the `MasterNodeConfig` section to point to the hostname where the distributor process is running.
