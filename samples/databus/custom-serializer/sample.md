@@ -36,11 +36,11 @@ The custom serializer implements `IDataBusSerializer`.
 
 The endpoint in the Sender project is configured to use the custom DataBus serializer:
 
-snippet: ConfigureSenderCustomDataBus
+snippet: ConfigureSenderCustomDataBusSerializer
 
 
 ### Receiver project
 
 The endpoint in the Receiver project must be configured to use the same custom DataBus serializer in order to read DataBus properties sent by the Sender endpoint:
 
-snip[pet: ConfigureReceiverCustomDataBus
+snippet: ConfigureReceiverCustomDataBusSerializer

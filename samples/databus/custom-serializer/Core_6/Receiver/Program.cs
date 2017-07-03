@@ -16,7 +16,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
         endpointConfiguration.UseSerialization<JsonSerializer>();
 
-        #region ConfigureReceiverCustomDataBus
+        #region ConfigureReceiverCustomDataBusSerializer
 
         endpointConfiguration.RegisterComponents(
             cc => cc.ConfigureComponent<JsonDataBusSerializer>(DependencyLifecycle.SingleInstance)

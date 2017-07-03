@@ -2,8 +2,6 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-#region MessageWithLargePayloadHandler
-
 public class MessageWithLargePayloadHandler :
     IHandleMessages<MessageWithLargePayload>
 {
@@ -15,5 +13,3 @@ public class MessageWithLargePayloadHandler :
         return Task.CompletedTask;
     }
 }
-
-#endregion
