@@ -12,8 +12,10 @@ public class MySaga :
 {
     static ILog log = LogManager.GetLogger<MySaga>();
 
-    public async Task Handle(MyMessage message, IMessageHandlerContext context)
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
+        log.Info($"Mail sent and written to {Program.DirectoryLocation}");
+        MarkAsComplete();
         var mail = new Mail
         {
             To = "to@fake.email",
@@ -25,16 +27,14 @@ public class MySaga :
                 {"Id", "fakeEmail"}
             }
         };
-        await context.SendMail(mail)
-            .ConfigureAwait(false);
-        log.Info($"Mail sent and written to {Program.DirectoryLocation}");
-        MarkAsComplete();
+        return context.SendMail(mail);
     }
 
     #endregion
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
     {
-        mapper.ConfigureMapping<MyMessage>(message => message.Number).ToSaga(data => data.Number);
+        mapper.ConfigureMapping<MyMessage>(message => message.Number)
+            .ToSaga(data => data.Number);
     }
 }

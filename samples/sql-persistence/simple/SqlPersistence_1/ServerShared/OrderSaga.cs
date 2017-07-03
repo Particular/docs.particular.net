@@ -44,16 +44,15 @@ public class OrderSaga :
             .ConfigureAwait(false);
     }
 
-    public async Task Timeout(CompleteOrder state, IMessageHandlerContext context)
+    public Task Timeout(CompleteOrder state, IMessageHandlerContext context)
     {
         log.Info($"Saga with OrderId {Data.OrderId} completed");
+        MarkAsComplete();
         var orderCompleted = new OrderCompleted
         {
             OrderId = Data.OrderId
         };
-        await context.Publish(orderCompleted)
-            .ConfigureAwait(false);
-        MarkAsComplete();
+        return context.Publish(orderCompleted);
     }
 }
 

@@ -34,17 +34,16 @@ public class CandidateVotesSaga :
         return context.Send(trackZipCode);
     }
 
-    public async Task Handle(CloseElection message, IMessageHandlerContext context)
+    public Task Handle(CloseElection message, IMessageHandlerContext context)
     {
         var reportVotes = new ReportVotes
         {
             Candidate = Data.Candidate,
             NumberOfVotes = Data.Count
         };
-        await context.SendLocal(reportVotes)
-            .ConfigureAwait(false);
 
         MarkAsComplete();
+        return context.SendLocal(reportVotes);
     }
 
     public Task Handle(TrackZipCodeReply message, IMessageHandlerContext context)

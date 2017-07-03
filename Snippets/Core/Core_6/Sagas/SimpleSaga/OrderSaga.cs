@@ -19,14 +19,16 @@
                 .ToSaga(sagaData => sagaData.OrderId);
         }
 
-        public async Task Handle(StartOrder message, IMessageHandlerContext context)
+        public Task Handle(StartOrder message, IMessageHandlerContext context)
         {
+            return Task.CompletedTask;
         }
 
-        public async Task Handle(CompleteOrder message, IMessageHandlerContext context)
+        public Task Handle(CompleteOrder message, IMessageHandlerContext context)
         {
             // code to handle order completion
             MarkAsComplete();
+            return Task.CompletedTask;
         }
     }
 

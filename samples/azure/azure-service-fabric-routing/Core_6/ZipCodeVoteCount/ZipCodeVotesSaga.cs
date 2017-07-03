@@ -36,17 +36,16 @@ public class ZipCodeVotesSaga :
             .ConfigureAwait(false);
     }
 
-    public async Task Timeout(CloseVoting state, IMessageHandlerContext context)
+    public Task Timeout(CloseVoting state, IMessageHandlerContext context)
     {
+        MarkAsComplete();
+
         var reportZipCode = new ReportZipCode
         {
             ZipCode = Data.ZipCode,
             NumberOfVotes = Data.Count
         };
-        await context.SendLocal(reportZipCode)
-            .ConfigureAwait(false);
-
-        MarkAsComplete();
+        return context.SendLocal(reportZipCode);
     }
 
     public class ZipCodeVoteData :

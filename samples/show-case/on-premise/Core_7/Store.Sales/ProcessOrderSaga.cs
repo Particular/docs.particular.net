@@ -29,12 +29,16 @@ public class ProcessOrderSaga :
         return RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
     }
 
-    public async Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
+    public Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
             Debugger.Break();
         }
+
+        MarkAsComplete();
+
+        log.Info($"Cooling down period for order #{Data.OrderNumber} has elapsed.");
 
         var orderAccepted = new OrderAccepted
         {
@@ -42,20 +46,17 @@ public class ProcessOrderSaga :
             ProductIds = Data.ProductIds,
             ClientId = Data.ClientId
         };
-        await context.Publish(orderAccepted)
-            .ConfigureAwait(false);
-
-        MarkAsComplete();
-
-        log.Info($"Cooling down period for order #{Data.OrderNumber} has elapsed.");
+        return context.Publish(orderAccepted);
     }
 
-    public async Task Handle(CancelOrder message, IMessageHandlerContext context)
+    public Task Handle(CancelOrder message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
             Debugger.Break();
         }
+
+        log.Info($"Order #{message.OrderNumber} was cancelled.");
 
         MarkAsComplete();
 
@@ -64,10 +65,7 @@ public class ProcessOrderSaga :
             OrderNumber = message.OrderNumber,
             ClientId = message.ClientId
         };
-        await context.Publish(orderCancelled)
-            .ConfigureAwait(false);
-
-        log.Info($"Order #{message.OrderNumber} was cancelled.");
+        return context.Publish(orderCancelled);
     }
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderData> mapper)

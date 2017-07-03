@@ -12,7 +12,7 @@ public class LongProcessingRequestSaga :
     IHandleMessages<LongProcessingFailed>
 {
     static ILog log = LogManager.GetLogger<LongProcessingRequestSaga>();
-    public CloudTable table;
+    CloudTable table;
 
     public LongProcessingRequestSaga()
     {
@@ -74,7 +74,7 @@ public class LongProcessingRequestSaga :
             .ToSaga(state => state.LongProcessingId);
     }
 
-    public async Task Timeout(ProcessingPossiblyFailed timeoutMessage, IMessageHandlerContext context)
+    public Task Timeout(ProcessingPossiblyFailed timeoutMessage, IMessageHandlerContext context)
     {
         log.Info($"Processing of LongProcessingRequest with ID {timeoutMessage.Id} has not finished in the estimated time. Try again.");
 
@@ -84,9 +84,8 @@ public class LongProcessingRequestSaga :
         {
             Id = timeoutMessage.Id
         };
-        await context.Publish(processingWarning)
-            .ConfigureAwait(false);
         MarkAsComplete();
+        return context.Publish(processingWarning);
 
         #endregion
     }
