@@ -1,7 +1,7 @@
 ---
 title: Disconnect Workers
 summary: How a worker can be disconnected from its distributor using PowerShell cmdlets
-reviewed: 2016-11-05
+reviewed: 2017-06-30
 tags:
  - Scalability
 redirects:
@@ -21,15 +21,15 @@ If the Worker is configured using the [NServiceBus.Distributor.MSMQ NuGet](https
  Remove-NServiceBusMSMQWorker WorkerAddress DistributorAddress TransactionalDistributorQueue
  ```
  Where:
-   * `WorkerAddress` is the Worker queue name, eg Worker@localhost
-   * `DistributorAddress` is the Distributor queue name eg MyDistributor@localhost, **Note:** Pass the Distributor queue name, the PowerShell cmdlet will automatically appends ".distributor.control" to the end of the Distributor queue.
+   * `WorkerAddress` is the Worker queue name, eg `Worker@localhost`
+   * `DistributorAddress` is the Distributor queue name eg `MyDistributor@localhost`, **Note:** Pass the Distributor queue name, the PowerShell cmdlet will automatically appends ".distributor.control" to the end of the Distributor queue.
    * `TransactionalDistributorQueue` is the Distributor queue transactional or not ?
  1. Wait for Worker to drain all queued messages from its input queue.
  1. Shutdown the endpoint.
 
 
-## Distributor behavior after the PowerShell is executed
+## Distributor behavior after the PowerShell cmdlet is executed
 
- 1. A disconnect message is sent by the PowerShell to the Distributor control queue.
+ 1. A disconnect message is sent by the PowerShell cmdlet to the Distributor control queue.
  1. When the Distributor processes it, the Worker with the address specified in the message is set with SessionID `disconnected`.
  1. Ready messages sent back by the Worker to the Distributor never match the session, so they are skipped and that way the Worker won't receive any more messages from the Distributor.

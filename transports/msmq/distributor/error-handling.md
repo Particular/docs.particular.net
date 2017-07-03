@@ -2,7 +2,7 @@
 title: Distributor error handling
 summary: Error handling with and configuration with the distributor
 component: Distributor
-reviewed: 2016-08-30
+reviewed: 2017-06-30
 tags:
  - Error Handling
  - Exceptions
@@ -30,7 +30,7 @@ Immediate Retries are always performed on the worker.
 
 The behavior of Delayed Retries is different between major versions.
 
-Delayed Retries has two configurable items TimeIncrease and NumberOfRetries.
+Delayed Retries has two configurable items *TimeIncrease* and *NumberOfRetries*.
 
 The message will be retried on *any* available worker. Message processing is not sticky to the worker.
 
@@ -44,4 +44,4 @@ Due to the behavioral differences between major versions it is advised to have t
 
 It is assumed that *NumberOfRetries* and *TimeIncrease* are the same on the distributor and the workers.
 
-NOTE: If settings are managed in XML configuration a comment stating that changes should be updated on the distributor and worker configuration files.
+NOTE: If settings are managed in XML configuration all changes in the distributor configuration need to be replicated to all nodes.
