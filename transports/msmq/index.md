@@ -58,11 +58,13 @@ So downtime is proportional to the time taken for the MSMQ service to restart on
 
 Remote queues are not supported for MSMQ as this conflicts with the [Distributed Bus architectural style](/nservicebus/architecture/) that is predicated on concepts of durability, autonomy and avoiding a single point of failure. For scenarios where a [Broker style architecture](/nservicebus/architecture/) is required use transports like [Sql Server](/transports/sqlserver/) and [RabbitMQ](/transports/rabbitmq/).
 
+
 ## Error queue configuration
 
 The transport requires all endpoints to configure the error queue address. The centralized error queue is a recommended setup for production scenarios.
 
 See the [recoverability documentation](/nservicebus/recoverability/configure-error-handling.md) for details on how to configure the error queue address.
+
 
 ## Public Queues
 
@@ -83,11 +85,13 @@ When an endpoint sends a command or event message that source requires permissio
 
 NOTE: In versions 5.2.20 and 6.0.3 a bug was fixed where installers always changed permissions on a queue, also if it already existed.
 
-When an NServiceBus endpoint creates a queue on a machine, the default permissions depend on whether the machine is connected to a domain or a workgroup.
+When an endpoint creates a queue on a machine, the default permissions depend on whether the machine is connected to a domain or a workgroup.
+
 
 ### Domain mode
 
 If the machine is connected to a domain, then only the domain user running the endpoint when the queue is created will have Send permissions granted. If multiple endpoints need to communicate and are running under the same domain account, no further configuration is required. If multiple endpoints need to communicate using different domain accounts then the Send permission on the receiving endpoint input queue needs to be granted to the domain account of the sending endpoint.
+
 
 ### Workgroup mode
 
