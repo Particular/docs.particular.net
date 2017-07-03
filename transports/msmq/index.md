@@ -79,7 +79,7 @@ Although MSMQ has the concept of both [Public and Private queues](https://techne
 | Everyone       | Send                | Set by NServiceBus prior to 6.1.0 |
 
 
-For endpoints using the publish-subscribe pattern, both the publisher and the subscriber must have permission to send messages to each other. This is to allow the Subscribe message to be sent from the subscribing endpoint to the publishing endpoint.
+When an endpoint sends a command or event message that source requires permission at the target queue. For endpoints using the either the publish-subscribe or request-response patterns, both parties actually send messages and must have permission to send messages to each other. This is to allow the Subscribe message to be sent from the subscribing endpoint to the publishing endpoint in case of publish-subscribe or the response to be send back to the client in case of request-response.
 
 NOTE: In versions 5.2.20 and 6.0.3 a bug was fixed where installers always changed permissions on a queue, also if it already existed.
 
