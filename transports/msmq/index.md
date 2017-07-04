@@ -89,7 +89,7 @@ When an endpoint creates a queue on a machine, the default permissions depend on
 
 ### Domain mode
 
-If the machine is joined to a domain, then at the time of queue creation, only the domain user will have `Send` permissions granted. The `Everyone` user group will not have `Send` permissions. If all the endpoints which need to communicate are running under the same domain account, no further configuration is required. However, if the endpoints are run using different domain accounts, then the `Send` permission on the receiving endpoint's input queue needs to be explicitly granted to the domain user account of the sending endpoint.
+If the machine is joined to a domain, then at the time of queue creation, only the domain user that created the queue, domain administrators and local administrators will have `Send` permissions granted. The `Everyone` user group and `Anonymous` user group will not have `Send` permissions. If all the endpoints which need to communicate are running under the same domain account, no further configuration is required. However, if the endpoints are run using different domain accounts, then the `Send` permission on the receiving endpoint's input queue needs to be explicitly granted to the domain user account of the sending endpoint.
 
 
 ### Workgroup mode
