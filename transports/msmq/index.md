@@ -80,9 +80,9 @@ Although MSMQ has the concept of both [Public and Private queues](https://techne
 | Anonymous      | Send                | Set by NServiceBus in Versions 6.0.x and below |
 | Everyone       | Send                | Set by NServiceBus in Versions 6.0.x and below |
 
-NOTE: Starting with Versions 6.1.0 and above, the installers will not automatically grant permissions to the `Anonymous` and `Everyone` group. It will respect the existing queue permissions that have been set up for the endpoint. 
+NOTE: In Versions 6.1.0 and above, the installers will not automatically grant permissions to the `Anonymous` and `Everyone` group. It will respect the existing queue permissions that have been set up for the endpoint. The permissions granted to these user accounts is based on standard windows behavior and not via NServiceBus.
 
-Any endpoint that sends a message to a target endpoint requires the `Send` permission to be granted for the sending user account on the target queue. For example, if an `endpoint A` is running as `userA` and is sending a message to `endpoint B`, then `userA` requires the `Send` permission to be granted on `endpoint B`'s queue. When using messaging patterns like request-response or publish-subscribe, the queues for both the sending endpoint and the target endpoint will require `Send` permissions to be granted to each others user accounts. 
+Any endpoint that sends a message to a target endpoint requires the `Send` permission to be granted for the sending user account on the target queue. For example, if an `endpoint A` is running as `userA` and is sending a message to `endpoint B`, then `userA` requires the `Send` permission to be granted on `endpoint B`'s queue. When using messaging patterns like request-response or publish-subscribe, the queues for both the endpoints will require `Send` permissions to be granted to each others user accounts. 
 
 When an endpoint creates a queue on a machine, the default permissions depend on whether the server is joined to a [domain or a workgroup](https://support.microsoft.com/en-us/help/884974/information-about-workgroup-mode-and-about-domain-mode-in-microsoft-me).
 
@@ -97,13 +97,14 @@ If the machine is joined to a domain, then at the time of queue creation, only t
 If the machine is connected to a workgroup, then the `Send` permission is granted to the `Everyone` and `Anonymous` user groups by Windows. Any endpoint will be able to send messages to any other endpoint without further configuration.
 
 
+### Well-Known group names and Queue access rights
 To retrieve the group names the [WellKnownSidType](https://msdn.microsoft.com/en-us/library/system.security.principal.wellknownsidtype.aspx) enumeration is used.
 
 MSMQ permissions are defined in the [MessageQueueAccessRights](https://msdn.microsoft.com/en-us/library/system.messaging.messagequeueaccessrights.aspx) enumeration.
 
 NOTE: To increase security and further lock down MSMQ send/receive permissions remove `Everyone` and `Anonymous` and grant specific permissions to the subset of accounts that need them.
 
-NOTE: From Versions 6 and above, if the default queue permissions are set, a log message will be written during the endpoint startup, reminding that the queue has default permissions and might require stricter permissions for production. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
+NOTE: In Versions 6 and above, if the default queue permissions are set, a log message will be written during the endpoint startup, reminding that the queue has default permissions and might require stricter permissions for production. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
 
 An example of the warning that is logged:
 
