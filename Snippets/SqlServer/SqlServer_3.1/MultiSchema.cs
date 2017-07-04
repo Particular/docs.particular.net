@@ -40,7 +40,7 @@ class MultiSchema
 
         #endregion
     }
-    
+
     class MyMessage
     {
     }
