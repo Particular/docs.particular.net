@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Callbacks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\NServiceBus.Callbacks.2.0.0\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.Callbacks.2.0.1\lib\net452\NServiceBus.Callbacks.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
       <HintPath>..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
@@ -80,6 +80,7 @@
     <Content Include="Web.config" />
     <Content Include="Views\Home\SendEnumMessage.cshtml" />
     <Content Include="Views\Home\SendObjectMessage.cshtml" />
+    <None Include="packages.config" />
     <None Include="Views\Home\SendIntMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -121,7 +122,8 @@
           <IISUrl>http://localhost:54711/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl />
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

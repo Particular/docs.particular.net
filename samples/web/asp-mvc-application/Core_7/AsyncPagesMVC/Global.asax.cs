@@ -50,6 +50,7 @@ public class MvcApplication :
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
+        endpointConfiguration.EnableCallbacks();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UseContainer<AutofacBuilder>(
             customizations: customizations =>

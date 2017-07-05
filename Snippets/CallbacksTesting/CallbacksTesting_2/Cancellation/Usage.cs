@@ -2,13 +2,12 @@
 {
     using System;
     using System.Threading;
-    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Callbacks.Testing;
 
     class Usage
     {
-        async Task Simple()
+        void Simple()
         {
             #region CancelCallbackTesting
             
