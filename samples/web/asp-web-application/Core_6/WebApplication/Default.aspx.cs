@@ -27,8 +27,7 @@ public partial class Default :
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.AsyncPages.Server");
 
-        var code = await Global.Endpoint.Request<ErrorCodes>(command, sendOptions)
-            .ConfigureAwait(false);
+        var code = await Global.Endpoint.Request<ErrorCodes>(command, sendOptions);
         Label1.Text = Enum.GetName(typeof(ErrorCodes), code);
 
         #endregion

@@ -18,6 +18,7 @@ public class Global :
 
         var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
+        endpointConfiguration.EnableCallbacks();
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

@@ -13,7 +13,7 @@ class Program
     {
         Console.Title = "Samples.AsyncPages.Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.Server");
-        endpointConfiguration.MakeInstanceUniquelyAddressable("1");
+        endpointConfiguration.EnableCallbacks(makesRequests: false);
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
