@@ -34,8 +34,8 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Callbacks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\NServiceBus.Callbacks.2.0.0\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+    <Reference Include="NServiceBus.Callbacks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
+      <HintPath>..\..\..\..\packages\NServiceBus.Callbacks.2.0.1-beta0001\lib\net452\NServiceBus.Callbacks.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
       <HintPath>..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
@@ -80,6 +80,7 @@
     <Content Include="Web.config" />
     <Content Include="Views\Home\SendEnumMessage.cshtml" />
     <Content Include="Views\Home\SendObjectMessage.cshtml" />
+    <None Include="packages.config" />
     <None Include="Views\Home\SendIntMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
