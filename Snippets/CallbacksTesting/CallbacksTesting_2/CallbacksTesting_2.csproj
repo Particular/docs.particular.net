@@ -4,7 +4,7 @@
     <TargetFramework>net462</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Callbacks.Testing" Version="2.0.1" />
+    <PackageReference Include="NServiceBus.Callbacks.Testing" Version="2.*" />
     <PackageReference Include="NServiceBus.Testing" Version="6.*" />
   </ItemGroup>
 </Project>
