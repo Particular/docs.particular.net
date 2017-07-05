@@ -4,7 +4,7 @@
     <TargetFramework>net462</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Callbacks" Version="2.0.0" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="2.0.1-beta0001" />
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Configuration" />
