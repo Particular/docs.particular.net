@@ -73,9 +73,11 @@ A [unique ID for the current message](/nservicebus/messaging/message-identity.md
 
 NServiceBus implements the [Correlation Identifier](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CorrelationIdentifier.html) pattern by using a `Correlation Id` header.
 
-Message correlation connects request messages with their corresponding response messages. The `Correlation Id` of the response message is a `Message Id` of its corresponding request message.
+Message correlation connects request messages with their corresponding response messages. The `Correlation Id` of the response message is the `Correlation Id` of its corresponding request message. Each outgoing message which is sent outside of a message handler will have it's `Correlation Id` set to it's `Message Id`.
 
 An example usage of Correlation Identifier within NServiceBus is [callbacks](/nservicebus/messaging/callbacks.md).
+
+Messages sent from a Saga using the `ReplyToOriginator` method will have their `Correlation Id` set based on the message which caused the saga to be created. See [Notifying callers of status](/nservicebus/sagas/#notifying-callers-of-status) for more information about the `ReplyToOriginator` method.
 
 
 ### NServiceBus.ConversationId
@@ -84,10 +86,14 @@ Identifier of the conversation that this message is part of. It enables the trac
 
 The first message that is sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are subsequently sent, thus forming a _conversation_. Each message that is sent within a conversation also has a `RelatedTo` value that identifies the originating message that caused it to be sent. 
 
+NOTE: `Conversation Id` is very similar to `Correlation Id`. Both headers are sticky and are copied to each new message that an endpoint produces. Whereas `Conversation Id` is always copied from the incoming message being handled, `Correlation Id` can come from another source (such as when replying from a Saga using `ReplyToOriginator(...)`).
+
 
 ### NServiceBus.RelatedTo
 
-The `MessageId` that caused this message to be sent.
+The `MessageId` that caused this message to be sent. Whenever a message is sent or published from inside a message handler, it's `RelatedTo` header is set to the `MessageId` of the incoming message that was being handled.
+
+NOTE: For a single request-response interaction `Correlation Id` and `RelatedTo` are very similar. Both headers are able to correlate the response message back to the request message. Once a _conversation_ is longer than a single request-response interaction, `Correlation Id` can be used to correlate a response to the original request. `RelatedTo` can only correlate a message back to the previous message in the same _conversation_.
 
 
 ### NServiceBus.MessageIntent
