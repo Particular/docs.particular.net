@@ -8,7 +8,7 @@ versions: '[3.1,)'
 
 In Versions 3.1 and above, the SQL Server transport can take advantage of native [delayed delivery](/nservicebus/messaging/delayed-delivery.md) without then need to run the [timeout manager](/nservicebus/messaging/timeout-manager.md). Instead, the transport creates infrastructure which can delay messages using native SQL Server transport features. To enable the native delayed delivery use the following API:
 
-TODO: code snippet for enabling native DD
+snippet: EnableNativeDelayedDelivery
 
 NOTE: In this mode the timeout manager will still be running in order to process all outstanding delayed messages. Refer to TODO-link to Disabling the timeout manager for details on how to disable the timeout manager entirely.
 
@@ -16,15 +16,15 @@ NOTE: In this mode the timeout manager will still be running in order to process
 
 The transport creates an additional queue that stores delayed messages. The table name has the format `endpoint-name.suffix`, using the suffix specified in the configuration:
 
-TODO: code snippet with a setting `TableSuffix('xyz')`
+snippet: DelayedDeliveryTableSuffix
 
 The timeouts poller checks for expired messages at specified interval:
 
-TODO: code snippet with a setting `ProcessingInterval(TimeSpan x)`
+snippet: DelayedDeliveryProcessingInterval
 
 The poller picks and dispatches messages in batches of specified size:
 
-TODO: code snippet with a setting `BatchSize(int size)`
+snippet: DelayedDeliveryBatchSize
 
 When the delay time lapses, SQL Server transport moves a batch of messages to the input queue. Note that this means the exact time of delivering delayed message is always approximate.
 
@@ -42,7 +42,7 @@ To assist with the upgrade process, the timeout manager is still enabled by defa
 
 Once an endpoint has no more delayed messages in its persistence database, there is no more need for the timeout manager. It can be disabled by calling:
 
-TODO: code snippet with a setting disabling timeout manager
+snippet: DelayedDeliveryDisableTM
 
 At this point, all the `.Timeouts` and `.TimeoutsDispatcher` tables for the endpoint can be deleted from the database. In addition, the endpoint no longer requires timeout persistence, so those storage entities can be removed from the persistence database as well.
 
