@@ -1,3 +1,8 @@
 startcode PurgeBatchOfExpiredMessagesTextSql
-DELETE FROM {1}.{2} WHERE [Id] IN (SELECT TOP ({0}) [Id] FROM {1}.{2} WITH (UPDLOCK, READPAST, ROWLOCK) WHERE [Expires] < GETUTCDATE() ORDER BY [RowVersion])
+
+DELETE FROM {0}
+WHERE RowVersion
+    IN (SELECT TOP (@BatchSize) RowVersion
+        FROM {0} WITH (NOLOCK)
+        WHERE Expires < GETUTCDATE())
 endcode

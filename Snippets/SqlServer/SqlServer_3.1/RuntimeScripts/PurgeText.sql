@@ -1,3 +1,3 @@
 startcode PurgeTextSql
-DELETE FROM {0}.{1}
+DELETE FROM {0}
 endcode

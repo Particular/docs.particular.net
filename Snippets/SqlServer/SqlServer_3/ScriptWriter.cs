@@ -10,7 +10,8 @@ public class ScriptWriter
 
     public ScriptWriter()
     {
-        directory = Path.Combine(TestContext.CurrentContext.TestDirectory, "../../RuntimeScripts");
+        directory = Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../RuntimeScripts");
+        directory = Path.GetFullPath(directory);
         if (Directory.Exists(directory))
         {
             Directory.Delete(directory, true);
@@ -22,7 +23,7 @@ public class ScriptWriter
     public void Write()
     {
         var type = typeof(SqlServerTransport).Assembly.GetType("NServiceBus.Transport.SQLServer.Sql");
-        foreach (var field in type.GetFields(BindingFlags.Static | BindingFlags.NonPublic))
+        foreach (var field in type.GetFields(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public))
         {
             if (field.Name == "ExpiresIndexName")
             {
