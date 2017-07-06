@@ -58,6 +58,7 @@ Operational documentation is best reviewed from the perceptive of the selected t
  * [Installerworkflow](/persistence/sql/installer-workflow.md)
  * [MS SQL Server Scripts](/persistence/sql/sqlserver-scripts.md)
  * [MySql Scripts](/persistence/sql/mysql-scripts.md)
+ * [Oracle Scripts](/persistence/sql/oracle-scripts.md)
 
 
 ### [Azure Storage Persistence](/persistence/azure-storage/)
