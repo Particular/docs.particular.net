@@ -73,10 +73,10 @@ Although MSMQ has the concept of both [Public and Private queues](https://techne
 
 ## Permissions
 
-| Group          | Permissions         | Description                       |
-|----------------|---------------------|-----------------------------------|
-| Owning account | Send, Receive, Peek | Set by NServiceBus                |
-| Administrators | Full                | Set by NServiceBus                |
+| Group          | Permissions         | Description                                    |
+|----------------|---------------------|------------------------------------------------|
+| Owning account | Send, Receive, Peek | Set by NServiceBus                             |
+| Administrators | Full                | Set by NServiceBus                             |
 | Anonymous      | Send                | Set by NServiceBus in Versions 6.0.x and below |
 | Everyone       | Send                | Set by NServiceBus in Versions 6.0.x and below |
 
