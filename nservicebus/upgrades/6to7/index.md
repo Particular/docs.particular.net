@@ -136,7 +136,7 @@ The `GetMesssageIntent` extension method has been renamed to `GetMessageIntent`.
 
 ### AppDomain scanning
 
-AppDomain assemblies are now scanned by default. Use the [ScanAppDomainAssemblies API](/nservicebus/hosting/assembly-scanning.mdg#appdomain-assemblies) to disable AppDomain scanning.
+AppDomain assemblies are now scanned by default. Use the [ScanAppDomainAssemblies API](/nservicebus/hosting/assembly-scanning.md#appdomain-assemblies) to disable AppDomain scanning.
 
 
 ## Legacy .Retries message receiver
