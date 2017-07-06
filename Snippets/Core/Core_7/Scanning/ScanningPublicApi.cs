@@ -85,7 +85,7 @@ namespace Core7.Scanning
             #region ScanningApDomainAssemblies
 
             var assemblyScanner = endpointConfiguration.AssemblyScanner();
-            assemblyScanner.ScanAppDomainAssemblies = true;
+            assemblyScanner.ScanAppDomainAssemblies = false;
 
             #endregion
         }
