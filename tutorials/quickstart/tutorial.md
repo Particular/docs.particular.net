@@ -5,7 +5,7 @@ summary: See why software systems built on asynchronous messaging using NService
 extensions:
 - !!tutorial
   downloadAtTop: true
-  nextText: "Next Tutorial: NServiceBus systems from the ground up"
+  nextText: "Next: NServiceBus from the ground up"
   nextUrl: tutorials/intro-to-nservicebus/1-getting-started
 ---
 
@@ -173,4 +173,4 @@ We saw how automatic retries provide protection from transient failures like dat
 
 We also implemented an additional event subscriber, showing how to decouple independent bits of business logic from each other. The ability to publish one event and then implement resulting steps in separate message handlers makes the system much easier to maintain and evolve.
 
-INFO: Now that you've seen what NServiceBus can do, take the next step and learn how to build a system like this one from the ground up. In the next tutorial, find out how to build the same solution starting from File > New Project.
+SUCCESS: Now that you've seen what NServiceBus can do, take the next step and learn how to build a system like this one from the ground up. In the next tutorial, find out how to build the same solution starting from File > New Project.
