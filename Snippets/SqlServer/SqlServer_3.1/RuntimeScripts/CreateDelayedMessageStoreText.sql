@@ -1,4 +1,4 @@
-startcode CreateQueueTextSql
+startcode CreateDelayedMessageStoreTextSql
 
 IF EXISTS (
     SELECT * 
@@ -20,30 +20,17 @@ BEGIN
 END
 
 CREATE TABLE {0} (
-    Id uniqueidentifier NOT NULL,
-    CorrelationId varchar(255),
-    ReplyToAddress varchar(255),
-    Recoverable bit NOT NULL,
-    Expires datetime,
-    Headers varchar(max) NOT NULL,
-    Body varbinary(max),
+    Headers nvarchar(max) NOT NULL,
+    Body varbinary(max) NULL,
+    Due datetime NOT NULL,
     RowVersion bigint IDENTITY(1,1) NOT NULL
-);
+) ON [PRIMARY];
 
-CREATE CLUSTERED INDEX Index_RowVersion ON {0}
+CREATE NONCLUSTERED INDEX [Index_Due] ON {0}
 (
-    RowVersion
+    [Due] ASC
 )
-
-CREATE NONCLUSTERED INDEX Index_Expires ON {0}
-(
-    Expires
-)
-INCLUDE
-(
-    Id,
-    RowVersion
-)
-
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+   
 EXEC sp_releaseapplock @Resource = '{0}_lock'
 endcode
