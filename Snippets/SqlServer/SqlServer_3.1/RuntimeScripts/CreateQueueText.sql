@@ -11,7 +11,7 @@ IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{0}].[{
                             [ReplyToAddress] [varchar](255) NULL,
                             [Recoverable] [bit] NOT NULL,
                             [Expires] [datetime] NULL,
-                            [Headers] [varchar](max) NOT NULL,
+                            [Headers] [nvarchar](max) NOT NULL,
                             [Body] [varbinary](max) NULL,
                             [RowVersion] [bigint] IDENTITY(1,1) NOT NULL
                         ) ON [PRIMARY];

@@ -20,9 +20,19 @@ class MultiSchema
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
 
         transport.UseSchemaForQueue(queueName: "myqueue", schema: "my_schema");
-        transport.UseSchemaForQueue(queueName: "error", schema: "error");
+        transport.UseSchemaForQueue(queueName: "myerror", schema: "sc");
+
+        #endregion
+
+        #region sqlserver-multischema-config-for-queue-send
 
         messageSession.Send("myqueue", new MyMessage());
+
+        #endregion
+
+        #region sqlserver-multischema-config-for-queue-error
+
+        endpointConfiguration.SendFailedMessagesTo("myerror");
 
         #endregion
     }

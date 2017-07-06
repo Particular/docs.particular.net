@@ -14,6 +14,12 @@ Use the following API to configure the schema for a specific queue:
 
 snippet: sqlserver-multischema-config-for-queue
 
+The configuration above is applicable when sending to a specific queue or when a specific queue is passed in configuration:
+
+snippet: sqlserver-multischema-config-for-queue-send
+
+snippet: sqlserver-multischema-config-for-queue-error
+
 The entire algorithm for calculating the schema is the following:
 
  * If schema is configured for a given queue via `UseSchemaForQueue`, the configured value is used.

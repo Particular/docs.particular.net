@@ -40,6 +40,12 @@ Use the following API to configure the schema for a specific queue:
 
 snippet: sqlserver-multicatalog-config-for-queue
 
+The configuration above is applicable when sending to a specific queue or when a specific queue is passed in configuration:
+
+snippet: sqlserver-multicatalog-config-for-queue-send
+
+snippet: sqlserver-multicatalog-config-for-queue-error
+
 The entire algorithm for calculating the catalog is the following:
 
  * If catalog is configured for a given queue via `UseCatalogForQueue`, the configured value is used.

@@ -10,9 +10,19 @@ class MultiCatalog
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
 
         transport.UseCatalogForQueue(queueName: "myqueue", catalog: "MyCatalog");
-        transport.UseCatalogForQueue(queueName: "error", catalog: "ServiceControl");
+        transport.UseCatalogForQueue(queueName: "myerror", catalog: "ServiceControl");
+
+        #endregion
+
+        #region sqlserver-multicatalog-config-for-queue-send
 
         messageSession.Send("myqueue", new MyMessage());
+
+        #endregion
+
+        #region sqlserver-multicatalog-config-for-queue-error
+
+        endpointConfiguration.SendFailedMessagesTo("myerror");
 
         #endregion
     }
