@@ -17,7 +17,7 @@ NServiceBus requires a specific MSMQ configuration to operate.
 
 The supported configuration is to only have the base MSMQ service installed with no optional features. To enable the supported configuration either use `NServiceBus Prerequisites` in the [Platform Installer](/platform/installer/) or use the `Install-NServiceBusMSMQ` cmdlet from the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md).
 
-Alternatively the MSMQ service can be manually installed:
+Alternatively, the MSMQ service can be manually installed:
 
 
 ### Windows 2012
@@ -58,11 +58,13 @@ So downtime is proportional to the time taken for the MSMQ service to restart on
 
 Remote queues are not supported for MSMQ as this conflicts with the [Distributed Bus architectural style](/nservicebus/architecture/) that is predicated on concepts of durability, autonomy and avoiding a single point of failure. For scenarios where a [Broker style architecture](/nservicebus/architecture/) is required use transports like [Sql Server](/transports/sql/) and [RabbitMQ](/transports/rabbitmq/).
 
+
 ## Error queue configuration
 
 The transport requires all endpoints to configure the error queue address. The centralized error queue is a recommended setup for production scenarios.
 
 See the [recoverability documentation](/nservicebus/recoverability/configure-error-handling.md) for details on how to configure the error queue address.
+
 
 ## Public Queues
 
@@ -71,22 +73,40 @@ Although MSMQ has the concept of both [Public and Private queues](https://techne
 
 ## Permissions
 
-| Group          | Permissions          |
-|----------------|----------------------|
-| Owning account | Write, Receive, Peek |
-| Administrators | Full                 |
-| Anonymous      | Write                |
-| Everyone       | Write                |
+| Group          | Permissions         | Granted by NServiceBus   | Granted by Windows 2012+ |
+|----------------|---------------------|--------------------------|--------------------------|
+| Owning account | Send, Receive, Peek | All versions             | Domain & Workgroup mode  |
+| Administrators | Full                | All versions             | None                     |
+| Anonymous      | Send                | Versions 6.0.x and below | Workgroup mode           |
+| Everyone       | Send                | Versions 6.0.x and below | Workgroup mode           |
 
+NOTE: In versions 6.1.0 and above, the NServiceBus installers will not automatically grant permissions to the `Anonymous` and `Everyone` group. The installer will respect the existing queue permissions that have been set up for the endpoint queue. The permissions granted to `Anonymous` and `Everyone` groups are based on standard windows behavior and not anymore via NServiceBus.
+
+Any endpoint that sends a message to a target endpoint requires the `Send` permission to be granted for the sending user account on the target queue. For example, if an `endpoint A` is running as `userA` and is sending a message to `endpoint B`, then `userA` requires the `Send` permission to be granted on `endpoint B`'s queue. When using messaging patterns like request-response or publish-subscribe, the queues for both the endpoints will require `Send` permissions to be granted to each others user accounts. 
+
+When an endpoint creates a queue on a machine, permissions depend on whether the server is joined to a [domain or a workgroup](https://support.microsoft.com/en-us/help/884974/information-about-workgroup-mode-and-about-domain-mode-in-microsoft-me) due to Windows behavior. 
+
+
+### Domain mode
+
+If the machine is joined to a domain, then at the time of queue creation, only the domain user that created the queue will have `Send` permissions granted. The `Everyone` user group and `Anonymous` user group will NOT have `Send` permissions. If all the endpoints which need to communicate are running under the same domain account, no further configuration is required. However, if the endpoints are run using different domain accounts, then the `Send` permission on the receiving endpoint's input queue needs to be explicitly granted to the domain user account of the sending endpoint.
+
+
+### Workgroup mode
+
+If the machine is connected to a workgroup, then the `Send` permission is granted to the `Everyone` and `Anonymous` user groups by Windows. Any endpoint will be able to send messages to any other endpoint without further configuration.
+
+
+### Well-Known group names and Queue access rights
 To retrieve the group names the [WellKnownSidType](https://msdn.microsoft.com/en-us/library/system.security.principal.wellknownsidtype.aspx) enumeration is used.
 
 MSMQ permissions are defined in the [MessageQueueAccessRights](https://msdn.microsoft.com/en-us/library/system.messaging.messagequeueaccessrights.aspx) enumeration.
 
-NOTE: Write access is granted to both `Everyone` and `Anonymous`. Endpoints can receive messages from other endpoints running under different accounts. To increase security and further lock down MSMQ write permissions remove `Everyone` and `Anonymous` and grant specific permissions to a subset of accounts.
+NOTE: To increase security and further lock down MSMQ send/receive permissions remove `Everyone` and `Anonymous` and grant specific permissions to the subset of accounts that need them.
 
-NOTE: From Version 6, if the default queue permissions are set, a log message will be written during the transport startup, reminding that the queue has default permissions. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
+NOTE: In Versions 6 and above, if the default queue permissions are set, a log message will be written during the endpoint startup, reminding that the queue has default permissions and might require stricter permissions for production. During development, if running with an attached debugger, this message will be logged as `INFO` level, otherwise `WARN`.
 
-Example of the warning that is logged:
+An example of the warning that is logged:
 
 > WARN NServiceBus.QueuePermissions - Queue [private$\xxxx] is running with [Everyone] with AccessRights set to [GenericWrite]. Consider setting appropriate permissions, if required by the organization. For more information, consult the documentation.
 
