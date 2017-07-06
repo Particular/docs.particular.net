@@ -12,6 +12,7 @@ upgradeGuideCoreVersions:
 
 include: upgrade-major
 
+
 ## Config
 
 The Configuration APIs `IProvideConfiguration`, `IConfigurationSource` and `CustomConfigurationSource` have been deprecated. Code based API can be used instead.
@@ -145,6 +146,10 @@ The [MSMQ transport](/transports/msmq) is no longer part of the NServiceBus NuGe
 ## Default transport
 
 There is no longer a default transport, so an exception will be thrown if an endpoint is created or started without configuring a transport.
+
+In Versions 6 and below the default transport was [MSMQ](/transports/msmq/). To use MSMQ in Versions 7 and above use the following:
+
+snippet: 6to7-UseMsmqTransport
 
 
 ## Message Property Encryption
