@@ -614,6 +614,8 @@
       Title: Deployment options
     - Url: transports/sql/operations-scripting
       Title: Scripting
+    - Url: transports/sql/runtime-sql
+      Title: Runtime SQL
     - Url: transports/sql/entity-framework
       Title: Entity Framework caveats
     - Url: transports/sql/callbacks
