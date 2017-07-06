@@ -129,7 +129,14 @@ The `GetMesssageIntent` extension method has been renamed to `GetMessageIntent`.
 
 ## Assembly scanning
 
+### Mismatched assemblies
+
 64-bit assemblies are no longer silently excluded from scanning when running in a x86 process. Instead startup will fail with a `System.BadImageFormatException`. Use the [exclude API](/nservicebus/hosting/assembly-scanning.md#assemblies-to-scan) to exclude the assembly and avoid the exception. 
+
+
+### AppDomain scanning
+
+AppDomain assemblies are now scanned by default. Use the [ScanAppDomainAssemblies API](/nservicebus/hosting/assembly-scanning.mdg#appdomain-assemblies) to disable AppDomain scanning.
 
 
 ## Legacy .Retries message receiver
