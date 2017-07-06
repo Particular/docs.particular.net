@@ -17,7 +17,7 @@ NServiceBus requires a specific MSMQ configuration to operate.
 
 The supported configuration is to only have the base MSMQ service installed with no optional features. To enable the supported configuration either use `NServiceBus Prerequisites` in the [Platform Installer](/platform/installer/) or use the `Install-NServiceBusMSMQ` cmdlet from the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md).
 
-Alternatively the MSMQ service can be manually installed:
+Alternatively, the MSMQ service can be manually installed:
 
 
 ### Windows 2012
@@ -73,23 +73,23 @@ Although MSMQ has the concept of both [Public and Private queues](https://techne
 
 ## Permissions
 
-| Group          | Permissions         | Description                                    |
-|----------------|---------------------|------------------------------------------------|
-| Owning account | Send, Receive, Peek | Set by NServiceBus                             |
-| Administrators | Full                | Set by NServiceBus                             |
-| Anonymous      | Send                | Set by NServiceBus in Versions 6.0.x and below |
-| Everyone       | Send                | Set by NServiceBus in Versions 6.0.x and below |
+| Group          | Permissions         | Granted by NServiceBus   | Granted by Windows 2012+ |
+|----------------|---------------------|--------------------------|--------------------------|
+| Owning account | Send, Receive, Peek | All versions             | Domain & Workgroup mode  |
+| Administrators | Full                | All versions             | None                     |
+| Anonymous      | Send                | Versions 6.0.x and below | Workgroup mode           |
+| Everyone       | Send                | Versions 6.0.x and below | Workgroup mode           |
 
-NOTE: In Versions 6.1.0 and above, the installers will not automatically grant permissions to the `Anonymous` and `Everyone` group. It will respect the existing queue permissions that have been set up for the endpoint. The permissions granted to these user accounts is based on standard windows behavior and not via NServiceBus.
+NOTE: In versions 6.1.0 and above, the NServiceBus installers will not automatically grant permissions to the `Anonymous` and `Everyone` group. The installer will respect the existing queue permissions that have been set up for the endpoint queue. The permissions granted to `Anonymous` and `Everyone` groups are based on standard windows behavior and not anymore via NServiceBus.
 
 Any endpoint that sends a message to a target endpoint requires the `Send` permission to be granted for the sending user account on the target queue. For example, if an `endpoint A` is running as `userA` and is sending a message to `endpoint B`, then `userA` requires the `Send` permission to be granted on `endpoint B`'s queue. When using messaging patterns like request-response or publish-subscribe, the queues for both the endpoints will require `Send` permissions to be granted to each others user accounts. 
 
-When an endpoint creates a queue on a machine, the default permissions depend on whether the server is joined to a [domain or a workgroup](https://support.microsoft.com/en-us/help/884974/information-about-workgroup-mode-and-about-domain-mode-in-microsoft-me).
+When an endpoint creates a queue on a machine, permissions depend on whether the server is joined to a [domain or a workgroup](https://support.microsoft.com/en-us/help/884974/information-about-workgroup-mode-and-about-domain-mode-in-microsoft-me) due to Windows behavior. 
 
 
 ### Domain mode
 
-If the machine is joined to a domain, then at the time of queue creation, only the domain user that created the queue, domain administrators and local administrators will have `Send` permissions granted. The `Everyone` user group and `Anonymous` user group will not have `Send` permissions. If all the endpoints which need to communicate are running under the same domain account, no further configuration is required. However, if the endpoints are run using different domain accounts, then the `Send` permission on the receiving endpoint's input queue needs to be explicitly granted to the domain user account of the sending endpoint.
+If the machine is joined to a domain, then at the time of queue creation, only the domain user that created the queue will have `Send` permissions granted. The `Everyone` user group and `Anonymous` user group will NOT have `Send` permissions. If all the endpoints which need to communicate are running under the same domain account, no further configuration is required. However, if the endpoints are run using different domain accounts, then the `Send` permission on the receiving endpoint's input queue needs to be explicitly granted to the domain user account of the sending endpoint.
 
 
 ### Workgroup mode
