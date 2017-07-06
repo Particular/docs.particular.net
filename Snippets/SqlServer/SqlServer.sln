@@ -1,37 +1,55 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26114.2
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 15.0.26114.2
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServer_2", "SqlServer_2\SqlServer_2.csproj", "{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServer_2", "SqlServer_2\SqlServer_2.csproj", "{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServer_3", "SqlServer_3\SqlServer_3.csproj", "{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServer_3", "SqlServer_3\SqlServer_3.csproj", "{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServer_All", "SqlServer_All\SqlServer_All.csproj", "{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServer_All", "SqlServer_All\SqlServer_All.csproj", "{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.csproj", "{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServer_1", "SqlServer_1\SqlServer_1.csproj", "{BE948BCF-1425-42CA-B0F5-E527DDCAE862}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServer_1", "SqlServer_1\SqlServer_1.csproj", "{BE948BCF-1425-42CA-B0F5-E527DDCAE862}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServer_2.1", "SqlServer_2.1\SqlServer_2.1.csproj", "{DB7B97B4-3075-4541-A821-1C6FF9AB8671}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServer_2.1", "SqlServer_2.1\SqlServer_2.1.csproj", "{DB7B97B4-3075-4541-A821-1C6FF9AB8671}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServer_3.1", "SqlServer_3.1\SqlServer_3.1.csproj", "{E8130F3D-3346-4846-9122-2406EB4E31E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE948BCF-1425-42CA-B0F5-E527DDCAE862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE948BCF-1425-42CA-B0F5-E527DDCAE862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE948BCF-1425-42CA-B0F5-E527DDCAE862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE948BCF-1425-42CA-B0F5-E527DDCAE862}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DB7B97B4-3075-4541-A821-1C6FF9AB8671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB7B97B4-3075-4541-A821-1C6FF9AB8671}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB7B97B4-3075-4541-A821-1C6FF9AB8671}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB7B97B4-3075-4541-A821-1C6FF9AB8671}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8130F3D-3346-4846-9122-2406EB4E31E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8130F3D-3346-4846-9122-2406EB4E31E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8130F3D-3346-4846-9122-2406EB4E31E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8130F3D-3346-4846-9122-2406EB4E31E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
