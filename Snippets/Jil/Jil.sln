@@ -1,16 +1,25 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26114.2
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 15.0.26114.2
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jil_2", "Jil_2\Jil_2.csproj", "{E5E45ADD-6D78-4177-BA4E-C4687B7F6764}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jil_2", "Jil_2\Jil_2.csproj", "{E5E45ADD-6D78-4177-BA4E-C4687B7F6764}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jil_2.1", "Jil_2.1\Jil_2.1.csproj", "{5A858EA9-1602-4FBC-B5D8-84DBC50D788D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E5E45ADD-6D78-4177-BA4E-C4687B7F6764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E5E45ADD-6D78-4177-BA4E-C4687B7F6764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5E45ADD-6D78-4177-BA4E-C4687B7F6764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5E45ADD-6D78-4177-BA4E-C4687B7F6764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A858EA9-1602-4FBC-B5D8-84DBC50D788D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A858EA9-1602-4FBC-B5D8-84DBC50D788D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A858EA9-1602-4FBC-B5D8-84DBC50D788D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A858EA9-1602-4FBC-B5D8-84DBC50D788D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
