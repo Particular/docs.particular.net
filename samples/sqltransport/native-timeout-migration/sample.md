@@ -1,5 +1,5 @@
 ---
-title: Migrating delayed messages from NHibernate or SQL persistence to SQL Server transport
+title: Migrating delayed messages from persistence to SQL Server transport
 summary: How to migrate the delayed messages stored by Timeout Manager in NHibernate or SQL persistence to the format used by native delayed delivery support in SQL Server transport 3.1 and later.
 reviewed: 2017-07-07
 component: SqlServer
