@@ -24,3 +24,12 @@ related:
  1. Start the Endpoint.Native project.
  1. Observe the message `Hello from MyHandler` displayed two times meaning that the delayed messages have been successfully picked up by the native handling in the SQL Server transport.
 
+## Migration scripts
+
+The following script can be used to migrate the delayed messages from NHibernate persistence (assuming SQL Server is used as a database):
+
+snippet: MigrateFromNHibernate
+
+The following script can be used to migrate the delayed messages from SQL persistence (assuming SQL Server is used as a database):
+
+snippet: MigrateFromSql
