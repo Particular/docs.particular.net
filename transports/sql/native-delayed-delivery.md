@@ -47,12 +47,3 @@ snippet: DelayedDeliveryDisableTM
 At this point, all the `.Timeouts` and `.TimeoutsDispatcher` tables for the endpoint can be deleted from the database. In addition, the endpoint no longer requires timeout persistence, so those storage entities can be removed from the persistence database as well.
 
 NOTE: Newly created endpoints that have never been deployed without native delayed delivery should also disable Timeout Manager from running.
-
-
-## Upgrade
-
-For details regarding upgrade and installation, refer to the dedicated [upgrade guide]() link.
-
-TODO: create a short upgrade guide, cover 
-- timeouts migration for specific persistences/transports
-- matrix explaining what versions of persistences/transports support native and persistence-based delayed delivery
