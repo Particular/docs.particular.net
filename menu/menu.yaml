@@ -927,23 +927,23 @@
       Articles:
       - Title: Expose internal database
         Url: servicecontrol/use-ravendb-studio
-- Title: Integration
-  Articles:
-  - Title: Plugins
-    Url: servicecontrol/plugins
+  - Title: Integration
     Articles:
-    - Title: Heartbeats
-      Url: servicecontrol/plugins/heartbeat
-    - Title: Custom checks
-      Url: servicecontrol/plugins/custom-checks
-    - Title: Saga audits
-      Url:  servicecontrol/plugins/saga-audit
-  - Title: Integration events
-    Url: servicecontrol/contracts
-  - Title: Transport adapter
-    Url: servicecontrol/transport-adapter
-    Articles:
-    - Title: Incompatible transport features
-      Url: servicecontrol/transport-adapter/incompatible-features
-    - Title: dotnet new Template
-      Url: servicecontrol/transport-adapter/template
+    - Title: Plugins
+      Url: servicecontrol/plugins
+      Articles:
+      - Title: Heartbeats
+        Url: servicecontrol/plugins/heartbeat
+      - Title: Custom checks
+        Url: servicecontrol/plugins/custom-checks
+      - Title: Saga audits
+        Url:  servicecontrol/plugins/saga-audit
+    - Title: Integration events
+      Url: servicecontrol/contracts
+    - Title: Transport adapter
+      Url: servicecontrol/transport-adapter
+      Articles:
+      - Title: Incompatible transport features
+        Url: servicecontrol/transport-adapter/incompatible-features
+      - Title: dotnet new Template
+        Url: servicecontrol/transport-adapter/template
