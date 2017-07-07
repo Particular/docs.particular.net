@@ -877,69 +877,74 @@
 
 - Name: ServiceControl
   Topics:
-  - Title: Configuration
+  - Title: ServiceControl instances
     Articles:
-    - Url: servicecontrol/installation
-      Title: Installation
+    - Title: Planning
       Articles:
-      - Url: servicecontrol/installation-silent
-        Title: Installing Silently
-      - Url: servicecontrol/installation-powershell
-        Title: Managing via PowerShell
-    - Url: servicecontrol/deploying-servicecontrol-in-a-cluster
-      Title: Cluster Deployment
-    - Url: servicecontrol/license
-      Title: Licensing
-    - Url: servicecontrol/creating-config-file
-      Title: Settings
+      - Title: Capacity Planning
+        Url: servicecontrol/capacity-and-planning
+      - Title: Optimizing use in different environments
+        Url: servicecontrol/servicecontrol-in-practice
+      - Title: Security
+        Url: servicecontrol/securing-servicecontrol
+      - Title: Non-Priveleged Accounts
+        Url: servicecontrol/configure-non-privileged-service-account
+    - Title: Installation
+      Url: servicecontrol/installation
       Articles:
-      - Url: nservicebus/hosting/override-hostid
-        Title: Overriding the host identifier
-      - Url: servicecontrol/configure-ravendb-location
-        Title: RavenDB Location
-      - Url: servicecontrol/setting-custom-hostname
-        Title: Configure the URI
-      - Url: servicecontrol/logging
-        Title: Logging
-      - Url: servicecontrol/errorlog-auditlog-behavior
-        Title: Forwarding Queues
-      - Url: servicecontrol/configuring-msmq
-        Title: Configuring MSMQ
-    - Url: servicecontrol/troubleshooting
-      Title: Troubleshooting
-    - Url: servicecontrol/plugins
-      Title: Integration
+      - Title: Installing Silently
+        Url: servicecontrol/installation-silent
+      - Title: Managing via PowerShell
+        Url: servicecontrol/installation-powershell
+      - Title: Cluster Deployment
+        Url: servicecontrol/deploying-servicecontrol-in-a-cluster
+      - Title: Licensing
+        Url: servicecontrol/license
+      - Title: Settings
+        Url: servicecontrol/creating-config-file
+        Articles:
+        - Title: Overriding the host identifier
+          Url: nservicebus/hosting/override-hostid
+        - Title: RavenDB Location
+          Url: servicecontrol/configure-ravendb-location
+        - Title: Configure the URI
+          Url: servicecontrol/setting-custom-hostname
+        - Title: Logging
+          Url: servicecontrol/logging
+        - Title: Forwarding Queues
+          Url: servicecontrol/errorlog-auditlog-behavior
+        - Title: Configuring MSMQ
+          Url: servicecontrol/configuring-msmq
+    - Title: Management
       Articles:
-      - Url: servicecontrol/contracts
-        Title: Using ServiceControl events
-      - Url: servicecontrol/plugins/heartbeat
-        Title: Heartbeat Plugin
-      - Url: servicecontrol/plugins/custom-checks
-        Title: CustomChecks Plugin
-      - Url: servicecontrol/plugins/saga-audit
-        Title: SagaAudit Plugin
-    - Url: servicecontrol/transport-adapter
-      Title: Transport adapter
+      - Title: Data Expiration
+        Url: servicecontrol/how-purge-expired-data
+      - Title: Backup
+        Url: servicecontrol/backup-sc-database
+      - Title: Compacting database
+        Url: servicecontrol/db-compaction
+    - Title: Troubleshooting
+      Url: servicecontrol/troubleshooting
       Articles:
-      - Url: servicecontrol/transport-adapter/incompatible-features
-        Title: Incompatible transport features
-      - Url: servicecontrol/transport-adapter/template
-        Title: dotnet new Template
-  - Title: Management
+      - Title: Expose internal database
+        Url: servicecontrol/use-ravendb-studio
+- Title: Integration
+  Articles:
+  - Title: Plugins
+    Url: servicecontrol/plugins
     Articles:
-    - Url: servicecontrol/securing-servicecontrol
-      Title: Security
-    - Url: servicecontrol/capacity-and-planning
-      Title: Capacity Planning
-    - Url: servicecontrol/servicecontrol-in-practice
-      Title: Optimizing use in different environments
-    - Url: servicecontrol/how-purge-expired-data
-      Title: Data Expiration
-    - Url: servicecontrol/use-ravendb-studio
-      Title: Expose Data via RavenDB Studio
-    - Url: servicecontrol/backup-sc-database
-      Title: Backup
-    - Url: servicecontrol/configure-non-privileged-service-account
-      Title: Non-Privileged Accounts
-    - Url: servicecontrol/db-compaction
-      Title: Compacting RavenDB
+    - Title: Heartbeats
+      Url: servicecontrol/plugins/heartbeat
+    - Title: Custom checks
+      Url: servicecontrol/plugins/custom-checks
+    - Title: Saga audits
+      Url:  servicecontrol/plugins/saga-audit
+  - Title: Integration events
+    Url: servicecontrol/contracts
+  - Title: Transport adapter
+    Url: servicecontrol/transport-adapter
+    Articles:
+    - Title: Incompatible transport features
+      Url: servicecontrol/transport-adapter/incompatible-features
+    - Title: dotnet new Template
+      Url: servicecontrol/transport-adapter/template
