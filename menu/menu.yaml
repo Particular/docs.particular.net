@@ -902,19 +902,18 @@
         Url: servicecontrol/license
       - Title: Settings
         Url: servicecontrol/creating-config-file
-        Articles:
-        - Title: Overriding the host identifier
-          Url: nservicebus/hosting/override-hostid
-        - Title: RavenDB Location
-          Url: servicecontrol/configure-ravendb-location
-        - Title: Configure the URI
-          Url: servicecontrol/setting-custom-hostname
-        - Title: Logging
-          Url: servicecontrol/logging
-        - Title: Forwarding Queues
-          Url: servicecontrol/errorlog-auditlog-behavior
-        - Title: Configuring MSMQ
-          Url: servicecontrol/configuring-msmq
+      - Title: Overriding the host identifier
+        Url: nservicebus/hosting/override-hostid
+      - Title: RavenDB Location
+        Url: servicecontrol/configure-ravendb-location
+      - Title: Configure the URI
+        Url: servicecontrol/setting-custom-hostname
+      - Title: Logging
+        Url: servicecontrol/logging
+      - Title: Forwarding Queues
+        Url: servicecontrol/errorlog-auditlog-behavior
+      - Title: Configuring MSMQ
+        Url: servicecontrol/configuring-msmq
     - Title: Management
       Articles:
       - Title: Data Expiration
