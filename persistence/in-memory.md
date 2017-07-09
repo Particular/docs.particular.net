@@ -13,6 +13,6 @@ Some scenarios require an in-memory persistence such as the development environm
 
 snippet: ConfiguringInMemory
 
-ERROR: Because there is no clustering / replication happening between NServiceBus instances, when a process is down, all the information stored in the InMemory persistence of that process is lost.
+DANGER: Because there is no clustering / replication happening between NServiceBus instances, when a process is down, all the information stored in the InMemory persistence of that process is lost.
 
 NOTE: The [Delayed Retries](/nservicebus/recoverability/#delayed-retries) mechanism uses the deferred delivery (also known as *timeouts*) feature internally. As Delayed Retries is enabled by default, using InMemory persistence means the risk of losing messages that have failed processing and are waiting for another retry attempt. Use InMemory persistence only is scenarios where it is OK to lose messages.
