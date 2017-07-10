@@ -14,6 +14,6 @@ To enable ServiceControl to gather this information, configure the solution appr
 
 NOTE: All endpoints in a single environment should be configured to forward to the same audit, error, and ServiceControl plugin queues.
 
-ServiceControl will detect important system occurrances and raise [integration events](/servicecontrol/contracts) to notify subscribing endpoints about them.
+ServiceControl will detect important system occurrances and raise [integration events](/servicecontrol/contracts.md) to notify subscribing endpoints about them.
 
 The [ServiceControl Transport Adapter](/servicecontrol/transport-adapter/) decouples ServiceControl from the specifics of the business endpoint's transport to support scenarios where the endpoint's transport uses physical routing features [not compatible with ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md) or where endpoints use mixed transports or multiple instances of a message broker.
