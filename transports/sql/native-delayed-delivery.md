@@ -12,17 +12,20 @@ snippet: EnableNativeDelayedDelivery
 
 NOTE: In this mode the timeout manager will still be running in order to process all outstanding delayed messages. Refer to the [Disabling the timeout manager](/transports/sql/native-delayed-delivery.md#backwards-compatibility-disabling-the-timeout-manager) section for details on how to disable the timeout manager entirely.
 
-## How it works
 
-The transport creates an additional queue that stores delayed messages. The table name has the format `endpoint-name.suffix`, using the suffix specified in the configuration:
+## Configuration
+
+The settings described in this section are obligatory. By default use the values presented in snippets. The settings can be fine-tuned to fit a particular system's characteristic, e.g. in case the expired timeout messages need to be picked up more frequently to result in a more precise approximation of expiry time.
+
+The transport creates an additional queue that stores delayed messages. The table name has the format _`endpoint-name.suffix`_, using the suffix specified in the configuration:
 
 snippet: DelayedDeliveryTableSuffix
 
-The timeouts poller checks for expired messages at specified interval:
+SQL Server transport polls for expired messages at the specified intervals:
 
 snippet: DelayedDeliveryProcessingInterval
 
-The poller picks and dispatches messages in batches of specified size:
+then it picks and dispatches messages in batches of the specified size:
 
 snippet: DelayedDeliveryBatchSize
 
