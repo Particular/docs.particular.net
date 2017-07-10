@@ -5,6 +5,7 @@ component: SqlPersistence
 reviewed: 2017-04-24
 related:
  - nservicebus/handlers/accessing-data
+ - samples/sqltransport-sqlpersistence
 redirects:
  - nservicebus/sql-persistence/accessing-data
 ---
