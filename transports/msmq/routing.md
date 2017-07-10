@@ -12,7 +12,7 @@ redirects:
  - nservicebus/msmq/routing
 ---
 
-The MSMQ transport in NServiceBus is a distributed transport in which there is the [MSMQ process](https://msdn.microsoft.com/en-us/library/ms711472(v=vs.85).aspx) running on each machine, with messages being stored locally before being forwarded to other machines. In this model, each `endpoint` connects to the local MSMQ process and, when addressing a different endpoint, not only the queue name but also the host name has to be specified.
+The MSMQ transport in NServiceBus is a distributed transport in which there is the [MSMQ process](https://msdn.microsoft.com/en-us/library/ms711472.aspx) running on each machine, with messages being stored locally before being forwarded to other machines. In this model, each `endpoint` connects to the local MSMQ process and, when addressing a different endpoint, not only the queue name but also the host name has to be specified.
 
 
 ## Scaling out
