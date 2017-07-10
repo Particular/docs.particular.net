@@ -1,12 +1,29 @@
 ---
 title: SQL Server Transport and NHibernate Persistence
-summary: Integrating SQL Server transport with NHibernate persistence without outbox.
-reviewed: 2016-03-21
-component: SqlServer
+summary: Integrating SQL Server transport with NHibernate persistence.
+reviewed: 2017-06-26
+component: Core
 related:
 - persistence/nhibernate
 - transports/sql
 ---
+
+
+In this sample, the [SQL Server Transport](/transports/sql/) is used in conjunction with [NHibernate Persistence](/persistence/nhibernate/). The sample shows how to use the same database connection for both transport and persistence operations, and how to access (using multiple [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping)) the current SQL connection and transaction from within a message handler to persist business objects to the database.
+
+NOTE: Because NHibernate Persistence is able to reuse the connection and transaction managed by SQL Server transport the endpoints can run in the `TransportTransactionMode.SendsAtomicWithReceive` while ensuring exactly once message processing guarantees, as long as SQL Persistence session APIs are used to access connection and transaction.
+
+
+## Prerequisites
+
+An instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
+
+At startup each endpoint will create its requires SQL assets. For example Receiver will execute the following:
+
+snippet: ReceiverSQLAssets
+
+
+## Procedure
 
  1. Make sure an instance is SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a databases `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under *security* directory in SSMS database tree).
  1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
@@ -37,8 +54,6 @@ The Sender does not store any data. It mimics the front-end system where orders 
 snippet: SenderConfiguration
 
 The connection strings for both persistence and transport need to be exactly the same.
-
-snippet: SenderConnectionStrings
 
 
 ### Receiver project
