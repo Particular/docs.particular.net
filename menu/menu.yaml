@@ -878,13 +878,13 @@
 - Name: ServiceControl
   Topics:
   - Title: ServiceControl instances
+    Url: servicecontrol/servicecontrol-instances
     Articles:
     - Title: Planning
+      Url: servicecontrol/servicecontrol-in-practice
       Articles:
       - Title: Capacity Planning
         Url: servicecontrol/capacity-and-planning
-      - Title: Optimizing use in different environments
-        Url: servicecontrol/servicecontrol-in-practice
       - Title: Security
         Url: servicecontrol/securing-servicecontrol
       - Title: Non-Priveleged Accounts
@@ -928,6 +928,7 @@
       - Title: Expose internal database
         Url: servicecontrol/use-ravendb-studio
   - Title: Integration
+    Url: servicecontrol/integration
     Articles:
     - Title: Plugins
       Url: servicecontrol/plugins
