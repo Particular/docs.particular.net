@@ -1,7 +1,7 @@
 ---
 title: Entity Framework caveats
 reviewed: 2016-08-31
-component: SqlServer
+component: SqlTransport
 redirects:
  - nservicebus/sqlserver/entity-framework
  - transports/sqlserver/entity-framework

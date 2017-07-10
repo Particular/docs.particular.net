@@ -2,7 +2,7 @@
 title: Multi-Instance Mode
 summary: SqlServer transport running in Multi-Instance Mode
 reviewed: 2016-09-13
-component: SqlServer
+component: SqlTransport
 related:
  - transports/sql/deployment-options
 ---

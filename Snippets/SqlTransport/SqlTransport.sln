@@ -2,19 +2,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 15.0.26114.2
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServer_2", "SqlServer_2\SqlServer_2.csproj", "{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_2", "SqlTransport_2\SqlTransport_2.csproj", "{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServer_3", "SqlServer_3\SqlServer_3.csproj", "{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_3", "SqlTransport_3\SqlTransport_3.csproj", "{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServer_All", "SqlServer_All\SqlServer_All.csproj", "{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_All", "SqlTransport_All\SqlTransport_All.csproj", "{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServer_1", "SqlServer_1\SqlServer_1.csproj", "{BE948BCF-1425-42CA-B0F5-E527DDCAE862}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_1", "SqlTransport_1\SqlTransport_1.csproj", "{BE948BCF-1425-42CA-B0F5-E527DDCAE862}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServer_2.1", "SqlServer_2.1\SqlServer_2.1.csproj", "{DB7B97B4-3075-4541-A821-1C6FF9AB8671}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_2.1", "SqlTransport_2.1\SqlTransport_2.1.csproj", "{DB7B97B4-3075-4541-A821-1C6FF9AB8671}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServer_3.1", "SqlServer_3.1\SqlServer_3.1.csproj", "{E8130F3D-3346-4846-9122-2406EB4E31E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_3.1", "SqlTransport_3.1\SqlTransport_3.1.csproj", "{E8130F3D-3346-4846-9122-2406EB4E31E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

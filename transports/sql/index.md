@@ -2,7 +2,7 @@
 title: SQL Server Transport
 summary: High-level description of NServiceBus SQL Server Transport.
 reviewed: 2016-08-31
-component: SqlServer
+component: SqlTransport
 redirects:
  - nservicebus/sqlserver/usage
  - nservicebus/sqlserver

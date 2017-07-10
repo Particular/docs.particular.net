@@ -1,7 +1,7 @@
 ---
 title: Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against the SQLServer Transport.
-component: SqlServer
+component: SqlTransport
 reviewed: 2017-06-28
 redirects:
  - nservicebus/sqlserver/operations-scripting

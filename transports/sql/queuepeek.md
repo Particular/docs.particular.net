@@ -1,7 +1,7 @@
 ---
 title: Queue Peek Settings
 reviewed: 2016-09-01
-component: SqlServer
+component: SqlTransport
 versions: '[3.0,)'
 redirects:
 - nservicebus/sqlserver/queuepeek

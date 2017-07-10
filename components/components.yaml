@@ -787,7 +787,7 @@
   NugetOrder:
     - NServiceBus.Spring
 
-- Key: SqlServer
+- Key: SqlTransport
   Name: SQL Server Transport
   DocoUrl: transports/sql
   GitHubOwner: Particular/sqlserver-transport-maintainers

@@ -1,7 +1,7 @@
 ---
 title: Deployment options
 reviewed: 2016-08-31
-component: sqlserver
+component: SqlTransport
 tags:
 - Transport
 redirects:

@@ -1,6 +1,6 @@
 ---
 title: SQL Server Transport Runtime SQL
-component: SqlServer
+component: SqlTransport
 reviewed: 2017-07-07
 versions: '[3,)'
 redirects:

@@ -1,7 +1,7 @@
 ---
 title: Callback support
 reviewed: 2016-08-31
-component: SqlServer
+component: SqlTransport
 related:
  - nservicebus/messaging/callbacks
 redirects:
