@@ -9,7 +9,7 @@ namespace SqlServer_All.Operations.QueueCreation
         {
             var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
 
-            #region sqlserver-create-queues-shared-usage
+            #region create-queues-shared-usage
 
             using (var sqlConnection = new SqlConnection(connectionString))
             {

@@ -14,7 +14,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Update="Operations\NativeSend\NativeSend.ps1">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Operations\QueueCreation\QueueCreation.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>

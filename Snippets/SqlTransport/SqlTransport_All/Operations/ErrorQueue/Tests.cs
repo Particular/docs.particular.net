@@ -26,13 +26,14 @@ namespace SqlServer_All.Operations.ErrorQueue
 
         string endpointName = "ReturnToSourceQueueTests";
         static string errorQueueName = "ReturnToSourceQueueTestsError";
-        static string connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
+        static string connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True";
         static string schema = "dbo";
 
         [SetUp]
         [TearDown]
         public async Task Setup()
         {
+            await SqlHelper.EnsureDatabaseExists(connectionString).ConfigureAwait(false);
             using (var connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync()

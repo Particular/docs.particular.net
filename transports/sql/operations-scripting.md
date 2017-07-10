@@ -29,7 +29,7 @@ snippet: sqlserver-nativesend
 In this example, the value `MyNamespace.MyMessage` represents the .NET type of the message. See the [headers documentation](/nservicebus/messaging/headers.md) for more information on the `EnclosedMessageTypes` header.
 
 
-#### In PowerShell;
+#### In PowerShell
 
 snippet: sqlserver-powershell-nativesend
 
@@ -46,21 +46,56 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 
 ### The create queue helper methods
 
-snippet: sqlserver-create-queues
+
+#### In C&#35;
+
+snippet: msmq-create-queues
+
+
+#### In PowerShell
+
+snippet: msmq-create-queues-powershell
 
 
 ### Creating queues for an endpoint
 
-To create all queues for a given endpoint name:
+To create all queues for a given endpoint name.
 
-snippet: sqlserver-create-queues-for-endpoint
 
-snippet: sqlserver-create-queues-endpoint-usage
+#### In C&#35;
+
+snippet: create-queues-for-endpoint
+
+
+#### In PowerShell
+
+snippet: create-queues-for-endpoint-powershell
+
+
+### Using the create create endpoint queues
+
+
+#### In C&#35;
+
+snippet: create-queues-endpoint-usage
+
+
+#### In PowerShell
+
+snippet: create-queues-endpoint-usage-powershell
 
 
 ### To create shared queues
 
-snippet: sqlserver-create-queues-shared-usage
+
+#### In C&#35;
+
+snippet: create-queues-shared-usage
+
+
+#### In PowerShell
+
+snippet: create-queues-shared-usage-powershell
 
 
 ## Delete queues

@@ -11,7 +11,7 @@ namespace SqlServer_All.Operations.QueueCreation
         {
             var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
 
-            #region sqlserver-create-queues-endpoint-usage
+            #region create-queues-endpoint-usage
 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -26,7 +26,7 @@ namespace SqlServer_All.Operations.QueueCreation
 
             #endregion
         }
-        #region sqlserver-create-queues-for-endpoint
+        #region create-queues-for-endpoint
 
         public static async Task CreateQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
         {

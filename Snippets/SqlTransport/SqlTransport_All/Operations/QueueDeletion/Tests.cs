@@ -12,7 +12,8 @@ namespace SqlServer_All.Operations.QueueDeletion
         [Test]
         public async Task DeleteQueuesForEndpoint()
         {
-            var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
+            var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True";
+            await SqlHelper.EnsureDatabaseExists(connectionString).ConfigureAwait(false);
             using (var sqlConnection = new SqlConnection(connectionString))
             {
                 await sqlConnection.OpenAsync()

@@ -1,9 +1,12 @@
 ﻿using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using System.IO;
+using System.Management.Automation;
 
 namespace SqlServer_All.Operations.QueueCreation
 {
+
     [TestFixture]
     [Explicit]
     public class Tests
@@ -11,7 +14,8 @@ namespace SqlServer_All.Operations.QueueCreation
         [Test]
         public async Task CreateQueuesForEndpoint()
         {
-            var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
+            var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True";
+            await SqlHelper.EnsureDatabaseExists(connectionString).ConfigureAwait(false);
             using (var sqlConnection = new SqlConnection(connectionString))
             {
                 await sqlConnection.OpenAsync()
@@ -35,6 +39,24 @@ namespace SqlServer_All.Operations.QueueCreation
                     .ConfigureAwait(false);
             }
 
+        }
+
+        [Test]
+        public async Task CreateQueuesForEndpointPs()
+        {
+            var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True";
+            await SqlHelper.EnsureDatabaseExists(connectionString).ConfigureAwait(false);
+
+            var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "Operations/QueueCreation/QueueCreation.ps1");
+            using (var powerShell = PowerShell.Create())
+            {
+                powerShell.AddScript(File.ReadAllText(scriptPath));
+                powerShell.Invoke();
+                var command = powerShell.AddCommand("CreateQueuesForEndpoint");
+                command.AddParameter("connection", connectionString);
+                command.AddParameter("endpointName", "myendpoint");
+                command.Invoke();
+            }
         }
 
     }

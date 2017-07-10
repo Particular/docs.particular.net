@@ -1,7 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-#region sqlserver-create-queues
+#region create-queues
 
 namespace SqlServer_All.Operations.QueueCreation
 {
