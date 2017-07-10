@@ -65,8 +65,7 @@
                 bus.SendLocal(messageToSend);
                 var msmqMessageId = GetMsmqMessageId();
                 state.ShouldHandlerThrow = false;
-                var currentDirectory = Path.GetDirectoryName(GetType().Assembly.CodeBase.Remove(0, 8));
-                var scriptPath = Path.Combine(currentDirectory, "msmq/ErrorQueue.ps1");
+                var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "ErrorQueue/ErrorQueue.ps1");
                 using (var powerShell = PowerShell.Create())
                 {
                     powerShell.AddScript(File.ReadAllText(scriptPath));
