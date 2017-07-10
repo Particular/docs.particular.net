@@ -56,7 +56,7 @@ When implementing a custom critical error callback:
 
  * To exit the process use the [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) method. In case the environment has threads running that should be completed before shutdown (e.g. non transactional operations), one may also use the [Environment.Exit](https://msdn.microsoft.com/en-us/library/system.environment.exit.aspx) method.
  * The code should be wrapped in a `try...finally` clause. In the `try` block perform any custom operations, in the `finally` block call the method that exits the process.
- * The custom operations should include flushing any in-memory state and cached data, if normally its persisted at a certain interval or during graceful shutdown. For example, flush appenders when using buffering or asynchronous appanders for [NLog](http://nlog-project.org/documentation/v4.3.0/html/M_NLog_LogManager_Shutdown.htm) or [log4net](https://logging.apache.org/log4net/log4net-1.2.11/release/sdk/log4net.LogManager.Shutdown.html) state by calling `LogManager.Shutdown();`.
+ * The custom operations should include flushing any in-memory state and cached data, if normally its persisted at a certain interval or during graceful shutdown. For example, flush appenders when using buffering or asynchronous appenders for [NLog](http://nlog-project.org/documentation/v4.3.0/html/M_NLog_LogManager_Shutdown.htm) or [log4net](https://logging.apache.org/log4net/log4net-1.2.11/release/sdk/log4net.LogManager.Shutdown.html) state by calling `LogManager.Shutdown();`.
 
 Whenever possible rely on the environment hosting the endpoint process to automatically restart it:
 
