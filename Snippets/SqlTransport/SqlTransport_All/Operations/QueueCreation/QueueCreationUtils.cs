@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace SqlServer_All.Operations.QueueCreation
 {
-    #region create-queues
 
+    #region create-queues
     public static class QueueCreationUtils
     {
         public static async Task CreateQueue(SqlConnection connection, string schema, string queueName)
@@ -21,14 +21,14 @@ namespace SqlServer_All.Operations.QueueCreation
                     [Headers] [varchar](max) not null,
                     [Body] [varbinary](max),
                     [RowVersion] [bigint] identity(1,1) not null
-                ) on [primary];
+                );
                 create clustered index [Index_RowVersion] on [{schema}].[{queueName}]
                 (
-                    [RowVersion] asc
-                ) on [primary]
+                    [RowVersion]
+                )
             create nonclustered index [Index_Expires] on [{schema}].[{queueName}]
             (
-                [Expires] asc
+                [Expires]
             )
             include
             (
@@ -43,6 +43,6 @@ namespace SqlServer_All.Operations.QueueCreation
             }
         }
 
-        #endregion
     }
+    #endregion
 }
