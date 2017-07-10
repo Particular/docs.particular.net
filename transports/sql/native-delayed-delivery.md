@@ -15,9 +15,9 @@ NOTE: In this mode the timeout manager will still be running in order to process
 
 ## Configuration
 
-The settings described in this section are obligatory. By default use the values presented in snippets. The settings can be fine-tuned to fit a particular system's characteristic, e.g. in case the expired timeout messages need to be picked up more frequently to result in a more precise approximation of expiry time.
+The default values for the settings described in this section are used in snippets. The settings can be fine-tuned to fit a particular system's characteristic, e.g. in case the expired timeout messages need to be picked up more frequently to result in a more precise approximation of expiry time.
 
-The transport creates an additional queue that stores delayed messages. The table name has the format _`endpoint-name.suffix`_, using the suffix specified in the configuration:
+The transport creates an additional table that stores delayed messages. The table name has the format _`endpoint-name.suffix`_, using the suffix specified in the configuration:
 
 snippet: DelayedDeliveryTableSuffix
 
@@ -35,8 +35,8 @@ When the delay time lapses, SQL Server transport moves a batch of messages to th
 ## Backwards compatibility
 
 When upgrading to a version of the transport that supports native delayed delivery, it is safe to operate a combination of endpoints using native delayed delivery and endpoints using timeout manager at the same time:
-- Endpoints with native delayed delivery can send delayed messages to endpoints using persistence-based delayed delivery. 
-- Endpoints with native delayed delivery can continue to receive delayed messages from endpoints using persistence-based delayed delivery.
+- Endpoints with native delayed delivery can send delayed messages to endpoints using timeout manager. 
+- Endpoints with native delayed delivery can continue to receive delayed messages from endpoints using timeout manager.
 
 
 ### Disabling the timeout manager
