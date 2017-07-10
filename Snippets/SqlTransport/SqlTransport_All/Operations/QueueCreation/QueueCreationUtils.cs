@@ -11,7 +11,7 @@ namespace SqlServer_All.Operations.QueueCreation
         {
             var sql = $@"
             if not  exists (select * from sys.objects where object_id = object_id(N'[{schema}].[{queueName}]') and type in (N'U'))
-                begin
+            begin
                 create table [{schema}].[{queueName}](
                     [Id] [uniqueidentifier] not null,
                     [CorrelationId] [varchar](255),
@@ -26,15 +26,15 @@ namespace SqlServer_All.Operations.QueueCreation
                 (
                     [RowVersion]
                 )
-            create nonclustered index [Index_Expires] on [{schema}].[{queueName}]
-            (
-                [Expires]
-            )
-            include
-            (
-                [Id],
-                [RowVersion]
-            )
+                create nonclustered index [Index_Expires] on [{schema}].[{queueName}]
+                (
+                    [Expires]
+                )
+                include
+                (
+                    [Id],
+                    [RowVersion]
+                )
             end";
             using (var command = new SqlCommand(sql, connection))
             {
