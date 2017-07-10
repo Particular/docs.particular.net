@@ -42,19 +42,26 @@ Contains the `OrderSaga` functionality and is referenced by the Server endpoints
 
 #### Servers
  
-partial: servers
+ * `EndpointMySql`, `EndpointSqlServer`, and `EndpointOracle` projects act as "servers" to run the saga instance.
+ * Receive the `StartOrder` message and initiate a `OrderSaga`.
+ * `OrderSaga` requests a timeout with a `CompleteOrder` data.
+ * When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
 
 
 ### SQL Scripts
 
 Note that only `ServerShared` has the [NServiceBus.Persistence.Sql.MsBuild NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) installed. This will cause the following script directories to be populated at build time 
 
-partial: sqlscripts
+ * `ServerShared\bin\Debug\NServiceBus.Persistence.Sql\MsSqlServer`
+ * `ServerShared\bin\Debug\NServiceBus.Persistence.Sql\MySql`
+ * `ServerShared\bin\Debug\NServiceBus.Persistence.Sql\Oracle`
+
+These scripts will then be copied to the output of `EndpointMySql`, `EndpointSqlServer` and `EndpointOracle` and executed at startup. 
 
 The endpoints know which scripts to execute via the use of the `persistence.SqlVariant();` API usage at configuration time.
 
 
-partial: promote
+The scripts produced in this sample are promoted to `$(SolutionDir)PromotedSqlScripts`.
 
 snippet: SqlPersistenceSettings
 
@@ -68,13 +75,15 @@ Configure the endpoint to use SQL Persistence.
 
 snippet: sqlServerConfig
 
-
-### MySQL
+#### MySQL
 
 snippet: MySqlConfig
 
 
-partial: oracleconfig
+#### Oracle
+
+snippet: OracleConfig
+
 
 ### Order Saga Data
 
