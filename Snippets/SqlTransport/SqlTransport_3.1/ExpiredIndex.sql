@@ -2,11 +2,11 @@
 create nonclustered index [Index_Expires]
 on [schema].[queuename]
 (
-	[Expires] asc
+    [Expires] asc
 )
 include
 (
-	[Id],
-	[RowVersion]
+    [Id],
+    [RowVersion]
 )
 --endcode

@@ -13,16 +13,16 @@ Function Usage
 # endcode
 
 # startcode create-queues-shared-usage-powershell
-	$sqlConnection = New-Object System.Data.SqlClient.SqlConnection("TheConnectionString")
-	$sqlConnection.Open()
+    $sqlConnection = New-Object System.Data.SqlClient.SqlConnection("TheConnectionString")
+    $sqlConnection.Open()
 
-	try {
-		CreateQueue -connection $connection -schema $schema -queuename "error"
-	}
-	finally {
-		$sqlConnection.Close()
-		$sqlConnection.Dispose()
-	}
+    try {
+        CreateQueue -connection $connection -schema $schema -queuename "error"
+    }
+    finally {
+        $sqlConnection.Close()
+        $sqlConnection.Dispose()
+    }
 
 # endcode
 }
@@ -46,28 +46,28 @@ Function CreateQueuesForEndpoint
         [Switch] $includeRetries
     )
 
-	$sqlConnection = New-Object System.Data.SqlClient.SqlConnection($connection)
-	$sqlConnection.Open()
+    $sqlConnection = New-Object System.Data.SqlClient.SqlConnection($connection)
+    $sqlConnection.Open()
 
-	try {
-		# main queue
-		CreateQueue -connection $sqlConnection -schema $schema -queuename $endpointName
+    try {
+        # main queue
+        CreateQueue -connection $sqlConnection -schema $schema -queuename $endpointName
 
-	    # timeout queue
-		CreateQueue -connection $sqlConnection -schema $schema -queuename "$endpointName.timeouts"
+        # timeout queue
+        CreateQueue -connection $sqlConnection -schema $schema -queuename "$endpointName.timeouts"
 
-		# timeout dispatcher queue
-		CreateQueue -connection $sqlConnection -schema $schema -queuename "$endpointName.timeoutsdispatcher"
+        # timeout dispatcher queue
+        CreateQueue -connection $sqlConnection -schema $schema -queuename "$endpointName.timeoutsdispatcher"
 
-		# retries queue
-		if ($includeRetries) {
-			CreateQueue -connection $sqlConnection -schema $schema -queuename "$endpointName.Retries"
-		}
-	}
-	finally {
-		$sqlConnection.Close()
-		$sqlConnection.Dispose()
-	}
+        # retries queue
+        if ($includeRetries) {
+            CreateQueue -connection $sqlConnection -schema $schema -queuename "$endpointName.Retries"
+        }
+    }
+    finally {
+        $sqlConnection.Close()
+        $sqlConnection.Dispose()
+    }
 }
 # endcode
 
@@ -87,31 +87,31 @@ function CreateQueue {
     )
 
     $sql = @"
-        if not  exists (select * from sys.objects where object_id = object_id(N'[{0}].[{1}]') and type in (N'U'))
-            begin
-            create table [{0}].[{1}](
-                [Id] [uniqueidentifier] not null,
-                [CorrelationId] [varchar](255),
-                [ReplyToAddress] [varchar](255),
-                [Recoverable] [bit] not null,
-                [Expires] [datetime],
-                [Headers] [varchar](max) not null,
-                [Body] [varbinary](max),
-                [RowVersion] [bigint] identity(1,1) not null
-            );
-            create clustered index [Index_RowVersion] on [{0}].[{1}]
-            (
-                [RowVersion]
-            )
-			create nonclustered index [Index_Expires] on [{0}].[{1}]
-			(
-				[Expires]
-			)
-			include
-			(
-				[Id],
-				[RowVersion]
-			)
+    if not  exists (select * from sys.objects where object_id = object_id(N'[{0}].[{1}]') and type in (N'U'))
+        begin
+        create table [{0}].[{1}](
+            [Id] [uniqueidentifier] not null,
+            [CorrelationId] [varchar](255),
+            [ReplyToAddress] [varchar](255),
+            [Recoverable] [bit] not null,
+            [Expires] [datetime],
+            [Headers] [varchar](max) not null,
+            [Body] [varbinary](max),
+            [RowVersion] [bigint] identity(1,1) not null
+        );
+        create clustered index [Index_RowVersion] on [{0}].[{1}]
+        (
+            [RowVersion]
+        )
+        create nonclustered index [Index_Expires] on [{0}].[{1}]
+        (
+            [Expires]
+        )
+        include
+        (
+            [Id],
+            [RowVersion]
+        )
     end
 "@ -f $schema, $queueName
 

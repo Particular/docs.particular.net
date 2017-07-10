@@ -57,7 +57,7 @@ Function Usage
     $payload = @{
         ConnectionString = "Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True"
         Queue = "sqlserverNativeSendTests"
-        Headers  = @{
+        Headers = @{
             "NServiceBus.EnclosedMessageTypes" = "Operations.SqlServer.NativeSendTests+MessageToSend"
         }
         MessageBody = "{'Property':'Value'}"

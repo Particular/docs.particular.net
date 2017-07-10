@@ -12,7 +12,7 @@ class SqlServerConfigurationSettings
 
         #endregion
     }
-    
+
     void DisableSecondaries(BusConfiguration busConfiguration)
     {
         #region sqlserver-config-disable-secondaries
