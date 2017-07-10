@@ -9,7 +9,7 @@ redirects:
 
 ### NServiceBus Version 7.x
 
-Requires [.NET Core 2.0] **or** [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642)
+Requires [.NET Core 2.0](https://www.microsoft.com/net/core/) **or** [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642)
 
 
 ### NServiceBus Version 6.x
