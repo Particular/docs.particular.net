@@ -5,6 +5,25 @@ public static class SqlHelper
 {
     public static async Task ExecuteSql(string connectionString, string sql)
     {
+        await EnsureDatabaseExists(connectionString)
+            .ConfigureAwait(false);
+
+        using (var connection = new SqlConnection(connectionString))
+        {
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
+
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = sql;
+                await command.ExecuteNonQueryAsync()
+                    .ConfigureAwait(false);
+            }
+        }
+    }
+
+    public static async Task EnsureDatabaseExists(string connectionString)
+    {
         var builder = new SqlConnectionStringBuilder(connectionString);
         var database = builder.InitialCatalog;
 
@@ -21,19 +40,6 @@ public static class SqlHelper
 if(db_id('{database}') is null)
 	create database [{database}]
 ";
-                await command.ExecuteNonQueryAsync()
-                    .ConfigureAwait(false);
-            }
-        }
-
-        using (var connection = new SqlConnection(connectionString))
-        {
-            await connection.OpenAsync()
-                .ConfigureAwait(false);
-
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = sql;
                 await command.ExecuteNonQueryAsync()
                     .ConfigureAwait(false);
             }
