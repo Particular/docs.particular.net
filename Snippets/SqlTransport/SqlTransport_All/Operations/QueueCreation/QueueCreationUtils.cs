@@ -1,10 +1,10 @@
 ﻿using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-#region create-queues
-
 namespace SqlServer_All.Operations.QueueCreation
 {
+    #region create-queues
+
     public static class QueueCreationUtils
     {
         public static async Task CreateQueue(SqlConnection connection, string schema, string queueName)
@@ -43,6 +43,6 @@ namespace SqlServer_All.Operations.QueueCreation
             }
         }
 
+        #endregion
     }
 }
-#endregion
