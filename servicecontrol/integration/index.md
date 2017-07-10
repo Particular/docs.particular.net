@@ -9,7 +9,7 @@ component: ServiceControl
 To enable ServiceControl to gather this information, configure the solution appropriately:
 
  * [enable auditing](/nservicebus/operations/auditing.md) to collect data on individual messages;
- * configure [recoverability](/nservicebus/recoverability) to store information on messages failures;
+ * configure [recoverability](/nservicebus/recoverability) to store information about message processing failures;
  * [install plugins on the endpoints](/servicecontrol/plugins/) to monitor their health and sagas and use custom checks.
 
 NOTE: All endpoints in a single environment should be configured to forward to the same audit, error, and ServiceControl plugin queues.
