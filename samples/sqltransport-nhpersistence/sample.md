@@ -25,15 +25,13 @@ snippet: ReceiverSQLAssets
 
 ## Procedure
 
- 1. Make sure an instance is SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a databases `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under *security* directory in SSMS database tree).
- 1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
- 1. Start the Receiver project.
+ 1. Start the Sender and Receiver projects.
  1. In the Sender's console notice the `Press <enter> to send a message` text when the app is ready.
  1. Hit enter.
  1. On the Receiver console notice that order was submitted.
  1. On the Sender console notice that the order was accepted.
  1. Finally, after a couple of seconds, on the Receiver console notice that the timeout message has been received.
- 1. Open SQL Server Management Studio and go to the receiver database. Verify that there is a row in saga state table (`receiver.OrderLifecycleSagaData`) and in the orders table (`receiver.Orders`)
+ 1. Open SQL Server Management Studio and go to the `Samples.SqlNHibernate` database. Verify that there is a row in saga state table (`receiver.OrderLifecycleSagaData`) and in the orders table (`receiver.Orders`)
 
 
 ## Code walk-through

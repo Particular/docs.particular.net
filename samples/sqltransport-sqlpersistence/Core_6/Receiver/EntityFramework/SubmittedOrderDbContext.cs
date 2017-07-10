@@ -1,6 +1,5 @@
 using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace EntityFramework
 {
