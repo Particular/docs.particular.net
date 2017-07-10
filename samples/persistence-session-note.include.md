@@ -1,0 +1,1 @@
+NOTE: Because the persistence is able to reuse the connection and transaction managed by SQL Server transport the endpoints can run in the `TransportTransactionMode.SendsAtomicWithReceive` while ensuring exactly once message processing guarantees, as long as persistence session APIs are used to access connection and transaction.

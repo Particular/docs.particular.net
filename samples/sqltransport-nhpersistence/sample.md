@@ -11,7 +11,7 @@ related:
 
 In this sample, the [SQL Server Transport](/transports/sql/) is used in conjunction with [NHibernate Persistence](/persistence/nhibernate/). The sample shows how to use the same database connection for both transport and persistence operations, and how to access (using multiple [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping)) the current SQL connection and transaction from within a message handler to persist business objects to the database.
 
-NOTE: Because NHibernate Persistence is able to reuse the connection and transaction managed by SQL Server transport the endpoints can run in the `TransportTransactionMode.SendsAtomicWithReceive` while ensuring exactly once message processing guarantees, as long as SQL Persistence session APIs are used to access connection and transaction.
+include: persistence-session-note
 
 
 ## Prerequisites
