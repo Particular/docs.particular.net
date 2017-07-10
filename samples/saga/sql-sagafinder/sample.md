@@ -14,9 +14,7 @@ related:
 include: sagafinder-into
 
 
-## Prerequisites
-
-partial: prereqs
+include: sqlpersistence-prereqs
 
 
 ## Persistence Config
