@@ -2,6 +2,8 @@
 using NServiceBus;
 using System.Threading.Tasks;
 
+#region event-handler
+
 class SomethingHappenedHandler :
     IHandleMessages<SomethingHappened>
 {
@@ -10,3 +12,5 @@ class SomethingHappenedHandler :
         return Task.CompletedTask;
     }
 }
+
+#endregion

@@ -2,6 +2,7 @@
 
 namespace Messages
 {
+    #region unsubscribe-message
     public class ManualUnsubscribe :
         IMessage
     {
@@ -10,4 +11,5 @@ namespace Messages
         public string SubscriberTransportAddress { get; set; }
         public string SubscriberEndpoint { get; set; }
     }
+    #endregion
 }

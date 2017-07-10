@@ -14,6 +14,7 @@ class Program
 
     static async Task MainAsync()
     {
+        #region publisher-config
         var endpointConfiguration = new EndpointConfiguration("Publisher");
         endpointConfiguration.UseTransport<MsmqTransport>();
 
@@ -24,6 +25,7 @@ class Program
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
+        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

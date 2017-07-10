@@ -5,6 +5,7 @@ using NServiceBus.Unicast.Subscriptions;
 using NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions;
 using System.Threading.Tasks;
 
+#region unsubscribe-handling
 class ManualUnsubscribeHandler :
     IHandleMessages<ManualUnsubscribe>
 {
@@ -24,3 +25,4 @@ class ManualUnsubscribeHandler :
         );
     }
 }
+#endregion

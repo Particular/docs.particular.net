@@ -11,6 +11,7 @@ class Program
 
     static async Task MainAsync()
     {
+        #region SubscriptionManager-config
         var endpointConfiguration = new EndpointConfiguration("SubscriptionManager");
         endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -33,5 +34,6 @@ class Program
 
         await endpointInstance.Stop()
                 .ConfigureAwait(false);
+        #endregion
     }
 }
