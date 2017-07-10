@@ -12,7 +12,7 @@ class Program
         endpointConfiguration.EndpointName("Samples.ServiceControl.SqlServerTransportAdapter.Shipping");
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+        transport.ConnectionString(@"Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
 
         #region SchemaV5
 

@@ -14,7 +14,7 @@ related:
 
 ## Prerequisites
 
-The samples rely on `.\SQLEXPRESS` and need the database `Samples.NHibernate` to run properly.
+The samples rely on `.\SqlExpress` and need the database `Samples.NHibernate` to run properly.
 
 
 ## Code walk-through

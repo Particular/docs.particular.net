@@ -47,7 +47,7 @@ Function Usage
 {
     # region sqlserver-powershell-nativesend-usage
 
-    SendMessage -ConnectionString "Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True" `
+    SendMessage -ConnectionString "Data Source=.\SqlExpress;Initial Catalog=samples;Integrated Security=True" `
                 -Queue "sqlserverNativeSendTests" `
                 -MessageBody "{Property:'Value'}" `
                 -Headers @{"NServiceBus.EnclosedMessageTypes" = "Operations.SqlServer.NativeSendTests+MessageToSend"}
@@ -55,7 +55,7 @@ Function Usage
     # Alternative usage using PowerShell Splatting (e.g. passing params as a hashtable)
 
     $payload = @{
-        ConnectionString = "Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True"
+        ConnectionString = "Data Source=.\SqlExpress;Initial Catalog=samples;Integrated Security=True"
         Queue = "sqlserverNativeSendTests"
         Headers = @{
             "NServiceBus.EnclosedMessageTypes" = "Operations.SqlServer.NativeSendTests+MessageToSend"

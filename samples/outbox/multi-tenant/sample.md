@@ -11,7 +11,7 @@ related:
 
 ## Prerequisites
 
- 1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
+ 1. Make sure SQL Server Express is installed and accessible as `.\SqlExpress`.
  1. Create databases `Sender`, `Receiver`, `TenantA` and `TenantB`.
 
 

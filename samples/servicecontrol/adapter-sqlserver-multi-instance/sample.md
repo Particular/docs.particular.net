@@ -24,7 +24,7 @@ The purpose of the adapter is to isolate ServiceControl from the specifics of th
    * Add a new ServiceControl instance: 
    * Use `Particular.ServiceControl.SQL` as the instance name (make sure there is no other instance of SC running with the same name).
    * Use "User" account and provide credentials to allow for integrated authentication.
-   * Specify `Data Source=.\SQLEXPRESS;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10` as a connection string. ServiceControl Manager will automatically create queue tables in the database.
+   * Specify `Data Source=.\SqlExpress;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10` as a connection string. ServiceControl Manager will automatically create queue tables in the database.
 
 NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default port number for API. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
  

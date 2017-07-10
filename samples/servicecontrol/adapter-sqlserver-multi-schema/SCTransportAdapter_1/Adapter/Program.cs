@@ -28,7 +28,7 @@ class Program
             customization: transport =>
             {
                 transport.ConnectionString(
-                    @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+                    @"Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
 
                 //Use custom schema
                 transport.DefaultSchema("adapter");
@@ -49,7 +49,7 @@ class Program
             customization: transport =>
             {
                 transport.ConnectionString(
-                    @"Data Source=.\SQLEXPRESS;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+                    @"Data Source=.\SqlExpress;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
 
                 //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
                 var settings = transport.GetSettings();

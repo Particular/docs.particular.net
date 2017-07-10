@@ -21,7 +21,7 @@ partial class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
-        var connection = @"Data Source=.\SQLEXPRESS;Initial Catalog=Samples.SqlPersistence.Transition;Integrated Security=True";
+        var connection = @"Data Source=.\SqlExpress;Initial Catalog=Samples.SqlPersistence.Transition;Integrated Security=True";
         await SqlHelper.EnsureDatabaseExists(connection)
             .ConfigureAwait(false);
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();

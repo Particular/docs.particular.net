@@ -3,10 +3,10 @@
 <configuration>
   <connectionStrings>
     <add name="NServiceBus/Persistence"
-         connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus"/>
+         connectionString="Data Source=.\SqlExpress;Initial Catalog=nservicebus"/>
     <!--Following connection string will be used only for accessing Saga data-->
     <add name="NServiceBus/Persistence/NHibernate/Saga"
-         connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus_saga"/>
+         connectionString="Data Source=.\SqlExpress;Initial Catalog=nservicebus_saga"/>
   </connectionStrings>
 
   <!-- specify the other needed NHibernate settings like below in appSettings:-->

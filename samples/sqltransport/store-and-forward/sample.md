@@ -14,7 +14,7 @@ redirects:
 
 ## Prerequisites
 
- 1. Ensure an instance SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create two databases: `sender` and `receiver`.
+ 1. Ensure an instance SQL Server Express installed and accessible as `.\SqlExpress`. Create two databases: `sender` and `receiver`.
 
 
 ## Running the project

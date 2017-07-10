@@ -17,7 +17,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SagaMigration.Server");
         endpointConfiguration.UseTransport<LearningTransport>();
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;");
+        persistence.ConnectionString(@"Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;");
 
         var endpoint = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

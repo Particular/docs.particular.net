@@ -42,7 +42,7 @@ class Program
 
     static void MsmqBridgeOnReceiveCompleted(object sender, ReceiveCompletedEventArgs receiveCompletedEventArgs)
     {
-        var sqlConnectionStr = @"Data Source =.\SQLEXPRESS; Initial Catalog = PersistenceForSqlTransport; Integrated Security = True";
+        var sqlConnectionStr = @"Data Source =.\SqlExpress; Initial Catalog = PersistenceForSqlTransport; Integrated Security = True";
         var sqlRelayEndpointName = "SqlRelay";
 
         using (var scope = new TransactionScope(TransactionScopeOption.Required))

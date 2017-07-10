@@ -3,7 +3,7 @@
 <configuration>
   <connectionStrings>
     <add name="NServiceBus/Persistence"
-         connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True"/>
+         connectionString="Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True"/>
   </connectionStrings>
 
   <!-- specify the other needed NHibernate settings like below in appSettings:-->

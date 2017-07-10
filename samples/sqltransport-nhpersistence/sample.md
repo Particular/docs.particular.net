@@ -16,7 +16,7 @@ include: persistence-session-note
 
 ## Prerequisites
 
-An instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
+An instance of SQL Server Express is installed and accessible as `.\SqlExpress`.
 
 At startup each endpoint will create its requires SQL assets. For example Receiver will execute the following:
 

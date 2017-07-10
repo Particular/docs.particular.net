@@ -10,7 +10,7 @@ related:
 
 ## Prerequisites
 
- 1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
+ 1. Make sure SQL Server Express is installed and accessible as `.\SqlExpress`.
  1. Create database called `nservicebus`.
  1. In the database create schemas `sender` and `receiver`.
 

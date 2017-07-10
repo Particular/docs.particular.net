@@ -3,7 +3,7 @@
 
 ### MS SQL Server
 
- 1. Ensure an instance of SQL Server Express (Version 2016 or above) is installed and accessible as `.\SQLEXPRESS`.
+ 1. Ensure an instance of SQL Server Express (Version 2016 or above) is installed and accessible as `.\SqlExpress`.
  
 Or, alternatively, change the connection string to point to different SQL Server instance.
 

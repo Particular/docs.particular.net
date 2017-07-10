@@ -10,7 +10,7 @@ related:
 
 ## Prerequisites
 
- 1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
+ 1. Make sure SQL Server Express is installed and accessible as `.\SqlExpress`.
  1. Create two databases called `receivercatalog` and `sendercatalog`.
  1. Make sure that [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx) is running. It can be started from the command line by running `net start msdtc`.
 

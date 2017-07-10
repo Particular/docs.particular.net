@@ -10,7 +10,7 @@ related:
 
 ## Prerequisites
 
- 1. Ensure an instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`. Create a database `SqlServerSimple`.
+ 1. Ensure an instance of SQL Server Express is installed and accessible as `.\SqlExpress`. Create a database `SqlServerSimple`.
 
 
 ## Running the project

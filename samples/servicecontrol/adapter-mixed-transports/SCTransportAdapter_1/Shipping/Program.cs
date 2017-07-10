@@ -19,7 +19,7 @@ class Program
             "Samples.ServiceControl.MixedTransportAdapter.Shipping");
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>()
-            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=shipping;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+            .ConnectionString(@"Data Source=.\SqlExpress;Initial Catalog=shipping;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 

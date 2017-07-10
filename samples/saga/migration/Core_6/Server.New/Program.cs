@@ -27,7 +27,7 @@ class Program
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
-                return new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True;");
+                return new SqlConnection(@"Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;");
             });
         persistence.TablePrefix("New");
 
