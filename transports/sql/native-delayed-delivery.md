@@ -29,12 +29,12 @@ then it picks and dispatches messages in batches of the specified size:
 
 snippet: DelayedDeliveryBatchSize
 
-When the delay time lapses, SQL Server transport moves a batch of messages to the input queue. Note that this means the exact time of delivering delayed message is always approximate.
+When the delay time lapses, SQL Server transport moves a batch of messages to the destination queue, i.e. the endpoint's input queue. Note that this means the exact time of delivering delayed message is always approximate.
 
 
 ## Backwards compatibility
 
-When upgrading to a version of the transport that supports native delayed delivery, it is safe to operate a combination of endpoints using native delayed delivery and endpoints using persistence-based delayed delivery at the same time:
+When upgrading to a version of the transport that supports native delayed delivery, it is safe to operate a combination of endpoints using native delayed delivery and endpoints using timeout manager at the same time:
 - Endpoints with native delayed delivery can send delayed messages to endpoints using persistence-based delayed delivery. 
 - Endpoints with native delayed delivery can continue to receive delayed messages from endpoints using persistence-based delayed delivery.
 
