@@ -20,7 +20,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.EndpointSqlServer");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var connection = @"Data Source=.\SQLEXPRESS;Initial Catalog=SqlPersistenceSample;Integrated Security=True";
+        var connection = @"Data Source=.\SQLEXPRESS;Initial Catalog=Samples.SqlPersistence;Integrated Security=True";
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
@@ -31,6 +31,9 @@ class Program
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
         #endregion
+
+        await SqlHelper.EnsureDatabaseExists(connection)
+            .ConfigureAwait(false);
 
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<JsonSerializer>();

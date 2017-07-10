@@ -48,6 +48,9 @@
     <Compile Include="..\..\Phase1\EndpointSqlServer\Program.cs">
       <Link>Program.cs</Link>
     </Compile>
+    <Compile Include="..\..\Phase1\EndpointSqlServer\SqlHelper.cs">
+      <Link>SqlHelper.cs</Link>
+    </Compile>
     <Compile Include="SendMessage.cs" />
   </ItemGroup>
   <ItemGroup>

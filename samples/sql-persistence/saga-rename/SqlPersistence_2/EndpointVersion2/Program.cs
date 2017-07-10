@@ -24,7 +24,7 @@ class Program
 
         #region renameTables
 
-        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=SqlPersistenceSample;Integrated Security=True";
+        var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=Samples.SqlPersistence.RenameSaga;Integrated Security=True";
         using (var connection = new SqlConnection(connectionString))
         {
             await connection.OpenAsync()
@@ -46,7 +46,8 @@ class Program
         #endregion
 
         var endpointConfiguration = new EndpointConfiguration("Samples.RenameSaga");
-        SharedConfiguration.Apply(endpointConfiguration);
+        await SharedConfiguration.Apply(endpointConfiguration)
+            .ConfigureAwait(false);
 
         #region registerMutator
 

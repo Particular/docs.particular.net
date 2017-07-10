@@ -12,9 +12,7 @@ This sample illustrates an approach for transitioning between different [Correla
 NOTE: This sample uses 3 "Phase" Endpoint Projects to illustrate the iterations of a single endpoint in one solution.
 
 
-## Prerequisites
-
-partial: prereqs
+include: sqlpersistence-prereqs
 
 
 ## Scenario

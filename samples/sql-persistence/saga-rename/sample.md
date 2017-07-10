@@ -10,12 +10,6 @@ related:
  - nservicebus/sagas
 ---
 
-## Prerequisites
-
-partial: prereqs
-
-
-## Scenario
 
 This sample shows a two sagas that need to be renamed.
 
@@ -24,7 +18,10 @@ The sagas implementations are rather contrived and their implementation exists o
 The sample consists of two Versions a single endpoint. The first version will start the sagas. The second version will handle the renaming of the sagas.
 
 
-### Timeout Saga
+include: sqlpersistence-prereqs
+
+
+## Timeout Saga
 
 The timeout saga sends a timeout at startup and then handles that timeout. 
 
@@ -35,7 +32,7 @@ This scenario is necessary to illustrate how, when the timeout message is receiv
 The saga type is stored in the Headers of the TimeoutData Table ([Sql Server](/persistence/sql/sqlserver-scripts.md#build-time-timeout-create-table) and [MySql](/persistence/sql/mysql-scripts.md#build-time-timeout-create-table)) but will be converted back to a [message header](/nservicebus/messaging/headers.md#saga-related-headers-requesting-a-timeout-from-a-saga) when the timeout is executed.
 
 
-### Reply Saga
+## Reply Saga
 
 The timeout saga sends a request at startup and then handles the response for that message. 
 

@@ -48,6 +48,7 @@
     <Compile Include="Reply.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="SharedConfiguration.cs" />
+    <Compile Include="SqlHelper.cs" />
     <Compile Include="StartReplySaga.cs" />
     <Compile Include="StartTimeoutSaga.cs" />
   </ItemGroup>

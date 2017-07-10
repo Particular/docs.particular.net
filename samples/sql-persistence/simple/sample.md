@@ -10,18 +10,13 @@ related:
  - nservicebus/sagas
 ---
 
-## Prerequisites
-
-
-partial: prereqs
-
-
-## Code walk-through
-
 This sample shows a Client + Server scenario.
 
 
-### Projects
+include: sqlpersistence-prereqs
+
+
+## Projects
 
 
 #### SharedMessages
@@ -29,18 +24,18 @@ This sample shows a Client + Server scenario.
 The shared message contracts used by all endpoints.
 
 
-#### ServerShared
+### ServerShared
 
 Contains the `OrderSaga` functionality and is referenced by the Server endpoints
 
 
-####  Client
+### Client
 
  * Sends the `StartOrder` message to either `EndpointMySql` or `EndpointSqlServer`.
  * Receives and handles the `OrderCompleted` event.
 
 
-#### Servers
+### Servers
  
  * `EndpointMySql`, `EndpointSqlServer`, and `EndpointOracle` projects act as "servers" to run the saga instance.
  * Receive the `StartOrder` message and initiate a `OrderSaga`.
@@ -48,7 +43,7 @@ Contains the `OrderSaga` functionality and is referenced by the Server endpoints
  * When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
 
 
-### SQL Scripts
+## SQL Scripts
 
 Note that only `ServerShared` has the [NServiceBus.Persistence.Sql.MsBuild NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) installed. This will cause the following script directories to be populated at build time 
 
@@ -75,6 +70,7 @@ Configure the endpoint to use SQL Persistence.
 
 snippet: sqlServerConfig
 
+
 #### MySQL
 
 snippet: MySqlConfig
@@ -85,12 +81,12 @@ snippet: MySqlConfig
 snippet: OracleConfig
 
 
-### Order Saga Data
+## Order Saga Data
 
 snippet: sagadata
 
 
-### Order Saga
+## Order Saga
 
 snippet: thesaga
 
