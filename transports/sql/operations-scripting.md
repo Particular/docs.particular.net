@@ -49,12 +49,12 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 
 #### In C&#35;
 
-snippet: msmq-create-queues
+snippet: create-queues
 
 
 #### In PowerShell
 
-snippet: msmq-create-queues-powershell
+snippet: create-queues-powershell
 
 
 ### Creating queues for an endpoint
