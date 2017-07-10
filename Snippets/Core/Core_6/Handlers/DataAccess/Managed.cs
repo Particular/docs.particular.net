@@ -16,7 +16,7 @@ namespace Core6.Handlers.DataAccess
                 var order = session.Get(message.OrderId);
                 if (this.MessageHasAlreadyBeenProcessed(context.MessageId, order))
                 {
-                    // Subsequent handlers are not invoked as the message has already been processed.
+                    // Subsequent handlers are not invoked as the message has been processed.
                     context.DoNotContinueDispatchingCurrentMessageToHandlers();
                 }
                 else
