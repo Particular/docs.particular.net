@@ -98,11 +98,6 @@ NOTE: The connection and transaction are managed by NServiceBus, so there is no 
 #### Raw [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview)
 
 
-##### Model
-
-snippet: SubmittedOrderRaw
-
-
 ##### Persisting Data
 
 snippet: StoreDataRaw
