@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 
 namespace SqlServer_All.Operations.QueueCreation
 {
     public static class CreateEndpointQueues
     {
 
-        static async Task CreateQueuesForEndpoint()
+        static void CreateQueuesForEndpoint()
         {
             var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
 
@@ -15,41 +14,34 @@ namespace SqlServer_All.Operations.QueueCreation
 
             using (var connection = new SqlConnection(connectionString))
             {
-                await connection.OpenAsync()
-                    .ConfigureAwait(false);
-                await CreateQueuesForEndpoint(
+                connection.Open();
+                CreateQueuesForEndpoint(
                         connection: connection,
                         schema: "dbo",
-                        endpointName: "myendpoint")
-                    .ConfigureAwait(false);
+                        endpointName: "myendpoint");
             }
 
             #endregion
         }
         #region create-queues-for-endpoint
 
-        public static async Task CreateQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
+        public static void CreateQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
         {
             // main queue
-            await QueueCreationUtils.CreateQueue(connection, schema, endpointName)
-                .ConfigureAwait(false);
+            QueueCreationUtils.CreateQueue(connection, schema, endpointName);
 
             // callback queue
-            await QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.{Environment.MachineName}")
-                .ConfigureAwait(false);
+            QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.{Environment.MachineName}");
 
             // timeout queue
-            await QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Timeouts")
-                .ConfigureAwait(false);
+            QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Timeouts");
 
             // timeout dispatcher queue
-            await QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.TimeoutsDispatcher")
-                .ConfigureAwait(false);
+            QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.TimeoutsDispatcher");
 
             // retries queue
             // TODO: Only required in Versions 2 and below
-            await QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Retries")
-                .ConfigureAwait(false);
+            QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Retries");
         }
 
         #endregion

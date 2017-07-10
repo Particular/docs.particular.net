@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 
 namespace SqlServer_All.Operations.QueueDeletion
 {
     public static class DeleteEndpointQueues
     {
-        static async Task DeleteQueuesForEndpoint()
+        static void DeleteQueuesForEndpoint()
         {
             var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
 
@@ -14,13 +13,11 @@ namespace SqlServer_All.Operations.QueueDeletion
 
             using (var sqlConnection = new SqlConnection(connectionString))
             {
-                await sqlConnection.OpenAsync()
-                    .ConfigureAwait(false);
-                await DeleteQueuesForEndpoint(
-                        connection: sqlConnection,
-                        schema: "dbo",
-                        endpointName: "myendpoint")
-                    .ConfigureAwait(false);
+                sqlConnection.Open();
+                DeleteQueuesForEndpoint(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    endpointName: "myendpoint");
             }
 
             #endregion
@@ -28,28 +25,23 @@ namespace SqlServer_All.Operations.QueueDeletion
 
         #region sqlserver-delete-queues-for-endpoint
 
-        public static async Task DeleteQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
+        public static void DeleteQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
         {
             // main queue
-            await QueueDeletionUtils.DeleteQueue(connection, schema, endpointName)
-                .ConfigureAwait(false);
+            QueueDeletionUtils.DeleteQueue(connection, schema, endpointName);
 
             // callback queue
-            await QueueDeletionUtils.DeleteQueue(connection, schema, $"{endpointName}.{Environment.MachineName}")
-                .ConfigureAwait(false);
+            QueueDeletionUtils.DeleteQueue(connection, schema, $"{endpointName}.{Environment.MachineName}");
 
             // timeout queue
-            await QueueDeletionUtils.DeleteQueue(connection, schema, $"{endpointName}.Timeouts")
-                .ConfigureAwait(false);
+            QueueDeletionUtils.DeleteQueue(connection, schema, $"{endpointName}.Timeouts");
 
             // timeout dispatcher queue
-            await QueueDeletionUtils.DeleteQueue(connection, schema, $"{endpointName}.TimeoutsDispatcher")
-                .ConfigureAwait(false);
+            QueueDeletionUtils.DeleteQueue(connection, schema, $"{endpointName}.TimeoutsDispatcher");
 
             // retries queue
             // TODO: Only required in Versions 2 and below
-            await QueueDeletionUtils.DeleteQueue(connection, schema, $"{endpointName}.Retries")
-                .ConfigureAwait(false);
+            QueueDeletionUtils.DeleteQueue(connection, schema, $"{endpointName}.Retries");
         }
 
         #endregion

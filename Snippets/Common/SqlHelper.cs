@@ -1,9 +1,8 @@
 ﻿using System.Data.SqlClient;
-using System.Threading.Tasks;
 
 public static class SqlHelper
 {
-    public static async Task EnsureDatabaseExists(string connectionString)
+    public static void EnsureDatabaseExists(string connectionString)
     {
         var builder = new SqlConnectionStringBuilder(connectionString);
         var database = builder.InitialCatalog;
@@ -12,8 +11,7 @@ public static class SqlHelper
 
         using (var connection = new SqlConnection(masterConnection))
         {
-            await connection.OpenAsync()
-                .ConfigureAwait(false);
+            connection.Open();
 
             using (var command = connection.CreateCommand())
             {
@@ -21,8 +19,7 @@ public static class SqlHelper
 if(db_id('{database}') is null)
 	create database [{database}]
 ";
-                await command.ExecuteNonQueryAsync()
-                    .ConfigureAwait(false);
+                command.ExecuteNonQuery();
             }
         }
     }

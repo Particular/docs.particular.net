@@ -3,7 +3,6 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Management.Automation;
 using System.Threading;
-using System.Threading.Tasks;
 using Common;
 using NServiceBus;
 using NServiceBus.Config;
@@ -25,22 +24,19 @@ namespace SqlServer_All.Operations.NativeSend
 
         [SetUp]
         [TearDown]
-        public async Task Setup()
+        public void Setup()
         {
-            await SqlHelper.EnsureDatabaseExists(connectionString).ConfigureAwait(false);
+            SqlHelper.EnsureDatabaseExists(connectionString);
             using (var connection = new SqlConnection(connectionString))
             {
-                await connection.OpenAsync()
-                    .ConfigureAwait(false);
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(connection, schema, endpointName)
-                    .ConfigureAwait(false);
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(connection, schema, errorQueueName)
-                    .ConfigureAwait(false);
+                connection.Open();
+                DeleteEndpointQueues.DeleteQueuesForEndpoint(connection, schema, endpointName);
+                DeleteEndpointQueues.DeleteQueuesForEndpoint(connection, schema, errorQueueName);
             }
         }
 
         [Test]
-        public async Task Send()
+        public void Send()
         {
             var state = new State();
             using (var bus = StartBus(state))
@@ -52,8 +48,7 @@ namespace SqlServer_All.Operations.NativeSend
                     {"NServiceBus.EnclosedMessageTypes", typeof(MessageToSend).FullName}
                 };
 
-                await NativeSend.SendMessage(connectionString, endpointName, message, headers)
-                    .ConfigureAwait(false);
+                NativeSend.SendMessage(connectionString, endpointName, message, headers);
                 state.ResetEvent.WaitOne();
             }
         }

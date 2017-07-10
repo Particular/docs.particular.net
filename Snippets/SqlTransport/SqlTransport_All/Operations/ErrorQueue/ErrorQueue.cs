@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 using System.Transactions;
 
 namespace SqlServer_All.Operations.ErrorQueue
@@ -9,25 +8,24 @@ namespace SqlServer_All.Operations.ErrorQueue
     public static class ErrorQueue
     {
 
-        static async Task Usage()
+        static void Usage()
         {
             #region sqlserver-return-to-source-queue-usage
 
-            await ReturnMessageToSourceQueue(
-                    errorQueueConnection: @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True",
-                    errorQueueName: "errors",
-                    retryConnectionString: @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True",
-                    retryQueueName: "target",
-                    messageId: Guid.Parse("1667B60E-2948-4EF0-8BB1-8C851A9407D2")
-                )
-                .ConfigureAwait(false);
+            ReturnMessageToSourceQueue(
+                errorQueueConnection: @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True",
+                errorQueueName: "errors",
+                retryConnectionString: @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True",
+                retryQueueName: "target",
+                messageId: Guid.Parse("1667B60E-2948-4EF0-8BB1-8C851A9407D2")
+            );
 
             #endregion
         }
 
         #region sqlserver-return-to-source-queue
 
-        public static async Task ReturnMessageToSourceQueue(
+        public static void ReturnMessageToSourceQueue(
             string errorQueueConnection,
             string errorQueueName,
             string retryConnectionString,
@@ -36,10 +34,8 @@ namespace SqlServer_All.Operations.ErrorQueue
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
-                var messageToRetry = await ReadAndDelete(errorQueueConnection, errorQueueName, messageId)
-                    .ConfigureAwait(false);
-                await RetryMessage(retryConnectionString, retryQueueName,  messageToRetry)
-                    .ConfigureAwait(false);
+                var messageToRetry = ReadAndDelete(errorQueueConnection, errorQueueName, messageId);
+                RetryMessage(retryConnectionString, retryQueueName, messageToRetry);
                 scope.Complete();
             }
         }
@@ -51,7 +47,7 @@ namespace SqlServer_All.Operations.ErrorQueue
             public byte[] Body;
         }
 
-        static async Task RetryMessage(string connectionString, string queueName, MessageToRetry messageToRetry)
+        static void RetryMessage(string connectionString, string queueName, MessageToRetry messageToRetry)
         {
             var sql = $@"
                 insert into [{queueName}] (
@@ -66,8 +62,7 @@ namespace SqlServer_All.Operations.ErrorQueue
                     @Body)";
             using (var connection = new SqlConnection(connectionString))
             {
-                await connection.OpenAsync()
-                    .ConfigureAwait(false);
+                connection.Open();
                 using (var command = new SqlCommand(sql, connection))
                 {
                     var parameters = command.Parameters;
@@ -75,13 +70,12 @@ namespace SqlServer_All.Operations.ErrorQueue
                     parameters.Add("Headers", SqlDbType.VarChar).Value = messageToRetry.Headers;
                     parameters.Add("Body", SqlDbType.VarBinary).Value = messageToRetry.Body;
                     parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
-                    await command.ExecuteNonQueryAsync()
-                        .ConfigureAwait(false);
+                    command.ExecuteNonQuery();
                 }
             }
         }
 
-        static async Task<MessageToRetry> ReadAndDelete(string connectionString, string queueName, Guid messageId)
+        static MessageToRetry ReadAndDelete(string connectionString, string queueName, Guid messageId)
         {
             var sql = $@"
             delete from [{queueName}]
@@ -91,16 +85,13 @@ namespace SqlServer_All.Operations.ErrorQueue
             where Id = @Id";
             using (var connection = new SqlConnection(connectionString))
             {
-                await connection.OpenAsync()
-                    .ConfigureAwait(false);
+                connection.Open();
                 using (var command = new SqlCommand(sql, connection))
                 {
                     command.Parameters.AddWithValue("Id", messageId);
-                    using (var reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow)
-                        .ConfigureAwait(false))
+                    using (var reader = command.ExecuteReader(CommandBehavior.SingleRow))
                     {
-                        if (await reader.ReadAsync()
-                            .ConfigureAwait(false))
+                        if (reader.Read())
                         {
                             return new MessageToRetry
                             {

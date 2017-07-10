@@ -1,5 +1,4 @@
 ﻿using System.Data.SqlClient;
-using System.Threading.Tasks;
 
 namespace SqlServer_All.Operations.QueueCreation
 {
@@ -7,7 +6,7 @@ namespace SqlServer_All.Operations.QueueCreation
     #region create-queues
     public static class QueueCreationUtils
     {
-        public static async Task CreateQueue(SqlConnection connection, string schema, string queueName)
+        public static void CreateQueue(SqlConnection connection, string schema, string queueName)
         {
             var sql = $@"
             if not  exists (select * from sys.objects where object_id = object_id(N'[{schema}].[{queueName}]') and type in (N'U'))
@@ -38,8 +37,7 @@ namespace SqlServer_All.Operations.QueueCreation
             end";
             using (var command = new SqlCommand(sql, connection))
             {
-                await command.ExecuteNonQueryAsync()
-                    .ConfigureAwait(false);
+                command.ExecuteNonQuery();
             }
         }
 

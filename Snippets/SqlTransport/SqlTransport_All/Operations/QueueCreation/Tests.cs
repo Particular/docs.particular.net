@@ -1,5 +1,4 @@
 ﻿using System.Data.SqlClient;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using System.IO;
 using System.Management.Automation;
@@ -12,40 +11,36 @@ namespace SqlServer_All.Operations.QueueCreation
     public class Tests
     {
         [Test]
-        public async Task CreateQueuesForEndpoint()
+        public void CreateQueuesForEndpoint()
         {
             var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True";
-            await SqlHelper.EnsureDatabaseExists(connectionString).ConfigureAwait(false);
+            SqlHelper.EnsureDatabaseExists(connectionString);
             using (var sqlConnection = new SqlConnection(connectionString))
             {
-                await sqlConnection.OpenAsync()
-                    .ConfigureAwait(false);
-                await CreateEndpointQueues.CreateQueuesForEndpoint(
+                sqlConnection.Open();
+                CreateEndpointQueues.CreateQueuesForEndpoint(
                         connection: sqlConnection,
                         schema: "dbo",
-                        endpointName: "myendpoint")
-                    .ConfigureAwait(false);
+                        endpointName: "myendpoint");
 
-                await QueueCreationUtils.CreateQueue(
+                QueueCreationUtils.CreateQueue(
                         connection: sqlConnection,
                         schema: "dbo",
-                        queueName: "error")
-                    .ConfigureAwait(false);
+                        queueName: "error");
 
-                await QueueCreationUtils.CreateQueue(
+                QueueCreationUtils.CreateQueue(
                         connection: sqlConnection,
                         schema: "dbo",
-                        queueName: "audit")
-                    .ConfigureAwait(false);
+                        queueName: "audit");
             }
 
         }
 
         [Test]
-        public async Task CreateQueuesForEndpointPs()
+        public void CreateQueuesForEndpointPs()
         {
             var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True";
-            await SqlHelper.EnsureDatabaseExists(connectionString).ConfigureAwait(false);
+            SqlHelper.EnsureDatabaseExists(connectionString);
 
             var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "Operations/QueueCreation/QueueCreation.ps1");
             using (var powerShell = PowerShell.Create())

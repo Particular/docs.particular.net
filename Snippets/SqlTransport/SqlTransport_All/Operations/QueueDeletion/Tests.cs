@@ -1,5 +1,4 @@
 ﻿using System.Data.SqlClient;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace SqlServer_All.Operations.QueueDeletion
@@ -10,40 +9,35 @@ namespace SqlServer_All.Operations.QueueDeletion
     {
 
         [Test]
-        public async Task DeleteQueuesForEndpoint()
+        public void DeleteQueuesForEndpoint()
         {
             var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True";
-            await SqlHelper.EnsureDatabaseExists(connectionString).ConfigureAwait(false);
+            SqlHelper.EnsureDatabaseExists(connectionString);
             using (var sqlConnection = new SqlConnection(connectionString))
             {
-                await sqlConnection.OpenAsync()
-                    .ConfigureAwait(false);
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(
-                        connection: sqlConnection,
-                        schema: "dbo",
-                        endpointName: "myendpoint")
-                    .ConfigureAwait(false);
+                sqlConnection.Open();
+                DeleteEndpointQueues.DeleteQueuesForEndpoint(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    endpointName: "myendpoint");
             }
         }
 
         [Test]
-        public async Task DeleteSharedQueues()
+        public void DeleteSharedQueues()
         {
             var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
             using (var sqlConnection = new SqlConnection(connectionString))
             {
-                await sqlConnection.OpenAsync()
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(
-                        connection: sqlConnection,
-                        schema: "dbo",
-                        queueName: "audit")
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(
-                        connection: sqlConnection,
-                        schema: "dbo",
-                        queueName: "error")
-                    .ConfigureAwait(false);
+                sqlConnection.Open();
+                QueueDeletionUtils.DeleteQueue(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    queueName: "audit");
+                QueueDeletionUtils.DeleteQueue(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    queueName: "error");
             }
 
         }

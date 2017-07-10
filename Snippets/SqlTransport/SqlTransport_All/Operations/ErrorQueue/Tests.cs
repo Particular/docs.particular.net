@@ -2,7 +2,6 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
-using System.Threading.Tasks;
 using Common;
 using NServiceBus;
 using NServiceBus.Config;
@@ -31,39 +30,34 @@ namespace SqlServer_All.Operations.ErrorQueue
 
         [SetUp]
         [TearDown]
-        public async Task Setup()
+        public void Setup()
         {
-            await SqlHelper.EnsureDatabaseExists(connectionString).ConfigureAwait(false);
+            SqlHelper.EnsureDatabaseExists(connectionString);
             using (var connection = new SqlConnection(connectionString))
             {
-                await connection.OpenAsync()
-                    .ConfigureAwait(false);
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(connection, schema, endpointName)
-                    .ConfigureAwait(false);
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(connection, schema, errorQueueName)
-                    .ConfigureAwait(false);
+                connection.Open();
+                DeleteEndpointQueues.DeleteQueuesForEndpoint(connection, schema, endpointName);
+                DeleteEndpointQueues.DeleteQueuesForEndpoint(connection, schema, errorQueueName);
             }
         }
 
         [Test]
-        public async Task ReturnMessageToSourceQueue()
+        public void ReturnMessageToSourceQueue()
         {
             var state = new State();
             using (var bus = StartBus(state))
             {
                 bus.SendLocal(new MessageToSend());
-                var msmqMessageId = await GetMsmqMessageId()
-                    .ConfigureAwait(false);
+                var msmqMessageId = GetMsmqMessageId();
 
                 state.ShouldHandlerThrow = false;
 
-                await ErrorQueue.ReturnMessageToSourceQueue(
+                ErrorQueue.ReturnMessageToSourceQueue(
                         errorQueueConnection: connectionString,
                         errorQueueName: errorQueueName,
                         retryConnectionString: connectionString,
                         retryQueueName: endpointName,
-                        messageId: msmqMessageId)
-                    .ConfigureAwait(false);
+                        messageId: msmqMessageId);
 
                 state.ResetEvent.WaitOne();
             }
@@ -96,27 +90,23 @@ namespace SqlServer_All.Operations.ErrorQueue
             public bool ShouldHandlerThrow = true;
         }
 
-        async Task<Guid> GetMsmqMessageId()
+        Guid GetMsmqMessageId()
         {
             var sql = $"SELECT Id FROM [{errorQueueName}]";
             using (var connection = new SqlConnection(connectionString))
             {
-                await connection.OpenAsync()
-                    .ConfigureAwait(false);
+                connection.Open();
                 using (var command = new SqlCommand(sql, connection))
                 {
                     while (true)
                     {
-                        using (var reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow)
-                            .ConfigureAwait(false))
+                        using (var reader = command.ExecuteReader(CommandBehavior.SingleRow))
                         {
-                            if (await reader.ReadAsync()
-                                .ConfigureAwait(false))
+                            if (reader.Read())
                             {
                                 return reader.GetGuid(0);
                             }
-                            await Task.Delay(100)
-                                .ConfigureAwait(false);
+                            Thread.Sleep(100);
                         }
                     }
                 }
