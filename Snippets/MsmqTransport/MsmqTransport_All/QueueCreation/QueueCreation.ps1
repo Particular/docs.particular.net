@@ -5,10 +5,10 @@ Add-Type -AssemblyName System.Messaging
 Function Usage
 {
 # startcode msmq-create-queues-endpoint-usage-powershell
-    # For NServiceBus 6 Enpoints 
+    # For NServiceBus 6 Enpoints
     CreateQueuesForEndpoint -EndpointName "myendpoint" -Account $env:USERNAME
 
-# For NServiceBus 5 and below Endpoints 
+# For NServiceBus 5 and below Endpoints
     CreateQueuesForEndpoint -EndpointName "myendpoint" -Account $env:USERNAME -IncludeRetries
 # endcode
 
@@ -82,7 +82,7 @@ Function GetAccountFromWellKnownSid
         [Parameter(Mandatory=$true)]
         [System.Security.Principal.WellKnownSidType] $WellKnownSidType
     )
-    
+
     $account = New-Object System.Security.Principal.SecurityIdentifier $WellKnownSidType,$null
     return $account.Translate([System.Security.Principal.NTAccount]).ToString()
 }
@@ -91,13 +91,13 @@ Function ValidateAccount {
     param(
         [Parameter(Mandatory=$true)]
         [ValidateNotNullOrEmpty()]
-        [string] $Account 
+        [string] $Account
     )
 
     # Test Account is valid
     $userAccount =  new-object System.Security.Principal.NTAccount($Account)
     try {
-        [void] $userAccount.Translate([System.Security.Principal.SecurityIdentifier]) 
+        [void] $userAccount.Translate([System.Security.Principal.SecurityIdentifier])
         return $true
     }
     catch [System.Security.Principal.IdentityNotMappedException] {
