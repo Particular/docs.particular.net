@@ -15,19 +15,19 @@ class DelayedDelivery
 
         #region DelayedDeliveryTableSuffix
 
-        delayedDeliverySettings.TableSuffix("DelayedMessages");
+        delayedDeliverySettings.TableSuffix("Delayed");
 
         #endregion
 
         #region DelayedDeliveryProcessingInterval
 
-        delayedDeliverySettings.ProcessingInterval(TimeSpan.FromSeconds(15));
+        delayedDeliverySettings.ProcessingInterval(TimeSpan.FromSeconds(5));
 
         #endregion
 
         #region DelayedDeliveryBatchSize
 
-        delayedDeliverySettings.BatchSize(50);
+        delayedDeliverySettings.BatchSize(100);
 
         #endregion
 
