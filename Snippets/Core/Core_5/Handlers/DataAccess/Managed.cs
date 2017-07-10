@@ -22,7 +22,7 @@ namespace Core5.Handlers
                 var order = session.Get(message.OrderId);
                 if (this.MessageHasAlreadyBeenProcessed(bus.CurrentMessageContext.Id, order))
                 {
-                    // Subsequent handlers are not invoked as the message has already been processed.
+                    // Subsequent handlers are not invoked as the message has been processed.
                     bus.DoNotContinueDispatchingCurrentMessageToHandlers();
                 }
                 else
