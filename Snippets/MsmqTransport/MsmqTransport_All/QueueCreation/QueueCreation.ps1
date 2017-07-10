@@ -5,7 +5,7 @@ Add-Type -AssemblyName System.Messaging
 Function Usage
 {
 # startcode msmq-create-queues-endpoint-usage-powershell
-    # For NServiceBus 6 Enpoints
+    # For NServiceBus 6 Endpoints
     CreateQueuesForEndpoint -EndpointName "myendpoint" -Account $env:USERNAME
 
 # For NServiceBus 5 and below Endpoints

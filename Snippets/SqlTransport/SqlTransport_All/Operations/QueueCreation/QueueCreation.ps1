@@ -5,7 +5,7 @@ Add-Type -AssemblyName System.Data
 Function Usage
 {
 # startcode create-queues-endpoint-usage-powershell
-    # For NServiceBus 6 Enpoints
+    # For NServiceBus 6 Endpoints
     CreateQueuesForEndpoint -endpointName "myendpoint" -connection "TheConnectionString"
 
 # For NServiceBus 5 and below Endpoints
