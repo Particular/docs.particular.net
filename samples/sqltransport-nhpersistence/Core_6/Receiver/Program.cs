@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
@@ -18,10 +19,11 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlNHibernate.Receiver";
+        var connection = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True";
         var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
-            x.ConnectionStringName = "NServiceBus/Persistence";
+            x.ConnectionString = connection;
             x.Dialect<MsSql2012Dialect>();
         });
 
@@ -31,6 +33,9 @@ class Program
 
         #endregion
 
+        var allText = File.ReadAllText("Startup.sql");
+        await SqlHelper.ExecuteSql(connection, allText)
+            .ConfigureAwait(false);
         var mapper = new ModelMapper();
         mapper.AddMapping<OrderMap>();
         hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
@@ -44,10 +49,17 @@ class Program
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.ConnectionString(connection);
         transport.DefaultSchema("receiver");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
         transport.UseSchemaForQueue("Samples.SqlNHibernate.Sender", "sender");
+
+        transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlNHibernate.Sender");
+        routing.RegisterPublisher(typeof(OrderSubmitted).Assembly, "Samples.SqlNHibernate.Sender");
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);

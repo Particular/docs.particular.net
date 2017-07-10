@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Transport.SQLServer;
@@ -9,7 +9,6 @@ using NServiceBus.Persistence;
 
 class Program
 {
-    const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
     static Random random;
 
     static void Main()
@@ -21,6 +20,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlNHibernate.Sender";
+        var connection = @"Data Source=.\SqlExpress;Database=shared;Integrated Security=True";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Sender");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
@@ -28,7 +28,7 @@ class Program
         var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
-            x.ConnectionStringName = "NServiceBus/Persistence";
+            x.ConnectionString = connection;
             x.Dialect<MsSql2012Dialect>();
         });
         hibernateConfig.SetProperty("default_schema", "sender");
@@ -36,6 +36,7 @@ class Program
         #region SenderConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.ConnectionString(connection);
         transport.DefaultSchema("sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
@@ -47,6 +48,11 @@ class Program
 
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlNHibernate.Sender");
+
+
+        var allText = File.ReadAllText("Startup.sql");
+        await SqlHelper.ExecuteSql(connection, allText)
+            .ConfigureAwait(false);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
@@ -63,14 +69,14 @@ class Program
                 break;
             }
 
-            var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
             var orderSubmitted = new OrderSubmitted
             {
-                OrderId = orderId,
+                OrderId = Guid.NewGuid(),
                 Value = random.Next(100)
             };
             await endpointInstance.Publish(orderSubmitted)
-            .ConfigureAwait(false);
+                .ConfigureAwait(false);
+            Console.WriteLine("Published OrderSubmitted message");
         }
         await endpointInstance.Stop()
             .ConfigureAwait(false);
