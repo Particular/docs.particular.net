@@ -11,7 +11,7 @@ related:
 - samples/containers
 ---
 
-Services and state are managed by Containers and Dependency Injection. NServiceBus automatically registers all its components as well as user-implemented handlers and sagas so that all instancing modes and wiring are done correctly by default and without errors. NServiceBus has a built-in container (currently an [ILMerged](https://github.com/Microsoft/ILMerge) version of [Autofac](https://autofac.org/)) but it can be replaced by any other container.
+Services and state are managed by Containers and Dependency Injection. NServiceBus automatically registers all its components as well as user-implemented handlers and sagas so that all instancing modes and wiring are done correctly by default and without errors. NServiceBus has a built-in container, but it can be replaced by any other container.
 
 
 ## Dependency Lifecycle
