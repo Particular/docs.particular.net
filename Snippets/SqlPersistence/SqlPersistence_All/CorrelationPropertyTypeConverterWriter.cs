@@ -12,7 +12,7 @@ public class CorrelationPropertyTypeConverterWriter
     public void Write()
     {
         var testDirectory = TestContext.CurrentContext.TestDirectory;
-        var path = Path.Combine(testDirectory, "../../../../../../nservicebus/sql-persistence/correlationpropertytypes.include.md");
+        var path = Path.Combine(testDirectory, "../../../../../../persistence/sql/correlationpropertytypes.include.md");
         path = Path.GetFullPath(path);
         File.Delete(path);
         using (var writer = File.CreateText(path))
