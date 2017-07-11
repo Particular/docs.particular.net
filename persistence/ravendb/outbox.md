@@ -36,7 +36,7 @@ Although this will automatically occur when the endpoint initializes, it's still
 
 snippet: OutboxDisableDocStoreDtc
 
-When you enable the RavenDB Outbox, you should also not specify the following properties on the RavenDB DocumentStore, which are only used by RavenDB's DTC implementation:
+When the RavenDB Outbox is enabled none of the following properties, on the RavenDB DocumentStore, should be set. They are only used by RavenDB's DTC implementation:
 
 * `ResourceManagerId`
 * `TransactionRecoveryStorage`
