@@ -602,6 +602,8 @@
     Articles:
     - Url: transports/sql/design
       Title: Design
+    - Url: transports/sql/native-delayed-delivery
+      Title: Native Delayed Delivery
     - Url: transports/sql/connection-settings
       Title: Connection Settings
     - Url: transports/sql/addressing
