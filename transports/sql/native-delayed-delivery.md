@@ -17,6 +17,8 @@ NOTE: In this mode the timeout manager will still be running in order to process
 
 The default values for the settings described in this section are used in snippets. The settings can be fine-tuned to fit a particular system's characteristic, e.g. in case the expired timeout messages need to be picked up more frequently to result in a more precise approximation of expiry time.
 
+For upgrade guidance refer to the [dedicated upgrade guide](/transports/upgrades/sqlserver-3to31.md).
+
 The transport creates an additional table that stores delayed messages. The table name has the format _`endpoint-name.suffix`_, using the suffix specified in the configuration:
 
 snippet: DelayedDeliveryTableSuffix
