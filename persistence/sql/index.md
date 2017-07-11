@@ -84,7 +84,7 @@ DANGER: NServiceBus.Persistence.Sql.ScriptBuilder is currently not ready for gen
 
 ## Script Creation
 
-WARNING: Projects using `project.json` are **not** supported. The `project.json` approach was an experiment by Microsoft at a new project system that was not based on MSBuild. Since `project.json` did not support running MSBuild files shipped inside a NuGet the SQL Persistence Script Creation does not work. This experiment has since been abandoned. To fix this either migrate back to the old Visual Studio 2015 project format (`.csproj` and `packages.config`) or migrate to the new [Visual Studio 2017 project format](https://docs.microsoft.com/en-us/dotnet/articles/core/tools/project-json-to-csproj). [dotnet-migrate](https://docs.microsoft.com/en-us/dotnet/articles/core/tools/dotnet-migrate) can help migrating to the new `.csproj` format.
+WARNING: Projects using `project.json` are **not** supported. The `project.json` approach was an experiment by Microsoft at a new project system that was not based on MSBuild. Since `project.json` did not support running MSBuild files shipped inside a NuGet the SQL Persistence Script Creation does not work. This experiment has since been abandoned. To fix this either migrate back to the old Visual Studio 2015 project format (`.csproj` and `packages.config`) or migrate to the new [Visual Studio 2017 project format](https://docs.microsoft.com/en-us/dotnet/core/tools/project-json-to-csproj). [dotnet-migrate](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-migrate) can help migrating to the new `.csproj` format.
 
 
 SQL installation scripts are created at compile time by the `NServiceBus.Persistence.Sql.MsBuild` NuGet package.

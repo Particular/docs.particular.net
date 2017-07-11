@@ -51,7 +51,7 @@ The WCF integration has been augmented with additional functionality such as the
 
 ### Ambiguous type compilation error
 
-By default referenced assemblies are imported into the [global namespace](https://docs.microsoft.com/en-us/dotnet/articles/csharp/programming-guide/namespaces/how-to-use-the-global-namespace-alias). This might lead to ambiguous type reference problems when implementing `WcfService<TRequest, TResponse>` or `IWcfService<TRequest, TResponse>`. To resolve the ambiguous type reference do the following:
+By default referenced assemblies are imported into the [global namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/how-to-use-the-global-namespace-alias). This might lead to ambiguous type reference problems when implementing `WcfService<TRequest, TResponse>` or `IWcfService<TRequest, TResponse>`. To resolve the ambiguous type reference do the following:
 
 - In the Solution Explorer right click under References on the `NServiceBus.Wcf` reference and switch to the properties pane, or use `Alt+Enter`
 - Under the alias property set an alias for the assembly, for example `wcf`

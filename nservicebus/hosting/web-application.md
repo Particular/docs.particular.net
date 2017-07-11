@@ -18,7 +18,7 @@ NServiceBus can be hosted in any web technology that support .NET. This includes
 
  * [ASP.net](https://www.asp.net/get-started/websites)
  * [ASP.MVC](https://www.asp.net/mvc)
- * [Windows Communication Foundation (WCF)](https://msdn.microsoft.com/en-us/library/ms731082.aspx)
+ * [Windows Communication Foundation (WCF)](https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-wcf)
  * [Web API](https://www.asp.net/web-api)
  * [NancyFX](http://nancyfx.org/)
 

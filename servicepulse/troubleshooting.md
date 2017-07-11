@@ -61,7 +61,7 @@ Starting from IIS 7.5 and above the above steps can be combined into one by foll
 
  1. Enable [AlwaysRunning mode](https://msdn.microsoft.com/en-us/library/ee677285.aspx) for the application pool of the site. Go to the application pool management, open the Advanced Settings in General switch the `Start Mode` to `AlwaysRunning`.
  1. Enabled Preload for the site itself. Right click on the site, then Manage Site in Advanced Settings in the General settings, switch `Enable Preload` to `true`.
- 1. Install the [Application Initialization Module](https://www.iis.net/learn/get-started/whats-new-in-iis-8/iis-80-application-initialization).
+ 1. Install the [Application Initialization Module](https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization).
  1. Add the following to the web.config in the [system.webServer node](https://msdn.microsoft.com/en-us/library/ms689429.aspx).
 
 ```xml

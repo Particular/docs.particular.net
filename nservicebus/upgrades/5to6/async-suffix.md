@@ -69,7 +69,7 @@ When a Task method calls an async method but neglects to await that method.
 
 snippet: TaskMethodMissingAwait
 
-Results in [Compiler Error CS0161](https://msdn.microsoft.com/en-us/library/87cz4k9t.aspx)
+Results in [Compiler Error CS0161](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0161)
 
 
 #### Async method with missing await
@@ -78,7 +78,7 @@ When an async Task method calls an async method but neglects to await that metho
 
 snippet: AsyncMethodMissingAwait
 
-Results in [Compiler Warning CS4014](https://msdn.microsoft.com/en-us/library/hh873131.aspx)
+Results in [Compiler Warning CS4014](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs4014)
 
 
 #### Missing a single await
@@ -87,7 +87,7 @@ When an async Task method awaits one async method but neglects to await another.
 
 snippet: AsyncMethodMissingOneAwait
 
-Results in [Compiler Warning CS4014](https://msdn.microsoft.com/en-us/library/hh873131.aspx)
+Results in [Compiler Warning CS4014](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs4014)
 
 
 #### Treat Warnings as Errors

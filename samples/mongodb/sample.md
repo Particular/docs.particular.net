@@ -18,7 +18,7 @@ Ensure an instance of [MongoDB](https://www.mongodb.com/) is running on `localho
 
 ### MongoDB Management UI
 
-To visualize the data in MongoDB it is useful to have install a [MongoDB administration tool](https://docs.mongodb.com/ecosystem/tools/administration-interfaces/). The screen shots shown in this sample use [Robomongo](https://robomongo.org/).
+To visualize the data in MongoDB it is useful to have install a [MongoDB administration tool](https://docs.mongodb.com/ecosystem/tools/). The screen shots shown in this sample use [Robomongo](https://robomongo.org/).
 
 
 ## Code walk-through

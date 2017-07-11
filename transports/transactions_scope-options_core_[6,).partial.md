@@ -20,4 +20,4 @@ Change the transaction timeout using
 
 snippet: CustomTransactionTimeout
 
-Via a [config file](https://msdn.microsoft.com/en-us/library/1xtk877y.aspx) using a the [Timeout property of the DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.timeout.aspx).
+Via a [config file](https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/index) using a the [Timeout property of the DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.timeout.aspx).

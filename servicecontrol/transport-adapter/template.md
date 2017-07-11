@@ -7,7 +7,7 @@ related:
  - nservicebus/hosting/windows-service-template
 ---
 
-The Transport Adapter `dotnet new` template makes it easier to create a [Windows Service](https://msdn.microsoft.com/en-us/library/d56de412.aspx) host for the Transport Adapter.
+The Transport Adapter `dotnet new` template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for the Transport Adapter.
 
 
 ## Installation

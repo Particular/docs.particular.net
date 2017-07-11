@@ -24,6 +24,6 @@ partial: customizing
 
 The NHibernate implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
 
-These default settings can be changed by specifying new defaults in the config file using [TimeStamp strings](https://msdn.microsoft.com/en-us/library/ee372286.aspx):
+These default settings can be changed by specifying new defaults in the config file using [TimeStamp strings](https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings):
 
 snippet: OutboxNHibernateTimeToKeep

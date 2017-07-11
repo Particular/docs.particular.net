@@ -46,7 +46,7 @@ partial: dispose
 
 ### Windows Service Hosting
 
-A [Windows Service](https://msdn.microsoft.com/en-us/library/d56de412.aspx) is the most common way NServiceBus is hosted.
+A [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way NServiceBus is hosted.
 
 Related:
 
