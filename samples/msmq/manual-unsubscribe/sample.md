@@ -7,6 +7,7 @@ related:
 - transports
 - transports/msmq
 - transports/sql
+- transports/azure-storage-queues
 ---
 
 ## Manual unsubscribe
