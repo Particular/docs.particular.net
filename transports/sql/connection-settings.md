@@ -13,7 +13,7 @@ The SQL Server transport is built on top of [ADO.NET](https://docs.microsoft.com
 
 In scenarios where the concurrent message processing limit is changed, or the database connection is used for other purposes as mentioned above, it is advisable to change the connection pool size to ensure it will not be exhausted. See also [SQL Server Connection Pooling and Configuration](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-connection-pooling).
 
-partial:pool-size  
+partial: pool-size  
 
 
 ## Connection configuration
