@@ -27,10 +27,6 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.6.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da">
-      <HintPath>..\..\..\..\packages\Autofac.4.6.0\lib\net45\Autofac.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -52,7 +48,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\packages\NServiceBus.7.0.0-alpha0031\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.7.0.0-alpha0032\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.NHibernate, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
