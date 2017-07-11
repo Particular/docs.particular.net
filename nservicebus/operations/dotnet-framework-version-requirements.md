@@ -14,7 +14,7 @@ Requires [.NET Core 2.0](https://www.microsoft.com/net/core/) **or** [.NET Frame
 
 ### NServiceBus Version 6.x
 
-Requires [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642)
+Requires [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=17851)
 
 
 ### NServiceBus Version 5.x

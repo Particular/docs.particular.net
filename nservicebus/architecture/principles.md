@@ -41,7 +41,7 @@ In order to learn more about the relationship between messaging and reliable, sc
 
 <iframe src="//fast.wistia.net/embed/iframe/7kr0n04vi5" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="480"></iframe>
 
-See also other webinars and presentations in the [Videos and Presentations](https://particular.net/videos-and-presentations) page.
+See also other webinars and presentations in the [Videos and Presentations](https://particular.net/videos) page.
 
 
 ### Store and forward messaging

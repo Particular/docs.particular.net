@@ -385,7 +385,7 @@
       Title: Jil
     - Url: nservicebus/serialization/wire
       Title: Wire
-    - Url: nservicebus/serialization/Hyperion
+    - Url: nservicebus/serialization/hyperion
       Title: Hyperion
     - Url: nservicebus/serialization/message-pack
       Title: Message Pack

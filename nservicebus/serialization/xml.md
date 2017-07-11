@@ -25,7 +25,7 @@ partial: raw
 
 ### XML Attributes
 
-The XML serializer in NServiceBus is a custom implementation. As such it does not support the [standard .NET XML Attributes](https://msdn.microsoft.com/en-us/library/2baksw0z.aspx).
+The XML serializer in NServiceBus is a custom implementation. As such it does not support the [standard .NET XML Attributes](https://docs.microsoft.com/en-us/dotnet/framework/serialization/controlling-xml-serialization-using-attributes).
 
 
 ### Unsupported Types

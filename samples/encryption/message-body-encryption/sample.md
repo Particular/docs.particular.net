@@ -57,6 +57,6 @@ snippet: MessageEncryptorExtension
 
 #### The Mutator
 
-WARNING: Clearly this it not true encryption. It is only doing a byte array reversal to illustrate the API. In the production system true encryption should be used via the [.NET Framework Cryptography Model](https://msdn.microsoft.com/en-us/library/0ss79b2x.aspx).
+WARNING: Clearly this it not true encryption. It is only doing a byte array reversal to illustrate the API. In the production system true encryption should be used via the [.NET Framework Cryptography Model](https://docs.microsoft.com/en-us/dotnet/standard/security/cryptography-model).
 
 snippet: Mutator

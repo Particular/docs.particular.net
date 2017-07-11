@@ -31,16 +31,16 @@ Install ServicePulse using the [Particular Service Platform Installer](/platform
 
 ### Available installation parameters
 
-- `Quiet`  
+- `Quiet`
 Allows ServicePulse to be installed in the background. The installation user interface will be unavailable.
-- `Log [file location]`  
-Provides the location on disk for the logfile to be generated.  
-- `INST_PORT_PULSE [port number]`  
-Provides the port number that ServicePulse web application will run on.  
+- `Log [file location]`
+Provides the location on disk for the logfile to be generated.
+- `INST_PORT_PULSE [port number]`
+Provides the port number that ServicePulse web application will run on.
 Default : 9090
-- `INST_URI [uri]`  
-Provides location of the ServiceControl API  
-Default : http://localhost:33333/api/
+- `INST_URI [uri]`
+Provides location of the ServiceControl API
+Default : `http://localhost:33333/api/`
 
 Example
 ```

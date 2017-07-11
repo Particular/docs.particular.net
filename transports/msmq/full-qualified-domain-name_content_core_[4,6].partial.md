@@ -5,7 +5,7 @@ Some deployment environments require the use of [Full Qualified Domain Names (FQ
 
 To override the machine name resolution, provide a factory method to `RuntimeEnvironment.MachineNameAction` when an endpoint is configured.
 
-Check [how to find FQDM of local machine](http://stackoverflow.com/questions/804700/how-to-find-fqdn-of-local-machine-in-c-net) for a good starting point on how to get the FQDM of the local machine.
+Check [how to find FQDM of local machine](https://stackoverflow.com/questions/804700/how-to-find-fqdn-of-local-machine-in-c-net) for a good starting point on how to get the FQDM of the local machine.
 
 snippet: MsmqMachineNameFQDN
 

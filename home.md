@@ -130,7 +130,7 @@ span.blue {
     </a>
   </div>
   <div class="ic">
-    <a href="https://particular.net/videos-and-presentations">
+    <a href="https://particular.net/videos">
       <i class="glyphicon glyphicon-film mainicon"></i><br>Intro Videos
     </a>
   </div>
