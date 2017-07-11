@@ -26,9 +26,12 @@ related:
 
 ## Migration scripts
 
+NOTE: It may be necessary to modify the presented scripts to introduce batching, especially when there's a large number of timeouts that need to be migrated (in the range of thousands).
+
 The following script can be used to migrate the delayed messages from NHibernate persistence (assuming SQL Server is used as a database):
 
 snippet: MigrateFromNHibernate
+
 
 The following script can be used to migrate the delayed messages from SQL persistence (assuming SQL Server is used as a database):
 
