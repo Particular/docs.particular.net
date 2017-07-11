@@ -1,13 +1,13 @@
 ﻿-- startcode MigrateFromSql
 
-declare @endpointName nvarchar(max) = 'PUT ENDPOINT NAME HERE';
+declare @endpointName nvarchar(max) = N'PUT ENDPOINT NAME HERE';
 
-declare @endpointSchema nvarchar(max) = 'dbo';
-declare @dalayedTableSuffix nvarchar(max) = 'Delayed';
+declare @endpointSchema nvarchar(max) = N'dbo';
+declare @dalayedTableSuffix nvarchar(max) = N'Delayed';
 declare @timeoutDataTable nvarchar(max) = REPLACE(@endpointName,'.','_') + '_TimeoutData';
 
 declare @migrateScript nvarchar(max);
-set @migrateScript = '
+set @migrateScript = N'
     WITH message AS (
 		SELECT * 
 		FROM ' + @timeoutDataTable + ' WITH (UPDLOCK, READPAST, ROWLOCK) 
