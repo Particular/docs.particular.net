@@ -21,7 +21,7 @@ class DelayedDelivery
 
         #region DelayedDeliveryProcessingInterval
 
-        delayedDeliverySettings.ProcessingInterval(TimeSpan.FromSeconds(5));
+        delayedDeliverySettings.ProcessingInterval(TimeSpan.FromSeconds(1));
 
         #endregion
 
