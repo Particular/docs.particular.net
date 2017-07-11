@@ -2,7 +2,7 @@
 title: SQL Server Native Delayed Delivery
 summary: Describes the native delayed delivery implementation in the SQL Server transport
 reviewed: 2017-06-05
-component: SqlServer
+component: SqlTransport
 versions: '[3.1,)'
 ---
 
