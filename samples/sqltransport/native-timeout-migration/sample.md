@@ -20,7 +20,7 @@ related:
  1. Open `MigrateFromNHibernate.sql` script in SQL Server Management Studio.
  1. Replace the endpoint name value in the script with `Samples.SqlServer.NativeTimeoutMigration`
  1. Run the script. The outcome should be `(1 row(s) affected)`.
- 1. Repeat the steps 3-5 for the `MigrateFromNHibernate.sql` script.
+ 1. Repeat the steps 3-5 for the `MigrateFromSql.sql` script.
  1. Start the Endpoint.Native project.
  1. Observe the message `Hello from MyHandler` displayed two times meaning that the delayed messages have been successfully picked up by the native handling in the SQL Server transport.
 
