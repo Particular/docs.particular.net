@@ -15,7 +15,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleReceiver");
         endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True");
+        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True;Max Pool Size=100");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
 

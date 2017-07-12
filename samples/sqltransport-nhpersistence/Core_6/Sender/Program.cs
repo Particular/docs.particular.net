@@ -20,7 +20,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlNHibernate.Sender";
-        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlNHibernate;Integrated Security=True";
+        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Sender");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

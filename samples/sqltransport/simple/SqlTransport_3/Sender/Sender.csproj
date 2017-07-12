@@ -27,13 +27,11 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
+    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Transport.SQLServer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.SqlServer.3.0.2\lib\net452\NServiceBus.Transport.SQLServer.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Transport.SqlServer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.SqlServer.3.1.1\lib\net452\NServiceBus.Transport.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -42,13 +40,13 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{BF92D39E-42F6-44E9-8F7F-819993235621}</Project>
       <Name>Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

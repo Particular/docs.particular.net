@@ -24,7 +24,7 @@ class Program
 
         #region SenderConfiguration
 
-        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlOutbox;Integrated Security=True";
+        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlOutbox;Integrated Security=True;Max Pool Size=100";
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connection);

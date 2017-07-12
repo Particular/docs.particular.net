@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 static class ConnectionProvider
 {
-    const string DefaultConnectionString = @"Data Source=.\SqlExpress;Database=SenderCatalog;Integrated Security=True";
-    const string ReceiverConnectionString = @"Data Source=.\SqlExpress;Database=ReceiverCatalog;Integrated Security=True";
+    const string DefaultConnectionString = @"Data Source=.\SqlExpress;Database=SenderCatalog;Integrated Security=True;Max Pool Size=100";
+    const string ReceiverConnectionString = @"Data Source=.\SqlExpress;Database=ReceiverCatalog;Integrated Security=True;Max Pool Size=100";
 
     public static async Task<SqlConnection> GetConnection(string transportAddress)
     {

@@ -23,9 +23,9 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         var routing = transport.Routing();
-        routing.RouteToEndpoint(
-            messageType: typeof(OrderAccepted),
-            destination: "Samples.SqlServer.StoreAndForwardSender");
+        routing.RegisterPublisher(
+            eventType: typeof(OrderSubmitted),
+            publisherEndpoint: "Samples.SqlServer.StoreAndForwardSender");
 
         transport.EnableLegacyMultiInstanceMode(async address =>
         {
@@ -66,6 +66,6 @@ class Program
             .ConfigureAwait(false);
     }
 
-    const string ReceiverConnectionString = @"Data Source=.\SqlExpress;Database=receiver;Integrated Security=True;Min Pool Size=2;Max Pool Size=100";
-    const string SenderConnectionString = @"Data Source=.\SqlExpress;Database=sender;Integrated Security=True;Min Pool Size=2;Max Pool Size=100";
+    const string ReceiverConnectionString = @"Data Source=.\SqlExpress;Database=receiver;Integrated Security=True;Max Pool Size=100";
+    const string SenderConnectionString = @"Data Source=.\SqlExpress;Database=sender;Integrated Security=True;Max Pool Size=100";
 }
