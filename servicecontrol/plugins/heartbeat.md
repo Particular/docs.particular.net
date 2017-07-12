@@ -1,7 +1,7 @@
 ---
 title: Heartbeat Plugin
 summary: Use the Heartbeat plugin to monitor the health of the endpoints
-reviewed: 2016-11-15
+reviewed: 2017-07-12
 component: Heartbeats
 related:
  - servicepulse/intro-endpoints-heartbeats
