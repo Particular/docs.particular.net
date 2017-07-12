@@ -36,5 +36,15 @@
 
             #endregion
         }
+
+        void OverrideSubscriptionQueue(EndpointConfiguration endpointConfiguration)
+        {
+            #region MsmqSubscriptionCode
+
+            endpointConfiguration.UsePersistence<MsmqPersistence>()
+                .SubscriptionQueue("YourEndpointName.Subscriptions");
+
+            #endregion
+        }
     }
 }
