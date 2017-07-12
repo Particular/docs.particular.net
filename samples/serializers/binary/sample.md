@@ -8,7 +8,7 @@ related:
 - nservicebus/serialization/binary
 ---
 
-NOTE: In Version 6 and above, the `BinarySerializer` was deprecated. Use one of the [supported serializers](/nservicebus/serialization/#supported-serializers), or an [external serializer](/components#serializers).
+WARNING: In Version 6 and above, the `BinarySerializer` was deprecated. Use one of the [supported serializers](/nservicebus/serialization/#supported-serializers), or an [external serializer](/components#serializers).
 
 This sample uses the Binary Formatter serializer in the core.
 
