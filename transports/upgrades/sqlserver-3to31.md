@@ -14,7 +14,7 @@ snippet: createdelayedmessagestoretextsql
 
 SQL Server transport 3.1 by default runs the [Timeout Manager](/nservicebus/messaging/timeout-manager.md) using the selected persistence option to drain all the remaining delayed messages sent before upgrading to version 3.1. However, even the new delayed messages are processed using the native mechanism only even when they are sent by the endpoint using older version of the transport.
 
-Because some delayed messages can have the due times months or even years in future it might be advisable to migrate them in order to be able to disable the Timeout Manager entirely. See the [SQL Server Native Delayed Delivery](/transports/sql/native-delayed-delivery) article for more details.
+Because some delayed messages can have the due times months or even years in future it might be advisable to migrate them in order to be able to disable the Timeout Manager entirely. See the [SQL Server Native Delayed Delivery](/transports/sql/native-delayed-delivery.md) article for more details.
 
 
 ### SQL Server
