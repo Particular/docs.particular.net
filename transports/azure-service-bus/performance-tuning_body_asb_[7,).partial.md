@@ -27,7 +27,7 @@ The receive performance can be tweaked in all applications by adjusting the foll
 
 Changing the following settings will also improve application performance; however, their values should depend on the nature of the application:
 
-  * `LimitMessageProcessingConcurrencyTo()`: This is the global concurrency limit across all receive entities. The value should be determined according to the formula: `desired concurrency per receiver` x `number of receivers`.
+  * `LimitMessageProcessingConcurrencyTo()`: This is the global concurrency limit across all receive entities. The value should be determined according to the formula: `desired concurrency per receiver` x `number of receivers`. A receiver in the context of the transport is a message pump which takes care of one or more entities (queues and subscriptions) to receive from. Each message pump has its concurrency limitation. The global concurrency limit will be shared across all pumps that are simultaneously receiving messages.
   * `MessageReceivers().PrefetchCount()`: Value is set per receiver. The higher throughput rate for an individual receiver, the more aggressive prefetching should be applied (i.e. the higher value for `PrefetchCount`).
   * `Transactions()`: The transactional guarantees have a significant impact on performance, for example,  the application using `ReceiveOnly` will have much better performance than an application using SendsAtomicWithReceive`.
 
