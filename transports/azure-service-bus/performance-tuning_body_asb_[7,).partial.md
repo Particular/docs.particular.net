@@ -31,6 +31,7 @@ Changing the following settings will also improve application performance; howev
   * `MessageReceivers().PrefetchCount()`: Value is set per receiver. The higher throughput rate for an individual receiver, the more aggressive prefetching should be applied (i.e. the higher value for `PrefetchCount`).
   * `Transactions()`: The transactional guarantees have a significant impact on performance, for example,  the application using `ReceiveOnly` will have much better performance than an application using SendsAtomicWithReceive`.
 
+NOTE: If an endpoint is a sender and a receiver some settings like `MessagingFactories().NumberOfMessagingFactoriesPerNamespace()` need to be tweaked accordingly. In general it is recommended to optimize for receive performance since these settings might also improve the send performance.
 
 ### Sends Atomic With Receive
 
