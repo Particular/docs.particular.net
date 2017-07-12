@@ -1,0 +1,12 @@
+﻿// startcode proto
+syntax = "proto3";
+message CreateOrder {
+   int32 OrderId = 1;
+   int32 CustomerId = 2;
+   repeated OrderItem OrderItems = 3;
+}
+message OrderItem {
+   int32 ItemId = 1;
+   int32 Quantity = 2;
+}
+// endcode

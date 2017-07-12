@@ -1,18 +1,30 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26114.2
+VisualStudioVersion = 15.0.26621.2
 MinimumVisualStudioVersion = 15.0.26114.2
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoBufGoogle_1", "ProtoBufGoogle_1\ProtoBufGoogle_1.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoBufGoogle_1", "ProtoBufGoogle_1\ProtoBufGoogle_1.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoBufGoogle_1.1", "ProtoBufGoogle_1.1\ProtoBufGoogle_1.1.csproj", "{0A1E5A7A-E981-4369-81EA-8A6B5D98EBC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{100E3F2F-409C-4E7F-AEAD-599179DC0C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{100E3F2F-409C-4E7F-AEAD-599179DC0C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{100E3F2F-409C-4E7F-AEAD-599179DC0C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{100E3F2F-409C-4E7F-AEAD-599179DC0C69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A1E5A7A-E981-4369-81EA-8A6B5D98EBC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A1E5A7A-E981-4369-81EA-8A6B5D98EBC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A1E5A7A-E981-4369-81EA-8A6B5D98EBC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A1E5A7A-E981-4369-81EA-8A6B5D98EBC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E14C7D5D-F0DD-4F81-9B8D-8B7C9B7FC1C8}
 	EndGlobalSection
 EndGlobal
