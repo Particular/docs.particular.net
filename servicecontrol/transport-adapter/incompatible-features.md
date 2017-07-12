@@ -19,13 +19,13 @@ Neither [direct topology](/transports/rabbitmq/routing-topology.md#direct-routin
 
 ## Azure Service Bus
 
- * Using [aliases](/transports/azure-service-bus/securing-connection-strings.md) instead of connectionstring will make it impossible to retry messages from ServiceControl.
+ * Using [aliases](/transports/azure-service-bus/securing-connection-strings.md) instead of connection string will make it impossible to retry messages from ServiceControl.
  * Leveraging [multiple namespaces in a topology](/transports/azure-service-bus/multiple-namespaces-support.md) will require a setup of multiple ServiceControl instances.
  * Customizing [brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) may lead to incompatible wire formats and deserialization errors.
 
 
 ## Azure Storage Queues
 
- * Using [aliases](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts) instead of connectionstring will make it impossible to retry messages from ServiceControl.
+ * Using [aliases](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts) instead of connection string will make it impossible to retry messages from ServiceControl.
  * Leveraging [multiple storage accounts](/transports/azure-storage-queues/multi-storageaccount-support.md) will require a setup of multiple ServiceControl instances.
- * Choosing a [non default serializer for the message wrapper](/transports/azure-storage-queues/configuration.md#configuration-parameters-serializemessagewrapperwith) or using a [custom envelopewrapper](/transports/azure-storage-queues/configuration.md#custom-envelope-unwrapper) may lead to incompatible wire formats.
+ * Choosing a [non default serializer for the message wrapper](/transports/azure-storage-queues/configuration.md#configuration-parameters-serializemessagewrapperwith) or using a [custom envelope wrapper](/transports/azure-storage-queues/configuration.md#custom-envelope-unwrapper) may lead to incompatible wire formats.
