@@ -14,6 +14,8 @@ related:
 
 This sample leverages the pipeline to provide a pure stream based approach for sending large amounts of data. It is similar to the file share [DataBus](/nservicebus/messaging/databus/file-share.md) in that it assumes a common network file share accessible by endpoints and uses headers to correlate between a message and its connected files on disk.
 
+The main difference is that with streams, the data doesn't all need to be loaded into memory all at once which results in a much more efficient and scalable solution.
+
 
 ## Stream Storage helper
 

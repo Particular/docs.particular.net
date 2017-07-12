@@ -1,7 +1,7 @@
 ---
 title: Heartbeat Plugin
 summary: Use the Heartbeat plugin to monitor the health of the endpoints
-reviewed: 2016-11-15
+reviewed: 2017-07-12
 component: Heartbeats
 related:
  - servicepulse/intro-endpoints-heartbeats
@@ -20,9 +20,6 @@ If a heartbeat message is not received by ServiceControl from an endpoint, that 
 An inactive endpoint indicates that there is a failure in the communication path between ServiceControl and the monitored endpoint. For example, such failures may be caused by a failure of the endpoint itself, a communication failure in the transport, or when ServiceControl is unable to receive and process the heartbeat messages sent by the endpoint.
 
 NOTE: It is essential to deploy this plugin to the endpoint in production for ServicePulse to be able to monitor the endpoint.
-
-WARNING: The Heartbeat plugin does not support [Send-Only endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting).
-
 
 ### Deprecated NuGet
 

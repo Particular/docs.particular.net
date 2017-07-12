@@ -8,7 +8,7 @@ related:
  - samples/serializers
 ---
 
-NServiceBus takes instances of .NET objects (messages, events and commands) and then sends/receives them over a specified [Transport](/transports/). As part of this the object need to be serialized and deserialized. To achieve this NServiceBus uses **Serializers**.
+NServiceBus takes instances of .NET objects (messages, events and commands) and then sends/receives them over a specified [Transport](/transports/). As part of this the object needs to be serialized and deserialized. To achieve this NServiceBus uses **Serializers**.
 
 
 ### Supported Serializers
