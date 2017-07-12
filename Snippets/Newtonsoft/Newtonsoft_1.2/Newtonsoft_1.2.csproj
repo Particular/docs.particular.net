@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="1.2.0-*" />
+  </ItemGroup>
+</Project>
