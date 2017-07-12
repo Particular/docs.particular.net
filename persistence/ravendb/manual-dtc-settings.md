@@ -8,7 +8,7 @@ redirects:
  - nservicebus/ravendb/how-to-change-resourcemanagerid
  - nservicebus/ravendb/resourcemanagerid
  - nservicebus/ravendb/manual-dtc-settings
-reviewed: 2016-10-03
+reviewed: 2017-07-12
 ---
 
 In order to provide reliable support for distributed transactions in RavenDB, a custom DocumentStore must be provided and configured to uniquely identify the endpoint to the Distributed Transaction Coordinator (DTC) and provide a storage location for uncommitted transaction recovery.
@@ -17,6 +17,8 @@ In order to provide reliable support for distributed transactions in RavenDB, a 
 ## Definitions
 
 Support for the Distributed Transaction Coordinator (DTC) in RavenDB is dependent upon the **ResourceManagerId** and **TransactionRecoveryStorage** settings.
+
+NOTE: When using the [Outbox feature](/nservicebus/outbox/) instead of distributed transactions, these settings are not required and should not be used. See [Outbox with RavenDB persistence](/persistence/ravendb/outbox.md) for more information.
 
 
 ### ResourceManagerId
