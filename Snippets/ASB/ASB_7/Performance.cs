@@ -23,7 +23,7 @@ class Performance
         #endregion
 
         #region asb-fast-send
-        var tasks = new List<Task>();
+        var tasks = new List<Task>(10000);
         for (var i = 0; i < 10000; i++)
         {
             var task = endpointInstance.Send(new SomeMessage());
