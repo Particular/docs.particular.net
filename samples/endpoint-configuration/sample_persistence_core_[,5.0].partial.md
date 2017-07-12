@@ -1,0 +1,1 @@
+This sample uses the [In-Memory](/persistence/in-memory.md) persistence.
