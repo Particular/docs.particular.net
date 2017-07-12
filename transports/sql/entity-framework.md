@@ -1,5 +1,5 @@
 ---
-title: Entity Framework caveats
+title: Entity Framework Caveats
 reviewed: 2016-08-31
 component: SqlTransport
 redirects:
