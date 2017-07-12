@@ -10,18 +10,20 @@ redirects:
  - transports/sqlserver/deployment-options
 ---
 
-When using the default configuration, SQL Server Transport assumes that all tables used for storing messages for endpoints are located in a single catalog and within a single schema. The configuration can be changed to partition message storage between different schemas and catalogs. The schemas and catalogs can also be specified at a queue level. For example, the error and the audit queues can be configured to use a different schema and a different database catalog.
+When using the default configuration, the SQL Server Transport assumes that all tables used for storing messages for endpoints are located in a single catalog and within a single schema. However, the configuration can be changed such that message storage is partitioned between different schemas and catalogs. 
+
+The schemas and catalogs can also be specified at a queue level. For example, the error and the audit queues can be configured to use a different schema and a different database catalog.
 
 The supported deployment options are:
 
  * **default**: all queues are stored in a single catalog and a single schema.
  * **multi-schema**: queues are stored in a single catalog but in more than one schema.
  * **multi-instance**: queues are stored in multiple catalogs on more than one SQL Server instance.
- * **multi-catalog**: queues are stored in multiple catalogs but on a single SQL Server instance. This mode is indirectly supported by using *multi-instance* option, and requires using DTC. In this document both options are covered under *multi-instance* term.
+ * **multi-catalog**: queues are stored in multiple catalogs but on a single SQL Server instance. This mode is indirectly supported by using *multi-instance* option, and requires using DTC. In this document both options are covered under the *multi-instance* term.
 
-NOTE: To properly identify the chosen deployment option all queues that the endpoint interacts with need to be taken into consideration, including error and audit queues. If either of them are stored in a separate SQL Server instance then the deployment is a *multi-instance* one.
+NOTE: To properly identify the chosen deployment option, all queues that the endpoint interacts with need to be taken into consideration, including error and audit queues. If either of them are stored in a separate SQL Server instance then the deployment should be treated as a *multi-instance* one.
 
-The transport will route messages to destination based on the configuration. If no specific configuration has been provided for a particular destination, the transport assumes the destination has the same configuration as the sending endpoint (i.e. identical schema, catalog and instance name). If the destination has a different configuration and it hasn't been provided, then exception will be thrown when sending a message, because the transport wouldn't be able to connect to the destination queue.
+The transport will route messages to destination based on the configuration. If no specific configuration has been provided for a particular destination, the transport assumes the destination has the same configuration as the sending endpoint (i.e. identical schema, catalog, and instance name). If the destination has a different configuration and it hasn't been provided, then an exception will be thrown when sending a message because the transport wouldn't be able to connect to the destination queue.
 
 
 ### Queues names examples
