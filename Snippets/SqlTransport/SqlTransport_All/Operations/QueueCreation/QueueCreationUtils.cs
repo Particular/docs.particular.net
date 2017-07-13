@@ -17,7 +17,7 @@ namespace SqlServer_All.Operations.QueueCreation
                     [ReplyToAddress] [varchar](255),
                     [Recoverable] [bit] not null,
                     [Expires] [datetime],
-                    [Headers] [varchar](max) not null,
+                    [Headers] [nvarchar](max) not null,
                     [Body] [varbinary](max),
                     [RowVersion] [bigint] identity(1,1) not null
                 );
@@ -34,6 +34,7 @@ namespace SqlServer_All.Operations.QueueCreation
                     [Id],
                     [RowVersion]
                 )
+                where [Expires] is not null
             end";
             using (var command = new SqlCommand(sql, connection))
             {
