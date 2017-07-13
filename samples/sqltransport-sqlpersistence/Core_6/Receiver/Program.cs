@@ -23,7 +23,7 @@ public static class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
-        var connection = @"Data Source=.\SqlExpress;Database=Samples.Sql;Integrated Security=True";
+        var connection = @"Data Source=.\SqlExpress;Database=SamplesSql;Integrated Security=True";
 
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();

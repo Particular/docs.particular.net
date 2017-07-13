@@ -23,7 +23,7 @@ public static class Program
 
         #region SenderConfiguration
 
-        var connection = @"Data Source=.\SqlExpress;Database=Samples.Sql;Integrated Security=True";
+        var connection = @"Data Source=.\SqlExpress;Database=SamplesSql;Integrated Security=True";
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connection);
         transport.DefaultSchema("sender");
