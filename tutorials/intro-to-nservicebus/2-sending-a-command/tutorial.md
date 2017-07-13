@@ -123,11 +123,11 @@ Now that we've defined a message, we can create a corresponding message handler.
  1. Mark the handler class as public, and implement the `IHandleMessages<PlaceOrder>` interface.
  1. Add a logger instance, which will allow you to take advantage of the same logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the entries written with the logger will appear in the log file in addition to the console. Use this code to add the logger instance to your handler class:
     ```cs
-    static ILog logger = LogManager.GetLogger<PlaceOrderHandler>();
+    static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
     ```
  1. Within the `Handle` method, use the logger to record the receipt of the `PlaceOrder` message, including the value of the `OrderId` message property:
     ```cs
-    logger.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
+    log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
     ```
  1. Since everything we have done in this handler method is synchronous, return `Task.CompletedTask`.
 
