@@ -13,7 +13,7 @@ class XmlUsage
             TypeNameHandling = TypeNameHandling.Auto,
             Converters =
             {
-                new XContainerJsonConverter()
+                new XmlJsonConverter()
             }
         };
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();

@@ -5,7 +5,7 @@ using global::Newtonsoft.Json;
 #region XContainerJsonConverter
 using NewtonsoftJsonSerializer = global::Newtonsoft.Json.JsonSerializer;
 
-class XContainerJsonConverter : JsonConverter
+class XmlJsonConverter : JsonConverter
 {
     public override void WriteJson(JsonWriter writer, object value, NewtonsoftJsonSerializer serializer)
     {
