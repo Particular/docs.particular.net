@@ -22,23 +22,6 @@ The core of [NServiceBus uses Json.net](json.md). However it is [ILMerged](https
 These restrictions do not apply to this serializer.
 
 
-## Compatibility with the core JSON serializer
-
-The only incompatibility with the [core serializer](json.md) is that this serializer does not support the serialization of `XContainer` and `XDocument` properties. If XML properties are required on messages strings should be used instead.
-
-
-{{WARNING:
-This serializer is not compatible with multiple bundled messages (when using the `Send(object[] messages)` APIs) sent from Versions 3 and below of NServiceBus. If this scenario is detected then an exception with the following message will be thrown: 
-
-```
-Multiple messages in the same stream are not supported.
-```
-
-The `AddDeserializer` API can help transition between serializers. See the [Multiple Deserializers Sample](/samples/serializers/multiple-deserializers/) for more information.
-
-}}
-
-
 ## Usage
 
 snippet: NewtonsoftSerialization
@@ -84,3 +67,36 @@ snippet: NewtonsoftContentTypeKey
 Customize to use the [Newtonsoft Bson serialization](http://www.newtonsoft.com/json/help/html/SerializeToBson.htm).
 
 snippet: NewtonsoftBson
+
+
+## Compatibility with the core JSON serializer
+
+The only incompatibility with the [core serializer](json.md) is that this serializer does not support the serialization of `XContainer` and `XDocument` properties. If XML properties are required on messages strings should be used instead. If `XContainer` and `XDocument` properties are required use a JsonConverter.
+
+{{WARNING:
+This serializer is not compatible with multiple bundled messages (when using the `Send(object[] messages)` APIs) sent from Versions 3 and below of NServiceBus. If this scenario is detected then an exception with the following message will be thrown: 
+
+```
+Multiple messages in the same stream are not supported.
+```
+
+The `AddDeserializer` API can help transition between serializers. See the [Multiple Deserializers Sample](/samples/serializers/multiple-deserializers/) for more information.
+
+}}
+
+
+### Use a JsonConverter for XContainer and XDocument
+
+
+#### The JsonConverter
+
+This is a custom [JsonConverter](http://www.newtonsoft.com/json/help/html/CustomJsonConverter.htm) that replicates the approach used by the [core serializer](json.md).
+
+snippet: XContainerJsonConverter
+
+
+#### Use the JsonConverter
+
+At configuration time the JsonConverter can then be used with the following.
+
+snippet: UseConverter
