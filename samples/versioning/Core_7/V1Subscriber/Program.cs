@@ -13,7 +13,6 @@ class Program
     {
         Console.Title = "Samples.Versioning.V1Subscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V1Subscriber");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.SendFailedMessagesTo("error");

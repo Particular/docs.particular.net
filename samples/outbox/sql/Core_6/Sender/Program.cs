@@ -19,7 +19,6 @@ class Program
         var random = new Random();
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Sender");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 

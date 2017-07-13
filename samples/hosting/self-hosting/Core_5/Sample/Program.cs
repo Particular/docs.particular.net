@@ -11,7 +11,6 @@ class Program
 
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SelfHosting");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

@@ -111,7 +111,6 @@ class Program
 
     static void ApplyDefaults(EndpointConfiguration endpointConfiguration)
     {
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

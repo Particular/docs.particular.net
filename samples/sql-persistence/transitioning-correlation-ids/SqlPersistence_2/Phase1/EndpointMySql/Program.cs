@@ -18,7 +18,6 @@ partial class Program
         var endpointConfiguration = new EndpointConfiguration("EndpointMySql");
 
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var password = Environment.GetEnvironmentVariable("MySqlPassword");

@@ -44,7 +44,6 @@ class ProgramService :
     async Task AsyncOnStart()
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.WindowsServiceAndConsole");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

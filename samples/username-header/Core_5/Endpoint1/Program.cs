@@ -11,7 +11,6 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.UsernameHeader.Endpoint1");
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseSerialization<JsonSerializer>();
 
         #region ComponentRegistration
 

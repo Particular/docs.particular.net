@@ -27,7 +27,6 @@ class Program
         nhConfiguration = AddFluentMappings(nhConfiguration);
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Loquacious");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseTransport<LearningTransport>();
 

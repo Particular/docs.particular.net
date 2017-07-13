@@ -16,7 +16,6 @@ class Program
     {
         Console.Title = "Samples.SqlSagaFinder.SqlServer";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.SqlServer");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         #region sqlServerConfig

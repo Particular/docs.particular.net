@@ -15,7 +15,6 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageDurability.Receiver");
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         transport.Transactions(TransportTransactionMode.None);
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

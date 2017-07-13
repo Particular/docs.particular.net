@@ -9,7 +9,6 @@ class Program
         Console.Title = "Samples.Scheduling";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Scheduling");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

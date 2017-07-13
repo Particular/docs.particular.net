@@ -18,7 +18,6 @@ class Program
             masterNodeAddress: appSettings["DistributorAddress"],
             masterNodeControlAddress: appSettings["DistributorControlAddress"],
             capacity: 1);
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         var recoverability = endpointConfiguration.Recoverability();

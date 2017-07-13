@@ -14,7 +14,6 @@ class Program
     {
         Console.Title = "Samples.PipelineStream.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineStream.Receiver");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.SetStreamStorageLocation("..\\..\\..\\storage");

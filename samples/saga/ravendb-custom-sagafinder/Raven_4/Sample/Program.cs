@@ -18,7 +18,6 @@ class Program
         using (new RavenHost())
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
-            endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UseTransport<LearningTransport>();
 

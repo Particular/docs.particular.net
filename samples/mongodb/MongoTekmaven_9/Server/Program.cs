@@ -23,7 +23,6 @@ class Program
 
         #endregion
 
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseTransport<LearningTransport>();
 

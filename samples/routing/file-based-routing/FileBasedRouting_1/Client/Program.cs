@@ -19,7 +19,6 @@ class Program
         var random = new Random();
 
         var endpointConfiguration = new EndpointConfiguration("Samples.FileBasedRouting.Client");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
 
         #region FileBasedRouting

@@ -62,7 +62,7 @@ snippet: container
 
 ## Select and configure [Serialization](/nservicebus/serialization)
 
-This sample uses the [JSON](/nservicebus/serialization/json.md) serializer.
+This sample uses the [XML](/nservicebus/serialization/xml.md) serializer.
 
 snippet: serialization
 

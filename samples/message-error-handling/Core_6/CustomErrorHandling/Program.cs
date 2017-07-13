@@ -17,7 +17,6 @@ static class Program
             .Level(LogLevel.Warn);
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomErrorHandling");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

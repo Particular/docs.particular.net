@@ -7,7 +7,6 @@ public class EndpointConfig :
 {
     public void Customize(EndpointConfiguration endpointConfiguration)
     {
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

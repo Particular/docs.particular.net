@@ -13,7 +13,6 @@ class Program
     {
         Console.Title = "Samples.SqlPersistence.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.Client");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

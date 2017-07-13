@@ -15,7 +15,6 @@ class Program
     {
         Console.Title = "Samples.FileBasedRouting.Billing";
         var endpointConfiguration = new EndpointConfiguration("Samples.FileBasedRouting.Billing");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
         var routing = transport.Routing();

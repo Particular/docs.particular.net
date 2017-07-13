@@ -12,7 +12,6 @@ class Program
         var random = new Random();
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MultiTenant.Sender");
-        busConfiguration.UseSerialization<JsonSerializer>();
 
         busConfiguration.UsePersistence<NHibernatePersistence>();
         busConfiguration.EnableOutbox();

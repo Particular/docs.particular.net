@@ -14,7 +14,6 @@ class Program
         Console.Title = "Samples.FairDistribution.Server.2";
         var endpointConfiguration = new EndpointConfiguration("Samples.FairDistribution.Server");
         endpointConfiguration.OverrideLocalAddress("Samples.FairDistribution.Server-2");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

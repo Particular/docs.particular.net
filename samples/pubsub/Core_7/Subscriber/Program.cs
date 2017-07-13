@@ -13,7 +13,6 @@ static class Program
     {
         Console.Title = "Samples.PubSub.Subscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Subscriber");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         var routing = transport.Routing();

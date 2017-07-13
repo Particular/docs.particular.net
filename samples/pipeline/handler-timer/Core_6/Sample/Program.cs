@@ -14,7 +14,6 @@ class Program
     {
         Console.Title = "Samples.PipelineHandlerTimer";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineHandlerTimer");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

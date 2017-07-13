@@ -18,7 +18,6 @@ class Program
         // No config is required in version 5 and
         // higher since logging is enabled by default
         #endregion
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

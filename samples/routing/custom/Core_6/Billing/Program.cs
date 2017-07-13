@@ -14,7 +14,6 @@ class Program
     {
         Console.Title = "Samples.CustomRouting.Billing";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Billing");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

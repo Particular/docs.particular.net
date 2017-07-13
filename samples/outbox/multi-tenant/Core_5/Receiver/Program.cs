@@ -28,7 +28,6 @@ class Program
         hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
         var busConfiguration = new BusConfiguration();
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EndpointName("Samples.MultiTenant.Receiver");
 
         #region ReceiverConfiguration

@@ -9,7 +9,6 @@ class Program
         Console.Title = "Samples.PerfCounters";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PerfCounters");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

@@ -13,7 +13,6 @@ class Program
     {
         Console.Title = "Samples.UnitOfWork";
         var endpointConfiguration = new EndpointConfiguration("Samples.UnitOfWork");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
         var recoverability = endpointConfiguration.Recoverability();

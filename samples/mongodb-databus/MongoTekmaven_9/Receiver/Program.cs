@@ -15,7 +15,6 @@ class Program
     {
         Console.Title = "Samples.DataBus.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         var persistence = endpointConfiguration.UsePersistence<MongoDbPersistence>();
         persistence.SetConnectionString("mongodb://localhost:27017/SamplesMongoDBServer");
         var dataBus = endpointConfiguration.UseDataBus<MongoDbDataBus>();

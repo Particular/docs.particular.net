@@ -18,7 +18,6 @@ partial class Program
         var endpointConfiguration = new EndpointConfiguration("EndpointSqlServer");
 
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
         var connection = @"Data Source=.\SqlExpress;Initial Catalog=Samples.SqlPersistence.Transition;Integrated Security=True";

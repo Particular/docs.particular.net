@@ -17,7 +17,6 @@ class Program
     {
         Console.Title = "Samples.Scheduling";
         var endpointConfiguration = new EndpointConfiguration("Samples.Scheduling");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

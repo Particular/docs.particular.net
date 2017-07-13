@@ -73,7 +73,6 @@ class Program
         // Exclude Instance2.dll and, by inference, include all other assemblies
         var assemblyScanner = endpointConfiguration.AssemblyScanner();
         assemblyScanner.ExcludeAssemblies("Instance2");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
@@ -87,7 +86,6 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.Instance2");
         var assemblyScanner = endpointConfiguration.AssemblyScanner();
         assemblyScanner.ExcludeAssemblies("Instance1");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

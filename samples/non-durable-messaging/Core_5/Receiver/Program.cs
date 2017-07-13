@@ -11,7 +11,6 @@ class Program
         busConfiguration.Transactions()
             .Disable();
         busConfiguration.EndpointName("Samples.MessageDurability.Receiver");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

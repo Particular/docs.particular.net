@@ -13,7 +13,6 @@ class Program
     {
         Console.Title = "Samples.RavenDB.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Client");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

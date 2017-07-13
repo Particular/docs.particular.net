@@ -30,7 +30,6 @@ class Program
 
         #endregion
 
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
         var bus = Bus.Create(busConfiguration).Start();

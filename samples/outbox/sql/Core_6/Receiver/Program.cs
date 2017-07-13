@@ -20,7 +20,6 @@ class Program
         var connection = @"Data Source=.\SqlExpress;Database=Samples.SqlOutbox;Integrated Security=True";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Receiver");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 

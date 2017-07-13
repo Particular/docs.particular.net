@@ -9,7 +9,6 @@ class Program
         Console.Title = "Samples.MongoDB.Client";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MongoDB.Client");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

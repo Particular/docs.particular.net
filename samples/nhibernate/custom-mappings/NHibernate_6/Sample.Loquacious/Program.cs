@@ -21,7 +21,6 @@ class Program
 
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.CustomNhMappings.Loquacious");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();

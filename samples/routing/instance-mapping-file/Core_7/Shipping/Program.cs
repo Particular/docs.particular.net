@@ -14,7 +14,6 @@ class Program
     {
         Console.Title = "Samples.InstanceMappingFile.Shipping";
         var endpointConfiguration = new EndpointConfiguration("Samples.InstanceMappingFile.Shipping");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

@@ -23,7 +23,6 @@ static class Program
 
         #endregion
 
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
         using (var bus = Bus.Create(busConfiguration).Start())
