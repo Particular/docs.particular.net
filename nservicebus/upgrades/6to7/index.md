@@ -168,9 +168,9 @@ See the [NServiceBus.Encryption.MessageProperty upgrade guide](/nservicebus/upgr
 
 ## Json serialization
 
-The [Json serializer](/nservicebus/serialization/json/index.md) has been moved from the NServiceBus package. Use the external Json serializer available as a separate NuGet package, [NServiceBus.Newtonsoft.Json ](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json /).
+The [Json serializer](/nservicebus/serialization/json/index.md) has been removed from the NServiceBus package. Use the external Json serializer available as a separate NuGet package, `NServiceBus.Newtonsoft.Json`.
 
-See the [Json.NET Serializer](/servicebus/serialization/newtonsoft/index.md) for more details.
+See the [Json.NET Serializer](/servicebus/serialization/newtonsoft/index.md) for more details and its [compatibility](https://docs.particular.net/nservicebus/serialization/newtonsoft#compatibility-with-the-core-json-serializer) with the previously available Json serializer.
 
 
 ## Custom Correlation ID
