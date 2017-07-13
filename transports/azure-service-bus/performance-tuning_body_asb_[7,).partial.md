@@ -22,16 +22,16 @@ Snippet: asb-fast-send
 
 The receive performance can be tweaked in all applications by adjusting the following settings:
 
-  * `MessagingFactories().NumberOfMessagingFactoriesPerNamespace()`: Each factory manages a TCP connection to the broker, this connection has throughput limits. The number of factories depends on how much bandwidth Azure Service Bus is allowed to consume and the size of the messages. Monitor the networks received and sent bytes per second. If the network isn't congested, try to increase the number of factories and clients. The optimal value range is probably somewhere between 16 and a multiple of it, like 64 on partitioned queues (as they consist of 16 partitions).
+  * `MessagingFactories().NumberOfMessagingFactoriesPerNamespace()`: Each factory manages a TCP connection to the broker, this connection has throughput limits. The number of factories required depends on how much bandwidth Azure Service Bus is allowed to consume and the size of the messages. Monitor the networks received and sent bytes per second. If the network isn't congested, try to increase the number of factories and clients. The optimal value range is probably somewhere between 16 and a multiple of it, like 64 on partitioned queues (as they consist of 16 partitions).
   * `NumberOfClientsPerEntity()`: Keep this value equal to the number of factories, this ensures there is one internal receive client per factory.
 
 Changing the following settings will also improve application performance; however, their values should depend on the nature of the application:
 
   * `LimitMessageProcessingConcurrencyTo()`: This is the global concurrency limit across all receive entities. The value should be determined according to the formula: `desired concurrency per receiver` x `number of receivers`. A receiver in the context of the transport is a message pump which takes care of one or more entities (queues and subscriptions) to receive from. Each message pump has its concurrency limitation. The global concurrency limit will be shared across all pumps that are simultaneously receiving messages.
   * `MessageReceivers().PrefetchCount()`: Value is set per receiver. The higher throughput rate for an individual receiver, the more aggressive prefetching should be applied (i.e. the higher value for `PrefetchCount`).
-  * `Transactions()`: The transactional guarantees have a significant impact on performance, for example,  the application using `ReceiveOnly` will have much better performance than an application using SendsAtomicWithReceive`.
+  * `Transactions()`: The transactional guarantees have a significant impact on performance. For example, the application using `ReceiveOnly` will have much better performance than an application using SendsAtomicWithReceive`.
 
-NOTE: If an endpoint is a sender and a receiver some settings like `MessagingFactories().NumberOfMessagingFactoriesPerNamespace()` need to be tweaked accordingly. In general it is recommended to optimize for receive performance since these settings might also improve the send performance.
+NOTE: If an endpoint is a sender and a receiver the setting `MessagingFactories().NumberOfMessagingFactoriesPerNamespace()` needs to be tweaked accordingly. In general it is recommended to optimize for receive performance since these settings might also improve the send performance.
 
 ### Sends Atomic With Receive
 
@@ -43,7 +43,7 @@ To guarantee that sends occur as an atomic operation with the receive confirmati
   * Setting up the transactional connection is an expensive operation. Therefore if the application has a high messages load, the endpoint throughput will not be optimal just after starting it. The throughput gradually improves over time, after a few minutes from the start it should reach its maximum based on the configured settings and available network bandwidth.
   * All send operations that occur in the scope of a single receive (inside a handler) must fit into the transaction. The ASB SDK enforces a limit of 100 messages per transaction. Therefore a maximum of 100 messages can be sent this way at a time. Fortunately, that restriction comes with no performance penalty, as the only difference between sending 1 and 100 messages is the size of the operation.
 
-NOTE: When send operations occur inside a handler the default behavior is to add the operation to a batch, which will be executed after the handler function returns. Unless the send options request for immediate dispatch, in such a case the execution is immediate. Therefore using an `await` on the `Send()` operation has a negative impact when used on an immediate dispatch, but has no impact on the default settings. It is advised to always return the task instead of awaiting the task never to be impacted by this difference in behavior, which might lead to subtle issues over time. To learn more about batched dispatch refer to the [Batched message dis](/nservicebus/messaging/batched-dispatch.md) article.
+NOTE: When send operations occur inside a handler the default behavior is to add the operation to a batch, which will be executed after the handler function returns. Unless the send options request for immediate dispatch, in such a case the execution is immediate. Therefore using an `await` on the `Send()` operation has a negative impact when used on an immediate dispatch, but has no impact on the default settings. It is advised to always return the task instead of awaiting the task never to be impacted by this difference in behavior, which might lead to subtle issues over time. To learn more about batched dispatch refer to the [Batched message dispatch](/nservicebus/messaging/batched-dispatch.md) article.
 
 
 ### Receive only
@@ -53,9 +53,9 @@ NOTE: When send operations occur inside a handler the default behavior is to add
   * Concurrency: The optimal values are in the range of 128 per client.
   * PrefetchCount: The optimal values are 1x or 2x the per receiver concurrency, so 128 or 256.
 
-The optimal numbers for Concurrency and PrefetchCount for receivers are impacted significantly by sends. If the average handler sends roughly the same compound size of messages that it receives, then the numbers recommended above will be optimal. 
+The optimal numbers for Concurrency and `PrefetchCount` for receivers are impacted significantly by sends. If the average handler sends roughly the same compound size of messages that it receives, then the numbers recommended above will be optimal. 
 
-However, if the handler sends more messages or sends larger messages (e.g. in the range of 10 to 100 times the total data size per single receive), then Concurrency and PrefetchCount values should be lower to reduce incoming bandwidth and give more bandwidth to the senders. In such scenario:
+However, if the handler sends more messages or sends larger messages (e.g. in the range of 10 to 100 times the total data size per single receive), then Concurrency and `PrefetchCount` values should be lower to reduce incoming bandwidth and give more bandwidth to the senders. In such scenario:
 
   * Concurrency: The optimal values are the range of 16 per client.
   * PrefetchCount: The optimal values are 1x or 2x the per receiver concurrency, so 16 or 32.
