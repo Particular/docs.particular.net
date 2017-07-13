@@ -41,8 +41,8 @@
         {
             #region MsmqSubscriptionCode
 
-            endpointConfiguration.UsePersistence<MsmqPersistence>()
-                .SubscriptionQueue("YourEndpointName.Subscriptions");
+            var persistence = endpointConfiguration.UsePersistence<MsmqPersistence>();
+            persistence.SubscriptionQueue("YourEndpointName.Subscriptions");
 
             #endregion
         }
