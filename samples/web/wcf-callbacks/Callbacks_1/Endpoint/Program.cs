@@ -14,7 +14,6 @@ static class Program
         Console.Title = "Samples.WcfCallbacks.Endpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.WcfCallbacks.Endpoint");
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

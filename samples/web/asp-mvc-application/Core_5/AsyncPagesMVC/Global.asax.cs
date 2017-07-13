@@ -48,7 +48,6 @@ public class MvcApplication :
 
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Mvc.WebApplication");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UseContainer<AutofacBuilder>(
             customizations: customizations =>
             {

@@ -8,7 +8,6 @@ class CustomizingHostUpgrade :
     public void Customize(EndpointConfiguration endpointConfiguration)
     {
         // perform some custom configuration
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
     }
 }

@@ -17,7 +17,6 @@ public class MvcApplication :
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MvcInjection.WebApplication");
 
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

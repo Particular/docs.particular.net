@@ -23,7 +23,6 @@ namespace Billing
             var routing = transport.Routing();
             routing.RegisterPublisher(typeof(OrderPlaced), "Sales");
 
-            endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();

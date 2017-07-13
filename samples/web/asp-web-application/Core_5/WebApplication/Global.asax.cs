@@ -17,7 +17,6 @@ public class Global :
 
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.AsyncPages.WebApplication");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

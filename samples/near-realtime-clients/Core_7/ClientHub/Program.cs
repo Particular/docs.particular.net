@@ -17,7 +17,6 @@ static class Program
         Console.Title = "Samples.NearRealTimeClients.ClientHub";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.ClientHub");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();

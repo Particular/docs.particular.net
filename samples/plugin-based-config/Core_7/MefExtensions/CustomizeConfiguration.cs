@@ -12,8 +12,8 @@ public class CustomizeConfiguration :
 
     public Task Run(EndpointConfiguration endpointConfiguration)
     {
-        log.Info("Setting serializer to JSON in an extension");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        log.Info("Setting serializer to Xml in an extension");
+        endpointConfiguration.UseSerialization<XmlSerializer>();
         return Task.CompletedTask;
     }
 }

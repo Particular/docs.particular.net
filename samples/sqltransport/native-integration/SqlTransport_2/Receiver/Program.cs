@@ -25,7 +25,6 @@ class Program
         transport.ConnectionString(connectionString);
         busConfiguration.EndpointName("Samples.SqlServer.NativeIntegration");
         busConfiguration.UseSerialization<JsonSerializer>();
-
         #endregion
 
         busConfiguration.UsePersistence<InMemoryPersistence>();

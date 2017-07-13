@@ -32,7 +32,6 @@
 
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
 
-            endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
@@ -54,7 +53,7 @@
             #endregion
 
             #region Serializer
-            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UseSerialization<XmlSerializer>();
             #endregion
 
             #region Persistence

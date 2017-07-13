@@ -9,8 +9,8 @@ public class CustomizeConfiguration :
 
     public void Run(BusConfiguration busConfiguration)
     {
-        log.Info("Setting serializer to JSON in an extension");
-        busConfiguration.UseSerialization<JsonSerializer>();
+        log.Info("Setting serializer to XML in an extension");
+        busConfiguration.UseSerialization<XmlSerializer>();
     }
 }
 #endregion

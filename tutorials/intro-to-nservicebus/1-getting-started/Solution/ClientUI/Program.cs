@@ -19,7 +19,6 @@ namespace ClientUI
 
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
 
-            endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
