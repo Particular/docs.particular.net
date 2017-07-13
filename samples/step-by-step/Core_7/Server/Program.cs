@@ -14,7 +14,7 @@ class Program
     {
         Console.Title = "Samples.StepByStep.Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.StepByStep.Server");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseSerialization<XmlSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

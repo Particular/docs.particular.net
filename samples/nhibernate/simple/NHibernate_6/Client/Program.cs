@@ -9,7 +9,6 @@ class Program
         var busConfiguration = new BusConfiguration();
 
         busConfiguration.EndpointName("Samples.NHibernate.Client");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<NHibernatePersistence>();
 

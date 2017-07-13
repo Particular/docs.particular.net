@@ -17,7 +17,6 @@ class Program
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sender");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         endpointConfiguration.UsePersistence<NHibernatePersistence>();

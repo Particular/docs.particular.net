@@ -8,7 +8,6 @@ static class Program
         Console.Title = "Samples.PubSub.Subscriber";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PubSub.Subscriber");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         using (Bus.Create(busConfiguration).Start())

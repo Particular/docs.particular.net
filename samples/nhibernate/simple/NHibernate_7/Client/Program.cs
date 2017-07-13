@@ -13,7 +13,6 @@ class Program
     {
         Console.Title = "Samples.NHibernate.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.NHibernate.Client");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<NHibernatePersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

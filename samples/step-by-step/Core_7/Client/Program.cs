@@ -23,9 +23,9 @@ class Program
 
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        // Use JSON to serialize and deserialize messages (which are just
+        // Use XML to serialize and deserialize messages (which are just
         // plain classes) to and from message queues
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseSerialization<XmlSerializer>();
 
         // Ask NServiceBus to automatically create message queues
         endpointConfiguration.EnableInstallers();

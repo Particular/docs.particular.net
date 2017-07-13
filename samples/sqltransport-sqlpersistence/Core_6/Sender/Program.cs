@@ -18,7 +18,6 @@ public static class Program
     {
         Console.Title = "Samples.Sql.Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.Sql.Sender");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 

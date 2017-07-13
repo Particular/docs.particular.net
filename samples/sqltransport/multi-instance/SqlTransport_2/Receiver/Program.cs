@@ -14,7 +14,6 @@ class Program
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.UseSpecificConnectionInformation(ConnectionInfoProvider.GetConnection);
         transport.ConnectionString(ConnectionInfoProvider.DefaultConnectionString);
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         #endregion

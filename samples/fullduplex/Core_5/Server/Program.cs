@@ -12,7 +12,6 @@ class Program
             .Level(LogLevel.Info);
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.FullDuplex.Server");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 

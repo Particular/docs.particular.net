@@ -22,7 +22,6 @@ public static class SharedConfiguration
                 return new SqlConnection(connection);
             });
 
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseTransport<LearningTransport>();
 

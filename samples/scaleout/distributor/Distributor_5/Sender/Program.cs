@@ -10,7 +10,6 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Scaleout.Sender");
         busConfiguration.EnableInstallers();
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         using (var bus = Bus.Create(busConfiguration).Start())

@@ -10,7 +10,6 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.UnitOfWork");
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.DisableFeature<SecondLevelRetries>();
         #region ComponentRegistration
 

@@ -16,7 +16,6 @@ class Program
     {
         Console.Title = "Samples.PipelineStream.Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineStream.Sender");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

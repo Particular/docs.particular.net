@@ -13,7 +13,6 @@ class Program
             .Disable();
         #endregion
         busConfiguration.EndpointName("Samples.MessageDurability.Sender");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

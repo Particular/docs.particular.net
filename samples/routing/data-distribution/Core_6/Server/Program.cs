@@ -14,7 +14,6 @@ class Program
         Console.Title = "Samples.DataDistribution.Server";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.DataDistribution.Server");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

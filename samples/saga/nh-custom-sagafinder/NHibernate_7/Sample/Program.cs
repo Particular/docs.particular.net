@@ -16,7 +16,6 @@ class Program
         var endpointName = "Samples.NHibernateCustomSagaFinder";
         Console.Title = endpointName;
         var endpointConfiguration = new EndpointConfiguration(endpointName);
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseTransport<LearningTransport>();
 

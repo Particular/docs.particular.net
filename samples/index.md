@@ -97,11 +97,6 @@ Samples default to [Self Hosting](/nservicebus/hosting/) in a console since it i
 Samples default to logging at the `Info` level to the console. In production the preferred approach is some combination `Warning` and `Error` with a combination of targets.
 
 
-### [Serializer](/nservicebus/serialization/)
-
-While the default serializer in NServiceBus is [XML](/nservicebus/serialization/xml.md) the samples default to [JSON](/nservicebus/serialization/json.md). The reason for this is that JSON is more human readable hence making samples easier to debug.
-
-
 ### [Messages definitions](/nservicebus/messaging/messages-events-commands.md)
 
 In many samples Messages are defined in a shared project along with reusable helper and configuration classes. This is done so reduce the number of projects in a solution. In a real solution message definitions are most likely isolated in their own projects.

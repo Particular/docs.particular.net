@@ -9,7 +9,6 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MessageMutators");
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseSerialization<JsonSerializer>();
 
         #region ComponentRegistration
 

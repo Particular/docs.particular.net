@@ -18,7 +18,6 @@ class Program
         var random = new Random();
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Client");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

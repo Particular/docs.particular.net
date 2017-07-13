@@ -16,7 +16,6 @@ class Program
         persistence.SetConnectionString("mongodb://localhost:27017/SamplesMongoDBServer");
 
         #endregion
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
         using (var bus = Bus.Create(busConfiguration).Start())

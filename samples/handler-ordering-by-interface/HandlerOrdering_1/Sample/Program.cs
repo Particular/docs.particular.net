@@ -15,7 +15,6 @@ class Program
     {
         Console.Title = "Samples.HandlerOrdering";
         var endpointConfiguration = new EndpointConfiguration("Samples.HandlerOrdering");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
         #region config

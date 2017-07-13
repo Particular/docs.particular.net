@@ -13,7 +13,6 @@ class Program
     {
         Console.Title = "Samples.Callbacks.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.Receiver");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableCallbacks(makesRequests: false);

@@ -24,7 +24,6 @@ namespace Shipping
             routing.RegisterPublisher(typeof(OrderPlaced), "Sales");
             routing.RegisterPublisher(typeof(OrderBilled), "Billing");
 
-            endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();

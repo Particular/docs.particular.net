@@ -14,7 +14,6 @@ class Program
         Console.Title = "Samples.Pipeline.UnitOfWork.Endpoint";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Pipeline.UnitOfWork.Endpoint");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

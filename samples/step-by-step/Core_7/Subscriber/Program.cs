@@ -14,7 +14,7 @@ class Program
     {
         Console.Title = "Samples.StepByStep.Subscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.StepByStep.Subscriber");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseSerialization<XmlSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

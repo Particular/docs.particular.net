@@ -14,7 +14,6 @@ class Program
         Console.Title = "Samples.Mvc.Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.Server");
         endpointConfiguration.EnableCallbacks(makesRequests: false);
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

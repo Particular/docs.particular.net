@@ -11,7 +11,6 @@ class Program
             .Level(LogLevel.Info);
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.AuditFilter");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 

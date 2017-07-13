@@ -25,7 +25,6 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Logging.CustomFactory");
 
         #endregion
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

@@ -9,7 +9,6 @@ class Program
         Console.Title = "Samples.FaultTolerance.Server";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.FaultTolerance.Server");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

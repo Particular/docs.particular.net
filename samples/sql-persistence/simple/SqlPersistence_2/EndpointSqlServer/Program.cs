@@ -36,7 +36,6 @@ class Program
             .ConfigureAwait(false);
 
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

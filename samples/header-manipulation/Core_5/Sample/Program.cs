@@ -10,7 +10,6 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Headers");
 
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

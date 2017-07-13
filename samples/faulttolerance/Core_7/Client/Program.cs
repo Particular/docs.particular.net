@@ -14,7 +14,6 @@ class Program
     {
         Console.Title = "Samples.FaultTolerance.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.FaultTolerance.Client");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

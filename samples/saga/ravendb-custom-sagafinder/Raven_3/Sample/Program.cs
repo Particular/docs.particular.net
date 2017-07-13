@@ -15,7 +15,6 @@ class Program
         {
             var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName(endpointName);
-            busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.EnableInstallers();
 
             #region config

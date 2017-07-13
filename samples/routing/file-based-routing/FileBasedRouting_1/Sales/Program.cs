@@ -14,7 +14,6 @@ class Program
     {
         Console.Title = "Samples.FileBasedRouting.Sales";
         var endpointConfiguration = new EndpointConfiguration("Samples.FileBasedRouting.Sales");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
 
         var transport = endpointConfiguration.UseTransport<LearningTransport>();

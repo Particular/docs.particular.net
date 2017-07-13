@@ -20,7 +20,6 @@ class Program
         busConfiguration.EndpointName("Samples.Logging.CustomFactory");
 
         #endregion
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

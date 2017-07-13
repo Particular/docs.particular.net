@@ -12,7 +12,6 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Scaleout.Sender.V5");
         busConfiguration.EnableInstallers();
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         var conventions = busConfiguration.Conventions();
         conventions.DefiningMessagesAs(

@@ -28,7 +28,6 @@ public class MvcApplication :
     {
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Callbacks.WebSender");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 

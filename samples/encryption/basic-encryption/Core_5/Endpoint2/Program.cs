@@ -10,7 +10,6 @@ class Program
         busConfiguration.EndpointName("Samples.Encryption.Endpoint2");
         busConfiguration.ConfigurationEncryption();
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseSerialization<JsonSerializer>();
         using (Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");

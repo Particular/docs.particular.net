@@ -8,7 +8,6 @@ static class Program
         Console.Title = "Samples.Mvc.Endpoint";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Mvc.Endpoint");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 

@@ -14,7 +14,6 @@ class Program
         Console.Title = "Samples.AuditFilter";
         var endpointConfiguration = new EndpointConfiguration("Samples.AuditFilter");
 
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

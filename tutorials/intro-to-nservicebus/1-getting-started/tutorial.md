@@ -108,7 +108,7 @@ snippet: Serializer
 
 When sending messages, an endpoint needs to serialize message objects to a stream, and then deserialize the stream back to a message object on the receiving end. The choice of [**serializer**](/nservicebus/serialization/) governs what format that will take. Each endpoint in a system needs to use the same serializer in order to be able to understand each other.
 
-Here, we are choosing the `JsonSerializer` because JSON is reasonably compact and efficient, while still being human-readable. When using JSON, it's also easier to integrate with other systems on other platforms due to its ubiquity.
+Here, we are choosing the `XmlSerializer`.
 
 
 #### Persistence

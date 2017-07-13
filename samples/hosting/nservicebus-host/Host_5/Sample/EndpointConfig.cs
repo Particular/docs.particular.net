@@ -8,7 +8,6 @@ public class EndpointConfig :
 {
     public void Customize(BusConfiguration busConfiguration)
     {
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
     }

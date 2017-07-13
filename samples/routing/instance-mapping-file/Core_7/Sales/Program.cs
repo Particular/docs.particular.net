@@ -14,7 +14,6 @@ class Program
         Console.Title = "Samples.InstanceMappingFile.Sales.1";
         var endpointConfiguration = new EndpointConfiguration("Samples.InstanceMappingFile.Sales");
         endpointConfiguration.OverrideLocalAddress("Samples.InstanceMappingFile.Sales-1");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

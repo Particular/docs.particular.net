@@ -20,7 +20,6 @@ public static class Program
         #region ReceiverConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Sql.Receiver");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();

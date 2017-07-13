@@ -13,7 +13,6 @@ static class Program
 
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.WcfCallbacks.Endpoint");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 

@@ -50,7 +50,6 @@ class Program
 
     static void ApplyBasicConfig(EndpointConfiguration endpointConfiguration)
     {
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
     }

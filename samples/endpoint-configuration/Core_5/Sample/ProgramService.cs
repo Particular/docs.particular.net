@@ -83,7 +83,7 @@ class ProgramService :
 
         #region serialization
 
-        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.UseSerialization<XmlSerializer>();
 
         #endregion
 

@@ -13,7 +13,6 @@ static class Program
     {
         Console.Title = "Samples.Mvc.Endpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.Endpoint");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

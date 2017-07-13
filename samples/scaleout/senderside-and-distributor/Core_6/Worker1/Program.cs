@@ -24,7 +24,6 @@ class Program
 
         #endregion
 
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         var recoverability = endpointConfiguration.Recoverability();

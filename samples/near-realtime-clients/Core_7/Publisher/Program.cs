@@ -13,7 +13,6 @@ static class Program
     {
         Console.Title = "Samples.NearRealTimeClients.Publisher";
         var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.Publisher");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<MsmqTransport>();
 

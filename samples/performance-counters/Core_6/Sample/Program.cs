@@ -14,7 +14,6 @@ class Program
     {
         Console.Title = "Samples.PerfCounters";
         var endpointConfiguration = new EndpointConfiguration("Samples.PerfCounters");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

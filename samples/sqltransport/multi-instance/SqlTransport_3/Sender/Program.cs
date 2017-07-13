@@ -21,7 +21,6 @@ public class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.EnableLegacyMultiInstanceMode(ConnectionProvider.GetConnection);
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

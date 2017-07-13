@@ -17,7 +17,6 @@ class Program
         routing.RouteToEndpoint(typeof(PlaceOrder), workerEndpoint);
         routing.RouteToEndpoint(typeof(PlaceInvalidOrder), workerEndpoint);
 
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

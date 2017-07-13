@@ -38,9 +38,6 @@ static class Program
         var jil = endpointConfiguration.AddDeserializer<JilSerializer>();
         jil.ContentTypeKey("Jil");
 
-        // Merged Newtonsoft
-        endpointConfiguration.AddDeserializer<JsonSerializer>();
-
         // Message Pack
         endpointConfiguration.AddDeserializer<MessagePackSerializer>();
 

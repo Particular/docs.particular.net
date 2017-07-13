@@ -13,7 +13,6 @@ class Program
     {
         Console.Title = "Samples.MessageMutators";
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageMutators");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

@@ -14,7 +14,6 @@ class Program
     {
         Console.Title = "Samples.Versioning.V2Subscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V2Subscriber");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 

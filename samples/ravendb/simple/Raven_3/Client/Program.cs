@@ -9,7 +9,6 @@ class Program
         Console.Title = "Samples.RavenDB.Client";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.RavenDB.Client");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

@@ -22,7 +22,6 @@ class Program
         #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.DisableFeature<TimeoutManager>();
 

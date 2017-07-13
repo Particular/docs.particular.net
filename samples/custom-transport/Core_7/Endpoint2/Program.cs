@@ -16,7 +16,6 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomTransport.Endpoint2");
         endpointConfiguration.UseTransport<FileTransport>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.DisableFeature<TimeoutManager>();
 

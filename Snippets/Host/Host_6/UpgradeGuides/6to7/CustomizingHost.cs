@@ -8,7 +8,6 @@ class CustomizingHostUpgrade :
     public void Customize(BusConfiguration busConfiguration)
     {
         // perform some custom configuration
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
     }
 }

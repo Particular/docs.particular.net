@@ -31,7 +31,6 @@ public class MvcApplication :
             {
                 customizations.ExistingLifetimeScope(container);
             });
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 

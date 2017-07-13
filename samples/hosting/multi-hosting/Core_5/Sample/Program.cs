@@ -46,7 +46,6 @@ class Program
         busConfiguration.EndpointName("Samples.MultiHosting.Instance1");
         // only include Instance1.dll and dependent assemblies
         busConfiguration.AssembliesToScan(AllAssemblies.Matching("Instance1.").And("Shared"));
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
@@ -61,7 +60,6 @@ class Program
 
         busConfiguration.EndpointName("Samples.MultiHosting.Instance2");
         busConfiguration.AssembliesToScan(AllAssemblies.Matching("Instance2.").And("Shared"));
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

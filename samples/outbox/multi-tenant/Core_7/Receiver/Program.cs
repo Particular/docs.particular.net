@@ -32,7 +32,6 @@ class Program
         tenantDatabasesConfiguration.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();

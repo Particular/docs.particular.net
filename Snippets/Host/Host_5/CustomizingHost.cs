@@ -8,7 +8,6 @@ class CustomizingHost :
     public void Customize(BusConfiguration busConfiguration)
     {
         // To customize, use the configuration parameter.
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
     }
 }

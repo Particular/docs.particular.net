@@ -24,7 +24,6 @@ class Program
         nhConfiguration.SetProperty(Environment.ConnectionStringName, "NServiceBus/Persistence");
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Default");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseTransport<LearningTransport>();
 

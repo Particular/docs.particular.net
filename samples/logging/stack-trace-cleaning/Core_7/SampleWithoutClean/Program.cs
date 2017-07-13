@@ -40,7 +40,6 @@ class Program
 
         NServiceBus.Logging.LogManager.Use<NLogFactory>();
         var endpointConfiguration = new EndpointConfiguration("Samples.SampleWithoutClean");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
         var recoverability = endpointConfiguration.Recoverability();

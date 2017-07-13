@@ -87,7 +87,7 @@ class ProgramService :
 
         #region serialization
 
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseSerialization<XmlSerializer>();
 
         #endregion
 

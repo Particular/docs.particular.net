@@ -15,7 +15,6 @@ class Program
     {
         Console.Title = "Samples.UsernameHeader.Endpoint1";
         var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint1");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

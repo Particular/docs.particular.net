@@ -9,8 +9,8 @@ public class CustomizeConfiguration :
     static ILog log = LogManager.GetLogger<CustomizeConfiguration>();
     public Task Run(EndpointConfiguration endpointConfiguration)
     {
-        log.Info("Setting serializer to JSON in an extension");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        log.Info("Setting serializer to XML in an extension");
+        endpointConfiguration.UseSerialization<XmlSerializer>();
         return Task.CompletedTask;
     }
 }

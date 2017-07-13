@@ -12,7 +12,6 @@ static class Program
 
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.CustomErrorHandling");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 

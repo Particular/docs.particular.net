@@ -15,7 +15,6 @@ class Program
     {
         Console.Title = "Samples.Logging.Anotar";
         var endpointConfiguration = new EndpointConfiguration("Samples.Logging.Anotar");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

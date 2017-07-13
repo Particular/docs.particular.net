@@ -17,7 +17,6 @@ class Program
             masterNodeAddress: ConfigurationManager.AppSettings["DistributorAddress"],
             masterNodeControlAddress: ConfigurationManager.AppSettings["DistributorControlAddress"],
             capacity: 10);
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

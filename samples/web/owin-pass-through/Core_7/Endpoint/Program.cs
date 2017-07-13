@@ -24,7 +24,7 @@ static class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.OwinPassThrough");
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.EnableInstallers();

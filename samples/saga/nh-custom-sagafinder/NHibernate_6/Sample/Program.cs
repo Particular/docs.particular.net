@@ -10,7 +10,6 @@ class Program
         Console.Title = "Samples.NHibernateCustomSagaFinder";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.NHibernateCustomSagaFinder");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
         #region config

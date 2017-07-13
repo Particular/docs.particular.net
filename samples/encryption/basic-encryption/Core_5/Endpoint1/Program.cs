@@ -13,7 +13,6 @@ class Program
         busConfiguration.ConfigurationEncryption();
         #endregion
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseSerialization<JsonSerializer>();
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             var message = new MessageWithSecretData

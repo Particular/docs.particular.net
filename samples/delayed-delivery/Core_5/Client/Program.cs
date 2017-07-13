@@ -9,7 +9,6 @@ class Program
         Console.Title = "Samples.DelayedDelivery.Client";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.DelayedDelivery.Client");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 

@@ -24,7 +24,6 @@ namespace ClientUI
             var routing = transport.Routing();
             routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
-            endpointConfiguration.UseSerialization<JsonSerializer>();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();

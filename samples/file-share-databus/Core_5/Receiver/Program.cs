@@ -8,7 +8,6 @@ class Program
         Console.Title = "Samples.DataBus.Receiver";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.DataBus.Receiver");
-        busConfiguration.UseSerialization<JsonSerializer>();
         var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
         dataBus.BasePath("..\\..\\..\\storage");
         busConfiguration.UsePersistence<InMemoryPersistence>();

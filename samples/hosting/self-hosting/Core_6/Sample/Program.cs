@@ -16,7 +16,6 @@ class Program
         #region self-hosting
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SelfHosting");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

@@ -14,7 +14,6 @@ class Program
         Console.Title = "Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Endpoint2");
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Immediate(
             settings =>

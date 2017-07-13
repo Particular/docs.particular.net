@@ -14,7 +14,6 @@ class Program
     {
         Console.Title = "Samples.CustomRouting.Shipping";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Shipping");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

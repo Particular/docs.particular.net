@@ -40,7 +40,6 @@ class ProgramService :
         var busConfiguration = new BusConfiguration();
 
         busConfiguration.EndpointName("Samples.WindowsServiceAndConsole");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         bus = Bus.Create(busConfiguration).Start();
