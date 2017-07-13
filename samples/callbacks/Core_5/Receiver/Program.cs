@@ -8,7 +8,6 @@ class Program
         Console.Title = "Samples.Callbacks.Receiver";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Callbacks.Receiver");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         using (var bus = Bus.Create(busConfiguration).Start())

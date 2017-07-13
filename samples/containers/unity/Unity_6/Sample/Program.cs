@@ -24,7 +24,6 @@ static class Program
         #endregion
 
         busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
         using (var bus = Bus.Create(busConfiguration).Start())

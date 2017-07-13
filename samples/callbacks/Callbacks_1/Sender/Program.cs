@@ -14,7 +14,6 @@ class Program
     {
         Console.Title = "Samples.Callbacks.Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.Sender");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

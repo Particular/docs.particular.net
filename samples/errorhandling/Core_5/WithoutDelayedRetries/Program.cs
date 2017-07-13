@@ -16,7 +16,6 @@ static class Program
         busConfiguration.EndpointName("Samples.ErrorHandling.WithoutDelayedRetries");
         busConfiguration.DisableFeature<SecondLevelRetries>();
         #endregion
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 

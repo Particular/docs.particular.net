@@ -14,7 +14,6 @@ class Program
     {
         Console.Title = "Samples.DelayedDelivery.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.DelayedDelivery.Client");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

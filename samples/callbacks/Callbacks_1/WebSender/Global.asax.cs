@@ -33,7 +33,6 @@ public class MvcApplication :
     async Task StartBus()
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.WebSender");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");

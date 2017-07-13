@@ -14,7 +14,6 @@ class Program
     {
         Console.Title = "Samples.DataBus.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region ConfigureReceiverCustomDataBusSerializer
 

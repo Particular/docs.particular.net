@@ -12,7 +12,6 @@ static class Program
 
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.ErrorHandling.WithDelayedRetries");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         using (var bus = Bus.Create(busConfiguration).Start())

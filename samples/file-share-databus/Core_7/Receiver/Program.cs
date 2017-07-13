@@ -13,7 +13,6 @@ class Program
     {
         Console.Title = "Samples.DataBus.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
         dataBus.BasePath("..\\..\\..\\storage");
         endpointConfiguration.UsePersistence<LearningPersistence>();

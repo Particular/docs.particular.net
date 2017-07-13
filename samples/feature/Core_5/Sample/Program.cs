@@ -9,7 +9,6 @@ class Program
         Console.Title = "Samples.Features";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Features");
-        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         using (var bus = Bus.Create(busConfiguration).Start())
