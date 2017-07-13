@@ -6,7 +6,7 @@ create table [dbo].[audit_archive](
     [ReplyToAddress] [varchar](255),
     [Recoverable] [bit] not null,
     [Expires] [datetime],
-    [Headers] [varchar](max) not null,
+    [Headers] [nvarchar](max) not null,
     [Body] [varbinary](max),
     [RowVersion] [bigint] not null
 )

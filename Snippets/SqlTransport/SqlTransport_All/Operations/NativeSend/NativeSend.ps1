@@ -35,7 +35,7 @@ Function SendMessage
     $parameters = $sqlCommand.Parameters
     $parameters.Add("Id", [System.Data.SqlDbType]::UniqueIdentifier).Value = [System.Guid]::NewGuid()
     $serializedHeaders = ConvertTo-Json $Headers
-    $parameters.Add("Headers", [System.Data.SqlDbType]::VarChar).Value = $serializedHeaders
+    $parameters.Add("Headers", [System.Data.SqlDbType]::NVarChar).Value = $serializedHeaders
     $parameters.Add("Body", [System.Data.SqlDbType]::VarBinary).Value = $UTF8.GetBytes($MessageBody)
     $parameters.Add("Recoverable", [System.Data.SqlDbType]::Bit).Value = 1
     $sqlCommand.ExecuteNonQuery()
