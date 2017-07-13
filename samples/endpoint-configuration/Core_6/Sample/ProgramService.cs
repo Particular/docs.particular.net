@@ -9,7 +9,6 @@ using log4net.Core;
 using log4net.Layout;
 using NServiceBus;
 using NServiceBus.Logging;
-using NServiceBus.Persistence;
 
 [DesignerCategory("Code")]
 class ProgramService :
@@ -127,7 +126,7 @@ class ProgramService :
                     .ConfigureAwait(false);
 
                 // Kill the process on a critical error
-                string output = $"NServiceBus critical error:\n{context.Error}\nShutting down.";
+                var output = $"NServiceBus critical error:\n{context.Error}\nShutting down.";
                 Environment.FailFast(output, context.Exception);
             });
 

@@ -19,7 +19,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlNHibernate.Receiver";
-        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlNHibernate;Integrated Security=True";
+        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlNHibernate;Integrated Security=True; Max Pool Size=100";
         var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {

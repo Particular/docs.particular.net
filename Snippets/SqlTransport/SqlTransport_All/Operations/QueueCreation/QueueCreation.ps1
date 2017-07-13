@@ -43,7 +43,10 @@ Function CreateQueuesForEndpoint
         [string] $endpointName,
 
         [Parameter(HelpMessage="Only required for NSB Versions 5 and below")]
-        [Switch] $includeRetries
+        [Switch] $includeRetries,
+
+		[Parameter(HelpMessage="Only required for SQL Server Version 3.1 and above if native delayed delivery is enabled")]
+        [Switch] $includeDelayed
     )
 
     $sqlConnection = New-Object System.Data.SqlClient.SqlConnection($connection)
@@ -61,7 +64,12 @@ Function CreateQueuesForEndpoint
 
         # retries queue
         if ($includeRetries) {
-            CreateQueue -connection $sqlConnection -schema $schema -queuename "$endpointName.Retries"
+            CreateQueue -connection $sqlConnection -schema $schema -queuename "$endpointName.retries"
+        }
+
+		# retries queue
+        if ($includeDelayed) {
+            CreateDelayedQueue -connection $sqlConnection -schema $schema -queuename "$endpointName.delayed"
         }
     }
     finally {
@@ -95,7 +103,7 @@ function CreateQueue {
             [ReplyToAddress] [varchar](255),
             [Recoverable] [bit] not null,
             [Expires] [datetime],
-            [Headers] [varchar](max) not null,
+            [Headers] [nvarchar](max) not null,
             [Body] [varbinary](max),
             [RowVersion] [bigint] identity(1,1) not null
         );
@@ -111,6 +119,44 @@ function CreateQueue {
         (
             [Id],
             [RowVersion]
+        )
+		where
+			[Expires] is not null
+    end
+"@ -f $schema, $queueName
+
+    $command = New-Object System.Data.SqlClient.SqlCommand($sql, $connection)
+    $command.ExecuteNonQuery()
+    $command.Dispose()
+}
+
+function CreateDelayedQueue {
+    param (
+        [Parameter(Mandatory=$true)]
+        [ValidateNotNull()]
+        [System.Data.SqlClient.SqlConnection] $connection,
+
+        [ValidateNotNullOrEmpty()]
+        [string] $schema = "dbo",
+
+        [Parameter(Mandatory=$true)]
+        [ValidateNotNullOrEmpty()]
+        [string] $queueName
+    )
+
+    $sql = @"
+    if not  exists (select * from sys.objects where object_id = object_id(N'[{0}].[{1}]') and type in (N'U'))
+        begin
+        create table [{0}].[{1}](
+            [Headers] nvarchar(max) not null,
+            [Body] varbinary(max),
+            [Due] datetime not null,
+            [RowVersion] bigint identity(1,1) not null
+        );
+
+        create nonclustered index [Index_Due] on [{0}].[{1}]
+        (
+            [Due]
         )
     end
 "@ -f $schema, $queueName

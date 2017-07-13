@@ -17,7 +17,7 @@ class Program
     {
         Console.Title = "Samples.SQLOutboxEF.Receiver";
 
-        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlOutbox;Integrated Security=True";
+        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlOutbox;Integrated Security=True;Max Pool Size=100";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Receiver");
         endpointConfiguration.EnableInstallers();

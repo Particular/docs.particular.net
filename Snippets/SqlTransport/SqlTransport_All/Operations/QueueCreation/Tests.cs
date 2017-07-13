@@ -50,6 +50,7 @@ namespace SqlServer_All.Operations.QueueCreation
                 var command = powerShell.AddCommand("CreateQueuesForEndpoint");
                 command.AddParameter("connection", connectionString);
                 command.AddParameter("endpointName", "myendpoint");
+                command.AddParameter("includeDelayed", true);
                 command.Invoke();
             }
         }
