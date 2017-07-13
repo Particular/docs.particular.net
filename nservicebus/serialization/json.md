@@ -9,7 +9,8 @@ related:
 
 Using [Json](https://en.wikipedia.org/wiki/Json) via an [ILMerged](https://github.com/Microsoft/ILMerge) copy of [Json.NET](http://www.newtonsoft.com/json).
 
-WARN: As of Version 7 of NServiceBus the JsonSerializer has been removed. Use the external Json serializer available as a separate NuGet package, `NServiceBus.Newtonsoft.Json`. See the [Json.NET Serializer](/nservicebus/serialization/newtonsoft.md) for more details and its [compatibility](/nservicebus/serialization/newtonsoft.md#compatibility-with-the-core-json-serializer) with this serializer.
+WARNING: In Versions 7 and above of NServiceBus the JsonSerializer has been removed. Use the external [Json.NET Serializer](/nservicebus/serialization/newtonsoft.md) instead. See also [Compatibility between the core and external Json.NET serializer](/nservicebus/serialization/newtonsoft.md#compatibility-with-the-core-json-serializer).
+
 
 ## Usage
 
