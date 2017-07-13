@@ -743,7 +743,7 @@
   - Url: persistence/learning
     Title: Learning Persistence
   - Url: persistence/in-memory
-    Title: In Memory
+    Title: In-Memory
   - Url: persistence/sql
     Title: SQL
     Articles:

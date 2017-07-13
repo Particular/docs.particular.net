@@ -1,0 +1,1 @@
+This sample uses the [MSMQ](/transports/msmq/) transport.

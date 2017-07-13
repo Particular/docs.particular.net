@@ -62,21 +62,21 @@ snippet: container
 
 ## Select and configure [Serialization](/nservicebus/serialization)
 
-This sample uses the [JSON](/nservicebus/serialization/json.md).
+This sample uses the [JSON](/nservicebus/serialization/json.md) serializer.
 
 snippet: serialization
 
 
 ## Select and configure a [Transport](/transports)
 
-This sample uses the [MSMQ Transport](/transports/msmq/).
+partial: transport
 
 snippet: transport
 
 
 ## Select and configure [Persistence](/persistence)
 
-This sample uses [InMemory persistence](/persistence/in-memory.md).
+partial: persistence
 
 snippet: persistence
 
