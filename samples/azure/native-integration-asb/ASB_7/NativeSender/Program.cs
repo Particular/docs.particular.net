@@ -38,7 +38,7 @@ class Program
         #region NecessaryHeaders
 
         message.Properties["NServiceBus.EnclosedMessageTypes"] = "NativeMessage";
-        message.Properties["Transport-Encoding"] = "application/octect-stream";
+        message.Properties["NServiceBus.Transport.Encoding"] = "application/octect-stream";
 
         #endregion
 
