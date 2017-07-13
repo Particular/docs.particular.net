@@ -166,11 +166,11 @@ The [Message Property Encryption feature](/nservicebus/security/property-encrypt
 See the [NServiceBus.Encryption.MessageProperty upgrade guide](/nservicebus/upgrades/externalize-encryption.md) for more details.
 
 
-## Json serialization
+## JSON serialization
 
-The [Json serializer](/nservicebus/serialization/json.md) has been removed from the NServiceBus package. Use the external Json serializer available as a separate NuGet package, `NServiceBus.Newtonsoft.Json`.
+The [JSON serializer](/nservicebus/serialization/json.md) has been removed from the NServiceBus package. Use the external JSON serializer available as a separate NuGet package, `NServiceBus.Newtonsoft.Json`.
 
-See the [Json.NET Serializer](/nservicebus/serialization/newtonsoft.md) for more details and its [compatibility](/nservicebus/serialization/newtonsoft.md#compatibility-with-the-core-json-serializer) with the previously available Json serializer.
+See the [Json.NET Serializer](/nservicebus/serialization/newtonsoft.md) for more details, including its [compatibility](/nservicebus/serialization/newtonsoft.md#compatibility-with-the-core-json-serializer) with the previously available JSON serializer.
 
 
 ## Custom Correlation ID

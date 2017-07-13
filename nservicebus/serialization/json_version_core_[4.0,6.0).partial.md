@@ -1,7 +1,7 @@
 
 ## Json.net versions
 
-Over time the version of ILMerged Json.NET has changed.
+Over time, the version of ILMerged Json.NET has changed.
 
 | NServiceBus Version | Json.net Version |
 |---|---|

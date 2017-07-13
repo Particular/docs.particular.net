@@ -23,7 +23,7 @@ NServiceBus takes instances of .NET objects (messages, events and commands) and 
  * [Jil](jil.md)
  * [Bond](bond.md)
  * [ZeroFormatter](zeroformatter.md)
- * [Json/Bson](json.md) (deprecated in Versions 7 and above)
+ * [JSON/BSON](json.md) (deprecated in Versions 7 and above)
  * [Binary](binary.md) (deprecated in Versions 6 and above)
 
 
