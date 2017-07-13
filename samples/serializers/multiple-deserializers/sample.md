@@ -39,13 +39,6 @@ Send messages using the [Jil Serializer](/samples/serializers/jil/).
 snippet: configJil
 
 
-### MergedNewtonsoftEndpoint
-
-Send messages using the merged [Json.NET Serializer](/nservicebus/serialization/json.md).
-
-snippet: configMergedNewtonsoft
-
-
 ### MessagePackEndpoint
 
 Send messages using the [MessagePack Serializer](/samples/serializers/message-pack/).
