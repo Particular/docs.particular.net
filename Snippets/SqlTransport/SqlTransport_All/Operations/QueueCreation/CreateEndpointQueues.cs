@@ -42,6 +42,10 @@ namespace SqlServer_All.Operations.QueueCreation
             // retries queue
             // TODO: Only required in Versions 2 and below
             QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Retries");
+
+            // delayed messages queue
+            // TODO: Only required in Version 3.1 and above when native delayed delivery is enabled
+            QueueCreationUtils.CreateDelayedQueue(connection, schema, $"{endpointName}.Delayed");
         }
 
         #endregion

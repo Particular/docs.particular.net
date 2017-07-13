@@ -67,7 +67,7 @@ namespace SqlServer_All.Operations.ErrorQueue
                 {
                     var parameters = command.Parameters;
                     parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = messageToRetry.Id;
-                    parameters.Add("Headers", SqlDbType.VarChar).Value = messageToRetry.Headers;
+                    parameters.Add("Headers", SqlDbType.NVarChar).Value = messageToRetry.Headers;
                     parameters.Add("Body", SqlDbType.VarBinary).Value = messageToRetry.Body;
                     parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
                     command.ExecuteNonQuery();

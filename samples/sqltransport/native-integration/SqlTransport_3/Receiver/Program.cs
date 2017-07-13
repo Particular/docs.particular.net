@@ -12,7 +12,7 @@ class Program
         AsyncMain().GetAwaiter().GetResult();
     }
 
-    static string connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
+    static string connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True;Max Pool Size=100";
 
     static async Task AsyncMain()
     {
@@ -74,7 +74,7 @@ class Program
             {
                 var parameters = command.Parameters;
                 parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
-                parameters.Add("Headers", SqlDbType.VarChar).Value = "";
+                parameters.Add("Headers", SqlDbType.NVarChar).Value = "";
                 var body = Encoding.UTF8.GetBytes(message);
                 parameters.Add("Body", SqlDbType.VarBinary).Value = body;
                 parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
