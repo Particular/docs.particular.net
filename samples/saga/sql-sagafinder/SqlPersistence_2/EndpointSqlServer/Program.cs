@@ -20,7 +20,7 @@ class Program
 
         #region sqlServerConfig
 
-        var connection = @"Data Source=.\SqlExpress;Database=Samples.Sql.SagaFinder;Integrated Security=True";
+        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlSagaFinder;Integrated Security=True";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
