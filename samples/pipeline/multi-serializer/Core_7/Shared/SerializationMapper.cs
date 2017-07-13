@@ -15,7 +15,7 @@ public class SerializationMapper
     {
         xmlSerializer = new XmlSerializer()
             .Configure(settings)(mapper);
-        jsonSerializer = new JsonSerializer()
+        jsonSerializer = new NewtonsoftSerializer()
             .Configure(settings)(mapper);
     }
 
