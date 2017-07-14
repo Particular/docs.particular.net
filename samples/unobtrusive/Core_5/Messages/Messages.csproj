@@ -28,13 +28,5 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="IMyEvent.cs" />
-    <Compile Include="LargeMessage.cs" />
-    <Compile Include="MessageThatExpires.cs" />
-    <Compile Include="MyCommand.cs" />
-    <Compile Include="Request.cs" />
-    <Compile Include="Response.cs" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

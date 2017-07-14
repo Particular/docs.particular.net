@@ -1,15 +1,12 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26711.1
 MinimumVisualStudioVersion = 12.0.31101.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{476D0A88-E281-4BC8-9617-93E53C1F9FE6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{75424F0A-458B-42DA-9DDD-600367893A93}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{DD0DC12D-D6DF-47C0-B75A-AEC351164196}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{DCB08A67-D2BC-4D64-821C-7EA8813EE672}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +19,11 @@ Global
 		{75424F0A-458B-42DA-9DDD-600367893A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD0DC12D-D6DF-47C0-B75A-AEC351164196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DD0DC12D-D6DF-47C0-B75A-AEC351164196}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DCB08A67-D2BC-4D64-821C-7EA8813EE672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DCB08A67-D2BC-4D64-821C-7EA8813EE672}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {23934870-6777-43F2-ACD8-4C7F8D4962C3}
 	EndGlobalSection
 EndGlobal

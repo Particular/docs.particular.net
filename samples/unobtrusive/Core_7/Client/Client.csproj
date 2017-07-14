@@ -52,10 +52,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj">
-      <Project>{DCB08A67-D2BC-4D64-821C-7EA8813EE672}</Project>
-      <Name>Messages</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{DD0DC12D-D6DF-47C0-B75A-AEC351164196}</Project>
       <Name>Shared</Name>

@@ -40,6 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConventionExtensions.cs" />
+    <Compile Include="IMyEvent.cs" />
+    <Compile Include="LargeMessage.cs" />
+    <Compile Include="MessageThatExpires.cs" />
+    <Compile Include="MyCommand.cs" />
+    <Compile Include="Request.cs" />
+    <Compile Include="Response.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -3,10 +3,10 @@ using Messages;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class MessagesThatMarkWithExpirationHandler :
+public class MessageThatExpiresHandler :
     IHandleMessages<MessageThatExpires>
 {
-    static ILog log = LogManager.GetLogger<MessagesThatMarkWithExpirationHandler>();
+    static ILog log = LogManager.GetLogger<MessageThatExpiresHandler>();
 
     public Task Handle(MessageThatExpires message, IMessageHandlerContext context)
     {

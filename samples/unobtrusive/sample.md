@@ -35,5 +35,4 @@ Look at the code. There are a number of projects in the solution:
 
  * **Client**: sends a request and a command to the server and handles a published event
  * **Server**: handles requests and commands, and publishes events
- * **Shared**: Shared code including the message conventions.
- * **Message**: the message definitions with no reference to NServiceBus.
+ * **Shared**: Shared code including the message conventions and message definitions.
