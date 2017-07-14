@@ -1,13 +1,16 @@
 ---
 title: JSON Serializer
-summary: A json serializer that uses Json.NET.
-reviewed: 2016-08-23
+summary: A JSON serializer that uses Json.NET.
+reviewed: 2017-07-14
 component: Json
+versions: '(,6]'
 related:
  - samples/serializers/json
 ---
 
-Using [Json](https://en.wikipedia.org/wiki/Json) via an [ILMerged](https://github.com/Microsoft/ILMerge) copy of [Json.NET](http://www.newtonsoft.com/json).
+include: json-deprecation
+
+Using [JSON](https://en.wikipedia.org/wiki/Json) via an [ILMerged](https://github.com/Microsoft/ILMerge) copy of [Json.NET](http://www.newtonsoft.com/json).
 
 
 ## Usage
@@ -20,7 +23,7 @@ partial: version
 
 ## Customization
 
-Since Json.net is ILMerged the Json.net customization attributes are not supported. However certain customizations are still supported via standard .NET attributes.
+Since Json.net is ILMerged, the Json.net customization attributes are not supported. However, certain customizations are still supported via standard .NET attributes.
 
 
 ### Excluding members

@@ -14,7 +14,6 @@ NServiceBus takes instances of .NET objects (messages, events and commands) and 
 ### Supported Serializers
 
  * [Newtonsoft](newtonsoft.md)
- * [Json/Bson](json.md)
  * [Xml](xml.md)
  * [ProtoBuf-Net](protobufnet.md)
  * [ProtoBuf-Google](protobufgoogle.md)
@@ -24,6 +23,7 @@ NServiceBus takes instances of .NET objects (messages, events and commands) and 
  * [Jil](jil.md)
  * [Bond](bond.md)
  * [ZeroFormatter](zeroformatter.md)
+ * [JSON/BSON](json.md) (deprecated in Versions 7 and above)
  * [Binary](binary.md) (deprecated in Versions 6 and above)
 
 

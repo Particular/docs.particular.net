@@ -8,7 +8,11 @@ related:
 - nservicebus/serialization/json
 ---
 
+
+include: json-deprecation
+
 This samples uses the JSON serializer in the core.
+
 
 ## Configuring to use JSON
 
