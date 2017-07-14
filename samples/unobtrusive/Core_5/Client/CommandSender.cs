@@ -90,7 +90,6 @@ public class CommandSender
         bus.Send(myCommand);
 
         Console.WriteLine($"Command sent id: {commandId}");
-
     }
 
 

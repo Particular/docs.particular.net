@@ -46,18 +46,17 @@ public class CommandSender
 
 
     // Shut down server before sending this message, after 30 seconds, the message will be moved to Transactional dead-letter messages queue.
-    static async Task Expiration(IEndpointInstance endpointInstance)
+    static Task Expiration(IEndpointInstance endpointInstance)
     {
         var messageThatExpires = new MessageThatExpires
         {
             RequestId = Guid.NewGuid()
         };
-        await endpointInstance.Send(messageThatExpires)
-            .ConfigureAwait(false);
         Console.WriteLine("message with expiration was sent");
+        return endpointInstance.Send(messageThatExpires);
     }
 
-    static async Task Data(IEndpointInstance endpointInstance)
+    static Task Data(IEndpointInstance endpointInstance)
     {
         var requestId = Guid.NewGuid();
 
@@ -66,13 +65,11 @@ public class CommandSender
             RequestId = requestId,
             LargeDataBus = new byte[1024*1024*5]
         };
-        await endpointInstance.Send(largeMessage)
-            .ConfigureAwait(false);
-
         Console.WriteLine($"Request sent id: {requestId}");
+        return endpointInstance.Send(largeMessage);
     }
 
-    static async Task SendRequest(IEndpointInstance endpointInstance)
+    static Task SendRequest(IEndpointInstance endpointInstance)
     {
         var requestId = Guid.NewGuid();
 
@@ -80,13 +77,11 @@ public class CommandSender
         {
             RequestId = requestId
         };
-        await endpointInstance.Send(request)
-            .ConfigureAwait(false);
-
         Console.WriteLine($"Request sent id: {requestId}");
+        return endpointInstance.Send(request);
     }
 
-    static async Task SendCommand(IEndpointInstance endpointInstance)
+    static Task SendCommand(IEndpointInstance endpointInstance)
     {
         var commandId = Guid.NewGuid();
 
@@ -95,10 +90,8 @@ public class CommandSender
             CommandId = commandId,
             EncryptedString = "Some sensitive information"
         };
-        await endpointInstance.Send(myCommand)
-            .ConfigureAwait(false);
-
         Console.WriteLine($"Command sent id: {commandId}");
+        return endpointInstance.Send(myCommand);
     }
 
 

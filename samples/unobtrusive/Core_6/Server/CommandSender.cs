@@ -27,16 +27,15 @@ class CommandSender
         }
     }
 
-    static async Task PublishEvent(IEndpointInstance endpointInstance)
+    static Task PublishEvent(IEndpointInstance endpointInstance)
     {
         var eventId = Guid.NewGuid();
 
-        await endpointInstance.Publish<IMyEvent>(m =>
+        Console.WriteLine($"Event published, id: {eventId}");
+        return endpointInstance.Publish<IMyEvent>(m =>
         {
             m.EventId = eventId;
-        })
-        .ConfigureAwait(false);
-        Console.WriteLine($"Event published, id: {eventId}");
+        });
     }
 
 }
