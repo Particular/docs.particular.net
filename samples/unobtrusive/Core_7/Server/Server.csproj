@@ -42,8 +42,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LargeMessagesHandler.cs" />
-    <Compile Include="MessagesThatMarkWithExpirationHandler.cs" />
+    <Compile Include="LargeMessageHandler.cs" />
+    <Compile Include="MessageThatExpiresHandler.cs" />
     <Compile Include="RequestMessageHandler.cs" />
     <Compile Include="CommandSender.cs" />
     <Compile Include="Program.cs" />

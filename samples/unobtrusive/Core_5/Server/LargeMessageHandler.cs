@@ -2,10 +2,10 @@ using Messages;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class LargeMessagesHandler :
+public class LargeMessageHandler :
     IHandleMessages<LargeMessage>
 {
-    static ILog log = LogManager.GetLogger<LargeMessagesHandler>();
+    static ILog log = LogManager.GetLogger<LargeMessageHandler>();
 
     public void Handle(LargeMessage message)
     {
