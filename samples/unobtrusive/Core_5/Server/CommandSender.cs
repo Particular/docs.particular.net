@@ -29,10 +29,11 @@ class CommandSender
     {
         var eventId = Guid.NewGuid();
 
-        bus.Publish<IMyEvent>(m =>
+        var myEvent = new MyEvent
         {
-            m.EventId = eventId;
-        });
+            EventId = eventId
+        };
+        bus.Publish(myEvent);
         Console.WriteLine($"Event published, id: {eventId}");
     }
 

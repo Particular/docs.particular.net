@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConventionExtensions.cs" />
-    <Compile Include="IMyEvent.cs" />
+    <Compile Include="MyEvent.cs" />
     <Compile Include="LargeMessage.cs" />
     <Compile Include="MessageThatExpires.cs" />
     <Compile Include="MyCommand.cs" />

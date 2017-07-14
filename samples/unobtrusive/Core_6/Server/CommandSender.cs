@@ -32,10 +32,11 @@ class CommandSender
         var eventId = Guid.NewGuid();
 
         Console.WriteLine($"Event published, id: {eventId}");
-        return endpointInstance.Publish<IMyEvent>(m =>
+        var myEvent = new MyEvent
         {
-            m.EventId = eventId;
-        });
+            EventId = eventId
+        };
+        return endpointInstance.Publish(myEvent);
     }
 
 }

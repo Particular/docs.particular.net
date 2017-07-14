@@ -4,11 +4,11 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 public class MyEventHandler :
-    IHandleMessages<IMyEvent>
+    IHandleMessages<MyEvent>
 {
     static ILog log = LogManager.GetLogger<MyEventHandler>();
 
-    public Task Handle(IMyEvent message, IMessageHandlerContext context)
+    public Task Handle(MyEvent message, IMessageHandlerContext context)
     {
         log.Info($"IMyEvent received from server with id:{message.EventId}");
         return Task.CompletedTask;
