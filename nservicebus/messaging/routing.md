@@ -51,7 +51,7 @@ Events can be received by multiple logical endpoints, however even in case of sc
 
 [Multicast transports](/transports/#types-of-transports-multicast-enabled-transports) support Publish-Subscribe pattern natively. In this case the subscriber uses the APIs of the transport to create a route for a given subscribed message type.
 
-Note: Azure Service Bus `EndpontOrientedTopology` requires [publishers names](/transports/azure-service-bus/publisher-names-configuration.md) to be configured.
+Note: Azure Service Bus `EndpointOrientedTopology` requires [publishers names](/transports/azure-service-bus/publisher-names-configuration.md) to be configured.
 
 
 ### Message-driven
