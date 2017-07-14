@@ -593,6 +593,8 @@
       Title: Avoiding Transactions
     - Url: transports/azure-storage-queues/configuration
       Title: Configuration
+    - Url: transports/azure-storage-queues/delayed-delivery
+      Title: Delayed Delivery
     - Url: transports/azure-storage-queues/performance-tuning
       Title: Performance Tuning
     - Url: transports/azure-storage-queues/multi-storageaccount-support
