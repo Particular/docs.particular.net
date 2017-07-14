@@ -53,7 +53,7 @@ public class CommandSender
             RequestId = Guid.NewGuid()
         };
         Console.WriteLine("message with expiration was sent");
-        return endpointInstance.Send(messageThatExpires);
+        return endpointInstance.Send("Samples.Unobtrusive.Server", messageThatExpires);
     }
 
     static Task Data(IEndpointInstance endpointInstance)
@@ -66,7 +66,7 @@ public class CommandSender
             LargeDataBus = new byte[1024*1024*5]
         };
         Console.WriteLine($"Request sent id: {requestId}");
-        return endpointInstance.Send(largeMessage);
+        return endpointInstance.Send("Samples.Unobtrusive.Server", largeMessage);
     }
 
     static Task SendRequest(IEndpointInstance endpointInstance)
@@ -78,7 +78,7 @@ public class CommandSender
             RequestId = requestId
         };
         Console.WriteLine($"Request sent id: {requestId}");
-        return endpointInstance.Send(request);
+        return endpointInstance.Send("Samples.Unobtrusive.Server", request);
     }
 
     static Task SendCommand(IEndpointInstance endpointInstance)
@@ -91,7 +91,7 @@ public class CommandSender
             EncryptedString = "Some sensitive information"
         };
         Console.WriteLine($"Command sent id: {commandId}");
-        return endpointInstance.Send(myCommand);
+        return endpointInstance.Send("Samples.Unobtrusive.Server", myCommand);
     }
 
 

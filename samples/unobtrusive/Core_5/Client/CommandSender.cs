@@ -35,10 +35,8 @@ public class CommandSender
                     continue;
             }
             return;
-
         }
     }
-
 
     // Shut down server before sending this message, after 30 seconds, the message will be moved to Transactional dead-letter messages queue.
     static void Expiration(IBus bus)
@@ -47,7 +45,7 @@ public class CommandSender
         {
             RequestId = Guid.NewGuid()
         };
-        bus.Send(messageThatExpires);
+        bus.Send("Samples.Unobtrusive.Server", messageThatExpires);
         Console.WriteLine("message with expiration was sent");
     }
 
@@ -60,7 +58,7 @@ public class CommandSender
             RequestId = requestId,
             LargeDataBus = new byte[1024*1024*5]
         };
-        bus.Send(largeMessage);
+        bus.Send("Samples.Unobtrusive.Server", largeMessage);
 
         Console.WriteLine($"Request sent id: {requestId}");
     }
@@ -73,7 +71,7 @@ public class CommandSender
         {
             RequestId = requestId
         };
-        bus.Send(request);
+        bus.Send("Samples.Unobtrusive.Server", request);
 
         Console.WriteLine($"Request sent id: {requestId}");
     }
@@ -87,7 +85,7 @@ public class CommandSender
             CommandId = commandId,
             EncryptedString = "Some sensitive information"
         };
-        bus.Send(myCommand);
+        bus.Send("Samples.Unobtrusive.Server", myCommand);
 
         Console.WriteLine($"Command sent id: {commandId}");
     }
