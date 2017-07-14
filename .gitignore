@@ -49,6 +49,8 @@ installer/ServiceControl-cache
 *.sln.docstates
 .vs/
 
+DataBusShare
+
 # mac temp file ignore
 .DS_Store
 
