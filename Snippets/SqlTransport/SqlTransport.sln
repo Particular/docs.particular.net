@@ -1,10 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.26711.1
 MinimumVisualStudioVersion = 15.0.26114.2
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_2", "SqlTransport_2\SqlTransport_2.csproj", "{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_2.0", "SqlTransport_2.0\SqlTransport_2.0.csproj", "{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_3", "SqlTransport_3\SqlTransport_3.csproj", "{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_3.0", "SqlTransport_3.0\SqlTransport_3.0.csproj", "{68C4BC46-AD10-4D29-91F6-AA1A3E16D5AB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_All", "SqlTransport_All\SqlTransport_All.csproj", "{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}"
 EndProject
@@ -38,5 +38,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1085EF79-F555-4A59-B2A6-78E9B7CB98D5}
 	EndGlobalSection
 EndGlobal
