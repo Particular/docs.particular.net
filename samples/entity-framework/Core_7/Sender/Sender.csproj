@@ -44,7 +44,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Transport.SQLServer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\packages\NServiceBus.SqlServer.3.0.2\lib\net452\NServiceBus.Transport.SQLServer.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.SqlServer.3.1.1\lib\net452\NServiceBus.Transport.SQLServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
