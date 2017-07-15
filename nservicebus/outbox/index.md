@@ -73,6 +73,8 @@ In order to gradually convert an entire system from use of DTC to Outbox:
 1. Enable the Outbox on any endpoints that only send or publish messages to already-converted endpoints, where the Outbox will be able to properly handle any duplicate messages.
 1. Progress outward until all endpoints are converted.
 
+WARNING: When verifying outbox functionality, it can sometimes be helpful to temporarily [stop the MSDTC Service](https://technet.microsoft.com/en-us/library/cc770732.aspx). This ensures that the Outbox behavior is working as expected, and no other resources are enlisting in distributed transactions.
+
 
 ## Persistence
 
