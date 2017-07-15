@@ -8,7 +8,7 @@ related:
  - nservicebus/licensing
 ---
 
-NServiceBus and the entire Service Platform are designed as a collection of small components which are then released on a regular cadence. All important bugfixes are backported to all [supported versions](/nservicebus/upgrades/support-policy.md) which enables users to stay up to date while keeping the risk of upgrading to a minimum.
+NServiceBus and the entire Service Platform are designed as a collection of small components, each of which are then released on a regular cadence. All important bugfixes are backported to all [supported versions](/nservicebus/upgrades/support-policy.md) which enables users to stay up to date while keeping the risk of upgrading to a minimum.
 
 While this may seem to result in a large number of releases, only a small fraction of these will actually affect any given system.
 
