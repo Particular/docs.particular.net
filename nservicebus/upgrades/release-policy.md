@@ -38,7 +38,7 @@ By using a supported version, critical bugfixes are received without the associa
 
 It is strongly recommended to upgrade frequently enough to stay on a supported version. For the best upgrade experience, upgrade from one major version to the next major version without skipping to the one after that. For example, when using NServiceBus Version 4.7.2 and intending to upgrade to NServiceBus Version 6.0.0, first upgrade to the latest NServiceBus Version 5.x release (e.g. Version 5.2.19) and follow the suggested API upgrade guides and deprecation messages. Then repeat the exercise to upgrade from Version 5.x to Version 6.0.0.
 
-[Contact support](https://particular.net/support) if you find any bugfixes that need to be back-ported to a specific version.
+[Contact support](https://particular.net/support) if there are any bugfixes that need to be back-ported to a specific version.
 
 
 ## Deprecation
