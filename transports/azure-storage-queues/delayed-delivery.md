@@ -6,9 +6,7 @@ tags:
 related:
 - persistence/azure-storage/performance-tuning
 reviewed: 2017-04-24
-redirects:
- - nservicebus/azure-storage-queues/configuration
- ---
+---
 
 
 In Versions 4.7 and above, the Azure Storage Queues transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure using Azure Storage account its provided with for queuing which can delay messages using native Storage features.
