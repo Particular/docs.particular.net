@@ -13,7 +13,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 7.3.x     | 2017-06-02     | -                 | -                                 |
+| 7.4.x     | 2017-07-17     | -                 | -                                 |
+| 7.3.x     | 2017-06-02     | 2017-10-17        | Superseded by 7.4.x               |
 | 7.2.x     | 2017-03-24     | 2017-09-02        | Superseded by 7.3.x               |
 | ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 7.2.x~~           |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
@@ -32,7 +33,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 3.0.x     | 2016-10-11     | -                 | -                                 |
+| 3.1.x     | 2017-07-14     | -                 | -                                 |
+| 3.0.x     | 2016-10-11     | 2017-10-14        | Superseded by 3.1.x               |
 | 2.2.x     | 2015-09-25     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 ### Persistence packages
@@ -80,7 +82,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 4.1.x     | 2016-12-14     | 2017-09-28        | Superseded by 4.2.x               |
 | ~~4.0.x~~ | ~~2016-10-11~~ | ~~2017-03-14~~    | ~~Superseded by 4.1.x~~           |
 | 3.2.x     | 2017-04-10     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
-| 3.0.x     | 2015-05-07     | 2017-07-10        | Superseded by 3.2.x               |
+| ~~3.0.x~~ | ~~2015-05-07~~ | ~~2017-07-10~~    | ~~Superseded by 3.2.x~~           |
 
 ### Serializer packages
 
