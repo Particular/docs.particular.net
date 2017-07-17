@@ -13,15 +13,19 @@ related:
 This sample demonstrates how to send messages to an endpoint running on the [SqlServer Transport](/transports/sql) directly from the database using T-SQL statements. It also shows how to do that using [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview).
 
 
+## Prerequisites
+
+include: sql-prereq
+
+The database created by this sample is `NsbSamplesSqlNativeIntegration`.
+
 ## Running the sample
 
- 1. Ensure a SQL Server Express is running and accessible as `.\sqlexpress`.
- 1. Create a database `samples`.
  1. Start the Receiver project.
  1. In the Receiver's console notice `Press enter to send a message. Press any key to exit` text when the app is ready.
  1. Hit enter key.
  1. A message will be sent using ADO.NET and be received by the app.
- 1. Open SQL Server Management Studio and go to the `samples` database.
+ 1. Open SQL Server Management Studio and go to the `NsbSamplesSqlNativeIntegration` database.
  1. Open the Scripts.sql included in the sample.
  1. Run the `SendFromTSQL` statement.
  1. Notice how the app shows that a new message has been processed.
@@ -37,7 +41,7 @@ The first thing when doing native integration with the SQL Server transport is f
 
 snippet: EndpointConfiguration
 
-The table would be `Samples.SqlServer.NativeIntegration` in the database `samples` on server `.\sqlexpress` (localhost).
+The table would be `Samples.SqlServer.NativeIntegration` in the database `NsbSamplesSqlNativeIntegration` on server `.\sqlexpress` (localhost).
 
 
 ### Serialization

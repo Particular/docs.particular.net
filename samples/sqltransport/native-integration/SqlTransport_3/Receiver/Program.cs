@@ -12,7 +12,7 @@ class Program
         AsyncMain().GetAwaiter().GetResult();
     }
 
-    static string connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True;Max Pool Size=100";
+    static string connectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlNativeIntegration;Integrated Security=True;Max Pool Size=100";
 
     static async Task AsyncMain()
     {
@@ -27,6 +27,7 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
+        SqlHelper.EnsureDatabaseExists(connectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
