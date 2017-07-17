@@ -1,5 +1,6 @@
 ﻿using System;
 using NServiceBus;
+using NServiceBus.Transports.SQLServer;
 
 class Program
 {
@@ -12,7 +13,14 @@ class Program
 
         #region SenderConfiguration
 
-        busConfiguration.UseTransport<SqlServerTransport>();
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        var senderConnection = @"Data Source=.\SqlExpress;Database=sender;Integrated Security=True";
+        transport.ConnectionString(senderConnection);
+        var receiverConnection = @"Data Source=.\SqlExpress;Database=receiver;Integrated Security=True";
+        transport.UseSpecificConnectionInformation(
+            EndpointConnectionInfo.For("Samples.SqlServer.StoreAndForwardReceiver")
+                .UseConnectionString(receiverConnection)
+        );
         busConfiguration.UsePersistence<InMemoryPersistence>();
         var pipeline = busConfiguration.Pipeline;
         pipeline.Register<ForwardBehavior.Registration>();

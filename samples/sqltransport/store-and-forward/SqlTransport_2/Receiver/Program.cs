@@ -14,6 +14,7 @@ class Program
         #region ReceiverConfiguration
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=receiver;Integrated Security=True");
         var connectionInfo = EndpointConnectionInfo.For("Samples.SqlServer.StoreAndForwardSender")
             .UseConnectionString(@"Data Source=.\SqlExpress;Database=sender;Integrated Security=True");
         transport.UseSpecificConnectionInformation(connectionInfo);
