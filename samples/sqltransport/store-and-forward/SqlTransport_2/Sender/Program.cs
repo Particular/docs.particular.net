@@ -1,20 +1,26 @@
 ﻿using System;
-using System.Linq;
 using NServiceBus;
+using NServiceBus.Transports.SQLServer;
 
 class Program
 {
     static void Main()
     {
         Console.Title = "Samples.SqlServer.StoreAndForwardSender";
-        const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlServer.StoreAndForwardSender");
 
         #region SenderConfiguration
 
-        busConfiguration.UseTransport<SqlServerTransport>();
+        var transport = busConfiguration.UseTransport<SqlServerTransport>();
+        var sender = @"Data Source=.\SqlExpress;Database=NsbSamplesStoreAndForwardSender;Integrated Security=True";
+        transport.ConnectionString(sender);
+        var receiver = @"Data Source=.\SqlExpress;Database=NsbSamplesStoreAndForwardReceiver;Integrated Security=True";
+        transport.UseSpecificConnectionInformation(
+            EndpointConnectionInfo.For("Samples.SqlServer.StoreAndForwardReceiver")
+                .UseConnectionString(receiver)
+        );
         busConfiguration.UsePersistence<InMemoryPersistence>();
         var pipeline = busConfiguration.Pipeline;
         pipeline.Register<ForwardBehavior.Registration>();
@@ -22,6 +28,7 @@ class Program
 
         #endregion
 
+        SqlHelper.EnsureDatabaseExists(sender);
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press enter to publish a message");
@@ -34,7 +41,7 @@ class Program
                 {
                     return;
                 }
-                var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                var orderId = Guid.NewGuid();
                 var orderSubmitted = new OrderSubmitted
                 {
                     OrderId = orderId,

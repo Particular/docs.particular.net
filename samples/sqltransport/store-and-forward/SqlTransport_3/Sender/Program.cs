@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Settings;
@@ -17,7 +17,6 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlServer.StoreAndForwardSender";
-        const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.StoreAndForwardSender");
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -36,12 +35,16 @@ class Program
 
         #endregion
 
-        recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
+        recoverability.Immediate(
+            customizations: immediate =>
+            {
+                immediate.NumberOfRetries(0);
+            });
 
         #region SenderConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.EnableLegacyMultiInstanceMode(ConnectionProvider.GetConnecton);
+        transport.EnableLegacyMultiInstanceMode(GetConnecton);
 
         var pipeline = endpointConfiguration.Pipeline;
         pipeline.Register(
@@ -70,7 +73,7 @@ class Program
             {
                 break;
             }
-            var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+            var orderId = Guid.NewGuid();
             var orderSubmitted = new OrderSubmitted
             {
                 OrderId = orderId,
@@ -82,5 +85,26 @@ class Program
         }
         await endpointInstance.Stop()
             .ConfigureAwait(false);
+    }
+
+    static async Task<SqlConnection> GetConnecton(string transportAddress)
+    {
+        string connectionString;
+        if (transportAddress.StartsWith("Samples.SqlServer.StoreAndForwardSender") ||
+            transportAddress == "error")
+        {
+            connectionString = Connections.SenderConnectionString;
+        }
+        else
+        {
+            connectionString = Connections.ReceiverConnectionString;
+        }
+
+        var connection = new SqlConnection(connectionString);
+
+        await connection.OpenAsync()
+            .ConfigureAwait(false);
+
+        return connection;
     }
 }
