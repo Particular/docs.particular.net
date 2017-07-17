@@ -28,29 +28,26 @@ public class SendThroughLocalQueueBehavior :
         var deliveryOptions = context.DeliveryOptions;
         var sendOptions = deliveryOptions as SendOptions;
         var outgoingHeaders = context.OutgoingLogicalMessage.Headers;
-        if (sendOptions != null)
+        if (sendOptions == null)
+        {
+            var publishOptions = deliveryOptions as PublishOptions;
+            if (publishOptions == null)
+            {
+                // Should never get here as is makes no sense to reply from outside of a handler
+                throw new Exception($"Not supported delivery option: {deliveryOptions.GetType().Name}");
+            }
+            // Technically it is not necessary to store the actual type,
+            // just a marker that this is a Publish operation
+            outgoingHeaders["$.store-and-forward.eventtype"] =
+                publishOptions.EventType.AssemblyQualifiedName;
+        }
+        else
         {
             outgoingHeaders["$.store-and-forward.destination"] =
                 sendOptions.Destination.ToString();
             sendOptions.Destination = configure.LocalAddress;
             // Could as well store other properties of the SendOptions
             // to handle things like delayed delivery
-        }
-        else
-        {
-            var publishOptions = deliveryOptions as PublishOptions;
-            if (publishOptions != null)
-            {
-                // Technically it is not necessary to store the actual type,
-                // just a marker that this is a Publish operation
-                outgoingHeaders["$.store-and-forward.eventtype"] =
-                    publishOptions.EventType.AssemblyQualifiedName;
-            }
-            else
-            {
-                // Should never get here as is makes no sense to reply from outside of a handler
-                throw new Exception($"Not supported delivery option: {deliveryOptions.GetType().Name}");
-            }
         }
         context.Set<DeliveryOptions>(new SendOptions(configure.LocalAddress));
         next();
