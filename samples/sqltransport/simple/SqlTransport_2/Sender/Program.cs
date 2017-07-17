@@ -12,11 +12,13 @@ class Program
         #region TransportConfiguration
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True");
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlTransport;Integrated Security=True";
+        transport.ConnectionString(connection);
 
         #endregion
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
+        SqlHelper.EnsureDatabaseExists(connection);
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             bus.Send("Samples.SqlServer.SimpleReceiver", new MyMessage());

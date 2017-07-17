@@ -23,7 +23,7 @@ public static class SqlHelper
         var sql = $@"
 if not exists (select  *
                from    sys.schemas
-               where   name = N'{schema}' )
+               where   name = N'{schema}')
     exec('create schema {schema}');";
         ExecuteSql(connectionString, sql);
     }

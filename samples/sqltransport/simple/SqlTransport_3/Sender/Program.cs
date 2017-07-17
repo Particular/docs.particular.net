@@ -20,9 +20,11 @@ class Program
         #region TransportConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True;Max Pool Size=100");
+        var connection = @"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True;Max Pool Size=100";
+        transport.ConnectionString(connection);
         #endregion
 
+        SqlHelper.EnsureDatabaseExists(connection);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         await endpointInstance.Send("Samples.SqlServer.SimpleReceiver", new MyMessage())

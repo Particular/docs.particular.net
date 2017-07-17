@@ -10,7 +10,9 @@ related:
 
 ## Prerequisites
 
- 1. Ensure an instance of SQL Server Express is installed and accessible as `.\SqlExpress`. Create a database `SqlServerSimple`.
+include: sql-prereq
+
+The database created by this sample is `NsbSamplesSqlTransport`.
 
 
 ## Running the project

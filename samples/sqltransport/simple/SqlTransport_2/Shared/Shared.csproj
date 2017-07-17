@@ -32,10 +32,12 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="MyMessage.cs" />
+    <Compile Include="SqlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

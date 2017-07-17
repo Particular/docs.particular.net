@@ -9,9 +9,10 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlServer.SimpleReceiver");
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True");
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlTransport;Integrated Security=True";
+        transport.ConnectionString(connection);
         busConfiguration.UsePersistence<InMemoryPersistence>();
-
+        SqlHelper.EnsureDatabaseExists(connection);
         using (Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");
