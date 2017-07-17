@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus;
+using NServiceBus.Persistence;
 using NServiceBus.Transport.SQLServer;
 
 class Program
@@ -18,29 +19,33 @@ class Program
 
     static async Task AsyncMain()
     {
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesEfUow;Integrated Security=True";
         Console.Title = "Samples.EntityFrameworkUnitOfWork.Sender";
         var random = new Random();
 
-        var hibernateConfig = new Configuration();
-        hibernateConfig.DataBaseIntegration(x =>
-        {
-            x.ConnectionStringName = "NServiceBus/Persistence";
-            x.Dialect<MsSql2012Dialect>();
-        });
-
-        hibernateConfig.SetProperty("default_schema", "sender");
 
         var endpointConfiguration = new EndpointConfiguration("Samples.EntityFrameworkUnitOfWork.Sender");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.ConnectionString(connection);
         transport.DefaultSchema("sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
 
-        endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        var hibernateConfig = new Configuration();
+        hibernateConfig.DataBaseIntegration(x =>
+        {
+            x.ConnectionString = connection;
+            x.Dialect<MsSql2012Dialect>();
+        });
 
+        hibernateConfig.SetProperty("default_schema", "sender");
+        persistence.UseConfiguration(hibernateConfig);
+
+        SqlHelper.CreateSchema(connection, "sender");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 

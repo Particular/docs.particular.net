@@ -8,11 +8,12 @@ related:
 ---
 
 
+
 ## Prerequisites
 
- 1. Make sure SQL Server Express is installed and accessible as `.\SqlExpress`.
- 1. Create database called `nservicebus`.
- 1. In the database create schemas `sender` and `receiver`.
+include: sql-prereq
+
+The database created by this sample is `NsbSamplesEfUow`.
 
 
 ## Running the project

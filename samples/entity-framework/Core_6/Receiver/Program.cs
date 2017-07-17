@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus;
+using NServiceBus.Persistence;
 using NServiceBus.Transport.SQLServer;
 
 class Program
@@ -14,27 +15,20 @@ class Program
 
     static async Task AsyncMain()
     {
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesEfUow;Integrated Security=True";
         Console.Title = "Samples.EntityFrameworkUnitOfWork.Receiver";
         using (var receiverDataContext = new ReceiverDataContext())
         {
             receiverDataContext.Database.Initialize(true);
         }
 
-        var hibernateConfig = new Configuration();
-        hibernateConfig.DataBaseIntegration(x =>
-        {
-            x.ConnectionStringName = "NServiceBus/Persistence";
-            x.Dialect<MsSql2012Dialect>();
-        });
-
-        hibernateConfig.SetProperty("default_schema", "receiver");
 
         var endpointConfiguration = new EndpointConfiguration("Samples.EntityFrameworkUnitOfWork.Receiver");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-
+        transport.ConnectionString(connection);
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(OrderAccepted).Assembly, "Samples.EntityFrameworkUnitOfWork.Sender");
         routing.RegisterPublisher(typeof(OrderAccepted).Assembly, "Samples.EntityFrameworkUnitOfWork.Sender");
@@ -45,7 +39,16 @@ class Program
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
 
-        endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        var hibernateConfig = new Configuration();
+        hibernateConfig.DataBaseIntegration(x =>
+        {
+            x.ConnectionString = connection;
+            x.Dialect<MsSql2012Dialect>();
+        });
+
+        hibernateConfig.SetProperty("default_schema", "receiver");
+        persistence.UseConfiguration(hibernateConfig);
 
         #region ReceiverConfiguration
 
@@ -54,6 +57,7 @@ class Program
 
         #endregion
 
+        SqlHelper.CreateSchema(connection, "receiver");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
