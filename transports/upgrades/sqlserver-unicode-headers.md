@@ -1,5 +1,5 @@
 ---
-title: SQL Server Transport Upgrade - Supporting Unicode characters in headers
+title: SQL Server Transport Upgrade - Supporting Unicode in headers
 summary: Instructions on how to add support for Unicode characters in message headers
 component: SqlTransport
 reviewed: 2017-07-17
