@@ -26,6 +26,7 @@ public class Program
         endpointConfiguration.EnableInstallers();
 
         #endregion
+        SqlHelper.EnsureDatabaseExists(ConnectionProvider.DefaultConnectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

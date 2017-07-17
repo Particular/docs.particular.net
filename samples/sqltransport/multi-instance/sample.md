@@ -10,9 +10,11 @@ related:
 
 ## Prerequisites
 
- 1. Make sure SQL Server Express is installed and accessible as `.\SqlExpress`.
- 1. Create two databases called `receivercatalog` and `sendercatalog`.
- 1. Make sure that [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx) is running. It can be started from the command line by running `net start msdtc`.
+include: sql-prereq
+
+The databases created by this sample are `NsbSamplesSqlMultiInstanceReceiver` and `NsbSamplesSqlMultiInstanceSender`.
+
+Ensure [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx) is running. It can be started from the command line by running `net start msdtc`.
 
 
 ## Running the project
@@ -69,6 +71,6 @@ snippet: SenderConnectionProvider
 
 ## How it works
 
-Sender and Receiver use [different catalogs](/transports/sql/deployment-options.md) on the same SQL Server instance. The tables representing queues for a particular endpoint are created in the appropriate catalog, i.e. in the `receivercatalog` for the Receiver endpoint and in the `sendercatalog` for the Sender endpoint. It is possible to register a custom `SqlConnection` factory that provides connection instance per given transport address. The operations performed on queues stored in different catalogs are atomic because SQL Server allows multiple `SqlConnection` enlisting in a single distributed transaction.
+Sender and Receiver use [different catalogs](/transports/sql/deployment-options.md) on the same SQL Server instance. The tables representing queues for a particular endpoint are created in the appropriate catalog, i.e. in `NsbSamplesSqlMultiInstanceReceiver` for the Receiver endpoint and in `NsbSamplesSqlMultiInstanceSender` for the Sender endpoint. It is possible to register a custom `SqlConnection` factory that provides connection instance per given transport address. The operations performed on queues stored in different catalogs are atomic because SQL Server allows multiple `SqlConnection` enlisting in a single distributed transaction.
 
-NOTE: In this sample DTC is required by the Receiver because it operates on two different catalogs when receiving Sender's request. It picks message from input queue stored in `receivercatalog` and sends back reply to Sender's input queue stored in `sendercatalog`. In addition `error` queue is stored also in `sendercatalog` so without DTC Receiver will not be able handle failed messages properly.
+NOTE: In this sample DTC is required by the Receiver because it operates on two different catalogs when receiving Sender's request. It picks message from input queue stored in `NsbSamplesSqlMultiInstanceReceiver` and sends back reply to Sender's input queue stored in `NsbSamplesSqlMultiInstanceSender`. In addition `error` queue is stored also in `NsbSamplesSqlMultiInstanceSender` so without DTC Receiver will not be able handle failed messages properly.

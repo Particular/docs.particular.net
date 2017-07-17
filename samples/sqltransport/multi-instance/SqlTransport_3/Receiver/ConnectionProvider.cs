@@ -3,14 +3,20 @@ using System.Threading.Tasks;
 
 static class ConnectionProvider
 {
-    const string DefaultConnectionString = @"Data Source=.\SqlExpress;Database=ReceiverCatalog;Integrated Security=True;Max Pool Size=100";
-    const string SenderConnectionString = @"Data Source=.\SqlExpress;Database=SenderCatalog;Integrated Security=True;Max Pool Size=100";
+    public const string DefaultConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceReceiver;Integrated Security=True;Max Pool Size=100";
+    const string SenderConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceSender;Integrated Security=True;Max Pool Size=100";
 
     public static async Task<SqlConnection> GetConnection(string transportAddress)
     {
-        var connectionString = transportAddress.StartsWith("Samples.SqlServer.MultiInstanceSender")
-            ? SenderConnectionString
-            : DefaultConnectionString;
+        string connectionString;
+        if (transportAddress.StartsWith("Samples.SqlServer.MultiInstanceSender"))
+        {
+            connectionString = SenderConnectionString;
+        }
+        else
+        {
+            connectionString = DefaultConnectionString;
+        }
 
         var connection = new SqlConnection(connectionString);
 

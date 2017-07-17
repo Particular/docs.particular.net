@@ -18,7 +18,7 @@ public class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         #endregion
-
+        SqlHelper.EnsureDatabaseExists(ConnectionInfoProvider.DefaultConnectionString);
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press <enter> to send a message");

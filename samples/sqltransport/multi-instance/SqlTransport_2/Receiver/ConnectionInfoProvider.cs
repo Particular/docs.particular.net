@@ -2,14 +2,20 @@
 
 static class ConnectionInfoProvider
 {
-    public const string DefaultConnectionString = @"Data Source=.\SqlExpress;Database=ReceiverCatalog;Integrated Security=True";
-    const string SenderConnectionString = @"Data Source=.\SqlExpress;Database=SenderCatalog;Integrated Security=True";
+    public const string DefaultConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceReceiver;Integrated Security=True";
+    const string SenderConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceSender;Integrated Security=True";
 
     public static ConnectionInfo GetConnection(string transportAddress)
     {
-        var connectionString = transportAddress.StartsWith("Samples.SqlServer.MultiInstanceSender")
-            ? SenderConnectionString
-            : DefaultConnectionString;
+        string connectionString;
+        if (transportAddress.StartsWith("Samples.SqlServer.MultiInstanceSender"))
+        {
+            connectionString = SenderConnectionString;
+        }
+        else
+        {
+            connectionString = DefaultConnectionString;
+        }
 
         return ConnectionInfo
             .Create()

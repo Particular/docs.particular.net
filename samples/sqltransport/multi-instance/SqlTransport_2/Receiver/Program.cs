@@ -17,6 +17,8 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         #endregion
+        SqlHelper.EnsureDatabaseExists(ConnectionInfoProvider.DefaultConnectionString);
+
 
         using (Bus.Create(busConfiguration).Start())
         {
