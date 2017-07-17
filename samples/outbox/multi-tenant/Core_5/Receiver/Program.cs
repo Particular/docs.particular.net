@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 using NHibernate.Cfg;
@@ -63,9 +62,8 @@ class Program
 
         #region CreateSchema
 
-
-        CreateSchema(hibernateConfig, "A");
-        CreateSchema(hibernateConfig, "B");
+        CreateSchema(hibernateConfig, Connections.TenantA);
+        CreateSchema(hibernateConfig, Connections.TenantB);
 
         #endregion
 
@@ -94,14 +92,13 @@ class Program
             #endregion
 
             x.Dialect<MsSql2012Dialect>();
-            x.ConnectionStringName = "NServiceBus/Persistence";
+            x.ConnectionString = Connections.Default;
         });
         return hibernateConfig;
     }
 
-    static void CreateSchema(Configuration hibernateConfig, string tenantId)
+    static void CreateSchema(Configuration hibernateConfig, string connectionString)
     {
-        var connectionString = ConfigurationManager.ConnectionStrings[tenantId].ConnectionString;
         using (var connection = new SqlConnection(connectionString))
         {
             connection.Open();

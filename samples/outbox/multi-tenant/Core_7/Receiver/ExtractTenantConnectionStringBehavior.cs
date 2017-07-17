@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
@@ -11,8 +10,7 @@ class ExtractTenantConnectionStringBehavior :
 
     public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
     {
-        var defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"]
-            .ConnectionString;
+        var defaultConnectionString = Connections.Default;
 
         #region OpenTenantDatabaseConnection
 
@@ -21,8 +19,7 @@ class ExtractTenantConnectionStringBehavior :
         {
             throw new InvalidOperationException("No tenant id");
         }
-        var connectionString = ConfigurationManager.ConnectionStrings[tenant]
-            .ConnectionString;
+        var connectionString = Connections.GetTenant(tenant);
 
         ConnectionStringHolder.Value = connectionString;
         try

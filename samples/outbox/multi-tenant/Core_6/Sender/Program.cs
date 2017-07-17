@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Persistence;
 
 class Program
 {
@@ -19,9 +20,12 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sender");
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesMultiTenantSender;Integrated Security=True";
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.ConnectionString(connection);
         endpointConfiguration.EnableOutbox();
 
+        SqlHelper.EnsureDatabaseExists(connection);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 

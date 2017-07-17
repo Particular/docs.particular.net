@@ -47,11 +47,11 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.Transport.Msmq.1.0.0-alpha0037\lib\net452\NServiceBus.Transport.Msmq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connections.cs" />
     <Compile Include="MultiTenantConnectionProvider.cs" />
     <Compile Include="ExtractTenantConnectionStringBehavior.cs" />
     <Compile Include="Order.cs" />

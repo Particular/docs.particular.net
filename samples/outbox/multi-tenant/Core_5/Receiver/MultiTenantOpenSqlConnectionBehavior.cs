@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using NServiceBus.Pipeline;
@@ -11,8 +10,7 @@ class MultiTenantOpenSqlConnectionBehavior :
 
     public void Invoke(IncomingContext context, Action next)
     {
-        var defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"]
-            .ConnectionString;
+        var defaultConnectionString = Connections.Default;
         #region OpenTenantDatabaseConnection
 
         string tenant;
@@ -20,8 +18,7 @@ class MultiTenantOpenSqlConnectionBehavior :
         {
             throw new InvalidOperationException("No tenant id");
         }
-        var connectionString = ConfigurationManager.ConnectionStrings[tenant]
-            .ConnectionString;
+        var connectionString = Connections.GetTenant(tenant);
         var lazyConnection = new Lazy<IDbConnection>(() =>
         {
             var connection = new SqlConnection(connectionString);

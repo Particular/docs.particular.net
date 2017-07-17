@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Data;
 using NHibernate.Connection;
 
@@ -9,8 +8,7 @@ class MultiTenantConnectionProvider :
 
     public override IDbConnection GetConnection()
     {
-        var defaultConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Persistence"]
-            .ConnectionString;
+        var defaultConnectionString = Connections.Default;
 
         #region GetConnectionFromContext
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NServiceBus;
+using NServiceBus.Persistence;
 
 class Program
 {
@@ -13,9 +14,12 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MultiTenant.Sender");
 
-        busConfiguration.UsePersistence<NHibernatePersistence>();
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesMultiTenantSender;Integrated Security=True";
+        var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.ConnectionString(connection);
         busConfiguration.EnableOutbox();
 
+        SqlHelper.EnsureDatabaseExists(connection);
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs)");
