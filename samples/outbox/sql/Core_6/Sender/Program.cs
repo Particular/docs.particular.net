@@ -24,7 +24,7 @@ class Program
 
         #region SenderConfiguration
 
-        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlOutbox;Integrated Security=True;Max Pool Size=100";
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlOutbox;Integrated Security=True;Max Pool Size=100";
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connection);
@@ -48,9 +48,7 @@ class Program
 
         #endregion
 
-        var allText = File.ReadAllText("Startup.sql");
-        await SqlHelper.ExecuteSql(connection, allText)
-            .ConfigureAwait(false);
+        SqlHelper.CreateSchema(connection, "sender");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 

@@ -21,8 +21,11 @@ Integrating [SQL Server Transport](/transports/sql) with [SQL Persistence](/pers
 
 ## Prerequisites
 
- 1. Make sure SQL Server Express is installed and accessible as `.\SqlExpress`.
- 1. The [Outbox](/nservicebus/outbox) feature is designed to provide *exactly once* delivery guarantees without the [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/windows/desktop/ms684146.aspx) running. Disable the DTC service to avoid seeing warning messages in the console window. If the DTC service is not disabled, when the sample project is started it will display `DtcRunningWarning` message in the console window.
+include: sql-prereq
+
+The database created by this sample is `NsbSamplesSqlOutbox`.
+
+The [Outbox](/nservicebus/outbox) feature is designed to provide *exactly once* delivery guarantees without the [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/windows/desktop/ms684146.aspx) running. Disable the DTC service to avoid seeing warning messages in the console window. If the DTC service is not disabled, when the sample project is started it will display `DtcRunningWarning` message in the console window.
 
 
 ## Running the project

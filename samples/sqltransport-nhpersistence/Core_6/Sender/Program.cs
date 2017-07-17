@@ -20,7 +20,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlNHibernate.Sender";
-        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100";
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Sender");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
@@ -50,9 +50,7 @@ class Program
         routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlNHibernate.Sender");
 
 
-        var allText = File.ReadAllText("Startup.sql");
-        await SqlHelper.ExecuteSql(connection, allText)
-            .ConfigureAwait(false);
+        SqlHelper.CreateSchema(connection, "sender");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

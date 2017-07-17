@@ -16,11 +16,9 @@ include: persistence-session-note
 
 ## Prerequisites
 
-An instance of SQL Server Express is installed and accessible as `.\SqlExpress`.
+include: sql-prereq
 
-At startup each endpoint will create its requires SQL assets. For example Receiver will execute the following:
-
-snippet: ReceiverSQLAssets
+The database created by this sample is `NsbSamplesSqlNHibernate`.
 
 
 ## Procedure

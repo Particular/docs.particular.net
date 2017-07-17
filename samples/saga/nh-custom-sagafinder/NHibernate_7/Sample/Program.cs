@@ -22,10 +22,12 @@ class Program
         #region config
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=NHCustomSagaFinder;Integrated Security=True");
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesNhCustomSagaFinder;Integrated Security=True";
+        persistence.ConnectionString(connection);
 
         #endregion
 
+        SqlHelper.EnsureDatabaseExists(connection);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         var startOrder = new StartOrder

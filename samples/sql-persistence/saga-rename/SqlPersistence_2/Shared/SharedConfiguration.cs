@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
 
 public static class SharedConfiguration
 {
 
-    public static async Task Apply(EndpointConfiguration endpointConfiguration)
+    public static void Apply(EndpointConfiguration endpointConfiguration)
     {
         #region endpointConfig
 
@@ -15,7 +14,7 @@ public static class SharedConfiguration
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
-        var connection = @"Data Source=.\SqlExpress;Initial Catalog=Samples.SqlPersistence.RenameSaga;Integrated Security=True";
+        var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;Integrated Security=True";
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
@@ -27,7 +26,6 @@ public static class SharedConfiguration
 
         #endregion
 
-        await SqlHelper.EnsureDatabaseExists(connection)
-            .ConfigureAwait(false);
+        SqlHelper.EnsureDatabaseExists(connection);
     }
 }

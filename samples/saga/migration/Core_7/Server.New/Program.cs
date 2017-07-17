@@ -24,13 +24,15 @@ class Program
 
         endpointConfiguration.UseTransport<LearningTransport>();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSagaMigration;Integrated Security=True;";
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
-                return new SqlConnection(@"Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;");
+                return new SqlConnection(connection);
             });
         persistence.TablePrefix("New");
 
+        SqlHelper.EnsureDatabaseExists(connection);
         var endpoint = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 

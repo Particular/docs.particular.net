@@ -43,6 +43,7 @@
     <Compile Include="CorrelatedMessage.cs" />
     <Compile Include="ReplyFollowUpMessage.cs" />
     <Compile Include="ReplyMessage.cs" />
+    <Compile Include="SqlHelper.cs" />
     <Compile Include="StartingMessage.cs" />
     <Compile Include="TestTimeout.cs" />
   </ItemGroup>

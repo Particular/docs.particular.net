@@ -20,9 +20,8 @@ partial class Program
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();
 
-        var connection = @"Data Source=.\SqlExpress;Initial Catalog=Samples.SqlPersistence.Transition;Integrated Security=True";
-        await SqlHelper.EnsureDatabaseExists(connection)
-            .ConfigureAwait(false);
+        var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistenceTransition;Integrated Security=True";
+        SqlHelper.EnsureDatabaseExists(connection);
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(

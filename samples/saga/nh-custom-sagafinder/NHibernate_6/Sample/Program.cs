@@ -15,10 +15,11 @@ class Program
         #region config
 
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=NHCustomSagaFinder;Integrated Security=True");
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesNhCustomSagaFinder;Integrated Security=True";
+        persistence.ConnectionString(connection);
 
         #endregion
-
+        SqlHelper.EnsureDatabaseExists(connection);
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             var startOrder = new StartOrder

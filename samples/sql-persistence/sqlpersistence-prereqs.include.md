@@ -7,6 +7,8 @@
  
 Or, alternatively, change the connection string to point to different SQL Server instance.
 
+At startup each endpoint will create its required SQL assets including databases, tables and schemas.
+
 
 ### MySQL
 

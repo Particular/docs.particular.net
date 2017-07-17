@@ -19,8 +19,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.RenameSaga");
 
-        await SharedConfiguration.Apply(endpointConfiguration)
-            .ConfigureAwait(false);
+        SharedConfiguration.Apply(endpointConfiguration);
 
         endpointConfiguration.PurgeOnStartup(true);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

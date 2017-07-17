@@ -1,9 +1,34 @@
 ﻿using System.Data.SqlClient;
-using System.Threading.Tasks;
 
 public static class SqlHelper
 {
-    public static async Task EnsureDatabaseExists(string connectionString)
+    public static void ExecuteSql(string connectionString, string sql)
+    {
+        EnsureDatabaseExists(connectionString);
+
+        using (var connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    public static void CreateSchema(string connectionString, string schema)
+    {
+        var sql = $@"
+if not exists (select  *
+               from    sys.schemas
+               where   name = N'{schema}' )
+    exec('create schema {schema}');";
+        ExecuteSql(connectionString, sql);
+    }
+
+    public static void EnsureDatabaseExists(string connectionString)
     {
         var builder = new SqlConnectionStringBuilder(connectionString);
         var database = builder.InitialCatalog;
@@ -12,17 +37,15 @@ public static class SqlHelper
 
         using (var connection = new SqlConnection(masterConnection))
         {
-            await connection.OpenAsync()
-                .ConfigureAwait(false);
+            connection.Open();
 
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = $@"
 if(db_id('{database}') is null)
-	create database [{database}]
+    create database [{database}]
 ";
-                await command.ExecuteNonQueryAsync()
-                    .ConfigureAwait(false);
+                command.ExecuteNonQuery();
             }
         }
     }

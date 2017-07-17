@@ -2,7 +2,7 @@
 title: Migrating saga persistence
 summary: How to migrate from one type of saga persistence to another without an off-line migration procedure
 component: Core
-reviewed: 2017-01-04
+reviewed: 2017-07-17
 tags:
 - Saga
 related:
@@ -13,11 +13,11 @@ related:
 
 ## Prerequisites
 
- 1. Make sure MSMQ is set up as described in the [MSMQ Transport - NServiceBus Configuration](/transports/msmq/#nservicebus-configuration) section.
- 1. Make sure SQL Server Express is installed and accessible as `.\SqlExpress`.
- 1. Create database called `nservicebus`.
+include: sql-prereq
 
- 
+The database created by this sample is `NsbSamplesSagaMigration`.
+
+
 ## Running the project
 
  1. Start the solution.
@@ -47,7 +47,7 @@ related:
 
 This sample contains four projects:
 
- * Contracts - contains definitions of messages exchanged between the Client and the Server.
+ * Shared - contains definitions of messages exchanged between the Client and the Server.
  * Client - initiates a multi-message conversation with the server.
  * Server - implements a long running process via the Saga feature. Uses [NHibernate-based](/persistence/nhibernate) saga persister.
  * Server.New - implements the same functionality as Server but uses [SQL-based](/persistence/sql) saga persister.

@@ -20,7 +20,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.EndpointSqlServer");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var connection = @"Data Source=.\SqlExpress;Initial Catalog=Samples.SqlPersistence;Integrated Security=True";
+        var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistence;Integrated Security=True";
         persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.ConnectionBuilder(
             connectionBuilder: () =>

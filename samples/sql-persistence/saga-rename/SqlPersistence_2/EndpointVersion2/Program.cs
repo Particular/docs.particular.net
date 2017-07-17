@@ -46,8 +46,7 @@ class Program
         #endregion
 
         var endpointConfiguration = new EndpointConfiguration("Samples.RenameSaga");
-        await SharedConfiguration.Apply(endpointConfiguration)
-            .ConfigureAwait(false);
+        SharedConfiguration.Apply(endpointConfiguration);
 
         #region registerMutator
 

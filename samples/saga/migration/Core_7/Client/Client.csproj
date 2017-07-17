@@ -46,9 +46,9 @@
     <Compile Include="ReplyHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
+    <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{605CD4EC-065C-48AA-90CC-EBA935249240}</Project>
-      <Name>Contracts</Name>
+      <Name>Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

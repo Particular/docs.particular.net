@@ -13,9 +13,4 @@
     <PackageReference Include="NServiceBus.SqlServer" Version="3.1.1" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Update="Startup.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
 </Project>

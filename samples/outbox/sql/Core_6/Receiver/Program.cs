@@ -17,7 +17,7 @@ class Program
     {
         Console.Title = "Samples.SQLOutboxEF.Receiver";
 
-        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlOutbox;Integrated Security=True;Max Pool Size=100";
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlOutbox;Integrated Security=True;Max Pool Size=100";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Receiver");
         endpointConfiguration.EnableInstallers();
@@ -51,9 +51,7 @@ class Program
         endpointConfiguration.EnableOutbox();
 
         #endregion
-        var allText = File.ReadAllText("Startup.sql");
-        await SqlHelper.ExecuteSql(connection, allText)
-            .ConfigureAwait(false);
+        SqlHelper.CreateSchema(connection, "receiver");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

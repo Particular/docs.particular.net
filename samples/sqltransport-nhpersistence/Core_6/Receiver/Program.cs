@@ -19,7 +19,7 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.SqlNHibernate.Receiver";
-        var connection = @"Data Source=.\SqlExpress;Database=SamplesSqlNHibernate;Integrated Security=True; Max Pool Size=100";
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlNHibernate;Integrated Security=True; Max Pool Size=100";
         var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
@@ -33,9 +33,7 @@ class Program
 
         #endregion
 
-        var allText = File.ReadAllText("Startup.sql");
-        await SqlHelper.ExecuteSql(connection, allText)
-            .ConfigureAwait(false);
+        SqlHelper.CreateSchema(connection, "receiver");
         var mapper = new ModelMapper();
         mapper.AddMapping<OrderMap>();
         hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());

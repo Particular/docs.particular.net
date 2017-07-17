@@ -43,7 +43,7 @@ if not exists (select  *
             {
                 command.CommandText = $@"
 if(db_id('{database}') is null)
-    create database [{database}]
+	create database [{database}]
 ";
                 command.ExecuteNonQuery();
             }

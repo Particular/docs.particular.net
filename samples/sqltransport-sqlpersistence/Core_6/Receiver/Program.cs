@@ -23,7 +23,7 @@ public static class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
-        var connection = @"Data Source=.\SqlExpress;Database=SamplesSql;Integrated Security=True;Max Pool Size=100";
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSql;Integrated Security=True;Max Pool Size=100";
 
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
@@ -53,9 +53,9 @@ public static class Program
 
         #endregion
 
+        SqlHelper.CreateSchema(connection, "receiver");
         var allText = File.ReadAllText("Startup.sql");
-        await SqlHelper.ExecuteSql(connection, allText)
-            .ConfigureAwait(false);
+        SqlHelper.ExecuteSql(connection, allText);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");

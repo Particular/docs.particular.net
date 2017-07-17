@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompleteOrder.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="OrderSagaData.cs" />
     <Compile Include="CompletePaymentTransaction.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="SqlHelper.cs" />
     <Compile Include="StartOrder.cs" />
   </ItemGroup>
   <ItemGroup>

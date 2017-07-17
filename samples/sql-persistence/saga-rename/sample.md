@@ -18,7 +18,11 @@ The sagas implementations are rather contrived and their implementation exists o
 The sample consists of two Versions a single endpoint. The first version will start the sagas. The second version will handle the renaming of the sagas.
 
 
-include: sqlpersistence-prereqs
+## Prerequisites
+
+include: sql-prereq
+
+The database created by this sample is `NsbSamplesSqlPersistenceRenameSaga`.
 
 
 ## Timeout Saga
