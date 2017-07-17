@@ -4,24 +4,26 @@ component: ASQ
 tags:
 - Azure
 related:
+- persistence
+- persistence/azure-storage
 - persistence/azure-storage/performance-tuning
-reviewed: 2017-04-24
+reviewed: 2017-07-17
 ---
 
 
-In Versions 4.7 and above, the Azure Storage Queues transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure using Azure Storage account its provided with for queuing which can delay messages using native Storage features.
+In Versions 7.4 and above, the Azure Storage Queues transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure for queuing which can delay messages using native Storage features. Storage account provided for queuing is used to implement delayed delivery.
 
 
 ## How it works
 
-When an endpoint is started, the transport creates a storage table and a storage container to work together to provide the necessary infrastructure to support delayed messages. When a message needs to be delayed, it will be stored by the transport in a storage table. To ensure a single copy of delayed messages are dispatched by any endpoint instance, a storage container is used for leasing access to the delayed messages table.
+When an endpoint is started, the transport creates a storage table and a storage container to provide the necessary infrastructure to support delayed messages. When a message needs to be delayed, it will be stored by the transport in a storage table. To ensure a single copy of delayed messages are dispatched by any endpoint instance, a storage container is used for leasing access to the delayed messages table.
 
-By default, storage table and storage container names are constructed using the following logic: `delayesHASH` where `HASH` is a SHA-1 hash of the endpoint name. 
+By default, storage table and storage container names are constructed using naming schema that starts with the word `delays` followed by SHA-1 hash of the endpoint's name. For example, `delays2fd4e1c67a2d28fced849ee1bb76e7391b93eb12` where `2fd4e1c67a2d28fced849ee1bb76e7391b93eb12` is a SHA-1 hash of an endpoint name. 
 
 
 ### Overriding table/container name
 
-Delayed messages table and container can be provided a custom name with Delayed Delivery API:
+Delayed messages table and container names can be overridden with a custom name:
 
 snippet: delayed-delivery-override-name
 
