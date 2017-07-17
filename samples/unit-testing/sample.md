@@ -1,7 +1,7 @@
 ---
 title: Unit Testing NServiceBus
 summary: Writing unit tests for NServiceBus systems.
-reviewed: 2016-03-31
+reviewed: 2017-07-17
 component: Testing
 related:
 - nservicebus/testing
@@ -38,6 +38,6 @@ The following custom behavior adds a header to an outgoing message in case the m
 
 snippet: SampleBehavior
 
-The behavior can be tested similar to a message handler or a Saga by using a testable represantion of the context:
+The behavior can be tested similar to a message handler or a Saga by using a testable representation of the context:
 
 snippet: BehaviorTest
