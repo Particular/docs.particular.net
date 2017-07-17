@@ -28,6 +28,7 @@ class Program
 
         #endregion
 
+        SqlHelper.EnsureDatabaseExists(senderConnection);
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press enter to publish a message");
