@@ -5,7 +5,7 @@ using NServiceBus.Transport.SQLServer;
 
 class Program
 {
-    const string ConnectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True";
+    const string ConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesNativeTimeoutMigration;Integrated Security=True";
 
     static void Main()
     {

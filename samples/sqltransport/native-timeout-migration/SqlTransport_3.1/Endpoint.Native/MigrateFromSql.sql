@@ -8,16 +8,16 @@ declare @timeoutDataTable nvarchar(max) = REPLACE(@endpointName,'.','_') + '_Tim
 
 declare @migrateScript nvarchar(max);
 set @migrateScript = N'
-    WITH message AS (
-		SELECT * 
-		FROM ' + @timeoutDataTable + ' WITH (UPDLOCK, READPAST, ROWLOCK) 
-		WHERE [Time] IS NOT NULL)
-	DELETE FROM message
-	OUTPUT
-		LEFT(deleted.Headers, LEN(deleted.Headers) - 1) + '', "NServiceBus.SqlServer.ForwardDestination": "'' + deleted.Destination + ''" }'',
+    with message as (
+		select *
+		from ' + @timeoutDataTable + ' with (updlock, readpast, rowlock)
+		where [Time] is not null)
+	delete from message
+	output
+		left(deleted.Headers, LEN(deleted.Headers) - 1) + '', "NServiceBus.SqlServer.ForwardDestination": "'' + deleted.Destination + ''" }'',
 		deleted.State,
 		deleted.Time
-	INTO [' + @endpointSchema + '].[' + @endpointName + '.' + @dalayedTableSuffix + ']
+	into [' + @endpointSchema + '].[' + @endpointName + '.' + @dalayedTableSuffix + ']
 ';
 exec(@migrateScript);
 

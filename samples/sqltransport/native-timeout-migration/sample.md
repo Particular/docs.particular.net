@@ -10,7 +10,9 @@ related:
 
 ## Prerequisites
 
- 1. Ensure an instance of SQL Server Express is installed and accessible as `.\SQLEXPRESS`. Create a database `nservicebus`.
+include: sql-prereq
+
+The database created by this sample is `NsbSamplesNativeTimeoutMigration`.
 
 
 ## Running the project
@@ -23,6 +25,7 @@ related:
  1. Repeat the steps 3-5 for the `MigrateFromSql.sql` script.
  1. Start the Endpoint.Native project.
  1. Observe the message `Hello from MyHandler` displayed two times meaning that the delayed messages have been successfully picked up by the native handling in the SQL Server transport.
+
 
 ## Migration scripts
 

@@ -2,12 +2,11 @@
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Persistence;
 using NServiceBus.Persistence.Sql;
 
 class Program
 {
-    const string ConnectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True";
+    const string ConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesNativeTimeoutMigration;Integrated Security=True";
 
     static void Main()
     {
@@ -23,9 +22,14 @@ class Program
         transport.ConnectionString(ConnectionString);
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SubscriptionSettings().DisableCache();
-        persistence.ConnectionBuilder(() => new SqlConnection(ConnectionString));
+        persistence.ConnectionBuilder(
+            connectionBuilder: () =>
+            {
+                return new SqlConnection(ConnectionString);
+            });
         endpointConfiguration.EnableInstallers();
 
+        SqlHelper.EnsureDatabaseExists(ConnectionString);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
@@ -36,7 +40,6 @@ class Program
 
         //Ensure timeout message is processed and stored in the database
         await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
-
         await endpointInstance.Stop()
             .ConfigureAwait(false);
 

@@ -5,7 +5,7 @@ using NServiceBus.Persistence;
 
 class Program
 {
-    const string ConnectionString = @"Data Source=.\SqlExpress;Database=nservicebus;Integrated Security=True";
+    const string ConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesNativeTimeoutMigration;Integrated Security=True";
 
     static void Main()
     {
@@ -19,8 +19,10 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(ConnectionString);
-        endpointConfiguration.UsePersistence<NHibernatePersistence>().ConnectionString(ConnectionString);
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.ConnectionString(ConnectionString);
         endpointConfiguration.EnableInstallers();
+        SqlHelper.EnsureDatabaseExists(ConnectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
@@ -28,10 +30,12 @@ class Program
         var options = new SendOptions();
         options.RouteToThisEndpoint();
         options.DelayDeliveryWith(TimeSpan.FromSeconds(10));
-        await endpointInstance.Send(new MyMessage(), options).ConfigureAwait(false);
+        await endpointInstance.Send(new MyMessage(), options)
+            .ConfigureAwait(false);
 
         //Ensure timeout message is processed and stored in the database
-        await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
+        await Task.Delay(TimeSpan.FromSeconds(5))
+            .ConfigureAwait(false);
 
         await endpointInstance.Stop()
             .ConfigureAwait(false);
