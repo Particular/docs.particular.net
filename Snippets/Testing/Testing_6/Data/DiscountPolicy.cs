@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
-#region SampleSaga
+#region SampleSaga [6.0,7.0)
 public class DiscountPolicy :
     Saga<DiscountPolicyData>,
     IAmStartedByMessages<SubmitOrder>

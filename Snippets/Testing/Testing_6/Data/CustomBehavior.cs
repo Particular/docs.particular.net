@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
-#region SampleBehavior
+#region SampleBehavior [6.0,7.0)
 public class CustomBehavior :
     Behavior<IOutgoingLogicalMessageContext>
 {

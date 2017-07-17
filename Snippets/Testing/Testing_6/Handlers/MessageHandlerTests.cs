@@ -5,7 +5,7 @@ using NUnit.Framework;
 [TestFixture]
 public class MessageHandlerTests
 {
-    #region HandlerTest
+    #region HandlerTest [6.0,7.0)
     [Test]
     public async Task ShouldReplyWithResponseMessage()
     {

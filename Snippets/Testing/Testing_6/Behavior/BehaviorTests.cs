@@ -6,7 +6,7 @@ using NUnit.Framework;
 [TestFixture]
 public class BehaviorTests
 {
-    #region BehaviorTest
+    #region BehaviorTest [6.0,7.0)
     [Test]
     public async Task ShouldAddCustomHeaderToMyResponse()
     {
