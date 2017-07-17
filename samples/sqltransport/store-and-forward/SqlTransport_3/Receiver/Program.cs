@@ -33,11 +33,11 @@ class Program
             if (address.StartsWith("Samples.SqlServer.StoreAndForwardReceiver") ||
                 address == "error")
             {
-                connectionString = ReceiverConnectionString;
+                connectionString = Connections.ReceiverConnectionString;
             }
             else
             {
-                connectionString = SenderConnectionString;
+                connectionString = Connections.SenderConnectionString;
             }
 
             var connection = new SqlConnection(connectionString);
@@ -66,6 +66,4 @@ class Program
             .ConfigureAwait(false);
     }
 
-    const string ReceiverConnectionString = @"Data Source=.\SqlExpress;Database=receiver;Integrated Security=True;Max Pool Size=100";
-    const string SenderConnectionString = @"Data Source=.\SqlExpress;Database=sender;Integrated Security=True;Max Pool Size=100";
 }
