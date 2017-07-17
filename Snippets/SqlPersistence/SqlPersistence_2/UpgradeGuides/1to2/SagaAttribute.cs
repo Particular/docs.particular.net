@@ -9,7 +9,6 @@ namespace UpgradeGuides._1to2
     public class MySaga :
         SqlSaga<MySaga.SagaData>
     {
-
         protected override string CorrelationPropertyName => nameof(SagaData.CorrelationProperty);
         protected override string TransitionalCorrelationPropertyName => nameof(SagaData.TransitionalCorrelationProperty);
         protected override string TableSuffix => "TheCustomTableName";
