@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using NServiceBus;
 
 class Program
@@ -7,7 +6,6 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.SqlServer.StoreAndForwardSender";
-        const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.SqlServer.StoreAndForwardSender");
@@ -34,7 +32,7 @@ class Program
                 {
                     return;
                 }
-                var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                var orderId = Guid.NewGuid();
                 var orderSubmitted = new OrderSubmitted
                 {
                     OrderId = orderId,
