@@ -32,8 +32,7 @@ class Program
 
         #endregion
 
-        await SqlHelper.EnsureDatabaseExists(connection)
-            .ConfigureAwait(false);
+        SqlHelper.EnsureDatabaseExists(connection);
 
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();
