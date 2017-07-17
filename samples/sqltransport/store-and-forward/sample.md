@@ -14,7 +14,9 @@ redirects:
 
 ## Prerequisites
 
- 1. Ensure an instance SQL Server Express installed and accessible as `.\SqlExpress`. Create two databases: `sender` and `receiver`.
+include: sql-prereq
+
+The databases created by this sample are `NsbSamplesStoreAndForwardReceiver` and `NsbSamplesStoreAndForwardSender`.
 
 
 ## Running the project
@@ -30,10 +32,10 @@ redirects:
  1. The Receiver displays information that the order was submitted.
  1. The Sender displays information that the order was accepted.
  1. Hit enter in the Receiver console to shut it down.
- 1. Go to the SQL Server Management Studio and delete the `receiver` database.
+ 1. Go to the SQL Server Management Studio and delete the `NsbSamplesStoreAndForwardReceiver` database.
  1. Hit enter again in the Sender console
  1. Notice the retry mechanism kicks in after a 10 seconds and retries sending the message to the destination database.
- 1. Create the `receiver` database again and restart the Receiver project.
+ 1. Restart the Receiver project.
  1. Notice that the message has been delivered to the Receiver.
 
 

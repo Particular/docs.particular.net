@@ -8,7 +8,6 @@ related:
 ---
 
 
-
 ## Prerequisites
 
 include: sql-prereq

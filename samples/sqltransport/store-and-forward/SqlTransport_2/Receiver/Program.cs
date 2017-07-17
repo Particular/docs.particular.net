@@ -14,11 +14,11 @@ class Program
         #region ReceiverConfiguration
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        var receiverConnection = @"Data Source=.\SqlExpress;Database=receiver;Integrated Security=True";
-        transport.ConnectionString(receiverConnection);
-        var senderConnection = @"Data Source=.\SqlExpress;Database=sender;Integrated Security=True";
+        var receiver = @"Data Source=.\SqlExpress;Database=NsbSamplesStoreAndForwardReceiver;Integrated Security=True";
+        transport.ConnectionString(receiver);
+        var sender = @"Data Source=.\SqlExpress;Database=NsbSamplesStoreAndForwardSender;Integrated Security=True";
         var connectionInfo = EndpointConnectionInfo.For("Samples.SqlServer.StoreAndForwardSender")
-            .UseConnectionString(senderConnection);
+            .UseConnectionString(sender);
         transport.UseSpecificConnectionInformation(connectionInfo);
 
         busConfiguration.UsePersistence<InMemoryPersistence>();
@@ -26,7 +26,7 @@ class Program
         #endregion
 
         busConfiguration.DisableFeature<SecondLevelRetries>();
-        SqlHelper.EnsureDatabaseExists(receiverConnection);
+        SqlHelper.EnsureDatabaseExists(receiver);
 
         using (Bus.Create(busConfiguration).Start())
         {

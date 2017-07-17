@@ -14,12 +14,12 @@ class Program
         #region SenderConfiguration
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        var senderConnection = @"Data Source=.\SqlExpress;Database=sender;Integrated Security=True";
-        transport.ConnectionString(senderConnection);
-        var receiverConnection = @"Data Source=.\SqlExpress;Database=receiver;Integrated Security=True";
+        var sender = @"Data Source=.\SqlExpress;Database=NsbSamplesStoreAndForwardSender;Integrated Security=True";
+        transport.ConnectionString(sender);
+        var receiver = @"Data Source=.\SqlExpress;Database=NsbSamplesStoreAndForwardReceiver;Integrated Security=True";
         transport.UseSpecificConnectionInformation(
             EndpointConnectionInfo.For("Samples.SqlServer.StoreAndForwardReceiver")
-                .UseConnectionString(receiverConnection)
+                .UseConnectionString(receiver)
         );
         busConfiguration.UsePersistence<InMemoryPersistence>();
         var pipeline = busConfiguration.Pipeline;
@@ -28,7 +28,7 @@ class Program
 
         #endregion
 
-        SqlHelper.EnsureDatabaseExists(senderConnection);
+        SqlHelper.EnsureDatabaseExists(sender);
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press enter to publish a message");
