@@ -6,10 +6,6 @@ public class ReceiverDataContext :
     DbContext
 {
     #region EntityFramework
-    public ReceiverDataContext()
-        : base("NServiceBus/Persistence")
-    {
-    }
     public ReceiverDataContext(IDbConnection connection)
         : base((DbConnection) connection, false)
     {

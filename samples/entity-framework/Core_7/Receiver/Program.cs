@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
@@ -17,7 +18,7 @@ class Program
     {
         var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesEfUow;Integrated Security=True";
         Console.Title = "Samples.EntityFrameworkUnitOfWork.Receiver";
-        using (var receiverDataContext = new ReceiverDataContext())
+        using (var receiverDataContext = new ReceiverDataContext(new SqlConnection(connection)))
         {
             receiverDataContext.Database.Initialize(true);
         }
