@@ -18,8 +18,9 @@ The advantage of configuration-free approach is low development friction and sim
 
 ## Prerequisites
 
- 1. Make sure SQL Server Express is installed and accessible as `.\SqlExpress`.
- 1. Create database called `AutomaticRouting`.
+include: sql-prereq
+
+The database created by this sample is `NsbSamplesAutomaticRouting`.
 
 
 ## Running the project

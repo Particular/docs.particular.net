@@ -58,6 +58,7 @@
     <Compile Include="Messages\OrderAccepted.cs" />
     <Compile Include="Messages\PlaceOrder.cs" />
     <Compile Include="AutomaticRouting\SqlDataAccess.cs" />
+    <Compile Include="SqlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

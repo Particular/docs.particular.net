@@ -1,4 +1,9 @@
-﻿public class AutomaticRoutingConst
+﻿public static class AutomaticRoutingConst
 {
-    public const string ConnectionString = @"Data Source=.\SqlExpress;Database=AutomaticRouting;Integrated Security=True";
+    static AutomaticRoutingConst()
+    {
+        SqlHelper.EnsureDatabaseExists(ConnectionString);
+    }
+
+    public static string ConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesAutomaticRouting;Integrated Security=True";
 }
