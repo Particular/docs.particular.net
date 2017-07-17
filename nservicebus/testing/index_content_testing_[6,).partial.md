@@ -1,3 +1,4 @@
+
 ### Testing a handler
 
 Given the following handler:
