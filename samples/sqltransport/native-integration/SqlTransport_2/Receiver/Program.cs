@@ -12,7 +12,7 @@ class Program
         AsyncMain().GetAwaiter().GetResult();
     }
 
-    static string connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
+    static string connectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlNativeIntegration;Integrated Security=True";
 
     static async Task AsyncMain()
     {
@@ -30,6 +30,7 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
+        SqlHelper.EnsureDatabaseExists(connectionString);
         using (Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press enter to send a message");

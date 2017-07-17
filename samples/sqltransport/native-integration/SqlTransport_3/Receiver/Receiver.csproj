@@ -44,6 +44,7 @@
     <Compile Include="PlaceOrder.cs" />
     <Compile Include="PlaceOrderHandler.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="SqlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
