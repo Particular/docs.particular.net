@@ -2,6 +2,8 @@
 title: Tuning endpoint message processing
 summary: Optimize message processing by configuring concurrency
 component: Core
+related:
+ - nservicebus/operations
 redirects:
  - nservicebus/how-to-reduce-throughput-of-an-endpoint
  - nservicebus/operations/reducing-throughput
