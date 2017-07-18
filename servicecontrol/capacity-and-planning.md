@@ -37,7 +37,7 @@ See also [Automatic Expiration of ServiceControl Data](how-purge-expired-data.md
 
 #### Performance
 
-ServiceControl must be seen as a database installation. It performs alot of storage and network IO due to all the audit, error and monitoring messages that are sent to it which all need to be processed of which allmost all operations require writing to disk. Especially in high 
+ServiceControl must be seen as a database installation. It performs a lot of storage and network IO due to all the audit, error and monitoring messages that are sent to it which all need to be processed of which allmost all operations require writing to disk. Especially in high 
 
 For this reason it is required to store the ServiceControl data a disk suitable for low latency write operations. Indexes require continious updating and it will be very worthwile to making sure that enough RAM is available to keep all indexes in memory. If disk **read IO** needs to be performed to update indexes indexes are more likely to remain stale. As all message are added to a full-text search it is also required to make sure that the CPU will not become the bottleneck in updating indexes.
 
