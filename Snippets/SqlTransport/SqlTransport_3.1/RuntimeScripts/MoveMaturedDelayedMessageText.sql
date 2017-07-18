@@ -5,18 +5,18 @@ IF ( (512 & @@OPTIONS) = 512 ) SET @NOCOUNT = 'ON';
 SET NOCOUNT ON;
 
 WITH message AS (
-    SELECT TOP(@BatchSize) * 
-    FROM {0} WITH (UPDLOCK, READPAST, ROWLOCK) 
+    SELECT TOP(@BatchSize) *
+    FROM {0} WITH (UPDLOCK, READPAST, ROWLOCK)
     WHERE Due < GETUTCDATE())
 DELETE FROM message
-OUTPUT 
-    NEWID(), 
-    NULL, 
-    NULL, 
-    1, 
-    NULL, 
-    deleted.Headers, 
-    deleted.Body 
+OUTPUT
+    NEWID(),
+    NULL,
+    NULL,
+    1,
+    NULL,
+    deleted.Headers,
+    deleted.Body
 INTO {1};
 
 IF (@NOCOUNT = 'ON') SET NOCOUNT ON;

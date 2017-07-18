@@ -1,9 +1,9 @@
 startcode CreateQueueTextSql
 
 IF EXISTS (
-    SELECT * 
-    FROM {1}.sys.objects 
-    WHERE object_id = OBJECT_ID(N'{0}') 
+    SELECT *
+    FROM {1}.sys.objects
+    WHERE object_id = OBJECT_ID(N'{0}')
         AND type in (N'U'))
 RETURN
 
@@ -25,7 +25,7 @@ CREATE TABLE {0} (
     ReplyToAddress varchar(255),
     Recoverable bit NOT NULL,
     Expires datetime,
-    Headers varchar(max) NOT NULL,
+    Headers nvarchar(max) NOT NULL,
     Body varbinary(max),
     RowVersion bigint IDENTITY(1,1) NOT NULL
 );
@@ -44,6 +44,8 @@ INCLUDE
     Id,
     RowVersion
 )
+WHERE
+    Expires IS NOT NULL
 
 EXEC sp_releaseapplock @Resource = '{0}_lock'
 endcode
