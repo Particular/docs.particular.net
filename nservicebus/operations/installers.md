@@ -3,6 +3,8 @@ title: Installers
 summary: Installers ensure endpoint specific artifacts are installed and configured during endpoint startup.
 reviewed: 2017-01-19
 component: core
+related:
+ - nservicebus/operations
 tags:
  - Installation
 redirects:
