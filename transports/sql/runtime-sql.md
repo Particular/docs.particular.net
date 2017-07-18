@@ -62,4 +62,12 @@ Used to log a warning if a required index is missing. See also [Upgrade from ver
 snippet: CheckIfExpiresIndexIsPresentSql
 
 
+## Check column type
+
+Used to log a warning if the message headers data type is non unicode. See also [Supporting Unicode characters in headers](/transports/upgrades/sqlserver-unicode-headers.md).
+
+snippet: CheckHeadersColumnTypeSql
+
+
+
 partial: extra
