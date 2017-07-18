@@ -26,9 +26,14 @@ class Program
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
         transport.ConnectionString(connectionString);
+
+        #region FeaturesUnsuportedBySC
+
         transport.UseNamespaceAliasesInsteadOfConnectionStrings();
         transport.UseForwardingTopology();
         transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
+
+        #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
