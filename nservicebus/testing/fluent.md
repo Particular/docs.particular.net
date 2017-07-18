@@ -10,7 +10,7 @@ related:
  - samples/unit-testing
 ---
 
-NOTE: Generally it is recommended to use Arrange-Act-Assert style tests. To learn how to test NServiceBus using `Arrange-Act-Assert (AAA)` approach, refer to the [dedicated article](/samples/unit-testing/).
+NOTE: Generally it is recommended to use Arrange-Act-Assert style tests. To learn how to test NServiceBus using Arrange-Act-Assert (AAA) approach, refer to the [dedicated article](/samples/unit-testing/).
 
 ## Structure
 

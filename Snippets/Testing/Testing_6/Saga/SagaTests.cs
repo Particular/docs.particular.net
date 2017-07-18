@@ -6,7 +6,7 @@ using NUnit.Framework;
 [TestFixture]
 public class SagaTests
 {
-    #region SagaTest [6.0,7.0)
+    #region SagaTest
     [Test]
     public async Task ShouldProcessDiscountOrder()
     {
