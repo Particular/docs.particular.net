@@ -7,7 +7,7 @@ class Program
 {
     static void Main()
     {
-        Console.Title = "Samples.ServiceControl.SqlServerTransportAdapter.Adapter";
+        Console.Title = "Samples.ServiceControl.ASBAdapter.Adapter";
         AsyncMain().GetAwaiter().GetResult();
     }
 
