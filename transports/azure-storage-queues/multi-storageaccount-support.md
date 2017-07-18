@@ -11,6 +11,7 @@ redirects:
  - nservicebus/azure/using-multiple-azure-storage-accounts-for-scaleout
  - nservicebus/azure-storage-queues/multi-storageaccount-support
 related:
+ - nservicebus/operations
  - transports/azure-storage-queues/configuration
 ---
 
