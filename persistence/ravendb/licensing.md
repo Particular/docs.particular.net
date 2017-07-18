@@ -4,6 +4,7 @@ summary: Outlines RavenDB license agreement
 component: raven
 reviewed: 2016-10-05
 related:
+ - nservicebus/operations
  - nservicebus/licensing
  - persistence/ravendb/installation
 redirects:
