@@ -2,6 +2,8 @@
 title: In a cluster
 component: Rabbit
 reviewed: 2017-01-13
+related:
+ - nservicebus/operations
 redirects:
  - nservicebus/rabbitmq/cluster
 ---
