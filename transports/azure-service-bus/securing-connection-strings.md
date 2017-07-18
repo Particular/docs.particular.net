@@ -8,7 +8,8 @@ tags:
 - Security
 reviewed: 2017-05-05
 related:
-- transports/upgrades/asb-6to7
+ - nservicebus/operations
+ - transports/upgrades/asb-6to7
 redirects:
  - nservicebus/azure-service-bus/secure-credentials
  - nservicebus/azure-service-bus/securing-connection-strings
