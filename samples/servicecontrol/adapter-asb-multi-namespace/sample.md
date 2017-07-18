@@ -86,4 +86,23 @@ Because the ServiceControl has been installed under a non-default instance name 
 
 snippet: ControlQueueOverride
 
-include: adapter-how-it-works
+
+## How it works
+
+### Heartbeats
+
+The heartbeat messages arrive at the adapter's `Particular.ServiceControl` queue. They are then moved to `Particular.ServiceControl.ASB` queue in the ServiceControl namespace. In case of problems (e.g. destination namespace is down) the forward attempts are repeated configurable number of times after which messages are dropped to prevent the queue from growing indefinitely.
+
+
+### Audits
+
+The audit messages arrive at adapter's `audit` queue. They are then moved to the `audit` queue in ServiceControl namespace and are ingested by ServiceControl.
+
+
+### Retries
+
+If a message fails all recoverability attempts in a business endpoint, it is moved to the `error` queue located in the adapter namespace. The adapter enriches the message by adding `ServiceControl.RetryTo` header pointing to the adapter's input queue in ServiceControl namespace (`ServiceControl.SqlServer.Adapter.Retry`). Then the message is moved to the `error` queue in ServiceControl namespace and ingested into ServiceControl RavenDB store. 
+
+When retrying, ServiceControl looks for `ServiceControl.RetryTo` header and, if it finds one, it sends the message to the queue from that header instead of the ultimate destination.
+
+The adapter picks up the message and forwards it to the destination using its endpoint-facing transport.
