@@ -2,6 +2,8 @@
 title: MySql Scripts
 component: SqlPersistence
 reviewed: 2016-11-29
+related:
+ - nservicebus/operations
 redirects:
  - nservicebus/sql-persistence/mysql-scripts
 ---
