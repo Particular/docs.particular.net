@@ -3,6 +3,8 @@ title: Routing topology
 reviewed: 2017-01-13
 component: Rabbit
 versions: '[2,]'
+related:
+ - nservicebus/operations
 redirects:
  - nservicebus/rabbitmq/routing-topology
 ---
