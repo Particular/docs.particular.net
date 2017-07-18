@@ -3,6 +3,8 @@ title: Azure Storage Persistence Scripts
 summary: Collection of scripts for managing Azure Storage Persistence
 component: ASP
 reviewed: 2016-09-29
+related:
+ - nservicebus/operations
 redirects:
  - nservicebus/azure-storage-persistence/scripting
 tags:
