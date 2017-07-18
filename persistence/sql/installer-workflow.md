@@ -4,6 +4,7 @@ component: SqlPersistence
 tags:
  - Persistence
 related:
+ - nservicebus/operations
  - samples/sql-persistence
 reviewed: 2016-11-29
 redirects:
