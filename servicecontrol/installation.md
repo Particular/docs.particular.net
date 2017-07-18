@@ -18,7 +18,7 @@ The ServiceControl Installation has the following prerequisites:
 
 If ServiceControl is installed via the Platform Installer then the installation and configuration of these prerequisites are managed by the installer.
 
-NOTE: We advise to install ServiceControl on a seperate (virtual) machine in a production environment to isolate the audit and error queue message ingestion. These operations have a big impact other other processes. Treat ServiceControl as you would setup a database server meaning sufficient CPU, RAM (6GM minimum), and storage suitable for low latency write operations.
+NOTE: We advise installing ServiceControl on a separate (virtual) machine in a production environment to isolate the audit and error queue message ingestion. These operations have a big impact on other processes. Treat ServiceControl as you would setup a database server meaning sufficient CPU, RAM (6GB minimum), and storage suitable for low latency write operations. Please read [ServiceControl Capacity Planning](capacity-and-planning.md) for more guidance.
 
 
 ### RavenDB Prerequisites
