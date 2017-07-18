@@ -32,7 +32,7 @@ Import-ServiceControlLicense <LicenseFile>
 
 ## Using other platform tools
 
-See the [ServiceInsight licensing page](/serviceinsight/license.md) or the [instructions for licensing manually using the registry](/nservicebus/licensing.md#license-management-using-the-registry) for more information.
+See the [ServiceInsight licensing page](/serviceinsight/license.md) or the [instructions for licensing manually using the registry](/nservicebus/licensing/#license-management-using-the-registry) for more information.
 
 
 ## Instance licensing
