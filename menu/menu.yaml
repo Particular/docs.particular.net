@@ -510,14 +510,14 @@
       Articles:
       - Url: transports/upgrades/sqlserver-3to31
         Title: Version 3 to 3.1
+      - Url: transports/upgrades/sqlserver-unicode-headers
+        Title: Supporting Unicode characters in headers
       - Url: transports/upgrades/sqlserver-2to3
         Title: Version 2 to 3
       - Url: transports/upgrades/sqlserver-2.x-2.2.4
         Title: Version 2.x to 2.2.4
       - Url: transports/upgrades/sqlserver-1.x-1.2.5
         Title: Version 1.x to 1.2.5
-      - Url: transports/upgrades/sqlserver-unicode-headers
-        Title: Supporting Unicode characters in headers
   - Url: transports/learning
     Title: Learning Transport
   - Url: transports/azure-service-bus
