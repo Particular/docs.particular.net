@@ -43,28 +43,24 @@ The following diagram shows the topology of the solution:
 
 The code base consists of four projects.
 
+
 ### Shared
 
-The Shared project contains the message contracts and the physical topology definition. The topology is defined in the `Connections` class via a method that takes the name of the queue table ([physical address](/transports/sql/addressing.md)) and returns the connection string to be used to access that queue.
+The Shared project contains the message contracts.
 
-<!--
-__snippet: GetConnectionString
-
-The `StartsWith` comparison ensures that the [satellite](/nservicebus/satellites/) queues are correctly addressed. The [poison queue](/servicecontrol/transport-adapter/#queue-configuration-poison-message-queue) is used by the adapter for unrecoverable failures. 
-
-This topology is used in business endpoints (Sales, Shipping) as well as in the Adapter.
--->
 
 ### Sales and Shipping
 
 The Sales and Shipping projects contain endpoints that simulate execution of business process. The process consists of two events: `OrderAccepted` published by Sales and subscribed by Shipping and `OrderShipped` published by Shipping and subscribed by Sales.
 
-The Sales and Shipping endpoints use separate databases and their transports are configured in the [multi-instance](/transports/sql/deployment-options.md#modes-overview-multi-instance) mode using the topology definition from the `Connections` class.
-
-The business endpoints include message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality.
+The Sales and Shipping endpoints include message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality.
 
 The Shipping endpoint has the Heartbeats plugin installed to enable uptime monitoring via ServicePulse.
 
+Both endpoints are configured to use
+- [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
+- and [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
+ 
 
 ### Adapter
 
@@ -73,8 +69,8 @@ The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has
 snippet: AdapterTransport
 
 The following code configures the adapter to match advanced transport features enabled on the endpoints:  
-- [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md) mode of SQL Server transport when communicating with the business endpoints.
-- [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`
+- [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
+- and [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
 
 snippet: EndpointSideConfig
 
@@ -101,7 +97,7 @@ The audit messages arrive at adapter's `audit` queue. They are then moved to the
 
 ### Retries
 
-If a message fails all recoverability attempts in a business endpoint, it is moved to the `error` queue located in the adapter namespace. The adapter enriches the message by adding `ServiceControl.RetryTo` header pointing to the adapter's input queue in ServiceControl namespace (`ServiceControl.SqlServer.Adapter.Retry`). Then the message is moved to the `error` queue in ServiceControl namespace and ingested into ServiceControl RavenDB store. 
+If a message fails all recoverability attempts in a business endpoint, it is moved to the `error` queue located in the adapter namespace. The adapter enriches the message by adding `ServiceControl.RetryTo` header pointing to the adapter's input queue in ServiceControl namespace (`ServiceControl.ASB.Adapter.Retry`). Then the message is moved to the `error` queue in ServiceControl namespace and ingested into ServiceControl RavenDB store. 
 
 When retrying, ServiceControl looks for `ServiceControl.RetryTo` header and, if it finds one, it sends the message to the queue from that header instead of the ultimate destination.
 
