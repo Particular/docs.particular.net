@@ -4,6 +4,8 @@ summary: How to install RavenDB when using RavenDB persistence for various versi
 tags:
  - Persistence
 reviewed: 2016-10-18
+related:
+ - nservicebus/operations
 redirects:
  - nservicebus/using-ravendb-in-nservicebus-installing
  - nservicebus/ravendb/installation
