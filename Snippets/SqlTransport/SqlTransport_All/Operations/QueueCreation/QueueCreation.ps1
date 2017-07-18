@@ -45,7 +45,7 @@ Function CreateQueuesForEndpoint
         [Parameter(HelpMessage="Only required for NSB Versions 5 and below")]
         [Switch] $includeRetries,
 
-		[Parameter(HelpMessage="Only required for SQL Server Version 3.1 and above if native delayed delivery is enabled")]
+        [Parameter(HelpMessage="Only required for SQL Server Version 3.1 and above if native delayed delivery is enabled")]
         [Switch] $includeDelayed
     )
 
@@ -67,7 +67,7 @@ Function CreateQueuesForEndpoint
             CreateQueue -connection $sqlConnection -schema $schema -queuename "$endpointName.retries"
         }
 
-		# retries queue
+        # retries queue
         if ($includeDelayed) {
             CreateDelayedQueue -connection $sqlConnection -schema $schema -queuename "$endpointName.delayed"
         }
@@ -120,8 +120,8 @@ function CreateQueue {
             [Id],
             [RowVersion]
         )
-		where
-			[Expires] is not null
+        where
+            [Expires] is not null
     end
 "@ -f $schema, $queueName
 

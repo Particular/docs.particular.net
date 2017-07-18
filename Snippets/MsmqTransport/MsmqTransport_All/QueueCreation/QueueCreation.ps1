@@ -68,8 +68,8 @@ Function CreateQueue
     $queuePath = '{0}\private$\{1}' -f $env:COMPUTERNAME, $QueueName
 
     if (-Not [System.Messaging.MessageQueue]::Exists($queuePath)) {
-	    $messageQueue = [System.Messaging.MessageQueue]::Create($queuePath, $true)
-		SetDefaultPermissionsForQueue -Queue $messageQueue -Account $Account
+        $messageQueue = [System.Messaging.MessageQueue]::Create($queuePath, $true)
+        SetDefaultPermissionsForQueue -Queue $messageQueue -Account $Account
     }
     else {
         Write-Warning "$queuepath already exists - no changes were made"

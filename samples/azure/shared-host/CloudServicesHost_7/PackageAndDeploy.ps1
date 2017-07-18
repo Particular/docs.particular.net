@@ -38,8 +38,8 @@ $containerName = "endpoints"
 $container = Get-AzureStorageContainer -Name $containerName -Context $context -ErrorAction SilentlyContinue 
 if (!$container)
 {
-	Write-Host "Creating '$containerName' container for uploaded endpoints" -ForegroundColor Cyan
-	New-AzureStorageContainer -Name $containerName -Permission Off -Context $context
+    Write-Host "Creating '$containerName' container for uploaded endpoints" -ForegroundColor Cyan
+    New-AzureStorageContainer -Name $containerName -Permission Off -Context $context
 }
 
 ls -path $zipsDir -file -recurse | Set-AzureStorageBlobContent -Container $containerName -Context $context -Force
