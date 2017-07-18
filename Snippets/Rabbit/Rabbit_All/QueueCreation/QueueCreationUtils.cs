@@ -5,7 +5,6 @@ namespace Rabbit_All.QueueCreation
 #region rabbit-create-queues
     public static class QueueCreationUtils
     {
-
         public static void CreateQueue(string uri, string queueName, bool durableMessages, bool createExchange)
         {
             var connectionFactory = new ConnectionFactory
@@ -35,7 +34,6 @@ namespace Rabbit_All.QueueCreation
             channel.ExchangeDeclare(queueName, ExchangeType.Fanout, durableMessages);
             channel.QueueBind(queueName, queueName, string.Empty);
         }
-
     }
 #endregion
 }
