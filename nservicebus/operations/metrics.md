@@ -4,6 +4,8 @@ summary: Measuring the performance and health of an endpoint.
 reviewed: 2017-04-04
 component: Metrics
 related:
+ - nservicebus/operations
+related:
  - samples/metrics
 ---
 
