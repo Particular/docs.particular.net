@@ -6,10 +6,6 @@
     <OutputType>exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="OrderSubmittedHandlerDapper.cs" />
-    <Compile Remove="OrderSubmittedHandlerRaw.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Dapper" Version="1.50.2" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="NServiceBus" Version="6.3.4" />
