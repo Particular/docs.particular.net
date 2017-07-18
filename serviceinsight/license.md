@@ -14,7 +14,7 @@ related:
 
 There are a few options for adding a license to ServiceInsight.
 
-Note that the license file might allow running multiple products (NServiceBus Core, ServiceControl and ServiceInsight). Therefore the license file can also be loaded from other platform tools to achieve the same end result, as long as the licensing method imports the license into the registry.
+include: registry-licensing
 
 
 ## Via ServiceInsight
