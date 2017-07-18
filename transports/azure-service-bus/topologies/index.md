@@ -6,6 +6,7 @@ versions: '[7,)'
 tags:
  - Azure
 related:
+ - nservicebus/operations
  - samples/azure/azure-service-bus
 redirects:
  - nservicebus/azure-service-bus/topologies
