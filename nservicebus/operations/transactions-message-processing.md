@@ -6,8 +6,9 @@ redirects:
 - nservicebus/transactions-message-processing
 - nservicebus/operations/warning-for-cid-values
 related:
-- nservicebus/outbox
-- nservicebus/recoverability
+ - nservicebus/operations
+ - nservicebus/outbox
+ - nservicebus/recoverability
 ---
 
 NServiceBus offers four levels of consistency guarantees with regards to message processing. Levels availability depends on the selected transport. The default consistency level is TransactionScope (Distributed Transaction), but a different level can be specified using code configuration API. 
