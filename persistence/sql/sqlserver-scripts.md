@@ -2,6 +2,8 @@
 title: MS SQL Server Scripts
 component: SqlPersistence
 reviewed: 2016-11-29
+related:
+ - nservicebus/operations
 redirects:
  - nservicebus/sql-persistence/sqlserver-scripts
 ---
