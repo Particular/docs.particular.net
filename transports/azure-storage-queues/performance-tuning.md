@@ -7,6 +7,8 @@ tags:
 - Azure
 - Transport
 - Performance
+related:
+ - nservicebus/operations
 redirects:
  - nservicebus/azure-storage-queues/performance-tuning
 ---
