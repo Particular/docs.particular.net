@@ -57,7 +57,7 @@ class Program
 
         #region ControlQueueOverride
 
-        transportAdapterConfig.ServiceControlSideControlQueue = "Particular.ServiceControl.ASB";
+        transportAdapterConfig.ServiceControlSideControlQueue = "Particular.ServiceControl";
 
         #endregion
 
