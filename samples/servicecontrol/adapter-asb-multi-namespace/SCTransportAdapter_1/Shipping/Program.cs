@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Transport.AzureServiceBus;
 
 class Program
 {
@@ -21,9 +22,10 @@ class Program
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
-        transport.UseNamespaceAliasesInsteadOfConnectionStrings();
         transport.ConnectionString(connectionString);
+        transport.UseNamespaceAliasesInsteadOfConnectionStrings();
         transport.UseForwardingTopology();
+        transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
