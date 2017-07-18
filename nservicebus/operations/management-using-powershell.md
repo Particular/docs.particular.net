@@ -2,6 +2,8 @@
 title: Management using PowerShell
 summary: Install the infrastructure for NServiceBus on servers using PowerShell.
 reviewed: 2017-01-06
+related:
+ - nservicebus/operations
 tags:
 - PowerShell
 - installation
