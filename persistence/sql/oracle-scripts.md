@@ -2,6 +2,8 @@
 title: Oracle Scripts
 component: SqlPersistence
 reviewed: 2017-04-05
+related:
+ - nservicebus/operations
 redirects:
  - nservicebus/sql-persistence/oracle-scripts
 versions: '[2.1,)'
