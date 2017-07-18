@@ -5,6 +5,8 @@ component: ASB
 reviewed: 2017-05-05
 tags:
 - Azure
+related:
+ - nservicebus/operations
 redirects:
  - nservicebus/azure-service-bus/native-integration
 ---
