@@ -4,6 +4,8 @@ summary: Guidance on how to change the RavenDB ResourceManagerID and Transaction
 component: Raven
 tags:
  - Persistence
+related:
+ - nservicebus/operations
 redirects:
  - nservicebus/ravendb/how-to-change-resourcemanagerid
  - nservicebus/ravendb/resourcemanagerid
