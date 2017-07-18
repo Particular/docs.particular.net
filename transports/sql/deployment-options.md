@@ -4,6 +4,8 @@ reviewed: 2016-08-31
 component: SqlTransport
 tags:
 - Transport
+related:
+ - nservicebus/operations
 redirects:
  - nservicebus/sqlserver/multiple-databases
  - nservicebus/sqlserver/deployment-options
