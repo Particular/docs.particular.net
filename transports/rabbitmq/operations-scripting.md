@@ -3,6 +3,8 @@ title: Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against RabbitMQ.
 reviewed: 2017-01-13
 component: Rabbit
+related:
+ - nservicebus/operations
 redirects:
 - nservicebus/rabbitmq/operations-scripting
 ---
