@@ -5,6 +5,8 @@ reviewed: 2016-08-31
 component: MsmqTransport
 redirects:
  - nservicebus/msmq/operations-scripting
+related:
+ - nservicebus/operations
 ---
 
 Example code and scripts to facilitate deployment and operational actions against MSMQ.
