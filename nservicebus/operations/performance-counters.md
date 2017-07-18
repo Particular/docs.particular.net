@@ -8,6 +8,7 @@ redirects:
  - nservicebus/operations/monitoring-endpoints
  - nservicebus/operations/fail-or-hang-during-performance-counter-setup
 related:
+ - nservicebus/operations
  - nservicebus/recoverability
  - nservicebus/operations/auditing
  - nservicebus/operations/management-using-powershell
