@@ -18,6 +18,6 @@ snippet:ProduceSagaScripts
 snippet: ProduceSubscriptionScripts
 
 
-#### Disable timout script creation
+#### Disable timeout script creation
 
 snippet: ProduceTimeoutScripts
