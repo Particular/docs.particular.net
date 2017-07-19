@@ -1,0 +1,1 @@
+WARNING: The session (`context.SynchronizedStorageSession.SqlPersistenceSession()`) is only supported when the SQL persistence has been selected to be used for [Sagas](/nservicebus/sagas/) and/or the [Outbox](/nservicebus/outbox/). See also [Persistence Storage Types](/persistence/#storage-types) and [Configuration order for persistence](/persistence/order.md).

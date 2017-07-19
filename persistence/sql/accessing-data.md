@@ -14,7 +14,7 @@ SQL persistence supports a mechanism that allows using the same data context use
 
 The current [DbConnection](https://msdn.microsoft.com/en-us/library/system.data.common.dbconnection.aspx) and [DbTransaction](https://msdn.microsoft.com/en-us/library/system.data.common.dbtransaction.aspx) can be accessed via the current context.
 
-NOTE: If different connections strings were used for particular persistence features such as sagas, timeouts, etc. then `context.SynchronizedStorageSession.SqlPersistenceSession()` will expose connection for sagas.
+partial: caveats
 
 
 ### Using in a Handler

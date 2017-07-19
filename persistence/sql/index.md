@@ -118,6 +118,9 @@ snippet: MySqlScripts
 
 partial: scriptsoracle
 
+
+partial: scripttoggle
+
 partial: promote
 
 
