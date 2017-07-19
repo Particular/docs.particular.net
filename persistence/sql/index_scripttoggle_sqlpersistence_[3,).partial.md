@@ -10,7 +10,7 @@ snippet: ProduceOutboxScripts
 
 #### Disable saga script creation
 
-snippet:ProduceSagaScripts
+snippet: ProduceSagaScripts
 
 
 #### Disable subscriptions script creation
