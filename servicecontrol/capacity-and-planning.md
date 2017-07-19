@@ -50,7 +50,7 @@ Make sure that:
 - data is not stored on the same physical system drive
 - storage drive is reserved for ServiceControl
 
-
+NOTE: If you are unsure what your current disk performance is than benchmark your disk(s) with for example [CrystalDiskMark](http://crystalmark.info/software/CrystalDiskMark/index-e.html). Real disk, CPU, RAM and network performance can be monitored with the Windows Resource Monitor and/or using Windows Performance counters.
 
 
 ### Accessing data and audited messages
