@@ -14,9 +14,10 @@ class Program
     {
         Console.Title = "Samples.FileBasedRouting.Sales";
         var endpointConfiguration = new EndpointConfiguration("Samples.FileBasedRouting.Sales");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("Samples.FileBasedRouting.Error");
 
-        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         var routing = transport.Routing();
         routing.UseFileBasedRouting(@"..\..\..\endpoints.xml");
 
