@@ -70,7 +70,7 @@ A different communication style involves one-to-many communication.
 
 ### Publish/subscribe
 
-In this pattern, the sender of the message isn't aware of the subscriber;s details. The additional loose coupling comes at the cost of subscribers explicitly opting-in to receiving messages, as shown in the diagram below.
+In this pattern, the sender of the message isn't aware of the subscriber's details. The additional loose coupling comes at the cost of subscribers explicitly opting-in to receiving messages, as shown in the diagram below.
 
 
 #### Subscriptions
