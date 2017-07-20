@@ -1,7 +1,7 @@
 ---
 title: Upgrade Version 2 to 3
 summary: Instructions on how to upgrade NServiceBus.AmazonSQS Version 2 to 3.
-component: Sqs: 
+component: Sqs
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
