@@ -19,7 +19,7 @@ related:
 
 ## License details
 
-See [Particular Licensing](https://particular.net/licensing) for license specifics.
+See the [Licensing page](https://particular.net/licensing) for license specifics.
 
 
 ## License validity
@@ -34,8 +34,10 @@ partial: limitations
 
 ## License management
 
-There are several options available for installing the license file. While all of these work for NServiceBus, the registry is the only option that lets the other platform tools, [ServiceControl](/servicecontrol/license.md), and [ServiceInsight](/serviceinsight/license.md), share the same license file.
+There are several options available for installing the license file. 
 
+While all of the options below work for NServiceBus, using the registry, ServiceControl utilities, or ServiceInsight are the only options that lets the other platform tools share the same license file. More information about this can be found in the
+[ServiceControl licensing](/servicecontrol/license.md) and the  [ServiceInsight licensing](/serviceinsight/license.md) pages.
 
 ### Using the registry
 
@@ -46,7 +48,6 @@ partial: registry-caveats
 
 partial: code
 
-
 ### Using a license subdirectory
 
 A file located at `[AppDomain.CurrentDomain.BaseDirectory]/License/License.xml` will be automatically detected.
@@ -56,7 +57,7 @@ A file located at `[AppDomain.CurrentDomain.BaseDirectory]/License/License.xml` 
 
 It is possible to specify the license in `app.config`:
 
- - Use the key `NServiceBus/LicensePath` to specify the path where NServiceBus looks for the license:
+- Use the key `NServiceBus/LicensePath` to specify the path where NServiceBus looks for the license:
 
 ```xml
 <appSettings>
