@@ -17,6 +17,5 @@ public class MessageBodyWriter :
         log.Info(bodyAsString);
         return Task.CompletedTask;
     }
-
 }
 #endregion
