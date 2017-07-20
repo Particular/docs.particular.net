@@ -515,7 +515,7 @@
       - Url: transports/upgrades/sqlserver-3to31
         Title: Version 3 to 3.1
       - Url: transports/upgrades/sqlserver-unicode-headers
-        Title: Supporting Unicode characters in headers
+        Title: Unicode characters in headers
       - Url: transports/upgrades/sqlserver-2to3
         Title: Version 2 to 3
       - Url: transports/upgrades/sqlserver-2.x-2.2.4
