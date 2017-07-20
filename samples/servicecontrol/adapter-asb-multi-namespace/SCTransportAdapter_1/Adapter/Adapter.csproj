@@ -38,7 +38,7 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.Raw.2.0.2\lib\net452\NServiceBus.Raw.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.TransportAdapter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\ServiceControl.TransportAdapter.1.1.0\lib\net452\ServiceControl.TransportAdapter.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\ServiceControl.TransportAdapter.1.2.0\lib\net452\ServiceControl.TransportAdapter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
