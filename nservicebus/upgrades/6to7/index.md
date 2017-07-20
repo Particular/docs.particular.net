@@ -176,3 +176,8 @@ See the [Json.NET Serializer](/nservicebus/serialization/newtonsoft.md) for more
 ## Custom Correlation ID
 
 Setting a custom [correlation ID](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-correlationid) is considered dangerous. Therefore, the `SendOptions.SetCorrelationId` and `SendOptions.GetCorrelationId` APIs have been removed.
+
+
+## Accessing Conversation ID
+
+In NServiceBus Version 6, the `Conversation Id` header on outgoing messages was set within the `IOutgoingPhysicalMessageContext` pipeline stage. In NServiceBus Version 7 and above, the `Conversation Id` header will be set as part of the `IOutgoingLogicalMessageContext` stage.
