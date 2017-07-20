@@ -44,11 +44,13 @@ The IAM account requires the following [SQS permissions](http://docs.aws.amazon.
  * sqs::SendMessage
  * sqs::SetQueueAttributes
  * sqs::ChangeMessageVisibility
+ * sqs::PurgeQueue
  * s3::CreateBucket
  * s3::DeleteObject
  * s3::GetObject
  * s3::PutObject
  * s3::PutLifecycleConfiguration
+ * s3::GetLifecycleConfiguration
  * s3::ListAllMyBuckets
 
 By default, NServiceBus.AmazonSQS will look for the Access Key ID and Secret Access Key in system environment variables of the machine that is running the endpoint:
