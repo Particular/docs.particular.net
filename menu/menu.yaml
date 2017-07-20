@@ -140,6 +140,10 @@
       Articles:
       - Url: nservicebus/upgrades/nsb6-sc-plugins-1to2
         Title: Version 1 to 2
+    - Title: Amazon SQS
+      Articles:
+      - Url: nservicebus/upgrades/amazonsqs-2to3
+        Title: Version 2 to 3        
   - Url: nservicebus/messaging
     Title: Messaging
     Articles:
