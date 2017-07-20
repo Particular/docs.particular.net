@@ -60,8 +60,10 @@ The Shipping endpoint has the Heartbeats plugin installed to enable uptime monit
 
 Both endpoints are configured to use
 - [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
-- and [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
- 
+- [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
+- Different namespaces with [cross-namespace routing](/transports/azure-service-bus/multiple-namespaces-support.md#cross-namespace-routing) enabled.
+
+snippet: featuresunsuportedbysc
 
 ### Adapter
 
@@ -71,7 +73,8 @@ snippet: AdapterTransport
 
 The following code configures the adapter to match advanced transport features enabled on the endpoints:  
 - [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
-- and [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
+- [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
+- [Multi namespace receive](/transports/azure-service-bus/multiple-namespaces-support.md#round-robin-namespace-partitioning)
 
 snippet: EndpointSideConfig
 
