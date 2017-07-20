@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.HandlerOrdering" Version="1.1.0-beta002" />
+  </ItemGroup>
+</Project>
