@@ -19,11 +19,12 @@ class Program
         var random = new Random();
 
         var endpointConfiguration = new EndpointConfiguration("Samples.FileBasedRouting.Client");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("Samples.FileBasedRouting.Error");
 
         #region FileBasedRouting
 
-        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         var routing = transport.Routing();
         routing.UseFileBasedRouting(@"..\..\..\endpoints.xml");
 
