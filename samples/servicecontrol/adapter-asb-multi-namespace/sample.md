@@ -18,8 +18,9 @@ This sample shows how to configure ServiceControl to monitor endpoints and retry
 
 include: asb-connectionstring
 
- 1. An environment variable named `AzureServiceBus.ConnectionString` with the connection string for the Azure Service  Bus namespace to be used by the endpoints.
- 1. An environment variable named `AzureServiceBus.ConnectionString.SC` with the connection string for the Azure Service Bus namespace to be used by the adapter.
+ 1. An environment variable named `AzureServiceBus.ConnectionString.1` with the connection string for the Azure Service Bus namespace to be used by Sales endpoint.
+ 1. An environment variable named `AzureServiceBus.ConnectionString.2` with the connection string for the Azure Service Bus namespace to be used by Shipping endpoint.
+ 1. An environment variable named `AzureServiceBus.ConnectionString.SC` with the connection string for the Azure Service Bus namespace to be used by ServiceControl and the adapter.
  1. [Install ServiceControl](/servicecontrol/installation.md).
  1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using Azure Service Bus transport:
 	 
@@ -51,7 +52,7 @@ The Shared project contains the message contracts.
 
 ### Sales and Shipping
 
-The Sales and Shipping projects contain endpoints that simulate execution of business process. The process consists of two events: `OrderAccepted` published by Sales and subscribed by Shipping and `OrderShipped` published by Shipping and subscribed by Sales.
+The Sales and Shipping projects contain endpoints that simulate execution of business process. The process consists of two messages: `ShipOrder` command sent by Sales and `OrderShipped` reply sent by Shipping.
 
 The Sales and Shipping endpoints include message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality.
 
@@ -82,6 +83,17 @@ Because the ServiceControl has been installed under a non-default instance name 
 
 snippet: ControlQueueOverride
 
+Because Shipping and Sales use different namespaces the adapter has to be configured to properly route retried messages:
+
+snippet: UseNamespaceHeader
+
+The actual destination address consists of the queue name and the namespace alias which is included in the failed messages:
+
+snippet: NamespaceAlias
+
+Azure Service Bus transport in Version 6 used by ServiceControl overrides the `NServiceBus.ReplyToAddress` header when sending a message. The following code ensures that the original value is preserved by copying the header value to a custom header and then restoring the value when routing the retry message:
+
+snippet: PreserveReplyToAddress 
 
 ## How it works
 

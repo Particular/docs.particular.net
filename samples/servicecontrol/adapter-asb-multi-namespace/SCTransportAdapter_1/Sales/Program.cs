@@ -20,18 +20,31 @@ class Program
             "Samples.ServiceControl.ASBAdapter.Sales");
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.1");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.1' environment variable. Check the sample prerequisites.");
+        }
+        var shippingConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2");
+        if (string.IsNullOrWhiteSpace(shippingConnectionString))
+        {
+            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.2' environment variable. Check the sample prerequisites.");
         }
         transport.ConnectionString(connectionString);
 
         #region FeaturesUnsuportedBySC
 
         transport.UseNamespaceAliasesInsteadOfConnectionStrings();
+        transport.DefaultNamespaceAlias("sales");
+        transport.NamespaceRouting().AddNamespace("shipping", shippingConnectionString);
         transport.UseForwardingTopology();
         transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
+
+        #endregion
+
+        #region NamespaceAlias
+
+        endpointConfiguration.Recoverability().Failed(f => f.HeaderCustomization(h => h["NServiceBus.ASB.Namespace"] = "sales"));
 
         #endregion
 
@@ -74,12 +87,14 @@ class Program
             if (lowerInvariant == 'o')
             {
                 var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                var orderSubmitted = new OrderAccepted
+                var shipOrder = new ShipOrder
                 {
                     OrderId = orderId,
                     Value = random.Next(100)
                 };
-                await endpointInstance.Publish(orderSubmitted)
+                var sendOptions = new SendOptions();
+                sendOptions.SetDestination("Samples.ServiceControl.ASBAdapter.Shipping@shipping");
+                await endpointInstance.Send(shipOrder, sendOptions)
                     .ConfigureAwait(false);
             }
             if (lowerInvariant == 'f')

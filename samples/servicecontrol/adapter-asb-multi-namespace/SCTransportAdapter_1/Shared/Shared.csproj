@@ -33,7 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChaosGenerator.cs" />
-    <Compile Include="OrderAccepted.cs" />
+    <Compile Include="ShipOrder.cs" />
     <Compile Include="OrderShipped.cs" />
   </ItemGroup>
   <ItemGroup>

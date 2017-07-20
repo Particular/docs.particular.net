@@ -2,18 +2,18 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-class OrderAcceptedHandler :
-    IHandleMessages<OrderAccepted>
+class ShipOrderHandler :
+    IHandleMessages<ShipOrder>
 {
-    static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
+    static ILog log = LogManager.GetLogger<ShipOrderHandler>();
     ChaosGenerator chaos;
 
-    public OrderAcceptedHandler(ChaosGenerator chaos)
+    public ShipOrderHandler(ChaosGenerator chaos)
     {
         this.chaos = chaos;
     }
 
-    public async Task Handle(OrderAccepted message, IMessageHandlerContext context)
+    public async Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
         log.Info($"Shipping order {message.OrderId} for {message.Value}");
         await chaos.Invoke()
@@ -23,7 +23,7 @@ class OrderAcceptedHandler :
             OrderId = message.OrderId,
             Value = message.Value
         };
-        await context.Publish(orderShipped)
+        await context.Reply(orderShipped)
             .ConfigureAwait(false);
     }
 }

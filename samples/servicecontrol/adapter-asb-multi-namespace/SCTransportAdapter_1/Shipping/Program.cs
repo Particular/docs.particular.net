@@ -17,13 +17,22 @@ class Program
             "Samples.ServiceControl.ASBAdapter.Shipping");
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.2' environment variable. Check the sample prerequisites.");
+        }
+
+        var salesConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.1");
+        if (string.IsNullOrWhiteSpace(salesConnectionString))
+        {
+            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.1' environment variable. Check the sample prerequisites.");
         }
         transport.ConnectionString(connectionString);
+        transport.DefaultNamespaceAlias("shipping");
+        endpointConfiguration.Recoverability().Failed(f => f.HeaderCustomization(h => h["NServiceBus.ASB.Namespace"] = "shipping"));
         transport.UseNamespaceAliasesInsteadOfConnectionStrings();
+        transport.NamespaceRouting().AddNamespace("sales", salesConnectionString);
         transport.UseForwardingTopology();
         transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
 

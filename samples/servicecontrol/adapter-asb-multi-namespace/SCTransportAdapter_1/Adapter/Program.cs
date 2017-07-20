@@ -25,13 +25,22 @@ class Program
 
         transportAdapterConfig.CustomizeEndpointTransport(transport =>
         {
-            var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
-            if (string.IsNullOrWhiteSpace(connectionString))
+            var salesConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.1");
+            if (string.IsNullOrWhiteSpace(salesConnectionString))
             {
-                throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+                throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.1' environment variable. Check the sample prerequisites.");
             }
+            var shippingConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2");
+            if (string.IsNullOrWhiteSpace(shippingConnectionString))
+            {
+                throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.2' environment variable. Check the sample prerequisites.");
+            }
+
             transport.UseNamespaceAliasesInsteadOfConnectionStrings();
-            transport.ConnectionString(connectionString);
+            var namespacePartitioning = transport.NamespacePartitioning();
+            namespacePartitioning.AddNamespace("sales", salesConnectionString);
+            namespacePartitioning.AddNamespace("shipping", shippingConnectionString);
+            namespacePartitioning.UseStrategy<RoundRobinNamespacePartitioning>();
             transport.UseForwardingTopology();
         });
 
@@ -53,6 +62,27 @@ class Program
                 transport.UseEndpointOrientedTopology();
             });
 
+        #endregion
+
+        #region UseNamespaceHeader
+        transportAdapterConfig.RedirectRetriedMessages((failedQ, headers) =>
+        {
+            if (headers.TryGetValue("NServiceBus.ASB.Namespace", out string namespaceAlias))
+            {
+                return $"{failedQ}@{namespaceAlias}";
+            }
+            return failedQ;
+        });
+        #endregion
+
+        #region PreserveReplyToAddress
+        transportAdapterConfig.PreserveHeaders(error =>
+        {
+            error["NServiceBus.ASB.ReplyToAddress"] = error[Headers.ReplyToAddress];
+        }, retry =>
+        {
+            retry[Headers.ReplyToAddress] = retry["NServiceBus.ASB.ReplyToAddress"];
+        });
         #endregion
 
         #region ControlQueueOverride
