@@ -3,6 +3,8 @@ title: Handler Ordering
 summary: Using interfaces to control the order in which Handlers are executed
 reviewed: 2017-07-20
 component: HandlerOrdering
+related:
+ - samples/handler-ordering-by-interface
 ---
 
 This extension allows a more expressive way to [Order Handlers](/nservicebus/handlers/handler-ordering.md).
