@@ -314,6 +314,8 @@
         Title: Accessing data
       - Url: nservicebus/handlers/handler-ordering
         Title: Handler Order
+      - Url: nservicebus/handlers/handler-ordering-by-interface
+        Title: Handler Order by interface
     - Url: nservicebus/sagas
       Title: Sagas
       Articles:

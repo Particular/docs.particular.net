@@ -293,7 +293,7 @@
 
 - Key: HandlerOrdering
   Name: Handler ordering by interface
-  DocoUrl: samples/handler-ordering-by-interface
+  DocoUrl: nservicebus/handlers/handler-ordering-by-interface
   GitHubOwner: SimonCropp
   Category: Other
   SupportLevel: Community

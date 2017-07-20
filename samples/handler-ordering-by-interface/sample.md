@@ -6,13 +6,6 @@ component: HandlerOrdering
 ---
 
 
-## NServiceBus.HandlerOrdering
-
-This extension allows a more expressive way to [Order Handlers](/nservicebus/handlers/handler-ordering.md).
-
-HandlerOrdering allows the dependency between handlers to be expressed via interfaces and the resulting order is derived at runtime.
-
-
 ## Configuring to use HandlerOrdering
 
 snippet: config
