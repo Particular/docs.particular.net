@@ -6,7 +6,11 @@
     {
         public void ConfigureEndpoint(EndpointConfiguration endpointConfiguration)
         {
+            #region Metrics-Enable
+
             var metricsOptions = endpointConfiguration.EnableMetrics();
+
+            #endregion
 
             #region Metrics-Observers
 
