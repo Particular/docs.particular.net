@@ -31,9 +31,9 @@ INFO: In a real system, the **Shipping** endpoint should be able to take some ac
 
 ## Production-ready message transport
 
-The [Introduction to NServiceBus tutorial](/tutorials/intro-to-nservicebus/) on which the code is based uses the [Learning Transport](/nservicebus/learning-transport/) as its underlying [message transport](/nservicebus/transports/) to move messages around. It's great for learning the NServiceBus API and for demos, but since it does not support the tools in the [Particular Service Platform](/platform/), we need to upgrade to a production-ready transport.
+The [Introduction to NServiceBus tutorial](/tutorials/intro-to-nservicebus/) on which the code is based uses the [Learning Transport](/transports/learning/) as its underlying [message transport](/transports/) to move messages around. It's great for learning the NServiceBus API and for demos, but since it does not support the tools in the [Particular Service Platform](/platform/), we need to upgrade to a production-ready transport.
 
-This tutorial uses the [MSMQ Transport](/nservicebus/msmq/) that moves messages around using Microsoft Message Queuing.
+This tutorial uses the [MSMQ Transport](/transports/msmq/) that moves messages around using Microsoft Message Queuing.
 
 If you completed the [Introduction to NServiceBus tutorial](/tutorials/intro-to-nservicebus/), you may want to note a few things in the code that have changed.
 
@@ -158,9 +158,9 @@ Because we installed ServiceControl and ServicePulse earlier, we can attempt to 
 When the message is replayed in **Sales**, each endpoint picks up right where it left off. You should be able to see how useful this capability will be when failures happen in your real-life systems.
 
 {{NOTE:
-Our solution currently uses [in-memory persistence](/nservicebus/persistence/in-memory.md) to store subscription information. Because of this, if you restart only the Sales endpoint while the others continue to run, it will not know where to publish messages and the system will not work as intended. When using a durable persistence, this will not be an issue. When testing with in-memory persistence, restart the entire system so that subscription messages are resent as each endpoint starts up.
+Our solution currently uses [in-memory persistence](/persistence/in-memory.md) to store subscription information. Because of this, if you restart only the Sales endpoint while the others continue to run, it will not know where to publish messages and the system will not work as intended. When using a durable persistence, this will not be an issue. When testing with in-memory persistence, restart the entire system so that subscription messages are resent as each endpoint starts up.
 
-For more details see [Persistence in NServiceBus](/nservicebus/persistence/).
+For more details see [Persistence in NServiceBus](/persistence/).
 }}
 
 ## Summary
