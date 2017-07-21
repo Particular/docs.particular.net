@@ -2,7 +2,7 @@
 title: Amazon SQS Transport
 summary: A transport for Amazon Web Services Simple Queue Service.
 component: SQS
-reviewed: 2017-06-28
+reviewed: 2017-07-21
 tags:
 - AWS
 redirects:
@@ -53,7 +53,7 @@ The IAM account requires the following [SQS permissions](http://docs.aws.amazon.
  * s3::GetLifecycleConfiguration
  * s3::ListAllMyBuckets
 
-By default, NServiceBus.AmazonSQS will look for the Access Key ID and Secret Access Key in system environment variables of the machine that is running the endpoint:
+By default, Access Key ID and Secret Access Key are discovered from environment variables of the machine that is running the endpoint:
 
  * Access Key ID goes in `AWS_ACCESS_KEY_ID`
  * Secret Access Key goes in `AWS_SECRET_ACCESS_KEY`
