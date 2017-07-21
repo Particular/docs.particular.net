@@ -58,7 +58,7 @@ snippet: ShippingPubSubConfig
 
 This is, again, because MSMQ does not support native Publish/Subscribe, so subscribers need to know which [logical endpoint](/nservicebus/endpoints/) to listen for events.
 
-The last change in the solution is [disabling delayed retries](/nservicebus/recoverability/configure-delayed-retries) in the **Sales** endpoint's **Program.cs** file:
+The last change in the solution is [disabling delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) in the **Sales** endpoint's **Program.cs** file:
 
 snippet: NoDelayedRetries
 

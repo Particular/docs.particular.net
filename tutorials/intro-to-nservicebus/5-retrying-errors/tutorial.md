@@ -128,7 +128,7 @@ INFO: For further strategies to limit the "wall of text" effect in stack traces,
 
 The number of retries supplied to the immediate retries API can be pulled from an appSetting to allow changing configuration between development/test/staging/production environments.
 
-You can also [configure delayed retries](/nservicebus/recoverability/configure-delayed-retries) in much the same way. In addition to the number of rounds of delayed retries, you can also modify the time increase used for the delay between each round of retries.
+You can also [configure delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) in much the same way. In addition to the number of rounds of delayed retries, you can also modify the time increase used for the delay between each round of retries.
 
 
 ### Transient exceptions
