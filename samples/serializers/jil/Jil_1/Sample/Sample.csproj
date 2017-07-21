@@ -26,9 +26,8 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Jil, Version=2.15.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\..\packages\Jil.2.15.1\lib\net45\Jil.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Jil, Version=2.15.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\Jil.2.15.2\lib\net45\Jil.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
       <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.22\lib\net45\NServiceBus.Core.dll</HintPath>
