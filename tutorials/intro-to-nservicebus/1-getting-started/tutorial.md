@@ -4,6 +4,7 @@ reviewed: 2017-01-26
 summary: In this 10-15 minute tutorial, you will learn how to set up a development machine for NServiceBus and create your very first messaging endpoint.
 redirects:
 - tutorials/nservicebus-101/lesson-1
+- tutorials/intro-to-nservicebus/using-sql-transport
 extensions:
 - !!tutorial
   nextText: "Next Lesson: Sending a command"
