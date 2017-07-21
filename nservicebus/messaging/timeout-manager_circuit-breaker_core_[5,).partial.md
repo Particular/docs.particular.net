@@ -4,4 +4,4 @@ The default wait time can be changed:
 
 snippet: TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
 
-NOTE: The timeout manager polls every minute which means that in the worst case scenario it can take almost 3 minutes (1 minute poll interval + 2 minute for circuit breaker) before the endpoint will raise a critical error. However, on average for any configured *TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages* value it will be actually about 30 seconds more.
+NOTE: The timeout manager polls every minute. This means it could take more time then the configured *TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages* value before an issue is detected.
