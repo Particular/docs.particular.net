@@ -21,7 +21,6 @@ namespace Sales
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
-
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
