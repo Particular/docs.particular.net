@@ -32,8 +32,9 @@
       <HintPath>..\..\..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Persistence.Sql, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.3.0.0-alpha0027\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
+    <Reference Include="NServiceBus.Persistence.Sql, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
+      <HintPath>..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.3.0.0-alpha0029\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
