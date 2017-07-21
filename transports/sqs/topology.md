@@ -18,7 +18,7 @@ Amazon SQS queues support competing consumers. When an endpoint scales out to mu
 
 ### Publish/Subscribe
 
-the Amazon SQS transport is a unicast-only transport and does not provide built-in support for publish-subscribe messaging. Publishing events to multiple endpoints is achieved with multiple transport-level sends to each destination. Subscriptions are created subscription request messages as described [here](/tutorials/intro-to-nservicebus/4-publishing-events/#subscribing-to-events).
+the Amazon SQS transport is a unicast-only transport and does not provide built-in support for publish-subscribe messaging. Publishing events to multiple endpoints is achieved with multiple transport-level sends to each destination. Subscriptions are created subscription request messages as described [here](/tutorials/intro-to-nservicebus/4-publishing-events/tutorial.md#subscribing-to-events).
 
 ## S3
 
