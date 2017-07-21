@@ -83,15 +83,6 @@ This setting defines the [**transport**](/transports/) that NServiceBus will use
 Capturing the `transport` settings in a variable as shown will make things easier in [Lesson 3](../3-multiple-endpoints/) when we start defining message routing rules.
 
 
-#### Serializer
-
-snippet: Serializer
-
-When sending messages, an endpoint needs to serialize message objects to a stream, and then deserialize the stream back to a message object on the receiving end. The choice of [**serializer**](/nservicebus/serialization/) governs what format that will take. Each endpoint in a system needs to use the same serializer in order to be able to understand each other.
-
-Here, we are choosing the `XmlSerializer`.
-
-
 ### Starting up
 
 At the end of the `AsyncMain` method, after the configuration code, add the following code which will start up the endpoint, keep it running until we press the Enter key, and then shut it down.

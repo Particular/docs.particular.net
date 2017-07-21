@@ -49,10 +49,6 @@
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
             #endregion
 
-            #region Serializer
-            endpointConfiguration.UseSerialization<XmlSerializer>();
-            #endregion
-
             #region Startup
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
