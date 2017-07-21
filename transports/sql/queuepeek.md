@@ -17,5 +17,3 @@ The default peek interval delay is 1 second. The recommended range for this sett
 Use the following code:
 
 snippet: sqlserver-config-delay
-
-Increasing this value can be useful if you use a SQL SAAS solution and pay per transactions but messages send to this specific endpoint do not have a strict processing time window as each peek will result in a transaction.
