@@ -82,8 +82,6 @@ Sometimes, a new release will contain a bug in handler logic that isn't found un
 
 In this exercise we'll throw an exception inside a message handler, and see how NServiceBus automatically retries the message.
 
-This is an exploratory exercise without a lot of coding. We'll use the completed solution from the previous lesson.
-
 
 ### Throw an exception
 

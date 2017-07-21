@@ -20,7 +20,7 @@ To get started, download the solution above, extract the archive, and then open 
 
 The solution is similar to the one built in the [Introduction to NServiceBus tutorial](/tutorials/intro-to-nservicebus/), containing five projects. The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages.
 
-The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales**, and **Billing**, and **Shipping** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as POCO class files.
+The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales**, **Billing**, and **Shipping** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as POCO class files.
 
 As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an `OrderPlaced` event using the publish/subscribe pattern, which will be received by the **Billing** and **Shipping** endpoints. Additionally, the **Billing** endpoint endpoint will publish an `OrderBilled` endpoint that will also be received by the **Shipping** endpoint.
 
@@ -56,7 +56,7 @@ And in **Shipping**:
 
 snippet: ShippingPubSubConfig
 
-This is, again, because MSMQ does not support native Publish/Subscribe, so subscribers need to know which [logical endpoint](/nservicebus/endpoints/) to listen for events.
+This is also because MSMQ does not support native Publish/Subscribe, so subscribers need to know which [logical endpoint](/nservicebus/endpoints/) to listen for events.
 
 The last change in the solution is [disabling delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) in the **Sales** endpoint's **Program.cs** file:
 
@@ -105,7 +105,7 @@ Now, we're ready to create and start the service:
 
 To check that everything is working properly, you can click on the link shown under **URL**, which will return a JSON response if ServiceControl is working properly. This is the API that is used to serve information to the [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/) tools.
 
-Later in the exercise, we will be using ServicePulse to replay a failed message, so we should also check to make sure it is working. ServicePulse is installed as a Windows service named **Particular ServicePulse** and has a web-based UI, which can be accessed at `http://localhost:9090` [when default settings are used](/servicepulse/host-config.md). You can check to see if it is running from the Windows Services control panel. ServicePulse must to be able to connect to the ServiceControl API, which [can be configured](/servicepulse/host-config.md#changing-the-servicecontrol-url) if a non-default ServiceControl URL is used.
+Later in the exercise, we will be using ServicePulse to replay a failed message, so we should also check to make sure it is working. ServicePulse is installed as a Windows service named **Particular ServicePulse** and has a web-based UI, which can be accessed at `http://localhost:9090` [when default settings are used](/servicepulse/host-config.md). You can check to see if it is running from the Windows Services control panel. ServicePulse must be configured for the correct URL for the ServiceControl API (`localhost:33333` by default) which [can be configured](/servicepulse/host-config.md#changing-the-servicecontrol-url) if a non-default ServiceControl URL is used.
 
 
 ## Running the solution
@@ -150,10 +150,11 @@ Because we installed ServiceControl and ServicePulse earlier, we can attempt to 
  1. Run the solution.
  1. Open ServicePulse at `http://localhost:9090` and navigate to the **Failed Messages** page. Note how similar messages are grouped together for easier handling.
     ![Failed Message Groups](failed-message-groups.png)
- 1. Click the **View Messages** link to see details on each failed message.
+ 1. Click anywhere in a message group box to see the individual failed messages in the group, including the exception message.
     ![Failed Message Details](failed-message-details.png)
- 1. Take a look at the different options for a failed message, including viewing the stack trace for the exception and viewing the message's headers and body. This information is quite useful for finding where the exception is occurring in code, and viewing the data from the message that causes it to occur.
- 1. Try the various methods of replaying messages (**Retry selected** vs. **Retry all**) and watch what happens in the console windows. Note that ServiceControl executes message retry batches on a 30-second timer, so *be patient*. Eventually, the messages will be returned to their appropriate endpoints.
+ 1. Click on an individual message, and you will be able to see the stack trace for the exception, or switch tabs to see the message headers or message body.
+ 1. Click the **Retry message** button and watch what happens in the console windows.
+ 1. You can also back up to the Message Groups view and click Request retry to replay all the messages within that group at once! Note that ServiceControl executes message retry batches on a 30-second timer, so be patient. Eventually, the messages will be returned to their appropriate endpoints.
 
 When the message is replayed in **Sales**, each endpoint picks up right where it left off. You should be able to see how useful this capability will be when failures happen in your real-life systems.
 
