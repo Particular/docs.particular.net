@@ -6,8 +6,8 @@ Metrics can be reported in a few different ways.
 
 Some of the data captured by the NServiceBus.Metrics component can be forwarded to Windows Performance Counters. See [Performance Counters](./performance-counters.md) for more information.
 
-### Accessed directly
+### To any external storage
 
-TODO: you can access directly 
+Custom observers might be registered to access every value reported by probes.
 
 snippet: Metrics-Observers
