@@ -28,7 +28,7 @@ Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operation
 First, let's create a basic solution and include the dependencies we need.
 
  1. In Visual Studio, create a new project and select the **Console Application** project type.
- 1. Be sure to select the correct .NET Framework version from the dropdown at the top of the dialog. You'll want at least .NET Framework 4.6.1 for access to the convenient `Task.CopmletedTask` API.
+ 1. Be sure to select the correct .NET Framework version from the dropdown at the top of the dialog. You'll want at least .NET Framework 4.6.1 for access to the convenient `Task.CompletedTask` API.
  1. Set the project name to **ClientUI**.
  1. Set the solution name to **RetailDemo**.
 
