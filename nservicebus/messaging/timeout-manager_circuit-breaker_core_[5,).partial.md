@@ -3,3 +3,5 @@ If there are any connection problems with the timeout storage then by default NS
 The default wait time can be changed:
 
 snippet: TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
+
+NOTE: The timeout manager polls every minute. This means it could take more time then the configured *TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages* value before an issue is detected.
