@@ -704,6 +704,8 @@
       Title: Configuration Options
     - Url: transports/sqs/why-use-sqs
       Title: Why use SQS
+    - Url: transports/sqs/topology
+      Title: Topology
   - Url: transports/eventstore
     Title: Event Store
   - Url: transports/kafka
