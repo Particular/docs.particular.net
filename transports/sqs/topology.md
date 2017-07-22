@@ -1,6 +1,6 @@
 ---
 title: Topology
-summary: Identify the physical components used by the transport and how the interact.
+summary: Identify the physical components used by the transport and how they interact.
 component: SQS
 reviewed: 2017-07-22
 tags:
@@ -21,7 +21,7 @@ Amazon SQS queues support competing consumers. When an endpoint scales out to mu
 
 ### Publish/Subscribe
 
-the Amazon SQS transport is a unicast-only transport and does not provide built-in support for publish-subscribe messaging. Publishing events to multiple endpoints is achieved with multiple transport-level sends to each destination. Subscriptions are created [persistence based and message driven mechanics](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven).
+the Amazon SQS transport is a unicast-only transport and does not provide built-in support for publish-subscribe messaging. Publishing events to multiple endpoints is achieved with multiple transport-level sends to each destination. Subscriptions are created using [persistence based and message driven mechanics](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven).
 
 
 ## S3
