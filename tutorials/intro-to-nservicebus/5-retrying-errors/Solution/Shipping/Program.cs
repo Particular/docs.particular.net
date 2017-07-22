@@ -1,5 +1,4 @@
-﻿using Messages;
-using NServiceBus;
+﻿using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
@@ -18,15 +17,7 @@ namespace Shipping
 
             var endpointConfiguration = new EndpointConfiguration("Shipping");
 
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-
-            var routing = transport.Routing();
-            routing.RegisterPublisher(typeof(OrderPlaced), "Sales");
-            routing.RegisterPublisher(typeof(OrderBilled), "Billing");
-
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.EnableInstallers();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);

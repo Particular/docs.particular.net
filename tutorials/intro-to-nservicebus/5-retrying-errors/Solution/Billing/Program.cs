@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Messages;
 using NServiceBus;
 
 namespace Billing
@@ -18,14 +17,7 @@ namespace Billing
 
             var endpointConfiguration = new EndpointConfiguration("Billing");
 
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-
-            var routing = transport.Routing();
-            routing.RegisterPublisher(typeof(OrderPlaced), "Sales");
-
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.EnableInstallers();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);

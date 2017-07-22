@@ -80,16 +80,7 @@ Create a handler class by implementing `IHandleMessages<T>` where `T` is the typ
 
 snippet: EventHandler
 
-
-## Subscribing to events
-
-For the MSMQ transport, NServiceBus needs to know which endpoint is responsible for publishing an event, so that it can send the publishing endpoint a subscription request message.
-
-You can configure the publisher endpoint via the Routing API like this:
-
-snippet: RegisterPublisher
-
-NOTE: Some other transports have built-in publish/subscribe capabilities, so all that is required to subscribe to an event is to create a message handler for the event. A subscription request message is not required. Because the routing configuration is scoped to the transport type, transports that don't require publisher configuration simply won't contain this API.
+NOTE: Since we are using the Learning Transport, which supports publish/subscribe natively, we don't have to do anything else to subscribe to an event other than create the event handler. Some other transports do not support native publish/subscribe and require the extra step of [defining the publisher for an event](/nservicebus/messaging/routing.md#event-routing-message-driven). 
 
 
 ## Exercise
@@ -148,15 +139,6 @@ snippet: SubscriberHandlerDontPublishOrderBilled
 
 And finally, modify the solution properties so that **Billing** will start when debugging.
 
-
-### Subscribe to an event
-
-We now have a handler in place for `OrderPlaced`, but just like in real life, having a mailbox isn't enough to get a newspaper delivered to your house. We need to let the publisher know we want to subscribe to get the message.
-
-In the **Billing** endpoint, locate the **AsyncMain** method in the **Program.cs** file. Use the `transport` variable to access the routing configuration and configure the publisher for `OrderPlaced`:
-
-snippet: BillingRouting
-
 Now when we run the solution, we'll see the following output in the **Billing** window:
 
 ```
@@ -177,8 +159,6 @@ This is also a good opportunity to check your understanding. If you can complete
  1. Create a new endpoint named **Shipping** with the necessary dependencies. Be sure to set the console title and endpoint name to `"Shipping"`, and configure it to start when debugging.
  1. In **Shipping**, create a message handler for `OrderPlaced`.
  1. In **Shipping**, create a message handler for `OrderBilled`.
- 1. Configure **Shipping** to subscribe to `OrderPlaced` from **Sales**. (You may have this already if you copied the endpoint configuration from **Billing**.)
- 1. Configure **Shipping** to subscribe to `OrderBilled` from **Billing**. (This will be new no matter what.)
 
 
 ### Running the solution

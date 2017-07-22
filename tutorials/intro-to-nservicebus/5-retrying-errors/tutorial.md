@@ -1,7 +1,7 @@
 ---
 title: "Introduction to NServiceBus: Retrying errors"
 reviewed: 2017-01-26
-summary: In this 25-30 minute tutorial, you'll learn the different causes of errors and how to manage them with the Particular Service Platform.
+summary: In this 25-30 minute tutorial, you'll learn the different causes of errors and how to manage them with NServiceBus.
 redirects:
 - tutorials/nservicebus-101/lesson-5
 ---
@@ -10,7 +10,7 @@ In software systems, exceptions will occur. Even with perfect, bug-free code, pr
 
 It's how we respond to exceptions that is important. When a database is deadlocked, or a web service is down, do we lose data, or do we have the ability to recover? Do our users get an error message and have to figure out how to recover on their own, or can we make it appear as though nothing ever went wrong?
 
-In the next 25-30 minutes, you will learn the different causes of errors and see how to manage them with Particular Service Platform.
+In the next 25-30 minutes, you will learn the different causes of errors and see how to manage them with NServiceBus.
 
 
 ## Causes of errors
@@ -56,9 +56,9 @@ In order to deal with exceptions that arise, the code for each handler is wrappe
 
 With this kind of protection in place, we're free to try to process a message as many times as we need, or at least as many times as makes sense.
 
-**Immediate retries** deal with transient exceptions like deadlocks. By default, messages will be immediately retried up to 5 times. If a handler method continues to throw an exception after 5 consecutive attempts, it is clearly not a transient exception.
+[**Immediate retries**](/nservicebus/recoverability/#immediate-retries) deal with transient exceptions like deadlocks. By default, messages will be immediately retried up to 5 times. If a handler method continues to throw an exception after 5 consecutive attempts, it is clearly not a transient exception.
 
-**Delayed retries** deal with semi-transient exceptions, like a flaky web service, or database failover. It uses a series of successively longer delays between retries in order to give the failing resource some breathing room. After immediate retries are exhausted, the message is moved aside for a short time – 10 seconds by default – and then another set of retries is attempted. If this fails, the time limit is increased and then the message handler will try again.
+[**Delayed retries**](/nservicebus/recoverability/#delayed-retries) deal with semi-transient exceptions, like a flaky web service, or database failover. It uses a series of successively longer delays between retries in order to give the failing resource some breathing room. After immediate retries are exhausted, the message is moved aside for a short time – 10 seconds by default – and then another set of retries is attempted. If this fails, the time limit is increased and then the message handler will try again.
 
 Between immediate and delayed retries, there can be [many attempts to process a message](/nservicebus/recoverability/#total-number-of-possible-retries) before NServiceBus gives up and moves the message to an error queue.
 
@@ -73,19 +73,14 @@ Once a message is sent to the error queue, this indicates that a systemic failur
 
 For this reason, NServiceBus embeds the exception details and stack trace into the message that it forwards to the error queue, so you don't need to search through a log file to find the details. Once the underlying issue is fixed, the message can be replayed. **Replaying a message** sends it back to its original queue in order to retry message processing after an issue has been fixed.
 
-The [Particular Service Platform](/platform/), of which NServiceBus is a part, includes tools to make this kind of operational monitoring really easy. As part of the exercise, we will be using the [Particular Platform Installer](/platform/installer/) to install the following tools used for system monitoring:
-
- * [ServiceControl](/servicecontrol/) is like a watchdog monitoring your system, sucking in information and making that available to other tools via a REST API. One of its functions is to monitor your error queue so that you can act on the poison messages that arrive there.
- * [ServicePulse](/servicepulse/) is a web application aimed to be an operational dashboard for your NServiceBus system. It allows you to see failed messages, including the exception details, and provides a UI to either replay or archive failed messages.
+The [Particular Service Platform](/platform/), of which NServiceBus is a part, includes tools to make this kind of operational monitoring really easy. If you'd like to learn more, check out the [Message replay tutorial](/tutorials/message-replay/), which demonstrates how to use the platform tools to replay a failed message.
 
 Sometimes, a new release will contain a bug in handler logic that isn't found until the code is deployed. When this happens, many errors can flood into the error queue at once. At these times, it's incredibly valuable to be able to roll back to the old version of the endpoint, and then replay the messages through proven code. Then you can take the time to properly troubleshoot and fix the issue before attempting a new deployment.
 
 
 ## Exercise
 
-In this exercise we'll experiment with the different retry options we can use within an endpoint. Then we'll use the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) monitoring tools to replay a failed message.
-
-This is an exploratory exercise without a lot of coding. We'll use the completed solution from the previous lesson.
+In this exercise we'll throw an exception inside a message handler, and see how NServiceBus automatically retries the message.
 
 
 ### Throw an exception
@@ -95,7 +90,7 @@ First, let's throw an exception. For the purposes of this exercise, we'll create
 1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
 1. After logging receipt of the message, throw an exception:
 
-snippet: Throw
+snippet: ThrowSystemic
 
 Now, run the solution.
 
@@ -121,124 +116,38 @@ System.Exception: BOOM
 ```
 
 
-### Modify immediate retries
+### Retry settings
 
-The only configurable option you need for immediate retries is how many of them to attempt. The default value is `5`, but you may want to set it to a higher or lower number. Many developers prefer to set it to `0` so that they can limit the "wall of text" effect when an exception is thrown, and then set it to a higher number for production use.
+If you like, you can experiment with changing the configuration for immediate and delayed retries. A good place to experiment is in the **Sales** endpoint's **Program.cs** file.
+
+You can [configure immediate retries](/nservicebus/recoverability/configure-immediate-retries.md) to either change the number of retries, or disable them altogether. The default value is `5`, but you may want to set it to a higher or lower number. Many developers prefer to set it to `0` during development so that they can limit the "wall of text" effect when an exception is thrown, and then set it to a higher number for production use.
 
 INFO: For further strategies to limit the "wall of text" effect in stack traces, especially with async code, check out the [Stack Trace Cleaning](/samples/logging/stack-trace-cleaning/) sample.
 
-To configure the endpoint to disable immediate retries:
-
- 1. In the **Sales** endpoint, locate the **Program.cs** file.
- 1. Before the endpoint is started, add the following code:
-
-snippet: ImmediateRetries
-
-Now, re-run the solution.
-
-Notice how delayed retries still occur (with exception traces in yellow) but no immediate retries (in white) occur between each delayed retry.
-
 The number of retries supplied to the immediate retries API can be pulled from an appSetting to allow changing configuration between development/test/staging/production environments.
 
-
-### Modify delayed retries
-
-Now let's try modifying the delayed retries. First let's try disabling them completely, which can also be beneficial during development to remove noise.
-
-Modify the recoverability code you wrote previously, then re-run the solution:
-
-snippet: DelayedRetries
-
-Notice how the message is only attempted once. The stack trace is red, and the message is immediately forwarded to the error queue.
-
-With delayed retries, we can also modify the time increase applied to each round of retries. Let's reset the number of delayed retries back to `3`, and decrease the time increase to 3 seconds so the delayed retries will occur very quickly.
-
-Modify the same recoverability code, and re-run the solution:
-
-snippet: TimeIncrease
-
-Notice how much faster the message proceeds through delayed retries, because instead of delays of 10/20/30 seconds (60 seconds total) the delays are now 3/6/9 seconds, for a total of 18 seconds wait time.
+You can also [configure delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) in much the same way. In addition to the number of rounds of delayed retries, you can also modify the time increase used for the delay between each round of retries.
 
 
-### Tools for message replay
+### Transient exceptions
 
-Watching a message try to process dozens of times can be fun, but in a real-life system you will want to be able to fix the problem and then replay that message through the system. In order to do that, we need to make sure we have the [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/) tools installed.
+Throwing a big exception is an example of a systemic error. Let's see how NServiceBus reacts when we throw a more transient exception. To do this, let's introduce a random number generator so that we only throw an exception 20% of the time.
 
-To get these tools, we'll use the [Particular Platform Installer](/platform/installer/). You may have already used the installer in Lesson 1 to install MSMQ. If so, you're probably already good to go, but it doesn't hurt to run the installer again to find out if you have the most recent version of each tool installed.
+1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
+1. Add a static **Random** instance to the class:
 
-If you need to install the Service Platform, or if you just aren't sure:
+snippet: Random
 
- 1. Download the [Platform Installer](https://particular.net/start-platform-download).
- 1. Launch the **ParticularPlatform.exe** you downloaded, and use it to install the Particular Service Platform [according to the instructions](/platform/installer/).
+3. Change the `throw` statement so that it's dependent on the random number:
 
-NOTE: If you are using the SQL Server transport, you can uncheck the **Configure Microsoft Message Queuing** option, if you are not allowed to install it in your environment. It is only required for the MSMQ transport. All other checkboxes should remain selected.
+snippet: ThrowTransient
 
-Now we need to install an instance of Service Control. It's possible to install multiple instances of ServiceControl for different transports, so next we need to configure a ServiceControl instance for the transport you've selected.
+4. Start the solution, and either select **Detach All** in the **Debug** menu, or just start the solution without debugging (Ctrl+F5).
+4. In the **ClientUI** window, send one message at a time by pressing `P`, and watch the **Sales** window.
 
-You can launch the **ServiceControl Management** application in one of two ways:
+As you will see in the **Sales** window, 80% of the messages will go through as normal. When an exception occurs, the exception trace will be displayed once in white, and then generally succeed on the next try. After the successful retry, the other windows will continue to react as normal to complete the process.
 
- * From the **Start ServiceControl Management** button on the last screen of the Platform Installer
- * By locating **ServiceControl Management** in the Windows Start menu
-
-Next, in the **ServiceControl Management** window, click the **Add new instance** button. There are a few customizations we will need to make here to configure ServiceControl.
-
-First and foremost, under the **General** heading, take note of the host name and port (`localhost:33333` by default) as you will need these later.
-
-{{NOTE:
-If you are using the SQL Server transport, you will need to make a few extra modifications.
-
-If you are connecting to your database using Windows security, you'll need to modify the Windows service configuration under the **General** heading so that the service runs under your user account:
-
- 1. Under **User Account**, select the **User** radio button.
- 1. Enter your user credentials (either `username` or `domain\username`) under **Service Account* and **Password**.
-
-Next, scroll down to the **Transport Configuration** heading:
- 1. Change the **Transport** dropdown value to **SQLServer**, which will cause a **Transport Connection String** text box to appear.
- 1. Add the same connection string to the **Transport Connection String** text box you're using for your NServiceBus project. (The default used in the exercise was `Server=.\sqlexpress;Initial Catalog=NServiceBusAcademy;Trusted_Connection=true;`)
-}}
-
-Last, scroll down to the **Queues Configuration** heading:
-
-1. Change the **Audit Forwarding** dropdown value to **Off**.
-
-{{NOTE:
-This setting may seem esoteric, but serves an important purpose. [Forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md) settings control what happens to messages after being processed by ServiceControl. If audit forwarding is on, then copies of all messages processed will accumulate in a queue, but not get processed, eventually consuming all available disk space. On the other hand, if you wanted to do something with those messages but turned audit forwarding off, ServiceControl would consume those messages but then effectively delete them.
-
-Because we're just getting started with NServiceBus development, we don't need to keep copies of these messages around, so we can safely set Audit Forwarding to Off.
-}}
-
-Now, we're ready to create and start the service:
-
- 1. Click the **Add** button to install the ServiceControl instance as a Windows service.
- 1. When complete, the **ServiceControl Management** tool will display the high-level details of the ServiceControl instance, and the instance should be in the **Started** state.
-     - If for any reason the instance does not start automatically, click the **Start** button (the button with the *Play* icon) in the upper right corner of the instance details. You can also start the service from the Windows Services manager.
-
-To check that everything is working properly, you can click on the link shown under **URL**, which will return a JSON response if ServiceControl is working properly. This is the API that is used to serve information to the [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/) tools.
-
-Later in the exercise, we will be using ServicePulse to replay a failed message, so we should also check to make sure it is working. ServicePulse is installed as a Windows service named **Particular ServicePulse** and has a web-based UI, which can be accessed at `http://localhost:9090` [when default settings are used](/servicepulse/host-config.md). You can check to see if it is running from the Windows Services control panel. ServicePulse must to be able to connect to the ServiceControl API, which [can be configured](/servicepulse/host-config.md#changing-the-servicecontrol-url) if a non-default ServiceControl URL is used.
-
-
-### Replay a message
-
-Because we installed ServiceControl and ServicePulse earlier, we can attempt to replay a message:
-
- 1. Fix the **Sales** endpoint by removing the `throw` statement.
- 1. Run the solution.
- 1. Open ServicePulse at `http://localhost:9090` and navigate to the **Failed Messages** page. Note how similar messages are grouped together for easier handling.
-    ![Failed Message Groups](failed-message-groups.png)
- 1. Click anywhere in a message group box to see the individual failed messages in the group, including the exception message.
-    ![Failed Message Details](failed-message-details.png)
- 1. Click on an individual message, and you will be able to see the stack trace for the exception, or switch tabs to see the message headers or message body.
- 1. Click the **Retry message** button and watch what happens in the console windows.
- 1. You can also back up to the Message Groups view and click **Request retry** to replay all the messages within that group at once! Note that ServiceControl executes message retry batches on a 30-second timer, so *be patient*. Eventually, the messages will be returned to their appropriate endpoints.
-
-When the message is replayed in Sales, each endpoint picks up right where it left off. You should be able to see how useful this capability will be when failures happen in your real-life systems.
-
-{{NOTE:
-Our solution currently uses [in-memory persistence](/persistence/in-memory.md) to store subscription information. Because of this, if you restart only the Sales endpoint while the others continue to run, it will not know where to publish messages and the system will not work as intended. When using a durable persistence, this will not be an issue. When testing with in-memory persistence, restart the entire system so that subscription messages are resent as each endpoint starts up.
-
-For more details see [Persistence in NServiceBus](/persistence/).
-}}
+With NServiceBus watching over your processes with automated retries, you just don't have to worry about transient failures anymore. If an error is severe enough, it will progress through immediate and delayed retries and be delivered to an error queue. Then you know that it's a severe error that needs to be addressed.
 
 
 ## Summary

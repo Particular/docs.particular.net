@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Messages;
 using NServiceBus;
 using NServiceBus.Logging;
 
-namespace Core_6
+#pragma warning disable 162
+
+namespace Sales
 {
     public class PlaceOrderHandler :
         IHandleMessages<PlaceOrder>
     {
         static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
-
-#pragma warning disable CS0162 // Unreachable code detected
-
-        #region ThrowSystemic
 
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
@@ -20,7 +19,8 @@ namespace Core_6
 
             // This is normally where some business logic would occur
 
-            throw new Exception("BOOM");
+            // Uncomment to test throwing a systemic exception
+            //throw new Exception("BOOM");
 
             var orderPlaced = new OrderPlaced
             {
@@ -28,23 +28,7 @@ namespace Core_6
             };
             return context.Publish(orderPlaced);
         }
-
-        #endregion
-
-#pragma warning restore CS0162 // Unreachable code detected
-
-        #region Random
-        static Random random = new Random();
-        #endregion
-
-        public void ThrowTransient()
-        {
-            #region ThrowTransient
-            if (random.Next(0, 5) == 0)
-            {
-                throw new Exception("Oops");
-            }
-            #endregion
-        }
     }
 }
+
+#pragma warning restore 162
