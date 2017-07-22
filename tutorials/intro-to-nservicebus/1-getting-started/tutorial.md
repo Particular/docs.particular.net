@@ -28,7 +28,7 @@ Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operation
 First, let's create a basic solution and include the dependencies we need.
 
  1. In Visual Studio, create a new project and select the **Console Application** project type.
- 1. Be sure to select the correct .NET Framework version from the dropdown at the top of the dialog. You'll want at least .NET Framework 4.6.1 for access to the convenient `Task.CompletedTask` API.
+ 1. Be sure to select the correct .NET Framework version from the dropdown at the top of the dialog. You'll want at least .NET Framework 4.6.1 for access to the convenient [Task.CompletedTask](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.completedtask.aspx) API.
  1. Set the project name to **ClientUI**.
  1. Set the solution name to **RetailDemo**.
 
@@ -38,7 +38,7 @@ Next, we need to add the NServiceBus NuGet package as a dependency. From the [Nu
 Install-Package NServiceBus -ProjectName ClientUI
 ```
 
-This adds a reference to the NServiceBus.Core assembly to the project. Now we're ready to start writing code.
+This adds a reference to the NServiceBus.Core assembly to ClientUI. Now we're ready to start writing code.
 
 
 ### Configure an endpoint
@@ -78,7 +78,7 @@ The `EndpointConfiguration` class is where we define all the settings that deter
 
 snippet: LearningTransport
 
-This setting defines the [**transport**](/transports/) that NServiceBus will use to send and receive messages. We are using the `LearningTransport`, which is bundled within the NServiceBus core library as a starter transport to learn how to use NServiceBus without any additional dependencies. All other transports are provided using different NuGet packages.
+This setting defines the [**transport**](/transports/) that NServiceBus will use to send and receive messages. We are using the [LearningTransport](/transports/learning/), which is bundled within the NServiceBus core library as a starter transport to learn how to use NServiceBus without any additional dependencies. All other transports are provided using different NuGet packages.
 
 Capturing the `transport` settings in a variable as shown will make things easier in [Lesson 3](../3-multiple-endpoints/) when we start defining message routing rules.
 
@@ -95,7 +95,7 @@ The endpoint is initialized according to the settings defined by the `EndpointCo
 
 When you run the endpoint for the first time, the endpoint will:
 
- * Display its logging information, which is written to a file as well as the console. NServiceBus also logs to multiple levels, so you can [change the log level](/nservicebus/logging/) from `INFO` to log level `DEBUG` in order to get more information.
+ * Display its logging information, which is [written to a file, Trace and the Console](/nservicebus/logging/#default-logging). NServiceBus also logs to multiple levels, so you can [change the log level](/nservicebus/logging/#logging-levels) from `INFO` to log level `DEBUG` in order to get more information.
  * Display the [status of your license](/nservicebus/licensing/).
  * Attempt to add the current user to the "Performance Monitor Users" group so that it can write [performance counters](/nservicebus/operations/performance-counters.md) to track its health and progress.
  * Create fake, file-based "queues" in a `.learningtransport` directory inside your solution directory. It would be a good idea to add `.learningtransport` to your source control system's ignore file.

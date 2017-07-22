@@ -7,7 +7,7 @@ extensions:
   downloadAtTop: true
 ---
 
-One of the most powerful features of NServiceBus is the ability to replay a message that has failed. By the time a message reaches the error queue, it will have already progressed through multiple retries through the [immediate retries](/nservicebus/recoverability/#immediate-retries) and [delayed retries](/nservicebus/recoverability/#delayed-retries) process, so you can be sure that the exception is systemic.
+One of the most powerful features of NServiceBus is the ability to replay a message that has failed. By the time a message reaches the error queue, it will have already progressed through multiple retries via the [immediate retries](/nservicebus/recoverability/#immediate-retries) and [delayed retries](/nservicebus/recoverability/#delayed-retries) process, so you can be sure that the exception is systemic.
 
 Often, this type of failure can be introduced by a bug that isn't found until the code is deployed. When this happens, many errors can flood into the error queue all at once. At these times, it's incredibly valuable to be able to roll back to the old version of the endpoint, and then replay the failed messages through proven code. Then you can take the time to properly troubleshoot and fix the issue before attempting a new deployment.
 
@@ -20,13 +20,13 @@ To get started, download the solution above, extract the archive, and then open 
 
 The solution is similar to the one built in the [Introduction to NServiceBus tutorial](/tutorials/intro-to-nservicebus/), containing five projects. The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages.
 
-The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales**, **Billing**, and **Shipping** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as POCO class files.
+The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales**, **Billing**, and **Shipping** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as [POCO classes](https://en.wikipedia.org/wiki/Plain_old_CLR_object).
 
 As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an `OrderPlaced` event using the publish/subscribe pattern, which will be received by the **Billing** and **Shipping** endpoints. Additionally, the **Billing** endpoint endpoint will publish an `OrderBilled` endpoint that will also be received by the **Shipping** endpoint.
 
 ![Project Diagram](/tutorials/intro-to-nservicebus/4-publishing-events/diagram.svg)
 
-INFO: In a real system, the **Shipping** endpoint should be able to take some action once it receives both an `OrderPlaced` and `OrderBilled` event for the same order. That is a use case for a [**Saga**](/nservicebus/sagas/) and is outside of the scope of this tutorial.
+INFO: In a real system, the **Shipping** endpoint should be able to take some action once it receives both an `OrderPlaced` and `OrderBilled` event for the same order. That is a use case for a [Saga](/nservicebus/sagas/) and is outside of the scope of this tutorial.
 
 
 ## Production-ready message transport
@@ -43,10 +43,10 @@ snippet: MsmqConfig
 
 In this snippet we can see that:
 
-* `UseTransport<LearningTransport>()` has been replaced by `UseTransport<MsmqTransport>()`.
-* In-memory persistence has been selected. This is because MSMQ, unlike the learning transport, does not natively support Publish/Subscribe, so the message subscription information will be stored in memory instead.
-* An error queue (`error`) has been specified, which was not a required setting in the learning transport. This is important because most MSMQ systems are distributed, and a centralized error queue in the form of `error@MACHINENAME` is used for the whole system.
-* `EnableInstallers()` is called, which instructs MSMQ to create the message queues required by the endpoints.
+ * `UseTransport<LearningTransport>()` has been replaced by `UseTransport<MsmqTransport>()`.
+ * In-memory persistence has been selected. This is because MSMQ, unlike the learning transport, does not natively support Publish/Subscribe, so the message subscription information will be stored in memory instead.
+ * An error queue (`error`) has been specified, which was not a required setting in the learning transport. This is important because most MSMQ systems are distributed, and a centralized error queue in the form of `error@MACHINENAME` is used for the whole system.
+ * [EnableInstallers()](/nservicebus/operations/installers.md) is called, which instructs MSMQ to create the message queues required by the endpoints.
 
 In addition, there is additional routing configuration in the **Program.cs** file in both **Billing**:
 
@@ -64,6 +64,7 @@ snippet: NoDelayedRetries
 
 Since we are going to be causing a lot of messages to fail in this exercise, we'd prefer not to wait around for several rounds of delayed retries to complete.
 
+
 ## Setting up the platform tools
 
 To complete this tutorial and run the solution, we will be using the [Particular Platform Installer](/platform/installer/). It will ensure that MSMQ is set up correctly, and also install two tools we need for the tutorial:
@@ -71,7 +72,7 @@ To complete this tutorial and run the solution, we will be using the [Particular
  * [ServiceControl](/servicecontrol/) is like a watchdog monitoring your system, sucking in information and making that available to other tools via a REST API. One of its functions is to monitor your error queue so that you can act on the poison messages that arrive there.
  * [ServicePulse](/servicepulse/) is a web application aimed to be an operational dashboard for your NServiceBus system. It allows you to see failed messages, including the exception details, and provides a UI to either replay or archive failed messages.
 
- To install the Service Platform:
+To install the Service Platform:
 
  1. Download the [Platform Installer](https://particular.net/start-platform-download).
  1. Launch the **ParticularPlatform.exe** you downloaded, and use it to install the Particular Service Platform [according to the instructions](/platform/installer/).
@@ -121,17 +122,18 @@ INFO  Shipping.OrderPlacedHandler Received OrderPlaced, OrderId = 96dfd084-2bb0-
 INFO  Shipping.OrderBilledHandler Received OrderBilled, OrderId = 96dfd084-2bb0-46c3-b939-046e3b911102 - Should we ship now?
 ```
 
+
 ## Throwing an exception
 
 Now, let's throw an exception that will make its way to the error queue. For the purposes of this exercise, we'll create a specific bug in the Sales endpoint and watch what happens when we run the endpoint.
 
-1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
-1. Uncomment the line that throws the exception. The code in the project contains a `#pragma` directive to prevent Visual Studio from interpreting the unreachable code after the `throw` statement as a build error.
+ 1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
+ 1. Uncomment the line that throws the exception. The code in the project contains a `#pragma` directive to prevent Visual Studio from interpreting the unreachable code after the `throw` statement as a build error.
 
 Now, run the solution.
 
-1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running, but does not break into the debugger when we throw our exception.
-1. In the **ClientUI** window, place an order by pressing `P`. 
+ 1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running, but does not break into the debugger when we throw our exception.
+ 1. In the **ClientUI** window, place an order by pressing `P`.
 
 In the **Sales** window, you will see a wall of text culminating in a red error trace. This is where NServiceBus gives up on the message and sends it to the error queue.
 
@@ -141,6 +143,7 @@ ERROR NServiceBus.RecoverabilityExecutor Moving message '53ac6836-48ef-49dd-aabb
 System.Exception: BOOM
    at < stack trace>
 ```
+
 
 ### Replay a message
 
@@ -164,10 +167,11 @@ Our solution currently uses [in-memory persistence](/persistence/in-memory.md) t
 For more details see [Persistence in NServiceBus](/persistence/).
 }}
 
+
 ## Summary
 
 In this tutorial, we saw how to set up the Particular Service Platform tools ServiceControl and ServicePulse to replay a failed message. With this ability, we can see the details of failed messages in ServicePulse and begin to troubleshoot what went wrong.
 
 Perhaps the message had a previously unexpected input value which caused the bug to go undetected until the code entered production. With this knowledge in hand, we can go fix the code to validate these inputs or take some other sort of corrective action. Once the new code is deployed with the fix, we can replay the message and everything will flow through the system as if the error had never happened.
 
-If you haven't yet, you might want to check out the [Introduction to NServiceBus]() tutorial, where you'll learn how to build the solution this tutorial is based on from scratch, while learning the messaging concepts you'll need to know to build even more complex software systems with NServiceBus. 
+If you haven't yet, you might want to check out the [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) tutorial, where you'll learn how to build the solution this tutorial is based on from scratch, while learning the messaging concepts you'll need to know to build even more complex software systems with NServiceBus. 
