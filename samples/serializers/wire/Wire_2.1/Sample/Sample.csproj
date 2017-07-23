@@ -35,13 +35,7 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.Wire.2.1.0-beta001\lib\net452\NServiceBus.Wire.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="Wire, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\..\..\packages\Wire.0.8.2\lib\net45\Wire.dll</HintPath>
       <Private>True</Private>

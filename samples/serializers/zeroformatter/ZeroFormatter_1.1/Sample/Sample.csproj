@@ -35,13 +35,7 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.ZeroFormatter.1.1.0-beta001\lib\net452\NServiceBus.ZeroFormatter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="ZeroFormatter, Version=1.6.4.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\..\..\packages\ZeroFormatter.1.6.4\lib\net45\ZeroFormatter.dll</HintPath>
       <Private>True</Private>

@@ -38,13 +38,7 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.Hyperion.1.1.0-beta001\lib\net452\NServiceBus.Hyperion.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CreateOrder.cs" />
