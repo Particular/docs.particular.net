@@ -9,5 +9,4 @@
 #endregion
 class FakeSaga
 {
-    
 }

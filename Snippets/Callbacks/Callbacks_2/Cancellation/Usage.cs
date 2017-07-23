@@ -4,7 +4,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using NServiceBus;
-    
+
     class Usage
     {
         async Task Simple(IEndpointInstance endpoint)

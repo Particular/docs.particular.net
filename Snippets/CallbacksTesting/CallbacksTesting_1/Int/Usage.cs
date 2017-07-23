@@ -9,7 +9,7 @@
         async Task Simple()
         {
             #region IntCallbackTesting
-            
+
             var request = new Message();
             var simulatedResponse = 42;
 
@@ -18,7 +18,7 @@
                 matcher: (Message message) =>
                 {
                     return message == request;
-                }, 
+                },
                 response: simulatedResponse);
 
             var result = await session.Request<int>(request)

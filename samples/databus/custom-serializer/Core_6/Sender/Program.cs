@@ -76,7 +76,7 @@ class Program
         {
             yield return new Measurement
             {
-                Timestamp = DateTimeOffset.UtcNow, 
+                Timestamp = DateTimeOffset.UtcNow,
                 MeasurementName = $"Instrument {i}",
                 MeasurementValue = i * 10m
             };

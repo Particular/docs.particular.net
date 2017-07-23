@@ -19,7 +19,7 @@ namespace SCTransportAdapter_0
         {
             #region MixedTransports
 
-            var transportAdapterConfig = 
+            var transportAdapterConfig =
                 new TransportAdapterConfig<MyOtherTransport, MyTransport>("MyOtherTransport");
 
             transportAdapterConfig.CustomizeEndpointTransport(

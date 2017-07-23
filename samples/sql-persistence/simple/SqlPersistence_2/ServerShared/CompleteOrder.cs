@@ -1,4 +1,4 @@
-public class CompleteOrder 
+public class CompleteOrder
 {
     public string OrderDescription { get; set; }
 }

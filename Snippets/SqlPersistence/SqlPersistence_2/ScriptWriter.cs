@@ -62,7 +62,7 @@ public class ScriptWriter
             Write(directory, variant, "OutboxStore", outboxCommands.Store);
 
             var subscriptionCommands = SubscriptionCommandBuilder.Build(
-                sqlVariant: variant, 
+                sqlVariant: variant,
                 tablePrefix: "EndpointName",
                 schema: "dbo");
             Write(directory, variant, "SubscriptionSubscribe", subscriptionCommands.Subscribe);

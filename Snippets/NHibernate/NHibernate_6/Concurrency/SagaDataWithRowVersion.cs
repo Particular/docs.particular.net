@@ -8,7 +8,7 @@ public class SagaDataWithRowVersion :
 {
     [RowVersion]
     public virtual int MyVersion { get; set; }
-    
+
     public virtual string OriginalMessageId { get; set; }
     public virtual string Originator { get; set; }
     public virtual Guid Id { get; set; }

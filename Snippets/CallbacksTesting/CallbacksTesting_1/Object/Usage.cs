@@ -18,7 +18,7 @@
                 matcher: (Message message) =>
                 {
                     return message == request;
-                }, 
+                },
                 response: simulatedResponse);
 
             var result = await session.Request<ResponseMessage>(request)
@@ -33,7 +33,7 @@
         async Task ObjectCallbackTestingWithOptions()
         {
             #region ObjectCallbackTestingWithOptions
-            
+
             var request = new Message();
             var simulatedResponse = new ResponseMessage();
 

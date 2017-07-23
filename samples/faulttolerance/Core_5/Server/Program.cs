@@ -15,7 +15,7 @@ class Program
         #region disable
         // busConfiguration.DisableFeature<NServiceBus.Features.SecondLevelRetries>();
         #endregion
-        
+
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");

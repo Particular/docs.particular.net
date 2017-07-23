@@ -6,7 +6,7 @@ using NServiceBus.Encryption.MessageProperty;
 
 public static class CommonConfiguration
 {
-    public static void ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration,  
+    public static void ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration,
         Action<TransportExtensions<AzureStorageQueueTransport>> messageEndpointMappings = null)
     {
         var connectionString = CloudConfigurationManager.GetSetting("NServiceBus.ConnectionString");

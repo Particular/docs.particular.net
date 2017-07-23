@@ -10,7 +10,7 @@
         void Simple()
         {
             #region CancelCallbackTesting
-            
+
             var tokenSource = new CancellationTokenSource();
 
             var request = new Message();

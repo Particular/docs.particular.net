@@ -2,7 +2,7 @@
 {
     using NServiceBus;
 
-    class Usage 
+    class Usage
     {
         Usage(BusConfiguration busConfiguration)
         {

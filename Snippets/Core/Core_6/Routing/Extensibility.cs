@@ -106,7 +106,7 @@
                 protected override Task OnStop(IMessageSession session) => Task.CompletedTask;
             }
         }
-        
+
         class PublishersTable :
             Feature
         {
