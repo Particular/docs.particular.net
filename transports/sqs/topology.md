@@ -14,6 +14,8 @@ tags:
 
 Amazon SQS exposes queue endpoints that are publicly available via HTTPS. Endpoints may access SQS queues whether they are deployed in AWS or not: as long as the endpoint can reach SQS (and S3) via HTTPS it can use the Amazon SQS transport.
 
+Because the Amazon SQS transport initiates all network connections to SQS and S3, the endpoint itself does not need to be publicly accessible and may be behind a firewall or proxy.
+
 The Amazon SQS transport uses SQS [Standard Queues](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html).
 
 Amazon SQS queues support competing consumers. When an endpoint scales out to multiple instances, each instance consumes messages from the same input queue. 
