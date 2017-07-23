@@ -19,11 +19,11 @@ public class ExtendedResolver :
         return base.CreateContract(objectType);
     }
 
-    bool IsDictionary(Type i)
+    bool IsDictionary(Type type)
     {
-        return i == typeof(IDictionary) ||
-               (i.IsGenericType &&
-                i.GetGenericTypeDefinition() == typeof(IDictionary<,>));
+        return type == typeof(IDictionary) ||
+               type.IsGenericType &&
+               type.GetGenericTypeDefinition() == typeof(IDictionary<,>);
     }
 }
 
