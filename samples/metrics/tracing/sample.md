@@ -1,7 +1,6 @@
 ---
 title: Sending metrics data to trace log
 component: Metrics
-versions: '[1.0,1.1)'
 reviewed: 2017-07-21
 ---
 
