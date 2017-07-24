@@ -13,20 +13,19 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.ServiceControl.ASBAdapter.Shipping";
-        var endpointConfiguration = new EndpointConfiguration(
-            "Samples.ServiceControl.ASBAdapter.Shipping");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ServiceControl.ASBAdapter.Shipping");
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.2' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read 'AzureServiceBus.ConnectionString.2' environment variable. Check sample prerequisites.");
         }
 
         var salesConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.1");
         if (string.IsNullOrWhiteSpace(salesConnectionString))
         {
-            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.1' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read 'AzureServiceBus.ConnectionString.1' environment variable. Check sample prerequisites.");
         }
         transport.ConnectionString(connectionString);
         transport.DefaultNamespaceAlias("shipping");

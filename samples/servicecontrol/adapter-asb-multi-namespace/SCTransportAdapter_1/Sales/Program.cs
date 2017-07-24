@@ -16,19 +16,18 @@ class Program
         Console.Title = "Samples.ServiceControl.ASBAdapter.Sales";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
-        var endpointConfiguration = new EndpointConfiguration(
-            "Samples.ServiceControl.ASBAdapter.Sales");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ServiceControl.ASBAdapter.Sales");
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.1");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.1' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read 'AzureServiceBus.ConnectionString.1' environment variable. Check sample prerequisites.");
         }
         var shippingConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2");
         if (string.IsNullOrWhiteSpace(shippingConnectionString))
         {
-            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.2' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read 'AzureServiceBus.ConnectionString.2' environment variable. Check sample prerequisites.");
         }
         transport.ConnectionString(connectionString);
 
@@ -36,15 +35,26 @@ class Program
 
         transport.UseNamespaceAliasesInsteadOfConnectionStrings();
         transport.DefaultNamespaceAlias("sales");
-        transport.NamespaceRouting().AddNamespace("shipping", shippingConnectionString);
+        var routing = transport.NamespaceRouting();
+        routing.AddNamespace("shipping", shippingConnectionString);
         transport.UseForwardingTopology();
         transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
 
         #endregion
 
+        var recoverability = endpointConfiguration.Recoverability();
+
         #region NamespaceAlias
 
-        endpointConfiguration.Recoverability().Failed(f => f.HeaderCustomization(h => h["NServiceBus.ASB.Namespace"] = "sales"));
+        recoverability.Failed(
+            customizations: settings =>
+            {
+                settings.HeaderCustomization(
+                    customization: headers =>
+                    {
+                        headers["NServiceBus.ASB.Namespace"] = "sales";
+                    });
+            });
 
         #endregion
 
@@ -57,7 +67,6 @@ class Program
                 components.ConfigureComponent(() => chaos, DependencyLifecycle.SingleInstance);
             });
 
-        var recoverability = endpointConfiguration.Recoverability();
         recoverability.Immediate(
             customizations: immediate =>
             {

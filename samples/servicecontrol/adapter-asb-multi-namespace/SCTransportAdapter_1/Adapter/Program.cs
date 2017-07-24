@@ -23,26 +23,27 @@ class Program
 
         #region EndpointSideConfig
 
-        transportAdapterConfig.CustomizeEndpointTransport(transport =>
-        {
-            var salesConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.1");
-            if (string.IsNullOrWhiteSpace(salesConnectionString))
+        transportAdapterConfig.CustomizeEndpointTransport(
+            customization: transport =>
             {
-                throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.1' environment variable. Check the sample prerequisites.");
-            }
-            var shippingConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2");
-            if (string.IsNullOrWhiteSpace(shippingConnectionString))
-            {
-                throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.2' environment variable. Check the sample prerequisites.");
-            }
+                var salesConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.1");
+                if (string.IsNullOrWhiteSpace(salesConnectionString))
+                {
+                    throw new Exception("Could not read 'AzureServiceBus.ConnectionString.1' environment variable. Check sample prerequisites.");
+                }
+                var shippingConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2");
+                if (string.IsNullOrWhiteSpace(shippingConnectionString))
+                {
+                    throw new Exception("Could not read 'AzureServiceBus.ConnectionString.2' environment variable. Check sample prerequisites.");
+                }
 
-            transport.UseNamespaceAliasesInsteadOfConnectionStrings();
-            var namespacePartitioning = transport.NamespacePartitioning();
-            namespacePartitioning.AddNamespace("sales", salesConnectionString);
-            namespacePartitioning.AddNamespace("shipping", shippingConnectionString);
-            namespacePartitioning.UseStrategy<RoundRobinNamespacePartitioning>();
-            transport.UseForwardingTopology();
-        });
+                transport.UseNamespaceAliasesInsteadOfConnectionStrings();
+                var namespacePartitioning = transport.NamespacePartitioning();
+                namespacePartitioning.AddNamespace("sales", salesConnectionString);
+                namespacePartitioning.AddNamespace("shipping", shippingConnectionString);
+                namespacePartitioning.UseStrategy<RoundRobinNamespacePartitioning>();
+                transport.UseForwardingTopology();
+            });
 
         #endregion
 
@@ -54,17 +55,19 @@ class Program
             customization: transport =>
             {
                 var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.SC");
-                if (string.IsNullOrWhiteSpace(connectionString))
+                if (!string.IsNullOrWhiteSpace(connectionString))
                 {
-                    throw new Exception("Could not read the 'AzureServiceBus.ConnectionString.SC' environment variable. Check the sample prerequisites.");
+                    transport.ConnectionString(connectionString);
+                    transport.UseEndpointOrientedTopology();
+                    return;
                 }
-                transport.ConnectionString(connectionString);
-                transport.UseEndpointOrientedTopology();
+                throw new Exception("Could not read 'AzureServiceBus.ConnectionString.SC' environment variable. Check sample prerequisites.");
             });
 
         #endregion
 
         #region UseNamespaceHeader
+
         transportAdapterConfig.RedirectRetriedMessages((failedQ, headers) =>
         {
             if (headers.TryGetValue("NServiceBus.ASB.Namespace", out string namespaceAlias))
@@ -73,16 +76,21 @@ class Program
             }
             return failedQ;
         });
+
         #endregion
 
         #region PreserveReplyToAddress
-        transportAdapterConfig.PreserveHeaders(error =>
-        {
-            error["NServiceBus.ASB.ReplyToAddress"] = error[Headers.ReplyToAddress];
-        }, retry =>
-        {
-            retry[Headers.ReplyToAddress] = retry["NServiceBus.ASB.ReplyToAddress"];
-        });
+
+        transportAdapterConfig.PreserveHeaders(
+            preserveCallback: error =>
+            {
+                error["NServiceBus.ASB.ReplyToAddress"] = error[Headers.ReplyToAddress];
+            },
+            restoreCallback: retry =>
+            {
+                retry[Headers.ReplyToAddress] = retry["NServiceBus.ASB.ReplyToAddress"];
+            });
+
         #endregion
 
         #region ControlQueueOverride

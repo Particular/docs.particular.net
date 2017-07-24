@@ -58,12 +58,14 @@ The Sales and Shipping endpoints include message processing failure simulation m
 
 The Shipping endpoint has the Heartbeats plugin installed to enable uptime monitoring via ServicePulse.
 
-Both endpoints are configured to use
-- [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
-- [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
-- Different namespaces with [cross-namespace routing](/transports/azure-service-bus/multiple-namespaces-support.md#cross-namespace-routing) enabled.
+Both endpoints are configured to use:
+
+ * [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
+ * [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
+ * Different namespaces with [cross-namespace routing](/transports/azure-service-bus/multiple-namespaces-support.md#cross-namespace-routing) enabled.
 
 snippet: featuresunsuportedbysc
+
 
 ### Adapter
 
@@ -71,10 +73,11 @@ The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has
 
 snippet: AdapterTransport
 
-The following code configures the adapter to match advanced transport features enabled on the endpoints:  
-- [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
-- [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
-- [Multi namespace receive](/transports/azure-service-bus/multiple-namespaces-support.md#round-robin-namespace-partitioning)
+The following code configures the adapter to match advanced transport features enabled on the endpoints:
+
+ * [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
+ * [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
+ * [Multi namespace receive](/transports/azure-service-bus/multiple-namespaces-support.md#round-robin-namespace-partitioning)
 
 snippet: EndpointSideConfig
 
@@ -96,9 +99,11 @@ snippet: NamespaceAlias
 
 Azure Service Bus transport in Version 6 used by ServiceControl overrides the `NServiceBus.ReplyToAddress` header when sending a message. The following code ensures that the original value is preserved by copying the header value to a custom header and then restoring the value when routing the retry message:
 
-snippet: PreserveReplyToAddress 
+snippet: PreserveReplyToAddress
+
 
 ## How it works
+
 
 ### Heartbeats
 
@@ -112,7 +117,7 @@ The audit messages arrive at adapter's `audit` queue. They are then moved to the
 
 ### Retries
 
-If a message fails all recoverability attempts in a business endpoint, it is moved to the `error` queue located in the adapter namespace. The adapter enriches the message by adding `ServiceControl.RetryTo` header pointing to the adapter's input queue in ServiceControl namespace (`ServiceControl.ASB.Adapter.Retry`). Then the message is moved to the `error` queue in ServiceControl namespace and ingested into ServiceControl RavenDB store. 
+If a message fails all recoverability attempts in a business endpoint, it is moved to the `error` queue located in the adapter namespace. The adapter enriches the message by adding `ServiceControl.RetryTo` header pointing to the adapter's input queue in ServiceControl namespace (`ServiceControl.ASB.Adapter.Retry`). Then the message is moved to the `error` queue in ServiceControl namespace and ingested into ServiceControl RavenDB store.
 
 When retrying, ServiceControl looks for `ServiceControl.RetryTo` header and, if it finds one, it sends the message to the queue from that header instead of the ultimate destination.
 
