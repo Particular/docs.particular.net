@@ -4,6 +4,10 @@ reviewed: 2017-01-26
 summary: In this 25-30 minute tutorial, you'll learn the different causes of errors and how to manage them with NServiceBus.
 redirects:
 - tutorials/nservicebus-101/lesson-5
+extensions:
+- !!tutorial
+  nextText: "Next: Replaying failed messages"
+  nextUrl: tutorials/message-replay
 ---
 
 In software systems, exceptions will occur. Even with perfect, bug-free code, problems will arise when we have to deal with the issue of connectivity. If a database is overloaded, or a web service is down, we have no recourse except to try again.
@@ -156,4 +160,4 @@ In this lesson, we explored different causes for exceptions and how NServiceBus 
 
 You've completed the last lesson in the [Introduction to NServiceBus](/tutorials/intro-to-nservicebus) tutorial. You've learned how to create endpoints, send and receive commands, publish events, and deal with message failures.
 
-If you're looking for more, consider trying one of our many [sample projects](/samples/), such as the [on-premise showcase](/samples/show-case/on-premise/) showing many different NServiceBus features working together.
+SUCCESS: Now that you've learned how to build messaging systems with NServiceBus, take the next step and experience how the ability to replay failed messages will transform how you build software. Or, you could take one of our many [sample projects](/samples/) for a spin, or use the live chat in the bottom-right corner of the screen to chat directly with one of our developers about how you could benefit from using NServiceBus in your next project. 
