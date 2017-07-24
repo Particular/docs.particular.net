@@ -45,7 +45,7 @@
 
             #endregion
 
-            #region Metrics-Observers
+            #region Metrics-Observers [1.1,)
 
             metricsOptions.RegisterObservers(ctx =>
             {
