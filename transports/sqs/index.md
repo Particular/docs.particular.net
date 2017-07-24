@@ -33,25 +33,32 @@ redirects:
 
 ### Set Up An AWS Account
 
-To use NServiceBus.AmazonSQS, an [AWS IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) account with a pair of [Access Keys](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html) is required.
+An [AWS IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) account with a pair of [Access Keys](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html) is required.
 
-The IAM account requires the following [SQS permissions](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html) and [S3 permissions](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html):
+The IAM account requires the following: 
 
- * sqs::CreateQueue
- * sqs::DeleteMessage
- * sqs::GetQueueUrl
- * sqs::ReceiveMessage
- * sqs::SendMessage
- * sqs::SetQueueAttributes
- * sqs::ChangeMessageVisibility
- * sqs::PurgeQueue
- * s3::CreateBucket
- * s3::DeleteObject
- * s3::GetObject
- * s3::PutObject
- * s3::PutLifecycleConfiguration
- * s3::GetLifecycleConfiguration
- * s3::ListAllMyBuckets
+
+#### [SQS permissions](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html)
+
+ * CreateQueue
+ * DeleteMessage
+ * GetQueueUrl
+ * ReceiveMessage
+ * SendMessage
+ * SetQueueAttributes
+ * ChangeMessageVisibility
+ * PurgeQueue
+
+
+#### [S3 permissions](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html)
+
+ * CreateBucket
+ * DeleteObject
+ * GetObject
+ * PutObject
+ * PutLifecycleConfiguration
+ * GetLifecycleConfiguration
+ * ListAllMyBuckets
 
 By default, Access Key ID and Secret Access Key are discovered from environment variables of the machine that is running the endpoint:
 
