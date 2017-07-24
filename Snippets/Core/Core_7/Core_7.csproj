@@ -16,11 +16,7 @@
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0-alpha*" />
     <PackageReference Include="NUnit" Version="3.*" />
-    <PackageReference Include="Rx-Core" Version="2.*" />
-    <PackageReference Include="Rx-Interfaces" Version="2.*" />
-    <PackageReference Include="Rx-Linq" Version="2.*" />
-    <PackageReference Include="Rx-Main" Version="2.*" />
-    <PackageReference Include="Rx-PlatformServices" Version="2.*" />
+    <PackageReference Include="System.Reactive" Version="3.*" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
     <ProjectReference Include="..\..\MsmqTransport\MsmqTransport_All\MsmqTransport_All.csproj" />
     <Reference Include="System.Configuration" />
