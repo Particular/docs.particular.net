@@ -34,7 +34,7 @@ class FileTransportMessagePump :
         pipeline = onMessage;
         path = BaseDirectoryBuilder.BuildBasePath(settings.InputQueue);
         purgeOnStartup = settings.PurgeOnStartup;
-        return Task.CompletedTask;
+        return Task.FromResult(0);
     }
 
     public void Start(PushRuntimeSettings limitations)
