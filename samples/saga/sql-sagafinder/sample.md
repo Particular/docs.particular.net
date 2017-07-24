@@ -46,6 +46,8 @@ A Saga Finder is only required for the `PaymentTransactionCompleted` message sin
 
 ### MS SQL Server
 
+WARNING: On Microsoft SQL Server, the saga finder feature requires the `JSON_VALUE` function that is only avaiable starting with SQL Server 2016.
+
 snippet: SqlServerFinder
 
 
