@@ -17,7 +17,7 @@ public class ConfigureFileTransportInfrastructure : IConfigureTransportInfrastru
 
     public Task Cleanup()
     {
-        return Task.CompletedTask;
+        return Task.FromResult(0);
     }
 }
 #endregion
