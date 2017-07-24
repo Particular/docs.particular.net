@@ -11,7 +11,7 @@ The API is exposed as an extension method on `SynchronizedStorageSession` and ca
 
 #### Microsoft SQL Server
 
-WARNING: On Microsoft SQL Server, the saga finder feature requires the `JSON_VALUE` function that is only avaiable starting with SQL Server 2016.
+WARNING: On Microsoft SQL Server, the saga finder feature requires the `JSON_VALUE` function that is only available starting with SQL Server 2016.
 
 snippet: SagaFinder-sqlServer
 
