@@ -20,6 +20,8 @@
         Title: Publishing events
       - Url: tutorials/intro-to-nservicebus/5-retrying-errors
         Title: Retrying errors
+    - Url: tutorials/message-replay
+      Title: Message Replay Tutorial
     - Url: samples/step-by-step
       Title: Step by Step Sample
     - Url: samples/endpoint-configuration
