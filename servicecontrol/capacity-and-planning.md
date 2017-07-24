@@ -37,20 +37,20 @@ See also [Automatic Expiration of ServiceControl Data](how-purge-expired-data.md
 
 #### Performance
 
-ServiceControl must be seen as a database installation. It performs a lot of storage and network IO due to all the audit, error and monitoring messages that are sent to it which all need to be processed of which allmost all operations require writing to disk. Especially in high throughput environments.
+From the perspective of performance ServiceControl can be considered similar to a database installation. It requires a significant amount disk and network IO due to processing of audit, error and monitoring messages. Each of these message processing operations require disk IO. The higher the message throughput of an environment, the higher the required disk IO.
 
-For this reason it is required to store the ServiceControl data a disk suitable for low latency write operations. Indexes require continious updating and it will be very worthwile to making sure that enough RAM is available to keep all indexes in memory. If disk **read IO** needs to be performed to update indexes indexes are more likely to remain stale. As all message are added to a full-text search it is also required to make sure that the CPU will not become the bottleneck in updating indexes.
+For this reason it is required to store the ServiceControl data on a disk with the lowest possible latency for IO operations. Indexes require continuous updating and will require significant RAM to allow those indexes to be kept in memory. Processing of indexes that cannot be stored fully in RAM will result in a higher likelihood of hose indexes being stale. As all message are added to a full-text search it is also required to make sure that the CPU will not become the bottleneck in updating indexes.
 
-Make sure that:
+Ensure that:
 
-- enough RAM is used, 6GB minimum;
-- data is stored on disks suitable for low latency write operations (fiber, solid state drives, raid 10)
-- multiple CPU cores are available
-- infrastructure is monitored (CPU, RAM, disks, network)
-- data is not stored on the same physical system drive
-- storage drive is reserved for ServiceControl
+ * enough RAM is used, 6GB minimum;
+ * data is stored on disks suitable for low latency write operations (fiber, solid state drives, raid 10)
+ * multiple CPU cores are available
+ * infrastructure is monitored (CPU, RAM, disks, network)
+ * data is not stored on the same physical system drive
+ * storage drive is reserved for ServiceControl
 
-NOTE: If you are unsure what your current disk performance is than benchmark your disk(s) with for example [CrystalDiskMark](http://crystalmark.info/software/CrystalDiskMark/index-e.html). Real disk, CPU, RAM and network performance can be monitored with the Windows Resource Monitor and/or using Windows Performance counters.
+NOTE: To ensure disk performance use a benchmark tool, for example [CrystalDiskMark](http://crystalmark.info/software/CrystalDiskMark/index-e.html). Real disk, CPU, RAM and network performance can be monitored with the Windows Resource Monitor and/or Windows Performance counters.
 
 
 ### Accessing data and audited messages
