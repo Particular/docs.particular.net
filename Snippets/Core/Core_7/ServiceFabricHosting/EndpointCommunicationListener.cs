@@ -1,4 +1,5 @@
-﻿namespace Core7.ServiceFabricHosting
+﻿#pragma warning disable 1998
+namespace Core7.ServiceFabricHosting
 {
     using System.Collections.Generic;
     using System.Fabric;

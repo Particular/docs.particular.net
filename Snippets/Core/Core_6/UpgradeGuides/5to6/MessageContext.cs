@@ -9,11 +9,12 @@
     {
         #region 5to6-messagecontext
 
-        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var messageId = context.MessageId;
             var replyToAddress = context.ReplyToAddress;
             var headers = context.MessageHeaders;
+            return Task.CompletedTask;
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿namespace Core4.Pipeline
+﻿#pragma warning disable 618
+namespace Core4.Pipeline
 {
     using System;
     using NServiceBus.Pipeline;

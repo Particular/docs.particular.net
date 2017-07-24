@@ -1,4 +1,5 @@
-﻿namespace Core4.HostIdentifier
+﻿#pragma warning disable 618
+namespace Core4.HostIdentifier
 {
     using System;
     using System.Reflection;

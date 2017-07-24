@@ -7,11 +7,12 @@
     public class ReadHandler :
         IHandleMessages<MyMessage>
     {
-        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var headers = context.MessageHeaders;
             var nsbVersion = headers[Headers.NServiceBusVersion];
             var customHeader = headers["MyCustomHeader"];
+            return Task.CompletedTask;
         }
     }
     #endregion

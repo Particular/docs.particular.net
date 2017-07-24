@@ -28,14 +28,16 @@
     {
         ManualResetEventSlim resetEvent = new ManualResetEventSlim();
 
-        protected override async Task OnStart(IMessageSession session)
+        protected override Task OnStart(IMessageSession session)
         {
             resetEvent.Set();
+            return Task.CompletedTask;
         }
 
-        protected override async Task OnStop(IMessageSession session)
+        protected override Task OnStop(IMessageSession session)
         {
             resetEvent.Reset();
+            return Task.CompletedTask;
         }
 
         public void Dispose()

@@ -1,4 +1,5 @@
-﻿namespace Core4.Headers
+﻿#pragma warning disable 618
+namespace Core4.Headers
 {
     using System;
     using NServiceBus;

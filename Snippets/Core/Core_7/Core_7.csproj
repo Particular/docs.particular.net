@@ -4,6 +4,7 @@
     <TargetFramework>net462</TargetFramework>
     <NoWarn>1701;1702;1705;</NoWarn>
     <RootNamespace>Core7</RootNamespace>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.*" />

@@ -1,4 +1,5 @@
-﻿namespace Core6.UpgradeGuides._5to6
+﻿#pragma warning disable 1998
+namespace Core6.UpgradeGuides._5to6
 {
     using System.Threading.Tasks;
     using Core6.Sagas.SimpleSaga;
@@ -36,10 +37,11 @@
 
         #endregion
 
-        public async Task Handle(CompleteOrder message, IMessageHandlerContext context)
+        public Task Handle(CompleteOrder message, IMessageHandlerContext context)
         {
             // code to handle order completion
             MarkAsComplete();
+            return Task.CompletedTask;
         }
     }
 }
