@@ -18,19 +18,21 @@ namespace Metrics_1
 
             #region Metrics-Log
 
-            metricsOptions.EnableLogTracing(TimeSpan.FromMinutes(5));
+            metricsOptions.EnableLogTracing(interval: TimeSpan.FromMinutes(5));
 
             #endregion
 
             #region Metrics-Log-Info
 
-            metricsOptions.EnableLogTracing(TimeSpan.FromMinutes(5), LogLevel.Info);
+            metricsOptions.EnableLogTracing(
+                interval: TimeSpan.FromMinutes(5),
+                logLevel: LogLevel.Info);
 
             #endregion
 
             #region Metrics-Tracing
 
-            metricsOptions.EnableMetricTracing(TimeSpan.FromSeconds(5));
+            metricsOptions.EnableMetricTracing(interval: TimeSpan.FromSeconds(5));
 
             #endregion
 
