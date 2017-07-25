@@ -7,6 +7,8 @@ tags:
 - AWS
 ---
 
+The topology used by the transport is composed of several AWS components.
+
 ![Topology](topology.png)
 
 
