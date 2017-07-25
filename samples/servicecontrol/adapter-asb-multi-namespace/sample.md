@@ -85,11 +85,11 @@ While the following code configures the adapter to communicate with ServiceContr
 
 snippet: SCSideConfig
 
-Because the ServiceControl has been installed under a non-default instance name (`Particular.ServiceControl.ASB`) the control queue name needs to be overridden in the adapter configuration:
+Since ServiceControl has been installed under a non-default instance name (`Particular.ServiceControl.ASB`) the control queue name needs to be overridden in the adapter configuration:
 
 snippet: ControlQueueOverride
 
-Because Shipping and Sales use different namespaces the adapter has to be configured to properly route retried messages:
+Shipping and Sales use different namespaces, therefore the adapter has to be configured to properly route retried messages:
 
 snippet: UseNamespaceHeader
 
@@ -97,7 +97,7 @@ The actual destination address consists of the queue name and the namespace alia
 
 snippet: NamespaceAlias
 
-Azure Service Bus transport in Version 6 used by ServiceControl overrides the `NServiceBus.ReplyToAddress` header when sending a message. The following code ensures that the original value is preserved by copying the header value to a custom header and then restoring the value when routing the retry message:
+Azure Service Bus transport version 6 used by ServiceControl overrides the `NServiceBus.ReplyToAddress` header when sending a message. The following code ensures that the original value is preserved by copying the header value to a custom header and then restoring the value when routing the retry message:
 
 snippet: PreserveReplyToAddress
 
