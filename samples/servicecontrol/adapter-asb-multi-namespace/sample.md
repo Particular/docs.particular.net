@@ -40,7 +40,30 @@ include: adapter-running-project
 
 The following diagram shows the topology of the solution:
 
-![Topology diagram](diagram.svg)
+```mermaid
+graph RL
+
+  subgraph Namespace 2
+    shipping["fa:fa-truck Shipping"]
+  end
+
+  subgraph Namespace 1
+    sales["fa:fa-money Sales"]
+  end
+
+  subgraph Namespace 3
+    sc["fa:fa-wrench Service Control"]
+  end
+
+  adapter{"fa:fa-exchange Adapter"}
+
+  sales ==> adapter
+  adapter .-> sales
+  shipping==>adapter
+  adapter .-> shipping
+  adapter==>sc
+  sc .-> adapter
+```
 
 The code base consists of four projects.
 
