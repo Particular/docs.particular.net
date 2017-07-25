@@ -70,7 +70,7 @@ class Program
 
         transportAdapterConfig.RedirectRetriedMessages((failedQ, headers) =>
         {
-            if (headers.TryGetValue("NServiceBus.ASB.Namespace", out string namespaceAlias))
+            if (headers.TryGetValue(AdapterSpecificHeaders.OriginalNamespace, out string namespaceAlias))
             {
                 return $"{failedQ}@{namespaceAlias}";
             }
@@ -84,11 +84,11 @@ class Program
         transportAdapterConfig.PreserveHeaders(
             preserveCallback: headers =>
             {
-                headers["NServiceBus.ASB.ReplyToAddress"] = headers[Headers.ReplyToAddress];
+                headers[AdapterSpecificHeaders.OriginalReplyToAddress] = headers[Headers.ReplyToAddress];
             },
             restoreCallback: headers =>
             {
-                headers[Headers.ReplyToAddress] = headers["NServiceBus.ASB.ReplyToAddress"];
+                headers[Headers.ReplyToAddress] = headers[AdapterSpecificHeaders.OriginalReplyToAddress];
             });
 
         #endregion

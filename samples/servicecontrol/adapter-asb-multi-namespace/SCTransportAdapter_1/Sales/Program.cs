@@ -52,7 +52,7 @@ class Program
                 settings.HeaderCustomization(
                     customization: headers =>
                     {
-                        headers["NServiceBus.ASB.Namespace"] = "sales";
+                        headers[AdapterSpecificHeaders.OriginalNamespace] = "sales";
                     });
             });
 
@@ -109,7 +109,7 @@ class Program
             if (lowerInvariant == 'f')
             {
                 chaos.IsFailing = !chaos.IsFailing;
-                Console.WriteLine("Failure simulation is now turned " + (chaos.IsFailing ? "on" : "off"));
+                Console.WriteLine($"Failure simulation is now turned {(chaos.IsFailing ? "on" : "off")}");
             }
         }
         await endpointInstance.Stop()

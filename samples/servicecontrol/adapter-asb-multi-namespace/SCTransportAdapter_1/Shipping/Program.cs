@@ -29,7 +29,6 @@ class Program
         }
         transport.ConnectionString(connectionString);
         transport.DefaultNamespaceAlias("shipping");
-        endpointConfiguration.Recoverability().Failed(retryFailedSettings => retryFailedSettings.HeaderCustomization(headers => headers["NServiceBus.ASB.Namespace"] = "shipping"));
         transport.UseNamespaceAliasesInsteadOfConnectionStrings();
         transport.NamespaceRouting().AddNamespace("sales", salesConnectionString);
         transport.UseForwardingTopology();
@@ -44,6 +43,7 @@ class Program
         });
 
         var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Failed(retryFailedSettings => retryFailedSettings.HeaderCustomization(headers => headers[AdapterSpecificHeaders.OriginalNamespace] = "shipping"));
         recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
         recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
         recoverability.DisableLegacyRetriesSatellite();
