@@ -1,4 +1,5 @@
-﻿namespace Calbacks.Handlers
+﻿#pragma warning disable 1998
+namespace Calbacks.Handlers
 {
     using System.Threading.Tasks;
     using NServiceBus;

@@ -23,7 +23,9 @@ class Program
         var routing = transport.Routing();
         routing.RegisterPublisher(typeof(OrderShipped),
             "Samples.ServiceControl.SqlServerTransportAdapter.Shipping");
+#pragma warning disable 618
         transport.EnableLegacyMultiInstanceMode(Connections.GetConnection);
+#pragma warning restore 618
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
