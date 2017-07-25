@@ -29,7 +29,7 @@ class Program
         }
         transport.ConnectionString(connectionString);
         transport.DefaultNamespaceAlias("shipping");
-        endpointConfiguration.Recoverability().Failed(f => f.HeaderCustomization(h => h["NServiceBus.ASB.Namespace"] = "shipping"));
+        endpointConfiguration.Recoverability().Failed(retryFailedSettings => retryFailedSettings.HeaderCustomization(headers => headers["NServiceBus.ASB.Namespace"] = "shipping"));
         transport.UseNamespaceAliasesInsteadOfConnectionStrings();
         transport.NamespaceRouting().AddNamespace("sales", salesConnectionString);
         transport.UseForwardingTopology();
