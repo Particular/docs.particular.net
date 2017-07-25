@@ -82,13 +82,13 @@ class Program
         #region PreserveReplyToAddress
 
         transportAdapterConfig.PreserveHeaders(
-            preserveCallback: error =>
+            preserveCallback: headers =>
             {
-                error["NServiceBus.ASB.ReplyToAddress"] = error[Headers.ReplyToAddress];
+                headers["NServiceBus.ASB.ReplyToAddress"] = headers[Headers.ReplyToAddress];
             },
-            restoreCallback: retry =>
+            restoreCallback: headers =>
             {
-                retry[Headers.ReplyToAddress] = retry["NServiceBus.ASB.ReplyToAddress"];
+                headers[Headers.ReplyToAddress] = headers["NServiceBus.ASB.ReplyToAddress"];
             });
 
         #endregion
