@@ -70,6 +70,7 @@ class Program
             {
                 chaos.IsFailing = !chaos.IsFailing;
                 Console.WriteLine($"Failure simulation is now turned {(chaos.IsFailing ? "on" : "off")}");
+                ConsoleHelper.ToggleTitle();
             }
         }
         await endpointInstance.Stop()
