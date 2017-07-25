@@ -1,4 +1,5 @@
-﻿namespace Core6.Handlers
+﻿#pragma warning disable 1998
+namespace Core6.Handlers
 {
     using System.Threading.Tasks;
     using NServiceBus;

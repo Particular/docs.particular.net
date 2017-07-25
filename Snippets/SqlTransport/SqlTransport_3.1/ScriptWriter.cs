@@ -22,7 +22,9 @@ public class ScriptWriter
     [Test]
     public void Write()
     {
+#pragma warning disable 618
         var type = typeof(SqlConstants);
+#pragma warning restore 618
         foreach (var field in type.GetFields(BindingFlags.Static | BindingFlags.NonPublic| BindingFlags.Public))
         {
             if (field.Name == "ExpiresIndexName")

@@ -2,6 +2,7 @@
 using NServiceBus;
 using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
+#pragma warning disable 618
 
 class ServiceControlRemoteQueues
 {

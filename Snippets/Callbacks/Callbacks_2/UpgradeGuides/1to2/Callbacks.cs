@@ -1,12 +1,11 @@
 ﻿namespace Callbacks.UpgradeGuides._1to2
 {
     using System.Configuration;
-    using System.Threading.Tasks;
     using NServiceBus;
 
     class Callbacks
     {
-        async Task Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint)
+        void Simple(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint)
         {
             #region 1to2-Callbacks-InstanceId-Default
 
