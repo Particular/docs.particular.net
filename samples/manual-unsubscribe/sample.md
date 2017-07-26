@@ -95,11 +95,30 @@ snippet: unsubscribe-message
 
 #### Unsubscribe process
 
-A publisher handle the `ManualUnsubscribe` message and perform the following task:
+The Publisher handles the `ManualUnsubscribe` message. This handling consists of three parts:
+
+
+#### 1. Handler
+
+The actual `IHandleMessages<ManualUnsubscribe>` implementation.
 
 snippet: unsubscribe-handling
 
 The message handler relies on the `ISubscriptionStorage` NServiceBus abstraction to perform the unsubscribe request regardless of the subscription storage configured for the publisher.
+
+
+#### 2. Query persistence for subscriptions
+
+The handler then query the persistence for all subscriptions that match the message type and endpoint name.
+
+snippet: GetAddressesForEndpoint
+
+
+#### 3. Unsubscribe
+
+The handler then communicates the unsubscribe actions with the persistence. 
+
+snippet: UnsubscribeFromEndpoint
 
 
 ### SubscriptionManager
@@ -112,4 +131,3 @@ snippet: SubscriptionManager-config
 ### Messages
 
 The shared messages and events used by this sample.
-

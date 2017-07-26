@@ -24,25 +24,41 @@ class ManualUnsubscribeHandler :
         var emptyContext = new ContextBag();
         var type = Type.GetType(message.MessageTypeName, true);
         var messageType = new MessageType(type);
+        var addressesForEndpoint = await GetAddressesForEndpoint(message.SubscriberEndpoint, messageType, emptyContext)
+            .ConfigureAwait(false);
+        await UnsubscribeFromEndpoint(addressesForEndpoint, messageType, emptyContext)
+            .ConfigureAwait(false);
+    }
+    #endregion
+
+    #region GetAddressesForEndpoint
+
+    async Task<IEnumerable<Subscriber>> GetAddressesForEndpoint(string endpoint, MessageType messageType, ContextBag emptyContext)
+    {
         var messageTypes = new List<MessageType>
         {
             messageType
         };
         var addressesForMessage = await subscriptionStorage.GetSubscriberAddressesForMessage(messageTypes, emptyContext)
             .ConfigureAwait(false);
-        var tasks = addressesForMessage
+        return addressesForMessage
             .Where(subscriber =>
             {
-                return string.Equals(subscriber.Endpoint, message.SubscriberEndpoint, StringComparison.OrdinalIgnoreCase);
-            })
+                return string.Equals(subscriber.Endpoint, endpoint, StringComparison.OrdinalIgnoreCase);
+            });
+    }
+
+    #endregion
+    #region UnsubscribeFromEndpoint
+    Task UnsubscribeFromEndpoint(IEnumerable<Subscriber> addressesForEndpoint, MessageType messageType, ContextBag emptyContext)
+    {
+        var tasks = addressesForEndpoint
             .Select(address => subscriptionStorage.Unsubscribe(
                 subscriber: address,
                 messageType: messageType,
                 context: emptyContext
             ));
-        await Task.WhenAll(tasks)
-            .ConfigureAwait(false);
+        return Task.WhenAll(tasks);
     }
+    #endregion
 }
-
-#endregion
