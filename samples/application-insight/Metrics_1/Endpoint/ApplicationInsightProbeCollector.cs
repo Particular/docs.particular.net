@@ -23,8 +23,10 @@ class ApplicationInsightProbeCollector
         {
             duration.Register(durationLength =>
             {
+                // Critical & Processing time
                 var s = Stopwatch.StartNew();
                 endpointTelemetry.TrackMetric(duration.Name, durationLength.TotalSeconds);
+                endpointTelemetry.Flush();
                 Log.InfoFormat("Metric '{0}'= {1:N} took {0:N0}ms to submit.", duration.Name, durationLength.TotalSeconds, s.ElapsedMilliseconds);
             });
         }
@@ -33,8 +35,10 @@ class ApplicationInsightProbeCollector
         {
             signal.Register(() =>
             {
+                // Failed, Succesful, fetched increment count
                 var s = Stopwatch.StartNew();
                 endpointTelemetry.TrackEvent(signal.Name);
+                endpointTelemetry.Flush();
                 Log.InfoFormat("Event '{0}' took {1:N0}ms to submit.", signal.Name, s.ElapsedMilliseconds);
             });
         }
