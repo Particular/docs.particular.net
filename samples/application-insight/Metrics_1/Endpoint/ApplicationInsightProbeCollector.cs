@@ -23,11 +23,9 @@ class ApplicationInsightProbeCollector
         {
             duration.Register(durationLength =>
             {
-                Log.InfoFormat("Received metric {0} = {1:N}", duration.Name, durationLength.TotalSeconds);
-
                 var s = Stopwatch.StartNew();
                 endpointTelemetry.TrackMetric(duration.Name, durationLength.TotalSeconds);
-                Log.InfoFormat("TrackMetric duration: {0:N0}ms", s.ElapsedMilliseconds);
+                Log.InfoFormat("Metric '{0}'= {1:N} took {0:N0}ms to submit.", duration.Name, durationLength.TotalSeconds, s.ElapsedMilliseconds);
             });
         }
 
@@ -35,10 +33,9 @@ class ApplicationInsightProbeCollector
         {
             signal.Register(() =>
             {
-                Log.InfoFormat("Received signal {0}", signal.Name);
                 var s = Stopwatch.StartNew();
                 endpointTelemetry.TrackEvent(signal.Name);
-                Log.InfoFormat("TrackEvent duration: {0:N0}ms", s.ElapsedMilliseconds);
+                Log.InfoFormat("Event '{0}' took {1:N0}ms to submit.", signal.Name, s.ElapsedMilliseconds);
             });
         }
     }
