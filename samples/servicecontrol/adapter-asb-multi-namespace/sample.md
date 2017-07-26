@@ -92,7 +92,12 @@ snippet: featuresunsuportedbysc
 
 ### Adapter
 
-The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has two sides: endpoint-facing and ServiceControl-facing. In this sample both use Azure Service Bus transport:
+The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has two sides:
+
+ * endpoint facing
+ * ServiceControl facing
+
+In this sample both use Azure Service Bus transport:
 
 snippet: AdapterTransport
 
@@ -100,7 +105,7 @@ The following code configures the adapter to match advanced transport features e
 
  * [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
  * [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
- * [Multiple namespace](/transports/azure-service-bus/multiple-namespaces-support.md#round-robin-namespace-partitioning)
+ * [Multiple namespace](/transports/azure-service-bus/multiple-namespaces-support.md#round-robin-namespace-partitioning).
 
 snippet: EndpointSideConfig
 
@@ -120,7 +125,7 @@ The actual destination address consists of the queue name and the namespace alia
 
 snippet: NamespaceAlias
 
-Azure Service Bus transport version 6 used by ServiceControl overrides the `NServiceBus.ReplyToAddress` header when sending a message. The following code ensures that the original value is preserved by copying the header value to a custom header and then restoring the value when routing the retry message:
+Azure Service Bus transport Version 6 used by ServiceControl overrides the `NServiceBus.ReplyToAddress` header when sending a message. The following code ensures that the original value is preserved by copying the header value to a custom header and then restoring the value when routing the retry message:
 
 snippet: PreserveReplyToAddress
 

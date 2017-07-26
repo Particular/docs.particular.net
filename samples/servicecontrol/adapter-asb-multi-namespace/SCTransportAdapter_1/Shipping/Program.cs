@@ -30,22 +30,40 @@ class Program
         transport.ConnectionString(connectionString);
         transport.DefaultNamespaceAlias("shipping");
         transport.UseNamespaceAliasesInsteadOfConnectionStrings();
-        transport.NamespaceRouting().AddNamespace("sales", salesConnectionString);
+        var routing = transport.NamespaceRouting();
+        routing.AddNamespace("sales", salesConnectionString);
         transport.UseForwardingTopology();
         transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         var chaos = new ChaosGenerator();
-        endpointConfiguration.RegisterComponents(c =>
-        {
-            c.ConfigureComponent(() => chaos, DependencyLifecycle.SingleInstance);
-        });
+        endpointConfiguration.RegisterComponents(
+            registration: components =>
+            {
+                components.ConfigureComponent(() => chaos, DependencyLifecycle.SingleInstance);
+            });
 
         var recoverability = endpointConfiguration.Recoverability();
-        recoverability.Failed(retryFailedSettings => retryFailedSettings.HeaderCustomization(headers => headers[AdapterSpecificHeaders.OriginalNamespace] = "shipping"));
-        recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
-        recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
+        recoverability.Failed(
+            customizations: retryFailedSettings =>
+            {
+                retryFailedSettings.HeaderCustomization(
+                    customization: headers =>
+                    {
+                        headers[AdapterSpecificHeaders.OriginalNamespace] = "shipping";
+                    });
+            });
+        recoverability.Immediate(
+            customizations: immediate =>
+            {
+                immediate.NumberOfRetries(0);
+            });
+        recoverability.Delayed(
+            customizations: delayed =>
+            {
+                delayed.NumberOfRetries(0);
+            });
         recoverability.DisableLegacyRetriesSatellite();
 
         endpointConfiguration.SendFailedMessagesTo("error");
