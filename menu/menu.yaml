@@ -897,6 +897,8 @@
 
 - Name: ServiceControl
   Topics:
+  - Title: Powershell
+    Url: servicecontrol/powershell
   - Title: ServiceControl instances
     Url: servicecontrol/servicecontrol-instances
     Articles:
