@@ -4,7 +4,6 @@ component: Host
 reviewed: 2017-03-01
 related:
  - nservicebus/logging
- - samples/logging/hostdefault
  - samples/logging/hostcustom
  - samples/logging/hostprofiles
 ---
@@ -34,4 +33,4 @@ NOTE: One class can configure logging for multiple profile types. However, it is
 
 The host's [profiles](/nservicebus/hosting/nservicebus-host/profiles.md) mechanism can be used to specify different logging levels (`DEBUG`, `WARN`, etc.) or targets (`CONSOLE`, `FILE`, etc.).
 
-For more details refer to the [Host Custom Logging](/samples/logging/hostcustom/), [Host Profile Logging](/samples/logging/hostprofiles/) and [Host Default Logging](/samples/logging/hostdefault/) samples.
+For more details refer to the [Host Custom Logging](/samples/logging/hostcustom/), [Host Profile Logging](/samples/logging/hostprofiles/) sample.
