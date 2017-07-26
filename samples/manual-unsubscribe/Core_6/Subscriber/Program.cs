@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Subscriber";
         MainAsync().GetAwaiter().GetResult();
     }
 

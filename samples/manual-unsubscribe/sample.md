@@ -61,3 +61,51 @@ snippet: SubscriptionManager-config
 ## Messages
 
 Stores the messages and events used by this sample.
+
+
+## Running the sample
+
+
+### Initial State
+
+Run the sample and all three endpoints will start.
+
+Subscriber initially subscribes to the `SomethingHappened` message in Publisher.
+
+
+### Publish event
+
+Hit `enter` in Publisher and a `SomethingHappened` will be published via the following process:
+
+```mermaid
+sequenceDiagram
+Participant Subscriber
+Participant Publisher
+Participant Persistence
+Note over Publisher: Publish SomethingHappened
+Publisher ->> Persistence: Requests "who wants SomethingHappened"
+Persistence ->> Publisher: "Subscribe"
+Publisher ->> Subscriber: Send SomethingHappened
+```
+
+The `SomethingHappened` event will be received by Subscriber.
+
+
+### Unsubscribe
+
+Hit enter on SubscriptionManager. A `ManualUnsubscribe` message for `SomethingHappened` will be sent to Publisher.
+
+```mermaid
+sequenceDiagram
+Participant SubscriptionManager AS SubscriptionManager
+Participant Publisher
+Participant Persistence
+SubscriptionManager ->> Publisher: Send unsubscribe "SomethingHappened"
+Publisher ->> Persistence: Store "unsubscribe from SomethingHappened"
+Note over Publisher: Publish SomethingHappened
+Publisher ->> Persistence: Requests "who wants SomethingHappened"
+Persistence ->> Publisher: "No Endpoints"
+Note over Publisher: No Send
+```
+
+Now hit `enter` in Publisher and no `SomethingHappened` will be published.

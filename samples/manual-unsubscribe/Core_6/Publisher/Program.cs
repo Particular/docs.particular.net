@@ -9,6 +9,7 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Publisher";
         MainAsync().GetAwaiter().GetResult();
     }
 
