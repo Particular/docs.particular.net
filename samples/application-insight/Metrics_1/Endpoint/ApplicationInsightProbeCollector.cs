@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.ApplicationInsights;
@@ -53,5 +54,10 @@ class ApplicationInsightProbeCollector
                 Log.InfoFormat("Event '{0}' took {1:N0}ms to submit.", name, s.ElapsedMilliseconds);
             });
         }
+    }
+
+    public void Flush()
+    {
+        endpointTelemetry.Flush();
     }
 }
