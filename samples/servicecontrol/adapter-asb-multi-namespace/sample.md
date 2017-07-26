@@ -13,31 +13,6 @@ related:
 
 This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using the advanced features of the Azure Service Bus transport [not natively supported by ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md#azure-service-bus).
 
-
-## Prerequisistes
-
-include: asb-connectionstring
-
- 1. An environment variable named `AzureServiceBus.ConnectionString.1` with the connection string for the Azure Service Bus namespace to be used by Sales endpoint.
- 1. An environment variable named `AzureServiceBus.ConnectionString.2` with the connection string for the Azure Service Bus namespace to be used by Shipping endpoint.
- 1. An environment variable named `AzureServiceBus.ConnectionString.SC` with the connection string for the Azure Service Bus namespace to be used by ServiceControl and the adapter.
- 1. [Install ServiceControl](/servicecontrol/installation.md).
- 1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using Azure Service Bus transport:
-	 
-   * Add a new ServiceControl instance: 
-   * Use `Particular.ServiceControl.ASB` as the instance name (make sure there is no other instance of SC running with the same name).
-   * Use connection string supplied with the `AzureServiceBus.ConnectionString.SC` environment variable.
-   
-NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default port number for API. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
- 
- 1. Ensure the `ServiceControl` process is running before running the sample.
- 1. [Install ServicePulse](/servicepulse/installation.md)
-
-include: adapter-running-project
-
-
-## Code walk-through 
-
 The following diagram shows the topology of the solution:
 
 ```mermaid
@@ -64,6 +39,36 @@ graph RL
   adapter==>sc
   sc .-> adapter
 ```
+
+Notice that `Sales` and `Shipping` are in two different namespaces. This is done by using [cross-namespace routing](/transports/azure-service-bus/multiple-namespaces-support.md#cross-namespace-routing). The other important thing to note is that ServiceControl is in a different namespace from the other endpoints, which means that it can't natively communicate with them, which is why this sample shows how to create an adapter to bridge between everything.
+
+The adapter also deals with other advanced features of the Azure Service Bus transport like [secure connection strings](/transports/azure-service-bus/securing-connection-strings.md) and [customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md).
+
+## Prerequisistes
+
+include: asb-connectionstring
+
+ 1. An environment variable named `AzureServiceBus.ConnectionString.1` with the connection string for the Azure Service Bus namespace to be used by Sales endpoint.
+ 1. An environment variable named `AzureServiceBus.ConnectionString.2` with the connection string for the Azure Service Bus namespace to be used by Shipping endpoint.
+ 1. An environment variable named `AzureServiceBus.ConnectionString.SC` with the connection string for the Azure Service Bus namespace to be used by ServiceControl and the adapter.
+ 1. [Install ServiceControl](/servicecontrol/installation.md).
+ 1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using Azure Service Bus transport:
+	 
+   * Add a new ServiceControl instance: 
+   * Use `Particular.ServiceControl.ASB` as the instance name (make sure there is no other instance of SC running with the same name).
+   * Use connection string supplied with the `AzureServiceBus.ConnectionString.SC` environment variable.
+   
+NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default port number for API. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
+ 
+ 1. Ensure the `ServiceControl` process is running before running the sample.
+ 1. [Install ServicePulse](/servicepulse/installation.md)
+
+include: adapter-running-project
+
+
+## Code walk-through 
+
+
 
 The code base consists of four projects.
 
