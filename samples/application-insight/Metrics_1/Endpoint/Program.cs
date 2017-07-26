@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights.Extensibility;
 using NServiceBus;
 
 class Program
@@ -16,12 +17,22 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        #region EnableMetricTracing
+        const string EnvInstrumentationKey = "ApplicationInsightKey";
+        var instrumentationKey = Environment.GetEnvironmentVariable(EnvInstrumentationKey);
+
+        if (string.IsNullOrEmpty(instrumentationKey))
+        {
+            Console.WriteLine($"Please set environment variable '{EnvInstrumentationKey}' to application insight instrumentation key.");
+            return;
+        }
+
+        TelemetryConfiguration.Active.InstrumentationKey = instrumentationKey;
+
+        var instance = @"{DateTime.UtcNow.Ticks}@{Dns.GetHostName()}";
+        var x = new ApplicationInsightProbeCollector(Console.Title, instance);
 
         var metricsOptions = endpointConfiguration.EnableMetrics();
-        metricsOptions.EnableMetricTracing(TimeSpan.FromSeconds(5));
-
-        #endregion
+        metricsOptions.RegisterObservers(x.Register);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
