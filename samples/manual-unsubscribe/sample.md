@@ -53,7 +53,7 @@ The message handler relies on the `ISubscriptionStorage` NServiceBus abstraction
 
 ## SubscriptionManager
 
-`SubscriptionManager` is a sample endpoint instance that can be used by operations personnel to send unsubscribe requests to publishers whenever a subscriber is decommissioned:
+`SubscriptionManager` is a sample endpoint instance that can be used by operations or DevOps personnel to send unsubscribe requests to publishers whenever a subscriber is decommissioned:
 
 snippet: SubscriptionManager-config
 
