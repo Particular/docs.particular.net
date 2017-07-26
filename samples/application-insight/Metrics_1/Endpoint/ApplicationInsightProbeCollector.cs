@@ -27,7 +27,7 @@ class ApplicationInsightProbeCollector
                 var s = Stopwatch.StartNew();
                 endpointTelemetry.TrackMetric(duration.Name, durationLength.TotalSeconds);
                 endpointTelemetry.Flush();
-                Log.InfoFormat("Metric '{0}'= {1:N} took {0:N0}ms to submit.", duration.Name, durationLength.TotalSeconds, s.ElapsedMilliseconds);
+                Log.InfoFormat("Metric '{0}'= {1:N} took {2:N0}ms to submit.", duration.Name, durationLength.TotalSeconds, s.ElapsedMilliseconds);
             });
         }
 
