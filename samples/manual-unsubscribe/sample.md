@@ -88,7 +88,7 @@ This specific sample is configured to use [MSMQ Subscription Persistence](/persi
 
 In such a configuration, when a subscriber endpoint is decommissioned it may happen that subscriptions remain stored at the publisher. Publishers have no way to detect that a subscriber is no longer available. They will continue to publish events even for subscribers that no longer exist. This behavior will eventually lead to storage and quota issues.
 
-To remove a subscription a message like the following one can be sent to the publisher:
+To remove a subscription a message can be sent to the publisher:
 
 snippet: unsubscribe-message
 
