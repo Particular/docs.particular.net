@@ -60,7 +60,7 @@ snippet: SubscriptionManager-config
 
 ## Messages
 
-Stores the messages and events used by this sample.
+The shared messages and events used by this sample.
 
 
 ## Running the sample
