@@ -27,6 +27,8 @@ class Program
             return;
         }
 
+        Console.WriteLine("Using application insight application key: {0}", instrumentationKey);
+
         TelemetryConfiguration.Active.InstrumentationKey = instrumentationKey;
 
         if (System.Diagnostics.Debugger.IsAttached)
