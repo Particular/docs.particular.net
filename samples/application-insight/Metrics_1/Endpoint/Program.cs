@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights.Extensibility;
 using NServiceBus;
@@ -42,18 +43,21 @@ class Program
         var metricsOptions = endpointConfiguration.EnableMetrics();
         metricsOptions.RegisterObservers(x.Register);
 
+        var tokenSource = new CancellationTokenSource();
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
+
+        var simulator = LoadSimilator(endpointInstance, tokenSource.Token);
 
         try
         {
             Console.WriteLine("Endpoint started. Press 'enter' to send a message");
-            Console.WriteLine("Press any other key to quit");
+            Console.WriteLine("Press ESC key to quit");
 
             while (true)
             {
                 var key = Console.ReadKey(true);
-                if (key.Key != ConsoleKey.Enter)
+                if (key.Key == ConsoleKey.Escape)
                 {
                     break;
                 }
@@ -64,9 +68,40 @@ class Program
         }
         finally
         {
+            tokenSource.Cancel();
+            await simulator
+                .ConfigureAwait(false);
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
             x.Flush();
+        }
+    }
+
+    /// <summary>
+    /// Simulates busy (almost no delay) / quite time (10 seconds delay) in a sine wave.
+    /// </summary>
+    /// <param name="endpointInstance"></param>
+    /// <returns></returns>
+    static async Task LoadSimilator(IEndpointInstance endpointInstance, CancellationToken token)
+    {
+        try
+        {
+            for (int angle = 0;; angle++)
+            {
+                await endpointInstance.SendLocal(new SomeCommand())
+                    .ConfigureAwait(false);
+
+                var angleInRadians = Math.PI * angle / 180.0;
+                // 0 - 10 seconds
+                int delay = (int) (5000 * Math.Sin(angleInRadians));
+                delay += 5000;
+                Console.WriteLine("Delay {0}ms for angle {1}", delay, angle);
+                await Task.Delay(delay, token)
+                    .ConfigureAwait(false);
+            }
+        }
+        catch (OperationCanceledException)
+        {
         }
     }
 }
