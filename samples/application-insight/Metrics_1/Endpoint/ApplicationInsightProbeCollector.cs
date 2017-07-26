@@ -13,8 +13,8 @@ class ApplicationInsightProbeCollector
         { "# of msgs successfully processed / sec", "Success"},
         { "# of msgs pulled from the input queue /sec", "Fetched" },
         { "# of msgs failures / sec", "Failure" },
-        { "Critical Time", "Critical Time" },
-        { "Processing Time", "Processing Time" },
+        { "Critical Time", "Critical Time (ms)" },
+        { "Processing Time", "Processing Time (ms)" },
     };
 
     public ApplicationInsightProbeCollector(string endpointName, string instanceIdentifier)
@@ -36,7 +36,7 @@ class ApplicationInsightProbeCollector
                 if (!ProbeNameToInsightNameMapping.TryGetValue(duration.Name, out name)) return;
 
                 var s = Stopwatch.StartNew();
-                endpointTelemetry.TrackMetric(name, durationLength.TotalSeconds);
+                endpointTelemetry.TrackMetric(name, durationLength.TotalMilliseconds);
                 Log.InfoFormat("Metric '{0}'= {1:N} took {2:N0}ms to submit.", name, durationLength.TotalSeconds, s.ElapsedMilliseconds);
             });
         }
