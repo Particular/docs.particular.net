@@ -95,7 +95,6 @@ class Program
                 // 0 - 10 seconds
                 int delay = (int) (5000 * Math.Sin(angleInRadians));
                 delay += 5000;
-                Console.WriteLine("Delay {0}ms for angle {1}", delay, angle);
                 await Task.Delay(delay, token)
                     .ConfigureAwait(false);
             }
