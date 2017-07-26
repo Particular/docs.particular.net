@@ -12,7 +12,7 @@ The configuration of a Monitoring instance can be adjusted via ServiceControl Ma
 
 ## Host Settings
 
-Please review [Setting a Custom Hostname](setting-custom-hostname.md) prior to modifying configuration settings:
+Prior to modifying these configuration settings review [Setting a Custom Hostname](setting-custom-hostname.md):
 
 
 ### Monitoring/HttpHostname
