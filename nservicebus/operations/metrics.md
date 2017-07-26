@@ -28,13 +28,6 @@ NServiceBus and ServiceControl capture a number of different metrics about a run
 
 Processing time is the time it takes for an endpoint to process a single message.
 
-### Critical time
-
-Critical time is the time between when a message is sent and when it is fully processed. It is a combination of:
-- Network send time: The time a message spends on the network before arriving in the destination queue
-- Queue wait time: The time a message spends in the destination queue before being picked up and processed
-- Processing time: The time it takes for the destination endpoint to process the message
-
 ### Messages received performance statistics
 
 These statistics encompass a number of different metrics, including:
@@ -42,6 +35,13 @@ These statistics encompass a number of different metrics, including:
 - Number of messages pulled from queue
 - Number of message processing failures
 - Number of messages successfully processed
+
+### Critical time
+
+Critical time is the time between when a message is sent and when it is fully processed. It is a combination of:
+- Network send time: The time a message spends on the network before arriving in the destination queue
+- Queue wait time: The time a message spends in the destination queue before being picked up and processed
+- Processing time: The time it takes for the destination endpoint to process the message
 
 ### Queue length
 
