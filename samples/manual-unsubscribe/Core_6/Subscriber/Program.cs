@@ -11,11 +11,11 @@ class Program
 
     static async Task MainAsync()
     {
-        var endpointConfiguration = new EndpointConfiguration("Subscriber");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ManualUnsubscribe.Subscriber");
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         var routing = transport.Routing();
-        routing.RegisterPublisher(typeof(Messages.SomethingHappened), "Publisher");
+        routing.RegisterPublisher(typeof(SomethingHappened), "Samples.ManualUnsubscribe.Publisher");
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
