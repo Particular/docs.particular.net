@@ -127,6 +127,8 @@ snippet: UnsubscribeFromEndpoint
 
 snippet: SubscriptionManager-config
 
+NOTE: This sample uses a stand along [send-only endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting) to send the unsubscribe message. However that message could also be sent from any endpoint, process, or script that has the knowledge of the endpoint and message to unsubscribe from.
+
 
 ### Messages
 
