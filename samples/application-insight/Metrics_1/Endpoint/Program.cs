@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights.Extensibility;
 using NServiceBus;
@@ -28,7 +29,12 @@ class Program
 
         TelemetryConfiguration.Active.InstrumentationKey = instrumentationKey;
 
-        var instance = @"{DateTime.UtcNow.Ticks}@{Dns.GetHostName()}";
+        if (System.Diagnostics.Debugger.IsAttached)
+        {
+            TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = true;
+        }
+
+        var instance = $"{DateTime.UtcNow.Ticks}@{Dns.GetHostName()}";
         var x = new ApplicationInsightProbeCollector(Console.Title, instance);
 
         var metricsOptions = endpointConfiguration.EnableMetrics();
