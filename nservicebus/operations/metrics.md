@@ -9,10 +9,10 @@ related:
  - samples/metrics
 ---
 
-`NServiceBus.Metrics` collects information to measure endpoint health and performance. When a system is broken down into multiple processes, each with its own queue, then bottlenecks may be identified by tracking:
- - the length of each queue
- - incoming rate of messages for each queue
- - processing rate for each queue.
+The `NServiceBus.Metrics` package can be used to collect information and measure endpoint health and performance. When a system is broken down into multiple processes, each with its own queue, then bottlenecks may be identified by tracking:
+ - the number of messages in each queue
+ - the incoming rate of messages for each queue
+ - the processing rate for each queue.
 
 ## Enabling NServiceBus.Metrics
 
@@ -22,7 +22,7 @@ partial: reporting
 
 ## Metrics captured
 
-NServiceBus and ServiceControl capture a number of different metrics about a running endpoint.
+NServiceBus and ServiceControl capture a number of different metrics about a running endpoint including the processing time, "critical time", and number of messages in each queue.
 
 ### Processing time
 
