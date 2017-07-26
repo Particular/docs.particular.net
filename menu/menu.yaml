@@ -897,6 +897,8 @@
 
 - Name: ServiceControl
   Topics:
+  - Title: Licensing
+    Url: servicecontrol/license
   - Title: Powershell
     Url: servicecontrol/powershell
   - Title: ServiceControl instances
@@ -920,8 +922,6 @@
         Url: servicecontrol/installation-powershell
       - Title: Cluster Deployment
         Url: servicecontrol/deploying-servicecontrol-in-a-cluster
-      - Title: Licensing
-        Url: servicecontrol/license
       - Title: Settings
         Url: servicecontrol/creating-config-file
       - Title: Overriding the host identifier
