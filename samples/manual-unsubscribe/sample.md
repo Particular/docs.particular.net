@@ -8,16 +8,17 @@ related:
 - transports/msmq
 - transports/sql
 - transports/azure-storage-queues
+- transports/sqs
 ---
 
 This sample shows how to manually remove subscriptions when subscribers are decommissioned. The solution comprises of 4 projects.
 
-NOTE: This sample uses the [MSMQ transport](/transports/msmq). Concepts shown are valid for all transports based on message driven subscriptions and that don't support native pub/sub. For more information see [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/)
+NOTE: While this sample uses the [MSMQ transport](/transports/msmq), the concepts shown are valid for all transports based on message driven subscriptions and that don't support native pub/sub. For more information see [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/)
 
 
 ## Subscriber
 
-A sample endpoint subscribed to an event that will be published by `Publisher`
+A sample endpoint subscribed to an event that will be published by `Publisher`:
 
 snippet: event-handler
 
@@ -29,7 +30,7 @@ snippet: event-handler
 
 snippet: publisher-config
 
-This specific sample is configured to use MSMQ to store subscriptions.
+This specific sample is configured to use [MSMQ Subscription Persistence](/persistence/msmq/subscription.md).
 
 
 ### Subscriber decommissioning

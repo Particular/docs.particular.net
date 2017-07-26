@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{363EF626-8FF2-4762-AD14-1F22A75A4AC0}</ProjectGuid>
+    <ProjectGuid>{65DA7417-903D-4E7B-B47A-3489DE533DC1}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Publisher</RootNamespace>
-    <AssemblyName>Publisher</AssemblyName>
+    <RootNamespace>Subscriber</RootNamespace>
+    <AssemblyName>Subscriber</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -25,19 +25,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ManualUnsubscribeHandler.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="SomethingHappenedHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj">
-      <Project>{5BD8646B-C93F-4E6A-B294-67A32346BE5D}</Project>
+      <Project>{5bd8646b-c93f-4e6a-b294-67a32346be5d}</Project>
       <Name>Messages</Name>
     </ProjectReference>
   </ItemGroup>
