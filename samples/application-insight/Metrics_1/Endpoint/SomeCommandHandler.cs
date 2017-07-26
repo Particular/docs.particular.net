@@ -11,7 +11,7 @@ class SomeCommandHandler :
 
     public async Task Handle(SomeCommand message, IMessageHandlerContext context)
     {
-        await Task.Delay(r.Next(200, 2000))
+        await Task.Delay(r.Next(50, 250))
             .ConfigureAwait(false);
 
         if (r.Next(10) <= 1) throw new Exception("Random 10% chaos!");
