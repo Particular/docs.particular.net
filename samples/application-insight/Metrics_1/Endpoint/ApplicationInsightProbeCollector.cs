@@ -35,10 +35,7 @@ class ApplicationInsightProbeCollector
             {
                 string name;
                 if (!ProbeNameToInsightNameMapping.TryGetValue(duration.Name, out name)) return;
-
-                var s = Stopwatch.StartNew();
                 endpointTelemetry.TrackMetric(name, durationLength.TotalMilliseconds);
-                Log.InfoFormat("Metric '{0}'= {1:N} took {2:N0}ms to submit.", name, durationLength.TotalSeconds, s.ElapsedMilliseconds);
             });
         }
 
@@ -48,10 +45,7 @@ class ApplicationInsightProbeCollector
             {
                 string name;
                 if (!ProbeNameToInsightNameMapping.TryGetValue(signal.Name, out name)) return;
-                // Failed, Succesful, fetched increment count
-                var s = Stopwatch.StartNew();
                 endpointTelemetry.TrackEvent(name);
-                Log.InfoFormat("Event '{0}' took {1:N0}ms to submit.", name, s.ElapsedMilliseconds);
             });
         }
     }
