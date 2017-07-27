@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Net;
 using Microsoft.ApplicationInsights;
 using NServiceBus;
 using NServiceBus.Logging;
@@ -23,6 +25,9 @@ class ApplicationInsightProbeCollector
         var properties = endpointTelemetry.Context.Properties;
         properties.Add("Endpoint", endpointName);
         properties.Add("EndpointInstance", instanceIdentifier);
+        properties.Add("MachineName", Environment.MachineName);
+        properties.Add("HostName", Dns.GetHostName());
+
     }
 
     public void Register(ProbeContext context)
