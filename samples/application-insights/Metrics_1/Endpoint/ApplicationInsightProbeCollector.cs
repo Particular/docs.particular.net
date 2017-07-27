@@ -35,30 +35,28 @@ class ApplicationInsightProbeCollector
         log.InfoFormat("Registering to probe context");
         foreach (var duration in context.Durations)
         {
-            duration.Register(
-                observer: durationLength =>
-                {
-                    string name;
-                    if (!probeNameToInsightNameMapping.TryGetValue(duration.Name, out name))
+            string name;
+            if (probeNameToInsightNameMapping.TryGetValue(duration.Name, out name))
+            {
+                duration.Register(
+                    observer: durationLength =>
                     {
-                        return;
-                    }
-                    endpointTelemetry.TrackMetric(name, durationLength.TotalMilliseconds);
-                });
+                        endpointTelemetry.TrackMetric(name, durationLength.TotalMilliseconds);
+                    });
+            }
         }
 
         foreach (var signal in context.Signals)
         {
-            signal.Register(
-                observer: () =>
-                {
-                    string name;
-                    if (!probeNameToInsightNameMapping.TryGetValue(signal.Name, out name))
+            string name;
+            if (probeNameToInsightNameMapping.TryGetValue(signal.Name, out name))
+            {
+                signal.Register(
+                    observer: () =>
                     {
-                        return;
-                    }
-                    endpointTelemetry.TrackEvent(name);
-                });
+                        endpointTelemetry.TrackEvent(name);
+                    });
+            }
         }
     }
 
