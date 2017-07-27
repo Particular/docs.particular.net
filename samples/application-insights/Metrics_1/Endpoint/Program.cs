@@ -46,7 +46,9 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        var simulator = LoadSimulator(endpointInstance, tokenSource.Token);
+        var simulator = new LoadSimulator(endpointInstance, TimeSpan.Zero, TimeSpan.FromSeconds(10));
+        await simulator.Start()
+            .ConfigureAwait(false);
 
         try
         {
@@ -67,35 +69,11 @@ class Program
         }
         finally
         {
-            tokenSource.Cancel();
-            await simulator
+            await simulator.Stop()
                 .ConfigureAwait(false);
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
             probeCollector.Flush();
-        }
-    }
-
-    // Simulates busy (almost no delay) / quite time (10 seconds delay) in a sine wave.
-    static async Task LoadSimulator(IEndpointInstance endpointInstance, CancellationToken token)
-    {
-        try
-        {
-            for (var angle = 0;; angle++)
-            {
-                await endpointInstance.SendLocal(new SomeCommand())
-                    .ConfigureAwait(false);
-
-                var angleInRadians = Math.PI * angle / 180.0;
-                // 0 - 10 seconds
-                var delay = (int) (5000 * Math.Sin(angleInRadians));
-                delay += 5000;
-                await Task.Delay(delay, token)
-                    .ConfigureAwait(false);
-            }
-        }
-        catch (OperationCanceledException)
-        {
         }
     }
 }
