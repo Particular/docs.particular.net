@@ -6,7 +6,7 @@ component: Metrics
 related:
  - nservicebus/operations
 related:
- - samples/metrics
+ - samples/logging/metrics
 ---
 
 The `NServiceBus.Metrics` package can be used to collect information and measure endpoint health and performance. When a system is broken down into multiple processes, each with its own queue, then bottlenecks may be identified by tracking:
