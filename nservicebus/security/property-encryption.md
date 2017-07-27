@@ -40,7 +40,7 @@ snippet: DefiningEncryptedPropertiesAs
 
 ### Property type
 
-Use the `WireEncryptedString` type to flag that a property should be encrypted.
+Use the `EncryptedString` type to flag that a property should be encrypted.
 
 snippet: MessageWithEncryptedProperty
 
