@@ -37,6 +37,8 @@ class Program
         var instance = $"{DateTime.UtcNow.Ticks}@{Dns.GetHostName()}";
         var probeCollector = new ApplicationInsightProbeCollector(Console.Title, instance);
 
+        // TODO: See https://github.com/Particular/NServiceBus.Metrics/issues/41
+
         var metricsOptions = endpointConfiguration.EnableMetrics();
         metricsOptions.RegisterObservers(probeCollector.Register);
 
