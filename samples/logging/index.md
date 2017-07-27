@@ -1,6 +1,7 @@
 ---
-title: Logging Samples
-reviewed: 2016-09-06
+title: Logging and Metrics Samples
+reviewed: 2017-07-27
 related: 
  - nservicebus/logging
+ - nservicebus/operations/metrics
 ---
