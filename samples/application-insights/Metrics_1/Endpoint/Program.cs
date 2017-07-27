@@ -44,7 +44,7 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        var simulator = LoadSimilator(endpointInstance, tokenSource.Token);
+        var simulator = LoadSimulator(endpointInstance, tokenSource.Token);
 
         try
         {
@@ -75,7 +75,7 @@ class Program
     }
 
     // Simulates busy (almost no delay) / quite time (10 seconds delay) in a sine wave.
-    static async Task LoadSimilator(IEndpointInstance endpointInstance, CancellationToken token)
+    static async Task LoadSimulator(IEndpointInstance endpointInstance, CancellationToken token)
     {
         try
         {
