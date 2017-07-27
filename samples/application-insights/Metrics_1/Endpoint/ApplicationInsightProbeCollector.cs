@@ -2,15 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.DataContracts;
 using NServiceBus;
-using NServiceBus.Logging;
 
 class ApplicationInsightProbeCollector
 {
-    static ILog log = LogManager.GetLogger<ApplicationInsightProbeCollector>();
     TelemetryClient endpointTelemetry;
 
-    Dictionary<string, string> probeNameToInsightNameMapping = new Dictionary<string, string>
+    Dictionary<string, string> probeNameToAiNameMap = new Dictionary<string, string>
     {
         {"# of msgs successfully processed / sec", "Success"},
         {"# of msgs pulled from the input queue /sec", "Fetched"},
@@ -21,6 +20,8 @@ class ApplicationInsightProbeCollector
 
     public ApplicationInsightProbeCollector(string endpointName, string discriminator, string instanceIdentifier, string queue)
     {
+        #region telemtry-client
+
         endpointTelemetry = new TelemetryClient();
         var properties = endpointTelemetry.Context.Properties;
         properties.Add("Endpoint", endpointName);
@@ -29,36 +30,36 @@ class ApplicationInsightProbeCollector
         properties.Add("HostName", Dns.GetHostName());
         properties.Add("EndpointDiscriminator", discriminator);
         properties.Add("EndpointQueue", queue);
+
+        #endregion
     }
 
     public void Register(ProbeContext context)
     {
-        log.InfoFormat("Registering to probe context");
+        #region observers-registration
+
         foreach (var duration in context.Durations)
         {
             string name;
-            if (probeNameToInsightNameMapping.TryGetValue(duration.Name, out name))
+            if (probeNameToAiNameMap.TryGetValue(duration.Name, out name))
             {
                 duration.Register(
-                    observer: durationLength =>
-                    {
-                        endpointTelemetry.TrackMetric(name, durationLength.TotalMilliseconds);
-                    });
+                    observer: durationLength => endpointTelemetry.TrackMetric(
+                        new MetricTelemetry(name, durationLength.TotalMilliseconds)));
             }
         }
 
         foreach (var signal in context.Signals)
         {
             string name;
-            if (probeNameToInsightNameMapping.TryGetValue(signal.Name, out name))
+            if (probeNameToAiNameMap.TryGetValue(signal.Name, out name))
             {
                 signal.Register(
-                    observer: () =>
-                    {
-                        endpointTelemetry.TrackEvent(name);
-                    });
+                    observer: () => endpointTelemetry.TrackEvent(new EventTelemetry(name)));
             }
         }
+
+        #endregion
     }
 
     public void Flush()

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights.Extensibility;
 using NServiceBus;
@@ -30,19 +27,24 @@ class Program
 
         Console.WriteLine("Using application insight application key: {0}", instrumentationKey);
 
+        #region configure-ai-instrumentation-key
+
         TelemetryConfiguration.Active.InstrumentationKey = instrumentationKey;
 
-        TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = Debugger.IsAttached;
-
+        #endregion
+       
         // TODO: See https://github.com/Particular/NServiceBus.Metrics/issues/41
 
-        var tokenSource = new CancellationTokenSource();
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
+
+        #region load-simulator
 
         var simulator = new LoadSimulator(endpointInstance, TimeSpan.Zero, TimeSpan.FromSeconds(10));
         await simulator.Start()
             .ConfigureAwait(false);
+
+        #endregion
 
         try
         {

@@ -7,9 +7,13 @@ class ApplicationInsightsFeature : Feature
 {
     public ApplicationInsightsFeature()
     {
-        Defaults(s =>
+        Defaults(settings =>
         {
-            options = s.EnableMetrics();
+            #region enable-nsb-metrics
+
+            options = settings.EnableMetrics();
+
+            #endregion
         });
         EnableByDefault();
     }
@@ -18,11 +22,10 @@ class ApplicationInsightsFeature : Feature
     {
         var settings = context.Settings;
 
-        var endpoint = settings.LogicalAddress().EndpointInstance.Endpoint;
         var discriminator = settings.LogicalAddress().EndpointInstance.Discriminator;
         var instance = Guid.NewGuid().ToString("N");
 
-        endpoint = settings.EndpointName();
+        var endpoint = settings.EndpointName();
         var queue = settings.LocalAddress();
 
         var collector = new ApplicationInsightProbeCollector(
