@@ -83,7 +83,6 @@ public class CommandSender
         var myCommand = new MyCommand
         {
             CommandId = commandId,
-            EncryptedString = "Some sensitive information"
         };
         bus.Send("Samples.Unobtrusive.Server", myCommand);
 
