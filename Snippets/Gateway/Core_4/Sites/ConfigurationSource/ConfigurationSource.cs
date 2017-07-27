@@ -2,10 +2,11 @@
 using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
-#region GatewaySitesConfigurationSource
 
 namespace Core4.Sites.ConfigurationSource
 {
+    #region GatewaySitesConfigurationSource
+
     public class ConfigurationSource :
         IConfigurationSource
     {
@@ -39,6 +40,6 @@ namespace Core4.Sites.ConfigurationSource
             return ConfigurationManager.GetSection(typeof(T).Name) as T;
         }
     }
-}
 
-#endregion
+    #endregion
+}
