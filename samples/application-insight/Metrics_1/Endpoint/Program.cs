@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,29 +20,25 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        const string EnvInstrumentationKey = "ApplicationInsightKey";
-        var instrumentationKey = Environment.GetEnvironmentVariable(EnvInstrumentationKey);
+        var envInstrumentationKey = "ApplicationInsightKey";
+        var instrumentationKey = Environment.GetEnvironmentVariable(envInstrumentationKey);
 
         if (string.IsNullOrEmpty(instrumentationKey))
         {
-            Console.WriteLine($"Please set environment variable '{EnvInstrumentationKey}' to application insight instrumentation key.");
-            return;
+            throw new Exception($"Environment variable '{envInstrumentationKey}' required.");
         }
 
         Console.WriteLine("Using application insight application key: {0}", instrumentationKey);
 
         TelemetryConfiguration.Active.InstrumentationKey = instrumentationKey;
 
-        if (System.Diagnostics.Debugger.IsAttached)
-        {
-            TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = true;
-        }
+        TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = Debugger.IsAttached;
 
         var instance = $"{DateTime.UtcNow.Ticks}@{Dns.GetHostName()}";
-        var x = new ApplicationInsightProbeCollector(Console.Title, instance);
+        var probeCollector = new ApplicationInsightProbeCollector(Console.Title, instance);
 
         var metricsOptions = endpointConfiguration.EnableMetrics();
-        metricsOptions.RegisterObservers(x.Register);
+        metricsOptions.RegisterObservers(probeCollector.Register);
 
         var tokenSource = new CancellationTokenSource();
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -73,27 +70,23 @@ class Program
                 .ConfigureAwait(false);
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
-            x.Flush();
+            probeCollector.Flush();
         }
     }
 
-    /// <summary>
-    /// Simulates busy (almost no delay) / quite time (10 seconds delay) in a sine wave.
-    /// </summary>
-    /// <param name="endpointInstance"></param>
-    /// <returns></returns>
+    // Simulates busy (almost no delay) / quite time (10 seconds delay) in a sine wave.
     static async Task LoadSimilator(IEndpointInstance endpointInstance, CancellationToken token)
     {
         try
         {
-            for (int angle = 0;; angle++)
+            for (var angle = 0;; angle++)
             {
                 await endpointInstance.SendLocal(new SomeCommand())
                     .ConfigureAwait(false);
 
                 var angleInRadians = Math.PI * angle / 180.0;
                 // 0 - 10 seconds
-                int delay = (int) (5000 * Math.Sin(angleInRadians));
+                var delay = (int) (5000 * Math.Sin(angleInRadians));
                 delay += 5000;
                 await Task.Delay(delay, token)
                     .ConfigureAwait(false);

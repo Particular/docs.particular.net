@@ -1,19 +1,19 @@
 ---
-title:Report metrics to Azure Application Insight
+title: Report metrics to Azure Application Insight
 component: Metrics
 ---
 
-Azure Appliccation Insights provides alot of monitoring and alerting capabilities to use to monitoring the health of your NServiceBus endpoints. The sampe demonstrates how you are able to report metric data to Azure Application Insight so that you are able to.
+[Azure Application Insights](https://azure.microsoft.com/en-us/services/application-insights/) provides monitoring and alerting capabilities that can be leveraged to monitoring the health of NServiceBus endpoints. This sample demonstrates the ability to report metric data to Azure Application Insight.
 
 This sample will report the following metrics to Azure Application Insight:
 
-- Fetched messages per second
-- Failed messages per second
-- Succesful messages per second
-- Average message processing time
-- Averare critical time
+ * Fetched messages per second
+ * Failed messages per second
+ * Successful messages per second
+ * Average message processing time
+ * Average critical time
 
-For a detailed explanation of these metrics please read [Metrics - Metrics captured](/nservicebus/operations/metrics#metrics-captured).
+For a detailed explanation of these metrics see [Metrics - Metrics captured](/nservicebus/operations/metrics.md#metrics-captured).
 
 
 ## Setup Azure Application Insight
@@ -23,8 +23,5 @@ For a detailed explanation of these metrics please read [Metrics - Metrics captu
 
 
 ## Send captured metric data to Application Insight
-
-
-
 
 

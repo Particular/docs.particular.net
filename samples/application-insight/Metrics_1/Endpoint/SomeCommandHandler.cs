@@ -7,14 +7,17 @@ class SomeCommandHandler :
     IHandleMessages<SomeCommand>
 {
     static ILog log = LogManager.GetLogger<SomeCommandHandler>();
-    static readonly Random r = new Random();
+    static Random random = new Random();
 
     public async Task Handle(SomeCommand message, IMessageHandlerContext context)
     {
-        await Task.Delay(r.Next(50, 250))
+        await Task.Delay(random.Next(50, 250))
             .ConfigureAwait(false);
 
-        if (r.Next(10) <= 1) throw new Exception("Random 10% chaos!");
+        if (random.Next(10) <= 1)
+        {
+            throw new Exception("Random 10% chaos!");
+        }
 
         log.Info("Hello from SomeCommandHandler");
     }
