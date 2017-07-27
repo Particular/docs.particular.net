@@ -25,3 +25,6 @@ For a detailed explanation of these metrics see [Metrics - Metrics captured](/ns
 ## Send captured metric data to Application Insights
 
 
+## Setting up charts for metrics and events (signals and durations)
+
+
