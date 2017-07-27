@@ -34,13 +34,7 @@ class Program
 
         TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = Debugger.IsAttached;
 
-        var instance = $"{DateTime.UtcNow.Ticks}@{Dns.GetHostName()}";
-        var probeCollector = new ApplicationInsightProbeCollector(Console.Title, instance);
-
         // TODO: See https://github.com/Particular/NServiceBus.Metrics/issues/41
-
-        var metricsOptions = endpointConfiguration.EnableMetrics();
-        metricsOptions.RegisterObservers(probeCollector.Register);
 
         var tokenSource = new CancellationTokenSource();
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -73,7 +67,6 @@ class Program
                 .ConfigureAwait(false);
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
-            probeCollector.Flush();
         }
     }
 }

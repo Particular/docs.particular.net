@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationInsightProbeCollector.cs" />
+    <Compile Include="ApplicationInsightsFeature.cs" />
     <Compile Include="LoadSimulator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="SomeCommand.cs" />

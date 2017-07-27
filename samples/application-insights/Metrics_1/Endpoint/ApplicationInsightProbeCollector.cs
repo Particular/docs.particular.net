@@ -19,7 +19,7 @@ class ApplicationInsightProbeCollector
         {"Processing Time", "Processing Time (ms)"},
     };
 
-    public ApplicationInsightProbeCollector(string endpointName, string instanceIdentifier)
+    public ApplicationInsightProbeCollector(string endpointName, string discriminator, string instanceIdentifier, string queue)
     {
         endpointTelemetry = new TelemetryClient();
         var properties = endpointTelemetry.Context.Properties;
@@ -27,7 +27,8 @@ class ApplicationInsightProbeCollector
         properties.Add("EndpointInstance", instanceIdentifier);
         properties.Add("MachineName", Environment.MachineName);
         properties.Add("HostName", Dns.GetHostName());
-
+        properties.Add("EndpointDiscriminator", discriminator);
+        properties.Add("EndpointQueue", queue);
     }
 
     public void Register(ProbeContext context)
