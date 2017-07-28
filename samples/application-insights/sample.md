@@ -20,7 +20,7 @@ For a detailed explanation of these metrics refer to the [metrics captured secti
 
 To run this sample, an Application Insights account and instrumentation key are required.
 
-Note: for simplicity, the sample uses the Learning transport. 
+Note: Although the sample uses Azure Application Insights, the solution itself does not have to run on an Azure message transport. This example uses the [Learning Transport](/transports/learning/) but could be modified to run on any [transport](/transports/).
 
 
 ## Code overview
