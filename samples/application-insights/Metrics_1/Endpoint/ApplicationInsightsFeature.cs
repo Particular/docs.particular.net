@@ -11,7 +11,7 @@ class ApplicationInsightsFeature : Feature
         {
             #region enable-nsb-metrics
 
-            options = settings.EnableMetrics();
+            metricsOptions = settings.EnableMetrics();
 
             #endregion
         });
@@ -35,7 +35,7 @@ class ApplicationInsightsFeature : Feature
             queue
         );
 
-        options.RegisterObservers(collector.Register);
+        metricsOptions.RegisterObservers(collector.Register);
         context.RegisterStartupTask(new FlushAtStop(collector));
 
     }
@@ -61,5 +61,5 @@ class ApplicationInsightsFeature : Feature
         readonly ApplicationInsightProbeCollector collector;
     }
 
-    MetricsOptions options;
+    MetricsOptions metricsOptions;
 }
