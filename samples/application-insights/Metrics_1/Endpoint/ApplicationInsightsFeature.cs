@@ -40,28 +40,7 @@ class ApplicationInsightsFeature : Feature
         metricsOptions.RegisterObservers(collector.RegisterProbes);
         #endregion
 
-        SetupServiceLevelAgreementViolationCountdownMetric(context);
         context.RegisterStartupTask(new CleanupAtStop(this));
-    }
-
-    void SetupServiceLevelAgreementViolationCountdownMetric(FeatureConfigurationContext context)
-    {
-        var settings = context.Settings;
-        TimeSpan endpointSla;
-
-        if (!settings.TryGet(ApplicationInsightsSettings.EndpointSLAKey, out endpointSla))
-            return;
-
-        var ceiling = settings.Get<TimeSpan>(ApplicationInsightsSettings.EndpointSLACeilingKey);
-        var counterInstanceName = settings.EndpointName();
-
-        slaBreachCounter = new EstimatedTimeToSLABreachCounter(endpointSla, ceiling, collector.RegisterServiceLevelAgreementViolation);
-
-        context.Pipeline.OnReceivePipelineCompleted(pipelineCompleted =>
-        {
-            slaBreachCounter.Update(pipelineCompleted);
-            return Task.CompletedTask;
-        });
     }
 
     #region flush-probe
@@ -80,7 +59,6 @@ class ApplicationInsightsFeature : Feature
 
         protected override Task OnStop(IMessageSession session)
         {
-            instance.slaBreachCounter?.Dispose();
             instance.collector.Flush();
             return Task.CompletedTask;
         }
@@ -92,5 +70,4 @@ class ApplicationInsightsFeature : Feature
 
     MetricsOptions metricsOptions;
     ApplicationInsightsProbeCollector collector;
-    EstimatedTimeToSLABreachCounter slaBreachCounter;
 }

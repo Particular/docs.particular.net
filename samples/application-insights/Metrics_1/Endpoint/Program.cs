@@ -25,13 +25,6 @@ class Program
             throw new Exception($"Environment variable '{envInstrumentationKey}' required.");
         }
 
-        endpointConfiguration
-            .EnableApplicationInsights()
-            .EnableServiceLevelAgreementViolationCountdownMetric(
-                sla: TimeSpan.FromMinutes(2),
-                ceiling: TimeSpan.FromDays(1)
-                );
-
         Console.WriteLine("Using application insight application key: {0}", instrumentationKey);
 
         #region configure-ai-instrumentation-key

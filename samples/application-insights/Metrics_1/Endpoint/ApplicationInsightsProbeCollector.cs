@@ -62,11 +62,6 @@ class ApplicationInsightsProbeCollector
         #endregion
     }
 
-    public void RegisterServiceLevelAgreementViolation(TimeSpan value)
-    {
-        endpointTelemetry.TrackMetric(new MetricTelemetry("SLA violation countdown (h)", value.TotalHours));
-    }
-
     public void Flush()
     {
         endpointTelemetry.Flush();
