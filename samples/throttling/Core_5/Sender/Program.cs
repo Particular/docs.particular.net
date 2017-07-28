@@ -19,7 +19,7 @@ class Program
                 var searchGitHub = new SearchGitHub
                 {
                     Repository = "NServiceBus",
-                    RepositoryOwner = "Particular",
+                    Owner = "Particular",
                     SearchFor = "IBus"
                 };
                 bus.Send("Samples.Throttling.Limited",searchGitHub);

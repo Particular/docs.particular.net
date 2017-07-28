@@ -6,7 +6,7 @@ class ThrottlingRegistration :
     RegisterStep
 {
     public ThrottlingRegistration()
-        : base("GitHubApiThrottling", typeof(ThrottlingBehavior), "Implements API throttling for GitHub APIs")
+        : base("GitHubApiThrottling", typeof(ThrottlingBehavior), "API throttling for GitHub")
     {
         // base.InsertBefore();
     }

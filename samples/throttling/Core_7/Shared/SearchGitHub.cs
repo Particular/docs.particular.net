@@ -5,5 +5,5 @@ public class SearchGitHub :
 {
     public string SearchFor { get; set; }
     public string Repository { get; set; }
-    public string RepositoryOwner { get; set; }
+    public string Owner { get; set; }
 }

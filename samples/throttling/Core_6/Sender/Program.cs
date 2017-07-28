@@ -26,7 +26,7 @@ class Program
             var searchGitHub = new SearchGitHub
             {
                 Repository = "NServiceBus",
-                RepositoryOwner = "Particular",
+                Owner = "Particular",
                 SearchFor = "IBus"
             };
             await endpointInstance.Send("Samples.Throttling.Limited", searchGitHub)
