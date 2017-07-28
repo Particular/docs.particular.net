@@ -28,7 +28,7 @@ class ApplicationInsightsFeature : Feature
         var endpoint = settings.EndpointName();
         var queue = settings.LocalAddress();
 
-        var collector = new ApplicationInsightProbeCollector(
+        var collector = new ApplicationInsightsProbeCollector(
             endpoint,
             discriminator,
             instance,
@@ -42,7 +42,7 @@ class ApplicationInsightsFeature : Feature
 
     class FlushAtStop : FeatureStartupTask
     {
-        public FlushAtStop(ApplicationInsightProbeCollector collector)
+        public FlushAtStop(ApplicationInsightsProbeCollector collector)
         {
             this.collector = collector;
         }
@@ -58,7 +58,7 @@ class ApplicationInsightsFeature : Feature
             return Task.CompletedTask;
         }
 
-        readonly ApplicationInsightProbeCollector collector;
+        readonly ApplicationInsightsProbeCollector collector;
     }
 
     MetricsOptions metricsOptions;
