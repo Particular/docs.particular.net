@@ -28,13 +28,17 @@ NServiceBus and ServiceControl capture a number of different metrics about a run
 
 Processing time is the time it takes for an endpoint to process a single message.
 
-### Messages received performance statistics
+### Number of messages pulled from queue
 
-These statistics encompass a number of different metrics, including:
+This metric measures the number of messages that the endpoint reads from it's input queue regardless of whether message processing succeeds or fails. 
 
-- Number of messages pulled from queue
-- Number of message processing failures
-- Number of messages successfully processed
+### Number of messages successfully processed
+
+This metric measures the number of messages that the endpoint successfully processes. In order for a message to be counted by this metric, all handlers must have executed without throwing an exception.
+
+### Number of message processing failures
+
+This metric measures the number of messages that the endpoint has failed to process. In order for a message to be counted by this metric, at least one handler must have thrown an exception.
 
 ### Critical time
 
