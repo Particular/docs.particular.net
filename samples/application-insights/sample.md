@@ -47,7 +47,7 @@ It ensures that the telemetry probe is subscribed to the event stream. During th
 
 snippet: register-probe
 
-Events and metrics are buffered and the Application Insights telemetry client does this every minute. If the process would gracefully stop we need to ensure that any pending events are flushed to Application Insights when the endpoint is stopped.
+Events and metrics are buffered and the Application Insights telemetry client does this every minute. If the endpoint instance would gracefully stop it needs to ensure that any pending events are flushed to Application Insight.
 
 snippet: flush-probe
 
