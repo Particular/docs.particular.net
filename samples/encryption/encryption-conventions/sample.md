@@ -1,12 +1,11 @@
 ---
-title: Message Property Encryption
-summary: Encrypting specific parts of a message using the message property encryption feature.
-reviewed: 2017-02-08
+title: Unobtrusive Property Encryption
+summary: Encrypting specific parts of a message using conventions.
+reviewed: 2017-07-28
 component: PropertyEncryption
 tags:
 - Encryption
-redirects:
-- nservicebus/encryption-sample
+- Unobtrusive
 ---
 
 
@@ -45,6 +44,7 @@ Starting with the Shared project, open the `MessageWithSecretData.cs` file and l
 
 snippet: Message
 
+Note the properties that have names prefixed with with the word "Encrypted".
 
 ### How is encryption configured.
 
@@ -54,7 +54,7 @@ snippet: enableEncryption
 
 This code indicates that encryption should be enabled.
 
-The key is then configured using
+The key is then configured in the `EncryptionExtensions.cs` file using
 
 snippet: ConfigureEncryption
 
@@ -63,16 +63,4 @@ snippet: ConfigureEncryption
 
 Now run `Endpoint1` on its own (i.e. don't start `Endpoint2`).
 
-Go to the server queue (called `EncryptionSampleEndpoint1`) and [view the message content](/transports/msmq/viewing-message-content-in-msmq.md).
-
-The message will look like this:
-
-```json
-"MessageWithSecretData": {
-  "Secret": {
-    "EncryptedValue": {
-      "EncryptedBase64Value": "+eeBont5Lzlre4cxDi8QT/M6EbAGxTerniqywbpLBVA=",
-      "Base64Iv": "u8n8ds0Ssf/AdJCxpOG7AQ=="
-  }
-}
-```
+partial: message
