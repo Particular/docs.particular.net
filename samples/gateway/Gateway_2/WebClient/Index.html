@@ -23,7 +23,7 @@
                     "NServiceBus.AutoAck": "true",
                     "Content-MD5": md5,
                     "NServiceBus.Id": clientId,
-                    "NServiceBus.EnclosedMessageTypes": "Shared.UpdatePrice, Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+                    "NServiceBus.EnclosedMessageTypes": "Shared.UpdatePrice, Shared"
                 },
                 dataType: 'jsonp',
                 success: function (data) {
@@ -36,7 +36,7 @@
                 error: function (http, status) {
                     alert("Failed submit: " + status);
                 }
-            }); 
+            });
 
             // endcode
         });
