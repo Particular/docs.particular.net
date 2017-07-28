@@ -20,7 +20,7 @@ class ApplicationInsightsProbeCollector
 
     public ApplicationInsightsProbeCollector(string endpointName, string discriminator, string instanceIdentifier, string queue)
     {
-        #region telemtry-client
+        #region telemetry-client
 
         endpointTelemetry = new TelemetryClient();
         var properties = endpointTelemetry.Context.Properties;

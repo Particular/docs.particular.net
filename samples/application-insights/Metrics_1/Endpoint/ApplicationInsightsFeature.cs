@@ -22,6 +22,8 @@ class ApplicationInsightsFeature : Feature
     {
         var settings = context.Settings;
 
+        #region register-probe
+
         var discriminator = settings.LogicalAddress().EndpointInstance.Discriminator;
         var instance = Guid.NewGuid().ToString("N");
 
@@ -36,9 +38,14 @@ class ApplicationInsightsFeature : Feature
         );
 
         metricsOptions.RegisterObservers(collector.Register);
+
+        #endregion
+
         context.RegisterStartupTask(new FlushAtStop(collector));
 
     }
+
+    #region flush-probe
 
     class FlushAtStop : FeatureStartupTask
     {
@@ -60,6 +67,8 @@ class ApplicationInsightsFeature : Feature
 
         readonly ApplicationInsightsProbeCollector collector;
     }
+
+    #endregion
 
     MetricsOptions metricsOptions;
 }
