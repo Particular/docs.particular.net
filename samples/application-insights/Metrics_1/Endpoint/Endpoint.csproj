@@ -46,6 +46,10 @@
     <Compile Include="ApplicationInsightsFeature.cs" />
     <Compile Include="LoadSimulator.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="SLA\EndpointConfigurationApplicationInsightsExtensions.cs" />
+    <Compile Include="SLA\EstimatedTimeToSLABreachCounter.cs" />
+    <Compile Include="SLA\ApplicationInsightsSettings.cs" />
+    <Compile Include="SLA\Extensions.cs" />
     <Compile Include="SomeCommand.cs" />
     <Compile Include="SomeCommandHandler.cs" />
   </ItemGroup>

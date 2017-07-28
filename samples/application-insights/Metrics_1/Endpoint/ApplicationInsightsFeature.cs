@@ -30,28 +30,46 @@ class ApplicationInsightsFeature : Feature
         var endpoint = settings.EndpointName();
         var queue = settings.LocalAddress();
 
-        var collector = new ApplicationInsightsProbeCollector(
+        collector = new ApplicationInsightsProbeCollector(
             endpoint,
             discriminator,
             instance,
             queue
         );
 
-        metricsOptions.RegisterObservers(collector.Register);
-
+        metricsOptions.RegisterObservers(collector.RegisterProbes);
         #endregion
 
-        context.RegisterStartupTask(new FlushAtStop(collector));
+        SetupServiceLevelAgreementViolationCountdownMetric(context);
+        context.RegisterStartupTask(new CleanupAtStop(this));
+    }
 
+    void SetupServiceLevelAgreementViolationCountdownMetric(FeatureConfigurationContext context)
+    {
+        var settings = context.Settings;
+        TimeSpan endpointSla;
+
+        if (!settings.TryGet(ApplicationInsightsSettings.EndpointSLAKey, out endpointSla)) return;
+
+        var ceiling = settings.Get<TimeSpan>(ApplicationInsightsSettings.EndpointSLACeilingKey);
+        var counterInstanceName = settings.EndpointName();
+
+        slaBreachCounter = new EstimatedTimeToSLABreachCounter(endpointSla, ceiling, collector.RegisterServiceLevelAgreementViolation);
+
+        context.Pipeline.OnReceivePipelineCompleted(pipelineCompleted =>
+        {
+            slaBreachCounter?.Update(pipelineCompleted);
+            return Task.CompletedTask;
+        });
     }
 
     #region flush-probe
 
-    class FlushAtStop : FeatureStartupTask
+    class CleanupAtStop : FeatureStartupTask
     {
-        public FlushAtStop(ApplicationInsightsProbeCollector collector)
+        public CleanupAtStop(ApplicationInsightsFeature instance)
         {
-            this.collector = collector;
+            this.instance = instance;
         }
 
         protected override Task OnStart(IMessageSession session)
@@ -61,14 +79,17 @@ class ApplicationInsightsFeature : Feature
 
         protected override Task OnStop(IMessageSession session)
         {
-            collector.Flush();
+            instance.slaBreachCounter?.Dispose();
+            instance.collector.Flush();
             return Task.CompletedTask;
         }
 
-        readonly ApplicationInsightsProbeCollector collector;
+        ApplicationInsightsFeature instance;
     }
 
     #endregion
 
     MetricsOptions metricsOptions;
+    ApplicationInsightsProbeCollector collector;
+    EstimatedTimeToSLABreachCounter slaBreachCounter;
 }
