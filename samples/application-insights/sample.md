@@ -38,7 +38,7 @@ By default the sample code loads this key from an environment variable called `A
 
 snippet: configure-ai-instrumentation-key
 
-The instrumentation key can be obtained under the Application Insights instance properties pane in the Azure portal.
+The instrumentation key can be obtained from the Azure Portal by locating the Application Insights instance, and then navigating to the Properties view.
 
 
 ## Use NServiceBus.Metrics to capture metric values
