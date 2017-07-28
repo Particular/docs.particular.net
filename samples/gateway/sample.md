@@ -1,6 +1,6 @@
 ---
 title: Gateway
-reviewed: 2016-03-21
+reviewed: 2017-07-28
 component: Gateway
 related:
 - nservicebus/gateway
@@ -9,7 +9,7 @@ related:
 
 ## Code walk-through
 
-This sample demonstrates how logically different sites (such as a headquarters and a remote site) communicate using the NServiceBus Gateway feature.
+This sample demonstrates how logically different sites (such as a headquarters and a remote site) can communicate using the NServiceBus Gateway feature.
 
 
 ## Headquarters.Shared

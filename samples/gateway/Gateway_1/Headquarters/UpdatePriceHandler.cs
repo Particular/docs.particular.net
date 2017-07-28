@@ -16,7 +16,7 @@ public class UpdatePriceHandler :
 
     public void Handle(UpdatePrice message)
     {
-        log.Info("Price update request received from the webclient, going to push it to RemoteSite");
+        log.Info("Price update received from the webclient, going to push to RemoteSite");
         string[] siteKeys =
         {
             "RemoteSite"
