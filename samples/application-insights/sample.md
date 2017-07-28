@@ -10,8 +10,8 @@ This sample reports the following metrics to Application Insights:
  * Fetched messages per second 
  * Failed messages per second
  * Successful messages per second
- * Average message processing time
- * Maximum critical time
+ * Average message processing time in milliseconds
+ * Maximum critical time in milliseconds
  * Minimum hours before Service Level Agreement (SLA) violation countdown
 
 For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/nservicebus/operations/metrics.md#metrics-captured).
