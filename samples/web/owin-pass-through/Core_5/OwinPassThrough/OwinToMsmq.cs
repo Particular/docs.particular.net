@@ -4,6 +4,7 @@ using System.Linq;
 using System.Messaging;
 using System.Threading.Tasks;
 using System.IO;
+using System.Net;
 
 #region OwinToMsmq
 
@@ -36,6 +37,7 @@ public class OwinToMsmq
             message.Extension = MsmqHeaderSerializer.CreateHeaders(messageType);
             queue.Send(message, MessageQueueTransactionType.Single);
         }
+        environment["owin.ResponseStatusCode"] = (int)HttpStatusCode.Accepted;
     }
 
     async Task<Stream> RequestAsStream(IDictionary<string, object> environment)
