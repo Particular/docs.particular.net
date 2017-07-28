@@ -71,16 +71,16 @@ The following graphs show the following metrics:
  * Maximum critical time & critical time grouped by instance id.
  * Average processing time, not grouped.
  * Minimum hours countdown until Service Level Agreement violation.
- 
-![example graph metrics](example-graph-metrics.png)
+
+<img alt="example graph metrics" src="example-graph-metrics.png" width="50%" />
 
 Similar for events, the following graphs shows all events grouped by event name. This graph can be furthered filtered down to e.g. show failures only.
 
-![example graph events](example-graph-events.png)
+<img alt="example graph events" src="example-graph-events.png" width="50%" />
 
 Service Level Agreement countdown represents an estimation of the amount or hours remaining until the configured Service Level Agreement (max critical time) will not be met. A graph that is gradually sliding down is indicating that a breach is about to happen. When grouping this metric the MIN value should be reported.
 
-![example graph SLA violation countdown](example-graph-sla.png)
+<img alt="example SLA violation countdown" src="example-graph-sla.png" width="50%" />
 
 Refer to the Microsoft documentation for more information on [creating dashboards from the metrics explorer](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-dashboards)
 
