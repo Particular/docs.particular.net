@@ -49,7 +49,8 @@ class ApplicationInsightsFeature : Feature
         var settings = context.Settings;
         TimeSpan endpointSla;
 
-        if (!settings.TryGet(ApplicationInsightsSettings.EndpointSLAKey, out endpointSla)) return;
+        if (!settings.TryGet(ApplicationInsightsSettings.EndpointSLAKey, out endpointSla))
+            return;
 
         var ceiling = settings.Get<TimeSpan>(ApplicationInsightsSettings.EndpointSLACeilingKey);
         var counterInstanceName = settings.EndpointName();
@@ -58,7 +59,7 @@ class ApplicationInsightsFeature : Feature
 
         context.Pipeline.OnReceivePipelineCompleted(pipelineCompleted =>
         {
-            slaBreachCounter?.Update(pipelineCompleted);
+            slaBreachCounter.Update(pipelineCompleted);
             return Task.CompletedTask;
         });
     }
