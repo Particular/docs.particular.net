@@ -79,11 +79,11 @@ The following graphs show the following metrics:
  * Average processing time, not grouped.
  * Minimum hours countdown until Service Level Agreement violation.
 
-![example graph metrics](example-graph-metrics.png "width=50%")
+![example graph metrics](example-graph-metrics.png "width=500")
 
 Similar for events, the following graphs shows all events grouped by event name. This graph can be further filtered, for example, to show failures only.
 
-![example graph events](example-graph-events.png "width=50%")
+![example graph events](example-graph-events.png "width=500")
 
 Refer to the Microsoft documentation for more information on [creating dashboards from the metrics explorer](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-dashboards).
 
