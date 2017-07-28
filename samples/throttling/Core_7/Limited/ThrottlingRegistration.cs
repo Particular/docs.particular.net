@@ -8,7 +8,6 @@ class ThrottlingRegistration :
     public ThrottlingRegistration()
         : base("GitHubApiThrottling", typeof(ThrottlingBehavior), "API throttling for GitHub")
     {
-        // base.InsertBefore();
     }
 }
 #endregion
