@@ -43,7 +43,7 @@ The following general cmdlets and aliases are provided by the ServiceControl Man
 | port-check             | Test-IfPortIsAvailable                        |
 | user-sid               | Get-SecurityIdentifier                        |
 
-For information about managing ServiceControl instances with powershell, see [Managing ServiceControl instance via PowerShell](/servicecontrol/installation-powershell.md).
+For information about managing ServiceControl instances with PowerShell, see [Managing ServiceControl instance via PowerShell](/servicecontrol/installation-powershell.md).
 
 
 ### Help
