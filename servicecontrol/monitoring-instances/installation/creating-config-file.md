@@ -25,6 +25,7 @@ Default: `localhost`
 
 NOTE: This setting must have a value in order for the Monitoring instance API to be available from remote machines. 
 
+
 ### Monitoring/HttpPort
 
 The port to bind the embedded HTTP server.
@@ -33,7 +34,9 @@ Type: int
 
 Default: `33633`.
 
+
 ## Logging
+
 
 ### Monitoring/LogPath
 
