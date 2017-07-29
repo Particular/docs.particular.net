@@ -12,7 +12,7 @@
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.CustomPolicy(MyCustomRetryPolicy);
-            // configuration can still be tweaked on this level if desired, data will be passed into the policy
+            // configuration can be changed at this point, data will be passed to the policy
             recoverability.Immediate(
                 immediate =>
                 {
@@ -41,7 +41,8 @@
 
             // override delayed retry decision for custom exception
             // i.e. MyOtherBusinessException should do fixed backoff of 5 seconds
-            if (context.Exception is MyOtherBusinessException && context.DelayedDeliveriesPerformed <= config.Delayed.MaxNumberOfRetries)
+            if (context.Exception is MyOtherBusinessException &&
+                context.DelayedDeliveriesPerformed <= config.Delayed.MaxNumberOfRetries)
             {
                 return RecoverabilityAction.DelayedRetry(TimeSpan.FromSeconds(5));
             }
@@ -67,7 +68,7 @@
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.AddUnrecoverableException<MyBusinessException>();
             recoverability.CustomPolicy(MyCustomRetryPolicy);
-            // configuration can still be tweaked on this level if desired, data will be passed into the policy
+            // configuration can be changed at this point, data will be passed to the policy
             recoverability.Immediate(
                 immediate =>
                 {

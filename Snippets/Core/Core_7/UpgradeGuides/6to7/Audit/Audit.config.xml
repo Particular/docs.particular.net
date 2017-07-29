@@ -2,8 +2,10 @@
 <!--startcode 6to7AuditAppSettings -->
 <configuration>
   <appSettings>
-    <add key="AuditQueue" value="targetAuditQueue" />
-    <add key="TimeToBeReceived" value="00:10:00" />
+    <add key="AuditQueue"
+         value="targetAuditQueue" />
+    <add key="TimeToBeReceived"
+         value="00:10:00" />
   </appSettings>
 </configuration>
 <!--endcode-->

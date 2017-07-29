@@ -2,7 +2,8 @@
 <configuration>
   <!--startcode 6to7LoggingAppSettings-->
   <appSettings>
-    <add key="LoggingThreshold" value="Debug" />
+    <add key="LoggingThreshold"
+         value="Debug" />
   </appSettings>
   <!--endcode -->
 </configuration>
