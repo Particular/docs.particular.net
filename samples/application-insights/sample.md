@@ -3,17 +3,17 @@ title: Report metrics to Azure Application Insights
 component: Metrics
 ---
 
-[Azure Application Insights](https://azure.microsoft.com/en-us/services/application-insights/) provides monitoring and alerting capabilities that can be leveraged to monitor the health of NServiceBus endpoints. This sample demonstrates the ability to report metric data to Azure Application Insights.
+[Azure Application Insights](https://azure.microsoft.com/en-us/services/application-insights/) provides monitoring and alerting capabilities that can be leveraged to monitor the health of NServiceBus endpoints. This sample demonstrates the ability to report metric data to Azure Application Insights and present it graphically:
+
+![example graph events](example-graph-events.png "width=500")
 
 This sample reports the following metrics to Application Insights:
 
  * Fetched messages per second 
  * Failed messages per second
  * Successful messages per second
- * Average message processing time in milliseconds
- * Maximum critical time in milliseconds
-
-For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/nservicebus/operations/metrics.md#metrics-captured).
+ 
+ The sample also shows data like `Average message processing time in milliseconds` and `Maximum critical time in milliseconds`. For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/nservicebus/operations/metrics.md#metrics-captured).
 
 
 ## Prerequisites
@@ -69,7 +69,7 @@ snippet: observers-registration
 
 ## Creating charts
 
-To create the charts, metrics provided by NServiceBus, signals and durations, need to be converted into Application Insights metrics and events.
+To create the charts, metrics provided by NServiceBus, signals, and durations need to be converted into Application Insights metrics and events.
 
 The easiest way to setup graphs for metrics in Application Insights is to go to the `Metrics Explorer`, add a new graph selecting the custom metric of choice and then use the push pin symbol to add it to a dashboard.
 
