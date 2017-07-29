@@ -407,8 +407,6 @@
       Title: Binary
     - Url: nservicebus/serialization/custom-serializer
       Title: Custom
-    - Url: nservicebus/serialization/type-was-not-registered
-      Title: Type Not Registered
   - Url: nservicebus/containers
     Title: Containers
     Articles:
