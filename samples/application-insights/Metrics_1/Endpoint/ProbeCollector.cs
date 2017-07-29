@@ -5,7 +5,7 @@ using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.DataContracts;
 using NServiceBus;
 
-class ApplicationInsightsProbeCollector
+class ProbeCollector
 {
     TelemetryClient endpointTelemetry;
 
@@ -18,7 +18,7 @@ class ApplicationInsightsProbeCollector
         {"Processing Time", "Processing Time (ms)"},
     };
 
-    public ApplicationInsightsProbeCollector(string endpointName, string discriminator, string instanceIdentifier, string queue)
+    public ProbeCollector(string endpointName, string discriminator, string instanceIdentifier, string queue)
     {
         #region telemetry-client
 

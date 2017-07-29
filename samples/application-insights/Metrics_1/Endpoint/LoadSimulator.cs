@@ -3,15 +3,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
 
-/// <summary>
-/// Simulates busy (almost no delay) / quite time in a sine wave.
-/// </summary>
+// Simulates busy (almost no delay) / quite time in a sine wave
 class LoadSimulator
 {
-    readonly IEndpointInstance endpointInstance;
-    readonly CancellationTokenSource tokenSource = new CancellationTokenSource();
-    readonly TimeSpan minimumDelay;
-    readonly TimeSpan idleDuration;
+    IEndpointInstance endpointInstance;
+    CancellationTokenSource tokenSource = new CancellationTokenSource();
+    TimeSpan minimumDelay;
+    TimeSpan idleDuration;
     Task fork;
 
     public LoadSimulator(IEndpointInstance endpointInstance, TimeSpan minimumDelay, TimeSpan idleDuration)

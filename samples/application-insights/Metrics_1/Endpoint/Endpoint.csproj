@@ -42,7 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationInsightsProbeCollector.cs" />
+    <Compile Include="ProbeCollector.cs" />
     <Compile Include="ApplicationInsightsFeature.cs" />
     <Compile Include="LoadSimulator.cs" />
     <Compile Include="Program.cs" />

@@ -25,14 +25,14 @@ class Program
             throw new Exception($"Environment variable '{envInstrumentationKey}' required.");
         }
 
-        Console.WriteLine("Using application insight application key: {0}", instrumentationKey);
+        Console.WriteLine("Using application insights application key: {0}", instrumentationKey);
 
         #region configure-ai-instrumentation-key
 
         TelemetryConfiguration.Active.InstrumentationKey = instrumentationKey;
 
         #endregion
-       
+
         // TODO: See https://github.com/Particular/NServiceBus.Metrics/issues/41
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

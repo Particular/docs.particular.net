@@ -24,13 +24,14 @@ class ApplicationInsightsFeature : Feature
 
         #region register-probe
 
-        var discriminator = settings.LogicalAddress().EndpointInstance.Discriminator;
+        var logicalAddress = settings.LogicalAddress();
+        var discriminator = logicalAddress.EndpointInstance.Discriminator;
         var instance = Guid.NewGuid().ToString("N");
 
         var endpoint = settings.EndpointName();
         var queue = settings.LocalAddress();
 
-        collector = new ApplicationInsightsProbeCollector(
+        collector = new ProbeCollector(
             endpoint,
             discriminator,
             instance,
@@ -69,5 +70,5 @@ class ApplicationInsightsFeature : Feature
     #endregion
 
     MetricsOptions metricsOptions;
-    ApplicationInsightsProbeCollector collector;
+    ProbeCollector collector;
 }
