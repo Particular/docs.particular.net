@@ -8,6 +8,7 @@ tags:
 
 NOTE: For general information about ServiceControl Powershell, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
 
+
 ## Monitoring instance Cmdlets and Aliases
 
 The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module for managing Monitoring instances.
@@ -20,7 +21,6 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 | mon-upgrade            | Invoke-MonitoringInstanceUpgrade              |
 | sc-help                | Get-ServiceControlMgmtCommands                |
 | sc-transportsinfo      | Get-ServiceControlTransportTypes              |
-
 
 
 ### Help

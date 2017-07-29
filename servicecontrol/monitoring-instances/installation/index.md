@@ -36,7 +36,7 @@ Installing MSMQ is optional in the Platform Installer. See [Platform Installer -
 
 ## Using ServiceControl Management to upgrade Monitoring instances
 
-ServiceControl Management provides a simple means of setting up one or more Monitoring instances
+ServiceControl Management provides a simple means of setting up one or more Monitoring instances.
 
 WARNING: The ability to add multiple instances is primarily intended to assist development and test environments.
 
@@ -64,6 +64,6 @@ Click on the `+ NEW` link at the top of the screen and select "Monitoring instan
 
 ## Service Name and Plugins
 
-When adding the first Monitoring instance service the default service name is "Particular.Monitoring". It is possible to change this name to a custom service name. In doing so this is also changing the queue name associated with this Monitoring instance.
+When adding the first Monitoring instance service the default service name is `Particular.Monitoring`. It is possible to change this name to a custom service name. In doing so this is also changing the queue name associated with this Monitoring instance.
 
 The metrics endpoint plugin will need the Monitoring instance name in order to send metric data to the Monitoring instance.

@@ -32,7 +32,7 @@ The port to bind the embedded HTTP server.
 
 Type: int
 
-Default: `33633`.
+Default: `33633`
 
 
 ## Logging

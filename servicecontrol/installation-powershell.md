@@ -1,5 +1,5 @@
 ---
-title: Managing ServiceControl instances via PowerShell
+title: Manage ServiceControl instances via PowerShell
 reviewed: 2017-07-26
 tags:
  - Installation
@@ -75,7 +75,7 @@ To upgrade and instance to the latest version of the binaries run.
 Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade>
 ```
 
-The upgrade will stop the service if it is running. Additional parameters for `Invoke-ServiceControlInstanceUpgrade` may be required. The configuration file of the existing version is examined prior to deter,in e if all the required settings are present. If a configuration setting is missing  then the cmdlet will throw an error indicating the required additional parameter.
+The upgrade will stop the service if it is running. Additional parameters for `Invoke-ServiceControlInstanceUpgrade` may be required. The configuration file of the existing version is examined prior to determine if all the required settings are present. If a configuration setting is missing then the cmdlet will throw an error indicating the required additional parameter.
 
 
 ### Building an unattended install file
@@ -88,11 +88,13 @@ The MSI command line argument requires an XML file which detail the instance opt
 New-ServiceControlUnattendedFile -OutputFile c:\temp\unattended.xml -Name Test -InstallPath c:\servicecontrol\test\bin -DBPath c:\servicecontrol\test\db -LogPath c:\servicecontrol\test\logs -Port 33335 -ErrorQueue error-test -AuditQueue audit-test -ErrorLogQueue errorlog-test -AuditLogQueue auditlog-test -Transport MSMQ -ForwardAuditMessages $false -ForwardErrorMessages $false
 ```
 
-This sample produces the following Files
+This sample produces the following file
 
 ```xml
 <?xml version="1.0"?>
-<ServiceControlInstanceMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<ServiceControlInstanceMetadata
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <LogPath>C:\servicecontrol\test\db</LogPath>
   <DBPath>C:\servicecontrol\test\logs</DBPath>
   <HostName>localhost</HostName>
