@@ -30,7 +30,10 @@
         {
             public void SpecifyOrder(Order order)
             {
-                order.Specify(typeof(HandlerB), typeof(HandlerA), typeof(HandlerC));
+                order.Specify(
+                    typeof(HandlerB),
+                    typeof(HandlerA),
+                    typeof(HandlerC));
             }
         }
         #endregion
