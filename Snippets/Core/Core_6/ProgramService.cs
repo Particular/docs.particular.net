@@ -50,11 +50,11 @@ namespace Core6
 
         Task AsyncOnStop()
         {
-            if (endpointInstance != null)
+            if (endpointInstance == null)
             {
-                return endpointInstance.Stop();
+                return Task.CompletedTask;
             }
-            return Task.CompletedTask;
+            return endpointInstance.Stop();
         }
     }
 
