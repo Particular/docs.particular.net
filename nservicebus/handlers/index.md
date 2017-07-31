@@ -2,17 +2,16 @@
 title: Handlers
 summary: Write a class to handle messages in NServiceBus.
 component: Core
-reviewed: 2016-07-27
+reviewed: 2017-07-31
 redirects:
 - nservicebus/how-do-i-handle-a-message
-
 ---
 
 To handle a message, write a class that implements `IHandleMessages<T>` where `T` is the message type:
 
 snippet: CreatingMessageHandler
 
-For scenarios that involve changing the application state via data access code in the handler, see [accessing data](/nservicebus/handlers/accessing-data.md) for more details.
+For scenarios that involve changing the application state via data access code in the handler, see [accessing data](/nservicebus/handlers/accessing-data.md).
 
 To handle messages of all types:
 
@@ -32,11 +31,11 @@ If handling a message in a publish-and-subscribe scenario, see [How to Publish/S
 
 ### Mapping to name
 
-NServiceBus will try to map incoming messages to a type using [Assembly Qualified Name](https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname.aspx). This is default behavior for sharing assemblies among endpoints. When a message cannot be mapped based on Assembly Qualified Name, NServiceBus will attempt to map to the [`FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx). The following is an example of how NServiceBus gets the type information.
+Incoming messages will be to mapped to a type using [Assembly Qualified Name](https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname.aspx). This is default behavior for sharing assemblies among endpoints. When a message cannot be mapped based on Assembly Qualified Name, the mapping will be attempted using [`FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx). The following is an example of how NServiceBus gets the type information.
 
 ```cs
-string fqn = message.GetType().AssemblyQualifiedName;
-string fallback = message.GetType().FullName;
+var fqn = message.GetType().AssemblyQualifiedName;
+var fallback = message.GetType().FullName;
 ```
 
 
@@ -44,4 +43,4 @@ string fallback = message.GetType().FullName;
 
 Receiving a message for which there are no message handlers is considered an error and the received message will be forwarded to the configured error queue.
 
-Note: This behavior was slightly different in Version 3 where the message would only end up in the error queue if running in debug mode. If not in debug mode a Version 3 endpoint would log a warning but still consider the message successfully processed and therefore moving it to the configured error queue.
+partial: behaviorcaveat

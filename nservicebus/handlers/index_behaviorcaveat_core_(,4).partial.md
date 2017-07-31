@@ -1,0 +1,1 @@
+Note: This behavior was slightly different in Version 3 where the message would only end up in the error queue if running in debug mode. If not in debug mode a Version 3 endpoint would log a warning but still consider the message successfully processed and therefore moving it to the configured error queue.
