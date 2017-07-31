@@ -59,7 +59,7 @@ Critical time is the time between when a message is sent and when it is fully pr
 
 ### Queue length
 
-This metric tracks the **estimated** number of messages in the input queue of an endpoint.
+This metric tracks the **estimated** number of messages in the input queue of an endpoint. The reason why this value needs to be estimated is that when scaling out certain queuing environments, under high load, the number of messages actually in a given input queue would not reflect all the messages *in transit* to that queue, thus reporting much lower values. For this reason, a different approach is used - one based on *links* rather than queues.
 
 A _link_ is a communication channel between a sender of the message and its receiver. Each link is uniquely identified by some combination of destination address, message assembly, and the [host identifier](/nservicebus/hosting/override-hostid.md#host-identifier) of the sender. The exact composition of link identifiers depends on the transport properties and type of message being sent.
 
