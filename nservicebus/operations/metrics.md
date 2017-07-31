@@ -25,7 +25,7 @@ partial: reporting
 
 ## Metrics captured
 
-NServiceBus and ServiceControl capture a number of different metrics about a running endpoint including the processing time, "critical time", and number of messages in each queue.
+NServiceBus and ServiceControl capture a number of different metrics about a running endpoint including the processing time, the number of messages in each queue (differentiating between those pulled from the queue, those processed successfully, and those which failed processing), as well as "critical time".
 
 
 ### Processing time
@@ -59,7 +59,7 @@ Critical time is the time between when a message is sent and when it is fully pr
 
 ### Queue length
 
-This metric tracks estimated number of messages in the input queue of an endpoint.
+This metric tracks the **estimated** number of messages in the input queue of an endpoint.
 
 A _link_ is a communication channel between a sender of the message and its receiver. Each link is uniquely identified by some combination of destination address, message assembly, and the [host identifier](/nservicebus/hosting/override-hostid.md#host-identifier) of the sender. The exact composition of link identifiers depends on the transport properties and type of message being sent.
 
