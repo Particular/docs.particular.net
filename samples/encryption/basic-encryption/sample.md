@@ -56,8 +56,6 @@ This code indicates that encryption should be enabled.
 
 The key is then configured using the `encryptionService` variable. This allows for property encryption using the special `WireEncryptedString` property seen in the `MessageWithSecretData.cs` file.
 
-The following code snippet also shows the optional unobtrusive way to tell NServiceBus which properties to encrypt using the `encryptedPropertyConvention` parameter. In this example, all properties having a name that starts with `Encrypted` will have their value encrypted.
-
 snippet: ConfigureEncryption
 
 ### The message on the wire
