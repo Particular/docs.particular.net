@@ -1,12 +1,12 @@
 ﻿using System;
 
-#region ConfigureEncryption
 using NServiceBus;
 
 public static class EncryptionExtensions
 {
     public static void ConfigurationEncryption(this BusConfiguration busConfiguration)
     {
+        #region ConfigureEncryption
         var conventions = busConfiguration.Conventions();
         
         var encryptionKey = Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
@@ -17,6 +17,6 @@ public static class EncryptionExtensions
                         {
                             return property.Name.StartsWith("Encrypted");
                         });
+        #endregion
     }
 }
-#endregion
