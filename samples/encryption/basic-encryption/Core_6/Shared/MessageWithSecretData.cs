@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using NServiceBus;
 
 #region Message
-using NServiceBus;
 #pragma warning disable 618
 
 public class MessageWithSecretData :

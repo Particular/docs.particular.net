@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using NServiceBus;
 
 #region Message
-using NServiceBus;
 #pragma warning disable 618
 
+// Note all the properties to encrypt start with "Encrypted"
 public class MessageWithSecretData :
     IMessage
 {
