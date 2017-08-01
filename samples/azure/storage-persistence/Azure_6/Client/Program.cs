@@ -12,6 +12,8 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.UseTransport<AzureStorageQueueTransport>()
+            .ConnectionString("UseDevelopmentStorage=true");
 
         using (var bus = Bus.Create(busConfiguration).Start())
         {
