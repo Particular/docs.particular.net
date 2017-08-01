@@ -1,8 +1,7 @@
-﻿
-
-using System.Text;
-using NServiceBus;
+﻿using System.Text;
 using NServiceBus.Encryption.MessageProperty;
+
+using NServiceBus;
 
 public static class EncryptionExtensions
 {
@@ -13,7 +12,11 @@ public static class EncryptionExtensions
         var encryptionService = new RijndaelEncryptionService(
             encryptionKeyIdentifier: "2015-10",
             key: Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
-        endpointConfiguration.EnableMessagePropertyEncryption(encryptionService);
+        endpointConfiguration.EnableMessagePropertyEncryption(encryptionService,
+            encryptedPropertyConvention: info =>
+            {
+                return info.Name.StartsWith("Encrypted");
+            });
     }
 
     #endregion

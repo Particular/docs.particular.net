@@ -5,22 +5,23 @@ using NServiceBus;
 #region Message
 #pragma warning disable 618
 
+// Note all the properties to encrypt start with "Encrypted"
 public class MessageWithSecretData :
     IMessage
 {
-    public WireEncryptedString Secret { get; set; }
+    public string EncryptedSecret { get; set; }
     public MySecretSubProperty SubProperty { get; set; }
     public List<CreditCardDetails> CreditCards { get; set; }
 }
 
 public class MySecretSubProperty
 {
-    public WireEncryptedString Secret { get; set; }
+    public string EncryptedSecret { get; set; }
 }
 
 public class CreditCardDetails
 {
     public DateTime ValidTo { get; set; }
-    public WireEncryptedString Number { get; set; }
+    public string EncryptedNumber { get; set; }
 }
 #endregion
