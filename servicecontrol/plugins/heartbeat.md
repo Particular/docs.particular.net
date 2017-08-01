@@ -21,6 +21,7 @@ An inactive endpoint indicates that there is a failure in the communication path
 
 NOTE: It is essential to deploy this plugin to the endpoint in production for ServicePulse to be able to monitor the endpoint.
 
+
 ### Deprecated NuGet
 
 The first release of the Heartbeat plugin the NuGet packages was named **ServiceControl.Plugin.Heartbeat**. **This packages is now obsolete and should be remove**. Replace it with the appropriate plugin based on the NServiceBus version. The new NServiceBus version specific packages are:
