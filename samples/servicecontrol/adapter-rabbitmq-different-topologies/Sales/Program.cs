@@ -15,14 +15,17 @@ class Program
         Console.Title = "Samples.ServiceControl.RabbitMQAdapter.Sales";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
+
+        #region SalesConfiguration
+
         var endpointConfiguration = new EndpointConfiguration("Samples.ServiceControl.RabbitMQAdapter.Sales");
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=localhost");
-
-        #region FeaturesUnsuportedBySC
-
         transport.UseDirectRoutingTopology();
+
+        endpointConfiguration.SendFailedMessagesTo("adapter_error");
+        endpointConfiguration.AuditProcessedMessagesTo("adapter_audit");
 
         #endregion
 
@@ -45,8 +48,7 @@ class Program
         recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
         recoverability.DisableLegacyRetriesSatellite();
 
-        endpointConfiguration.SendFailedMessagesTo("adapter_error");
-        endpointConfiguration.AuditProcessedMessagesTo("adapter_audit");
+
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

@@ -17,13 +17,11 @@ class Program
 
         var transportAdapterConfig = new TransportAdapterConfig<RabbitMQTransport, RabbitMQTransport>("ServiceControl.RabbitMQ.Adapter");
 
-        transportAdapterConfig.EndpointSideErrorQueue = "adapter_error";
-        transportAdapterConfig.EndpointSideAuditQueue = "adapter_audit";
-        transportAdapterConfig.EndpointSideControlQueue = "adapter_Particular.ServiceControl";
-
-        transportAdapterConfig.ServiceControlSideErrorQueue = "error";
-        transportAdapterConfig.ServiceControlSideAuditQueue = "audit";
-        transportAdapterConfig.ServiceControlSideControlQueue = "Particular.ServiceControl";
+        transportAdapterConfig.CustomizeServiceControlTransport(
+            customization: transport =>
+            {
+                transport.ConnectionString("host=localhost");
+            });
 
         #endregion
 
@@ -42,13 +40,15 @@ class Program
 
 #pragma warning restore 618
 
-        #region SCSideConfig
+        #region AdapterQueueConfiguration
 
-        transportAdapterConfig.CustomizeServiceControlTransport(
-            customization: transport =>
-            {
-                transport.ConnectionString("host=localhost");
-            });
+        transportAdapterConfig.EndpointSideErrorQueue = "adapter_error";
+        transportAdapterConfig.EndpointSideAuditQueue = "adapter_audit";
+        transportAdapterConfig.EndpointSideControlQueue = "adapter_Particular.ServiceControl";
+
+        transportAdapterConfig.ServiceControlSideErrorQueue = "error";
+        transportAdapterConfig.ServiceControlSideAuditQueue = "audit";
+        transportAdapterConfig.ServiceControlSideControlQueue = "Particular.ServiceControl";
 
         #endregion
 

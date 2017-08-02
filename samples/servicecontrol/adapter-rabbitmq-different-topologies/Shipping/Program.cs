@@ -12,11 +12,20 @@ class Program
     static async Task AsyncMain()
     {
         Console.Title = "Samples.ServiceControl.RabbitMQAdapter.Shipping";
+
+        #region ShippingConfiguration
+
         var endpointConfiguration = new EndpointConfiguration("Samples.ServiceControl.RabbitMQAdapter.Shipping");
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=localhost");
         transport.UseDirectRoutingTopology();
+
+        endpointConfiguration.SendFailedMessagesTo("adapter_error");
+        endpointConfiguration.AuditProcessedMessagesTo("adapter_audit");
+        endpointConfiguration.HeartbeatPlugin("adapter_Particular.ServiceControl");
+
+        #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
@@ -39,10 +48,6 @@ class Program
                 delayed.NumberOfRetries(0);
             });
         recoverability.DisableLegacyRetriesSatellite();
-
-        endpointConfiguration.SendFailedMessagesTo("adapter_error");
-        endpointConfiguration.AuditProcessedMessagesTo("adapter_audit");
-        endpointConfiguration.HeartbeatPlugin("adapter_Particular.ServiceControl");
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
