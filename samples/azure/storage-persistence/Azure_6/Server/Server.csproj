@@ -54,6 +54,9 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.6.2.7\lib\net45\NServiceBus.Azure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.6.2.2\lib\net45\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
       <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.22\lib\net45\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
