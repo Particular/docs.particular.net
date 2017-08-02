@@ -25,17 +25,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Transports.RabbitMQ, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NServiceBus.RabbitMQ.4.3.2\lib\net452\NServiceBus.Transports.RabbitMQ.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.RabbitMQ.4.3.2\lib\net452\NServiceBus.Transports.RabbitMQ.dll</HintPath>
     </Reference>
     <Reference Include="RabbitMQ.Client, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
-      <HintPath>..\packages\RabbitMQ.Client.4.1.3\lib\net451\RabbitMQ.Client.dll</HintPath>
+      <HintPath>..\..\..\..\packages\RabbitMQ.Client.4.1.3\lib\net451\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.Plugin.Nsb6.Heartbeat, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceControl.Plugin.Nsb6.Heartbeat.3.0.1\lib\net452\ServiceControl.Plugin.Nsb6.Heartbeat.dll</HintPath>
+      <HintPath>..\..\..\..\packages\ServiceControl.Plugin.Nsb6.Heartbeat.3.0.1\lib\net452\ServiceControl.Plugin.Nsb6.Heartbeat.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

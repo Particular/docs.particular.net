@@ -15,7 +15,15 @@ class Program
     {
         #region AdapterTransport
 
-        var transportAdapterConfig = new TransportAdapterConfig<RabbitMQTransport, MsmqTransport>("ServiceControl.RabbitMQ.Adapter");
+        var transportAdapterConfig = new TransportAdapterConfig<RabbitMQTransport, RabbitMQTransport>("ServiceControl.RabbitMQ.Adapter");
+
+        transportAdapterConfig.EndpointSideErrorQueue = "adapter_error";
+        transportAdapterConfig.EndpointSideAuditQueue = "adapter_audit";
+        transportAdapterConfig.EndpointSideControlQueue = "adapter_Particular.ServiceControl";
+
+        transportAdapterConfig.ServiceControlSideErrorQueue = "error";
+        transportAdapterConfig.ServiceControlSideAuditQueue = "audit";
+        transportAdapterConfig.ServiceControlSideControlQueue = "Particular.ServiceControl";
 
         #endregion
 
@@ -27,6 +35,7 @@ class Program
             customization: transport =>
             {
                 transport.ConnectionString("host=localhost");
+                transport.UseDirectRoutingTopology();
             });
 
         #endregion
@@ -35,24 +44,10 @@ class Program
 
         #region SCSideConfig
 
-        //transportAdapterConfig.CustomizeServiceControlTransport(
-        //    customization: transport =>
-        //    {
-                
-        //    });
-
-        #endregion
-
-        #region PreserveReplyToAddress
-
-        transportAdapterConfig.PreserveHeaders(
-            preserveCallback: headers =>
+        transportAdapterConfig.CustomizeServiceControlTransport(
+            customization: transport =>
             {
-                headers[AdapterSpecificHeaders.OriginalReplyToAddress] = headers[Headers.ReplyToAddress];
-            },
-            restoreCallback: headers =>
-            {
-                headers[Headers.ReplyToAddress] = headers[AdapterSpecificHeaders.OriginalReplyToAddress];
+                transport.ConnectionString("host=localhost");
             });
 
         #endregion

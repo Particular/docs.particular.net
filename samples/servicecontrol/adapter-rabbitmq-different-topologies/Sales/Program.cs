@@ -22,6 +22,8 @@ class Program
 
         #region FeaturesUnsuportedBySC
 
+        transport.UseDirectRoutingTopology();
+
         #endregion
 
         var recoverability = endpointConfiguration.Recoverability();
@@ -43,8 +45,8 @@ class Program
         recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
         recoverability.DisableLegacyRetriesSatellite();
 
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.AuditProcessedMessagesTo("audit");
+        endpointConfiguration.SendFailedMessagesTo("adapter_error");
+        endpointConfiguration.AuditProcessedMessagesTo("adapter_audit");
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

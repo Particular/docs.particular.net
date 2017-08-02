@@ -16,6 +16,7 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=localhost");
+        transport.UseDirectRoutingTopology();
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
@@ -39,9 +40,9 @@ class Program
             });
         recoverability.DisableLegacyRetriesSatellite();
 
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.AuditProcessedMessagesTo("audit");
-        endpointConfiguration.HeartbeatPlugin("Particular.ServiceControl");
+        endpointConfiguration.SendFailedMessagesTo("adapter_error");
+        endpointConfiguration.AuditProcessedMessagesTo("adapter_audit");
+        endpointConfiguration.HeartbeatPlugin("adapter_Particular.ServiceControl");
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
