@@ -4,6 +4,7 @@
     <TargetFramework>net462</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="5.0.0-*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="1.2.0-*" />
     <PackageReference Include="NUnit" Version="3.*" />
