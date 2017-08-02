@@ -51,7 +51,7 @@ class PrometheusFeature : Feature
         foreach (var duration in context.Durations)
         {
             var summary = Prometheus.Metrics.CreateSummary(nameMapping[duration.Name], duration.Description, "endpoint");
-            duration.Register(observer: durationLength => summary.Labels(endpoint).Observe(durationLength.TotalMilliseconds));
+            duration.Register(observer: durationLength => summary.Labels(endpoint).Observe(durationLength.TotalSeconds));
         }
 
         foreach (var signal in context.Signals)
