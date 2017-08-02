@@ -1,5 +1,6 @@
 ## Configuring
 
+ * `MaxRetries`: Number of times Immediate Retries are performed. Default: 5.
 
 ### Using app.config
 
