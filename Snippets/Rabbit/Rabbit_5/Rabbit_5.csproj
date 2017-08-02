@@ -5,7 +5,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.RabbitMQ" Version="5.0.0-*" />
-    <PackageReference Include="NUnit" Version="3.*" />
-    <ProjectReference Include="..\..\Common\Common.csproj" />
   </ItemGroup>
 </Project>

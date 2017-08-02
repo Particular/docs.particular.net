@@ -1,19 +1,20 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26114.2
+VisualStudioVersion = 15.0.26730.0
 MinimumVisualStudioVersion = 15.0.26114.2
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbit_2", "Rabbit_2\Rabbit_2.csproj", "{884F3809-108A-410F-AA43-5BB15AB05654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_2", "Rabbit_2\Rabbit_2.csproj", "{884F3809-108A-410F-AA43-5BB15AB05654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbit_3", "Rabbit_3\Rabbit_3.csproj", "{6CC4D6C8-3352-4479-B5D7-10DFE3B7D245}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_3", "Rabbit_3\Rabbit_3.csproj", "{6CC4D6C8-3352-4479-B5D7-10DFE3B7D245}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbit_4", "Rabbit_4\Rabbit_4.csproj", "{D7D754B6-D4C4-4EF9-8C3E-561943E849C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_4", "Rabbit_4\Rabbit_4.csproj", "{D7D754B6-D4C4-4EF9-8C3E-561943E849C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbit_1", "Rabbit_1\Rabbit_1.csproj", "{095A7989-DBDA-494E-8A06-68040AC40DD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_1", "Rabbit_1\Rabbit_1.csproj", "{095A7989-DBDA-494E-8A06-68040AC40DD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbit_All", "Rabbit_All\Rabbit_All.csproj", "{E22A9C25-5C4A-43D5-B74B-47BC568B2D9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_All", "Rabbit_All\Rabbit_All.csproj", "{E22A9C25-5C4A-43D5-B74B-47BC568B2D9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.csproj", "{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_5", "Rabbit_5\Rabbit_5.csproj", "{A16628AC-02E7-4C95-A291-675F91BBE065}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15613ACF-CB6B-4859-8DD4-FD738CFCCD38}
 	EndGlobalSection
 EndGlobal
