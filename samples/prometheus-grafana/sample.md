@@ -126,6 +126,13 @@ The mentioned query is an expensive operation on the database and can be precalc
 Instead of the query mentioned earlier we can now use the pre calculated query.
 
     nservicebus_success_total:avg_rate5m
+### Example configuration
+
+Prometheus configuration files demonstrating the concepts from this sample:
+
+- [nservicebus.rules](nservicebus.rules)
+- [prometheus.yml](prometheus.yml)
+
 
 
 ## Grafana
