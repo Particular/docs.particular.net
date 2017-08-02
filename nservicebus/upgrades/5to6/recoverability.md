@@ -39,7 +39,7 @@ snippet: 5to6-RecoverabilityDisableImmediateRetries
 
 ## Disabling Delayed Retries
 
-The `SecondLevelRetries` Feature is no used to disable Delayed Retries. Equivalent behavior can be achieved through code API by setting Delayed Retries to `0`:
+The `SecondLevelRetries` Feature is not used to disable Delayed Retries. Equivalent behavior can be achieved through code API by setting Delayed Retries to `0`:
 
 snippet: 5to6-RecoverabilityDisableDelayedRetries
 
