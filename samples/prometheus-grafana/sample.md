@@ -3,7 +3,7 @@ title: Capture and visualize metrics using Prometheus and Grafana
 component: Metrics
 ---
 
-[Prometheus](https://prometheus.io) is a monitoring solution for storing time series data like metrics. [Grafana](https://grafana.com) allows you to query and visualize the data stored in Prometheus (and other sources). This sample demonstrates how to capture NServiceBus metrics, storing these in Prometheus and visualizing this using Grafana.
+[Prometheus](https://prometheus.io) is a monitoring solution for storing time series data like metrics. [Grafana](https://grafana.com) allows to query and visualize the data stored in Prometheus (and other sources). This sample demonstrates how to capture NServiceBus metrics, storing these in Prometheus and visualizing this using Grafana.
 
 
 
@@ -46,13 +46,13 @@ The following nuget packages are required:
 - NServiceBus.Metrics
 - prometheus-net
 
-A Prometheus service is hosted inside the endpoint via the nuget package `prometheus-net`. The services enables Prometheus to scrape data gathered by the metrics package. Custom observers need to be registered for the metric probes provided via `NServiceBus.Metrics`. This is all setup in  the `PrometheusFeature`
+A Prometheus service is hosted inside the endpoint via the nuget package `prometheus-net`. The service enables Prometheus to scrape data gathered by the metrics package. Custom observers need to be registered for the metric probes provided via `NServiceBus.Metrics`. This is all setup in  the `PrometheusFeature`
 
 
 snippet: enable-nsb-metrics
 
 
-The names provided by the `NServiceBus.Metrics` probes are not compatible with Prometheus, thus the names need to be aligned with the [naming conventions defined by Prometheus](https://prometheus.io/docs/practices/naming/) by mapping them accordingly
+The names provided by the `NServiceBus.Metrics` probes are not compatible with Prometheus. Thus the names need to be aligned with the [naming conventions defined by Prometheus](https://prometheus.io/docs/practices/naming/) by mapping them accordingly
 
 Counters : `nservicebus_{counter-name}_total`
 
@@ -62,7 +62,7 @@ Summaries: `nservicebus_{summary-name}_seconds`
 snippet: name-mapping
 
 
-The registered observers convert NServiceBus.Metric *Signals* to Prometheus *Counters* and NServiceBus.Metric *Durations* to Prometheus *Summaries*.  Additionally labels are added that identify the endpoint, the endpoint queue and more within Prometheus. With this label it is possible to filter and group metric values. 
+The registered observers convert NServiceBus.Metric *Signals* to Prometheus *Counters* and NServiceBus.Metric *Durations* to Prometheus *Summaries*.  Additionally, labels are added that identify the endpoint, the endpoint queue and more within Prometheus. With this label, it is possible to filter and group metric values. 
 
 WARNING: Labels should be chosen thoughtfully since each unique combination of key-value label pairs represents a new time series which can dramatically increase the amount of data stored. The labels used here are for demonstration purpose only.
 
@@ -89,7 +89,7 @@ Copy
 - [nservicebus.rules](nservicebus.rules)
 - [prometheus.yml](prometheus.yml)
 
-into the root folder of the Prometheus installation. Overwrite the existing `prometheus.yml` in your Prometheus demo installation. Or proceed with the manual configuration if desired.
+into the root folder of the Prometheus installation. Overwrite the existing `prometheus.yml` in the Prometheus demo installation. Or proceed with the manual configuration if desired.
 
 ### Manual configuration
 
@@ -108,7 +108,7 @@ Edit `prometheus.yml` and  add a new target for scraping similar to
 
 #### Define rules
 
-Queries can be expensive operations. Prometheus allows to define precalculated queries by configuring rules that calculate rates based on the counters. 
+Queries can be expensive operations. Prometheus allows defining pre calculated queries by configuring rules that calculate rates based on the counters. 
 
     nservicebus_success_total:avg_rate5m = avg(rate(nservicebus_success_total[5m]))
     nservicebus_failure_total:avg_rate5m = avg(rate(nservicebus_failure_total[5m]))
@@ -148,7 +148,7 @@ Prometheus configuration files demonstrating the concepts from this sample:
 
 ## Grafana
 
-Grafana needs to be installed and configured to display the data availabe in Prometheus. For more information how to install Grafana refer to the [Installation Guide](http://docs.grafana.org/installation).
+Grafana needs to be installed and configured to display the data available in Prometheus. For more information how to install Grafana refer to the [Installation Guide](http://docs.grafana.org/installation).
 
 
 ### Guided configuration
@@ -175,6 +175,6 @@ To graph the Prometheus rule  `nservicebus_failure_total:avg_rate5m` the followi
 
 ### Dashboard
 
-![Grafana dahboard with NServiceBus metrics](example-grafana-dashboard.png)
+![Grafana dashboard with NServiceBus metrics](example-grafana-dashboard.png)
 
 The sample included an [export of the grafana dashboard](grafana-endpoints-dashboard.json), this can be [imported](http://docs.grafana.org/reference/export_import/) as a reference.
