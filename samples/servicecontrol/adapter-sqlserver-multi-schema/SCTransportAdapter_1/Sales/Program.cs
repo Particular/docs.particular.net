@@ -30,13 +30,15 @@ class Program
         //Use custom schema shipping for this endpoint
         transport.DefaultSchema("sales");
 
-        //Configure schemas for the ServiceControl queues to point to the adapter
+        //Configure schemas for ServiceControl queues to point to adapter
         transport.UseSchemaForQueue("audit", "adapter");
         transport.UseSchemaForQueue("error", "adapter");
         transport.UseSchemaForQueue("Particular.ServiceControl", "adapter");
 
-        //Configure schema for the shipping endpoint so that the subscribe message is sent to the correct address
-        transport.UseSchemaForQueue("Samples.ServiceControl.SqlServerTransportAdapter.Shipping", "shipping");
+        //Configure schema for shipping endpoint so that the subscribe message is sent to the correct address
+        transport.UseSchemaForQueue(
+            queueName: "Samples.ServiceControl.SqlServerTransportAdapter.Shipping",
+            schema: "shipping");
 
         #endregion
 

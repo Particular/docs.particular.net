@@ -16,13 +16,14 @@
         {
             #region RoutingExtensibility-RouteTableConfig
 
-            var routingTable = endpointConfiguration.GetSettings().Get<UnicastRoutingTable>();
+            var settings = endpointConfiguration.GetSettings();
+            var routingTable = settings.Get<UnicastRoutingTable>();
             routingTable.AddOrReplaceRoutes("MySource",
-                    new List<RouteTableEntry>
-                    {
-                        new RouteTableEntry(typeof(MyCommand),
-                            UnicastRoute.CreateFromEndpointName("MyEndpoint"))
-                    });
+                new List<RouteTableEntry>
+                {
+                    new RouteTableEntry(typeof(MyCommand),
+                        UnicastRoute.CreateFromEndpointName("MyEndpoint"))
+                });
 
             #endregion
         }
@@ -31,12 +32,14 @@
             Feature
         {
             #region RoutingExtensibility-StartupTaskRegistration
+
             protected override void Setup(FeatureConfigurationContext context)
             {
                 var routingTable = context.Settings.Get<UnicastRoutingTable>();
                 var refresherTask = new Refresher(routingTable);
                 context.RegisterStartupTask(refresherTask);
             }
+
             #endregion
 
             class Refresher :
@@ -54,10 +57,14 @@
 
                 protected override Task OnStart(IMessageSession session)
                 {
-                    timer = new Timer(_ =>
-                    {
-                        routeTable.AddOrReplaceRoutes("MySource", LoadRoutes());
-                    }, null, TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(30));
+                    timer = new Timer(
+                        callback: _ =>
+                        {
+                            routeTable.AddOrReplaceRoutes("MySource", LoadRoutes());
+                        },
+                        state: null,
+                        dueTime: TimeSpan.FromSeconds(30),
+                        period: TimeSpan.FromSeconds(30));
                     return Task.CompletedTask;
                 }
 
@@ -85,17 +92,21 @@
 
                 protected override Task OnStart(IMessageSession session)
                 {
-                    timer = new Timer(_ =>
-                    {
-                        try
+                    timer = new Timer(
+                        callback: _ =>
                         {
-                            routeTable.AddOrReplaceRoutes("MySource", LoadRoutes());
-                        }
-                        catch (Exception ex)
-                        {
-                            criticalError.Raise("Ambiguous route detected", ex);
-                        }
-                    }, null, TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(30));
+                            try
+                            {
+                                routeTable.AddOrReplaceRoutes("MySource", LoadRoutes());
+                            }
+                            catch (Exception exception)
+                            {
+                                criticalError.Raise("Ambiguous route detected", exception);
+                            }
+                        },
+                        state: null,
+                        dueTime: TimeSpan.FromSeconds(30),
+                        period: TimeSpan.FromSeconds(30));
                     return Task.CompletedTask;
                 }
 
@@ -111,16 +122,19 @@
             Feature
         {
             #region RoutingExtensibility-Publishers
+
             protected override void Setup(FeatureConfigurationContext context)
             {
                 var publishers = context.Settings.Get<Publishers>();
                 var publisherAddress = PublisherAddress.CreateFromEndpointName("PublisherEndpoint");
-                publishers.AddOrReplacePublishers("MySource",
-                    new List<PublisherTableEntry>
+                publishers.AddOrReplacePublishers(
+                    sourceKey: "MySource",
+                    entries: new List<PublisherTableEntry>
                     {
                         new PublisherTableEntry(typeof(MyEvent), publisherAddress)
                     });
             }
+
             #endregion
         }
 

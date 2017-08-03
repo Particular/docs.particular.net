@@ -28,9 +28,11 @@ class Program
         transportAdapterConfig.CustomizeEndpointTransport(
             customization: transport =>
             {
-                transport.ConnectionString(@"Data Source=.\SqlExpress;Initial Catalog=shipping;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+                var connection = @"Data Source=.\SqlExpress;Initial Catalog=shipping;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
+                transport.ConnectionString(connection);
                 //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
-                transport.GetSettings().Set<EndpointInstances>(new EndpointInstances());
+                var settings = transport.GetSettings();
+                settings.Set<EndpointInstances>(new EndpointInstances());
             });
 
         #endregion
@@ -39,7 +41,8 @@ class Program
             customization: transport =>
             {
                 //HACK: Latest MSMQ requires this setting. To be moved to the transport adapter core.
-                transport.GetSettings().Set("errorQueue", "poison");
+                var settings = transport.GetSettings();
+                settings.Set("errorQueue", "poison");
             });
 
 #pragma warning restore 618
