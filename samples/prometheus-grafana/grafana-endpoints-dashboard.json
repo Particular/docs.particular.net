@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_LOCALPRO",
-      "label": "LocalPro",
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
       "description": "",
       "type": "datasource",
       "pluginId": "prometheus",
@@ -49,7 +49,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_LOCALPRO}",
+          "datasource": "${DS_PROMETHEUS}",
           "fill": 1,
           "id": 1,
           "legend": {
@@ -157,7 +157,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_LOCALPRO}",
+          "datasource": "${DS_PROMETHEUS}",
           "fill": 1,
           "id": 3,
           "legend": {
@@ -273,7 +273,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_LOCALPRO}",
+          "datasource": "${DS_PROMETHEUS}",
           "fill": 1,
           "id": 2,
           "legend": {
@@ -300,8 +300,18 @@
           "steppedLine": false,
           "targets": [
             {
+              "expr": "nservicebus_criticaltime_seconds{quantile=\"0.99\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "99th percentile",
+              "metric": "nservicebus_criticaltime_seconds",
+              "refId": "C",
+              "step": 30
+            },
+            {
               "expr": "max(nservicebus_criticaltime_seconds)",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 2,
               "legendFormat": "Maximum",
               "metric": "nservicebus_criticaltime_seconds",
@@ -314,15 +324,6 @@
               "intervalFactor": 2,
               "legendFormat": "Average",
               "refId": "B",
-              "step": 30
-            },
-            {
-              "expr": "nservicebus_criticaltime_seconds{quantile=\"0.99\"}",
-              "format": "time_series",
-              "intervalFactor": 2,
-              "legendFormat": "99th percentile",
-              "metric": "nservicebus_criticaltime_seconds",
-              "refId": "C",
               "step": 30
             },
             {
