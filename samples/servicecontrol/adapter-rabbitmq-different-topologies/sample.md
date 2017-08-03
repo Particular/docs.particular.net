@@ -19,7 +19,7 @@ This sample shows how to configure ServiceControl to monitor endpoints and retry
  2. Install RabbitMQ broker on localhost.
  3. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using RabbitMQ transport:
 	 
-   * Add a new ServiceControl instance:
+   * Add a new ServiceControl instance.
    * Use default `Particular.ServiceControl` as the instance name (make sure there is no other instance of SC running with the same name).
    * Specify `host=localhost` as a connection string. ServiceControl Management Utility will automatically create queues and exchanges on the broker.
 
@@ -63,7 +63,7 @@ The code base consists of three projects.
 
 ### Sales
 
-The Sales project contains endpoint that simulates execution of business process by sending a message to itself. It includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages that demonstrate message retry functionality. The Sales endpoint uses the RabbitMQ direct routing topology and requires an adapter in order to communicate with ServiceControl.
+The Sales project contains endpoint that simulates execution of business process by exchanging messages with the Sales endpoint. It includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages that demonstrate message retry functionality. The Sales endpoint uses the RabbitMQ direct routing topology and requires an adapter in order to communicate with ServiceControl.
 
 The following code configures the Sales endpoint to communicate with the adapter:
 
@@ -71,7 +71,7 @@ snippet: SalesConfiguration
 
 ### Shipping
 
-The Shipping project also contains endpoint that simulates execution of business process by sending a message to itself. It includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages that demonstrate message retry functionality.
+The Shipping project also contains endpoint that simulates execution of business process by exchanging messages with the Sales endpoint. It includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages that demonstrate message retry functionality.
 
 The Shipping endpoint uses the RabbitMQ direct routing topology and requires an adapter in order to communicate with ServiceControl.
 
