@@ -26,7 +26,7 @@ This sample reports the following metrics to Prometheus:
 
 ## Prerequisites
 
-To run this sample, download and run both Prometheus and Grafana. This sample uses Prometheus 1.7.1 and Grafana 4.4.2 that both run on Windows.
+To run this sample, download and run both Prometheus and Grafana. This sample uses Prometheus 1.7.1 and Grafana 4.4.2.
 
 - https://prometheus.io
 - https://grafana.com
@@ -41,22 +41,20 @@ snippet: load-simulator
 
 ## Capturing metric values
 
-We need the following package:
+The following nuget packages are required:
 
 - NServiceBus.Metrics
 - prometheus-net
 
 
 
-We host a Promethues service via the nuget package `prometheus-net` and register custom observers for the metric probes provided via `NServiceBus.Metrics`. This all setup in  `PrometheusFeature`
-
+A Prometheus service is hosted inside the endpoint via the nuget package `prometheus-net`. The services enables Prometheus to scrape data gathered by the metrics package. Custom observers need to be registered for the metric probes provided via `NServiceBus.Metrics`. This is all setup in  the `PrometheusFeature`
 
 
 snippet: enable-nsb-metrics
 
 
-
-The names provided by the `NServiceBus.Metrics` probes are not compatible with Prometheus. We need to map these to names that are aligned with the [naming conventions defined by Prometheus](https://prometheus.io/docs/practices/naming/)
+The names provided by the `NServiceBus.Metrics` probes are not compatible with Prometheus, thus the names need to be with the [naming conventions defined by Prometheus](https://prometheus.io/docs/practices/naming/) by mapping them accordingly
 
 Counters : `nservicebus_{counter-name}_total`
 
