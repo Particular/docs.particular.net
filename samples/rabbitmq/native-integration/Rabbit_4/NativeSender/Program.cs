@@ -38,10 +38,15 @@ class Program
 
                     #region SendMessage
 
-                    channel.BasicPublish(string.Empty, "Samples.RabbitMQ.NativeIntegration", false, properties, Encoding.UTF8.GetBytes(payload));
+                    channel.BasicPublish(
+                        exchange: string.Empty,
+                        routingKey: "Samples.RabbitMQ.NativeIntegration",
+                        mandatory: false,
+                        basicProperties: properties,
+                        body: Encoding.UTF8.GetBytes(payload));
                     #endregion
 
-                    Console.WriteLine($"Message with id {messageId} sent to queue {"Samples.RabbitMQ.NativeIntegration"}");
+                    Console.WriteLine($"Message with id {messageId} sent to queue Samples.RabbitMQ.NativeIntegration");
                 }
             }
         }
