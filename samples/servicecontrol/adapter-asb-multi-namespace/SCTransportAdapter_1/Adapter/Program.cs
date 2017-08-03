@@ -43,6 +43,9 @@ class Program
                 namespacePartitioning.AddNamespace("shipping", shippingConnectionString);
                 namespacePartitioning.UseStrategy<RoundRobinNamespacePartitioning>();
                 transport.UseForwardingTopology();
+                var composition = transport.Composition();
+                composition.UseStrategy<HierarchyComposition>()
+                    .PathGenerator(path => "scadapter/");
             });
 
         #endregion

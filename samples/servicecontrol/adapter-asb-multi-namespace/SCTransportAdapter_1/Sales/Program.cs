@@ -39,6 +39,9 @@ class Program
         routing.AddNamespace("shipping", shippingConnectionString);
         transport.UseForwardingTopology();
         transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
+        var composition = transport.Composition();
+        composition.UseStrategy<HierarchyComposition>()
+            .PathGenerator(path => "scadapter/");
 
         #endregion
 
