@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
@@ -38,15 +40,18 @@ class PrometheusFeature : Feature
 
         #region register-probe
 
+        var logicalAddress = settings.LogicalAddress();
+        var discriminator = logicalAddress.EndpointInstance.Discriminator ?? "none";
         var endpoint = settings.EndpointName();
+        var queue = settings.LocalAddress();
 
-        metricsOptions.RegisterObservers(x => RegisterProbes(x, endpoint));
+        metricsOptions.RegisterObservers(x => RegisterProbes(x, endpoint, Environment.MachineName, Dns.GetHostName(), discriminator, queue));
         #endregion
 
         context.RegisterStartupTask(new MetricServerTask());
     }
 
-    public void RegisterProbes(ProbeContext context, string endpoint)
+    public void RegisterProbes(ProbeContext context, string endpointName, string machinename, string hostname, string discriminator, string queue)
     {
         #region observers-registration
 
@@ -59,8 +64,8 @@ class PrometheusFeature : Feature
                 continue;
             }
             var prometheusName = nameMapping[duration.Name];
-            var summary = Prometheus.Metrics.CreateSummary(prometheusName, duration.Description, "endpoint");
-            duration.Register(observer: durationLength => summary.Labels(endpoint)
+            var summary = Prometheus.Metrics.CreateSummary(prometheusName, duration.Description, Labels);
+            duration.Register(observer: durationLength => summary.Labels(endpointName, machinename, hostname, discriminator, queue)
                 .Observe(durationLength.TotalSeconds));
         }
 
@@ -72,8 +77,8 @@ class PrometheusFeature : Feature
                 continue;
             }
             var prometheusName = nameMapping[signal.Name];
-            var counter = Prometheus.Metrics.CreateCounter(prometheusName, signal.Description, "endpoint");
-            signal.Register(observer: () => counter.Labels(endpoint).Inc());
+            var counter = Prometheus.Metrics.CreateCounter(prometheusName, signal.Description, Labels);
+            signal.Register(observer: () => counter.Labels(endpointName, machinename, hostname, discriminator, queue).Inc());
         }
 
         #endregion
@@ -101,4 +106,6 @@ class PrometheusFeature : Feature
     #endregion
 
     MetricsOptions metricsOptions;
+
+    static string[] Labels = {"endpoint", "machinename", "hostname", "endpointdiscriminator", "endpointqueue"};
 }
