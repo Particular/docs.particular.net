@@ -22,8 +22,7 @@ class Program
         #region load-simulator
 
         var simulator = new LoadSimulator(endpointInstance, TimeSpan.Zero, TimeSpan.FromSeconds(10));
-        await simulator.Start()
-            .ConfigureAwait(false);
+        simulator.Start();
 
         #endregion
 

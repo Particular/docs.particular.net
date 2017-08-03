@@ -19,17 +19,16 @@ class LoadSimulator
         this.idleDuration = TimeSpan.FromTicks(idleDuration.Ticks / 2);
     }
 
-    public Task Start()
+    public void Start()
     {
-        fork = Loop();
-        return Task.CompletedTask;
+        fork = Task.Run(Loop, CancellationToken.None);
     }
 
     async Task Loop()
     {
         try
         {
-            while (true)
+            while (!tokenSource.IsCancellationRequested)
             {
                 await Work()
                     .ConfigureAwait(false);
