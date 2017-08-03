@@ -19,7 +19,7 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        #region load-simulator
+        #region prometheus-load-simulator
 
         var simulator = new LoadSimulator(endpointInstance, TimeSpan.Zero, TimeSpan.FromSeconds(10));
         simulator.Start();
