@@ -9,7 +9,7 @@ using Prometheus;
 
 class PrometheusFeature : Feature
 {
-    #region name-mapping
+    #region prometheus-name-mapping
     Dictionary<string, string> nameMapping = new Dictionary<string, string>
     {
         // https://prometheus.io/docs/practices/naming/
@@ -25,7 +25,7 @@ class PrometheusFeature : Feature
     {
         Defaults(settings =>
         {
-            #region enable-nsb-metrics
+            #region prometheus-enable-nsb-metrics
 
             metricsOptions = settings.EnableMetrics();
 
@@ -38,7 +38,7 @@ class PrometheusFeature : Feature
     {
         var settings = context.Settings;
 
-        #region register-probe
+        #region prometheus-register-probe
 
         var logicalAddress = settings.LogicalAddress();
         var discriminator = logicalAddress.EndpointInstance.Discriminator ?? "none";
@@ -53,7 +53,7 @@ class PrometheusFeature : Feature
 
     public void RegisterProbes(ProbeContext context, string endpointName, string machinename, string hostname, string discriminator, string queue)
     {
-        #region observers-registration
+        #region prometheus-observers-registration
 
         var log = LogManager.GetLogger(nameof(PrometheusFeature));
         foreach (var duration in context.Durations)
@@ -84,7 +84,7 @@ class PrometheusFeature : Feature
         #endregion
     }
 
-    #region flush-probe
+    #region prometheus-flush-probe
 
     class MetricServerTask : FeatureStartupTask
     {

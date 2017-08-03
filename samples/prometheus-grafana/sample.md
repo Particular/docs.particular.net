@@ -36,7 +36,7 @@ To run this sample, download and run both Prometheus and Grafana. This sample us
 
 The sample simulates messages load with a random 10% failure rate using the `LoadSimulator` class:
 
-snippet: load-simulator
+snippet: prometheus-load-simulator
 
 
 ## Capturing metric values
@@ -49,7 +49,7 @@ The following nuget packages are required:
 A Prometheus service is hosted inside the endpoint via the nuget package `prometheus-net`. The service enables Prometheus to scrape data gathered by the metrics package. Custom observers need to be registered for the metric probes provided via `NServiceBus.Metrics`. This is all setup in  the `PrometheusFeature`
 
 
-snippet: enable-nsb-metrics
+snippet: prometheus-enable-nsb-metrics
 
 
 The names provided by the `NServiceBus.Metrics` probes are not compatible with Prometheus. Thus the names need to be aligned with the [naming conventions defined by Prometheus](https://prometheus.io/docs/practices/naming/) by mapping them accordingly
@@ -59,7 +59,7 @@ Counters : `nservicebus_{counter-name}_total`
 Summaries: `nservicebus_{summary-name}_seconds`
 
 
-snippet: name-mapping
+snippet: prometheus-name-mapping
 
 
 The registered observers convert NServiceBus.Metric *Signals* to Prometheus *Counters* and NServiceBus.Metric *Durations* to Prometheus *Summaries*.  Additionally, labels are added that identify the endpoint, the endpoint queue and more within Prometheus. With this label, it is possible to filter and group metric values. 
@@ -74,7 +74,7 @@ During the registration the following steps are required:
 - Invoke the summaries and counters in the observer callback
 
 
-snippet: register-probe
+snippet: prometheus-register-probe
 
 
 
