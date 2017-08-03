@@ -1,7 +1,7 @@
 ---
 title: NServiceBus features requiring usage of Transport Adapter
 summary: What features of NServiceBus require usage of Transport Adapter when connecting to ServiceControl
-reviewed: 2017-06-28
+reviewed: 2017-08-03
 ---
 
 Some features of NServiceBus, particularly related to physical routing of messages, cannot be supported by ServiceControl. The reason for not supporting them is the fact that these features require extensive code-based configuration and ServiceControl is a stand-alone service. The Transport Adapter is designed to bridge the gap. Transport Adapter is provided as a library package (rather than stand-alone service) so users can customize the transport the same way as they do for the regular business endpoints.
