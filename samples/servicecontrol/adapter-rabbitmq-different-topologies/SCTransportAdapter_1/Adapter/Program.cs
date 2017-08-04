@@ -15,9 +15,10 @@ class Program
     {
         #region AdapterTransport
 
-        var transportAdapterConfig = new TransportAdapterConfig<RabbitMQTransport, RabbitMQTransport>("ServiceControl.RabbitMQ.Adapter");
+        var transportAdapter =
+            new TransportAdapterConfig<RabbitMQTransport, RabbitMQTransport>("ServiceControl.RabbitMQ.Adapter");
 
-        transportAdapterConfig.CustomizeServiceControlTransport(
+        transportAdapter.CustomizeServiceControlTransport(
             customization: transport =>
             {
                 transport.ConnectionString("host=localhost");
@@ -29,7 +30,7 @@ class Program
 
         #region EndpointSideConfig
 
-        transportAdapterConfig.CustomizeEndpointTransport(
+        transportAdapter.CustomizeEndpointTransport(
             customization: transport =>
             {
                 transport.ConnectionString("host=localhost");
@@ -42,17 +43,17 @@ class Program
 
         #region AdapterQueueConfiguration
 
-        transportAdapterConfig.EndpointSideErrorQueue = "adapter_error";
-        transportAdapterConfig.EndpointSideAuditQueue = "adapter_audit";
-        transportAdapterConfig.EndpointSideControlQueue = "adapter_Particular.ServiceControl";
+        transportAdapter.EndpointSideErrorQueue = "adapter_error";
+        transportAdapter.EndpointSideAuditQueue = "adapter_audit";
+        transportAdapter.EndpointSideControlQueue = "adapter_Particular.ServiceControl";
 
-        transportAdapterConfig.ServiceControlSideErrorQueue = "error";
-        transportAdapterConfig.ServiceControlSideAuditQueue = "audit";
-        transportAdapterConfig.ServiceControlSideControlQueue = "Particular.ServiceControl";
+        transportAdapter.ServiceControlSideErrorQueue = "error";
+        transportAdapter.ServiceControlSideAuditQueue = "audit";
+        transportAdapter.ServiceControlSideControlQueue = "Particular.ServiceControl";
 
         #endregion
 
-        var adapter = TransportAdapter.Create(transportAdapterConfig);
+        var adapter = TransportAdapter.Create(transportAdapter);
 
         await adapter.Start()
             .ConfigureAwait(false);

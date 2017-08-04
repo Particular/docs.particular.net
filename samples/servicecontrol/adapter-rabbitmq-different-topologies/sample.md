@@ -1,5 +1,5 @@
 ---
-title: Monitor RabbitMQ direct routing topology with ServiceControl adapter
+title: Monitor RabbitMQ routing topology with ServiceControl adapter
 summary: Configure RabbitMQ direct routing topology monitoring with the ServiceControl adapter
 component: SCTransportAdapter
 reviewed: 2017-08-02
@@ -34,7 +34,7 @@ NOTE: In order to connect to a different RabbitMQ broker, ensure all connection 
 ## Running the project
 
  1. Start the projects: Adapter, Sales and Shipping (right-click on the project, select the `Debug > Start new instance` option). Make sure adapter starts first because on start-up it creates a queue that is used for heartbeats.
- 1. Open ServicePulse (by default it's available at http://localhost:9090/#/dashboard) and select the Endpoints Overview. `Samples.ServiceControl.RabbitMQAdapter.Shipping` endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed.
+ 1. Open ServicePulse (by default it's available at `http://localhost:9090/#/dashboard`) and select the Endpoints Overview. `Samples.ServiceControl.RabbitMQAdapter.Shipping` endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed.
  1. Go to the Sales console and press `o` to send a message.
  1. Notice the Sales endpoint receives its own message and successfully processed it.
  1. Press `f` to simulate message processing failure.
@@ -52,16 +52,10 @@ NOTE: In order to connect to a different RabbitMQ broker, ensure all connection 
 
 ## Code walk-through 
 
-The following diagram shows the topology of the solution:
-
-![Topology diagram](diagram.svg)
-
 The code base consists of three projects.
 
 
-## Endpoints
-
-### Sales
+### Sales Endpoint
 
 The Sales project contains endpoint that simulates execution of business process by exchanging messages with the Sales endpoint. It includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages that demonstrate message retry functionality. The Sales endpoint uses the RabbitMQ direct routing topology and requires an adapter in order to communicate with ServiceControl.
 
@@ -69,7 +63,8 @@ The following code configures the Sales endpoint to communicate with the adapter
 
 snippet: SalesConfiguration
 
-### Shipping
+
+### Shipping Endpoint
 
 The Shipping project also contains endpoint that simulates execution of business process by exchanging messages with the Sales endpoint. It includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages that demonstrate message retry functionality.
 
@@ -82,7 +77,7 @@ The following code configures the Shipping endpoint to communicate with the adap
 snippet: ShippingConfiguration
 
 
-## Adapter
+### Adapter
 
 The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has two sides: endpoint-facing and ServiceControl-facing. In this sample the ServiceControl-facing side uses the RabbitMQ transport with the default conventional routing topology:
 
