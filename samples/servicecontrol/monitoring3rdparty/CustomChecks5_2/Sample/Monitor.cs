@@ -10,6 +10,7 @@ class ThirdPartyMonitor :
 {
     const string url = "http://localhost:57789";
     static ILog log = LogManager.GetLogger<ThirdPartyMonitor>();
+    static HttpClient client = new HttpClient { Timeout = TimeSpan.FromSeconds(3) };
 
     public ThirdPartyMonitor()
         : base(
@@ -23,10 +24,6 @@ class ThirdPartyMonitor :
     {
         try
         {
-            using (var client = new HttpClient
-            {
-                Timeout = TimeSpan.FromSeconds(3),
-            })
             using (var response = client.GetAsync(url).Result)
             {
                 if (response.IsSuccessStatusCode)
