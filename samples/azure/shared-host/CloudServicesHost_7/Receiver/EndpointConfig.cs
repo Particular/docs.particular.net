@@ -17,6 +17,7 @@ public class EndpointConfig :
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("UseDevelopmentStorage=true");
         transport.SerializeMessageWrapperWith<JsonSerializer>();
+        transport.DelayedDelivery().DisableTimeoutManager();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.DisableNotUsedFeatures();
     }
