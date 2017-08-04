@@ -1,5 +1,5 @@
 ---
-title: Monitor RabbitMQ routing topology with ServiceControl adapter
+title: Monitor RabbitMQ direct routing topology with ServiceControl adapter
 summary: Configure RabbitMQ direct routing topology monitoring with the ServiceControl adapter
 component: SCTransportAdapter
 reviewed: 2017-08-02
