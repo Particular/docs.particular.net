@@ -29,8 +29,9 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
-            .ConnectionString("UseDevelopmentStorage=true");
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport.ConnectionString("UseDevelopmentStorage=true");
+        transport.DelayedDelivery().DisableTimeoutManager();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

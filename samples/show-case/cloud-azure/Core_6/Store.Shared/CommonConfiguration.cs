@@ -17,6 +17,7 @@ public static class CommonConfiguration
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString(connectionString);
+        transport.DelayedDelivery().DisableTimeoutManager();
 
         messageEndpointMappings?.Invoke(transport);
 

@@ -52,8 +52,9 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.4.0\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
+    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.7.4.1\lib\net452\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
       <HintPath>..\..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
