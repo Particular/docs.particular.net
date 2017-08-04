@@ -28,8 +28,8 @@ This sample reports the following metrics to Prometheus:
 
 To run this sample, download and run both Prometheus and Grafana. This sample uses Prometheus 1.7.1 and Grafana 4.4.2.
 
-- https://prometheus.io
-- https://grafana.com
+- [prometheus.io](https://prometheus.io)
+- [grafana.com](https://grafana.com)
 
 
 ## Code overview
@@ -46,7 +46,12 @@ The following nuget packages are required:
 - NServiceBus.Metrics
 - prometheus-net
 
-A Prometheus service is hosted inside the endpoint via the nuget package `prometheus-net`. The service enables Prometheus to scrape data gathered by the metrics package. Custom observers need to be registered for the metric probes provided via `NServiceBus.Metrics`. This is all setup in  the `PrometheusFeature`
+A Prometheus service is hosted inside an endpoint via the nuget package `prometheus-net`. The service enables Prometheus to scrape data gathered by the metrics package. In the sample the service that exposes the data to scrape is hosted on `http://localhost:3030'. The service is started and stopped inside a feature startup task as shown below
+
+snippet: prometheus-flush-probe
+
+
+Custom observers need to be registered for the metric probes provided via `NServiceBus.Metrics`. This is all setup in the `PrometheusFeature`
 
 
 snippet: prometheus-enable-nsb-metrics
@@ -62,7 +67,7 @@ Summaries: `nservicebus_{summary-name}_seconds`
 snippet: prometheus-name-mapping
 
 
-The registered observers convert NServiceBus.Metric *Signals* to Prometheus *Counters* and NServiceBus.Metric *Durations* to Prometheus *Summaries*.  Additionally, labels are added that identify the endpoint, the endpoint queue and more within Prometheus. With this label, it is possible to filter and group metric values. 
+The registered observers convert NServiceBus.Metric *Signals* to Prometheus *Counters* and NServiceBus.Metric *Durations* to Prometheus *Summaries*.  Additionally, labels are added that identify the endpoint, the endpoint queue and more within Prometheus. With these labels, it is possible to filter and group metric values. 
 
 snippet: prometheus-register-probe
 
