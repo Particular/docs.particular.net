@@ -3,7 +3,7 @@ title: Capture and visualize metrics using Prometheus and Grafana
 component: Metrics
 ---
 
-[Prometheus](https://prometheus.io) is a monitoring solution for storing time series data like metrics. [Grafana](https://grafana.com) allows to query and visualize the data stored in Prometheus (and other sources). This sample demonstrates how to capture NServiceBus metrics, storing these in Prometheus and visualizing this using Grafana.
+[Prometheus](https://prometheus.io) is a monitoring solution for storing time series data like metrics. [Grafana](https://grafana.com) allows to query and visualize the data stored in Prometheus (and other sources). This sample demonstrates how to capture NServiceBus metrics, storing these in Prometheus and visualizing these metrics using Grafana.
 
 
 
@@ -16,8 +16,8 @@ This sample reports the following metrics to Prometheus:
  * Fetched messages per second 
  * Failed messages per second
  * Successful messages per second
- * Critical time 
- * Processing time
+ * Critical time in seconds
+ * Processing time seconds
 
 
 
@@ -43,10 +43,10 @@ snippet: prometheus-load-simulator
 
 The following nuget packages are required:
 
-- NServiceBus.Metrics
-- prometheus-net
+- [NServiceBus.Metrics](https://www.nuget.org/packages/NServiceBus.Metrics/)
+- [prometheus-net](https://www.nuget.org/packages/prometheus-net)
 
-A Prometheus service is hosted inside an endpoint via the nuget package `prometheus-net`. The service enables Prometheus to scrape data gathered by the metrics package. In the sample the service that exposes the data to scrape is hosted on `http://localhost:3030'. The service is started and stopped inside a feature startup task as shown below
+A Prometheus service is hosted inside an endpoint via the nuget package `prometheus-net`. The service enables Prometheus to scrape data gathered by the metrics package. In the sample the service that exposes the data to scrape is hosted on `http://localhost:3030`. The service is started and stopped inside a feature startup task as shown below
 
 snippet: prometheus-flush-probe
 
@@ -57,7 +57,7 @@ Custom observers need to be registered for the metric probes provided via `NServ
 snippet: prometheus-enable-nsb-metrics
 
 
-The names provided by the `NServiceBus.Metrics` probes are not compatible with Prometheus. Thus the names need to be aligned with the [naming conventions defined by Prometheus](https://prometheus.io/docs/practices/naming/) by mapping them accordingly
+The names provided by the `NServiceBus.Metrics` probes are not compatible with Prometheus. The `NServiceBus.Metrics` names need to be aligned with the [naming conventions defined by Prometheus](https://prometheus.io/docs/practices/naming/) by mapping them accordingly
 
 Counters : `nservicebus_{counter-name}_total`
 
@@ -158,7 +158,10 @@ Grafana needs to be installed and configured to display the data available in Pr
 
 ### Guided configuration
 
-Execute `setup.grafana.ps1` in a powershell with elevated permission and provide the username and password to authenticate with Grafana. 
+Execute `setup.grafana.ps1` in a powershell with elevated permission and provide the username and password to authenticate with Grafana. This script will
+
+- Create a data source called `PrometheusNServiceBusDemo`
+- Import the [sample dashboard](grafana-endpoints-dashboard.json) and connect it to the data source
 
 
 ### Manual configuration
