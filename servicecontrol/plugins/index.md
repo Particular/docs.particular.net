@@ -3,7 +3,7 @@ title: ServiceControl Endpoint Plugins
 summary: Describes the purpose and internal behavior of the endpoint plugins used by ServiceControl
 reviewed: 2017-03-29
 related:
-- samples/custom-checks/monitoring3rdparty
+- samples/servicecontrol/monitoring3rdparty
 ---
 
 ServiceControl is the backend service for ServiceInsight, ServicePulse, and third-party integration. It collects and stores information from monitored NServiceBus endpoints and exposes this information for consumption by various clients via a HTTP API.

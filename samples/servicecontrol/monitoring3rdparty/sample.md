@@ -4,9 +4,12 @@ summary: Monitoring 3rd party systems which are exposed as HTTP endpoints with c
 component: CustomChecks
 reviewed: 2016-03-21
 related:
-- servicecontrol/plugins
-- servicepulse/intro-endpoints-custom-checks
+ - servicecontrol/plugins
+ - servicepulse/intro-endpoints-custom-checks
+redirects:
+ - samples/custom-checks/monitoring3rdparty
 ---
+
 
 ## Code walk-through
 

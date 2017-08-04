@@ -8,7 +8,7 @@ related:
  - servicecontrol
  - servicecontrol/contracts
  - servicecontrol/plugins
- - samples/custom-checks/monitoring3rdparty
+ - samples/servicecontrol/monitoring3rdparty
 ---
 
 ## Prerequisistes

@@ -4,7 +4,7 @@ summary: Define a custom set of conditions that are checked on the endpoint.
 reviewed: 2016-10-06
 component: CustomChecks
 related:
- - samples/custom-checks/monitoring3rdparty
+ - samples/servicecontrol/monitoring3rdparty
 ---
 
 The CustomChecks Plugin enables custom endpoint monitoring. It allows the developer of an NServiceBus endpoint to define a set of conditions that are checked on endpoint startup or periodically.

@@ -4,7 +4,7 @@ summary: Describes how ServicePulse uses custom checks to monitor and detect pro
 component: ServicePulse
 reviewed: 2016-10-06
 related:
-- samples/custom-checks/monitoring3rdparty
+- samples/servicecontrol/monitoring3rdparty
 - servicepulse/how-to-configure-endpoints-for-monitoring
 - servicecontrol/plugins
 redirects:
