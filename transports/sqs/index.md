@@ -42,11 +42,14 @@ The IAM account requires the following:
 
  * CreateQueue
  * DeleteMessage
+ * DeleteMessageBatch
  * GetQueueUrl
  * ReceiveMessage
  * SendMessage
+ * SendMessageBatch
  * SetQueueAttributes
  * ChangeMessageVisibility
+ * ChangeMessageVisibilityBatch
  * PurgeQueue
 
 
