@@ -38,7 +38,7 @@ NOTE: In order to connect to a different RabbitMQ broker, ensure all connection 
  1. Go to the Sales console and press `o` to send a message.
  1. Notice the Sales endpoint receives its own message and successfully processes it.
  1. Press `f` to simulate message processing failure.
- 1. Go to the Sales console and also press `f` to simulate message processing failure.
+ 1. Go to the Shipping console and also press `f` to simulate message processing failure.
  1. Press `o` in both Sales and Shipping to create more messages.
  1. Notice both messages failed processing in their respective endpoints.
  1. Open ServicePulse and select the Failed Messages view.
@@ -66,7 +66,7 @@ snippet: SalesConfiguration
 
 ### Shipping Endpoint
 
-The Shipping project also contains an endpoint that simulates the execution of a business process by exchanging messages with the Sales endpoint. It includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages that demonstrate message retry functionality.
+The Shipping project also contains an endpoint that simulates the execution of a business process by exchanging messages with the Shipping endpoint. It includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages that demonstrate message retry functionality.
 
 The Shipping endpoint uses the RabbitMQ direct routing topology and requires an adapter in order to communicate with ServiceControl.
 
