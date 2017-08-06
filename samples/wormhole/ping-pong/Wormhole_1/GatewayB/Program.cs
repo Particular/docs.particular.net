@@ -26,7 +26,12 @@ class Program
         #endregion
 
         //Hack necessary to make 6.3.x MSMQ work
-        gatewayConfig.CustomizeLocalTransport((c, t) => t.GetSettings().Set("errorQueue", "poison"));
+        gatewayConfig.CustomizeLocalTransport(
+            customization: (configuration, transportExtensions) =>
+            {
+                var settings = transportExtensions.GetSettings();
+                settings.Set("errorQueue", "poison");
+            });
 
         var gateway = await gatewayConfig.Start()
             .ConfigureAwait(false);

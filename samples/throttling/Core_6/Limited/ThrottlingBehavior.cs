@@ -18,7 +18,7 @@ public class ThrottlingBehavior :
         if (rateLimitReset.HasValue && rateLimitReset >= DateTime.UtcNow)
         {
             var localTime = rateLimitReset?.ToLocalTime();
-            log.Info($"Rate limit already exceeded. Retry after {rateLimitReset} UTC ({localTime} local).");
+            log.Info($"Rate limit exceeded. Retry after {rateLimitReset} UTC ({localTime} local).");
             await DelayMessage(context, rateLimitReset.Value)
                 .ConfigureAwait(false);
         }

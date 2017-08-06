@@ -17,8 +17,9 @@
 
         #endregion
 
-        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
+            return Task.CompletedTask;
         }
     }
 

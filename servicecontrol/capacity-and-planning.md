@@ -29,11 +29,28 @@ To limit the rate at which the database grows, the body of an audit messages can
 
 See also [Automatic Expiration of ServiceControl Data](how-purge-expired-data.md).
 
-
 **NOTE**
 
  * The maximum supported size of the RavenDB embedded database is 16TB.
  * Failed messages are *never* expired and are retained indefinitely in the ServiceControl database.
+
+
+#### Performance
+
+From the perspective of performance ServiceControl can be considered similar to a database installation. It requires a significant amount disk and network IO due to processing of audit, error and monitoring messages. Each of these message processing operations require disk IO. The higher the message throughput of an environment, the higher the required disk IO.
+
+For this reason it is required to store the ServiceControl data on a disk with the lowest possible latency for IO operations. Indexes require continuous updating and will require significant RAM to allow those indexes to be kept in memory. Processing of indexes that cannot be stored fully in RAM will result in a higher likelihood of hose indexes being stale. As all message are added to a full-text search it is also required to make sure that the CPU will not become the bottleneck in updating indexes.
+
+Ensure that:
+
+ * enough RAM is used, 6GB minimum;
+ * data is stored on disks suitable for low latency write operations (fiber, solid state drives, raid 10)
+ * multiple CPU cores are available
+ * infrastructure is monitored (CPU, RAM, disks, network)
+ * data is not stored on the same physical system drive
+ * storage drive is reserved for ServiceControl
+
+NOTE: To ensure disk performance use a benchmark tool, for example [CrystalDiskMark](http://crystalmark.info/software/CrystalDiskMark/index-e.html). Real disk, CPU, RAM and network performance can be monitored with the Windows Resource Monitor and/or Windows Performance counters.
 
 
 ### Accessing data and audited messages

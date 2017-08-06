@@ -13,7 +13,7 @@
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.AddUnrecoverableException<MyBusinessException>();
             recoverability.CustomPolicy(MyCustomRetryPolicy);
-            // configuration can still be tweaked on this level if desired, data will be passed into the policy
+            // configuration can be changed at this point, data will be passed to the policy
             recoverability.Immediate(
                 immediate =>
                 {

@@ -38,7 +38,7 @@ class StreamReceiveBehavior :
 
             var filePath = Path.Combine(location, dataBusKey);
 
-            // If the file doesn't exist then something has gone wrong with the file share. 
+            // If the file doesn't exist then something has gone wrong with the file share.
             // Perhaps the file has been manually deleted.
             // For safety send the message to the error queue
             if (!File.Exists(filePath))

@@ -11,7 +11,6 @@ public class MyCommandHandler :
     public Task Handle(MyCommand message, IMessageHandlerContext context)
     {
         log.Info($"Command received, id:{message.CommandId}");
-        log.Info($"EncryptedString:{message.EncryptedString}");
         return Task.CompletedTask;
     }
 }

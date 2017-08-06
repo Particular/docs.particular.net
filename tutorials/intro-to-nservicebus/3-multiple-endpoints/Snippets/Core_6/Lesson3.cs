@@ -46,8 +46,8 @@ namespace Core_6
         void ShowRouting(EndpointConfiguration endpointConfiguration)
         {
             #region RoutingSettings
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            // Returns a RoutingSettings<MsmqTransport>
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            // Returns a RoutingSettings<LearningTransport>
             var routing = transport.Routing();
             #endregion
 
@@ -75,7 +75,7 @@ namespace Core_6
             var endpointConfiguration = new EndpointConfiguration("Sales");
             #endregion
 
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
             #region AddingRouting
             var routing = transport.Routing();

@@ -30,7 +30,7 @@ namespace Rabbit_All.NativeSend
         {
             var endpointInstance = await StartBus()
                 .ConfigureAwait(false);
-            Dictionary<string, object> headers = new Dictionary<string, object>
+            var headers = new Dictionary<string, object>
             {
                 {"NServiceBus.EnclosedMessageTypes", "NativeSendTests+MessageToSend"}
             };
@@ -46,7 +46,7 @@ namespace Rabbit_All.NativeSend
             logFactory.Level(LogLevel.Warn);
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.SendFailedMessagesTo(errorQueueName);
-            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Immediate(
                 customizations: setting =>

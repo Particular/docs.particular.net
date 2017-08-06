@@ -1,12 +1,11 @@
 ## Configuring
 
+ * `NumberOfRetries`: Number of times Immediate Retries are performed. Default: 5.
 
 snippet: ImmediateRetriesConfiguration
 
 
-
 ## Disabling
-
 
 snippet: DisablingImmediateRetriesConfiguration
 

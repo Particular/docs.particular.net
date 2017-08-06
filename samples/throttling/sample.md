@@ -1,6 +1,6 @@
 ---
 title: Message Throughput Throttling
-reviewed: 2016-06-09
+reviewed: 2017-07-28
 component: Core
 tags:
 - Throttling
@@ -9,7 +9,7 @@ related:
 - nservicebus/operations/tuning
 ---
 
-This sample demonstrates performing a search query against [GitHub API](https://developer.github.com/v3/) using the [Octokit library](https://github.com/octokit/octokit.net) in unauthenticated mode, which is limited to a fixed number of requests per minute. Upon hitting this limit, the endpoint will delay processing additional messages, until the limit resets.
+This sample demonstrates performing a search query against the [GitHub API](https://developer.github.com/v3/) using the [Octokit library](https://github.com/octokit/octokit.net). It runs in unauthenticated mode, which is limited to a fixed number of requests per minute. Upon hitting this limit, the endpoint will delay processing additional messages, until the limit resets.
 
 The solution consists of two endpoints; Sender and Limited. The reason two multiple are required in this scenario is are that NServiceBus does not support limiting messages by message type. So to limit **only** a specific message type then an endpoint is required to handle that message type.
 

@@ -1,10 +1,10 @@
 ﻿using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
-#region GatewaySitesConfigurationProvider
 
 namespace Core4.Sites
 {
+    #region GatewaySitesConfigurationProvider
     class ProvideConfiguration :
         IProvideConfiguration<GatewayConfig>
     {
@@ -30,6 +30,7 @@ namespace Core4.Sites
             };
         }
     }
+    #endregion
+
 }
 
-#endregion

@@ -40,7 +40,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.NHibernate, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.NHibernate.6.2.8\lib\net45\NServiceBus.NHibernate.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.NHibernate.6.2.9\lib\net45\NServiceBus.NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

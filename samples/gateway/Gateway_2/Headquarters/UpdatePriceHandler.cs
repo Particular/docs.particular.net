@@ -12,7 +12,7 @@ public class UpdatePriceHandler :
 
     public Task Handle(UpdatePrice message, IMessageHandlerContext context)
     {
-        log.Info("Price update request received from the webclient, going to push it to RemoteSite");
+        log.Info("Price update received from the webclient, going to push to RemoteSite");
         string[] siteKeys =
         {
             "RemoteSite"

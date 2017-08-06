@@ -17,7 +17,7 @@
                 Thread.Sleep(10000);
             }
 
-            string fatalMessage = $"NServiceBus critical error:\n{errorMessage}\nShutting down.";
+            var fatalMessage = $"NServiceBus critical error:\n{errorMessage}\nShutting down.";
             Environment.FailFast(fatalMessage, exception);
 
             #endregion

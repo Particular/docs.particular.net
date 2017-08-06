@@ -1,4 +1,5 @@
-﻿namespace Core6.UpgradeGuides._5to6
+﻿#pragma warning disable 1998
+namespace Core6.UpgradeGuides._5to6
 {
     using System.Collections.Generic;
     using System.Linq;

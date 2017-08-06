@@ -100,7 +100,7 @@ NOTE: For a single request-response interaction `Correlation Id` and `RelatedTo`
 
 Message intent can have one of the following values:
 
-|               |             |
+| Value         | Description |
 | ------------- |-------------|
 | Send |Regular point-to-point send. Note that messages sent to Error queue will also have a `Send` intent|
 | Publish |The message is an event that has been published and will be sent to all subscribers.|

@@ -26,11 +26,13 @@ class Program
 
         #region EndpointSideConfig
 
-        transportAdapterConfig.CustomizeEndpointTransport(transport =>
+        transportAdapterConfig.CustomizeEndpointTransport(
+            customization: transport =>
         {
             transport.EnableLegacyMultiInstanceMode(Connections.GetConnection);
             //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
-            transport.GetSettings().Set<EndpointInstances>(new EndpointInstances());
+            var settings = transport.GetSettings();
+            settings.Set<EndpointInstances>(new EndpointInstances());
         });
 
         #endregion
@@ -42,10 +44,11 @@ class Program
         transportAdapterConfig.CustomizeServiceControlTransport(
             customization: transport =>
             {
-                transport.ConnectionString(
-                    @"Data Source=.\SqlExpress;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+                var connection = @"Data Source=.\SqlExpress;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
+                transport.ConnectionString(connection);
                 //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
-                transport.GetSettings().Set<EndpointInstances>(new EndpointInstances());
+                var settings = transport.GetSettings();
+                settings.Set<EndpointInstances>(new EndpointInstances());
             });
 
         #endregion

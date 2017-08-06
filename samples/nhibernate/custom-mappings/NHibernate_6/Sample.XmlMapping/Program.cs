@@ -34,7 +34,7 @@ class Program
                 OrderId = "123"
             };
             bus.SendLocal(startOrder);
-            
+
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

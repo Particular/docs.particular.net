@@ -92,7 +92,8 @@ namespace Core5.Extending
         {
             #region WriteSettingsFromEndpointConfiguration
 
-            busConfiguration.GetSettings().Set("AnotherKey", new CustomSettingsDto());
+            var settings = busConfiguration.GetSettings();
+            settings.Set("AnotherKey", new CustomSettingsDto());
 
             #endregion
         }

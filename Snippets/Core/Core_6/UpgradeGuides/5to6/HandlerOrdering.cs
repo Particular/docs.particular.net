@@ -8,7 +8,10 @@
         {
             #region 5to6HandlerOrderingWithCode
 
-            endpointConfiguration.ExecuteTheseHandlersFirst(typeof(HandlerB), typeof(HandlerA), typeof(HandlerC));
+            endpointConfiguration.ExecuteTheseHandlersFirst(
+                typeof(HandlerB),
+                typeof(HandlerA),
+                typeof(HandlerC));
 
             #endregion
         }

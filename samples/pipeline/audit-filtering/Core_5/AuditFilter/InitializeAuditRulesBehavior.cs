@@ -2,7 +2,7 @@
 using NServiceBus.Pipeline;
 
 #region addFilterBehaviors
-class InitializeNewAuditBehavior : 
+class InitializeNewAuditBehavior :
     INeedInitialization
 {
     public void Customize(BusConfiguration configuration)

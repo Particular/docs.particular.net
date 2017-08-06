@@ -42,7 +42,7 @@
 
     class SwitchInstallersByMachineNameConvention
     {
-        async Task Simple(EndpointConfiguration endpointConfiguration)
+        Task Simple(EndpointConfiguration endpointConfiguration)
         {
             #region InstallersRunWhenNecessaryMachineNameConvention
 
@@ -52,6 +52,7 @@
             }
 
             #endregion
+            return Task.CompletedTask;
         }
     }
 }

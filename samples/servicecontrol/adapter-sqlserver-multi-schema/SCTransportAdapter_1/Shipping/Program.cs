@@ -20,9 +20,9 @@ class Program
         transport.DefaultSchema("shipping");
 
         transport.UseSpecificConnectionInformation(
-            //Configure schema for the sales endpoint so that the subscribe message is sent to the correct address
+            //Configure schema for sales endpoint so that the subscribe message is sent to the correct address
             EndpointConnectionInfo.For("Samples.ServiceControl.SqlServerTransportAdapter.Sales").UseSchema("sales"),
-            //Configure schemas for the ServiceControl queues to point to the adapter
+            //Configure schemas for ServiceControl queues to point to the adapter
             EndpointConnectionInfo.For("audit").UseSchema("adapter"),
             EndpointConnectionInfo.For("error").UseSchema("adapter"),
             EndpointConnectionInfo.For("Particular.ServiceControl").UseSchema("adapter")

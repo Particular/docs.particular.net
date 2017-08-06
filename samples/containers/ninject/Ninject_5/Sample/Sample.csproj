@@ -40,8 +40,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Ninject, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Ninject.5.1.1\lib\net45\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Ninject.5.1.2\lib\net45\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

@@ -23,8 +23,7 @@ class Configure
 
         #endregion
     }
-    
-    
+
     void SpecificExternalDocumentStore(EndpointConfiguration endpointConfiguration)
     {
         #region ravendb-persistence-specific-external-store

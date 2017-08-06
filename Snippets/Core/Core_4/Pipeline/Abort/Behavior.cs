@@ -1,4 +1,5 @@
 ﻿// ReSharper disable UnusedParameter.Local
+#pragma warning disable 618
 namespace Core4.Pipeline.Abort
 {
     using System;

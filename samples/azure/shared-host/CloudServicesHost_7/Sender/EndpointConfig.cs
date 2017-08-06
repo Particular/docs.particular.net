@@ -27,6 +27,7 @@ public class EndpointConfig :
 
         transport.ConnectionString("UseDevelopmentStorage=true");
         transport.SerializeMessageWrapperWith<JsonSerializer>();
+        transport.DelayedDelivery().DisableTimeoutManager();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.DisableNotUsedFeatures();
     }

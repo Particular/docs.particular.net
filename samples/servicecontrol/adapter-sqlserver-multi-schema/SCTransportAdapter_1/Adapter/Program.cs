@@ -27,18 +27,21 @@ class Program
         transportAdapterConfig.CustomizeEndpointTransport(
             customization: transport =>
             {
-                transport.ConnectionString(
-                    @"Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+                var connection = @"Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
+                transport.ConnectionString(connection);
 
                 //Use custom schema
                 transport.DefaultSchema("adapter");
 
                 //Necassary to correctly route retried messages because
                 //SQL Server transport 2.x did not include schema information in the address
-                transport.UseSchemaForQueue("Samples.ServiceControl.SqlServerTransportAdapter.Shipping", "shipping");
+                transport.UseSchemaForQueue(
+                    queueName: "Samples.ServiceControl.SqlServerTransportAdapter.Shipping",
+                    schema: "shipping");
 
                 //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
-                transport.GetSettings().Set<EndpointInstances>(new EndpointInstances());
+                var settings = transport.GetSettings();
+                settings.Set<EndpointInstances>(new EndpointInstances());
             });
 
         #endregion

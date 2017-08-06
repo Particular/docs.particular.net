@@ -32,7 +32,7 @@ static class Program
         endpointConfiguration.SerilogTracingTarget(tracingLog);
 
         #endregion
-        
+
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

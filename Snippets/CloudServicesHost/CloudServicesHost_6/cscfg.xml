@@ -3,7 +3,8 @@
 <Role name="WorkerRole">
   <Instances count="2" />
   <ConfigurationSettings>
-    <Setting name="AzureServiceBusQueueConfig.ConnectionString" value="YourConnectionString"/>
+    <Setting name="AzureServiceBusQueueConfig.ConnectionString"
+             value="YourConnectionString"/>
   </ConfigurationSettings>
 </Role>
 <!-- endcode -->

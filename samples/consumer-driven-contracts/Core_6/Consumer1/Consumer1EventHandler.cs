@@ -3,7 +3,7 @@ using NServiceBus;
 using NServiceBus.Logging;
 using Subscriber1.Contracts;
 
-class Consumer1EventHandler : 
+class Consumer1EventHandler :
     IHandleMessages<Consumer1Contract>
 {
     static ILog log = LogManager.GetLogger<Consumer1EventHandler>();

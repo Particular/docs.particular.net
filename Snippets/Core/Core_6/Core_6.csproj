@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <RootNamespace>Core6</RootNamespace>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.*" />
@@ -12,19 +13,12 @@
     <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="4.*" />
     <PackageReference Include="NUnit" Version="3.*" />
-    <PackageReference Include="Rx-Core" Version="2.*" />
-    <PackageReference Include="Rx-Interfaces" Version="2.*" />
-    <PackageReference Include="Rx-Linq" Version="2.*" />
-    <PackageReference Include="Rx-Main" Version="2.*" />
-    <PackageReference Include="Rx-PlatformServices" Version="2.*" />
+    <PackageReference Include="System.Reactive" Version="3.*" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
     <ProjectReference Include="..\..\MsmqTransport\MsmqTransport_All\MsmqTransport_All.csproj" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UpgradeGuides\6to7\Routing\" />
   </ItemGroup>
 </Project>

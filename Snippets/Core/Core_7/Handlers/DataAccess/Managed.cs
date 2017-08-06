@@ -30,11 +30,12 @@ namespace Core7.Handlers.DataAccess
         public class NonIdempotentHandler :
             IHandleMessages<AddOrderLine>
         {
-            public async Task Handle(AddOrderLine message, IMessageHandlerContext context)
+            public Task Handle(AddOrderLine message, IMessageHandlerContext context)
             {
                 var session = context.SynchronizedStorageSession.MyOrmSession();
                 var order = session.Get(message.OrderId);
                 order.AddLine(message.Product, message.Quantity);
+                return Task.CompletedTask;
             }
         }
 

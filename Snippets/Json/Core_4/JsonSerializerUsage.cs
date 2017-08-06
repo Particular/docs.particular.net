@@ -9,7 +9,7 @@
             #region JsonSerialization
 
             Configure.Serialization.Json();
-        
+
             #endregion
 
         }

@@ -91,7 +91,7 @@ Region=ap-southeast-2;
 
 **Default**: Empty. Any attempt to send a large message with an empty S3 bucket will fail.
 
-This is the name of an S3 Bucket that will be used to store message bodies for messages that are larger than 256k in size. If this option is not specified, S3 will not be used at all. Any attempt to send a message larger than 256k will throw if this option hasn't been specified.
+This is the name of an S3 Bucket that will be used to store message bodies for messages that are larger than 256kb in size. If this option is not specified, S3 will not be used at all. Any attempt to send a message larger than 256kb will throw if this option hasn't been specified.
 
 If the specified bucket doesn't exist, it will be created at endpoint start up.
 

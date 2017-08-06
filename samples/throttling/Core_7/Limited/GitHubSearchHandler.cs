@@ -10,15 +10,15 @@ public class GitHubSearchHandler :
     static ILog log = LogManager.GetLogger<GitHubSearchHandler>();
 
     // use anonymous access which has strict rate limitations
-    GitHubClient GitHubClient = new GitHubClient(new ProductHeaderValue("ThroughputThrottlingSample"));
+    GitHubClient GitHubClient = new GitHubClient(new ProductHeaderValue("ThroughputThrottling"));
 
     public async Task Handle(SearchGitHub message, IMessageHandlerContext context)
     {
-        log.Info($"Received search request for '{message.SearchFor}' on {message.RepositoryOwner}/{message.Repository}...");
+        log.Info($"Received search for '{message.SearchFor}' on {message.Owner}/{message.Repository}");
 
         var request = new SearchCodeRequest(
             message.SearchFor,
-            message.RepositoryOwner,
+            message.Owner,
             message.Repository);
         var result = await GitHubClient.Search.SearchCode(request)
             .ConfigureAwait(false);

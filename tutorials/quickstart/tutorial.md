@@ -13,7 +13,7 @@ include: quickstart-tutorial-intro-paragraph
 
 This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) tutorial. It will teach you the NServiceBus API and important concepts you need to learn to build successful message-based software systems.
 
-To get started download the solution above, extract the archive, and then open the **Before/RetailDemo.sln** file with Visual Studio 2015 or later.
+To get started download the solution above, extract the archive, and then open the **RetailDemo.sln** file with Visual Studio 2015 or later.
 
 
 ## Project structure
@@ -113,8 +113,11 @@ As shown in the diagram, we'll be adding a new messaging endpoint called **Shipp
 
 First we'll create the **Shipping** project and set up its dependencies:
 
-1. In the solution, create a new **Console App (.NET Framework)** project (or just **Console Application**) named **Shipping**.
-1. In the **Shipping** project, add the `NServiceBus` NuGet package, which is already present in the other projects in the solution. In the Package Manager Console window type:
+1. In the **Solution Explorer** window, right-click the **RetailDemo** solution and select **Add** > **New Project**.
+1. In the **Add New Project** dialog, be sure to select at least **.NET Framework 4.6.1** in the dropdown menu at the top of the window for access to the `Task.CompletedTask` API.
+1. Select a new **Console App (.NET Framework)** project (or just **Console Application**) and name it **Shipping**.
+1. Click **OK** to create the project and add it to the solution.
+1. In the newly created **Shipping** project, add the `NServiceBus` NuGet package, which is already present in the other projects in the solution. In the Package Manager Console window type:
     ```
     Install-Package NServiceBus -ProjectName Shipping
     ```
@@ -141,7 +144,7 @@ To create the message handler:
     ```
 1. Within the `Handle` method, use the logger to record when the `OrderPlaced` message is received, including the value of the `OrderId` message property:
     ```cs
-    log.Info($"Received OrderPlaced, OrderId = {message.OrderId}");
+    log.Info($"Shipping has received OrderPlaced, OrderId = {message.OrderId}");
     ```
 1. Since everything we have done in this handler method is synchronous, return `Task.CompletedTask`.
 

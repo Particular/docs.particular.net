@@ -2,7 +2,7 @@ namespace Core5.Recoverability.ErrorQueue.ConfigurationSource
 {
     using NServiceBus;
 
-    class Usage 
+    class Usage
     {
         Usage(BusConfiguration busConfiguration)
         {

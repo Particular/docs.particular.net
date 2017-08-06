@@ -11,6 +11,8 @@ The API is exposed as an extension method on `SynchronizedStorageSession` and ca
 
 #### Microsoft SQL Server
 
+include: sql-saga-finder-warning
+
 snippet: SagaFinder-sqlServer
 
 

@@ -1,6 +1,8 @@
 ﻿// change file type to Compile to test
 using System.IO;
 using System.Threading.Tasks;
+#pragma warning disable 1998
+#pragma warning disable 4014
 
 class MissingAwait
 {

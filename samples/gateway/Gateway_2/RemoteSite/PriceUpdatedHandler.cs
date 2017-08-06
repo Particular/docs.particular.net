@@ -11,8 +11,8 @@ public class PriceUpdatedHandler :
 
     public Task Handle(PriceUpdated message, IMessageHandlerContext context)
     {
-        var messageHeader = context.MessageHeaders[Headers.OriginatingSite];
-        log.Info($"Price update for product: {message.ProductId} received. Going to reply over channel: {messageHeader}");
+        var header = context.MessageHeaders[Headers.OriginatingSite];
+        log.Info($"Price update for: {message.ProductId} received. Reply over channel: {header}");
 
         var updateAcknowledged = new PriceUpdateAcknowledged
         {

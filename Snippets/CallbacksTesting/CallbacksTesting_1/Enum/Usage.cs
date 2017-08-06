@@ -9,7 +9,7 @@
         async Task Simple()
         {
             #region EnumCallbackTesting
-            
+
             var request = new Message();
             var simulatedResponse = Status.OK;
 

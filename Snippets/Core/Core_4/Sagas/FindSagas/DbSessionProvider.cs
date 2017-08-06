@@ -1,7 +1,7 @@
 ﻿namespace Core4.Sagas.FindSagas
 {
     using System;
-    
+
     public class DbSessionProvider
     {
         public DbSession GetDbSession()

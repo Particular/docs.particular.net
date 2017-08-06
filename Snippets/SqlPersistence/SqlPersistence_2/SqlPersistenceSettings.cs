@@ -10,7 +10,7 @@
 #region SqlServerScripts
 [assembly: SqlPersistenceSettings(MsSqlServerScripts = true)]
 #endregion
-    
+
 #region MySqlScripts
 [assembly: SqlPersistenceSettings(MySqlScripts = true)]
 #endregion

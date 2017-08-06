@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -35,6 +36,7 @@ public class OwinToBus
         var deserialize = Deserialize(messageBody, objectType);
         await endpointInstance.SendLocal(deserialize)
             .ConfigureAwait(false);
+        environment["owin.ResponseStatusCode"] = (int)HttpStatusCode.Accepted;
     }
 
     object Deserialize(string messageBody, Type objectType)

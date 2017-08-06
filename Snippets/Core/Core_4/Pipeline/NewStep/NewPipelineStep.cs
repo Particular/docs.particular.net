@@ -1,4 +1,5 @@
-﻿namespace Core4.Pipeline.NewStep
+﻿#pragma warning disable 618
+namespace Core4.Pipeline.NewStep
 {
     using NServiceBus.Pipeline;
     using NServiceBus.Pipeline.Contexts;

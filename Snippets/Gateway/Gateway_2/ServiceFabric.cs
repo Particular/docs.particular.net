@@ -24,13 +24,14 @@
             return Task.FromResult(true);
         }
 
-        public async Task<string> OpenAsync(CancellationToken cancellationToken)
+        public Task<string> OpenAsync(CancellationToken cancellationToken)
         {
             var endpoint = serviceContext.CodePackageActivationContext.GetEndpoint("RemoteEndpoint");
 
-            string uriPrefix = $"{endpoint.Protocol}://+:{endpoint.Port}/RemoteSite/";
+            var uriPrefix = $"{endpoint.Protocol}://+:{endpoint.Port}/RemoteSite/";
 
-            return uriPrefix.Replace("+", FabricRuntime.GetNodeContext().IPAddressOrFQDN);
+            var result = uriPrefix.Replace("+", FabricRuntime.GetNodeContext().IPAddressOrFQDN);
+            return Task.FromResult(result);
         }
     }
     #endregion

@@ -36,7 +36,7 @@ public class AuditRulesBehavior :
             return;
         }
 
-        // Do not audit messages of type DoNotAuditThisMessage. 
+        // Do not audit messages of type DoNotAuditThisMessage.
         if (context.IncomingLogicalMessage.MessageType != typeof(DoNotAuditThisMessage))
         {
             messageAuditer.Audit(sendOptions, context.PhysicalMessage);

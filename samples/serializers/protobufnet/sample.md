@@ -5,6 +5,8 @@ reviewed: 2017-05-17
 component: ProtoBufNet
 related:
 - nservicebus/serialization
+redirects:
+- samples/serializers/protobuf
 ---
 
 ## Configuring to use ProtoBuf

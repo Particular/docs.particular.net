@@ -83,7 +83,8 @@
         {
             #region WriteSettingsFromEndpointConfiguration
 
-            endpointConfiguration.GetSettings().Set("AnotherKey", new CustomSettingsDto());
+            var settings = endpointConfiguration.GetSettings();
+            settings.Set("AnotherKey", new CustomSettingsDto());
 
             #endregion
         }

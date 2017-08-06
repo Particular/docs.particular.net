@@ -10,7 +10,7 @@ class Program
         #region ConfigureLogging
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Logging.Default");
-        // No config is required in version 5 and 
+        // No config is required in version 5 and
         // higher since logging is enabled by default
         #endregion
         busConfiguration.EnableInstallers();

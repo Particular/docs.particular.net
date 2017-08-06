@@ -1,4 +1,5 @@
-﻿namespace Core4.Pipeline.Replace
+﻿#pragma warning disable 618
+namespace Core4.Pipeline.Replace
 {
     using System;
     using NServiceBus.Pipeline;

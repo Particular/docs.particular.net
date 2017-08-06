@@ -88,11 +88,8 @@ public class CommandSender
         var myCommand = new MyCommand
         {
             CommandId = commandId,
-            EncryptedString = "Some sensitive information"
         };
         Console.WriteLine($"Command sent id: {commandId}");
         return endpointInstance.Send("Samples.Unobtrusive.Server", myCommand);
     }
-
-
 }

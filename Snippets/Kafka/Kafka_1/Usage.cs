@@ -9,7 +9,7 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<KafkaTransport>();
         transport.ConnectionString("127.0.0.1:9092");
-        
+
         #endregion
     }
 }

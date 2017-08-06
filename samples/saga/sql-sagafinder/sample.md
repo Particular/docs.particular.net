@@ -46,6 +46,8 @@ A Saga Finder is only required for the `PaymentTransactionCompleted` message sin
 
 ### MS SQL Server
 
+include: sql-saga-finder-warning
+
 snippet: SqlServerFinder
 
 

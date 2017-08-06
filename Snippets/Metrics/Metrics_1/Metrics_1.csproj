@@ -4,7 +4,6 @@
     <TargetFramework>net462</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.2.1" />
-    <PackageReference Include="NServiceBus.Metrics" Version="1.0.0" />
+    <PackageReference Include="NServiceBus.Metrics" Version="1.0.*" />
   </ItemGroup>
 </Project>

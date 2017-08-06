@@ -27,7 +27,7 @@ static class Program
                 {
                     // Child container needed as otherwise creation will hang
                     var childContainer = container.BeginLifetimeScope();
-                    customizations.ExistingLifetimeScope(childContainer); 
+                    customizations.ExistingLifetimeScope(childContainer);
                 });
 
             #endregion

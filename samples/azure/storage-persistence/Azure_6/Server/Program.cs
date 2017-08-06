@@ -8,12 +8,16 @@ class Program
     {
         Console.Title = "Samples.Azure.StoragePersistence.Server";
         var busConfiguration = new BusConfiguration();
+        
         #region config
 
         busConfiguration.EndpointName("Samples.Azure.StoragePersistence.Server");
         busConfiguration.UsePersistence<AzureStoragePersistence>();
 
         #endregion
+
+        busConfiguration.UseTransport<AzureStorageQueueTransport>()
+            .ConnectionString("UseDevelopmentStorage=true");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 

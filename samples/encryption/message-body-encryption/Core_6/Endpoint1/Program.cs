@@ -21,7 +21,7 @@ class Program
         endpointConfiguration.RegisterMessageEncryptor();
 
         #endregion
-        
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         var completeOrder = new CompleteOrder

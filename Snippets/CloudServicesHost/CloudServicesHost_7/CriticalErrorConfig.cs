@@ -15,7 +15,7 @@
             // Configuring how NServiceBus handles critical errors
             endpointConfiguration.DefineCriticalErrorAction(context =>
             {
-                string output = $"Critical exception: '{context.Error}'";
+                var output = $"Critical exception: '{context.Error}'";
                 log.Error(output, context.Exception);
                 if (Environment.UserInteractive)
                 {
@@ -23,7 +23,7 @@
                     Thread.Sleep(10000);
                 }
 
-                string fatalMessage = $"NServiceBus critical error:\n{context.Error}\nShutting down.";
+                var fatalMessage = $"NServiceBus critical error:\n{context.Error}\nShutting down.";
                 Environment.FailFast(fatalMessage, context.Exception);
                 return Task.CompletedTask;
             });

@@ -65,8 +65,6 @@ snippet: RoutingSettings
 
 `RoutingSettings<T>` is scoped to the actual transport being used, and routing options are exposed as extension methods on this class. Therefore, only routing options that are viable for the transport in use will appear. Routing configurations only applicable to Microsoft Azure, for example, won't clutter up the API when using the MSMQ transport.
 
-NOTE: If you are using the SQL Server transport for this lesson, the routing options are the same as for MSMQ.
-
 In order to define routes, start with the `routing` variable and call the `RouteToEndpoint` method as needed, which comes in three varieties:
 
 snippet: RouteToEndpoint

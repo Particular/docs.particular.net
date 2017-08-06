@@ -85,7 +85,7 @@ class MultipleNamespaces
         #region namespace_routing_send_options_full_connectionstring
 
         endpointInstance.Send(
-            destination: "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]", 
+            destination: "sales@Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]",
             message: new MyMessage());
 
         #endregion
@@ -93,7 +93,7 @@ class MultipleNamespaces
         #region namespace_routing_send_options_named
 
         endpointInstance.Send(
-            destination: "sales@destination1", 
+            destination: "sales@destination1",
             message: new MyMessage());
 
         #endregion

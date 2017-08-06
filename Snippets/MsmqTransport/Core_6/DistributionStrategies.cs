@@ -59,7 +59,7 @@ public class DistributionStrategies
                 return context.ReceiverAddresses[random.Next(context.ReceiverAddresses.Length)];
             }
         }
-        
+
         #endregion
     }
 }

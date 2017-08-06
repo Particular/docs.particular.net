@@ -18,7 +18,7 @@ namespace Core6.Handlers.DataAccess
                 this.orm = orm;
             }
 
-            public async Task Handle(AddOrderLine message, IMessageHandlerContext context)
+            public Task Handle(AddOrderLine message, IMessageHandlerContext context)
             {
                 using (var session = orm.OpenSession())
                 {
@@ -26,6 +26,7 @@ namespace Core6.Handlers.DataAccess
                     order.AddLine(message.Product, message.Quantity);
                     session.Commit();
                 }
+                return Task.CompletedTask;
             }
         }
 
@@ -43,19 +44,18 @@ namespace Core6.Handlers.DataAccess
                 this.orm = orm;
             }
 
-            public async Task Handle(AddOrderLine message, IMessageHandlerContext context)
+            public Task Handle(AddOrderLine message, IMessageHandlerContext context)
             {
                 using (var session = orm.OpenSession())
                 {
                     var order = session.Get(message.OrderId);
-                    if (order.HasLine(message.LineId))
+                    if (!order.HasLine(message.LineId))
                     {
-                        return;
+                        order.AddLine(message.Product, message.Quantity);
+                        session.Commit();
                     }
-
-                    order.AddLine(message.Product, message.Quantity);
-                    session.Commit();
                 }
+                return Task.CompletedTask;
             }
         }
 

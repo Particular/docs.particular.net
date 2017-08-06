@@ -6,7 +6,7 @@ versions: "[7,)"
 tags:
 - Azure
 - Transport
-reviewed: 2017-03-16
+reviewed: 2017-08-03
 redirects:
  - nservicebus/azure-service-bus/namespace-hierarchy
 ---
