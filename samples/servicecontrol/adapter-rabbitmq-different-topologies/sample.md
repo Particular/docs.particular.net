@@ -10,7 +10,7 @@ related:
 ---
 
 
-This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using the RabbitMQ direct routing topology. The direct routing topology is used by endpoints that are using NServiceBus Version 6. ServiceControl is built on NServiceBus Version 5 and can only use the conventional routing topology. The ServiceControl transport adapter is required to bridge both routing topologies.
+This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using the RabbitMQ direct routing topology, the default topology of endpoints using RabbitMQ on NServiceBus Version 6. However, since ServiceControl is built on NServiceBus Version 5 and can only use the conventional routing topology, a kind of "transport adapter" is required to bridge the routing topologies. 
 
 
 ## Prerequisistes
@@ -57,7 +57,7 @@ The code base consists of three projects.
 
 ### Sales Endpoint
 
-The Sales project contains endpoint that simulates execution of business process by exchanging messages with the Sales endpoint. It includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages that demonstrate message retry functionality. The Sales endpoint uses the RabbitMQ direct routing topology and requires an adapter in order to communicate with ServiceControl.
+The Sales project contains an endpoint that simulates the execution of a business process by exchanging messages with the Sales endpoint. It includes a message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages that demonstrate message retry functionality. The Sales endpoint uses the RabbitMQ direct routing topology and requires an adapter in order to communicate with ServiceControl.
 
 The following code configures the Sales endpoint to communicate with the adapter:
 
@@ -66,7 +66,7 @@ snippet: SalesConfiguration
 
 ### Shipping Endpoint
 
-The Shipping project also contains endpoint that simulates execution of business process by exchanging messages with the Sales endpoint. It includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages that demonstrate message retry functionality.
+The Shipping project also contains an endpoint that simulates the execution of a business process by exchanging messages with the Sales endpoint. It includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages that demonstrate message retry functionality.
 
 The Shipping endpoint uses the RabbitMQ direct routing topology and requires an adapter in order to communicate with ServiceControl.
 
