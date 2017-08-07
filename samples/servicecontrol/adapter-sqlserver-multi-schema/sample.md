@@ -91,4 +91,3 @@ Because the ServiceControl has been installed under a non-default instance name 
 
 snippet: ControlQueueOverride
 
-include: adapter-how-it-works
