@@ -3,7 +3,7 @@ title: Capture and visualize metrics using Prometheus and Grafana
 component: Metrics
 ---
 
-[Prometheus](https://prometheus.io) is a monitoring solution for storing time series data like metrics. [Grafana](https://grafana.com) allows to query and visualize the data stored in Prometheus (and other sources). This sample demonstrates how to capture NServiceBus metrics, storing these in Prometheus and visualizing these metrics using Grafana.
+[Prometheus](https://prometheus.io) is a monitoring solution for storing time series data like metrics. [Grafana](https://grafana.com) allows to visualize the data stored in Prometheus (and other sources). This sample demonstrates how to capture NServiceBus metrics, storing these in Prometheus and visualizing these metrics using Grafana.
 
 
 
@@ -20,8 +20,7 @@ This sample reports the following metrics to Prometheus:
  * Processing time seconds
 
 
-
- The sample also shows data like `Average message processing time in milliseconds` and `Maximum critical time in milliseconds`. For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/nservicebus/operations/metrics.md#metrics-captured).
+For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/nservicebus/operations/metrics.md#metrics-captured).
 
 
 ## Prerequisites
@@ -40,11 +39,6 @@ snippet: prometheus-load-simulator
 
 
 ## Capturing metric values
-
-The following nuget packages are required:
-
-- [NServiceBus.Metrics](https://www.nuget.org/packages/NServiceBus.Metrics/)
-- [prometheus-net](https://www.nuget.org/packages/prometheus-net)
 
 A Prometheus service is hosted inside an endpoint via the nuget package `prometheus-net`. The service enables Prometheus to scrape data gathered by the metrics package. In the sample the service that exposes the data to scrape is hosted on `http://localhost:3030`. The service is started and stopped inside a feature startup task as shown below
 
@@ -89,12 +83,12 @@ Prometheus needs to be configured to pull data from the endpoint. For more infor
 
 ### Guided configuration
 
-Copy
+Copy the following files into the root folder of the Prometheus installation.
 
 - [nservicebus.rules](nservicebus.rules)
 - [prometheus.yml](prometheus.yml)
 
-into the root folder of the Prometheus installation. Overwrite the existing `prometheus.yml` in the Prometheus demo installation. Or proceed with the manual configuration if desired.
+Overwrite the existing `prometheus.yml` in the Prometheus demo installation. Or proceed with the manual configuration if desired.
 
 ### Manual configuration
 
@@ -124,7 +118,7 @@ The precalculated query can then be used.
 
     nservicebus_success_total:avg_rate5m
 
-To leverage the power of rules which are required by the sample dashboard shown later create `nservicebus.rules` in the root folder of the Prometheus installation and add the three rules as defined above.
+For efficiency reasons the sample dashboard shown later requires three queries defined in a rules file. Create `nservicebus.rules` in the root folder of the Prometheus installation and add the three rules as defined above.
 
 To enable the rules edit `prometheus.yml` and add:
 
@@ -158,7 +152,7 @@ Grafana needs to be installed and configured to display the data available in Pr
 
 ### Guided configuration
 
-Execute `setup.grafana.ps1` in a powershell with elevated permission and provide the username and password to authenticate with Grafana. This script will
+Execute `setup.grafana.ps1` in a PowerShell with elevated permission and provide the username and password to authenticate with Grafana. This script will
 
 - Create a data source called `PrometheusNServiceBusDemo`
 - Import the [sample dashboard](grafana-endpoints-dashboard.json) and connect it to the data source
