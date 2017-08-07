@@ -1,0 +1,424 @@
+{
+  "__inputs": [
+    {
+      "name": "PrometheusNServiceBusDemo",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.4.2"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": "5s",
+  "rows": [
+    {
+      "collapse": false,
+      "height": 219,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "PrometheusNServiceBusDemo",
+          "fill": 1,
+          "id": 1,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "nservicebus_failure_total:avg_rate5m",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Failure rate",
+              "metric": "nservicebus_failure_total:avg_rate5m",
+              "refId": "A",
+              "step": 30
+            },
+            {
+              "expr": "nservicebus_fetched_total:avg_rate5m",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Fetch rate",
+              "metric": "nservicebus_fetched_total:avg_rate5m",
+              "refId": "B",
+              "step": 30
+            },
+            {
+              "expr": "nservicebus_success_total:avg_rate5m",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "Success rate",
+              "metric": "nservicebus_success_total:avg_rate5m",
+              "refId": "C",
+              "step": 30
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Rates",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 292,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "PrometheusNServiceBusDemo",
+          "fill": 1,
+          "id": 3,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "nservicebus_processingtime_seconds{quantile=\"0.99\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "99th percentile",
+              "metric": "nservicebus_processingtime_seconds",
+              "refId": "A",
+              "step": 30
+            },
+            {
+              "expr": "max(nservicebus_processingtime_seconds)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Maximum",
+              "metric": "nservicebus_processingtime_seconds",
+              "refId": "B",
+              "step": 30
+            },
+            {
+              "expr": "min(nservicebus_processingtime_seconds)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Minimum",
+              "metric": "nservicebus_processingtime_seconds",
+              "refId": "C",
+              "step": 30
+            },
+            {
+              "expr": "nservicebus_processingtime_seconds{quantile=\"0.9\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "90th percentile",
+              "metric": "nservicebus_processingtime_seconds",
+              "refId": "D",
+              "step": 30
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Processing time",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "PrometheusNServiceBusDemo",
+          "fill": 1,
+          "id": 2,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "nservicebus_criticaltime_seconds{quantile=\"0.99\"}",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "99th percentile",
+              "metric": "nservicebus_criticaltime_seconds",
+              "refId": "C",
+              "step": 30
+            },
+            {
+              "expr": "max(nservicebus_criticaltime_seconds)",
+              "format": "time_series",
+              "hide": false,
+              "intervalFactor": 2,
+              "legendFormat": "Maximum",
+              "metric": "nservicebus_criticaltime_seconds",
+              "refId": "A",
+              "step": 30
+            },
+            {
+              "expr": "avg(nservicebus_criticaltime_seconds)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "Average",
+              "refId": "B",
+              "step": 30
+            },
+            {
+              "expr": "nservicebus_criticaltime_seconds{quantile=\"0.9\"}",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "90th percentile",
+              "metric": "nservicebus_criticaltime_seconds",
+              "refId": "D",
+              "step": 30
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Critical time",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now-10s"
+  },
+  "timepicker": {
+    "nowDelay": "10s",
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Endpoints",
+  "version": 2
+}
