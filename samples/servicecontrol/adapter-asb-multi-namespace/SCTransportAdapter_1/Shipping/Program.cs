@@ -34,6 +34,7 @@ class Program
         routing.AddNamespace("sales", salesConnectionString);
         transport.UseForwardingTopology();
         transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
+        transport.Composition().UseStrategy<HierarchyComposition>().PathGenerator(path => "scadapter/");
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 

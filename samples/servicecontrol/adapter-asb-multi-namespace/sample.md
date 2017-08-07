@@ -2,7 +2,7 @@
 title: Monitor Azure Service Bus endpoints with the ServiceControl adapter
 summary: Centralized monitoring of Azure Service Bus endpoints with the ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2017-07-17
+reviewed: 2017-08-03
 related:
  - servicecontrol
  - servicecontrol/transport-adapter
@@ -91,6 +91,7 @@ Both endpoints are configured to use:
  * [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
  * [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
  * Different namespaces with [cross-namespace routing](/transports/azure-service-bus/multiple-namespaces-support.md#cross-namespace-routing) enabled.
+ * [Namespace hierary](/transports/azure-service-bus/namespace-hierarchy.md) to prefix all entities with `scadapter/`.
 
 snippet: featuresunsuportedbysc
 
@@ -111,6 +112,7 @@ The following code configures the adapter to match advanced transport features e
  * [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
  * [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
  * [Multiple namespace](/transports/azure-service-bus/multiple-namespaces-support.md#round-robin-namespace-partitioning).
+ * [Namespace hierary](/transports/azure-service-bus/namespace-hierarchy.md)
 
 snippet: EndpointSideConfig
 
