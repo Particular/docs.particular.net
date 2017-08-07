@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
-#region 5to6-EndpointStartAndStopCloudHost
 namespace CloudServicesHost_7.Core5to6
 {
+    #region 5to6-EndpointStartAndStopCloudHost
     public class Bootstrapper :
         IWantToRunWhenEndpointStartsAndStops
     {
@@ -21,5 +21,5 @@ namespace CloudServicesHost_7.Core5to6
             return Task.CompletedTask;
         }
     }
+    #endregion
 }
-#endregion

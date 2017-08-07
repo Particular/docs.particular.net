@@ -71,8 +71,8 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.Instance1");
         // Exclude Instance2.dll and, by inference, include all other assemblies
-        var assemblyScanner = endpointConfiguration.AssemblyScanner();
-        assemblyScanner.ExcludeAssemblies("Instance2");
+        var scanner = endpointConfiguration.AssemblyScanner();
+        scanner.ExcludeAssemblies("Instance2");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
@@ -84,8 +84,8 @@ class Program
     static Task<IEndpointInstance> StartInstance2()
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.Instance2");
-        var assemblyScanner = endpointConfiguration.AssemblyScanner();
-        assemblyScanner.ExcludeAssemblies("Instance1");
+        var scanner = endpointConfiguration.AssemblyScanner();
+        scanner.ExcludeAssemblies("Instance1");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

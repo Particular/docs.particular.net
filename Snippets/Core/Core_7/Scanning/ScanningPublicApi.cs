@@ -14,8 +14,8 @@ namespace Core7.Scanning
         {
             #region ScanningNestedAssebliesEnabled
 
-            var assemblyScanner = endpointConfiguration.AssemblyScanner();
-            assemblyScanner.ScanAssembliesInNestedDirectories = true;
+            var scanner = endpointConfiguration.AssemblyScanner();
+            scanner.ScanAssembliesInNestedDirectories = true;
 
             #endregion
         }
@@ -24,8 +24,8 @@ namespace Core7.Scanning
         {
             #region ScanningExcludeByName
 
-            var assemblyScanner = endpointConfiguration.AssemblyScanner();
-            assemblyScanner.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
+            var scanner = endpointConfiguration.AssemblyScanner();
+            scanner.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
 
             #endregion
         }
@@ -34,7 +34,7 @@ namespace Core7.Scanning
         {
             #region ScanningAssembliesWildcard
 
-            var assemblyScanner = endpointConfiguration.AssemblyScanner();
+            var scanner = endpointConfiguration.AssemblyScanner();
 
             var excludeRegexs = new List<string>
             {
@@ -50,7 +50,7 @@ namespace Core7.Scanning
                 {
                     if (Regex.IsMatch(fileName, pattern, RegexOptions.IgnoreCase))
                     {
-                        assemblyScanner.ExcludeAssemblies(fileName);
+                        scanner.ExcludeAssemblies(fileName);
                         break;
                     }
                 }
@@ -63,8 +63,8 @@ namespace Core7.Scanning
         {
             #region ScanningExcludeTypes
 
-            var assemblyScanner = endpointConfiguration.AssemblyScanner();
-            assemblyScanner.ExcludeTypes(type1, type2);
+            var scanner = endpointConfiguration.AssemblyScanner();
+            scanner.ExcludeTypes(type1, type2);
 
             #endregion
         }
@@ -73,7 +73,8 @@ namespace Core7.Scanning
         {
             #region 5to6ScanningUpgrade
 
-            endpointConfiguration.AssemblyScanner().ExcludeAssemblies(
+            var scanner = endpointConfiguration.AssemblyScanner();
+            scanner.ExcludeAssemblies(
                 "BadAssembly1.dll",
                 "BadAssembly2.dll");
 
@@ -84,8 +85,8 @@ namespace Core7.Scanning
         {
             #region ScanningApDomainAssemblies
 
-            var assemblyScanner = endpointConfiguration.AssemblyScanner();
-            assemblyScanner.ScanAppDomainAssemblies = false;
+            var scanner = endpointConfiguration.AssemblyScanner();
+            scanner.ScanAppDomainAssemblies = false;
 
             #endregion
         }
@@ -94,8 +95,8 @@ namespace Core7.Scanning
         {
             #region SwallowScanningExceptions
 
-            var assemblyScanner = endpointConfiguration.AssemblyScanner();
-            assemblyScanner.ThrowExceptions = false;
+            var scanner = endpointConfiguration.AssemblyScanner();
+            scanner.ThrowExceptions = false;
 
             #endregion
         }

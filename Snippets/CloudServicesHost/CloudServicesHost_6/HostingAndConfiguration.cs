@@ -13,14 +13,12 @@ public class WorkerRole :
     public override bool OnStart()
     {
         nsb.Start();
-
         return base.OnStart();
     }
 
     public override void OnStop()
     {
         nsb.Stop();
-
         base.OnStop();
     }
 }
@@ -69,7 +67,6 @@ public class EndpointHostConfig :
 {
     public void Customize(BusConfiguration configuration)
     {
-
     }
 }
 

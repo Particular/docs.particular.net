@@ -67,8 +67,8 @@ class Program
         var typesToExclude = AllTypes
             .Where(t => t.Namespace != "DataDistribution")
             .ToArray();
-        var assemblyScanner = distributionConfig.AssemblyScanner();
-        assemblyScanner.ExcludeTypes(typesToExclude);
+        var scanner = distributionConfig.AssemblyScanner();
+        scanner.ExcludeTypes(typesToExclude);
         #endregion
 
         var transport = distributionConfig.UseTransport<MsmqTransport>();
@@ -90,8 +90,8 @@ class Program
         var typesToExclude = AllTypes
             .Where(t => t.Namespace == "DataDistribution")
             .ToArray();
-        var assemblyScanner = mainConfig.AssemblyScanner();
-        assemblyScanner.ExcludeTypes(typesToExclude);
+        var scanner = mainConfig.AssemblyScanner();
+        scanner.ExcludeTypes(typesToExclude);
         var transport = mainConfig.UseTransport<MsmqTransport>();
         var mainRouting = transport.Routing();
         mainRouting.RouteToEndpoint(
