@@ -112,7 +112,7 @@ The following code configures the adapter to match advanced transport features e
  * [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
  * [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
  * [Multiple namespace](/transports/azure-service-bus/multiple-namespaces-support.md#round-robin-namespace-partitioning).
-  * [Namespace hierary](/transports/azure-service-bus/namespace-hierarchy.md)
+ * [Namespace hierary](/transports/azure-service-bus/namespace-hierarchy.md)
 
 snippet: EndpointSideConfig
 
