@@ -46,11 +46,11 @@ Start the endpoint. A message will be sent and received by a handler.
 
 ### View a message in transit
 
-To view a message in transit change the endpoint go change the endpoint to be [Send Only](/nservicebus/hosting/#self-hosting-send-only-hosting). There is commented out code already in this samples configuration.
+To view a message in transit change the endpoint to be [Send Only](/nservicebus/hosting/#self-hosting-send-only-hosting). There is commented out code already in this samples configuration.
 
 snippet: sendonly
 
-Start the endpoint. Since the endpoint is now send only, the message will be written to SQS but not dequeued. The message can now be vied in the [SQS management UI](https://console.aws.amazon.com/sqs/home). 
+Start the endpoint. Since the endpoint is now Send Only, the message will be written to SQS but not dequeued. The message can now be vied in the [SQS management UI](https://console.aws.amazon.com/sqs/home). 
 
 ![](message.png "width=300")
 
