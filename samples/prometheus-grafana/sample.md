@@ -25,7 +25,7 @@ For a detailed explanation of these metrics refer to the [metrics captured secti
 
 ## Prerequisites
 
-To run this sample, download and run both Prometheus and Grafana. This sample uses Prometheus 1.7.1 and Grafana 4.4.2.
+To run this sample, download and run both Prometheus and Grafana. This sample uses Prometheus and Grafana.
 
 - [prometheus.io](https://prometheus.io)
 - [grafana.com](https://grafana.com)
