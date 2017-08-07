@@ -7,8 +7,8 @@ related:
  - samples/servicecontrol/adapter-sqlserver-multi-schema
  - samples/servicecontrol/adapter-sqlserver-multi-instance
  - samples/servicecontrol/adapter-mixed-transports
- - samples/adapter-asb-multi-namespace
- - samples/adapter-rabbitmq-different-topologies
+ - samples/servicecontrol/adapter-asb-multi-namespace
+ - samples/servicecontrol/adapter-rabbitmq-different-topologies
 ---
 
 The ServiceControl Transport Adapter decouples ServiceControl from the specifics of the business endpoint's transport to support scenarios where the endpoint's transport uses physical routing features [not compatible with ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md) or where endpoints use mixed transports or multiple instances of a message broker.
