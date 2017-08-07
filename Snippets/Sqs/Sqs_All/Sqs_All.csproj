@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ApprovalTests" Version="3.*" />
+    <PackageReference Include="Mono.Cecil" Version="0.*" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="3.0.0-alpharelease0057" />
+    <PackageReference Include="NUnit" Version="3.*" />
+    <PackageReference Include="System.Management.Automation" Version="6.*" />
+    <ProjectReference Include="..\..\Common\Common.csproj" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Transactions" />
+  </ItemGroup>
+</Project>
