@@ -8,7 +8,7 @@
         const string S3BucketEnvironmentVariableName = "NServiceBus.AmazonSQS.S3Bucket";
         const string NativeDeferralEnvironmentVariableName = "NServiceBus.AmazonSQS.NativeDeferral";
 
-        public static TransportExtensions<SqsTransport> ConfigureSqsTransport(this TransportExtensions<SqsTransport> transportConfiguration, string queueNamePrefix)
+        public static void ConfigureSqsTransport(this TransportExtensions<SqsTransport> transportConfiguration, string queueNamePrefix)
         {
             var region = EnvironmentHelper.GetEnvironmentVariable(RegionEnvironmentVariableName) ?? "ap-southeast-2";
 
@@ -29,8 +29,6 @@
             {
                 transportConfiguration.NativeDeferral();
             }
-
-            return transportConfiguration;
         }
     }
 }
