@@ -6,7 +6,6 @@ using Raven.Client.Embedded;
 class RavenHost :
     IDisposable
 {
-
     public RavenHost()
     {
         documentStore = new EmbeddableDocumentStore
