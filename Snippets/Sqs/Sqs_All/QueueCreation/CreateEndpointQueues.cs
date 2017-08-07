@@ -11,11 +11,13 @@
             #region sqs-create-queues-endpoint-usage
 
             await CreateQueuesForEndpoint(
-                endpointName: "myendpoint",
-                maxTimeToLive: TimeSpan.FromDays(2));
+                    endpointName: "myendpoint",
+                    maxTimeToLive: TimeSpan.FromDays(2))
+                .ConfigureAwait(false);
 
             #endregion
         }
+
         #region sqs-create-queues-for-endpoint
 
         public static async Task CreateQueuesForEndpoint(string endpointName, TimeSpan? maxTimeToLive = null)
