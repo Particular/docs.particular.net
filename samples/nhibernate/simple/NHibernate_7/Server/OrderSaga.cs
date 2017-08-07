@@ -19,7 +19,7 @@ public class OrderSaga :
             .ToSaga(sagaData => sagaData.OrderId);
     }
 
-    public async Task Handle(StartOrder message, IMessageHandlerContext context)
+    public Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
         var orderDescription = $"The saga for order {message.OrderId}";
@@ -30,8 +30,6 @@ public class OrderSaga :
         {
             OrderId = message.OrderId
         };
-        await context.SendLocal(shipOrder)
-            .ConfigureAwait(false);
 
         log.Info("Order will complete in 5 seconds");
         var timeoutData = new CompleteOrder
@@ -39,8 +37,10 @@ public class OrderSaga :
             OrderDescription = orderDescription
         };
 
-        await RequestTimeout(context, TimeSpan.FromSeconds(5), timeoutData)
-            .ConfigureAwait(false);
+        return Task.WhenAll(
+            context.SendLocal(shipOrder),
+            RequestTimeout(context, TimeSpan.FromSeconds(5), timeoutData)
+        );
     }
 
     public Task Timeout(CompleteOrder state, IMessageHandlerContext context)
