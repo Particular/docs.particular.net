@@ -50,7 +50,8 @@ class Program
         recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
         recoverability.DisableLegacyRetriesSatellite();
 
-        transport.Routing().RouteToEndpoint(typeof(ShipOrder).Assembly, "Samples.ServiceControl.RabbitMQAdapter.Shipping");
+        var routingConfig = transport.Routing();
+        routingConfig.RouteToEndpoint(typeof(ShipOrder).Assembly, "Samples.ServiceControl.RabbitMQAdapter.Shipping");
 
         endpointConfiguration.EnableInstallers();
 
