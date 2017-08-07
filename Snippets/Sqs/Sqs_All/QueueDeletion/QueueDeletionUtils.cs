@@ -15,13 +15,15 @@
         {
             using (var client = ClientFactory.CreateSqsClient())
             {
-                await DeleteQueues(client);
+                await DeleteQueues(client)
+                    .ConfigureAwait(false);
             }
         }
 
         static async Task DeleteQueues(IAmazonSQS client)
         {
-            var queuesToDelete = await client.ListQueuesAsync("").ConfigureAwait(false);
+            var queuesToDelete = await client.ListQueuesAsync("")
+                .ConfigureAwait(false);
             var numberOfQueuesFound = queuesToDelete.QueueUrls.Count;
             var deletionTasks = new Task[numberOfQueuesFound + 1];
 
@@ -30,12 +32,15 @@
                 deletionTasks[i] = client.DeleteQueueAsync(queuesToDelete.QueueUrls[i]);
             }
 
-            deletionTasks[numberOfQueuesFound] = Task.Delay(TimeSpan.FromSeconds(60)); // queue deletion can take up to 60 seconds
-            await Task.WhenAll(deletionTasks).ConfigureAwait(false);
+            // queue deletion can take up to 60 seconds
+            deletionTasks[numberOfQueuesFound] = Task.Delay(TimeSpan.FromSeconds(60));
+            await Task.WhenAll(deletionTasks)
+                .ConfigureAwait(false);
 
             if (numberOfQueuesFound == 1000)
             {
-                await DeleteQueues(client).ConfigureAwait(false);
+                await DeleteQueues(client)
+                    .ConfigureAwait(false);
             }
         }
 
@@ -46,8 +51,10 @@
                 using (var client = ClientFactory.CreateSqsClient())
                 {
                     var sqsQueueName = QueueNameHelper.GetSqsQueueName(queueName);
-                    var queueUrlResponse = await client.GetQueueUrlAsync(sqsQueueName).ConfigureAwait(false);
-                    await client.DeleteQueueAsync(queueUrlResponse.QueueUrl).ConfigureAwait(false);
+                    var queueUrlResponse = await client.GetQueueUrlAsync(sqsQueueName)
+                        .ConfigureAwait(false);
+                    await client.DeleteQueueAsync(queueUrlResponse.QueueUrl)
+                        .ConfigureAwait(false);
                 }
             }
             catch (QueueDoesNotExistException)

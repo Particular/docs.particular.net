@@ -14,7 +14,8 @@
                 try
                 {
                     var sqsQueueName = QueueNameHelper.GetSqsQueueName(queueName);
-                    await client.GetQueueUrlAsync(sqsQueueName).ConfigureAwait(false);
+                    await client.GetQueueUrlAsync(sqsQueueName)
+                        .ConfigureAwait(false);
                     return true;
                 }
                 catch (QueueDoesNotExistException)
