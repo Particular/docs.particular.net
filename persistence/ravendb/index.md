@@ -31,6 +31,7 @@ This optionally allows customization of the document session that is created for
 
 The session that is created is then made available.
 
+NOTE: When the RavenDB `DocumentStore` is created by the user at endpoint configuration time it's important to dispose it, by calling the `Dispose()` method, before shutting down the endpoint process.
 
 ### Using in a Handler
 
