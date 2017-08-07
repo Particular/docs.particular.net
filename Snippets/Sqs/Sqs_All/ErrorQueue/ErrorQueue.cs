@@ -18,8 +18,9 @@
         {
             #region sqs-return-to-source-queue-usage
 
-            ReturnMessageToSourceQueue(errorQueueName: "error",
-                msmqMessageId: @"c390a6fb-4fb5-46da-927d-a156f75739eb");
+            ReturnMessageToSourceQueue(
+                errorQueueName: "error",
+                msmqMessageId: "c390a6fb-4fb5-46da-927d-a156f75739eb");
 
             #endregion
         }

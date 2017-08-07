@@ -12,13 +12,13 @@
             #region sqs-create-queues-shared-usage
 
             await QueueCreationUtils.CreateQueue(
-                queueName: "error",
-                maxTimeToLive: TimeSpan.FromDays(2))
+                    queueName: "error",
+                    maxTimeToLive: TimeSpan.FromDays(2))
                 .ConfigureAwait(false);
 
             await QueueCreationUtils.CreateQueue(
-                queueName: "audit",
-                maxTimeToLive: TimeSpan.FromDays(2))
+                    queueName: "audit",
+                    maxTimeToLive: TimeSpan.FromDays(2))
                 .ConfigureAwait(false);
 
             #endregion
