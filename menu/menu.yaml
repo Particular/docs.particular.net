@@ -713,6 +713,8 @@
       Title: Why use SQS
     - Url: transports/sqs/topology
       Title: Topology
+    - Url: transports/sqs/transaction-support
+      Title: Transaction
   - Url: transports/eventstore
     Title: Event Store
   - Url: transports/kafka
