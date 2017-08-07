@@ -47,14 +47,18 @@
 
                 state.ShouldHandlerThrow = false;
 
-                ErrorQueue.ReturnMessageToSourceQueue(errorQueueName: errorQueueName,
+                ErrorQueue.ReturnMessageToSourceQueue(
+                    errorQueueName: errorQueueName,
                     msmqMessageId: messageId);
 
                 await state.Signal.Task.ConfigureAwait(false);
             }
             finally
             {
-                await endpoint.Stop().ConfigureAwait(false);
+                if (endpoint != null)
+                {
+                    await endpoint.Stop().ConfigureAwait(false);
+                }
             }
         }
 
@@ -86,7 +90,10 @@
             }
             finally
             {
-                await endpoint.Stop().ConfigureAwait(false);
+                if (endpoint != null)
+                {
+                    await endpoint.Stop().ConfigureAwait(false);
+                }
             }
         }
 
@@ -106,7 +113,7 @@
             recoverabilitySettings.DisableLegacyRetriesSatellite();
             recoverabilitySettings.Immediate(customizations => customizations.NumberOfRetries(0));
             recoverabilitySettings.Delayed(customizations => customizations.NumberOfRetries(0));
-            
+
             return Endpoint.Start(endpointConfiguration);
         }
 
@@ -121,11 +128,13 @@
             var path = QueueNameHelper.GetSqsQueueName($"{errorQueueName}");
             using (var client = ClientFactory.CreateSqsClient())
             {
-                var messages = await client.ReceiveMessageAsync(new ReceiveMessageRequest(client.GetQueueUrl(path).QueueUrl)
-                {
-                    MaxNumberOfMessages = 1,
-                    WaitTimeSeconds = 20
-                }).ConfigureAwait(false);
+                var messages = await client.ReceiveMessageAsync(
+                        new ReceiveMessageRequest(client.GetQueueUrl(path).QueueUrl)
+                        {
+                            MaxNumberOfMessages = 1,
+                            WaitTimeSeconds = 20
+                        })
+                    .ConfigureAwait(false);
 
                 var message = messages.Messages.Single();
                 return message.MessageId;
