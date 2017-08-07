@@ -9,16 +9,20 @@ using Prometheus;
 
 class PrometheusFeature : Feature
 {
+    static ILog log = LogManager.GetLogger(nameof(PrometheusFeature));
+
     #region prometheus-name-mapping
+
     Dictionary<string, string> nameMapping = new Dictionary<string, string>
     {
         // https://prometheus.io/docs/practices/naming/
-        { "# of msgs successfully processed / sec", "nservicebus_success_total"},
+        {"# of msgs successfully processed / sec", "nservicebus_success_total"},
         {"# of msgs pulled from the input queue /sec", "nservicebus_fetched_total"},
         {"# of msgs failures / sec", "nservicebus_failure_total"},
         {"Critical Time", "nservicebus_criticaltime_seconds"},
         {"Processing Time", "nservicebus_processingtime_seconds"},
     };
+
     #endregion
 
     public PrometheusFeature()
@@ -42,9 +46,21 @@ class PrometheusFeature : Feature
 
         var logicalAddress = settings.LogicalAddress();
         var discriminator = logicalAddress.EndpointInstance.Discriminator ?? "none";
-        var labelValues = new[] { settings.EndpointName(), Environment.MachineName, Dns.GetHostName(), discriminator, settings.LocalAddress()};
+        var labelValues = new[]
+        {
+            settings.EndpointName(),
+            Environment.MachineName,
+            Dns.GetHostName(),
+            discriminator,
+            settings.LocalAddress()
+        };
 
-        metricsOptions.RegisterObservers(x => RegisterProbes(x, labelValues));
+        metricsOptions.RegisterObservers(
+            register: probeContext =>
+            {
+                RegisterProbes(probeContext, labelValues);
+            });
+
         #endregion
 
         context.RegisterStartupTask(new MetricServerTask());
@@ -54,7 +70,6 @@ class PrometheusFeature : Feature
     {
         #region prometheus-observers-registration
 
-        var log = LogManager.GetLogger(nameof(PrometheusFeature));
         foreach (var duration in context.Durations)
         {
             if (!nameMapping.ContainsKey(duration.Name))
@@ -64,8 +79,9 @@ class PrometheusFeature : Feature
             }
             var prometheusName = nameMapping[duration.Name];
             var summary = Prometheus.Metrics.CreateSummary(prometheusName, duration.Description, Labels);
-            duration.Register(observer: durationLength => summary.Labels(labelValues)
-                .Observe(durationLength.TotalSeconds));
+            duration.Register(
+                observer: durationLength => summary.Labels(labelValues)
+                    .Observe(durationLength.TotalSeconds));
         }
 
         foreach (var signal in context.Signals)
@@ -87,7 +103,7 @@ class PrometheusFeature : Feature
 
     class MetricServerTask : FeatureStartupTask
     {
-        readonly MetricServer metricServer = new MetricServer(port: 3030);
+        MetricServer metricServer = new MetricServer(port: 3030);
 
         protected override Task OnStart(IMessageSession session)
         {
@@ -106,5 +122,12 @@ class PrometheusFeature : Feature
 
     MetricsOptions metricsOptions;
 
-    static string[] Labels = {"endpoint", "machinename", "hostname", "endpointdiscriminator", "endpointqueue"};
+    static string[] Labels =
+    {
+        "endpoint",
+        "machinename",
+        "hostname",
+        "endpointdiscriminator",
+        "endpointqueue"
+    };
 }
