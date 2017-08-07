@@ -22,8 +22,10 @@
                     {
                         QueueName = QueueNameHelper.GetSqsQueueName(queueName)
                     };
-                    sqsRequest.Attributes.Add(QueueAttributeName.MessageRetentionPeriod, Convert.ToInt32((maxTimeToLive ?? DefaultTimeToLive).TotalSeconds).ToString());
-                    await client.CreateQueueAsync(sqsRequest).ConfigureAwait(false);
+                    var value = Convert.ToInt32((maxTimeToLive ?? DefaultTimeToLive).TotalSeconds).ToString();
+                    sqsRequest.Attributes.Add(QueueAttributeName.MessageRetentionPeriod, value);
+                    await client.CreateQueueAsync(sqsRequest)
+                        .ConfigureAwait(false);
                 }
             }
             catch (QueueNameExistsException)
