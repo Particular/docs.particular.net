@@ -22,6 +22,7 @@ class Program
             customization: transport =>
             {
                 transport.ConnectionString("host=localhost");
+                transport.DelayedDelivery().DisableTimeoutManager();
             });
 
         #endregion
@@ -34,6 +35,8 @@ class Program
             customization: transport =>
             {
                 transport.ConnectionString("host=localhost");
+                transport.DelayedDelivery().DisableTimeoutManager();
+
                 transport.UseDirectRoutingTopology();
             });
 
