@@ -181,3 +181,7 @@ Setting a custom [correlation ID](/nservicebus/messaging/headers.md#messaging-in
 ## Accessing Conversation ID
 
 In NServiceBus Version 6, the `Conversation Id` header on outgoing messages was set within the `IOutgoingPhysicalMessageContext` pipeline stage. In NServiceBus Version 7 and above, the `Conversation Id` header will be set as part of the `IOutgoingLogicalMessageContext` stage.
+
+## ConfigurationErrorsException
+
+Exceptions of type `Exception` are now thrown instead of `ConfigurationErrorsException`. Any try-catch statements catching `ConfigurationErrorsException` should be updated to catch `Exception` instead.
