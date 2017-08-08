@@ -202,7 +202,97 @@
             }
         }
 
-        static async Task AssertQueuesExist(string endpointName, string errorQueueName, string auditQueueName, TimeSpan maxTimeToLive)
+        [Test]
+        public async Task CreateQueuesForEndpointWithRetries_Powershell()
+        {
+            var endpointName = "mydefaultendpoint-powershell";
+            var errorQueueName = "mydefaulterror-powershell";
+            var auditQueueName = "mydefaultaudit-powershell";
+
+            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                .ConfigureAwait(false);
+            await QueueDeletionUtils.DeleteQueue(errorQueueName)
+                .ConfigureAwait(false);
+            await QueueDeletionUtils.DeleteQueue(auditQueueName)
+                .ConfigureAwait(false);
+
+            try
+            {
+                var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/QueueCreation.ps1");
+                using (var powerShell = PowerShell.Create())
+                {
+                    powerShell.AddScript(File.ReadAllText(scriptPath));
+                    powerShell.Invoke();
+                    var command = powerShell.AddCommand("CreateQueuesForEndpoint");
+                    command.AddParameter("EndpointName", endpointName);
+                    command.AddParameter("IncludeRetries");
+                    command.Invoke();
+
+                    command = powerShell.AddCommand("CreateQueue");
+                    command.AddParameter("QueueName", errorQueueName);
+                    command.Invoke();
+
+                    command = powerShell.AddCommand("CreateQueue");
+                    command.AddParameter("QueueName", auditQueueName);
+                    command.Invoke();
+                }
+
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), includeRetries: true)
+                    .ConfigureAwait(false);
+            }
+            finally
+            {
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName)
+                    .ConfigureAwait(false);
+            }
+        }
+
+        [Test]
+        public async Task CreateQueuesForEndpointWithRetries()
+        {
+            var endpointName = "mydefaultendpoint";
+            var errorQueueName = "mydefaulterror";
+            var auditQueueName = "mydefaultaudit";
+
+            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                .ConfigureAwait(false);
+            await QueueDeletionUtils.DeleteQueue(errorQueueName)
+                .ConfigureAwait(false);
+            await QueueDeletionUtils.DeleteQueue(auditQueueName)
+                .ConfigureAwait(false);
+
+            try
+            {
+                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true)
+                    .ConfigureAwait(false);
+
+                await QueueCreationUtils.CreateQueue(
+                        queueName: errorQueueName)
+                    .ConfigureAwait(false);
+
+                await QueueCreationUtils.CreateQueue(
+                        queueName: auditQueueName)
+                    .ConfigureAwait(false);
+
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), includeRetries: true)
+                    .ConfigureAwait(false);
+            }
+            finally
+            {
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName)
+                    .ConfigureAwait(false);
+            }
+        }
+
+        static async Task AssertQueuesExist(string endpointName, string errorQueueName, string auditQueueName, TimeSpan maxTimeToLive, bool includeRetries = false)
         {
             var timeSpanInSeconds = Convert.ToInt32(maxTimeToLive.TotalSeconds);
 
@@ -223,6 +313,15 @@
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
+
+            if (includeRetries)
+            {
+                Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.timeoutsdispatcher"));
+                Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, new List<string>
+                {
+                    QueueAttributeName.MessageRetentionPeriod
+                })).MessageRetentionPeriod);
+            }
 
             Assert.IsTrue(await QueueExistenceUtils.Exists(errorQueueName));
             Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(errorQueueName, new List<string>
