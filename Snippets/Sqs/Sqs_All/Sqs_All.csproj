@@ -17,5 +17,8 @@
     <None Update="QueueCreation\QueueCreation.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="QueueDeletion\QueueDeletion.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

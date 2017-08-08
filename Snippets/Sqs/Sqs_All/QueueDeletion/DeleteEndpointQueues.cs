@@ -7,16 +7,23 @@
 
         async Task Usage()
         {
-            #region sqs-delete-queues-endpoint-usage
+            #region sqs-delete-queues-endpoint-usage [6,)
 
             await DeleteQueuesForEndpoint("myendpoint")
+                .ConfigureAwait(false);
+
+            #endregion
+
+            #region sqs-delete-queues-endpoint-usage [,5)
+
+            await DeleteQueuesForEndpoint("myendpoint", includeRetries: true)
                 .ConfigureAwait(false);
 
             #endregion
         }
         #region sqs-delete-queues-for-endpoint
 
-        public static async Task DeleteQueuesForEndpoint(string endpointName)
+        public static async Task DeleteQueuesForEndpoint(string endpointName, bool includeRetries = false)
         {
             // main queue
             await QueueDeletionUtils.DeleteQueue(endpointName)
@@ -31,9 +38,11 @@
                 .ConfigureAwait(false);
 
             // retries queue
-            // TODO: Only required in Versions 5 and below
-            await QueueDeletionUtils.DeleteQueue($"{endpointName}.retries")
-                .ConfigureAwait(false);
+            if (includeRetries)
+            {
+                await QueueDeletionUtils.DeleteQueue($"{endpointName}.retries")
+                    .ConfigureAwait(false);
+            }
         }
 
         #endregion

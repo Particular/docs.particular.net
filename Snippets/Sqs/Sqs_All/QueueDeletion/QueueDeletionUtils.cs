@@ -29,6 +29,10 @@
 
             for (var i = 0; i < numberOfQueuesFound; i++)
             {
+                if (i % 200 == 0) // make sure we don't get throttled
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(30));
+                }
                 deletionTasks[i] = client.DeleteQueueAsync(queuesToDelete.QueueUrls[i]);
             }
 
