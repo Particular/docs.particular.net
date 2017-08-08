@@ -13,4 +13,9 @@
     <Reference Include="System.Messaging" />
     <Reference Include="System.Transactions" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="QueueCreation\QueueCreation.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

@@ -3,10 +3,10 @@
     using System;
     using System.Threading.Tasks;
 
-    class CreateEndpointQueues
+    static class CreateEndpointQueues
     {
 
-        async Task Usage()
+        static async Task Usage()
         {
             #region sqs-create-queues-endpoint-usage
 
