@@ -1,5 +1,6 @@
 ---
-title: Transport Upgrade Guides
+title: Upgrade Guides
+summary: Transport Upgrade Guides.
 reviewed: 2016-11-16
 related:
  - nservicebus/upgrades
