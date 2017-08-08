@@ -19,6 +19,8 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=localhost");
+        transport.DelayedDelivery().DisableTimeoutManager();
+
         transport.UseDirectRoutingTopology();
 
         endpointConfiguration.SendFailedMessagesTo("adapter_error");

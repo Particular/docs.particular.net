@@ -22,6 +22,8 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=localhost");
+        transport.DelayedDelivery().DisableTimeoutManager();
+
         transport.UseDirectRoutingTopology();
 
         endpointConfiguration.SendFailedMessagesTo("adapter_error");
@@ -48,6 +50,8 @@ class Program
         recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
         recoverability.DisableLegacyRetriesSatellite();
 
+        var routingConfig = transport.Routing();
+        routingConfig.RouteToEndpoint(typeof(ShipOrder).Assembly, "Samples.ServiceControl.RabbitMQAdapter.Shipping");
 
         endpointConfiguration.EnableInstallers();
 
@@ -73,9 +77,7 @@ class Program
                     OrderId = orderId,
                     Value = random.Next(100)
                 };
-                var sendOptions = new SendOptions();
-                sendOptions.SetDestination("Samples.ServiceControl.RabbitMQAdapter.Shipping");
-                await endpointInstance.Send(shipOrder, sendOptions)
+                await endpointInstance.Send(shipOrder)
                     .ConfigureAwait(false);
             }
             if (lowerInvariant == 'f')
