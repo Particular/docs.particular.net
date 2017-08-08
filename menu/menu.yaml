@@ -753,11 +753,13 @@
         Title: Version 3 to 4
     - Title: SQL
       Articles:
-      - Url: persistence/upgrades/sqlpersistence-1to2
+      - Url: persistence/upgrades/sql-2to3
+        Title: Version 2 to 3
+      - Url: persistence/upgrades/sql-1to2
         Title: Version 1 to 2
-      - Url: persistence/upgrades/sqlpersistence-1.0.0-1.0.1
+      - Url: persistence/upgrades/sql-1.0.0-1.0.1
         Title: Version 1 to 1.0.1
-      - Url: persistence/upgrades/sqlpersistence-null-endpoint
+      - Url: persistence/upgrades/sql-null-endpoint
         Title: Support NServiceBus 5 subscribers
   - Url: persistence/learning
     Title: Learning Persistence

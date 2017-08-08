@@ -6,6 +6,7 @@ reviewed: 2017-06-30
 isUpgradeGuide: true
 redirects:
  - nservicebus/upgrades/sqlpersistence-null-endpoint
+ - persistence/upgrades/sqlpersistence-null-endpoint
 upgradeGuideCoreVersions:
  - 6
 ---
