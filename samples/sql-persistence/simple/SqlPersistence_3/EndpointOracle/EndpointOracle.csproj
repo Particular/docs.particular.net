@@ -28,21 +28,25 @@
       <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Core, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.7.0.0-alpharelease0039\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Persistence.Sql, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.Sql.3.0.0-alpha0029\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Persistence.Sql, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Persistence.Sql.3.0.0-alpha0035\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
     </Reference>
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\System.ValueTuple.4.4.0-preview2-25405-01\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
