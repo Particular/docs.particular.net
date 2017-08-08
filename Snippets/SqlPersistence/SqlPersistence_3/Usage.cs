@@ -60,9 +60,6 @@ class Usage
     {
         #region SqlPersistenceUsageMySql
 
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
-
         var connection = "server=localhost;user=root;database=dbname;port=3306;password=pass;AllowUserVariables=True;AutoEnlist=false";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlVariant(SqlVariant.MySql);

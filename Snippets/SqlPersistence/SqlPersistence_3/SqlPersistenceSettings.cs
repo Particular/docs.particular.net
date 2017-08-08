@@ -1,5 +1,4 @@
 ﻿using NServiceBus.Persistence.Sql;
-using NUnit.Framework.Constraints;
 
 #region AllSqlScripts
 [assembly: SqlPersistenceSettings(
