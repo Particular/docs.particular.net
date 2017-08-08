@@ -4,8 +4,6 @@
     <TargetFramework>net462</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ApprovalTests" Version="3.*" />
-    <PackageReference Include="Mono.Cecil" Version="0.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.AmazonSQS" Version="3.0.0-alpharelease0057" />
     <PackageReference Include="NUnit" Version="3.*" />
