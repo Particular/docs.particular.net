@@ -1,5 +1,6 @@
 ---
-title: Persistence Upgrade Guides
+title: Upgrade Guides
+summary: Persistence Upgrade Guides
 reviewed: 2016-11-16
 related:
  - nservicebus/upgrades
