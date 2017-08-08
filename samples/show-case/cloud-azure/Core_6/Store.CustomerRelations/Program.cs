@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using NServiceBus;
+using Store.Messages.Events;
 
 public class Program
 {
@@ -26,12 +27,13 @@ public class Program
     {
         Console.Title = "Samples.Store.CustomerRelations";
         var endpointConfiguration = new EndpointConfiguration("Store.CustomerRelations");
-        endpointConfiguration.ApplyCommonConfiguration(transport =>
-        {
-            var routing = transport.Routing();
-            routing.RegisterPublisher(typeof(Store.Messages.Events.ClientBecamePreferred).Assembly, "Store.Messages.Events", "Store.Sales");
-            routing.RegisterPublisher(typeof(Store.Messages.Events.ClientBecamePreferred), "Store.CustomerRelations");
-        });
+        endpointConfiguration.ApplyCommonConfiguration(
+            transport =>
+            {
+                var routing = transport.Routing();
+                routing.RegisterPublisher(typeof(ClientBecamePreferred).Assembly, "Store.Messages.Events", "Store.Sales");
+                routing.RegisterPublisher(typeof(ClientBecamePreferred), "Store.CustomerRelations");
+            });
 
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -44,6 +46,6 @@ public class Program
         }
 
         await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            .ConfigureAwait(false);
     }
 }

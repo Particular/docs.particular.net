@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using NServiceBus;
+using Store.Messages.Commands;
 
 public class MvcApplication :
     HttpApplication
@@ -26,7 +27,7 @@ public class MvcApplication :
         endpointConfiguration.ApplyCommonConfiguration(transport =>
         {
             var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(Store.Messages.Commands.SubmitOrder).Assembly, "Store.Messages.Commands", "Store.Sales");
+            routing.RouteToEndpoint(typeof(SubmitOrder).Assembly, "Store.Messages.Commands", "Store.Sales");
         });
 
         EndpointInstance = await Endpoint.Start(endpointConfiguration)

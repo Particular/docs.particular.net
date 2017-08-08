@@ -3,6 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using NServiceBus;
+using Store.Messages.Events;
+using Store.Messages.RequestResponse;
 
 public class Program
 {
@@ -25,12 +27,13 @@ public class Program
     {
         Console.Title = "Samples.Store.ContentManagement";
         var endpointConfiguration = new EndpointConfiguration("Store.ContentManagement");
-        endpointConfiguration.ApplyCommonConfiguration(transport =>
-        {
-            var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(Store.Messages.RequestResponse.ProvisionDownloadRequest), "Store.Operations");
-            routing.RegisterPublisher(typeof(Store.Messages.Events.OrderAccepted), "Store.Sales");
-        });
+        endpointConfiguration.ApplyCommonConfiguration(
+            transport =>
+            {
+                var routing = transport.Routing();
+                routing.RouteToEndpoint(typeof(ProvisionDownloadRequest), "Store.Operations");
+                routing.RegisterPublisher(typeof(OrderAccepted), "Store.Sales");
+            });
 
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

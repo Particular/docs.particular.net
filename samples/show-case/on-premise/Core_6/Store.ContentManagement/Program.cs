@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using Store.Messages.RequestResponse;
 
 class Program
 {
@@ -14,11 +15,12 @@ class Program
     {
         Console.Title = "Samples.Store.ContentManagement";
         var endpointConfiguration = new EndpointConfiguration("Store.ContentManagement");
-        endpointConfiguration.ApplyCommonConfiguration(transport =>
-        {
-            var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(Store.Messages.RequestResponse.ProvisionDownloadRequest), "Store.Operations");
-        });
+        endpointConfiguration.ApplyCommonConfiguration(
+            transport =>
+            {
+                var routing = transport.Routing();
+                routing.RouteToEndpoint(typeof(ProvisionDownloadRequest), "Store.Operations");
+            });
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

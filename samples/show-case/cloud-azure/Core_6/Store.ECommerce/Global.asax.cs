@@ -3,6 +3,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using NServiceBus;
+using Store.Messages.Commands;
+using Store.Messages.Events;
 
 public class MvcApplication :
     HttpApplication
@@ -23,14 +25,15 @@ public class MvcApplication :
     {
         var endpointConfiguration = new EndpointConfiguration("Store.ECommerce");
         endpointConfiguration.PurgeOnStartup(true);
-        endpointConfiguration.ApplyCommonConfiguration(transport =>
-        {
-            var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(Store.Messages.Commands.SubmitOrder).Assembly, "Store.Messages.Commands", "Store.Sales");
-            routing.RegisterPublisher(typeof(Store.Messages.Events.DownloadIsReady), "Store.ContentManagement");
-            routing.RegisterPublisher(typeof(Store.Messages.Events.OrderCancelled), "Store.Sales");
-            routing.RegisterPublisher(typeof(Store.Messages.Events.OrderPlaced), "Store.Sales");
-        });
+        endpointConfiguration.ApplyCommonConfiguration(
+            transport =>
+            {
+                var routing = transport.Routing();
+                routing.RouteToEndpoint(typeof(SubmitOrder).Assembly, "Store.Messages.Commands", "Store.Sales");
+                routing.RegisterPublisher(typeof(DownloadIsReady), "Store.ContentManagement");
+                routing.RegisterPublisher(typeof(OrderCancelled), "Store.Sales");
+                routing.RegisterPublisher(typeof(OrderPlaced), "Store.Sales");
+            });
 
         EndpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
