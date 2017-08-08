@@ -4,6 +4,7 @@
     using System.IO;
     using System.Linq;
     using System.Management.Automation;
+    using System.Threading;
     using System.Threading.Tasks;
     using Amazon.SQS.Model;
     using NServiceBus;
@@ -29,8 +30,8 @@
         [TearDown]
         public void Setup()
         {
-            DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName).GetAwaiter().GetResult();
-            QueueDeletionUtils.DeleteQueue(errorQueueName).GetAwaiter().GetResult();
+            DeleteEndpointQueues.DeleteQueuesForEndpoint(QueueNameHelper.GetSqsQueueName(endpointName)).GetAwaiter().GetResult();
+            QueueDeletionUtils.DeleteQueue(QueueNameHelper.GetSqsQueueName(errorQueueName)).GetAwaiter().GetResult();
         }
 
         [Test]
@@ -47,11 +48,12 @@
 
                 state.ShouldHandlerThrow = false;
 
-                ErrorQueue.ReturnMessageToSourceQueue(
-                    errorQueueName: errorQueueName,
-                    msmqMessageId: messageId);
+                await ErrorQueue.ReturnMessageToSourceQueue(
+                        errorQueueName: errorQueueName,
+                        messageId: messageId)
+                    .ConfigureAwait(false);
 
-                await state.Signal.Task.ConfigureAwait(false);
+                Assert.IsTrue(await state.Signal.Task.ConfigureAwait(false));
             }
             finally
             {
@@ -72,7 +74,8 @@
                 endpoint = await StartEndpoint(state).ConfigureAwait(false);
                 var messageToSend = new MessageToSend();
                 await endpoint.SendLocal(messageToSend).ConfigureAwait(false);
-                var msmqMessageId = GetMessageId();
+                var messageId = GetMessageId();
+
                 state.ShouldHandlerThrow = false;
 
                 var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "ErrorQueue/ErrorQueue.ps1");
@@ -81,12 +84,12 @@
                     powerShell.AddScript(File.ReadAllText(scriptPath));
                     powerShell.Invoke();
                     var command = powerShell.AddCommand("ReturnMessageToSourceQueue");
-                    command.AddParameter("ErrorQueueMachine", Environment.MachineName);
                     command.AddParameter("ErrorQueueName", errorQueueName);
-                    command.AddParameter("MessageId", msmqMessageId);
+                    command.AddParameter("MessageId", messageId);
                     command.Invoke();
                 }
-                await state.Signal.Task.ConfigureAwait(false);
+
+                Assert.IsTrue(await state.Signal.Task.ConfigureAwait(false));
             }
             finally
             {
@@ -106,8 +109,9 @@
                     components.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance);
                 });
             endpointConfiguration.SendFailedMessagesTo(errorQueueName);
+            endpointConfiguration.EnableInstallers();
             var transport = endpointConfiguration.UseTransport<SqsTransport>();
-            transport.ConfigureSqsTransport("returnsourcequeue");
+            transport.ConfigureSqsTransport();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             var recoverabilitySettings = endpointConfiguration.Recoverability();
             recoverabilitySettings.DisableLegacyRetriesSatellite();
@@ -119,7 +123,15 @@
 
         class State
         {
-            public TaskCompletionSource<bool> Signal = new TaskCompletionSource<bool>();
+            public State()
+            {
+                Signal = new TaskCompletionSource<bool>();
+                // make sure the test does not hang forever
+                var tokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(60));
+                tokenSource.Token.Register(() => Signal.TrySetResult(false));
+            }
+
+            public TaskCompletionSource<bool> Signal;
             public bool ShouldHandlerThrow = true;
         }
 
@@ -128,11 +140,15 @@
             var path = QueueNameHelper.GetSqsQueueName($"{errorQueueName}");
             using (var client = ClientFactory.CreateSqsClient())
             {
+                var getQueueUrlResponse = await client.GetQueueUrlAsync(path)
+                    .ConfigureAwait(false);
+
                 var messages = await client.ReceiveMessageAsync(
-                        new ReceiveMessageRequest(client.GetQueueUrl(path).QueueUrl)
+                        new ReceiveMessageRequest(getQueueUrlResponse.QueueUrl)
                         {
                             MaxNumberOfMessages = 1,
-                            WaitTimeSeconds = 20
+                            WaitTimeSeconds = 20,
+                            VisibilityTimeout = 0, // message needs to be immediately visible again to be seen by the ReturnToSourceQueue algorithm
                         })
                     .ConfigureAwait(false);
 
