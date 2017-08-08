@@ -6,6 +6,7 @@ component: SqlPersistence
 isUpgradeGuide: true
 redirects:
  - nservicebus/upgrades/sqlpersistence-1.0.0-1.0.1
+ - persistence/upgrades/sqlpersistence-1.0.0-1.0.1
 upgradeGuideCoreVersions:
  - 6
 ---
