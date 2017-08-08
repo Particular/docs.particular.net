@@ -35,6 +35,9 @@
                     .ConfigureAwait(false);
             }
 
+            await Task.Delay(TimeSpan.FromMinutes(2)) // to make sure we settle with the API requests
+                .ConfigureAwait(false);
+
             await QueueDeletionUtils.DeleteAllQueues()
                 .ConfigureAwait(false);
         }
