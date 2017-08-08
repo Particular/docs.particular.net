@@ -715,6 +715,8 @@
       Title: Topology
     - Url: transports/sqs/transaction-support
       Title: Transaction
+    - Url: transports/sqs/operations-scripting
+      Title: Scripting      
   - Url: transports/eventstore
     Title: Event Store
   - Url: transports/kafka
