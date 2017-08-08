@@ -4,15 +4,17 @@ summary: Supported transaction modes and their consistency guarantees
 component: Core
 versions: "[4,)"
 tags:
-- Transactions
-- Transport
+ - Transactions
+ - Transport
 redirects:
-- nservicebus/messaging/transactions
-- nservicebus/transports/transactions
-reviewed: 2016-08-31
+ - nservicebus/messaging/transactions
+ - nservicebus/transports/transactions
+reviewed: 2017-08-08
+related:
+ - nservicebus/azure/understanding-transactionality-in-azure
 ---
 
-This article covers various levels of consistency guarantees NServiceBus provides with regards to:
+This article covers various levels of consistency guarantees with regards to:
 
  * receiving messages
  * updating user data
@@ -23,7 +25,7 @@ It does not discuss the transaction isolation aspect. Transaction isolation appl
 
 ## Transactions
 
-NServiceBus offers four levels of guarantees with regards to message processing. Levels availability depends on the selected transport. See also [Transaction handling in Azure](/nservicebus/azure/understanding-transactionality-in-azure.md).
+Four levels of guarantees with regards to message processing are offered. A levels availability depends on the selected transport.
 
 
 ### Transaction levels supported by NServiceBus transports
@@ -37,7 +39,7 @@ partial: matrix
 
 In this mode the transport receive operation is wrapped in a [`TransactionScope`](https://msdn.microsoft.com/en-us/library/system.transactions.transactionscope). Other operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole.
 
-If required, the transaction is escalated to a distributed transaction (following two-phase commit protocol coordinated by MS DTC) if both the transport and the persistence support it. A fully distributed transaction is not always required, for example when using [SQL Server transport](/transports/sql/) with [NHibernate persistence](/persistence/nhibernate/), both using the same database connection string. In this case the ADO.NET driver guarantees that everything happens inside a single database transaction and ACID guarantees are held for the whole processing.
+If required, the transaction is escalated to a distributed transaction (following two-phase commit protocol coordinated by [MS DTC](https://msdn.microsoft.com/en-us/library/ms684146.aspx)) if both the transport and the persistence support it. A fully distributed transaction is not always required, for example when using [SQL Server transport](/transports/sql/) with [SQL persistence](/persistence/sql/), both using the same database connection string. In this case the ADO.NET driver guarantees that everything happens inside a single database transaction and ACID guarantees are held for the whole processing.
 
 NOTE: MSMQ will escalate to a distributed transaction right away since it doesn't support promotable transaction enlistments.
 
@@ -56,19 +58,19 @@ In this mode handlers will execute inside a `TransactionScope` created by the tr
 
 Consider a system using MSMQ transport and RavenDB persistence implementing the following message exchange scenario with a saga that models a simple order lifecycle:
 
-1. `OrderSaga` receives a `StartOrder` message
-1. New `OrderSagaData` instance is created and stored in RavenDB.
-1. `OrderSaga` sends `VerifyPayment` message to `PaymentService`.
-1. NServiceBus completes the distributed transaction and the DTC instructs MSMQ and RavenDB resource managers to commit their local transactions.
-1. `StartOrder` message is removed from the input queue and `VerifyPayment` is immediately sent to `PaymentService`.
-1. RavenDB acknowledges the transaction commit and begins writing `OrderSagaData` to disk.
-1. `PaymentService` receives `VerifyPayment` message and immediately responds with a `CompleteOrder` message to the originating `OrderSaga`.
-1. `OrderSaga` receives the `CompleteOrder` message and attempts to complete the saga.
-1. `OrderSaga` queries RavenDB to find the `OrderSagaData` instance to complete.
-1. RavenDB has not finished writing `OrderSagaData` to disk and returns an empty result set.
-1. `OrderSaga` fails to complete.
+ 1. `OrderSaga` receives a `StartOrder` message
+ 1. New `OrderSagaData` instance is created and stored in RavenDB.
+ 1. `OrderSaga` sends `VerifyPayment` message to `PaymentService`.
+ 1. NServiceBus completes the distributed transaction and the DTC instructs MSMQ and RavenDB resource managers to commit their local transactions.
+ 1. `StartOrder` message is removed from the input queue and `VerifyPayment` is immediately sent to `PaymentService`.
+ 1. RavenDB acknowledges the transaction commit and begins writing `OrderSagaData` to disk.
+ 1. `PaymentService` receives `VerifyPayment` message and immediately responds with a `CompleteOrder` message to the originating `OrderSaga`.
+ 1. `OrderSaga` receives the `CompleteOrder` message and attempts to complete the saga.
+ 1. `OrderSaga` queries RavenDB to find the `OrderSagaData` instance to complete.
+ 1. RavenDB has not finished writing `OrderSagaData` to disk and returns an empty result set.
+ 1. `OrderSaga` fails to complete.
 
-In the example above the `TransactionScope` guarantees atomicity for the `OrderSaga`: consuming the incoming `StartOrder` message, storing `OrderSagaData` in RavenDB and sending the outgoing `VerifyPayment` message are _committed_ as one atomic operation. The saga data may not be immediately available for reading even though the incoming message has already been processed. `OrderSaga` is thus only _eventually consistent_. The `CompleteOrder` message needs to be [retried](/nservicebus/recoverability/) until RavenDB successfuly returns an `OrderSagaData` instance.
+In the example above the `TransactionScope` guarantees atomicity for the `OrderSaga`: consuming the incoming `StartOrder` message, storing `OrderSagaData` in RavenDB and sending the outgoing `VerifyPayment` message are _committed_ as one atomic operation. The saga data may not be immediately available for reading even though the incoming message has already been processed. `OrderSaga` is thus only _eventually consistent_. The `CompleteOrder` message needs to be [retried](/nservicebus/recoverability/) until RavenDB successfully returns an `OrderSagaData` instance.
 
 NOTE: This mode requires the selected storage to support participating in distributed transactions.
 
