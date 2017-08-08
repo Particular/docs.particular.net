@@ -82,8 +82,6 @@ The following code configures the adapter to use SQL Server transport when commu
 
 snippet: EndpointSideConfig
 
-include: adapter-how-it-works
-
 
 ### Duplicates
 

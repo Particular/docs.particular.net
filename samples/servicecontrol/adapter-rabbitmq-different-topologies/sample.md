@@ -91,4 +91,3 @@ The following code configures names of the queues used by the adapter and Servic
 
 snippet: AdapterQueueConfiguration
 
-include: adapter-how-it-works

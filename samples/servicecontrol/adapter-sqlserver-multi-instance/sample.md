@@ -84,5 +84,3 @@ snippet: SCSideConfig
 Because the ServiceControl has been installed under a non-default instance name (`Particular.ServiceControl.SQL`) the control queue name needs to be overridden in the adapter configuration:
 
 snippet: ControlQueueOverride
-
-include: adapter-how-it-works
