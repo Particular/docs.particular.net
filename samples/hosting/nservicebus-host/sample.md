@@ -1,5 +1,5 @@
 ---
-title: Hosting using the NServiceBus.Host
+title: The NServiceBus.Host
 summary: Hosting a NServiceBus endpoint using the NServiceBus.Host.
 reviewed: 2016-04-06
 component: Host
