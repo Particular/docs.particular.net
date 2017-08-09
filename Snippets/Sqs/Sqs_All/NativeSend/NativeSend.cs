@@ -56,14 +56,14 @@ namespace SqsAll.NativeSend
         {
             var bodyBytes = Encoding.UTF8.GetBytes(messageBody);
             var base64Body = Convert.ToBase64String(bodyBytes);
-            var serializeMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new
+            var serializedMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new
             {
                 Headers = headers,
                 Body = base64Body,
             });
-            var queueUrlResponse = await sqsClient.GetQueueUrlAsync(queue)
+            var queueUrlResponse = await sqsClient.GetQueueUrlAsync(QueueNameHelper.GetSqsQueueName(queue))
                 .ConfigureAwait(false);
-            await sqsClient.SendMessageAsync(queueUrlResponse.QueueUrl, serializeMessage)
+            await sqsClient.SendMessageAsync(queueUrlResponse.QueueUrl, serializedMessage)
                 .ConfigureAwait(false);
         }
 
@@ -84,15 +84,15 @@ namespace SqsAll.NativeSend
                     Key = key
                 }).ConfigureAwait(false);
             }
-            var serializeMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new
+            var serializedMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new
             {
                 Headers = headers,
                 Body = string.Empty,
                 S3BodyKey = key
             });
-            var queueUrlResponse = await sqsClient.GetQueueUrlAsync(queue)
+            var queueUrlResponse = await sqsClient.GetQueueUrlAsync(QueueNameHelper.GetSqsQueueName(queue))
                 .ConfigureAwait(false);
-            await sqsClient.SendMessageAsync(queueUrlResponse.QueueUrl, serializeMessage)
+            await sqsClient.SendMessageAsync(queueUrlResponse.QueueUrl, serializedMessage)
                 .ConfigureAwait(false);
         }
 

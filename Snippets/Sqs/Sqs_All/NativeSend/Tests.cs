@@ -88,9 +88,9 @@
                     powerShell.AddScript(File.ReadAllText(scriptPath));
                     powerShell.Invoke();
                     var command = powerShell.AddCommand("SendMessage");
-                    command.AddParameter(null, endpointName);
-                    command.AddParameter(null, message);
-                    command.AddParameter(null, headers);
+                    command.AddParameter("QueueName", endpointName);
+                    command.AddParameter("MessageBody", message);
+                    command.AddParameter("Headers", headers);
                     command.Invoke();
                 }
 
@@ -127,6 +127,48 @@
                 {
                     await NativeSend.SendLargeMessage(client, s3Client, endpointName, "test", SqsTransportConfigurationExtensions.S3BucketName, message, headers)
                         .ConfigureAwait(false);
+                }
+
+                Assert.AreEqual("Value", await state.Signal.Task.ConfigureAwait(false));
+            }
+            finally
+            {
+                if (endpoint != null)
+                {
+                    await endpoint.Stop().ConfigureAwait(false);
+                }
+            }
+        }
+
+        [Test]
+        public async Task SendLargePowerShell()
+        {
+            var state = new State();
+            IEndpointInstance endpoint = null;
+            try
+            {
+                endpoint = await StartEndpoint(state).ConfigureAwait(false);
+
+                var message = @"{ Property: 'Value' }";
+
+                var headers = new Dictionary<string, string>
+                {
+                    {"NServiceBus.EnclosedMessageTypes", typeof(MessageToSend).FullName},
+                    {"NServiceBus.MessageId", Guid.NewGuid().ToString()}
+                };
+
+                var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"NativeSend\NativeSend.ps1");
+                using (var powerShell = PowerShell.Create())
+                {
+                    powerShell.AddScript(File.ReadAllText(scriptPath));
+                    powerShell.Invoke();
+                    var command = powerShell.AddCommand("SendLargeMessage");
+                    command.AddParameter("QueueName", endpointName);
+                    command.AddParameter("S3Prefix", "test");
+                    command.AddParameter("BucketName", SqsTransportConfigurationExtensions.S3BucketName);
+                    command.AddParameter("MessageBody", message);
+                    command.AddParameter("Headers", headers);
+                    command.Invoke();
                 }
 
                 Assert.AreEqual("Value", await state.Signal.Task.ConfigureAwait(false));
