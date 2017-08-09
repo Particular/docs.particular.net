@@ -39,14 +39,14 @@ param(
 CreateQueue -QueueName $EndpointName -MaxTimeToLive $MaxTimeToLive
 
 # timeout queue
-CreateQueue -QueueName "$EndpointName.timeouts" -MaxTimeToLive $MaxTimeToLive
+CreateQueue -QueueName "$EndpointName.Timeouts" -MaxTimeToLive $MaxTimeToLive
 
 # timeout dispatcher queue
-CreateQueue -QueueName "$EndpointName.timeoutsdispatcher" -MaxTimeToLive $MaxTimeToLive
+CreateQueue -QueueName "$EndpointName.TimeoutsDispatcher" -MaxTimeToLive $MaxTimeToLive
 
 # retries queue
 if ($IncludeRetries) {
-CreateQueue -QueueName "$EndpointName.retries" -MaxTimeToLive $MaxTimeToLive
+CreateQueue -QueueName "$EndpointName.Retries" -MaxTimeToLive $MaxTimeToLive
 }
 }
 # endcode
@@ -92,36 +92,52 @@ return $false
 
 Add-Type @'
     using System;
+	using System.Linq;
 
     public static class QueueNameHelper
     {
-        public static string GetSqsQueueName(string destination)
+        public static string GetSqsQueueName(string destination, string queueNamePrefix = null, bool preTruncateQueueNames = false)
         {
             if (string.IsNullOrWhiteSpace(destination))
             {
-                throw new ArgumentNullException("destination", "destination");
+                throw new ArgumentNullException("destination");
+            }
+
+
+            var s = queueNamePrefix + destination;
+
+            if (preTruncateQueueNames && s.Length > 80)
+            {
+                if (string.IsNullOrWhiteSpace(queueNamePrefix))
+                {
+                    throw new ArgumentNullException("queueNamePrefix");
+                }
+
+                var charsToTake = 80 - queueNamePrefix.Length;
+                s = queueNamePrefix +
+                    new string(s.Reverse().Take(charsToTake).Reverse().ToArray());
             }
 
             // SQS queue names can only have alphanumeric characters, hyphens and underscores.
             // Any other characters will be replaced with a hyphen.
-            for (var i = 0; i < destination.Length; ++i)
+            for (var i = 0; i < s.Length; ++i)
             {
-                var c = destination[i];
+                var c = s[i];
                 if (!char.IsLetterOrDigit(c)
                     && c != '-'
                     && c != '_')
                 {
-                    destination = destination.Replace(c, '-');
+                    s = s.Replace(c, '-');
                 }
             }
 
-            if (destination.Length > 80)
+            if (s.Length > 80)
             {
                 throw new Exception(
-                    "Address is longer than 80 characters and therefore cannot be used to create an SQS queue. Use a shorter queue name.");
+                    string.Format("Address {0} with configured prefix {1} is longer than 80 characters and therefore cannot be used to create an SQS queue. Use a shorter queue name.", destination, queueNamePrefix));
             }
 
-            return destination;
+            return s;
         }
     }
 '@
