@@ -43,7 +43,7 @@
             var receivedMessages = await client.ReceiveMessageAsync(new ReceiveMessageRequest
                 {
                     QueueUrl = queueUrl,
-                    WaitTimeSeconds = 1,
+                    WaitTimeSeconds = 20,
                     MaxNumberOfMessages = 10,
                 })
                 .ConfigureAwait(false);
