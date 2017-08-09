@@ -5,9 +5,12 @@
     using System.Globalization;
     using System.IO;
     using System.Management.Automation;
+    using System.Threading;
     using System.Threading.Tasks;
     using Amazon.SQS;
+    using NServiceBus;
     using NUnit.Framework;
+    using SqsAll.ErrorQueue;
     using SqsAll.QueueDeletion;
 
     [TestFixture]
@@ -334,6 +337,148 @@
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
+        }
+
+        string endpointName = "CreateQueuesTests";
+        static string errorQueueName = "CreateQueuesTestsError";
+        static string auditQueueName = "CreateQueuesTestsAudit";
+
+        [SetUp]
+        [TearDown]
+        public void Setup()
+        {
+            DeleteEndpointQueues.DeleteQueuesForEndpoint(QueueNameHelper.GetSqsQueueName(endpointName)).GetAwaiter().GetResult();
+            QueueDeletionUtils.DeleteQueue(QueueNameHelper.GetSqsQueueName(errorQueueName)).GetAwaiter().GetResult();
+        }
+
+        [Test]
+        public async Task CreateQueues()
+        {
+            var state = new State();
+            IEndpointInstance endpoint = null;
+            try
+            {
+                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true)
+                    .ConfigureAwait(false);
+
+                await QueueCreationUtils.CreateQueue(
+                        queueName: errorQueueName)
+                    .ConfigureAwait(false);
+
+                await QueueCreationUtils.CreateQueue(
+                        queueName: auditQueueName)
+                    .ConfigureAwait(false);
+
+                endpoint = await StartEndpoint(state).ConfigureAwait(false);
+                var messageToSend = new MessageToSend();
+                await endpoint.SendLocal(messageToSend).ConfigureAwait(false);
+
+                Assert.IsTrue(await state.Signal.Task.ConfigureAwait(false));
+            }
+            finally
+            {
+                if (endpoint != null)
+                {
+                    await endpoint.Stop().ConfigureAwait(false);
+                }
+            }
+        }
+
+        [Test]
+        public async Task CreateQueuesPowershell()
+        {
+            var state = new State();
+            IEndpointInstance endpoint = null;
+            try
+            {
+                var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/QueueCreation.ps1");
+                using (var powerShell = PowerShell.Create())
+                {
+                    powerShell.AddScript(File.ReadAllText(scriptPath));
+                    powerShell.Invoke();
+                    var command = powerShell.AddCommand("CreateQueuesForEndpoint");
+                    command.AddParameter("EndpointName", endpointName);
+                    command.AddParameter("IncludeRetries");
+                    command.Invoke();
+
+                    command = powerShell.AddCommand("CreateQueue");
+                    command.AddParameter("QueueName", errorQueueName);
+                    command.Invoke();
+
+                    command = powerShell.AddCommand("CreateQueue");
+                    command.AddParameter("QueueName", auditQueueName);
+                    command.Invoke();
+                }
+
+                endpoint = await StartEndpoint(state).ConfigureAwait(false);
+                var messageToSend = new MessageToSend();
+                await endpoint.SendLocal(messageToSend).ConfigureAwait(false);
+
+                Assert.IsTrue(await state.Signal.Task.ConfigureAwait(false));
+            }
+            finally
+            {
+                if (endpoint != null)
+                {
+                    await endpoint.Stop().ConfigureAwait(false);
+                }
+            }
+        }
+
+        Task<IEndpointInstance> StartEndpoint(State state)
+        {
+            var endpointConfiguration = new EndpointConfiguration(endpointName);
+            endpointConfiguration.RegisterComponents(
+                registration: components =>
+                {
+                    components.ConfigureComponent(x => state, DependencyLifecycle.SingleInstance);
+                });
+            endpointConfiguration.SendFailedMessagesTo(errorQueueName);
+            endpointConfiguration.AuditProcessedMessagesTo(auditQueueName);
+            var transport = endpointConfiguration.UseTransport<SqsTransport>();
+            transport.ConfigureSqsTransport();
+            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            var recoverabilitySettings = endpointConfiguration.Recoverability();
+            recoverabilitySettings.DisableLegacyRetriesSatellite();
+            recoverabilitySettings.Immediate(customizations => customizations.NumberOfRetries(0));
+            recoverabilitySettings.Delayed(customizations => customizations.NumberOfRetries(0));
+
+            return Endpoint.Start(endpointConfiguration);
+        }
+
+        class State
+        {
+            public State()
+            {
+                Signal = new TaskCompletionSource<bool>();
+                // make sure the test does not hang forever
+                var tokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(60));
+                tokenSource.Token.Register(() => Signal.TrySetResult(false));
+            }
+
+            public TaskCompletionSource<bool> Signal;
+        }
+
+        class MessageHandler :
+            IHandleMessages<MessageToSend>
+        {
+            State state;
+
+            public MessageHandler(State state)
+            {
+                this.state = state;
+            }
+
+            public Task Handle(MessageToSend message, IMessageHandlerContext context)
+            {
+                state.Signal.TrySetResult(true);
+                return Task.CompletedTask;
+            }
+        }
+
+        class MessageToSend :
+            IMessage
+        {
         }
     }
 }
