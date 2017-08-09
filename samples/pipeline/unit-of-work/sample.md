@@ -1,5 +1,5 @@
 ---
-title: Unit of work management using the pipeline
+title: Unit of work using the pipeline
 summary: Shows how to use IoC and the pipeline to create a unit of work implementation.
 reviewed: 2016-11-23
 component: Core
