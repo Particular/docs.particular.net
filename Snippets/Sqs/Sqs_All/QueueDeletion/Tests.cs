@@ -4,6 +4,8 @@
     using System.IO;
     using System.Management.Automation;
     using System.Threading.Tasks;
+    using Amazon.Runtime;
+    using Amazon.SQS;
     using SqsAll.QueueCreation;
     using NUnit.Framework;
     using Sqs_All;
@@ -21,12 +23,7 @@
                 var creationTasks = new Task[2001];
                 for (var i = 0; i < 2000; i++)
                 {
-                    if (i % 200 == 0) // make sure we don't get throttled
-                    {
-                        await Task.Delay(TimeSpan.FromSeconds(30));
-                    }
-
-                    creationTasks[i] = client.CreateQueueAsync($"delete-{i}");
+                    creationTasks[i] = RetryCreateOnThrottle(client, $"delete-{i}", TimeSpan.FromSeconds(10), 6);
                 }
 
                 creationTasks[2000] = Task.Delay(TimeSpan.FromSeconds(60));
@@ -35,11 +32,34 @@
                     .ConfigureAwait(false);
             }
 
-            await Task.Delay(TimeSpan.FromMinutes(2)) // to make sure we settle with the API requests
-                .ConfigureAwait(false);
-
             await QueueDeletionUtils.DeleteAllQueues()
                 .ConfigureAwait(false);
+        }
+
+        static async Task RetryCreateOnThrottle(IAmazonSQS client, string queueName, TimeSpan delay, int maxRetryAttempts, int retryAttempts = 0)
+        {
+            try
+            {
+                await client.CreateQueueAsync(queueName).ConfigureAwait(false);
+            }
+            catch (AmazonServiceException ex) when (ex.ErrorCode == "RequestThrottled")
+            {
+                if (retryAttempts < maxRetryAttempts)
+                {
+                    var attempts = TimeSpan.FromMilliseconds(Convert.ToInt32(delay.TotalMilliseconds * (retryAttempts + 1)));
+                    Console.WriteLine($"Retry {queueName} {retryAttempts}/{maxRetryAttempts} with delay {attempts}.");
+                    await Task.Delay(attempts).ConfigureAwait(false);
+                    await RetryCreateOnThrottle(client, queueName, delay, maxRetryAttempts, ++retryAttempts).ConfigureAwait(false);
+                }
+                else
+                {
+                    Console.WriteLine($"Unable to create queue. Max retry attempts reached on {queueName}.");
+                }
+            }
+            catch (AmazonServiceException ex)
+            {
+                Console.WriteLine($"Unable to create {queueName} on {retryAttempts}/{maxRetryAttempts}. Reason: {ex.Message}");
+            }
         }
 
         [Test]

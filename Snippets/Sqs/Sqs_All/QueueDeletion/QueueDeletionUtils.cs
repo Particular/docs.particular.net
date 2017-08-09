@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Amazon.Runtime;
     using Amazon.SQS;
     using Amazon.SQS.Model;
     using SqsAll.QueueCreation;
@@ -29,15 +30,12 @@
 
             for (var i = 0; i < numberOfQueuesFound; i++)
             {
-                if (i % 200 == 0) // make sure we don't get throttled
-                {
-                    await Task.Delay(TimeSpan.FromSeconds(30));
-                }
-                deletionTasks[i] = client.DeleteQueueAsync(queuesToDelete.QueueUrls[i]);
+                deletionTasks[i] = RetryDeleteOnThrottle(client, queuesToDelete.QueueUrls[i], TimeSpan.FromSeconds(10), 6);
             }
 
             // queue deletion can take up to 60 seconds
-            deletionTasks[numberOfQueuesFound] = Task.Delay(TimeSpan.FromSeconds(60));
+            deletionTasks[numberOfQueuesFound] = numberOfQueuesFound > 0 ? Task.Delay(TimeSpan.FromSeconds(60)) : Task.FromResult(0);
+
             await Task.WhenAll(deletionTasks)
                 .ConfigureAwait(false);
 
@@ -63,6 +61,36 @@
             }
             catch (QueueDoesNotExistException)
             {
+            }
+        }
+
+        static async Task RetryDeleteOnThrottle(IAmazonSQS client, string queueUrl, TimeSpan delay, int maxRetryAttempts, int retryAttempts = 0)
+        {
+            try
+            {
+                await client.DeleteQueueAsync(queueUrl).ConfigureAwait(false);
+            }
+            catch (AmazonServiceException ex) when (ex.ErrorCode == "AWS.SimpleQueueService.NonExistentQueue")
+            {
+                // ignore
+            }
+            catch (AmazonServiceException ex) when (ex.ErrorCode == "RequestThrottled")
+            {
+                if (retryAttempts < maxRetryAttempts)
+                {
+                    var attempts = TimeSpan.FromMilliseconds(Convert.ToInt32(delay.TotalMilliseconds * (retryAttempts + 1)));
+                    Console.WriteLine($"Retry {queueUrl} {retryAttempts}/{maxRetryAttempts} with delay {attempts}.");
+                    await Task.Delay(attempts).ConfigureAwait(false);
+                    await RetryDeleteOnThrottle(client, queueUrl, delay, maxRetryAttempts, ++retryAttempts).ConfigureAwait(false);
+                }
+                else
+                {
+                    Console.WriteLine($"Unable to delete {queueUrl}. Max retry attempts reached.");
+                }
+            }
+            catch (AmazonServiceException ex)
+            {
+                Console.WriteLine($"Unable to delete {queueUrl} on {retryAttempts}/{maxRetryAttempts}. Reason: {ex.Message}");
             }
         }
     }
