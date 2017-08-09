@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using Amazon;
-    using Amazon.Runtime;
     using Amazon.S3;
     using Amazon.SQS;
 
@@ -25,7 +24,7 @@
             };
 
 
-            return new AmazonSQSClient(new EnvironmentVariablesAWSCredentials(), config);
+            return new AmazonSQSClient(config);
         }
 
         public static IAmazonS3 CreateS3Client()
@@ -43,7 +42,7 @@
                 RegionEndpoint = awsRegion
             };
 
-            return new AmazonS3Client(new EnvironmentVariablesAWSCredentials(), config);
+            return new AmazonS3Client(config);
         }
     }
 }
