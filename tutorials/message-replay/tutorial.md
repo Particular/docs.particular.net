@@ -2,18 +2,17 @@
 title: Message replay tutorial
 reviewed: 2017-06-09
 summary: In this tutorial, you'll learn how to replay a failed message using the Particular Service Platform tools.
-extensions:
-- !!tutorial
-  downloadAtTop: true
 ---
 
 One of the most powerful features of NServiceBus is the ability to replay a message that has failed. By the time a message reaches the error queue, it will have already progressed through multiple retries via the [immediate retries](/nservicebus/recoverability/#immediate-retries) and [delayed retries](/nservicebus/recoverability/#delayed-retries) process, so you can be sure that the exception is systemic.
 
 Often, this type of failure can be introduced by a bug that isn't found until the code is deployed. When this happens, many errors can flood into the error queue all at once. At these times, it's incredibly valuable to be able to roll back to the old version of the endpoint, and then replay the failed messages through proven code. Then you can take the time to properly troubleshoot and fix the issue before attempting a new deployment.
 
-In this tutorial, which is based on the code developed in the [Introduction to NServiceBus tutorial](/tutorials/intro-to-nservicebus/), we'll see how to use ServiceControl to monitor an NServiceBus system, and ServicePulse to replay a failed message.
+In this tutorial, we'll see how to use ServiceControl to monitor an NServiceBus system, and ServicePulse to replay a failed message.
 
-To get started, download the solution above, extract the archive, and then open the **RetailDemo.sln** file with Visual Studio 2015 or later.
+To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file with Visual Studio 2015 or later.
+
+downloadbutton
 
 
 ## Project Structure
