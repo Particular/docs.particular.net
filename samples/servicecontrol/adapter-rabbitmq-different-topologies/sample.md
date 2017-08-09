@@ -20,7 +20,7 @@ This sample shows how to configure ServiceControl to monitor endpoints and retry
  3. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using RabbitMQ transport:
 	 
    * Add a new ServiceControl instance.
-   * Use default `Particular.ServiceControl` as the instance name (make sure there is no other instance of SC running with the same name).
+   * Use default `Particular.ServiceControl` as the instance name (ensure there is no other instance of SC running with the same name).
    * Specify `host=localhost` as a connection string. ServiceControl Management Utility will automatically create queues and exchanges on the broker.
 
 NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default port number for API. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
@@ -33,7 +33,7 @@ NOTE: In order to connect to a different RabbitMQ broker, ensure all connection 
 
 ## Running the project
 
- 1. Start the projects: Adapter, Sales and Shipping (right-click on the project, select the `Debug > Start new instance` option). Make sure the adapter starts first because on start-up it creates a queue that is used for heartbeats.
+ 1. Start the projects: Adapter, Sales and Shipping (right-click on the project, select the `Debug > Start new instance` option). Ensure the adapter starts first because on start-up it creates a queue that is used for heartbeats.
  1. Open ServicePulse (by default it's available at `http://localhost:9090/#/dashboard`) and select the Endpoints Overview. `Samples.ServiceControl.RabbitMQAdapter.Shipping` endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed.
  1. Go to the Sales console and press `o` to send a message.
  1. Notice the Sales endpoint receives its own message and successfully processes it.
