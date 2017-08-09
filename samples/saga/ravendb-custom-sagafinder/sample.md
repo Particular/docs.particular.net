@@ -28,7 +28,8 @@ snippet: config
 
 NOTE: If running this sample against an external RavenDB server ensure that the `RavenDB.Bundles.UniqueConstraints` [bundle](https://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints) is currently installed according to the [extending RavenDB](https://ravendb.net/docs/search/latest/csharp?searchTerm=server%20extending%20plugins) documentation. If the server side of the plugin is not correctly loaded, notice that the [`SagaNotFoundHandler`](/nservicebus/sagas/saga-not-found.md) will be invoked.
 
-NOTE: When the RavenDB `DocumentStore` is created by the user at endpoint configuration time it's important to dispose it, by calling the `Dispose()` method, before shutting down the endpoint process.
+include: raven-dispose-warning
+
 
 ## In Process Raven Host
 
