@@ -8,6 +8,8 @@
         const string S3BucketEnvironmentVariableName = "NServiceBus.AmazonSQS.S3Bucket";
         const string NativeDeferralEnvironmentVariableName = "NServiceBus.AmazonSQS.NativeDeferral";
 
+        public static string S3BucketName => EnvironmentHelper.GetEnvironmentVariable(S3BucketEnvironmentVariableName);
+
         public static void ConfigureSqsTransport(this TransportExtensions<SqsTransport> transportConfiguration, string queueNamePrefix = null)
         {
             var region = EnvironmentHelper.GetEnvironmentVariable(RegionEnvironmentVariableName) ?? "ap-southeast-2";
@@ -18,9 +20,9 @@
 
             var s3BucketName = EnvironmentHelper.GetEnvironmentVariable(S3BucketEnvironmentVariableName);
 
-            if (!string.IsNullOrEmpty(s3BucketName))
+            if (!string.IsNullOrEmpty(S3BucketName))
             {
-                transportConfiguration.S3BucketForLargeMessages(s3BucketName, "test");
+                transportConfiguration.S3BucketForLargeMessages(S3BucketName, "test");
             }
 
             var nativeDeferralRaw = EnvironmentHelper.GetEnvironmentVariable(NativeDeferralEnvironmentVariableName);

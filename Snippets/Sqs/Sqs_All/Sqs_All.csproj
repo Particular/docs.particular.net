@@ -14,6 +14,9 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="NativeSend\NativeSend.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="QueueCreation\QueueCreation.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
