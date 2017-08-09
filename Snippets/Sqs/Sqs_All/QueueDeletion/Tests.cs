@@ -204,13 +204,13 @@
         {
             Assert.IsFalse(await QueueExistenceUtils.Exists(endpointName), $"Queue {endpointName} still exists.");
 
-            Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.timeouts"), $"Queue {endpointName}.timeouts still exists.");
+            Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts"), $"Queue {endpointName}.timeouts still exists.");
 
-            Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.timeoutsdispatcher"), $"Queue {endpointName}.timeoutsdispatcher still exists.");
+            Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher"), $"Queue {endpointName}.timeoutsdispatcher still exists.");
 
             if (includeRetries)
             {
-                Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.retries"), $"Queue {endpointName}.retries still exists.");
+                Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.Retries"), $"Queue {endpointName}.retries still exists.");
             }
 
             Assert.IsFalse(await QueueExistenceUtils.Exists(errorQueueName), $"Queue {errorQueueName} still exists.");

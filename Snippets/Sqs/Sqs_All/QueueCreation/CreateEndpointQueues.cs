@@ -37,17 +37,17 @@
                 .ConfigureAwait(false);
 
             // timeout queue
-            await QueueCreationUtils.CreateQueue($"{endpointName}.timeouts", maxTimeToLive)
+            await QueueCreationUtils.CreateQueue($"{endpointName}.Timeouts", maxTimeToLive)
                 .ConfigureAwait(false);
 
             // timeout dispatcher queue
-            await QueueCreationUtils.CreateQueue($"{endpointName}.timeoutsdispatcher", maxTimeToLive)
+            await QueueCreationUtils.CreateQueue($"{endpointName}.TimeoutsDispatcher", maxTimeToLive)
                 .ConfigureAwait(false);
 
             // retries queue
             if (includeRetries)
             {
-                await QueueCreationUtils.CreateQueue($"{endpointName}.retries", maxTimeToLive)
+                await QueueCreationUtils.CreateQueue($"{endpointName}.Retries", maxTimeToLive)
                     .ConfigureAwait(false);
             }
         }

@@ -30,17 +30,17 @@
                 .ConfigureAwait(false);
 
             // timeout queue
-            await QueueDeletionUtils.DeleteQueue($"{endpointName}.timeouts")
+            await QueueDeletionUtils.DeleteQueue($"{endpointName}.Timeouts")
                 .ConfigureAwait(false);
 
             // timeout dispatcher queue
-            await QueueDeletionUtils.DeleteQueue($"{endpointName}.timeoutsdispatcher")
+            await QueueDeletionUtils.DeleteQueue($"{endpointName}.TimeoutsDispatcher")
                 .ConfigureAwait(false);
 
             // retries queue
             if (includeRetries)
             {
-                await QueueDeletionUtils.DeleteQueue($"{endpointName}.retries")
+                await QueueDeletionUtils.DeleteQueue($"{endpointName}.Retries")
                     .ConfigureAwait(false);
             }
         }

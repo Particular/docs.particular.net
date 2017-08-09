@@ -302,13 +302,13 @@
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.timeouts"));
+            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts"));
             Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.timeoutsdispatcher"));
+            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher"));
             Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
@@ -316,7 +316,7 @@
 
             if (includeRetries)
             {
-                Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.timeoutsdispatcher"));
+                Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Retries"));
                 Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, new List<string>
                 {
                     QueueAttributeName.MessageRetentionPeriod
