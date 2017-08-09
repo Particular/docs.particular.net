@@ -10,7 +10,7 @@ related:
 ---
 
 
-This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using the RabbitMQ direct routing topology, the default topology of endpoints using RabbitMQ on NServiceBus Version 6. However, since ServiceControl is built on NServiceBus Version 5 and can only use the conventional routing topology, a kind of "transport adapter" is required to bridge the routing topologies. 
+This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using the RabbitMQ direct routing topolog. ServiceControl by default supports only the default RabbitMQ routing topology, therefore a kind of "transport adapter" is required to monitor systems using other routing topologies. 
 
 
 ## Prerequisistes
