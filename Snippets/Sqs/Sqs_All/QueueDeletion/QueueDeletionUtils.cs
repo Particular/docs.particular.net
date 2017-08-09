@@ -10,18 +10,18 @@
 
     public static class QueueDeletionUtils
     {
-        public static async Task DeleteAllQueues()
+        public static async Task DeleteAllQueues(string queueNamePrefix = null)
         {
             using (var client = ClientFactory.CreateSqsClient())
             {
-                await DeleteQueues(client)
+                await DeleteQueues(client, queueNamePrefix)
                     .ConfigureAwait(false);
             }
         }
 
-        static async Task DeleteQueues(IAmazonSQS client)
+        static async Task DeleteQueues(IAmazonSQS client, string queueNamePrefix = null)
         {
-            var queuesToDelete = await client.ListQueuesAsync("")
+            var queuesToDelete = await client.ListQueuesAsync(queueNamePrefix)
                 .ConfigureAwait(false);
             var numberOfQueuesFound = queuesToDelete.QueueUrls.Count;
             var deletionTasks = new Task[numberOfQueuesFound + 1];
@@ -44,13 +44,13 @@
             }
         }
 
-        public static async Task DeleteQueue(string queueName)
+        public static async Task DeleteQueue(string queueName, string queueNamePrefix = null, bool preTruncateQueueNames = false)
         {
             try
             {
                 using (var client = ClientFactory.CreateSqsClient())
                 {
-                    var sqsQueueName = QueueNameHelper.GetSqsQueueName(queueName);
+                    var sqsQueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix, preTruncateQueueNames);
                     var queueUrlResponse = await client.GetQueueUrlAsync(sqsQueueName)
                         .ConfigureAwait(false);
                     await client.DeleteQueueAsync(queueUrlResponse.QueueUrl)

@@ -13,12 +13,16 @@
 
             await QueueCreationUtils.CreateQueue(
                     queueName: "error",
-                    maxTimeToLive: TimeSpan.FromDays(2))
+                    maxTimeToLive: TimeSpan.FromDays(2),
+                    queueNamePrefix: "PROD",
+                    preTruncateQueueNames: true)
                 .ConfigureAwait(false);
 
             await QueueCreationUtils.CreateQueue(
                     queueName: "audit",
-                    maxTimeToLive: TimeSpan.FromDays(2))
+                    maxTimeToLive: TimeSpan.FromDays(2),
+                    queueNamePrefix: "PROD",
+                    preTruncateQueueNames: true)
                 .ConfigureAwait(false);
 
             #endregion

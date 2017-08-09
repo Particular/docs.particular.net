@@ -11,7 +11,7 @@
     {
         static TimeSpan DefaultTimeToLive = TimeSpan.FromDays(4);
 
-        public static async Task CreateQueue(string queueName, TimeSpan? maxTimeToLive = null)
+        public static async Task CreateQueue(string queueName, TimeSpan? maxTimeToLive = null, string queueNamePrefix = null, bool preTruncateQueueNames = false)
         {
             try
             {
@@ -19,7 +19,7 @@
                 {
                     var sqsRequest = new CreateQueueRequest
                     {
-                        QueueName = QueueNameHelper.GetSqsQueueName(queueName)
+                        QueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix, preTruncateQueueNames)
                     };
                     var value = Convert.ToInt32((maxTimeToLive ?? DefaultTimeToLive).TotalSeconds).ToString();
                     sqsRequest.Attributes.Add(QueueAttributeName.MessageRetentionPeriod, value);
