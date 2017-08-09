@@ -1,8 +1,9 @@
-﻿namespace SqsAll.QueueCreation
+﻿namespace SqsAll
 {
     using System;
 
-    static class QueueNameHelper
+    #region sqs-queue-name-helper
+    public static class QueueNameHelper
     {
         public static string GetSqsQueueName(string destination)
         {
@@ -33,4 +34,5 @@
             return destination;
         }
     }
+    #endregion
 }

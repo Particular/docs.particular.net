@@ -3,8 +3,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Amazon.SQS.Model;
-    using SqsAll.QueueCreation;
-    using Sqs_All;
 
     public static class QueueAccessUtils
     {

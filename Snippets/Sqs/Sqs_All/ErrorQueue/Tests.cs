@@ -10,9 +10,7 @@
     using NServiceBus;
     using NServiceBus.Logging;
     using NUnit.Framework;
-    using SqsAll.QueueCreation;
     using SqsAll.QueueDeletion;
-    using Sqs_All;
 
     [TestFixture]
     [Explicit]

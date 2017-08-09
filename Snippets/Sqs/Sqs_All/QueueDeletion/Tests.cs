@@ -8,7 +8,6 @@
     using Amazon.SQS;
     using SqsAll.QueueCreation;
     using NUnit.Framework;
-    using Sqs_All;
 
     [TestFixture]
     [Explicit]

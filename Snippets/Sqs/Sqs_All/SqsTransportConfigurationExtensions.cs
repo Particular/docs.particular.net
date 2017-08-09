@@ -1,4 +1,4 @@
-﻿namespace Sqs_All
+﻿namespace SqsAll
 {
     using NServiceBus;
 

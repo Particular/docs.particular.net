@@ -6,8 +6,6 @@
     using Amazon.SQS;
     using Amazon.SQS.Model;
     using Newtonsoft.Json;
-    using SqsAll.QueueCreation;
-    using Sqs_All;
 
     public static class ErrorQueue
     {

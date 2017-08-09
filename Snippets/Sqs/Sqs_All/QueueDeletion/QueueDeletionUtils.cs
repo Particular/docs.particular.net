@@ -5,8 +5,6 @@
     using Amazon.Runtime;
     using Amazon.SQS;
     using Amazon.SQS.Model;
-    using SqsAll.QueueCreation;
-    using Sqs_All;
 
     #region sqs-delete-queues
 
