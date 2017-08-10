@@ -21,10 +21,10 @@
                 var creationTasks = new Task[12];
                 for (var i = 0; i < 10; i++)
                 {
-                    creationTasks[i] = RetryCreateOnThrottle(client, $"delete-{i}", TimeSpan.FromSeconds(10), 6, queueNamePrefix: "DEV");
+                    creationTasks[i] = RetryCreateOnThrottle(client, $"deleteprefix-{i}", TimeSpan.FromSeconds(10), 6, queueNamePrefix: "DEV");
                 }
 
-                creationTasks[10] = RetryCreateOnThrottle(client, "delete-10", TimeSpan.FromSeconds(10), 6);
+                creationTasks[10] = RetryCreateOnThrottle(client, "deleteprefix-10", TimeSpan.FromSeconds(10), 6);
                 creationTasks[11] = Task.Delay(TimeSpan.FromSeconds(60));
 
                 await Task.WhenAll(creationTasks)
@@ -34,11 +34,11 @@
             await QueueDeletionUtils.DeleteAllQueues(queueNamePrefix: "DEV")
                 .ConfigureAwait(false);
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists("delete-10"));
+            Assert.IsTrue(await QueueExistenceUtils.Exists("deleteprefix-10"));
 
             for (var i = 0; i < 10; i++)
             {
-                Assert.IsFalse(await QueueExistenceUtils.Exists($"DEVdelete-{i}"));
+                Assert.IsFalse(await QueueExistenceUtils.Exists($"DEVdeleteprefix-{i}"));
             }
         }
 
@@ -51,7 +51,7 @@
                 var creationTasks = new Task[11];
                 for (var i = 0; i < 10; i++)
                 {
-                    creationTasks[i] = RetryCreateOnThrottle(client, $"delete-{i}", TimeSpan.FromSeconds(10), 6);
+                    creationTasks[i] = RetryCreateOnThrottle(client, $"deleteall-{i}", TimeSpan.FromSeconds(10), 6);
                 }
 
                 creationTasks[10] = Task.Delay(TimeSpan.FromSeconds(60));
@@ -65,7 +65,7 @@
 
             for (var i = 0; i < 10; i++)
             {
-                Assert.IsFalse(await QueueExistenceUtils.Exists($"delete-{i}"));
+                Assert.IsFalse(await QueueExistenceUtils.Exists($"deleteall-{i}"));
             }
         }
 
@@ -77,7 +77,7 @@
                 var creationTasks = new Task[2001];
                 for (var i = 0; i < 2000; i++)
                 {
-                    creationTasks[i] = RetryCreateOnThrottle(client, $"delete-{i}", TimeSpan.FromSeconds(10), 6);
+                    creationTasks[i] = RetryCreateOnThrottle(client, $"deletemore2000-{i}", TimeSpan.FromSeconds(10), 6);
                 }
 
                 creationTasks[2000] = Task.Delay(TimeSpan.FromSeconds(60));
@@ -91,7 +91,7 @@
 
             for (var i = 0; i < 2000; i++)
             {
-                Assert.IsFalse(await QueueExistenceUtils.Exists($"delete-{i}"));
+                Assert.IsFalse(await QueueExistenceUtils.Exists($"deletemore2000-{i}"));
             }
         }
 
@@ -124,9 +124,9 @@
         [Test]
         public async Task DeleteQueueForEndpoint_Powershell()
         {
-            var endpointName = "myendpoint-powershell";
-            var errorQueueName = "myerror-powershell";
-            var auditQueueName = "myaudit-powershell";
+            var endpointName = "mydeleteendpoint-powershell";
+            var errorQueueName = "mydeleteerror-powershell";
+            var auditQueueName = "mydeleteaudit-powershell";
 
             await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName)
                 .ConfigureAwait(false);
@@ -172,9 +172,9 @@
         [Test]
         public async Task DeleteQueuesForEndpoint()
         {
-            var endpointName = "myendpoint";
-            var errorQueueName = "myerror";
-            var auditQueueName = "myaudit";
+            var endpointName = "mydeleteendpoint";
+            var errorQueueName = "mydeleteerror";
+            var auditQueueName = "mydeleteaudit";
 
             await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName)
                 .ConfigureAwait(false);
@@ -199,9 +199,9 @@
         [Test]
         public async Task DeleteQueueForEndpointWithPrefix_Powershell()
         {
-            var endpointName = "myendpoint-powershell";
-            var errorQueueName = "myerror-powershell";
-            var auditQueueName = "myaudit-powershell";
+            var endpointName = "mydeleteprefixendpoint-powershell";
+            var errorQueueName = "mydeleteprefixerror-powershell";
+            var auditQueueName = "mydeleteprefixaudit-powershell";
 
             await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
                 .ConfigureAwait(false);
@@ -250,9 +250,9 @@
         [Test]
         public async Task DeleteQueuesForEndpointWithPrefix()
         {
-            var endpointName = "myendpoint";
-            var errorQueueName = "myerror";
-            var auditQueueName = "myaudit";
+            var endpointName = "mydeleteprefixendpoint";
+            var errorQueueName = "mydeleteprefixerror";
+            var auditQueueName = "mydeleteprefixaudit";
 
             await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
                 .ConfigureAwait(false);
@@ -277,9 +277,9 @@
         [Test]
         public async Task DeleteQueueForEndpointWithRetries_Powershell()
         {
-            var endpointName = "myendpoint-powershell";
-            var errorQueueName = "myerror-powershell";
-            var auditQueueName = "myaudit-powershell";
+            var endpointName = "mydeleteretriesendpoint-powershell";
+            var errorQueueName = "mydeleteretrieserror-powershell";
+            var auditQueueName = "mydeleteretriesaudit-powershell";
 
             await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true)
                 .ConfigureAwait(false);
@@ -314,9 +314,9 @@
         [Test]
         public async Task DeleteQueuesForEndpointWithRetries()
         {
-            var endpointName = "myendpoint";
-            var errorQueueName = "myerror";
-            var auditQueueName = "myaudit";
+            var endpointName = "mydeleteretriesendpoint";
+            var errorQueueName = "mydeleteretrieserror";
+            var auditQueueName = "mydeleteretriesaudit";
 
             await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true)
                 .ConfigureAwait(false);

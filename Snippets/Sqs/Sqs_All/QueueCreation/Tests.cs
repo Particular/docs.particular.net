@@ -21,9 +21,9 @@
         public async Task CreateQueuesForEndpointWithOverridenMaxTTL_Powershell()
         {
             var maxTimeToLive = TimeSpan.FromDays(1);
-            var endpointName = "myendpoint-powershell";
-            var errorQueueName = "myerror-powershell";
-            var auditQueueName = "myaudit-powershell";
+            var endpointName = "mycreateendpoint-powershell";
+            var errorQueueName = "mycreateerror-powershell";
+            var auditQueueName = "mycreateaudit-powershell";
 
             await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName)
                 .ConfigureAwait(false);
@@ -73,9 +73,9 @@
         public async Task CreateQueuesForEndpointWithOverridenMaxTTL()
         {
             var maxTimeToLive = TimeSpan.FromDays(1);
-            var endpointName = "myendpoint";
-            var errorQueueName = "myerror";
-            var auditQueueName = "myaudit";
+            var endpointName = "mycreateendpoint";
+            var errorQueueName = "mycreateerror";
+            var auditQueueName = "mycreateaudit";
 
             await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName)
                 .ConfigureAwait(false);
@@ -118,9 +118,9 @@
         [Test]
         public async Task CreateQueuesForEndpointDefaultMaxTTL_Powershell()
         {
-            var endpointName = "mydefaultendpoint-powershell";
-            var errorQueueName = "mydefaulterror-powershell";
-            var auditQueueName = "mydefaultaudit-powershell";
+            var endpointName = "mycreatedefaultendpoint-powershell";
+            var errorQueueName = "mycreatedefaulterror-powershell";
+            var auditQueueName = "mycreatedefaultaudit-powershell";
 
             await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName)
                 .ConfigureAwait(false);
@@ -166,9 +166,9 @@
         [Test]
         public async Task CreateQueuesForEndpointDefaultMaxTTL()
         {
-            var endpointName = "mydefaultendpoint";
-            var errorQueueName = "mydefaulterror";
-            var auditQueueName = "mydefaultaudit";
+            var endpointName = "mycreatedefaultendpoint";
+            var errorQueueName = "mycreatedefaulterror";
+            var auditQueueName = "mycreatedefaultaudit";
 
             await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName)
                 .ConfigureAwait(false);
@@ -207,9 +207,9 @@
         [Test]
         public async Task CreateQueuesForEndpointWithPrefix_Powershell()
         {
-            var endpointName = "myprefixendpoint-powershell";
-            var errorQueueName = "myprefixerror-powershell";
-            var auditQueueName = "myprefixaudit-powershell";
+            var endpointName = "mycreateprefixendpoint-powershell";
+            var errorQueueName = "mycreateprefixerror-powershell";
+            var auditQueueName = "mycreateprefixaudit-powershell";
 
             await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
                 .ConfigureAwait(false);
@@ -259,9 +259,9 @@
         [Test]
         public async Task CreateQueuesForEndpointWithPrefix()
         {
-            var endpointName = "myprefixendpoint";
-            var errorQueueName = "myprefixerror";
-            var auditQueueName = "myprefixaudit";
+            var endpointName = "mycreateprefixendpoint";
+            var errorQueueName = "mycreateprefixerror";
+            var auditQueueName = "mycreateprefixaudit";
 
             await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
                 .ConfigureAwait(false);
@@ -302,9 +302,9 @@
         [Test]
         public async Task CreateQueuesForEndpointWithRetries_Powershell()
         {
-            var endpointName = "myretriesendpoint-powershell";
-            var errorQueueName = "myretrieserror-powershell";
-            var auditQueueName = "myretriesaudit-powershell";
+            var endpointName = "mycreateretriesendpoint-powershell";
+            var errorQueueName = "mycreateretrieserror-powershell";
+            var auditQueueName = "mycreateretriesaudit-powershell";
 
             await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
                 .ConfigureAwait(false);
@@ -351,9 +351,9 @@
         [Test]
         public async Task CreateQueuesForEndpointWithRetries()
         {
-            var endpointName = "myretriesendpoint";
-            var errorQueueName = "myretrieserror";
-            var auditQueueName = "myretriesaudit";
+            var endpointName = "mycreateretriesendpoint";
+            var errorQueueName = "mycreateretrieserror";
+            var auditQueueName = "mycreateretriesaudit";
 
             await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
                 .ConfigureAwait(false);
