@@ -6,15 +6,15 @@ Function Usage
 {
 # startcode sqs-delete-queues-endpoint-usage-powershell
 # For NServiceBus 6 Endpoints
-DeleteQueuesForEndpoint -EndpointName "myendpoint"
+DeleteQueuesForEndpoint -EndpointName "myendpoint" -QueueNamePrefix "PROD"
 
 # For NServiceBus 5 and below Endpoints
-DeleteQueuesForEndpoint -EndpointName "myendpoint" -IncludeRetries
+DeleteQueuesForEndpoint -EndpointName "myendpoint" -QueueNamePrefix "PROD" -IncludeRetries
 # endcode
 
 # startcode sqs-delete-queues-shared-usage-powershell
-DeleteQueue -QueueName "error"
-DeleteQueue -QueueName "audit"
+DeleteQueue -QueueName "error" -QueueNamePrefix "PROD"
+DeleteQueue -QueueName "audit" -QueueNamePrefix "PROD"
 # endcode
 }
 
@@ -26,22 +26,25 @@ param(
 [ValidateNotNullOrEmpty()]
 [string] $EndpointName,
 
+[Parameter(Mandatory=$false)]
+[string] $QueueNamePrefix,
+
 [Parameter(HelpMessage="Only required for NSB Versions 5 and below")]
 [Switch] $IncludeRetries
 )
 
 # main queue
-DeleteQueue -QueueName $EndpointName
+DeleteQueue -QueueName $EndpointName -QueueNamePrefix $QueueNamePrefix
 
 # timeout queue
-DeleteQueue -QueueName "$EndpointName.Timeouts"
+DeleteQueue -QueueName "$EndpointName.Timeouts" -QueueNamePrefix $QueueNamePrefix
 
 # timeout dispatcher queue
-DeleteQueue -QueueName "$EndpointName.TimeoutsDispatcher"
+DeleteQueue -QueueName "$EndpointName.TimeoutsDispatcher" -QueueNamePrefix $QueueNamePrefix
 
 # retries queue
 if ($IncludeRetries) {
-DeleteQueue -QueueName "$EndpointName.Retries"
+DeleteQueue -QueueName "$EndpointName.Retries" -QueueNamePrefix $QueueNamePrefix
 }
 }
 # endcode
@@ -52,9 +55,12 @@ Function DeleteQueue
 param(
 [Parameter(Mandatory=$true)]
 [ValidateNotNullOrEmpty()]
-[string] $QueueName
+[string] $QueueName,
+
+[Parameter(Mandatory=$false)]
+[string] $QueueNamePrefix
 )
-[string]$name = [QueueNameHelper]::GetSqsQueueName($QueueName)
+[string]$name = [QueueNameHelper]::GetSqsQueueName($QueueName, $QueueNamePrefix)
 $queueUrl = Get-SQSQueueUrl $name
 Remove-SQSQueue -QueueUrl $queueUrl -Force
 }
@@ -64,37 +70,27 @@ Remove-SQSQueue -QueueUrl $queueUrl -Force
 Function DeleteAllQueues
 {
 param(
+
+[Parameter(Mandatory=$false)]
+[string] $QueueNamePrefix
+
 )
-Get-SQSQueue | Remove-SQSQueue -Force
+Get-SQSQueue $QueueNamePrefix | Remove-SQSQueue -Force
 }
 
 Add-Type @'
     using System;
-	using System.Linq;
 
     public static class QueueNameHelper
     {
-        public static string GetSqsQueueName(string destination, string queueNamePrefix = null, bool preTruncateQueueNames = false)
+        public static string GetSqsQueueName(string destination, string queueNamePrefix = null)
         {
             if (string.IsNullOrWhiteSpace(destination))
             {
                 throw new ArgumentNullException("destination");
             }
 
-
             var s = queueNamePrefix + destination;
-
-            if (preTruncateQueueNames && s.Length > 80)
-            {
-                if (string.IsNullOrWhiteSpace(queueNamePrefix))
-                {
-                    throw new ArgumentNullException("queueNamePrefix");
-                }
-
-                var charsToTake = 80 - queueNamePrefix.Length;
-                s = queueNamePrefix +
-                    new string(s.Reverse().Take(charsToTake).Reverse().ToArray());
-            }
 
             // SQS queue names can only have alphanumeric characters, hyphens and underscores.
             // Any other characters will be replaced with a hyphen.

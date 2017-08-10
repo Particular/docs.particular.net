@@ -122,31 +122,17 @@ Function SendLargeMessage
 # startcode sqs-powershell-queue-name-helper
 Add-Type @'
     using System;
-	using System.Linq;
 
     public static class QueueNameHelper
     {
-        public static string GetSqsQueueName(string destination, string queueNamePrefix = null, bool preTruncateQueueNames = false)
+        public static string GetSqsQueueName(string destination, string queueNamePrefix = null)
         {
             if (string.IsNullOrWhiteSpace(destination))
             {
                 throw new ArgumentNullException("destination");
             }
 
-
             var s = queueNamePrefix + destination;
-
-            if (preTruncateQueueNames && s.Length > 80)
-            {
-                if (string.IsNullOrWhiteSpace(queueNamePrefix))
-                {
-                    throw new ArgumentNullException("queueNamePrefix");
-                }
-
-                var charsToTake = 80 - queueNamePrefix.Length;
-                s = queueNamePrefix +
-                    new string(s.Reverse().Take(charsToTake).Reverse().ToArray());
-            }
 
             // SQS queue names can only have alphanumeric characters, hyphens and underscores.
             // Any other characters will be replaced with a hyphen.

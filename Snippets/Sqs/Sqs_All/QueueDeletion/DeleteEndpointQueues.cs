@@ -11,8 +11,7 @@
 
             await DeleteQueuesForEndpoint(
                 endpointName: "myendpoint", 
-                queueNamePrefix: "PROD", 
-                preTruncateQueueNames: true)
+                queueNamePrefix: "PROD")
             .ConfigureAwait(false);
 
             #endregion
@@ -21,8 +20,7 @@
 
             await DeleteQueuesForEndpoint(
                 endpointName: "myendpoint",
-                queueNamePrefix: "PROD",
-                preTruncateQueueNames: true, 
+                queueNamePrefix: "PROD", 
                 includeRetries: true)
             .ConfigureAwait(false);
 
@@ -30,24 +28,24 @@
         }
         #region sqs-delete-queues-for-endpoint
 
-        public static async Task DeleteQueuesForEndpoint(string endpointName, string queueNamePrefix = null, bool preTruncateQueueNames = false, bool includeRetries = false)
+        public static async Task DeleteQueuesForEndpoint(string endpointName, string queueNamePrefix = null, bool includeRetries = false)
         {
             // main queue
-            await QueueDeletionUtils.DeleteQueue(endpointName, queueNamePrefix, preTruncateQueueNames)
+            await QueueDeletionUtils.DeleteQueue(endpointName, queueNamePrefix)
                 .ConfigureAwait(false);
 
             // timeout queue
-            await QueueDeletionUtils.DeleteQueue($"{endpointName}.Timeouts", queueNamePrefix, preTruncateQueueNames)
+            await QueueDeletionUtils.DeleteQueue($"{endpointName}.Timeouts", queueNamePrefix)
                 .ConfigureAwait(false);
 
             // timeout dispatcher queue
-            await QueueDeletionUtils.DeleteQueue($"{endpointName}.TimeoutsDispatcher", queueNamePrefix, preTruncateQueueNames)
+            await QueueDeletionUtils.DeleteQueue($"{endpointName}.TimeoutsDispatcher", queueNamePrefix)
                 .ConfigureAwait(false);
 
             // retries queue
             if (includeRetries)
             {
-                await QueueDeletionUtils.DeleteQueue($"{endpointName}.Retries", queueNamePrefix, preTruncateQueueNames)
+                await QueueDeletionUtils.DeleteQueue($"{endpointName}.Retries", queueNamePrefix)
                     .ConfigureAwait(false);
             }
         }

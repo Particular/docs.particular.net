@@ -6,15 +6,15 @@ Function Usage
 {
 # startcode sqs-create-queues-endpoint-usage-powershell
 # For NServiceBus 6 Endpoints
-CreateQueuesForEndpoint -EndpointName "myendpoint" -MaxTimeToLive "2:0:0"
+CreateQueuesForEndpoint -EndpointName "myendpoint" -QueueNamePrefix "PROD" -MaxTimeToLive "2:0:0"
 
 # For NServiceBus 5 and below Endpoints
-CreateQueuesForEndpoint -EndpointName "myendpoint" -MaxTimeToLive "2:0:0" -IncludeRetries
+CreateQueuesForEndpoint -EndpointName "myendpoint" -QueueNamePrefix "PROD" -MaxTimeToLive "2:0:0" -IncludeRetries
 # endcode
 
 # startcode sqs-create-queues-shared-usage-powershell
-CreateQueue -QueueName "error" -MaxTimeToLive "2:0:0"
-CreateQueue -QueueName "audit" -MaxTimeToLive "2:0:0"
+CreateQueue -QueueName "error" -QueueNamePrefix "PROD" -MaxTimeToLive "2:0:0"
+CreateQueue -QueueName "audit" -QueueNamePrefix "PROD" -MaxTimeToLive "2:0:0"
 # endcode
 }
 
@@ -31,22 +31,25 @@ param(
 [ValidateScript({ValidateMaxTimeToLive -MaxTimeToLive $_})]
 [string] $MaxTimeToLive = "4:0:0:0",
 
+[Parameter(Mandatory=$false)]
+[string] $QueueNamePrefix,
+
 [Parameter(HelpMessage="Only required for NSB Versions 5 and below")]
 [Switch] $IncludeRetries
 )
 
 # main queue
-CreateQueue -QueueName $EndpointName -MaxTimeToLive $MaxTimeToLive
+CreateQueue -QueueName $EndpointName -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
 
 # timeout queue
-CreateQueue -QueueName "$EndpointName.Timeouts" -MaxTimeToLive $MaxTimeToLive
+CreateQueue -QueueName "$EndpointName.Timeouts" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
 
 # timeout dispatcher queue
-CreateQueue -QueueName "$EndpointName.TimeoutsDispatcher" -MaxTimeToLive $MaxTimeToLive
+CreateQueue -QueueName "$EndpointName.TimeoutsDispatcher" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
 
 # retries queue
 if ($IncludeRetries) {
-CreateQueue -QueueName "$EndpointName.Retries" -MaxTimeToLive $MaxTimeToLive
+CreateQueue -QueueName "$EndpointName.Retries" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
 }
 }
 # endcode
@@ -60,12 +63,15 @@ param(
 [string] $QueueName,
 
 [Parameter(Mandatory=$false)]
+[string] $QueueNamePrefix,
+
+[Parameter(Mandatory=$false)]
 [ValidateNotNullOrEmpty()]
 [ValidateScript({ValidateMaxTimeToLive -MaxTimeToLive $_})]
 [string] $MaxTimeToLive = "4:0:0:0"
 )
 $timeToLive = [System.Convert]::ToInt32([System.TimeSpan]::Parse($MaxTimeToLive, [System.Globalization.CultureInfo]::InvariantCulture).TotalSeconds).ToString()
-[string]$name = [QueueNameHelper]::GetSqsQueueName($QueueName)
+[string]$name = [QueueNameHelper]::GetSqsQueueName($QueueName, $QueueNamePrefix)
 New-SQSQueue -QueueName $name -Attributes @{"MessageRetentionPeriod" = $timeToLive;} -Force
 }
 
@@ -92,31 +98,17 @@ return $false
 
 Add-Type @'
     using System;
-	using System.Linq;
 
     public static class QueueNameHelper
     {
-        public static string GetSqsQueueName(string destination, string queueNamePrefix = null, bool preTruncateQueueNames = false)
+        public static string GetSqsQueueName(string destination, string queueNamePrefix = null)
         {
             if (string.IsNullOrWhiteSpace(destination))
             {
                 throw new ArgumentNullException("destination");
             }
 
-
             var s = queueNamePrefix + destination;
-
-            if (preTruncateQueueNames && s.Length > 80)
-            {
-                if (string.IsNullOrWhiteSpace(queueNamePrefix))
-                {
-                    throw new ArgumentNullException("queueNamePrefix");
-                }
-
-                var charsToTake = 80 - queueNamePrefix.Length;
-                s = queueNamePrefix +
-                    new string(s.Reverse().Take(charsToTake).Reverse().ToArray());
-            }
 
             // SQS queue names can only have alphanumeric characters, hyphens and underscores.
             // Any other characters will be replaced with a hyphen.

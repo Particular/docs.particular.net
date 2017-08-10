@@ -9,9 +9,9 @@
         {
             #region sqs-delete-queues-shared-usage
 
-            await QueueDeletionUtils.DeleteQueue(queueName: "error", queueNamePrefix: "PROD", preTruncateQueueNames: true)
+            await QueueDeletionUtils.DeleteQueue(queueName: "error", queueNamePrefix: "PROD")
                 .ConfigureAwait(false);
-            await QueueDeletionUtils.DeleteQueue(queueName: "audit", queueNamePrefix: "PROD", preTruncateQueueNames: true)
+            await QueueDeletionUtils.DeleteQueue(queueName: "audit", queueNamePrefix: "PROD")
                 .ConfigureAwait(false);
 
             #endregion

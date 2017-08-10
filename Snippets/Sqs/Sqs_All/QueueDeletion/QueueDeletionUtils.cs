@@ -44,13 +44,13 @@
             }
         }
 
-        public static async Task DeleteQueue(string queueName, string queueNamePrefix = null, bool preTruncateQueueNames = false)
+        public static async Task DeleteQueue(string queueName, string queueNamePrefix = null)
         {
             try
             {
                 using (var client = ClientFactory.CreateSqsClient())
                 {
-                    var sqsQueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix, preTruncateQueueNames);
+                    var sqsQueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix);
                     var queueUrlResponse = await client.GetQueueUrlAsync(sqsQueueName)
                         .ConfigureAwait(false);
                     await client.DeleteQueueAsync(queueUrlResponse.QueueUrl)

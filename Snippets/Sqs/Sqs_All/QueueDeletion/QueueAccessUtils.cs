@@ -6,14 +6,14 @@
 
     public static class QueueAccessUtils
     {
-        public static async Task<GetQueueAttributesResponse> Exists(string queueName, List<string> attributeNames = null)
+        public static async Task<GetQueueAttributesResponse> Exists(string queueName, string queueNamePrefix = null, List<string> attributeNames = null)
         {
             using (var client = ClientFactory.CreateSqsClient())
             {
                 try
                 {
-                    var sqsQueueName = QueueNameHelper.GetSqsQueueName(queueName);
-                    var response = await client.GetQueueUrlAsync(queueName).ConfigureAwait(false);
+                    var sqsQueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix);
+                    var response = await client.GetQueueUrlAsync(sqsQueueName).ConfigureAwait(false);
                     var attributesResponse = await client.GetQueueAttributesAsync(response.QueueUrl, attributeNames ?? new List<string>())
                         .ConfigureAwait(false);
                     return attributesResponse;

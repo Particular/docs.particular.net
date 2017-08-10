@@ -10,7 +10,6 @@
     using Amazon.SQS;
     using NServiceBus;
     using NUnit.Framework;
-    using SqsAll.ErrorQueue;
     using SqsAll.QueueDeletion;
 
     [TestFixture]
@@ -206,11 +205,106 @@
         }
 
         [Test]
+        public async Task CreateQueuesForEndpointWithPrefix_Powershell()
+        {
+            var endpointName = "myprefixendpoint-powershell";
+            var errorQueueName = "myprefixerror-powershell";
+            var auditQueueName = "myprefixaudit-powershell";
+
+            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
+                .ConfigureAwait(false);
+            await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV")
+                .ConfigureAwait(false);
+            await QueueDeletionUtils.DeleteQueue(auditQueueName, queueNamePrefix: "DEV")
+                .ConfigureAwait(false);
+
+            try
+            {
+                var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/QueueCreation.ps1");
+                using (var powerShell = PowerShell.Create())
+                {
+                    powerShell.AddScript(File.ReadAllText(scriptPath));
+                    powerShell.Invoke();
+                    var command = powerShell.AddCommand("CreateQueuesForEndpoint");
+                    command.AddParameter("EndpointName", endpointName);
+                    command.AddParameter("QueueNamePrefix", "DEV");
+                    command.AddParameter("IncludeRetries");
+                    command.Invoke();
+
+                    command = powerShell.AddCommand("CreateQueue");
+                    command.AddParameter("QueueName", errorQueueName);
+                    command.AddParameter("QueueNamePrefix", "DEV");
+                    command.Invoke();
+
+                    command = powerShell.AddCommand("CreateQueue");
+                    command.AddParameter("QueueName", auditQueueName);
+                    command.AddParameter("QueueNamePrefix", "DEV");
+                    command.Invoke();
+                }
+
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), queueNamePrefix: "DEV")
+                    .ConfigureAwait(false);
+            }
+            finally
+            {
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV")
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName, queueNamePrefix: "DEV")
+                    .ConfigureAwait(false);
+            }
+        }
+
+        [Test]
+        public async Task CreateQueuesForEndpointWithPrefix()
+        {
+            var endpointName = "myprefixendpoint";
+            var errorQueueName = "myprefixerror";
+            var auditQueueName = "myprefixaudit";
+
+            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
+                .ConfigureAwait(false);
+            await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV")
+                .ConfigureAwait(false);
+            await QueueDeletionUtils.DeleteQueue(auditQueueName, queueNamePrefix: "DEV")
+                .ConfigureAwait(false);
+
+            try
+            {
+                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
+                    .ConfigureAwait(false);
+
+                await QueueCreationUtils.CreateQueue(
+                        queueName: errorQueueName, 
+                        queueNamePrefix: "DEV")
+                    .ConfigureAwait(false);
+
+                await QueueCreationUtils.CreateQueue(
+                        queueName: auditQueueName, 
+                        queueNamePrefix: "DEV")
+                    .ConfigureAwait(false);
+
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), queueNamePrefix: "DEV")
+                    .ConfigureAwait(false);
+            }
+            finally
+            {
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV")
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName, queueNamePrefix: "DEV")
+                    .ConfigureAwait(false);
+            }
+        }
+
+        [Test]
         public async Task CreateQueuesForEndpointWithRetries_Powershell()
         {
-            var endpointName = "mydefaultendpoint-powershell";
-            var errorQueueName = "mydefaulterror-powershell";
-            var auditQueueName = "mydefaultaudit-powershell";
+            var endpointName = "myretriesendpoint-powershell";
+            var errorQueueName = "myretrieserror-powershell";
+            var auditQueueName = "myretriesaudit-powershell";
 
             await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
                 .ConfigureAwait(false);
@@ -257,9 +351,9 @@
         [Test]
         public async Task CreateQueuesForEndpointWithRetries()
         {
-            var endpointName = "mydefaultendpoint";
-            var errorQueueName = "mydefaulterror";
-            var auditQueueName = "mydefaultaudit";
+            var endpointName = "myretriesendpoint";
+            var errorQueueName = "myretrieserror";
+            var auditQueueName = "myretriesaudit";
 
             await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
                 .ConfigureAwait(false);
@@ -295,45 +389,45 @@
             }
         }
 
-        static async Task AssertQueuesExist(string endpointName, string errorQueueName, string auditQueueName, TimeSpan maxTimeToLive, bool includeRetries = false)
+        static async Task AssertQueuesExist(string endpointName, string errorQueueName, string auditQueueName, TimeSpan maxTimeToLive, string queueNamePrefix = null, bool includeRetries = false)
         {
             var timeSpanInSeconds = Convert.ToInt32(maxTimeToLive.TotalSeconds);
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists(endpointName));
-            Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, new List<string>
+            Assert.IsTrue(await QueueExistenceUtils.Exists(endpointName, queueNamePrefix));
+            Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts"));
-            Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, new List<string>
+            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts", queueNamePrefix));
+            Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher"));
-            Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, new List<string>
+            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher", queueNamePrefix));
+            Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
 
             if (includeRetries)
             {
-                Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Retries"));
-                Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, new List<string>
+                Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Retries", queueNamePrefix));
+                Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
                 {
                     QueueAttributeName.MessageRetentionPeriod
                 })).MessageRetentionPeriod);
             }
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists(errorQueueName));
-            Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(errorQueueName, new List<string>
+            Assert.IsTrue(await QueueExistenceUtils.Exists(errorQueueName, queueNamePrefix));
+            Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(errorQueueName, queueNamePrefix, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists(auditQueueName));
-            Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(auditQueueName, new List<string>
+            Assert.IsTrue(await QueueExistenceUtils.Exists(auditQueueName, queueNamePrefix));
+            Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(auditQueueName, queueNamePrefix, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);

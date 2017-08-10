@@ -13,8 +13,7 @@
             await CreateQueuesForEndpoint(
                     endpointName: "myendpoint",
                     maxTimeToLive: TimeSpan.FromDays(2),
-                    queueNamePrefix: "PROD",
-                    preTruncateQueueNames: true)
+                    queueNamePrefix: "PROD")
                 .ConfigureAwait(false);
 
             #endregion
@@ -25,7 +24,6 @@
                     endpointName: "myendpoint",
                     maxTimeToLive: TimeSpan.FromDays(2),
                     queueNamePrefix: "PROD",
-                    preTruncateQueueNames: true,
                     includeRetries: true)
                 .ConfigureAwait(false);
 
@@ -34,24 +32,24 @@
 
         #region sqs-create-queues-for-endpoint
 
-        public static async Task CreateQueuesForEndpoint(string endpointName, TimeSpan? maxTimeToLive = null, string queueNamePrefix = null, bool preTruncateQueueNames = false, bool includeRetries = false)
+        public static async Task CreateQueuesForEndpoint(string endpointName, TimeSpan? maxTimeToLive = null, string queueNamePrefix = null, bool includeRetries = false)
         {
             // main queue
-            await QueueCreationUtils.CreateQueue(endpointName, maxTimeToLive, queueNamePrefix, preTruncateQueueNames)
+            await QueueCreationUtils.CreateQueue(endpointName, maxTimeToLive, queueNamePrefix)
                 .ConfigureAwait(false);
 
             // timeout queue
-            await QueueCreationUtils.CreateQueue($"{endpointName}.Timeouts", maxTimeToLive, queueNamePrefix, preTruncateQueueNames)
+            await QueueCreationUtils.CreateQueue($"{endpointName}.Timeouts", maxTimeToLive, queueNamePrefix)
                 .ConfigureAwait(false);
 
             // timeout dispatcher queue
-            await QueueCreationUtils.CreateQueue($"{endpointName}.TimeoutsDispatcher", maxTimeToLive, queueNamePrefix, preTruncateQueueNames)
+            await QueueCreationUtils.CreateQueue($"{endpointName}.TimeoutsDispatcher", maxTimeToLive, queueNamePrefix)
                 .ConfigureAwait(false);
 
             // retries queue
             if (includeRetries)
             {
-                await QueueCreationUtils.CreateQueue($"{endpointName}.Retries", maxTimeToLive, queueNamePrefix, preTruncateQueueNames)
+                await QueueCreationUtils.CreateQueue($"{endpointName}.Retries", maxTimeToLive, queueNamePrefix)
                     .ConfigureAwait(false);
             }
         }
