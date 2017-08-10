@@ -26,7 +26,7 @@
 
         public static async Task ReturnMessageToSourceQueue(string errorQueueName, string messageId)
         {
-            var path = QueueNameHelper.GetSqsQueueName($"{errorQueueName}");
+            var path = QueueNameHelper.GetSqsQueueName(errorQueueName);
             using (var client = ClientFactory.CreateSqsClient())
             {
                 var queueUrlResponse = await client.GetQueueUrlAsync(path)
@@ -53,22 +53,21 @@
                 return;
             }
 
-            foreach (var message in receivedMessages.Messages)
-            {
-                if (message.MessageId != messageId)
-                {
-                    continue;
-                }
+            var foundMessage = receivedMessages.Messages
+                .SingleOrDefault(message => message.MessageId != messageId);
 
-                var failedQueueName = ReadFailedQueueHeader(message);
+            if (foundMessage != null)
+            {
+                var failedQueueName = ReadFailedQueueHeader(foundMessage);
                 var failedQueueUrlResponse = await client.GetQueueUrlAsync(failedQueueName)
                     .ConfigureAwait(false);
                 var failedQueueUrl = failedQueueUrlResponse.QueueUrl;
                 // Large message don't need to be handled separately since the S3BodyKey is preserved
-                await client.SendMessageAsync(new SendMessageRequest(failedQueueUrl, message.Body)) // what to do with the attributes?
+                await client.SendMessageAsync(new SendMessageRequest(failedQueueUrl, foundMessage.Body)) // what to do with the attributes?
                     .ConfigureAwait(false);
-                await client.DeleteMessageAsync(queueUrl, message.ReceiptHandle)
+                await client.DeleteMessageAsync(queueUrl, foundMessage.ReceiptHandle)
                     .ConfigureAwait(false);
+
                 return;
             }
 
@@ -80,7 +79,7 @@
         {
             var headers = ExtractHeaders(message);
             var queueName = headers.Single(x => x.Key == "NServiceBus.FailedQ").Value;
-            return QueueNameHelper.GetSqsQueueName($"{queueName}");
+            return QueueNameHelper.GetSqsQueueName(queueName);
         }
 
         static Dictionary<string, string> ExtractHeaders(Message message)
