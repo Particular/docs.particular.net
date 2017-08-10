@@ -13,22 +13,22 @@
 
         public static async Task CreateQueue(string queueName, TimeSpan? maxTimeToLive = null, string queueNamePrefix = null)
         {
-            try
+            using (var client = ClientFactory.CreateSqsClient())
             {
-                using (var client = ClientFactory.CreateSqsClient())
+                var sqsRequest = new CreateQueueRequest
                 {
-                    var sqsRequest = new CreateQueueRequest
-                    {
-                        QueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix)
-                    };
-                    var value = Convert.ToInt32((maxTimeToLive ?? DefaultTimeToLive).TotalSeconds).ToString();
-                    sqsRequest.Attributes.Add(QueueAttributeName.MessageRetentionPeriod, value);
+                    QueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix)
+                };
+                var value = Convert.ToInt32((maxTimeToLive ?? DefaultTimeToLive).TotalSeconds).ToString();
+                sqsRequest.Attributes.Add(QueueAttributeName.MessageRetentionPeriod, value);
+                try
+                {
                     await client.CreateQueueAsync(sqsRequest)
                         .ConfigureAwait(false);
                 }
-            }
-            catch (QueueNameExistsException)
-            {
+                catch (QueueNameExistsException)
+                {
+                }
             }
         }
     }
