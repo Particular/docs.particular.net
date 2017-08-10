@@ -67,6 +67,7 @@ Remove-SQSQueue -QueueUrl $queueUrl -Force
 
 # endcode
 
+# startcode sqs-delete-all-queues-powershell
 Function DeleteAllQueues
 {
 param(
@@ -77,6 +78,7 @@ param(
 )
 Get-SQSQueue $QueueNamePrefix | Remove-SQSQueue -Force
 }
+# endcode
 
 Add-Type @'
     using System;

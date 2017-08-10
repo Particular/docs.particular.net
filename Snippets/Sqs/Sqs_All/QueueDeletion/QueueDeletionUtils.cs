@@ -6,10 +6,32 @@
     using Amazon.SQS;
     using Amazon.SQS.Model;
 
-    #region sqs-delete-queues
-
     public static class QueueDeletionUtils
     {
+        #region sqs-delete-queues
+
+        public static async Task DeleteQueue(string queueName, string queueNamePrefix = null)
+        {
+            try
+            {
+                using (var client = ClientFactory.CreateSqsClient())
+                {
+                    var sqsQueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix);
+                    var queueUrlResponse = await client.GetQueueUrlAsync(sqsQueueName)
+                        .ConfigureAwait(false);
+                    await client.DeleteQueueAsync(queueUrlResponse.QueueUrl)
+                        .ConfigureAwait(false);
+                }
+            }
+            catch (QueueDoesNotExistException)
+            {
+            }
+        }
+
+        #endregion
+
+        #region sqs-delete-all-queues
+
         public static async Task DeleteAllQueues(string queueNamePrefix = null)
         {
             using (var client = ClientFactory.CreateSqsClient())
@@ -44,24 +66,6 @@
             }
         }
 
-        public static async Task DeleteQueue(string queueName, string queueNamePrefix = null)
-        {
-            try
-            {
-                using (var client = ClientFactory.CreateSqsClient())
-                {
-                    var sqsQueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix);
-                    var queueUrlResponse = await client.GetQueueUrlAsync(sqsQueueName)
-                        .ConfigureAwait(false);
-                    await client.DeleteQueueAsync(queueUrlResponse.QueueUrl)
-                        .ConfigureAwait(false);
-                }
-            }
-            catch (QueueDoesNotExistException)
-            {
-            }
-        }
-
         static async Task RetryDeleteOnThrottle(IAmazonSQS client, string queueUrl, TimeSpan delay, int maxRetryAttempts, int retryAttempts = 0)
         {
             try
@@ -91,7 +95,7 @@
                 Console.WriteLine($"Unable to delete {queueUrl} on {retryAttempts}/{maxRetryAttempts}. Reason: {ex.Message}");
             }
         }
-    }
 
-    #endregion
+        #endregion
+    }
 }
