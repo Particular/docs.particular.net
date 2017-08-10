@@ -24,6 +24,17 @@ The new configuration API is accessible through extension methods on the `UseTra
 snippet: 6to7AzureStorageQueueTransportWithAzure
 
 
+### Continue reading from app.config
+
+Add the following to the app.config:
+
+snippet: 6to7ConnectionStringFromConfigXml
+
+Then read it from app.config and pass to the transport configuration:
+
+snippet: 6to7ConnectionStringFromConfig
+
+
 ### Setting the configuration values via API
 
 Setting the configuration values can now be done via API in the following way:

@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System.Configuration;
+using NServiceBus;
 
 public class Upgrade
 {
@@ -17,6 +18,16 @@ public class Upgrade
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         // Configure the transport
         transport.ConnectionString("The Connection String");
+
+        #endregion
+    }
+    void StillUseConfig(EndpointConfiguration endpointConfiguration)
+    {
+        #region 6to7ConnectionStringFromConfig
+
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        var connection = ConfigurationManager.AppSettings["AzureStorageQueueConnection"];
+        transport.ConnectionString(connection);
 
         #endregion
     }
