@@ -62,42 +62,6 @@
             }
         }
 
-        [Test]
-        public async Task ReturnMessageToSourceQueuePS()
-        {
-            var state = new State();
-            IEndpointInstance endpoint = null;
-            try
-            {
-                endpoint = await StartEndpoint(state).ConfigureAwait(false);
-                var messageToSend = new MessageToSend();
-                await endpoint.SendLocal(messageToSend).ConfigureAwait(false);
-                var messageId = GetMessageId();
-
-                state.ShouldHandlerThrow = false;
-
-                var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "ErrorQueue/ErrorQueue.ps1");
-                using (var powerShell = PowerShell.Create())
-                {
-                    powerShell.AddScript(File.ReadAllText(scriptPath));
-                    powerShell.Invoke();
-                    var command = powerShell.AddCommand("ReturnMessageToSourceQueue");
-                    command.AddParameter("ErrorQueueName", errorQueueName);
-                    command.AddParameter("MessageId", messageId);
-                    command.Invoke();
-                }
-
-                Assert.IsTrue(await state.Signal.Task.ConfigureAwait(false));
-            }
-            finally
-            {
-                if (endpoint != null)
-                {
-                    await endpoint.Stop().ConfigureAwait(false);
-                }
-            }
-        }
-
         Task<IEndpointInstance> StartEndpoint(State state)
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
