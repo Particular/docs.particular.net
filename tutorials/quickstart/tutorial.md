@@ -12,7 +12,7 @@ include: quickstart-tutorial-intro-paragraph
 
 This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) tutorial. It will teach you the NServiceBus API and important concepts you need to learn to build successful message-based software systems.
 
-To get started download the solution, extract the archive, and then open the **RetailDemo.sln** file with Visual Studio 2015 or later.
+To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file with VS 2015 or later.
 
 downloadbutton
 
