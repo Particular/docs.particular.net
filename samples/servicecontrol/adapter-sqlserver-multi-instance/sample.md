@@ -2,7 +2,7 @@
 title: Monitor multi-instance SQL endpoints with the ServiceControl adapter
 summary: Centralize monitoring of multi-instance SQL Server endpoints with the ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2017-05-11
+reviewed: 2017-08-11
 related:
  - servicecontrol
  - servicecontrol/transport-adapter

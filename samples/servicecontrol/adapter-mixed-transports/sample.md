@@ -2,7 +2,7 @@
 title: Monitor mixed transports with ServiceControl adapter
 summary: Centralize monitoring of mixed transport solution with the ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2017-06-01
+reviewed: 2017-08-11
 related:
  - servicecontrol
  - servicecontrol/transport-adapter
