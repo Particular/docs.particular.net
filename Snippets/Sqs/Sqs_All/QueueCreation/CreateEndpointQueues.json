@@ -1,4 +1,4 @@
-﻿// starcode sqs-create-queues-for-endpoint-template-cloudformation
+﻿// startcode sqs-create-queues-for-endpoint-template-cloudformation
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Parameters": {
