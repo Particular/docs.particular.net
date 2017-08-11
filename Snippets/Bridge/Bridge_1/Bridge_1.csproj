@@ -4,7 +4,7 @@
     <TargetFramework>net46</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Bridge" Version="0.1.0" />
-    <PackageReference Include="NServiceBus.Bridge.Ramp" Version="0.1.0" />
+    <PackageReference Include="NServiceBus.Bridge" Version="1.0.1" />
+    <PackageReference Include="NServiceBus.Bridge.Connector" Version="1.0.1" />
   </ItemGroup>
 </Project>

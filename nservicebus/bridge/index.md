@@ -2,7 +2,7 @@
 title: Transport Bridge
 summary: How to connect parts of the system that use different transports 
 component: Bridge
-reviewed: 2017-06-09
+reviewed: 2017-08-11
 ---
 
 `NServiceBus.Bridge` is a component that allows to connect parts of NServiceBus-based solution that use different transports. Contrary to [Gateway](/nservicebus/gateway/) and [Wormhole](/nservicebus/wormhole), the Bridge handles both sends and publishes and it does so as transparently as possible:
@@ -19,7 +19,7 @@ Here's a comparison between the gateway technologies ([Gateway](/nservicebus/gat
 | Replier aware         | Yes              | No                            |
 | Supports publishes    | No               | Yes                           |
 | Publisher aware       | N/A              | No                            |
-| Dedicated routing     | Yes, via sites   | Yes, via *ramp* configuration |
+| Dedicated routing     | Yes, via sites   | Yes, via *connector* configuration |
 | Geo-distribution      | Yes              | No                            |
 | Logically significant | Yes              | No                            |
 |                       |                  |                               |
@@ -31,9 +31,9 @@ The Bridge can handle both sends and publishes in a close-to-transparent manner,
 
 ## Topology
 
-The Bridge is in essence a pair of NServiceBus endpoints that forward messages between each other. Regular endpoints connect to the Bridge using *ramps* that allow them to configure the routing
+The Bridge is in essence a pair of NServiceBus endpoints that forward messages between each other. Regular endpoints connect to the Bridge using *connectors* that allow them to configure the routing
 
-snippet: ramp
+snippet: connector
 
 The snippet above tells the endpoint that a designated Bridge listens on queue `LeftBank` and that messages of type `MyMessage` should be sent to the endpoint `Receiver` on the other side of the Bridge. It also tell the subscription infrastructure that the event `MyEvent` is published by the endpoint `Publisher` that is hosted on the other side of the bridge.
 
@@ -61,7 +61,7 @@ Publishing an event that is subscribed by an endpoint on the other side of a Bri
 
 ## Matching publishers and subscribers
 
-The Bridge uses a [persistence-based message-driven](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven) approach. Each Bridge has a subscription storage. When a subscribe message comes via a *ramp*, a new entry in the subscription store is created matching the subscriber and the event type. Next, the subscribe request if forwarded to the other side of the Bridge where the execution depends on the type of the transport:
+The Bridge uses a [persistence-based message-driven](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven) approach. Each Bridge has a subscription storage. When a subscribe message comes via a *connector*, a new entry in the subscription store is created matching the subscriber and the event type. Next, the subscribe request if forwarded to the other side of the Bridge where the execution depends on the type of the transport:
 
 
 ### Unicast transports
