@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using Amazon;
+    using Amazon.CloudFormation;
     using Amazon.S3;
     using Amazon.SQS;
 
@@ -10,17 +11,9 @@
     {
         public static IAmazonSQS CreateSqsClient()
         {
-            var region = EnvironmentHelper.GetEnvironmentVariable(SqsTransportConfigurationExtensions.RegionEnvironmentVariableName) ?? "ap-southeast-2";
-            var awsRegion = RegionEndpoint.EnumerableAllRegions.SingleOrDefault(x => x.SystemName == region);
-
-            if (awsRegion == null)
-            {
-                throw new ArgumentException($"Unknown region: \"{region}\"");
-            }
-
             var config = new AmazonSQSConfig
             {
-                RegionEndpoint = awsRegion
+                RegionEndpoint = GetRegion()
             };
 
 
@@ -29,6 +22,26 @@
 
         public static IAmazonS3 CreateS3Client()
         {
+            var config = new AmazonS3Config
+            {
+                RegionEndpoint = GetRegion()
+            };
+
+            return new AmazonS3Client(config);
+        }
+
+        public static IAmazonCloudFormation CreateCloudFormationClient()
+        {
+            var config = new AmazonCloudFormationConfig
+            {
+                RegionEndpoint = GetRegion()
+            };
+
+            return new AmazonCloudFormationClient(config);
+        }
+
+        static RegionEndpoint GetRegion()
+        {
             var region = EnvironmentHelper.GetEnvironmentVariable(SqsTransportConfigurationExtensions.RegionEnvironmentVariableName) ?? "ap-southeast-2";
             var awsRegion = RegionEndpoint.EnumerableAllRegions.SingleOrDefault(x => x.SystemName == region);
 
@@ -36,13 +49,7 @@
             {
                 throw new ArgumentException($"Unknown region: \"{region}\"");
             }
-
-            var config = new AmazonS3Config
-            {
-                RegionEndpoint = awsRegion
-            };
-
-            return new AmazonS3Client(config);
+            return awsRegion;
         }
     }
 }

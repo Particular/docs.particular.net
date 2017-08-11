@@ -205,6 +205,51 @@
         }
 
         [Test]
+        public async Task CreateQueuesForEndpointDefaultMaxTTL_CloudFormation()
+        {
+            var endpointName = "mycreatedefaultendpoint-cloudformation";
+            var errorQueueName = "mycreatedefaulterror-cloudformation";
+            var auditQueueName = "mycreatedefaultaudit-cloudformation";
+            var queueCreationTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/QueueCreation.json");
+            var endpointTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/CreateEndpointQueues.json");
+
+            await DeleteEndpointQueuesCloudFormation.DeleteQueuesForEndpoint(endpointName)
+                .ConfigureAwait(false);
+            await QueueDeletionUtilsCloudFormation.DeleteQueue(errorQueueName)
+                .ConfigureAwait(false);
+            await QueueDeletionUtilsCloudFormation.DeleteQueue(auditQueueName)
+                .ConfigureAwait(false);
+
+            try
+            {
+                await CreateEndpointQueuesCloudFormation.CreateQueuesForEndpoint(endpointName, endpointTemplatePath)
+                    .ConfigureAwait(false);
+
+                await QueueCreationUtilsCloudFormation.CreateQueue(
+                        queueName: errorQueueName,
+                        templatePath: queueCreationTemplatePath)
+                    .ConfigureAwait(false);
+
+                await QueueCreationUtilsCloudFormation.CreateQueue(
+                        queueName: auditQueueName,
+                        templatePath: queueCreationTemplatePath)
+                    .ConfigureAwait(false);
+
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4))
+                    .ConfigureAwait(false);
+            }
+            finally
+            {
+                await DeleteEndpointQueuesCloudFormation.DeleteQueuesForEndpoint(endpointName)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtilsCloudFormation.DeleteQueue(errorQueueName)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtilsCloudFormation.DeleteQueue(auditQueueName)
+                    .ConfigureAwait(false);
+            }
+        }
+
+        [Test]
         public async Task CreateQueuesForEndpointWithPrefix_Powershell()
         {
             var endpointName = "mycreateprefixendpoint-powershell";
@@ -389,23 +434,68 @@
             }
         }
 
+        [Test]
+        public async Task CreateQueuesForEndpointWithRetries_CloudFormation()
+        {
+            var endpointName = "mycreateretriesendpoint-cloudformation";
+            var errorQueueName = "mycreateretriesendpointerror-cloudformation";
+            var auditQueueName = "mycreateretriesendpointaudit-cloudformation";
+            var queueCreationTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/QueueCreation.json");
+            var endpointTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/CreateEndpointQueues.json");
+
+            await DeleteEndpointQueuesCloudFormation.DeleteQueuesForEndpoint(endpointName)
+                .ConfigureAwait(false);
+            await QueueDeletionUtilsCloudFormation.DeleteQueue(errorQueueName)
+                .ConfigureAwait(false);
+            await QueueDeletionUtilsCloudFormation.DeleteQueue(auditQueueName)
+                .ConfigureAwait(false);
+
+            try
+            {
+                await CreateEndpointQueuesCloudFormation.CreateQueuesForEndpoint(endpointName, endpointTemplatePath, includeRetries: true)
+                    .ConfigureAwait(false);
+
+                await QueueCreationUtilsCloudFormation.CreateQueue(
+                        queueName: errorQueueName,
+                        templatePath: queueCreationTemplatePath)
+                    .ConfigureAwait(false);
+
+                await QueueCreationUtilsCloudFormation.CreateQueue(
+                        queueName: auditQueueName,
+                        templatePath: queueCreationTemplatePath)
+                    .ConfigureAwait(false);
+
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), includeRetries: true)
+                    .ConfigureAwait(false);
+            }
+            finally
+            {
+                await DeleteEndpointQueuesCloudFormation.DeleteQueuesForEndpoint(endpointName)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtilsCloudFormation.DeleteQueue(errorQueueName)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtilsCloudFormation.DeleteQueue(auditQueueName)
+                    .ConfigureAwait(false);
+            }
+        }
+
         static async Task AssertQueuesExist(string endpointName, string errorQueueName, string auditQueueName, TimeSpan maxTimeToLive, string queueNamePrefix = null, bool includeRetries = false)
         {
             var timeSpanInSeconds = Convert.ToInt32(maxTimeToLive.TotalSeconds);
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists(endpointName, queueNamePrefix));
+            Assert.IsTrue(await QueueExistenceUtils.Exists(endpointName, queueNamePrefix), "Endpoint Queue did not exist");
             Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts", queueNamePrefix));
+            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts", queueNamePrefix), "Timeouts Queue did not exist");
             Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher", queueNamePrefix));
+            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher", queueNamePrefix), "TimeoutsDispatcher Queue did not exist");
             Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
@@ -413,7 +503,7 @@
 
             if (includeRetries)
             {
-                Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Retries", queueNamePrefix));
+                Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Retries", queueNamePrefix), "Retries Queue did not exist");
                 Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
                 {
                     QueueAttributeName.MessageRetentionPeriod
