@@ -82,20 +82,6 @@ class Program
 
         #endregion
 
-        #region PreserveReplyToAddress
-
-        transportAdapterConfig.PreserveHeaders(
-            preserveCallback: headers =>
-            {
-                headers[AdapterSpecificHeaders.OriginalReplyToAddress] = headers[Headers.ReplyToAddress];
-            },
-            restoreCallback: headers =>
-            {
-                headers[Headers.ReplyToAddress] = headers[AdapterSpecificHeaders.OriginalReplyToAddress];
-            });
-
-        #endregion
-
         #region ControlQueueOverride
 
         transportAdapterConfig.ServiceControlSideControlQueue = "Particular.ServiceControl.ASB";

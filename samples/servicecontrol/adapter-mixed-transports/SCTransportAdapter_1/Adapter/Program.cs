@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Configuration.AdvanceExtensibility;
-using NServiceBus.Routing;
 using ServiceControl.TransportAdapter;
 
 class Program
@@ -30,20 +28,9 @@ class Program
             {
                 var connection = @"Data Source=.\SqlExpress;Initial Catalog=shipping;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
                 transport.ConnectionString(connection);
-                //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
-                var settings = transport.GetSettings();
-                settings.Set<EndpointInstances>(new EndpointInstances());
             });
 
         #endregion
-
-        transportAdapterConfig.CustomizeServiceControlTransport(
-            customization: transport =>
-            {
-                //HACK: Latest MSMQ requires this setting. To be moved to the transport adapter core.
-                var settings = transport.GetSettings();
-                settings.Set("errorQueue", "poison");
-            });
 
 #pragma warning restore 618
 

@@ -31,7 +31,6 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdapterSpecificHeaders.cs" />
     <Compile Include="ChaosGenerator.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="ShipOrder.cs" />

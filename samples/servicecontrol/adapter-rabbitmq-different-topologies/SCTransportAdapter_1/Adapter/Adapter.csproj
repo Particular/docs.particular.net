@@ -39,7 +39,7 @@
       <HintPath>..\..\..\..\..\packages\RabbitMQ.Client.4.1.3\lib\net451\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.TransportAdapter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\ServiceControl.TransportAdapter.1.2.0\lib\net452\ServiceControl.TransportAdapter.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\ServiceControl.TransportAdapter.1.2.2\lib\net452\ServiceControl.TransportAdapter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Configuration.AdvanceExtensibility;
-using NServiceBus.Routing;
 using NServiceBus.Transport.SQLServer;
 using ServiceControl.TransportAdapter;
 
@@ -30,9 +28,6 @@ class Program
             customization: transport =>
         {
             transport.EnableLegacyMultiInstanceMode(Connections.GetConnection);
-            //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
-            var settings = transport.GetSettings();
-            settings.Set<EndpointInstances>(new EndpointInstances());
         });
 
         #endregion
@@ -46,9 +41,6 @@ class Program
             {
                 var connection = @"Data Source=.\SqlExpress;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
                 transport.ConnectionString(connection);
-                //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
-                var settings = transport.GetSettings();
-                settings.Set<EndpointInstances>(new EndpointInstances());
             });
 
         #endregion

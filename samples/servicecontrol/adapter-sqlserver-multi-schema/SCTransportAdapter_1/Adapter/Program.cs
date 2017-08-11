@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Configuration.AdvanceExtensibility;
-using NServiceBus.Routing;
 using NServiceBus.Transport.SQLServer;
 using ServiceControl.TransportAdapter;
 
@@ -38,10 +36,6 @@ class Program
                 transport.UseSchemaForQueue(
                     queueName: "Samples.ServiceControl.SqlServerTransportAdapter.Shipping",
                     schema: "shipping");
-
-                //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
-                var settings = transport.GetSettings();
-                settings.Set<EndpointInstances>(new EndpointInstances());
             });
 
         #endregion
@@ -53,10 +47,6 @@ class Program
             {
                 transport.ConnectionString(
                     @"Data Source=.\SqlExpress;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
-
-                //HACK: SQLServer expects this to be present. Will be solved in SQL 3.1
-                var settings = transport.GetSettings();
-                settings.Set<EndpointInstances>(new EndpointInstances());
             });
 
         #endregion
