@@ -2,7 +2,7 @@
 title: Monitor Azure Service Bus endpoints with the ServiceControl adapter
 summary: Centralized monitoring of Azure Service Bus endpoints with the ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2017-08-03
+reviewed: 2017-08-11
 related:
  - servicecontrol
  - servicecontrol/transport-adapter
@@ -55,7 +55,7 @@ include: asb-connectionstring
  1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using Azure Service Bus transport:
 	 
    * Add a new ServiceControl instance: 
-   * Use `Particular.ServiceControl.ASB` as the instance name (make sure there is no other instance of SC running with the same name).
+   * Use `Particular.ServiceControl.ASB` as the instance name (ensure there is no other instance of SC running with the same name).
    * Use connection string supplied with the `AzureServiceBus.ConnectionString.SC` environment variable.
    
 NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default port number for API. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
@@ -68,8 +68,6 @@ include: adapter-running-project
 
 ## Code walk-through 
 
-
-
 The code base consists of four projects.
 
 
@@ -80,9 +78,9 @@ The Shared project contains the message contracts.
 
 ### Sales and Shipping
 
-The Sales and Shipping projects contain endpoints that simulate execution of business process. The process consists of two messages: `ShipOrder` command sent by Sales and `OrderShipped` reply sent by Shipping.
+The Sales and Shipping projects contain endpoints that simulate the execution of a business process. The process consists of two messages: `ShipOrder` command sent by Sales and `OrderShipped` reply sent by Shipping.
 
-The Sales and Shipping endpoints include message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality.
+The Sales and Shipping endpoints include a message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality.
 
 The Shipping endpoint has the Heartbeats plugin installed to enable uptime monitoring via ServicePulse.
 
@@ -131,7 +129,3 @@ snippet: UseNamespaceHeader
 The actual destination address consists of the queue name and the namespace alias which is included in the failed messages:
 
 snippet: NamespaceAlias
-
-Azure Service Bus transport Version 6 used by ServiceControl overrides the `NServiceBus.ReplyToAddress` header when sending a message. The following code ensures that the original value is preserved by copying the header value to a custom header and then restoring the value when routing the retry message:
-
-snippet: PreserveReplyToAddress

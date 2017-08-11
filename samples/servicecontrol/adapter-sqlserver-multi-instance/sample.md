@@ -2,7 +2,7 @@
 title: Monitor multi-instance SQL endpoints with the ServiceControl adapter
 summary: Centralize monitoring of multi-instance SQL Server endpoints with the ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2017-05-11
+reviewed: 2017-08-11
 related:
  - servicecontrol
  - servicecontrol/transport-adapter
@@ -22,7 +22,7 @@ The purpose of the adapter is to isolate ServiceControl from the specifics of th
  3. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using SQL Server transport:
 	 
    * Add a new ServiceControl instance: 
-   * Use `Particular.ServiceControl.SQL` as the instance name (make sure there is no other instance of SC running with the same name).
+   * Use `Particular.ServiceControl.SQL` as the instance name (ensure there is no other instance of SC running with the same name).
    * Use "User" account and provide credentials to allow for integrated authentication.
    * Specify `Data Source=.\SqlExpress;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10` as a connection string. ServiceControl Manager will automatically create queue tables in the database.
 
@@ -58,11 +58,11 @@ This topology is used in business endpoints (Sales, Shipping) as well as in the 
 
 ### Sales and Shipping
 
-The Sales and Shipping projects contain endpoints that simulate execution of business process. The process consists of two events: `OrderAccepted` published by Sales and subscribed by Shipping and `OrderShipped` published by Shipping and subscribed by Sales.
+The Sales and Shipping projects contain endpoints that simulate the execution of a business process. The process consists of two events: `OrderAccepted` published by Sales and subscribed by Shipping and `OrderShipped` published by Shipping and subscribed by Sales.
 
 The Sales and Shipping endpoints use separate databases and their transports are configured in the [multi-instance](/transports/sql/deployment-options.md#modes-overview-multi-instance) mode using the topology definition from the `Connections` class.
 
-The business endpoints include message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality.
+The business endpoints include a message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality.
 
 The Shipping endpoint has the Heartbeats plugin installed to enable uptime monitoring via ServicePulse.
 

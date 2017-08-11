@@ -37,7 +37,7 @@ public static class Connections
         {
             return Shipping;
         }
-        if (AdapterQueues.Any(q => string.Equals(q, destination, StringComparison.OrdinalIgnoreCase)))
+        if (AdapterQueues.Any(q => destination.StartsWith(q, StringComparison.OrdinalIgnoreCase)))
         {
             return Adapter;
         }
