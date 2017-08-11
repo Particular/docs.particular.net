@@ -8,6 +8,18 @@
 
     public class DeleteEndpointQueuesCloudFormation
     {
+        async Task Usage()
+        {
+            #region sqs-delete-queues-endpoint-usage-cloudformation
+
+            await DeleteQueuesForEndpoint(
+                    endpointName: "myendpoint",
+                    queueNamePrefix: "PROD")
+                .ConfigureAwait(false);
+
+            #endregion
+        }
+
         #region sqs-delete-queues-for-endpoint-cloudformation
 
         public static async Task DeleteQueuesForEndpoint(string endpointName, string queueNamePrefix = null)

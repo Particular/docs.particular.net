@@ -9,7 +9,6 @@
 
     public static class ErrorQueue
     {
-
         static async Task Usage()
         {
             #region sqs-return-to-source-queue-usage
@@ -86,6 +85,15 @@
         {
             var transportMessage = JsonConvert.DeserializeObject<TransportMessage>(message.Body);
             return transportMessage.Headers;
+        }
+
+        class TransportMessage
+        {
+            public Dictionary<string, string> Headers { get; set; }
+
+            public string Body { get; set; }
+
+            public string S3BodyKey { get; set; }
         }
 
         public class HeaderInfo

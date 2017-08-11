@@ -6,10 +6,10 @@
     using Amazon.CloudFormation;
     using Amazon.CloudFormation.Model;
 
+    #region sqs-delete-queues-cloudformation
+
     public static class QueueDeletionUtilsCloudFormation
     {
-        #region sqs-delete-queues-cloudformation
-
         public static async Task DeleteQueue(string queueName, string queueNamePrefix = null)
         {
             using (var client = ClientFactory.CreateCloudFormationClient())
@@ -47,7 +47,7 @@
                 }
             }
         }
-
-        #endregion
     }
+
+    #endregion
 }

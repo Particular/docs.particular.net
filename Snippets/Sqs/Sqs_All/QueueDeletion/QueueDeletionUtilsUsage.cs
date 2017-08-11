@@ -15,6 +15,15 @@
                 .ConfigureAwait(false);
 
             #endregion
+
+            #region sqs-delete-queues-shared-usage-cloudformation
+
+            await QueueDeletionUtilsCloudFormation.DeleteQueue(queueName: "error", queueNamePrefix: "PROD")
+                .ConfigureAwait(false);
+            await QueueDeletionUtilsCloudFormation.DeleteQueue(queueName: "audit", queueNamePrefix: "PROD")
+                .ConfigureAwait(false);
+
+            #endregion
         }
 
     }
