@@ -8,23 +8,13 @@
 
         static async Task Usage()
         {
-            #region sqs-create-queues-endpoint-usage [6,)
-
-            await CreateQueuesForEndpoint(
-                    endpointName: "myendpoint",
-                    maxTimeToLive: TimeSpan.FromDays(2),
-                    queueNamePrefix: "PROD")
-                .ConfigureAwait(false);
-
-            #endregion
-
-            #region sqs-create-queues-endpoint-usage [,5)
+            #region sqs-create-queues-endpoint-usage
 
             await CreateQueuesForEndpoint(
                     endpointName: "myendpoint",
                     maxTimeToLive: TimeSpan.FromDays(2),
                     queueNamePrefix: "PROD",
-                    includeRetries: true)
+                    includeRetries: true /* required for V5 and below */)
                 .ConfigureAwait(false);
 
             #endregion

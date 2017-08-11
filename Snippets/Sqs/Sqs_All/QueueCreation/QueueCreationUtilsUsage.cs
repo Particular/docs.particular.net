@@ -24,6 +24,24 @@
                 .ConfigureAwait(false);
 
             #endregion
+
+            #region sqs-create-queues-shared-usage-cloudformation
+
+            await QueueCreationUtilsCloudFormation.CreateQueue(
+                    queueName: "error",
+                    templatePath: @".\QueueCreation.json",
+                    maxTimeToLive: TimeSpan.FromDays(2),
+                    queueNamePrefix: "PROD")
+                .ConfigureAwait(false);
+
+            await QueueCreationUtilsCloudFormation.CreateQueue(
+                    queueName: "audit",
+                    templatePath: @".\QueueCreation.json",
+                    maxTimeToLive: TimeSpan.FromDays(2),
+                    queueNamePrefix: "PROD")
+                .ConfigureAwait(false);
+
+            #endregion
         }
 
     }

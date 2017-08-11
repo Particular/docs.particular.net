@@ -100,6 +100,14 @@ snippet: sqs-create-queues
 
 snippet: sqs-create-queues-powershell
 
+#### In CloudFormation
+
+snippet: sqs-create-queues-cloudformation
+
+The template used
+
+snippet: sqs-create-queues-template-cloudformation
+
 
 ### Creating queues for an endpoint
 
@@ -115,6 +123,14 @@ snippet: sqs-create-queues-for-endpoint
 
 snippet: sqs-create-queues-for-endpoint-powershell
 
+#### In CloudFormation
+
+snippet: sqs-create-queues-for-endpoint-cloudformation
+
+The template used
+
+snippet: sqs-create-queues-for-endpoint-template-cloudformation
+
 
 ### Using the create create endpoint queues
 
@@ -128,6 +144,9 @@ snippet: sqs-create-queues-endpoint-usage
 
 snippet: sqs-create-queues-endpoint-usage-powershell
 
+#### In CloudFormation
+
+snippet: sqs-create-queues-endpoint-usage-cloudformation
 
 ### To create shared queues
 
@@ -140,6 +159,10 @@ snippet: sqs-create-queues-shared-usage
 #### In PowerShell
 
 snippet: sqs-create-queues-shared-usage-powershell
+
+#### In CloudFormation
+
+snippet: sqs-create-queues-shared-usage-cloudformation
 
 
 ## Delete queues

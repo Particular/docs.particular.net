@@ -10,6 +10,21 @@
 
     static class CreateEndpointQueuesCloudFormation
     {
+        static async Task Usage()
+        {
+            #region sqs-create-queues-endpoint-usage-cloudformation
+
+            await CreateQueuesForEndpoint(
+                    endpointName: "myendpoint",
+                    templatePath: @".\CreateQueuesEndpoint.json",
+                    maxTimeToLive: TimeSpan.FromDays(2),
+                    queueNamePrefix: "PROD",
+                    includeRetries: true /* required for V5 and below */)
+                .ConfigureAwait(false);
+
+            #endregion
+        }
+
         #region sqs-create-queues-for-endpoint-cloudformation
 
         public static async Task CreateQueuesForEndpoint(string endpointName, string templatePath, TimeSpan? maxTimeToLive = null, string queueNamePrefix = null, bool includeRetries = false)
