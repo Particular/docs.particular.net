@@ -43,30 +43,34 @@ class Configure
         #region ravendb-persistence-specific-create-store-by-func
 
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
-        persistence.UseDocumentStoreForSubscriptions(readOnlySettings =>
-        {
-            var documentStore = new DocumentStore();
-            // configure documentStore here
-            return documentStore;
-        });
-        persistence.UseDocumentStoreForSagas(readOnlySettings =>
-        {
-            var documentStore = new DocumentStore();
-            // configure documentStore here
-            return documentStore;
-        });
-        persistence.UseDocumentStoreForTimeouts(readOnlySettings =>
-        {
-            var documentStore = new DocumentStore();
-            // configure documentStore here
-            return documentStore;
-        });
-        persistence.UseDocumentStoreForGatewayDeduplication(readOnlySettings =>
-        {
-            var documentStore = new DocumentStore();
-            // configure documentStore here
-            return documentStore;
-        });
+        persistence.UseDocumentStoreForSubscriptions(
+            storeCreator: readOnlySettings =>
+            {
+                var documentStore = new DocumentStore();
+                // configure documentStore here
+                return documentStore;
+            });
+        persistence.UseDocumentStoreForSagas(
+            storeCreator: readOnlySettings =>
+            {
+                var documentStore = new DocumentStore();
+                // configure documentStore here
+                return documentStore;
+            });
+        persistence.UseDocumentStoreForTimeouts(
+            storeCreator: readOnlySettings =>
+            {
+                var documentStore = new DocumentStore();
+                // configure documentStore here
+                return documentStore;
+            });
+        persistence.UseDocumentStoreForGatewayDeduplication(
+            storeCreator: readOnlySettings =>
+            {
+                var documentStore = new DocumentStore();
+                // configure documentStore here
+                return documentStore;
+            });
 
         #endregion
     }
@@ -105,12 +109,13 @@ class Configure
         #region ravendb-persistence-create-store-by-func
 
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
-        persistence.SetDefaultDocumentStore(readOnlySettings =>
-        {
-            var documentStore = new DocumentStore();
-            // configure documentStore here
-            return documentStore;
-        });
+        persistence.SetDefaultDocumentStore(
+            storeCreator: readOnlySettings =>
+            {
+                var documentStore = new DocumentStore();
+                // configure documentStore here
+                return documentStore;
+            });
 
         #endregion
     }
@@ -125,6 +130,7 @@ class Configure
         var UrlToRavenDB = "http://localhost:8080";
 
         #region RavenDBManualDtcSettingExample
+
         // Value must uniquely identify endpoint on the machine and remain stable on process restarts
         var resourceManagerId = new Guid("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
 
