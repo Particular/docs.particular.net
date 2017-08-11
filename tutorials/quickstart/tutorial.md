@@ -14,6 +14,7 @@ This tutorial skips over some concepts and implementation details in order to ge
 
 To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file with VS 2015 or later.
 
+&nbsp;
 
 downloadbutton
 
