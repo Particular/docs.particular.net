@@ -15,6 +15,7 @@ reviewed: 2016-10-03
 
 The following sections outline various ways to connect to the RavenDB server. Specifying an external shared store (providing a fully configured RavenDB `DocumentStore` instance) is preferred so that the [RavenDB DTC settings can be configured](manual-dtc-settings.md) for optimal data safety.
 
+include: raven-dispose-warning
 
 partial: externalatinitialization
 

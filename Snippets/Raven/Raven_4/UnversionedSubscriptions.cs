@@ -1,5 +1,4 @@
-﻿
-namespace Raven_4
+﻿namespace Raven_4
 {
     using NServiceBus;
 
