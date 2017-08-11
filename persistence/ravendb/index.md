@@ -31,6 +31,8 @@ This optionally allows customization of the document session that is created for
 
 The session that is created is then made available.
 
+include: raven-dispose-warning
+
 
 ### Using in a Handler
 
