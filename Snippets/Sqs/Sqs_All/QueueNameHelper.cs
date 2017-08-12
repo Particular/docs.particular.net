@@ -29,8 +29,8 @@
 
             if (s.Length > 80)
             {
-                throw new Exception(
-                    $"Address {destination} with configured prefix {queueNamePrefix} is longer than 80 characters and therefore cannot be used to create an SQS queue. Use a shorter queue name.");
+                throw new ArgumentException(
+                    $"Address {destination} with configured prefix {queueNamePrefix} is longer than 80 characters and therefore cannot be used to create an SQS queue. Use a shorter endpoint name or a shorter queue name prefix.");
             }
 
             return s;

@@ -435,6 +435,21 @@
         }
 
         [Test]
+        public void CreateQueuesForEndpointWithLongEndpointNameThrowsAndNoQueuesAreCreated()
+        {
+            // Below is 76 chars - this is fine for the main queue but too long for the retries, timeouts or dispatcher queues
+            var endpointName = "mycreatequeuesendpointwithaverylongnamethatwillhavequeuenamesthataretoolong";
+
+            var exception = Assert.ThrowsAsync<ArgumentException>(async () =>
+            {
+                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true)
+                    .ConfigureAwait(false);
+            });
+
+            Assert.IsTrue(exception.Message.Contains("is longer than 80 characters and therefore cannot be used to create an SQS queue."));
+        }
+        
+        [Test]
         public async Task CreateQueuesForEndpointWithRetries_CloudFormation()
         {
             var endpointName = "mycreateretriesendpoint-cloudformation";
@@ -522,7 +537,7 @@
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
         }
-
+        
         string endpointName = "CreateQueuesTests";
         static string errorQueueName = "CreateQueuesTestsError";
         static string auditQueueName = "CreateQueuesTestsAudit";

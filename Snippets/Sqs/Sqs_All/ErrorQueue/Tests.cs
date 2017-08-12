@@ -1,9 +1,7 @@
 ﻿namespace SqsAll.ErrorQueue
 {
     using System;
-    using System.IO;
     using System.Linq;
-    using System.Management.Automation;
     using System.Threading;
     using System.Threading.Tasks;
     using Amazon.SQS.Model;
