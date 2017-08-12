@@ -25,13 +25,6 @@ class RavenDtcConventions :
     {
         var endpointName = settings.EndpointName();
 
-        var store = new DocumentStore
-        {
-            // RavenServerUrl
-            Url = "http://localhost:8083",
-            DefaultDatabase = endpointName
-        };
-
         var localAddress = settings.LocalAddress();
 
         // Calculate a ResourceManagerId unique to this endpoint using just LocalAddress
@@ -41,11 +34,14 @@ class RavenDtcConventions :
         // Calculate a DTC transaction recovery storage path including the ResourceManagerId
         var programDataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
         var txRecoveryPath = Path.Combine(programDataPath, "NServiceBus.RavenDB", resourceManagerId.ToString());
-
-        store.ResourceManagerId = resourceManagerId;
-        store.TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(txRecoveryPath);
-
-        return store;
+        return new DocumentStore
+        {
+            // RavenServerUrl
+            Url = "http://localhost:8083",
+            DefaultDatabase = endpointName,
+            ResourceManagerId = resourceManagerId,
+            TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(txRecoveryPath)
+        };
     }
 
     static Guid DeterministicGuidBuilder(string input)
