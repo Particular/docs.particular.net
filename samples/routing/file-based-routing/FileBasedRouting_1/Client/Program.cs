@@ -26,7 +26,7 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         var routing = transport.Routing();
-        routing.UseFileBasedRouting(@"..\..\..\endpoints.xml");
+        routing.UseFileBasedRouting(@"..\..\..\..\endpoints.xml");
 
         #endregion
 
