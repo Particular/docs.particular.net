@@ -13,7 +13,7 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.ZeroFormatter" Version="1.0.2" />
     <PackageReference Include="ZeroFormatter" Version="1.6.4" />
     <PackageReference Include="ZeroFormatter.Interfaces" Version="1.6.4" />

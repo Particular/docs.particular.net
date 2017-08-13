@@ -5,7 +5,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.TransportTests.Sources" Version="6.3.4" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>

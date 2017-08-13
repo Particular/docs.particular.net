@@ -11,9 +11,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{7B8DA931-9045-4A0C-A143-6F36F3175BBF}</Project>
@@ -21,7 +18,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.0.0" />
   </ItemGroup>
 </Project>

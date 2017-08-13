@@ -13,7 +13,7 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.SimpleInjector" Version="1.0.10" />
     <PackageReference Include="SimpleInjector" Version="3.3.2" />
     <PackageReference Include="SimpleInjector.Extensions.ExecutionContextScoping" Version="3.3.2" />

@@ -11,9 +11,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{77670cc2-dc46-4891-bc1f-a80f9f54bc48}</Project>

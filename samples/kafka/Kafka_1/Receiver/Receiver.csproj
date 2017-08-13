@@ -45,7 +45,7 @@
     <Content Include="x86\zlib.dll" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Transports.Kafka" Version="0.8.5" />
     <PackageReference Include="RdKafka" Version="0.9.1" />
     <PackageReference Include="RdKafka.Internal.librdkafka" Version="0.9.1" />

@@ -24,7 +24,7 @@
     <Content Include="MigrateFromNHibernate.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="3.1.2" />
   </ItemGroup>
   <ItemGroup>

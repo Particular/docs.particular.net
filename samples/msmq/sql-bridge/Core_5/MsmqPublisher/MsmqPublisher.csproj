@@ -11,9 +11,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{77670CC2-DC46-4891-BC1F-A80F9F54BC48}</Project>
@@ -23,7 +20,7 @@
   <ItemGroup>
     <PackageReference Include="Iesi.Collections" Version="4.0.2" />
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
-    <PackageReference Include="NServiceBus" Version="5.2.22" />
+    <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="6.2.9" />
   </ItemGroup>
 </Project>

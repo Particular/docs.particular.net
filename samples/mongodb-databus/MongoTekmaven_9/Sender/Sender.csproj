@@ -20,9 +20,6 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
@@ -48,7 +45,7 @@
     <PackageReference Include="MongoDB.Driver" Version="2.3.0" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.3.0" />
     <PackageReference Include="MongoDB.Driver.GridFS" Version="2.3.0" />
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Persistence.MongoDb" Version="9.0.1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

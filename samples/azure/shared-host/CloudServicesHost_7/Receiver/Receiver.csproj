@@ -39,7 +39,7 @@
     <PackageReference Include="Microsoft.Data.OData" Version="5.8.2" />
     <PackageReference Include="Microsoft.Data.Services.Client" Version="5.8.2" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.4.1" />
     <PackageReference Include="NServiceBus.Hosting.Azure" Version="7.1.3" />
     <PackageReference Include="NServiceBus.Hosting.Azure.HostProcess" Version="7.1.3" />

@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="1.0.5" />
     <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="1.0.5" />
   </ItemGroup>

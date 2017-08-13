@@ -19,9 +19,6 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
@@ -50,7 +47,7 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="5.2.22" />
+    <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.Distributor.MSMQ" Version="5.0.5" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

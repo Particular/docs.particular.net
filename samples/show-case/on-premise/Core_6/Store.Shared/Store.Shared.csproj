@@ -12,7 +12,7 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.0.0" />
   </ItemGroup>
 </Project>

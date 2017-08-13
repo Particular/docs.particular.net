@@ -29,7 +29,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="5.2.22" />
+    <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="Octokit" Version="0.20.0" />
   </ItemGroup>
 </Project>

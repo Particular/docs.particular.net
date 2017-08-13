@@ -12,14 +12,11 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="5.2.22" />
+    <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.Host" Version="6.0.1" />
   </ItemGroup>
   <PropertyGroup>

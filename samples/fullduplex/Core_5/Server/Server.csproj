@@ -20,9 +20,6 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
@@ -45,7 +42,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="5.2.22" />
+    <PackageReference Include="NServiceBus" Version="5.*" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

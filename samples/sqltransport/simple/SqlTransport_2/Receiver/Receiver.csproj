@@ -19,7 +19,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="5.2.22" />
+    <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="2.2.6" />
   </ItemGroup>
 </Project>

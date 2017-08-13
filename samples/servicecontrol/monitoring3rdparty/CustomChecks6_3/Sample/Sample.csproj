@@ -16,7 +16,7 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="ServiceControl.Plugin.Nsb6.CustomChecks" Version="3.0.0" />
   </ItemGroup>
 </Project>

@@ -21,7 +21,7 @@
   <ItemGroup>
     <PackageReference Include="Iesi.Collections" Version="4.0.2" />
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
-    <PackageReference Include="NServiceBus" Version="5.2.22" />
+    <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="6.2.9" />
   </ItemGroup>
 </Project>

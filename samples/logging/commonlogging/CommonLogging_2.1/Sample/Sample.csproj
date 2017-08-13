@@ -18,7 +18,7 @@
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.3.1" />
     <PackageReference Include="Common.Logging.Core" Version="3.3.1" />
-    <PackageReference Include="NServiceBus" Version="5.2.22" />
+    <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.CommonLogging" Version="2.1.0" />
   </ItemGroup>
 </Project>

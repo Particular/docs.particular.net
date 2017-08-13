@@ -11,23 +11,10 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.ServiceModel" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj">
-      <Project>{67823838-A4F7-44AC-B2A5-9F1AC3749470}</Project>
-      <Name>Messages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WcfCallbacks\WcfCallbacks.csproj">
-      <Project>{40CCA583-78C4-48DF-94B4-16AF5A295F7C}</Project>
-      <Name>WcfPassThrough</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="5.2.22" />
+    <ProjectReference Include="..\Messages\Messages.csproj"/>
+    <ProjectReference Include="..\WcfCallbacks\WcfCallbacks.csproj"/>
+    <PackageReference Include="NServiceBus" Version="5.*" />
   </ItemGroup>
 </Project>

@@ -20,9 +20,6 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>

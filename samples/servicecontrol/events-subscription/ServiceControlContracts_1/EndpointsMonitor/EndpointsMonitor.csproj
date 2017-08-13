@@ -16,7 +16,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="ServiceControl.Contracts" Version="1.1.1" />
   </ItemGroup>
 </Project>

@@ -12,15 +12,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{7ae9ca65-44f0-4382-9154-9cd5bf38c2ac}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
-    <PackageReference Include="NServiceBus.Wormhole" Version="1.0.0" />
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Wormhole" Version="1.*" />
   </ItemGroup>
 </Project>
