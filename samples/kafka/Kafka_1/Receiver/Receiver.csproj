@@ -3,7 +3,7 @@
   <Import Project="..\..\..\..\packages\RdKafka.Internal.librdkafka.0.9.1\build\RdKafka.Internal.librdkafka.props" Condition="Exists('..\..\..\..\packages\RdKafka.Internal.librdkafka.0.9.1\build\RdKafka.Internal.librdkafka.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFrameworks>net4.6.1</TargetFrameworks>
+    <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
     <RootNamespace>Receiver</RootNamespace>
     <FileAlignment>512</FileAlignment>

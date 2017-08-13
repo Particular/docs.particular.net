@@ -22,7 +22,7 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworks>net4.6.1</TargetFrameworks>
+    <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
     <EnableDefaultItems>true</EnableDefaultItems>

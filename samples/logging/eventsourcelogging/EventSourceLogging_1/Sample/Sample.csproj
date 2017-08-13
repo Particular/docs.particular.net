@@ -3,7 +3,7 @@
   <Import Project="..\..\..\..\..\packages\NServiceBus.EventSourceLogging.1.0.0\build\NServiceBus.EventSourceLogging.props" Condition="Exists('..\..\..\..\..\packages\NServiceBus.EventSourceLogging.1.0.0\build\NServiceBus.EventSourceLogging.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFrameworks>net4.6.1</TargetFrameworks>
+    <TargetFramework>net461</TargetFramework>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Exe</OutputType>
