@@ -17,11 +17,6 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0039" />
     <PackageReference Include="NServiceBus.ProtoBuf" Version="1.1.0-beta001" />
     <PackageReference Include="protobuf-net" Version="2.3.2" />

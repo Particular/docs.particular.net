@@ -16,11 +16,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{77670CC2-DC46-4891-BC1F-A80F9F54BC48}</Project>
       <Name>Shared</Name>

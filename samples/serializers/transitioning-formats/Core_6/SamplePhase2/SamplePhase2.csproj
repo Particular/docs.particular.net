@@ -16,11 +16,6 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{13DB98C7-BCB2-43E7-BE0D-AA509718ECEB}</Project>
       <Name>Shared</Name>

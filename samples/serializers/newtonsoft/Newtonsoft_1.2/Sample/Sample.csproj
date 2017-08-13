@@ -17,11 +17,6 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0039" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="1.2.0-alpha0017" />

@@ -17,11 +17,6 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Jil" Version="2.15.2" />
     <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0036" />
     <PackageReference Include="NServiceBus.Jil" Version="2.1.0-beta002" />

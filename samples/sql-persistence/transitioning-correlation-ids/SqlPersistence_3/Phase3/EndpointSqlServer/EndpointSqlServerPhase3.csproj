@@ -30,11 +30,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase3.csproj">
       <Project>{7ea5d1d1-0860-4269-b1d6-056f09b08c68}</Project>
       <Name>SharedPhase3</Name>

@@ -18,11 +18,6 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="5.2.22" />
     <PackageReference Include="ServiceControl.Plugin.Nsb5.CustomChecks" Version="2.0.0" />
   </ItemGroup>

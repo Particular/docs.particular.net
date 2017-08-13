@@ -17,11 +17,6 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="5.2.22" />
     <PackageReference Include="NServiceBus.Wire" Version="1.0.0" />
     <PackageReference Include="Wire" Version="0.8.2" />

@@ -14,11 +14,6 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.3.4" />
     <PackageReference Include="NServiceBus.ProtoBuf" Version="1.0.3" />
     <PackageReference Include="protobuf-net" Version="2.3.2" />

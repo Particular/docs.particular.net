@@ -17,11 +17,6 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Bond.Core.CSharp" Version="6.0.0" />
     <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0039" />
     <PackageReference Include="NServiceBus.Bond" Version="1.3.0-beta001" />

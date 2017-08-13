@@ -17,11 +17,6 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Jil" Version="2.15.2" />
     <PackageReference Include="NServiceBus" Version="5.2.22" />
     <PackageReference Include="NServiceBus.Jil" Version="1.0.0" />

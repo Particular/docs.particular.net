@@ -24,11 +24,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase2.csproj">
       <Project>{79986b98-6559-41cc-81c7-61cc26bc83f8}</Project>
       <Name>SharedPhase2</Name>

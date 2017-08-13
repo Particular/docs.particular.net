@@ -21,11 +21,6 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0039" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-alpha0035" />

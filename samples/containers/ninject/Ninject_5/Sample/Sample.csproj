@@ -17,11 +17,6 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Ninject" Version="3.2.2.0" />
     <PackageReference Include="Ninject.Extensions.ContextPreservation" Version="3.2.0.0" />
     <PackageReference Include="Ninject.Extensions.NamedScope" Version="3.2.0.0" />

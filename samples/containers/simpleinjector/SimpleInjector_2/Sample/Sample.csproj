@@ -14,11 +14,6 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.3.4" />
     <PackageReference Include="NServiceBus.SimpleInjector" Version="2.1.2" />
     <PackageReference Include="SimpleInjector" Version="4.0.8" />

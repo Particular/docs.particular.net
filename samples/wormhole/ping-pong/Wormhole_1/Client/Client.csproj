@@ -15,11 +15,6 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{7ae9ca65-44f0-4382-9154-9cd5bf38c2ac}</Project>
       <Name>Shared</Name>

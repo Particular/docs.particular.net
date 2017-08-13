@@ -17,11 +17,6 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0039" />
     <PackageReference Include="NServiceBus.ZeroFormatter" Version="1.1.0-beta001" />
     <PackageReference Include="System.ValueTuple" Version="4.4.0-preview2-25405-01" />

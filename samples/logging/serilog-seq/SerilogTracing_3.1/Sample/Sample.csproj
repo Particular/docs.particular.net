@@ -18,11 +18,6 @@
     <Reference Include="System.Security" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0039" />
     <PackageReference Include="NServiceBus.Serilog" Version="3.1.0-beta001" />
     <PackageReference Include="NServiceBus.Serilog.Tracing" Version="3.1.0-beta001" />

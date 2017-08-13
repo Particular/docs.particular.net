@@ -23,11 +23,6 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0039" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="5.0.0-alpha0054" />
     <PackageReference Include="RabbitMQ.Client" Version="4.1.3" />

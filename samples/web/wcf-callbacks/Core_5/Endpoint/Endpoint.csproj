@@ -20,11 +20,6 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj">
       <Project>{67823838-A4F7-44AC-B2A5-9F1AC3749470}</Project>
       <Name>Messages</Name>

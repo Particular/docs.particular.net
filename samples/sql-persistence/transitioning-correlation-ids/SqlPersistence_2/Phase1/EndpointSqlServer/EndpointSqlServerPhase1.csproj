@@ -16,11 +16,6 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase1.csproj">
       <Project>{01fba766-b587-4373-83fe-3bd5f5182d52}</Project>
       <Name>SharedPhase1</Name>

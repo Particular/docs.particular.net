@@ -20,11 +20,6 @@
     <Reference Include="System.Messaging" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{77670cc2-dc46-4891-bc1f-a80f9f54bc48}</Project>
       <Name>Shared</Name>
