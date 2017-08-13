@@ -132,7 +132,7 @@ The template used
 snippet: sqs-create-queues-for-endpoint-template-cloudformation
 
 
-### Using the create create endpoint queues
+### Using the create endpoint queues helper methods
 
 
 #### In C&#35;
