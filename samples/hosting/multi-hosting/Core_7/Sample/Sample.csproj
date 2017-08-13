@@ -13,12 +13,7 @@
       <Project>{f1667001-0c15-4524-b032-0604383162db}</Project>
       <Name>Instance2</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{5D6CDC8F-5209-4716-8087-1F1A628AB4F7}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
   </ItemGroup>
 </Project>

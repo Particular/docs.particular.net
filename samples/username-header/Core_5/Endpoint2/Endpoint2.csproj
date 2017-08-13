@@ -5,12 +5,7 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{7B8DA931-9045-4A0C-A143-6F36F3175BBF}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="NServiceBus" Version="5.*" />
   </ItemGroup>
 </Project>

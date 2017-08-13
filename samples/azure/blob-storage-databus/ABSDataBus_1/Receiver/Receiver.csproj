@@ -5,12 +5,7 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{5B1F434B-952F-43B8-A10D-BBB622403971}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="1.0.0" />
     <PackageReference Include="Microsoft.Data.Edm" Version="5.8.2" />
     <PackageReference Include="Microsoft.Data.OData" Version="5.8.2" />

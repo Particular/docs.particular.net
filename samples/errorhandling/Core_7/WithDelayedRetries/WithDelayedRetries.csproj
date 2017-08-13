@@ -25,12 +25,7 @@
     <Compile Include="MyMessageHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{87ADE927-38CB-453E-9C9D-2B69CF248A60}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
   </ItemGroup>
 </Project>

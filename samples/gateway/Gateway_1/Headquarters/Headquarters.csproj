@@ -32,12 +32,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{5849DBD1-CBA9-4792-90AA-80F9476E526F}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.Gateway" Version="1.0.1" />
   </ItemGroup>

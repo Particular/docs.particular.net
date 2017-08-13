@@ -13,12 +13,7 @@
       <Project>{AE9CC88C-81D1-4B00-8284-D28627693CF4}</Project>
       <Name>Sender</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{9559D31C-0B80-41F5-975E-766997AD7635}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="Octokit" Version="0.20.0" />
   </ItemGroup>

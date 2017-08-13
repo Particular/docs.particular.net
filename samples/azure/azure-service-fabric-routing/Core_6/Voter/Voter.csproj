@@ -2,21 +2,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
-    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <Platform>x64</Platform>
     <OutputType>Exe</OutputType>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <Prefer32Bit>true</Prefer32Bit>
-    <LangVersion>6</LangVersion>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Contracts\Contracts.csproj"/>
     <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="NServiceBus" Version="6.*" />

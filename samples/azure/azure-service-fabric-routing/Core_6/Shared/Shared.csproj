@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
-    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <Platform>x64</Platform>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

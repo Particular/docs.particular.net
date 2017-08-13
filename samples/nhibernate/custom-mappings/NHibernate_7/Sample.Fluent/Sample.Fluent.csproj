@@ -5,12 +5,7 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{5544a0e8-00cd-4d09-aeba-fe37c8ff3b2d}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="FluentNHibernate" Version="2.0.3.0" />
     <PackageReference Include="Iesi.Collections" Version="4.0.2" />
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />

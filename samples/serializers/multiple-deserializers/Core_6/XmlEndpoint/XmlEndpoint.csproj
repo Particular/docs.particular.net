@@ -5,12 +5,7 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{172110CC-3A13-4EA5-9A76-FCE2554CAE90}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>

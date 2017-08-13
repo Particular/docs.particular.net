@@ -18,12 +18,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{DD438DB2-9C03-4BC0-BA52-BB7A35098458}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="3.1.0" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="4.2.0" />

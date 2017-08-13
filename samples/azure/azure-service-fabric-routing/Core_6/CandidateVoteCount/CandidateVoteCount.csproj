@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
-    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <Platform>x64</Platform>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
@@ -28,12 +28,7 @@
       <Project>{D2D5A397-E764-48D9-8C02-BA7EDE62A36D}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{8a06709e-003c-47da-8be5-861e311e8212}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Microsoft.ServiceFabric" Version="5.6.220" />
     <PackageReference Include="Microsoft.ServiceFabric.Data" Version="2.6.220" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.6.220" />

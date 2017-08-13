@@ -7,14 +7,7 @@
   <ItemGroup>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Messaging" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{77670cc2-dc46-4891-bc1f-a80f9f54bc48}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Iesi.Collections" Version="4.0.2" />
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
     <PackageReference Include="NServiceBus" Version="5.*" />

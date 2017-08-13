@@ -9,12 +9,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{65572bb2-1e39-463a-87bf-53b84dba7d94}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Iesi.Collections" Version="4.0.2" />
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
     <PackageReference Include="NServiceBus" Version="6.*" />

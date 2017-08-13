@@ -10,12 +10,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{DD438DB2-9C03-4BC0-BA52-BB7A35098458}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.0.4" />
     <PackageReference Include="Microsoft.Data.Edm" Version="5.8.2" />
     <PackageReference Include="Microsoft.Data.OData" Version="5.8.2" />

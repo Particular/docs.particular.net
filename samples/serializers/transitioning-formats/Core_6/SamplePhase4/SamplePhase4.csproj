@@ -7,12 +7,7 @@
     <AssemblyName>Sample</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{13DB98C7-BCB2-43E7-BE0D-AA509718ECEB}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="1.1.*" />

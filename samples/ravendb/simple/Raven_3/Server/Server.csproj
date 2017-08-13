@@ -18,12 +18,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{DD438DB2-9C03-4BC0-BA52-BB7A35098458}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="3.*" />
     <PackageReference Include="RavenDB.Client" Version="3.5.4" />

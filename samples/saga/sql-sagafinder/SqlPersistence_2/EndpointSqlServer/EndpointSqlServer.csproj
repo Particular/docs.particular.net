@@ -31,12 +31,7 @@
     <Compile Include="SqlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{fe195ce8-2c51-4a23-907a-8a3c68dd2af7}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.*" />

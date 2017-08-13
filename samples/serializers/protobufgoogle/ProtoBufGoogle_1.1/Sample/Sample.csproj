@@ -6,8 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.3.0" />
     <PackageReference Include="Google.Protobuf.Tools" Version="3.3.0" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
