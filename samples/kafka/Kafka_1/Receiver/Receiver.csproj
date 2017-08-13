@@ -7,7 +7,6 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Receiver</RootNamespace>
     <FileAlignment>512</FileAlignment>
-    <EnableDefaultItems>true</EnableDefaultItems>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

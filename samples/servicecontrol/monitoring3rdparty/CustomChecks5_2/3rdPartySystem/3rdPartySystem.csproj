@@ -4,7 +4,6 @@
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
     <RootNamespace>_3rdPartySystem</RootNamespace>
-    <EnableDefaultItems>true</EnableDefaultItems>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

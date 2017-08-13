@@ -26,7 +26,6 @@
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
-    <EnableDefaultItems>true</EnableDefaultItems>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AsyncFriendlyStackTrace, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">

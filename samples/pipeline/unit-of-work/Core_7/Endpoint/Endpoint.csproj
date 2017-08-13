@@ -27,7 +27,6 @@
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
-    <EnableDefaultItems>true</EnableDefaultItems>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFrameworks>net4.6.2</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <EnableDefaultItems>true</EnableDefaultItems>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

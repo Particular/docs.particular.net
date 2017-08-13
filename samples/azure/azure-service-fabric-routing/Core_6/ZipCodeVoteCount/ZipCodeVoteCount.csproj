@@ -4,7 +4,6 @@
     <TargetFrameworks>net4.5.2</TargetFrameworks>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <OutputType>Exe</OutputType>
-    <EnableDefaultItems>true</EnableDefaultItems>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DebugType>full</DebugType>

@@ -10,7 +10,6 @@
     <RootNamespace>EndpointSqlServer</RootNamespace>
     <AssemblyName>EndpointSqlServer</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <EnableDefaultItems>true</EnableDefaultItems>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

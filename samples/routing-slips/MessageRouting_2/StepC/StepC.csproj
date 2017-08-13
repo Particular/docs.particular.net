@@ -6,7 +6,6 @@
     <RootNamespace>RoutingSlipsSample.StepC</RootNamespace>
     <AssemblyName>RoutingSlipsSample.StepC</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <EnableDefaultItems>true</EnableDefaultItems>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
