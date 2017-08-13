@@ -239,6 +239,7 @@ A retry involves the following actions:
 
 snippet: sqs-return-to-source-queue
 
+WARNING: This example code will receive other messages from the error queue while it finds the desired message. All messages received by this code will be marked as invisible until the [visibility timeout](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html) expires.
 
 ### Using the retry helper methods
 
