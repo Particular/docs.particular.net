@@ -3,9 +3,4 @@
   <PropertyGroup>
     <TargetFrameworks>net461</TargetFrameworks>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="IMessage.cs" />
-    <Compile Include="PlaceOrder.cs" />
-    <Compile Include="OrderPlaced.cs" />
-  </ItemGroup>
 </Project>
