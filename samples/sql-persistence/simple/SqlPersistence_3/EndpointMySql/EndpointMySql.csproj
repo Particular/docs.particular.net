@@ -9,18 +9,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ServerShared\ServerShared.csproj">
-      <Project>{a891be78-c888-40bb-8037-feac5048bc92}</Project>
-      <Name>ServerShared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj">
-      <Project>{dd438db2-9c03-4bc0-ba52-bb7a35098458}</Project>
-      <Name>SharedMessages</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\ServerShared\ServerShared.csproj"/>
+    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj"/>
     <PackageReference Include="MySql.Data" Version="6.9.9" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />

@@ -1,38 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
+    <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <AssemblyName>Receiver</AssemblyName>
-    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="IMySession.cs" />
-    <Compile Include="MyEntity.cs" />
-    <Compile Include="MyMessage.cs" />
-    <Compile Include="MyMessageHandler1.cs" />
-    <Compile Include="MyMessageHandler2.cs" />
-    <Compile Include="MyOtherEntity.cs" />
-    <Compile Include="MySession.cs" />
-    <Compile Include="MySessionContextExtensions.cs" />
-    <Compile Include="MySessionProvider.cs" />
-    <Compile Include="MyUowBehavior.cs" />
-    <Compile Include="Program.cs" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>

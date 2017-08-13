@@ -1,36 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\FullDuplex\</SolutionDir>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFrameworks>net461</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Data" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AutomaticRoutingConst.cs" />
-    <Compile Include="AutomaticRouting\AdvertisePublishingSettings.cs" />
-    <Compile Include="AutomaticRouting\AutomaticRoutingFeature.cs" />
-    <Compile Include="ICircuitBreaker.cs" />
-    <Compile Include="AutomaticRouting\Installer.cs" />
-    <Compile Include="RepeatedFailuresOverTimeCircuitBreaker.cs" />
-    <Compile Include="AutomaticRouting\RoutingInfoCommunicator.cs" />
-    <Compile Include="AutomaticRouting\AutomaticRoutingConfigExtensions.cs" />
-    <Compile Include="AutomaticRouting\Entry.cs" />
-    <Compile Include="AutomaticRouting\RoutingInfo.cs" />
-    <Compile Include="AutomaticRouting\RoutingInfoPublisher.cs" />
-    <Compile Include="AutomaticRouting\RoutingInfoSubscriber.cs" />
-    <Compile Include="AutomaticRouting\VerifyAdvertisedBehavior.cs" />
-    <Compile Include="Messages\OrderAccepted.cs" />
-    <Compile Include="Messages\PlaceOrder.cs" />
-    <Compile Include="AutomaticRouting\SqlDataAccess.cs" />
-    <Compile Include="SqlHelper.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>

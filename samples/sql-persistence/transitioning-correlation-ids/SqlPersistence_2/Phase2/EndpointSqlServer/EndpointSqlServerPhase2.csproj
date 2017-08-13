@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <AssemblyName>EndpointSqlServer</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointSqlServer\Program.cs">
@@ -14,12 +13,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\SharedPhase2.csproj">
-      <Project>{79986b98-6559-41cc-81c7-61cc26bc83f8}</Project>
-      <Name>SharedPhase2</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\SharedPhase2.csproj"/>
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.*" />

@@ -1,23 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ServerShared\ServerShared.csproj">
-      <Project>{a891be78-c888-40bb-8037-feac5048bc92}</Project>
-      <Name>ServerShared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj">
-      <Project>{dd438db2-9c03-4bc0-ba52-bb7a35098458}</Project>
-      <Name>SharedMessages</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\ServerShared\ServerShared.csproj"/>
+    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj"/>
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.*" />

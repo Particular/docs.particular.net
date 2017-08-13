@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.SimpleInjector" Version="2.1.2" />
+    <PackageReference Include="NServiceBus.SimpleInjector" Version="2.*" />
     <PackageReference Include="SimpleInjector" Version="4.0.8" />
   </ItemGroup>
 </Project>

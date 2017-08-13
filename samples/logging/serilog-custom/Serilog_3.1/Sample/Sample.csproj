@@ -7,7 +7,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Serilog" Version="3.1.0-beta001" />
+    <PackageReference Include="NServiceBus.Serilog" Version="3.1.0-*" />
     <PackageReference Include="Serilog" Version="2.5.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.0.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="3.2.0" />

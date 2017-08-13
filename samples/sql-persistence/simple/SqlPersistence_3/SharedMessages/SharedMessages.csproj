@@ -8,8 +8,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
   </ItemGroup>
 </Project>

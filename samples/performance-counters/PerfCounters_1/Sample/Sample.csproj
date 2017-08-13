@@ -1,50 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Sample</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MyHandler.cs" />
-    <Compile Include="MyMessage.cs" />
-    <Compile Include="Program.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.manifest">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Metrics" Version="1.*" />
-    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="1.1.1" />
-    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters.MsBuild" Version="1.1.1" />
+    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="1.*" />
+    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters.MsBuild" Version="1.*" />
   </ItemGroup>
-  <Import Project="..\..\..\..\packages\NServiceBus.Metrics.PerformanceCounters.MsBuild.1.1.1\build\NServiceBus.Metrics.PerformanceCounters.MsBuild.targets" Condition="Exists('..\..\..\..\packages\NServiceBus.Metrics.PerformanceCounters.MsBuild.1.1.1\build\NServiceBus.Metrics.PerformanceCounters.MsBuild.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\..\packages\NServiceBus.Metrics.PerformanceCounters.MsBuild.1.1.1\build\NServiceBus.Metrics.PerformanceCounters.MsBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\NServiceBus.Metrics.PerformanceCounters.MsBuild.1.1.1\build\NServiceBus.Metrics.PerformanceCounters.MsBuild.targets'))" />
-  </Target>
 </Project>

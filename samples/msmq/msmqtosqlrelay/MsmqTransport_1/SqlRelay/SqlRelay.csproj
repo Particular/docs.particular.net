@@ -5,23 +5,12 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{77670cc2-dc46-4891-bc1f-a80f9f54bc48}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CreateDatabase.sql" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Iesi.Collections" Version="4.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="3.*" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="CreateDatabase.sql" />
   </ItemGroup>
 </Project>

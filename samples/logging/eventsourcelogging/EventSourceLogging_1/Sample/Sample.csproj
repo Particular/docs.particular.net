@@ -1,49 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\..\..\..\packages\NServiceBus.EventSourceLogging.1.0.0\build\NServiceBus.EventSourceLogging.props" Condition="Exists('..\..\..\..\..\packages\NServiceBus.EventSourceLogging.1.0.0\build\NServiceBus.EventSourceLogging.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Sample</AssemblyName>
-    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="CustomEventListener.cs" />
-    <Compile Include="SimpleSourceLogger.cs" />
-    <Compile Include="MyHandler.cs" />
-    <Compile Include="MyMessage.cs" />
-    <Compile Include="Program.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.EventSourceLogging" Version="1.0.0" />
+    <PackageReference Include="NServiceBus.EventSourceLogging" Version="1.*" />
   </ItemGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\..\..\packages\NServiceBus.EventSourceLogging.1.0.0\build\NServiceBus.EventSourceLogging.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\packages\NServiceBus.EventSourceLogging.1.0.0\build\NServiceBus.EventSourceLogging.props'))" />
-    <Error Condition="!Exists('..\..\..\..\..\packages\NServiceBus.EventSourceLogging.1.0.0\build\NServiceBus.EventSourceLogging.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\packages\NServiceBus.EventSourceLogging.1.0.0\build\NServiceBus.EventSourceLogging.targets'))" />
-  </Target>
-  <Import Project="..\..\..\..\..\packages\NServiceBus.EventSourceLogging.1.0.0\build\NServiceBus.EventSourceLogging.targets" Condition="Exists('..\..\..\..\..\packages\NServiceBus.EventSourceLogging.1.0.0\build\NServiceBus.EventSourceLogging.targets')" />
 </Project>

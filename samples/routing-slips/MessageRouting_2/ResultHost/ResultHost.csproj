@@ -3,20 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <AssemblyName>RoutingSlipsSample.ResultHost</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj">
-      <Project>{9f1a4636-327c-4097-a3cb-bb722430f99b}</Project>
-      <Name>Messages</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj"/>
     <PackageReference Include="Newtonsoft.Json" Version="9.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.MessageRouting" Version="2.0.0" />
+    <PackageReference Include="NServiceBus.MessageRouting" Version="2.*" />
   </ItemGroup>
 </Project>

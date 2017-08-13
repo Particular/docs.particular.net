@@ -8,14 +8,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\StockEvents\StockEvents.csproj">
-      <Project>{1D96C0E6-C5B7-4077-96C3-36DABE107A5A}</Project>
-      <Name>StockEvents</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\StockEvents\StockEvents.csproj"/>
     <PackageReference Include="Microsoft.AspNet.Cors" Version="5.2.3" />
     <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNet.SignalR.SelfHost" Version="2.2.2" />

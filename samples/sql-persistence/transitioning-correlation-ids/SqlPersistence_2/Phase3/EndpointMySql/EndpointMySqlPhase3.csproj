@@ -3,23 +3,15 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <AssemblyName>EndpointMySql</AssemblyName>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointMySql\Program.cs">
       <Link>Program.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\SharedPhase3.csproj">
-      <Project>{7ea5d1d1-0860-4269-b1d6-056f09b08c68}</Project>
-      <Name>SharedPhase3</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\SharedPhase3.csproj"/>
+    <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="MySql.Data" Version="6.9.9" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />

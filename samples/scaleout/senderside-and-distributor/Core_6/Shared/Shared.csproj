@@ -1,20 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFrameworks>net461</TargetFrameworks>
   </PropertyGroup>
-  <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="PlaceInvalidOrder.cs" />
-    <Compile Include="ValidateOrder.cs" />
-    <Compile Include="ConfirmOrder.cs" />
-    <Compile Include="IMessage.cs" />
-    <Compile Include="OrderValidated.cs" />
-    <Compile Include="PlaceOrder.cs" />
-    <Compile Include="PlaceOrderResponse.cs" />
-  </ItemGroup>
 </Project>
