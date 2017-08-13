@@ -893,7 +893,7 @@
   ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Bridge
   NugetOrder:
     - NServiceBus.Bridge
-    - NServiceBus.Bridge.Ramp
+    - NServiceBus.Bridge.Connector
 
 - Key: Wormhole
   Name: Wormhole Gateway
