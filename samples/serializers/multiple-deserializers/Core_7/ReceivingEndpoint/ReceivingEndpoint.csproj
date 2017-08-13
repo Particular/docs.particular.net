@@ -4,14 +4,6 @@
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>full</DebugType>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
@@ -26,13 +18,13 @@
     <PackageReference Include="MsgPack.Cli" Version="0.8.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.1" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0039" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Jil" Version="2.1.0-beta002" />
     <PackageReference Include="NServiceBus.MessagePack" Version="1.1.0-beta001" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="1.2.0-alpha0017" />
     <PackageReference Include="NServiceBus.Wire" Version="2.1.0-beta001" />
     <PackageReference Include="Sigil" Version="4.7.0" />
-    <PackageReference Include="System.ValueTuple" Version="4.4.0-preview2-25405-01" />
+
     <PackageReference Include="Wire" Version="0.8.2" />
   </ItemGroup>
 </Project>

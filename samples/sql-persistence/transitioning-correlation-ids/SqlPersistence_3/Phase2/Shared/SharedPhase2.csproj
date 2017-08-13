@@ -20,7 +20,6 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <LangVersion>6</LangVersion>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
@@ -34,19 +33,15 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="OrderSaga.cs" />
     <Compile Include="OrderSagaData.cs" />
     <Compile Include="StartOrder.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0039" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-alpha0035" />
     <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="3.0.0-alpha0035" />
-    <PackageReference Include="System.ValueTuple" Version="4.4.0-preview2-25405-01" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.3.0.0-alpha0035\build\NServiceBus.Persistence.Sql.MsBuild.targets" Condition="Exists('..\..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.3.0.0-alpha0035\build\NServiceBus.Persistence.Sql.MsBuild.targets')" />

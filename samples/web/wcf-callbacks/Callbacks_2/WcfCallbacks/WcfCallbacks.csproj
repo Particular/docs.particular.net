@@ -4,16 +4,9 @@
     <TargetFramework>net461</TargetFramework>
     <OutputType>Library</OutputType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.ServiceModel" />
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Callbacks" Version="2.0.1" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="2.*" />
   </ItemGroup>
 </Project>

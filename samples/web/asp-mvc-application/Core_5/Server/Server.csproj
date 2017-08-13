@@ -13,9 +13,8 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -36,9 +35,6 @@
       <Project>{B363FF88-1C00-4FB6-A22E-44E2FB754944}</Project>
       <Name>Shared</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="5.*" />

@@ -13,9 +13,8 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -34,9 +33,6 @@
     <Compile Include="CommandSender.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="MyCommandHandler.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">

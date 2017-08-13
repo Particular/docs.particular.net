@@ -3,30 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>full</DebugType>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj">
-      <Project>{67823838-A4F7-44AC-B2A5-9F1AC3749470}</Project>
-      <Name>Messages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WcfCallbacks\WcfCallbacks.csproj">
-      <Project>{40CCA583-78C4-48DF-94B4-16AF5A295F7C}</Project>
-      <Name>WcfPassThrough</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj"/>
+    <ProjectReference Include="..\WcfCallbacks\WcfCallbacks.csproj"/>
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Callbacks" Version="1.1.2" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="1.*" />
   </ItemGroup>
 </Project>

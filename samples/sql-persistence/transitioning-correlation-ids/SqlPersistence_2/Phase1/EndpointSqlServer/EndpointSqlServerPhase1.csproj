@@ -6,14 +6,6 @@
     <RootNamespace>EndpointSqlServer</RootNamespace>
     <AssemblyName>EndpointSqlServer</AssemblyName>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>full</DebugType>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase1.csproj">
       <Project>{01fba766-b587-4373-83fe-3bd5f5182d52}</Project>

@@ -4,8 +4,7 @@
     <TargetFramework>net461</TargetFramework>
     <AssemblyName>Endpoint</AssemblyName>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
     <OutputType>exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
