@@ -7,16 +7,6 @@
     <RootNamespace>V1Subscriber</RootNamespace>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
-  </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>

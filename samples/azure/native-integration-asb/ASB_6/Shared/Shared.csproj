@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net4.5.2</TargetFrameworks>
-    <OutputType>Library</OutputType>
+    <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="5.*" />

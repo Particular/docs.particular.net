@@ -2,9 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
-    <OutputType>Library</OutputType>
-    <RootNamespace>EndpointConnectionStringLookup</RootNamespace>
-    <AssemblyName>EndpointConnectionStringLookup</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ConnectionProvider.cs" />

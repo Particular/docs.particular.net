@@ -5,7 +5,6 @@
     <TargetFramework>net461</TargetFramework>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ServerShared</RootNamespace>
     <AssemblyName>ServerShared</AssemblyName>

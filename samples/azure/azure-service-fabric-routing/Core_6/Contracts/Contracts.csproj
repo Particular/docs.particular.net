@@ -8,8 +8,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworks>net4.5.2</TargetFrameworks>
-    <OutputType>Library</OutputType>
+    <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

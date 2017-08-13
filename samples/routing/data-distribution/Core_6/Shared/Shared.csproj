@@ -3,19 +3,8 @@
   <PropertyGroup>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputType>Library</OutputType>
     <RootNamespace>Shared</RootNamespace>
     <RestorePackages>true</RestorePackages>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>

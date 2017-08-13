@@ -4,19 +4,9 @@
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>full</DebugType>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <LangVersion>6</LangVersion>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="ServiceControl.Plugin.Nsb6.Heartbeat" Version="1.0.0" />
+    <PackageReference Include="ServiceControl.Plugin.Nsb6.Heartbeat" Version="1.*" />
   </ItemGroup>
 </Project>

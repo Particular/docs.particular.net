@@ -6,20 +6,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{172110CC-3A13-4EA5-9A76-FCE2554CAE90}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Jil" Version="2.15.2" />
     <PackageReference Include="MsgPack.Cli" Version="0.8.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.1" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Jil" Version="2.1.0-beta002" />
+    <PackageReference Include="NServiceBus.Jil" Version="2.1.0-*" />
     <PackageReference Include="NServiceBus.MessagePack" Version="1.1.0-beta001" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="1.2.0-alpha0017" />
     <PackageReference Include="NServiceBus.Wire" Version="2.1.0-beta001" />
