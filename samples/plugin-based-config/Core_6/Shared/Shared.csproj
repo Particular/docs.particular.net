@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net461</TargetFrameworks>
   </PropertyGroup>
+  <ItemGroup>
     <Reference Include="System.Configuration" />
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
