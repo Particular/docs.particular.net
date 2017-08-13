@@ -38,14 +38,17 @@ param(
 [Switch] $IncludeRetries
 )
 
+# timeout dispatcher queue
+# This queue is created first because it has the longest name. 
+# If the endpointName and queueNamePrefix are too long this call will throw and no queues will be created. 
+# In this event, a shorter value for endpointName or queueNamePrefix should be used.
+CreateQueue -QueueName "$EndpointName.TimeoutsDispatcher" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
+
 # main queue
 CreateQueue -QueueName $EndpointName -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
 
 # timeout queue
 CreateQueue -QueueName "$EndpointName.Timeouts" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
-
-# timeout dispatcher queue
-CreateQueue -QueueName "$EndpointName.TimeoutsDispatcher" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
 
 # retries queue
 if ($IncludeRetries) {
@@ -125,8 +128,8 @@ Add-Type @'
 
             if (s.Length > 80)
             {
-                throw new Exception(
-                    string.Format("Address {0} with configured prefix {1} is longer than 80 characters and therefore cannot be used to create an SQS queue. Use a shorter queue name.", destination, queueNamePrefix));
+                throw new ArgumentException(
+                    string.Format("Address {0} with configured prefix {1} is longer than 80 characters and therefore cannot be used to create an SQS queue. Use a shorter endpoint name or a shorter queue name prefix.", destination, queueNamePrefix));
             }
 
             return s;
