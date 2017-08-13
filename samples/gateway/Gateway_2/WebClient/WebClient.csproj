@@ -8,7 +8,6 @@
     <ProductVersion />
     <SchemaVersion>2.0</SchemaVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApplication1</RootNamespace>
     <AssemblyName>WebApplication1</AssemblyName>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />

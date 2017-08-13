@@ -4,7 +4,6 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputType>Exe</OutputType>
-    <RootNamespace>WithoutDelayedRetries</RootNamespace>
     <AssemblyName>WithoutDelayedRetries</AssemblyName>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

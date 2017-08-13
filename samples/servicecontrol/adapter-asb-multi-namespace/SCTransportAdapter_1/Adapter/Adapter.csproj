@@ -7,16 +7,11 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ServiceModel" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Raw" Version="2.*" />
     <PackageReference Include="ServiceControl.TransportAdapter" Version="1.*" />
     <PackageReference Include="WindowsAzure.ServiceBus" Version="4.1.3" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Adapter.csproj.DotSettings" />
   </ItemGroup>
 </Project>

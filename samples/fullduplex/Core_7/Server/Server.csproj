@@ -4,7 +4,6 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MyServer</RootNamespace>
     <AssemblyName>MyServer</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\FullDuplex\</SolutionDir>
   </PropertyGroup>

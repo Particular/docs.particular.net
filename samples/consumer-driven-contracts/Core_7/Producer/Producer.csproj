@@ -6,16 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\Consumer1\Contracts\Consumer1Contract.cs">
-      <Link>Contracts\Consumer1Contract.cs</Link>
-    </Compile>
-    <Compile Include="..\Consumer2\Contracts\Consumer2Contract.cs">
-      <Link>Contracts\Consumer2Contract.cs</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="..\Consumer1\Contracts\Consumer1Contract.cs"/>
+    <Compile Include="..\Consumer2\Contracts\Consumer2Contract.cs"/>
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0-*" />

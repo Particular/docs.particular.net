@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>EndpointOracle</RootNamespace>
     <AssemblyName>EndpointOracle</AssemblyName>
   </PropertyGroup>
   <ItemGroup>

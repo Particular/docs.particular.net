@@ -7,7 +7,6 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EndpointSqlServer</RootNamespace>
     <AssemblyName>EndpointSqlServer</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>

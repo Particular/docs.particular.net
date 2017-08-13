@@ -8,17 +8,6 @@
   <ItemGroup>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\..\packages\RavenDB.Database.3.5.4\tools\Raven.Studio.Html5.zip">
-      <Link>Raven.Studio.Html5.zip</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="3.1.0" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="4.2.0" />
@@ -27,9 +16,4 @@
     <PackageReference Include="RavenDB.Client.UniqueConstraints" Version="3.5.4" />
     <PackageReference Include="RavenDB.Database" Version="3.5.4" />
   </ItemGroup>
-  <PropertyGroup>
-    <PostBuildEvent>mkdir $(TargetDir)Plugins
-del $(TargetDir)Plugins\Raven.Bundles.UniqueConstraints.*
-copy $(TargetDir)Raven.Bundles.UniqueConstraints.* $(TargetDir)\Plugins</PostBuildEvent>
-  </PropertyGroup>
 </Project>

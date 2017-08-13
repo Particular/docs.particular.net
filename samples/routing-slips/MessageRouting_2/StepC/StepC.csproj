@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>RoutingSlipsSample.StepC</RootNamespace>
     <AssemblyName>RoutingSlipsSample.StepC</AssemblyName>
   </PropertyGroup>
   <ItemGroup>

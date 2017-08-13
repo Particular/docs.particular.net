@@ -7,7 +7,6 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Store.ContentManagement</RootNamespace>
     <AssemblyName>Store.ContentManagement</AssemblyName>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

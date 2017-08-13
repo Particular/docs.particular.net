@@ -4,7 +4,6 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MyClient</RootNamespace>
     <AssemblyName>MyClient</AssemblyName>
   </PropertyGroup>
   <PropertyGroup>

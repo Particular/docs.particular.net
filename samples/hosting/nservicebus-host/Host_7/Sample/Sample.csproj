@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Host" Version="7.0.2" />
+    <PackageReference Include="NServiceBus.Host" Version="7.*" />
   </ItemGroup>
   <PropertyGroup>
     <StartAction>Program</StartAction>

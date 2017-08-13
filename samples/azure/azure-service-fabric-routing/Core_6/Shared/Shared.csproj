@@ -14,7 +14,4 @@
     <PackageReference Include="NServiceBus.Persistence.ServiceFabric" Version="1.0.0-*" />
     <PackageReference Include="WindowsAzure.ServiceBus" Version="4.1.3" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Shared.csproj.DotSettings" />
-  </ItemGroup>
 </Project>

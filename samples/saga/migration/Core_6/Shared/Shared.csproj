@@ -2,7 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
-    <RootNamespace>Contracts</RootNamespace>
     <AssemblyName>Contracts</AssemblyName>
   </PropertyGroup>
   <ItemGroup>

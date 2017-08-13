@@ -8,9 +8,6 @@
     <None Update="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Update="packages.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.3.1" />

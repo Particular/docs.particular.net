@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>EndpointSqlServer</RootNamespace>
     <AssemblyName>EndpointSqlServer</AssemblyName>
   </PropertyGroup>
   <ItemGroup>

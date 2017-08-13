@@ -7,7 +7,6 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AsyncPagesMVC</RootNamespace>
     <AssemblyName>AsyncPagesMVC</AssemblyName>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
@@ -70,7 +69,7 @@
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.3" />
     <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Autofac" Version="6.0.1" />
+    <PackageReference Include="NServiceBus.Autofac" Version="6.*" />
     <PackageReference Include="NServiceBus.Callbacks" Version="2.*" />
   </ItemGroup>
   <PropertyGroup>

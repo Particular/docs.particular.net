@@ -6,7 +6,6 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServerShared</RootNamespace>
     <AssemblyName>ServerShared</AssemblyName>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

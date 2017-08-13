@@ -3,26 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-  </PropertyGroup>
-  <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <None Update="app.manifest">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj">
-      <Project>{59F2BA7E-4DA5-49F8-9DBC-520FA99F4679}</Project>
-      <Name>Store.Messages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj">
-      <Project>{68263f62-14c1-4fb8-b7d5-0d1565951f5e}</Project>
-      <Name>Store.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj"/>
+    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj"/>
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />
   </ItemGroup>

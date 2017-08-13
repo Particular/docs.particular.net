@@ -8,8 +8,6 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Microsoft.Data.Edm" Version="5.8.2" />
     <PackageReference Include="Microsoft.Data.OData" Version="5.8.2" />

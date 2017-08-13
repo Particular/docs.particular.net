@@ -6,14 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj">
-      <Project>{83485B93-3606-4014-AFF6-5C4289357BB5}</Project>
-      <Name>Messages</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj"/>
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
 </Project>

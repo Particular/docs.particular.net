@@ -1,35 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <RootNamespace>EndpointOracle</RootNamespace>
-    <AssemblyName>EndpointOracle</AssemblyName>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Configuration" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Transactions" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointOracle\Program.cs">
       <Link>Program.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\SharedPhase3.csproj">
-      <Project>{7ea5d1d1-0860-4269-b1d6-056f09b08c68}</Project>
-      <Name>SharedPhase3</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\SharedPhase3.csproj"/>
+    <Reference Include="System.Configuration" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-*" />
     <PackageReference Include="Oracle.ManagedDataAccess" Version="12.2.1100" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="App.config" />
   </ItemGroup>
 </Project>

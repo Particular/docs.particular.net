@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>Shared</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>

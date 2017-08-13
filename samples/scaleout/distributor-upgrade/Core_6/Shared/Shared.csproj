@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>Shared</RootNamespace>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup>

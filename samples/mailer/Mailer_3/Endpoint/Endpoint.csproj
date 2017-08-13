@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Samples.Mailer</RootNamespace>
     <AssemblyName>Samples.Mailer</AssemblyName>
   </PropertyGroup>
   <ItemGroup>

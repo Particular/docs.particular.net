@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Endpoint</RootNamespace>
     <AssemblyName>Endpoint</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
