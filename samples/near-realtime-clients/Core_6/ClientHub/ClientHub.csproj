@@ -25,7 +25,7 @@
     <PackageReference Include="Microsoft.Owin.Hosting" Version="3.1.0" />
     <PackageReference Include="Microsoft.Owin.Security" Version="3.1.0" />
     <PackageReference Include="Microsoft.Owin.SelfHost" Version="3.1.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="Owin" Version="1.0" />
   </ItemGroup>

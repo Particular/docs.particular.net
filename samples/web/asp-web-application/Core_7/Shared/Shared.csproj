@@ -11,7 +11,6 @@
   <PropertyGroup>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />

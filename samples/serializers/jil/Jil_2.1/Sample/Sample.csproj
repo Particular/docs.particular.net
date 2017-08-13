@@ -9,8 +9,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Jil" Version="2.15.2" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0036" />
-    <PackageReference Include="NServiceBus.Jil" Version="2.1.0-beta002" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Jil" Version="2.1.0-*" />
     <PackageReference Include="Sigil" Version="4.7.0" />
   </ItemGroup>
 </Project>

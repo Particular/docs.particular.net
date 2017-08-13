@@ -21,7 +21,7 @@
     <PackageReference Include="Microsoft.Data.OData" Version="5.8.2" />
     <PackageReference Include="Microsoft.Data.Services.Client" Version="5.8.2" />
     <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.2.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="7.2.6" />
     <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
