@@ -6,10 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="5.*" />
-    <PackageReference Include="NServiceBus.Wire" Version="1.0.0" />
+    <PackageReference Include="NServiceBus.Wire" Version="1.0.*" />
     <PackageReference Include="Wire" Version="0.8.2" />
   </ItemGroup>
 </Project>

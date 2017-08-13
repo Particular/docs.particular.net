@@ -2,8 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
-    <RootNamespace>SharedMessages</RootNamespace>
-    <AssemblyName>SharedMessages</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -14,6 +12,6 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-alpha0035" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-*" />
   </ItemGroup>
 </Project>

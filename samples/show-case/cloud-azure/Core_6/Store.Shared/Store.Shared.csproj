@@ -11,9 +11,9 @@
     <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.2.3" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.4.1" />
-    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.0.0" />
-    <PackageReference Include="NServiceBus.Persistence.AzureStorage" Version="1.4.0" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.*" />
+    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />
+    <PackageReference Include="NServiceBus.Persistence.AzureStorage" Version="1.*" />
     <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
     <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />

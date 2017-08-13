@@ -32,8 +32,6 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="CompleteOrder.cs" />
     <Compile Include="IssuePaymentRequest.cs" />
     <Compile Include="IssuePaymentRequestHandler.cs" />
@@ -45,8 +43,8 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-alpha0035" />
-    <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="3.0.0-alpha0035" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="3.0.0-*" />
   </ItemGroup>
   <Import Project="..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.3.0.0-alpha0035\build\NServiceBus.Persistence.Sql.MsBuild.targets" Condition="Exists('..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.3.0.0-alpha0035\build\NServiceBus.Persistence.Sql.MsBuild.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

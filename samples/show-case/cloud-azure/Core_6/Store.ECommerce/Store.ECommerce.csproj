@@ -111,8 +111,8 @@
     <PackageReference Include="Microsoft.Web.WebJobs.Publish" Version="1.0.13" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.4.1" />
-    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.0.0" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.*" />
+    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />
     <PackageReference Include="Owin" Version="1.0" />
     <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />

@@ -4,9 +4,6 @@
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ConnectionProvider.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="2.*" />
   </ItemGroup>

@@ -6,10 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NLog" Version="4.4.12" />
     <PackageReference Include="NServiceBus" Version="5.*" />
-    <PackageReference Include="NServiceBus.NLog" Version="1.1.0" />
+    <PackageReference Include="NServiceBus.NLog" Version="1.1.*" />
   </ItemGroup>
 </Project>

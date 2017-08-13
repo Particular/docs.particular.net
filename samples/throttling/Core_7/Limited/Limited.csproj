@@ -6,14 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Net.Http" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{DA456097-9B59-449E-A2FA-2E814B71D789}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="Octokit" Version="0.20.0" />
   </ItemGroup>

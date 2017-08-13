@@ -19,7 +19,7 @@
     <PackageReference Include="NServiceBus.Azure" Version="6.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="6.*" />
     <PackageReference Include="NServiceBus.Hosting.Azure" Version="6.*" />
-    <PackageReference Include="NServiceBus.Hosting.Azure.HostProcess" Version="6.2.5" />
+    <PackageReference Include="NServiceBus.Hosting.Azure.HostProcess" Version="6.*" />
     <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
     <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />

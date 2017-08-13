@@ -1,24 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>V2.Messages</RootNamespace>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFrameworks>net461</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ISomethingHappened.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\V1.Messages\V1.Messages.csproj">
-      <Project>{9D27D517-B938-4594-8836-CE06A2955FFD}</Project>
-      <Name>V1.Messages</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\V1.Messages\V1.Messages.csproj"/>
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
 </Project>

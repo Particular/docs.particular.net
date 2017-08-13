@@ -5,7 +5,6 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>Shared</RootNamespace>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\FullDuplex\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>

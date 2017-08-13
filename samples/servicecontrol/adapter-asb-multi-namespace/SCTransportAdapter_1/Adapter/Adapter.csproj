@@ -16,9 +16,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="7.2.6" />
-    <PackageReference Include="NServiceBus.Raw" Version="2.0.2" />
-    <PackageReference Include="ServiceControl.TransportAdapter" Version="1.2.2" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.Raw" Version="2.*" />
+    <PackageReference Include="ServiceControl.TransportAdapter" Version="1.*" />
     <PackageReference Include="WindowsAzure.ServiceBus" Version="4.1.3" />
   </ItemGroup>
   <ItemGroup>

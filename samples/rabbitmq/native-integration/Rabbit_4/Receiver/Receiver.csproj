@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Diagnostics.Tracing.EventSource.Redist" Version="1.1.28" />
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="4.3.3" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
     <PackageReference Include="RabbitMQ.Client" Version="5.0.1" />
   </ItemGroup>
 </Project>

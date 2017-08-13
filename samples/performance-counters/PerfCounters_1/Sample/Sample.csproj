@@ -37,7 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Metrics" Version="1.1.0" />
+    <PackageReference Include="NServiceBus.Metrics" Version="1.*" />
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="1.1.1" />
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters.MsBuild" Version="1.1.1" />
   </ItemGroup>

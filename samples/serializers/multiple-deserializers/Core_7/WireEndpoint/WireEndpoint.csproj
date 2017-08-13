@@ -16,7 +16,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Wire" Version="2.1.0-beta001" />
+    <PackageReference Include="NServiceBus.Wire" Version="2.1.0-*" />
 
     <PackageReference Include="Wire" Version="0.8.2" />
   </ItemGroup>

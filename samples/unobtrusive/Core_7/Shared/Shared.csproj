@@ -1,25 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>Shared</RootNamespace>
-    <FileAlignment>512</FileAlignment>
+    <TargetFrameworks>net461</TargetFrameworks>
   </PropertyGroup>
-  <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ConventionExtensions.cs" />
-    <Compile Include="MyEvent.cs" />
-    <Compile Include="LargeMessage.cs" />
-    <Compile Include="MessageThatExpires.cs" />
-    <Compile Include="MyCommand.cs" />
-    <Compile Include="Request.cs" />
-    <Compile Include="Response.cs" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
   </ItemGroup>

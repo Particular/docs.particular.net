@@ -6,7 +6,4 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="OrderReceived.cs" />
-  </ItemGroup>
 </Project>

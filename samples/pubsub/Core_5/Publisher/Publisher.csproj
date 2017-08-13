@@ -19,8 +19,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="5.*" />
   </ItemGroup>
 </Project>

@@ -3,15 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>EndpointSqlServer</RootNamespace>
-    <AssemblyName>EndpointSqlServer</AssemblyName>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Transactions" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointSqlServer\Program.cs">
       <Link>Program.cs</Link>
@@ -21,14 +13,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\SharedPhase3.csproj">
-      <Project>{7ea5d1d1-0860-4269-b1d6-056f09b08c68}</Project>
-      <Name>SharedPhase3</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <ProjectReference Include="..\Shared\SharedPhase3.csproj"/>
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-alpha0035" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-*" />
   </ItemGroup>
 </Project>

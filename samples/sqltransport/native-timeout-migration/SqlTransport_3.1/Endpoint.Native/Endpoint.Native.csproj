@@ -6,23 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{bf92d39e-42f6-44e9-8f7f-819993235621}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MigrateFromSql.sql" />
-    <Content Include="MigrateFromNHibernate.sql" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="3.*" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="MigrateFromNHibernate.sql" />
-    <None Remove="MigrateFromSql.sql" />
   </ItemGroup>
 </Project>

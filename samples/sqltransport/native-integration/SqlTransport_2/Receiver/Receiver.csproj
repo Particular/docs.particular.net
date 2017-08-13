@@ -6,18 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="2.*" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Scripts.sql" />
   </ItemGroup>
 </Project>

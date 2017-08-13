@@ -5,11 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="5.*" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="OrderReceived.cs" />
   </ItemGroup>
 </Project>

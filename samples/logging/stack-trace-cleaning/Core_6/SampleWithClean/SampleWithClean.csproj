@@ -28,8 +28,6 @@
     <Compile Include="ErrorQueueHeader\StackTraceCleaner.cs" />
   </ItemGroup>
   <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="AsyncFriendlyStackTrace" Version="1.5.0" />
     <PackageReference Include="NLog" Version="4.4.12" />
     <PackageReference Include="NServiceBus" Version="6.*" />

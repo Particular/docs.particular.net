@@ -5,12 +5,7 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj">
-      <Project>{DD438DB2-9C03-4BC0-BA52-BB7A35098458}</Project>
-      <Name>SharedMessages</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj"/>
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
 </Project>
