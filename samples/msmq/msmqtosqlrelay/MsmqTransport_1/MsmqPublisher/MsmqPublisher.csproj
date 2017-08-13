@@ -19,7 +19,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.NHibernate" Version="7.2.1" />
+    <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0-*" />
   </ItemGroup>
   <ItemGroup>

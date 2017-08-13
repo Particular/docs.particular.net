@@ -9,15 +9,9 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Core" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="IMessage.cs" />
     <Compile Include="PlaceOrder.cs" />
     <Compile Include="OrderPlaced.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

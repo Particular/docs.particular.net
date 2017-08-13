@@ -2,17 +2,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(TargetDir)NServiceBus.Hosting.Azure.HostProcess.exe</StartProgram>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{07BC8092-EE47-4242-B39D-AB77D02AC67B}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="CommonServiceLocator" Version="1.0" />
     <PackageReference Include="Microsoft.Data.Edm" Version="5.8.2" />
     <PackageReference Include="Microsoft.Data.OData" Version="5.8.2" />
@@ -20,9 +15,9 @@
     <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="2.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="5.0.8" />
     <PackageReference Include="NServiceBus" Version="5.*" />
-    <PackageReference Include="NServiceBus.Azure" Version="6.2.7" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="6.2.2" />
-    <PackageReference Include="NServiceBus.Hosting.Azure" Version="6.2.5" />
+    <PackageReference Include="NServiceBus.Azure" Version="6.*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="6.*" />
+    <PackageReference Include="NServiceBus.Hosting.Azure" Version="6.*" />
     <PackageReference Include="NServiceBus.Hosting.Azure.HostProcess" Version="6.2.5" />
     <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
@@ -31,8 +26,4 @@
     <PackageReference Include="System.Spatial" Version="5.8.2" />
     <PackageReference Include="WindowsAzure.Storage" Version="4.3.0" />
   </ItemGroup>
-  <PropertyGroup>
-    <StartAction>Program</StartAction>
-    <StartProgram>$(TargetDir)NServiceBus.Hosting.Azure.HostProcess.exe</StartProgram>
-  </PropertyGroup>
 </Project>

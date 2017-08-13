@@ -19,7 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="3.1.2" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="3.*" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="MigrateFromNHibernate.sql" />

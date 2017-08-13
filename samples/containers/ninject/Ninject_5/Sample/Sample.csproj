@@ -6,12 +6,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Ninject" Version="3.2.2.0" />
     <PackageReference Include="Ninject.Extensions.ContextPreservation" Version="3.2.0.0" />
     <PackageReference Include="Ninject.Extensions.NamedScope" Version="3.2.0.0" />
     <PackageReference Include="NServiceBus" Version="5.*" />
-    <PackageReference Include="NServiceBus.Ninject" Version="5.1.2" />
+    <PackageReference Include="NServiceBus.Ninject" Version="5.*" />
   </ItemGroup>
 </Project>

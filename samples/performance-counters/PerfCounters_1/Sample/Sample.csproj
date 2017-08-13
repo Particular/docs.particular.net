@@ -26,18 +26,12 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Core" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.manifest">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -47,7 +41,6 @@
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="1.1.1" />
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters.MsBuild" Version="1.1.1" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\..\packages\NServiceBus.Metrics.PerformanceCounters.MsBuild.1.1.1\build\NServiceBus.Metrics.PerformanceCounters.MsBuild.targets" Condition="Exists('..\..\..\..\packages\NServiceBus.Metrics.PerformanceCounters.MsBuild.1.1.1\build\NServiceBus.Metrics.PerformanceCounters.MsBuild.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

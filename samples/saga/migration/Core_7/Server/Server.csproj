@@ -6,18 +6,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{605CD4EC-065C-48AA-90CC-EBA935249240}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
     <PackageReference Include="Iesi.Collections" Version="4.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.NHibernate" Version="7.2.1" />
+    <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />
   </ItemGroup>
 </Project>

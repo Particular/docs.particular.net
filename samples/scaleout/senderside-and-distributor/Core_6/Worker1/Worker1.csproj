@@ -20,11 +20,8 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -48,5 +45,4 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

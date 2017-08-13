@@ -1,62 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Server</RootNamespace>
-    <AssemblyName>Server.New</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SERVER_NEW</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <LangVersion>6</LangVersion>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\Server\TestSaga.cs">
-      <Link>TestSaga.cs</Link>
-    </Compile>
-    <Compile Include="DrainTempQueueSatelliteFeature.cs" />
-    <Compile Include="Program.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{605CD4EC-065C-48AA-90CC-EBA935249240}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
+    <PackageReference Include="Newtonsoft.Json" Version="9.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="1.0.5" />
-    <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="1.0.5" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="1.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="1.*" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.1.0.5\build\NServiceBus.Persistence.Sql.MsBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.1.0.5\build\NServiceBus.Persistence.Sql.MsBuild.targets'))" />
-  </Target>
-  <Import Project="..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.1.0.5\build\NServiceBus.Persistence.Sql.MsBuild.targets" Condition="Exists('..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.1.0.5\build\NServiceBus.Persistence.Sql.MsBuild.targets')" />
 </Project>

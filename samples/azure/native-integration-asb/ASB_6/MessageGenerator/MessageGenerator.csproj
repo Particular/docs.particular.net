@@ -4,13 +4,8 @@
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{0D0EF536-3C89-4191-A0EF-C0742236FC46}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
+    <PackageReference Include="Newtonsoft.Json" Version="9.*" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NUnit" Version="3.7.1" />
   </ItemGroup>

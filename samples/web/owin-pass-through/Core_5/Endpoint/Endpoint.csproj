@@ -7,18 +7,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj">
-      <Project>{67823838-A4F7-44AC-B2A5-9F1AC3749470}</Project>
-      <Name>Messages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OwinPassThrough\OwinPassThrough.csproj">
-      <Project>{B70EED65-70FB-456B-AB80-1C11A40BBEB4}</Project>
-      <Name>NServiceBus.Owin</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj"/>
+    <ProjectReference Include="..\OwinPassThrough\OwinPassThrough.csproj"/>
     <PackageReference Include="Microsoft.AspNet.Cors" Version="5.2.3" />
     <PackageReference Include="Microsoft.Owin" Version="3.1.0" />
     <PackageReference Include="Microsoft.Owin.Cors" Version="3.1.0" />

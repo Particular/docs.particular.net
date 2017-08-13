@@ -27,7 +27,6 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
@@ -37,9 +36,6 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">
@@ -54,7 +50,6 @@
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-alpha0035" />
     <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="3.0.0-alpha0035" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.3.0.0-alpha0035\build\NServiceBus.Persistence.Sql.MsBuild.targets" Condition="Exists('..\..\..\..\..\packages\NServiceBus.Persistence.Sql.MsBuild.3.0.0-alpha0035\build\NServiceBus.Persistence.Sql.MsBuild.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

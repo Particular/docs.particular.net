@@ -4,7 +4,6 @@
     <TargetFramework>net461</TargetFramework>
     <AssemblyName>Endpoint</AssemblyName>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
-
     <OutputType>exe</OutputType>
   </PropertyGroup>
   <ItemGroup>

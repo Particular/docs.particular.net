@@ -5,7 +5,7 @@
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.0.0-alpha*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>

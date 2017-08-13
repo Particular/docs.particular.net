@@ -21,11 +21,6 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Core" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomErrorHandlingBehavior.cs" />
     <Compile Include="MyCustomException.cs" />
@@ -36,5 +31,4 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

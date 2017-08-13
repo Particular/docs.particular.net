@@ -9,11 +9,6 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Core" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="FairDistribution\AcknowledgementProcessor.cs" />
     <Compile Include="FairDistribution\FairDistribution.cs" />
@@ -29,5 +24,4 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
