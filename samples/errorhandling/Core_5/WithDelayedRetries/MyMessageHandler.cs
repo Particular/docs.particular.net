@@ -20,8 +20,7 @@ public class MyMessageHandler :
 
         if (context.Headers.TryGetValue(Headers.Retries, out var numOfRetries))
         {
-            string value;
-            Last.TryGetValue(message.Id, out value);
+            Last.TryGetValue(message.Id, out var value);
 
             if (numOfRetries != value)
             {

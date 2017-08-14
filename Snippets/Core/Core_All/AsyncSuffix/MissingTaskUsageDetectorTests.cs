@@ -104,8 +104,7 @@ public class MissingTaskUsageDetectorTests
     {
         var method = typeDefinition.Methods
             .Single(x => x.Name == name);
-        MethodDefinition moveNext;
-        if (TryGetCorrelatedAsyncMoveNext(method, out moveNext))
+        if (TryGetCorrelatedAsyncMoveNext(method, out var moveNext))
         {
             return moveNext;
         }
