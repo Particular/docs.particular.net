@@ -56,6 +56,7 @@ class Program
     {
         var directory = Directory.GetParent(typeof(Program).Assembly.Location).FullName;
         var sourceFile = Path.Combine(directory, "Raven.Bundles.UniqueConstraints.dll");
+        Directory.CreateDirectory(Path.Combine(directory, "Plugins"));
         var destinationFile = Path.Combine(directory, "Plugins", "Raven.Bundles.UniqueConstraints.dll");
         File.Copy(sourceFile, destinationFile, true);
     }
