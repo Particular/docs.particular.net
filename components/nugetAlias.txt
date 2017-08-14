@@ -86,6 +86,6 @@ Wire: NServiceBus.Wire
 Wcf: NServiceBus.Wcf
 ZeroFormatter: NServiceBus.ZeroFormatter
 Bridge: NServiceBus.Bridge
-BridgeRamp: NServiceBus.Bridge.Ramp
+BridgeConnector: NServiceBus.Bridge.Connector
 Wormhole: NServiceBus.Wormhole
 WormholeGateway: NServiceBus.Wormhole.Gateway

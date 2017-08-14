@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 MinimumVisualStudioVersion = 15.0.26430.04
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bridge_0", "Bridge_0\Bridge_0.csproj", "{69189A83-EE3D-440B-8232-771B5E5FB11C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bridge_1", "Bridge_1\Bridge_1.csproj", "{69189A83-EE3D-440B-8232-771B5E5FB11C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
