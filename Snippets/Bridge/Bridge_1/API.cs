@@ -7,16 +7,17 @@ using NServiceBus.Transport;
 
 public class API
 {
-    public void Ramp()
+    public void Connector()
     {
-        #region ramp
+        #region connector
 
-        var config = new EndpointConfiguration("MyEndpoint");
-        var routing = config.UseTransport<MsmqTransport>().Routing();
-        var ramp = routing.UseBridgeRamp("LeftBank");
+        var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        var routing = transport.Routing();
+        var bridge = routing.ConnectToBridge("LeftBank");
 
-        ramp.RouteToEndpoint(typeof(MyMessage), "Receiver");
-        ramp.RegisterPublisher(typeof(MyEvent), "Publisher");
+        bridge.RouteToEndpoint(typeof(MyMessage), "Receiver");
+        bridge.RegisterPublisher(typeof(MyEvent), "Publisher");
 
         #endregion
     }
@@ -25,15 +26,20 @@ public class API
     {
         #region bridge
 
-        var config = Bridge
-            .Between<MsmqTransport>("LeftBank")
-            .And<RabbitMQTransport>("RightBank", t => t.ConnectionString("host=localhost"));
+        var bridgeConfiguration = Bridge
+            .Between<MsmqTransport>(endpointName: "LeftBank")
+            .And<RabbitMQTransport>(
+                endpointName: "RightBank",
+                customization: transportExtensions =>
+                {
+                    transportExtensions.ConnectionString("host=localhost");
+                });
 
         #endregion
 
         #region lifecycle
 
-        var bridge = config.Create();
+        var bridge = bridgeConfiguration.Create();
 
         await bridge.Start().ConfigureAwait(false);
 
