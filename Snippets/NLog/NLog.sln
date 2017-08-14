@@ -1,8 +1,8 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-MinimumVisualStudioVersion = 14.0.26430.04
-MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog_1", "NLog_1\NLog_1.csproj", "{590609CC-58B1-42A5-A54E-CAAFD271B1B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog_2", "NLog_2\NLog_2.csproj", "{67A334B4-59BE-457C-8444-70A4C8AA8231}"

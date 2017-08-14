@@ -1,8 +1,8 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-MinimumVisualStudioVersion = 14.0.26430.04
-MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autofac_3", "Autofac_3\Autofac_3.csproj", "{BC389F87-838C-4E72-9E01-1E287BA64A3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autofac_4", "Autofac_4\Autofac_4.csproj", "{EEB21945-230F-4509-8C38-2C4C3A798B60}"

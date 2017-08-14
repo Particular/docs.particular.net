@@ -1,8 +1,8 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-MinimumVisualStudioVersion = 14.0.26430.04
-MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP_1", "ASP_1\ASP_1.csproj", "{D82CA0A6-F030-4A32-8B83-0A7EEE480DC0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure_6", "Azure_6\Azure_6.csproj", "{EE0127CD-0565-4616-8330-25EBAD5075C6}"

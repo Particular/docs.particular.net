@@ -1,8 +1,8 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-MinimumVisualStudioVersion = 14.0.26430.04
-MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructureMap_3", "StructureMap_3\StructureMap_3.csproj", "{995A0620-A8B8-4D16-8559-9CA4E581E59A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructureMap_4", "StructureMap_4\StructureMap_4.csproj", "{93DCC26A-2ADC-496C-8E94-3F48EB8CFC6B}"

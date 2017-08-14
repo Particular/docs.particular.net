@@ -1,8 +1,8 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-MinimumVisualStudioVersion = 14.0.26430.04
-MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLogging_1", "CommonLogging_1\CommonLogging_1.csproj", "{06AD9D1B-C2E1-4013-86C6-8C2EF6208102}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLogging_2", "CommonLogging_2\CommonLogging_2.csproj", "{A37618AF-99F4-438E-84FC-7CAE5B90C2D1}"

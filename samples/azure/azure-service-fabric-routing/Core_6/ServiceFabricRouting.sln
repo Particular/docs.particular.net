@@ -1,8 +1,8 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-MinimumVisualStudioVersion = 14.0.26430.04
-MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "ServiceFabricRouting", "ServiceFabricRouting\ServiceFabricRouting.sfproj", "{302CD0D1-3EB9-49A9-BB2E-723B21AADF58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateVoteCount", "CandidateVoteCount\CandidateVoteCount.csproj", "{E426FA6B-61D3-4BDE-86B1-C778F67A9200}"

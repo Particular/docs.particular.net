@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-MinimumVisualStudioVersion = 14.0.26430.04
-MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jil_2.0", "Jil_2.0\Jil_2.0.csproj", "{E5E45ADD-6D78-4177-BA4E-C4687B7F6764}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jil_2.1", "Jil_2.1\Jil_2.1.csproj", "{5A858EA9-1602-4FBC-B5D8-84DBC50D788D}"

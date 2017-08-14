@@ -1,8 +1,8 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-MinimumVisualStudioVersion = 14.0.26430.04
-MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_1", "Raven_1\Raven_1.csproj", "{C6A0CBD7-215D-4ACD-BDC0-7B7F5D97FA4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_2", "Raven_2\Raven_2.csproj", "{508F7A2B-ED72-4EBB-8B28-F486D3119B4D}"
