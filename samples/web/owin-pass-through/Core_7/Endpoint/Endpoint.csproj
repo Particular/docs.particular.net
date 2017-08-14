@@ -17,14 +17,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.Cors" Version="5.2.3" />
-    <PackageReference Include="Microsoft.Owin" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Cors" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Diagnostics" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Hosting" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.SelfHost" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Owin" Version="3.*" />
+    <PackageReference Include="Microsoft.Owin.Cors" Version="3.*" />
+    <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.*" />
+    <PackageReference Include="Microsoft.Owin.SelfHost" Version="3.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="1.2.0-*" />

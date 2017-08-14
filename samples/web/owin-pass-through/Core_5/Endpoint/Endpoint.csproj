@@ -10,13 +10,9 @@
     <Reference Include="System.Configuration" />
     <ProjectReference Include="..\Messages\Messages.csproj" />
     <ProjectReference Include="..\OwinPassThrough\OwinPassThrough.csproj" />
-    <PackageReference Include="Microsoft.AspNet.Cors" Version="5.2.3" />
     <PackageReference Include="Microsoft.Owin" Version="3.1.0" />
     <PackageReference Include="Microsoft.Owin.Cors" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Diagnostics" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="3.1.0" />
     <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Hosting" Version="3.1.0" />
     <PackageReference Include="Microsoft.Owin.SelfHost" Version="3.1.0" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="Owin" Version="1.0" />
