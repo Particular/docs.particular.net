@@ -18,14 +18,12 @@ public class ReplyMutator :
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
         var headers = context.Headers;
-        string assemblyQualifiedType;
-        if (headers.TryGetValue(Headers.OriginatingSagaType, out assemblyQualifiedType))
+        if (headers.TryGetValue(Headers.OriginatingSagaType, out var assemblyQualifiedType))
         {
             // Since OriginatingSagaType is the AssemblyQualifiedName
             // only map on the TypeName
             var type = assemblyQualifiedType.Split(',').First();
-            string newSagaName;
-            if (sagaRenameMap.TryGetValue(type, out newSagaName))
+            if (sagaRenameMap.TryGetValue(type, out var newSagaName))
             {
                 headers[Headers.OriginatingSagaType] = newSagaName;
             }

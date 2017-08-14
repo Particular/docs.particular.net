@@ -31,9 +31,8 @@
 
         static int NumberOfRetries(TransportMessage transportMessage)
         {
-            string value;
             var headers = transportMessage.Headers;
-            if (headers.TryGetValue(NServiceBus.Headers.Retries, out value))
+            if (headers.TryGetValue(NServiceBus.Headers.Retries, out var value))
             {
                 return int.Parse(value);
             }

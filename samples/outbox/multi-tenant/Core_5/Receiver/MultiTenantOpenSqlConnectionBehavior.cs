@@ -13,8 +13,7 @@ class MultiTenantOpenSqlConnectionBehavior :
         var defaultConnectionString = Connections.Default;
         #region OpenTenantDatabaseConnection
 
-        string tenant;
-        if (!context.PhysicalMessage.Headers.TryGetValue("TenantId", out tenant))
+        if (!context.PhysicalMessage.Headers.TryGetValue("TenantId", out var tenant))
         {
             throw new InvalidOperationException("No tenant id");
         }

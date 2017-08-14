@@ -21,8 +21,7 @@ public class SerializationMapper
 
     public IMessageSerializer GetSerializer(Dictionary<string, string> headers)
     {
-        string contentType;
-        if (!headers.TryGetValue(Headers.ContentType, out contentType))
+        if (!headers.TryGetValue(Headers.ContentType, out var contentType))
         {
             // default to Json
             return jsonSerializer;

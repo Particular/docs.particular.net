@@ -24,8 +24,7 @@ public class SendAndBlockController :
     {
         ViewBag.Title = "SendAndBlock";
 
-        int number;
-        if (!int.TryParse(textField, out number))
+        if (!int.TryParse(textField, out var number))
         {
             return View();
         }

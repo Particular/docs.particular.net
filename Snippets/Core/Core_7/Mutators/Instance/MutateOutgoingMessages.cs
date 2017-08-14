@@ -13,14 +13,12 @@
             // the outgoing headers
             var outgoingHeaders = context.OutgoingHeaders;
 
-            object incomingMessage;
-            if (context.TryGetIncomingMessage(out incomingMessage))
+            if (context.TryGetIncomingMessage(out var incomingMessage))
             {
                 // do something with the incoming message
             }
 
-            IReadOnlyDictionary<string, string> incomingHeaders;
-            if (context.TryGetIncomingHeaders(out incomingHeaders))
+            if (context.TryGetIncomingHeaders(out var incomingHeaders))
             {
                 // do something with the incoming headers
             }

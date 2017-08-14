@@ -62,11 +62,10 @@ class DeserializeConnector :
             return new List<LogicalMessage>();
         }
 
-        string messageTypeIdentifier;
         var messageMetadata = new List<MessageMetadata>();
 
         var headers = physicalMessage.Headers;
-        if (headers.TryGetValue(Headers.EnclosedMessageTypes, out messageTypeIdentifier))
+        if (headers.TryGetValue(Headers.EnclosedMessageTypes, out var messageTypeIdentifier))
         {
             foreach (var messageTypeString in messageTypeIdentifier.Split(';'))
             {

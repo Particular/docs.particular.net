@@ -40,8 +40,7 @@ class ProbeCollector
 
         foreach (var duration in context.Durations)
         {
-            string name;
-            if (probeNameToAiNameMap.TryGetValue(duration.Name, out name))
+            if (probeNameToAiNameMap.TryGetValue(duration.Name, out var name))
             {
                 duration.Register(
                     observer: durationLength => endpointTelemetry.TrackMetric(
@@ -51,8 +50,7 @@ class ProbeCollector
 
         foreach (var signal in context.Signals)
         {
-            string name;
-            if (probeNameToAiNameMap.TryGetValue(signal.Name, out name))
+            if (probeNameToAiNameMap.TryGetValue(signal.Name, out var name))
             {
                 signal.Register(
                     observer: () => endpointTelemetry.TrackEvent(new EventTelemetry(name)));

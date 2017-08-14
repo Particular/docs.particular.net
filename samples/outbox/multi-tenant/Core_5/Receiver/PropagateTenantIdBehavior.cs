@@ -9,8 +9,7 @@ class PropagateTenantIdBehavior :
     {
         #region PropagateTenantId
 
-        string tenant;
-        if (!context.IncomingMessage.Headers.TryGetValue("TenantId", out tenant))
+        if (!context.IncomingMessage.Headers.TryGetValue("TenantId", out var tenant))
         {
             next();
             return;

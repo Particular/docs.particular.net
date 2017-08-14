@@ -66,9 +66,8 @@ class RoutingInfoCommunicator :
                 .ToArray();
             foreach (var entry in results)
             {
-                Entry oldEntry;
                 var key = entry.Publisher;
-                if (!cache.TryGetValue(key, out oldEntry) || oldEntry.Data != entry.Data)
+                if (!cache.TryGetValue(key, out var oldEntry) || oldEntry.Data != entry.Data)
                 {
                     cache[key] = entry;
                     addedOrUpdated.Add(entry);

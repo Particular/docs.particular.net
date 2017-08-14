@@ -13,7 +13,6 @@ public class ForwardBehavior :
     public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next, Func<IDispatchContext, Task> fork)
     {
         #region ForwardBehavior
-        string destination;
         var message = context.Message;
         var headers = message.Headers;
         var body = message.Body;
@@ -25,9 +24,9 @@ public class ForwardBehavior :
             return fork(new DispatchContext(operation, context));
 
         }
-        if (headers.TryGetValue("$.store-and-forward.eventtype", out destination))
+        if (headers.TryGetValue("$.store-and-forward.eventtype", out var eventtype))
         {
-            var messageType = Type.GetType(destination, true);
+            var messageType = Type.GetType(eventtype, true);
             var operation = new TransportOperation(
                 message: new OutgoingMessage(context.MessageId, headers, body),
                 addressTag: new MulticastAddressTag(messageType));

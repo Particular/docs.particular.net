@@ -47,8 +47,7 @@ public class ThrottlingBehavior :
         // send message to this endpoint
         sendOptions.RouteToThisEndpoint();
         // maintain the original ReplyTo address
-        string replyAddress;
-        if (context.Headers.TryGetValue(Headers.ReplyToAddress, out replyAddress))
+        if (context.Headers.TryGetValue(Headers.ReplyToAddress, out var replyAddress))
         {
             sendOptions.RouteReplyTo(replyAddress);
         }

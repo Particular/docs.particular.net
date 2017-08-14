@@ -14,8 +14,7 @@ class ExtractTenantConnectionStringBehavior :
 
         #region OpenTenantDatabaseConnection
 
-        string tenant;
-        if (!context.Message.Headers.TryGetValue("TenantId", out tenant))
+        if (!context.Message.Headers.TryGetValue("TenantId", out var tenant))
         {
             throw new InvalidOperationException("No tenant id");
         }

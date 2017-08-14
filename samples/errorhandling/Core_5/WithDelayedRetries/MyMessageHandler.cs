@@ -18,8 +18,7 @@ public class MyMessageHandler :
         var context = bus.CurrentMessageContext;
         Console.WriteLine($"Handling {nameof(MyMessage)} with MessageId:{context.Id}");
 
-        string numOfRetries;
-        if (context.Headers.TryGetValue(Headers.Retries, out numOfRetries))
+        if (context.Headers.TryGetValue(Headers.Retries, out var numOfRetries))
         {
             string value;
             Last.TryGetValue(message.Id, out value);

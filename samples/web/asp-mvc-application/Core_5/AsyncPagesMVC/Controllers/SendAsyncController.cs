@@ -23,8 +23,7 @@ public class SendAsyncController :
     [AsyncTimeout(50000)]
     public void IndexAsync(string textField)
     {
-        int number;
-        if (!int.TryParse(textField, out number))
+        if (!int.TryParse(textField, out var number))
         {
             return;
         }

@@ -22,13 +22,10 @@ class MarkerProcessor :
         await next()
             .ConfigureAwait(false);
 
-        string sessionId;
-        string markerString;
-        string controlAddress;
         var headers = context.Message.Headers;
-        if (!headers.TryGetValue("NServiceBus.FlowControl.Marker", out markerString) ||
-            !headers.TryGetValue("NServiceBus.FlowControl.ControlAddress", out controlAddress) ||
-            !headers.TryGetValue("NServiceBus.FlowControl.SessionId", out sessionId))
+        if (!headers.TryGetValue("NServiceBus.FlowControl.Marker", out var markerString) ||
+            !headers.TryGetValue("NServiceBus.FlowControl.ControlAddress", out var controlAddress) ||
+            !headers.TryGetValue("NServiceBus.FlowControl.SessionId", out var sessionId))
         {
             return;
         }
