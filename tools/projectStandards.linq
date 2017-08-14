@@ -1,7 +1,5 @@
 <Query Kind="Program" />
 
-XNamespace xmlns = "http://schemas.microsoft.com/developer/msbuild/2003";
-
 string toolsDiretory = Path.GetDirectoryName(Util.CurrentQueryPath);
 string docsDirectory = Directory.GetParent(Path.GetDirectoryName(Util.CurrentQueryPath)).FullName;
 
@@ -34,6 +32,23 @@ void CleanUpSolutions()
 		{
 			foreach (var line in lines)
 			{
+				if (line.StartsWith("# Visual Studio "))
+				{
+					//VS 2017
+					writer.WriteLine("# Visual Studio 15");
+					continue;
+				}
+				//https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes#15.2.26430.04
+				if (line.StartsWith("VisualStudioVersion = "))
+				{
+					writer.WriteLine("MinimumVisualStudioVersion = 14.0.26430.04");
+					continue;
+				}
+				if (line.StartsWith("MinimumVisualStudioVersion = "))
+				{
+					writer.WriteLine("MinimumVisualStudioVersion = 14.0.26430.04");
+					continue;
+				}
 				if (line.Contains(".Release"))
 				{
 					continue;

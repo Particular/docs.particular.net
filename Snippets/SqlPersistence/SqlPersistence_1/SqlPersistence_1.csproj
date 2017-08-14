@@ -4,6 +4,7 @@
     <TargetFramework>net462</TargetFramework>
     <NoWarn>NU1603</NoWarn>
     <LangVersion xmlns="http://schemas.microsoft.com/developer/msbuild/2003">6</LangVersion>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="6.*" />
