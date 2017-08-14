@@ -23,6 +23,7 @@ static class Program
 
         #endregion
 
+        busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
         using (var bus = Bus.Create(busConfiguration).Start())

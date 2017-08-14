@@ -9,15 +9,16 @@ public class Handler :
 {
     static ILog log = LogManager.GetLogger<Handler>();
 
-    public async Task Handle(TheMessage message, IMessageHandlerContext context)
+    public Task Handle(TheMessage message, IMessageHandlerContext context)
     {
         if (message.ThrowException)
         {
-        log.Info($"Received. MessageId:{context.MessageId}. Going to throw an exception.");
+            log.Info($"Received. MessageId:{context.MessageId}. Going to throw an exception.");
             throw new Exception("The exception message.");
         }
-        await Task.Delay(TimeSpan.FromSeconds(10)).ConfigureAwait(false);
-        log.Info($"Finished handling. MessageId:{context.MessageId}");
+        log.Info($"Handling MessageId:{context.MessageId}");
+        log.Info("Delay 10 seconds");
+        return Task.Delay(TimeSpan.FromSeconds(10));
     }
 }
 #endregion

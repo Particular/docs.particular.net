@@ -1,8 +1,8 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26114.2
-MinimumVisualStudioVersion = 15.0.26114.2
+MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 14.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ninject_3", "Ninject_3\Ninject_3.csproj", "{80DD7FC1-F66E-45E1-AAA8-D05A674DCA8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ninject_4", "Ninject_4\Ninject_4.csproj", "{E4DCA542-8280-4316-AC7D-9B83D429AC40}"

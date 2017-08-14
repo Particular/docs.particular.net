@@ -7,11 +7,12 @@ using NServiceBus.Logging;
 static class Logger
 {
     static ILog log = LogManager.GetLogger(typeof(Logger));
-    public static string OutputFilePath = Path.GetFullPath(@"..\..\..\StartupShutdownSequence.txt");
+    public static string OutputFilePath;
     static object locker = new object();
 
     static Logger()
     {
+        OutputFilePath = Path.GetFullPath(@"..\StartupShutdownSequence.txt");
         AppDomain.CurrentDomain.ProcessExit += Exit;
         File.Delete(OutputFilePath);
         File.AppendAllText(OutputFilePath, "startcode");

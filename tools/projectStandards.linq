@@ -1,7 +1,5 @@
 <Query Kind="Program" />
 
-XNamespace xmlns = "http://schemas.microsoft.com/developer/msbuild/2003";
-
 string toolsDiretory = Path.GetDirectoryName(Util.CurrentQueryPath);
 string docsDirectory = Directory.GetParent(Path.GetDirectoryName(Util.CurrentQueryPath)).FullName;
 
@@ -34,6 +32,23 @@ void CleanUpSolutions()
 		{
 			foreach (var line in lines)
 			{
+				if (line.StartsWith("# Visual Studio "))
+				{
+					//VS 2017
+					writer.WriteLine("# Visual Studio 15");
+					continue;
+				}
+				//https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes#15.2.26430.04
+				if (line.StartsWith("VisualStudioVersion = "))
+				{
+					writer.WriteLine("MinimumVisualStudioVersion = 14.0.26430.04");
+					continue;
+				}
+				if (line.StartsWith("MinimumVisualStudioVersion = "))
+				{
+					writer.WriteLine("MinimumVisualStudioVersion = 14.0.26430.04");
+					continue;
+				}
 				if (line.Contains(".Release"))
 				{
 					continue;
@@ -54,71 +69,18 @@ void CleanUpProjects()
 	{
 		var xdocument = XDocument.Load(projectFile);
 
-		foreach (var element in xdocument.DescendantNodes().OfType<XComment>().ToList())
+		var propertyGroup = xdocument.Descendants("PropertyGroup").FirstOrDefault();
+
+		if (propertyGroup != null)
 		{
-			if (element.Value.Contains("To modify your build process"))
+			var langVersion = propertyGroup.Element("LangVersion");
+			if (langVersion == null)
 			{
-				element.Remove();
+				propertyGroup.Add(new XElement("LangVersion", "7"));
 			}
-		}
-
-		var assemblyInfoNode = xdocument.Descendants(xmlns + "Compile")
-			.SingleOrDefault(x => (string)x.Attribute("Include") == @"Properties\AssemblyInfo.cs");
-		if (assemblyInfoNode != null)
-		{
-			assemblyInfoNode.Remove();
-		}
-
-		var propertyGroups = xdocument.Descendants(xmlns + "PropertyGroup").ToList();
-		
-
-		xdocument.Descendants(xmlns + "NuGetPackageImportStamp")
-			.Remove();
-
-		foreach (var element in propertyGroups)
-		{
-			var condition = element.Attribute("Condition");
-			if (condition == null)
+			else
 			{
-				continue;
-			}
-
-			if (condition.Value == " '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ")
-			{
-				element.Remove();
-			}
-
-			if (condition.Value != " '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ")
-			{
-				var treatAsErrors = element.Element(xmlns + "TreatWarningsAsErrors");
-				if (treatAsErrors == null)
-				{
-					element.Add(new XElement(xmlns + "TreatWarningsAsErrors", "true"));
-				}
-				else
-				{
-					treatAsErrors.Value = "true";
-				}
-
-				var langVersion = element.Element(xmlns + "LangVersion");
-				if (langVersion == null)
-				{
-					element.Add(new XElement(xmlns + "LangVersion", "6"));
-				}
-				else
-				{
-					langVersion.Value = "6";
-				}
-
-				var useVsHost = element.Element(xmlns + "UseVSHostingProcess");
-				if (useVsHost == null)
-				{
-					element.Add(new XElement(xmlns + "UseVSHostingProcess", "false"));
-				}
-				else
-				{
-					useVsHost.Value = "false";
-				}
+				langVersion.Value = "7";
 			}
 		}
 		xdocument.Save(projectFile);

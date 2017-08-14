@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using NServiceBus;
 using NServiceBus.Persistence;
 using Raven.Client.Document;
@@ -11,6 +12,7 @@ class Program
     {
         var endpointName = "Samples.RavenDBCustomSagaFinder";
         Console.Title = endpointName;
+        CopyUniqueConstraintsToPlugins();
         using (new RavenHost())
         {
             var busConfiguration = new BusConfiguration();
@@ -48,5 +50,14 @@ class Program
                 }
             }
         }
+    }
+
+    static void CopyUniqueConstraintsToPlugins()
+    {
+        var directory = Directory.GetParent(typeof(Program).Assembly.Location).FullName;
+        var sourceFile = Path.Combine(directory, "Raven.Bundles.UniqueConstraints.dll");
+        Directory.CreateDirectory(Path.Combine(directory, "Plugins"));
+        var destinationFile = Path.Combine(directory, "Plugins", "Raven.Bundles.UniqueConstraints.dll");
+        File.Copy(sourceFile, destinationFile, true);
     }
 }

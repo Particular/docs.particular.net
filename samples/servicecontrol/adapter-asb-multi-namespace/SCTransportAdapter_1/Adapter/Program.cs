@@ -73,7 +73,7 @@ class Program
 
         transportAdapterConfig.RedirectRetriedMessages((failedQ, headers) =>
         {
-            if (headers.TryGetValue(AdapterSpecificHeaders.OriginalNamespace, out string namespaceAlias))
+            if (headers.TryGetValue(AdapterSpecificHeaders.OriginalNamespace, out var namespaceAlias))
             {
                 return $"{failedQ}@{namespaceAlias}";
             }

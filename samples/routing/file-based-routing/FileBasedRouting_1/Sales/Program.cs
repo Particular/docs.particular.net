@@ -19,7 +19,7 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         var routing = transport.Routing();
-        routing.UseFileBasedRouting(@"..\..\..\endpoints.xml");
+        routing.UseFileBasedRouting(@"..\..\..\..\endpoints.xml");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26711.1
-MinimumVisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 14.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{476D0A88-E281-4BC8-9617-93E53C1F9FE6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{75424F0A-458B-42DA-9DDD-600367893A93}"

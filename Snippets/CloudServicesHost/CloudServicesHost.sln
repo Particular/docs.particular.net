@@ -1,8 +1,8 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26114.2
-MinimumVisualStudioVersion = 15.0.26114.2
+MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 14.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudServicesHost_6", "CloudServicesHost_6\CloudServicesHost_6.csproj", "{C328B47D-B582-47AA-BD0C-A6769A28F079}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudServicesHost_7", "CloudServicesHost_7\CloudServicesHost_7.csproj", "{AA9AD22E-FB8C-4AB4-AD09-D43B3260BB6A}"
