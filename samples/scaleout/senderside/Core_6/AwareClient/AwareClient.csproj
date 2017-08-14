@@ -5,7 +5,12 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj"/>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
     <PackageReference Include="NServiceBus" Version="6.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="routes.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

@@ -6,7 +6,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <ProjectReference Include="..\Shared\Shared.csproj"/>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="6.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="instance-mapping.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
