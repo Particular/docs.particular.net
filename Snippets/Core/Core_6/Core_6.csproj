@@ -4,7 +4,6 @@
     <TargetFramework>net462</TargetFramework>
     <RootNamespace>Core6</RootNamespace>
     <PlatformTarget>x64</PlatformTarget>
-    <LangVersion xmlns="http://schemas.microsoft.com/developer/msbuild/2003">6</LangVersion>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>

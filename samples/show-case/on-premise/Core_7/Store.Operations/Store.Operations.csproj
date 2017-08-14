@@ -9,8 +9,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj"/>
-    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj"/>
+    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
+    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />
