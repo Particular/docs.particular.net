@@ -26,7 +26,7 @@ class Program
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         var routing = transport.Routing();
         var routingTable = routing.InstanceMappingFile();
-        routingTable.FilePath(@"..\..\..\instance-mapping.xml");
+        routingTable.FilePath(@"..\..\..\..\instance-mapping.xml");
         #endregion
 
         routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.InstanceMappingFile.Sales");

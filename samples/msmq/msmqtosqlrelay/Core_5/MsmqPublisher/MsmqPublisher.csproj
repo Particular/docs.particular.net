@@ -5,10 +5,18 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj"/>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="Iesi.Collections" Version="4.0.2" />
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="6.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="AddSubscriber.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="CreateDatabase.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
