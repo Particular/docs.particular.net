@@ -10,6 +10,8 @@ related:
 
 NServiceBus takes instances of .NET objects (messages, events and commands) and then sends/receives them over a specified [Transport](/transports/). As part of this the object needs to be serialized and deserialized. To achieve this NServiceBus uses **Serializers**.
 
+The [Newtonsoft JSON Serializer](newtonsoft.md) provides an effective general-purpose serializer appropriate for most use cases based on the ubiquitous [Json.NET package](http://www.newtonsoft.com/json). The Newtonsoft package provides a good combination of compactness, human readability, and performance. Other serializers are supported in order to enable specific performance or integration requirements.
+
 
 ### Supported Serializers
 
