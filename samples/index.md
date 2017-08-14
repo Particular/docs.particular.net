@@ -45,7 +45,7 @@ Unless otherwise specified (by an individual sample) the following are the defau
 
 ### Visual Studio and .NET
 
-[Visual Studio 2015 Update 1](https://www.visualstudio.com/en-us/news/releasenotes/vs2015-update1-vs) and [.NET 4.6.1](https://www.microsoft.com/en-au/download/details.aspx?id=49981) are required.
+[Visual Studio 2017 Update 2](https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes) and [.NET 4.6.1](https://www.microsoft.com/en-au/download/details.aspx?id=49981) are required.
 
 
 ### C# Language Level

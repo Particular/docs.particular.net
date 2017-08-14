@@ -90,16 +90,6 @@ void CleanUpProjects()
 
 			if (condition.Value != " '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ")
 			{
-				var treatAsErrors = element.Element(xmlns + "TreatWarningsAsErrors");
-				if (treatAsErrors == null)
-				{
-					element.Add(new XElement(xmlns + "TreatWarningsAsErrors", "true"));
-				}
-				else
-				{
-					treatAsErrors.Value = "true";
-				}
-
 				var langVersion = element.Element(xmlns + "LangVersion");
 				if (langVersion == null)
 				{
@@ -108,16 +98,6 @@ void CleanUpProjects()
 				else
 				{
 					langVersion.Value = "6";
-				}
-
-				var useVsHost = element.Element(xmlns + "UseVSHostingProcess");
-				if (useVsHost == null)
-				{
-					element.Add(new XElement(xmlns + "UseVSHostingProcess", "false"));
-				}
-				else
-				{
-					useVsHost.Value = "false";
 				}
 			}
 		}
