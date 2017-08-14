@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-MinimumVisualStudioVersion = 14.0.26430.04
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 14.0.26430.04
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_2", "Rabbit_2\Rabbit_2.csproj", "{884F3809-108A-410F-AA43-5BB15AB05654}"
 EndProject
@@ -13,8 +13,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_All", "Rabbit_All\Rabbit_All.csproj", "{E22A9C25-5C4A-43D5-B74B-47BC568B2D9D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_5", "Rabbit_5\Rabbit_5.csproj", "{A16628AC-02E7-4C95-A291-675F91BBE065}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

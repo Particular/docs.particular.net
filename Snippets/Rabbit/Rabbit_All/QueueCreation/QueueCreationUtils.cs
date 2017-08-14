@@ -2,14 +2,16 @@
 
 namespace Rabbit_All.QueueCreation
 {
-#region rabbit-create-queues
+    using System;
+
+    #region rabbit-create-queues
     public static class QueueCreationUtils
     {
         public static void CreateQueue(string uri, string queueName, bool durableMessages, bool createExchange)
         {
             var connectionFactory = new ConnectionFactory
             {
-                Uri = uri,
+                Uri = new Uri(uri)
             };
 
             using (var connection = connectionFactory.CreateConnection())

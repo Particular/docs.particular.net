@@ -2,6 +2,7 @@
 
 namespace Rabbit_All.QueueDeletion
 {
+    using System;
 
     #region rabbit-delete-queues
 
@@ -11,7 +12,7 @@ namespace Rabbit_All.QueueDeletion
         {
             var connectionFactory = new ConnectionFactory
             {
-                Uri = uri,
+                Uri = new Uri(uri)
             };
 
             using (var connection = connectionFactory.CreateConnection())
