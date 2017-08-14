@@ -73,26 +73,12 @@ class Program
 
         transportAdapterConfig.RedirectRetriedMessages((failedQ, headers) =>
         {
-            if (headers.TryGetValue(AdapterSpecificHeaders.OriginalNamespace, out string namespaceAlias))
+            if (headers.TryGetValue(AdapterSpecificHeaders.OriginalNamespace, out var namespaceAlias))
             {
                 return $"{failedQ}@{namespaceAlias}";
             }
             return failedQ;
         });
-
-        #endregion
-
-        #region PreserveReplyToAddress
-
-        transportAdapterConfig.PreserveHeaders(
-            preserveCallback: headers =>
-            {
-                headers[AdapterSpecificHeaders.OriginalReplyToAddress] = headers[Headers.ReplyToAddress];
-            },
-            restoreCallback: headers =>
-            {
-                headers[Headers.ReplyToAddress] = headers[AdapterSpecificHeaders.OriginalReplyToAddress];
-            });
 
         #endregion
 

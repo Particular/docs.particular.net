@@ -1,8 +1,8 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 15
+MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 14.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBusEndpoint", "NServiceBusEndpoint\NServiceBusEndpoint.csproj", "{814CEA2E-C5F5-4315-8FC3-8517B09C5931}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointsMonitor", "EndpointsMonitor\EndpointsMonitor.csproj", "{7A1C1662-35D1-4720-9F9F-4D23E9A57CE1}"

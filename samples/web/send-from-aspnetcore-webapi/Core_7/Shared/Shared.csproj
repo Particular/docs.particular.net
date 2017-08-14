@@ -2,15 +2,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
-    <AssemblyName>Shared</AssemblyName>
-    <PackageId>Shared</PackageId>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.0.0-alpha*" />
-    <Reference Include="System" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>

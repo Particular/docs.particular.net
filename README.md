@@ -499,6 +499,7 @@ Tutorials are similar to samples but optimized for new users to follow in a step
 * Focus on only the most recent version
 * Rendered without button toolbar and component information at the top
 * By default, solution download button is rendered at the end
+  * An inline download button can be created instead using a `downloadbutton` directive on its own line within the tutorial markdown.
 * Utilizes two collections of snippets, from the solution and also from an optional Snippets solution, allowing more granular or multi-phase snippets
 * Allows use of personal voice (you/your/we/etc.) within `/tutorials` directory to foster collaborative tone with user
 
@@ -518,22 +519,6 @@ An example directory structure for a tutorial might look like this:
 ```
 
 Tutorials can be grouped together in a parent directory with a normal article serving as a table of contents.
-
-
-### Metadata options
-
-These YAML metadata options affect rendering for tutorials only.
-
-
-#### Download at top
-
-By default a tutorial assumes the user will build their own solution from scratch, and only offers the completed download at the bottom. If the tutorial requires a "starter" solution, a banner can be placed at the top of the page notifying the user and providing the download link.
-
-```
-extensions:
-- !!tutorial
-  downloadAtTop: true
-```
 
 
 ### Multi-lesson tutorials
@@ -1070,11 +1055,6 @@ Avoid deep link into the RavenDB documentation since it is a maintenance pain. F
 # Utilities
 
 Under https://github.com/Particular/docs.particular.net/tree/master/tools there are several utilities to help with the management of this repository. All are in the form of [LINQPad](https://www.linqpad.net/) scripts.
-
-
-## nugets.linq
-
-Uses nuget.exe to update all NuGet packages in all solutions to the newest patch version. This script takes 10-20 minutes depending on bandwidth. The script will **not** update to the newest minor or major versions.
 
 
 ## projectStandards.linq

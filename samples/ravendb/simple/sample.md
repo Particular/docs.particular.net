@@ -33,6 +33,8 @@ Configure the endpoint to use RavenDB persistence.
 
 snippet: config
 
+include: raven-dispose-warning
+
 
 ### In Process Raven Host
 

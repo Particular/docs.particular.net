@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
-MinimumVisualStudioVersion = 15.0.26114.2
+MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 14.0.26430.04
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metrics_1", "Metrics_1\Metrics_1.csproj", "{4731FC5D-7DFE-4445-941B-899FB1B1EF9D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metrics_1.1", "Metrics_1.1\Metrics_1.1.csproj", "{DE9F5B9B-CFE0-4208-982C-E2A8F6B4B73B}"

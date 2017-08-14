@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
-MinimumVisualStudioVersion = 15.0.26114.2
+MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 14.0.26430.04
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RawMessaging_1", "RawMessaging_1\RawMessaging_1.csproj", "{0C866435-AD55-4078-82F9-94319002049C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RawMessaging_2", "RawMessaging_2\RawMessaging_2.csproj", "{D02962A6-450A-489A-BDB4-F5C9D8A3B58D}"

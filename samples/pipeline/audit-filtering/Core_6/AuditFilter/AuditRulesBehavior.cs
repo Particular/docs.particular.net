@@ -8,7 +8,7 @@ public class AuditRulesBehavior :
 {
     public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
     {
-        if (context.Message.MessageType == typeof(DoNotAuditThisMessage))
+        if (context.Message.Instance is DoNotAuditThisMessage)
         {
             var auditFilterContext = context.Extensions.Get<AuditFilterContext>();
             auditFilterContext.SkipAudit = true;

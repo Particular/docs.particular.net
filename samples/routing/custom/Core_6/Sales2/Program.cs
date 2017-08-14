@@ -23,6 +23,8 @@ class Program
             {
                 return new SqlConnection(AutomaticRoutingConst.ConnectionString);
             });
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.DisableCache();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 

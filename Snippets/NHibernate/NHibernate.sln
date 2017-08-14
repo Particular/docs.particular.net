@@ -1,8 +1,8 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26114.2
-MinimumVisualStudioVersion = 15.0.26114.2
+MinimumVisualStudioVersion = 14.0.26430.04
+MinimumVisualStudioVersion = 14.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate_4", "NHibernate_4\NHibernate_4.csproj", "{91C0138C-290B-4F5D-A5E8-61A9095391B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate_5", "NHibernate_5\NHibernate_5.csproj", "{C14E4108-0DEE-480D-BCC4-D0442097CE3D}"

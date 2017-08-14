@@ -14,12 +14,13 @@ class Configure
         var documentStore = new DocumentStore();
         // configure documentStore here
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
-        persistence.UseSharedAsyncSession(() =>
-        {
-            var session = documentStore.OpenAsyncSession();
-            // customize session here
-            return session;
-        });
+        persistence.UseSharedAsyncSession(
+            getAsyncSessionFunc: () =>
+            {
+                var session = documentStore.OpenAsyncSession();
+                // customize session here
+                return session;
+            });
 
         #endregion
     }
@@ -42,31 +43,41 @@ class Configure
     {
         #region ravendb-persistence-specific-create-store-by-func
 
+        //TODO: instances of DocumentStore should be disposed of at endpoint cleanup time
+        DocumentStore subscriptionStore;
+        DocumentStore sagaStore;
+        DocumentStore timeoutStore;
+        DocumentStore gatewayStore;
+
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
-        persistence.UseDocumentStoreForSubscriptions(readOnlySettings =>
-        {
-            var documentStore = new DocumentStore();
-            // configure documentStore here
-            return documentStore;
-        });
-        persistence.UseDocumentStoreForSagas(readOnlySettings =>
-        {
-            var documentStore = new DocumentStore();
-            // configure documentStore here
-            return documentStore;
-        });
-        persistence.UseDocumentStoreForTimeouts(readOnlySettings =>
-        {
-            var documentStore = new DocumentStore();
-            // configure documentStore here
-            return documentStore;
-        });
-        persistence.UseDocumentStoreForGatewayDeduplication(readOnlySettings =>
-        {
-            var documentStore = new DocumentStore();
-            // configure documentStore here
-            return documentStore;
-        });
+        persistence.UseDocumentStoreForSubscriptions(
+            storeCreator: readOnlySettings =>
+            {
+                subscriptionStore = new DocumentStore();
+                // configure documentStore here
+                return subscriptionStore;
+            });
+        persistence.UseDocumentStoreForSagas(
+            storeCreator: readOnlySettings =>
+            {
+                sagaStore = new DocumentStore();
+                // configure documentStore here
+                return sagaStore;
+            });
+        persistence.UseDocumentStoreForTimeouts(
+            storeCreator: readOnlySettings =>
+            {
+                timeoutStore = new DocumentStore();
+                // configure documentStore here
+                return timeoutStore;
+            });
+        persistence.UseDocumentStoreForGatewayDeduplication(
+            storeCreator: readOnlySettings =>
+            {
+                gatewayStore = new DocumentStore();
+                // configure documentStore here
+                return gatewayStore;
+            });
 
         #endregion
     }
@@ -104,13 +115,15 @@ class Configure
     {
         #region ravendb-persistence-create-store-by-func
 
+        DocumentStore documentStore;
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
-        persistence.SetDefaultDocumentStore(readOnlySettings =>
-        {
-            var documentStore = new DocumentStore();
-            // configure documentStore here
-            return documentStore;
-        });
+        persistence.SetDefaultDocumentStore(
+            storeCreator: readOnlySettings =>
+            {
+                documentStore = new DocumentStore();
+                // configure documentStore here
+                return documentStore;
+            });
 
         #endregion
     }

@@ -21,7 +21,7 @@ class Program
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         var routing = transport.Routing();
         var routingTable = routing.InstanceMappingFile();
-        routingTable.FilePath(@"..\..\..\instance-mapping.xml");
+        routingTable.FilePath(@"..\..\..\..\instance-mapping.xml");
         routing.RegisterPublisher(typeof(OrderAccepted), "Samples.InstanceMappingFile.Sales");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

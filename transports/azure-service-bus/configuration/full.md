@@ -102,7 +102,7 @@ The following settings are available to define how subscriptions should be creat
 
 The following settings determine how NServiceBus will connect to Azure Service Bus:
 
- * `NumberOfClientsPerEntity(int)`: NServiceBus maintains a pool of receive and send clients for each entity. This setting determines how big that pool is. Defaults to 5.
+ * `NumberOfClientsPerEntity(int)`: NServiceBus maintains a pool of receive and send clients for each entity. This setting determines how big that pool is. Defaults to `max(Number of logical processors, 2)`.
  * `ConnectivityMode(ConnectivityMode)`: Determines how NServiceBus connects to Azure Service Bus, using [TCP, HTTPS or HTTP](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.connectivitymode). Defaults to TCP.
  * `TransportType(TransportType)`: Determines what transport protocol NServiceBus is using for Azure Service Bus, `TransportType.NetMessaging` or `TransportType.Amqp`. Defaults to `TransportType.NetMessaging`.
  * `BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes)`: Controls how the body of a brokered message will be serialized, either as a byte array or as a stream. Defaults to byte array.
@@ -117,7 +117,7 @@ Messaging factories are the heart of connectivity management in the Azure Servic
 
 The following settings allow to control the messaging factories:
 
- * `NumberOfMessagingFactoriesPerNamespace(int)`: NServiceBus maintains a pool of messaging factories per namespace, this setting determines the size of the pool. Defaults to 5.
+ * `NumberOfMessagingFactoriesPerNamespace(int)`: NServiceBus maintains a pool of messaging factories per namespace, this setting determines the size of the pool. Defaults to `max(Number of logical processors, 2)`.
  * `RetryPolicy(RetryPolicy)`: Determines how entities should respond on transient connectivity failures. Defaults to `RetryPolicy.Default`, which is an exponential retry.
  * `BatchFlushInterval(TimeSpan)`: This setting controls the batching behavior for message senders. They will buffer send operations during this time frame and send all messages at once. Defaults to 0.5 seconds. Specify `TimeSpan.Zero` to turn batching off.
  * `MessagingFactorySettingsFactory(Func<string, MessagingFactorySettings>)`: This factory method allows to override creation of messaging factories.
