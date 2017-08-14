@@ -76,11 +76,11 @@ void CleanUpProjects()
 			var langVersion = propertyGroup.Element("LangVersion");
 			if (langVersion == null)
 			{
-				propertyGroup.Add(new XElement("LangVersion", "6"));
+				propertyGroup.Add(new XElement("LangVersion", "7"));
 			}
 			else
 			{
-				langVersion.Value = "6";
+				langVersion.Value = "7";
 			}
 		}
 		xdocument.Save(projectFile);

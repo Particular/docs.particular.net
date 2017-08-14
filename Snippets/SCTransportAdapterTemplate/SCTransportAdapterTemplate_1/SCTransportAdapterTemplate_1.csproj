@@ -3,6 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <RootNamespace>ServiceTemplate1</RootNamespace>
-    <LangVersion>6</LangVersion>
+    <LangVersion>7</LangVersion>
   </PropertyGroup>
 </Project>
