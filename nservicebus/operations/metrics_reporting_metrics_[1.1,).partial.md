@@ -12,7 +12,7 @@ Custom observers might be registered to access every value reported by probes.
 
 snippet: Metrics-Observers
 
-WARN: Methods provided below that enable logging metrics data are obsoleted in version 1.1 and will be removed in the next major version.
+WARNING: Methods provided below that enable logging metrics data are obsoleted in version 1.1 and will be removed in the next major version.
 
 ### To NServiceBus log
 
