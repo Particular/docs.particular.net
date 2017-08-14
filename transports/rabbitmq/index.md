@@ -14,6 +14,8 @@ tags:
 
 Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) using the [RabbitMQ .NET Client](https://www.nuget.org/packages/RabbitMQ.Client/).
 
+WARNING: The transport is not compatible with RabbitMQ broker Versions 3.3.X and below.
+
 
 ## Configuring the endpoint
 
