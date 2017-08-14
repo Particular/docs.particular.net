@@ -3,13 +3,12 @@
   <PropertyGroup>
     <TargetFrameworks>net4.6.2</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <LangVersion>6</LangVersion>
+    <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <PackageReference Include="Jil" Version="2.15.2" />
+    <PackageReference Include="Jil" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Jil" Version="2.1.0-*" />
-    <PackageReference Include="Sigil" Version="4.7.0" />
   </ItemGroup>
 </Project>

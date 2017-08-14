@@ -3,22 +3,14 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <LangVersion>6</LangVersion>
+    <LangVersion>7</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj">
-      <Project>{59f2ba7e-4da5-49f8-9dbc-520fa99f4679}</Project>
-      <Name>Store.Messages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj">
-      <Project>{68263f62-14c1-4fb8-b7d5-0d1565951f5e}</Project>
-      <Name>Store.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
+    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />

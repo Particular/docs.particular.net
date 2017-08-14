@@ -3,13 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <LangVersion>6</LangVersion>
+    <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Common.Logging" Version="3.3.1" />
-    <PackageReference Include="Common.Logging.Core" Version="3.3.1" />
+    <PackageReference Include="Common.Logging" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Spring" Version="7.0.0" />
-    <PackageReference Include="Spring.Core" Version="2.0.1" />
+    <PackageReference Include="NServiceBus.Spring" Version="7.*" />
+    <PackageReference Include="Spring.Core" Version="2.*" />
   </ItemGroup>
 </Project>

@@ -3,12 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <LangVersion>6</LangVersion>
+    <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.ZeroFormatter" Version="1.0.*" />
-    <PackageReference Include="ZeroFormatter" Version="1.6.4" />
-    <PackageReference Include="ZeroFormatter.Interfaces" Version="1.6.4" />
+    <PackageReference Include="ZeroFormatter" Version="1.*" />
   </ItemGroup>
 </Project>

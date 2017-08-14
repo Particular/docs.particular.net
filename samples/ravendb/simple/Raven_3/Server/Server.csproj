@@ -4,14 +4,14 @@
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <LangVersion>6</LangVersion>
+    <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.ComponentModel.Composition" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="3.*" />
-    <PackageReference Include="RavenDB.Client" Version="3.5.4" />
-    <PackageReference Include="RavenDB.Database" Version="3.5.4" />
+    <PackageReference Include="RavenDB.Client" Version="3.*" />
+    <PackageReference Include="RavenDB.Database" Version="3.*" />
   </ItemGroup>
 </Project>
