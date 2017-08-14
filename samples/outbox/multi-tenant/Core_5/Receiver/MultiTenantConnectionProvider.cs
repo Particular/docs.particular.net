@@ -12,11 +12,11 @@ class MultiTenantConnectionProvider :
 
         #region GetConnectionFromContext
 
-        var pipelineExecutor = Program.PipelineExecutor;
+        var executor = Program.PipelineExecutor;
         var key = $"LazySqlConnection-{defaultConnectionString}";
         if (
-            pipelineExecutor != null &&
-            pipelineExecutor.CurrentContext.TryGet(key, out var lazy))
+            executor != null &&
+            executor.CurrentContext.TryGet(key, out Lazy<IDbConnection> lazy))
         {
             var connection = Driver.CreateConnection();
             connection.ConnectionString = lazy.Value.ConnectionString;

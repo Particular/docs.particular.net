@@ -33,7 +33,7 @@ END";
 
     public async Task Install(string identity)
     {
-        if (!settings.TryGet("NServiceBus.AutomaticRouting.ConnectionString", out var connectionString))
+        if (!settings.TryGet("NServiceBus.AutomaticRouting.ConnectionString", out string connectionString))
         {
             return;
         }

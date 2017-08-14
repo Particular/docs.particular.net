@@ -21,7 +21,8 @@ class StreamSendBehavior :
         #region copy-stream-properties-to-disk
         var timeToBeReceived = TimeSpan.MaxValue;
 
-        if (context.Extensions.TryGetDeliveryConstraint(out var constraint))
+        var extensions = context.Extensions;
+        if (extensions.TryGetDeliveryConstraint(out DiscardIfNotReceivedBefore constraint))
         {
             timeToBeReceived = constraint.MaxTime;
         }

@@ -1,6 +1,5 @@
 ﻿namespace Core6.Mutators.Instance
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using NServiceBus.MessageMutator;
 

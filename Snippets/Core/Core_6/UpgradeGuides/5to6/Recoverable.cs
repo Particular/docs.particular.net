@@ -16,7 +16,7 @@
 
             #region ReadDeliveryConstraintNonDurable
 
-            context.Extensions.TryGetDeliveryConstraint(out var constraint);
+            context.Extensions.TryGetDeliveryConstraint(out NonDurableDelivery constraint);
 
             #endregion
         }

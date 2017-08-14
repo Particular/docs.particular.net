@@ -16,7 +16,7 @@ public class ForwardBehavior :
         var message = context.Message;
         var headers = message.Headers;
         var body = message.Body;
-        if (headers.TryGetValue("$.store-and-forward.destination", out destination))
+        if (headers.TryGetValue("$.store-and-forward.destination", out var destination))
         {
             var operation = new TransportOperation(
                 message: new OutgoingMessage(context.MessageId, headers, body),

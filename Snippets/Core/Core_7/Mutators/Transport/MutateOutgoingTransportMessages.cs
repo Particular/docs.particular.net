@@ -1,6 +1,5 @@
 ﻿namespace Core7.Mutators.Transport
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using NServiceBus.MessageMutator;
 

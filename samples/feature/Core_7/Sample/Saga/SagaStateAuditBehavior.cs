@@ -18,8 +18,7 @@ class SagaStateAuditBehavior :
     {
         await next()
             .ConfigureAwait(false);
-        ActiveSagaInstance activeSagaInstance;
-        if (context.Extensions.TryGet(out var activeSagaInstance))
+        if (context.Extensions.TryGet(out ActiveSagaInstance activeSagaInstance))
         {
             var instance = activeSagaInstance.Instance.Entity;
             logger.WriteSaga(instance);

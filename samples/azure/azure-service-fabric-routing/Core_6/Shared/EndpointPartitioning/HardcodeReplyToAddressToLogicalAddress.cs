@@ -15,7 +15,7 @@ class HardcodeReplyToAddressToLogicalAddress :
 
     public Task Invoke(IOutgoingPhysicalMessageContext context, Func<IOutgoingPhysicalMessageContext, Task> next)
     {
-        if (instanceSpecificQueue != null && !context.Extensions.TryGet(out var noOverride))
+        if (instanceSpecificQueue != null && !context.Extensions.TryGet(out NoReplyToAddressOverride _))
         {
             context.Headers[Headers.ReplyToAddress] = instanceSpecificQueue;
         }
