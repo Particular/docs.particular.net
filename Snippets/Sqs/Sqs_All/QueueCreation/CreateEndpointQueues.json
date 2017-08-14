@@ -1,0 +1,108 @@
+﻿// startcode sqs-create-queues-for-endpoint-template-cloudformation
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "EndpointName": {
+      "Type": "String",
+      "Description": "Enter endpoint name."
+    },
+    "MaxTimeToLive": {
+      "Type": "Number",
+      "Description": "Maximum time to live."
+    },
+    "IncludeRetries": {
+      "Type": "String",
+      "Description": "Include Retries Queue."
+    }
+  },
+  "Conditions": {
+    "IncludeRetriesResources": {
+      "Fn::Equals": [
+        { "Ref": "IncludeRetries" },
+        "True"
+      ]
+    }
+  },
+  "Resources": {
+    "EndpointQueue": {
+      "Properties": {
+        "QueueName": { "Ref": "EndpointName" },
+        "MessageRetentionPeriod": { "Ref": "MaxTimeToLive" }
+      },
+      "Type": "AWS::SQS::Queue"
+    },
+    "TimeoutsQueue": {
+      "Properties": {
+        "QueueName": {
+          "Fn::Join": [
+            "-",
+            [
+              { "Ref": "EndpointName" },
+              "Timeouts"
+            ]
+          ]
+        },
+        "MessageRetentionPeriod": { "Ref": "MaxTimeToLive" }
+      },
+      "Type": "AWS::SQS::Queue"
+    },
+    "TimeoutsDispatcherQueue": {
+      "Properties": {
+        "QueueName": {
+          "Fn::Join": [
+            "-",
+            [
+              { "Ref": "EndpointName" },
+              "TimeoutsDispatcher"
+            ]
+          ]
+        },
+        "MessageRetentionPeriod": { "Ref": "MaxTimeToLive" }
+      },
+      "Type": "AWS::SQS::Queue"
+    },
+    "RetriesQueue": {
+      "Properties": {
+        "QueueName": {
+          "Fn::Join": [
+            "-",
+            [
+              { "Ref": "EndpointName" },
+              "Retries"
+            ]
+          ]
+        },
+        "MessageRetentionPeriod": { "Ref": "MaxTimeToLive" }
+      },
+      "Condition": "IncludeRetriesResources",
+      "Type": "AWS::SQS::Queue"
+    }
+  },
+  "Outputs": {
+    "EndpointQueueURL": {
+      "Description": "The URL of the endpoint queue",
+      "Value": {
+        "Ref": "EndpointQueue"
+      }
+    },
+    "TimeoutsQueueURL": {
+      "Description": "The URL of the timeouts queue",
+      "Value": {
+        "Ref": "TimeoutsQueue"
+      }
+    },
+    "TimeoutsDispatcherQueueURL": {
+      "Description": "The URL of the timeouts dispatcher queue",
+      "Value": {
+        "Ref": "TimeoutsDispatcherQueue"
+      }
+    },
+    "RetriesQueueURL": {
+      "Description": "The URL of the rertries queue",
+      "Value": {
+        "Ref": "RetriesQueue"
+      }
+    }
+  }
+}
+// endcode

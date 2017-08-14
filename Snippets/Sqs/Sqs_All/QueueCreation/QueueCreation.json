@@ -1,0 +1,50 @@
+﻿// startcode sqs-create-queues-template-cloudformation
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "QueueName": {
+      "Type": "String",
+      "Description": "Enter queue name."
+    },
+    "MaxTimeToLive": {
+      "Type": "Number",
+      "Description": "Maximum time to live."
+    }
+  },
+  "Resources": {
+    "CreatedQueue": {
+      "Properties": {
+        "QueueName": { "Ref": "QueueName" },
+        "MessageRetentionPeriod": { "Ref": "MaxTimeToLive" }
+      },
+      "Type": "AWS::SQS::Queue"
+    }
+  },
+  "Outputs": {
+    "QueueName": {
+      "Description": "The name of the queue",
+      "Value": {
+        "Fn::GetAtt": [
+          "CreatedQueue",
+          "QueueName"
+        ]
+      }
+    },
+    "QueueURL": {
+      "Description": "The URL of the queue",
+      "Value": {
+        "Ref": "CreatedQueue"
+      }
+    },
+    "QueueARN": {
+      "Description": "The ARN of the queue",
+      "Value": {
+        "Fn::GetAtt": [
+          "CreatedQueue",
+          "Arn"
+        ]
+      }
+    }
+  }
+}
+// endcode
