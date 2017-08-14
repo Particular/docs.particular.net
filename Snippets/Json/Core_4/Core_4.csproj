@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <RootNamespace>Core4</RootNamespace>
+    <LangVersion xmlns="http://schemas.microsoft.com/developer/msbuild/2003">6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="4.*" />

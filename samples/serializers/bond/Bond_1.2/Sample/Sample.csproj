@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Bond.Core.CSharp" Version="6.0.0" />

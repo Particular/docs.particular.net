@@ -4,10 +4,11 @@
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj"/>
-    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj"/>
+    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
+    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />
   </ItemGroup>

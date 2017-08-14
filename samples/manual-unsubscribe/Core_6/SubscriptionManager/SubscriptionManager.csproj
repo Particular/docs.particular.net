@@ -3,10 +3,11 @@
   <PropertyGroup>
     <TargetFrameworks>net4.6.2</TargetFrameworks>
     <OutputType>Exe</OutputType>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <ProjectReference Include="..\Messages\Messages.csproj"/>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
 </Project>

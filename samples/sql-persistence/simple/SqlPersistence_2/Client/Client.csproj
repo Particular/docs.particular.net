@@ -3,9 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj"/>
+    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
 </Project>

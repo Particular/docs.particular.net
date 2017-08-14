@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net4.6.2</TargetFrameworks>
     <OutputType>Exe</OutputType>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

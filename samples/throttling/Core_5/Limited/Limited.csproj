@@ -3,12 +3,13 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Net.Http" />
-    <ProjectReference Include="..\Sender\Sender.csproj"/>
-    <ProjectReference Include="..\Shared\Shared.csproj"/>
+    <ProjectReference Include="..\Sender\Sender.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="Octokit" Version="0.20.0" />
   </ItemGroup>

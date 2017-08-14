@@ -4,10 +4,11 @@
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj"/>
-    <ProjectReference Include="..\WcfCallbacks\WcfCallbacks.csproj"/>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+    <ProjectReference Include="..\WcfCallbacks\WcfCallbacks.csproj" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Callbacks" Version="1.*" />
   </ItemGroup>

@@ -3,11 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.ServiceModel" />
-    <ProjectReference Include="..\Messages\Messages.csproj"/>
-    <ProjectReference Include="..\WcfCallbacks\WcfCallbacks.csproj"/>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+    <ProjectReference Include="..\WcfCallbacks\WcfCallbacks.csproj" />
     <PackageReference Include="NServiceBus" Version="5.*" />
   </ItemGroup>
 </Project>

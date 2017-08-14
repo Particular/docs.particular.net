@@ -54,40 +54,18 @@ void CleanUpProjects()
 	{
 		var xdocument = XDocument.Load(projectFile);
 
-		foreach (var element in xdocument.DescendantNodes().OfType<XComment>().ToList())
+		var propertyGroup = xdocument.Descendants("PropertyGroup").FirstOrDefault();
+
+		if (propertyGroup != null)
 		{
-			if (element.Value.Contains("To modify your build process"))
+			var langVersion = propertyGroup.Element("LangVersion");
+			if (langVersion == null)
 			{
-				element.Remove();
+				propertyGroup.Add(new XElement("LangVersion", "6"));
 			}
-		}
-
-		var propertyGroups = xdocument.Descendants(xmlns + "PropertyGroup").ToList();
-		
-		foreach (var element in propertyGroups)
-		{
-			var condition = element.Attribute("Condition");
-			if (condition == null)
+			else
 			{
-				continue;
-			}
-
-			if (condition.Value == " '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ")
-			{
-				element.Remove();
-			}
-
-			if (condition.Value != " '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ")
-			{
-				var langVersion = element.Element(xmlns + "LangVersion");
-				if (langVersion == null)
-				{
-					element.Add(new XElement(xmlns + "LangVersion", "6"));
-				}
-				else
-				{
-					langVersion.Value = "6";
-				}
+				langVersion.Value = "6";
 			}
 		}
 		xdocument.Save(projectFile);

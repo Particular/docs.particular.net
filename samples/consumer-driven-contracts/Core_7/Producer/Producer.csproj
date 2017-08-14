@@ -3,11 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Compile Include="..\Consumer1\Contracts\Consumer1Contract.cs"/>
-    <Compile Include="..\Consumer2\Contracts\Consumer2Contract.cs"/>
+    <Compile Include="..\Consumer1\Contracts\Consumer1Contract.cs" />
+    <Compile Include="..\Consumer2\Contracts\Consumer2Contract.cs" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0-*" />

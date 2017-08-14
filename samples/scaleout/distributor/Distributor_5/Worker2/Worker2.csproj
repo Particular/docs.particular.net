@@ -3,10 +3,11 @@
   <PropertyGroup>
     <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj"/>
-    <ProjectReference Include="..\Worker.Handlers\Worker.Handlers.csproj"/>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Worker.Handlers\Worker.Handlers.csproj" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.Distributor.MSMQ" Version="5.*" />
   </ItemGroup>

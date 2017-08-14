@@ -4,11 +4,12 @@
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
-    <ProjectReference Include="..\Messages\Messages.csproj"/>
-    <ProjectReference Include="..\OwinPassThrough\OwinPassThrough.csproj"/>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+    <ProjectReference Include="..\OwinPassThrough\OwinPassThrough.csproj" />
     <PackageReference Include="Microsoft.AspNet.Cors" Version="5.2.3" />
     <PackageReference Include="Microsoft.Owin" Version="3.1.0" />
     <PackageReference Include="Microsoft.Owin.Cors" Version="3.1.0" />

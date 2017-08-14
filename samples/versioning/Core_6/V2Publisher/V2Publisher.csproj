@@ -3,10 +3,11 @@
   <PropertyGroup>
     <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\V1.Messages\V1.Messages.csproj"/>
-    <ProjectReference Include="..\V2.Messages\V2.Messages.csproj"/>
+    <ProjectReference Include="..\V1.Messages\V1.Messages.csproj" />
+    <ProjectReference Include="..\V2.Messages\V2.Messages.csproj" />
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
 </Project>

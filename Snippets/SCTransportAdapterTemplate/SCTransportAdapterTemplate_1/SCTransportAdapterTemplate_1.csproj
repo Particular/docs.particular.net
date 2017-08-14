@@ -3,5 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <RootNamespace>ServiceTemplate1</RootNamespace>
+    <LangVersion xmlns="http://schemas.microsoft.com/developer/msbuild/2003">6</LangVersion>
   </PropertyGroup>
 </Project>

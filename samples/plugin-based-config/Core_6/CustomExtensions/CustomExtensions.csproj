@@ -3,9 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputPath>..\CustomExtensionEndpoint\bin\Debug\</OutputPath>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj"/>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
 </Project>
