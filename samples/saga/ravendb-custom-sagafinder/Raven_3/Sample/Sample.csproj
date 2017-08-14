@@ -11,9 +11,9 @@
     <Reference Include="System.Configuration" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="3.*" />
-    <PackageReference Include="RavenDB.Bundles.UniqueConstraints" Version="3.5.4" />
-    <PackageReference Include="RavenDB.Client" Version="3.5.4" />
-    <PackageReference Include="RavenDB.Client.UniqueConstraints" Version="3.0.30179" />
-    <PackageReference Include="RavenDB.Database" Version="3.5.4" />
+    <PackageReference Include="RavenDB.Bundles.UniqueConstraints" Version="3.*" />
+    <PackageReference Include="RavenDB.Client" Version="3.*" />
+    <PackageReference Include="RavenDB.Client.UniqueConstraints" Version="3.*" />
+    <PackageReference Include="RavenDB.Database" Version="3.*" />
   </ItemGroup>
 </Project>

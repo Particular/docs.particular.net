@@ -6,8 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Data" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
   </ItemGroup>
 </Project>

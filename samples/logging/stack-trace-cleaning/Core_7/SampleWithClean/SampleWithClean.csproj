@@ -6,8 +6,8 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AsyncFriendlyStackTrace" Version="1.5.0" />
-    <PackageReference Include="NLog" Version="4.4.12" />
+    <PackageReference Include="AsyncFriendlyStackTrace" Version="1.*" />
+    <PackageReference Include="NLog" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.NLog" Version="2.0.*" />
   </ItemGroup>

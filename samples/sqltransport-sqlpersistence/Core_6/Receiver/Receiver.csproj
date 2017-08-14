@@ -12,8 +12,8 @@
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="2.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="3.*" />
-    <PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="4.5.12" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
+    <PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="4.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <None Update="Startup.sql" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

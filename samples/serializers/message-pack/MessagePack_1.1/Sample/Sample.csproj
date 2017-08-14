@@ -7,8 +7,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <PackageReference Include="MsgPack.Cli" Version="0.8.1" />
+    <PackageReference Include="MsgPack.Cli" Version="0.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.MessagePack" Version="1.1.0-beta001" />
+    <PackageReference Include="NServiceBus.MessagePack" Version="1.1.0-*" />
   </ItemGroup>
 </Project>

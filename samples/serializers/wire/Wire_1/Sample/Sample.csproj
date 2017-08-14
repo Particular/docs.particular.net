@@ -9,6 +9,6 @@
     <Reference Include="System.Configuration" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.Wire" Version="1.0.*" />
-    <PackageReference Include="Wire" Version="0.8.2" />
+    <PackageReference Include="Wire" Version="0.*" />
   </ItemGroup>
 </Project>

@@ -6,8 +6,8 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.3.0" />
-    <PackageReference Include="Google.Protobuf.Tools" Version="3.3.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.*" />
+    <PackageReference Include="Google.Protobuf.Tools" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.ProtoBufGoogle" Version="1.0.*" />
   </ItemGroup>

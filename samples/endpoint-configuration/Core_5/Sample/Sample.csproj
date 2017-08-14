@@ -8,8 +8,8 @@
   <ItemGroup>
     <Reference Include="System.Configuration" />
     <Reference Include="System.ServiceProcess" />
-    <PackageReference Include="Autofac" Version="4.6.1" />
-    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Autofac" Version="4.*" />
+    <PackageReference Include="log4net" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.Autofac" Version="5.*" />
     <PackageReference Include="NServiceBus.Log4Net" Version="1.*" />

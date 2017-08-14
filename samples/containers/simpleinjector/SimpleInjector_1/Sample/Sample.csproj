@@ -8,7 +8,7 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.SimpleInjector" Version="1.*" />
-    <PackageReference Include="SimpleInjector" Version="3.3.2" />
-    <PackageReference Include="SimpleInjector.Extensions.ExecutionContextScoping" Version="3.3.2" />
+    <PackageReference Include="SimpleInjector" Version="3.*" />
+    <PackageReference Include="SimpleInjector.Extensions.ExecutionContextScoping" Version="3.*" />
   </ItemGroup>
 </Project>

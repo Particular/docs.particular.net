@@ -5,10 +5,8 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />

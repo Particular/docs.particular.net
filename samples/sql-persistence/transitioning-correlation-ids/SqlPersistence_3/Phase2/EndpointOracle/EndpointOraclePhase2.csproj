@@ -19,6 +19,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-*" />
-    <PackageReference Include="Oracle.ManagedDataAccess" Version="12.2.1100" />
+    <PackageReference Include="Oracle.ManagedDataAccess" Version="12.*" />
   </ItemGroup>
 </Project>

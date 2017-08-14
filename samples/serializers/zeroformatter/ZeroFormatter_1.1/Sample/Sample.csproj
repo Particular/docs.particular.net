@@ -9,7 +9,6 @@
     <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.ZeroFormatter" Version="1.1.0-*" />
-    <PackageReference Include="ZeroFormatter" Version="1.6.4" />
-    <PackageReference Include="ZeroFormatter.Interfaces" Version="1.6.4" />
+    <PackageReference Include="ZeroFormatter" Version="1.*" />
   </ItemGroup>
 </Project>

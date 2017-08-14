@@ -8,9 +8,8 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="Iesi.Collections" Version="4.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NHibernate" Version="4.1.1.4000" />
+    <PackageReference Include="NHibernate" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />
   </ItemGroup>

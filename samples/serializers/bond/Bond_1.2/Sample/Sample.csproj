@@ -6,7 +6,7 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Bond.Core.CSharp" Version="6.0.0" />
+    <PackageReference Include="Bond.Core.CSharp" Version="6.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Bond" Version="1.2.*" />
   </ItemGroup>
