@@ -38,8 +38,7 @@ public class ProcessInvalidOrderCommandHandler :
 
     static int GetProcessingAttempt(IMessageHandlerContext context)
     {
-        string attemptString;
-        if (context.MessageHeaders.TryGetValue("NServiceBus.Retries", out attemptString))
+        if (context.MessageHeaders.TryGetValue("NServiceBus.Retries", out var attemptString))
         {
             return int.Parse(attemptString);
         }

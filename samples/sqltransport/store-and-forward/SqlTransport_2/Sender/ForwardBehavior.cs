@@ -17,16 +17,14 @@ public class ForwardBehavior :
     {
         #region ForwardBehavior
 
-        string eventType;
-        string destination;
         var logicalMessage = context.IncomingLogicalMessage;
         var headers = logicalMessage.Headers;
-        if (headers.TryGetValue("$.store-and-forward.destination", out destination))
+        if (headers.TryGetValue("$.store-and-forward.destination", out var destination))
         {
             // Ultimate destination is in the header - send there (via the outbox) and skip the processing.
             bus.Send(destination, logicalMessage.Instance);
         }
-        else if (headers.TryGetValue("$.store-and-forward.eventtype", out eventType))
+        else if (headers.TryGetValue("$.store-and-forward.eventtype", out var eventType))
         {
             // The event that to be re-published - publish it and skip the processing.
             bus.Publish(logicalMessage.Instance);

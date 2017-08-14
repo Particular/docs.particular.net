@@ -3,5 +3,6 @@
   <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Configurations>Debug</Configurations>
+    <WarningsAsErrors>IDE0018</WarningsAsErrors>
   </PropertyGroup>
 </Project>

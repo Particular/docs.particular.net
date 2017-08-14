@@ -12,11 +12,9 @@ public class MyMessageHandler :
     {
         Console.WriteLine($"Handling {nameof(MyMessage)} with MessageId:{context.MessageId}");
 
-        string numOfRetries;
-        if (context.MessageHeaders.TryGetValue(Headers.DelayedRetries, out numOfRetries))
+        if (context.MessageHeaders.TryGetValue(Headers.DelayedRetries, out var numOfRetries))
         {
-            string value;
-            Last.TryGetValue(message.Id, out value);
+            Last.TryGetValue(message.Id, out var value);
 
             if (numOfRetries != value)
             {

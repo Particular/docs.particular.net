@@ -1,6 +1,5 @@
 ﻿namespace Core7.Mutators.Transport
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using NServiceBus.MessageMutator;
 
@@ -10,14 +9,12 @@
     {
         public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
         {
-            object incomingMessage;
-            if (context.TryGetIncomingMessage(out incomingMessage))
+            if (context.TryGetIncomingMessage(out var incomingMessage))
             {
                 // do something with the incoming message
             }
 
-            IReadOnlyDictionary<string, string> incomingHeaders;
-            if (context.TryGetIncomingHeaders(out incomingHeaders))
+            if (context.TryGetIncomingHeaders(out var incomingHeaders))
             {
                 // do something with the incoming headers
             }

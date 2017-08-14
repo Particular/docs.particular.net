@@ -28,10 +28,9 @@ class StreamReceiveBehavior :
             .GetStreamProperties(message))
         {
             var headerKey = StreamStorageHelper.GetHeaderKey(message, property);
-            string dataBusKey;
             // only attempt to process properties that have an associated header
             var key = $"NServiceBus.PropertyStream.{headerKey}";
-            if (!context.Headers.TryGetValue(key, out dataBusKey))
+            if (!context.Headers.TryGetValue(key, out var dataBusKey))
             {
                 continue;
             }

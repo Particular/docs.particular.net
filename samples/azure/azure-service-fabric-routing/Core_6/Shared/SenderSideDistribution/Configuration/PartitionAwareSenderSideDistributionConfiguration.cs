@@ -30,8 +30,7 @@ public class PartitionAwareSenderSideDistributionConfiguration :
     {
         var messageType = message.GetType();
 
-        Func<object, string> mapper;
-        if (!messageTypeMappers.TryGetValue(messageType, out mapper))
+        if (!messageTypeMappers.TryGetValue(messageType, out var mapper))
         {
             throw new Exception($"No partition mapping is found for message type '{messageType}'.");
         }

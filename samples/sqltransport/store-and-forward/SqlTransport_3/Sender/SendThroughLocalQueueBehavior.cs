@@ -23,11 +23,9 @@ class SendThroughLocalQueueRoutingToDispatchConnector :
 
     public override Task Invoke(IRoutingContext context, Func<Task> next, Func<IDispatchContext, Task> fork)
     {
-        IncomingMessage incomingMessage;
-        var fromHandler = context.Extensions.TryGet(out incomingMessage);
+        var fromHandler = context.Extensions.TryGet(out IncomingMessage _);
 
-        DelayedDeliveryConstraint constraint;
-        if (context.Extensions.TryGetDeliveryConstraint(out constraint) || fromHandler)
+        if (context.Extensions.TryGetDeliveryConstraint(out DelayedDeliveryConstraint _) || fromHandler)
         {
             return next();
         }

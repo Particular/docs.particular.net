@@ -209,9 +209,8 @@ class RoutingInfoSubscriber :
             var otherInstances = pair.Value.Where(x => x != instanceName);
             newInstanceMap[pair.Key] = new HashSet<EndpointInstance>(otherInstances);
         }
-        HashSet<EndpointInstance> endpointEntry;
         var endpointName = instanceName.Endpoint;
-        if (!newInstanceMap.TryGetValue(endpointName, out endpointEntry))
+        if (!newInstanceMap.TryGetValue(endpointName, out var endpointEntry))
         {
             endpointEntry = new HashSet<EndpointInstance>();
             newInstanceMap[endpointName] = endpointEntry;

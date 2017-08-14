@@ -9,8 +9,7 @@ class PropagateOutgoingTenantIdBehavior :
     {
         #region PropagateTenantIdOutgoing
 
-        string tenant;
-        if (context.Extensions.TryGet("TenantId", out tenant))
+        if (context.Extensions.TryGet("TenantId", out string tenant))
         {
             context.Headers["TenantId"] = tenant;
         }

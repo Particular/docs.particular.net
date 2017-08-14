@@ -47,8 +47,7 @@ public class ThrottlingBehavior :
     {
         var message = context.LogicalMessages.Single().Instance;
         // maintain the original ReplyTo address
-        string replyAddress;
-        if (context.PhysicalMessage.Headers.TryGetValue(Headers.ReplyToAddress, out replyAddress))
+        if (context.PhysicalMessage.Headers.TryGetValue(Headers.ReplyToAddress, out var replyAddress))
         {
             bus.SetMessageHeader(message, Headers.ReplyToAddress, replyAddress);
         }

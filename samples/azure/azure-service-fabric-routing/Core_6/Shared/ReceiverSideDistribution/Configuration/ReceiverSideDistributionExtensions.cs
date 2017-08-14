@@ -8,8 +8,7 @@ public static class ReceiverSideDistributionExtensions
     {
         var settings = routingSettings.GetSettings();
 
-        PartitionAwareReceiverSideDistributionConfiguration config;
-        if (!settings.TryGet(out config))
+        if (!settings.TryGet(out PartitionAwareReceiverSideDistributionConfiguration config))
         {
             config = new PartitionAwareReceiverSideDistributionConfiguration(routingSettings, discriminators);
             settings.Set<PartitionAwareReceiverSideDistributionConfiguration>(config);

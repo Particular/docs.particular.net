@@ -148,8 +148,7 @@ class FileTransportMessagePump :
 
         task.ContinueWith(t =>
         {
-            Task toBeRemoved;
-            runningReceiveTasks.TryRemove(t, out toBeRemoved);
+            runningReceiveTasks.TryRemove(t, out var toBeRemoved);
         },
             TaskContinuationOptions.ExecuteSynchronously)
             .Ignore();
@@ -169,8 +168,7 @@ class FileTransportMessagePump :
             var json = string.Join("", message.Skip(1));
             var headers = HeaderSerializer.DeSerialize(json);
 
-            string ttbrString;
-            if (headers.TryGetValue(Headers.TimeToBeReceived, out ttbrString))
+            if (headers.TryGetValue(Headers.TimeToBeReceived, out var ttbrString))
             {
                 var ttbr = TimeSpan.Parse(ttbrString);
                 // file.move preserves create time

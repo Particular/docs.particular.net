@@ -14,9 +14,8 @@ public class Handler :
         var routingSlip = context.Extensions.Get<RoutingSlip>();
 
         log.Info(message.StepCInfo);
-        string fooValue;
 
-        if (routingSlip.Attachments.TryGetValue("Foo", out fooValue))
+        if (routingSlip.Attachments.TryGetValue("Foo", out var fooValue))
         {
             log.Info($"Found Foo value of {fooValue}");
         }

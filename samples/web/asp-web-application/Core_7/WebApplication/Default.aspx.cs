@@ -14,8 +14,7 @@ public partial class Default :
 
         #region ActionHandling
 
-        int number;
-        if (!int.TryParse(TextBox1.Text, out number))
+        if (!int.TryParse(TextBox1.Text, out var number))
         {
             return;
         }

@@ -12,8 +12,7 @@ class FlowManager
 
     public void Acknowledge(string receiverAddress, long markerValue)
     {
-        FlowData f;
-        if (data.TryGetValue(receiverAddress, out f))
+        if (data.TryGetValue(receiverAddress, out var f))
         {
             f.Acknowledge(markerValue);
         }
@@ -27,9 +26,8 @@ class FlowManager
 
         foreach (var address in receiverAddresses)
         {
-            FlowData candidate;
             // This instance is not yet tracked, so assume it has shortest queue.
-            if (!data.TryGetValue(address, out candidate))
+            if (!data.TryGetValue(address, out var candidate))
             {
                 return address;
             }

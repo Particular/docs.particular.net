@@ -38,8 +38,7 @@ namespace Rabbit_All.ErrorQueue
                     {
                         continue;
                     }
-                    string failedQueueName;
-                    ReadFailedQueueHeader(out failedQueueName, result);
+                    ReadFailedQueueHeader(out var failedQueueName, result);
 
                     channel.BasicPublish(string.Empty, failedQueueName, false, result.BasicProperties, result.Body);
                     channel.BasicAck(result.DeliveryTag, false);

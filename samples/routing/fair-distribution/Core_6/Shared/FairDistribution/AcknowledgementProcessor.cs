@@ -14,15 +14,11 @@ class AcknowledgementProcessor :
     #region ProcessACKs
     public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {
-        string ackString;
-        string address;
-        string endpoint;
-        string sessionId;
         var headers = context.MessageHeaders;
-        if (!headers.TryGetValue("NServiceBus.FlowControl.ACK", out ackString)
-            || !headers.TryGetValue("NServiceBus.FlowControl.Endpoint", out endpoint)
-            || !headers.TryGetValue("NServiceBus.FlowControl.Address", out address)
-            || !headers.TryGetValue("NServiceBus.FlowControl.SessionId", out sessionId))
+        if (!headers.TryGetValue("NServiceBus.FlowControl.ACK", out var ackString)
+            || !headers.TryGetValue("NServiceBus.FlowControl.Endpoint", out var endpoint)
+            || !headers.TryGetValue("NServiceBus.FlowControl.Address", out var address)
+            || !headers.TryGetValue("NServiceBus.FlowControl.SessionId", out var sessionId))
         {
             return next();
         }

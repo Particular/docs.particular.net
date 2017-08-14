@@ -27,8 +27,7 @@ class DistributeMessagesBasedOnHeader :
             return next(context);
         }
 
-        string messagePartitionKey;
-        var hasPartitionKeyHeader = context.MessageHeaders.TryGetValue(PartitionHeaders.PartitionKey, out messagePartitionKey);
+        var hasPartitionKeyHeader = context.MessageHeaders.TryGetValue(PartitionHeaders.PartitionKey, out var messagePartitionKey);
 
         // 1. The header value isn't present (logical behavior will check message contents)
         // 2. The header value matches local partition key

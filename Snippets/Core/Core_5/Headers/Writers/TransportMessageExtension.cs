@@ -6,8 +6,7 @@
     {
         public static bool IsMessageOfTye<T>(this TransportMessage transportMessage)
         {
-            string value;
-            if (transportMessage.Headers.TryGetValue("NServiceBus.EnclosedMessageTypes", out value))
+            if (transportMessage.Headers.TryGetValue("NServiceBus.EnclosedMessageTypes", out var value))
             {
                 return value == typeof(T).AssemblyQualifiedName;
             }

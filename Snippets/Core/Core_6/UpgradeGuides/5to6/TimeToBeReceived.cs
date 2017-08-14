@@ -17,8 +17,7 @@ namespace Core6.UpgradeGuides._5to6
             #endregion
 
             #region ReadDeliveryConstraintDiscardIfNotReceivedBefore
-            DiscardIfNotReceivedBefore constraint;
-            context.Extensions.TryGetDeliveryConstraint(out constraint);
+            context.Extensions.TryGetDeliveryConstraint(out DiscardIfNotReceivedBefore constraint);
             timeToBeReceived = constraint.MaxTime;
             #endregion
         }

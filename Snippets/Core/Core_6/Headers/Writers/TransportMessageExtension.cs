@@ -6,8 +6,7 @@ namespace Core6.Headers.Writers
     {
         public static bool IsMessageOfTye<T>(this MutateIncomingTransportMessageContext context)
         {
-            string value;
-            if (context.Headers.TryGetValue("NServiceBus.EnclosedMessageTypes", out value))
+            if (context.Headers.TryGetValue("NServiceBus.EnclosedMessageTypes", out var value))
             {
                 return value == typeof(T).AssemblyQualifiedName;
             }

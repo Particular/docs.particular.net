@@ -57,11 +57,9 @@ class DistributeMessagesBasedOnPayload :
 
     static MessageIntentEnum? GetMessageIntent(IMessageProcessingContext context)
     {
-        string intentStr;
-
-        if (context.MessageHeaders.TryGetValue(Headers.MessageIntent, out intentStr))
+        if (context.MessageHeaders.TryGetValue(Headers.MessageIntent, out var intentStr))
         {
-            return (MessageIntentEnum) Enum.Parse(typeof(MessageIntentEnum), intentStr);
+            return (MessageIntentEnum)Enum.Parse(typeof(MessageIntentEnum), intentStr);
         }
 
         return null;

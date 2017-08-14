@@ -9,8 +9,7 @@ public class AuditFilterBehavior :
 {
     public override Task Invoke(IAuditContext context, Func<Task> next)
     {
-        AuditFilterContext auditFilterContext;
-        if (context.Extensions.TryGet(out auditFilterContext) &&
+        if (context.Extensions.TryGet(out AuditFilterContext auditFilterContext) &&
             auditFilterContext.SkipAudit)
         {
             return Task.CompletedTask;

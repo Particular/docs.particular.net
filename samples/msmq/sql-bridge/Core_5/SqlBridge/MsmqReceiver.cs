@@ -79,9 +79,7 @@ class MsmqReceiver :
         // a valid Guid and if not, only then create a valid Guid. This check
         // is important as it affects the retries if the message is rolled back.
         // If the Ids are different, then the recoverability won't know its the same message.
-        Guid msmqGuid;
-
-        if (!Guid.TryParse(msmqId, out msmqGuid))
+        if (!Guid.TryParse(msmqId, out var msmqGuid))
         {
             sqlId = GuidBuilder.BuildDeterministicGuid(msmqId).ToString();
             headers["NServiceBus.MessageId"] = sqlId;
