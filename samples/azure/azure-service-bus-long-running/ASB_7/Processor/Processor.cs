@@ -61,8 +61,7 @@ public class Processor
     {
         while (!token.IsCancellationRequested)
         {
-            RequestRecord request;
-            while (toProcess.TryPeek(out request))
+            while (toProcess.TryPeek(out var request))
             {
                 try
                 {
