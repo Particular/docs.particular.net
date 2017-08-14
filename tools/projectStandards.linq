@@ -64,10 +64,6 @@ void CleanUpProjects()
 
 		var propertyGroups = xdocument.Descendants(xmlns + "PropertyGroup").ToList();
 		
-
-		xdocument.Descendants(xmlns + "NuGetPackageImportStamp")
-			.Remove();
-
 		foreach (var element in propertyGroups)
 		{
 			var condition = element.Attribute("Condition");
