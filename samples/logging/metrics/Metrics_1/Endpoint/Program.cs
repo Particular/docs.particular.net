@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -19,7 +20,23 @@ class Program
         #region EnableMetricTracing
 
         var metricsOptions = endpointConfiguration.EnableMetrics();
-        metricsOptions.EnableMetricTracing(TimeSpan.FromSeconds(5));
+        metricsOptions.RegisterObservers(context =>
+        {
+            foreach (var duration in context.Durations)
+            {
+                duration.Register(durationLength =>
+                {
+                    Trace.WriteLine($"Duration '{duration.Name}' value observed: '{durationLength}'");
+                });
+            }
+            foreach (var signal in context.Signals)
+            {
+                signal.Register(() =>
+                {
+                    Trace.WriteLine($"'{signal.Name}' occurred.");
+                });
+            }
+        });
 
         #endregion
 
