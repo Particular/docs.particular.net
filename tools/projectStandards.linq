@@ -62,13 +62,6 @@ void CleanUpProjects()
 			}
 		}
 
-		var assemblyInfoNode = xdocument.Descendants(xmlns + "Compile")
-			.SingleOrDefault(x => (string)x.Attribute("Include") == @"Properties\AssemblyInfo.cs");
-		if (assemblyInfoNode != null)
-		{
-			assemblyInfoNode.Remove();
-		}
-
 		var propertyGroups = xdocument.Descendants(xmlns + "PropertyGroup").ToList();
 		
 
