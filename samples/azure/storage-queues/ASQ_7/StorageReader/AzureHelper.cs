@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Text;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
@@ -27,8 +28,14 @@ public class AzureHelper
         var queueClient = storageAccount.CreateCloudQueueClient();
         var queue = queueClient.GetQueueReference(queueName);
         var message = queue.PeekMessage();
-        Debug.WriteLine("Message contents");
-        WriteOutMessage(message);
+        if (message != null)
+        {
+            Debug.WriteLine("Message contents");
+            WriteOutMessage(message);
+            return;
+        }
+
+        Console.WriteLine("No messages found in the 'samples-azure-storagequeues-endpoint2' queue. Execute 'Endpoint1' without running 'Endpoint2' and then try again.");
     }
 
     static void WriteOutMessage(CloudQueueMessage message)
