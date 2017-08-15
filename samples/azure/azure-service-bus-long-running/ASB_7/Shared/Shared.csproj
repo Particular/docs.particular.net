@@ -5,20 +5,13 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-  <PackageReference Include="Microsoft.Azure.KeyVault.Core" version="2.*" />
-  <PackageReference Include="Microsoft.Data.Edm" version="5.*" />
-  <PackageReference Include="Microsoft.Data.OData" version="5.*" />
-  <PackageReference Include="Microsoft.Data.Services.Client" version="5.*" />
-  <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" version="3.*" />
-  <PackageReference Include="Newtonsoft.Json" version="10.*" />
-  <PackageReference Include="NServiceBus" version="6.*" />
-  <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" version="7.*" />
-  <PackageReference Include="System.ComponentModel.EventBasedAsync" version="4.*" />
-  <PackageReference Include="System.Dynamic.Runtime" version="4.*" />
-  <PackageReference Include="System.Linq.Queryable" version="4.*" />
-  <PackageReference Include="System.Net.Requests" version="4.*" />
-  <PackageReference Include="System.Spatial" version="5.*" />
-  <PackageReference Include="WindowsAzure.ServiceBus" version="4.*" />
-  <PackageReference Include="WindowsAzure.Storage" version="8.*" />
+    <PackageReference Include="Microsoft.Azure.KeyVault.Core" version="2.*" />
+    <PackageReference Include="Microsoft.Data.Services.Client" version="5.*" />
+    <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" version="3.*" />
+    <PackageReference Include="Newtonsoft.Json" version="10.*" />
+    <PackageReference Include="NServiceBus" version="6.*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" version="7.*" />
+    <PackageReference Include="WindowsAzure.ServiceBus" version="4.*" />
+    <PackageReference Include="WindowsAzure.Storage" version="8.*" />
   </ItemGroup> 
 </Project>
