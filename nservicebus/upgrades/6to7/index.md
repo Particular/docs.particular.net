@@ -182,6 +182,30 @@ Setting a custom [correlation ID](/nservicebus/messaging/headers.md#messaging-in
 
 In NServiceBus Version 6, the `Conversation Id` header on outgoing messages was set within the `IOutgoingPhysicalMessageContext` pipeline stage. In NServiceBus Version 7 and above, the `Conversation Id` header will be set as part of the `IOutgoingLogicalMessageContext` stage.
 
+
 ## ConfigurationErrorsException
 
 Exceptions of type `Exception` are now thrown instead of `ConfigurationErrorsException`. Any try-catch statements catching `ConfigurationErrorsException` should be updated to catch `Exception` instead.
+
+
+## Licensing
+
+### Machine wide license locations
+
+License files can now be stored on the local file system to be accessed by all endpoints running on this machine. By default, NServiceBus endpoints will check the following locations for a `license.xml` file :
+* `{Environment.SpecialFolder.LocalApplicationData}\ParticularSoftware`
+* `{Environment.SpecialFolder.CommonApplicationData}\ParticularSoftware`
+
+Note: These locations are dependent on your operating system and configuration.
+
+### Application specific license location
+
+Licenses can be shipped along with an endpoint's artifacts. By default, NServiceBus endpoints will look for a `license.xml` in the applications base directory (`AppDomain.CurrentDomain.BaseDirectory`).
+
+WARN: The `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml` path will no longer be checked by NServiceBus Version 7.
+
+### Registry based license locations
+
+When running NServiceBus endpoints on the full .NET Framework, endpoints will continue to search the registry locations as described [here](https://docs.particular.net/nservicebus/licensing/) for a suitable license.
+
+When running on the .NET Core platform, NServiceBus endpoints **will not search the registry**, even when running on Windows.
