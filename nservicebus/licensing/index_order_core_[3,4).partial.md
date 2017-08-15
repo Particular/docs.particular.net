@@ -1,1 +1,0 @@
-A file located at `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml`
