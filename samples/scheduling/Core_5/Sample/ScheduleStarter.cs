@@ -1,16 +1,16 @@
 ﻿using System;
 using NServiceBus;
-using NServiceBus.Config;
 using NServiceBus.Logging;
 
 #region Schedule
 
 public class ScheduleStarter :
-    IWantToRunWhenConfigurationIsComplete
+    IWantToRunWhenBusStartsAndStops
 {
     static ILog log = LogManager.GetLogger<ScheduleStarter>();
-    Schedule schedule;
+
     IBus bus;
+    Schedule schedule;
 
     public ScheduleStarter(Schedule schedule, IBus bus)
     {
@@ -18,12 +18,12 @@ public class ScheduleStarter :
         this.bus = bus;
     }
 
-    public void Run(Configure config)
+    public void Start()
     {
         // Send a message every 5 seconds
         schedule.Every(
-            timeSpan: TimeSpan.FromSeconds(5),
-            task: () =>
+            TimeSpan.FromSeconds(5),
+            () =>
             {
                 var message = new MyMessage();
                 bus.SendLocal(message);
@@ -31,12 +31,14 @@ public class ScheduleStarter :
 
         // Name a schedule task and invoke it every 5 seconds
         schedule.Every(
-            timeSpan: TimeSpan.FromSeconds(5),
-            name: "MyCustomTask",
-            task: () =>
-            {
-                log.Info("Custom Task executed");
-            });
+            TimeSpan.FromSeconds(5),
+            "MyCustomTask",
+            () => { log.Info("Custom Task executed"); });
+    }
+
+    public void Stop()
+    {
+        //no-op
     }
 }
 
