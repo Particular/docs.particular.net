@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461</TargetFrameworks>
+    <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AsyncFriendlyStackTrace" Version="1.*" />
+    <PackageReference Include="Common.Logging" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.NLog" Version="2.1.0-*" />
+    <PackageReference Include="NServiceBus.CommonLogging" Version="4.1.0-*" />
   </ItemGroup>
 </Project>

@@ -1,15 +1,16 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 15.0.26430.04
-MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLogging_1", "CommonLogging_1\CommonLogging_1.csproj", "{06AD9D1B-C2E1-4013-86C6-8C2EF6208102}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLogging_1", "CommonLogging_1\CommonLogging_1.csproj", "{06AD9D1B-C2E1-4013-86C6-8C2EF6208102}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLogging_2", "CommonLogging_2\CommonLogging_2.csproj", "{A37618AF-99F4-438E-84FC-7CAE5B90C2D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLogging_2", "CommonLogging_2\CommonLogging_2.csproj", "{A37618AF-99F4-438E-84FC-7CAE5B90C2D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLogging_3", "CommonLogging_3\CommonLogging_3.csproj", "{53CD1A1D-13E0-4F54-BA73-0F10CAED467A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLogging_3", "CommonLogging_3\CommonLogging_3.csproj", "{53CD1A1D-13E0-4F54-BA73-0F10CAED467A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLogging_4", "CommonLogging_4\CommonLogging_4.csproj", "{A5CA3A33-27D0-455F-8BCA-EEDCE2FB9DB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLogging_4", "CommonLogging_4\CommonLogging_4.csproj", "{A5CA3A33-27D0-455F-8BCA-EEDCE2FB9DB9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLogging_4.1", "CommonLogging_4.1\CommonLogging_4.1.csproj", "{5DA17F1A-015A-4177-883D-B83C759C8DF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,5 +28,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0BDC8830-2BE0-44DF-88AB-4D9564568BB5}
 	EndGlobalSection
 EndGlobal

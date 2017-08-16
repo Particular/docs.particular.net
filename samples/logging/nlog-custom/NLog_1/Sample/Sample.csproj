@@ -9,6 +9,6 @@
     <Reference Include="System.Configuration" />
     <PackageReference Include="NLog" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="5.*" />
-    <PackageReference Include="NServiceBus.NLog" Version="1.1.*" />
+    <PackageReference Include="NServiceBus.NLog" Version="1.*" />
   </ItemGroup>
 </Project>
