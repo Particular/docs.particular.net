@@ -3,9 +3,10 @@ using NServiceBus;
 
 class Program
 {
-
     static void Main()
     {
+        AppContext.SetSwitch("Switch.System.IdentityModel.DisableMultipleDNSEntriesInSANCertificate", true);
+
         Console.Title = "Samples.Azure.ServiceBus.Endpoint2";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint2");
