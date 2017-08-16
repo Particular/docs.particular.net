@@ -1,25 +1,24 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 15.0.26430.04
-MinimumVisualStudioVersion = 15.0.26430.04
-Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "HostCloudService", "HostCloudService\HostCloudService.ccproj", "{CD8D25E1-7D63-49DE-A109-4ABF98731C24}"
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "HostCloudService", "HostCloudService\HostCloudService.ccproj", "{011B6385-7AF8-48E6-B662-79AE4268655F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostWorker", "HostWorker\HostWorker.csproj", "{07FDAC8F-A69D-4A5C-ABA1-DAEC52A649FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HostWorker", "HostWorker\HostWorker.csproj", "{07FDAC8F-A69D-4A5C-ABA1-DAEC52A649FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sender", "Sender\Sender.csproj", "{CB35AFED-9727-4523-999A-0D58AA5137FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sender", "Sender\Sender.csproj", "{CB35AFED-9727-4523-999A-0D58AA5137FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{07BC8092-EE47-4242-B39D-AB77D02AC67B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{07BC8092-EE47-4242-B39D-AB77D02AC67B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver", "Receiver\Receiver.csproj", "{16542897-4807-4486-A392-C778FC616951}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receiver", "Receiver\Receiver.csproj", "{16542897-4807-4486-A392-C778FC616951}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CD8D25E1-7D63-49DE-A109-4ABF98731C24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD8D25E1-7D63-49DE-A109-4ABF98731C24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{011B6385-7AF8-48E6-B662-79AE4268655F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{011B6385-7AF8-48E6-B662-79AE4268655F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07FDAC8F-A69D-4A5C-ABA1-DAEC52A649FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{07FDAC8F-A69D-4A5C-ABA1-DAEC52A649FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB35AFED-9727-4523-999A-0D58AA5137FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -31,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D201867A-DA60-454B-9CCB-0445015AC741}
 	EndGlobalSection
 EndGlobal
