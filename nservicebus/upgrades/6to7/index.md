@@ -206,6 +206,6 @@ WARNING: The `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml` path 
 
 ### Registry based license locations
 
-When running NServiceBus endpoints on the full .NET Framework, endpoints will continue to search the registry locations as described [here](https://docs.particular.net/nservicebus/licensing/) for a suitable license.
+When running on the full .NET Framework, endpoints will [continue to search the registry locations](/nservicebus/licensing/) for a suitable license.
 
 When running on the .NET Core platform, NServiceBus endpoints **will not search the registry**, even when running on Windows.
