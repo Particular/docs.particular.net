@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog_2", "NLog_2\NLog_2.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_4", "Core_4\Core_4.csproj", "{C7EBC3F6-ADFC-4CC2-8CEB-137D4F0BF983}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog_2.1", "NLog_2.1\NLog_2.1.csproj", "{80EA5F0F-A031-4172-82F2-0C3A52826352}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog_3", "NLog_3\NLog_3.csproj", "{80EA5F0F-A031-4172-82F2-0C3A52826352}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
