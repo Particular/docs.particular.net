@@ -1,4 +1,5 @@
-﻿using log4net.Appender;
+﻿using System.Reflection;
+using log4net.Appender;
 using log4net.Config;
 using log4net.Core;
 using log4net.Filter;
@@ -39,7 +40,9 @@ class Log4NetFiltering
         appender.AddFilter(new NServiceBusLogFilter());
         appender.ActivateOptions();
 
-        BasicConfigurator.Configure(appender);
+        var executingAssembly = Assembly.GetExecutingAssembly();
+        var repository = log4net.LogManager.GetRepository(executingAssembly);
+        BasicConfigurator.Configure(repository, appender);
 
         NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
 

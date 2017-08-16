@@ -1,4 +1,5 @@
-﻿using log4net.Appender;
+﻿using System.Reflection;
+using log4net.Appender;
 using log4net.Config;
 using log4net.Core;
 using log4net.Layout;
@@ -23,7 +24,9 @@ class Usage
         };
         consoleAppender.ActivateOptions();
 
-        BasicConfigurator.Configure(consoleAppender);
+        var executingAssembly = Assembly.GetExecutingAssembly();
+        var repository = log4net.LogManager.GetRepository(executingAssembly);
+        BasicConfigurator.Configure(repository, consoleAppender);
 
         LogManager.Use<Log4NetFactory>();
 
