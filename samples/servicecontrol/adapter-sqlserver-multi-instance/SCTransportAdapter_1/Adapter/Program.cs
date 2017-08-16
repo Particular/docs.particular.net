@@ -28,6 +28,8 @@ class Program
             customization: transport =>
         {
             transport.EnableLegacyMultiInstanceMode(Connections.GetConnection);
+
+            SqlHelper.EnsureDatabaseExists(Connections.Adapter);
         });
 
         #endregion

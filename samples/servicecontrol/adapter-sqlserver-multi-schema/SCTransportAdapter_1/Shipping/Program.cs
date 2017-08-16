@@ -7,12 +7,18 @@ class Program
 {
     static void Main()
     {
+        var connectionString = @"Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
+
         Console.Title = "Samples.ServiceControl.SqlServerTransportAdapter.Shipping";
         var endpointConfiguration = new BusConfiguration();
         endpointConfiguration.EndpointName("Samples.ServiceControl.SqlServerTransportAdapter.Shipping");
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(@"Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+        transport.ConnectionString(connectionString);
+
+        SqlHelper.EnsureDatabaseExists(connectionString);
+        SqlHelper.CreateSchema(connectionString, "shipping");
+        SqlHelper.CreateSchema(connectionString, "adapter");
 
         #region SchemaV5
 

@@ -27,6 +27,8 @@ class Program
         transport.EnableLegacyMultiInstanceMode(Connections.GetConnection);
 #pragma warning restore 618
 
+        SqlHelper.EnsureDatabaseExists(Connections.Sales);
+
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         var chaos = new ChaosGenerator();

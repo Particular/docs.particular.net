@@ -18,8 +18,12 @@ class Program
         var endpointConfiguration = new EndpointConfiguration(
             "Samples.ServiceControl.MixedTransportAdapter.Shipping");
 
+        var connection = @"Data Source=.\SqlExpress;Initial Catalog=shipping;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
+
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>()
-            .ConnectionString(@"Data Source=.\SqlExpress;Initial Catalog=shipping;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+            .ConnectionString(connection);
+
+        SqlHelper.EnsureDatabaseExists(connection);
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 

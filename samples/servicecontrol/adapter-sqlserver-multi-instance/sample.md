@@ -28,9 +28,8 @@ The purpose of the adapter is to isolate ServiceControl from the specifics of th
 
 NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default port number for API. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
  
- 4. Ensure the `ServiceControl` process is running before running the sample.
- 5. In the same SQL Server instance, create databases for the endpoints: `sales`, `shipping` and `adapter`  
- 6. [Install ServicePulse](/servicepulse/installation.md)
+ 4. Ensure the `ServiceControl` process is running before running the sample.  
+ 5. [Install ServicePulse](/servicepulse/installation.md)
 
 NOTE: In order to connect to a different SQL Server instance, ensure all database connection strings are updated in the sample.
 
