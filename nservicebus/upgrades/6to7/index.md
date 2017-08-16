@@ -196,7 +196,6 @@ License files can now be stored on the local file system to be accessed by all e
 * `{Environment.SpecialFolder.LocalApplicationData}\ParticularSoftware`
 * `{Environment.SpecialFolder.CommonApplicationData}\ParticularSoftware`
 
-Note: These locations are dependent on your operating system and configuration.
 
 ### Application specific license location
 
