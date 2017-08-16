@@ -4,7 +4,7 @@ MinimumVisualStudioVersion = 15.0.26430.04
 MinimumVisualStudioVersion = 15.0.26430.04
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoBufGoogle_1.0", "ProtoBufGoogle_1.0\ProtoBufGoogle_1.0.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoBufGoogle_1.1", "ProtoBufGoogle_1.1\ProtoBufGoogle_1.1.csproj", "{0A1E5A7A-E981-4369-81EA-8A6B5D98EBC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoBufGoogle_2", "ProtoBufGoogle_2\ProtoBufGoogle_2.csproj", "{0A1E5A7A-E981-4369-81EA-8A6B5D98EBC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
