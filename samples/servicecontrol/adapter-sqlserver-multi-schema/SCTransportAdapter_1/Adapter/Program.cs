@@ -36,6 +36,9 @@ class Program
                 transport.UseSchemaForQueue(
                     queueName: "Samples.ServiceControl.SqlServerTransportAdapter.Shipping",
                     schema: "shipping");
+
+                SqlHelper.EnsureDatabaseExists(connection);
+                SqlHelper.CreateSchema(connection, "adapter");
             });
 
         #endregion

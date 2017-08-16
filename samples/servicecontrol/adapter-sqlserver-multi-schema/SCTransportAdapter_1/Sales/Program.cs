@@ -13,6 +13,8 @@ class Program
 
     static async Task AsyncMain()
     {
+        var connectionString = @"Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
+
         Console.Title = "Samples.ServiceControl.SqlServerTransportAdapter.Sales";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
@@ -22,8 +24,11 @@ class Program
         var routing = transport.Routing();
         routing.RegisterPublisher(typeof(OrderShipped),
             "Samples.ServiceControl.SqlServerTransportAdapter.Shipping");
-        transport.ConnectionString(@"Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10");
+        transport.ConnectionString(connectionString);
 
+        SqlHelper.EnsureDatabaseExists(connectionString);
+        SqlHelper.CreateSchema(connectionString, "sales");
+        SqlHelper.CreateSchema(connectionString, "adapter");
 
         #region SchemaV6
 
