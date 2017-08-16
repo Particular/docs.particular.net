@@ -1,0 +1,1 @@
+DANGER: RavenDB's implementation of distributed transactions contains a bug that could cause an NServiceBus endpoint, in certain (rare) conditions, to lose data. If RavenDB is configured to enlist in distribute transactions, please, be sure to read [DTC not supported for RavenDB Persistence](dtc.md)
