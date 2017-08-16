@@ -39,6 +39,6 @@ partial: factory
 
 ## Circuit Breaker
 
-The SQL transport has a built in circuit breaker to handle intermittent SQL Server connectivity problems.
+A built in circuit breaker is used to handle intermittent SQL Server connectivity problems.
 
 partial: circuit-breaker
