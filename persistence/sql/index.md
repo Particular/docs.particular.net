@@ -90,7 +90,7 @@ WARNING: Projects using `project.json` are **not** supported. The `project.json`
 
 SQL installation scripts are created at compile time by the `NServiceBus.Persistence.Sql.MsBuild` NuGet package.
 
-Scripts will be created in the directory format of `[CurrentProjectDebugDir]\NServiceBus.Persistence.Sql\[SqlVariant]`.
+partial: scriptlocation
 
 For example for a project named `ClassLibrary` build in Debug mode the following directories will be created.
 
@@ -149,7 +149,7 @@ snippet: TablePrefix
 
 #### Database Schema
 
-A database schema can be defined in the configuration API as follows:
+When using Microsoft SQL Server, a database schema other than the default `dbo` can be defined in the configuration API as follows:
 
 snippet: Schema
 
