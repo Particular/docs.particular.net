@@ -192,7 +192,7 @@ Exceptions of type `Exception` are now thrown instead of `ConfigurationErrorsExc
 
 ### Machine wide license locations
 
-License files can now be stored on the local file system to be accessed by all endpoints running on this machine. By default, NServiceBus endpoints will check the following locations for a `license.xml` file :
+License files be stored on the local file system to be accessed by all endpoints running on this machine. By default, NServiceBus endpoints will check the following locations for a `license.xml` file:
 * `{Environment.SpecialFolder.LocalApplicationData}\ParticularSoftware`
 * `{Environment.SpecialFolder.CommonApplicationData}\ParticularSoftware`
 
