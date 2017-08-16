@@ -19,7 +19,7 @@ class Usage
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var connection = @"Data Source=.\SqlExpress;Initial Catalog=dbname;Integrated Security=True";
-        persistence.SqlVariant(SqlVariant.MsSqlServer);
+        persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
@@ -62,7 +62,7 @@ class Usage
 
         var connection = "server=localhost;user=root;database=dbname;port=3306;password=pass;AllowUserVariables=True;AutoEnlist=false";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.SqlVariant(SqlVariant.MySql);
+        persistence.SqlDialect<SqlDialect.MySql>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
@@ -78,7 +78,7 @@ class Usage
 
         var connection = "Data Source=localhost;User Id=username;Password=pass;Enlist=false;";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.SqlVariant(SqlVariant.Oracle);
+        persistence.SqlDialect<SqlDialect.Oracle>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
@@ -189,7 +189,8 @@ class Usage
         #region Schema
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.Schema("MySchema");
+        var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
+        dialect.Schema("MySchema");
 
         #endregion
     }
