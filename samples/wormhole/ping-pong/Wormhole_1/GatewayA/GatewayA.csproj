@@ -4,6 +4,7 @@
     <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>7</LangVersion>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />

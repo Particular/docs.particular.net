@@ -21,7 +21,7 @@ class Program
         #region ConfigureGatewayB
 
         gatewayConfig.ConfigureRemoteSite("SiteA", "Gateway.SiteA");
-        gatewayConfig.ForwardToEndpoint("Contracts", "Samples.Wormhole.PingPong.Server");
+        gatewayConfig.ForwardToEndpoint("Shared", "Samples.Wormhole.PingPong.Server");
 
         #endregion
 
