@@ -6,7 +6,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerilogTracing_2", "Serilog
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerilogTracing_3.0", "SerilogTracing_3.0\SerilogTracing_3.0.csproj", "{6652EB10-5A4B-4EDE-98B5-D3DC7CB6BD48}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerilogTracing_3.1", "SerilogTracing_3.1\SerilogTracing_3.1.csproj", "{10EA345A-64D4-4D42-93E1-CAE5AECD83A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerilogTracing_4", "SerilogTracing_4\SerilogTracing_4.csproj", "{10EA345A-64D4-4D42-93E1-CAE5AECD83A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

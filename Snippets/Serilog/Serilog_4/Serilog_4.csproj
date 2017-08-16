@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Serilog.Tracing" Version="3.1.0-*" />
+    <PackageReference Include="NServiceBus.Serilog" Version="4.0.0-*" />
     <PackageReference Include="Serilog" Version="2.*" />
     <PackageReference Include="Serilog.Formatting.Compact" Version="1.*" />
     <PackageReference Include="Serilog.Sinks.ColoredConsole" Version="3.*" />

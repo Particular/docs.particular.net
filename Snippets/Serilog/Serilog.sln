@@ -6,7 +6,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serilog_2", "Serilog_2\Seri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serilog_3.0", "Serilog_3.0\Serilog_3.0.csproj", "{6652EB10-5A4B-4EDE-98B5-D3DC7CB6BD48}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serilog_3.1", "Serilog_3.1\Serilog_3.1.csproj", "{0A385465-55A5-4EE0-B653-DC2156B31777}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serilog_4.0", "Serilog_4.0\Serilog_4.0.csproj", "{0A385465-55A5-4EE0-B653-DC2156B31777}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
