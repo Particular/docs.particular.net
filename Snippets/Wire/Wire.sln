@@ -4,7 +4,7 @@ MinimumVisualStudioVersion = 15.0.26430.04
 MinimumVisualStudioVersion = 15.0.26430.04
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wire_2.0", "Wire_2.0\Wire_2.0.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wire_2.1", "Wire_2.1\Wire_2.1.csproj", "{3AD920AF-C3D0-487C-AFE1-9B914F0AE3F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wire_3", "Wire_3\Wire_3.csproj", "{3AD920AF-C3D0-487C-AFE1-9B914F0AE3F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
