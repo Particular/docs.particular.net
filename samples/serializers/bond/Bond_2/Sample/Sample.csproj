@@ -8,6 +8,6 @@
   <ItemGroup>
     <PackageReference Include="Bond.Core.CSharp" Version="6.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Bond" Version="1.3.0-*" />
+    <PackageReference Include="NServiceBus.Bond" Version="2.0.0-*" />
   </ItemGroup>
 </Project>

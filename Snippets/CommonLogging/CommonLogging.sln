@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLogging_3", "CommonLo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLogging_4", "CommonLogging_4\CommonLogging_4.csproj", "{A5CA3A33-27D0-455F-8BCA-EEDCE2FB9DB9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLogging_4.1", "CommonLogging_4.1\CommonLogging_4.1.csproj", "{5DA17F1A-015A-4177-883D-B83C759C8DF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLogging_5", "CommonLogging_5\CommonLogging_5.csproj", "{5DA17F1A-015A-4177-883D-B83C759C8DF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
