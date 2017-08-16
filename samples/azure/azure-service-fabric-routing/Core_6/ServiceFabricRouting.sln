@@ -1,40 +1,42 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 15.0.26430.04
-MinimumVisualStudioVersion = 15.0.26430.04
-Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "ServiceFabricRouting", "ServiceFabricRouting\ServiceFabricRouting.sfproj", "{302CD0D1-3EB9-49A9-BB2E-723B21AADF58}"
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "ServiceFabricRouting", "ServiceFabricRouting\ServiceFabricRouting.sfproj", "{C5703A62-CF81-4C1A-AE06-213D13721F72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateVoteCount", "CandidateVoteCount\CandidateVoteCount.csproj", "{E426FA6B-61D3-4BDE-86B1-C778F67A9200}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CandidateVoteCount", "CandidateVoteCount\CandidateVoteCount.csproj", "{E426FA6B-61D3-4BDE-86B1-C778F67A9200}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZipCodeVoteCount", "ZipCodeVoteCount\ZipCodeVoteCount.csproj", "{313CA348-F3C4-46C7-AAE9-90C478D47BFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZipCodeVoteCount", "ZipCodeVoteCount\ZipCodeVoteCount.csproj", "{313CA348-F3C4-46C7-AAE9-90C478D47BFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{D2D5A397-E764-48D9-8C02-BA7EDE62A36D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{D2D5A397-E764-48D9-8C02-BA7EDE62A36D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voter", "Voter\Voter.csproj", "{999D5A48-DEA0-45E0-AA16-DC6EA7EDBE1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voter", "Voter\Voter.csproj", "{999D5A48-DEA0-45E0-AA16-DC6EA7EDBE1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{8A06709E-003C-47DA-8BE5-861E311E8212}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{8A06709E-003C-47DA-8BE5-861E311E8212}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{302CD0D1-3EB9-49A9-BB2E-723B21AADF58}.Debug|x64.ActiveCfg = Debug|x64
-		{302CD0D1-3EB9-49A9-BB2E-723B21AADF58}.Debug|x64.Build.0 = Debug|x64
-		{302CD0D1-3EB9-49A9-BB2E-723B21AADF58}.Debug|x64.Deploy.0 = Debug|x64
-		{E426FA6B-61D3-4BDE-86B1-C778F67A9200}.Debug|x64.ActiveCfg = Debug|x64
-		{E426FA6B-61D3-4BDE-86B1-C778F67A9200}.Debug|x64.Build.0 = Debug|x64
-		{313CA348-F3C4-46C7-AAE9-90C478D47BFB}.Debug|x64.ActiveCfg = Debug|x64
-		{313CA348-F3C4-46C7-AAE9-90C478D47BFB}.Debug|x64.Build.0 = Debug|x64
-		{D2D5A397-E764-48D9-8C02-BA7EDE62A36D}.Debug|x64.ActiveCfg = Debug|x64
-		{D2D5A397-E764-48D9-8C02-BA7EDE62A36D}.Debug|x64.Build.0 = Debug|x64
-		{999D5A48-DEA0-45E0-AA16-DC6EA7EDBE1C}.Debug|x64.ActiveCfg = Debug|x64
-		{999D5A48-DEA0-45E0-AA16-DC6EA7EDBE1C}.Debug|x64.Build.0 = Debug|x64
-		{8A06709E-003C-47DA-8BE5-861E311E8212}.Debug|x64.ActiveCfg = Debug|x64
-		{8A06709E-003C-47DA-8BE5-861E311E8212}.Debug|x64.Build.0 = Debug|x64
+		{C5703A62-CF81-4C1A-AE06-213D13721F72}.Debug|x64.ActiveCfg = Debug|x64
+		{C5703A62-CF81-4C1A-AE06-213D13721F72}.Debug|x64.Build.0 = Debug|x64
+		{C5703A62-CF81-4C1A-AE06-213D13721F72}.Debug|x64.Deploy.0 = Debug|x64
+		{E426FA6B-61D3-4BDE-86B1-C778F67A9200}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E426FA6B-61D3-4BDE-86B1-C778F67A9200}.Debug|x64.Build.0 = Debug|Any CPU
+		{313CA348-F3C4-46C7-AAE9-90C478D47BFB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{313CA348-F3C4-46C7-AAE9-90C478D47BFB}.Debug|x64.Build.0 = Debug|Any CPU
+		{D2D5A397-E764-48D9-8C02-BA7EDE62A36D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D2D5A397-E764-48D9-8C02-BA7EDE62A36D}.Debug|x64.Build.0 = Debug|Any CPU
+		{999D5A48-DEA0-45E0-AA16-DC6EA7EDBE1C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{999D5A48-DEA0-45E0-AA16-DC6EA7EDBE1C}.Debug|x64.Build.0 = Debug|Any CPU
+		{8A06709E-003C-47DA-8BE5-861E311E8212}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8A06709E-003C-47DA-8BE5-861E311E8212}.Debug|x64.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98E53BB1-0EFE-4D31-A1AA-26F2E0AA0155}
 	EndGlobalSection
 EndGlobal
