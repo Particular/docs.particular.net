@@ -202,7 +202,7 @@ Note: These locations are dependent on your operating system and configuration.
 
 Licenses can be shipped along with an endpoint's artifacts. By default, NServiceBus endpoints will look for a `license.xml` in the applications base directory (`AppDomain.CurrentDomain.BaseDirectory`).
 
-WARN: The `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml` path will no longer be checked by NServiceBus Version 7.
+WARNING: The `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml` path will no longer be checked by NServiceBus Version 7.
 
 ### Registry based license locations
 
