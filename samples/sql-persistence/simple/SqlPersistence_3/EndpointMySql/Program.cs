@@ -35,7 +35,7 @@ class Program
             throw new Exception("Could not extract 'MySqlUserName' from Environment variables.");
         }
         var connection = $"server=localhost;user={username};database=sqlpersistencesample;port=3306;password={password};AllowUserVariables=True;AutoEnlist=false";
-        persistence.SqlVariant(SqlVariant.MySql);
+        persistence.SqlDialect<SqlDialect.MySql>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {

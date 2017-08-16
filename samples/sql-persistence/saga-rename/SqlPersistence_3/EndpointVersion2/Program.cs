@@ -24,7 +24,7 @@ class Program
 
         #region renameTables
 
-        var connectionString = @"Data Source=.\SqlExpress;Initial Catalog=Samples.SqlPersistence.RenameSaga;Integrated Security=True";
+        var connectionString = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;Integrated Security=True";
         using (var connection = new SqlConnection(connectionString))
         {
             await connection.OpenAsync()

@@ -11,7 +11,7 @@ public static class SharedConfiguration
         #region endpointConfig
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.SqlVariant(SqlVariant.MsSqlServer);
+        persistence.SqlDialect<SqlDialect.MsSqlServer>();
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
         var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;Integrated Security=True";
