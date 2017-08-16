@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log4Net_1", "Log4Net_1\Log4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log4Net_2", "Log4Net_2\Log4Net_2.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log4Net_3", "Log4Net_3\Log4Net_2.csproj", "{36AC5DE2-B16B-403F-BFD1-03E9DA2F4FC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log4Net_3", "Log4Net_3\Log4Net_3.csproj", "{36AC5DE2-B16B-403F-BFD1-03E9DA2F4FC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
