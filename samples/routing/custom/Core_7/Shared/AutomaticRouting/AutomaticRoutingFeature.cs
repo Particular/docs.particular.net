@@ -6,6 +6,7 @@ using NServiceBus.Features;
 using NServiceBus.Routing;
 using NServiceBus.Routing.MessageDrivenSubscriptions;
 using NServiceBus.Unicast;
+using NServiceBus.Unicast.Messages;
 
 class AutomaticRoutingFeature :
     Feature
@@ -24,7 +25,9 @@ class AutomaticRoutingFeature :
         var endpointInstances = settings.Get<EndpointInstances>();
         var publishers = settings.Get<Publishers>();
         var connectionString = settings.Get<string>("NServiceBus.AutomaticRouting.ConnectionString");
-        var messageTypesPublished = settings.Get<Type[]>("NServiceBus.AutomaticRouting.PublishedTypes");
+
+        var registry = settings.Get<MessageMetadataRegistry>();
+        var messageTypesPublished = BuildTypesPublishedWithInheritance(settings.Get<Type[]>("NServiceBus.AutomaticRouting.PublishedTypes"), registry);
 
         #region Feature
 
@@ -82,6 +85,23 @@ class AutomaticRoutingFeature :
             description: "Verifies if all published types has been advertised.");
 
         #endregion
+    }
+
+    Type[] BuildTypesPublishedWithInheritance(Type[] messageTypesPublished, MessageMetadataRegistry registry)
+    {
+        if (!messageTypesPublished.Any())
+        {
+            return messageTypesPublished;
+        }
+
+        var publishedMessageTypes = new HashSet<Type>(messageTypesPublished);
+
+        foreach (var t in messageTypesPublished)
+        {
+            publishedMessageTypes.UnionWith(registry.GetMessageMetadata(t).MessageHierarchy);
+        }
+
+        return publishedMessageTypes.ToArray();
     }
 
     static List<Type> GetHandledCommands(MessageHandlerRegistry handlerRegistry, Conventions conventions)
