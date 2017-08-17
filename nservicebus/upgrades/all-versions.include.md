@@ -26,6 +26,16 @@
 
 ### Transport packages
 
+#### NServiceBus.AmazonSQS
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 2.0.x     | 2017-05-28     | -                 | -                                 |
+| 1.3.x     | 2017-04-26     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
+| ~~1.2.x~~ | ~~2015-04-08~~ | ~~2017-07-26~~    | ~~Superseded by 1.3.x~~           |
+| ~~1.1.x~~ | ~~2015-01-27~~ | ~~2015-07-08~~    | ~~Superseded by 1.2.x~~           |
+| ~~1.0.x~~ | ~~2015-01-19~~ | ~~2015-04-27~~    | ~~Superseded by 1.1.x~~           |
+
 #### NServiceBus.Azure.Transports.WindowsAzureServiceBus
 
 | Version   | Released       | Supported until   | Notes                             |
