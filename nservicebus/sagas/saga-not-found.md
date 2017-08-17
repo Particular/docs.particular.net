@@ -9,7 +9,7 @@ related:
 - samples/saga
 ---
 
-The messages which are handled by sagas can either start a new saga (if handled by `IAmStartedByMessages<T>`) or update the existing saga (if handled by `IHandleMessages<T>`). If the incoming message should be handled by a saga, but is not expected to start a new one, then NServiceBus uses provided [correlation rules](/nservicebus/sagas/#correlating-messages-to-a-saga) to find an existing saga. If no existing saga can be found then all implementations of `IHandleSagaNotFound` are executed.
+The messages which are handled by sagas can either start a new saga (if handled by `IAmStartedByMessages<T>`) or update the existing saga (if handled by `IHandleMessages<T>`). If the incoming message should be handled by a saga, but is not expected to start a new one, then NServiceBus uses provided [correlation rules](/nservicebus/sagas/#correlating-messages-to-a-saga) to find an existing saga. If no existing saga can be found then all implementations of `IHandleSagaNotFound` are executed. If no implementation can be found, the message is discarded without additional notifications.
 
 snippet: saga-not-found
 
