@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-MinimumVisualStudioVersion = 15.0.26430.04
+VisualStudioVersion = 15.0.26430.04
 MinimumVisualStudioVersion = 15.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCTransportAdapter_1", "SCTransportAdapter_1\SCTransportAdapter_1.csproj", "{7DBB1E57-F928-43B7-B6A3-0A46CE21B02B}"
 EndProject

@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-MinimumVisualStudioVersion = 15.0.26430.04
+VisualStudioVersion = 15.0.26430.04
 MinimumVisualStudioVersion = 15.0.26430.04
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endpoint2", "Endpoint2\Endpoint2.csproj", "{2FE71442-7F81-428E-B945-D564850D6564}"
 EndProject

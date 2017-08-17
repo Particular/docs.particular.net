@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-MinimumVisualStudioVersion = 15.0.26430.04
+VisualStudioVersion = 15.0.26430.04
 MinimumVisualStudioVersion = 15.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABSDataBus_1", "ABSDataBus_1\ABSDataBus_1.csproj", "{C6EBF50F-A4A2-4162-8122-AF073A6D38FC}"
 EndProject
