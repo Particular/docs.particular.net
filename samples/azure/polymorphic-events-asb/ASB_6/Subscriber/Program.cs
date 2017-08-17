@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Configuration;
 using Events;
 using NServiceBus;
+using NServiceBus.Config;
+using NServiceBus.Config.ConfigurationSource;
 using NServiceBus.Features;
 
 class Program
 {
-
     static void Main()
     {
+		AppContext.SetSwitch("Switch.System.IdentityModel.DisableMultipleDNSEntriesInSANCertificate", true);
+		
         Console.Title = "Samples.ASB.Polymorphic.Subscriber";
         var busConfiguration = new BusConfiguration();
 
@@ -28,7 +32,6 @@ class Program
 
         #endregion
 
-
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
@@ -46,6 +49,26 @@ class Program
             Console.WriteLine("Subscriber is ready to receive events");
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+    }
+
+    public class ProvideConfiguration : IProvideConfiguration<UnicastBusConfig>
+    {
+        public UnicastBusConfig GetConfiguration()
+        {
+            var config = new UnicastBusConfig
+            {
+                MessageEndpointMappings = new MessageEndpointMappingCollection
+                {
+                    new MessageEndpointMapping
+                    {
+                        AssemblyName = "Shared",
+                        Endpoint = "Samples.ASB.Polymorphic.Publisher"
+                    }
+                }
+            };
+            
+            return config;
         }
     }
 }
