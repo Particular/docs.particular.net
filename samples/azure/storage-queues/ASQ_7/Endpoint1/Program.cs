@@ -18,7 +18,8 @@ class Program
 
         #region config
 
-        endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
+            .ConnectionString("UseDevelopmentStorage=true");
 
         #endregion
 

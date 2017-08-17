@@ -18,7 +18,8 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.StorageQueues.Endpoint2");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
+            .ConnectionString("UseDevelopmentStorage=true");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.DisableFeature<TimeoutManager>();
         endpointConfiguration.DisableFeature<MessageDrivenSubscriptions>();

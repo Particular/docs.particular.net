@@ -35,12 +35,6 @@ The `Server` endpoint is configured to use the Azure Storage persistence in two 
 snippet: Config
 
 
-#### The app.config
-
-Note the use of `UseDevelopmentStorage` to point to the Azure Storage Emulator.
-
-snippet: AppConfig
-
 
 ## The Data in Azure Storage
 
