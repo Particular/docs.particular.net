@@ -22,12 +22,12 @@ class Program
 
         var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlSagaFinder;Integrated Security=True";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
                 return new SqlConnection(connection);
             });
-        persistence.SqlVariant(SqlVariant.MsSqlServer);
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
