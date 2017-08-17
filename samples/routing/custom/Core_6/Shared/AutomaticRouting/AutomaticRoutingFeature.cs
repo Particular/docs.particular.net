@@ -23,11 +23,11 @@ class AutomaticRoutingFeature :
         var uniqueKey = settings.InstanceSpecificQueue() ?? settings.LocalAddress();
         var unicastRoutingTable = settings.Get<UnicastRoutingTable>();
         var endpointInstances = settings.Get<EndpointInstances>();
-        var publishers = settings.Get<Publishers>();        
+        var publishers = settings.Get<Publishers>();
         var connectionString = settings.Get<string>("NServiceBus.AutomaticRouting.ConnectionString");
 
         var registry = settings.Get<MessageMetadataRegistry>();
-        var messageTypesPublished = BuildTypesPublishedWithInheritance(settings.Get<Type[]>("NServiceBus.AutomaticRouting.PublishedTypes"), registry);        
+        var messageTypesPublished = BuildTypesPublishedWithInheritance(settings.Get<Type[]>("NServiceBus.AutomaticRouting.PublishedTypes"), registry);
 
         #region Feature
 
