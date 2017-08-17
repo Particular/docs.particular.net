@@ -8,10 +8,11 @@ class Program
     {
         Console.Title = "Samples.Azure.StorageQueues.Endpoint2";
         var busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Azure.StorageQueues.Endpoint2").UseConnectionString("UseDevelopmentStorage=true");
+        busConfiguration.EndpointName("Samples.Azure.StorageQueues.Endpoint2");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
-        busConfiguration.UseTransport<AzureStorageQueueTransport>();
+        busConfiguration.UseTransport<AzureStorageQueueTransport>()
+            .ConnectionString("UseDevelopmentStorage=true");
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         using (var bus = Bus.Create(busConfiguration).Start())

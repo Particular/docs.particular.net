@@ -11,7 +11,8 @@ class Program
         #region config
 
         busConfiguration.EndpointName("Samples.Azure.StorageQueues.Endpoint1");
-        busConfiguration.UseTransport<AzureStorageQueueTransport>().UseConnectionString("UseDevelopmentStorage=true");
+        busConfiguration.UseTransport<AzureStorageQueueTransport>()
+            .ConnectionString("UseDevelopmentStorage=true");
 
         #endregion
 
