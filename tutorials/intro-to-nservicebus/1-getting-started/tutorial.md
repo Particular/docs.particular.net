@@ -20,7 +20,7 @@ In this first lesson, which should take 10-15 minutes, you will create your very
 
 Let's build something simple to give NServiceBus a try.
 
-Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md), this tutorial assumes at least Visual Studio 2015 and .NET Framework 4.6.1.
+Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md), this tutorial assumes at least [Visual Studio 2017](https://www.visualstudio.com/downloads/) and .NET Framework 4.6.1.
 
 
 ### Create a solution

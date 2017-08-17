@@ -10,7 +10,7 @@ Often, this type of failure can be introduced by a bug that isn't found until th
 
 In this tutorial, we'll see how to use ServiceControl to monitor an NServiceBus system, and ServicePulse to replay a failed message.
 
-To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file with Visual Studio 2015 or later.
+To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file with [Visual Studio 2017](https://www.visualstudio.com/downloads/).
 
 downloadbutton
 
