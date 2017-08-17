@@ -81,11 +81,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Store.Messages\Store.Messages.csproj">
       <Project>{59F2BA7E-4DA5-49F8-9DBC-520FA99F4679}</Project>
       <Name>Store.Messages</Name>

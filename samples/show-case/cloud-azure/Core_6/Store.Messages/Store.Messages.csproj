@@ -42,8 +42,5 @@
     <Compile Include="RequestResponse\ProvisionDownloadRequest.cs" />
     <Compile Include="RequestResponse\ProvisionDownloadResponse.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

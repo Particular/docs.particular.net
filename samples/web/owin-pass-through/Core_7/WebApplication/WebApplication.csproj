@@ -38,9 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
