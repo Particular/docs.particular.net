@@ -14,10 +14,8 @@
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="6.*" />
     <PackageReference Include="WindowsAzure.Storage" Version="4.*" />
-  
     <PackageReference Include="WindowsAzure.ServiceBus" Version="2.*" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>

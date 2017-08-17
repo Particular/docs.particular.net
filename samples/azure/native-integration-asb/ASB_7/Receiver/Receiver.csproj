@@ -6,12 +6,11 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-	<PackageReference Include="NServiceBus" Version="6.*" />
-	<PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="7.*" />
-	<PackageReference Include="WindowsAzure.ServiceBus" Version="4.*" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="7.*" />
+    <PackageReference Include="WindowsAzure.ServiceBus" Version="4.*" />
   </ItemGroup>
-  
   <ItemGroup>
-	<ProjectReference Include="..\Shared\Shared.csproj" />
-  </ItemGroup>    
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
 </Project>

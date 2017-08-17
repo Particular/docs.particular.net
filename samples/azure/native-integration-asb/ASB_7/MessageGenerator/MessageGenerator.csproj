@@ -5,14 +5,13 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-	<PackageReference Include="Newtonsoft.Json" Version="10.*" />
-	<PackageReference Include="NServiceBus" Version="6.*" />
-	<PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="7.*" />
-	<PackageReference Include="WindowsAzure.ServiceBus" Version="4.*" />
-	<PackageReference Include="NUnit" Version="3.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="7.*" />
+    <PackageReference Include="WindowsAzure.ServiceBus" Version="4.*" />
+    <PackageReference Include="NUnit" Version="3.*" />
   </ItemGroup>
-  
   <ItemGroup>
-	<ProjectReference Include="..\Shared\Shared.csproj" />
-  </ItemGroup>    
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
 </Project>

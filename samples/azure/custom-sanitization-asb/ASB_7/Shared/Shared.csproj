@@ -8,5 +8,5 @@
     <PackageReference Include="NServiceBus" version="6.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" version="7.*" />
     <PackageReference Include="WindowsAzure.ServiceBus" version="4.*" />
-  </ItemGroup> 
+  </ItemGroup>
 </Project>

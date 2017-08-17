@@ -6,5 +6,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" version="6.*" />
-  </ItemGroup> 
+  </ItemGroup>
 </Project>

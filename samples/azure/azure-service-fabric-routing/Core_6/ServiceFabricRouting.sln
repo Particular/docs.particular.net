@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+MinimumVisualStudioVersion = 15.0.26430.04
 MinimumVisualStudioVersion = 15.0.26430.04
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "ServiceFabricRouting", "ServiceFabricRouting\ServiceFabricRouting.sfproj", "{C5703A62-CF81-4C1A-AE06-213D13721F72}"
 EndProject

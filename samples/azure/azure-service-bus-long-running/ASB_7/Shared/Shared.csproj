@@ -13,5 +13,5 @@
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" version="7.*" />
     <PackageReference Include="WindowsAzure.ServiceBus" version="4.*" />
     <PackageReference Include="WindowsAzure.Storage" version="8.*" />
-  </ItemGroup> 
+  </ItemGroup>
 </Project>

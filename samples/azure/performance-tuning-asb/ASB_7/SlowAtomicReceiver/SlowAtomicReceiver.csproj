@@ -1,18 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
     <OutputType>Exe</OutputType>
+    <LangVersion>7</LangVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="WindowsAzure.ServiceBus" Version="4.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />    
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
-
 </Project>

@@ -1,19 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
+    <LangVersion>7</LangVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />    
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus.Persistence.AzureStorage" Version="1.*" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
-
 </Project>
