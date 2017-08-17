@@ -42,11 +42,9 @@
 - Key: SQS
   Name: Amazon SQS Transport
   DocoUrl: transports/sqs
-  GitHubOwner: ahofman
+  GitHubOwner: Particular/aws-maintainers
   Category: Transport
-  LicenseUrl: https://opensource.org/licenses/Apache-2.0
-  SupportLevel: Community
-  ProjectUrl: https://github.com/ahofman/NServiceBus.AmazonSQS
+  ProjectUrl: https://github.com/Particular/NServiceBus.AmazonSQS
   NugetOrder:
     - NServiceBus.AmazonSQS
 
