@@ -16,7 +16,7 @@ public class ScriptWriter
     public void Write()
     {
         var directory = Path.Combine(TestContext.CurrentContext.TestDirectory, "../../");
-        foreach (var variant in Enum.GetValues(typeof(BuildSqlVariant)).Cast<BuildSqlVariant>())
+        foreach (var variant in Enum.GetValues(typeof(BuildSqlDialect)).Cast<BuildSqlDialect>())
         {
             Write(directory, variant, "TimeoutCreate", TimeoutScriptBuilder.BuildCreateScript(variant));
             Write(directory, variant, "TimeoutDrop", TimeoutScriptBuilder.BuildDropScript(variant));
@@ -39,50 +39,55 @@ public class ScriptWriter
             Write(directory, variant, "SagaCreate", SagaScriptBuilder.BuildCreateScript(sagaDefinition, variant));
             Write(directory, variant, "SagaDrop", SagaScriptBuilder.BuildDropScript(sagaDefinition, variant));
         }
-        foreach (var variant in Enum.GetValues(typeof(SqlVariant)).Cast<SqlVariant>())
+
+        var dialects = new SqlDialect[]
+        {
+            new SqlDialect.MsSqlServer(),
+            new SqlDialect.MySql(),
+            new SqlDialect.Oracle()
+        };
+
+        foreach (var dialect in dialects)
         {
             var timeoutCommands = TimeoutCommandBuilder.Build(
-                sqlVariant: variant,
-                tablePrefix: "EndpointName",
-                schema:"dbo");
-            Write(directory, variant, "TimeoutAdd", timeoutCommands.Add);
-            Write(directory, variant, "TimeoutNext", timeoutCommands.Next);
-            Write(directory, variant, "TimeoutRange", timeoutCommands.Range);
-            Write(directory, variant, "TimeoutRemoveById", timeoutCommands.RemoveById);
-            Write(directory, variant, "TimeoutRemoveBySagaId", timeoutCommands.RemoveBySagaId);
-            Write(directory, variant, "TimeoutPeek", timeoutCommands.Peek);
+                sqlDialect: dialect,
+                tablePrefix: "EndpointName");
+            Write(directory, dialect, "TimeoutAdd", timeoutCommands.Add);
+            Write(directory, dialect, "TimeoutNext", timeoutCommands.Next);
+            Write(directory, dialect, "TimeoutRange", timeoutCommands.Range);
+            Write(directory, dialect, "TimeoutRemoveById", timeoutCommands.RemoveById);
+            Write(directory, dialect, "TimeoutRemoveBySagaId", timeoutCommands.RemoveBySagaId);
+            Write(directory, dialect, "TimeoutPeek", timeoutCommands.Peek);
 
             var outboxCommands = OutboxCommandBuilder.Build(
                 tablePrefix: "EndpointName",
-                schema: "dbo",
-                sqlVariant: variant);
-            Write(directory, variant, "OutboxCleanup", outboxCommands.Cleanup);
-            Write(directory, variant, "OutboxGet", outboxCommands.Get);
-            Write(directory, variant, "OutboxSetAsDispatched", outboxCommands.SetAsDispatched);
-            Write(directory, variant, "OutboxStore", outboxCommands.Store);
+                sqlDialect: dialect);
+            Write(directory, dialect, "OutboxCleanup", outboxCommands.Cleanup);
+            Write(directory, dialect, "OutboxGet", outboxCommands.Get);
+            Write(directory, dialect, "OutboxSetAsDispatched", outboxCommands.SetAsDispatched);
+            Write(directory, dialect, "OutboxStore", outboxCommands.Store);
 
             var subscriptionCommands = SubscriptionCommandBuilder.Build(
-                sqlVariant: variant,
-                tablePrefix: "EndpointName",
-                schema: "dbo");
-            Write(directory, variant, "SubscriptionSubscribe", subscriptionCommands.Subscribe);
-            Write(directory, variant, "SubscriptionUnsubscribe", subscriptionCommands.Unsubscribe);
-            Write(directory, variant, "SubscriptionGetSubscribers", subscriptionCommands.GetSubscribers(new List<MessageType>
+                sqlDialect: dialect,
+                tablePrefix: "EndpointName");
+            Write(directory, dialect, "SubscriptionSubscribe", subscriptionCommands.Subscribe);
+            Write(directory, dialect, "SubscriptionUnsubscribe", subscriptionCommands.Unsubscribe);
+            Write(directory, dialect, "SubscriptionGetSubscribers", subscriptionCommands.GetSubscribers(new List<MessageType>
             {
                 new MessageType("MessageTypeName", new Version())
             }));
 
-            var sagaCommandBuilder = new SagaCommandBuilder(variant);
-            Write(directory, variant, "SagaComplete", sagaCommandBuilder.BuildCompleteCommand("EndpointName_SagaName"));
-            Write(directory, variant, "SagadGetByProperty", sagaCommandBuilder.BuildGetByPropertyCommand("PropertyName", "EndpointName_SagaName"));
-            Write(directory, variant, "SagaGetBySagaId", sagaCommandBuilder.BuildGetBySagaIdCommand("EndpointName_SagaName"));
-            Write(directory, variant, "SagaSave", sagaCommandBuilder.BuildSaveCommand("CorrelationProperty", "TransitionalCorrelationProperty", "EndpointName_SagaName"));
-            Write(directory, variant, "SagaUpdate", sagaCommandBuilder.BuildUpdateCommand("TransitionalCorrelationProperty", "EndpointName_SagaName"));
+            var sagaCommandBuilder = new SagaCommandBuilder(dialect);
+            Write(directory, dialect, "SagaComplete", sagaCommandBuilder.BuildCompleteCommand("EndpointName_SagaName"));
+            Write(directory, dialect, "SagadGetByProperty", sagaCommandBuilder.BuildGetByPropertyCommand("PropertyName", "EndpointName_SagaName"));
+            Write(directory, dialect, "SagaGetBySagaId", sagaCommandBuilder.BuildGetBySagaIdCommand("EndpointName_SagaName"));
+            Write(directory, dialect, "SagaSave", sagaCommandBuilder.BuildSaveCommand("CorrelationProperty", "TransitionalCorrelationProperty", "EndpointName_SagaName"));
+            Write(directory, dialect, "SagaUpdate", sagaCommandBuilder.BuildUpdateCommand("TransitionalCorrelationProperty", "EndpointName_SagaName"));
 
             // since we don't have doco on oracle saga finders
-            if (variant != SqlVariant.Oracle)
+            if (!(dialect is SqlDialect.Oracle))
             {
-                Write(directory, variant, "SagaSelect", sagaCommandBuilder.BuildSelectFromCommand("EndpointName_SagaName"));
+                Write(directory, dialect, "SagaSelect", sagaCommandBuilder.BuildSelectFromCommand("EndpointName_SagaName"));
             }
         }
     }
@@ -111,14 +116,14 @@ public class ScriptWriter
 
     }
 
-    static void Write(string testDirectory, BuildSqlVariant variant, string suffix, string script)
+    static void Write(string testDirectory, BuildSqlDialect variant, string suffix, string script)
     {
         Write(testDirectory, suffix, script, variant.ToString());
     }
 
-    static void Write(string testDirectory, SqlVariant variant, string suffix, string script)
+    static void Write(string testDirectory, SqlDialect dialect, string suffix, string script)
     {
-        Write(testDirectory, suffix, script, variant.ToString());
+        Write(testDirectory, suffix, script, dialect.ToString());
     }
 
     static void Write(string testDirectory, string suffix, string script, string variantAsString)

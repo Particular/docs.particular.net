@@ -23,7 +23,7 @@ partial class Program
         var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistenceTransition;Integrated Security=True";
         SqlHelper.EnsureDatabaseExists(connection);
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.SqlVariant(SqlVariant.MsSqlServer);
+        persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {

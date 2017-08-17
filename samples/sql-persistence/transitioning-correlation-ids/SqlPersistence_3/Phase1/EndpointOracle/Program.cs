@@ -31,7 +31,7 @@ partial class Program
             throw new Exception("Could not extract 'OracleUserName' from Environment variables.");
         }
         var connection = $"Data Source=localhost;User Id={username}; Password={password}; Enlist=false";
-        persistence.SqlVariant(SqlVariant.Oracle);
+        persistence.SqlDialect<SqlDialect.Oracle>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
