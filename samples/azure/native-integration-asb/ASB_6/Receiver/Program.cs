@@ -7,6 +7,8 @@ class Program
 {
     static void Main()
     {
+		AppContext.SetSwitch("Switch.System.IdentityModel.DisableMultipleDNSEntriesInSANCertificate", true);
+		
         Console.Title = "Samples.ASB.NativeIntegration";
         var busConfiguration = new BusConfiguration();
 
