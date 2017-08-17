@@ -55,4 +55,21 @@
             return Task.CompletedTask;
         }
     }
+
+    class DisableInstallers
+    {
+        async Task Simple(EndpointConfiguration endpointConfiguration)
+        {
+            #region DisableInstallers
+
+            //TODO: uncomment when 6.4 package available
+            //endpointConfiguration.DisableInstallers();
+
+            // this will not run the installers
+            await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
+
+            #endregion
+        }
+    }
 }
