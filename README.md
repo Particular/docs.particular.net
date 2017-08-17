@@ -777,11 +777,87 @@ Use `var` everywhere.
 The code used by snippets and samples is compiled on the build server. The compilation is done against the versions of the packages referenced in the samples and snippets projects. When a snippet doesn't compile, the build will break so make sure snippets are compiling properly. Samples and snippets should not reference unreleased NuGet packages.
 
 
-## Unreleased NuGet packages
+## NuGet package references
+
+
+### Use current minor
+
+NuGet package references should use the the most greedy wildcard that is safe for that reference. In most cases that is "current minor":
+
+```
+<PackageReference Include="NServiceBus.Serilog" Version="4.*" />
+```
+
+This applies to snippets and samples.
+
+
+### Sometimes current patch
+
+In some cases, usually where a package has significant new API in a minor, it may be necessary to version snippets down to the "current patch".
+
+```
+<PackageReference Include="NServiceBus.Persistence.Sql" Version="2.0.*" />
+```
+
+```
+<PackageReference Include="NServiceBus.Persistence.Sql" Version="2.1.*" />
+```
+
+Note that this should be a temporary state and in the next major default back to "current minor".
+
+```
+<PackageReference Include="NServiceBus.Persistence.Sql" Version="3.*" />
+```
+
+Also this generally only applies to snippets. It is usually not necessary to go to that level of version granularity for samples.
+
+
+### Sample always pull in one extra level
+
+All samples pull in one extra level of package dependency. So, for example, in the Rabbit samples it would be sufficient to have:
+
+```
+<PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
+```
+
+The reference to `NServiceBus` and `RabbitMQ.Client` would then be inferred. However since the dependencies in `NServiceBus.RabbitMQ` are:
+
+```
+NServiceBus (>= 6.0.0 && < 7.0.0)
+RabbitMQ.Client (>= 4.1.0 && < 5.1.0)
+```
+
+NuGet will then resolve the lowest within those ranges. This make it more difficult to smoke test new versions of those dependencies using samples. As such, for all dependencies that are important to use the latest, the extra dependencies are explicitly included with wildcards.
+
+```
+<PackageReference Include="NServiceBus" Version="6.*" />
+<PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
+<PackageReference Include="RabbitMQ.Client" Version="5.*" />
+```
+
+
+### Unreleased NuGet packages
 
 There are some scenarios where documentation may require unreleased or beta NuGet packages. For example, when creating a PR against documentation for a feature that is not yet released. In this case, it is ok for a PR to reference an unreleased NuGet and have that PR fail to build on the build server. Once the NuGet packages have been released that PR can be merged.
 
 In some cases it may be necessary to have merged documentation for unreleased features. In this case the NuGet packages should be pushed to the [Particular feed on MyGet](https://www.myget.org/feed/Packages/particular). The feed is included by default in the [Snippets nuget.config](https://github.com/Particular/docs.particular.net/blob/master/Snippets/nuget.config#L14).
+
+
+### Temporary unstables
+
+During a period of documenting an unstable feature those unstable packages need to be explicitly included via including a `-*`.
+
+```
+<PackageReference Include="NServiceBus.RabbitMQ" Version="4.3.1-*" />
+```
+
+In snippets this can be safely done at any point in time. Note that when for applied to samples this can have side effects on a user who downloads a sample during that period. As such it is generally only done for samples that are marked with a `prerelease.txt` marker.
+
+This is a temporary state and once a stable is released it is changed back to the "current minor"
+
+```
+<PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
+```
 
 
 ## Alerts
