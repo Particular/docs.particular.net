@@ -41,7 +41,7 @@ void CleanUpSolutions()
 				//https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes#15.2.26430.04
 				if (line.StartsWith("VisualStudioVersion = "))
 				{
-					writer.WriteLine("MinimumVisualStudioVersion = 15.0.26430.04");
+					writer.WriteLine("VisualStudioVersion = 15.0.26430.04");
 					continue;
 				}
 				if (line.StartsWith("MinimumVisualStudioVersion = "))
