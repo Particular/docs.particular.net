@@ -5,9 +5,10 @@ using NServiceBus.Features;
 
 class Program
 {
-
     static void Main()
     {
+		AppContext.SetSwitch("Switch.System.IdentityModel.DisableMultipleDNSEntriesInSANCertificate", true);
+		
         Console.Title = "Samples.ASB.Polymorphic.Publisher";
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.ASB.Polymorphic.Publisher");

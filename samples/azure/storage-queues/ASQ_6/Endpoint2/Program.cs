@@ -11,7 +11,8 @@ class Program
         busConfiguration.EndpointName("Samples.Azure.StorageQueues.Endpoint2");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
-        busConfiguration.UseTransport<AzureStorageQueueTransport>();
+        busConfiguration.UseTransport<AzureStorageQueueTransport>()
+            .ConnectionString("UseDevelopmentStorage=true");
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         using (var bus = Bus.Create(busConfiguration).Start())
