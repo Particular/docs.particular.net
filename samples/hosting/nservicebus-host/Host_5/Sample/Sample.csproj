@@ -31,7 +31,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <PackageReference Include="NServiceBus" Version="5.*" />
-    <PackageReference Include="NServiceBus.Host" Version="5.0.11" />
+    <PackageReference Include="NServiceBus.Host" Version="5.*" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />

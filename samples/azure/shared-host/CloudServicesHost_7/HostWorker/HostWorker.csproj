@@ -44,7 +44,7 @@
     <PackageReference Include="System.Linq.Queryable" Version="4.*" />
     <PackageReference Include="System.Net.Requests" Version="4.*" />
     <PackageReference Include="System.Spatial" Version="5.*" />
-    <PackageReference Include="Unofficial.Microsoft.WindowsAzure.Diagnostics" Version="2.9.0.0" />
+    <PackageReference Include="Unofficial.Microsoft.WindowsAzure.Diagnostics" Version="2.*" />
     <PackageReference Include="Unofficial.Microsoft.WindowsAzure.ServiceRuntime" Version="2.*" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
   </ItemGroup>

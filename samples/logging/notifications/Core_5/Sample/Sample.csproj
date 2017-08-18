@@ -10,11 +10,11 @@
     <Reference Include="System.Windows" />
     <Reference Include="WindowsBase" />
     <PackageReference Include="NServiceBus" Version="5.*" />
-    <PackageReference Include="System.Reactive" Version="3.1.1" />
-    <PackageReference Include="System.Reactive.Core" Version="3.1.1" />
-    <PackageReference Include="System.Reactive.Interfaces" Version="3.1.1" />
-    <PackageReference Include="System.Reactive.Linq" Version="3.1.1" />
-    <PackageReference Include="System.Reactive.PlatformServices" Version="3.1.1" />
-    <PackageReference Include="System.Reactive.Windows.Threading" Version="3.1.1" />
+    <PackageReference Include="System.Reactive" Version="3.*" />
+    <PackageReference Include="System.Reactive.Core" Version="3.*" />
+    <PackageReference Include="System.Reactive.Interfaces" Version="3.*" />
+    <PackageReference Include="System.Reactive.Linq" Version="3.*" />
+    <PackageReference Include="System.Reactive.PlatformServices" Version="3.*" />
+    <PackageReference Include="System.Reactive.Windows.Threading" Version="3.*" />
   </ItemGroup>
 </Project>
