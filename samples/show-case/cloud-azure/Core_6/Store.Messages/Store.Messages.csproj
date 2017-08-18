@@ -27,15 +27,9 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.3.4\lib\net452\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NServiceBus.Encryption.MessageProperty, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Encryption.MessageProperty.1.0.0\lib\net452\NServiceBus.Encryption.MessageProperty.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
+    <PackageReference Include="NServiceBus" Version="6.3.4" />
+    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CancelOrder.cs" />
@@ -47,9 +41,6 @@
     <Compile Include="Events\OrderPlaced.cs" />
     <Compile Include="RequestResponse\ProvisionDownloadRequest.cs" />
     <Compile Include="RequestResponse\ProvisionDownloadResponse.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
