@@ -27,7 +27,7 @@ public static void SetStartupProjects(string codeDirectory)
 		var startProjects = GetStartupProjects(solutionFile).ToList();
 		if (startProjects.Any())
 		{
-			startProjectSuoCreator.CreateForSolutionFile(solutionFile, startProjects);
+			startProjectSuoCreator.CreateForSolutionFile(solutionFile, startProjects, VisualStudioVersions.Vs2017);
 		}
 	}
 }
