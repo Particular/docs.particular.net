@@ -62,7 +62,6 @@
         {
             #region DisableInstallers
 
-            //TODO: uncomment when 6.4 package available
             //endpointConfiguration.DisableInstallers();
 
             // this will not run the installers
