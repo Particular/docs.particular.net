@@ -2,6 +2,7 @@ nugets
 deploy
 build32
 binaries
+*UpgradeLog.*
 *.vshost.*
 *.lock.json
 .nu
@@ -11,6 +12,7 @@ _UpgradeReport.*
 *~
 *.swp
 results
+*Backup*
 CommonAssemblyInfo.cs
 lib/sqlite/System.Data.SQLite.dll
 *.orig
