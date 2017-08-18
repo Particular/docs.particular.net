@@ -6,10 +6,10 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CommonServiceLocator" Version="1.*" />
+    <PackageReference Include="CommonServiceLocator" Version="1.3" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Unity" Version="7.*" />
-    <PackageReference Include="Unity" Version="4.0.*" />
-    <PackageReference Include="Unity.Interception" Version="4.0.*" />
+    <PackageReference Include="Unity" Version="4.0.1" />
+    <PackageReference Include="Unity.Interception" Version="4.0.1" />
   </ItemGroup>
 </Project>
