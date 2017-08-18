@@ -1,7 +1,7 @@
 ---
 title: Installers
 summary: Installers ensure endpoint specific artifacts are installed and configured during endpoint startup.
-reviewed: 2017-01-19
+reviewed: 2017-08-17
 component: core
 related:
  - nservicebus/operations
@@ -13,13 +13,11 @@ redirects:
 
 Installers ensure that endpoint specific artifacts (e.g. queues, directories, databases etc) are installed and configured at endpoint startup install time.
 
-To create a custom installer implement the `INeedToInstallSomething` interface.
+## Running installers
 
-snippet: InstallSomething
+By default, installers are only run when the application starts with a debugger attached. This includes applications being debugged remotely.
 
-Assemblies in the runtime directory are scanned for installers so no code is needed to register them.
-
-Installers can be enabled to run at startup:
+Installers can be enabled to always run at startup:
 
 snippet: Installers
 
@@ -33,4 +31,14 @@ or by a machine name convention like:
 
 snippet: InstallersRunWhenNecessaryMachineNameConvention
 
-NOTE: Installers are always run when the application is run with a debugger attached. This includes when the application is being debugged remotely.
+partial: disable
+
+
+## Custom installers
+
+To create a custom installer implement the `INeedToInstallSomething` interface.
+
+snippet: InstallSomething
+
+Assemblies in the runtime directory are scanned for installers so no code is needed to register them.
+

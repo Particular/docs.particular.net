@@ -55,4 +55,20 @@
             return Task.CompletedTask;
         }
     }
+
+    class DisableInstallers
+    {
+        async Task Simple(EndpointConfiguration endpointConfiguration)
+        {
+            #region DisableInstallers
+
+            endpointConfiguration.DisableInstallers();
+
+            // this will not run the installers
+            await Endpoint.Start(endpointConfiguration)
+                .ConfigureAwait(false);
+
+            #endregion
+        }
+    }
 }
