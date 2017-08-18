@@ -1,15 +1,14 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.04
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwinPassThrough", "OwinPassThrough\OwinPassThrough.csproj", "{B70EED65-70FB-456B-AB80-1C11A40BBEB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwinPassThrough", "OwinPassThrough\OwinPassThrough.csproj", "{B70EED65-70FB-456B-AB80-1C11A40BBEB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endpoint", "Endpoint\Endpoint.csproj", "{91C1383C-79C8-43C9-8B88-C996E7A8BF6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endpoint", "Endpoint\Endpoint.csproj", "{91C1383C-79C8-43C9-8B88-C996E7A8BF6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{C6F38A5C-425A-4A88-AADE-CA5268656754}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{67823838-A4F7-44AC-B2A5-9F1AC3749470}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messages", "Messages\Messages.csproj", "{67823838-A4F7-44AC-B2A5-9F1AC3749470}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,5 +26,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CEF5E7EB-9999-4F2F-972E-5D57A26A1B86}
 	EndGlobalSection
 EndGlobal
