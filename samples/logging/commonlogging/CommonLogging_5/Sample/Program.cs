@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Common.Logging;
 using NServiceBus;
-using Common.Logging.Simple;
 // ReSharper disable RedundantNameQualifier
 
 class Program
@@ -19,7 +18,7 @@ class Program
 
         #region ConfigureLogging
 
-        Common.Logging.LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter
+        Common.Logging.LogManager.Adapter = new ConsoleLoggerFactoryAdapter
         {
             Level = LogLevel.Info
         };
