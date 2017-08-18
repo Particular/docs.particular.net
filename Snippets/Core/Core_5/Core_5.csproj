@@ -6,6 +6,7 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="5.0" />
     <PackageReference Include="NServiceBus.NHibernate" Version="6.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="3.*" />
     <PackageReference Include="NUnit" Version="3.*" />
