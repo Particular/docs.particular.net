@@ -45,16 +45,16 @@
     <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Autofac" Version="6.*" />
-    <ProjectReference Include="..\Shared\Shared.csproj"/>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config"/>
+    <Content Include="Web.config" />
     <Compile Include="DefaultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Content Include="Views\web.config"/>
+    <Content Include="Views\web.config" />
     <Content Include="Views\Default\Index.cshtml" />
     <Folder Include="App_Data\" />
   </ItemGroup>

@@ -42,10 +42,7 @@
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.*" />
     <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
     <PackageReference Include="NServiceBus" Version="5.*" />
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{e4a4b35e-afd3-456c-a5ac-4a88aad77156}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -54,8 +51,6 @@
     <Content Include="Views\Home\SendEnumMessage.cshtml" />
     <Content Include="Views\Home\SendObjectMessage.cshtml" />
     <None Include="Views\Home\SendIntMessage.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -48,7 +48,7 @@
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Autofac" Version="6.*" />
     <PackageReference Include="NServiceBus.Callbacks" Version="2.*" />
-    <ProjectReference Include="..\Shared\Shared.csproj"/>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -58,7 +58,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Content Include="Global.asax" />
-    <Content Include="Web.config"/>
+    <Content Include="Web.config" />
     <Content Include="Views\Shared\Index.cshtml" />
     <Content Include="Views\Home\SendLinks.cshtml" />
     <Folder Include="App_Data\" />

@@ -66,8 +66,8 @@
     <PackageReference Include="System.Net.Requests" Version="4.*" />
     <PackageReference Include="System.Spatial" Version="5.*" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
-    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj"/>
-    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj"/>
+    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
+    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.cs" />
@@ -83,8 +83,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="Content\js\product.js" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config"/>
-    <Content Include="Views\Web.config"/>
+    <Content Include="Web.config" />
+    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

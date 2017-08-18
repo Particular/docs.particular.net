@@ -46,10 +46,7 @@
     <PackageReference Include="System.Net.Requests" Version="4.*" />
     <PackageReference Include="System.Spatial" Version="5.*" />
     <PackageReference Include="WindowsAzure.Storage" Version="4.*" />
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{07bc8092-ee47-4242-b39d-ab77d02ac67b}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

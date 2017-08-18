@@ -47,15 +47,11 @@
     <PackageReference Include="System.Net.Requests" Version="4.*" />
     <PackageReference Include="System.Spatial" Version="5.*" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{07bc8092-ee47-4242-b39d-ab77d02ac67b}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="NServiceBus.Hosting.Azure.HostProcess.exe.config">
-      <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Compile Include="EndpointConfig.cs" />

@@ -50,19 +50,15 @@
     <PackageReference Include="System.Net.Requests" Version="4.*" />
     <PackageReference Include="System.Spatial" Version="5.*" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
-    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj"/>
-    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj"/>
+    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
+    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="SubmitOrderHandler.cs" />
     <Compile Include="ProcessOrderSaga.cs" />
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="app.manifest">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
+    <None Include="app.manifest" />
     <None Include="Properties\webjob-publish-settings.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -45,17 +45,12 @@
     <PackageReference Include="System.Net.Requests" Version="4.*" />
     <PackageReference Include="System.Spatial" Version="5.*" />
     <PackageReference Include="WindowsAzure.Storage" Version="4.*" />
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{07BC8092-EE47-4242-B39D-AB77D02AC67B}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="PingHandler.cs" />
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

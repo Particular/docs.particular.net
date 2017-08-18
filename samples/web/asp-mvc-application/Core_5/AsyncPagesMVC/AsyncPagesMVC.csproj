@@ -47,7 +47,7 @@
     <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.Autofac" Version="5.*" />
-    <ProjectReference Include="..\Shared\Shared.csproj"/>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -57,7 +57,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Content Include="Global.asax" />
-    <Content Include="Web.config"/>
+    <Content Include="Web.config" />
     <Content Include="Views\Shared\Index.cshtml" />
     <Content Include="Views\Home\SendLinks.cshtml" />
     <Folder Include="App_Data\" />

@@ -40,9 +40,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
