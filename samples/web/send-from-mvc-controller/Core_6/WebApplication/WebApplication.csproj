@@ -37,42 +37,25 @@
     <Reference Include="System" />
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.6.1" />
-    <PackageReference Include="Autofac.Mvc5" Version="4.0.2" />
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
-    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.2.3" />
-    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.3" />
-    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
-    <PackageReference Include="NServiceBus.Autofac" Version="6.0.1" />
+    <PackageReference Include="Autofac" Version="4.*" />
+    <PackageReference Include="Autofac.Mvc5" Version="4.*" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.*" />
+    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.*" />
+    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.*" />
+    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Autofac" Version="6.*" />
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Web.config"/>
     <Compile Include="DefaultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Views\web.config"/>
     <Content Include="Views\Default\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{DBB48E3A-165C-49CA-85EF-532357F525AD}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

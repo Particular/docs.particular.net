@@ -25,6 +25,6 @@
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="1.2.0-*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0-*" />
-    <PackageReference Include="Owin" Version="1.0" />
+    <PackageReference Include="Owin" Version="1.*" />
   </ItemGroup>
 </Project>

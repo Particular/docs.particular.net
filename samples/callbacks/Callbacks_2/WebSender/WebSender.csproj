@@ -37,14 +37,16 @@
     <Reference Include="System" />
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
-    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.2.3" />
-    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.3" />
-    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
-    <PackageReference Include="NServiceBus.Callbacks" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.*" />
+    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.*" />
+    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.*" />
+    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="2.*" />
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{e4a4b35e-afd3-456c-a5ac-4a88aad77156}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -53,26 +55,14 @@
     <Content Include="Views\Home\SendEnumMessage.cshtml" />
     <Content Include="Views\Home\SendObjectMessage.cshtml" />
     <None Include="Views\Home\SendIntMessage.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{e4a4b35e-afd3-456c-a5ac-4a88aad77156}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

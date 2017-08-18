@@ -39,14 +39,15 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Web" />
-    <PackageReference Include="Autofac" Version="4.6.1" />
-    <PackageReference Include="Autofac.Mvc5" Version="4.0.2" />
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
-    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.2.3" />
-    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.3" />
-    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
-    <PackageReference Include="NServiceBus" Version="5.2.22" />
-    <PackageReference Include="NServiceBus.Autofac" Version="5.1.1" />
+    <PackageReference Include="Autofac" Version="4.*" />
+    <PackageReference Include="Autofac.Mvc5" Version="4.*" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.*" />
+    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.*" />
+    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.*" />
+    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
+    <PackageReference Include="NServiceBus" Version="5.*" />
+    <PackageReference Include="NServiceBus.Autofac" Version="5.*" />
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -55,26 +56,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Web.config"/>
     <Content Include="Views\Shared\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{B363FF88-1C00-4FB6-A22E-44E2FB754944}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Home\SendLinks.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -29,14 +29,12 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <PackageReference Include="log4net" Version="2.0.8" />
-    <PackageReference Include="NServiceBus" Version="5.2.22" />
+    <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.Host" Version="6.0.1" />
     <PackageReference Include="NServiceBus.Log4Net" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="MyHandler.cs" />
