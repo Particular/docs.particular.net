@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <StartupObject />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -26,16 +27,13 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <LangVersion>7</LangVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <PackageReference Include="log4net" Version="2.0.8" />
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
-    <PackageReference Include="NServiceBus.Host" Version="7.0.2" />
-    <PackageReference Include="NServiceBus.Log4Net" Version="2.0.0" />
+    <PackageReference Include="log4net" Version="2.*" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Host" Version="7.*" />
+    <PackageReference Include="NServiceBus.Log4Net" Version="2.*" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EndpointConfig.cs" />
@@ -46,8 +44,6 @@
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
     <Compile Include="Startup.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

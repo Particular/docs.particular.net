@@ -7,8 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="9.*" />
     <PackageReference Include="NServiceBus" Version="5.*" />
   </ItemGroup>

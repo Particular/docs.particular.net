@@ -14,13 +14,13 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
     <UseGlobalApplicationHostFile />
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,19 +40,21 @@
     <Reference Include="System" />
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
-    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.2.3" />
-    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.2.2" />
-    <PackageReference Include="Microsoft.AspNet.SignalR.SystemWeb" Version="2.2.2" />
-    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.3" />
-    <PackageReference Include="Microsoft.Owin" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Security" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
-    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.0.0" />
-    <PackageReference Include="Owin" Version="1.0" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.*" />
+    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.*" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.*" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.SystemWeb" Version="2.*" />
+    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.*" />
+    <PackageReference Include="Microsoft.Owin" Version="3.*" />
+    <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.*" />
+    <PackageReference Include="Microsoft.Owin.Security" Version="3.*" />
+    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />
+    <PackageReference Include="Owin" Version="1.*" />
+    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
+    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.cs" />
@@ -64,53 +66,20 @@
     <Compile Include="Handlers\OrderPlacedHandler.cs" />
     <Compile Include="Handlers\OrdersHub.cs" />
     <Compile Include="Handlers\OrderIsReadyHandler.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="Content\js\product.js" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Views\Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Web.config" />
+    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj">
-      <Project>{59F2BA7E-4DA5-49F8-9DBC-520FA99F4679}</Project>
-      <Name>Store.Messages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj">
-      <Project>{68263f62-14c1-4fb8-b7d5-0d1565951f5e}</Project>
-      <Name>Store.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="app.manifest" />
   </ItemGroup>
-  <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v15.0\WebApplications\Microsoft.WebApplication.targets" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>

@@ -8,8 +8,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="2.*" />
     <PackageReference Include="WindowsAzure.ServiceBus" Version="2.*" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

@@ -12,8 +12,6 @@
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="1.*" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

@@ -5,8 +5,8 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CloudFormation" Version="3.3.6" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="AWSSDK.CloudFormation" Version="3.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.AmazonSQS" Version="3.0.0-*" />
     <PackageReference Include="NUnit" Version="3.*" />

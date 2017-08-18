@@ -29,23 +29,21 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
-    <PackageReference Include="Microsoft.Data.Edm" Version="5.8.2" />
-    <PackageReference Include="Microsoft.Data.OData" Version="5.8.2" />
-    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.8.2" />
-    <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="2.0.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="5.0.8" />
-    <PackageReference Include="NServiceBus" Version="5.2.22" />
-    <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
-    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
-    <PackageReference Include="System.Net.Requests" Version="4.3.0" />
-    <PackageReference Include="System.Spatial" Version="5.8.2" />
-    <PackageReference Include="WindowsAzure.Storage" Version="4.3.0" />
+    <PackageReference Include="Microsoft.Data.Edm" Version="5.*" />
+    <PackageReference Include="Microsoft.Data.OData" Version="5.*" />
+    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.*" />
+    <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="2.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="5.*" />
+    <PackageReference Include="NServiceBus" Version="5.*" />
+    <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.*" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.*" />
+    <PackageReference Include="System.Linq.Queryable" Version="4.*" />
+    <PackageReference Include="System.Net.Requests" Version="4.*" />
+    <PackageReference Include="System.Spatial" Version="5.*" />
+    <PackageReference Include="WindowsAzure.Storage" Version="4.*" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="LogEntry.cs" />
     <Compile Include="VerificationLogger.cs" />

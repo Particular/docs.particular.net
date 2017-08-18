@@ -29,39 +29,31 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
-    <PackageReference Include="CommonServiceLocator" Version="1.3" />
-    <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.0.4" />
-    <PackageReference Include="Microsoft.Data.Edm" Version="5.8.2" />
-    <PackageReference Include="Microsoft.Data.OData" Version="5.8.2" />
-    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.8.2" />
-    <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.2.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.4.1" />
-    <PackageReference Include="NServiceBus.Hosting.Azure" Version="7.1.3" />
-    <PackageReference Include="NServiceBus.Hosting.Azure.HostProcess" Version="7.1.3" />
-    <PackageReference Include="NServiceBus.Persistence.AzureStorage" Version="1.4.0" />
-    <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
-    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
-    <PackageReference Include="System.Net.Requests" Version="4.3.0" />
-    <PackageReference Include="System.Spatial" Version="5.8.2" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.2.1" />
+    <PackageReference Include="CommonServiceLocator" Version="1.*" />
+    <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.*" />
+    <PackageReference Include="Microsoft.Data.Edm" Version="5.*" />
+    <PackageReference Include="Microsoft.Data.OData" Version="5.*" />
+    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.*" />
+    <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.*" />
+    <PackageReference Include="NServiceBus.Hosting.Azure" Version="7.*" />
+    <PackageReference Include="NServiceBus.Hosting.Azure.HostProcess" Version="7.*" />
+    <PackageReference Include="NServiceBus.Persistence.AzureStorage" Version="1.*" />
+    <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.*" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.*" />
+    <PackageReference Include="System.Linq.Queryable" Version="4.*" />
+    <PackageReference Include="System.Net.Requests" Version="4.*" />
+    <PackageReference Include="System.Spatial" Version="5.*" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="NServiceBus.Hosting.Azure.HostProcess.exe.config">
-      <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{07bc8092-ee47-4242-b39d-ab77d02ac67b}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="PongHandler.cs" />
     <Compile Include="SendPing.cs" />

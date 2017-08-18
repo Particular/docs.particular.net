@@ -9,8 +9,6 @@
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="Newtonsoft.Json" Version="9.*" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

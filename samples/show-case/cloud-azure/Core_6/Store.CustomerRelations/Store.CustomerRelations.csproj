@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <StartupObject />
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,55 +28,39 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <LangVersion>7</LangVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.0.4" />
-    <PackageReference Include="Microsoft.Azure.WebJobs" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Core" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Data.Edm" Version="5.8.2" />
-    <PackageReference Include="Microsoft.Data.OData" Version="5.8.2" />
-    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.8.2" />
-    <PackageReference Include="Microsoft.Web.WebJobs.Publish" Version="1.0.13" />
-    <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.2.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="NServiceBus" Version="6.3.4" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.4.1" />
-    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.0.0" />
-    <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
-    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
-    <PackageReference Include="System.Net.Requests" Version="4.3.0" />
-    <PackageReference Include="System.Spatial" Version="5.8.2" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.2.1" />
+    <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.*" />
+    <PackageReference Include="Microsoft.Azure.WebJobs" Version="2.*" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Core" Version="2.*" />
+    <PackageReference Include="Microsoft.Data.Edm" Version="5.*" />
+    <PackageReference Include="Microsoft.Data.OData" Version="5.*" />
+    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.*" />
+    <PackageReference Include="Microsoft.Web.WebJobs.Publish" Version="1.*" />
+    <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.*" />
+    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />
+    <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.*" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.*" />
+    <PackageReference Include="System.Linq.Queryable" Version="4.*" />
+    <PackageReference Include="System.Net.Requests" Version="4.*" />
+    <PackageReference Include="System.Spatial" Version="5.*" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
+    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
+    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="OrderAcceptedHandler.cs" />
     <Compile Include="SendLimitedTimeOffer.cs" />
     <Compile Include="SendWelcomePacket.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="app.manifest" />
     <None Include="Properties\webjob-publish-settings.json" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj">
-      <Project>{59f2ba7e-4da5-49f8-9dbc-520fa99f4679}</Project>
-      <Name>Store.Messages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj">
-      <Project>{68263f62-14c1-4fb8-b7d5-0d1565951f5e}</Project>
-      <Name>Store.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\..\..\..\packages\Microsoft.Web.WebJobs.Publish.1.0.12\tools\webjobs.targets" Condition="Exists('..\..\..\..\..\packages\Microsoft.Web.WebJobs.Publish.1.0.12\tools\webjobs.targets')" />
+  <Import Project="..\packages\Microsoft.Web.WebJobs.Publish.1.0.12\tools\webjobs.targets" Condition="Exists('..\packages\Microsoft.Web.WebJobs.Publish.1.0.12\tools\webjobs.targets')" />
 </Project>

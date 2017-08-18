@@ -10,19 +10,19 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web" />
     <ProjectReference Include="..\StockEvents\StockEvents.csproj" />
-    <PackageReference Include="Microsoft.AspNet.Cors" Version="5.2.3" />
-    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.2.2" />
-    <PackageReference Include="Microsoft.AspNet.SignalR.SelfHost" Version="2.2.2" />
-    <PackageReference Include="Microsoft.Owin" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Cors" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Diagnostics" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Hosting" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Security" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.SelfHost" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNet.Cors" Version="5.*" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.*" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.SelfHost" Version="2.*" />
+    <PackageReference Include="Microsoft.Owin" Version="3.*" />
+    <PackageReference Include="Microsoft.Owin.Cors" Version="3.*" />
+    <PackageReference Include="Microsoft.Owin.Diagnostics" Version="3.*" />
+    <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="3.*" />
+    <PackageReference Include="Microsoft.Owin.Hosting" Version="3.*" />
+    <PackageReference Include="Microsoft.Owin.Security" Version="3.*" />
+    <PackageReference Include="Microsoft.Owin.SelfHost" Version="3.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0-*" />
-    <PackageReference Include="Owin" Version="1.0" />
+    <PackageReference Include="Owin" Version="1.*" />
   </ItemGroup>
 </Project>

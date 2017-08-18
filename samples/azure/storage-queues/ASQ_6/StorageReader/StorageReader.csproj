@@ -15,8 +15,6 @@
     <PackageReference Include="WindowsAzure.Storage" Version="4.*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>
