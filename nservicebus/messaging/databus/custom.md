@@ -2,8 +2,7 @@
 title: Custom DataBus implementation
 summary: Details how to register and plugin custom DataBus implementation into an endpoint.
 component: Core
-versions: '[5.0,)'
-reviewed: 2017-03-14
+reviewed: 2017-08-18
 tags:
 - DataBus
 redirects:
@@ -12,10 +11,6 @@ redirects:
 
 Endpoints support sending and receiving large chunks of data via the [DataBus](./).
 
-It is possible to create a custom DataBus implementation by implementing the `IDataBus` interface, such as in the following minimalistic sample:
+partial: databus_content
 
-snippet: CustomDataBus
-
-To configure the endpoint to use the custom DataBus implementation it is enough to register it at endpoint configuration time, such as in the following sample:
-
-snippet: PluginCustomDataBus
+When customizing DataBus, it may be desirable to also [customize the DataBus serializer](/samples/databus/custom-serializer/) to use Json instead of binary serialization.
