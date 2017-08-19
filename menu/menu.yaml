@@ -447,8 +447,6 @@
       Title: EventSourceLogging
     - Url: nservicebus/operations/auditing
       Title: Auditing Messages
-    - Url: samples/logging
-      Title: Samples
   - Url: nservicebus/security
     Title: Security
   - Url: nservicebus/operations
