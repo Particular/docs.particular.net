@@ -586,11 +586,10 @@
         Title: Oversized Sends
     - Url: transports/azure-service-bus/native-integration
       Title: Native Integration
-      Articles:
-      - Url: transports/azure-service-bus/brokered-message-creation
-        Title: Brokered Message Creation
-      - Url: transports/azure-service-bus/operational-scripting
-        Title: Operational Scripting
+    - Url: transports/azure-service-bus/brokered-message-creation
+      Title: Brokered Message Creation
+    - Url: transports/azure-service-bus/operational-scripting
+      Title: Operational Scripting
     - Url: transports/azure-service-bus/faq
       Title: FAQ
   - Url: transports/azure-storage-queues
