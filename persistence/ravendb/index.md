@@ -6,10 +6,12 @@ tags:
  - Persistence
 related:
  - samples/ravendb
-reviewed: 2016-10-04
+reviewed: 2017-08-21
 redirects:
  - nservicebus/ravendb
 ---
+
+include: dtc-warning
 
 Uses the [RavenDB document database](https://ravendb.net/) for storage.
 
