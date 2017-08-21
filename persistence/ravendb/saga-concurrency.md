@@ -1,11 +1,13 @@
 ---
 title: RavenDB Persistence Saga concurrency
-reviewed: 2017-05-17
+reviewed: 2017-08-21
 related:
  - nservicebus/sagas/concurrency
 redirects:
  - nservicebus/ravendb/saga-concurrency
 ---
+
+include: dtc-warning
 
 RavenDB honors [concurrency semantics](/nservicebus/sagas/concurrency.md) in the following way.
 
