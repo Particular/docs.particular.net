@@ -3,10 +3,12 @@ title: RavenDB Version Compatibility
 summary: The various approaches used by different versions of NServiceBus when integrating with RavenDB
 tags:
 - Persistence
-reviewed: 2016-10-03
+reviewed: 2017-08-21
 redirects:
  - nservicebus/ravendb/version-compatibility
 ---
+
+include: dtc-warning
 
 ## Externalized RavenDB
 
