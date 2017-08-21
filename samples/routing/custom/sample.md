@@ -2,7 +2,7 @@
 title: Custom routing
 summary: Customizing NServiceBus message routing
 component: Core
-reviewed: 2017-03-02
+reviewed: 2017-08-17
 tags:
 - Routing
 ---
@@ -44,7 +44,7 @@ This sample contains four applications that use configuration-free custom routin
 
 snippet: EnableAutomaticRouting
 
-NOTE: In order to use this custom routing all published types need to be specified.
+NOTE: In order to use this custom routing all message types published using `context.Publish()` need to be specified. The inherited event messages types will be added automatically.
 
 
 ### Client
