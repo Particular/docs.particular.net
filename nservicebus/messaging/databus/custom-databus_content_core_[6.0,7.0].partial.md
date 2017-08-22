@@ -7,12 +7,12 @@ This new class will provide the custom implementations for the `Get` and `Put` m
 
 snippet: CustomDataBus
 
-This new implementation needs to be now registered as a new feature. 
+This new implementation needs to be registered as a new feature. 
 
 
 ## Define a feature 
 
-Define a [new feature](/nservicebus/pipeline/features.md) for the custom databus by creating a class that inherits from `Feature`. In the Setup method, register the custom DataBus implementation class.
+Define a [new feature](/nservicebus/pipeline/features.md) that registers the custom DataBus implementation class.
 
 snippet: CustomDataBusFeature
 
@@ -26,7 +26,7 @@ snippet: CustomDataBusDefinition
 
 ## Configure the endpoint
 
-Configure the endpoint to use the custom DataBus implementation instead of the default DataBus, as shown:
+Configure the endpoint to use the custom DataBus implementation instead of the default DataBus:
 
 snippet: PluginCustomDataBus
 

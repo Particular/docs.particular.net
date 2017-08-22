@@ -7,10 +7,10 @@ tags:
 - DataBus
 redirects:
 - nservicebus/plugin-custom-databus
+related:
+- /samples/databus/custom-serializer
 ---
 
 Endpoints support sending and receiving large chunks of data via the [DataBus](./).
 
 partial: databus_content
-
-When customizing DataBus, it may be desirable to also [customize the DataBus serializer](/samples/databus/custom-serializer/) to use Json instead of binary serialization.
