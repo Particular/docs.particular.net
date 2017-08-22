@@ -460,9 +460,9 @@ Do not write a sample when:
 
 ### Startup projects
 
-When a sample is zipped the [VS startup projects](https://msdn.microsoft.com/en-us/library/a1awth7y.aspx) are also configured. This is done by using https://github.com/ParticularLabs/SetStartupProjects. By default startable projects are [detected though interrogating the project settings](https://github.com/ParticularLabs/SetStartupProjects/blob/master/src/SetStartupProjects/StartProjectFinder.cs). To override this convention and hard code the list of startup projects add a file named `{SolutionName}StartupProjects.txt` in the same directory as the solution file. It should contain the relative paths to the project files you would like to use for startup projects. 
+When a sample is zipped the [VS startup projects](https://msdn.microsoft.com/en-us/library/a1awth7y.aspx) are also configured. This is done by using https://github.com/ParticularLabs/SetStartupProjects. By default startable projects are [detected though interrogating the project settings](https://github.com/ParticularLabs/SetStartupProjects/blob/master/src/SetStartupProjects/StartProjectFinder.cs). To override this convention and hard code the list of startup projects add a file named `{SolutionName}.StartupProjects.txt` in the same directory as the solution file. It should contain the relative paths to the project files you would like to use for startup projects. 
 
-For example if the solution "TheSolution.sln" contains two endpoints and you only want to start `Endpoint1` the content of `TheSolutionStartupProjects.txt` would be:
+For example if the solution "TheSolution.sln" contains two endpoints and you only want to start `Endpoint1` the content of `TheSolution.StartupProjects.txt` would be:
 
 ```
 Endpoint1\Endpoint1.csproj
