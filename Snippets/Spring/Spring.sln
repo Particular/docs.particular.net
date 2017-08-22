@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.04
+VisualStudioVersion = 5.0.26730.8
 MinimumVisualStudioVersion = 15.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spring_3", "Spring_3\Spring_3.csproj", "{43BC9525-418A-462D-911E-DAEAA7815BC6}"
 EndProject

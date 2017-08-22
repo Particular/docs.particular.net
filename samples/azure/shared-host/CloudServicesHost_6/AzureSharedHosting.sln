@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.04
+VisualStudioVersion = 5.0.26730.8
 MinimumVisualStudioVersion = 15.0.26430.04
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "HostCloudService", "HostCloudService\HostCloudService.ccproj", "{CD8D25E1-7D63-49DE-A109-4ABF98731C24}"
 EndProject

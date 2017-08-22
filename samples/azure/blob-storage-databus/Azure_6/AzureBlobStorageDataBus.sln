@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.04
+VisualStudioVersion = 5.0.26730.8
 MinimumVisualStudioVersion = 15.0.26430.04
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sender", "Sender\Sender.csproj", "{58F9345A-2622-4EC5-9B74-1DF74E639FB3}"
 EndProject

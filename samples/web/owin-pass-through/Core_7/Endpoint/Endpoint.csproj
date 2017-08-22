@@ -7,8 +7,8 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj"/>
-    <ProjectReference Include="..\OwinPassThrough\OwinPassThrough.csproj"/>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+    <ProjectReference Include="..\OwinPassThrough\OwinPassThrough.csproj" />
     <PackageReference Include="Microsoft.Owin" Version="3.*" />
     <PackageReference Include="Microsoft.Owin.Cors" Version="3.*" />
     <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.*" />
