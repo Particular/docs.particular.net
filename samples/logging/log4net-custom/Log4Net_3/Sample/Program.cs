@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using log4net.Appender;
 using log4net.Config;
@@ -30,7 +31,9 @@ class Program
             Layout = layout
         };
         consoleAppender.ActivateOptions();
-        BasicConfigurator.Configure(consoleAppender);
+        var executingAssembly = Assembly.GetExecutingAssembly();
+        var repository = log4net.LogManager.GetRepository(executingAssembly);
+        BasicConfigurator.Configure(repository, consoleAppender);
         #endregion
 
         #region UseConfig
