@@ -1,13 +1,14 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.04
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing_4", "Testing_4\Testing_4.csproj", "{9000E8E8-675F-4DB0-A869-6848350F9B46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing_4", "Testing_4\Testing_4.csproj", "{9000E8E8-675F-4DB0-A869-6848350F9B46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing_5", "Testing_5\Testing_5.csproj", "{868C8CFD-26C7-4947-BD5D-789AA6215F2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing_5", "Testing_5\Testing_5.csproj", "{868C8CFD-26C7-4947-BD5D-789AA6215F2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing_6", "Testing_6\Testing_6.csproj", "{2E94039F-2395-4E74-8C6F-49A46E69110C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing_6", "Testing_6\Testing_6.csproj", "{2E94039F-2395-4E74-8C6F-49A46E69110C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing_7", "Testing_7\Testing_7.csproj", "{162E0A6B-34C4-4433-8AFC-AC0250DE701C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D4D4F3E-0F72-45C2-8AC3-3E455C29CA9D}
 	EndGlobalSection
 EndGlobal
