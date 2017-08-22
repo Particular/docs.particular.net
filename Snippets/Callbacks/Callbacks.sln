@@ -1,16 +1,18 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.04
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_4", "Core_4\Core_4.csproj", "{07F27696-5C5E-42E9-A8B0-6837946A5C00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_4", "Core_4\Core_4.csproj", "{07F27696-5C5E-42E9-A8B0-6837946A5C00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_3", "Core_3\Core_3.csproj", "{5FB8D00E-CA45-4BED-B4EB-8A1F9CA27100}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_3", "Core_3\Core_3.csproj", "{5FB8D00E-CA45-4BED-B4EB-8A1F9CA27100}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_5", "Core_5\Core_5.csproj", "{30F5B3E6-2B7F-46BE-8086-169FD856BA64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_5", "Core_5\Core_5.csproj", "{30F5B3E6-2B7F-46BE-8086-169FD856BA64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callbacks_1", "Callbacks_1\Callbacks_1.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Callbacks_1", "Callbacks_1\Callbacks_1.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callbacks_2", "Callbacks_2\Callbacks_2.csproj", "{8BE07348-34C6-4B37-96A2-69AEDB4686C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Callbacks_2", "Callbacks_2\Callbacks_2.csproj", "{8BE07348-34C6-4B37-96A2-69AEDB4686C9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Callbacks_3", "Callbacks_3\Callbacks_3.csproj", "{574262E9-D355-4718-8065-FDB928CCA8C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +32,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1524F115-7060-4BF3-9801-ABE6BE37FDCD}
 	EndGlobalSection
 EndGlobal
