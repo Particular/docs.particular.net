@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.04
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 15.0.26430.04
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_2.0", "SqlTransport_2.0\SqlTransport_2.0.csproj", "{2C8CDF08-D497-4FF9-B417-0FE4D3856FCB}"
 EndProject
@@ -15,6 +15,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_2.1", "SqlTransport_2.1\SqlTransport_2.1.csproj", "{DB7B97B4-3075-4541-A821-1C6FF9AB8671}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_3.1", "SqlTransport_3.1\SqlTransport_3.1.csproj", "{E8130F3D-3346-4846-9122-2406EB4E31E4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_4", "SqlTransport_4\SqlTransport_4.csproj", "{5A4674DD-4BDB-4A75-B8A7-A69A0D928D5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,8 @@ Global
 		{DB7B97B4-3075-4541-A821-1C6FF9AB8671}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8130F3D-3346-4846-9122-2406EB4E31E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E8130F3D-3346-4846-9122-2406EB4E31E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A4674DD-4BDB-4A75-B8A7-A69A0D928D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A4674DD-4BDB-4A75-B8A7-A69A0D928D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
