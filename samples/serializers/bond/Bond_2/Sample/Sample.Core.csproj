@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Bond.Core.CSharp" Version="6.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Wire" Version="3.0.0-*" />
-    <PackageReference Include="Wire" Version="0.*" />
+    <PackageReference Include="NServiceBus.Bond" Version="2.0.0-*" />
   </ItemGroup>
 </Project>
