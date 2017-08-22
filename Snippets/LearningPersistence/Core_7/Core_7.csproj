@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net461;netstandard2.0</TargetFramework>
     <RootNamespace>Core7</RootNamespace>
     <LangVersion>7</LangVersion>
   </PropertyGroup>

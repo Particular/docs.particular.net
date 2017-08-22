@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.04
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZeroFormatter_1.0", "ZeroFormatter_1.0\ZeroFormatter_1.0.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZeroFormatter_1", "ZeroFormatter_1\ZeroFormatter_1.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZeroFormatter_2", "ZeroFormatter_2\ZeroFormatter_2.csproj", "{9E2CEE68-FC23-4008-8115-23C75DE7B55B}"
 EndProject
