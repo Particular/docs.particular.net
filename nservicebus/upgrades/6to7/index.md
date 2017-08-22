@@ -212,3 +212,12 @@ WARNING: The `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml` path 
 When running on the full .NET Framework, endpoints will [continue to search the registry locations](/nservicebus/licensing/) for a suitable license.
 
 When running on the .NET Core platform, endpoints **will not search the registry**, even when running on Windows.
+
+
+## Connection Strings
+
+
+### Named connection strings
+Configuring a transport's connection using `.ConnectionStringName(name)` has been removed. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the `.ConnectionString(value)` configuration.
+
+snippet: 6to7ConnectionStrings
