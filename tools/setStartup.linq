@@ -51,11 +51,9 @@ public static IEnumerable<string> GetStartupProjects(string solutionFile)
 	foreach (var startupProject in defaultProjects)
 	{
 		var project = allPossibleProjects.FirstOrDefault(x => x.RelativePath == startupProject);
-		if (project == null)
+		if (project != null)
 		{
-			var error = string.Format("Could not find the relative path to the default startup project '{0}'. Ensure `{1}` contains relative (to the solution directory) paths to project files.", startupProject, defaultProjectsTextFile);
-			throw new Exception(error);
-		}
-		yield return project.Guid;
+			yield return project.Guid;
+			}
 	}
 }

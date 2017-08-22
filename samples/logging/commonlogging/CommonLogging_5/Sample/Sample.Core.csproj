@@ -1,7 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project>
-  <Import Project="Sample.csproj" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7</LangVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Common.Logging" Version="3.*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.CommonLogging" Version="5.0.0-*" />
+  </ItemGroup>
 </Project>
