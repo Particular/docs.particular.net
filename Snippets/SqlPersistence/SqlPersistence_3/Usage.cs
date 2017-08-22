@@ -2,14 +2,11 @@
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
-using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.Sql;
-using Oracle.ManagedDataAccess.Client;
-
 
 class Usage
 {

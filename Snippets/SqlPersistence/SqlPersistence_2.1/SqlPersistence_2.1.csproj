@@ -5,13 +5,11 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="6.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.1.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="2.1.*" />
     <PackageReference Include="NUnit" Version="3.*" />
-    <PackageReference Include="Oracle.ManagedDataAccess" Version="4.*" />
     <Reference Include="System.Data" />
   </ItemGroup>
 </Project>

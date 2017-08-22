@@ -5,7 +5,6 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="6.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.0.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="2.0.*" />
     <PackageReference Include="NUnit" Version="3.*" />
