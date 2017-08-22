@@ -42,7 +42,8 @@ class Program
             {
                 return new SqlConnection(connection);
             });
-        persistence.Schema("receiver");
+        var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
+        dialect.Schema("receiver");
         persistence.TablePrefix("");
 
         var subscriptions = persistence.SubscriptionSettings();
@@ -52,6 +53,7 @@ class Program
 
         #endregion
         SqlHelper.CreateSchema(connection, "receiver");
+
         SqlHelper.ExecuteSql(connection, File.ReadAllText("Startup.sql"));
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
