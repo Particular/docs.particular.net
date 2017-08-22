@@ -8,7 +8,7 @@ tags:
 redirects:
 - nservicebus/plugin-custom-databus
 related:
-- /samples/databus/custom-serializer
+- samples/databus/custom-serializer
 ---
 
 Endpoints support sending and receiving large chunks of data via the [DataBus](./).
