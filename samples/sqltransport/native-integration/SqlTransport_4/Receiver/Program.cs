@@ -21,7 +21,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.NativeIntegration");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connectionString);
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
