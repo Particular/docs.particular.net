@@ -2,7 +2,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 6.3.x     | 2017-05-19     | -                 | -                                 |
+| 6.4.x     | 2017-08-18     | -                 | -                                 |
+| 6.3.x     | 2017-05-19     | 2018-02-18        | Superseded by 6.4.x               |
 | 6.2.x     | 2017-03-28     | 2017-11-19        | Superseded by 6.3.x               |
 | 6.1.x     | 2016-12-13     | 2017-09-28        | Superseded by 6.2.x               |
 | ~~6.0.x~~ | ~~2016-10-11~~ | ~~2017-06-13~~    | ~~Superseded by 6.1.x~~           |
@@ -185,6 +186,10 @@ No versions released.
 | ~~2.1.x~~ | ~~2015-02-09~~ | ~~2015-07-23~~    | ~~Superseded by 2.2.x~~           |
 | ~~2.0.x~~ | ~~2014-09-29~~ | ~~2015-05-09~~    | ~~Superseded by 2.1.x~~           |
 | ~~1.0.x~~ | ~~2014-07-28~~ | ~~2016-09-29~~    | ~~Extended by NServiceBus 4.7.x~~ |
+
+#### NServiceBus.Transport.Msmq
+
+No versions released.
 
 ### Serializer packages
 
