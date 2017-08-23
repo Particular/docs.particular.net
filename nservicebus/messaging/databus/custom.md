@@ -13,4 +13,4 @@ related:
 
 Endpoints support sending and receiving large chunks of data via the [DataBus](./).
 
-partial: databus_content
+partial: content
