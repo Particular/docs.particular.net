@@ -1,15 +1,14 @@
 <Query Kind="Program">
   <NuGetReference>NuGet.PackageManagement</NuGetReference>
-  <NuGetReference>NuGet.Protocol.Core.v3</NuGetReference>
   <NuGetReference>YamlDotNet</NuGetReference>
   <Namespace>NuGet.Common</Namespace>
   <Namespace>NuGet.Configuration</Namespace>
   <Namespace>NuGet.Packaging.Core</Namespace>
   <Namespace>NuGet.Protocol</Namespace>
   <Namespace>NuGet.Protocol.Core.Types</Namespace>
+  <Namespace>NuGet.Versioning</Namespace>
   <Namespace>System.Threading.Tasks</Namespace>
   <Namespace>YamlDotNet.Serialization</Namespace>
-  <Namespace>NuGet.Versioning</Namespace>
 </Query>
 
 async Task Main()
@@ -411,12 +410,43 @@ public enum ComponentCategory
 
 public class Logger : ILogger
 {
-    public void LogDebug(string data) { }
-    public void LogVerbose(string data) { }
-    public void LogInformation(string data) { }
-    public void LogMinimal(string data) => $"INFO: {data}".Dump();
-    public void LogWarning(string data) => $"WARNING: {data}".Dump();
-    public void LogError(string data) => $"ERROR: {data}".Dump();
-    public void LogInformationSummary(string data) => data.Dump("Information summary");
-    public void LogErrorSummary(string data) => data.Dump("Error summary");
+    public void LogDebug(string data) => Log(LogLevel.Debug, data);
+
+    public void LogVerbose(string data) => Log(LogLevel.Verbose, data);
+
+    public void LogInformation(string data) => Log(LogLevel.Information, data);
+
+    public void LogMinimal(string data) => Log(LogLevel.Minimal, data);
+
+    public void LogWarning(string data) => Log(LogLevel.Warning, data);
+
+    public void LogError(string data) => Log(LogLevel.Error, data);
+
+    public void LogInformationSummary(string data) => Log(LogLevel.Information, data);
+
+    public void LogErrorSummary(string data) => Log(LogLevel.Error, data);
+
+    public void Log(LogLevel level, string data)
+    {
+        switch (level)
+        {
+            case LogLevel.Minimal:
+            case LogLevel.Warning:
+            case LogLevel.Error:
+                $"{level}:{data}".Dump();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public Task LogAsync(LogLevel level, string data)
+    {
+        Log(level, data);
+        return Task.CompletedTask;
+    }
+
+    public void Log(ILogMessage message) => Log(message.Level, message.Message);
+
+    public Task LogAsync(ILogMessage message) => LogAsync(message.Level, message.Message);
 }
