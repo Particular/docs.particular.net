@@ -3,7 +3,7 @@ It is possible to create a custom DataBus implementation. This is done by making
 
 ## Implement the `IDataBus` interface. 
 
-This new class will provide the custom implementations for the `Get` and `Put` methods for the DataBus. 
+This new class will provide the custom implementations for the `Get` and `Put` methods for the DataBus.
 
 snippet: CustomDataBus
 
@@ -19,7 +19,7 @@ snippet: CustomDataBusFeature
 
 ## Define a DataBusDefinition
 
-Define a new class which inherits from the `DataBusDefinition` class. 
+Define a new class which inherits from the `DataBusDefinition` class.
 
 snippet: CustomDataBusDefinition
 
@@ -29,5 +29,3 @@ snippet: CustomDataBusDefinition
 Configure the endpoint to use the custom DataBus implementation instead of the default DataBus:
 
 snippet: PluginCustomDataBus
-
-
