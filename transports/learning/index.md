@@ -29,6 +29,14 @@ See the [native pubsub](/nservicebus/messaging/publish-subscribe/#mechanics-nati
 
 snippet: LearningTransport
 
+### Transactions and delivery guarantees
+
+The transport supports the following [Transport Transaction Modes](/transports/transactions.md):
+
+ * Transport transaction - Sends atomic with Receive (Default)
+ * Transport transaction - Receive Only
+ * Unreliable (Transactions Disabled)
+
 ### Concurrency
 
 By default the transport runs with concurrency limited to 1. See the [tuning](/nservicebus/operations/tuning.md) for details on how to configure concurrency levels.
