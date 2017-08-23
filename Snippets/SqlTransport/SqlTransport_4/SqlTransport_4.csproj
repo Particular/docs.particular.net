@@ -8,7 +8,7 @@
     <Compile Remove="MultiDb.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-alpha0027" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-alpha0032" />
     <PackageReference Include="NUnit" Version="3.*" />
   </ItemGroup>
 </Project>
