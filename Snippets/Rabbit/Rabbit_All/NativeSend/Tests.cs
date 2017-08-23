@@ -32,7 +32,7 @@ namespace Rabbit_All.NativeSend
                 .ConfigureAwait(false);
             var headers = new Dictionary<string, object>
             {
-                {"NServiceBus.EnclosedMessageTypes", "NativeSendTests+MessageToSend"}
+                {"NServiceBus.EnclosedMessageTypes", "Rabbit_All.NativeSend.Tests+MessageToSend"},
             };
             NativeSend.SendMessage("localhost", endpointName, "guest", "guest", @"{""Property"": ""Value"",}", headers);
             await tcs.Task.ConfigureAwait(false);
