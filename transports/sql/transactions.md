@@ -26,6 +26,8 @@ NOTE: `Exactly once` message processing without distributed transactions can be 
 
 ### Transaction scope (Distributed transaction)
 
+partial: ambient-core-warning
+
 In this mode the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access. 
 
 If either the configured NServiceBus persistence mechanism or the user data access also support transactions via `TransactionScope`, the ambient transaction is escalated to a distributed one via the Distributed Transaction Coordinator (DTC).

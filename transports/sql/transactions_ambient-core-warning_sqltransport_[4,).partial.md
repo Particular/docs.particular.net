@@ -1,0 +1,1 @@
+WARNING: The Transaction scope mode is not available in .NET Core 2.0 because the implementation of `SqlConnection` does not support enlisting in an ambient transaction.
