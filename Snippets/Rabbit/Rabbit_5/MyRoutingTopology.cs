@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NServiceBus.Transport;
 using NServiceBus.Transport.RabbitMQ;
 using RabbitMQ.Client;
@@ -7,10 +8,6 @@ class MyRoutingTopology :
     IRoutingTopology
 {
     public MyRoutingTopology(bool createDurableExchangesAndQueues)
-    {
-    }
-
-    public MyRoutingTopology()
     {
     }
 
