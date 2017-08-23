@@ -6,11 +6,10 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Net.Http" />
     <ProjectReference Include="..\Sender\Sender.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="5.*" />
-    <PackageReference Include="Octokit" Version="0.20.0" />
+    <PackageReference Include="Octokit" Version="0.24.1-*" />
+    <PackageReference Include="Microsoft.Net.Http" Version="2.*" />
   </ItemGroup>
 </Project>
