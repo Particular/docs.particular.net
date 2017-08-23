@@ -5,6 +5,8 @@ component: Autofac
 reviewed: 2017-02-02
 tags:
 - Dependency Injection
+related:
+- samples/containers/autofac
 ---
 
 
