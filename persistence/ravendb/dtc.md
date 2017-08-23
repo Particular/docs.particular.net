@@ -8,6 +8,7 @@ RavenDB's implementation of distributed transactions contains a bug that could c
 
 Although the chances of the data loss bug occurring are slim, the use of DTC transactions with RavenDB is not recommended and not supported.
 
+
 ## Affected versions
 
 All customers using RavenDB persistence for NServiceBus with distributed transactions, which are enabled by default, are affected.
@@ -15,6 +16,7 @@ All customers using RavenDB persistence for NServiceBus with distributed transac
 Customers using RavenDB with local transactions only, and who have disabled the Distributed Transaction Coordinator on the servers running NServiceBus endpoints, are not affected.
 
 All affected versions of the NServiceBus.RavenDB package have been patched to log a warning if an unsafe configuration is detected. Starting in NServiceBus.RavenDB 5.0.0, the configuration will not be supported and will throw an exception if detected.
+
 
 ## Cause of data loss
 
@@ -24,14 +26,16 @@ Unfortunately, the Commit phase does not occur on the thread running the transac
 
 Because the data for the pending transaction has not yet been sent to the server at the end of the Prepare phase, it's possible for the transaction to be effectively lost if the RavenDB database becomes unavailable between the execution of the Prepare and Commit phases. In this circumstance, no exception is thrown on the main thread, so NServiceBus has no way to know that the transaction is effectively doomed.
 
+
 ## Recommendations
 
 Using RavenDB persistence with distributed transactions enabled is too great a risk, as there is always a possibility that a transaction could be dropped, resulting in lost data.
 
 Therefore, all customers using RavenDB persistence are recommended to either:
 
-1. Disable the Distributed Transaction Coordinator altogether and use the [Outbox feature](/nservicebus/outbox/) to manage consistency between message transport and persistence
-2. Migrate to a different persistence technology altogether
+ 1. Disable the Distributed Transaction Coordinator altogether and use the [Outbox feature](/nservicebus/outbox/) to manage consistency between message transport and persistence
+ 1. Migrate to a different persistence technology altogether
+
 
 ### Disabling DTC + Outbox
 
@@ -47,23 +51,27 @@ Because the Outbox relies upon the local RavenDB database transaction, this mean
 
 In order to migrate away from use of the DTC, refer to the [Outbox documentation](/nservicebus/outbox/), especially the section on [converting from DTC to Outbox](/nservicebus/outbox/#converting-from-dtc-to-outbox), as well as the [Outbox with RavenDB persistence](/persistence/ravendb/outbox.md) article, especially the section on the [effect of the Outbox on a RavenDB DocumentStore](/persistence/ravendb/outbox.md#effect-on-ravendb-documentstore), being sure to use the *Switch Version* button just below the article titles to customize the content for the versions of NServiceBus and NServiceBus.RavenDB currently in use.
 
+
 ### Transitioning to a different persistence
 
 The path to transition from RavenDB to a different persistence vary by version of NServiceBus.
+
 
 #### NServiceBus 6.x
 
 In order to maintain use of the DTC, the best solution is to transition away from RavenDB persistence toward a different solution. The Outbox only works if all business data and NServiceBus data is stored in the same RavenDB database. Therefore, if message endpoints use RavenDB for NServiceBus persistence, but also modify data in a SQL Server database, then a non-DTC solution like the Outbox will not work.
 
-In this situation, consider switching to the [SQL Persistence](https://docs.particular.net/persistence/sql/) library. With no dependency on an ORM library, it supports persisting data in Microsoft SQL Server, Oracle, or MySQL.
+In this situation, consider switching to the [SQL Persistence](/persistence/sql/) library. With no dependency on an ORM library, it supports persisting data in Microsoft SQL Server, Oracle, or MySQL.
 
-Because it stores saga data as JSON blobs in much the same way as RavenDB, SQL persistence also provides a smooth data migration path from your existing RavenDB data. Contact [support@particular.net](mailto:support@particular.net) to pursue this option.
+Because it stores saga data as JSON blobs in much the same way as RavenDB, SQL persistence also provides a smooth data migration path from existing RavenDB data. Contact [support@particular.net](mailto:support@particular.net) to pursue this option.
 
 Even before beginning a migration, remember that different persistence can be used by different endpoints within the same solution. Therefore, any new endpoint added to a current solution should use the new persistence from the start.
+
 
 #### NServiceBus 5.x and lower
 
 SQL persistence is only available for NServiceBus 6 and above. Therefore, customers using NServiceBus 5 or lower that cannot use the Outbox method described above will need to first upgrade to NServiceBus 6 with RavenDB persistence. After that upgrade is complete, a transition can be made to SQL Persistence as described above.
+
 
 ## Summary
 
