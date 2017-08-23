@@ -1,2 +1,2 @@
-Phase1\EndpointMySql\EndpointMySqlPhase1.csproj
-Phase1\EndpointSqlServer\EndpointSqlServerPhase1.csproj
+Phase1\EndpointMySql\EndpointMySqlPhase1.Core.csproj
+Phase1\EndpointSqlServer\EndpointSqlServerPhase1.Core.csproj
