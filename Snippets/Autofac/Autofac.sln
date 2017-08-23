@@ -1,15 +1,16 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autofac_3", "Autofac_3\Autofac_3.csproj", "{BC389F87-838C-4E72-9E01-1E287BA64A3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autofac_3", "Autofac_3\Autofac_3.csproj", "{BC389F87-838C-4E72-9E01-1E287BA64A3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autofac_4", "Autofac_4\Autofac_4.csproj", "{EEB21945-230F-4509-8C38-2C4C3A798B60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autofac_4", "Autofac_4\Autofac_4.csproj", "{EEB21945-230F-4509-8C38-2C4C3A798B60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autofac_5", "Autofac_5\Autofac_5.csproj", "{E782769D-E4B9-4447-BE51-3DF449CEE4F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autofac_5", "Autofac_5\Autofac_5.csproj", "{E782769D-E4B9-4447-BE51-3DF449CEE4F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autofac_6", "Autofac_6\Autofac_6.csproj", "{9B0894E7-B49F-4FAD-9C1F-EB81A4087B56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autofac_6", "Autofac_6\Autofac_6.csproj", "{9B0894E7-B49F-4FAD-9C1F-EB81A4087B56}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autofac_7", "Autofac_7\Autofac_7.csproj", "{FA86B912-B21B-4EE0-8638-45C92F63C48D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,8 +25,13 @@ Global
 		{E782769D-E4B9-4447-BE51-3DF449CEE4F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B0894E7-B49F-4FAD-9C1F-EB81A4087B56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B0894E7-B49F-4FAD-9C1F-EB81A4087B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA86B912-B21B-4EE0-8638-45C92F63C48D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA86B912-B21B-4EE0-8638-45C92F63C48D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FA5AE01-477D-407D-8F95-A57BB9ACBD53}
 	EndGlobalSection
 EndGlobal
