@@ -1,47 +1,42 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Messages;
 using NServiceBus;
 using NServiceBus.Features;
-using WebSocketGateway;
 
-namespace SiteA
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
-        {
-            Console.Title = "SiteA";
-            MainAsync().GetAwaiter().GetResult();
-        }
+        Console.Title = "SiteA";
+        MainAsync().GetAwaiter().GetResult();
+    }
 
-        static async Task MainAsync()
-        {
-            #region WebSocketGateway-EndpointConfig-SiteA
+    static async Task MainAsync()
+    {
+        #region WebSocketGateway-EndpointConfig-SiteA
 
-            var config = new EndpointConfiguration("Custom Gateway - SiteA");
-            config.UseTransport<LearningTransport>();
-            // NOTE: The LearningPersistence does not support the gateway
-            config.UsePersistence<InMemoryPersistence>();
+        var config = new EndpointConfiguration("Custom Gateway - SiteA");
+        config.UseTransport<LearningTransport>();
+        // NOTE: The LearningPersistence does not support the gateway
+        config.UsePersistence<InMemoryPersistence>();
 
-            config.EnableFeature<Gateway>();
-            var gatewaySettings = config.Gateway();
-            gatewaySettings.ChannelFactories(
-                s => new WebSocketChannelSender(), 
-                s => new WebSocketChannelReceiver()
-            );
+        config.EnableFeature<Gateway>();
+        var gatewaySettings = config.Gateway();
+        gatewaySettings.ChannelFactories(
+            s => new WebSocketChannelSender(),
+            s => new WebSocketChannelReceiver()
+        );
 
-            #endregion
+        #endregion
 
-            var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
 
-            await endpoint.SendToSites(new[] {"SiteB"}, new SomeMessage { Contents = "Hello, World!" }).ConfigureAwait(false);
+        await endpoint.SendToSites(new[] {"SiteB"}, new SomeMessage {Contents = "Hello, World!"}).ConfigureAwait(false);
 
-            Console.WriteLine("Started SiteA. Sent message to SiteB");
+        Console.WriteLine("Started SiteA. Sent message to SiteB");
 
-            Console.ReadLine();
+        Console.ReadLine();
 
-            await endpoint.Stop().ConfigureAwait(false);
-        }
+        await endpoint.Stop().ConfigureAwait(false);
     }
 }

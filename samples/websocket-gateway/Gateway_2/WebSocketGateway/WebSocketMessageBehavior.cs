@@ -7,30 +7,29 @@ using NServiceBus.Gateway;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 
-namespace WebSocketGateway
+class WebSocketMessageBehavior :
+    WebSocketBehavior
 {
-    class WebSocketMessageBehavior : WebSocketBehavior
+    Func<DataReceivedOnChannelArgs, Task> dataReceivedOnChannel;
+
+    public WebSocketMessageBehavior(Func<DataReceivedOnChannelArgs, Task> dataReceivedOnChannel)
     {
-        private readonly Func<DataReceivedOnChannelArgs, Task> dataReceivedOnChannel;
+        this.dataReceivedOnChannel = dataReceivedOnChannel;
+    }
 
-        public WebSocketMessageBehavior(Func<DataReceivedOnChannelArgs, Task> dataReceivedOnChannel)
+    protected override void OnMessage(MessageEventArgs e)
+    {
+        using (var ms = new MemoryStream(e.RawData))
         {
-            this.dataReceivedOnChannel = dataReceivedOnChannel;
-        }
+            var formatter = new BinaryFormatter();
+            var headers = (IDictionary<string, string>) formatter.Deserialize(ms);
 
-        protected override void OnMessage(MessageEventArgs e)
-        {
-            using (var ms = new MemoryStream(e.RawData))
+            var args = new DataReceivedOnChannelArgs
             {
-                var formatter = new BinaryFormatter();
-                var headers = (IDictionary<string, string>)formatter.Deserialize(ms);
-
-                dataReceivedOnChannel(new DataReceivedOnChannelArgs
-                {
-                    Data = ms,
-                    Headers = headers
-                });
-            }
+                Data = ms,
+                Headers = headers
+            };
+            dataReceivedOnChannel(args);
         }
     }
 }
