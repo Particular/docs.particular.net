@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 5.0.26730.8
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 15.0.26430.04
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallbacksTesting_1", "CallbacksTesting_1\CallbacksTesting_1.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
 EndProject
