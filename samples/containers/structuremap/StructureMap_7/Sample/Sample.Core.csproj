@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
@@ -7,7 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Autofac" Version="7.0.0-*" />
-    <PackageReference Include="Autofac" Version="4.*" />
+    <PackageReference Include="NServiceBus.ObjectBuilder.StructureMap" Version="7.0.0-*" />
+    <PackageReference Include="StructureMap" Version="4.3.0" />
   </ItemGroup>
 </Project>
