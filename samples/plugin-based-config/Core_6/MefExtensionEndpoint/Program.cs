@@ -1,5 +1,8 @@
 using System;
-using System.ComponentModel.Composition.Hosting;
+using System.Composition.Hosting;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -15,59 +18,62 @@ static class Program
 
     static async Task AsyncMain()
     {
-        var catalog = new AggregateCatalog();
-        catalog.Catalogs.Add(new DirectoryCatalog("."));
-
-        var compositionContainer = new CompositionContainer(catalog);
-
         Console.Title = "Samples.MefExtensionEndpoint";
+
+        var containerConfiguration = new ContainerConfiguration();
+        var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        var assemblies = Directory.EnumerateFiles(location, "*.dll")
+            .Select(Assembly.LoadFrom);
+        containerConfiguration.WithAssemblies(assemblies);
+
+        var compositionHost = containerConfiguration.CreateContainer();
         var endpointConfiguration = new EndpointConfiguration("Samples.MefExtensionEndpoint");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
-        await RunCustomizeConfiguration(compositionContainer, endpointConfiguration)
+        await RunCustomizeConfiguration(compositionHost, endpointConfiguration)
             .ConfigureAwait(false);
-        await RunBeforeEndpointStart(compositionContainer)
+        await RunBeforeEndpointStart(compositionHost)
             .ConfigureAwait(false);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        await RunAfterEndpointStart(compositionContainer, endpointInstance)
+        await RunAfterEndpointStart(compositionHost, endpointInstance)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await RunBeforeEndpointStop(compositionContainer, endpointInstance)
+        await RunBeforeEndpointStop(compositionHost, endpointInstance)
             .ConfigureAwait(false);
         await endpointInstance.Stop()
             .ConfigureAwait(false);
-        await RunAfterEndpointStop(compositionContainer)
+        await RunAfterEndpointStop(compositionHost)
             .ConfigureAwait(false);
     }
 
-    static Task RunBeforeEndpointStart(CompositionContainer compositionContainer)
+    static Task RunBeforeEndpointStart(CompositionHost compositionHost)
     {
-        return compositionContainer.ExecuteExports<IRunBeforeEndpointStart>(_ => _.Run());
+        return compositionHost.ExecuteExports<IRunBeforeEndpointStart>(_ => _.Run());
     }
 
     // Other injection points excluded, but follow the same pattern as above
 
     #endregion
 
-    static Task RunCustomizeConfiguration(CompositionContainer compositionContainer, EndpointConfiguration endpointConfiguration)
+    static Task RunCustomizeConfiguration(CompositionHost compositionHost, EndpointConfiguration endpointConfiguration)
     {
-        return compositionContainer.ExecuteExports<ICustomizeConfiguration>(_ => _.Run(endpointConfiguration));
+        return compositionHost.ExecuteExports<ICustomizeConfiguration>(_ => _.Run(endpointConfiguration));
     }
 
-    static Task RunAfterEndpointStop(CompositionContainer compositionContainer)
+    static Task RunAfterEndpointStop(CompositionHost compositionHost)
     {
-        return compositionContainer.ExecuteExports<IRunAfterEndpointStop>(_ => _.Run());
+        return compositionHost.ExecuteExports<IRunAfterEndpointStop>(_ => _.Run());
     }
 
-    static Task RunBeforeEndpointStop(CompositionContainer compositionContainer, IEndpointInstance endpoint)
+    static Task RunBeforeEndpointStop(CompositionHost compositionHost, IEndpointInstance endpoint)
     {
-        return compositionContainer.ExecuteExports<IRunBeforeEndpointStop>(_ => _.Run(endpoint));
+        return compositionHost.ExecuteExports<IRunBeforeEndpointStop>(_ => _.Run(endpoint));
     }
 
-    static Task RunAfterEndpointStart(CompositionContainer compositionContainer, IEndpointInstance endpoint)
+    static Task RunAfterEndpointStart(CompositionHost compositionHost, IEndpointInstance endpoint)
     {
-       return compositionContainer.ExecuteExports<IRunAfterEndpointStart>(_ => _.Run(endpoint));
+       return compositionHost.ExecuteExports<IRunAfterEndpointStart>(_ => _.Run(endpoint));
     }
 }

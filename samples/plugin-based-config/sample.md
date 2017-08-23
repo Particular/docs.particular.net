@@ -60,9 +60,9 @@ snippet: CustomRunAfterEndpointStart
 snippet: CustomSendMessageAfterEndpointStart
 
 
-## [Managed Extensibility Framework (MEF)](https://docs.microsoft.com/en-us/dotnet/framework/mef/index)
+## [Managed Extensibility Framework (MEF)](https://www.nuget.org/packages/System.Composition/)
 
-This approach uses [MEF](https://docs.microsoft.com/en-us/dotnet/framework/mef/index) to discover and execute the extension points.
+This approach uses [MEF](https://www.nuget.org/packages/System.Composition/) to discover and execute the extension points.
 
 
 ### Endpoint Startup

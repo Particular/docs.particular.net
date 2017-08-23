@@ -1,4 +1,4 @@
-using System.ComponentModel.Composition;
+using System.Composition;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;

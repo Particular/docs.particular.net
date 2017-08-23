@@ -1,5 +1,8 @@
 using System;
-using System.ComponentModel.Composition.Hosting;
+using System.Composition.Hosting;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using NServiceBus;
 
 static class Program
@@ -9,54 +12,57 @@ static class Program
 
     static void Main()
     {
-        var catalog = new AggregateCatalog();
-        catalog.Catalogs.Add(new DirectoryCatalog("."));
-
-        var compositionContainer = new CompositionContainer(catalog);
-
         Console.Title = "Samples.MefExtensionEndpoint";
+
+        var containerConfiguration = new ContainerConfiguration();
+        var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        var assemblies = Directory.EnumerateFiles(location, "*.dll")
+            .Select(Assembly.LoadFrom);
+        containerConfiguration.WithAssemblies(assemblies);
+        var compositionHost = containerConfiguration.CreateContainer();
+
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MefExtensionEndpoint");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        RunCustomizeConfiguration(compositionContainer, busConfiguration);
-        RunBeforeEndpointStart(compositionContainer);
+        RunCustomizeConfiguration(compositionHost, busConfiguration);
+        RunBeforeEndpointStart(compositionHost);
         using (var bus = Bus.Create(busConfiguration).Start())
         {
-            RunAfterEndpointStart(compositionContainer, bus);
+            RunAfterEndpointStart(compositionHost, bus);
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
-            RunBeforeEndpointStop(compositionContainer, bus);
+            RunBeforeEndpointStop(compositionHost, bus);
         }
-        RunAfterEndpointStop(compositionContainer);
+        RunAfterEndpointStop(compositionHost);
     }
 
-    static void RunBeforeEndpointStart(CompositionContainer compositionContainer)
+    static void RunBeforeEndpointStart(CompositionHost compositionHost)
     {
-        compositionContainer.ExecuteExports<IRunBeforeEndpointStart>(_ => _.Run());
+        compositionHost.ExecuteExports<IRunBeforeEndpointStart>(_ => _.Run());
     }
 
     // Other injection points excluded, but follow the same pattern as above
 
     #endregion
 
-    static void RunCustomizeConfiguration(CompositionContainer compositionContainer, BusConfiguration busConfiguration)
+    static void RunCustomizeConfiguration(CompositionHost compositionHost, BusConfiguration busConfiguration)
     {
-        compositionContainer.ExecuteExports<ICustomizeConfiguration>(_ => _.Run(busConfiguration));
+        compositionHost.ExecuteExports<ICustomizeConfiguration>(_ => _.Run(busConfiguration));
     }
 
-    static void RunAfterEndpointStop(CompositionContainer compositionContainer)
+    static void RunAfterEndpointStop(CompositionHost compositionHost)
     {
-        compositionContainer.ExecuteExports<IRunAfterEndpointStop>(_ => _.Run());
+        compositionHost.ExecuteExports<IRunAfterEndpointStop>(_ => _.Run());
     }
 
-    static void RunBeforeEndpointStop(CompositionContainer compositionContainer, IBus bus)
+    static void RunBeforeEndpointStop(CompositionHost compositionHost, IBus bus)
     {
-        compositionContainer.ExecuteExports<IRunBeforeEndpointStop>(_ => _.Run(bus));
+        compositionHost.ExecuteExports<IRunBeforeEndpointStop>(_ => _.Run(bus));
     }
 
-    static void RunAfterEndpointStart(CompositionContainer compositionContainer, IBus bus)
+    static void RunAfterEndpointStart(CompositionHost compositionHost, IBus bus)
     {
-        compositionContainer.ExecuteExports<IRunAfterEndpointStart>(_ => _.Run(bus));
+        compositionHost.ExecuteExports<IRunAfterEndpointStart>(_ => _.Run(bus));
     }
 }
