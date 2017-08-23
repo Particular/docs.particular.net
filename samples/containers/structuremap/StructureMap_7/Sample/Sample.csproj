@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net461</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0051" />
+    <PackageReference Include="NServiceBus.ObjectBuilder.StructureMap" Version="7.0.0-pullrequest0045-0029" />
+    <PackageReference Include="StructureMap" Version="4.3.0" />
+  </ItemGroup>
+</Project>
