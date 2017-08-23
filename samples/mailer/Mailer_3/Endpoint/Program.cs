@@ -21,6 +21,7 @@ class Program
         Console.Title = "Samples.Mailer";
         var endpointConfiguration = new EndpointConfiguration("Samples.Mailer");
 
+        endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
