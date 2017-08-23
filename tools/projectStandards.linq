@@ -96,7 +96,8 @@ void FixResharperSettings()
 	foreach (var solutionFile in Directory.EnumerateFiles(docsDirectory, "*.sln", SearchOption.AllDirectories))
 	{
 		var solutionDirectory = Path.GetDirectoryName(solutionFile);
-		foreach (string file in Directory.GetFiles(solutionDirectory, "*.DotSettings"))
+		var solutionName = Path.GetFileNameWithoutExtension(solutionFile);
+		foreach (string file in Directory.GetFiles(solutionDirectory, $"*{solutionName}.sln.DotSettings"))
 		{
 			File.Delete(file);
 		}
