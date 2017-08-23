@@ -405,6 +405,7 @@
   GitHubOwner: Particular/msmq-transport-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
+    - NServiceBus.Transport.Msmq
     - NServiceBus
 
 - Key: MessageRouting
