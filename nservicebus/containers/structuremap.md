@@ -5,6 +5,8 @@ component: StructureMap
 reviewed: 2017-06-29
 tags:
 - Dependency Injection
+related:
+- samples/containers/structuremap
 ---
 
 
