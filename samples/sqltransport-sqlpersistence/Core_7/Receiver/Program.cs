@@ -40,13 +40,13 @@ public static class Program
         routing.RegisterPublisher(typeof(OrderSubmitted).Assembly, "Samples.Sql.Sender");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.SqlVariant(SqlVariant.MsSqlServer);
+        var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
+        dialect.Schema("receiver");
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
                 return new SqlConnection(connection);
             });
-        persistence.Schema("receiver");
         persistence.TablePrefix("");
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));

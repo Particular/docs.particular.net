@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net462</TargetFrameworks>
+    <LangVersion>7</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-alpha0027" />
+    <ProjectReference Include="..\Shared\Shared.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Startup.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
