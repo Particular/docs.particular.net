@@ -22,8 +22,9 @@ public static class Resolver
 
     static bool ReferencesShared(Assembly assembly)
     {
+        var sharedAssembly = typeof(ICustomizeConfiguration).Assembly.GetName().Name;
         return assembly.GetReferencedAssemblies()
-            .Any(name => name.Name == "Shared");
+            .Any(name => name.Name == sharedAssembly);
     }
 
     public static async Task Execute<T>(Func<T, Task> action)
