@@ -13,10 +13,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="Newtonsoft.Json.Bson" Version="1.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Jil" Version="2.1.0-*" />
-    <PackageReference Include="NServiceBus.MessagePack" Version="1.1.0-*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="1.2.0-*" />
-    <PackageReference Include="NServiceBus.Wire" Version="2.1.0-*" />
+    <PackageReference Include="NServiceBus.Jil" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.MessagePack" Version="2.0.0-*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.0.0-*" />
+    <PackageReference Include="NServiceBus.Wire" Version="3.0.0-*" />
     <PackageReference Include="Wire" Version="0.*" />
   </ItemGroup>
 </Project>
