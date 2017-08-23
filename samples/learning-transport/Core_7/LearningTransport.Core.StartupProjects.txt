@@ -1,1 +1,1 @@
-Endpoint1\Endpoint1.csproj
+Endpoint1\Endpoint1.Core.csproj
