@@ -33,8 +33,8 @@ snippet: LearningTransport
 
 The transport supports the following [Transport Transaction Modes](/transports/transactions.md):
 
- * Transport transaction - Sends atomic with Receive (Default)
- * Transport transaction - Receive Only
+ * Sends atomic with Receive (Default)
+ * Receive Only
  * Unreliable (Transactions Disabled)
 
 ### Concurrency
