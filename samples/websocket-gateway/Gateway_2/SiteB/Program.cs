@@ -17,6 +17,8 @@ namespace SiteB
 
         static async Task MainAsync()
         {
+            #region WebSocketGateway-EndpointConfig-SiteB
+
             var config = new EndpointConfiguration("Custom Gateway - SiteB");
             var transport = config.UseTransport<LearningTransport>();
             var routing = transport.Routing();
@@ -30,6 +32,8 @@ namespace SiteB
                 s => new WebSocketChannelSender(),
                 s => new WebSocketChannelReceiver()
             );
+
+            #endregion
 
             var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
 

@@ -5,6 +5,7 @@ using WebSocketSharp.Server;
 
 namespace WebSocketGateway
 {
+    #region WebSockectGateway-ChannelReceiver
     public class WebSocketChannelReceiver : IChannelReceiver
     {
         public void Start(string address, int maxConcurrency, Func<DataReceivedOnChannelArgs, Task> dataReceivedOnChannel)
@@ -24,4 +25,5 @@ namespace WebSocketGateway
 
         private WebSocketServer server;
     }
+    #endregion
 }

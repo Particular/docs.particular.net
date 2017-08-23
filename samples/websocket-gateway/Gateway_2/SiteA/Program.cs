@@ -17,6 +17,8 @@ namespace SiteA
 
         static async Task MainAsync()
         {
+            #region WebSocketGateway-EndpointConfig-SiteA
+
             var config = new EndpointConfiguration("Custom Gateway - SiteA");
             config.UseTransport<LearningTransport>();
             // NOTE: The LearningPersistence does not support the gateway
@@ -28,6 +30,8 @@ namespace SiteA
                 s => new WebSocketChannelSender(), 
                 s => new WebSocketChannelReceiver()
             );
+
+            #endregion
 
             var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
 

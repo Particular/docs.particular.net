@@ -7,6 +7,7 @@ using WebSocketSharp;
 
 namespace WebSocketGateway
 {
+    #region WebScoketGateway-ChannelSender
     public class WebSocketChannelSender : IChannelSender
     {
         public Task Send(string remoteAddress, IDictionary<string, string> headers, Stream data)
@@ -32,4 +33,5 @@ namespace WebSocketGateway
             }
         }
     }
+    #endregion
 }
