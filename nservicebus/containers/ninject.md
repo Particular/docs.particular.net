@@ -6,6 +6,7 @@ component: Ninject
 tags:
 - Dependency Injection
 related:
+- samples/containers/ninject
 - nservicebus/containers/child-containers
 ---
 
