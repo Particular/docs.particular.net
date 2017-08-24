@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <LangVersion>7</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.Core.csproj" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.RavenDB" Version="5.0.0-*" />
+    <PackageReference Include="RavenDB.Client" Version="3.*" />
+    <PackageReference Include="RavenDB.Database" Version="3.*" />
+  </ItemGroup>
+</Project>
