@@ -1,15 +1,16 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate_4", "NHibernate_4\NHibernate_4.csproj", "{91C0138C-290B-4F5D-A5E8-61A9095391B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_4", "NHibernate_4\NHibernate_4.csproj", "{91C0138C-290B-4F5D-A5E8-61A9095391B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate_5", "NHibernate_5\NHibernate_5.csproj", "{C14E4108-0DEE-480D-BCC4-D0442097CE3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_5", "NHibernate_5\NHibernate_5.csproj", "{C14E4108-0DEE-480D-BCC4-D0442097CE3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate_6", "NHibernate_6\NHibernate_6.csproj", "{1B35A112-27C4-4364-ACA5-F21BA3A24BF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_6", "NHibernate_6\NHibernate_6.csproj", "{1B35A112-27C4-4364-ACA5-F21BA3A24BF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate_7", "NHibernate_7\NHibernate_7.csproj", "{BB237840-0A91-4836-9C52-5E509B697CEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_7", "NHibernate_7\NHibernate_7.csproj", "{BB237840-0A91-4836-9C52-5E509B697CEB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_8", "NHibernate_8\NHibernate_8.csproj", "{76225127-4DA4-4BD8-BE0C-F5BFFD806079}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,8 +25,13 @@ Global
 		{1B35A112-27C4-4364-ACA5-F21BA3A24BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB237840-0A91-4836-9C52-5E509B697CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB237840-0A91-4836-9C52-5E509B697CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76225127-4DA4-4BD8-BE0C-F5BFFD806079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76225127-4DA4-4BD8-BE0C-F5BFFD806079}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6FB53DB9-8CC0-4E23-A810-4ADC882077B3}
 	EndGlobalSection
 EndGlobal
