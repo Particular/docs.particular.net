@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode GatewaySitesAppConfig-->
+<configuration>
+  <configSections>
+    <section name="GatewayConfig"
+             type="NServiceBus.Config.GatewayConfig, NServiceBus.Core" />
+  </configSections>
+  <GatewayConfig>
+    <Sites>
+      <Site Key="SiteA"
+            Address="http://SiteA.mycorp.com/"
+            ChannelType="Http"/>
+      <Site Key="SiteB"
+            Address="https://SiteB.mycorp.com/"
+            ChannelType="Http"/>
+    </Sites>
+  </GatewayConfig>
+</configuration>
+<!--endcode -->
