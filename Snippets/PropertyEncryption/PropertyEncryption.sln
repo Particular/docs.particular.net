@@ -1,19 +1,20 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_4", "Core_4\Core_4.csproj", "{07F27696-5C5E-42E9-A8B0-6837946A5C00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_4", "Core_4\Core_4.csproj", "{07F27696-5C5E-42E9-A8B0-6837946A5C00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_3", "Core_3\Core_3.csproj", "{5FB8D00E-CA45-4BED-B4EB-8A1F9CA27100}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_3", "Core_3\Core_3.csproj", "{5FB8D00E-CA45-4BED-B4EB-8A1F9CA27100}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_5", "Core_5\Core_5.csproj", "{30F5B3E6-2B7F-46BE-8086-169FD856BA64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_5", "Core_5\Core_5.csproj", "{30F5B3E6-2B7F-46BE-8086-169FD856BA64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_6", "Core_6\Core_6.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_6", "Core_6\Core_6.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyEncryption_All", "PropertyEncryption_All\PropertyEncryption_All.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_All", "PropertyEncryption_All\PropertyEncryption_All.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyEncryption_1", "PropertyEncryption_1\PropertyEncryption_1.csproj", "{F189306E-FAE7-4898-A4E1-9BF7278B30EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_1", "PropertyEncryption_1\PropertyEncryption_1.csproj", "{F189306E-FAE7-4898-A4E1-9BF7278B30EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_2", "PropertyEncryption_2\PropertyEncryption_2.csproj", "{39AF2F33-4245-4193-9AFF-E4BC7AFC83B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,8 +33,13 @@ Global
 		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F189306E-FAE7-4898-A4E1-9BF7278B30EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F189306E-FAE7-4898-A4E1-9BF7278B30EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39AF2F33-4245-4193-9AFF-E4BC7AFC83B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39AF2F33-4245-4193-9AFF-E4BC7AFC83B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19000FBD-CAB8-4F05-80B2-43B45A07E47D}
 	EndGlobalSection
 EndGlobal
