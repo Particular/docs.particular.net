@@ -7,9 +7,7 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.ComponentModel.Composition" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="4.*" />
     <PackageReference Include="RavenDB.Client" Version="3.*" />
