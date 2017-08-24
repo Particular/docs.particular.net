@@ -1,12 +1,14 @@
 ---
 title: Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against RavenDB.
-reviewed: 2016-10-18
+reviewed: 2017-08-21
 related:
  - nservicebus/operations
 redirects:
  - nservicebus/ravendb/operations-scripting
 ---
+
+include: dtc-warning
 
 Example code and scripts to facilitate deployment and operational actions against RavenDB.
 

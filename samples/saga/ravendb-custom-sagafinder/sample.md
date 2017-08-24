@@ -8,8 +8,10 @@ tags:
 related:
  - nservicebus/sagas
  - persistence/ravendb
-reviewed: 2017-02-24
+reviewed: 2017-08-21
 ---
+
+include: dtc-warning
 
 include: raven-resourcemanagerid-warning
 

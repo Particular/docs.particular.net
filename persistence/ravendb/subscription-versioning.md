@@ -4,10 +4,12 @@ component: raven
 tags:
  - Persistence
  - Subscription
-reviewed: 2016-11-28
+reviewed: 2017-08-21
 redirects:
  - nservicebus/ravendb/subscription-versioning
 ---
+
+include: dtc-warning
 
 The default behavior of the RavenDB subscription persistence differs from other persisters in the way it handles versioning of message assemblies. It's important to understand this difference, especially when using a deployment solution that automatically increments assembly version numbers with each build.
 

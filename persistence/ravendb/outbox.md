@@ -9,8 +9,10 @@ related:
 - nservicebus/outbox
 redirects:
 - nservicebus/ravendb/outbox
-reviewed: 2017-06-29
+reviewed: 2017-08-21
 ---
+
+include: dtc-warning
 
 The [Outbox](/nservicebus/outbox) feature requires persistence in order to store the messages and enable deduplication.
 
