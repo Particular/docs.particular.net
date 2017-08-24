@@ -46,7 +46,7 @@ Instead of the DTC, the [Outbox feature](/nservicebus/outbox/) can be used to mi
 {{WARNING:
 The Outbox relies upon the local RavenDB database transaction, this means that all business data and NServiceBus data for the transaction must be contained within the same RavenDB database.
 
-*Due to the one-database rule, the Outbox feature cannot create consistency in a mixed-database environment. For example, when storing NServiceBus persistence data in RavenDB while storing business data in SQL Server, consistency cannot be achieved using the Outbox feature. In this type of situation, transitioning to a different persistence as described below is required.*
+*Due to the one-database rule, the Outbox feature cannot guarantee consistency in a mixed-database environment. For example, when storing NServiceBus persistence data in RavenDB while storing business data in SQL Server, consistency cannot be achieved using the Outbox feature. In this type of situation, transitioning to a different persistence as described below is required.*
 }}
 
 To migrate away from DTC, refer to the [Outbox documentation](/nservicebus/outbox/), especially the section on [converting from DTC to Outbox](/nservicebus/outbox/#converting-from-dtc-to-outbox), as well as the [Outbox with RavenDB persistence](/persistence/ravendb/outbox.md) article, especially the section on the [effect of the Outbox on a RavenDB DocumentStore](/persistence/ravendb/outbox.md#effect-on-ravendb-documentstore), being sure to use the *Switch Version* button just below the article titles to customize the content for the versions of NServiceBus and NServiceBus.RavenDB currently in use.
