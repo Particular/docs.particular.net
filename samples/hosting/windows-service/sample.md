@@ -40,7 +40,7 @@ snippet: ServiceHelper
 
 Management is done using the [Service Control tool](https://technet.microsoft.com/en-us/library/cc754599.aspx).
 
-See also [windows-service installation](https://docs.particular.net/nservicebus/hosting/windows-service#installation).
+See also [windows-service installation](/nservicebus/hosting/windows-service.md#installation).
 
 
 #### Installation
