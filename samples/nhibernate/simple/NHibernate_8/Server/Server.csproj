@@ -6,12 +6,11 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System.Configuration" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="NHibernate" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.NHibernate" Version="8.0.0-*" />
   </ItemGroup>
 </Project>

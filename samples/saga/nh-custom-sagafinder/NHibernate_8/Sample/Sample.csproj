@@ -6,9 +6,7 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <Reference Include="System.Configuration" />
     <PackageReference Include="NHibernate" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.0.0-*" />
