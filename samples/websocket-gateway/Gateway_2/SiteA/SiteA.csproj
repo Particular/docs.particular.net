@@ -7,8 +7,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj" />
-    <ProjectReference Include="..\WebSocketGateway\WebSocketGateway.csproj" />  
-    <PackageReference Include="NServiceBus" Version="6.*" />  
+    <ProjectReference Include="..\WebSocketGateway\WebSocketGateway.csproj" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Gateway" Version="2.0.0" />
   </ItemGroup>
 </Project>
