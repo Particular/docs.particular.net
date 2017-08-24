@@ -8,7 +8,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="3.*" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
   </ItemGroup>

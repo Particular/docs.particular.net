@@ -6,7 +6,6 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <PackageReference Include="Common.Logging" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.Spring" Version="6.*" />

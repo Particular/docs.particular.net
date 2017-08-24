@@ -6,7 +6,6 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Messaging" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NHibernate" Version="4.*" />

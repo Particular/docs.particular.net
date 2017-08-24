@@ -6,7 +6,6 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <PackageReference Include="Ninject" Version="3.*" />
     <PackageReference Include="Ninject.Extensions.ContextPreservation" Version="3.*" />
     <PackageReference Include="Ninject.Extensions.NamedScope" Version="3.*" />

@@ -6,7 +6,6 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Windows" />
     <Reference Include="WindowsBase" />
     <PackageReference Include="NServiceBus" Version="5.*" />

@@ -6,7 +6,6 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <ProjectReference Include="..\Messages\Messages.csproj" />
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>

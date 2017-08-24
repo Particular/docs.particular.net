@@ -6,7 +6,6 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <PackageReference Include="Castle.Windsor" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.CastleWindsor" Version="5.*" />

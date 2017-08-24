@@ -16,6 +16,5 @@
     <PackageReference Include="WindowsAzure.Storage" Version="4.*" />
     <PackageReference Include="WindowsAzure.ServiceBus" Version="2.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>

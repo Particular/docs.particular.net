@@ -7,7 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <ProjectReference Include="..\Shared\SharedPhase1.Core.csproj" />

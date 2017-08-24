@@ -6,7 +6,6 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <PackageReference Include="Autofac" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.Autofac" Version="5.*" />

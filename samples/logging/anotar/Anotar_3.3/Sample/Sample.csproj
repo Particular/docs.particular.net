@@ -6,7 +6,6 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <PackageReference Include="Anotar.NServiceBus.Fody" Version="3.*" />
     <PackageReference Include="Fody" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />

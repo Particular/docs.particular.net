@@ -6,7 +6,6 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <PackageReference Include="CommonServiceLocator" Version="1.3" />
     <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.Unity" Version="6.*" />

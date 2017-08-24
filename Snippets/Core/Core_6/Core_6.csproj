@@ -17,7 +17,6 @@
     <PackageReference Include="System.Reactive" Version="3.*" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
     <ProjectReference Include="..\..\MsmqTransport\MsmqTransport_All\MsmqTransport_All.csproj" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
