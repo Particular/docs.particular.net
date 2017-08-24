@@ -3,11 +3,13 @@ title: Uninstall RavenDB v2.0
 summary: Uninstalling RavenDB instances that were installed by previous versions of the Platform Installer.
 tags:
 - Persistence
-reviewed: 2016-10-18
+reviewed: 2017-08-24
 redirects:
  - nservicebus/using-ravendb-uninstalling-v4
  - nservicebus/ravendb/uninstalling-v4
 ---
+
+include: dtc-warning
 
 As of 2014-10-15, the Platform Installer no longer installs RavenDB Version 2.0 in a directory called "NServiceBus.Persistence.v4" under `Program Files` as a prerequisite since NServiceBus Version 5 no longer uses it as the default persistence - [see RavenDB installation](installation.md). If it was previously installed and needs to be removed, it is necessary to remove it manually.
 
