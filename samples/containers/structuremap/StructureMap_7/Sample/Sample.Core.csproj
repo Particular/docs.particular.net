@@ -7,7 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.ObjectBuilder.StructureMap" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.StructureMap" Version="7.0.0-*" />
     <PackageReference Include="StructureMap" Version="4.3.0" />
   </ItemGroup>
 </Project>
