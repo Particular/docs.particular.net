@@ -20,7 +20,7 @@ All affected versions of the NServiceBus.RavenDB package have been patched to lo
 
 ## Cause of data loss
 
-RavenDB uses a client-side DTC implementation, where the RavenDB client library stores the results of in-flight transactions in local storage. During the Prepare phase of the transaction, Raven creates a file in the local storage and writes transaction recovery information into it. During the Commit phase, the session commits the transaction to the server and then deletes the recovery file.
+RavenDB uses a client-side DTC implementation, where the RavenDB client library stores the results of in-flight transactions in local storage. During the Prepare phase of the transaction, RavenDB creates a file in the local storage and writes transaction recovery information into it. During the Commit phase, the session commits the transaction to the server and then deletes the recovery file.
 
 The Commit phase does not occur on the thread running the transaction scope. Instead, Commit occurs on a separate ThreadPool thread, after the TransactionScope has been completed and disposed. This means that if a failure occurs during the Commit phase, perhaps due to a temporary network issue or database restart, the calling code has no way to know the failure occurred and it has already moved on to subsequent instructions after the end of the transaction.
 
