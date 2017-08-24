@@ -19,21 +19,20 @@ class ProgramService :
 
     static void Main()
     {
-        Console.Title = "Samples.FirstEndpoint";
         using (var service = new ProgramService())
         {
-            if (Environment.UserInteractive)
+            if (ServiceHelper.IsService())
             {
-                service.OnStart(null);
-
-                Console.WriteLine("\r\nEndpoint created and configured; press any key to stop program\r\n");
-                Console.ReadKey();
-
-                service.OnStop();
-
+                Run(service);
                 return;
             }
-            Run(service);
+            Console.Title = "Samples.FirstEndpoint";
+            service.OnStart(null);
+
+            Console.WriteLine("\r\nEndpoint created and configured; press any key to stop program\r\n");
+            Console.ReadKey();
+
+            service.OnStop();
         }
     }
 

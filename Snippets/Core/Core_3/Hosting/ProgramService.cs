@@ -1,10 +1,10 @@
-﻿namespace Core4
+﻿namespace Core3
 {
     using System;
     using System.ComponentModel;
+    using System.ServiceProcess;
     using NServiceBus;
     using NServiceBus.Installation.Environments;
-    using System.ServiceProcess;
 
     #region windowsservicehosting
 
@@ -18,18 +18,17 @@
         {
             using (var service = new ProgramService())
             {
-                if (Environment.UserInteractive)
+                if (ServiceHelper.IsService())
                 {
-                    service.OnStart(null);
-
-                    Console.WriteLine("Bus started. Press any key to exit");
-                    Console.ReadKey();
-
-                    service.OnStop();
-
+                    Run(service);
                     return;
                 }
-                Run(service);
+                service.OnStart(null);
+
+                Console.WriteLine("Bus started. Press any key to exit");
+                Console.ReadKey();
+
+                service.OnStop();
             }
         }
 
