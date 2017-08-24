@@ -14,21 +14,21 @@ class ProgramService :
 
     static void Main()
     {
-        Console.Title = "Samples.WindowsServiceAndConsole";
         using (var service = new ProgramService())
         {
-            if (Environment.UserInteractive)
+            if (ServiceHelper.IsService())
             {
-                service.OnStart(null);
-
-                Console.WriteLine("Bus started. Press any key to exit");
-                Console.ReadKey();
-
-                service.OnStop();
-
+                Run(service);
                 return;
             }
-            Run(service);
+
+            Console.Title = "Samples.WindowsServiceAndConsole";
+            service.OnStart(null);
+
+            Console.WriteLine("Bus started. Press any key to exit");
+            Console.ReadKey();
+
+            service.OnStop();
         }
     }
 
