@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!--startcode rabbitmq-connectionstring -->
+  <connectionStrings>
+    <add name="NServiceBus/Transport"
+         connectionString="host=broker1"/>
+  </connectionStrings>
+  <!--endcode-->
+
+  <!--startcode rabbitmq-connectionstring-debug -->
+  <connectionStrings>
+    <add name="NServiceBus/Transport"
+         connectionString="host=broker1;RequestedHeartbeat=600"/>
+  </connectionStrings>
+  <!--endcode-->
+
+</configuration>
