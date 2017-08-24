@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode ExplicitHostConfigType-->
+<configuration>
+  <appSettings>
+    <add key="EndpointConfigurationType"
+         value="YourNamespace.YourTypeName, YourAssembly"/>
+  </appSettings>
+</configuration>
+<!--endcode -->
