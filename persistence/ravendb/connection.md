@@ -9,9 +9,10 @@ redirects:
  - nservicebus/using-ravendb-in-nservicebus-connecting
  - nservicebus/ravendb/connecting
  - nservicebus/ravendb/connection
-reviewed: 2016-10-03
+reviewed: 2017-08-24
 ---
 
+include: dtc-warning
 
 The following sections outline various ways to connect to the RavenDB server. Specifying an external shared store (providing a fully configured RavenDB `DocumentStore` instance) is preferred so that the [RavenDB DTC settings can be configured](manual-dtc-settings.md) for optimal data safety.
 
