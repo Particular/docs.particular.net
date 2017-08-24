@@ -61,16 +61,18 @@ The path to transition from RavenDB to a different persistence vary by version o
 
 To maintain use of the DTC, the best solution is to transition away from RavenDB persistence toward a different solution. The Outbox only works if all business data and NServiceBus data is stored in the same RavenDB database. Therefore, if message endpoints use RavenDB for NServiceBus persistence, but also modify data in a SQL Server database, then a non-DTC solution like the Outbox will not work.
 
-In this situation, consider switching to the [SQL Persistence](/persistence/sql/) library. With no dependency on an ORM library, it supports persisting data in Microsoft SQL Server, Oracle, or MySQL.
+In this situation, consider switching to the [SQL Persistence](/persistence/sql/) library, with data stored in Microsoft SQL Server or Oracle, both of which support distributed transactions.
 
 Because it stores saga data as JSON blobs in much the same way as RavenDB, SQL persistence also provides a smooth data migration path from existing RavenDB data. Contact [support@particular.net](mailto:support@particular.net) to pursue this option.
 
-Prior beginning a migration, remember that different persistence can be used by different endpoints within the same solution. Therefore, any new endpoint added to a current solution should use the new persistence from the start.
+Before beginning a migration, remember that different persistence can be used by different endpoints within the same solution. Therefore, any new endpoint added to a current solution should use the new persistence from the start.
 
 
 #### NServiceBus 5.x and lower
 
 SQL persistence is only available for NServiceBus 6 and above. Therefore, customers using NServiceBus 5 or lower that cannot use the Outbox method described above will need to first [upgrade to NServiceBus 6](/nservicebus/upgrades/5to6/) with RavenDB persistence. After that upgrade is complete, a transition can be made to SQL Persistence as described above.
+
+It is also possible to migrate to [NHibernate Persistence](), however due to mismatches in how RavenDB and NHibernate Persistence store saga data, this type of migration can be much more cumbersome.
 
 
 ## Summary
