@@ -72,7 +72,7 @@ Before beginning a migration, remember that different persistence can be used by
 
 SQL persistence is only available for NServiceBus 6 and above. Therefore, customers using NServiceBus 5 or lower that cannot use the Outbox method described above will need to first [upgrade to NServiceBus 6](/nservicebus/upgrades/5to6/) with RavenDB persistence. After that upgrade is complete, a transition can be made to SQL Persistence as described above.
 
-It is also possible to migrate to [NHibernate Persistence](), however due to mismatches in how RavenDB and NHibernate Persistence store saga data, this type of migration can be much more cumbersome.
+It is also possible to migrate to [NHibernate Persistence](/persistence/nhibernate/), however due to mismatches in how RavenDB and NHibernate Persistence store saga data, this type of migration can be much more cumbersome.
 
 
 ## Summary
