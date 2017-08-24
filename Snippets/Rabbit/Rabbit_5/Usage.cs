@@ -87,7 +87,7 @@ class Usage
 
     void UseRoutingTopology5_0(EndpointConfiguration endpointConfiguration)
     {
-        #region rabbitmq-config-useroutingtopologyDelegate 5.0
+        #region rabbitmq-config-useroutingtopologyDelegate
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.UseRoutingTopology(
@@ -141,7 +141,7 @@ class Usage
 
     void DisableTimeoutManager(EndpointConfiguration endpointConfiguration)
     {
-        #region rabbitmq-delay-disable-timeout-manager 5.0
+        #region rabbitmq-delay-disable-timeout-manager
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         var delayedDelivery = transport.DelayedDelivery();
