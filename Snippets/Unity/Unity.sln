@@ -1,17 +1,18 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity_3", "Unity_3\Unity_3.csproj", "{4EA875F5-6EFE-411E-9B26-1CCEC5F6E72A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unity_3", "Unity_3\Unity_3.csproj", "{4EA875F5-6EFE-411E-9B26-1CCEC5F6E72A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity_4", "Unity_4\Unity_4.csproj", "{20DA26C1-9CDA-4F93-9C20-A4ACA4055135}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unity_4", "Unity_4\Unity_4.csproj", "{20DA26C1-9CDA-4F93-9C20-A4ACA4055135}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity_5", "Unity_5\Unity_5.csproj", "{5182F420-59FC-43F4-9AD5-046B3FA973B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unity_5", "Unity_5\Unity_5.csproj", "{5182F420-59FC-43F4-9AD5-046B3FA973B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity_6", "Unity_6\Unity_6.csproj", "{E4F69A5F-C25F-473D-AED5-EE356927B418}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unity_6", "Unity_6\Unity_6.csproj", "{E4F69A5F-C25F-473D-AED5-EE356927B418}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity_7", "Unity_7\Unity_7.csproj", "{A174814D-B245-4CD0-A0CA-6B68EA92C49D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unity_7", "Unity_7\Unity_7.csproj", "{A174814D-B245-4CD0-A0CA-6B68EA92C49D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unity_8", "Unity_8\Unity_8.csproj", "{49EE8834-B309-472C-B481-DC45DEB802D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,8 +29,13 @@ Global
 		{E4F69A5F-C25F-473D-AED5-EE356927B418}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A174814D-B245-4CD0-A0CA-6B68EA92C49D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A174814D-B245-4CD0-A0CA-6B68EA92C49D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49EE8834-B309-472C-B481-DC45DEB802D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49EE8834-B309-472C-B481-DC45DEB802D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {79DD7A17-C55F-4F92-80D8-29B10EE957F7}
 	EndGlobalSection
 EndGlobal

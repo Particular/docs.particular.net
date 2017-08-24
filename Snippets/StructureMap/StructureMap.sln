@@ -1,15 +1,16 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructureMap_3", "StructureMap_3\StructureMap_3.csproj", "{995A0620-A8B8-4D16-8559-9CA4E581E59A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StructureMap_3", "StructureMap_3\StructureMap_3.csproj", "{995A0620-A8B8-4D16-8559-9CA4E581E59A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructureMap_4", "StructureMap_4\StructureMap_4.csproj", "{93DCC26A-2ADC-496C-8E94-3F48EB8CFC6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StructureMap_4", "StructureMap_4\StructureMap_4.csproj", "{93DCC26A-2ADC-496C-8E94-3F48EB8CFC6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructureMap_5", "StructureMap_5\StructureMap_5.csproj", "{680ADA67-8B37-4A05-B065-01BA10486187}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StructureMap_5", "StructureMap_5\StructureMap_5.csproj", "{680ADA67-8B37-4A05-B065-01BA10486187}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructureMap_6", "StructureMap_6\StructureMap_6.csproj", "{28E0C78D-3C50-4B77-90DC-AF49BED6A525}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StructureMap_6", "StructureMap_6\StructureMap_6.csproj", "{28E0C78D-3C50-4B77-90DC-AF49BED6A525}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StructureMap_7", "StructureMap_7\StructureMap_7.csproj", "{96777DE9-1696-44D9-BD67-50E072C86B3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,8 +25,7 @@ Global
 		{680ADA67-8B37-4A05-B065-01BA10486187}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28E0C78D-3C50-4B77-90DC-AF49BED6A525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{28E0C78D-3C50-4B77-90DC-AF49BED6A525}.Debug|Any CPU.Build.0 = Debug|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
+		{96777DE9-1696-44D9-BD67-50E072C86B3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96777DE9-1696-44D9-BD67-50E072C86B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal
