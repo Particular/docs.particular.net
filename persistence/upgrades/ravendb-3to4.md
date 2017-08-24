@@ -7,12 +7,14 @@ related:
 redirects:
  - nservicebus/ravendb/upgrades/3to4
  - nservicebus/upgrades/ravendb-3to4
-reviewed: 2016-10-03
+reviewed: 2017-08-24
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5
  - 6
 ---
+
+include: dtc-warning
 
 As part of this update [NServiceBus Version 6](/nservicebus/upgrades/5to6/) will be required.
 
