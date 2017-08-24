@@ -1,15 +1,16 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Castle_4", "Castle_4\Castle_4.csproj", "{079E24EC-4BB5-4BF0-9286-1E73C29DF84D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Castle_4", "Castle_4\Castle_4.csproj", "{079E24EC-4BB5-4BF0-9286-1E73C29DF84D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Castle_5", "Castle_5\Castle_5.csproj", "{4257EF5F-4E69-479A-BD55-9EB6E4F97129}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Castle_5", "Castle_5\Castle_5.csproj", "{4257EF5F-4E69-479A-BD55-9EB6E4F97129}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Castle_6", "Castle_6\Castle_6.csproj", "{D6AE3B59-F47B-4963-8E57-2B0EC4A96D58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Castle_6", "Castle_6\Castle_6.csproj", "{D6AE3B59-F47B-4963-8E57-2B0EC4A96D58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Castle_3", "Castle_3\Castle_3.csproj", "{A702F3BD-83E6-45BC-AAE7-E638C263D328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Castle_3", "Castle_3\Castle_3.csproj", "{A702F3BD-83E6-45BC-AAE7-E638C263D328}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Castle_7", "Castle_7\Castle_7.csproj", "{91464EDB-9689-4C19-B6B0-4FD41CA11C81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,8 +25,13 @@ Global
 		{D6AE3B59-F47B-4963-8E57-2B0EC4A96D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A702F3BD-83E6-45BC-AAE7-E638C263D328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A702F3BD-83E6-45BC-AAE7-E638C263D328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91464EDB-9689-4C19-B6B0-4FD41CA11C81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91464EDB-9689-4C19-B6B0-4FD41CA11C81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F15A3D09-E02A-41A5-858D-91A4F88E558E}
 	EndGlobalSection
 EndGlobal
