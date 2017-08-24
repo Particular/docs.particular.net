@@ -4,9 +4,9 @@ VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 15.0.26430.04
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{A50E54FA-4AE8-4018-BBA4-B8ED7748F214}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receiver.V3", "Receiver\Receiver.V3.csproj", "{ED0EC3CA-2B73-4E46-8CCA-DD390DF7A212}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receiver.V3", "Receiver.V3\Receiver.V3.csproj", "{ED0EC3CA-2B73-4E46-8CCA-DD390DF7A212}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sender.V3", "Sender\Sender.V3.csproj", "{E1B21EF8-51A7-43BF-ACD0-653898075D2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sender.V3", "Sender.V3\Sender.V3.csproj", "{E1B21EF8-51A7-43BF-ACD0-653898075D2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
