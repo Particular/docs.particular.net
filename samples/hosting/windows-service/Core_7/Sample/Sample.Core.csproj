@@ -4,7 +4,6 @@
     <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>7</LangVersion>
-    <!--<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>-->
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />

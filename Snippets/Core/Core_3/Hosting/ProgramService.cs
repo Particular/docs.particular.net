@@ -18,18 +18,17 @@
         {
             using (var service = new ProgramService())
             {
-                if (Environment.UserInteractive)
+                if (ServiceHelper.IsService())
                 {
-                    service.OnStart(null);
-
-                    Console.WriteLine("Bus started. Press any key to exit");
-                    Console.ReadKey();
-
-                    service.OnStop();
-
+                    Run(service);
                     return;
                 }
-                Run(service);
+                service.OnStart(null);
+
+                Console.WriteLine("Bus started. Press any key to exit");
+                Console.ReadKey();
+
+                service.OnStop();
             }
         }
 

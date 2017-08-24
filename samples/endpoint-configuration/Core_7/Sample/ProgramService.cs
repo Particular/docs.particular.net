@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Reflection;
 using System.ServiceProcess;
 using System.Threading.Tasks;
 using Autofac;
@@ -57,7 +58,9 @@ class ProgramService :
         };
         appender.ActivateOptions();
 
-        BasicConfigurator.Configure(appender);
+        var executingAssembly = Assembly.GetExecutingAssembly();
+        var repository = log4net.LogManager.GetRepository(executingAssembly);
+        BasicConfigurator.Configure(repository, appender);
 
         LogManager.Use<Log4NetFactory>();
 

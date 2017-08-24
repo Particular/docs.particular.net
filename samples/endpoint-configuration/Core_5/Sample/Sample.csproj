@@ -6,7 +6,6 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <Reference Include="System.ServiceProcess" />
     <PackageReference Include="Autofac" Version="4.*" />
     <PackageReference Include="log4net" Version="2.*" />
