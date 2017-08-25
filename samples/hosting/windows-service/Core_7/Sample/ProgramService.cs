@@ -44,10 +44,7 @@ class ProgramService :
     async Task AsyncOnStart()
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.WindowsServiceAndConsole");
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.EnableInstallers();
         endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         // run any startup actions on the bus
