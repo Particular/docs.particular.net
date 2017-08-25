@@ -2,6 +2,8 @@
 
 ## .NET Core
 
+.Net Core has some extra caveats to consider when using it in a windows service.
+
 
 ### System.ServiceProcess.ServiceController
 
