@@ -30,7 +30,7 @@ dotnet publish WindowsServiceHosting.Core.sln --framework netcoreapp2.0 --runtim
 A .NET Core console application project will, by default, produce a dll. The console application can be executed via the [dotnet command](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet). When used with [sc create](https://technet.microsoft.com/en-us/library/cc990289.aspx) this equates to the following command:
 
 ```
-sc.exe create nsbSampleService binpath= "\"C:\Program Files\dotnet\dotnet.exe\" \"[Full Bin Debug Directory]\Sample.Core.dll\""
+sc.exe create nsbSample binpath= "\"C:\Program Files\dotnet\dotnet.exe\" \"[Full Debug Directory]\Sample.Core.dll\""
 ```
 
 
