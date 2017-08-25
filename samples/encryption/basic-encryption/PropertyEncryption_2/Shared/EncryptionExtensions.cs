@@ -1,6 +1,5 @@
 ﻿
 using System;
-using System.Text;
 using NServiceBus;
 using NServiceBus.Encryption.MessageProperty;
 
