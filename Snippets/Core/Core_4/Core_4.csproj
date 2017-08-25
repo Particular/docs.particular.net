@@ -12,5 +12,6 @@
     <ProjectReference Include="..\..\Common\Common.csproj" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>

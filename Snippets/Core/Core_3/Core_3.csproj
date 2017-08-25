@@ -9,6 +9,8 @@
     <PackageReference Include="NServiceBus" Version="3.*" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>

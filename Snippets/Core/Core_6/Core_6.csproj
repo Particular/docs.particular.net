@@ -20,5 +20,6 @@
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>

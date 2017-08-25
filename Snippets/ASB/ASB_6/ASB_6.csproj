@@ -7,5 +7,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="6.*" />
     <PackageReference Include="WindowsAzure.ServiceBus" Version="3.*" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>

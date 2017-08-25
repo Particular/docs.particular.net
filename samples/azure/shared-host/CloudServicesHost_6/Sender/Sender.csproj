@@ -45,6 +45,7 @@
     <PackageReference Include="System.Spatial" Version="5.*" />
     <PackageReference Include="WindowsAzure.Storage" Version="4.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

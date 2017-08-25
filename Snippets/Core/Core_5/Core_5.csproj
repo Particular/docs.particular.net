@@ -15,5 +15,6 @@
     <ProjectReference Include="..\..\MsmqTransport\MsmqTransport_All\MsmqTransport_All.csproj" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>
