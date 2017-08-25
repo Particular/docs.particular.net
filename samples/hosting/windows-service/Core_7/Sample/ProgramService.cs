@@ -44,7 +44,6 @@ class ProgramService :
     async Task AsyncOnStart()
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.WindowsServiceAndConsole");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
