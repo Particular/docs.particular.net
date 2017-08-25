@@ -9,5 +9,6 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <ProjectReference Include="..\Worker.Handlers\Worker.Handlers.csproj" />
     <PackageReference Include="NServiceBus" Version="6.*" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>
