@@ -10,8 +10,8 @@
     <PackageReference Include="NServiceBus.NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="1.*" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>

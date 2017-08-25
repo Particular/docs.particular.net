@@ -9,7 +9,6 @@
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Wormhole" Version="1.*" />
     <PackageReference Include="System.Net.Http" Version="4.*" />
-    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <ProjectReference Include="..\Shared\Shared.csproj" />

@@ -7,6 +7,5 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Callbacks" Version="3.0.0-*" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>

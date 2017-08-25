@@ -7,7 +7,6 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <ProjectReference Include="..\Messages\Messages.csproj" />
     <ProjectReference Include="..\OwinPassThrough\OwinPassThrough.csproj" />
     <PackageReference Include="Microsoft.Owin" Version="3.*" />
