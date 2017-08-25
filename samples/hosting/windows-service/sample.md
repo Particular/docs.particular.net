@@ -46,14 +46,14 @@ See also [windows-service installation](/nservicebus/hosting/windows-service.md#
 #### Installation
 
 ```
-sc.exe create nsbSampleService binpath= "\"[Full Bin Debug Directory]\Sample.exe\""
+sc.exe create nsbSample binpath= "\"[Full Debug Directory]\Sample.exe\""
 ```
 
 
 #### Uninstall
 
 ```
-sc.exe delete nsbSampleService
+sc.exe delete nsbSample
 ```
 
 
