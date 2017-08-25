@@ -92,7 +92,7 @@ Send encrypted messages with the existing key.
 Does not require all endpoints to be stopped, updated, configured and started simultaneously.
 
 ```cs
-var key = Encoding.ASCII.GetBytes("do-not-use-this-encryption-key!!");
+var key = System.Convert.FromBase64String("do-not-use-this-encryption-key!!");
 
 busConfiguration.RijndaelEncryptionService(
     "2015-10",

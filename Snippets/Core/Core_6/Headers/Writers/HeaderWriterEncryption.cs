@@ -1,5 +1,6 @@
 ﻿namespace Core6.Headers.Writers
 {
+    using System;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -20,7 +21,7 @@
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
 #pragma warning disable 618
-            endpointConfiguration.RijndaelEncryptionService("2015-10", Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
+            endpointConfiguration.RijndaelEncryptionService("2015-10", Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
 #pragma warning restore 618
             var conventions = endpointConfiguration.Conventions();
 #pragma warning disable 618
