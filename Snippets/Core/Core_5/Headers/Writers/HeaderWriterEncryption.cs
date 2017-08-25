@@ -1,5 +1,6 @@
 ﻿namespace Core5.Headers.Writers
 {
+    using System;
     using System.Text;
     using System.Threading;
     using Common;
@@ -27,7 +28,7 @@
         {
             var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName(endpointName);
-            busConfiguration.RijndaelEncryptionService("key1", Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
+            busConfiguration.RijndaelEncryptionService("key1", Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
             var conventions = busConfiguration.Conventions();
             conventions.DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>(typeof(ConfigErrorQueue));

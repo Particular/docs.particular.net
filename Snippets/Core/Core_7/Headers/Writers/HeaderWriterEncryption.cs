@@ -1,5 +1,6 @@
 ﻿namespace Core7.Headers.Writers
 {
+    using System;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -20,10 +21,9 @@
         public async Task Write()
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
-            var ascii = Encoding.ASCII;
             var encryptionService = new RijndaelEncryptionService(
                 encryptionKeyIdentifier: "2015-10",
-                key: ascii.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
+                key: Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
 
             endpointConfiguration.EnableMessagePropertyEncryption(
                 encryptionService: encryptionService,

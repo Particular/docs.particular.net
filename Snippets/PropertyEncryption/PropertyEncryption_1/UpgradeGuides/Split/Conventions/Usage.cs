@@ -1,6 +1,6 @@
 ﻿namespace Core6.UpgradeGuides.Split.Conventions
 {
-    using System.Text;
+    using System;
     using NServiceBus;
     using NServiceBus.Encryption.MessageProperty;
 
@@ -10,10 +10,9 @@
         {
             #region SplitDefiningEncryptedPropertiesAs
 
-            var ascii = Encoding.ASCII;
             var encryptionService = new RijndaelEncryptionService(
                 encryptionKeyIdentifier: "2015-10",
-                key: ascii.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
+                key: Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
 
             endpointConfiguration.EnableMessagePropertyEncryption(
                 encryptionService: encryptionService,
