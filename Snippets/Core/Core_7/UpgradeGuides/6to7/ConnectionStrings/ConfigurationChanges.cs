@@ -6,7 +6,7 @@ namespace Core7.UpgradeGuides._6to7.ConnectionStrings
     public class ConfigurationChanges
     {
 
-        void ProvideConfiguration(EndpointConfiguration endpointConfiguration)
+        void ProvideConfiguration(TransportExtensions<LearningTransport> transport)
         {
             #region 6to7ConnectionStrings
             var connectionString = ConfigurationManager.ConnectionStrings["theConnectionName"].ConnectionString;
