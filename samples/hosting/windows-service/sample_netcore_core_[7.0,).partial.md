@@ -14,7 +14,7 @@ The `ServiceBase` functionality is provided by the [System.ServiceProcess.Servic
 ```
 
 
-### Via an self contained exe
+### Via a self contained exe
 
 To use the installation approach described above a self contained exe is required. To produce an exe from a .NET Core console project [dotnet-publish](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish) can be used. This can be done by using the following command from the [Package Manager Console](https://docs.microsoft.com/en-us/nuget/tools/package-manager-console):
 
