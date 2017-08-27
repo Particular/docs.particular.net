@@ -1,13 +1,14 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASQ_5", "ASQ_5\ASQ_5.csproj", "{C8007C3F-FA8A-40C2-87E2-D39BE6518975}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASQ_5", "ASQ_5\ASQ_5.csproj", "{C8007C3F-FA8A-40C2-87E2-D39BE6518975}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASQ_6", "ASQ_6\ASQ_6.csproj", "{6D2B8C0E-83E7-46C8-B723-8B9BCE3D3A8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASQ_6", "ASQ_6\ASQ_6.csproj", "{6D2B8C0E-83E7-46C8-B723-8B9BCE3D3A8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASQ_7", "ASQ_7\ASQ_7.csproj", "{0D5ADE95-C7DF-4243-900F-DE8955C5AA9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASQ_7", "ASQ_7\ASQ_7.csproj", "{0D5ADE95-C7DF-4243-900F-DE8955C5AA9C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASQ_8", "ASQ_8\ASQ_8.csproj", "{2E1597FF-7427-4228-88F7-77634AA72DC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,8 +21,13 @@ Global
 		{6D2B8C0E-83E7-46C8-B723-8B9BCE3D3A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D5ADE95-C7DF-4243-900F-DE8955C5AA9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D5ADE95-C7DF-4243-900F-DE8955C5AA9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E1597FF-7427-4228-88F7-77634AA72DC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E1597FF-7427-4228-88F7-77634AA72DC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1B0590C-11C3-423E-B640-88581D6ADBCD}
 	EndGlobalSection
 EndGlobal
