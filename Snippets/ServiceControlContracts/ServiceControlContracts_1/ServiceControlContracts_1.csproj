@@ -5,7 +5,7 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="5.*" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="ServiceControl.Contracts" Version="1.*" />
   </ItemGroup>
 </Project>

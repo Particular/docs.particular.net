@@ -4,12 +4,12 @@
 
     class ServiceControlEventsConfig
     {
-        ServiceControlEventsConfig(BusConfiguration busConfiguration)
+        ServiceControlEventsConfig(EndpointConfiguration endpointConfiguration)
         {
             #region ServiceControlEventsConfig
 
-            busConfiguration.UseSerialization<JsonSerializer>();
-            var conventions = busConfiguration.Conventions();
+            endpointConfiguration.UseSerialization<JsonSerializer>();
+            var conventions = endpointConfiguration.Conventions();
             conventions.DefiningEventsAs(
                 type =>
                 {

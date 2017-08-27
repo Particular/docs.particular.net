@@ -1,6 +1,7 @@
 ﻿namespace Core5.Monitoring
 {
     using System;
+    using System.Threading.Tasks;
     using NServiceBus;
     using ServiceControl.Contracts;
 
@@ -8,7 +9,7 @@
     class MessageFailedHandler :
         IHandleMessages<MessageFailed>
     {
-        public void Handle(MessageFailed message)
+        public Task Handle(MessageFailed message, IMessageHandlerContext context)
         {
             var failedMessageId = message.FailedMessageId;
             var exceptionMessage = message.FailureDetails.Exception.Message;
@@ -21,6 +22,7 @@ Open in ServiceInsight: {GetServiceInsightUri(failedMessageId)}";
             {
                 client.PostChatMessage(chatMessage);
             }
+            return Task.CompletedTask;
         }
 
         #endregion
