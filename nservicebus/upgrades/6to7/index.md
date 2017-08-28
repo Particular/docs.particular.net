@@ -220,4 +220,7 @@ When running on the .NET Core platform, endpoints **will not search the registry
 ### Named connection strings
 Configuring a transport's connection using `.ConnectionStringName(name)` has been removed. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the `.ConnectionString(value)` configuration.
 
+### Implicit "NServiceBus/Transport" connection string use
+NServiceBus will no longer automatically find and use a connection string that is named `NServiceBus/Transport` by default. The connection string value must be explicitly configured using `.ConnectionString(value)`.
+
 snippet: 6to7ConnectionStrings
