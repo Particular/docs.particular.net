@@ -27,6 +27,11 @@ The `SqlDialect` method also returns a typed settings instance that can be used 
 snippet: 2to3_DialectSettings
 
 
+## Dialect made mandatory
+
+Version 2 and below defaulted to SQL Server when a call to `SqlVariant` was omitted. In Version 3 a call to `SqlDialect` is mandatory.
+
+
 ## Schema moved to SqlDialect
 
 Schema configuration has been moved to extend the result of the `SqlDialect` method.
