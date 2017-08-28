@@ -1,11 +1,12 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABSDataBus_1", "ABSDataBus_1\ABSDataBus_1.csproj", "{C6EBF50F-A4A2-4162-8122-AF073A6D38FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABSDataBus_1", "ABSDataBus_1\ABSDataBus_1.csproj", "{C6EBF50F-A4A2-4162-8122-AF073A6D38FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure_6", "Azure_6\Azure_6.csproj", "{ED57D3EC-D199-4AB3-AFAE-0BDF49252FE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure_6", "Azure_6\Azure_6.csproj", "{ED57D3EC-D199-4AB3-AFAE-0BDF49252FE3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABSDataBus_2", "ABSDataBus_2\ABSDataBus_2.csproj", "{3D4B9E9E-C34C-4B1A-BB58-7A9EEB20EB93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,8 +17,13 @@ Global
 		{C6EBF50F-A4A2-4162-8122-AF073A6D38FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED57D3EC-D199-4AB3-AFAE-0BDF49252FE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ED57D3EC-D199-4AB3-AFAE-0BDF49252FE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D4B9E9E-C34C-4B1A-BB58-7A9EEB20EB93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D4B9E9E-C34C-4B1A-BB58-7A9EEB20EB93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DCD91D7E-632C-4B39-A27B-D0FCF4293AF7}
 	EndGlobalSection
 EndGlobal

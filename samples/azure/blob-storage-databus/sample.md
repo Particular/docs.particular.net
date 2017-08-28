@@ -2,7 +2,7 @@
 title: Azure Blob Storage DataBus
 summary: Sending large attachments with NServiceBus over Azure blob storage.
 component: ABSDataBus
-reviewed: 2017-02-10
+reviewed: 2017-08-28
 tags:
 - Azure
 - DataBus
