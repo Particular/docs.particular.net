@@ -13,7 +13,6 @@ class Program
     {
         Console.Title = "Samples.AzureBlobStorageDataBus.Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Sender");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region ConfiguringDataBusLocation
 

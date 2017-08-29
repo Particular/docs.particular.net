@@ -13,7 +13,6 @@ class Program
     {
         Console.Title = "Samples.AzureBlobStorageDataBus.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Receiver");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>();
         dataBus.ConnectionString("UseDevelopmentStorage=true");
         endpointConfiguration.UseTransport<LearningTransport>();
