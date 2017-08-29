@@ -1,17 +1,18 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spring_3", "Spring_3\Spring_3.csproj", "{43BC9525-418A-462D-911E-DAEAA7815BC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spring_3", "Spring_3\Spring_3.csproj", "{43BC9525-418A-462D-911E-DAEAA7815BC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spring_4", "Spring_4\Spring_4.csproj", "{9880B167-C3D1-42C2-8215-0C0CC8E9A9D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spring_4", "Spring_4\Spring_4.csproj", "{9880B167-C3D1-42C2-8215-0C0CC8E9A9D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spring_5", "Spring_5\Spring_5.csproj", "{C10E98E1-8C70-4AA6-9F37-50C2C2114C8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spring_5", "Spring_5\Spring_5.csproj", "{C10E98E1-8C70-4AA6-9F37-50C2C2114C8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spring_6", "Spring_6\Spring_6.csproj", "{DDED6663-C361-46DD-956C-2B4CE66474A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spring_6", "Spring_6\Spring_6.csproj", "{DDED6663-C361-46DD-956C-2B4CE66474A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spring_7", "Spring_7\Spring_7.csproj", "{DB15C773-D838-42A9-90BB-6B05B943A569}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spring_7", "Spring_7\Spring_7.csproj", "{DB15C773-D838-42A9-90BB-6B05B943A569}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spring_8", "Spring_8\Spring_8.csproj", "{406FEAA3-CA37-4170-BB00-C82C4670F491}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,8 +29,13 @@ Global
 		{DDED6663-C361-46DD-956C-2B4CE66474A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB15C773-D838-42A9-90BB-6B05B943A569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB15C773-D838-42A9-90BB-6B05B943A569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{406FEAA3-CA37-4170-BB00-C82C4670F491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{406FEAA3-CA37-4170-BB00-C82C4670F491}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3C591A5-9F7F-441D-8C5D-A2DD2B6094AF}
 	EndGlobalSection
 EndGlobal
