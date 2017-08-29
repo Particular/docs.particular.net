@@ -51,12 +51,16 @@ This is a "single use NuGet". So it after install, and adding code to the projec
 
 This NuGet helps get started on a new self hosted NServiceBus application. For existing NServiceBus projects the problems this NuGet attempts to address are most likely already solved.
 
+### Transport
 
-### In Memory Persistence
+The LearningTransport is selected by default. 
 
-This NuGet configures everything to be in memory. The reason is that it makes no assumptions about the choice of persistence and it also aims to be run-able with no other dependencies.
+WARNING: Choose a production grade transport before deploying to production.
 
-WARNING: Choose a durable persistence before deploying to production.
+
+### Persistence
+
+No persistence is needed since the LearningTransport is used and no sagas is present. Consult the indivudal transport and Saga documentation for specific storage need.
 
 
 ## Installation
