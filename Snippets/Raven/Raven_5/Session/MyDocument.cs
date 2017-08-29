@@ -1,4 +1,4 @@
-﻿namespace Raven_4.Session
+﻿namespace Raven_5.Session
 {
     public class MyDocument
     {

@@ -1,4 +1,4 @@
-﻿namespace Raven_4
+﻿namespace Raven_5
 {
     using NServiceBus;
 
@@ -6,7 +6,7 @@
     {
         UnversionedSubscriptions(EndpointConfiguration endpointConfiguration)
         {
-            #region DisableSubscriptionVersioning 4.2
+            #region DisableSubscriptionVersioning
             var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
             persistence.DisableSubscriptionVersioning();
             #endregion

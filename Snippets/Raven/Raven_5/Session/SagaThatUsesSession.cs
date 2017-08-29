@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
-
-namespace Raven_4.Session
+﻿namespace Raven_5.Session
 {
+    using System.Threading.Tasks;
+    using NServiceBus;
 
     #region ravendb-persistence-shared-session-for-saga
 
