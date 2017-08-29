@@ -23,7 +23,6 @@ class Usage
         var numberOfIoThreads = 3;
         // number of blocks that may be simultaneously uploaded when uploading a blob that is greater than the value specified by the
         var backOffIntervalBetweenRetriesInSecs = 1000;
-        var cleanupIntervalInMilSecs = 600000;
 
         #region AzureDataBusSetup
 
@@ -36,7 +35,6 @@ class Usage
         dataBus.MaxRetries(maxNumberOfRetryAttempts);
         dataBus.NumberOfIOThreads(numberOfIoThreads);
         dataBus.BackOffInterval(backOffIntervalBetweenRetriesInSecs);
-        dataBus.CleanupInterval(cleanupIntervalInMilSecs);
 
         #endregion
 
