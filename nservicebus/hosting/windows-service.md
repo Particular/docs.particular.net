@@ -57,9 +57,11 @@ The LearningTransport is selected by default.
 
 WARNING: Choose a production grade transport before deploying to production.
 
+
 ### Persistence
 
-No persistence is needed since the LearningTransport is used and no sagas is present. Please consult indivudal transport and Saga documentation for specific storage need.
+No persistence is needed since the LearningTransport is used and no sagas is present. Consult the indivudal transport and Saga documentation for specific storage need.
+
 
 ## Installation
 
