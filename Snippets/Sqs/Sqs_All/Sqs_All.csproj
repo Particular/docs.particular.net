@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net462</TargetFrameworks>
     <LangVersion>7</LangVersion>
+    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AWSSDK.CloudFormation" Version="3.*" />
