@@ -1,8 +1,8 @@
-using System.Threading.Tasks;
-using NServiceBus;
-
-namespace Wcf1.Int
+namespace Wcf_2.Int
 {
+    using System.Threading.Tasks;
+    using NServiceBus;
+
     #region WcfIntCallbackResponse
 
     public class Handler :

@@ -1,4 +1,4 @@
-namespace Wcf1.Routing
+namespace Wcf_2.Routing
 {
     using System.Threading.Tasks;
     using NServiceBus;

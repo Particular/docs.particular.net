@@ -1,6 +1,4 @@
-﻿using NServiceBus;
-
-namespace Wcf1.Enum
+﻿namespace Wcf_2.Enum
 {
     class Usage
     {

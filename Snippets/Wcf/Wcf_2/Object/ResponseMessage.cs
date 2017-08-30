@@ -1,4 +1,4 @@
-﻿namespace Wcf1.Object
+﻿namespace Wcf_2.Object
 {
     using NServiceBus;
 

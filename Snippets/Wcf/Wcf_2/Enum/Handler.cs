@@ -1,8 +1,8 @@
-using System.Threading.Tasks;
-using NServiceBus;
-
-namespace Wcf1.Enum
+namespace Wcf_2.Enum
 {
+    using System.Threading.Tasks;
+    using NServiceBus;
+
     #region WcfEnumCallbackResponse
 
     public class Handler :

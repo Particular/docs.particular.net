@@ -1,6 +1,4 @@
-﻿using NServiceBus;
-
-namespace Wcf1.Int
+﻿namespace Wcf_2.Int
 {
     class Usage
     {

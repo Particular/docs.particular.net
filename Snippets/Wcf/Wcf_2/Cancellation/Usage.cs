@@ -1,8 +1,8 @@
-﻿using System;
-using NServiceBus;
-
-namespace Wcf1.Cancellation
+﻿namespace Wcf_2.Cancellation
 {
+    using System;
+    using NServiceBus;
+
     class Usage
     {
         class MyService :

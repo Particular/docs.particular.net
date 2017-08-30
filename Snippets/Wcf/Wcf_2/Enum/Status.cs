@@ -1,4 +1,4 @@
-﻿namespace Wcf1.Enum
+﻿namespace Wcf_2.Enum
 {
     public enum Status
     {

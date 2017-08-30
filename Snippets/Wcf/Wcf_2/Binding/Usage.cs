@@ -1,9 +1,8 @@
-﻿using System;
-using System.ServiceModel;
-using NServiceBus;
-
-namespace Wcf1.Binding
+﻿namespace Wcf_2.Binding
 {
+    using System;
+    using NServiceBus;
+
     class Usage
     {
         class MyService :
