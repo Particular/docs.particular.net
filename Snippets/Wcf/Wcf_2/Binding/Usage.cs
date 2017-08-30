@@ -1,6 +1,7 @@
 ﻿namespace Wcf_2.Binding
 {
     using System;
+    using System.ServiceModel;
     using NServiceBus;
 
     class Usage
