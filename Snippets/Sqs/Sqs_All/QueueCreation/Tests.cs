@@ -638,7 +638,6 @@
             transport.ConfigureSqsTransport();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             var recoverabilitySettings = endpointConfiguration.Recoverability();
-            recoverabilitySettings.DisableLegacyRetriesSatellite();
             recoverabilitySettings.Immediate(customizations => customizations.NumberOfRetries(0));
             recoverabilitySettings.Delayed(customizations => customizations.NumberOfRetries(0));
 

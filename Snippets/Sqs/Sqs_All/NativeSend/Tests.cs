@@ -192,12 +192,10 @@
                 });
             endpointConfiguration.SendFailedMessagesTo(errorQueueName);
             endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UseSerialization<JsonSerializer>();
             var transport = endpointConfiguration.UseTransport<SqsTransport>();
             transport.ConfigureSqsTransport();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             var recoverabilitySettings = endpointConfiguration.Recoverability();
-            recoverabilitySettings.DisableLegacyRetriesSatellite();
             recoverabilitySettings.Immediate(customizations => customizations.NumberOfRetries(0));
             recoverabilitySettings.Delayed(customizations => customizations.NumberOfRetries(0));
 

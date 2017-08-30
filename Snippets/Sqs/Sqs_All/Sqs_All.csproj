@@ -3,12 +3,13 @@
   <PropertyGroup>
     <TargetFrameworks>net462</TargetFrameworks>
     <LangVersion>7</LangVersion>
+    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AWSSDK.CloudFormation" Version="3.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.AmazonSQS" Version="3.*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="4.0.0-*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="System.Management.Automation" Version="6.*" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
