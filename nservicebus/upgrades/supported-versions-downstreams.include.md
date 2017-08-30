@@ -52,7 +52,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| ~~7.0.x~~ | ~~2017-02-27~~ | ~~2017-02-27~~    | ~~End of life~~                   |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 #### NServiceBus.NHibernate
@@ -176,7 +175,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| ~~7.0.x~~ | ~~2017-02-27~~ | ~~2017-02-27~~    | ~~End of life~~                   |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 #### NServiceBus.DataBus.AzureBlobStorage
