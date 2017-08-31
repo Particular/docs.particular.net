@@ -1,17 +1,17 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 7 to 8
 summary: Instructions on how to upgrade Azure Service Bus Transport Version 7 to 8.
-reviewed: 2017-05-13
+reviewed: 2017-08-31
 component: ASB
 related:
  - transports/azure-service-bus
- - nservicebus/upgrades/5to6
+ - nservicebus/upgrades/6to7
 redirects:
  - nservicebus/upgrades/asb-7to8
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
- - 5
- - 6
+ - 7
+ - 8
 ---
 
 
