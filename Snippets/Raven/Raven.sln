@@ -1,17 +1,18 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_1", "Raven_1\Raven_1.csproj", "{C6A0CBD7-215D-4ACD-BDC0-7B7F5D97FA4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_1", "Raven_1\Raven_1.csproj", "{C6A0CBD7-215D-4ACD-BDC0-7B7F5D97FA4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_2", "Raven_2\Raven_2.csproj", "{508F7A2B-ED72-4EBB-8B28-F486D3119B4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_2", "Raven_2\Raven_2.csproj", "{508F7A2B-ED72-4EBB-8B28-F486D3119B4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_3", "Raven_3\Raven_3.csproj", "{BC1360FA-FDDD-4908-AC64-0DDB6E0007EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_3", "Raven_3\Raven_3.csproj", "{BC1360FA-FDDD-4908-AC64-0DDB6E0007EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_4", "Raven_4\Raven_4.csproj", "{10CE989A-8E4F-400C-8BBD-3935B9FEE695}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_4", "Raven_4\Raven_4.csproj", "{10CE989A-8E4F-400C-8BBD-3935B9FEE695}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_All", "Raven_All\Raven_All.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_All", "Raven_All\Raven_All.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_5", "Raven_5\Raven_5.csproj", "{A5FA02A8-8FB0-4FCA-A8A7-57E2303962B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,8 +29,13 @@ Global
 		{10CE989A-8E4F-400C-8BBD-3935B9FEE695}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5FA02A8-8FB0-4FCA-A8A7-57E2303962B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5FA02A8-8FB0-4FCA-A8A7-57E2303962B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A644CFCB-E561-4BFE-9CE0-380B5232B869}
 	EndGlobalSection
 EndGlobal
