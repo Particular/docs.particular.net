@@ -37,6 +37,10 @@ When self-hosting, the user is responsible for creating and starting the endpoin
 
 snippet: Hosting-Startup
 
+## ILMerging NServiceBus assemblies
+
+ILMerging any of the NServiceBus* assemblies is not supported
+
 The user is also responsible for properly shutting down the endpoint when it is no longer needed (usually when the application terminates).
 
 snippet: Hosting-Shutdown
