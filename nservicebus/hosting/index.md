@@ -37,10 +37,6 @@ When self-hosting, the user is responsible for creating and starting the endpoin
 
 snippet: Hosting-Startup
 
-## ILMerging NServiceBus assemblies
-
-ILMerging any of the NServiceBus* assemblies is not supported
-
 The user is also responsible for properly shutting down the endpoint when it is no longer needed (usually when the application terminates).
 
 snippet: Hosting-Shutdown
@@ -139,3 +135,8 @@ There are a variety of ways to host in Azure. Depending on the requirements self
 Related:
 
  * [Shared Hosting in Azure Cloud Services Sample](/samples/azure/shared-host/)
+ 
+ 
+## ILMerging NServiceBus assemblies
+
+ILMerging any of the NServiceBus* assemblies is not supported.
