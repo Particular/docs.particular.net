@@ -1,4 +1,4 @@
-NOTE: by default endpoing is not throttled.
+NOTE: By default endpoints are not throttled.
 
 Define a maximum value for the number of messages per second that the endpoint will process at any given time. This will help avoiding the endpoint from overloading sensitive resources that it's using like web-services, databases, other endpoints etc. Some examples would include
 
