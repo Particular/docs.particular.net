@@ -94,4 +94,8 @@ class Usage
     }
 
     #endregion
+    // to avoid host ref
+    internal interface IConfigureThisEndpoint
+    {
+    }
 }

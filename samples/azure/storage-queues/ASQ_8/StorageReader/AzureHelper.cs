@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Newtonsoft.Json;
@@ -11,23 +12,25 @@ public class AzureHelper
 {
     [Test]
     [Explicit]
-    public void WriteOutData()
+    public async Task WriteOutData()
     {
         #region UsingHelpers
 
-        WriteOutQueue("samples-azure-storagequeues-endpoint2");
+        await WriteOutQueue("samples-azure-storagequeues-endpoint2")
+            .ConfigureAwait(false);
 
         #endregion
     }
 
     #region WriteOutQueue
 
-    static void WriteOutQueue(string queueName)
+    static async Task WriteOutQueue(string queueName)
     {
         var storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
         var queueClient = storageAccount.CreateCloudQueueClient();
         var queue = queueClient.GetQueueReference(queueName);
-        var message = queue.PeekMessage();
+        var message = await queue.PeekMessageAsync()
+            .ConfigureAwait(false);
         if (message != null)
         {
             Debug.WriteLine("Message contents");

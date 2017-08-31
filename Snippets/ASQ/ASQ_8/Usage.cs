@@ -77,7 +77,6 @@ class Usage
 
         #endregion
     }
-
     // Reference NServiceBus.Host instead of NServiceBus.Hosting.Azure as the usage is the same
     // This prevents Azure storage library conflicts as the libraries are being updated
 
@@ -94,4 +93,8 @@ class Usage
     }
 
     #endregion
+    // to avoid host ref
+    internal interface IConfigureThisEndpoint
+    {
+    }
 }
