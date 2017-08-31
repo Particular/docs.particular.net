@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Features;
 
 class Program
 {
@@ -15,9 +14,13 @@ class Program
         Console.Title = "Samples.Gateway.RemoteSite";
         var endpointConfiguration = new EndpointConfiguration("Samples.Gateway.RemoteSite");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.EnableFeature<Gateway>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
+
+        #region RemoteSiteGatewayConfig
+        var gatewayConfig = endpointConfiguration.Gateway();
+        gatewayConfig.AddReceiveChannel("http://localhost:25899/RemoteSite/");
+        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
