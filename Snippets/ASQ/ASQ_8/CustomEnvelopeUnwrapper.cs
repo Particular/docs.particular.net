@@ -9,7 +9,7 @@ class CustomEnvelopeUnwrapper
 
     CustomEnvelopeUnwrapper(EndpointConfiguration endpointConfiguration)
     {
-        #region CustomEnvelopeUnwrapper 7.1
+        #region CustomEnvelopeUnwrapper
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
 

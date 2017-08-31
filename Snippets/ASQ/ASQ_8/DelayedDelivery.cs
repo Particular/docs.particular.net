@@ -6,7 +6,7 @@ class DelayedDelivery
 {
     public void DelayedDeliveryNameOverride(EndpointConfiguration endpointConfiguration)
     {
-        #region delayed-delivery-override-name [7.4,)
+        #region delayed-delivery-override-name
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         var delayedDelivery = transport.DelayedDelivery();
@@ -16,7 +16,7 @@ class DelayedDelivery
     }
     public void DelayedDeliveryDisableTimeoutManager(EndpointConfiguration endpointConfiguration)
     {
-        #region delayed-delivery-disable-timeoutmanager [7.4,)
+        #region delayed-delivery-disable-timeoutmanager
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         var delayedDelivery = transport.DelayedDelivery();
