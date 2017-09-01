@@ -84,18 +84,7 @@ snippet: GatewaySitesAppConfig
 Or specify this physical routing in code:
 
 
-#### Using an IConfigurationProvider
-
-snippet: GatewaySitesConfigurationProvider
-
-
-#### Using a ConfigurationSource
-
-snippet: GatewaySitesConfigurationSource
-
-Then at configuration time:
-
-snippet: UseCustomConfigurationSourceForGatewaySitesConfig
+partial: codefirstsites
 
 
 NServiceBus automatically sets the required headers to enable sending messages back over the gateway using the familiar `Reply`.
