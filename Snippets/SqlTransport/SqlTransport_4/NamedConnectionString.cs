@@ -16,16 +16,6 @@ class NamedConnectionString
         #endregion
     }
 
-    void ConnectionName(EndpointConfiguration endpointConfiguration)
-    {
-        #region sqlserver-named-connection-string
-
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionStringName("MyConnectionString");
-
-        #endregion
-    }
-
     void ConnectionFactory(EndpointConfiguration endpointConfiguration)
     {
         #region sqlserver-custom-connection-factory

@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--startcode sqlserver-named-connection-string-xml-->
-<configuration>
-  <connectionStrings>
-    <add name="MyConnectionString"
-         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Queue Schema=nsb; Max Pool Size=80"/>
-  </connectionStrings>
-</configuration>
-<!--endcode-->
