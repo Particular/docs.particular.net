@@ -1,5 +1,5 @@
 using NServiceBus;
-using NServiceBus.Configuration.AdvanceExtensibility;
+using NServiceBus.Configuration.AdvancedExtensibility;
 
 #region custom-namespace-partitioning-strategy-extension
 
