@@ -63,7 +63,7 @@ snippet: 2to3-sqlserver-multischema-config-for-endpoint-and-queue
 
 This enables configuring custom schema both for local endpoint as well as for other endpoints that the configured endpoint communicates with. When using configuration file to specify schemas for other endpoints, their schemas should be placed in the `MessageEndpointMappings` section and follow `endpoint-name@schema-name` convention:
 
-snippet: sqlserver-multischema-config
+snippet: 2to3-sqlserver-multischema-config
 
 
 ### Multi-instance support
@@ -91,6 +91,6 @@ The method `PauseAfterReceiveFailure(TimeSpan)` is no longer supported. In Versi
 
 Queue tables created by version 2.2.1 or lower require manual creation of a non-clustered index on the `[Expires]` column. The following SQL statement can be used to create the missing index:
 
-snippet: sql-2.2.2-ExpiresIndex
+snippet: 2to3-sqlExpiresIndex
 
 A warning will be logged when a missing index is detected.

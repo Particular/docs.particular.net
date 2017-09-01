@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration>
-  <!--startcode sqlserver-multischema-config-->
+  <!--startcode 2to3-sqlserver-multischema-config-->
   <UnicastBusConfig>
     <MessageEndpointMappings>
       <add Assembly="Billing.Contract"

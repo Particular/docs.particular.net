@@ -1,4 +1,4 @@
-﻿--startcode sql-2.2.2-ExpiresIndex [2.2.2,)
+﻿--startcode 2to3-sqlExpiresIndex
 CREATE NONCLUSTERED INDEX [Index_Expires]
 ON [schema].[queuename]
 (
