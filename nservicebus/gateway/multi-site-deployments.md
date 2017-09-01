@@ -145,3 +145,5 @@ snippet: UseCustomConfigurationSourceForGatewayChannelsConfig
 
 
 The `Default = true` on the first channel config entry tells the gateway which address to attach to outgoing messages if the sender does not specify it explicitly. Any number of channels can be added.
+
+partial: wildcard

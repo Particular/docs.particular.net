@@ -8,8 +8,10 @@
   <GatewayConfig>
     <Channels>
       <Channel Address="http://+:25899/RemoteSite/"
+               ChannelType="Http"/>               
+      <Channel Address="http://gateway.mycorp.com:25899/RemoteSite/"
                ChannelType="Http"
-               Default="true"/>
+               Default="true"/>       
     </Channels>
   </GatewayConfig>
 </configuration>
