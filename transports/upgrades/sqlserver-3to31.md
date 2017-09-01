@@ -10,7 +10,7 @@ upgradeGuideCoreVersions:
 
 SQL Server transport 3.1 introduces a native handling of delayed messages. It does so via a special table that holds the messages that are sent but not yet due. The structure of this table is shown below:
 
-snippet: createdelayedmessagestoretextsql
+snippet: 3to31-createdelayedmessagestoretextsql
 
 SQL Server transport 3.1 by default runs the [Timeout Manager](/nservicebus/messaging/timeout-manager.md) using the selected persistence option to drain all the remaining delayed messages sent before upgrading to version 3.1. However, even the new delayed messages are processed using the native mechanism only even when they are sent by the endpoint using older version of the transport.
 
@@ -30,6 +30,6 @@ NOTE: Some persistences, e.g. NHibernate, store all the delayed messages for all
 
 Once exported, use the following script to insert the data into SQL Server transport's table.
 
-snippet: storedelayedmessagetextsql
+snippet: 3to31-storedelayedmessagetextsql
 
 NOTE: By default the table used to store delayed messages has the `Delayed` suffix so for an endpoint called `MyEndpoint` the delayed messages are stored in a table called `MyEndpoint.Delayed`.

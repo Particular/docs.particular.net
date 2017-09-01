@@ -28,11 +28,12 @@ Update-Package NServiceBus.SqlServer -Version 2.2.4
 
 After the package has been updated, all affected endpoints need to be rebuilt and redeployed.
 
+
 ## Patching a deployed system
 
 This vulnerability can also be fixed by updating the SQL Server Transport .dll without the need to rebuild and redeploy an affected endpoint by following these steps:
 
- 1. [Update the NuGet package](#updating-the-nuget-package)
+ 1. Update the NuGet package
  1. For each affected endpoint:
   1. Stop the endpoint.
   1. Copy the `NServiceBus.Transport.SqlServer.dll` file from the updated NuGet package to directory where binaries of the endpoint are stored. Make sure that updated version of the .dll overwrites the previous one.

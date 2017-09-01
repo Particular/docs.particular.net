@@ -33,7 +33,7 @@ For more details and examples refer to [Transaction configuration API](/nservice
 
 The custom connection factory method is now expected to be `async` and no parameters are passed to it by the framework:
 
-snippet: sqlserver-custom-connection-factory
+snippet: 2to3-sqlserver-custom-connection-factory
 
 
 ### Accessing transport connection
@@ -55,11 +55,11 @@ The configuration API for [multi-schema support](/transports/sql/deployment-opti
 
 The schema for the configured endpoint can be specified using `DefaultSchema` method:
 
-snippet: sqlserver-non-standard-schema
+snippet: 2to3-sqlserver-non-standard-schema
 
 or by defining a custom schema per endpoint or queue:
 
-snippet: sqlserver-multischema-config-for-endpoint-and-queue
+snippet: 2to3-sqlserver-multischema-config-for-endpoint-and-queue
 
 This enables configuring custom schema both for local endpoint as well as for other endpoints that the configured endpoint communicates with. When using configuration file to specify schemas for other endpoints, their schemas should be placed in the `MessageEndpointMappings` section and follow `endpoint-name@schema-name` convention:
 
@@ -72,7 +72,7 @@ The configuration API for [multi-instance support](/transports/sql/deployment-op
 
 Note that `EnableLegacyMultiInstanceMode` method replaces both [pull and push modes](/transports/sql/connection-settings.md#multiple-connection-strings) from Version 2.x.
 
-snippet: sqlserver-multiinstance-upgrade
+snippet: 2to3-sqlserver-multiinstance-upgrade
 
 Note that `multi-instance` mode has been deprecated and is not recommended for new projects.
 

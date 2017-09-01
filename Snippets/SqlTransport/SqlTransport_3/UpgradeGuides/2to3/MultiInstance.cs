@@ -8,7 +8,7 @@ class SqlServer
     {
 #pragma warning disable 0618
 
-        #region sqlserver-multiinstance-upgrade
+        #region 2to3-sqlserver-multiinstance-upgrade
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.EnableLegacyMultiInstanceMode(

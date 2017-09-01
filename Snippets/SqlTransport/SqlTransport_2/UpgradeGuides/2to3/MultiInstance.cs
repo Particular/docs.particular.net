@@ -5,7 +5,7 @@ class SqlServer
 {
     void MultiInstance(BusConfiguration busConfiguration)
     {
-        #region sqlserver-multiinstance-upgrade 2.1
+        #region 2to3-sqlserver-multiinstance-upgrade
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         // Option 1

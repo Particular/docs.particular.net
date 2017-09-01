@@ -1,5 +1,5 @@
 ---
-title: SQL Server Transport Upgrade Version 3.1 to 4
+title: SQL Server Transport Upgrade Version 3 to 4
 reviewed: 2017-08-23
 component: SqlTransport
 related:
@@ -9,6 +9,7 @@ upgradeGuideCoreVersions:
  - 6
  - 7
 ---
+
 
 ## TransactionScope
 
