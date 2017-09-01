@@ -135,3 +135,8 @@ There are a variety of ways to host in Azure. Depending on the requirements self
 Related:
 
  * [Shared Hosting in Azure Cloud Services Sample](/samples/azure/shared-host/)
+ 
+ 
+## ILMerging NServiceBus assemblies
+
+Since NServiceBus makes assumptions on aspects like assembly names, ILMerging any of the NServiceBus* assemblies is not supported.
