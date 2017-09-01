@@ -139,4 +139,4 @@ Related:
  
 ## ILMerging NServiceBus assemblies
 
-ILMerging any of the NServiceBus* assemblies is not supported.
+Since NServiceBus make assumptions on things like assembly names ILMerging any of the NServiceBus* assemblies is not supported.
