@@ -24,7 +24,7 @@ class Program
         var topology = transport.UseForwardingTopology();
 
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         var recoverability = endpointConfiguration.Recoverability();
@@ -33,7 +33,6 @@ class Program
             {
                 settings.NumberOfRetries(0);
             });
-        recoverability.DisableLegacyRetriesSatellite();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

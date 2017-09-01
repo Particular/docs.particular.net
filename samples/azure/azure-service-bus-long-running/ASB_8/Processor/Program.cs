@@ -24,9 +24,7 @@ class Program
         }
         transport.ConnectionString(connectionString);
         transport.UseForwardingTopology();
-        endpointConfiguration.UseSerialization<JsonSerializer>();
-        var recoverability = endpointConfiguration.Recoverability();
-        recoverability.DisableLegacyRetriesSatellite();
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

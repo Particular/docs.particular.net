@@ -14,7 +14,7 @@ class Program
         Console.Title = "Samples.Azure.ServiceBus.Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Endpoint2");
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
@@ -25,8 +25,6 @@ class Program
         transport.ConnectionString(connectionString);
         transport.UseForwardingTopology();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        var recoverability = endpointConfiguration.Recoverability();
-        recoverability.DisableLegacyRetriesSatellite();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

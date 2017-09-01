@@ -31,10 +31,10 @@ public class ReplicatedNamespacePartitioningStrategy :
         return namespaces.Select(
             selector: namespaceInfo =>
             {
-                log.Info($"Choosing namespace {namespaceInfo.Alias} ({namespaceInfo.ConnectionString})");
+                log.Info($"Choosing namespace {namespaceInfo.Alias} ({namespaceInfo.Connection})");
                 return new RuntimeNamespaceInfo(
                     alias: namespaceInfo.Alias,
-                    connectionString: namespaceInfo.ConnectionString,
+                    connectionString: namespaceInfo.Connection,
                     purpose: NamespacePurpose.Partitioning,
                     mode: NamespaceMode.Active);
             });
