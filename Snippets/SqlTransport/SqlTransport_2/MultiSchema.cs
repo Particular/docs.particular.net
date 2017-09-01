@@ -5,7 +5,7 @@ class MultiSchema
 {
     void NonStandardSchema(BusConfiguration busConfiguration)
     {
-        #region sqlserver-non-standard-schema
+        #region sqlserver-non-standard-schema 2.1
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.DefaultSchema("myschema");
@@ -25,7 +25,7 @@ class MultiSchema
 
     void ConfigureCustomSchemaForEndpoint(BusConfiguration busConfiguration)
     {
-        #region sqlserver-multischema-config-push
+        #region sqlserver-multischema-config-push 2.1
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.UseSpecificConnectionInformation(
@@ -40,7 +40,7 @@ class MultiSchema
 
     void ConfigureCustomSchemaForEndpointAndQueue(BusConfiguration busConfiguration)
     {
-        #region sqlserver-multischema-config-for-endpoint-and-queue
+        #region sqlserver-multischema-config-for-endpoint-and-queue 2.1
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.UseSpecificConnectionInformation(
@@ -55,7 +55,7 @@ class MultiSchema
 
     void OtherEndpointConnectionParamsPull(BusConfiguration busConfiguration)
     {
-        #region sqlserver-multischema-config-pull
+        #region sqlserver-multischema-config-pull 2.1
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.UseSpecificConnectionInformation(queueName =>

@@ -1,3 +1,0 @@
-SQL Server transport uses an adaptive concurrency model. The transport adapts the number of polling threads based on the rate of messages coming in. A separate instance of the algorithm is executed by each polling thread. The algorithm counts consecutive successful and failed poll attempts (the attempt succeeds if it finds a message waiting in a queue).
-
-If the number of consecutive successful polls is greater than an internal threshold, a new polling thread is started (provided the `MaximumConcurrencyLevel` is not exceeded). On the other hand, if the number of consecutive failed polls is greater than a threshold, the thread dies.

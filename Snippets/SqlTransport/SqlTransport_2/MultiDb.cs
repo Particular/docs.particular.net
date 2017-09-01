@@ -7,7 +7,7 @@ class MultiDb
 
     void OtherEndpointConnectionParamsPush(BusConfiguration busConfiguration)
     {
-        #region sqlserver-multidb-other-endpoint-connection-push [2.1,3.0)
+        #region sqlserver-multidb-other-endpoint-connection-push 2.1
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.UseSpecificConnectionInformation(
@@ -24,7 +24,7 @@ class MultiDb
 
     void OtherEndpointConnectionParamsPull(BusConfiguration busConfiguration)
     {
-        #region sqlserver-multidb-other-endpoint-connection-pull [2.1,3.0)
+        #region sqlserver-multidb-other-endpoint-connection-pull 2.1
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.UseSpecificConnectionInformation(x =>
@@ -49,7 +49,7 @@ class MultiDb
 
     void ServiceControlMultiInstanceEndpointConnectionStrings(BusConfiguration busConfiguration)
     {
-        #region sc-multi-instance-endpoint-connection-strings [2.1,3.0)
+        #region sc-multi-instance-endpoint-connection-strings 2.1
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
         transport.UseSpecificConnectionInformation(transportAddress =>

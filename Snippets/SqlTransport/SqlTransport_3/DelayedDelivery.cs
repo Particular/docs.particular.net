@@ -6,7 +6,7 @@ class DelayedDelivery
 {
     void Configure(EndpointConfiguration endpointConfiguration)
     {
-        #region EnableNativeDelayedDelivery
+        #region EnableNativeDelayedDelivery 3.0
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         var delayedDeliverySettings = transport.UseNativeDelayedDelivery();

@@ -3,7 +3,7 @@ title: SQL Server Native Delayed Delivery
 summary: Describes the native delayed delivery implementation in the SQL Server transport
 reviewed: 2017-06-05
 component: SqlTransport
-versions: '[3.1,)'
+versions: '[3,)'
 ---
 
 In Versions 3.1 and above, the SQL Server transport can take advantage of native [delayed delivery](/nservicebus/messaging/delayed-delivery.md) without then need to run the [timeout manager](/nservicebus/messaging/timeout-manager.md). Instead, the transport creates infrastructure which can delay messages using native SQL Server transport features. To enable the native delayed delivery use the following API:
@@ -37,8 +37,9 @@ When the delay time lapses, SQL Server transport moves a batch of messages to th
 ## Backwards compatibility
 
 When upgrading to a version of the transport that supports native delayed delivery, it is safe to operate a combination of endpoints using native delayed delivery and endpoints using timeout manager at the same time:
-- Endpoints with native delayed delivery can send delayed messages to endpoints using timeout manager. 
-- Endpoints with native delayed delivery can continue to receive delayed messages from endpoints using timeout manager.
+
+ * Endpoints with native delayed delivery can send delayed messages to endpoints using timeout manager. 
+ * Endpoints with native delayed delivery can continue to receive delayed messages from endpoints using timeout manager.
 
 
 ### Disabling the timeout manager

@@ -5,7 +5,7 @@ class MultiCatalog
 {
     void CatalogForQueue(EndpointConfiguration endpointConfiguration, IMessageSession messageSession)
     {
-        #region sqlserver-multicatalog-config-for-queue
+        #region sqlserver-multicatalog-config-for-queue 3.0
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
 
@@ -29,7 +29,7 @@ class MultiCatalog
 
     void CatalogForEndpoint(EndpointConfiguration endpointConfiguration)
     {
-        #region sqlserver-multicatalog-config-for-endpoint
+        #region sqlserver-multicatalog-config-for-endpoint 3.0
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
 
