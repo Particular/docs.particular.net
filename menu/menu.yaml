@@ -216,6 +216,8 @@
         Title: Scale-Out
     - Url: nservicebus/bridge
       Title: Transport Bridge
+    - Url: nservicebus/rawmessaging
+      Title: Raw messaging
     - Url: nservicebus/wormhole
       Title: Wormhole Gateway
     - Url: nservicebus/outbox
