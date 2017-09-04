@@ -10,6 +10,7 @@ related:
 - nservicebus/lifecycle
 ---
 
+include: host-deprecated-warning
 
 ## Code walk-through
 

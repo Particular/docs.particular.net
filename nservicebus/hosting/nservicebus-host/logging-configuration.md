@@ -8,6 +8,7 @@ related:
  - samples/logging/hostprofiles
 ---
 
+include: host-deprecated-warning
 
 ## Logging configuration
 

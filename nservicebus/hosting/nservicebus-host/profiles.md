@@ -14,6 +14,8 @@ component: Host
 reviewed: 2016-10-27
 ---
 
+include: host-deprecated-warning
+
 There are many configuration options for endpoints using [NServiceBus Host](/nservicebus/hosting/nservicebus-host/). The endpoint configuration specifies levels of logging, subscription and saga storage, etc. 
 
 Profiles enable tailoring endpoints configuration for different environments without recompiling code.

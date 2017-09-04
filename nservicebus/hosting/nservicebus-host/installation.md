@@ -6,6 +6,8 @@ tags:
 reviewed: 2016-10-20
 ---
 
+include: host-deprecated-warning
+
 When running an endpoint within the context of Visual Studio debugger, the required queues are created automatically on startup to facilitate development. However, when deploying this endpoint to a server, starting the endpoint from the command prompt will not create the needed queues. Creation of queues is a one time cost that should happen during installation.
 
 To retrieve the list of available options for the host, run the following at the command line:

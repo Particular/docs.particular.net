@@ -10,6 +10,8 @@ component: Host
 reviewed: 2017-02-28
 ---
 
+include: host-deprecated-warning
+
 ## Custom profile
 
 In certain scenarios it might be useful to define additional profiles. For example, some organizations have a few testing or staging environments that might require different configurations. To define a custom Profile create a class that implements the `NServiceBus.IProfile` marker interface:
