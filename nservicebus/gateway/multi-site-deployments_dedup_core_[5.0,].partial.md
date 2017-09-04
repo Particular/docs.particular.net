@@ -1,1 +1,0 @@
-The gateway will use the storage type configured. At this stage [InMemory](/persistence/in-memory.md), [NHibernate](/persistence/nhibernate/) and [RavenDB](/persistence/ravendb/) are supported.
