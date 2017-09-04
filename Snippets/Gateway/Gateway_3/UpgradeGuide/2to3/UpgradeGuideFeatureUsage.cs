@@ -1,6 +1,7 @@
 ﻿using NServiceBus;
+using NServiceBus.Features;
 
-class UpgradeGuideFeatureUsage
+class UpgradeGuideUsage
 {
     void EnableGatewayAfter(EndpointConfiguration endpointConfiguration)
     {
@@ -9,5 +10,15 @@ class UpgradeGuideFeatureUsage
         endpointConfiguration.Gateway();
 
         #endregion
+    }
+    void EnableGatewayBefore(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable 0618
+        #region 2to3EnableGatewayBefore
+
+        endpointConfiguration.EnableFeature<Gateway>();
+
+        #endregion
+#pragma warning restore 0618
     }
 }

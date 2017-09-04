@@ -14,8 +14,8 @@ upgradeGuideCoreVersions:
 
 The gateway now allows full configuration via code. Use:
 
-snippet: EnableGatewayAfter
+snippet: 2to3EnableGatewayAfter
 
 to enable and confgure sites and channels instead of:
 
-snippet: EnableGatewayBefore
+snippet: 2to3EnableGatewayBefore
