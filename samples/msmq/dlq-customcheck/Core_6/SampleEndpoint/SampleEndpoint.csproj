@@ -10,4 +10,8 @@
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="ServiceControl.Plugin.Nsb6.CustomChecks" Version="3.*" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Transactions" />
+  </ItemGroup>
 </Project>
