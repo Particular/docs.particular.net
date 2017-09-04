@@ -1,11 +1,9 @@
 ﻿using System;
-using NServiceBus;
 
 namespace Messages
 {
 
-    public class ClientOrder :
-        IMessage
+    public class ClientOrder
     {
         public Guid OrderId { get; set; }
     }

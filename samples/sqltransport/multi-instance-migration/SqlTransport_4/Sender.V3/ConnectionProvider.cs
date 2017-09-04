@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 static class ConnectionProvider
 {
-    public const string DefaultConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceSender;Integrated Security=True;Max Pool Size=100";
-    const string ReceiverConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceReceiver;Integrated Security=True;Max Pool Size=100";
+    public const string DefaultConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceSender3;Integrated Security=True;Max Pool Size=100";
+    const string ReceiverConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceReceiver3;Integrated Security=True;Max Pool Size=100";
 
     public static async Task<SqlConnection> GetConnection(string transportAddress)
     {

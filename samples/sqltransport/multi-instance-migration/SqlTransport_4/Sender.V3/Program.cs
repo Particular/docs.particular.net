@@ -14,9 +14,9 @@ public class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.SqlServer.MultiInstanceSender";
+        Console.Title = "Samples.SqlServer.MultiInstanceSender.V3";
 
-        #region SenderConfiguration
+        #region SenderConfigurationV3
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
@@ -25,8 +25,12 @@ public class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
+        transport.Routing().RouteToEndpoint(typeof(ClientOrder), "Samples.SqlServer.MultiInstanceReceiver");
         #endregion
+
         SqlHelper.EnsureDatabaseExists(ConnectionProvider.DefaultConnectionString);
+
+        endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Assembly == typeof(ClientOrder).Assembly && t.Namespace == "Messages");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
@@ -54,8 +58,7 @@ public class Program
         {
             OrderId = Guid.NewGuid()
         };
-        await endpoint.Send("Samples.SqlServer.MultiInstanceReceiver", order)
-            .ConfigureAwait(false);
+        await endpoint.Send(order).ConfigureAwait(false);
 
         #endregion
 

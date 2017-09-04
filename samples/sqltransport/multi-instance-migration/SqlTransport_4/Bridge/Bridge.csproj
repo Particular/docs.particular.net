@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net461</TargetFrameworks>
@@ -6,9 +6,13 @@
     <LangVersion>7</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-alpha0032" />
-    <PackageReference Include="NServiceBus.Bridge.Connector" Version="2.0.0-*" />
+    <PackageReference Include="NServiceBus.Bridge" Version="2.0.0-*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="3.0.0-*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

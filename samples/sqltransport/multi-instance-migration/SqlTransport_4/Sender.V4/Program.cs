@@ -2,11 +2,12 @@
 using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
-using NServiceBus.Transport.SQLServer;
 #pragma warning disable 618
 
 public class Program
 {
+    const string ConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceSender4;Integrated Security=True;Max Pool Size=100";
+
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
@@ -14,19 +15,24 @@ public class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.SqlServer.MultiInstanceSender";
+        Console.Title = "Samples.SqlServer.MultiInstanceSender.V4";
 
-        #region SenderConfiguration
+        #region SenderConfigurationV4
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.EnableLegacyMultiInstanceMode(ConnectionProvider.GetConnection);
+        transport.ConnectionString(ConnectionString);
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
+        var bridgeConfig = transport.Routing().ConnectToBridge("Bridge-Sender");
+        bridgeConfig.RouteToEndpoint(typeof(ClientOrder), "Samples.SqlServer.MultiInstanceReceiver");
         #endregion
-        SqlHelper.EnsureDatabaseExists(ConnectionProvider.DefaultConnectionString);
+
+        endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Assembly == typeof(ClientOrder).Assembly && t.Namespace == "Messages");
+
+        SqlHelper.EnsureDatabaseExists(ConnectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
@@ -54,8 +60,7 @@ public class Program
         {
             OrderId = Guid.NewGuid()
         };
-        await endpoint.Send("Samples.SqlServer.MultiInstanceReceiver", order)
-            .ConfigureAwait(false);
+        await endpoint.Send(order).ConfigureAwait(false);
 
         #endregion
 
