@@ -12,4 +12,10 @@ upgradeGuideCoreVersions:
 
 ## Code first API
 
-The gateway now allows full configuration via code. Use `endpointConfiguration.Gateway()...` to enable and confgure sites and channels instead of `endpointConfiguration.EnableFeature<Gateway>()`.
+The gateway now allows full configuration via code. Use:
+
+snippet: 2to3NewWayToEnable
+
+to enable and confgure sites and channels instead of:
+
+snippet: 2to3OldWayToEnable
