@@ -4,7 +4,7 @@ using NServiceBus;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         MainAsync().GetAwaiter().GetResult();
     }
@@ -13,18 +13,19 @@ class Program
     {
         MsmqUtils.SetUpDummyQueue();
 
-        var config = new EndpointConfiguration("SampleEndpoint");
-        config.UseTransport<MsmqTransport>();
-        config.UsePersistence<InMemoryPersistence>();
-        config.SendFailedMessagesTo("error");
+        var endpointConfiguration = new EndpointConfiguration("SampleEndpoint");
+        endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region configure-custom-checks
 
-        config.CustomCheckPlugin("Particular.ServiceControl");
-        
+        endpointConfiguration.CustomCheckPlugin("Particular.ServiceControl");
+
         #endregion
 
-        var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
 
         Console.WriteLine("Endpoint Started");
         Console.WriteLine("Press [d] to send a message to the Dead Letter Queue");
@@ -36,6 +37,7 @@ class Program
             Console.WriteLine("Sent message to Dead Letter Queue");
         }
 
-        await endpoint.Stop().ConfigureAwait(false);
+        await endpoint.Stop()
+            .ConfigureAwait(false);
     }
 }

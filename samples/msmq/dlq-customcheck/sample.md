@@ -9,11 +9,11 @@ related:
 ---
 
 
-When using MSMQ, the delivery of a message may fail. That can be for a number of reasons including network failures, a deleted queue, a full queue, authentication failure, or a failure to deliver on time. In these cases, the message will be moved to the MSMQ Dead Letter Queue. 
+When using [MSMQ](https://msdn.microsoft.com/en-us/library/ms706032.aspx), the delivery of a message may fail. That can be for a number of reasons including network failures, a deleted queue, a full queue, authentication failure, or a failure to deliver on time. In these cases, the message will be moved to the [MSMQ Dead Letter Queue (DLQ)](https://msdn.microsoft.com/en-us/library/ms706227.aspx).
 
 Since these messages can contain valuable business data, it is important to monitor the dead letter queue. Also, if the dead letter queue fills up, it can cause MSMQ to run out of resources and the system as a whole to fail.
 
-This sample shows how to use a `Custom Check` to monitor the dead letter queue. The custom check runs once every minute. If there are no messages in the dead letter queue then the custom check reports success. Otherwise, the custom check reports failure and includes the number of messages in the dead letter queue.
+This sample shows how to use a `Custom Check` to monitor the dead letter queue. The custom check runs once every minute. If there are no messages in the dead letter queue then the custom check reports success. Otherwise, the custom check reports failure and includes the number of messages in the DLQ.
 
 
 ## Prerequisites
