@@ -14,7 +14,7 @@ class Program
     {
         Console.Title = "Samples.Azure.StoragePersistence.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.StoragePersistence.Client");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
