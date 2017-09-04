@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net452</TargetFrameworks>
+    <OutputType>exe</OutputType>
+    <StartupObject>Program</StartupObject>
+    <LangVersion>7</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="ServiceControl.Plugin.Nsb6.CustomChecks" Version="3.*" />
+  </ItemGroup>
+</Project>
