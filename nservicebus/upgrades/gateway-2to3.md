@@ -16,6 +16,6 @@ The gateway now allows full configuration via code. Use:
 
 snippet: 2to3EnableGatewayAfter
 
-to enable and confgure sites and channels instead of:
+to enable and configure sites and channels instead of:
 
 snippet: 2to3EnableGatewayBefore
