@@ -1,8 +1,6 @@
 ﻿using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-#region SenderConnectionProvider
-
 static class ConnectionProvider
 {
     public const string DefaultConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceSender3;Integrated Security=True;Max Pool Size=100";
@@ -28,4 +26,3 @@ static class ConnectionProvider
         return connection;
     }
 }
-#endregion
