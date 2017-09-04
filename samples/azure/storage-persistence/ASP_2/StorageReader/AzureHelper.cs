@@ -15,11 +15,11 @@ public class AzureHelper
     {
         #region UsingHelpers
 
-        await WriteOutTable("OrderSagaData", false);
-        await WriteOutTable("Subscription", true);
-        await WriteOutTable("TimeoutDataTableName", false);
-        await WriteOutTable("TimeoutManagerDataTable", false);
-        await WriteOutBlobContainer("timeoutstate");
+        await WriteOutTable("OrderSagaData", false).ConfigureAwait(false);
+        await WriteOutTable("Subscription", true).ConfigureAwait(false);
+        await WriteOutTable("TimeoutDataTableName", false).ConfigureAwait(false);
+        await WriteOutTable("TimeoutManagerDataTable", false).ConfigureAwait(false);
+        await WriteOutBlobContainer("timeoutstate").ConfigureAwait(false);
 
         #endregion
     }
@@ -62,7 +62,8 @@ public class AzureHelper
         var table = tableClient.GetTableReference(tableName);
         Debug.WriteLine($"'{tableName}' table contents");
         TableContinuationToken token = null;
-        do {
+        do
+        {
             var result = await table.ExecuteQuerySegmentedAsync(new TableQuery(), token);
             token = result.ContinuationToken;
 
@@ -82,10 +83,8 @@ public class AzureHelper
                     Debug.WriteLine($"    {property.Key}:= {propertyAsObject}");
                 }
             }
-        } while (token != null);
-
-       
-
+        }
+        while (token != null);
 
         Debug.WriteLine("");
     }
