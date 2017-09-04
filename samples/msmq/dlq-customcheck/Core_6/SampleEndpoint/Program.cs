@@ -11,6 +11,8 @@ class Program
 
     static async Task MainAsync()
     {
+        MsmqUtils.SetUpDummyQueue();
+
         var config = new EndpointConfiguration("SampleEndpoint");
         config.UseTransport<MsmqTransport>();
         config.UsePersistence<InMemoryPersistence>();
@@ -25,8 +27,14 @@ class Program
         var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
 
         Console.WriteLine("Endpoint Started");
+        Console.WriteLine("Press [d] to send a message to the Dead Letter Queue");
+        Console.WriteLine("Press any other key to exit");
 
-        Console.ReadLine();
+        while (Console.ReadKey(true).Key == ConsoleKey.D)
+        {
+            MsmqUtils.SendMessageToDeadLetterQueue(DateTime.UtcNow.ToShortTimeString());
+            Console.WriteLine("Sent message to Dead Letter Queue");
+        }
 
         await endpoint.Stop().ConfigureAwait(false);
     }

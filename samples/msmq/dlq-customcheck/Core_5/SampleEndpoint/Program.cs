@@ -5,6 +5,8 @@ class Program
 {
     static void Main()
     {
+        MsmqUtils.SetUpDummyQueue();
+
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("SampleEndpoint");
         busConfiguration.UseTransport<MsmqTransport>();
@@ -12,8 +14,15 @@ class Program
 
         using (Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("Bus started");
-            Console.ReadLine();
+            Console.WriteLine("Endpoint Started");
+            Console.WriteLine("Press [d] to send a message to the Dead Letter Queue");
+            Console.WriteLine("Press any other key to exit");
+
+            while (Console.ReadKey(true).Key == ConsoleKey.D)
+            {
+                MsmqUtils.SendMessageToDeadLetterQueue(DateTime.UtcNow.ToShortTimeString());
+                Console.WriteLine("Sent message to Dead Letter Queue");
+            }
         }
     }
 }
