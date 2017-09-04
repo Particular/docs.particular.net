@@ -35,7 +35,7 @@ public class AzureHelper
         BlobContinuationToken token = null;
         do
         {
-            var segment = await container.ListBlobsSegmentedAsync(token);
+            var segment = await container.ListBlobsSegmentedAsync(token).ConfigureAwait(false);
             token = segment.ContinuationToken;
             foreach (var blob in segment.Results)
             {
@@ -64,7 +64,7 @@ public class AzureHelper
         TableContinuationToken token = null;
         do
         {
-            var result = await table.ExecuteQuerySegmentedAsync(new TableQuery(), token);
+            var result = await table.ExecuteQuerySegmentedAsync(new TableQuery(), token).ConfigureAwait(false);
             token = result.ContinuationToken;
 
             foreach (var entity in result.Results)
