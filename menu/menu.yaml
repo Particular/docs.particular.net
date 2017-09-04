@@ -734,6 +734,8 @@
     Articles:
     - Title: Azure Storage
       Articles:
+      - Url: persistence/upgrades/asp-1to2
+        Title: Version 1 to 2      
       - Url: persistence/upgrades/asp-6to1
         Title: NServiceBus.Azure Version 6
       - Url: persistence/upgrades/asp-saga-pruning
