@@ -5,18 +5,18 @@
 
     class Usage
     {
-        void NewWayToEnable(EndpointConfiguration endpointConfiguration)
+        void EnableGatewayBefore(EndpointConfiguration endpointConfiguration)
         {
-            #region 2to3NewWayToEnable
+            #region 2to3EnableGatewayBefore
 
             endpointConfiguration.Gateway();
 
             #endregion
         }
-        void OldWayToEnable(EndpointConfiguration endpointConfiguration)
+        void EnableGatewayAfter(EndpointConfiguration endpointConfiguration)
         {
 #pragma warning disable 0618
-            #region 2to3OldWayToEnable
+            #region 2to3EnableGatewayAfter
 
             endpointConfiguration.EnableFeature<Gateway>();
 
