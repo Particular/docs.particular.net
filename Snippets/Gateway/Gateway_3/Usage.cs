@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Features;
 using NServiceBus.Gateway;
 
 class Usage
@@ -12,8 +11,7 @@ class Usage
     {
         #region GatewayConfiguration
 
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.EnableFeature<Gateway>();
+        endpointConfiguration.Gateway();
 
         #endregion
     }
