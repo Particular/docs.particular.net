@@ -3,14 +3,14 @@ using NServiceBus;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        var config = new BusConfiguration();
-        config.EndpointName("SampleEndpoint");
-        config.UseTransport<MsmqTransport>();
-        config.UsePersistence<InMemoryPersistence>();
+        var busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("SampleEndpoint");
+        busConfiguration.UseTransport<MsmqTransport>();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (var bus = Bus.Create(config).Start())
+        using (Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Bus started");
             Console.ReadLine();

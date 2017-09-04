@@ -11,8 +11,8 @@ related:
 
 ## Prerequisites
 
-- Ensure that MSMQ has been installed.
-- Ensure that ServiceControl and ServicePulse have been installed.
+ * Ensure that MSMQ has been installed.
+ * Ensure that ServiceControl and ServicePulse have been installed.
 
 
 ## Code walk-through
@@ -26,7 +26,7 @@ Configure the custom checks plugin with the location of the ServiceControl input
 
 snippet: configure-custom-checks
 
+
 ### Check Dead Letter Queue Length
 
 snippet: check-dead-letter-queue
-

@@ -4,29 +4,30 @@ using ServiceControl.Plugin.CustomChecks;
 
 #region check-dead-letter-queue
 
-class CheckDeadLetterQueue : PeriodicCheck
+class CheckDeadLetterQueue :
+    PeriodicCheck
 {
     PerformanceCounter dlqPerformanceCounter;
 
-    public CheckDeadLetterQueue() : base("Dead Letter Queue", "Transport", TimeSpan.FromMinutes(1))
+    public CheckDeadLetterQueue() :
+        base("Dead Letter Queue", "Transport", TimeSpan.FromMinutes(1))
     {
         dlqPerformanceCounter = new PerformanceCounter(
-            "MSMQ Queue",
-            "Messages in Queue",
-            "Computer Queues",
-            true);
+            categoryName: "MSMQ Queue",
+            counterName: "Messages in Queue",
+            instanceName: "Computer Queues",
+            readOnly: true);
     }
 
     public override CheckResult PerformCheck()
     {
         var currentValue = dlqPerformanceCounter.NextValue();
 
-        if (currentValue > 0)
+        if (currentValue <= 0)
         {
-            return CheckResult.Failed($"{currentValue} messages in the Dead Letter Queue on {Environment.MachineName}");
+            return CheckResult.Pass;
         }
-
-        return CheckResult.Pass;
+        return CheckResult.Failed($"{currentValue} messages in the Dead Letter Queue on {Environment.MachineName}");
     }
 }
 
