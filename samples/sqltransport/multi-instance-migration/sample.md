@@ -76,7 +76,7 @@ The bridge application runs the [Transport Bridge](/nservicebus/bridge/) compone
 
 snippet: BridgeConfiguration
 
-The bridge is configured to use SQL Server transport on both sides and to use [SQL Persistence](/persistence/sql/)-based subscription storage for Pub/Sub. It uses the default TransactionScope [transport transaction mode](/transports/sql/transactions) to ensure that *exactly-once* semantics are preserved when messages traverse the bridge.
+The bridge is configured to use SQL Server transport on both sides and to use [SQL Persistence](/persistence/sql/)-based subscription storage for Pub/Sub. It uses the default TransactionScope [transport transaction mode](/transports/sql/transactions.md) to ensure that *exactly-once* semantics are preserved when messages traverse the bridge.
 
 
 ## How it works
