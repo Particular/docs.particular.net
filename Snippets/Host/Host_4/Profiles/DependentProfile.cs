@@ -1,6 +1,8 @@
 ﻿using NServiceBus;
 using NServiceBus.Hosting.Profiles;
 
+// ReSharper disable RedundantJumpStatement
+
 #region dependent_profile
 class MyProfileHandler :
     IHandleProfile<MyProfile>,
@@ -19,6 +21,7 @@ class MyProfileHandler :
     public IConfigureThisEndpoint Config { get; set; }
 }
 #endregion
+// ReSharper restore RedundantJumpStatement
 
 class AnInterfaceICareAbout
 {

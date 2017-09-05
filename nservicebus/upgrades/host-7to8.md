@@ -34,42 +34,34 @@ Self hosting gives access to the same configuration options. See below for migra
 
 #### Custom endpoint configuration
 
-public interface IConfigureThisEndpoint
-{
-    void Customize(NServiceBus.EndpointConfiguration configuration);
-}
-
+Configuration code in `IConfigureThisEndpoint.Customize` can be transfered as is to the configuration of the self hosted endpoint.
 
 #### Roles
 
-public interface AsA_Client 
+The `AsA_Client` role can be replaces with the followin configuration:
+
+snippet: 7to8AsAClient 
+
+#### Endpoint name
+
+The host defaults the endpoint name to the namespace of the type implementing `IConfigureThisEndpoint`. Just pass that value to the name to the constructor of `EndpointConfiguration`.
+
 
 #### Overriding endpoint name
 
-public static void DefineEndpointName(this NServiceBus.EndpointConfiguration configuration, string endpointName)
-public sealed class EndpointNameAttribute : System.Attribute
+Overriding endpoint name using the `EndpointName` attribute or `DefineEndpointName` method is no longer needed. Pass the relevant name to the constructor of `EndpointConfiguration`.
 
 #### Defining SLA for the endpoint
 
-    public sealed class EndpointSLAAttribute : System.Attribute
-{
-    public EndpointSLAAttribute(string sla) { }
-    public System.TimeSpan SLA { get; }
-}
+Is this still a thing?
 
 #### Executing custom code on start and stop
 
-    public static void RunWhenEndpointStartsAndStops(this NServiceBus.EndpointConfiguration configuration, NServiceBus.IWantToRunWhenEndpointStartsAndStops startableAndStoppable)
+The host allowed custom code to run at start and stop by implementing `IWantToRunWhenEndpointStartsAndStops`. Since self hosted endpoints are in full control over start and stop this code can be executed explicitly when starting/stopping.
 
 #### Profiles    
-public interface Integration : NServiceBus.IProfile { }
-public interface IProfile { }
-public interface IWantTheListOfActiveProfiles
-public interface PerformanceCounters : NServiceBus.IProfile { }
-public interface Production : NServiceBus.IProfile { }
-public interface Lite : NServiceBus.IProfile { }
 
-[System.ObsoleteAttribute(@"PerformanceCounters has been moved to the external nuget package 'NServiceBus.Metrics.PerformanceCounters'. Add an extra package reference and then call endpointConfiguration.EnableCriticalTimePerformanceCounter(); and endpointConfiguration.EnableSLAPerformanceCounter(); inside the IConfigureThisEndpoint.Customize(). Will be removed in version 9.0.0.", true)]
+Profiles allowed customization of configuration based on the environment the enpoint is running in. When custom hosting you can explicitly inspect Environment variables, command lines arguments, machine names etc. and make relevant configuration adjustments accordingly. 
 
 ### Installation
 

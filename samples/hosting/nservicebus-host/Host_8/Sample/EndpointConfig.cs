@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using NServiceBus;
 
 #region nservicebus-host
@@ -14,3 +15,17 @@ public class EndpointConfig :
 }
 
 #endregion
+
+
+class Runner : IWantToRunWhenEndpointStartsAndStops
+{
+    public Task Start(IMessageSession session)
+    {
+        return Task.CompletedTask;
+    }
+
+    public Task Stop(IMessageSession session)
+    {
+        return Task.CompletedTask;
+    }
+}
