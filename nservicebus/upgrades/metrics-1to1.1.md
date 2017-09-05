@@ -24,7 +24,7 @@ snippet: 1to11EnableToTrace
 
 ### EnableLogTracing
 
-Replace with explicit calls to an [NServiceBus logger](/nservicebus/logging/usage).
+Replace with explicit calls to an [NServiceBus logger](/nservicebus/logging/usage.md).
 
 snippet: 1to11EnableToLog
 
