@@ -25,7 +25,7 @@ The multi-instance mode has been deprecated in Version 4. NServiceBus topologies
  * When communicating with an endpoint that connects to a different SQL Server instance, send messages through a bridge. The [multi-instance migration sample](/samples/sqltransport/multi-instance-migration) demonstrates this approach.
  * When communicating with an endpoint that connects to a different catalog on the same SQL Server instance, send messages directly and configure multi-catalog addressing.
 
-Both of these feature are available for NServiceBus 6 (and SQL Server transport 3.1) so the topology migration can take place before switching to NServiceBus 7.
+Both of these features are available for NServiceBus 6 (and SQL Server transport 3.1) so the topology migration can take place before switching to NServiceBus 7.
 
 
 

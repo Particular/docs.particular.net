@@ -7,12 +7,16 @@ related:
  - transports/sql/deployment-options
 ---
 
+The multi-instance mode has been deprecated in Version 4 of SQL Server transport. NServiceBus topologies with queues distributed between multiple catalogs and SQL Server instances can be migrated using a combination of [Transport Bridge](/nservicebus/bridge/) and multi-catalog [addressing](/transports/sql/addressing.md).
+
+This samples shows how the Transport Bridge can be utilized when endpoints connect to catalogs hosted in different instances of SQL Server. For solutions where all catalogs are hosted within a single SQL Server instance, see [multi-catalog addressing](/transports/sql/addressing.md).
+
 
 ## Prerequisites
 
 include: sql-prereq
 
-The databases created by this sample are `NsbSamplesSqlMultiInstanceReceiver3`, `NsbSamplesSqlMultiInstanceSender3`, `NsbSamplesSqlMultiInstanceReceiver4`, `NsbSamplesSqlMultiInstanceSender3` and `NsbSamplesSqlMultiInstanceBridge`.
+The databases created automatically by this sample are `NsbSamplesSqlMultiInstanceReceiver3`, `NsbSamplesSqlMultiInstanceSender3`, `NsbSamplesSqlMultiInstanceReceiver4`, `NsbSamplesSqlMultiInstanceSender3` and `NsbSamplesSqlMultiInstanceBridge`.
 
 Ensure [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx) is running. It can be started from the command line by running `net start msdtc`.
 
@@ -33,8 +37,8 @@ Ensure [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en
 
 This sample contains the following projects:
 
- * Sender.V3 - A console application responsible for sending the initial `ClientOrder` message and processing the follow-up `ClientOrderAccepted` message.
- * Receiver.V3 - A console application responsible for processing the order message.
+ * Sender.V3 - A console application using NServiceBus Version 6 and SQL Server transport Version 3 responsible for sending the initial `ClientOrder` message and processing the follow-up `ClientOrderAccepted` message.
+ * Receiver.V3 - A console application using NServiceBus Version 6 and SQL Server transport Version 3 responsible for processing the order message.
  * Sender.V4 - A sender application upgraded to Version 7 of NServiceBus and Version 4 of SQL Server transport.
  * Receiver.V4 - A receiver application upgraded to Version 7 of NServiceBus and Version 4 of SQL Server transport.
  * Shared - A class library containing message definitions.
@@ -65,7 +69,7 @@ It receives `ClientOrder` message sent by Sender and replies to them with `Clien
 
 snippet: Reply
 
-In Version 4 the receiver does not requires any special configuration. The reply is sent back to the bridge:
+In Version 4 the receiver does not require any special configuration. The reply is sent back to the bridge:
 
 snippet: ReceiverConfigurationV4
 
