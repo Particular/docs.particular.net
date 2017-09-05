@@ -59,7 +59,7 @@ Defining endpoint SLA via
 
 snippet: 7to8EndpointSLABefore
 
-is no longer supported. Please install the `NServiceBus.Metrics.PerformanceCounters` package using the [following instructions](/nservicebus/operations/performance-counters).
+is no longer supported. Please install the `NServiceBus.WindowsPerformanceCounters` package using the [following instructions](/nservicebus/operations/performance-counters).
 
 #### Executing custom code on start and stop
 
