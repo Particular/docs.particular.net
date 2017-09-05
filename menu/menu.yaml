@@ -108,8 +108,12 @@
       Title: NServiceBus 3 to 4
     - Url: nservicebus/upgrades/encryption-key-identifiers
       Title: Upgrade encryption configuration
-    - Url: nservicebus/upgrades/metrics-1to1.1
-      Title: Metrics 1 to 1.1
+    - Title: Metrics
+      Articles:
+      - Url: nservicebus/upgrades/metrics-1to2
+        Title: Metrics 1 to 2
+      - Url: nservicebus/upgrades/metrics-1to1.1
+        Title: Metrics 1 to 1.1
     - Title: NServiceBus Host
       Articles:
       - Url: nservicebus/upgrades/host-6to7

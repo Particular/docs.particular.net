@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-class Upgrade
+class Upgrade1to1_1
 {
 
     void EnableToTrace(EndpointConfiguration endpointConfiguration)
