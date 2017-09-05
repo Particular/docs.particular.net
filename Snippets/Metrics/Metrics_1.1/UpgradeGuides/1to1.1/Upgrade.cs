@@ -35,7 +35,7 @@ class Upgrade
     {
         #region 1to11EnableToLog
 
-        //TODO: the logger instance should be in a static field
+        //TODO: the logger instance should be a static field
         var logger = LogManager.GetLogger("LoggerName");
 
         var metricsOptions = endpointConfiguration.EnableMetrics();
