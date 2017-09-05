@@ -6,6 +6,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metrics_1", "Metrics_1\Metr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metrics_1.1", "Metrics_1.1\Metrics_1.1.csproj", "{DE9F5B9B-CFE0-4208-982C-E2A8F6B4B73B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metrics_2", "Metrics_2\Metrics_2.csproj", "{30C71316-BF35-4B26-8AF8-2DF5DE2C3DCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +17,13 @@ Global
 		{4731FC5D-7DFE-4445-941B-899FB1B1EF9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE9F5B9B-CFE0-4208-982C-E2A8F6B4B73B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE9F5B9B-CFE0-4208-982C-E2A8F6B4B73B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30C71316-BF35-4B26-8AF8-2DF5DE2C3DCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30C71316-BF35-4B26-8AF8-2DF5DE2C3DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26A53F7F-D9DC-44BE-A9A9-1CEB120A8A7C}
 	EndGlobalSection
 EndGlobal
