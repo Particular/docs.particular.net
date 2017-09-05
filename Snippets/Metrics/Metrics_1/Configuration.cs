@@ -1,5 +1,4 @@
-﻿#pragma warning disable 618
-namespace Metrics_1
+﻿namespace Metrics_1
 {
     using System;
     using System.Threading.Tasks;

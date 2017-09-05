@@ -142,6 +142,8 @@
       Articles:
       - Url: nservicebus/upgrades/nsb6-sc-plugins-1to2
         Title: Version 1 to 2
+    - Url: nservicebus/upgrades/metrics-1to1.1
+      Title: Metrics 1 to 1.1
   - Url: nservicebus/messaging
     Title: Messaging
     Articles:
