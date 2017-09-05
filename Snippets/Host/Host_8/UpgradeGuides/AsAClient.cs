@@ -1,5 +1,6 @@
 ﻿namespace Host_8.UpgradeGuides
 {
+    using System;
     using NServiceBus;
     using NServiceBus.Features;
     using NServiceBus.Settings;
@@ -21,18 +22,16 @@
             endpointConfiguration.Recoverability().Delayed(delayed => delayed.NumberOfRetries(0));
 
             #endregion
-
-
         }
-    }
 
-    class MyTransport : TransportDefinition
-    {
-        public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+        class MyTransport : TransportDefinition
         {
-            throw new System.NotImplementedException();
-        }
+            public override string ExampleConnectionStringForErrorMessage { get; }
 
-        public override string ExampleConnectionStringForErrorMessage { get; }
+            public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

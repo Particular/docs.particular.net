@@ -55,7 +55,11 @@ Overriding endpoint name using the `EndpointName` attribute or `DefineEndpointNa
 
 #### Defining SLA for the endpoint
 
-Is this still a thing?
+Defining endpoint SLA via
+
+snippet: 7to8EndpointSLABefore
+
+is no longer supported. Please install the `NServiceBus.Metrics.PerformanceCounters` package using the [following instructions](/nservicebus/operations/performance-counters).
 
 #### Executing custom code on start and stop
 
