@@ -11,7 +11,7 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-The NServiceBus will be deprecated as of Version 9 and users are recommended to avoid using it for new endpoints. Upgrading existing endpoints is still supported for Version 8
+The NServiceBus will be deprecated as of Version 9 and users are recommended to switch to self hosting for new endpoints. Upgrading existing endpoints is still supported for Version 8
 
 ## Incompatible with NuGet X.Y
 
@@ -38,7 +38,7 @@ Configuration code in `IConfigureThisEndpoint.Customize` can be transfered as is
 
 #### Roles
 
-The `AsA_Client` role can be replaces with the followin configuration:
+The `AsA_Client` role can be replaces with the following configuration:
 
 snippet: 7to8AsAClient 
 
