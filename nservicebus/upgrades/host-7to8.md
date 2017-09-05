@@ -65,4 +65,6 @@ Profiles allowed customization of configuration based on the environment the enp
 
 ### Installation
 
-TBD
+See the instructions on [how to use `SC.exe` to install self hosted windows services](/nservicebus/hosting/windows-service#installation).
+
+Details on how to run custom installers can be found in the [installation documentation](/nservicebus/operations/installers).
