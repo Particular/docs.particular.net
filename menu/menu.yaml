@@ -111,9 +111,9 @@
     - Title: Metrics
       Articles:
       - Url: nservicebus/upgrades/metrics-1to2
-        Title: Metrics 1 to 2
+        Title: Version 1 to 2
       - Url: nservicebus/upgrades/metrics-1to1.1
-        Title: Metrics 1 to 1.1
+        Title: Version 1 to 1.1
     - Title: NServiceBus Host
       Articles:
       - Url: nservicebus/upgrades/host-6to7
