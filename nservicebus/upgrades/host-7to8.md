@@ -42,6 +42,8 @@ The `AsA_Client` role can be replaces with the followin configuration:
 
 snippet: 7to8AsAClient 
 
+The `AsA_Server` role didn't change any configuration and can safely be ignored.
+
 #### Endpoint name
 
 The host defaults the endpoint name to the namespace of the type implementing `IConfigureThisEndpoint`. Just pass that value to the name to the constructor of `EndpointConfiguration`.
