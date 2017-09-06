@@ -1,9 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26430.04
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileBasedRouting_1", "FileBasedRouting_1\FileBasedRouting_1.csproj", "{FE2253DC-45F8-4254-B6AA-11AFE9EACEB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileBasedRouting_1", "FileBasedRouting_1\FileBasedRouting_1.csproj", "{FE2253DC-45F8-4254-B6AA-11AFE9EACEB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileBasedRouting_2", "FileBasedRouting_2\FileBasedRouting_2.csproj", "{B5315AFF-F86D-4633-9897-B4B9CFD3DB60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,8 +13,13 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FE2253DC-45F8-4254-B6AA-11AFE9EACEB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FE2253DC-45F8-4254-B6AA-11AFE9EACEB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5315AFF-F86D-4633-9897-B4B9CFD3DB60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5315AFF-F86D-4633-9897-B4B9CFD3DB60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {612D1BB1-77F2-436C-841E-FCAAC7786E1E}
 	EndGlobalSection
 EndGlobal

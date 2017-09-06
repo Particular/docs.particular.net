@@ -1,0 +1,13 @@
+﻿<!-- startcode EndpointsByAssembly -->
+<endpoints>
+  <endpoint name="endpointA">
+    <handles>
+      <!-- Define that endpointA can handle all commands in assembly "MyApp.Contracts" -->
+      <commands assembly="MyApp.Contracts" />
+      <!-- Define that endpointA can handle all events in assembly "MyApp.Contracts" within the namespace "Events" -->
+      <events assembly="MyApp.Contracts"
+              namespace="Events" />
+    </handles>
+  </endpoint>
+</endpoints>
+<!--endcode-->
