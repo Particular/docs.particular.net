@@ -164,7 +164,9 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 #### NServiceBus.Persistence.ServiceFabric
 
-No versions released.
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 1.0.x     | 2017-09-04     | -                 | -                                 |
 
 #### NServiceBus.Persistence.Sql
 
