@@ -1,6 +1,6 @@
 using System.Linq;
 using NServiceBus;
-using NServiceBus.Configuration.AdvanceExtensibility;
+using NServiceBus.Configuration.AdvancedExtensibility;
 using NServiceBus.Routing;
 using NServiceBus.Transport;
 

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using NServiceBus;
-using NServiceBus.Configuration.AdvanceExtensibility;
+using NServiceBus.Configuration.AdvancedExtensibility;
 
 public class PartitionAwareReceiverSideDistributionConfiguration :
     ExposeSettings

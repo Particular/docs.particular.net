@@ -9,13 +9,10 @@ public static class EndpointConfigurationExtensions
     {
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<ServiceFabricPersistence>();
         persistence.StateManager(stateManager);
-
-        var recoverability = endpointConfiguration.Recoverability();
-        recoverability.DisableLegacyRetriesSatellite();
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
