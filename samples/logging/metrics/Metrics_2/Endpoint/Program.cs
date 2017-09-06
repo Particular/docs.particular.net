@@ -24,14 +24,14 @@ class Program
         {
             foreach (var duration in context.Durations)
             {
-                duration.Register(durationLength =>
+                duration.Register((ref DurationEvent durationEvent) =>
                 {
-                    Trace.WriteLine($"Duration '{duration.Name}' value observed: '{durationLength}'");
+                    Trace.WriteLine($"Duration '{duration.Name}' value observed: '{durationEvent.Duration}'");
                 });
             }
             foreach (var signal in context.Signals)
             {
-                signal.Register(() =>
+                signal.Register((ref SignalEvent signalEvent) =>
                 {
                     Trace.WriteLine($"'{signal.Name}' occurred.");
                 });
