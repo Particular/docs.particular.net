@@ -72,6 +72,14 @@ For more information about setting (requesting) the timeouts and handling them, 
 When a message is received that could possibly be handled by a saga, and no existing saga can be found then that is handed by the [Saga Not Found](saga-not-found.md) feature.
 
 
+### Completing a Saga
+
+When completing a saga, it is important to take into considearation transport and persistence types. In case selected transport and persistence cannot participate in a shared transaction, sending messages along with marking saga as completed can result in saga completions and saga data cleanup despite outgoing messages failure. To avoid saga premature completion, the following options can be applied:
+
+1. Enabling the [Outbox feature](/nservicebus/outbox) if supported by the chosen persistence.
+1. Setting a timeout or sending a message to self to invoke saga completion as a single operation that will be safely retried in case of a failure.
+
+
 ## Notifying callers of status
 
 Messages can be publishing from a saga at any time. This is often used to notify the original caller, that caused the saga to be started, of some interim state that isn't relevant to other subscribers.
