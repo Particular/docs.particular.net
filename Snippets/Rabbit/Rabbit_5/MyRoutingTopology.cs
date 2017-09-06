@@ -31,6 +31,14 @@ class MyRoutingTopology :
     {
     }
 
+    public void Initialize(IModel channel, IEnumerable<string> receivingAddresses, IEnumerable<string> sendingAddresses)
+    {
+    }
+
+    public void BindToDelayInfrastructure(IModel channel, string address, string deliveryExchange, string routingKey)
+    {
+    }
+
     public void Initialize(IModel channel, string main)
     {
     }

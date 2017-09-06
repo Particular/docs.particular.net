@@ -65,7 +65,7 @@ class Usage
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.UseDirectRoutingTopology(
             routingKeyConvention: MyRoutingKeyConvention,
-            exchangeNameConvention: (address, eventType) => "MyTopic");
+            exchangeNameConvention: () => "MyTopic");
 
         #endregion
     }
