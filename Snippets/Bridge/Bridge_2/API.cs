@@ -58,6 +58,16 @@ public class API
         public override string ExampleConnectionStringForErrorMessage { get; }
     }
 
+    public class MsmqTransport : TransportDefinition
+    {
+        public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ExampleConnectionStringForErrorMessage { get; }
+    }
+
     public class MyEvent
     {
     }
