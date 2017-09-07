@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using log4net.Appender;
 using log4net.Config;
@@ -13,6 +15,10 @@ class Program
 
     static void Main()
     {
+        //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
         AsyncMain().GetAwaiter().GetResult();
     }
 
