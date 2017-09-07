@@ -516,10 +516,10 @@
       Articles:
       - Url: transports/upgrades/rabbitmq-4to5
         Title: Version 4 to 5
-      - Url: transports/upgrades/rabbitmq-3to4
-        Title: Version 3 to 4
       - Url: transports/upgrades/rabbitmq-4.0to4.1
         Title: Version 4.0 to 4.1
+      - Url: transports/upgrades/rabbitmq-3to4
+        Title: Version 3 to 4
     - Title: SQL Server
       Articles:
       - Url: transports/upgrades/sqlserver-3to31
