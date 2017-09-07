@@ -74,9 +74,9 @@ When a message is received that could possibly be handled by a saga, and no exis
 
 ### Transactional behavior
 
-Completing a saga is a destructive operation so transation support of the selected transport and persitence must be considered to ensure correctness. If the persistence is able to participate in the same transaction as the incoming receive operation, either using DTC or by sharing the transports storage transaction (SQLServer transport), no futher actions is needed.
+Completing a saga is a destructive operation so transaction support of the selected transport and persitence must be considered to ensure correctness. If the persistence is able to participate in the same transaction as the incoming receive operation, either using DTC or by sharing the transports storage transaction (SQLServer transport), no futher action is needed.
 
-For combinations where the above is not true further actions is needed to avoid saga completion causing incorrect business behavior. The problematic scenario is sagas completing together with sending/publishing messages. In this case failure after the saga is completed might cause outgoing messages to not be dispatched and when the incoming message is retried the saga is no longer found resulting in outgoing messages being lost.
+For combinations where the above is not true action is needed to avoid saga completion causing incorrect behavior. The problematic scenario is sagas completing together with sending/publishing outgoing messages. In this case failure after the saga is completed might cause outgoing messages to not be dispatched and when the incoming message is retried the saga is no longer found resulting in outgoing messages being lost.
 
 This issue can be avoided by
 
