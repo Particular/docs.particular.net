@@ -13,7 +13,7 @@ upgradeGuideCoreVersions:
 
 ## Mandatory topology selection.
 
-Specifying routing topology is now mandatory. For backwards compatiblility we recommend using `ConventionalRoutingTopology` which previously was the default. 
+Specifying routing topology is now mandatory. For backwards compatiblility the recommendation is to use the `ConventionalRoutingTopology` which previously was the default. 
 
 See the [transport configuration documentation](https://docs.particular.net/transports/rabbitmq/#topology-selectiont) for futher details.
 
