@@ -22,6 +22,7 @@ class Usage
 
         #endregion
     }
+
     void CustomConnectionString(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-connectionstring-in-code
