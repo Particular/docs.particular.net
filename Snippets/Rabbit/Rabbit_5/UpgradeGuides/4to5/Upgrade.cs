@@ -8,8 +8,8 @@ partial class Upgrade
         #region 4to5CustomConnectionStringName
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        var connectionString = ConfigurationManager.ConnectionStrings["MyConnectionStringName"];
-        transport.ConnectionString(connectionString.ConnectionString);
+        var connectionSettings = ConfigurationManager.ConnectionStrings["MyConnectionStringName"];
+        transport.ConnectionString(connectionSettings.ConnectionString);
 
         #endregion
     }
