@@ -32,7 +32,7 @@ Topologies are used to control how native Rabbit constructs like queues and exch
 
 snippet: rabbitmq-config-topology
 
-See the [routing topology documentation](/nservicebus/rabbitmq/routing-topology.md) for further details.
+See the [routing topology documentation](/transports/rabbitmq/routing-topology.md) for further details.
 
 
 ## Advantages and Disadvantages
