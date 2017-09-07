@@ -70,7 +70,7 @@ class Usage
 
     void UseSha1(EndpointConfiguration endpointConfiguration)
     {
-        #region AzureStorageQueueUseSha1
+        #region AzureStorageQueueUseSha1 [7.0, 8.0)
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.UseSha1ForShortening();
