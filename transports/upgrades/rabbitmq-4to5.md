@@ -28,9 +28,9 @@ snippet: 4to5usedirectroutingtopology
 
 ## Members added to IRoutingTopology
 
-Extra members have been added to `IRoutingTopology`
+Members have changed in `IRoutingTopology`:
 
- * `Initialize`
- * `BindToDelayInfrastructure`
+ * `Initialize` has had extra parameters added.
+ * `BindToDelayInfrastructure` method has been added.
 
 See [custom routing topology](/transports/rabbitmq/routing-topology.md#custom-routing-topology) for updated implementation instructions.

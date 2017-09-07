@@ -38,8 +38,4 @@ class MyRoutingTopology :
     public void BindToDelayInfrastructure(IModel channel, string address, string deliveryExchange, string routingKey)
     {
     }
-
-    public void Initialize(IModel channel, string main)
-    {
-    }
 }
