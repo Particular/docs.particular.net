@@ -26,6 +26,10 @@ snippet: rabbitmq-config-basic
 The RabbitMQ transport requires a connection string to connect to the broker. See [Connection settings](/transports/rabbitmq/connection-settings.md) for options on how to provide the connection string.
 
 
+### Routing topology
+
+partial: topology
+
 ## Advantages and Disadvantages
 
 
