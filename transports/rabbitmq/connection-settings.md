@@ -25,9 +25,7 @@ By default, the transport will look for a connection string called `NServiceBus/
 
 snippet: rabbitmq-connectionstring
 
-To use a custom name for the connection string:
-
-snippet: rabbitmq-config-connectionstringname
+partial: connection
 
 
 ## Connection string options

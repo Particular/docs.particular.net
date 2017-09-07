@@ -23,16 +23,6 @@ class Usage
         #endregion
     }
 
-    void CustomConnectionStringName(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-config-connectionstringname
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.ConnectionStringName("MyConnectionStringName");
-
-        #endregion
-    }
-
     void CustomIdStrategy(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-custom-id-strategy
