@@ -35,12 +35,18 @@ The `Server` endpoint is configured to use the Azure Storage persistence in two 
 snippet: Config
 
 
+#### Sanitization
+
+One of the endpoints is using a long name which needs to be sanitized. To remain backwards compatible with the older versions of the transport, `MD5` based sanitization is registered. The sample also includes `SHA1` based sanitization. This sanitizer is suitable for endpoints with the transport version 7.x used to shorten queue names with `SHA1` hashing algorithm.
+
+snippet: sanitization
+
 
 ## The Data in Azure Storage
 
 The queues for the two endpoints can be seen in the [Server Explorer](https://msdn.microsoft.com/en-us/library/x603htbk.aspx) of Visual Studio.
 
-![](queues.png)
+partial: queues
 
 
 ### Reading the data using code

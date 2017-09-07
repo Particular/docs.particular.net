@@ -14,12 +14,14 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.Azure.StorageQueues.Endpoint2";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.StorageQueues.Endpoint2");
+        const string endpointName = "Samples.Azure.StorageQueues.Endpoint2";
+        Console.Title = endpointName;
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
-            .ConnectionString("UseDevelopmentStorage=true");
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport.ConnectionString("UseDevelopmentStorage=true");
+        transport.SanitizeQueueNamesWith(BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener);
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.DisableFeature<TimeoutManager>();
         endpointConfiguration.DisableFeature<MessageDrivenSubscriptions>();
