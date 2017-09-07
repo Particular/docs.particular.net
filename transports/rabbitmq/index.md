@@ -25,6 +25,11 @@ snippet: rabbitmq-config-basic
 
 The RabbitMQ transport requires a connection string to connect to the broker. See [Connection settings](/transports/rabbitmq/connection-settings.md) for options on how to provide the connection string.
 
+### Topology selection
+
+Topologies is used to control how native Rabbit constructs like Queues, Topologies and bindings are created. As of Version 5 selecting topology is mandatory and for backwards compatiblility we recommend the using `ConventionalRoutingTopology`:
+
+snippet: rabbitmq-config-topology
 
 ## Advantages and Disadvantages
 

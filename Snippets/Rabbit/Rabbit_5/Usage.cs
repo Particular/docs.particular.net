@@ -13,6 +13,15 @@ class Usage
         #endregion
     }
 
+    void TopologySelection(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-config-topology
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseConventionalRoutingTopology();
+
+        #endregion
+    }
     void CustomConnectionString(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-connectionstring-in-code
