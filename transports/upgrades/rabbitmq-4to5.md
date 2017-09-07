@@ -15,7 +15,7 @@ upgradeGuideCoreVersions:
 
 Specifying a routing topology is now mandatory. For backwards compatiblility, the recommendation is to use the `ConventionalRoutingTopology` which was the previous default. 
 
-See the [transport configuration documentation](/transports/rabbitmq/#topology-selection) for further details.
+See the [transport configuration documentation](/transports/rabbitmq/#routing-topology) for further details.
 
 
 ## ConnectionStringName
