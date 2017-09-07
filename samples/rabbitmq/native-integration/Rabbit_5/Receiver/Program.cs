@@ -16,10 +16,10 @@ class Program
         #region ConfigureRabbitQueueName
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.NativeIntegration");
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseConventionalRoutingTopology();
         transport.ConnectionString("host=localhost");
         #endregion
 
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
