@@ -514,6 +514,8 @@
         Title: Version 6 to 7
     - Title: RabbitMQ
       Articles:
+      - Url: transports/upgrades/rabbitmq-4to5
+        Title: Version 4 to 5
       - Url: transports/upgrades/rabbitmq-3to4
         Title: Version 3 to 4
       - Url: transports/upgrades/rabbitmq-4.0to4.1
