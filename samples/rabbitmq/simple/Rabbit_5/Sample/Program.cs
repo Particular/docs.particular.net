@@ -13,13 +13,11 @@ class Program
     {
         Console.Title = "Samples.RabbitMQ.Simple";
         #region ConfigureRabbit
-
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Simple");
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseConventionalRoutingTopology();
         transport.ConnectionString("host=localhost");
-
         #endregion
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
