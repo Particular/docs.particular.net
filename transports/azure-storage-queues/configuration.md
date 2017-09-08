@@ -8,7 +8,7 @@ related:
 reviewed: 2017-09-07
 redirects:
  - nservicebus/azure-storage-queues/configuration
- ---
+---
 
 
 ## Configuration parameters
