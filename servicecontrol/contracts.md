@@ -49,6 +49,8 @@ snippet: ServiceControlEventsXmlConfig
 
 NOTE: It's important that integration endpoints doesn't use the same `error` and `audit` queue as business endpoints since this might risk failures in the integration endpoint to cause an infinite feedback loop. Using the same `audit` queue will cause the integration messages to be included in search results in ServiceInsight. This will confuse users searching for given failure since both the failure and the failure notification will be shown to them. See also [recoverability](/nservicebus/recoverability/) and [audit queue settings](/nservicebus/operations/auditing.md).
 
+WARNING: The ServiceControl event publishing mechanism is not compatible with Azure Service Bus Forwarding [topology](/transports/azure-service-bus/topologies.md) and RabbitMQ Direct and custom [topologies](/transports/rabbitmq/routing-topology.md). With these transports the endpoint subscribing to ServiceControl events has to use  the Endpoint Oriented and Conventional topologies respectively.
+
 This code sample illustrates how to do this customization:
 
 snippet: ServiceControlEventsConfig
@@ -117,4 +119,4 @@ An event will also be published and displayed in ServicePulse dashboard with the
 'EVENTTYPE' failed to be published to other integration points. Reason for failure: REASON.
 ```
 
-To avoid this situation it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) and then [unsubscribe to all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message).
+To avoid this situation it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) and then [unsubscribe from all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message).
