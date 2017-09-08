@@ -38,6 +38,7 @@ class Program
                 var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
                 // Only required to simplify the sample setup
                 persistence.DoNotSetupDatabasePermissions();
+                persistence.DisableSubscriptionVersioning();
                 persistence.SetDefaultDocumentStore(documentStore);
 
                 #endregion
