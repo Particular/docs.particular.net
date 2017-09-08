@@ -74,13 +74,13 @@ When a message is received that could possibly be handled by a saga, and no exis
 
 ### Transactional behavior
 
-Completing a saga is a destructive operation so transaction support of the selected transport and persitence must be considered to ensure correctness. If the persistence is able to participate in the same transaction as the incoming receive operation, either using DTC or by sharing the transports storage transaction (SQLServer transport), no futher action is needed.
+Completing a saga is a destructive operation so transaction support of the selected transport and persistence must be considered to ensure correctness. If the persistence is able to participate in the same transaction as the incoming receive operation, either using DTC or by sharing the transports storage transaction (SQLServer transport), no further action is needed.
 
 If the persistence can't participate in the same transaction as the incoming receive operation, then an additional action is needed to avoid saga completion causing incorrect behavior. The problematic scenario is when sagas are being completed together with sending/publishing outgoing messages. In case of failure after the saga is completed, the outgoing messages may not be dispatched. However, when the incoming message is retried the completed saga is not found, which results in outgoing messages being lost.
 
 This issue can be avoided by:
 
- 1. Enabling the [Outbox feature](/nservicebus/outbox), if supported by the chosen persistence.
+ 1. Enabling the [Outbox feature](/nservicebus/outbox/), if supported by the chosen persistence.
  1. Ensure that no outgoing messages will be dispatched by completing the saga from a timeout or sending an explicit command to self.
  1. Replace saga completion with soft delete by setting a flag/timestamp and use some native mechanism of the selected storage to cleanup old saga instances.
 
