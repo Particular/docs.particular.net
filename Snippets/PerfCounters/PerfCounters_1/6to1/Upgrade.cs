@@ -3,7 +3,7 @@
     using System;
     using NServiceBus;
 
-    class Upgreade
+    partial class Upgrade
     {
 
         void EnablingCriticalTime(EndpointConfiguration endpointConfiguration)

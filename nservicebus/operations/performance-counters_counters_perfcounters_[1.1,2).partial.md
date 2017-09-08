@@ -4,6 +4,7 @@ All counters are defined in the NuGet package dependency [NServiceBus.Metrics](h
 
 For more information about the metrics defined consult the [Metrics](metrics.md) documentation page.
 
+
 ### Configuration
 
 This counters can be enabled using the the following code:
@@ -15,6 +16,7 @@ In the NServiceBus Host this counters are enabled by default.
 Setting up SLA value can be done using following code:
 
 snippet: enable-sla
+
 
 ### Update counters
 

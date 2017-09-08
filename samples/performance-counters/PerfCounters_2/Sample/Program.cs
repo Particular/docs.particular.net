@@ -21,7 +21,6 @@ class Program
         #region enable-counters
         var performanceCounters = endpointConfiguration.EnableWindowsPerformanceCounters();
         performanceCounters.EnableSLAPerformanceCounters(TimeSpan.FromSeconds(100));
-        performanceCounters.UpdateCounterEvery(TimeSpan.FromSeconds(2));
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
