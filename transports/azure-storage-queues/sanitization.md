@@ -6,7 +6,8 @@ tags:
 - Azure
 related:
 - transports/azure-storage-queues/configuration
-reviewed: 2018-09-07
+- samples/azure/storage-queues
+reviewed: 2018-09-08
 ---
 
 
@@ -34,4 +35,4 @@ When an endpoint is started, the sanitizer function will be invoked for each que
 
 ## Backwards compatibility
 
-To obtain sanitizing logic backwards compatible with the transport versions below 8.0, refer to the Azure Storage Queues Sanitization sample. 
+To obtain sanitizing logic backwards compatible with the transport versions below 8.0, refer to the Azure Storage Queues sample. 
