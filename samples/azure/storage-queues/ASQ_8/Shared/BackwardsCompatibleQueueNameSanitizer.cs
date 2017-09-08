@@ -36,8 +36,7 @@ public static class BackwardsCompatibleQueueNameSanitizer
     {
         // this can lead to multiple '-' occurrences in a row
         var sanitized = invalidCharacters.Replace(queueName, "-");
-        sanitized = multipleDashes.Replace(sanitized, "-");
-        return sanitized;
+        return multipleDashes.Replace(sanitized, "-");
     }
 
     static string ShortenWithMd5(string test)
