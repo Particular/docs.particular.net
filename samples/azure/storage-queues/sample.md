@@ -104,3 +104,5 @@ Note that above there is a encoded `Body` property. Decoding this message will p
 {"Property":"Hello from Endpoint1"}
 
 ```
+
+partial: sanitization-source

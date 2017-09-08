@@ -3,6 +3,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
+#region BackwardsCompatibleQueueNameSanitizer
+
 public static class BackwardsCompatibleQueueNameSanitizer
 {
     public static string WithMd5Shortener(string queueName)
@@ -85,3 +87,5 @@ public static class BackwardsCompatibleQueueNameSanitizer
     static Regex invalidCharacters = new Regex(@"[^a-z0-9\-]", RegexOptions.Compiled);
     static Regex multipleDashes = new Regex(@"\-+", RegexOptions.Compiled);
 }
+
+#endregion
