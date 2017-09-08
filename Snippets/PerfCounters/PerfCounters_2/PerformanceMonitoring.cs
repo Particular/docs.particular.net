@@ -3,27 +3,25 @@
     using System;
     using NServiceBus;
 
-    class Upgreade
+    class PerformanceMonitoring
     {
-
         void EnablingCriticalTime(EndpointConfiguration endpointConfiguration)
         {
-            #region 6to1-enable-criticaltime
+            #region enable-criticaltime
 
             var performanceCounters = endpointConfiguration.EnableWindowsPerformanceCounters();
 
             #endregion
         }
+
         void EnablingSla(EndpointConfiguration endpointConfiguration)
         {
-            #region 6to1-enable-sla
+            #region enable-sla
 
             var performanceCounters = endpointConfiguration.EnableWindowsPerformanceCounters();
             performanceCounters.EnableSLAPerformanceCounters(TimeSpan.FromMinutes(3));
 
             #endregion
         }
-
-
     }
 }

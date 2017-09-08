@@ -106,6 +106,8 @@
       Title: NServiceBus 4 to 5
     - Url: nservicebus/upgrades/3to4
       Title: NServiceBus 3 to 4
+    - Url: nservicebus/upgrades/perfcounters-1to2
+      Title: Upgrade PerfCounters 1 to 2
     - Url: nservicebus/upgrades/encryption-key-identifiers
       Title: Upgrade encryption configuration
     - Title: Metrics
