@@ -1,7 +1,9 @@
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Reflection;
 using System.ServiceProcess;
+using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
 using log4net.Appender;
@@ -20,6 +22,10 @@ class ProgramService :
 
     static void Main()
     {
+        //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
         using (var service = new ProgramService())
         {
             if (ServiceHelper.IsService())

@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -11,6 +13,10 @@ public class MvcApplication :
 
     protected void Application_Start()
     {
+        //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
         StartBus().GetAwaiter().GetResult();
         AreaRegistration.RegisterAllAreas();
         RouteTable.Routes.MapRoute(
