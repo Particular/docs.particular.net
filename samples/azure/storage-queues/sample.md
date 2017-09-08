@@ -1,6 +1,6 @@
 ---
 title: Azure Storage Queues Transport
-reviewed: 2016-03-21
+reviewed: 2017-09-07
 component: ASQ
 related:
 - nservicebus/azure
@@ -35,12 +35,14 @@ The `Server` endpoint is configured to use the Azure Storage persistence in two 
 snippet: Config
 
 
+partial: sanitization
+
 
 ## The Data in Azure Storage
 
 The queues for the two endpoints can be seen in the [Server Explorer](https://msdn.microsoft.com/en-us/library/x603htbk.aspx) of Visual Studio.
 
-![](queues.png)
+partial: queues
 
 
 ### Reading the data using code
@@ -102,3 +104,5 @@ Note that above there is a encoded `Body` property. Decoding this message will p
 {"Property":"Hello from Endpoint1"}
 
 ```
+
+partial: sanitization-source

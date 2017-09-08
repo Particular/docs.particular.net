@@ -5,10 +5,10 @@ tags:
 - Azure
 related:
 - persistence/azure-storage/performance-tuning
-reviewed: 2017-04-24
+reviewed: 2017-09-07
 redirects:
  - nservicebus/azure-storage-queues/configuration
- ---
+---
 
 
 ## Configuration parameters
@@ -71,8 +71,9 @@ Note that multiple connection string formats apply when working with Azure stora
 
 For more details refer to [Configuring Azure Connection Strings](https://docs.microsoft.com/en-us/azure/storage/storage-configure-connection-string) document.
 
+partial: aliases
 
-partial: aliasesAndHashing
+partial: sanitization
 
 
 ## Serialization

@@ -508,6 +508,8 @@
       Articles:
       - Url: transports/upgrades/asq-6to7
         Title: Version 6 to 7
+      - Url: transports/upgrades/asq-7to8
+        Title: Version 7 to 8        
     - Title: Azure Service Bus
       Articles:
       - Url: transports/upgrades/asb-7to8
@@ -619,6 +621,8 @@
       Title: Configuration
     - Url: transports/azure-storage-queues/delayed-delivery
       Title: Delayed Delivery
+    - Url: transports/azure-storage-queues/sanitization
+      Title: Sanitization
     - Url: transports/azure-storage-queues/performance-tuning
       Title: Performance Tuning
     - Url: transports/azure-storage-queues/multi-storageaccount-support

@@ -19,13 +19,19 @@ class Program
 
     static async Task AsyncMain()
     {
-        Console.Title = "Samples.Azure.StorageQueues.Endpoint1";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.StorageQueues.Endpoint1");
+        #region endpointName
+
+        var endpointName = "Samples.Azure.StorageQueues.Endpoint1.With.A.Very.Long.Name.And.Invalid.Characters";
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
+
+        #endregion
+
+        Console.Title = endpointName;
 
         #region config
 
-        endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
-            .ConnectionString("UseDevelopmentStorage=true");
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport.ConnectionString("UseDevelopmentStorage=true");
 
         #endregion
 
@@ -35,6 +41,12 @@ class Program
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
+
+        #region sanitization
+
+        transport.SanitizeQueueNamesWith(BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener);
+
+        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

@@ -1,8 +1,10 @@
 ﻿// ReSharper disable SuggestVarOrType_Elsewhere
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using NServiceBus;
 
+[SuppressMessage("ReSharper", "UnusedMember.Local")]
 class Usage
 {
     void UseTransport(EndpointConfiguration endpointConfiguration)
@@ -70,13 +72,14 @@ class Usage
 
     void UseSha1(EndpointConfiguration endpointConfiguration)
     {
-        #region AzureStorageQueueUseSha1
+        #region AzureStorageQueueSanitization
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.UseSha1ForShortening();
+        transport.SanitizeQueueNamesWith(queueName => queueName.Replace(".", "-"));
 
         #endregion
     }
+
     // Reference NServiceBus.Host instead of NServiceBus.Hosting.Azure as the usage is the same
     // This prevents Azure storage library conflicts as the libraries are being updated
 
