@@ -14,7 +14,7 @@ class Program
 
     static async Task AsyncMain()
     {
-        const string endpointName = "Samples.Azure.StorageQueues.Endpoint2";
+        var endpointName = "Samples.Azure.StorageQueues.Endpoint2";
         Console.Title = endpointName;
         var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
