@@ -8,8 +8,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Services.Client" Version="5.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-beta0001" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="8.0.0-beta0001" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="8.0.0-*" />
     <PackageReference Include="WindowsAzure.ServiceBus" Version="4.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>

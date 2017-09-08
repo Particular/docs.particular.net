@@ -10,8 +10,8 @@
     <PackageReference Include="Microsoft.Data.Services.Client" Version="5.*" />
     <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-beta0001" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="8.0.0-beta0001" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="8.0.0-*" />
     <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.*" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.*" />
     <PackageReference Include="System.Linq.Queryable" Version="4.*" />
