@@ -16,10 +16,11 @@ upgradeGuideCoreVersions:
 ## Sanitization
 
 In previous versions, the transport was responsible for sanitization of the queue names. That included:
-- Replacing invalid characters
-- Lowering the case
-- Shortening queue names exceeding the maximum allowed queue name length, using SHA1 or MD5
 
-In version 8 and above, the transport is no longer performing sanitization by default. Instead, sanitization logic can be [registered](/transports/azure-storage-queues/sanitization.md).
+ * Replacing invalid characters
+ * Lowering the case
+ * Shortening queue names exceeding the maximum allowed queue name length, using [SHA1](https://msdn.microsoft.com/en-us/library/system.security.cryptography.sha1.aspx) or [MD5](https://msdn.microsoft.com/en-us/library/system.security.cryptography.md5.aspx)
+
+In Versions 8 and above, the transport is no longer performing sanitization by default. Instead, sanitization logic can be [registered](/transports/azure-storage-queues/sanitization.md).
 
 snippet: AzureStorageQueueSanitization

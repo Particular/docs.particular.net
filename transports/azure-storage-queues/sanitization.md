@@ -15,12 +15,13 @@ In Versions 8.0 and above, the Azure Storage Queues transport no longer sanitize
 
 ## Azure Storage Queues naming rules
 
-1. A queue name must start with a letter or number, and can only contain letters, numbers, and the dash (`-`) character.
-1. The first and last letters in the queue name must be alphanumeric.
-1. The dash (`-`) character cannot be the first or last character.
-1. Consecutive dash characters are not permitted in the queue name.
-1. All letters in a queue name must be lowercase.
-1. A queue name must be from 3 through 63 characters long.
+ 1. A queue name must start with a letter or number, and can only contain letters, numbers, and the dash (`-`) character.
+ 1. The first and last letters in the queue name must be alphanumeric.
+ 1. The dash (`-`) character cannot be the first or last character.
+ 1. Consecutive dash characters are not permitted in the queue name.
+ 1. All letters in a queue name must be lowercase.
+ 1. A queue name must be from 3 through 63 characters long.
+
 
 ## Custom sanitization
 
