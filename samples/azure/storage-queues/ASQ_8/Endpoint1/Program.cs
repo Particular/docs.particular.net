@@ -15,7 +15,7 @@ class Program
     {
         #region endpointName
 
-        const string endpointName = "Samples.Azure.StorageQueues.Endpoint1.With.A.Very.Long.Name.And.Invalid.Characters";
+        var endpointName = "Samples.Azure.StorageQueues.Endpoint1.With.A.Very.Long.Name.And.Invalid.Characters";
         var endpointConfiguration = new EndpointConfiguration(endpointName);
 
         #endregion
