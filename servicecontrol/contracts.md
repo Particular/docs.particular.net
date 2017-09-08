@@ -49,7 +49,7 @@ snippet: ServiceControlEventsXmlConfig
 
 NOTE: It's important that integration endpoints doesn't use the same `error` and `audit` queue as business endpoints since this might risk failures in the integration endpoint to cause an infinite feedback loop. Using the same `audit` queue will cause the integration messages to be included in search results in ServiceInsight. This will confuse users searching for given failure since both the failure and the failure notification will be shown to them. See also [recoverability](/nservicebus/recoverability/) and [audit queue settings](/nservicebus/operations/auditing.md).
 
-WARNING: The ServiceControl event publishing mechanism is not compatible with Azure Service Bus Forwarding [topology](/transports/azure-service-bus/topologies.md) and RabbitMQ Direct and custom [topologies](/transports/rabbitmq/routing-topology.md). With these transports the endpoint subscribing to ServiceControl events has to use  the Endpoint Oriented and Conventional topologies respectively.
+WARNING: The ServiceControl event publishing mechanism is not compatible with Azure Service Bus Forwarding [topology](/transports/azure-service-bus/topologies/) and RabbitMQ Direct and custom [topologies](/transports/rabbitmq/routing-topology.md). With these transports the endpoint subscribing to ServiceControl events has to use  the Endpoint Oriented and Conventional topologies respectively.
 
 This code sample illustrates how to do this customization:
 
