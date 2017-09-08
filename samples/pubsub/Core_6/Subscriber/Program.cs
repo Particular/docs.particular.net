@@ -13,12 +13,9 @@ static class Program
     {
         Console.Title = "Samples.PubSub.Subscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Subscriber");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
         var routing = transport.Routing();
-        routing.RegisterPublisher(
-            eventType: typeof(OrderReceived),
-            publisherEndpoint: "Samples.PubSub.Publisher");
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
