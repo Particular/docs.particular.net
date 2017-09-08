@@ -27,6 +27,7 @@ class Program
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("UseDevelopmentStorage=true");
         transport.DelayedDelivery().DisableTimeoutManager();
+        transport.SanitizeQueueNamesWith(name => name.Replace(".", "-"));
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(StartOrder), "Samples.Azure.StoragePersistence.Server");
 
