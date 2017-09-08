@@ -9,6 +9,7 @@ public static class BackwardsCompatibleQueueNameSanitizer
     {
         return Sanitize(queueName, useMd5Hashing: true);
     }
+
     public static string WithSha1Shortener(string queueName)
     {
         return Sanitize(queueName, useMd5Hashing: false);
