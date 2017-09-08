@@ -86,4 +86,4 @@ Shut down `Subscriber` by closing its console window. Return to the `Publisher` 
 
 In Visual Studio, right click the project of the closed subscriber, and restart it by right clicking the `Subscriber` project and selecting `Debug` and then `Start new instance`.
 
-Note how `Subscriber` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case MSMQ without knowledge of the running status of any subscriber. MSMQ safely places the message in the inbound queue of the subscriber where it awaits handling. Even when processes or machines restart, NServiceBus protects messages from being lost.
+partial: faulttolerance
