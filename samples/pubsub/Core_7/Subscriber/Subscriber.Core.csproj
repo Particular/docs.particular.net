@@ -8,6 +8,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0-*" />
   </ItemGroup>
 </Project>
