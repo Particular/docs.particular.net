@@ -38,6 +38,7 @@ class Program
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("UseDevelopmentStorage=true");
         transport.DelayedDelivery().DisableTimeoutManager();
+        transport.SanitizeQueueNamesWith(name => name.Replace(".", "-"));
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
