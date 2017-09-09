@@ -55,7 +55,7 @@ With the list of installed templates listed in:
 ```
 
 
-### Template uinstall
+### Template uninstall
 
 There is currently [no method for uninstalling a specific template](https://github.com/dotnet/templating/issues/893). The current hack recommended by Microsoft is to use reset the installed templates to default list using:
 
