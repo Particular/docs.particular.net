@@ -16,8 +16,7 @@ class Usage
 
     #region PersistenceWithAzureHost
 
-    public class EndpointConfig :
-        IConfigureThisEndpoint
+    public class EndpointConfig : IConfigureThisEndpoint
     {
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
@@ -81,4 +80,9 @@ class Usage
 
         #endregion
     }
+}
+
+// to avoid host referrence
+internal interface IConfigureThisEndpoint
+{
 }
