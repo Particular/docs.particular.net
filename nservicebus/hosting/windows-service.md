@@ -24,7 +24,7 @@ Running inside a [Windows Service](https://docs.microsoft.com/en-us/dotnet/frame
 
 snippet: windowsservicehosting
 
-NOTE: Since `Environment.UserInteractive` always returns `true` on .NET Core `ServiceHelper.IsService()` is used to provide a dual console/service experience, i.e. this process can be executed from the command line or run as a Windows Service.
+NOTE: Since `Environment.UserInteractive` always returns `true` on .NET Core, `ServiceHelper.IsService()` is used to provide a dual console/service experience, i.e. this process can be executed from the command line or run as a Windows Service. Note that if there is intention to target  .NET Core, then `Environment.UserInteractive` can be used.
 
 snippet: ServiceHelper
 
