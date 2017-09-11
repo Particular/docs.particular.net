@@ -24,8 +24,7 @@ Running inside a [Windows Service](https://docs.microsoft.com/en-us/dotnet/frame
 
 snippet: windowsservicehosting
 
-NOTE: The use of `ServiceHelper.IsService()` to provide a dual console/service experience, i.e. this process can be executed from the command line or run as a Windows Service.
-
+include: servicehelper
 
 snippet: ServiceHelper
 

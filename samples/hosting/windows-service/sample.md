@@ -33,6 +33,9 @@ snippet: windowsservice-hosting-onstop
 
 To detect if the current process is running as a service the parent process is checked.
 
+
+include: servicehelper
+
 snippet: ServiceHelper
 
 
