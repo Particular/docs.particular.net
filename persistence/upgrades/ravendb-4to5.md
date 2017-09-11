@@ -45,4 +45,4 @@ snippet: 4to5-LegacySubscriptionVersioning
 
 When using this setting, RavenDB Persistence will log a warning at each endpoint startup.
 
-For more details, see [Subscription versioning](/ravendb/subscription-versioning.md?version=raven_5).
+For more details, see [Subscription versioning](/persistence/ravendb/subscription-versioning.md?version=raven_5).
