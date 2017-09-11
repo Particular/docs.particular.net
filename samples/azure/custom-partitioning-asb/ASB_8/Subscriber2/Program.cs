@@ -4,16 +4,10 @@ using NServiceBus;
 
 class Program
 {
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.ASB.Partitioning.Subscriber with AzureServiceBus.ConnectionString2";
-
-        var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Partitioning.Subscriber");
+    var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Partitioning.Subscriber");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString2");
         if (string.IsNullOrWhiteSpace(connectionString))
@@ -42,4 +36,5 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-}
+
+    }

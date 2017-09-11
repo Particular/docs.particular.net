@@ -4,12 +4,7 @@ using NServiceBus;
 
 class Program
 {
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.ASB.Serialization.Subscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Serialization.Subscriber");
@@ -34,10 +29,7 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Delayed(
-            customizations: settings =>
-            {
-                settings.NumberOfRetries(0);
-            });
+            customizations: settings => { settings.NumberOfRetries(0); });
         recoverability.DisableLegacyRetriesSatellite();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

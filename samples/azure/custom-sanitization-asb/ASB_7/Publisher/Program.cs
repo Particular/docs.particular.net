@@ -5,12 +5,7 @@ using Shared.Messages.In.A.Deep.Nested.Namespace.Nested.Events;
 
 class Program
 {
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.ASB.Serialization.Publisher";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Serialization.Publisher");
@@ -27,10 +22,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Delayed(
-            customizations: settings =>
-            {
-                settings.NumberOfRetries(0);
-            });
+            customizations: settings => { settings.NumberOfRetries(0); });
         recoverability.DisableLegacyRetriesSatellite();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

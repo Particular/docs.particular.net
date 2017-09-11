@@ -5,14 +5,10 @@ using NServiceBus.Features;
 
 class Program
 {
-    static void Main()
+    static async Task Main()
     {
         Console.Title = "SiteB";
-        MainAsync().GetAwaiter().GetResult();
-    }
 
-    static async Task MainAsync()
-    {
         #region WebSocketGateway-EndpointConfig-SiteB
 
         var config = new EndpointConfiguration("Custom Gateway - SiteB");

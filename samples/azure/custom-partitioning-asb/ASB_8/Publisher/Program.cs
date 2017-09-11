@@ -4,12 +4,7 @@ using NServiceBus;
 
 class Program
 {
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.ASB.Partitioning.Publisher";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Partitioning.Publisher");
@@ -41,10 +36,7 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Delayed(
-            customizations: settings =>
-            {
-                settings.NumberOfRetries(0);
-            });
+            customizations: settings => { settings.NumberOfRetries(0); });
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

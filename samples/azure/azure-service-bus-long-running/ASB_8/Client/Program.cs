@@ -4,15 +4,9 @@ using NServiceBus;
 
 class Program
 {
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.Azure.ServiceBus.Client";
-
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Client");
         endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();

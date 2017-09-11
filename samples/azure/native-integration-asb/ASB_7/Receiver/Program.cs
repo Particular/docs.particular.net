@@ -5,12 +5,7 @@ using NServiceBus.Transport.AzureServiceBus;
 
 class Program
 {
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.ASB.NativeIntegration";
 

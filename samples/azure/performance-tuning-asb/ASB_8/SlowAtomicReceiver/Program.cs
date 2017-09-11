@@ -8,12 +8,7 @@ class Program
     public static ReceiveCounter ReceiveCounter = new ReceiveCounter();
     static ILog log = LogManager.GetLogger<Program>();
 
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.ASB.Performance.SlowAtomicReceiver";
 

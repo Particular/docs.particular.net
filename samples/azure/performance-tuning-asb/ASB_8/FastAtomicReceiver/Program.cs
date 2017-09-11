@@ -8,12 +8,7 @@ class Program
     static ILog log = LogManager.GetLogger<Program>();
     public static ReceiveCounter ReceiveCounter = new ReceiveCounter();
 
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.ASB.Performance.FastAtomicReceiver";
 
@@ -48,7 +43,7 @@ class Program
         // increase number of receivers as much as bandwidth allows
         var numberOfReceivers = 16;
 
-        var globalConcurrency = numberOfReceivers*perReceiverConcurrency;
+        var globalConcurrency = numberOfReceivers * perReceiverConcurrency;
 
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(globalConcurrency);
         var receivers = transport.MessageReceivers();
@@ -68,5 +63,4 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
 }

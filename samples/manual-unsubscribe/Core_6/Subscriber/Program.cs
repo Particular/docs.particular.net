@@ -1,17 +1,12 @@
-﻿using NServiceBus;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using NServiceBus;
 
 class Program
 {
-    static void Main()
+    static async Task Main()
     {
         Console.Title = "Subscriber";
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
-    {
         var endpointConfiguration = new EndpointConfiguration("Samples.ManualUnsubscribe.Subscriber");
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
@@ -30,6 +25,6 @@ class Program
         Console.ReadKey();
 
         await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            .ConfigureAwait(false);
     }
 }

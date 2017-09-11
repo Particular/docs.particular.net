@@ -4,15 +4,9 @@ using NServiceBus;
 
 class Program
 {
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         MsmqUtils.SetUpDummyQueue();
-
         var endpointConfiguration = new EndpointConfiguration("SampleEndpoint");
         endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

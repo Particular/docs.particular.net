@@ -6,12 +6,7 @@ using NServiceBus.Features;
 
 class Program
 {
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.ASB.Polymorphic.Subscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Polymorphic.Subscriber");
@@ -43,13 +38,11 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Delayed(
-            customizations: settings =>
-            {
-                settings.NumberOfRetries(0);
-            });
+            customizations: settings => { settings.NumberOfRetries(0); });
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
+
         #region ControledSubscriptions
 
         await endpointInstance.Subscribe<BaseEvent>()
