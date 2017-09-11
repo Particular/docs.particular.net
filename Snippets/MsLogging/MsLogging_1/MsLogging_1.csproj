@@ -10,5 +10,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="*" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="*" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="*" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="4.5.0-*" />
   </ItemGroup>
 </Project>
