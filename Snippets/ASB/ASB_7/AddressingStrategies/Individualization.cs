@@ -14,7 +14,7 @@ public class MyIndividualizationStrategy :
         this.settings = settings;
     }
 
-    public string Individualize(string endpointname)
+    public string Individualize(string endpointName)
     {
         throw new NotImplementedException();
     }

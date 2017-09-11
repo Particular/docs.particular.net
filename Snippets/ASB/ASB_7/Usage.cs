@@ -134,9 +134,9 @@ class Usage
 
         var queues = transport.Queues();
         queues.ForwardDeadLetteredMessagesTo(
-            condition: entityname =>
+            condition: entityName =>
             {
-                return entityname == "yourqueue";
+                return entityName == "yourqueue";
             },
             forwardDeadLetteredMessagesTo: "errorqueue");
 
@@ -209,7 +209,20 @@ class Usage
         transport.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
         #endregion
 #pragma warning restore 618
+    }
 
+    void IncomingBrokeredMessageBodyUpgrade(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable 618
+
+        #region 7to8_asb-incoming-message-convention
+
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
+
+        #endregion
+
+#pragma warning restore 618
     }
 
     void OutgoingBrokeredMessageBody(EndpointConfiguration endpointConfiguration)
@@ -217,6 +230,19 @@ class Usage
 #pragma warning disable 618
 
         #region asb-outgoing-message-convention [7.0,7.1.0)
+
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.UseOutgoingMessageToBrokeredMessageConverter<CustomOutgoingMessageConversion>();
+
+        #endregion
+#pragma warning restore 618
+    }
+
+    void OutgoingBrokeredMessageBodyUpgrade(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable 618
+
+        #region 7to8_asb-outgoing-message-convention
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
@@ -227,7 +253,6 @@ class Usage
         #endregion
 #pragma warning restore 618
     }
-
 
 #pragma warning disable 618
     public class CustomIncomingMessageConversion :

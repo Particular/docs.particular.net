@@ -36,7 +36,7 @@ class Composition
 class CustomComposition :
     ICompositionStrategy
 {
-    public string GetEntityPath(string entityname, EntityType entityType)
+    public string GetEntityPath(string entityName, EntityType entityType)
     {
         return "path/to/entity";
     }
