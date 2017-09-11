@@ -26,9 +26,13 @@ The bundle is set to one entity. For existing endpoints running with multiple en
 See also [Azure Service Bus Transport Topologies](/transports/azure-service-bus/topologies/).
 
 
+## Controlling entity creation
+
+Controlling entity creation has been greatly simplified. Instead of having to provide a full implementation of `DescriptionFactory` where all settings on the description object had to be provided, a customizer has been introduced `DescriptionCustomizer` where only the to be customized property can be changed. `DescriptionCustomizer` can be found on the `Queues`, `Topics` and `Subscriptions` API extension points.
+
 ## BrokeredMessage conventions
 
-API to specify how the `BrokeredMessage` body is stored and retrieved by overriding the default conventions is obsoleted and the following methods were deprecated:
+Due to complexity of implementation, the API to specify how the `BrokeredMessage` body is stored and retrieved by overriding the default conventions is obsoleted and the following methods were deprecated:
 
 snippet: asb-incoming-message-convention
 
