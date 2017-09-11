@@ -38,7 +38,7 @@ void CleanUpSolutions()
 					writer.WriteLine("# Visual Studio 15");
 					continue;
 				}
-				//https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes#15.2.26430.12
+				//https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes
 				if (line.StartsWith("VisualStudioVersion = "))
 				{
 					writer.WriteLine("VisualStudioVersion = 15.0.26730.12");
@@ -46,7 +46,7 @@ void CleanUpSolutions()
 				}
 				if (line.StartsWith("MinimumVisualStudioVersion = "))
 				{
-					writer.WriteLine("MinimumVisualStudioVersion = 15.0.26430.04");
+					writer.WriteLine("MinimumVisualStudioVersion = 15.0.26730.12");
 					continue;
 				}
 				if (line.Contains(".Release"))

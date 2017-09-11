@@ -45,12 +45,12 @@ Unless otherwise specified (by an individual sample) the following are the defau
 
 ### Visual Studio and .NET
 
-[Visual Studio 2017 Update 2](https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes) and [.NET 4.6.1](https://www.microsoft.com/en-au/download/details.aspx?id=49981) are required. If any help is required upgrading to a new version of Visual Studio then [raise an issue](https://github.com/Particular/docs.particular.net/issues).
+[Visual Studio 2017 Update 3](https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes) and [.NET 4.6.1](https://www.microsoft.com/en-au/download/details.aspx?id=49981) are required. If any help is required upgrading to a new version of Visual Studio then [raise an issue](https://github.com/Particular/docs.particular.net/issues).
 
 
 ### C# Language Level
 
-All samples target **C# 7.0** to take advantage of the newer language features. If any help is required in converting to earlier versions of C# then [raise an issue](https://github.com/Particular/docs.particular.net/issues).
+All samples target **C# 7.1** to take advantage of the newer language features. If any help is required in converting to earlier versions of C# then [raise an issue](https://github.com/Particular/docs.particular.net/issues).
 
 
 ### [Transport](/transports/)

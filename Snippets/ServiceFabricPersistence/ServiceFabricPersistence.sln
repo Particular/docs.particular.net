@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
-MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceFabricPersistence_1", "ServiceFabricPersistence_1\ServiceFabricPersistence_1.csproj", "{EF1F97BF-AAD9-456C-B8E6-3C7182B0B9F1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceFabricPersistence_2", "ServiceFabricPersistence_2\ServiceFabricPersistence_2.csproj", "{47D9950E-5741-41D5-AD40-AA6E399BFE3C}"

@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
-MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26730.12
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Messages", "Store.Messages\Store.Messages.csproj", "{59F2BA7E-4DA5-49F8-9DBC-520FA99F4679}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.CustomerRelations", "Store.CustomerRelations\Store.CustomerRelations.csproj", "{CD522757-4C40-49C7-94C5-CD5DA956BAFC}"

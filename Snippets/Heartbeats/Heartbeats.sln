@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
-MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26730.12
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heartbeats3_1", "Heartbeats3_1\Heartbeats3_1.csproj", "{DDDA5052-7A94-471A-8FF3-B809429E96B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heartbeats4_1", "Heartbeats4_1\Heartbeats4_1.csproj", "{CD67D90B-62D4-4BBA-898C-7F3DDDC8283B}"

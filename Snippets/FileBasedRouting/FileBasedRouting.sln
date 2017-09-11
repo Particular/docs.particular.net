@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
-MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileBasedRouting_1", "FileBasedRouting_1\FileBasedRouting_1.csproj", "{FE2253DC-45F8-4254-B6AA-11AFE9EACEB5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileBasedRouting_2", "FileBasedRouting_2\FileBasedRouting_2.csproj", "{B5315AFF-F86D-4633-9897-B4B9CFD3DB60}"
