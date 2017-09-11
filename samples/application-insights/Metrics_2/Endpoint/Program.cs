@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights.Extensibility;
 using NServiceBus;
 
 class Program
@@ -17,44 +17,44 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        #region EnableMetricTracing
+        var envInstrumentationKey = "ApplicationInsightKey";
+        var instrumentationKey = Environment.GetEnvironmentVariable(envInstrumentationKey);
 
-        var metrics = endpointConfiguration.EnableMetrics();
-        metrics.RegisterObservers(
-            register: context =>
-            {
-                foreach (var duration in context.Durations)
-                {
-                    duration.Register(
-                        observer: length =>
-                        {
-                            Trace.WriteLine($"Duration: '{duration.Name}'. Value: '{length}'");
-                        });
-                }
-                foreach (var signal in context.Signals)
-                {
-                    signal.Register(
-                        observer: () =>
-                        {
-                            Trace.WriteLine($"Signal: '{signal.Name}'");
-                        });
-                }
-            });
+        if (string.IsNullOrEmpty(instrumentationKey))
+        {
+            throw new Exception($"Environment variable '{envInstrumentationKey}' required.");
+        }
+
+        Console.WriteLine("Using application insights application key: {0}", instrumentationKey);
+
+        #region configure-ai-instrumentation-key
+
+        TelemetryConfiguration.Active.InstrumentationKey = instrumentationKey;
 
         #endregion
+
+        // TODO: See https://github.com/Particular/NServiceBus.Metrics/issues/41
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
+        #region load-simulator
+
+        var simulator = new LoadSimulator(endpointInstance, TimeSpan.Zero, TimeSpan.FromSeconds(10));
+        await simulator.Start()
+            .ConfigureAwait(false);
+
+        #endregion
+
         try
         {
             Console.WriteLine("Endpoint started. Press 'enter' to send a message");
-            Console.WriteLine("Press any other key to quit");
+            Console.WriteLine("Press ESC key to quit");
 
             while (true)
             {
                 var key = Console.ReadKey(true);
-                if (key.Key != ConsoleKey.Enter)
+                if (key.Key == ConsoleKey.Escape)
                 {
                     break;
                 }
@@ -65,6 +65,8 @@ class Program
         }
         finally
         {
+            await simulator.Stop()
+                .ConfigureAwait(false);
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
         }

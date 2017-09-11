@@ -11,19 +11,19 @@
         {
             #region Metrics-Enable
 
-            var metricsOptions = endpointConfiguration.EnableMetrics();
+            var metrics = endpointConfiguration.EnableMetrics();
 
             #endregion
 
             #region Metrics-Log
 
-            metricsOptions.EnableLogTracing(interval: TimeSpan.FromMinutes(5));
+            metrics.EnableLogTracing(interval: TimeSpan.FromMinutes(5));
 
             #endregion
 
             #region Metrics-Log-Info
 
-            metricsOptions.EnableLogTracing(
+            metrics.EnableLogTracing(
                 interval: TimeSpan.FromMinutes(5),
                 logLevel: LogLevel.Info);
 
@@ -31,13 +31,13 @@
 
             #region Metrics-Tracing
 
-            metricsOptions.EnableMetricTracing(interval: TimeSpan.FromSeconds(5));
+            metrics.EnableMetricTracing(interval: TimeSpan.FromSeconds(5));
 
             #endregion
 
             #region Metrics-Custom-Function
 
-            metricsOptions.EnableCustomReport(
+            metrics.EnableCustomReport(
                 func: data =>
                 {
                     // process metrics

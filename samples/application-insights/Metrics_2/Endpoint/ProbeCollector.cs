@@ -45,9 +45,9 @@ class ProbeCollector
                 continue;
             }
             duration.Register(
-                observer: length =>
+                observer: (ref DurationEvent @event) =>
                 {
-                    var milliseconds = length.TotalMilliseconds;
+                    var milliseconds = @event.Duration.TotalMilliseconds;
                     var telemetry = new MetricTelemetry(name, milliseconds);
                     telemetryClient.TrackMetric(telemetry);
                 });
@@ -60,7 +60,7 @@ class ProbeCollector
                 continue;
             }
             signal.Register(
-                observer: () =>
+                observer: (ref SignalEvent @event) =>
                 {
                     telemetryClient.TrackEvent(new EventTelemetry(name));
                 });

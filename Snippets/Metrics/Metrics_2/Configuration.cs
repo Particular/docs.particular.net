@@ -9,29 +9,32 @@
         {
             #region Metrics-Enable
 
-            var metricsOptions = endpointConfiguration.EnableMetrics();
+            var metrics = endpointConfiguration.EnableMetrics();
 
             #endregion
 
             #region Metrics-Observers
 
-            metricsOptions.RegisterObservers(context =>
-            {
-                foreach (var duration in context.Durations)
+            metrics.RegisterObservers(
+                register: context =>
                 {
-                    duration.Register((ref DurationEvent durationEvent) =>
+                    foreach (var duration in context.Durations)
                     {
-                        Console.WriteLine($"Duration '{duration.Name}' value observed: '{durationEvent.Duration}'");
-                    });
-                }
-                foreach (var signal in context.Signals)
-                {
-                    signal.Register((ref SignalEvent signalEvent) =>
+                        duration.Register(
+                            observer: (ref DurationEvent @event) =>
+                            {
+                                Console.WriteLine($"Duration: '{duration.Name}'. Value: '{@event.Duration}'");
+                            });
+                    }
+                    foreach (var signal in context.Signals)
                     {
-                        Console.WriteLine($"Signal '{signal.Name}' value observed: '{signalEvent.MessageType}'");
-                    });
-                }
-            });
+                        signal.Register(
+                            observer: (ref SignalEvent @event) =>
+                            {
+                                Console.WriteLine($"Signal: '{signal.Name}'. Type: '{@event.MessageType}'");
+                            });
+                    }
+                });
 
             #endregion
         }

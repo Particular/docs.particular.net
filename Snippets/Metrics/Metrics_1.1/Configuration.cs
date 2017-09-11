@@ -12,19 +12,19 @@ namespace Metrics_1
         {
             #region Metrics-Enable
 
-            var metricsOptions = endpointConfiguration.EnableMetrics();
+            var metrics = endpointConfiguration.EnableMetrics();
 
             #endregion
 
             #region Metrics-Log
 
-            metricsOptions.EnableLogTracing(interval: TimeSpan.FromMinutes(5));
+            metrics.EnableLogTracing(interval: TimeSpan.FromMinutes(5));
 
             #endregion
 
             #region Metrics-Log-Info
 
-            metricsOptions.EnableLogTracing(
+            metrics.EnableLogTracing(
                 interval: TimeSpan.FromMinutes(5),
                 logLevel: LogLevel.Info);
 
@@ -32,13 +32,13 @@ namespace Metrics_1
 
             #region Metrics-Tracing
 
-            metricsOptions.EnableMetricTracing(interval: TimeSpan.FromSeconds(5));
+            metrics.EnableMetricTracing(interval: TimeSpan.FromSeconds(5));
 
             #endregion
 
             #region Metrics-Custom-Function
 
-            metricsOptions.EnableCustomReport(
+            metrics.EnableCustomReport(
                 func: data =>
                 {
                     // process metrics
@@ -50,23 +50,26 @@ namespace Metrics_1
 
             #region Metrics-Observers
 
-            metricsOptions.RegisterObservers(context =>
-            {
-                foreach (var duration in context.Durations)
+            metrics.RegisterObservers(
+                register: context =>
                 {
-                    duration.Register(durationLength =>
+                    foreach (var duration in context.Durations)
                     {
-                        Console.WriteLine($"Duration '{duration.Name}' value observed: '{durationLength}'");
-                    });
-                }
-                foreach (var signal in context.Signals)
-                {
-                    signal.Register(() =>
+                        duration.Register(
+                            observer: length =>
+                            {
+                                Console.WriteLine($"Duration: '{duration.Name}'. Value: '{length}'");
+                            });
+                    }
+                    foreach (var signal in context.Signals)
                     {
-                        Console.WriteLine($"'{signal.Name}' occurred.");
-                    });
-                }
-            });
+                        signal.Register(
+                            observer: () =>
+                            {
+                                Console.WriteLine($"Signal: '{signal.Name}'");
+                            });
+                    }
+                });
 
             #endregion
         }

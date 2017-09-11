@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
@@ -10,24 +11,28 @@ class Upgrade1to1_1
     {
         #region 1to11EnableToTrace
 
-        var metricsOptions = endpointConfiguration.EnableMetrics();
-        metricsOptions.RegisterObservers(context =>
-        {
-            foreach (var duration in context.Durations)
+        var metrics = endpointConfiguration.EnableMetrics();
+        metrics.RegisterObservers(
+            register: context =>
             {
-                duration.Register(durationLength =>
+                foreach (var duration in context.Durations)
                 {
-                    Trace.WriteLine($"Duration '{duration.Name}' value observed: '{durationLength}'");
-                });
-            }
-            foreach (var signal in context.Signals)
-            {
-                signal.Register(() =>
+                    duration.Register(
+                        observer: length =>
+                        {
+                            Trace.WriteLine($"Duration '{duration.Name}'. Value: '{length}'");
+                        });
+                }
+                foreach (var signal in context.Signals)
                 {
-                    Trace.WriteLine($"'{signal.Name}' occurred.");
-                });
-            }
-        });
+                    signal.Register(
+                        observer: () =>
+                        {
+                            Trace.WriteLine($"Signal: '{signal.Name}'");
+                        });
+                }
+            });
+
         #endregion
     }
 
@@ -36,26 +41,29 @@ class Upgrade1to1_1
         #region 1to11EnableToLog
 
         //TODO: the logger instance should be a static field
-        var logger = LogManager.GetLogger("LoggerName");
+        var log = LogManager.GetLogger("LoggerName");
 
-        var metricsOptions = endpointConfiguration.EnableMetrics();
-        metricsOptions.RegisterObservers(context =>
-        {
-            foreach (var duration in context.Durations)
+        var metrics = endpointConfiguration.EnableMetrics();
+        metrics.RegisterObservers(
+            register: context =>
             {
-                duration.Register(durationLength =>
+                foreach (var duration in context.Durations)
                 {
-                    logger.Info($"Duration '{duration.Name}' value observed: '{durationLength}'");
-                });
-            }
-            foreach (var signal in context.Signals)
-            {
-                signal.Register(() =>
+                    duration.Register(
+                        observer: length =>
+                        {
+                            log.Info($"Duration: '{duration.Name}'. Value: '{length}'");
+                        });
+                }
+                foreach (var signal in context.Signals)
                 {
-                    logger.Info($"'{signal.Name}' occurred.");
-                });
-            }
-        });
+                    signal.Register(
+                        observer: () =>
+                        {
+                            log.Info($"Signal: '{signal.Name}'");
+                        });
+                }
+            });
 
         #endregion
     }
@@ -64,31 +72,36 @@ class Upgrade1to1_1
     {
         #region 1to11Custom
 
-        var metricsOptions = endpointConfiguration.EnableMetrics();
-        metricsOptions.RegisterObservers(context =>
-        {
-            foreach (var duration in context.Durations)
+        var metrics = endpointConfiguration.EnableMetrics();
+        metrics.RegisterObservers(
+            register: context =>
             {
-                duration.Register(durationLength =>
+                foreach (var duration in context.Durations)
                 {
-                    ProcessMetric(duration);
-                });
-            }
-            foreach (var signal in context.Signals)
-            {
-                signal.Register(() =>
+                    duration.Register(
+                        observer: length =>
+                        {
+                            ProcessMetric(duration, length);
+                        });
+                }
+                foreach (var signal in context.Signals)
                 {
-                    ProcessMetric(signal);
-                });
-            }
-        });
+                    signal.Register(
+                        observer: () =>
+                        {
+                            ProcessMetric(signal);
+                        });
+                }
+            });
 
         #endregion
     }
-    static Task ProcessMetric(IDurationProbe data)
+
+    static Task ProcessMetric(IDurationProbe data, TimeSpan length)
     {
         return Task.CompletedTask;
     }
+
     static Task ProcessMetric(ISignalProbe data)
     {
         return Task.CompletedTask;

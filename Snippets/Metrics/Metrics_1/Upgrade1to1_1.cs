@@ -10,8 +10,8 @@ class Upgrade1to1_1
     {
         #region 1to11EnableToTrace
 
-        var metricsOptions = endpointConfiguration.EnableMetrics();
-        metricsOptions.EnableMetricTracing(TimeSpan.FromSeconds(5));
+        var metrics = endpointConfiguration.EnableMetrics();
+        metrics.EnableMetricTracing(TimeSpan.FromSeconds(5));
 
         #endregion
     }
@@ -20,8 +20,8 @@ class Upgrade1to1_1
     {
         #region 1to11EnableToLog
 
-        var metricsOptions = endpointConfiguration.EnableMetrics();
-        metricsOptions.EnableLogTracing(TimeSpan.FromSeconds(5), LogLevel.Info);
+        var metrics = endpointConfiguration.EnableMetrics();
+        metrics.EnableLogTracing(TimeSpan.FromSeconds(5), LogLevel.Info);
 
         #endregion
     }
@@ -29,8 +29,8 @@ class Upgrade1to1_1
     {
         #region 1to11Custom
 
-        var metricsOptions = endpointConfiguration.EnableMetrics();
-        metricsOptions.EnableCustomReport(
+        var metrics = endpointConfiguration.EnableMetrics();
+        metrics.EnableCustomReport(
             func: data => ProcessMetric(data),
             interval: TimeSpan.FromSeconds(5));
 

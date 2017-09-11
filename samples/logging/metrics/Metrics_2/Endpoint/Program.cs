@@ -25,24 +25,27 @@ class Program
 
         #region EnableMetricTracing
 
-        var metricsOptions = endpointConfiguration.EnableMetrics();
-        metricsOptions.RegisterObservers(context =>
-        {
-            foreach (var duration in context.Durations)
+        var metrics = endpointConfiguration.EnableMetrics();
+        metrics.RegisterObservers(
+            register: context =>
             {
-                duration.Register((ref DurationEvent durationEvent) =>
+                foreach (var duration in context.Durations)
                 {
-                    Trace.WriteLine($"Duration '{duration.Name}' value observed: '{durationEvent.Duration}'");
-                });
-            }
-            foreach (var signal in context.Signals)
-            {
-                signal.Register((ref SignalEvent signalEvent) =>
+                    duration.Register(
+                        observer: (ref DurationEvent @event) =>
+                        {
+                            Trace.WriteLine($"Duration: '{duration.Name}'. Value: '{@event.Duration}'");
+                        });
+                }
+                foreach (var signal in context.Signals)
                 {
-                    Trace.WriteLine($"'{signal.Name}' occurred.");
-                });
-            }
-        });
+                    signal.Register(
+                        observer: (ref SignalEvent @event) =>
+                        {
+                            Trace.WriteLine($"Signal: '{signal.Name}'");
+                        });
+                }
+            });
 
         #endregion
 

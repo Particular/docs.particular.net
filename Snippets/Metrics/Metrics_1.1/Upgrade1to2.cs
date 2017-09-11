@@ -1,31 +1,38 @@
 ﻿using System.Diagnostics;
 using NServiceBus;
+using NServiceBus.Logging;
 
 class Upgrade1to2
 {
 
     void RegisterObservers(EndpointConfiguration endpointConfiguration)
     {
+        var log = LogManager.GetLogger("RegisterObservers");
+
         #region 1to2RegisterObservers
 
-        var metricsOptions = endpointConfiguration.EnableMetrics();
-        metricsOptions.RegisterObservers(context =>
-        {
-            foreach (var duration in context.Durations)
+        var metrics = endpointConfiguration.EnableMetrics();
+        metrics.RegisterObservers(
+            register: context =>
             {
-                duration.Register(durationLength =>
+                foreach (var duration in context.Durations)
                 {
-                    Trace.WriteLine($"Duration '{duration.Name}' value observed: '{durationLength}'");
-                });
-            }
-            foreach (var signal in context.Signals)
-            {
-                signal.Register(() =>
+                    duration.Register(
+                        observer: length =>
+                        {
+                            log.Info($"Duration: '{duration.Name}'. Value: '{length}'");
+                        });
+                }
+                foreach (var signal in context.Signals)
                 {
-                    Trace.WriteLine($"'{signal.Name}' occurred.");
-                });
-            }
-        });
+                    signal.Register(
+                        observer: () =>
+                        {
+                            log.Info($"signal: '{signal.Name}'");
+                        });
+                }
+            });
+
         #endregion
     }
 
