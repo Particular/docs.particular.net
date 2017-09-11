@@ -14,8 +14,10 @@ class Usage
             var logFactory = LogManager.Use<MicrosoftLogFactory>();
             logFactory.UseMsFactory(loggerFactory);
 
-            #endregion
+            
         }
+        
+        #endregion
     }
 
 }
