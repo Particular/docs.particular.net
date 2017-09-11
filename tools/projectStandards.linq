@@ -38,10 +38,10 @@ void CleanUpSolutions()
 					writer.WriteLine("# Visual Studio 15");
 					continue;
 				}
-				//https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes#15.2.26430.04
+				//https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes#15.2.26430.12
 				if (line.StartsWith("VisualStudioVersion = "))
 				{
-					writer.WriteLine("VisualStudioVersion = 15.0.26730.10");
+					writer.WriteLine("VisualStudioVersion = 15.0.26730.12");
 					continue;
 				}
 				if (line.StartsWith("MinimumVisualStudioVersion = "))
