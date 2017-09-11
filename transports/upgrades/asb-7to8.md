@@ -33,7 +33,7 @@ Controlling entity creation has been simplified. Instead of having to provide a 
 
 ## BrokeredMessage conventions
 
-Due to complexity of implementation, the API to specify how the `BrokeredMessage` body is stored and retrieved by overriding the default conventions is obsoleted and the following methods were deprecated:
+Due to complexity, and resultant risk, of implementation, the API to specify how the `BrokeredMessage` body is stored and retrieved by overriding the default conventions is obsoleted and the following methods were deprecated:
 
 snippet: 7to8_asb-incoming-message-convention
 
