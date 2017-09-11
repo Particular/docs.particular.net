@@ -770,6 +770,8 @@
         Title: Adding unique constraints on saga data tables
     - Title: RavenDB
       Articles:
+      - Url: persistence/upgrades/ravendb-4to5
+        Title: Version 4 to 5
       - Url: persistence/upgrades/ravendb-3to4
         Title: Version 3 to 4
     - Title: SQL
