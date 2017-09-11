@@ -388,6 +388,17 @@
   NugetOrder:
     - NServiceBus.Metrics
 
+- Key: MsLogging
+  Name: MicrosoftLogging
+  DocoUrl: nservicebus/logging/microsoft
+  Category: Logger
+  GitHubOwner: SimonCropp
+  SupportLevel: Community
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.MicrosoftLogging
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.MicrosoftLogging/blob/master/LICENSE
+  NugetOrder:
+    - NServiceBus.MicrosoftLogging
+
 - Key: MsmqTransport
   Name: MSMQ Transport
   DocoUrl: transports/msmq

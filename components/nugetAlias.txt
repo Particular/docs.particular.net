@@ -42,6 +42,7 @@ MessageRouting: NServiceBus.MessageRouting
 MongoSbmako: NServiceBus.MongoDB
 MongoTekmaven: NServiceBus.Persistence.MongoDb
 MsmqTransport: NServiceBus.Transport.Msmq
+MsLogging: NServiceBus.MicrosoftLogging
 Newtonsoft: NServiceBus.Newtonsoft.Json
 NES: NES.NServiceBus
 NHibernate: NServiceBus.NHibernate
