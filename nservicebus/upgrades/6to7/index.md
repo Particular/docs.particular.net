@@ -151,7 +151,7 @@ The [.Retries message receiver](/nservicebus/recoverability/configure-delayed-re
 The [MSMQ transport](/transports/msmq) is no longer part of the NServiceBus NuGet package. It has been moved into a separate package, [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/).
 
 ### Namespace changes
-The `MsmqPersistence` class and its configuration API (`SubscriptionQueue()`) have been moved from `NServiceBus.Persistence.Legacy` namespace to 'NServiceBus'. 
+The `MsmqPersistence` class and its configuration API, `SubscriptionQueue()`, have been moved from `NServiceBus.Persistence.Legacy` namespace to `NServiceBus`. 
 
 MSMQ persistence was originally put into the legacy namespace because of its limited capabilities in scale-out scenarios with the distributor. Sender-side distribution changes this and makes MSMQ persistence a viable persistence mechanism when scaling out MSMQ. It was therefore moved from the legacy namespace and back into `NServiceBus`.
 
