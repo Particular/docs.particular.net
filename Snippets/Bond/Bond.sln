@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
-MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bond_1", "Bond_1\Bond_1.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bond_1.2", "Bond_1.2\Bond_1.2.csproj", "{E09367BC-D5C4-4A41-B5CA-DFE533E9D879}"

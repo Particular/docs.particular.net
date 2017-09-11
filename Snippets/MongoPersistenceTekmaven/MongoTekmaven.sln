@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
-MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26730.12
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoTekmaven_8", "MongoTekmaven_8\MongoTekmaven_8.csproj", "{AEFEFFEA-9F71-403D-B29D-983526DA0731}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoTekmaven_9", "MongoTekmaven_9\MongoTekmaven_9.csproj", "{BC2424F1-3EEE-46FD-B770-4CC78FDDD36A}"

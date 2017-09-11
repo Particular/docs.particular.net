@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
     <OutputPath>..\CustomExtensionEndpoint\bin\Debug\</OutputPath>
-    <LangVersion>7</LangVersion>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />

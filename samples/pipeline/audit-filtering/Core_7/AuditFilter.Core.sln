@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
-MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26730.12
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditFilter.Core", "AuditFilter\AuditFilter.Core.csproj", "{4ADF8A12-97B9-44A2-8F1A-A858086AB3CB}"
 EndProject
 Global

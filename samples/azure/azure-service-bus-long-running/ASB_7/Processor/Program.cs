@@ -4,16 +4,9 @@ using NServiceBus;
 
 class Program
 {
-
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.Azure.ServiceBus.Processor";
-
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Processor");
         endpointConfiguration.SendOnly();
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();

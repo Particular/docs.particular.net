@@ -5,12 +5,7 @@ using NServiceBus;
 
 class Program
 {
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.ASB.Polymorphic.Publisher";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Polymorphic.Publisher");
@@ -27,10 +22,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Delayed(
-            customizations: settings =>
-            {
-                settings.NumberOfRetries(0);
-            });
+            customizations: settings => { settings.NumberOfRetries(0); });
         recoverability.DisableLegacyRetriesSatellite();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

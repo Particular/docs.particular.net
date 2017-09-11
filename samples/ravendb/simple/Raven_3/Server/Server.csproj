@@ -4,7 +4,7 @@
     <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <LangVersion>7</LangVersion>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />

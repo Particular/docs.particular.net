@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
-MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26730.12
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeSender", "NativeSender\NativeSender.csproj", "{1174B252-C082-473B-AECC-1E6B0BA71B4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver", "Receiver\Receiver.csproj", "{90F5C54A-58EF-4E25-9854-9D1A6F81FE54}"

@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
-MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26730.12
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Core", "Shared\Shared.Core.csproj", "{523B3FAA-9F4B-4BC7-A266-A6A93B90797E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endpoint.Core", "Endpoint\Endpoint.Core.csproj", "{96AE4196-EEA5-4D2C-B6D7-FFDE5A84E2BD}"

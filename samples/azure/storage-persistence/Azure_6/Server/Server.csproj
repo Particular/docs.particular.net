@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <LangVersion>7</LangVersion>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="WindowsAzure.Storage" Version="4.*" />

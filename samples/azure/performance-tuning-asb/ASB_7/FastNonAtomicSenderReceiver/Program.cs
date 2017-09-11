@@ -10,16 +10,11 @@ class Program
     public static ReceiveCounter ReceiveCounter = new ReceiveCounter();
     static ILog log = LogManager.GetLogger<Program>();
 
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.ASB.Performance.FastNonAtomicSenderReceiver";
 
-        ReceiveCounter.Subscribe(i => log.Warn($"Processed {i} & sent {i*SomeMessageHandler.NumberOfMessagesToSend} messages"));
+        ReceiveCounter.Subscribe(i => log.Warn($"Processed {i} & sent {i * SomeMessageHandler.NumberOfMessagesToSend} messages"));
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Performance.Receiver");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
@@ -56,14 +51,14 @@ class Program
         // increase number of receivers as much as bandwidth allows (probably less than receiver due to send volume)
         var numberOfReceivers = 16;
 
-        var globalConcurrency = numberOfReceivers*perReceiverConcurrency;
+        var globalConcurrency = numberOfReceivers * perReceiverConcurrency;
 
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(globalConcurrency);
         var receivers = transport.MessageReceivers();
         receivers.PrefetchCount(perReceiverConcurrency);
 
         var factories = transport.MessagingFactories();
-        factories.NumberOfMessagingFactoriesPerNamespace(numberOfReceivers*2);
+        factories.NumberOfMessagingFactoriesPerNamespace(numberOfReceivers * 2);
         transport.NumberOfClientsPerEntity(numberOfReceivers);
 
         #endregion
@@ -92,5 +87,4 @@ class Program
                 .ConfigureAwait(false);
         }
     }
-
 }

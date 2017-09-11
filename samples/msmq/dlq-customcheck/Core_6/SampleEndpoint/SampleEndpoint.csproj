@@ -4,7 +4,7 @@
     <TargetFrameworks>net452</TargetFrameworks>
     <OutputType>exe</OutputType>
     <StartupObject>Program</StartupObject>
-    <LangVersion>7</LangVersion>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />

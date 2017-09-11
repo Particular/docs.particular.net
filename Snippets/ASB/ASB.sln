@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
-MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASB_6", "ASB_6\ASB_6.csproj", "{74717D6E-BFCC-408D-8300-06C6A5C04E18}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASB_7", "ASB_7\ASB_7.csproj", "{EF1F97BF-AAD9-456C-B8E6-3C7182B0B9F1}"

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net462</TargetFrameworks>
     <RootNamespace>Core6</RootNamespace>
-    <LangVersion>7</LangVersion>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />

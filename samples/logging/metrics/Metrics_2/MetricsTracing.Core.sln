@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
-MinimumVisualStudioVersion = 15.0.26430.04
+MinimumVisualStudioVersion = 15.0.26730.12
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endpoint.Core", "Endpoint\Endpoint.Core.csproj", "{FF5BEF96-88BA-470D-975A-4EF710EE2B7A}"
 EndProject
 Global

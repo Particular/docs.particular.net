@@ -1,17 +1,13 @@
 ﻿using System;
-using NServiceBus;
 using System.Threading.Tasks;
+using NServiceBus;
 
 class Program
 {
-    static void Main()
+    static async Task Main()
     {
         Console.Title = "SubscriptionManager";
-        MainAsync().GetAwaiter().GetResult();
-    }
 
-    static async Task MainAsync()
-    {
         #region SubscriptionManager-config
 
         Console.WriteLine("Press any key to unsubscribe 'Subscriber' from 'Publisher'");

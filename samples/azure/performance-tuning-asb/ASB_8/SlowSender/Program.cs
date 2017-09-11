@@ -7,15 +7,9 @@ using NServiceBus;
 
 class Program
 {
-
     const int NumberOfMessages = 100;
 
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.ASB.Performance.SlowSender";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Performance.Sender");
@@ -108,5 +102,4 @@ class Program
                 .ConfigureAwait(false);
         }
     }
-
 }

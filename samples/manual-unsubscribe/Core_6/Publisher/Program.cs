@@ -1,21 +1,18 @@
-﻿using NServiceBus;
+﻿using System;
+using System.Threading.Tasks;
+using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.Legacy;
-using System;
-using System.Threading.Tasks;
 
 class Program
 {
-    static void Main()
+    static async Task Main()
     {
         Console.Title = "Publisher";
-        MainAsync().GetAwaiter().GetResult();
-    }
 
-    static async Task MainAsync()
-    {
         #region publisher-config
+
         var endpointConfiguration = new EndpointConfiguration("Samples.ManualUnsubscribe.Publisher");
         endpointConfiguration.UseTransport<MsmqTransport>();
 
@@ -26,6 +23,7 @@ class Program
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
+
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -52,6 +50,6 @@ class Program
         }
 
         await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            .ConfigureAwait(false);
     }
 }

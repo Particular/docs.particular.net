@@ -8,15 +8,9 @@ using NServiceBus;
 
 class Program
 {
-
     const int NumberOfMessages = 10000;
 
-    static void Main()
-    {
-        MainAsync().GetAwaiter().GetResult();
-    }
-
-    static async Task MainAsync()
+    static async Task Main()
     {
         Console.Title = "Samples.ASB.Performance.FastSender";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Performance.Sender");
@@ -49,6 +43,7 @@ class Program
         var totalConcurrency = Environment.ProcessorCount;
         factories.NumberOfMessagingFactoriesPerNamespace(totalConcurrency);
         transport.NumberOfClientsPerEntity(totalConcurrency);
+
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

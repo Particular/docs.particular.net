@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <LangVersion>7</LangVersion>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase1.csproj" />
