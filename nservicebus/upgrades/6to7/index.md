@@ -15,7 +15,7 @@ include: upgrade-major
 
 ## Config
 
-The Configuration APIs `IProvideConfiguration`, `IConfigurationSource` and `CustomConfigurationSource` have been deprecated. Code based API can be used instead.
+The Configuration APIs `IProvideConfiguration`, `IConfigurationSource` and `CustomConfigurationSource` have been deprecated. The equivalent code based API can be used instead.
 
 
 ### [Audit](/nservicebus/operations/auditing.md)
@@ -76,6 +76,7 @@ Configuring the error queue via the following APIs have been deprecated:
  * `HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceBus\ErrorQueue` registry key
 
 Instead use one of the following:
+
 
 #### Configure by the code API
 
@@ -155,6 +156,7 @@ The `MsmqPersistence` class and its configuration API, `SubscriptionQueue()`, ha
 
 MSMQ persistence was originally put into the legacy namespace because of its limited capabilities in scale-out scenarios with the distributor. Sender-side distribution changes this and makes MSMQ persistence a viable persistence mechanism when scaling out MSMQ. It was therefore moved from the legacy namespace and back into `NServiceBus`.
 
+
 ## Default transport
 
 There is no longer a default transport, so an exception will be thrown if an endpoint is created or started without configuring a transport.
@@ -196,37 +198,45 @@ Exceptions of type `Exception` are now thrown instead of `ConfigurationErrorsExc
 ## Licensing
 
 
-### Machine wide license locations
+### Machine-wide license locations
 
-License files be stored on the local file system to be accessed by all endpoints running on this machine. By default, endpoints will check the following locations for a `license.xml` file:
+License files are now stored on the local file system so that they can accessed by all endpoints running on the machine. By default, endpoints will check the following locations for a `license.xml` file:
 
  * `{Environment.SpecialFolder.LocalApplicationData}\ParticularSoftware`
  * `{Environment.SpecialFolder.CommonApplicationData}\ParticularSoftware`
 
 
-### Application specific license location
+### Application-specific license location
 
 Licenses can be shipped along with an endpoint's artifacts. By default, endpoints will look for a `license.xml` in the applications base directory (`AppDomain.CurrentDomain.BaseDirectory`).
 
 WARNING: The `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml` path will no longer be checked.
 
 
-### Registry based license locations
+### Registry-based license locations
 
-When running on the full .NET Framework, endpoints will [continue to search the registry locations](/nservicebus/licensing/) for a suitable license.
+When running on the .NET Framework, endpoints will [continue to search the registry locations](/nservicebus/licensing/) for a suitable license.
 
-When running on the .NET Core platform, endpoints **will not search the registry**, even when running on Windows.
+When running on .NET Core, endpoints **will not search the registry**, even when running on Windows.
 
 
 ## Connection Strings
 
 
 ### Named connection strings
+
 Configuring a transport's connection using `.ConnectionStringName(name)` has been removed. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the `.ConnectionString(value)` configuration.
 
-### Implicit "NServiceBus/Transport" connection string use
-When using .NET Standard, NServiceBus will no longer automatically find and use a connection string that is named `NServiceBus/Transport` by default. The connection string value must be explicitly configured using `.ConnectionString(value)`.
 
-Using .NET Framework 4.5.2 will log a warning when the `NServiceBus/Transport` connection string is used by default.
+### Implicit "NServiceBus/Transport" connection string use
+
+When running on .NET Core, a connection string named `NServiceBus/Transport` will **no longer be automatically detected**. The connection string value must be explicitly configured using `.ConnectionString(value)`.
+
+When running on the .NET Framework, the `NServiceBus/Transport` connection string will continue to function as per previous version, however a warning will be logged indicating that it should be explicitly configured instead.
 
 snippet: 6to7ConnectionStrings
+
+
+## Dependencies
+
+When running on the .NET Framework, there is now a dependency on the [System.ValueTuple package](https://www.nuget.org/packages/System.ValueTuple/). The assembly from this package, System.ValueTuple.dll, must be deployed with the endpoint.
