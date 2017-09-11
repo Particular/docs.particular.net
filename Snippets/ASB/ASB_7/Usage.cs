@@ -134,9 +134,9 @@ class Usage
 
         var queues = transport.Queues();
         queues.ForwardDeadLetteredMessagesTo(
-            condition: entityname =>
+            condition: entityName =>
             {
-                return entityname == "yourqueue";
+                return entityName == "yourqueue";
             },
             forwardDeadLetteredMessagesTo: "errorqueue");
 
@@ -209,7 +209,6 @@ class Usage
         transport.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
         #endregion
 #pragma warning restore 618
-
     }
 
     void IncomingBrokeredMessageBodyUpgrade(EndpointConfiguration endpointConfiguration)
@@ -219,13 +218,11 @@ class Usage
         #region 7to8_asb-incoming-message-convention
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-
-        transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
-        // OR
         transport.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
-        #endregion
-#pragma warning restore 618
 
+        #endregion
+
+#pragma warning restore 618
     }
 
     void OutgoingBrokeredMessageBody(EndpointConfiguration endpointConfiguration)

@@ -61,7 +61,7 @@ The following settings are available to define how queues should be created:
  * `RequiresDuplicateDetection(bool)`: Specifies whether the queue should perform native broker duplicate detection, defaults to `false`.
  * `DuplicateDetectionHistoryTimeWindow(TimeSpan)`: The time period in which native broker duplicate detection should occur.
  * `SupportOrdering(bool)`: Best effort message ordering on the queue, defaults to `false`.
- * `DescriptionCustomizer(Action<QueueDescription>)`: A factory method that allows to modify a `QueueDescription` object created by the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Queues API.
+ * `DescriptionCustomizer(Action<QueueDescription>)`: A factory method that allows to modify a `QueueDescription` object created by the Azure Service Bus SDK. Use this factory method to override any (future) settings that are not supported by the Queues API.
 
 
 ### Topics
@@ -79,7 +79,7 @@ The following settings are available to define how topics should be created:
  * `RequiresDuplicateDetection(bool)`: Specifies whether the topic should perform native broker duplicate detection, defaults to `false`.
  * `DuplicateDetectionHistoryTimeWindow(TimeSpan)`: The time period in which native broker duplicate detection should occur.
  * `SupportOrdering(bool)`: Best effort message ordering on the topic, defaults to `false`.
- * `DescriptionCustomizer(Action<TopicDescription>)`: A factory method that allows to modify a `TopicDescription` object created for the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Topics API.
+ * `DescriptionCustomizer(Action<TopicDescription>)`: A factory method that allows to modify a `TopicDescription` object created for the Azure Service Bus SDK. Use this factory method to override any (future) settings that are not supported by the Topics API.
 
 
 ### Subscriptions
@@ -95,7 +95,7 @@ The following settings are available to define how subscriptions should be creat
  * `LockDuration(TimeSpan)`: The period of time that Azure Service Bus will lock a message before trying to redeliver it, defaults to 30 seconds.
  * `MaxDeliveryCount(int)`: Sets the maximum delivery count, defaults to the number of Immediate Retries + 1. In case Immediate Retries are disabled, the transport will default `MaxDeliveryCount` to 10 attempts.  
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the subscription if it hasn't been used for the specified time period. By default the subscription will not be automatically deleted.
- * `DescriptionCustomizer(Action<SubscriptionDescription>)`: A factory method that allows to modiy a `SubscriptionDescription` object created for the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Subscription API.
+ * `DescriptionCustomizer(Action<SubscriptionDescription>)`: A factory method that allows to modify a `SubscriptionDescription` object created for the Azure Service Bus SDK. Use this factory method to override any (future) settings that are not supported by the Subscription API.
 
 
 ## Controlling Connectivity
@@ -154,12 +154,11 @@ The Azure Service Bus transport can guarantee transactional behavior by combinin
  * The transport explicitly sends messages via the receive queue.
  * The destination entity does not excced its maximum size.
 
-
 Enable the latter using the following configuration setting:
 
  * `SendViaReceiveQueue(bool)`: Uses the receive queue to dispatch outgoing messages when possible. Defaults to `true`.
 
- To learn more about the supported transactional behaviors in the Azure Service Bus transport, refer to the [Transaction Support in Azure](/transports/azure-service-bus/transaction-support.md) article.
+To learn more about the supported transactional behaviors in the Azure Service Bus transport, refer to the [Transaction Support in Azure](/transports/azure-service-bus/transaction-support.md) article.
 
  
 ## Physical Addressing Logic
@@ -182,8 +181,8 @@ Sanitization refers to the cleanup logic that converts invalid entity names into
  * `UseSubscriptionPathMaximumLength(int)`: The maximum length of a subscription path (path = name), defaults to 50.
  * `UseRulePathMaximumLength(int)`: The maximum length of a rule path (path = name), defaults to 50.
  * `UseStrategy<T>()`: An implementation of `ISanitizationStrategy` that handles invalid entity names. The following implementations exist:
-	 * `ThrowOnFailedValidation`: (default) throws an exception if the name is invalid.
-	 * `ValidateAndHashIfNeeded`: allows customization of sanitization without creating a new strategy.
+   * `ThrowOnFailedValidation`: (default) throws an exception if the name is invalid.
+   * `ValidateAndHashIfNeeded`: allows customization of sanitization without creating a new strategy.
 
 `UseStrategy<T>()` can be used to customize the selected [sanitization](/transports/azure-service-bus/sanitization.md) strategy or completely replace it.
 
@@ -193,8 +192,8 @@ Sanitization refers to the cleanup logic that converts invalid entity names into
 Individualization is the logic for modifying an entity name, to allow for differentiating between multiple instances of a single logical endpoint.
 
  * `UseStrategy<T>()`: An implementation of `IIndividualizationStrategy` that modifies an endpoint name to become unique per endpoint instance. Following implementations exist:
-	 * `CoreIndividualization` (default): Makes no modifications, and relies on the individualization logic as defined in the NServiceBus core framework.
-	 * `DiscriminatorBasedIndividualization`: modifies the name of the endpoint by appending a discriminator value to the end.
+   * `CoreIndividualization` (default): Makes no modifications, and relies on the individualization logic as defined in the NServiceBus core framework.
+   * `DiscriminatorBasedIndividualization`: modifies the name of the endpoint by appending a discriminator value to the end.
 
 
 ### Namespace Partitioning
@@ -203,9 +202,9 @@ The settings that determine how entities are partitioned across namespaces:
 
  * `AddNamespace(string, string)`: Adds a namespace (name and connection string) to the list of namespaces used by the namespace partitioning strategy.
  * `UseStrategy<T>`: An implementation of `INamespacePartitioningStrategy` that determines how entities are distributed across namespaces. The following strategies exist:
-	 * `SingleNamespacePartitioning` (default): All entities are in a single namespace.
-	 * `FailOverNamespacePartitioning`: assumes all entities are in the primary and secondary namespaces, where only the primary is in use by default. The secondary will function as a fallback in case of problems with the primary.
-	 * `RoundRobinNamespacePartitioning`: assumes all entities are in all namespaces, all namespaces are in use but one at a time in a round robin fashion.
+   * `SingleNamespacePartitioning` (default): All entities are in a single namespace.
+   * `FailOverNamespacePartitioning`: assumes all entities are in the primary and secondary namespaces, where only the primary is in use by default. The secondary will function as a fallback in case of problems with the primary.
+   * `RoundRobinNamespacePartitioning`: assumes all entities are in all namespaces, all namespaces are in use but one at a time in a round robin fashion.
 
 
 ### Composition
@@ -213,5 +212,5 @@ The settings that determine how entities are partitioned across namespaces:
 The settings that determine how entities are composed inside a single namespace:
 
  * `UseStrategy<T>()`: An implementation of `ICompositionStrategy` that determines how an entity is positioned inside a namespace hierarchy. The following implementations exist:
-	 * `FlatComposition`: The entity is in the root of the namespace.
-	 * `HierarchyComposition`: The entity is in a namespace hierarchy, at the location generated by the path generator.
+   * `FlatComposition`: The entity is in the root of the namespace.
+   * `HierarchyComposition`: The entity is in a namespace hierarchy, at the location generated by the path generator.

@@ -15,7 +15,7 @@ public class MyCompositionStrategy :
         this.settings = settings;
     }
 
-    public string GetEntityPath(string entityname, EntityType entityType)
+    public string GetEntityPath(string entityName, EntityType entityType)
     {
         throw new NotImplementedException();
     }

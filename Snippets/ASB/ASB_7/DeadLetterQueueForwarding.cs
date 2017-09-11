@@ -9,11 +9,11 @@ class DeadLetterQueueForwarding
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var queues = transport.Queues();
         queues.ForwardDeadLetteredMessagesTo(
-                condition: queuename =>
+                condition: queueName =>
                 {
-                    return queuename != "error" &&
-                           queuename != "audit" &&
-                           queuename != "centralizeddlq";
+                    return queueName != "error" &&
+                           queueName != "audit" &&
+                           queueName != "centralizeddlq";
                 },
                 forwardDeadLetteredMessagesTo: "centralizeddlq");
         var subscriptions = transport.Subscriptions();

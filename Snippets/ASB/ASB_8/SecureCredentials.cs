@@ -12,7 +12,7 @@ class SecureCredentials
         #endregion
     }
 
-    void MapDefaultLogiclaNameToConnectionString(EndpointConfiguration endpointConfiguration)
+    void MapDefaultLogicalNameToConnectionString(EndpointConfiguration endpointConfiguration)
     {
         #region map_default_logical_alias_to_connection_string
 

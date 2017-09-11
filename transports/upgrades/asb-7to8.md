@@ -28,7 +28,8 @@ See also [Azure Service Bus Transport Topologies](/transports/azure-service-bus/
 
 ## Controlling entity creation
 
-Controlling entity creation has been greatly simplified. Instead of having to provide a full implementation of `DescriptionFactory` where all settings on the description object had to be provided, a customizer has been introduced `DescriptionCustomizer` where only the to be customized property can be changed. `DescriptionCustomizer` can be found on the `Queues`, `Topics` and `Subscriptions` API extension points.
+Controlling entity creation has been simplified. Instead of having to provide a full implementation of `DescriptionFactory` where all settings on the description object had to be provided, a customizer (`DescriptionCustomizer`) has been introduced where only the customized properties can be changed. `DescriptionCustomizer` can be found on the `Queues`, `Topics` and `Subscriptions` API extension points.
+
 
 ## BrokeredMessage conventions
 
