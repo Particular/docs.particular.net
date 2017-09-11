@@ -245,9 +245,6 @@ class Usage
         #region 7to8_asb-outgoing-message-convention
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-
-        transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
-        // OR
         transport.UseOutgoingMessageToBrokeredMessageConverter<CustomOutgoingMessageConversion>();
 
         #endregion
