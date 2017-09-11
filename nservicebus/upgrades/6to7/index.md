@@ -196,26 +196,26 @@ Exceptions of type `Exception` are now thrown instead of `ConfigurationErrorsExc
 ## Licensing
 
 
-### Machine wide license locations
+### Machine-wide license locations
 
-License files be stored on the local file system to be accessed by all endpoints running on this machine. By default, endpoints will check the following locations for a `license.xml` file:
+License files are now stored on the local file system so that they can accessed by all endpoints running on the machine. By default, endpoints will check the following locations for a `license.xml` file:
 
  * `{Environment.SpecialFolder.LocalApplicationData}\ParticularSoftware`
  * `{Environment.SpecialFolder.CommonApplicationData}\ParticularSoftware`
 
 
-### Application specific license location
+### Application-specific license location
 
 Licenses can be shipped along with an endpoint's artifacts. By default, endpoints will look for a `license.xml` in the applications base directory (`AppDomain.CurrentDomain.BaseDirectory`).
 
 WARNING: The `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml` path will no longer be checked.
 
 
-### Registry based license locations
+### Registry-based license locations
 
-When running on the full .NET Framework, endpoints will [continue to search the registry locations](/nservicebus/licensing/) for a suitable license.
+When running on the .NET Framework, endpoints will [continue to search the registry locations](/nservicebus/licensing/) for a suitable license.
 
-When running on the .NET Core platform, endpoints **will not search the registry**, even when running on Windows.
+When running on .NET Core, endpoints **will not search the registry**, even when running on Windows.
 
 
 ## Connection Strings
