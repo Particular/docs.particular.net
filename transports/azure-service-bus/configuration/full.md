@@ -61,7 +61,7 @@ The following settings are available to define how queues should be created:
  * `RequiresDuplicateDetection(bool)`: Specifies whether the queue should perform native broker duplicate detection, defaults to `false`.
  * `DuplicateDetectionHistoryTimeWindow(TimeSpan)`: The time period in which native broker duplicate detection should occur.
  * `SupportOrdering(bool)`: Best effort message ordering on the queue, defaults to `false`.
- * `DescriptionFactory(Func<string, ReadOnlySettings, QueueDescription>)`: A factory method that allows to create a `QueueDescription` object from the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Queues API.
+ * `DescriptionCustomizer(Action<QueueDescription>)`: A factory method that allows to modify a `QueueDescription` object created by the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Queues API.
 
 
 ### Topics
@@ -79,7 +79,7 @@ The following settings are available to define how topics should be created:
  * `RequiresDuplicateDetection(bool)`: Specifies whether the topic should perform native broker duplicate detection, defaults to `false`.
  * `DuplicateDetectionHistoryTimeWindow(TimeSpan)`: The time period in which native broker duplicate detection should occur.
  * `SupportOrdering(bool)`: Best effort message ordering on the topic, defaults to `false`.
- * `DescriptionFactory(Func<string, ReadOnlySettings, TopicDescription>)`: A factory method that allows to create a `TopicDescription` object from the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Topics API.
+ * `DescriptionCustomizer(Action<TopicDescription>)`: A factory method that allows to modify a `TopicDescription` object created for the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Topics API.
 
 
 ### Subscriptions
@@ -95,7 +95,7 @@ The following settings are available to define how subscriptions should be creat
  * `LockDuration(TimeSpan)`: The period of time that Azure Service Bus will lock a message before trying to redeliver it, defaults to 30 seconds.
  * `MaxDeliveryCount(int)`: Sets the maximum delivery count, defaults to the number of Immediate Retries + 1. In case Immediate Retries are disabled, the transport will default `MaxDeliveryCount` to 10 attempts.  
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the subscription if it hasn't been used for the specified time period. By default the subscription will not be automatically deleted.
- * `DescriptionFactory(Func<string, string, ReadOnlySettings, SubscriptionDescription>)`: A factory method that allows to create a `SubscriptionDescription` object from the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Subscription API.
+ * `DescriptionCustomizer(Action<SubscriptionDescription>)`: A factory method that allows to modiy a `SubscriptionDescription` object created for the Azure Service Bus SDK. Use this factory method to override any (future) setting that is not supported by the Subscription API.
 
 
 ## Controlling Connectivity
