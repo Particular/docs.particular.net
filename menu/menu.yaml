@@ -449,6 +449,8 @@
       Title: Writing a log entry
     - Url: nservicebus/logging/log4net
       Title: Log4Net
+    - Url: nservicebus/logging/microsoft
+      Title: Microsoft Logging
     - Url: nservicebus/logging/nlog
       Title: NLog
     - Url: nservicebus/logging/common-logging
