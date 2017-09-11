@@ -233,3 +233,8 @@ When running on .NET Core, NServiceBus will no longer automatically find and use
 When running on the .NET Framework, NServiceBus will continue to find and use the `NServiceBus/Transport` connection string, but it will log a warning indicating that it should be explicitly configured instead.
 
 snippet: 6to7ConnectionStrings
+
+
+## Dependencies
+
+When running on the .NET Framework, NServiceBus now has a dependency on the System.ValueTuple package. The assembly from this package, System.ValueTuple.dll, must be deployed with the endpoint in order for NServiceBus to work correctly.
