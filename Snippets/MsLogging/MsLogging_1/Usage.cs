@@ -13,9 +13,10 @@ class Usage
             loggerFactory.AddConsole();
             var logFactory = LogManager.Use<MicrosoftLogFactory>();
             logFactory.UseMsFactory(loggerFactory);
-
-            #endregion
+            // endpoint startup and shutdown
         }
+
+        #endregion
     }
 
 }
