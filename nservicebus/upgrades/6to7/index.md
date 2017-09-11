@@ -222,11 +222,14 @@ When running on .NET Core, endpoints **will not search the registry**, even when
 
 
 ### Named connection strings
+
 Configuring a transport's connection using `.ConnectionStringName(name)` has been removed. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the `.ConnectionString(value)` configuration.
 
-### Implicit "NServiceBus/Transport" connection string use
-When using .NET Standard, NServiceBus will no longer automatically find and use a connection string that is named `NServiceBus/Transport` by default. The connection string value must be explicitly configured using `.ConnectionString(value)`.
 
-Using .NET Framework 4.5.2 will log a warning when the `NServiceBus/Transport` connection string is used by default.
+### Implicit "NServiceBus/Transport" connection string use
+
+When running on .NET Core, NServiceBus will no longer automatically find and use a connection string that is named `NServiceBus/Transport` by default. The connection string value must be explicitly configured using `.ConnectionString(value)`.
+
+When running on the .NET Framework, NServiceBus will continue to find and use the `NServiceBus/Transport` connection string, but it will log a warning indicating that it should be explicitly configured instead.
 
 snippet: 6to7ConnectionStrings
