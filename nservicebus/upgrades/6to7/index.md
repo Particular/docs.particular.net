@@ -15,7 +15,7 @@ include: upgrade-major
 
 ## Config
 
-The Configuration APIs `IProvideConfiguration`, `IConfigurationSource` and `CustomConfigurationSource` have been deprecated. Code based API can be used instead.
+The Configuration APIs `IProvideConfiguration`, `IConfigurationSource` and `CustomConfigurationSource` have been deprecated. The equivalent code based API can be used instead.
 
 
 ### [Audit](/nservicebus/operations/auditing.md)
@@ -76,6 +76,7 @@ Configuring the error queue via the following APIs have been deprecated:
  * `HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceBus\ErrorQueue` registry key
 
 Instead use one of the following:
+
 
 #### Configure by the code API
 
@@ -155,6 +156,7 @@ The `MsmqPersistence` class and its configuration API, `SubscriptionQueue()`, ha
 
 MSMQ persistence was originally put into the legacy namespace because of its limited capabilities in scale-out scenarios with the distributor. Sender-side distribution changes this and makes MSMQ persistence a viable persistence mechanism when scaling out MSMQ. It was therefore moved from the legacy namespace and back into `NServiceBus`.
 
+
 ## Default transport
 
 There is no longer a default transport, so an exception will be thrown if an endpoint is created or started without configuring a transport.
@@ -228,13 +230,13 @@ Configuring a transport's connection using `.ConnectionStringName(name)` has bee
 
 ### Implicit "NServiceBus/Transport" connection string use
 
-When running on .NET Core, NServiceBus will no longer automatically find and use a connection string that is named `NServiceBus/Transport` by default. The connection string value must be explicitly configured using `.ConnectionString(value)`.
+When running on .NET Core, a connection string named `NServiceBus/Transport` will **no longer be automatically detected**. The connection string value must be explicitly configured using `.ConnectionString(value)`.
 
-When running on the .NET Framework, NServiceBus will continue to find and use the `NServiceBus/Transport` connection string, but it will log a warning indicating that it should be explicitly configured instead.
+When running on the .NET Framework, the `NServiceBus/Transport` connection string will continue to function as per previous version, however a warning will be logged indicating that it should be explicitly configured instead.
 
 snippet: 6to7ConnectionStrings
 
 
 ## Dependencies
 
-When running on the .NET Framework, NServiceBus now has a dependency on the System.ValueTuple package. The assembly from this package, System.ValueTuple.dll, must be deployed with the endpoint in order for NServiceBus to work correctly.
+When running on the .NET Framework, there is now a dependency on the [System.ValueTuple package](https://www.nuget.org/packages/System.ValueTuple/). The assembly from this package, System.ValueTuple.dll, must be deployed with the endpoint.
