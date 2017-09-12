@@ -8,6 +8,8 @@ tags:
  - Azure
 ---
 
+include: cloudserviceshost-deprecated-warning
+
 ## Handling critical errors
 
 

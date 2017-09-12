@@ -1,0 +1,1 @@
++WARNING: The NServiceBus Azure Host is being deprecated as of Version 9. Refer to [TODO](TODO) for further details.
