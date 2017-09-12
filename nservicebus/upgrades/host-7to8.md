@@ -38,11 +38,14 @@ Configuration code in `IConfigureThisEndpoint.Customize` can be transfered as is
 
 #### Roles
 
-The `AsA_Client` role can be replaces with the following configuration:
+The `AsA_Client` role can be replaced with the following configuration:
 
 snippet: 7to8AsAClient 
 
 The `AsA_Server` role didn't change any configuration and can safely be ignored.
+
+The `UsingTransport<MyTransport>` role can be replaced with the equivalent `EndpointConfiguration.UseTransport<MyTransport>()` call.
+
 
 #### Endpoint name
 
