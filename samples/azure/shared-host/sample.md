@@ -10,6 +10,7 @@ related:
 - nservicebus/hosting/cloud-services-host/shared-hosting
 ---
 
+include: cloudserviceshost-deprecated-warning
 
 ## Running in development mode
 
