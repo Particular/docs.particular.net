@@ -28,14 +28,14 @@ public class WorkerRole :
 #region AzureServiceBusTransportWithAzureHost
 
 public class EndpointConfig :
-    IConfigureThisEndpoint,
-    AsA_Worker
+    IConfigureThisEndpoint
 {
     public void Customize(EndpointConfiguration endpointConfiguration)
     {
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         transport.ConnectionString("Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
         endpointConfiguration.UsePersistence<AzureStoragePersistence>();
+        endpointConfiguration.AzureConfigurationSource();
     }
 }
 

@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudServicesHost_6", "CloudServicesHost_6\CloudServicesHost_6.csproj", "{C328B47D-B582-47AA-BD0C-A6769A28F079}"
 EndProject
@@ -17,11 +17,12 @@ Global
 		{C328B47D-B582-47AA-BD0C-A6769A28F079}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA9AD22E-FB8C-4AB4-AD09-D43B3260BB6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA9AD22E-FB8C-4AB4-AD09-D43B3260BB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A15D221C-9ED4-4105-9BCA-066AD21CCA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2C3EE412-5BE4-429B-A208-DE46A1F1032F}
+		SolutionGuid = {1D7BEE63-4AAA-4AC0-9427-1D160E3FC534}
 	EndGlobalSection
 EndGlobal
