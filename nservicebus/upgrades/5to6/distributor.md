@@ -11,7 +11,7 @@ upgradeGuideCoreVersions:
  - 6
 ---
 
-The [distributor](/transports/msmq/distributor) has scaling limitations. For better scalability the distributor should be replaced by [sender-side distribution](/transports/msmq/sender-side-distribution.md) with NServiceBus Version 6. Before upgrading, consider the current limitations of sender-side distribution mode.
+The [distributor](/transports/msmq/distributor) has scaling limitations. For better scalability the distributor should be replaced by [sender-side distribution](/transports/msmq/sender-side-distribution.md) with NServiceBus Version 6. Before upgrading, consider the current [limitations of sender-side distribution](/transports/msmq/sender-side-distribution.md#limitations) mode.
 
 
 ## Client-side distribution
