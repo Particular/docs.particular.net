@@ -15,6 +15,7 @@ class Program
         Console.Title = "Samples.PerfCounters";
         var endpointConfiguration = new EndpointConfiguration("Samples.PerfCounters");
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
