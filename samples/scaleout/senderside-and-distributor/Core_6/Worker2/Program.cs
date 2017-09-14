@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Routing.Legacy;
+using NServiceBus.Transport;
 
 class Program
 {
@@ -17,7 +18,7 @@ class Program
         endpointConfiguration.EnlistWithLegacyMSMQDistributor(
             masterNodeAddress: appSettings["DistributorAddress"],
             masterNodeControlAddress: appSettings["DistributorControlAddress"],
-            capacity: 1);
+            capacity: PushRuntimeSettings.Default.MaxConcurrency);
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         var recoverability = endpointConfiguration.Recoverability();
