@@ -11,11 +11,11 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-## Mandatory topology selection.
+## Mandatory routing topology selection
 
-Specifying a routing topology is now mandatory. For backwards compatiblility, the recommendation is to use the `ConventionalRoutingTopology` which was the previous default. 
+Specifying a routing topology is now mandatory. For backwards compatibility, the recommendation is to use the `ConventionalRoutingTopology`, which was the previous default. 
 
-See the [transport configuration documentation](/transports/rabbitmq/routing-topology.md) for further details.
+See the [routing topology](/transports/rabbitmq/routing-topology.md) for further details.
 
 
 ## ConnectionStringName
@@ -25,9 +25,9 @@ See the [transport configuration documentation](/transports/rabbitmq/routing-top
 snippet: 4to5CustomConnectionStringName
 
 
-## UseDirectRoutingTopology convention changes
+## Direct routing topology changes
 
-When using [UseDirectRoutingTopology](/transports/rabbitmq/routing-topology.md#direct-routing-topology-enabling-direct-routing-topology) the address and the event Type are no longer passed to `exchangeNameConvention`.
+The convention for overriding the name of the exchange used when publishing events has changed. The address and the event type are no longer passed to the `exchangeNameConvention` parameter of the [UseDirectRoutingTopology](/transports/rabbitmq/routing-topology.md#direct-routing-topology-enabling-direct-routing-topology) method.
 
 snippet: 4to5usedirectroutingtopology
 
