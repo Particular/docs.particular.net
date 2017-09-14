@@ -18,7 +18,7 @@ When integrating with 3rd party systems, often messages fail when those systems 
 
 ### 3rd Party System console
 
-The 3rd party system console application simulates a HTTP service running on `http://localhost:57789`. Verify that the 3rd party system is running by opening the url in a browser. When receive no error the 3rd system is running correctly.
+The 3rd party system console application simulates a HTTP service running on `http://localhost:57789`. Verify that the 3rd party system is running by opening the url in a browser. When no error is received, the 3rd system is running correctly.
 
 
 ### The sample console
