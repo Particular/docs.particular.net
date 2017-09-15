@@ -131,7 +131,7 @@ class Usage
 
     void SetClientCertificates(EndpointConfiguration endpointConfiguration)
     {
-        #region rabbitmq-config-client-certificates
+        #region rabbitmq-client-certificates
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.SetClientCertificates(new X509CertificateCollection());
@@ -146,6 +146,26 @@ class Usage
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         var delayedDelivery = transport.DelayedDelivery();
         delayedDelivery.DisableTimeoutManager();
+
+        #endregion
+    }
+
+    void DisableRemoteCertificateValidation(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-disable-remote-certificate-validation
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.DisableRemoteCertificateValidation();
+
+        #endregion
+    }
+
+    void UseExternalAuthMechanism(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-external-auth-mechanism
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseExternalAuthMechanism();
 
         #endregion
     }
