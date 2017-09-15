@@ -21,7 +21,18 @@ Design processes with more than one remote call to use sagas.
 
 While it may seem excessive at first, the business implications of the system getting out of sync with the other systems it interacts with can be substantial. It's not just about exceptions that end up in the logs.
 
-NOTE: If a message is received while there is no saga instance, then by default this message is discarded and succesfully processed. If the received message must not be discarded and throw an error so that it gets moved to the error queue then it is required to override saga not found behavior by implementing `IHandleSagaNotFound` and throw an exception. 
+## No saga instance available
+
+If a message is received while there is no saga instance, then by default this message gets discarded and succesfully processed. When you have a saga instance that is already completed then it makes sense to discard other messages.
+
+This can also happen for saga instance creation. A message is received that expects a saga instance to be there but that message is not received yet. In this case the message should not be discarded. There are two options to resolve this:
+
+- Let the saga instance be created for message B
+- Override the saga not found behavior and throw an exception
+
+By getting the saga instance created for message B that is received before message A we now have to make sure that the behavior of the saga will remain correct. For example, when a message is send when B is received then maybe state from message A needs to be included that is added to the saga instance when A is received. This state is not yet stored in the saga thus the message cannot be send yet. We now need to check that when message A is received if message B is already processed and then have the message send. This can make the saga much more complex!
+
+A simpler solution is to throw an error when the saga instance does not exist so that it gets moved to the error queue then it is required to override saga not found behavior by implementing `IHandleSagaNotFound` and throw an exception. 
 
 ## A simple Saga
 
