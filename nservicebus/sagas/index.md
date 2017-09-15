@@ -21,7 +21,7 @@ Design processes with more than one remote call to use sagas.
 
 While it may seem excessive at first, the business implications of the system getting out of sync with the other systems it interacts with can be substantial. It's not just about exceptions that end up in the logs.
 
-NOTE: If a message is received while there is not saga instance then by default this message is discarded and succesfully processed. If the received message must not be discarded and throw an error so that it gets moved to the error queue then it is required to override saga not found behavior by implementing `IHandleSagaNotFound` and throw an exception. 
+NOTE: If a message is received while there is no saga instance, then by default this message is discarded and succesfully processed. If the received message must not be discarded and throw an error so that it gets moved to the error queue then it is required to override saga not found behavior by implementing `IHandleSagaNotFound` and throw an exception. 
 
 ## A simple Saga
 
