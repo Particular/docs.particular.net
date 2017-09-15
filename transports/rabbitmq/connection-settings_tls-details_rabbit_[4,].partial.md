@@ -11,7 +11,7 @@ WARNING: TLS 1.2 must be enabled on the broker to establish a secure connection.
 
 If the broker has been configured to require client authentication, a client certificate must be specified in the `CertPath` setting. If that certificate requires a password, it must be specified in the `CertPassphrase` setting.
 
-An example connection string using these settings:
+A sample connection string using these settings:
 
 snippet: rabbitmq-connection-client-auth
 
