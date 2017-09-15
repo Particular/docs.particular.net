@@ -235,8 +235,3 @@ When running on .NET Core, a connection string named `NServiceBus/Transport` wil
 When running on the .NET Framework, the `NServiceBus/Transport` connection string will continue to function as per previous version, however a warning will be logged indicating that it should be explicitly configured instead.
 
 snippet: 6to7ConnectionStrings
-
-
-## Dependencies
-
-When running on the .NET Framework, there is now a dependency on the [System.ValueTuple package](https://www.nuget.org/packages/System.ValueTuple/). The assembly from this package, System.ValueTuple.dll, must be deployed with the endpoint.
