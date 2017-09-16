@@ -8,12 +8,7 @@ using NServiceBus.Transport.SQLServer;
 
 public static class Program
 {
-    public static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.Sql.Receiver";
 
@@ -63,5 +58,4 @@ public static class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
 }

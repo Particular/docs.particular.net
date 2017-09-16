@@ -6,18 +6,16 @@ using NServiceBus;
 
 static class Program
 {
-    static void Main()
+    static Program()
     {
         //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
         Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-
-        AsyncMain().GetAwaiter().GetResult();
     }
 
     #region CustomStartup
 
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.CustomExtensionEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomExtensionEndpoint");

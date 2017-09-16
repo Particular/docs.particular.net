@@ -7,14 +7,9 @@ public static class Program
 {
     static Random random;
 
-    public static void Main()
+    public static async Task Main()
     {
         random = new Random();
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
-    {
         Console.Title = "Samples.Sql.Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.Sql.Sender");
         endpointConfiguration.SendFailedMessagesTo("error");

@@ -11,14 +11,9 @@ class Program
 {
     static Random random;
 
-    static void Main()
+    static async Task Main()
     {
         random = new Random();
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
-    {
         Console.Title = "Samples.SqlNHibernate.Sender";
         var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Sender");

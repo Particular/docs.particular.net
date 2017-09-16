@@ -4,14 +4,9 @@ using NServiceBus;
 
 static class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
     #region CustomStartup
 
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.CustomExtensionEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomExtensionEndpoint");

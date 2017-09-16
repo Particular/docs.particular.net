@@ -5,12 +5,7 @@ using NServiceBus;
 
 public class Program
 {
-    static void Main()
-    {
-        Start().GetAwaiter().GetResult();
-    }
-
-    static async Task Start()
+    static async Task Main()
     {
         Console.Title = "Samples.Ninject";
 

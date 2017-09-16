@@ -14,12 +14,7 @@ namespace Bridge
         const string ReceiverConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceReceiver4;Integrated Security=True;Max Pool Size=100";
         const string BridgeConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceBridge4;Integrated Security=True;Max Pool Size=100";
 
-        static void Main(string[] args)
-        {
-            AsyncMain().GetAwaiter().GetResult();
-        }
-
-        static async Task AsyncMain()
+        static async Task Main()
         {
             Console.Title = "Samples.SqlServer.MultiInstanceBridge";
 

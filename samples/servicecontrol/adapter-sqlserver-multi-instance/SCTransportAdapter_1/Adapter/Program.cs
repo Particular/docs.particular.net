@@ -6,14 +6,9 @@ using ServiceControl.TransportAdapter;
 
 class Program
 {
-    static void Main()
+    static async Task Main()
     {
         Console.Title = "Samples.ServiceControl.SqlServerTransportAdapter.Adapter";
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
-    {
         #region AdapterTransport
 
         var transportAdapterConfig = new TransportAdapterConfig<SqlServerTransport, SqlServerTransport>("ServiceControl.SqlServer.Adapter");

@@ -8,9 +8,8 @@ using NServiceBus.Transport;
 
 class Program
 {
-    static void Main()
+    static async Task Main()
     {
-
         #region WorkerIdentity
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
@@ -38,7 +37,7 @@ class Program
                 return type.GetInterfaces().Contains(typeof(IMessage));
             });
 
-        Run(endpointConfiguration).GetAwaiter().GetResult();
+        return Run(endpointConfiguration);
     }
 
     static async Task Run(EndpointConfiguration busConfiguration)

@@ -4,12 +4,7 @@ using NServiceBus;
 
 class Program
 {
-    static void Main()
-    {
-        AsyncRun().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncRun()
+    static async Task Main()
     {
         Console.Title = "Samples.AuditFilter";
         var endpointConfiguration = new EndpointConfiguration("Samples.AuditFilter");

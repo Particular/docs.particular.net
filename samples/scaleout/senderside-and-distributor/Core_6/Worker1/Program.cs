@@ -8,7 +8,7 @@ using NServiceBus.Transport;
 
 class Program
 {
-    static void Main()
+    static Task Main()
     {
         Console.Title = "Worker.1";
 
@@ -47,7 +47,7 @@ class Program
                 return type.GetInterfaces().Contains(typeof(IMessage));
             });
 
-        Run(endpointConfiguration).GetAwaiter().GetResult();
+        return Run(endpointConfiguration);
     }
 
     static async Task Run(EndpointConfiguration endpointConfiguration)
