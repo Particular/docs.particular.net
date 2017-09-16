@@ -5,7 +5,7 @@ using NServiceBus;
 
 class Program
 {
-    static async Task Main()
+    static Task Main()
     {
         Console.Title = "Sender.V6";
 

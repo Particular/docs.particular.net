@@ -7,7 +7,7 @@ using NServiceBus.Routing.Legacy;
 
 class Program
 {
-    static Task Main()
+    static async Task Main()
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");
         endpointConfiguration.MakeInstanceUniquelyAddressable(
@@ -26,12 +26,7 @@ class Program
                 return type.GetInterfaces().Contains(typeof(IMessage));
             });
 
-        return Run(endpointConfiguration);
-    }
-
-    static async Task Run(EndpointConfiguration busConfiguration)
-    {
-        var endpointInstance = await Endpoint.Start(busConfiguration)
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();

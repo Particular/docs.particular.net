@@ -37,12 +37,7 @@ class Program
                 return type.GetInterfaces().Contains(typeof(IMessage));
             });
 
-        return Run(endpointConfiguration);
-    }
-
-    static async Task Run(EndpointConfiguration busConfiguration)
-    {
-        var endpointInstance = await Endpoint.Start(busConfiguration)
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
