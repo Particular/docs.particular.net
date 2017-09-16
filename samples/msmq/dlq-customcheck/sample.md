@@ -1,5 +1,5 @@
 ---
-title: MSMQ Dead Letter Queue Custom Check
+title: Basic MSMQ Dead Letter Queue Monitoring With Custom Checks
 reviewed: 2017-09-01
 component: MsmqTransport
 related:
