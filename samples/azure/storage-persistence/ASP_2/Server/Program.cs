@@ -7,7 +7,6 @@ using NServiceBus.Persistence;
 
 class Program
 {
-
     static async Task Main()
     {
         //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668

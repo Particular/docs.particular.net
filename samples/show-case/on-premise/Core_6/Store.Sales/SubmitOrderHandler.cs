@@ -32,5 +32,4 @@ public class SubmitOrderHandler :
         };
         return context.Publish(orderPlaced);
     }
-
 }

@@ -6,7 +6,6 @@ using NServiceBus.Persistence;
 
 class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.MsmqToSqlRelay.SqlRelay";

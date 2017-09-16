@@ -7,7 +7,6 @@ using Common.Logging.Simple;
 
 class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.Logging.CommonLogging";

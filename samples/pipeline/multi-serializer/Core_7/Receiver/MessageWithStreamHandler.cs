@@ -19,5 +19,4 @@ public class MessageHandler :
         log.Info($"Received XML message with property '{message.SomeProperty}'");
         return Task.CompletedTask;
     }
-
 }

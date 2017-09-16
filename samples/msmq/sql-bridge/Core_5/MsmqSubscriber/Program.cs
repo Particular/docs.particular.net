@@ -4,7 +4,6 @@ using NServiceBus.Persistence;
 
 class Program
 {
-
     static void Main()
     {
         Console.Title = "Samples.SqlBridge.MsmqSubscriber";

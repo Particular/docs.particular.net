@@ -7,7 +7,6 @@ using NServiceBus.Transport.SQLServer;
 
 class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.SqlServer.MultiInstanceReceiver.V3";
@@ -36,5 +35,4 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
 }

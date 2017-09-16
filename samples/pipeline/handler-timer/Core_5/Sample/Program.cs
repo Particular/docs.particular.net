@@ -3,7 +3,6 @@ using NServiceBus;
 
 class Program
 {
-
     static void Main()
     {
         Console.Title = "Samples.PipelineHandlerTimer";
@@ -42,5 +41,4 @@ class Program
         Console.WriteLine();
         Console.WriteLine("Message sent");
     }
-
 }

@@ -6,7 +6,6 @@ using NServiceBus.MessageRouting.RoutingSlips;
 
 class Program
 {
-
     static ILog log = LogManager.GetLogger(typeof(Program));
 
     static async Task Main()

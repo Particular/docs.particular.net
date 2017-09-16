@@ -46,7 +46,6 @@ public static class SubscribeToNotifications
         Body:
         {GetMessageString(retry.Body)}");
     }
-
 }
 
 #endregion

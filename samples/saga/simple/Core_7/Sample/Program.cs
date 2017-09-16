@@ -6,7 +6,6 @@ using NServiceBus;
 
 class Program
 {
-
     static async Task Main()
     {
         //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
@@ -55,5 +54,4 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
 }

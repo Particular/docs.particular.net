@@ -38,5 +38,4 @@ class CommandSender
         };
         return endpointInstance.Publish(myEvent);
     }
-
 }

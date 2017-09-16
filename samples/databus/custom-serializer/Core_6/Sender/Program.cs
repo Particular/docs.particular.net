@@ -8,7 +8,6 @@ using Shared;
 
 class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.DataBus.Sender";

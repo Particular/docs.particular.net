@@ -7,7 +7,6 @@ using NServiceBus.Logging;
 
 class Program
 {
-
     static ILog log = LogManager.GetLogger<Program>();
 
     static async Task Main()

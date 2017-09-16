@@ -1,6 +1,5 @@
 ﻿namespace Events
 {
-
     #region DerivedEvent
 
     public class DerivedEvent :
@@ -10,5 +9,4 @@
     }
 
     #endregion
-
 }

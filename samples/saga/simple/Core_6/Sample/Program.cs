@@ -4,7 +4,6 @@ using NServiceBus;
 
 class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.SimpleSaga";
@@ -49,5 +48,4 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
 }

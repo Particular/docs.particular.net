@@ -7,7 +7,6 @@ using Environment = NHibernate.Cfg.Environment;
 
 class Program
 {
-
     static void Main()
     {
         Console.Title = "Samples.CustomNhMappings.XmlMapping";

@@ -7,7 +7,6 @@ using Raven.Client.UniqueConstraints;
 
 class Program
 {
-
     static void Main()
     {
         var endpointName = "Samples.RavenDBCustomSagaFinder";

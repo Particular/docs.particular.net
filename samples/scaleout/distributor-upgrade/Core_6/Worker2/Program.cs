@@ -7,7 +7,6 @@ using NServiceBus.Routing.Legacy;
 
 class Program
 {
-
     static Task Main()
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.Scaleout.Worker");

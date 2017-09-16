@@ -5,7 +5,6 @@ using NServiceBus.Logging;
 
 class Program
 {
-
     static async Task Main()
     {
         var defaultFactory = LogManager.Use<DefaultFactory>();

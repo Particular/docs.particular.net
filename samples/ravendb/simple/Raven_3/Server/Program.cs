@@ -5,7 +5,6 @@ using Raven.Client.Document;
 
 class Program
 {
-
     static void Main()
     {
         Console.Title = "Samples.RavenDB.Server";

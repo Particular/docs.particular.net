@@ -5,7 +5,6 @@ using Store.Messages.RequestResponse;
 
 class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.Store.ContentManagement";

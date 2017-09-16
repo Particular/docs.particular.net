@@ -6,7 +6,6 @@ using NServiceBus.FileBasedRouting;
 
 class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.FileBasedRouting.Client";

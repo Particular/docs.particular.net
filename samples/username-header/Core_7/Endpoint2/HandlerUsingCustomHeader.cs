@@ -16,7 +16,6 @@ public class HandlerUsingCustomHeader :
         log.Info($"Username extracted from header: {usernameFromHeader}");
         return Task.CompletedTask;
     }
-
 }
 
 #endregion

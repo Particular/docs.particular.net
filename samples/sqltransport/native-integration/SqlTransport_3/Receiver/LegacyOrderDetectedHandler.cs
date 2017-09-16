@@ -13,5 +13,4 @@ public class LegacyOrderDetectedHandler :
         // Get the order details from the database and publish an event
         return Task.CompletedTask;
     }
-
 }

@@ -5,7 +5,6 @@ using NServiceBus.Persistence;
 
 class Program
 {
-
     static async Task Main()
     {
         var endpointName = "Samples.NHibernateCustomSagaFinder";

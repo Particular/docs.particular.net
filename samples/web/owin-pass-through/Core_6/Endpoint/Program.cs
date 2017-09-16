@@ -8,7 +8,6 @@ using Owin;
 
 static class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.OwinPassThrough";
@@ -70,5 +69,4 @@ static class Program
     }
 
     #endregion
-
 }

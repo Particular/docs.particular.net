@@ -28,5 +28,4 @@ public class OrderAcceptedHandler :
         };
         return context.Send(request);
     }
-
 }

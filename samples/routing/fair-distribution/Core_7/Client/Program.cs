@@ -6,7 +6,6 @@ using NServiceBus.Configuration.AdvancedExtensibility;
 
 class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.FairDistribution.Client";

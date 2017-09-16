@@ -9,7 +9,6 @@ using NServiceBus.Logging;
 
 class Program
 {
-
     static void Main()
     {
         Console.Title = "Samples.Logging.Log4NetCustom";

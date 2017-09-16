@@ -4,7 +4,6 @@ using NServiceBus;
 class IssuePaymentRequestHandler :
     IHandleMessages<IssuePaymentRequest>
 {
-
     public Task Handle(IssuePaymentRequest message, IMessageHandlerContext context)
     {
         var completePayment = new CompletePaymentTransaction
@@ -13,5 +12,4 @@ class IssuePaymentRequestHandler :
         };
         return context.SendLocal(completePayment);
     }
-
 }

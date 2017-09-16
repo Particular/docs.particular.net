@@ -83,5 +83,4 @@ class StreamSendBehavior :
         return Path.Combine(keepMessageUntil.ToString("yyyy-MM-dd_HH"), Guid.NewGuid().ToString());
     }
     #endregion
-
 }

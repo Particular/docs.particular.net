@@ -40,5 +40,4 @@ static class Program
     }
 
     #endregion
-
 }

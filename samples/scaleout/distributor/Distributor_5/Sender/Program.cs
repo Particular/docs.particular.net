@@ -3,7 +3,6 @@ using NServiceBus;
 
 class Program
 {
-
     static void Main()
     {
         Console.Title = "Samples.Scaleout.Sender";

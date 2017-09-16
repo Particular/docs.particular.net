@@ -6,7 +6,6 @@ using NServiceBus.Persistence.Sql;
 
 class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.SqlSagaFinder.MySql";

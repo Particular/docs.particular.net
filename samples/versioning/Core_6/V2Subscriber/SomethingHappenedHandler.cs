@@ -13,5 +13,4 @@ public class SomethingHappenedHandler :
         log.Info($"Something happened with some data {message.SomeData} and more information {message.MoreInfo}");
         return Task.CompletedTask;
     }
-
 }

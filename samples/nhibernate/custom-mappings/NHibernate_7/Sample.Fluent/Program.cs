@@ -8,7 +8,6 @@ using Environment = NHibernate.Cfg.Environment;
 
 class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.CustomNhMappings.Loquacious";

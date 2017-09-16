@@ -12,5 +12,4 @@ public class MessageHandler :
         log.Info("Hello from Instance 2");
         return Task.CompletedTask;
     }
-
 }

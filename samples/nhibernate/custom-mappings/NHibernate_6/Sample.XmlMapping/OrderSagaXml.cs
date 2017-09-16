@@ -49,5 +49,4 @@ public class OrderSagaXml :
         log.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
     }
-
 }

@@ -7,7 +7,6 @@ using NServiceBus;
 
 class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.Logging.NLogCustom";

@@ -7,7 +7,6 @@ using NServiceBus.Logging;
 
 class Program
 {
-
     static async Task Main()
     {
         Console.Title = "Samples.Logging.SimpleSourceLogger";

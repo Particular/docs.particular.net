@@ -14,5 +14,4 @@ public class MessageHandler3 :
         log.Info("MessageHandler3");
         return Task.CompletedTask;
     }
-
 }

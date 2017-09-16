@@ -49,7 +49,6 @@ public class OrderSaga :
         MarkAsComplete();
         return Task.CompletedTask;
     }
-
 }
 
 #endregion
