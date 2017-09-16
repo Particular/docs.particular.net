@@ -8,12 +8,7 @@ public class Program
 {
     const string ConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceSender4;Integrated Security=True;Max Pool Size=100";
 
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.SqlServer.MultiInstanceSender.V4";
 

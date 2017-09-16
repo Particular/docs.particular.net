@@ -5,12 +5,7 @@ using NServiceBus.Transport.AzureServiceBus;
 
 class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.ServiceControl.ASBAdapter.Shipping";
         var endpointConfiguration = new EndpointConfiguration("Samples.ServiceControl.ASBAdapter.Shipping");

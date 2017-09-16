@@ -8,17 +8,12 @@ using Shared;
 class Program
 {
     #region ClientInit
-    static void Main()
+    static async Task Main()
     {
         //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
         Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
-    {
         // This makes it easier to tell console windows apart
         Console.Title = "Samples.StepByStep.Client";
 

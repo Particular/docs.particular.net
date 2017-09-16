@@ -5,12 +5,7 @@ using Publisher.Contracts;
 
 class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.ConsumerDrivenContracts.Producer";
         var endpointConfiguration = new EndpointConfiguration("Samples.ConsumerDrivenContracts.Producer");

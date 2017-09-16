@@ -5,12 +5,7 @@ using NServiceBus;
 class Program
 {
     #region SubscriberInit
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.StepByStep.Subscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.StepByStep.Subscriber");

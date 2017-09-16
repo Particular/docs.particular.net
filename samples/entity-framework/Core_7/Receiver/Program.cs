@@ -9,12 +9,7 @@ using NServiceBus.Transport.SQLServer;
 
 class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesEfUow;Integrated Security=True";
         Console.Title = "Samples.EntityFrameworkUnitOfWork.Receiver";

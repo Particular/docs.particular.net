@@ -7,12 +7,7 @@ using NServiceBus.FileBasedRouting;
 class Program
 {
 
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.FileBasedRouting.Client";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";

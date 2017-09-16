@@ -11,12 +11,7 @@ using NServiceBus.Transport.SQLServer;
 
 class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.SqlNHibernate.Receiver";
         var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlNHibernate;Integrated Security=True; Max Pool Size=100";

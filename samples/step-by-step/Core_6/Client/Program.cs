@@ -6,12 +6,7 @@ using Shared;
 class Program
 {
     #region ClientInit
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         // This makes it easier to tell console windows apart
         Console.Title = "Samples.StepByStep.Client";

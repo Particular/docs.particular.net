@@ -7,12 +7,7 @@ using Raven.Client.UniqueConstraints;
 
 class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         var endpointName = "Samples.RavenDBCustomSagaFinder";
         Console.Title = endpointName;

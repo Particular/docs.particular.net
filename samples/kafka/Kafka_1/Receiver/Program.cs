@@ -5,12 +5,7 @@ using NServiceBus.Transport.Kafka;
 
 class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.Kafka.SimpleReceiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.Kafka.SimpleReceiver");

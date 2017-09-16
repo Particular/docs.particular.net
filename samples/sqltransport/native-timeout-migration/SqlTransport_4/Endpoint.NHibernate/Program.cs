@@ -7,12 +7,7 @@ class Program
 {
     const string ConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesNativeTimeoutMigration;Integrated Security=True";
 
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.SqlServer.NativeTimeoutMigration";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.NativeTimeoutMigration");

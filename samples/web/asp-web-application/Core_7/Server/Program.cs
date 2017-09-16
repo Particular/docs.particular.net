@@ -4,12 +4,7 @@ using NServiceBus;
 
 class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.AsyncPages.Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.Server");

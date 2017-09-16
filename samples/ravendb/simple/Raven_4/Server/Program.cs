@@ -5,12 +5,7 @@ using Raven.Client.Document;
 
 class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.RavenDB.Server";
         using (new RavenHost())

@@ -7,12 +7,7 @@ using NServiceBus.Persistence;
 class Program
 {
 
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.MsmqToSqlRelay.SqlRelay";
         #region sqlrelay-config

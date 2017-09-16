@@ -6,12 +6,7 @@ using NServiceBus.MessagePack;
 
 static class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.Serialization.MessagePack";
         #region config

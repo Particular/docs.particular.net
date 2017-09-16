@@ -9,12 +9,7 @@ using Environment = NHibernate.Cfg.Environment;
 class Program
 {
 
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.CustomNhMappings.Attributes";
         var nhConfiguration = new Configuration();
