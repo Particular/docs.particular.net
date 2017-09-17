@@ -78,9 +78,8 @@ sealed class ServiceEventSource :
     // For very high-frequency events it might be advantageous to raise events using WriteEventCore API.
     // This results in more efficient parameter handling, but requires explicit allocation of EventData structure and unsafe code.
     // To enable this code path, define UNSAFE conditional compilation symbol and turn on unsafe code support in project properties.
-    private const int ServiceMessageEventId = 2;
+    const int ServiceMessageEventId = 2;
     [Event(ServiceMessageEventId, Level = EventLevel.Informational, Message = "{7}")]
-    private
 #if UNSAFE
         unsafe
 #endif
@@ -115,14 +114,14 @@ sealed class ServiceEventSource :
 #endif
     }
 
-    private const int ServiceTypeRegisteredEventId = 3;
+    const int ServiceTypeRegisteredEventId = 3;
     [Event(ServiceTypeRegisteredEventId, Level = EventLevel.Informational, Message = "Service host process {0} registered service type {1}", Keywords = Keywords.ServiceInitialization)]
     public void ServiceTypeRegistered(int hostProcessId, string serviceType)
     {
         WriteEvent(ServiceTypeRegisteredEventId, hostProcessId, serviceType);
     }
 
-    private const int ServiceHostInitializationFailedEventId = 4;
+    const int ServiceHostInitializationFailedEventId = 4;
     [Event(ServiceHostInitializationFailedEventId, Level = EventLevel.Error, Message = "Service host initialization failed", Keywords = Keywords.ServiceInitialization)]
     public void ServiceHostInitializationFailed(string exception)
     {
@@ -132,14 +131,14 @@ sealed class ServiceEventSource :
     // A pair of events sharing the same name prefix with a "Start"/"Stop" suffix implicitly marks boundaries of an event tracing activity.
     // These activities can be automatically picked up by debugging and profiling tools, which can compute their execution time, child activities,
     // and other statistics.
-    private const int ServiceRequestStartEventId = 5;
+    const int ServiceRequestStartEventId = 5;
     [Event(ServiceRequestStartEventId, Level = EventLevel.Informational, Message = "Service request '{0}' started", Keywords = Keywords.Requests)]
     public void ServiceRequestStart(string requestTypeName)
     {
         WriteEvent(ServiceRequestStartEventId, requestTypeName);
     }
 
-    private const int ServiceRequestStopEventId = 6;
+    const int ServiceRequestStopEventId = 6;
     [Event(ServiceRequestStopEventId, Level = EventLevel.Informational, Message = "Service request '{0}' finished", Keywords = Keywords.Requests)]
     public void ServiceRequestStop(string requestTypeName, string exception = "")
     {
@@ -147,7 +146,7 @@ sealed class ServiceEventSource :
     }
 
 #if UNSAFE
-        private int SizeInBytes(string s)
+        int SizeInBytes(string s)
         {
             if (s == null)
             {
