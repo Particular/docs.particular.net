@@ -5,14 +5,9 @@ using ServiceControl.TransportAdapter;
 
 class Program
 {
-    static void Main()
+    static async Task Main()
     {
         Console.Title = "Samples.ServiceControl.ASBAdapter.Adapter";
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
-    {
         #region AdapterTransport
 
         var transportAdapterConfig = new TransportAdapterConfig<AzureServiceBusTransport, AzureServiceBusTransport>("ServiceControl.ASB.Adapter");

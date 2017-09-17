@@ -4,7 +4,6 @@ using NServiceBus.Persistence.MongoDB;
 
 class Program
 {
-
     static void Main()
     {
         Console.Title = "Samples.MongoDB.Server";

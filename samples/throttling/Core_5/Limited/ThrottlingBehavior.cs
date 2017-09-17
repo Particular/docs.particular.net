@@ -54,6 +54,5 @@ public class ThrottlingBehavior :
         // delay the message to the specified delivery date
         bus.Defer(deliverAt, message);
     }
-
 }
 #endregion

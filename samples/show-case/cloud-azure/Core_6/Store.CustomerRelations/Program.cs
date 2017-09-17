@@ -7,7 +7,6 @@ using Store.Messages.Events;
 
 public class Program
 {
-
     static void Main()
     {
         var config = new JobHostConfiguration();

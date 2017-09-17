@@ -50,5 +50,4 @@ public class SendAndBlockController :
         var controller = (SendAndBlockController) result.State;
         controller.ViewBag.ResponseText = Enum.GetName(typeof(ErrorCodes), result.ErrorCode);
     }
-
 }

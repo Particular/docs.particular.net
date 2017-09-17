@@ -48,5 +48,4 @@ public class MvcApplication :
         EndpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
     }
-
 }

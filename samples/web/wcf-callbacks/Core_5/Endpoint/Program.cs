@@ -4,7 +4,6 @@ using NServiceBus.Logging;
 
 static class Program
 {
-
     static void Main()
     {
         Console.Title = "Samples.WcfCallbacks.Endpoint";
@@ -40,5 +39,4 @@ static class Program
     }
 
     #endregion
-
 }

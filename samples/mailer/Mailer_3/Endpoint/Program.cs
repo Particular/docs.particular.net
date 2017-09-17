@@ -11,12 +11,7 @@ class Program
 {
     public static string DirectoryLocation = Path.Combine(Environment.CurrentDirectory, "Emails");
 
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.Mailer";
         var endpointConfiguration = new EndpointConfiguration("Samples.Mailer");

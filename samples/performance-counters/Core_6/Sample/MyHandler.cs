@@ -18,7 +18,6 @@ public class MyHandler :
         log.Info($"Hello from MyHandler. Slept for {sleepTime}ms");
         return Task.Delay(sleepTime);
     }
-
 }
 
 #endregion

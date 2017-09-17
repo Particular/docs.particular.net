@@ -3,7 +3,6 @@ using NServiceBus;
 
 partial class Program
 {
-
     static Task SendMessage(IEndpointInstance endpointInstance)
     {
         var message = new StartOrder

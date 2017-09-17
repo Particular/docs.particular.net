@@ -4,13 +4,7 @@ using NServiceBus;
 
 class Program
 {
-
-    static void Main()
-    {
-        Start().GetAwaiter().GetResult();
-    }
-
-    static async Task Start()
+    static async Task Main()
     {
         Console.Title = "Samples.PipelineHandlerTimer";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineHandlerTimer");
@@ -50,5 +44,4 @@ class Program
         var message = new Message();
         return endpointInstance.SendLocal(message);
     }
-
 }

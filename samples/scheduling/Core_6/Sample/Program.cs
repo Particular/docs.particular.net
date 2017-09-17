@@ -5,15 +5,9 @@ using NServiceBus.Logging;
 
 class Program
 {
-
     static ILog log = LogManager.GetLogger<Program>();
 
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.Scheduling";
         var endpointConfiguration = new EndpointConfiguration("Samples.Scheduling");

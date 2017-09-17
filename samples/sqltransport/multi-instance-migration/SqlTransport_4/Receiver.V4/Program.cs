@@ -8,12 +8,7 @@ class Program
 {
     const string ConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceReceiver4;Integrated Security=True;Max Pool Size=100";
 
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.SqlServer.MultiInstanceReceiver.V4";
 
@@ -41,5 +36,4 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
 }

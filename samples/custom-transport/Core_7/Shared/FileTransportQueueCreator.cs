@@ -30,7 +30,6 @@ class FileTransportQueueCreator :
         var bodiesPath = Path.Combine(fullPath, ".bodies");
         Directory.CreateDirectory(bodiesPath);
     }
-
 }
 
 #endregion

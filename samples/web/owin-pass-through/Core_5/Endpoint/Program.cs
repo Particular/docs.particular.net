@@ -7,7 +7,6 @@ using Owin;
 
 static class Program
 {
-
     static void Main()
     {
         Console.Title = "Samples.OwinPassThrough";

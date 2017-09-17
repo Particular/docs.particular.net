@@ -5,7 +5,6 @@ using NServiceBus;
 
 class CommandSender
 {
-
     public static async Task Start(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press 'E' to publish an event");
@@ -38,5 +37,4 @@ class CommandSender
         };
         return endpointInstance.Publish(myEvent);
     }
-
 }

@@ -5,12 +5,7 @@ using NServiceBus;
 
 static class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.MultipleDeserializers.ExternalNewtonsoftBsonEndpoint";
         #region configExternalNewtonsoftBson
@@ -36,5 +31,4 @@ static class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
 }

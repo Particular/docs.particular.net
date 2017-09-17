@@ -27,5 +27,4 @@ class OrderAcceptedHandler :
         };
         return context.Publish(clientBecamePreferred);
     }
-
 }

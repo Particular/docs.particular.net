@@ -6,15 +6,9 @@ using NServiceBus.MessageRouting.RoutingSlips;
 
 class Program
 {
-
     static ILog log = LogManager.GetLogger(typeof(Program));
 
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.RoutingSlips.Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.RoutingSlips.Sender");

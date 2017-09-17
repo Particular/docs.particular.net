@@ -50,5 +50,4 @@ public class OrderSagaFluent :
         MarkAsComplete();
         return Task.CompletedTask;
     }
-
 }

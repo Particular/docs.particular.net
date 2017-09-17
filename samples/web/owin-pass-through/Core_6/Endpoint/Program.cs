@@ -8,13 +8,7 @@ using Owin;
 
 static class Program
 {
-
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.OwinPassThrough";
         LogManager.Use<DefaultFactory>()
@@ -75,5 +69,4 @@ static class Program
     }
 
     #endregion
-
 }

@@ -12,14 +12,17 @@ class ProgramService :
 {
     IEndpointInstance endpointInstance;
 
-    #region windowsservice-hosting-main
-
-    static void Main()
+    static ProgramService()
     {
         //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
         Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+    }
 
+    #region windowsservice-hosting-main
+
+    static void Main()
+    {
         using (var service = new ProgramService())
         {
             if (ServiceHelper.IsService())
@@ -69,5 +72,4 @@ class ProgramService :
     }
 
     #endregion
-
 }

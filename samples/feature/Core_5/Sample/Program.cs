@@ -3,7 +3,6 @@ using NServiceBus;
 
 class Program
 {
-
     static void Main()
     {
         Console.Title = "Samples.Features";
@@ -60,5 +59,4 @@ class Program
         Console.WriteLine();
         Console.WriteLine("StartSagaMessage sent");
     }
-
 }

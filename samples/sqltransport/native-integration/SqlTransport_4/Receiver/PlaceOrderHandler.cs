@@ -12,5 +12,4 @@ public class PlaceOrderHandler :
         log.Info($"Order {message.OrderId} placed");
         return Task.CompletedTask;
     }
-
 }

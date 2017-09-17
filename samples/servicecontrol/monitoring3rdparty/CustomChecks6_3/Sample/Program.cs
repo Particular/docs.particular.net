@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
 {
-    static void Main()
+    static async Task Main()
     {
         Console.Title = "Samples.CustomChecks.Monitor3rdParty";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomChecks.Monitor3rdParty");
@@ -15,7 +16,7 @@ class Program
 
         endpointConfiguration.CustomCheckPlugin("Particular.ServiceControl");
 
-        Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
+        await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();

@@ -6,12 +6,7 @@ using NServiceBus.Persistence.Sql;
 
 partial class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "EndpointSqlServer";
 
@@ -44,5 +39,4 @@ partial class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
 }

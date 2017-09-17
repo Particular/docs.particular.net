@@ -12,5 +12,4 @@ public class CompleteOrderHandler :
         log.Info($"Received CompleteOrder with credit card number {message.CreditCard}");
         return Task.CompletedTask;
     }
-
 }

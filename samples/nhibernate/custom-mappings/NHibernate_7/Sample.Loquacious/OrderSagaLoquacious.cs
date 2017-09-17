@@ -51,5 +51,4 @@ public class OrderSagaLoquacious :
         MarkAsComplete();
         return Task.CompletedTask;
     }
-
 }

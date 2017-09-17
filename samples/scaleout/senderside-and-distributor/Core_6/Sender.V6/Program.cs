@@ -5,7 +5,7 @@ using NServiceBus;
 
 class Program
 {
-    static void Main()
+    static Task Main()
     {
         Console.Title = "Sender.V6";
 
@@ -27,7 +27,7 @@ class Program
                 return type.GetInterfaces().Contains(typeof(IMessage));
             });
 
-        Run(endpointConfiguration).GetAwaiter().GetResult();
+        return Run(endpointConfiguration);
     }
 
     static async Task Run(EndpointConfiguration endpointConfiguration)

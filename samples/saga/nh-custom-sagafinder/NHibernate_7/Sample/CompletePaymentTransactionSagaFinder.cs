@@ -17,6 +17,5 @@ class CompletePaymentTransactionSagaFinder :
             .SingleOrDefault();
         return Task.FromResult(orderSagaData);
     }
-
 }
 #endregion

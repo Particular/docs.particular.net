@@ -50,5 +50,4 @@ public class OrderSagaAttributes :
         MarkAsComplete();
         return Task.CompletedTask;
     }
-
 }

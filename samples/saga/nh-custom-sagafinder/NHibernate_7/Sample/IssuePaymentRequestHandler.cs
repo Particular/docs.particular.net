@@ -13,5 +13,4 @@ class IssuePaymentRequestHandler :
         };
         return context.SendLocal(completePayment);
     }
-
 }

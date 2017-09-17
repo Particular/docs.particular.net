@@ -7,12 +7,7 @@ using NServiceBus.Transport.SQLServer;
 
 class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.SqlServer.StoreAndForwardReceiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.StoreAndForwardReceiver");
@@ -65,5 +60,4 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
 }

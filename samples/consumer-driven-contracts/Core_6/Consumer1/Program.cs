@@ -5,12 +5,7 @@ using Subscriber1.Contracts;
 
 class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.ConsumerDrivenContracts.Consumer1";
         var endpointConfiguration = new EndpointConfiguration("Samples.ConsumerDrivenContracts.Consumer1");
@@ -33,5 +28,4 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
 }

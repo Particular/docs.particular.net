@@ -5,12 +5,7 @@ static class Program
 {
     static string serverUrl = "http://localhost:8080";
 
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.WcfCallbacks.Client";
         Console.WriteLine("Press 'E' to send a message that will respond with an enum");

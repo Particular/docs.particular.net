@@ -13,5 +13,4 @@ public class ResponseHandler :
         log.Info($"Response received from server for request with id:{message.ResponseId}");
         return Task.CompletedTask;
     }
-
 }

@@ -5,7 +5,6 @@ using Serilog;
 
 class Program
 {
-
     static void Main()
     {
         Console.Title = "Samples.Logging.SerilogSeq";

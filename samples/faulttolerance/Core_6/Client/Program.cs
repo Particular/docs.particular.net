@@ -4,13 +4,7 @@ using NServiceBus;
 
 class Program
 {
-
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.FaultTolerance.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.FaultTolerance.Client");

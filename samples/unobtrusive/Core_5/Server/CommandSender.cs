@@ -4,7 +4,6 @@ using NServiceBus;
 
 class CommandSender
 {
-
     public static void Start(IBus bus)
     {
         Console.WriteLine("Press 'E' to publish an event");
@@ -36,5 +35,4 @@ class CommandSender
         bus.Publish(myEvent);
         Console.WriteLine($"Event published, id: {eventId}");
     }
-
 }

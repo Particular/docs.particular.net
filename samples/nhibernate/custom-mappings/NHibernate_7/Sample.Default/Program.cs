@@ -7,13 +7,7 @@ using Environment = NHibernate.Cfg.Environment;
 
 class Program
 {
-
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.CustomNhMappings.Default";
         var nhConfiguration = new Configuration();
@@ -43,5 +37,4 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
 }

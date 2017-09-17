@@ -6,18 +6,12 @@ using NServiceBus;
 
 class Program
 {
-
-    static void Main()
+    static async Task Main()
     {
         //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
         Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-        Start().GetAwaiter().GetResult();
-    }
-
-    static async Task Start()
-    {
         Console.Title = "Samples.PipelineHandlerTimer";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineHandlerTimer");
         endpointConfiguration.UsePersistence<LearningPersistence>();
@@ -56,5 +50,4 @@ class Program
         var message = new Message();
         return endpointInstance.SendLocal(message);
     }
-
 }

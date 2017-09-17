@@ -6,13 +6,7 @@ using NServiceBus.Configuration.AdvancedExtensibility;
 
 class Program
 {
-
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.FairDistribution.Client";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";

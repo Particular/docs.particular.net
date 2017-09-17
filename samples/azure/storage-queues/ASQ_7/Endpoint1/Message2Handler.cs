@@ -12,5 +12,4 @@ public class Message2Handler :
         log.Info($"Received Message2: {message.Property}");
         return Task.CompletedTask;
     }
-
 }

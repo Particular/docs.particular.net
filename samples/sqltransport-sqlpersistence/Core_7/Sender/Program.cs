@@ -9,18 +9,14 @@ public static class Program
 {
     static Random random;
 
-    public static void Main()
+    public static async Task Main()
     {
         //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
         Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
         random = new Random();
-        AsyncMain().GetAwaiter().GetResult();
-    }
 
-    static async Task AsyncMain()
-    {
         Console.Title = "Samples.Sql.Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.Sql.Sender");
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -68,6 +64,4 @@ public static class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
-
 }

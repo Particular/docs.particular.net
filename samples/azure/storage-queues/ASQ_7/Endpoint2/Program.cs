@@ -6,13 +6,7 @@ using AzureStorageQueueTransport = NServiceBus.AzureStorageQueueTransport;
 
 class Program
 {
-
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.Azure.StorageQueues.Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.StorageQueues.Endpoint2");

@@ -12,12 +12,7 @@ class Program
     const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
     static readonly string[] locations = {"London", "Paris", "Oslo", "Madrid"};
 
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesEfUow;Integrated Security=True";
         Console.Title = "Samples.EntityFrameworkUnitOfWork.Sender";

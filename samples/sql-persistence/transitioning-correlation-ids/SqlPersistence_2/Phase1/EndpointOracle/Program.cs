@@ -6,12 +6,7 @@ using Oracle.ManagedDataAccess.Client;
 
 partial class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "EndpointOracle";
 
@@ -53,5 +48,4 @@ partial class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
 }

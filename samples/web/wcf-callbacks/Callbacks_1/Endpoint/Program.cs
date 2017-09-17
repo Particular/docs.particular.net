@@ -4,12 +4,7 @@ using NServiceBus;
 
 static class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.WcfCallbacks.Endpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.WcfCallbacks.Endpoint");
@@ -44,5 +39,4 @@ static class Program
     }
 
     #endregion
-
 }

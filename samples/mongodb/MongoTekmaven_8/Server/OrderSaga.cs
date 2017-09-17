@@ -48,7 +48,6 @@ public class OrderSaga :
         bus.Publish(orderCompleted);
         MarkAsComplete();
     }
-
 }
 
 #endregion

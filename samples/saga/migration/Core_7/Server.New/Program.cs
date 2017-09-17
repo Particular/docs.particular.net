@@ -8,12 +8,7 @@ using NServiceBus.Persistence.Sql;
 
 class Program
 {
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.SagaMigration.Server.New";
         var endpointConfiguration = new EndpointConfiguration("Samples.SagaMigration.Server");

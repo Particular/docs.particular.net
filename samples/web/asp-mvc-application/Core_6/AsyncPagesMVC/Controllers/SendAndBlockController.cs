@@ -52,5 +52,4 @@ public class SendAndBlockController :
         ViewBag.ResponseText = errorCode;
         return View("Index");
     }
-
 }

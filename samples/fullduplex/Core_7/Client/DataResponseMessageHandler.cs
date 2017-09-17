@@ -13,5 +13,4 @@ class DataResponseMessageHandler :
         log.Info($"Response received with description: {message.String}");
         return Task.CompletedTask;
     }
-
 }

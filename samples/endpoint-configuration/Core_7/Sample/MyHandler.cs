@@ -12,5 +12,4 @@ public class MyHandler :
         log.Info("Hello from MyHandler");
         return Task.CompletedTask;
     }
-
 }

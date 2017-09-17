@@ -5,13 +5,7 @@ using NServiceBus;
 
 class Program
 {
-
-    static void Main()
-    {
-        AsyncMain().GetAwaiter().GetResult();
-    }
-
-    static async Task AsyncMain()
+    static async Task Main()
     {
         Console.Title = "Samples.Logging.Anotar";
         var endpointConfiguration = new EndpointConfiguration("Samples.Logging.Anotar");

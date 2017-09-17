@@ -16,6 +16,5 @@ public class MyHandler :
         myService.WriteHello();
         return Task.CompletedTask;
     }
-
 }
 #endregion

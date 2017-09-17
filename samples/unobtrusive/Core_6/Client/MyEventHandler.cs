@@ -13,5 +13,4 @@ public class MyEventHandler :
         log.Info($"IMyEvent received from server with id:{message.EventId}");
         return Task.CompletedTask;
     }
-
 }

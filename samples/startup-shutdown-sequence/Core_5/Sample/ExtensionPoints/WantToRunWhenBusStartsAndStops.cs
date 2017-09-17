@@ -12,5 +12,4 @@ public class WantToRunWhenBusStartsAndStops :
     {
         Logger.WriteLine("Inside IWantToRunWhenBusStartsAndStops.Stop");
     }
-
 }
