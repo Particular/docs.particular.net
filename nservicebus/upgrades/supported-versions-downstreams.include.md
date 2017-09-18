@@ -31,7 +31,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 4.3.x     | 2017-04-05     | -                 | -                                 |
+| 4.4.x     | 2017-09-18     | -                 | -                                 |
+| 4.3.x     | 2017-04-05     | 2017-12-18        | Superseded by 4.4.x               |
 | ~~4.2.x~~ | ~~2016-11-30~~ | ~~2017-07-05~~    | ~~Superseded by 4.3.x~~           |
 | 3.5.x     | 2016-09-20     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
@@ -67,7 +68,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.4.x     | 2017-06-16     | -                 | -                                 |
-| 1.3.x     | 2017-06-02     | 2017-09-16        | Superseded by 1.4.x               |
+| ~~1.3.x~~ | ~~2017-06-02~~ | ~~2017-09-16~~    | ~~Superseded by 1.4.x~~           |
 | ~~1.2.x~~ | ~~2017-03-24~~ | ~~2017-09-02~~    | ~~Superseded by 1.3.x~~           |
 | ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 1.2.x~~           |
 
@@ -91,7 +92,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 4.2.x     | 2017-06-28     | -                 | -                                 |
 | 4.1.x     | 2016-12-14     | 2017-09-28        | Superseded by 4.2.x               |
-| ~~4.0.x~~ | ~~2016-10-11~~ | ~~2017-03-14~~    | ~~Superseded by 4.1.x~~           |
 | 3.2.x     | 2017-04-10     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 | ~~3.0.x~~ | ~~2015-05-07~~ | ~~2017-07-10~~    | ~~Superseded by 3.2.x~~           |
 
@@ -117,7 +117,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 6.0.x     | 2016-10-11     | -                 | -                                 |
+| 6.1.x     | 2017-09-15     | -                 | -                                 |
+| 6.0.x     | 2016-10-11     | 2017-12-15        | Superseded by 6.1.x               |
 | 5.0.x     | 2014-09-29     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 #### NServiceBus.Ninject
