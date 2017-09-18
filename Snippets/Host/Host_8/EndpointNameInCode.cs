@@ -2,6 +2,8 @@
 {
     using NServiceBus;
 
+
+#pragma warning disable 618
     public class EndpointNameInCode :
         IConfigureThisEndpoint
     {
@@ -12,4 +14,5 @@
         }
         #endregion
     }
+#pragma warning restore 618
 }

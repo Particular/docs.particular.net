@@ -1,6 +1,8 @@
 ﻿using NServiceBus;
 using NServiceBus.Logging;
 
+
+#pragma warning disable 618
 #region CustomHostLogging
 class CustomLogging : IConfigureThisEndpoint
 {
@@ -11,3 +13,4 @@ class CustomLogging : IConfigureThisEndpoint
 }
 
 #endregion
+#pragma warning restore 618

@@ -1,5 +1,7 @@
 ﻿using NServiceBus;
 
+
+#pragma warning disable 618
 #region EndpointNameByAttribute
 
 [EndpointName("MyEndpointName")]
@@ -14,3 +16,4 @@ public class EndpointConfigWithAttribute :
     {
     }
 }
+#pragma warning restore 618
