@@ -45,15 +45,23 @@ This adds a reference to the NServiceBus.Core assembly to ClientUI. Now we're re
 
 Now we're ready to create a [**messaging endpoint**](/nservicebus/endpoints/). A messaging endpoint (or just **endpoint**) is a logical component that's capable of sending and receiving messages. An endpoint is hosted within a process, which in this case is a simple console application, but could be a web application or other .NET process.
 
-Because of the current limitations of console applications, we need to add some boilerplate code to be able to use the `async`/`await` keywords.
+If you [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/3-ways-to-enable-c-7-1-features), you can take advantage of the [Async Main](https://blogs.msdn.microsoft.com/mazhou/2017/05/30/c-7-series-part-2-async-main/) feature and avoid some boilerplate code.
 
 In the **Program.cs** file, modify the code to look like the following:
 
 snippet: EmptyProgram
 
+{{NOTE:
+If you can't use C# 7.1 features, use this bit of code to bootstrap execution into an async context:
+
+snippet: PreCsharp7-1AsyncBoilerplate
+
+These tutorials will assume the use of C# 7.1
+}}
+
 Add the following code to your program first and then let's analyze the importance of each line.
 
-Add this code to your AsyncMain method:
+Add this code to your Main (or AsyncMain) method:
 
 snippet: AsyncMain
 
