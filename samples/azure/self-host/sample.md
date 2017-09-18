@@ -1,7 +1,7 @@
 ---
-title: Shared Hosting in Azure Cloud Services
-summary: Uses the NServiceBus Hosting Azure HostProcess to achieve shared hosting of multiple NServiceBus endpoints in an Azure instance.
-component: CloudServicesHost
+title: Self Hosting in Azure Cloud Services
+summary: Uses NServiceBus self-hosting capability to host an endpoint in an Azure instance.
+component: Core
 reviewed: 2017-06-12
 tags:
 - Azure

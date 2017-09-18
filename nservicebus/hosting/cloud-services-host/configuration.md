@@ -6,6 +6,7 @@ tags:
 reviewed: 2016-09-21
 ---
 
+include: cloudserviceshost-deprecated-warning
 
 ## Configuring for Cloud Services hosting
 
