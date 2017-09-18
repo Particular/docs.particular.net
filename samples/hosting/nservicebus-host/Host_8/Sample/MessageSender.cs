@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using NServiceBus;
 
+#pragma warning disable 618
 #region RunWhenStartsAndStops
 
 public class MessageSender :
@@ -19,3 +20,4 @@ public class MessageSender :
 }
 
 #endregion
+#pragma warning restore 618

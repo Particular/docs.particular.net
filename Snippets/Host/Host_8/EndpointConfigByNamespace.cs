@@ -3,9 +3,9 @@ namespace MyServer
 {
     using NServiceBus;
 
+#pragma warning disable 618
     public class EndpointConfigByNamespace :
-        IConfigureThisEndpoint,
-        AsA_Server
+        IConfigureThisEndpoint
     {
         // ... custom config
         #endregion
@@ -13,4 +13,5 @@ namespace MyServer
         {
         }
     }
+#pragma warning restore 618
 }

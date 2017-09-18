@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using NServiceBus;
 
+#pragma warning disable 618
 public class Startup :
     IWantToRunWhenEndpointStartsAndStops
 {
@@ -15,3 +16,4 @@ public class Startup :
         return Task.CompletedTask;
     }
 }
+#pragma warning restore 618

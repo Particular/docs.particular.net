@@ -1,5 +1,6 @@
 ﻿using NServiceBus;
 
+#pragma warning disable 618
 #region customize_nsb_host
 
 class CustomizingHost :
@@ -13,3 +14,4 @@ class CustomizingHost :
 }
 
 #endregion
+#pragma warning restore 618

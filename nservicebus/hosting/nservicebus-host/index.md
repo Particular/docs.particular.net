@@ -14,6 +14,8 @@ component: Host
 reviewed: 2017-02-28
 ---
 
+include: host-deprecated-warning
+
 The NServiceBus Host takes an opinionated approach to hosting. Endpoints using NServiceBus Host can run as windows services or console application (e.g. during development).
 
 To use the host, create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/). The package will automatically create a sample endpoint configuration and will set the `NServiceBus.Host.exe` as the endpoint's startup project.
@@ -82,17 +84,7 @@ The default callback should be overriden, if some custom code should be executed
 
 partial: roles
 
-
-## Performance Counters
-
-
-### SLA violation countdown
-
-In the NServiceBus Host the `SLA violation countdown` counter is enabled by default. But the value can be configured either by the above API or using a `EndpointSLAAttribute` on the instance of `IConfigureThisEndpoint`.
-
-snippet: enable-sla-host-attribute
-
-
+partial: slaviolation
 
 ## When Endpoint Instance Starts and Stops
 

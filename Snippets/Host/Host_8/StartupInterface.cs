@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
+#pragma warning disable 618
 #region HostStartAndStop
 public class Bootstrapper :
     IWantToRunWhenEndpointStartsAndStops
@@ -20,3 +21,4 @@ public class Bootstrapper :
     }
 }
 #endregion
+#pragma warning restore 618

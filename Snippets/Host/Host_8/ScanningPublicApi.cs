@@ -3,6 +3,7 @@
 class ScanningPublicApi
 {
 
+#pragma warning disable 618
     #region ScanningConfigurationInNSBHost
 
     public class EndpointConfig :
@@ -15,4 +16,5 @@ class ScanningPublicApi
     }
 
     #endregion
+#pragma warning restore 618
 }
