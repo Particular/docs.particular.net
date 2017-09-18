@@ -59,7 +59,7 @@ It can be cumbersome to manage these settings for multiple endpoints, so it is p
 
 snippet: RavenDBDtcSettingsByConvention
 
-INFO: It is important to dispose the RavenDB `DocumentStore` when the endpoint is shutdown. Depending on the way the endpoint is hosted there are multiple options. If the endpoint is self-hosted the `DocumentStore` can be disposed before the hosting process is shutdown; when using the NServiceBus Host and implementation of `IWantToRunWhenEndpointStartsAndStops` can be provided to hook into the shutdown process; one last option is to use a `FeatureStartupTask`.
+INFO: It is important to dispose the RavenDB `DocumentStore` when the endpoint is shut down. Depending on the way the endpoint is hosted there are multiple options. If the endpoint is self-hosted, the `DocumentStore` can be manually disposed before the hosting process is shutdown. When using the [NServiceBus Host](/nservicebus/hosting/nservicebus-host/), an implementation of [`IWantToRunWhenEndpointStartsAndStops`](/nservicebus/hosting/nservicebus-host/#when-endpoint-instance-starts-and-stops) can be provided to hook into the shutdown process. One last option is to use a [feature startup task](/nservicebus/pipeline/features.md#feature-startup-tasks).
 
 It is important to keep a few things in mind when determining a convention.
 
