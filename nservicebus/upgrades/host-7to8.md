@@ -59,7 +59,7 @@ Overriding endpoint name using the `EndpointName` attribute or `DefineEndpointNa
 
 Defining endpoint SLA via the `EndpointSLA` attribute is no longer supported. 
 
-Please install the `NServiceBus.WindowsPerformanceCounters` package and follow the [configuration instructions](/nservicebus/operations/performance-counters).
+Install the `NServiceBus.WindowsPerformanceCounters` package and follow the [configuration instructions](/nservicebus/operations/performance-counters).
 
 #### Executing custom code on start and stop
 
@@ -67,7 +67,7 @@ The host allowed custom code to run at start and stop by implementing `IWantToRu
 
 #### Profiles    
 
-Profiles allowed customization of configuration based on the environment the enpoint is running in. When custom hosting you can explicitly inspect Environment variables, command lines arguments, machine names etc. and make relevant configuration adjustments accordingly. 
+Profiles allowed endpoint configuration to be customized for different runtime environments like dev, test and prod. Self hosted endpoints can instead explictly change configuration based on environment variables, command lines arguments, machine names etc.
 
 ### Installation
 
