@@ -13,15 +13,9 @@ upgradeGuideCoreVersions:
 
 The NServiceBus will be deprecated as of Version 9 and users are recommended to switch to self hosting for new endpoints. Upgrading existing endpoints is still supported for Version 8
 
-## Incompatible with NuGet X.Y
+## Installation incompatible with NuGet
 
-NuGet no longer support packages adding files and modifying project files. This means that installing the host won't result in a runnable endpoint. Existing endpoints using the host can be upgraded without issues.
-
-
-
-## Incompatible with the new Visual Studio project system
-
-TBD: What is actally not compatible?
+NuGet no longer support packages adding source files and modifying project files. This means that installing the host won't result in a runnable endpoint. Existing endpoints using the host can be upgraded without issues.
 
 ## Migrating procedure
 
