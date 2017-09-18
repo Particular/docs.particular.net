@@ -19,7 +19,7 @@
     class StepByStep
     {
         #region AsyncMain
-        static async Task AsyncMain()
+        static async Task Main()
         {
             Console.Title = "ClientUI";
 
