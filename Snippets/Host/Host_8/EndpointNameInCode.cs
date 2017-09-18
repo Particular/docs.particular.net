@@ -2,7 +2,6 @@
 {
     using NServiceBus;
 
-
 #pragma warning disable 618
     public class EndpointNameInCode :
         IConfigureThisEndpoint

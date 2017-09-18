@@ -1,6 +1,5 @@
 ﻿using NServiceBus;
 
-
 #pragma warning disable 618
 #region EndpointNameByAttribute
 

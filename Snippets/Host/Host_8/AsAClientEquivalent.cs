@@ -13,7 +13,12 @@ public class AsAClientEquivalent
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         transport.Transactions(TransportTransactionMode.None);
 
-        endpointConfiguration.Recoverability().Delayed(cfg => cfg.NumberOfRetries(0));
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Delayed(
+            customizations: settings =>
+            {
+                settings.NumberOfRetries(0);
+            });
         endpointConfiguration.DisableFeature<TimeoutManager>();
 
         #endregion

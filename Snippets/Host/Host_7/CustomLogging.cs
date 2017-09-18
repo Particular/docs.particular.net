@@ -2,7 +2,8 @@
 using NServiceBus.Logging;
 
 #region CustomHostLogging
-class CustomLogging : IConfigureThisEndpoint
+class CustomLogging :
+    IConfigureThisEndpoint
 {
     public void Customize(EndpointConfiguration configuration)
     {

@@ -16,10 +16,15 @@
 
             endpointConfiguration.PurgeOnStartup(true);
             endpointConfiguration.DisableFeature<TimeoutManager>();
-            endpointConfiguration.UseTransport<MyTransport>()
-                .Transactions(TransportTransactionMode.None);
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            transport.Transactions(TransportTransactionMode.None);
 
-            endpointConfiguration.Recoverability().Delayed(delayed => delayed.NumberOfRetries(0));
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.Delayed(
+                customizations: delayed =>
+                {
+                    delayed.NumberOfRetries(0);
+                });
 
             #endregion
         }
