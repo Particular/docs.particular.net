@@ -59,6 +59,8 @@ It can be cumbersome to manage these settings for multiple endpoints, so it is p
 
 snippet: RavenDBDtcSettingsByConvention
 
+INFO: It is important to dispose the RavenDB `DocumentStore` when the endpoint is shutdown. Depending on the way the endpoint is hosted there are multiple options. If the endpoint is self-hosted the `DocumentStore` can be disposed before the hosting process is shutdown; when using the NServiceBus Host and implementation of `IWantToRunWhenEndpointStartsAndStops` can be provided to hook into the shutdown process; one last option is to use a `FeatureStartupTask`.
+
 It is important to keep a few things in mind when determining a convention.
 
 The string provided to DeterministicGuidBuilder will define the ResourceManagerId, and thus the identity of the endpoint. This string value must then be unique within the scope of the server. The EndpointName or LocalAddress provide attractive options as they are normally unique per server.
