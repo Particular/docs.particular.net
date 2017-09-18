@@ -15,9 +15,8 @@ The NServiceBus will be deprecated as of Version 9 and users are recommended to 
 
 ## Incompatible with NuGet X.Y
 
-NuGet no longer support packages adding files and modifying project files. This means that installing the host won't result in a runnable endpoint.
+NuGet no longer support packages adding files and modifying project files. This means that installing the host won't result in a runnable endpoint. Existing endpoints using the host can be upgraded without issues.
 
-TBD: Is it possible/should we add instructions on how to manually modify the csproj to get this working?
 
 
 ## Incompatible with the new Visual Studio project system
@@ -26,7 +25,7 @@ TBD: What is actally not compatible?
 
 ## Migrating procedure
 
-Create a new console application project. According to the following guidelines LINK TO SAMPLE
+Switching to self hosting is as easy as creating a new console project and moving relevant code and config over. See the [self hosting sample](/samples/hosting/self-hosting/sample.md) for details.
 
 ### Configuration
 
