@@ -26,15 +26,15 @@ TBD: What is actally not compatible?
 
 ## Migrating procedure
 
-Create a new console application project. According to the following guidelined LINK TO SAMPLE
+Create a new console application project. According to the following guidelines LINK TO SAMPLE
 
 ### Configuration
 
-Self hosting gives access to the same configuration options. See below for migration of host specific configuration API's.
+Self hosting gives access to the same configuration options as provided by the host. See below for migration of host specific configuration API's.
 
 #### Custom endpoint configuration
 
-Configuration code in `IConfigureThisEndpoint.Customize` can be transfered as is to the configuration of the self hosted endpoint.
+Code in `IConfigureThisEndpoint.Customize` can be transfered as is to the configuration of the self hosted endpoint.
 
 #### Roles
 
@@ -49,7 +49,7 @@ The `UsingTransport<MyTransport>` role can be replaced with the equivalent `Endp
 
 #### Endpoint name
 
-The host defaults the endpoint name to the namespace of the type implementing `IConfigureThisEndpoint`. Just pass that value to the name to the constructor of `EndpointConfiguration`.
+The host defaults endpoint name to the namespace of the type implementing `IConfigureThisEndpoint`. When self hosting that name should be passed to the constructor of `EndpointConfiguration`.
 
 
 #### Overriding endpoint name
@@ -62,7 +62,7 @@ Defining endpoint SLA via
 
 snippet: 7to8EndpointSLABefore
 
-is no longer supported. Please install the `NServiceBus.WindowsPerformanceCounters` package using the [following instructions](/nservicebus/operations/performance-counters).
+is no longer supported. Please install the `NServiceBus.WindowsPerformanceCounters` package and follow the [configuration instructions](/nservicebus/operations/performance-counters).
 
 #### Executing custom code on start and stop
 
