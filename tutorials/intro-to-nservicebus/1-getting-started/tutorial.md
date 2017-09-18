@@ -51,19 +51,13 @@ In the **Program.cs** file, modify the code to look like the following:
 
 snippet: EmptyProgram
 
-{{NOTE:
-If you can't use C# 7.1 features, use this bit of code to bootstrap execution into an async context:
-
-snippet: PreCsharp7-1AsyncBoilerplate
-
-These tutorials will assume the use of C# 7.1
-}}
+NOTE: If you can't use C# 7.1 features, you can [bootstrap an AsyncMain method](bootstrapping-async-main.md) using `.GetAwaiter().GetResult()`. This tutorial will assume the use of C# 7.1.
 
 Add the following code to your program first and then let's analyze the importance of each line.
 
-Add this code to your Main (or AsyncMain) method:
+Add this code to your Main (or AsyncMain if not using C# 7.1) method:
 
-snippet: AsyncMain
+snippet: Main
 
 Now, let's go line-by-line and find out exactly what each step is doing.
 
