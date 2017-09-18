@@ -25,7 +25,7 @@ TBD: What is actally not compatible?
 
 ## Migrating procedure
 
-Switching to self hosting is as easy as creating a new console project and moving relevant code and config over. See the [self hosting sample](/samples/hosting/self-hosting/sample.md) for details.
+Switching to self hosting is as easy as creating a new console project and moving relevant code and config over. See the [self hosting sample](/samples/hosting/self-hosting/) for details.
 
 ### Configuration
 
@@ -59,7 +59,7 @@ Overriding endpoint name using the `EndpointName` attribute or `DefineEndpointNa
 
 Defining endpoint SLA via the `EndpointSLA` attribute is no longer supported. 
 
-Install the `NServiceBus.WindowsPerformanceCounters` package and follow the [configuration instructions](/nservicebus/operations/performance-counters).
+Install the `NServiceBus.WindowsPerformanceCounters` package and follow the [configuration instructions](/nservicebus/operations/performance-counters.md).
 
 #### Executing custom code on start and stop
 
@@ -71,6 +71,6 @@ Profiles allowed endpoint configuration to be customized for different runtime e
 
 ### Installation
 
-See the instructions on [how to use `SC.exe` to install self hosted windows services](/nservicebus/hosting/windows-service#installation).
+See the instructions on [how to use `SC.exe` to install self hosted windows services](/nservicebus/hosting/windows-service.md#installation).
 
-Details on how to run custom installers can be found in the [installation documentation](/nservicebus/operations/installers).
+Details on how to run custom installers can be found in the [installation documentation](/nservicebus/operations/installers.md).
