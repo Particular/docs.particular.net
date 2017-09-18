@@ -118,6 +118,8 @@
         Title: Version 1 to 1.1
     - Title: NServiceBus Host
       Articles:
+      - Url: nservicebus/upgrades/host-7to8
+        Title: Version 7 to 8
       - Url: nservicebus/upgrades/host-6to7
         Title: Version 6 to 7
     - Title: NServiceBus.Azure deprecated
