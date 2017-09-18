@@ -29,6 +29,8 @@ Specific versions of RavenDB Persistence are tied to a major version of NService
 |     5.x     |        3.0.x        |       3.0      |
 |     5.x     |         2.x         |       2.5      |
 
+See the [NServiceBus Packages Supported Versions](/nservicebus/upgrades/supported-versions.md#persistence-packages-nservicebus-ravendb) to see the support details for each version of RavenDB Persistence.
+
 
 ## Connection options for RavenDB
 
