@@ -5,12 +5,12 @@ using log4net.Layout;
 using NServiceBus;
 using NServiceBus.Logging;
 
+#pragma warning disable 618
 [EndpointName("Samples.Logging.HostCustom")]
 #region Config
 
 public class EndpointConfig :
-    IConfigureThisEndpoint,
-    AsA_Server
+    IConfigureThisEndpoint
 {
     public EndpointConfig()
     {
@@ -37,3 +37,4 @@ public class EndpointConfig :
         endpointConfiguration.UseTransport<LearningTransport>();
     }
 }
+#pragma warning restore 618
