@@ -148,6 +148,8 @@
       Articles:
       - Url: nservicebus/upgrades/externalize-perfcounters
         Title: Migrate To External Nuget
+      - Url: nservicebus/upgrades/encryption-1to2
+        Title: Version 1 to 2
     - Title: Nsb6 ServiceControl Plugins
       Articles:
       - Url: nservicebus/upgrades/nsb6-sc-plugins-1to2
