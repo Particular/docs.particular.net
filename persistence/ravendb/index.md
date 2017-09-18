@@ -16,6 +16,20 @@ include: dtc-warning
 Uses the [RavenDB document database](https://ravendb.net/) for storage.
 
 
+## RavenDB versions
+
+Specific versions of RavenDB Persistence are tied to a major version of NServiceBus and also designed to work with a specific version of the RavenDB client library. When releasing a new major version of NServiceBus, the corresponding RavenDB Persistence release will use the last supported version of RavenDB, so that it is never necessary to upgrade both NServiceBus and RavenDB at the same time.
+
+| NServiceBus | RavenDB Persistence | RavenDB Client |
+|:-----------:|:-------------------:|:--------------:|
+|     7.x     |        5.0.x        |       3.5      |
+|     6.x     |        4.1.x        |       3.5      |
+|     6.x     |        4.0.x        |       3.0      |
+|     5.x     |        3.2.x        |       3.5      |
+|     5.x     |        3.0.x        |       3.0      |
+|     5.x     |         2.x         |       2.5      |
+
+
 ## Connection options for RavenDB
 
 There are a variety of options for configuring the connection to a RavenDB Server. See [RavenDB Connection Options](connection.md) for more details.
