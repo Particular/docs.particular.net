@@ -11,4 +11,7 @@
     <PackageReference Include="Serilog.Sinks.ColoredConsole" Version="3.*" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="3.*" />
   </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
 </Project>
