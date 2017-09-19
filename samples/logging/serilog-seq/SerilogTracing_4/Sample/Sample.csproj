@@ -15,5 +15,6 @@
     <PackageReference Include="Serilog.Sinks.PeriodicBatching" Version="2.*" />
     <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.*" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="3.*" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
 </Project>
