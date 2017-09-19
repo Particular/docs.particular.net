@@ -15,6 +15,10 @@ Since these messages can contain valuable business data, it is important to moni
 
 This sample shows how to use a `Custom Check` to monitor the dead letter queue. The custom check runs once every minute. If there are no messages in the dead letter queue then the custom check reports success. Otherwise, the custom check reports failure and includes the number of messages in the DLQ.
 
+This is what the CustomCheck will look like in ServicePulse.
+
+![CustomCheck reported in ServicePulse](CustomCheckInServicePulse.png)
+
 
 ## Prerequisites
 
