@@ -29,6 +29,17 @@ Delayed messages table and container names can be overridden with a custom name:
 snippet: delayed-delivery-override-name
 
 
+### Disabling delayed delivery
+
+Delayed delivery can be turned off to disable unnecessary Azure Storage table polling. Delayed delivery should **not** be turned off if any of the following features are required:
+
+- Deferred messages
+- Saga timeouts
+- Delayed retries
+
+snippet: delayed-delivery-disabled
+
+
 ## Backwards compatibility
 
 When upgrading to a version of the transport that supports delayed delivery natively, it is safe to operate a combination of native-delay and non-native-delay endpoints at the same time. Endpoints supporting native delayed delivery can send delayed messages to endpoints that are not yet aware of the native delay infrastructure. These endpoints can continue to receive delayed messages from non-native endpoints as well.
