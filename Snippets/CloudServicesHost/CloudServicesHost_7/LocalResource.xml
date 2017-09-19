@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!-- startcode LocalResource -->
-<WorkerRole name="VideoStore.Host" vmsize="Small">
+<WorkerRole name="VideoStore.Host"
+            vmsize="Small">
   <LocalResources>
-    <LocalStorage name="endpoints" cleanOnRoleRecycle="true" sizeInMB="1000" />
+    <LocalStorage name="endpoints"
+                  cleanOnRoleRecycle="true"
+                  sizeInMB="1000" />
   </LocalResources>
 </WorkerRole>
 <!-- endcode -->

@@ -12,19 +12,20 @@
             #region DefineCriticalErrorActionForAzureHost
 
             // Configuring how NServiceBus handles critical errors
-            busConfiguration.DefineCriticalErrorAction((message, exception) =>
-            {
-                var output = $"Critical exception: '{message}'";
-                log.Error(output, exception);
-                if (Environment.UserInteractive)
+            busConfiguration.DefineCriticalErrorAction(
+                onCriticalError: (message, exception) =>
                 {
-                    // so that user can see on their screen the problem
-                    Thread.Sleep(10000);
-                }
+                    var output = $"Critical exception: '{message}'";
+                    log.Error(output, exception);
+                    if (Environment.UserInteractive)
+                    {
+                        // so that user can see on their screen the problem
+                        Thread.Sleep(10000);
+                    }
 
-                var fatalMessage = $"NServiceBus critical error:\n{message}\nShutting down.";
-                Environment.FailFast(fatalMessage, exception);
-            });
+                    var fatalMessage = $"Critical error:\n{message}\nShutting down.";
+                    Environment.FailFast(fatalMessage, exception);
+                });
 
             #endregion
         }

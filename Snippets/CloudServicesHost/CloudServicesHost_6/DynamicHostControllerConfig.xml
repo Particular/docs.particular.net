@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!-- startcode DynamicHostControllerConfig -->
-<WorkerRole name="VideoStore.Host" vmsize="Small">
+<WorkerRole name="VideoStore.Host"
+            vmsize="Small">
   <ConfigurationSettings>
     <Setting name="DynamicHostControllerConfig.ConnectionString" />
   </ConfigurationSettings>

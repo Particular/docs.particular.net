@@ -1,11 +1,12 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudServicesHost_6", "CloudServicesHost_6\CloudServicesHost_6.csproj", "{C328B47D-B582-47AA-BD0C-A6769A28F079}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudServicesHost_6", "CloudServicesHost_6\CloudServicesHost_6.csproj", "{C328B47D-B582-47AA-BD0C-A6769A28F079}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudServicesHost_7", "CloudServicesHost_7\CloudServicesHost_7.csproj", "{AA9AD22E-FB8C-4AB4-AD09-D43B3260BB6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudServicesHost_7", "CloudServicesHost_7\CloudServicesHost_7.csproj", "{AA9AD22E-FB8C-4AB4-AD09-D43B3260BB6A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudServicesHost_8", "CloudServicesHost_8\CloudServicesHost_8.csproj", "{8BC068F0-831B-4D8F-B9F5-A67B1435FEB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,8 +17,13 @@ Global
 		{C328B47D-B582-47AA-BD0C-A6769A28F079}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA9AD22E-FB8C-4AB4-AD09-D43B3260BB6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA9AD22E-FB8C-4AB4-AD09-D43B3260BB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BC068F0-831B-4D8F-B9F5-A67B1435FEB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BC068F0-831B-4D8F-B9F5-A67B1435FEB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {803DC645-D594-43FA-AE8A-F19BDBCF0F52}
 	EndGlobalSection
 EndGlobal
