@@ -28,7 +28,7 @@ snippet: AzureStorageQueueSanitization
 
 ## Serialization is mandatory
 
-In previous versions, the transport was setting the default serialization. In version 8 and above, the transport is no longer sets the default serialization. Instead, it should be configured. 
+In Versions 7 and below, the transport was setting the default serialization. In Versions 8 and above, the transport is no longer sets the default serialization. Instead, it should be configured. 
 
 For backwards compatibility, `NServiceBus.Newtonsoft.Json` serializer should be used.
 
