@@ -15,15 +15,12 @@ The NServiceBus Azure Host will be deprecated as of Version 9 and users are reco
 
 ## Incompatible with NuGet 4 and higher
 
-NuGet no longer support packages adding files and modifying project files. This means that installing the host won't result in a runnable endpoint.
+NuGet no longer support packages adding source files and modifying project files. This means that installing the host won't result in a runnable endpoint. Existing endpoints using the host can be upgraded without issues.
 
-## Incompatible with the new Visual Studio project system
-
-TBD: What is actally not compatible?
 
 ## Migrating procedure
 
-Create a new console application project. According to the following guidelined LINK TO SAMPLE
+See the [self hosting sample](/samples/hosting/self-hosting/) for details.
 
 ### Configuration
 
