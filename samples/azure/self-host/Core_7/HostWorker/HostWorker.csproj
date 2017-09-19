@@ -15,7 +15,7 @@
     <RoleType>Worker</RoleType>
     <TargetFrameworkProfile />
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>    
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,7 +50,7 @@
     <PackageReference Include="System.Spatial" Version="5.*" />
     <PackageReference Include="Unofficial.Microsoft.WindowsAzure.Diagnostics" Version="2.*" />
     <PackageReference Include="Unofficial.Microsoft.WindowsAzure.ServiceRuntime" Version="2.*" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.4.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncLazy.cs" />
