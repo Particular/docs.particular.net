@@ -26,7 +26,7 @@ By default, storage table and storage container names are constructed using nami
 
 Delayed messages table and container names can be overridden with a custom name:
 
-snippet: delayed-delivery-override-name
+partial: disabling
 
 
 ### Disabling delayed delivery
