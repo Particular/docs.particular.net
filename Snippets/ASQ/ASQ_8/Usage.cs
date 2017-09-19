@@ -80,6 +80,15 @@ class Usage
         #endregion
     }
 
+    void SetSerialization(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzureStorageQueueSerialization
+
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+
+        #endregion
+    }
+
     // Reference NServiceBus.Host instead of NServiceBus.Hosting.Azure as the usage is the same
     // This prevents Azure storage library conflicts as the libraries are being updated
 

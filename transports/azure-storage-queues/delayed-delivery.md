@@ -8,7 +8,7 @@ related:
 - persistence
 - persistence/azure-storage
 - persistence/azure-storage/performance-tuning
-reviewed: 2017-07-17
+reviewed: 2017-09-18
 ---
 
 
@@ -28,6 +28,7 @@ Delayed messages table and container names can be overridden with a custom name:
 
 snippet: delayed-delivery-override-name
 
+partial: disabling
 
 ## Backwards compatibility
 

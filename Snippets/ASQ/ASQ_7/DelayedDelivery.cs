@@ -24,6 +24,4 @@ class DelayedDelivery
 
         #endregion
     }
-
-
 }
