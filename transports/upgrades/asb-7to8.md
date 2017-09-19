@@ -44,3 +44,5 @@ snippet: 7to8_asb-outgoing-message-convention
 In Versions 7 and below, the transport was setting the default serialization. In Versions 8 and above, the transport is no longer sets the default serialization. Instead, it should be configured. 
 
 For backwards compatibility, `NServiceBus.Newtonsoft.Json` serializer should be used.
+
+snippet: asb-serializer
