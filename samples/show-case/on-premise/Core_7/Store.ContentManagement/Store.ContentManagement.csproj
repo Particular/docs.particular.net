@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Condition=" $(BundledNETCoreAppPackageVersion.StartsWith('2.')) ">
+    <TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ! $(BundledNETCoreAppPackageVersion.StartsWith('2.'))">
+    <TargetFramework>net461</TargetFramework>
+  </PropertyGroup>
+
   <PropertyGroup>
-    <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
     <ApplicationManifest>app.manifest</ApplicationManifest>
