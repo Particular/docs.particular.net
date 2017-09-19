@@ -84,7 +84,6 @@ class Usage
     {
         #region AzureStorageQueueSerialization
 
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
         #endregion
