@@ -13,11 +13,11 @@ class Program
         Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-        Console.Title = "Samples.Azure.StoragePersistence.Server";
+        Console.Title = "Samples-Azure-StoragePersistence-Server";
 
         #region config
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.StoragePersistence.Server");
+        var endpointConfiguration = new EndpointConfiguration("Samples-Azure-StoragePersistence-Server");
         var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
         persistence.ConnectionString("UseDevelopmentStorage=true");
 
@@ -32,7 +32,6 @@ class Program
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("UseDevelopmentStorage=true");
         transport.DelayedDelivery().DisableTimeoutManager();
-        transport.SanitizeQueueNamesWith(name => name.Replace(".", "-"));
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
