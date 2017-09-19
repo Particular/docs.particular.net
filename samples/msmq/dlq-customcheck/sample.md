@@ -17,7 +17,7 @@ This sample shows how to use a `Custom Check` to monitor the dead letter queue. 
 
 This is what the CustomCheck will look like in ServicePulse.
 
-![CustomCheck reported in ServicePulse](CustomCheckInServicePulse.png)
+![CustomCheck reported in ServicePulse](screenshot.png)
 
 
 ## Prerequisites
