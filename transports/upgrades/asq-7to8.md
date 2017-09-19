@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Queues Transport Upgrade Version 7 to 8
 summary: Instructions on how to upgrade Azure Storage Queues Transport Version 7 to 8.
-reviewed: 2017-09-07
+reviewed: 2017-09-18
 component: ASQ
 related:
 - transports/azure-storage-queues
