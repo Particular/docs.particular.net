@@ -38,3 +38,11 @@ Due to complexity, and resultant risk, of implementation, the API to specify how
 snippet: 7to8_asb-incoming-message-convention
 
 snippet: 7to8_asb-outgoing-message-convention
+
+## Serialization is mandatory
+
+In Versions 7 and below, the transport was setting the default serialization. In Versions 8 and above, the transport is no longer sets the default serialization. Instead, it should be configured. 
+
+For backwards compatibility, `NServiceBus.Newtonsoft.Json` serializer should be used.
+
+snippet: asb-serializer
