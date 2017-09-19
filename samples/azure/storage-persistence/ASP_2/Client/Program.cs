@@ -24,6 +24,7 @@ class Program
         transport.SanitizeQueueNamesWith(name => name.Replace(".", "-"));
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(StartOrder), "Samples.Azure.StoragePersistence.Server");
+        routing.RegisterPublisher(typeof(OrderCompleted), "Samples.Azure.StoragePersistence.Server");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
