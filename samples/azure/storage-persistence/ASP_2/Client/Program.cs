@@ -12,8 +12,8 @@ class Program
         Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-        Console.Title = "Samples.Azure.StoragePersistence.Client";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.StoragePersistence.Client");
+        Console.Title = "Samples-Azure-StoragePersistence-Client";
+        var endpointConfiguration = new EndpointConfiguration("Samples-Azure-StoragePersistence-Client");
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -21,10 +21,9 @@ class Program
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("UseDevelopmentStorage=true");
         transport.DelayedDelivery().DisableTimeoutManager();
-        transport.SanitizeQueueNamesWith(name => name.Replace(".", "-"));
         var routing = transport.Routing();
-        routing.RouteToEndpoint(typeof(StartOrder), "Samples.Azure.StoragePersistence.Server");
-        routing.RegisterPublisher(typeof(OrderCompleted), "Samples.Azure.StoragePersistence.Server");
+        routing.RouteToEndpoint(typeof(StartOrder), "Samples-Azure-StoragePersistence-Server");
+        routing.RegisterPublisher(typeof(OrderCompleted), "Samples-Azure-StoragePersistence-Server");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
