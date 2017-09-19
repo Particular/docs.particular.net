@@ -5,6 +5,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ServiceControl.TransportAdapter" Version="1.*" />
+    <PackageReference Include="ServiceControl.TransportAdapter" Version="2.0.0-*" />
   </ItemGroup>
 </Project>

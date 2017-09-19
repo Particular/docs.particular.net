@@ -1,9 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCTransportAdapter_1", "SCTransportAdapter_1\SCTransportAdapter_1.csproj", "{7DBB1E57-F928-43B7-B6A3-0A46CE21B02B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SCTransportAdapter_1", "SCTransportAdapter_1\SCTransportAdapter_1.csproj", "{7DBB1E57-F928-43B7-B6A3-0A46CE21B02B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SCTransportAdapter_2", "SCTransportAdapter_2\SCTransportAdapter_2.csproj", "{F7F0B797-94FD-4A90-9E59-D9B4396C1B7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,8 +13,13 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7DBB1E57-F928-43B7-B6A3-0A46CE21B02B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DBB1E57-F928-43B7-B6A3-0A46CE21B02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F0B797-94FD-4A90-9E59-D9B4396C1B7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F0B797-94FD-4A90-9E59-D9B4396C1B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA5C79A3-27E1-432C-847B-21D161B56A34}
 	EndGlobalSection
 EndGlobal
