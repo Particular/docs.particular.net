@@ -24,3 +24,12 @@ In previous versions, the transport was responsible for sanitization of the queu
 In Versions 8 and above, the transport is no longer performing sanitization by default. Instead, sanitization logic can be [registered](/transports/azure-storage-queues/sanitization.md).
 
 snippet: AzureStorageQueueSanitization
+
+
+## Serialization is mandatory
+
+In previous versions, the transport was setting the default serialization. In version 8 and above, the transport is no longer sets the default serialization. Instead, it should be configured. 
+
+For backwards compatibility, `NServiceBus.Newtonsoft.Json` serializer should be used.
+
+snippet: AzureStorageQueueSerialization
