@@ -59,7 +59,7 @@ Hangfire will accept any lambda expression as a job definition.
 
 The expression is serialized, stored and scheduled for execution by the `BackgroundJobServer` in Hangfire.
 
-The schedule is set using [Cron](https://en.wikipedia.org/wiki/Cron) syntax through the `Cron` class. In this sample the job scheduled to run every minute.
+The schedule is set using [Cron](https://en.wikipedia.org/wiki/Cron) syntax through the `Cron` class. In this sample the job gets scheduled to run every minute.
 
 snippet: scheduleJob
 
