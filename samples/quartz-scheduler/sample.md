@@ -72,7 +72,7 @@ The Quartz scheduler should be shutdown when the endpoint is shutdown.
 
 snippet: shutdown
 
-As such for cleanup purpose either a static variable may need to be kept or the shutdown done as part of the container cleanup.
+For cleanup purpose either a static variable may need to be kept or the shutdown done as part of the container cleanup.
 
 
 ## Further information on Quartz
