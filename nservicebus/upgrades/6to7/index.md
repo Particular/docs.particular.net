@@ -235,3 +235,8 @@ When running on .NET Core, a connection string named `NServiceBus/Transport` wil
 When running on the .NET Framework, the `NServiceBus/Transport` connection string will continue to function as per previous version, however a warning will be logged indicating that it should be explicitly configured instead.
 
 snippet: 6to7ConnectionStrings
+
+
+## Installers
+
+NServiceBus Version 7 will only run installers when explicitly enabled via the `endpointConfiguration.EnableInstallers()` API. In previous versions, installers are automatically run when starting the endpoint with a debugger attached, this behavior has been removed in Version 7. Therefore, the `endpointConfiguration.DisableInstallers()` API has been obsoleted and is no longer required.
