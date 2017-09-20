@@ -18,7 +18,7 @@ Note: The approach used in this sample can mitigate some of the architectural dr
 ## Running the project
 
  1. Start both the Scheduler and Receiver projects.
- 1. At startup Scheduler will schedule a message send to Receiver every minute.
+ 1. At startup Scheduler will schedule sending a message to Receiver every minute.
  1. Receiver will handle the message.
 
 
@@ -26,7 +26,7 @@ Note: The approach used in this sample can mitigate some of the architectural dr
 
 ### Endpoint Helper
 
-A helper to make the `IEndpointInstance` created by NServiceBus available inside Hangfire jobs. Implemented as a static property in this sample.
+A helper to make the `IEndpointInstance` created by NServiceBus available inside Hangfire jobs. In this sample it is implemented as a static property.
 
 snippet: EndpointInstance
 
@@ -50,7 +50,8 @@ This sample passes in an expression pointing to the static `Run` method in `Send
 
 snippet: SendMessageJob
 
-Note `EndpointHelper` is used by the job to get access to the `IEndpointInstance` .
+Note that the `EndpointHelper` is used by the job to get access to the `IEndpointInstance` .
+
 
 ### Schedule a job
 
@@ -58,7 +59,7 @@ Hangfire will accept any lambda expression as a job definition.
 
 The expression is serialized, stored and scheduled for execution by the `BackgroundJobServer` in Hangfire.
 
-The schedule is set using [Cron](https://en.wikipedia.org/wiki/Cron) syntax through the helper 'Cron' class. This sample is scheduled to run every minute.
+The schedule is set using [Cron](https://en.wikipedia.org/wiki/Cron) syntax through the `Cron` class. In this sample the job scheduled to run every minute.
 
 snippet: scheduleJob
 
@@ -74,16 +75,16 @@ For cleanup purpose either a static variable may need to be kept or the shutdown
 
 ### Logging
 
-Hangfire uses [LibLog](https://github.com/damianh/LibLog). Since LibLog support the detection and utilization of [Serilog](https://serilog.net/), this sample use the [NServiceBus Serilog integration](/nservicebus/logging/serilog.md)
+Hangfire uses [LibLog](https://github.com/damianh/LibLog). Since LibLog supports the detection and utilization of [Serilog](https://serilog.net/), this sample uses the [NServiceBus Serilog integration](/nservicebus/logging/serilog.md)
 
 snippet: serilog
 
-LibLog [supports many other common logging libraries](https://github.com/damianh/LibLog/wiki#transparent-logging-support). Or Hangfire can be configured to use a custom logger. See [Adding logging in Hangfire](http://docs.hangfire.io/en/latest/configuration/configuring-logging.html).
+LibLog [supports many other common logging libraries](https://github.com/damianh/LibLog/wiki#transparent-logging-support). Hangfire can also be configured to use a custom logger. See [Adding logging in Hangfire](http://docs.hangfire.io/en/latest/configuration/configuring-logging.html) article for more details.
 
 
 ## Scale Out
 
-When using the approach in the sample, it is important to note that there is an instance of the Hangfire scheduler running in every endpoint instance. So if an endpoint is [scaled out](/transports/scale-out.md) the configured jobs will be executed in each of those running instances. A persistent [job storage](http://docs.hangfire.io/en/latest/configuration/index.html) can help manage the Hangfire scheduler shared state including jobs, triggers, calendars, etc.
+Note that in this sample an instance of the Hangfire scheduler is configured to run in every endpoint's instance. If an endpoint is [scaled out](/transports/scale-out.md) then the configured jobs will be executed by each of the running instances. A persistent [job storage](http://docs.hangfire.io/en/latest/configuration/index.html) can help  to manage the Hangfire scheduler shared state, including jobs, triggers, calendars, etc.
 
 
 ## Further information on Hangfire
