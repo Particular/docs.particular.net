@@ -22,3 +22,6 @@ Note that the default queue name, `NServiceBus.Subscriptions`, is overriden to a
 ### Configuration
 
 snippet: ConfigureMsmqPersistenceEndpoint
+
+
+NOTE: MSMQ Persistence only supports subscription storage so another storage is needed for Timeouts since MSMQ doesn't have native timeout support.
