@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
+#region SendMessageJob
 namespace Scheduler
 {
     public class SendMessageJob
@@ -11,3 +12,4 @@ namespace Scheduler
         }
     }
 }
+#endregion
