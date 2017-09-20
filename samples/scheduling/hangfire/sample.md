@@ -12,7 +12,8 @@ This sample illustrates the use of [Hangfire](https://www.hangfire.io/) to send 
 > Hangfire - An easy way to perform background processing in .NET and .NET Core applications. Hangfire is an open-source framework that helps you to create, process and manage your background jobs.
 
 
-Note: The approach used in this sample can mitigate some of the architectural drawbacks of the [NServiceBus Scheduler](/nservicebus/scheduling/). The NServiceBus scheduler is built on top of the [Timeout Manager](/nservicebus/messaging/timeout-manager.md) which leverages the queuing system to trigger scheduled actions. Under heavy load, there may be some disparity between the expected time of a scheduled action and actual execution time due to the delay between timeout messages being generated and processed.
+
+include: scheduler-drawbacks
 
 
 ## Running the project
