@@ -5,7 +5,6 @@ using Hangfire.MemoryStorage;
 using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Serilog;
-using Scheduler;
 using Serilog;
 
 class Program
@@ -33,7 +32,8 @@ class Program
         // store the endpointInstance in a static helper class
         EndpointHelper.Instance = endpointInstance;
 
-        //use in memory storage. Production scenarios should use more robust alternatives: SqlServer, Msmq, Redis etc
+        // use in memory storage. Production should use more robust alternatives:
+        // SqlServer, Msmq, Redis etc
         GlobalConfiguration.Configuration.UseMemoryStorage();
 
         // create and start scheduler instance
@@ -42,10 +42,10 @@ class Program
         #endregion
 
         #region scheduleJob
-        
-        // Tell Hangfire to schedule the job and trigger every minute 
+
+        // Tell Hangfire to schedule the job and trigger every minute
         RecurringJob.AddOrUpdate("myJob", () => SendMessageJob.Run(), Cron.Minutely);
-        
+
         #endregion
 
         Console.WriteLine("Press any key to exit");

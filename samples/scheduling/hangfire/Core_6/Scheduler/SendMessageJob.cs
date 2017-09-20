@@ -2,14 +2,12 @@
 using NServiceBus;
 
 #region SendMessageJob
-namespace Scheduler
+public static class SendMessageJob
 {
-    public class SendMessageJob
+    public static Task Run()
     {
-        public static Task Run()
-        {
-            return EndpointHelper.Instance.Send("Samples.HangfireScheduler.Receiver", new MyMessage());
-        }
+        var endpoint = EndpointHelper.Instance;
+        return endpoint.Send("Samples.HangfireScheduler.Receiver", new MyMessage());
     }
 }
 #endregion

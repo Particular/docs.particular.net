@@ -13,7 +13,7 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
-        Console.WriteLine("Waiting for messages from the Sender");
+        Console.WriteLine("Waiting for messages from the Scheduler");
         Console.ReadKey();
         await endpointInstance.Stop()
             .ConfigureAwait(false);
