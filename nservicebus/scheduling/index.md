@@ -11,7 +11,19 @@ reviewed: 2017-02-13
 
 The Scheduler is a lightweight/non-durable API that helps schedule a task that needs to be executed repeatedly based on a specified interval. The scheduling infrastructure leverages the approach of reliable messaging with the NServiceBus core functionality. This allows scheduling to include features such as built in retries and forwarding to the error queue.
 
-WARNING: Scheduling a task depends on [delayed delivery](/nservicebus/messaging/delayed-delivery.md). If the delayed delivery operation fails, the schedule will be interrupted and a `ScheduledTask` message will be forwarded to the error queue.
+{{WARNING:
+
+Points to consider when using the schedule:
+
+ * Scheduling a task depends on [delayed delivery](/nservicebus/messaging/delayed-delivery.md). If the delayed delivery operation fails, the schedule will be interrupted and a `ScheduledTask` message will be forwarded to the error queue.
+ * The scheduler leverages the queuing system to trigger scheduled actions. Under heavy load there may be some disparity between the expected time of a scheduled action and actual execution time due to the delay between timeout messages being generated and processed.
+
+Alternatives to the Scheduler:
+
+ * Using a [.net Timer](https://msdn.microsoft.com/en-us/library/system.threading.timer.aspx).
+ * Using [Quartz.NET](https://www.quartz-scheduler.net/). See [Quartz.NET Sample](/samples/scheduling/quartz/).
+
+}}
 
 
 ## How the scheduler works
