@@ -44,7 +44,7 @@ See the upgrade guide for more details on [using the new interface](/nservicebus
 
 ### Using [AzureCloudService Host](/nservicebus/hosting/cloud-services-host/)
 
-See the upgrade guide for more details on [using the new interface](/nservicebus/upgrades/acs-host-6to7.md) provided by the host.
+See the upgrade guide for more details on [using the new interface](/nservicebus/hosting/cloud-services-host/acs-host-6to7.md) provided by the host.
 
 
 ## Endpoint Name helper
