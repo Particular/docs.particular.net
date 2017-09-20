@@ -5,6 +5,7 @@ reviewed: 2017-09-12
 component: CloudServicesHost
 related:
  - nservicebus/upgrades/6to7
+ - samples/azure/self-host
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
@@ -20,7 +21,7 @@ NuGet no longer support packages adding source files and modifying project files
 
 ## Migrating procedure
 
-See the [self hosting sample](/samples/hosting/self-hosting/) for details.
+See the [self hosting sample](/samples/azure/self-host/) for details.
 
 ### Configuration
 
