@@ -1,1 +1,0 @@
-EndpointVersion1\EndpointVersion1.Core.csproj
