@@ -10,20 +10,6 @@ redirects:
 
 When building a system using NServiceBus that is deployed on auto-scaled EC2 instances, using SQS as a transport provides the least amount of friction in terms of development and operations.
 
-
-## AWS Auto-Scaling Doesn't Play Nice With Local MSMQ
-
-Consider the following idiomatic NServiceBus setup on AWS. An endpoint is deployed on an EC2 instance. The EC2 instance has an EBS volume attached. The endpoint uses local MSMQ's that are stored on the EBS volume.
-
-This approach gives great sending performance (as sending only needs to write to the local drive) and great durability of messages (as EBS is geo-redundant by default). This approach will work really well for a ["pet"](http://www.lauradhamilton.com/servers-pets-versus-cattle) EC2 instance.
-
-However, this approach doesn't mesh well with [AWS Auto Scaling](https://aws.amazon.com/autoscaling/) (AS hereafter). When AS needs to scale down, it simply terminates EC2 instances with little warning. AS provides no mechanism to allow any on-instance queues to drain before the instance is terminated. It is possible to hook in to the shutdown flow offered by EC2 and start offloading queue messages when a shutdown is imminent, but it can never be guaranteed that messages won't be lost - once the shutdown time arrives, it's lights out, regardless if there are messages still in the queues or not.  If the default AS setup is used, the EBS volume attached to the instance will be terminated as well - resulting in loss of messages.
-
-AS can be configured to not terminate any EBS volumes when scaling down, however this leaves an orphaned volume, potentially with messages on it, with nothing processing them. Naturally this is a problem when there are SLAs to meet.
-
-To solve these problems, the guidance from Amazon is to use SQL as the transport. This transport will help get the most out of AWS and the Auto Scaling feature.
-
-
 ## Importance of Auto Scaling
 
 Auto Scaling matters because it minimizes infrastructure costs and gives the system self-healing capabilities.
@@ -48,3 +34,15 @@ The cost of running the message broker can be compared to the how many SQS API c
 Very broadly speaking, SQS is cheaper to run when compared to other message brokers on EC2 until the volume of messages approaches millions per hour.
 
 Note that this comparison only takes into account the dollar cost paid to AWS, and does not factor in the time and effort required to set up, maintain, secure and monitor a message broker on EC2.
+
+## AWS Auto-Scaling Doesn't Play Nice With Local MSMQ
+
+Consider the following idiomatic NServiceBus setup on AWS. An endpoint is deployed on an EC2 instance. The EC2 instance has an EBS volume attached. The endpoint uses local MSMQ's that are stored on the EBS volume.
+
+This approach gives great sending performance (as sending only needs to write to the local drive) and great durability of messages (as EBS is geo-redundant by default). This approach will work really well for a ["pet"](http://www.lauradhamilton.com/servers-pets-versus-cattle) EC2 instance.
+
+However, this approach doesn't mesh well with [AWS Auto Scaling](https://aws.amazon.com/autoscaling/) (AS hereafter). When AS needs to scale down, it simply terminates EC2 instances with little warning. AS provides no mechanism to allow any on-instance queues to drain before the instance is terminated. It is possible to hook in to the shutdown flow offered by EC2 and start offloading queue messages when a shutdown is imminent, but it can never be guaranteed that messages won't be lost - once the shutdown time arrives, it's lights out, regardless if there are messages still in the queues or not.  If the default AS setup is used, the EBS volume attached to the instance will be terminated as well - resulting in loss of messages.
+
+AS can be configured to not terminate any EBS volumes when scaling down, however this leaves an orphaned volume, potentially with messages on it, with nothing processing them. Naturally this is a problem when there are SLAs to meet.
+
+To solve these problems, the guidance from Amazon is to use SQL as the transport. This transport will help get the most out of AWS and the Auto Scaling feature.
