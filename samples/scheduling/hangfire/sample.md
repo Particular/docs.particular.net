@@ -26,7 +26,7 @@ Note: The approach used in this sample can mitigate some of the architectural dr
 
 ### Endpoint Helper
 
-A helper to make the `IEndpointInstance` created by NServiceBus available inside Hangfire jobs. In this sample it is implemented as a static property.
+This is a helper class used to make the NServiceBus `IEndpointInstance` available inside Hangfire jobs. In this sample it is implemented as a static property.
 
 snippet: EndpointInstance
 
@@ -70,7 +70,7 @@ The Hangfire server should be disposed when the endpoint is shut down.
 
 snippet: shutdown
 
-For cleanup purpose either a static variable may need to be kept or the shutdown done as part of the container cleanup.
+The Hangfire scheduler implements 'IDisposable'. For cleanup purposes, keep a reference to the scheduler instance and call `Dispose()` at shutdown. Alternatively, let a container do this as part of container cleanup.
 
 
 ### Logging
