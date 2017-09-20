@@ -21,7 +21,9 @@ NuGet no longer support packages adding source files and modifying project files
 
 ## Migrating procedure
 
-See the [self hosting sample](/samples/azure/self-host/) for details.
+See the [self hosting sample](/samples/azure/self-host/) for details. For multi-hosting it is recommended to apply self-hosting with multiple endpoints similar to the [multi hosting sample](/samples/hosting/multi-hosting). 
+
+If process isolation is required between the endpoints it is advised to stay with the latest version of the cloud host. Process isolation will be addressed in the upgrade guides when the host is fully deprecated.
 
 ### Configuration
 
