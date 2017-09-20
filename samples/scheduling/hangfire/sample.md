@@ -70,7 +70,7 @@ The Hangfire server should be disposed when the endpoint is shut down.
 
 snippet: shutdown
 
-The Hangfire scheduler implements 'IDisposable'. For cleanup purposes, keep a reference to the scheduler instance and call `Dispose()` at shutdown. Alternatively, let a container do this as part of container cleanup.
+The Hangfire scheduler implements the `IDisposable` interface. For cleanup purposes, keep a reference to the scheduler instance and call `Dispose()` at shutdown. Alternatively, let a container do this as part of the container cleanup procedure.
 
 
 ### Logging
