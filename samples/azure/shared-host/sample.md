@@ -19,9 +19,9 @@ related:
 
 | PartitionKey | RowKey | Timestamp | Message |
 |:--|:--|:--|:--|
-|Sender	|2015-05-25 14:58:33	|2015-05-25 8:58:33 PM	|Pinging Receiver |
-|Receiver	|2015-05-25 14:58:34	|2015-05-25 8:58:34 PM	|Got Ping and will reply with Pong |
-|Sender	|2015-05-25 14:58:35	|2015-05-25 8:58:35 PM	|Got Pong from Receiver |
+|Sender	|2015-05-25 14:58:33	|2015-05-25 16:58:33	|Pinging Receiver |
+|Receiver	|2015-05-25 14:58:34	|2015-05-25 16:58:34	|Got Ping and will reply with Pong |
+|Sender	|2015-05-25 14:58:35	|2015-05-25 16:58:35	|Got Pong from Receiver |
 
 Results sorted by Timestamp
 
