@@ -3,7 +3,7 @@
  * `BasePath()`: The blobs base path in the container, defaults to empty string.
  * `DefaultTTL`: Time in seconds to keep blob in storage before it is removed, defaults to [Int64.MaxValue](https://msdn.microsoft.com/en-us/library/system.int64.maxvalue.aspx) seconds.
  * `MaxRetries`: Number of upload/download retries, defaults to 5 retries.
- * `NumberOfIOThreads`: Number of blocks that will be simultaneously uploaded, defaults to 1 threads.
+ * `NumberOfIOThreads`: Number of blocks that will be simultaneously uploaded, defaults to 1 thread.
  * `BackOffInterval`: The back-off time between retries, defaults to 30 seconds.
  * `BlockSize`: The size of a single block for upload when the number of IO threads is more than 1, defaults to 4MB.
  * `CleanupInterval`: The default time interval to perform periodic clean up of blobs for expired messages with specific TTL, defaults to 5 minutes.
