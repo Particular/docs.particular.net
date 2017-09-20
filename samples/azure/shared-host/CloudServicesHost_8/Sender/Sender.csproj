@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CB35AFED-9727-4523-999A-0D58AA5137FE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sender</RootNamespace>
+    <AssemblyName>Sender</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>7</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <PackageReference Include="CommonServiceLocator" Version="1.*" />
+    <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.*" />
+    <PackageReference Include="Microsoft.Data.Edm" Version="5.*" />
+    <PackageReference Include="Microsoft.Data.OData" Version="5.*" />
+    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.*" />
+    <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.Hosting.Azure" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.Hosting.Azure.HostProcess" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.Persistence.AzureStorage" Version="2.0.0-*" />
+    <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.*" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.*" />
+    <PackageReference Include="System.Linq.Queryable" Version="4.*" />
+    <PackageReference Include="System.Net.Requests" Version="4.*" />
+    <PackageReference Include="System.Spatial" Version="5.*" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <Compile Include="EndpointConfig.cs" />
+    <Compile Include="PongHandler.cs" />
+    <Compile Include="SendPing.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(TargetDir)NServiceBus.Hosting.Azure.HostProcess.exe</StartProgram>
+  </PropertyGroup>
+</Project>
