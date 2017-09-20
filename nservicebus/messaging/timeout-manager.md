@@ -21,7 +21,7 @@ When NServiceBus detects that an outgoing message should be delayed, it routes i
 
 The `[endpoint_queue_name].Timeouts` queue is monitored by NServiceBus [internal receiver](/nservicebus/satellites). The receiver picks up timeout messages and stores them using the selected NServiceBus persistence. 
 
-If the transport is configured to use [TransactionScope mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) and the selected persistence supports `TransactionScope` transactions then NServiceBus guarantees *exactly-once* semantics of the store operation, meaning that timeouts in the store will not get duplicated.
+If the transport is configured to use [TransactionScope mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) and the selected persistence supports `TransactionScope` transactions then *exactly-once* semantics of the store operation are guaranteed, meaning that timeouts in the store will not get duplicated.
 
 The delayed messages will be stored for the specified delay time, using persistance implementation specified in the configuration:
 
