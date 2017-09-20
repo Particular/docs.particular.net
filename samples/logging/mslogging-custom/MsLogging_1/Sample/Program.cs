@@ -18,7 +18,8 @@ class Program
             logFactory.UseMsFactory(loggerFactory);
 
             var endpointConfiguration = new EndpointConfiguration("Samples.Logging.MsLoggingCustom");
-            await ConfigureAndRunEndpoint(endpointConfiguration);
+            await ConfigureAndRunEndpoint(endpointConfiguration)
+                .ConfigureAwait(false);
         }
         #endregion
     }
