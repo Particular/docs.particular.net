@@ -25,11 +25,11 @@ The convention for overriding the name of the exchange used when publishing even
 snippet: 4to5usedirectroutingtopology
 
 
-## Members added to IRoutingTopology
+## IDeclareQueues removed
 
-Members have changed in `IRoutingTopology`:
+The [IDeclareQueues](/transports/rabbitmq/routing-topology.md?version=rabbit_4#custom-routing-topology-taking-control-of-queue-declaration) interface added in Version 4.2 has been removed. The two address parameters on the interface's `DeclareAndInitialize` method have been added to the `Initialize` method of the `IRoutingTopology` interface. Implementations of the `Initialize` method are now responsible for creating any queues required by the topology.
 
- * `Initialize` has had extra parameters added.
- * `BindToDelayInfrastructure` method has been added.
 
-See [custom routing topology](/transports/rabbitmq/routing-topology.md#custom-routing-topology) for updated implementation instructions.
+## ISupportDelayedDelivery removed
+
+The [ISupportDelayedDelivery](/transports/rabbitmq/routing-topology.md?version=rabbit_4#custom-routing-topology-delayed-delivery) interface added in Version 4.3 has been removed. The `BindToDelayInfrastructure` method is now part of the `IRoutingTopology` interface.
