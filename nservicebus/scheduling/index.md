@@ -22,6 +22,7 @@ Alternatives to the Scheduler:
 
  * Using a [.NET Timer](https://msdn.microsoft.com/en-us/library/system.threading.timer.aspx).
  * Using [Quartz.NET](https://www.quartz-scheduler.net/). See [Quartz.NET Sample](/samples/scheduling/quartz/).
+ * Using [Hangfire](https://www.hangfire.io/). See [Hangfire Sample](/samples/scheduling/hangfire/).
 
 }}
 
