@@ -36,7 +36,7 @@ snippet: AzureServiceBusTransportWithAzureHost
 
 Partial: Worker
 
-When self-hosting everything can be configured using code API and extension methods available in the NServiceBus Azure related packages. In such a case it's not required to reference the hosting package in the project. To self-host and endpoint add the required configuration to the role entry point. For more information how to self-host in cloud services refer to the cloud services self-hosting sample.
+When self-hosting everything can be configured using code API and extension methods available in the NServiceBus Azure related packages. In such a case it's not required to reference the hosting package in the project. To self-host and endpoint add the required configuration to the role entry point. For more information how to self-host in cloud services refer to the cloud services [self-hosting sample](/samples/azure/self-host/sample.md).
 
 
 ## Cloud Services - Web Roles
