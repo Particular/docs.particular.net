@@ -77,4 +77,4 @@ snippet: AzureSelfHosting_CloudServiceDefinition
 
 Values provided to execute sample against local Azure Storage emulator
 
-snippet: AzureSelfdHosting_CloudServiceConfiguration
+snippet: AzureSelfHosting_CloudServiceConfiguration
