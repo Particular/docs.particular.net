@@ -122,10 +122,6 @@
         Title: Version 7 to 8
       - Url: nservicebus/upgrades/host-6to7
         Title: Version 6 to 7
-    - Title: NServiceBus Azure Host
-      Articles:
-      - Url: nservicebus/hosting/cloud-services-host/acs-host-7to8
-        Title: Version 7 to 8        
     - Title: NServiceBus.Azure deprecated
       Url: nservicebus/upgrades/azure-deprecation
     - Title: Azure BlobStorage DataBus
@@ -134,6 +130,8 @@
         Title: Migrating off NServiceBus.Azure
     - Title: Azure Cloud Services Host
       Articles:
+      - Url: nservicebus/hosting/cloud-services-host/acs-host-7to8
+        Title: Version 7 to 8      
       - Url: nservicebus/hosting/cloud-services-host/acs-host-6to7
         Title: Version 6 to 7
     - Title: Gateway
