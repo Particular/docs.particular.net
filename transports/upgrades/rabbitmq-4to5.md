@@ -18,13 +18,6 @@ Specifying a routing topology is now mandatory. For backwards compatibility, the
 See the [routing topology](/transports/rabbitmq/routing-topology.md) for further details.
 
 
-## ConnectionStringName
-
-`ConnectionStringName` has been deprecated and can be replaced with a combination of [ConfigurationManager.ConnectionStrings](https://msdn.microsoft.com/en-us/library/system.configuration.configurationmanager.connectionstrings.aspx) and [setting via code](/transports/rabbitmq/connection-settings.md#specifying-the-connection-string-via-code)
-
-snippet: 4to5CustomConnectionStringName
-
-
 ## Direct routing topology changes
 
 The convention for overriding the name of the exchange used when publishing events has changed. The address and the event type are no longer passed to the `exchangeNameConvention` parameter of the [UseDirectRoutingTopology](/transports/rabbitmq/routing-topology.md#direct-routing-topology-enabling-direct-routing-topology) method.
