@@ -12,7 +12,7 @@ This sample illustrates the use of [Quartz.NET](https://www.quartz-scheduler.net
 > Quartz.NET is a full-featured, open source job scheduling system that can be used from smallest apps to large scale enterprise systems.
 
 
-Note: The approach used in this sample can mitigate some of the architectural drawback of the [Scheduler](/nservicebus/scheduling/). The scheduler is build on top of the [Timeout Manager](/nservicebus/messaging/timeout-manager.md) which uses leverages the queuing system to trigger scheduled actions. Under heavy load there may be some disparity between the expected time of a scheduled action and actual execution time. 
+Note: The approach used in this sample can mitigate some of the architectural drawback of the [Scheduler](/nservicebus/scheduling/). The scheduler is build on top of the [Timeout Manager](/nservicebus/messaging/timeout-manager.md) which leverages the queuing system to trigger scheduled actions. Under heavy load, and associated delay in processing of messages, there may be some disparity between the expected time of a scheduled action and actual execution time. 
 
 
 ## Running the project
