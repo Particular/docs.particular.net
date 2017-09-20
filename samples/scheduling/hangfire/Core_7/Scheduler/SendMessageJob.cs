@@ -6,8 +6,8 @@ public static class SendMessageJob
 {
     public static Task Run()
     {
-        var endpointInstance = EndpointHelper.Instance;
-        return endpointInstance.Send("Samples.HangfireScheduler.Receiver", new MyMessage());
+        var endpoint = EndpointHelper.Instance;
+        return endpoint.Send("Samples.HangfireScheduler.Receiver", new MyMessage());
     }
 }
 #endregion
