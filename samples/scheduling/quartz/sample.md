@@ -77,7 +77,7 @@ LibLog [supports many other common logging libraries](https://github.com/damianh
 
 ## Scale Out
 
-When using the approach in the sample, it is important to note that there is an instance of the Quartz scheduler running in every endpoint instance. So if an endpoint is [scaled out](/transports/scale-out) the configured jobs will be executed in each of those running instances. A persistent [Quartz JobStore](https://www.quartz-scheduler.net/documentation/quartz-3.x/tutorial/job-stores.html) can help manage the the Quartz scheduler shared state including jobs, triggers, calendars, etc.
+When using the approach in the sample, it is important to note that there is an instance of the Quartz scheduler running in every endpoint instance. So if an endpoint is [scaled out](/transports/scale-out.md) the configured jobs will be executed in each of those running instances. A persistent [Quartz JobStore](https://www.quartz-scheduler.net/documentation/quartz-3.x/tutorial/job-stores.html) can help manage the the Quartz scheduler shared state including jobs, triggers, calendars, etc.
 
 
 ## Further information on Quartz
