@@ -2,7 +2,6 @@
 title: Self Hosting in Azure Cloud Services
 summary: Uses NServiceBus self-hosting capability to host an endpoint in an Azure instance.
 component: Core
-reviewed: 2017-06-12
 tags:
 - Azure
 - Hosting
@@ -52,13 +51,21 @@ This sample contains five projects:
 
 ### HostWorker project
 
-HostWorker project is the self-host project. To enable multi-hosting, endpoint is configured as a multi-host
+HostWorker project uses the self-hosting capability to start an endpoint inside a worker role.
+
+The snippet below illustrates how the `OnStart` method of the `RoleEntryPoint` calls in a blocking way into an asynchronous start method.
 
 snippet: AzureSelfHost_StartEndpoint
 
+A critical error action needs to be defined to restart the host when a critical error is raised.
+
 snippet: AzureSelfHost_CriticalError
 
+To uniquely identify the host a custom name and display name need to be provided.
+
 snippet: AzureSelfHost_DisplayName
+
+Connection string can be loaded by leveraging the `RoleEnvironment` as shown below.
 
 snippet: AzureSelfHost_ConnectionString
 
