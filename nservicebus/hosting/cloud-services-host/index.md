@@ -16,6 +16,8 @@ related:
 reviewed: 2016-10-21
 ---
 
+include: cloudserviceshost-deprecated-warning
+
 The Azure Platform and NServiceBus make a perfect fit. On the one hand the Azure platform offers the scalable and flexible platform required, on the other hand NServiceBus makes development on this highly distributed environment a breeze.
 
 If real scale is required (e.g. in tens, hundreds or even thousands of machines hosting each endpoint) then Cloud Services is the required deployment model.

@@ -8,6 +8,8 @@ tags:
 reviewed: 2016-10-21
 ---
 
+include: cloudserviceshost-deprecated-warning
+
 This document captures some frequently asked questions when hosting NServiceBus in Azure Cloud Services.
 
 
