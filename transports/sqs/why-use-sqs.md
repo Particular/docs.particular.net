@@ -45,4 +45,4 @@ However, this approach doesn't mesh well with [AWS Auto Scaling](https://aws.ama
 
 AS can be configured to not terminate any EBS volumes when scaling down, however this leaves an orphaned volume, potentially with messages on it, with nothing processing them. Naturally this is a problem when there are SLAs to meet.
 
-To solve these problems, the guidance from Amazon is to use SQL as the transport. This transport will help get the most out of AWS and the Auto Scaling feature.
+To solve these problems, the guidance from Amazon is to use SQS as the transport. This transport will help get the most out of AWS and the Auto Scaling feature.
