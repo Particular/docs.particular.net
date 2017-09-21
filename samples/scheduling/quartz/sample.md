@@ -5,6 +5,7 @@ reviewed: 2017-09-20
 component: Core
 related:
 - nservicebus/messaging/timeout-manager
+- nservicebus/scheduling
 ---
 
 This sample illustrates the use of [Quartz.NET](https://www.quartz-scheduler.net/) to send messages from within an NServiceBus endpoint.

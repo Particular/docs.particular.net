@@ -5,6 +5,7 @@ reviewed: 2017-09-20
 component: Core
 related:
 - nservicebus/messaging/timeout-manager
+- nservicebus/scheduling
 ---
 
 This sample illustrates the use of [FluentScheduler](https://github.com/fluentscheduler/FluentScheduler) to send messages from within an NServiceBus endpoint.
