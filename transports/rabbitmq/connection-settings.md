@@ -9,7 +9,7 @@ redirects:
 ---
 
 
-RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html). The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker. This connection string can be specified via code or via `app.config`.
+RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html). The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker.
 
 
 ### Specifying the connection string via code
@@ -19,13 +19,7 @@ To specify the connection string in code:
 snippet: rabbitmq-config-connectionstring-in-code
 
 
-### Specifying the connection string via app.config
-
-By default, the transport will look for a connection string called `NServiceBus/Transport` in `app.config`:
-
-snippet: rabbitmq-connectionstring
-
-partial: connection
+partial: appconfig
 
 
 ## Connection string options

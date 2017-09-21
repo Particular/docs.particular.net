@@ -11,32 +11,25 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-## Mandatory topology selection.
+## Mandatory routing topology selection
 
-Specifying a routing topology is now mandatory. For backwards compatiblility, the recommendation is to use the `ConventionalRoutingTopology` which was the previous default. 
+Specifying a routing topology is now mandatory. For backwards compatibility, the recommendation is to use the `ConventionalRoutingTopology`, which was the previous default. 
 
-See the [transport configuration documentation](/transports/rabbitmq/routing-topology.md) for further details.
-
-
-## ConnectionStringName
-
-`ConnectionStringName` has been deprecated and can be replaced with a combination of [ConfigurationManager.ConnectionStrings](https://msdn.microsoft.com/en-us/library/system.configuration.configurationmanager.connectionstrings.aspx) and [setting via code](/transports/rabbitmq/connection-settings.md#specifying-the-connection-string-via-code)
-
-snippet: 4to5CustomConnectionStringName
+See the [routing topology](/transports/rabbitmq/routing-topology.md) for further details.
 
 
-## UseDirectRoutingTopology convention changes
+## Direct routing topology changes
 
-When using [UseDirectRoutingTopology](/transports/rabbitmq/routing-topology.md#direct-routing-topology-enabling-direct-routing-topology) the address and the event Type are no longer passed to `exchangeNameConvention`.
+The convention for overriding the name of the exchange used when publishing events has changed. The address and the event type are no longer passed to the `exchangeNameConvention` parameter of the [UseDirectRoutingTopology](/transports/rabbitmq/routing-topology.md#direct-routing-topology-enabling-direct-routing-topology) method.
 
 snippet: 4to5usedirectroutingtopology
 
 
-## Members added to IRoutingTopology
+## IDeclareQueues removed
 
-Members have changed in `IRoutingTopology`:
+The [IDeclareQueues](/transports/rabbitmq/routing-topology.md?version=rabbit_4#custom-routing-topology-taking-control-of-queue-declaration) interface added in Version 4.2 has been removed. The two address parameters on the interface's `DeclareAndInitialize` method have been added to the `Initialize` method of the `IRoutingTopology` interface. Implementations of the `Initialize` method are now responsible for creating any queues required by the topology.
 
- * `Initialize` has had extra parameters added.
- * `BindToDelayInfrastructure` method has been added.
 
-See [custom routing topology](/transports/rabbitmq/routing-topology.md#custom-routing-topology) for updated implementation instructions.
+## ISupportDelayedDelivery removed
+
+The [ISupportDelayedDelivery](/transports/rabbitmq/routing-topology.md?version=rabbit_4#custom-routing-topology-delayed-delivery) interface added in Version 4.3 has been removed. The `BindToDelayInfrastructure` method is now part of the `IRoutingTopology` interface.
