@@ -7,7 +7,7 @@ class InitializeNewAuditBehavior :
 {
     public void Customize(BusConfiguration configuration)
     {
-        // Replace the existing auditing step with our new one in the Pipeline
+        // Replace the existing auditing step with the new one in the Pipeline
         configuration.Pipeline.Replace(
             wellKnownStep: WellKnownStep.AuditProcessedMessage,
             newBehavior: typeof(AuditRulesBehavior),

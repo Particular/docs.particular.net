@@ -61,7 +61,7 @@ class Program
                 })
             .Build();
 
-        // Tell quartz to schedule the job using our trigger
+        // Tell quartz to schedule the job using the trigger
         await scheduler.ScheduleJob(job, trigger)
             .ConfigureAwait(false);
 
