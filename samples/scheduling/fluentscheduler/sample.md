@@ -48,7 +48,7 @@ snippet: shutdown
 
 ### Logging
 
-FluentScheduler exposes event that can be helpful to log.
+FluentScheduler exposes events that can be helpful to log.
 
 snippet: logging
 
