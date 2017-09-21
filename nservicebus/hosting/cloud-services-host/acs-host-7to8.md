@@ -1,7 +1,7 @@
 ---
 title: NServiceBus Azure Host Upgrade Version 7 to 8
 summary: Instructions on how to upgrade NServiceBus Azure Host Version 7 to 8.
-reviewed: 2017-09-12
+reviewed: 2017-09-21
 component: CloudServicesHost
 related:
  - nservicebus/upgrades/6to7
@@ -27,11 +27,11 @@ If process isolation is required between the endpoints it is advised to stay wit
 
 ### Configuration
 
-Self hosting gives access to the same configuration options. See below for migration of host specific configuration API's.
+Self hosting gives access to the same configuration options. See below for migration of host specific configuration APIs.
 
 #### Custom endpoint configuration
 
-Configuration code in `IConfigureThisEndpoint.Customize` can be transfered as is to the configuration of the self hosted endpoint.
+Configuration code in `IConfigureThisEndpoint.Customize` can be transfered as-is to the configuration of the self-hosted endpoint.
 
 #### Roles
 
@@ -49,4 +49,4 @@ Overriding endpoint name using the `EndpointName` attribute or `DefineEndpointNa
 
 #### Executing custom code on start and stop
 
-The host allowed custom code to run at start and stop by implementing `IWantToRunWhenEndpointStartsAndStops`. Since self hosted endpoints are in full control over start and stop this code can be executed explicitly when starting/stopping.
+The host allowed custom code to run at start and stop by implementing `IWantToRunWhenEndpointStartsAndStops`. Since self-hosted endpoints are in full control over start and stop operations this code can be executed explicitly when starting/stopping.
