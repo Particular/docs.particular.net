@@ -15,7 +15,7 @@ upgradeGuideCoreVersions:
 The NServiceBus Azure Host will be deprecated as of Version 9 and users are recommended to switch to self hosting for new endpoints. Upgrading existing endpoints is still supported for Version 8
 
 
-## Incompatible with NuGet 4 and higher
+## Installation incompatible with NuGet
 
 NuGet no longer support packages adding source files and modifying project files. This means that installing the host won't result in a runnable endpoint. Existing endpoints using the host can be upgraded without issues.
 
@@ -44,7 +44,7 @@ The `AsA_Worker` role didn't change any configuration and can safely be ignored.
 
 #### Endpoint name
 
-The host defaults the endpoint name to the namespace of the type implementing `IConfigureThisEndpoint`. Just pass that value to the name to the constructor of `EndpointConfiguration`.
+The host defaults the endpoint name to the namespace of the type implementing `IConfigureThisEndpoint`. Pass that value to the name to the constructor of `EndpointConfiguration`.
 
 
 #### Overriding endpoint name
