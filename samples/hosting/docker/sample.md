@@ -44,7 +44,7 @@ docker-compose build
 When the container images are ready, the containers can be started:
 
 ```
-docker-compose build
+docker-compose up -d
 ```
 
 ## Observing containers
