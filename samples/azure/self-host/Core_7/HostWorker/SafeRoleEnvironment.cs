@@ -86,18 +86,15 @@ static class SafeRoleEnvironment
         }
 
         setting = string.Empty;
-        bool result;
         try
         {
             setting = (string)roleEnvironmentType.GetMethod("GetConfigurationSettingValue").Invoke(null, new object[] { name });
-            result = !string.IsNullOrEmpty(setting);
+            return !string.IsNullOrEmpty(setting);
         }
         catch
         {
-            result = false;
+            return false;
         }
-
-        return result;
     }
 
     public static void RequestRecycle()
