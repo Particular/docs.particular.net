@@ -14,6 +14,7 @@ upgradeGuideCoreVersions:
 
 The NServiceBus Azure Host will be deprecated as of Version 9 and users are recommended to switch to self hosting for new endpoints. Upgrading existing endpoints is still supported for Version 8
 
+
 ## Incompatible with NuGet 4 and higher
 
 NuGet no longer support packages adding source files and modifying project files. This means that installing the host won't result in a runnable endpoint. Existing endpoints using the host can be upgraded without issues.
@@ -21,21 +22,25 @@ NuGet no longer support packages adding source files and modifying project files
 
 ## Migrating procedure
 
-See the [self hosting sample](/samples/azure/self-host/) for details. For multi-hosting it is recommended to apply self-hosting with multiple endpoints similar to the [multi hosting sample](/samples/hosting/multi-hosting). 
+See the [self hosting sample](/samples/azure/self-host/) for details. For multi-hosting it is recommended to apply self-hosting with multiple endpoints similar to the [multi hosting sample](/samples/hosting/multi-hosting).
 
 If process isolation is required between the endpoints it is advised to stay with the latest version of the cloud host. Process isolation will be addressed in the upgrade guides when the host is fully deprecated.
+
 
 ### Configuration
 
 Self hosting gives access to the same configuration options. See below for migration of host specific configuration APIs.
 
+
 #### Custom endpoint configuration
 
-Configuration code in `IConfigureThisEndpoint.Customize` can be transfered as-is to the configuration of the self-hosted endpoint.
+Configuration code in `IConfigureThisEndpoint.Customize` can be transferred as-is to the configuration of the self-hosted endpoint.
+
 
 #### Roles
 
 The `AsA_Worker` role didn't change any configuration and can safely be ignored.
+
 
 #### Endpoint name
 
