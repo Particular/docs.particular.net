@@ -1,0 +1,1 @@
+By default, installers are disabled.
