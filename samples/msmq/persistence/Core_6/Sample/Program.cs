@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence;
+using NServiceBus.Persistence.Legacy;
 
 class Program
 {
@@ -17,9 +18,10 @@ class Program
 
         #region ConfigureMsmqPersistenceEndpoint
 
-        endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
         var persistence = endpointConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>();
         persistence.SubscriptionQueue("Samples.Msmq.Persistence.Subscriptions");
+
+        endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
 
         #endregion
 
