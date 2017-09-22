@@ -45,4 +45,4 @@ In Versions 7 and below, the transport was setting the default serialization. In
 
 For backwards compatibility, `NServiceBus.Newtonsoft.Json` serializer should be used.
 
-snippet: asb-serializer
+snippet: 7to8_asb-backwardscompatible-serializer
