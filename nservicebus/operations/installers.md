@@ -15,7 +15,7 @@ Installers ensure that endpoint specific artifacts (e.g. queues, directories, da
 
 ## Running installers
 
-By default, installers are only run when the application starts with a debugger attached. This includes applications being debugged remotely.
+partial: default-behavior
 
 Installers can be enabled to always run at startup:
 
