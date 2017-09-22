@@ -107,6 +107,16 @@ By using this approach, the asynchronous APIs won't ripple through all the layer
 
 snippet: 5to6-handler-with-dependency-which-accesses-context
 
+### Accessing context or message session in the dependency hierarchy
+
+Sometimes dependencies that accessed `IBus` are used in various hosting contexts such as WebApi and an NServiceBus endpoint. The snippet below illustrates such a scenario.
+
+snippet: 5to6-handler-with-dependency-used-in-various-contexts
+
+NServiceBus design approach enforces to clearly seperate components that access the message session or the handler context. Side effect occuring methods that use the session or the context should return the side effects to make it clearly visible in the component design. If such a redesign is not feasible or desirable the following approach can be used.
+
+snippet: 5to6-handler-with-dependency-used-in-various-contexts-new
+
 
 ## UnicastBus made internal
 
