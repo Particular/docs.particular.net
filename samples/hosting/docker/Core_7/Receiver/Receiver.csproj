@@ -5,7 +5,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="5.0.0-beta30-0009" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="5.0.0-*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

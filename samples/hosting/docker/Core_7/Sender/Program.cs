@@ -3,11 +3,10 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 class Program
 {
-    static async Task Main(string[] args)
+    static async Task Main()
     {
         //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
         Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
@@ -16,9 +15,7 @@ class Program
         Console.CancelKeyPress += new ConsoleCancelEventHandler(OnExit);
 
         Console.Title = "Samples.Docker.Sender";
-        LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Info);
-        
+                
         var endpointInstance = await TryStart()
             .ConfigureAwait(false);
         

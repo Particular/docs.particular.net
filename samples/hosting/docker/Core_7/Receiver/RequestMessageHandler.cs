@@ -8,11 +8,11 @@ public class RequestMessageHandler
 {
     static ILog log = LogManager.GetLogger<RequestMessageHandler>();
 
-    public async Task Handle(RequestMessage message, IMessageHandlerContext context)
+    public Task Handle(RequestMessage message, IMessageHandlerContext context)
     {
         log.Info($"Request received with description: {message.Data}");
         
-        await context.Reply(new ResponseMessage
+        return context.Reply(new ResponseMessage
         {
             Id = message.Id,
             Data = message.Data
