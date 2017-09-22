@@ -130,9 +130,9 @@
         Title: Migrating off NServiceBus.Azure
     - Title: Azure Cloud Services Host
       Articles:
-      - Url: nservicebus/hosting/cloud-services-host/acs-host-7to8
+      - Url: nservicebus/upgrades/acs-host-7to8
         Title: Version 7 to 8      
-      - Url: nservicebus/hosting/cloud-services-host/acs-host-6to7
+      - Url: nservicebus/upgrades/acs-host-6to7
         Title: Version 6 to 7
     - Title: Gateway
       Articles:

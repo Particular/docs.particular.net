@@ -137,7 +137,7 @@ This covers the basic steps required to update an endpoint to Version 6. Each of
 #### Hosting
 
  * [NServiceBus Host](../host-6to7.md)
- * [Azure Cloud Services Host](/nservicebus/hosting/cloud-services-host/acs-host-6to7.md)
+ * [Azure Cloud Services Host](../acs-host-6to7.md)
 
 
 #### Transports
