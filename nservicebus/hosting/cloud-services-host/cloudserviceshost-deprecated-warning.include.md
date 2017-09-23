@@ -1,1 +1,1 @@
-+WARNING: The NServiceBus Azure Host will be deprecated as of Version 9. Refer to the [upgrade guide](/nservicebus/upgrades/acs-host-7to8.md) for further details.
+WARNING: The NServiceBus Azure Host will be deprecated as of Version 9. Refer to the [upgrade guide](/nservicebus/upgrades/acs-host-7to8.md) for further details.
