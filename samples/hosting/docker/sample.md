@@ -79,7 +79,12 @@ This sample consists of `Sender` and `Publisher` endpoints exchanging messages u
 
 Each endpoint is a container built on top of official `microsoft/dotnet:2.0-runtime` image from [Docker Hub](https://hub.docker.com/). The container image is built using endpoint binaries from the `bin/Debug/netcoreapp2.0/publish` folder:
 
-snippet: Dockerfile
+```
+FROM microsoft/dotnet:2.0-runtime
+WORKDIR /Receiver
+COPY ./bin/Debug/netcoreapp2.0/publish .
+ENTRYPOINT ["dotnet", "Receiver.dll"]
+```
 
 NOTE: Run `dotnet build` and `dotnet publish` commands to generate endpoint binaries before creating the image.
 
@@ -87,7 +92,28 @@ NOTE: Run `dotnet build` and `dotnet publish` commands to generate endpoint bina
 
 Endpoint container images for the `Sender` and the `Receiver` are combined with an official [RabbitMQ image](https://hub.docker.com/_/rabbitmq/) to create a multi-container application using [Docker Compose](https://docs.docker.com/compose/):
 
-snippet: DockerCompose
+```
+version: "3"
+services:   
+    sender:
+        image: sender
+        build:
+            context: ./Sender/
+            dockerfile: Dockerfile
+        depends_on:
+            - rabbitmq
+    receiver:
+        image: receiver
+        build:
+            context: ./Receiver/
+            dockerfile: Dockerfile
+        depends_on:
+            - rabbitmq
+    rabbitmq:
+        image: "rabbitmq:3-management"
+        ports:
+            - "15672:15672"
+```
 
 ### Transport configuration
 

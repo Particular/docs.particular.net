@@ -1,4 +1,3 @@
-#startcode DockerCompose
 version: "3"
 services:   
     sender:
@@ -19,4 +18,3 @@ services:
         image: "rabbitmq:3-management"
         ports:
             - "15672:15672"
-#endcode
