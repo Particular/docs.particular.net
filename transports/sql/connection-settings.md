@@ -23,8 +23,6 @@ Connection string can be configured in several ways:
 partial: connection-string
 
 
-## Multiple connection strings
-
 partial: multi-instance
 
 

@@ -1,3 +1,5 @@
+## Multiple connection strings
+
 include: multi-instance-connection-requirements
 
 Connection strings for the remote endpoint can be configured using following API
