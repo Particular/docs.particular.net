@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
@@ -11,11 +10,12 @@ public class RequestMessageHandler
     public Task Handle(RequestMessage message, IMessageHandlerContext context)
     {
         log.Info($"Request received with description: {message.Data}");
-        
-        return context.Reply(new ResponseMessage
+
+        var response = new ResponseMessage
         {
             Id = message.Id,
             Data = message.Data
-        });
+        };
+        return context.Reply(response);
     }
 }

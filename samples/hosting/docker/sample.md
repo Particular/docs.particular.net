@@ -9,20 +9,23 @@ related:
 - nservicebus/hosting
 ---
 
-This sample demonstrates how to use Docker Linux containers to host NServiceBus endpoints communicating over the RabbitMQ transport.
+This sample demonstrates how to use Docker Linux containers to host NServiceBus endpoints communicating over the [RabbitMQ transport](/transports/rabbitmq/).
+
 
 ## Prerequisites
 
 This sample requires that the following tools are installed:
 
-  - [.NET Core 2.0 SDK](https://www.microsoft.com/net/download/core)
-  - [Docker Community Edition](https://www.docker.com/community-edition) or higher
+ * [.NET Core 2.0 SDK](https://www.microsoft.com/net/download/core)
+ * [Docker Community Edition](https://www.docker.com/community-edition) or higher
 
-NOTE: Container that runs the RabbitMQ broker is a Linux container and [Docker for Windows also needs to be configured to use Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
+NOTE: The container that runs the RabbitMQ broker is a Linux container and [Docker for Windows also needs to be configured to use Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
+
 
 ## Running the sample
 
 The sample requires .NET Core CLI tools and Docker CLI tools to build and run the code.
+
 
 ### Building and publishing binaries
 
@@ -38,6 +41,7 @@ When the binaries have been compiled, the next step is preparing them for deploy
 dotnet publish
 ```
 
+
 ### Building container images
 
 When the binaries are ready for deployment, the next step is to build container images for both the `Sender` and the `Receiver`:
@@ -45,6 +49,7 @@ When the binaries are ready for deployment, the next step is to build container 
 ```
 docker-compose build
 ```
+
 
 ### Starting containers
 
@@ -54,6 +59,7 @@ When the container images are ready, the containers can be started:
 docker-compose up -d
 ```
 
+
 ## Observing containers
 
 Both containers log to the console. These logs can be inspected:
@@ -62,6 +68,7 @@ Both containers log to the console. These logs can be inspected:
 docker-compose logs sender
 docker-compose logs receiver
 ```
+
 
 ### Stopping and removing containers
 
@@ -73,7 +80,8 @@ docker-compose down
 
 ## Code walk-through
 
-This sample consists of `Sender` and `Publisher` endpoints exchanging messages using the [RabbitMQ transport](/transports/rabbitmq). Each of these three components runs in a separate Docker Linux container.
+This sample consists of `Sender` and `Publisher` endpoints exchanging messages using the [RabbitMQ transport](/transports/rabbitmq/). Each of these three components runs in a separate Docker Linux container.
+
 
 ### Endpoint Docker image
 
@@ -87,6 +95,7 @@ ENTRYPOINT ["dotnet", "Receiver.dll"]
 ```
 
 NOTE: Run `dotnet build` and `dotnet publish` commands to generate endpoint binaries before creating the image.
+
 
 ### Multi-container application
 
@@ -115,15 +124,18 @@ services:
             - "15672:15672"
 ```
 
+
 ### Transport configuration
 
 Endpoints configure the RabbitMQ transport to use the broker instance running in the `rabbitmq` container:
 
 snippet: TransportConfiguration
 
+
 ### Waiting for RabbitMQ broker to become available
 
 Docker Compose manages the dependencies between the containers and starts the `rabbitmq` container first but there is still a delay between when the RabbitMQ container starts and when the broker starts to accept client connections. Endpoints must wait for the broker to become available before starting the endpoint:
 
 snippet: WaitForRabbitBeforeStart
+
 snippet: WaitForRabbit

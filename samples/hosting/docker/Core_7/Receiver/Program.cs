@@ -3,8 +3,6 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Exceptions;
 
 class Program
 {
@@ -14,23 +12,27 @@ class Program
         Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-        Console.CancelKeyPress += new ConsoleCancelEventHandler(OnExit);
+        Console.CancelKeyPress += OnExit;
 
         Console.Title = "Samples.Docker.Receiver";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver");
         #region TransportConfiguration
-        endpointConfiguration.UseTransport<RabbitMQTransport>()
-            .ConnectionString("host=rabbitmq")
-            .UseConventionalRoutingTopology()
-            .DelayedDelivery().DisableTimeoutManager();
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.ConnectionString("host=rabbitmq");
+        transport.UseConventionalRoutingTopology();
+        var delayedDelivery = transport.DelayedDelivery();
+        delayedDelivery.DisableTimeoutManager();
+
         #endregion
+
         endpointConfiguration.EnableInstallers();
 
         // The RabbitMQ container starts before endpoints but it may
         // take several seconds for the broker to become reachable.
         #region WaitForRabbitBeforeStart
-        await WaitForRabbitToStart()
+        await RabbitHelper.WaitForRabbitToStart()
             .ConfigureAwait(false);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -45,30 +47,6 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
-    #region WaitForRabbit
-    static async Task WaitForRabbitToStart()
-    {
-        var factory = new ConnectionFactory
-        {
-            Uri = "amqp://rabbitmq"
-        };
-        for (var i = 0; i < 5; i++)
-        {
-            try
-            {
-                using (factory.CreateConnection())
-                {
-                }
-                return;
-            }
-            catch (BrokerUnreachableException)
-            {
-            }
-            await Task.Delay(1000).ConfigureAwait(false);
-        }
-    }
-    #endregion
 
     static void OnExit(object sender, ConsoleCancelEventArgs args)
     {
