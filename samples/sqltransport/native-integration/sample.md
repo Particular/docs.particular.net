@@ -46,7 +46,7 @@ The table would be `Samples.SqlServer.NativeIntegration` in the database `NsbSam
 
 ### Serialization
 
-In this sample [JSON](/nservicebus/serialization/json.md) will be used to serialize the messages but [XML](/nservicebus/serialization/xml.md) would have worked equally well. To configure the endpoint call `.UseSerialization<JsonSerializer>()` as shown above.
+In this sample [Json.NET](/nservicebus/serialization/newtonsoft.md) will be used to serialize the messages but [XML](/nservicebus/serialization/xml.md) would have worked equally well. To configure the endpoint call `.UseSerialization<JsonSerializer>()` as shown above.
 
 Now the endpoint can understand JSON payloads a message contract can be defined. In NServiceBus messages are C# classes.
 
