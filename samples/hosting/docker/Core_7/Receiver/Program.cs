@@ -39,10 +39,10 @@ class Program
             try
             {
                 var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver");
-                endpointConfiguration.UsePersistence<InMemoryPersistence>();
                 endpointConfiguration.UseTransport<RabbitMQTransport>()
+                    .ConnectionString("host=rabbitmq")
                     .UseConventionalRoutingTopology()
-                    .ConnectionString("host=rabbitmq");
+                    .DelayedDelivery().DisableTimeoutManager();
                 endpointConfiguration.EnableInstallers();
 
                 var endpointInstance = await Endpoint.Start(endpointConfiguration)
