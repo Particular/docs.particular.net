@@ -536,6 +536,8 @@
         Title: Version 3 to 4
     - Title: SQL Server
       Articles:
+      - Url: transports/upgrades/sqlserver-31to4
+        Title: Version 3.1 to 4
       - Url: transports/upgrades/sqlserver-3to31
         Title: Version 3 to 3.1
       - Url: transports/upgrades/sqlserver-unicode-headers

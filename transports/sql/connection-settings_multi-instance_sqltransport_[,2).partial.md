@@ -1,3 +1,5 @@
+## Multiple connection strings
+
 include: multi-instance-connection-requirements
 
 Connection strings for the remote endpoint can be configured via `app.config` convention. The endpoint-specific connection information can be discovered by reading the connection strings from the configuration file with `NServiceBus/Transport/{name of the endpoint in the message mappings}` naming convention.

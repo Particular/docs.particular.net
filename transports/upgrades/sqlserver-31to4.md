@@ -19,14 +19,25 @@ To run the upgraded project on .NET Core the transport needs to be switched to o
 
 NOTE: Transaction scope is supposed to be supported by `SqlConnection` in future versions of .NET Core. 
 
+
 ## Multi-instance mode
 
-The multi-instance mode has been deprecated in Version 4. NServiceBus topologies with queues distributed between multiple catalogs and SQL Server instances can be migrated using a combination of [Transport Bridge](/nservicebus/bridge/) and multi-catalog [addressing](/transports/sql/addressing.md):
- * When communicating with an endpoint that connects to a different SQL Server instance, send messages through a bridge. The [multi-instance migration sample](/samples/sqltransport/multi-instance-migration) demonstrates this approach.
- * When communicating with an endpoint that connects to a different catalog on the same SQL Server instance, send messages directly and configure multi-catalog addressing.
+The multi-instance mode has been deprecated in Version 4. So the following is no longer supported:
+
+snippet: 31to4-legacy-multi-instance
+
+NServiceBus topologies with queues distributed between multiple catalogs and SQL Server instances can be migrated using a combination of [Transport Bridge](/nservicebus/bridge/) and multi-catalog [addressing](/transports/sql/addressing.md).
+
+
+### Multi-catalog
+
+The multi-instance configuration above can be replaced with a multi-catalog addressing configuration, provided that all the databases are hosted on a single SQL Server instance:
+
+snippet: 31to4-multi-catalog
+
+
+### Bridge
+
+When communicating with an endpoint that connects to a different SQL Server instance, send messages through a bridge. The [multi-instance migration sample](/samples/sqltransport/multi-instance-migration) demonstrates this approach.
 
 Both of these features are available for NServiceBus 6 (and SQL Server transport 3.1) so the topology migration can take place before switching to NServiceBus 7.
-
-
-
-
