@@ -10,6 +10,7 @@ redirects:
 related:
  - samples/web/wcf-callbacks
  - nservicebus/messaging/callbacks
+ - samples/wcf
 reviewed: 2016-11-07
 ---
 
