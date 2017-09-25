@@ -135,7 +135,7 @@ span.blue {
     </a>
   </div>
   <div class="ic">
-    <a href="https://groups.google.com/forum/#!forum/particularsoftware">
+    <a href="https://discuss.particular.net">
       <i class="glyphicon glyphicon-user mainicon"></i><br>Discussion group
     </a>
   </div>
