@@ -15,8 +15,8 @@ This sample demonstrates how to use Docker Linux containers to host NServiceBus 
 
 This sample requires that the following tools are installed:
 
-  - .NET Core 2.0 SDK (https://www.microsoft.com/net/download/core)
-  - Docker Community Edition (https://www.docker.com/community-edition) or higher
+  - [.NET Core 2.0 SDK](https://www.microsoft.com/net/download/core)
+  - [Docker Community Edition](https://www.docker.com/community-edition) or higher
 
 NOTE: Container that runs the RabbitMQ broker is a Linux container and [Docker for Windows also needs to be configured to use Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
