@@ -10,35 +10,40 @@ public class WorkerRole :
     RoleEntryPoint
 {
     #region AzureSelfHost_StartEndpoint
+
     public override bool OnStart()
     {
         StartEndpoint().GetAwaiter().GetResult();
-
         return base.OnStart();
     }
 
     static async Task StartEndpoint()
-    #endregion
+        #endregion
     {
         var configuration = new EndpointConfiguration("SelfHostedEndpoint");
 
         #region AzureSelfHost_CriticalError
-        configuration.DefineCriticalErrorAction(context =>
-        {
-            if (Environment.UserInteractive)
+
+        configuration.DefineCriticalErrorAction(
+            onCriticalError: context =>
             {
-                Thread.Sleep(10000); // so that user can see on their screen the problem
-            }
+                if (Environment.UserInteractive)
+                {
+                    // so that user can see on their screen the problem
+                    Thread.Sleep(10000);
+                }
 
-            var message = $"The following critical error was encountered by NServiceBus:\n{context.Error}\nNServiceBus is shutting down.";
-            LogManager.GetLogger(typeof(WorkerRole)).Fatal(message);
-            Environment.FailFast(message, context.Exception);
+                var message = $"Critical error encountered:\n{context.Error}\nNServiceBus is shutting down.";
+                LogManager.GetLogger(typeof(WorkerRole)).Fatal(message);
+                Environment.FailFast(message, context.Exception);
 
-            return Task.FromResult(0);
-        });
+                return Task.FromResult(0);
+            });
+
         #endregion
 
         #region AzureSelfHost_DisplayName
+
         if (SafeRoleEnvironment.IsAvailable)
         {
             var host = SafeRoleEnvironment.CurrentRoleName;
@@ -49,14 +54,17 @@ public class WorkerRole :
                 .UsingNames(instance, host)
                 .UsingCustomDisplayName(displayName);
         }
+
         #endregion
 
         #region AzureSelfHost_ConnectionString
+
         var connectionString = RoleEnvironment.GetConfigurationSettingValue("HostWorker.ConnectionString");
         var persistence = configuration.UsePersistence<AzureStoragePersistence>();
         persistence.ConnectionString(connectionString);
         var transport = configuration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString(connectionString);
+
         #endregion
 
         transport.SerializeMessageWrapperWith<NewtonsoftSerializer>();
@@ -86,5 +94,5 @@ public class WorkerRole :
         Trace.TraceInformation("HostWorker has stopped");
     }
 
-    private static IEndpointInstance endpoint;
+    static IEndpointInstance endpoint;
 }

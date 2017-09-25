@@ -125,20 +125,17 @@ static class SafeRoleEnvironment
             throw new Exception("Role environment is not available, check IsAvailable before calling this method");
         }
 
-        bool result;
         path = string.Empty;
 
         try
         {
             path = GetRootPath(name);
-            result = path != null;
+            return path != null;
         }
         catch
         {
-            result = false;
+            return false;
         }
-
-        return result;
     }
 
     static void TryLoadRoleEnvironment()
@@ -156,7 +153,6 @@ static class SafeRoleEnvironment
         }
 
         isAvailable = IsAvailableInternal();
-
     }
 
     static void TryGetRoleEnvironmentTypes(Assembly serviceRuntimeAssembly)
