@@ -3,6 +3,8 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Exceptions;
 
 class Program
 {
@@ -15,9 +17,21 @@ class Program
         Console.CancelKeyPress += new ConsoleCancelEventHandler(OnExit);
 
         Console.Title = "Samples.Docker.Sender";
-                
-        var endpointInstance = await TryStart()
+
+        // The RabbitMQ container starts before endpoints but it may
+        // take several seconds for the broker to become reachable.
+        await WaitForRabbitToStart()
             .ConfigureAwait(false);
+                
+        var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
+        endpointConfiguration.UseTransport<RabbitMQTransport>()
+            .ConnectionString("host=rabbitmq")
+            .UseConventionalRoutingTopology()
+            .DelayedDelivery().DisableTimeoutManager();
+        endpointConfiguration.EnableInstallers();
+
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+                    .ConfigureAwait(false);
         
         Console.WriteLine("Sending a message...");
 
@@ -43,36 +57,27 @@ class Program
             .ConfigureAwait(false);
     }
 
-    static async Task<IEndpointInstance> TryStart()
+    
+    static async Task WaitForRabbitToStart()
     {
-        int count = 0;
-
-        while (count < 5)
+        var factory = new ConnectionFactory
         {
-            ++count;
-
+            Uri = "amqp://rabbitmq"
+        };
+        for (var i = 0; i < 5; i++)
+        {
             try
             {
-                var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
-                endpointConfiguration.UseTransport<RabbitMQTransport>()
-                    .ConnectionString("host=rabbitmq")
-                    .UseConventionalRoutingTopology()
-                    .DelayedDelivery().DisableTimeoutManager();
-                endpointConfiguration.EnableInstallers();
-
-                var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                            .ConfigureAwait(false);
-
-                return endpointInstance;
+                using (factory.CreateConnection())
+                {
+                }
+                return;
             }
-            catch (Exception ex)
+            catch (BrokerUnreachableException)
             {
-                Console.WriteLine($"Failed to start endpoint: {ex}");
-                await Task.Delay(1000);
             }
+            await Task.Delay(1000).ConfigureAwait(false);
         }
-
-        throw new Exception($"Unable to start endpoint after {count} attempts.");
     }
 
     static void OnExit(object sender, ConsoleCancelEventArgs args)
