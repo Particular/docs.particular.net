@@ -18,21 +18,25 @@ class Program
 
         Console.Title = "Samples.Docker.Receiver";
 
-        // The RabbitMQ container starts before endpoints but it may
-        // take several seconds for the broker to become reachable.
-        await WaitForRabbitToStart()
-            .ConfigureAwait(false);
-
         var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver");
+        #region TransportConfiguration
         endpointConfiguration.UseTransport<RabbitMQTransport>()
             .ConnectionString("host=rabbitmq")
             .UseConventionalRoutingTopology()
             .DelayedDelivery().DisableTimeoutManager();
+        #endregion
         endpointConfiguration.EnableInstallers();
 
+        // The RabbitMQ container starts before endpoints but it may
+        // take several seconds for the broker to become reachable.
+        #region WaitForRabbitBeforeStart
+        await WaitForRabbitToStart()
+            .ConfigureAwait(false);
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                    .ConfigureAwait(false);
-        
+            .ConfigureAwait(false);
+        #endregion
+
         Console.WriteLine("Use docker-compose down to stop containers.");
 
         // Wait until the message arrives.
@@ -42,6 +46,7 @@ class Program
             .ConfigureAwait(false);
     }
 
+    #region WaitForRabbit
     static async Task WaitForRabbitToStart()
     {
         var factory = new ConnectionFactory
@@ -63,6 +68,7 @@ class Program
             await Task.Delay(1000).ConfigureAwait(false);
         }
     }
+    #endregion
 
     static void OnExit(object sender, ConsoleCancelEventArgs args)
     {

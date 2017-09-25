@@ -17,11 +17,6 @@ class Program
         Console.CancelKeyPress += new ConsoleCancelEventHandler(OnExit);
 
         Console.Title = "Samples.Docker.Sender";
-
-        // The RabbitMQ container starts before endpoints but it may
-        // take several seconds for the broker to become reachable.
-        await WaitForRabbitToStart()
-            .ConfigureAwait(false);
                 
         var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
         endpointConfiguration.UseTransport<RabbitMQTransport>()
@@ -29,6 +24,11 @@ class Program
             .UseConventionalRoutingTopology()
             .DelayedDelivery().DisableTimeoutManager();
         endpointConfiguration.EnableInstallers();
+
+        // The RabbitMQ container starts before endpoints but it may
+        // take several seconds for the broker to become reachable.
+        await WaitForRabbitToStart()
+            .ConfigureAwait(false);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
                     .ConfigureAwait(false);

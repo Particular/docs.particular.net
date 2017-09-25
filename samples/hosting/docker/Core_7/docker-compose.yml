@@ -1,7 +1,6 @@
+#startcode DockerCompose
 version: "3"
-
-services:
-    
+services:   
     sender:
         image: sender
         build:
@@ -9,7 +8,6 @@ services:
             dockerfile: Dockerfile
         depends_on:
             - rabbitmq
-
     receiver:
         image: receiver
         build:
@@ -17,8 +15,8 @@ services:
             dockerfile: Dockerfile
         depends_on:
             - rabbitmq
-    
     rabbitmq:
         image: "rabbitmq:3-management"
         ports:
             - "15672:15672"
+#endcode
