@@ -446,6 +446,7 @@ Do not write a sample when:
 
  * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example, if the sample is "illustrating IOC with MVC" then "adding SignalR" to that sample will only cause confusion. In general, the fewer NuGet packages required to get the point across the better.
  * Do not "document things inside a sample". A sample is to show how something is used, not to document it. Instead update the appropriate documentation page and link to it. As a general rule, if you add any content to a sample, where that guidance could possibly be applicable to other samples, then that guidance should probably exist in a documentation page.
+ * Start a sample with paragraph(s) that summarize why the sample would be useful or interesting. Think about more than what the sample _does_, but also what additional scenarios it can enable. After this summary, put the `downloadbutton` directive in a paragraph by itself, which will be rendered as a large **Download the sample now** button.
 
 
 ### Conventions
