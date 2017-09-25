@@ -14,12 +14,26 @@ class Program
         endpointConfiguration.EnableInstallers();
 
         #region enable-wcf
+
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.EnableCallbacks();
 
         var wcf = endpointConfiguration.Wcf();
-        wcf.Binding(t => new BindingConfiguration(new NetNamedPipeBinding(), new Uri("net.pipe://localhost/MyService")));
-        wcf.CancelAfter(t => t.IsAssignableFrom(typeof(MyService)) ? TimeSpan.FromSeconds(5) : TimeSpan.FromSeconds(60));
+        wcf.Binding(
+            provider: type =>
+            {
+                return new BindingConfiguration(
+                    binding: new NetNamedPipeBinding(),
+                    address: new Uri("net.pipe://localhost/MyService"));
+            });
+        wcf.CancelAfter(
+            provider: type =>
+            {
+                return type.IsAssignableFrom(typeof(MyService))
+                    ? TimeSpan.FromSeconds(5)
+                    : TimeSpan.FromSeconds(60);
+            });
+
         #endregion
 
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -31,8 +45,12 @@ class Program
         Console.WriteLine("Press any key to exit");
 
         #region wcf-proxy
-        var pipeFactory = new ChannelFactory<IWcfService<MyRequestMessage, MyResponseMessage>>(new NetNamedPipeBinding(), new EndpointAddress("net.pipe://localhost/MyService"));
+
+        var pipeFactory = new ChannelFactory<IWcfService<MyRequestMessage, MyResponseMessage>>(
+            binding: new NetNamedPipeBinding(),
+            remoteAddress: new EndpointAddress("net.pipe://localhost/MyService"));
         var pipeProxy = pipeFactory.CreateChannel();
+
         #endregion
 
         Console.WriteLine("Proxy initialized.");
@@ -60,49 +78,26 @@ class Program
                 }
 
                 #region wcf-proxy-call
-                var response = await pipeProxy.Process(new MyRequestMessage
+
+                var request = new MyRequestMessage
                 {
-                    Info = key.Key == ConsoleKey.Enter ? "Hello from handler" : "Cancel"
-                }).ConfigureAwait(false);
+                    Info = key.Key == ConsoleKey.Enter
+                        ? "Hello from handler"
+                        : "Cancel"
+                };
+                var response = await pipeProxy.Process(request)
+                    .ConfigureAwait(false);
+
                 #endregion
 
                 Console.WriteLine($"Response '{response.Info}'");
             }
-            catch (FaultException ex)
+            catch (FaultException faultException)
             {
-                Console.Error.WriteLine($"Request failed due to: '{ex.Message}'");
+                Console.Error.WriteLine($"Request failed due to: '{faultException.Message}'");
             }
         }
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-}
-
-public class MyService : WcfService<MyRequestMessage, MyResponseMessage>
-{
-}
-
-#region wcf-reply-handler
-public class MyRequestMessageHandler : IHandleMessages<MyRequestMessage>
-{
-    public Task Handle(MyRequestMessage message, IMessageHandlerContext context)
-    {
-        if (message.Info == "Cancel")
-        {
-            return Task.CompletedTask;
-        }
-        return context.Reply(new MyResponseMessage { Info = message.Info });
-    }
-}
-#endregion
-
-public class MyRequestMessage : ICommand
-{
-    public string Info { get; set; }
-
-}
-
-public class MyResponseMessage : IMessage
-{
-    public string Info { get; set; }
 }
