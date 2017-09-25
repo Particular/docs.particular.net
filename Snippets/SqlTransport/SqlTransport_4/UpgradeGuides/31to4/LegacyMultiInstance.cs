@@ -11,7 +11,9 @@ class LegacyMultiInstance
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString("Data Source=SQL; Database=ThisEndpoint; Integrated Security=True");
-        transport.UseCatalogForEndpoint("RemoteEndpoint", "RemoteEndpoint");
+        transport.UseCatalogForEndpoint(
+            endpointName: "RemoteEndpoint",
+            catalog: "RemoteEndpoint");
 
         #endregion
     }
