@@ -9,7 +9,8 @@ related:
  - nservicebus/wcf
 ---
 
-This sample demonstrates how the [Wcf component](/nservicebus/wcf) can be leveraged to achieve reliable WCF services by bridging the WCF calls over messaging.
+This sample demonstrates how the [WCF component](/nservicebus/wcf) can be leveraged to achieve reliable WCF services by bridging the WCF calls over messaging.
+
 
 ## Running the project
 
@@ -20,15 +21,15 @@ This sample demonstrates how the [Wcf component](/nservicebus/wcf) can be levera
 
 ### Verifying that the sample works correctly
 
-- When a message was sent with enter `Response 'Hello from handler'` will be desplayed
-- When a message was sent with escape `Request failed due to: 'The request was cancelled after 00:00:05 because no response was received.'` will be desplayed
+ * When a message was sent with enter `Response 'Hello from handler'` will be displayed
+ * When a message was sent with escape `Request failed due to: 'The request was cancelled after 00:00:05 because no response was received.'` will be displayed
 
 
 ## Code walk-through
 
-The sample contains a self-hosted enpoint that leverages the Wcf and the Callbacks package to enable reliable WCF services over messaging.
+The sample contains a self-hosted endpoint that leverages the WCF and the Callbacks package to enable reliable WCF services over messaging.
 
-The [Wcf](/nservicebus/wcf)) and the [Callback](/nservicebus/messaging/callbacks.md) component are enabled. The Wcf component is configured to cancel requests after five seconds and a named pipe binding is used to expose the service as shown below:
+The [WCF](/nservicebus/wcf)) and the [Callback](/nservicebus/messaging/callbacks.md) component are enabled. The WCF component is configured to cancel requests after five seconds and a named pipe binding is used to expose the service as shown below:
 
 snippet: enable-wcf
 
