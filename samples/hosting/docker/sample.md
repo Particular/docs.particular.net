@@ -79,7 +79,7 @@ This sample consists of `Sender` and `Publisher` endpoints exchanging messages u
 
 Each endpoint is a container built on top of official `microsoft/dotnet:2.0-runtime` image from [Docker Hub](https://hub.docker.com/). The container image is built using endpoint binaries from the `bin/Debug/netcoreapp2.0/publish` folder:
 
-snippet:Dockerfile
+snippet: Dockerfile
 
 NOTE: Run `dotnet build` and `dotnet publish` commands to generate endpoint binaries before creating the image.
 
@@ -87,17 +87,17 @@ NOTE: Run `dotnet build` and `dotnet publish` commands to generate endpoint bina
 
 Endpoint container images for the `Sender` and the `Receiver` are combined with an official [RabbitMQ image](https://hub.docker.com/_/rabbitmq/) to create a multi-container application using [Docker Compose](https://docs.docker.com/compose/):
 
-snippet:DockerCompose
+snippet: DockerCompose
 
 ### Transport configuration
 
 Endpoints configure the RabbitMQ transport to use the broker instance running in the `rabbitmq` container:
 
-snippet:TransportConfiguration
+snippet: TransportConfiguration
 
 ### Waiting for RabbitMQ broker to become available
 
 Docker Compose manages the dependencies between the containers and starts the `rabbitmq` container first but there is still a delay between when the RabbitMQ container starts and when the broker starts to accept client connections. Endpoints must wait for the broker to become available before starting the endpoint:
 
-snippet:WaitForRabbitBeforeStart
-snippet:WaitForRabbit
+snippet: WaitForRabbitBeforeStart
+snippet: WaitForRabbit
