@@ -30,3 +30,7 @@ Neither [direct topology](/transports/rabbitmq/routing-topology.md#direct-routin
  * Using [aliases](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts) instead of connection string will make it impossible to retry messages from ServiceControl.
  * Leveraging [multiple storage accounts](/transports/azure-storage-queues/multi-storageaccount-support.md) will require a setup of multiple ServiceControl instances.
  * Choosing a [non default serializer for the message wrapper](/transports/azure-storage-queues/configuration.md#configuration-parameters-serializemessagewrapperwith) or using a [custom envelope wrapper](/transports/azure-storage-queues/configuration.md#custom-envelope-unwrapper) may lead to incompatible wire formats.
+ 
+## Amazon SQS
+
+The Amazon SQS transport is not supported by ServiceControl. In order to use ServiceControl with a system that uses Amazon SQS, the ServiceControl has to be configured to use one of the supported transports (e.g. MSMQ, SQL Server) and a transport adapter has to be deployed to translate from SQS to the ServiceControl transport.
