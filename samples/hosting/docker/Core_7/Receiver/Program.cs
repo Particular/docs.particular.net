@@ -33,7 +33,7 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
                     .ConfigureAwait(false);
         
-        Console.WriteLine("Press Ctrl+C to exit.");
+        Console.WriteLine("Use docker-compose down to stop containers.");
 
         // Wait until the message arrives.
         closingEvent.WaitOne();

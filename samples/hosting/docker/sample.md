@@ -51,8 +51,8 @@ docker-compose up -d
 Both containers log to the console. These logs can be inspected:
 
 ```
-docker-compose logs --tail=10 sender
-docker-compose logs --tail=10 receiver
+docker-compose logs sender
+docker-compose logs receiver
 ```
 
 ## Stopping and removing containers
