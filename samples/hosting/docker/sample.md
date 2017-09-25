@@ -5,7 +5,6 @@ reviewed: 2017-09-22
 component: Core
 tags:
 - Hosting
-- Docker
 related:
 - nservicebus/hosting
 ---
