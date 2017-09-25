@@ -9,7 +9,7 @@ class Program
     {
         Console.Title = "Samples.Wcf.Endpoint";
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Client");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Wcf.Endpoint");
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();
 
