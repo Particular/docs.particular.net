@@ -10,7 +10,6 @@ class Program
         Console.Title = "Samples.Wcf.Endpoint";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Client");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();
 
