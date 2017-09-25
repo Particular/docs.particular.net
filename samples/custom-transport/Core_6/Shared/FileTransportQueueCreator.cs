@@ -25,8 +25,8 @@ class FileTransportQueueCreator :
     static void CreateQueueDirectory(string address)
     {
         var fullPath = BaseDirectoryBuilder.BuildBasePath(address);
-        var commitedPath = Path.Combine(fullPath, ".committed");
-        Directory.CreateDirectory(commitedPath);
+        var committedPath = Path.Combine(fullPath, ".committed");
+        Directory.CreateDirectory(committedPath);
         var bodiesPath = Path.Combine(fullPath, ".bodies");
         Directory.CreateDirectory(bodiesPath);
     }
