@@ -36,8 +36,6 @@ class Program
 
         #endregion
 
-        endpointConfiguration.SendFailedMessagesTo("error");
-
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press <enter> to send a message");

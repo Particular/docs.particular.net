@@ -33,7 +33,7 @@ The [WCF](/nservicebus/wcf)) and the [Callback](/nservicebus/messaging/callbacks
 
 snippet: enable-wcf
 
-A channel factory is used to create a channel that can communicate with the locally exposed WCF service
+A channel factory is used to create a channel to communicate with the locally exposed WCF service
 
 snippet: wcf-proxy
 
@@ -41,6 +41,6 @@ The request message is passed to the proxy as shown below
 
 snippet: wcf-proxy-call
 
-The proxy will asynchronously wait until the response or the cancellation is received. A response is sent with a regular handler hosted in the same endpoint
+The proxy will asynchronously wait until the response or the cancellation is received. A response is sent from a regular handler hosted in the same endpoint
 
 snippet: wcf-reply-handler
