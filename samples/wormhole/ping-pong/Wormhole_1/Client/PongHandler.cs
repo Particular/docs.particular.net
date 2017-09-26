@@ -9,7 +9,7 @@ class PongHandler :
 
     public Task Handle(Pong message, IMessageHandlerContext context)
     {
-        log.Info($"Ping {context.MessageHeaders[Headers.CorrelationId]}!");
-        return Task.FromResult(0);
+        log.Info($"Ping {context.MessageHeaders[Headers.CorrelationId]}");
+        return Task.CompletedTask;
     }
 }

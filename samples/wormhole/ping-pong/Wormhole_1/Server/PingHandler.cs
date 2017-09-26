@@ -9,7 +9,7 @@ class PingHandler :
 
     public Task Handle(Ping message, IMessageHandlerContext context)
     {
-        log.Info($"Ping {context.MessageId}!");
+        log.Info($"Ping {context.MessageId}");
         return context.Reply(new Pong());
     }
 }
