@@ -8,7 +8,7 @@ void Main()
 	var toolsDiretory = Path.GetDirectoryName(Util.CurrentQueryPath);
 	var docsDirectory = Directory.GetParent(toolsDiretory).FullName;
 	var samples = Path.Combine(docsDirectory, "Samples");
-	SetStartupProjects(samples);
+	SetStartupProjects(@"C:\Code\Particular\docs.particular.net\samples\pubsub\Core_7");
 }
 
 public static void SetStartupProjects(string codeDirectory)
