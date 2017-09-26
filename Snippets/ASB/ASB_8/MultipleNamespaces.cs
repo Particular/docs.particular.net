@@ -80,6 +80,24 @@ class MultipleNamespaces
         #endregion
     }
 
+    void NamespaceRoutingEndpointRegistration(EndpointConfiguration endpointConfiguration)
+    {
+        #region namespace_routing_endpoint_registration
+
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(typeof(MyMessage), "sales");
+
+        var namespaceRouting = transport.NamespaceRouting();
+        var destination = namespaceRouting.AddNamespace(
+            name: "destination1",
+            connectionString: "Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
+        destination.RegisteredEndpoints.Add("sales");
+
+        #endregion
+    }
+
     void NamespaceRoutingSendOptions(IEndpointInstance endpointInstance)
     {
         #region namespace_routing_send_options_full_connectionstring
@@ -95,6 +113,12 @@ class MultipleNamespaces
         endpointInstance.Send(
             destination: "sales@destination1",
             message: new MyMessage());
+
+        #endregion
+
+        #region namespace_routing_send_registered_endpoint
+
+        endpointInstance.Send(message: new MyMessage());
 
         #endregion
     }
