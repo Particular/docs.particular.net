@@ -27,12 +27,6 @@ public class DistributionStrategies
         {
         }
 
-        // Method will not be called since SelectDestination doesn't call base.SelectDestination
-        public override string SelectReceiver(string[] receiverAddresses)
-        {
-            throw new NotImplementedException();
-        }
-
         public override string SelectDestination(DistributionContext context)
         {
             // access to headers, payload...

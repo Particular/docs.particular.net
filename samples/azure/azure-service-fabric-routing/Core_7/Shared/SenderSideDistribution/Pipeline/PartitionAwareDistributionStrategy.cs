@@ -13,11 +13,6 @@ public class PartitionAwareDistributionStrategy :
         this.mapper = mapper;
     }
 
-    public override string SelectReceiver(string[] receiverAddresses)
-    {
-        throw new NotSupportedException();
-    }
-
     public override string SelectDestination(DistributionContext context)
     {
         var discriminator = mapper(context.Message.Instance);
