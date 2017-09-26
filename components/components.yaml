@@ -388,6 +388,16 @@
   NugetOrder:
     - NServiceBus.Metrics
 
+- Key: MetricsServiceControl
+  Name: Metrics.ServiceControl
+  DocoUrl: nservicebus/operations/metrics-service-control
+  GitHubOwner: Particular/metrics-maintainers
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.ServiceControl
+  NugetOrder:
+    - NServiceBus.Metrics.ServiceControl
+    - NServiceBus.Metrics
+    
 - Key: MsLogging
   Name: MicrosoftLogging
   DocoUrl: nservicebus/logging/microsoft
