@@ -62,7 +62,7 @@ snippet: MailerAttachmentFinder
 
 Pass an `AttachmentContext` when calling `SendMail`. The `AttachmentContext` should contain enough information to derive how to find and return the attachments for the email.
 
-snippet: MailerPassAttachemtnContext
+snippet: MailerPassAttachmentContext
 
 
 ## Error handling

@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Mailer;
 
-public class PassAttachemtnContext :
+public class PassAttachmentContext :
     IHandleMessages<MyMessage>
 {
-    #region MailerPassAttachemtnContext
+    #region MailerPassAttachmentContext
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         var mail = new Mail
