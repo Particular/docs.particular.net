@@ -62,13 +62,9 @@ Using this notation it is possible to route messages to any endpoint hosted in n
 
 snippet: namespace_routing_send_options_full_connectionstring
 
-Versions 7 and above of the Azure Service Bus transport it is also possible to provide an alias for namespaces, and use alias instead of connection string value; in all of these places.
+partial: alias
 
-snippet: namespace_routing_send_options_named
-
-This requires namespace alias and connection string to be registered using the `NamespaceRouting()` API.
-
-snippet: namespace_routing_registration
+partial: registered-endpoint
 
 
 ### Default namespace alias
