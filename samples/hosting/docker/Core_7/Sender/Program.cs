@@ -47,7 +47,7 @@ class Program
             .ConfigureAwait(false);
 
         Console.WriteLine("Message sent.");
-        Console.WriteLine("Use docker-compose down to stop containers.");
+        Console.WriteLine("Use 'docker-compose down' to stop containers.");
 
         // Wait until the message arrives.
         closingEvent.WaitOne();

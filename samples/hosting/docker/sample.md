@@ -18,36 +18,35 @@ This sample requires that the following tools are installed:
 
  * [.NET Core 2.0 SDK](https://www.microsoft.com/net/download/core)
  * [Docker Community Edition](https://www.docker.com/community-edition) or higher
-
-NOTE: The container that runs the RabbitMQ broker is a Linux container and [Docker for Windows also needs to be configured to use Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
+ * If using Windows, [configure Docker to use Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers) to support the Linux-based RabbitMQ container
 
 
 ## Running the sample
 
-The sample requires .NET Core CLI tools and Docker CLI tools to build and run the code.
+Running the sample involves building the code, preparing it for deployment, building container images and finally starting the multi-container application.
 
 
 ### Building and publishing binaries
 
-First step is to build the binaries using the .NET Core command line tools:
+The first step is to build the binaries using the .NET Core command line tools:
 
-```
-dotnet build
+```bash
+$ dotnet build
 ```
 
-When the binaries have been compiled, the next step is preparing them for deployment into the container:
+The compiled binaries need to be prepared for deployment into the container:
 
-```
-dotnet publish
+```bash
+$ dotnet publish
 ```
 
 
 ### Building container images
 
-When the binaries are ready for deployment, the next step is to build container images for both the `Sender` and the `Receiver`:
+The prepared binaries and container image definitions (Dockerfiles) are enough to build container images for both the `Sender` and the `Receiver`:
 
-```
-docker-compose build
+```bash
+$ docker-compose build
 ```
 
 
@@ -55,8 +54,8 @@ docker-compose build
 
 When the container images are ready, the containers can be started:
 
-```
-docker-compose up -d
+```bash
+$ docker-compose up -d
 ```
 
 
@@ -64,9 +63,9 @@ docker-compose up -d
 
 Both containers log to the console. These logs can be inspected:
 
-```
-docker-compose logs sender
-docker-compose logs receiver
+```bash
+$ docker-compose logs sender
+$ docker-compose logs receiver
 ```
 
 
@@ -74,8 +73,8 @@ docker-compose logs receiver
 
 The containers can be stopped and removed:
 
-```
-docker-compose down
+```bash
+$ docker-compose down
 ```
 
 ## Code walk-through
@@ -85,9 +84,9 @@ This sample consists of `Sender` and `Publisher` endpoints exchanging messages u
 
 ### Endpoint Docker image
 
-Each endpoint is a container built on top of official `microsoft/dotnet:2.0-runtime` image from [Docker Hub](https://hub.docker.com/). The container image is built using endpoint binaries from the `bin/Debug/netcoreapp2.0/publish` folder:
+Each endpoint is a container built on top of the official `microsoft/dotnet:2.0-runtime` image from [Docker Hub](https://hub.docker.com/). The container image is built using endpoint binaries from the `bin/Debug/netcoreapp2.0/publish` folder:
 
-```
+```dockerfile
 FROM microsoft/dotnet:2.0-runtime
 WORKDIR /Receiver
 COPY ./bin/Debug/netcoreapp2.0/publish .
@@ -101,7 +100,7 @@ NOTE: Run `dotnet build` and `dotnet publish` commands to generate endpoint bina
 
 Endpoint container images for the `Sender` and the `Receiver` are combined with an official [RabbitMQ image](https://hub.docker.com/_/rabbitmq/) to create a multi-container application using [Docker Compose](https://docs.docker.com/compose/):
 
-```
+```yaml
 version: "3"
 services:   
     sender:
