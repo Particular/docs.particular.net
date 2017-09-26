@@ -1,4 +1,4 @@
-The following are the main reasons why we are deprecating the NServiceBus hosts:
+The following are the main reasons why the NServiceBus hosts are being deprecated:
 
 - **Ease of configuration**: Endpoint configuration and related APIs have been significantly improved over the last few years. Therefore self-hosting is much simpler to set up than it used to be when hosts were first introduced.
 
