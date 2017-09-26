@@ -9,7 +9,7 @@ public class Handler :
 
     public Task Handle(MessageWithSecretData message, IMessageHandlerContext context)
     {
-        log.Info($"I know the secret - it\'s \'{message.Secret.Value}\'");
+        log.Info($"I know the secret - it's '{message.Secret.Value}'");
         log.Info($"SubSecret: {message.SubProperty.Secret.Value}");
         foreach (var creditCard in message.CreditCards)
         {
