@@ -11,7 +11,7 @@ related:
 
 ## WIP 
 
-This is a components that enables data to [v6 add metrics data] be sent to ServiceControl.Monitoring, so we can see this data in ServicePulse.
+This is a components that enables data to [v6 add metrics data] be sent to ServiceControl.Monitoring, so data is visible in ServicePulse.
 
-To add this functionality to an endpoint we need to configure it like this:
+To add this functionality to an endpoint the configuration looks like this:
 snippet
