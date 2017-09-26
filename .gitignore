@@ -34,6 +34,8 @@ run-git.cmd
 src/Chocolatey/Build/*
 *nsb_log*
 
+Emails
+
 installer/[F|f]iles
 installer/[C|c]ustom[A|a]ctions
 installer/ServiceControl-cache
