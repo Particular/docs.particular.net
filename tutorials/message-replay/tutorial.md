@@ -156,7 +156,7 @@ Because we installed ServiceControl and ServicePulse earlier, we can attempt to 
     ![Failed Message Details](failed-message-details.png)
  1. Click on an individual message, and you will be able to see the stack trace for the exception, or switch tabs to see the message headers or message body.
  1. Click the **Retry message** button and watch what happens in the console windows.
- 1. You can also back up to the Message Groups view and click Request retry to replay all the messages within that group at once! Note that ServiceControl executes message retry batches on a 30-second timer, so be patient. Eventually, the messages will be returned to their appropriate endpoints.
+ 1. You can also back up to the Message Groups view and click Request retry to replay all the messages within that group at once. Note that ServiceControl executes message retry batches on a 30-second timer, so be patient. Eventually, the messages will be returned to their appropriate endpoints.
 
 When the message is replayed in **Sales**, each endpoint picks up right where it left off. You should be able to see how useful this capability will be when failures happen in your real-life systems.
 

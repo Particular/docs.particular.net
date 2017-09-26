@@ -24,7 +24,7 @@ static class RavenDtcExtensions
     public static void UseRavenWithDtcSettings(this Configure configure, string endpointName)
     {
         // Calculate a ResourceManagerId unique to this endpoint using just endpoint name
-        // Not suitable for side-by-side installations!
+        // Not suitable for side-by-side installations
         var resourceManagerId = DeterministicGuidBuilder(endpointName);
 
         // Calculate a DTC transaction recovery storage path including the ResourceManagerId

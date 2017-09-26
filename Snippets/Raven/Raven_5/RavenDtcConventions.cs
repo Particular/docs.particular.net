@@ -28,7 +28,7 @@ class RavenDtcConventions :
         var localAddress = settings.LocalAddress();
 
         // Calculate a ResourceManagerId unique to this endpoint using just LocalAddress
-        // Not suitable for side-by-side installations!
+        // Not suitable for side-by-side installations
         var resourceManagerId = DeterministicGuidBuilder(localAddress);
 
         // Calculate a DTC transaction recovery storage path including the ResourceManagerId
