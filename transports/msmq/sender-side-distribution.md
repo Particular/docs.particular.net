@@ -57,7 +57,7 @@ snippet: RoutingExtensibility-Distribution
 
 snippet: RoutingExtensibility-DistributionStrategy
 
-In Version 6.2 and above it is possible to override the virtual method `SelectDestination`. The method provides access to the `DistributionStrategyContext` that enables implementing more advanced distribution scenarios, such as distributing based on the headers of the message. When `SelectDestination` is overridden, do not call `base.SelectDestination` since the base method calls `SelectReceiver` for backward compatibility reasons. `SelectReceiver` can throw a `NotImplementedException`.
+partial: select-destination
 
 To learn more about creating custom distribution strategies see the [fair distribution sample](/samples/routing/fair-distribution/).
 
