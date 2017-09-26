@@ -11,7 +11,7 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-The NServiceBus will be deprecated as of Version 9 and users are recommended to switch to self hosting for new endpoints. Upgrading existing endpoints is still supported for Version 8.
+The NServiceBus Host will be deprecated as of Version 9 and users are recommended to switch to self hosting for new endpoints. Upgrading existing endpoints is still supported for Version 8.
 
 include: host-deprecate
 
