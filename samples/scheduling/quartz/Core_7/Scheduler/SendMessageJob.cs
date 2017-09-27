@@ -6,7 +6,8 @@ using Quartz;
 
 #region SendMessageJob
 
-public class SendMessageJob : IJob
+public class SendMessageJob :
+    IJob
 {
     static ILog log = LogManager.GetLogger<SendMessageJob>();
 
@@ -15,7 +16,8 @@ public class SendMessageJob : IJob
         try
         {
             var endpointInstance = context.EndpointInstance();
-            await endpointInstance.Send("Samples.QuartzScheduler.Receiver", new MyMessage())
+            var message = new MyMessage();
+            await endpointInstance.Send("Samples.QuartzScheduler.Receiver", message)
                 .ConfigureAwait(false);
         }
         catch (Exception exception)
