@@ -32,7 +32,7 @@ namespace MyNamespace2
         {
             log.Warn($"Received Reply from {reply.OriginatingSagaType}");
             MarkAsComplete();
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
         public class SagaData :

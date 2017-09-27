@@ -23,19 +23,19 @@ class MySession :
     public Task Store<T>(T entity)
     {
         entities.Add(entity);
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public Task Commit()
     {
         var entitiesStored = string.Join(",", entities);
         log.Info($"{entitiesStored} stored in tenant database: {tenant}DB by session {GetHashCode()}");
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public Task Rollback()
     {
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public override string ToString() => $"Session for {tenant}(instance: {GetHashCode()})";

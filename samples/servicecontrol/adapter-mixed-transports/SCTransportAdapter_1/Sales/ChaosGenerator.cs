@@ -11,6 +11,6 @@ public class ChaosGenerator
         {
             throw new Exception("Database is down");
         }
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

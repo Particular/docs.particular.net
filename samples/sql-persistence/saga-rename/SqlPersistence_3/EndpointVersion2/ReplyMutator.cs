@@ -28,7 +28,7 @@ public class ReplyMutator :
                 headers[Headers.OriginatingSagaType] = newSagaName;
             }
         }
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }
 #endregion

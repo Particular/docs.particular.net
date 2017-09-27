@@ -10,6 +10,6 @@ public class UserCreatedHandler :
     public Task Handle(UserCreated message, IMessageHandlerContext context)
     {
         log.InfoFormat("Hello from {@Handler}", nameof(UserCreatedHandler));
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 }

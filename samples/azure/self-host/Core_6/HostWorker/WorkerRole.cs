@@ -36,8 +36,7 @@ public class WorkerRole :
                 var message = $"Critical error encountered:\n{context.Error}\nNServiceBus is shutting down.";
                 LogManager.GetLogger(typeof(WorkerRole)).Fatal(message);
                 Environment.FailFast(message, context.Exception);
-
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             });
 
         #endregion
