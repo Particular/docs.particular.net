@@ -12,7 +12,9 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-The NServiceBus Azure Host will be deprecated as of Version 9 and users are recommended to switch to self hosting for new endpoints. Upgrading existing endpoints is still supported for Version 8
+The NServiceBus Azure Host will be deprecated as of Version 9 and users are recommended to switch to self hosting for new endpoints. Upgrading existing endpoints is still supported for Version 8.
+
+include: host-deprecate
 
 
 ## Installation incompatible with NuGet
