@@ -15,7 +15,9 @@ static class Program
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
         Console.Title = "Samples.Serialization.ExternalJson";
+
         #region config
+
         var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalJson");
         var settings = new JsonSerializerSettings
         {
@@ -23,18 +25,27 @@ static class Program
         };
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         serialization.Settings(settings);
-        // register the mutator so the the message on the wire is written
-        endpointConfiguration.RegisterComponents(components =>
-        {
-            components.ConfigureComponent<MessageBodyWriter>(DependencyLifecycle.InstancePerCall);
-        });
+
         #endregion
+
+        #region registermutator
+        
+        endpointConfiguration.RegisterComponents(
+            registration: components =>
+            {
+                components.ConfigureComponent<MessageBodyWriter>(DependencyLifecycle.InstancePerCall);
+            });
+
+        #endregion
+
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
+
         #region message
+
         var message = new CreateOrder
         {
             OrderId = 9,
@@ -56,7 +67,9 @@ static class Program
         };
         await endpointInstance.SendLocal(message)
             .ConfigureAwait(false);
+
         #endregion
+
         Console.WriteLine("Order Sent");
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();

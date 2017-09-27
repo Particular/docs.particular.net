@@ -4,12 +4,13 @@ summary: Use the Newtonsoft Json serializer in an endpoint.
 reviewed: 2016-03-21
 component: NewtonSoft
 related:
-- nservicebus/serialization
+ - nservicebus/serialization
+ - samples/serializers/newtonsoft-bson
+ - samples/encryption/newtonsoft-json-encryption
 redirects:
-- samples/serializers/json-external
+ - samples/serializers/json-external
 ---
 
-## NServiceBus.Newtonsoft.Json
 
 This sample uses the Newtonsoft serializer [NServiceBus.Newtonsoft.Json](https://github.com/Particular/NServiceBus.Newtonsoft.Json) to provide full access to the [Newtonsoft Json.net](http://www.newtonsoft.com/json) API.
 
@@ -24,6 +25,10 @@ snippet: config
 A helper that will Write out the contents of any incoming message.
 
 snippet: mutator
+
+Register the mutator.
+
+snippet: registermutator
 
 
 ## The message send
