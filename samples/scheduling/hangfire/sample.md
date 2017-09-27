@@ -81,7 +81,7 @@ Hangfire uses [LibLog](https://github.com/damianh/LibLog). Since LibLog supports
 
 snippet: serilog
 
-LibLog [supports many other common logging libraries](https://github.com/damianh/LibLog/wiki#transparent-logging-support). Hangfire can also be configured to use a custom logger. See [Adding logging in Hangfire](http://docs.hangfire.io/en/latest/configuration/configuring-logging.html) article for more details.
+LibLog [supports many other common logging libraries](https://github.com/damianh/LibLog/wiki#transparent-logging-support). Hangfire can also be configured to use a custom logger. See also [Adding logging in Hangfire](http://docs.hangfire.io/en/latest/configuration/configuring-logging.html).
 
 
 ## Scale Out
@@ -93,3 +93,4 @@ Note that in this sample an instance of the Hangfire scheduler is configured to 
 
  * [Hangfire Quick Start Guide](http://docs.hangfire.io/en/latest/quick-start.html)
  * [Hangfire Tutorials](http://docs.hangfire.io/en/latest/tutorials/index.html)
+ * [Dealing with exceptions](http://docs.hangfire.io/en/latest/background-processing/dealing-with-exceptions.html)
