@@ -14,4 +14,4 @@ related:
 This is a components that enables data to [v6 add metrics data] be sent to ServiceControl.Monitoring, so data is visible in ServicePulse.
 
 To add this functionality to an endpoint the configuration looks like this:
-snippet
+snippet: SendMetricDataToServiceControl

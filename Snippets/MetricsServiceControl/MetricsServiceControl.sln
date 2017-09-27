@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 15.0.26730.12
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metrics_1", "Metrics_1\Metrics_1.csproj", "{4731FC5D-7DFE-4445-941B-899FB1B1EF9D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metrics_1.1", "Metrics_1.1\Metrics_1.1.csproj", "{5207764D-0559-4421-99B8-C4D052CB8FB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricsServiceControl_1", "MetricsServiceControl_1\MetricsServiceControl_1.csproj", "{EFDD4C02-B328-462B-A6CC-2C6ED66D801E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricsServiceControl_2", "MetricsServiceControl_2\MetricsServiceControl_2.csproj", "{B38DCBF6-BD74-419B-A725-4DED4715BC53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4731FC5D-7DFE-4445-941B-899FB1B1EF9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4731FC5D-7DFE-4445-941B-899FB1B1EF9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5207764D-0559-4421-99B8-C4D052CB8FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5207764D-0559-4421-99B8-C4D052CB8FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFDD4C02-B328-462B-A6CC-2C6ED66D801E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFDD4C02-B328-462B-A6CC-2C6ED66D801E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B38DCBF6-BD74-419B-A725-4DED4715BC53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B38DCBF6-BD74-419B-A725-4DED4715BC53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26A53F7F-D9DC-44BE-A9A9-1CEB120A8A7C}
+	EndGlobalSection
+EndGlobal
