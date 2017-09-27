@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net47</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="1.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Encryption" Version="1.*" />
+  </ItemGroup>
+</Project>
