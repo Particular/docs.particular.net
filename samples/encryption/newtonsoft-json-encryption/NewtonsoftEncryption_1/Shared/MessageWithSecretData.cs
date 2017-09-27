@@ -9,22 +9,22 @@ public class MessageWithSecretData :
     IMessage
 {
     [Encrypt]
-    public string Secret { get; set; }
-    public MySecretSubProperty SubProperty { get; set; }
-    public List<CreditCardDetails> CreditCards { get; set; }
+    public string Secret;
+    public MySecretSubProperty SubProperty;
+    public List<CreditCardDetails> CreditCards;
 }
 
 public class MySecretSubProperty
 {
     [Encrypt]
-    public string Secret { get; set; }
+    public string Secret;
 }
 
 public class CreditCardDetails
 {
-    public DateTime ValidTo { get; set; }
+    public DateTime ValidTo;
     [Encrypt]
-    public string Number { get; set; }
+    public string Number;
 }
 
 #endregion
