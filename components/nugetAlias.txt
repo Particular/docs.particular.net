@@ -44,6 +44,7 @@ MongoTekmaven: NServiceBus.Persistence.MongoDb
 MsmqTransport: NServiceBus.Transport.Msmq
 MsLogging: NServiceBus.MicrosoftLogging
 Newtonsoft: NServiceBus.Newtonsoft.Json
+NewtonsoftEncryption: NServiceBus.Newtonsoft.Encryption
 NES: NES.NServiceBus
 NHibernate: NServiceBus.NHibernate
 Ninject: NServiceBus.Ninject
