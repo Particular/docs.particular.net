@@ -89,9 +89,9 @@ snippet: MefSendMessageAfterEndpointStart
 ## Other notes
 
 
-### Using an [IOC container](/nservicebus/containers/)
+### Using [dependency injection](/nservicebus/dependency-injection/)
 
-Both the above approaches could be made more extensible and versatile by leveraging a [container](/nservicebus/containers/). In the case of MEF most containers have custom integrations, for example [Autofac.Mef](http://docs.autofac.org/en/latest/integration/mef.html). For the custom reflection approach the standard reflection based APIs of a given container would be used.
+Both the above approaches could be made more extensible and versatile by leveraging [dependency injection](/nservicebus/dependency-injection/). In the case of MEF most containers have custom integrations, for example [Autofac.Mef](http://docs.autofac.org/en/latest/integration/mef.html). For the custom reflection approach the standard reflection based APIs of a given container would be used.
 
 
 ### Adding more extensions points

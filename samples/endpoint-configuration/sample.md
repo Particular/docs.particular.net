@@ -53,9 +53,9 @@ partial: endpointname
 snippet: create-config
 
 
-## Select and configure a [Container](/nservicebus/containers)
+## Select and configure [dependency injection](/nservicebus/dependency-injection)
 
-[Autofac](/nservicebus/containers/autofac.md) is being used with a customized container instance being passed into NServiceBus.
+[Autofac](/nservicebus/dependency-injection/autofac.md) is being used with a customized instance being passed into NServiceBus.
 
 snippet: container
 

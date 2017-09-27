@@ -401,7 +401,7 @@ public enum ComponentCategory
 	Transport,
 	Persistence,
 	Serializer,
-	Container,
+	DependencyInjection,
 	Logger,
 	Databus,
 	Host,

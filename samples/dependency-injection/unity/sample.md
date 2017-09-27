@@ -1,15 +1,17 @@
 ---
-title: Unity Container Usage
+title: Unity Dependency Injection Usage
 component: Unity
 reviewed: 2016-03-21
 tags:
 - dependency injection
 related:
-- nservicebus/containers
-- nservicebus/containers/unity
+- nservicebus/dependency-injection
+- nservicebus/dependency-injection/unity
+redirects:
+ - samples/containers/unity
 ---
 
-### Configuring NServiceBus to use the container
+### Configuring to use Unity
 
 snippet: ContainerConfiguration
 

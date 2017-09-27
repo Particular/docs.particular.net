@@ -97,7 +97,7 @@ In order for a feature to be activated it needs to satisfy the following criteri
 `Setup` has to be implemented in the feature and will be called if the feature is enabled. It supports configuration of the feature, hook into the pipeline or registering services on the container. The `FeatureConfigurationContext` parameter on the method contains:
 
  * Settings: read or write settings which should be available to other components or read access settings provided by NServiceBus.
- * Container: register services with the dependency injection container which can be injected to other components.
+ * Container: register services with dependency injection which can be injected to other components.
  * Pipeline: register the behavior into the message processing pipeline or replace/remove existing ones.
 
 snippet: FeatureSetup

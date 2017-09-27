@@ -1,5 +1,5 @@
 ---
-title: Containers
+title: Dependency Injection
 summary: NServiceBus automatically registers components, handlers, and sagas.
 component: Core
 reviewed: 2016-08-26
@@ -8,10 +8,10 @@ tags:
 redirects:
  - nservicebus/containers
 related:
-- samples/containers
+ - samples/dependency-injection
 ---
 
-Services and state are managed by Containers and Dependency Injection. NServiceBus automatically registers all its components as well as user-implemented handlers and sagas so that all instancing modes and wiring are done correctly by default and without errors. NServiceBus has a built-in container, but it can be replaced by any other container.
+Services and state are managed by Dependency Injection (DI). NServiceBus automatically registers all its components as well as user-implemented handlers and sagas so that all instancing modes and wiring are done correctly by default and without errors. NServiceBus has a built-in DI, but it can be replaced by any other container.
 
 
 ## Dependency Lifecycle
@@ -77,7 +77,7 @@ snippet: DelegateSingleInstance
 snippet: RegisterSingleton
 
 
-## Supported Containers
+## Supported
 
 Support for other containers is provided via custom integrations.
 
@@ -90,16 +90,16 @@ Support for other containers is provided via custom integrations.
  * [Unity](unity.md)
 
 
-## Using an existing container
+## Using an existing instance
 
-The above pages all have examples of how to pass in an instance of an existing container. This is useful to make use of the full features of the container and share the DI behavior with NServiceBus.
+The above pages all have examples of how to pass in an instance of an existing container. This is useful to make use of the full features and share the behavior with NServiceBus.
 
 
 partial: content
 
 
-## Plugging in the container
+## Plugging in
 
-If a specific container is not already supported, then create a plugin using the `IContainer` abstraction. Once this is created and registered, NServiceBus will use the custom container to look up its own dependencies.
+If a specific library is not already supported, then create a plugin using the `IContainer` abstraction. Once this is created and registered, NServiceBus will use the custom container to look up its own dependencies.
 
 partial: custom

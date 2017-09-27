@@ -113,7 +113,7 @@ Serialization is the process of converting an in memory object representing a me
 Several NServiceBus features rely on persistent storage to function. This includes Sagas, Timeouts, Gateway, Outbox and Subscriptions (with transports that do not support Pub/Sub natively).
 
 
-### [Containers](/nservicebus/containers)
+### [Dependency injection](/nservicebus/dependency-injection)
 
 NServiceBus relies heavily on Containers and Dependency Injection to manage services and state.
 

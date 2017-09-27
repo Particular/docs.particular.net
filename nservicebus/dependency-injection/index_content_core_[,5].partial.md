@@ -10,4 +10,4 @@ When using an external container, the bus instance is not automatically disposed
  1. Call IBus.Dispose() to dispose of the bus.
  1. And then call container.Dispose() to dispose of the container.
 
-NOTE: When an external container is not used, the bus instance still needs to be properly disposed of by calling `IBus.Dispose()`.
+NOTE: When external dependency injection is not used, the bus instance still needs to be properly disposed of by calling `IBus.Dispose()`.

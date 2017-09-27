@@ -1,10 +1,10 @@
 Instances are:
 
- * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/) during endpoint creation. These are registered as `Instance Per Call`.
+ * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured dependency injection](/nservicebus/dependency-injection/) during endpoint creation. These are registered as `Instance Per Call`.
  * Created and started as the last step when the endpoint is started.
  * Started after the Transport and any Satellites have started. While all instances of `IWantToRunWhenBusStartsAndStops` are being started, no message will be processed.
  * Created on the same thread that is starting the endpoint.
- * Created by the [Container](/nservicebus/containers/) which means they:
+ * Created by [dependency injection](/nservicebus/dependency-injection/) which means they:
   * Will have dependencies injected.
   * Do not require a default constructor.
 

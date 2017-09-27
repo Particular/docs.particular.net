@@ -107,6 +107,6 @@ In many samples Messages are defined in a shared project along with reusable hel
 Many samples make use of `SendLocal` and sending to an endpoint directly by specify the destination using a string in code. This is done to simplify the amount of configuration in samples. In a real solution most message destination should be defined via [routing configuration](/nservicebus/messaging/routing.md).
 
 
-### [DI container](/nservicebus/containers/)
+### [Dependency injection](/nservicebus/dependency-injection/)
 
 Samples default to using the built-in DI container since it does not require pulling in any external NuGet packages. Switching to an external DI container will give greater flexibility in DI customizations.

@@ -17,10 +17,10 @@ Classes that implement `IWantToRunWhenConfigurationIsComplete` are executed when
 
 Instances are:
 
- * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/) during bus creation. These are registered as Instance Per Call.
+ * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured dependency injection](/nservicebus/dependency-injection/) during bus creation. These are registered as Instance Per Call.
  * Created as the last step before the bus is created.
  * Created on the same thread that is creating the bus.
- * Created by the [Container](/nservicebus/containers/) which means they:
+ * Created by [dependency injection](/nservicebus/dependency-injection/) which means they:
   * Will have dependencies injected.
   * Do not require a default constructor.
 

@@ -77,10 +77,10 @@
     - NServiceBus.Azure.Transports.WindowsAzureStorageQueues
 
 - Key: Autofac
-  Name: Autofac DI Container
-  DocoUrl: nservicebus/containers/autofac
+  Name: Autofac Dependency Injection
+  DocoUrl: nservicebus/dependency-injection/autofac
   GitHubOwner: Particular/container-maintainers
-  Category: Container
+  Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.Autofac
   NugetOrder:
     - NServiceBus.Autofac
@@ -127,10 +127,10 @@
     - NServiceBus    
 
 - Key: Castle
-  Name: Castle DI Container
-  DocoUrl: nservicebus/containers/castlewindsor
+  Name: Castle Dependency Injection
+  DocoUrl: nservicebus/dependency-injection/castlewindsor
   GitHubOwner: Particular/container-maintainers
-  Category: Container
+  Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.CastleWindsor
   NugetOrder:
     - NServiceBus.CastleWindsor
@@ -524,10 +524,10 @@
     - NServiceBus.NHibernate
 
 - Key: Ninject
-  Name: Ninject DI Container
-  DocoUrl: nservicebus/containers/ninject
+  Name: Ninject Dependency Injection
+  DocoUrl: nservicebus/dependency-injection/ninject
   GitHubOwner: Particular/container-maintainers
-  Category: Container
+  Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.Ninject
   NugetOrder:
     - NServiceBus.Ninject
@@ -766,10 +766,10 @@
     - ServiceInsight
 
 - Key: SimpleInjector
-  Name: SimpleInjector DI Container
-  DocoUrl: nservicebus/containers/simpleinjector
+  Name: SimpleInjector Dependency Injection
+  DocoUrl: nservicebus/dependency-injection/simpleinjector
   GitHubOwner: WilliamBZA
-  Category: Container
+  Category: DependencyInjection
   SupportLevel: Community
   LicenseUrl: https://github.com/WilliamBZA/NServicebus.SimpleInjector/blob/master/LICENSE
   ProjectUrl: https://github.com/WilliamBZA/NServicebus.SimpleInjector
@@ -777,10 +777,10 @@
     - NServiceBus.SimpleInjector
 
 - Key: Spring
-  Name: Spring DI Container
-  DocoUrl: nservicebus/containers/spring
+  Name: Spring Dependency Injection
+  DocoUrl: nservicebus/dependency-injection/spring
   GitHubOwner: Particular/container-maintainers
-  Category: Container
+  Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.Spring
   NugetOrder:
     - NServiceBus.Spring
@@ -795,10 +795,10 @@
     - NServiceBus.SqlServer
 
 - Key: StructureMap
-  Name: StructureMap DI Container
-  DocoUrl: nservicebus/containers/structuremap
+  Name: StructureMap Dependency Injection
+  DocoUrl: nservicebus/dependency-injection/structuremap
   GitHubOwner: Particular/container-maintainers
-  Category: Container
+  Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.StructureMap
   NugetOrder:
     - NServiceBus.StructureMap
@@ -832,10 +832,10 @@
     - NServiceBus.Testing
 
 - Key: Unity
-  Name: Unity DI Container
-  DocoUrl: nservicebus/containers/unity
+  Name: Unity Dependency Injection
+  DocoUrl: nservicebus/dependency-injection/unity
   GitHubOwner: Particular/container-maintainers
-  Category: Container
+  Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.Unity
   NugetOrder:
     - NServiceBus.Unity

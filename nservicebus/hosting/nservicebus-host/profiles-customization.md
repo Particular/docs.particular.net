@@ -47,7 +47,7 @@ That can be achieved with the following implementation:
 
 snippet: profile_behavior
 
-NServiceBus will find the provided behaviors for the email component at runtime and invoke only methods appropriate for the profile that it's currently using. As a result, for each environment a different implementation of the email component will be registered with the DI container and used in the system. 
+NServiceBus will find the provided behaviors for the email component at runtime and invoke only methods appropriate for the profile that it's currently using. As a result, for each environment a different implementation of the email component will be registered with dependency injection and used in the system. 
 
 
 ## Profile vs endpoint configuration

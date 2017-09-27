@@ -22,7 +22,7 @@ There are several approaches to hosting.
 
  * Configuration
  * [Logging](/nservicebus/logging)
- * [Container](/nservicebus/containers/)
+ * [Dependency injection](/nservicebus/dependency-injection/)
  * [Startup and Shutdown](/samples/startup-shutdown-sequence/)
  * [Endpoint Lifecycle](/nservicebus/lifecycle/)
  * [Critical Error handling](critical-errors.md)
@@ -90,9 +90,9 @@ Related:
 Most usages of the bus will occur where the NServiceBus APIs are used. For example [Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/). However there are other scenarios that may require an alternative approach where the user needs to directly access the bus from outside of the framework.
 
 
-#### Using a Container
+#### Using dependency injection
 
-NServiceBus support dependency injection via use [Containers](/nservicebus/containers/). At startup, the instance of a bus session will be injected into the configured container and can be access via that container.
+NServiceBus supports [dependency injection](/nservicebus/dependency-injection/). At startup, the instance of a bus session will be injected into the configured container and can be access via that container.
 
 Related:
 
@@ -104,7 +104,7 @@ partial: injecting
 
 #### Static variable
 
-For many scenarios a container is not required. In these cases a simple public static variable on the startup class will suffice. This variable can then be access globally in the application. For example:
+For many scenarios dependency injection is not required. In these cases a simple public static variable on the startup class will suffice. This variable can then be access globally in the application. For example:
 
  * In windows service or console the variable would be placed on the `Program.cs`
  * In a Website the variable would be placed on the `Global.cs`.

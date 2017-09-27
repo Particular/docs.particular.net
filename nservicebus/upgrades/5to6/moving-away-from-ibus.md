@@ -52,7 +52,7 @@ snippet: 5to6-messagecontext
 
 ### Sending messages inside message handlers
 
-Instances of `IBus` that were being injected into message handler classes by the IoC container can be safely deleted.
+Instances of `IBus` that were being injected into message handler classes by dependency injection can be safely deleted.
 
 The message handler signature now includes an additional `IMessageHandlerContext` parameter, which provides the methods that used to be called from `IBus`. Use the `IMessageHandlerContext` to send and publish messages from within the message handler.
 
@@ -77,7 +77,7 @@ If the endpoint is hosted using NServiceBus.Host, use the [`IWantToRunWhenEndpoi
 
 ## Dependency Injection
 
-In previous versions, the `IBus` interface was automatically registered in the IOC container. In Version 6, the new context-aware interfaces, for example, `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., are not automatically registered in the [Container](/nservicebus/containers/).
+In previous versions, the `IBus` interface was automatically registered in the IOC container. In Version 6, the new context-aware interfaces, for example, `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., are not automatically registered in [dependency injection](/nservicebus/dependency-injection/).
 
 In Versions 5 and below, when a custom component was registered in the container, the custom component had access to the `IBus` instance via dependency injection.
 
@@ -116,7 +116,7 @@ When using the `IBuilder` interface outside the infrastructure of NServiceBus, i
 
 snippet: 5to6AccessBuilder
 
-This is no longer supported. Instead of using `IBuilder` directly, it is advised to use dependency injection via the [container](/nservicebus/containers/) of choice.
+This is no longer supported. Instead of using `IBuilder` directly, it is advised to use [dependency injection](/nservicebus/dependency-injection/).
 
 
 ### Setting the host information

@@ -17,7 +17,7 @@ Instances are:
  * Created just before the configuration is frozen.
  * Created on the same thread that is creating the bus.
  * Created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they:
-  * Are not resolved out of the [Container](/nservicebus/containers/) (even if they are registered there).
+  * Are not resolved by [dependency injection](/nservicebus/dependency-injection/) (even if they are registered there).
   * Will not have any dependencies injected.
   * Must have a default constructor.
 

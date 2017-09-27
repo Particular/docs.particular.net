@@ -7,7 +7,7 @@ redirects:
 - nservicebus/injecting-the-bus-into-asp.net-mvc-controller
 - samples/web/asp-mvc-injecting-bus
 related:
-- nservicebus/containers
+- nservicebus/dependency-injection
 - nservicebus/hosting
 - nservicebus/hosting/publishing-from-web-applications
 ---

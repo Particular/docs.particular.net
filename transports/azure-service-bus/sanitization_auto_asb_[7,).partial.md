@@ -21,7 +21,7 @@ Custom sanitization strategy definition:
 
 snippet: asb-custom-sanitization-strategy
 
-If the implementation of a sanitization strategy requires configuration settings, these settings can be accessed using [Dependency Injection](/nservicebus/containers/) to access an instance of `ReadOnlySettings`.
+If the implementation of a sanitization strategy requires configuration settings, these settings can be accessed using [dependency injection](/nservicebus/dependency-injection/) to access an instance of `ReadOnlySettings`.
 
 snippet: custom-sanitization-strategy-with-settings
 

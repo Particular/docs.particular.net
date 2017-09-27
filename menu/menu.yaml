@@ -98,8 +98,8 @@
         Title: Distributor
       - Url: nservicebus/upgrades/5to6/extension-seams
         Title: Extension Seams
-      - Url: nservicebus/upgrades/5to6/container
-        Title: Container
+      - Url: nservicebus/upgrades/5to6/dependency-injection
+        Title: Dependency Injection
       - Url: nservicebus/upgrades/5to6/tools-and-helpers
         Title: Tools and Helpers
     - Url: nservicebus/upgrades/4to5
@@ -427,26 +427,26 @@
       Title: Binary
     - Url: nservicebus/serialization/custom-serializer
       Title: Custom
-  - Url: nservicebus/containers
-    Title: Containers
+  - Url: nservicebus/dependency-injection
+    Title: Dependency Injection
     Articles:
-    - Url: nservicebus/containers/child-containers
-      Title: Child Containers
-    - Url: nservicebus/containers/property-injection
+    - Url: nservicebus/dependency-injection/child-lifetime
+      Title: Child Lifetimes
+    - Url: nservicebus/dependency-injection/property-injection
       Title: Property injection
-    - Url: nservicebus/containers/autofac
+    - Url: nservicebus/dependency-injection/autofac
       Title: Autofac
-    - Url: nservicebus/containers/castlewindsor
+    - Url: nservicebus/dependency-injection/castlewindsor
       Title: Castle Windsor
-    - Url: nservicebus/containers/ninject
+    - Url: nservicebus/dependency-injection/ninject
       Title: Ninject
-    - Url: nservicebus/containers/spring
+    - Url: nservicebus/dependency-injection/spring
       Title: Spring
-    - Url: nservicebus/containers/simpleinjector
+    - Url: nservicebus/dependency-injection/simpleinjector
       Title: SimpleInjector
-    - Url: nservicebus/containers/structuremap
+    - Url: nservicebus/dependency-injection/structuremap
       Title: StructureMap
-    - Url: nservicebus/containers/unity
+    - Url: nservicebus/dependency-injection/unity
       Title: Unity
   - Url: nservicebus/logging
     Title: Logging
