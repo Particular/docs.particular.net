@@ -58,7 +58,7 @@ class Program
             cleanAttachments: attachmentContext =>
             {
                 // Attachment cleanup can be performed here
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             });
 
         #endregion

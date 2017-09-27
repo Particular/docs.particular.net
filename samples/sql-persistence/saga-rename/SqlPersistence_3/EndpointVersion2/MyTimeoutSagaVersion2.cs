@@ -31,7 +31,7 @@ namespace MyNamespace2
         {
             log.Warn($"Received Timeout from {state.OriginatingSagaType}");
             MarkAsComplete();
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
         public class SagaData :

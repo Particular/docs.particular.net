@@ -49,8 +49,7 @@ public class CandidateVotesSaga :
     public Task Handle(TrackZipCodeReply message, IMessageHandlerContext context)
     {
         Logger.Log($"##### CandidateVote saga for {Data.Candidate} got reply for zip code '{message.ZipCode}' tracking with current count of {message.CurrentCount}");
-
-        return Task.FromResult(0);
+        return Task.CompletedTask;
     }
 
     public class CandidateVoteData :

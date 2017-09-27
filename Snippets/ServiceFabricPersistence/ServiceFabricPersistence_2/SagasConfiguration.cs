@@ -72,7 +72,7 @@
         {
             public Task Handle(Message message, IMessageHandlerContext context)
             {
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
         #endregion
 
@@ -93,7 +93,7 @@
         {
             public Task Handle(Message message, IMessageHandlerContext context)
             {
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             }
 
         #endregion

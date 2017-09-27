@@ -54,7 +54,7 @@
             }
 
             // queue deletion can take up to 60 seconds
-            deletionTasks[numberOfQueuesFound] = numberOfQueuesFound > 0 ? Task.Delay(TimeSpan.FromSeconds(60)) : Task.FromResult(0);
+            deletionTasks[numberOfQueuesFound] = numberOfQueuesFound > 0 ? Task.Delay(TimeSpan.FromSeconds(60)) : Task.CompletedTask;
 
             await Task.WhenAll(deletionTasks)
                 .ConfigureAwait(false);
