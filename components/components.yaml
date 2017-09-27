@@ -48,17 +48,6 @@
   NugetOrder:
     - NServiceBus.AmazonSQS
 
-# has no license
-# - Key: OracleAQ
-#  Name: Oracle AQ Transport
-#  DocoUrl: https://github.com/rosieks/NServiceBus.OracleAQ
-#  GitHubOwner: rosieks
-#  Category: Transport
-#  SupportLevel: Community
-#  ProjectUrl: https://github.com/rosieks/NServiceBus.OracleAQ
-#  NugetOrder:
-#    - NServiceBus.OracleAQ
-
 - Key: ASB
   Name: Azure Service Bus Transport
   DocoUrl: transports/azure-service-bus
@@ -765,18 +754,6 @@
   ProjectUrl: https://github.com/Particular/ServicePulse
   NugetOrder:
     - ServicePulse
-
-# has no license
-#- Key: SignalRBackplane
-#  Name: SignalR Backplane
-#  DocoUrl: https://github.com/roycornelissen/SignalR.NServiceBus
-#  GitHubOwner: roycornelissen
-#  SupportLevel: Community
-#  Category: Other
-#  UsesNuget: false
-#  ProjectUrl: https://github.com/roycornelissen/SignalR.NServiceBus
-#  NugetOrder:
-#    - SignalR.NServiceBus
 
 - Key: ServiceInsight
   Name: ServiceInsight
