@@ -3,6 +3,8 @@ using NServiceBus.Features;
 using NServiceBus.Routing;
 using NServiceBus.Transport;
 
+#region forwarding-feature
+
 class LeaveForwardingAddressFeature : Feature
 {
     protected override void Setup(FeatureConfigurationContext context)
@@ -27,3 +29,5 @@ class LeaveForwardingAddressFeature : Feature
         context.Pipeline.Register(invokeForwardingPipeline, "Forwards messages to their matching forwarding addresses");
     }
 }
+
+#endregion

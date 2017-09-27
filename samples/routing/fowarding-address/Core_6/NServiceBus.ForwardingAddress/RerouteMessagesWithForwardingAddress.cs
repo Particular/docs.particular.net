@@ -5,6 +5,8 @@ using NServiceBus.Logging;
 using NServiceBus.Pipeline;
 using NServiceBus.Routing;
 
+#region set-forwarding-address-behavior
+
 class RerouteMessagesWithForwardingAddress : Behavior<IIncomingLogicalMessageContext>
 {
     public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
@@ -52,3 +54,5 @@ class RerouteMessagesWithForwardingAddress : Behavior<IIncomingLogicalMessageCon
 
     static ILog Log = LogManager.GetLogger<RerouteMessagesWithForwardingAddress>();
 }
+
+#endregion
