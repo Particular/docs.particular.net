@@ -514,6 +514,17 @@
   NugetOrder:
     - NServiceBus.Newtonsoft.Json
 
+- Key: NewtonsoftEncryption
+  Name: Newtonsoft Encryption
+  LicenseUrl: https://github.com/SimonCropp/Newtonsoft.Json.Encryption/blob/master/LICENSE
+  DocoUrl: https://github.com/SimonCropp/Newtonsoft.Json.Encryption
+  GitHubOwner: SimonCropp
+  SupportLevel: Community
+  Category: Serializer
+  ProjectUrl: https://github.com/SimonCropp/Newtonsoft.Json.Encryption
+  NugetOrder:
+    - NServiceBus.Newtonsoft.Encryption
+
 - Key: NHibernate
   Name: NHibernate Persistence
   DocoUrl: persistence/nhibernate
