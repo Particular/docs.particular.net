@@ -77,7 +77,7 @@
     - NServiceBus.Azure.Transports.WindowsAzureStorageQueues
 
 - Key: Autofac
-  Name: Autofac Container
+  Name: Autofac DI Container
   DocoUrl: nservicebus/containers/autofac
   GitHubOwner: Particular/container-maintainers
   Category: Container
@@ -127,7 +127,7 @@
     - NServiceBus    
 
 - Key: Castle
-  Name: Castle Container
+  Name: Castle DI Container
   DocoUrl: nservicebus/containers/castlewindsor
   GitHubOwner: Particular/container-maintainers
   Category: Container
@@ -524,7 +524,7 @@
     - NServiceBus.NHibernate
 
 - Key: Ninject
-  Name: Ninject Container
+  Name: Ninject DI Container
   DocoUrl: nservicebus/containers/ninject
   GitHubOwner: Particular/container-maintainers
   Category: Container
@@ -766,7 +766,7 @@
     - ServiceInsight
 
 - Key: SimpleInjector
-  Name: SimpleInjector Container
+  Name: SimpleInjector DI Container
   DocoUrl: nservicebus/containers/simpleinjector
   GitHubOwner: WilliamBZA
   Category: Container
@@ -777,7 +777,7 @@
     - NServiceBus.SimpleInjector
 
 - Key: Spring
-  Name: Spring Container
+  Name: Spring DI Container
   DocoUrl: nservicebus/containers/spring
   GitHubOwner: Particular/container-maintainers
   Category: Container
@@ -795,7 +795,7 @@
     - NServiceBus.SqlServer
 
 - Key: StructureMap
-  Name: StructureMap Container
+  Name: StructureMap DI Container
   DocoUrl: nservicebus/containers/structuremap
   GitHubOwner: Particular/container-maintainers
   Category: Container
@@ -832,7 +832,7 @@
     - NServiceBus.Testing
 
 - Key: Unity
-  Name: Unity Container
+  Name: Unity DI Container
   DocoUrl: nservicebus/containers/unity
   GitHubOwner: Particular/container-maintainers
   Category: Container
