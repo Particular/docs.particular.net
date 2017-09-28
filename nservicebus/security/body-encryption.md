@@ -17,6 +17,6 @@ One way of achieving this is by using a [transport message mutator](/nservicebus
 
 snippet: MessageBodyEncryptor
 
-The encrypting mutator must be injected into the container:
+The encrypting mutator must be injected into dependency injection:
 
 snippet: UsingMessageBodyEncryptor
