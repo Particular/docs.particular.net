@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.MessageMutator;
 
 class Program
 {
@@ -9,16 +10,12 @@ class Program
         Console.Title = "Samples.Headers";
         var endpointConfiguration = new EndpointConfiguration("Samples.Headers");
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        endpointConfiguration.RegisterComponents(components =>
-        {
-            components.ConfigureComponent<MutateIncomingMessages>(DependencyLifecycle.InstancePerCall);
-            components.ConfigureComponent<MutateIncomingTransportMessages>(DependencyLifecycle.InstancePerCall);
-            components.ConfigureComponent<MutateOutgoingMessages>(DependencyLifecycle.InstancePerCall);
-            components.ConfigureComponent<MutateOutgoingTransportMessages>(DependencyLifecycle.InstancePerCall);
-        });
+        endpointConfiguration.RegisterMessageMutator(new MutateIncomingMessages());
+        endpointConfiguration.RegisterMessageMutator(new MutateIncomingTransportMessages());
+        endpointConfiguration.RegisterMessageMutator(new MutateOutgoingMessages());
+        endpointConfiguration.RegisterMessageMutator(new MutateOutgoingTransportMessages());
 
         #region global-all-outgoing
 
