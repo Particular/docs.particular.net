@@ -100,6 +100,13 @@ class MultipleNamespaces
         // MyMessage messages to (physical routing)
         destination.RegisteredEndpoints.Add("sales");
 
+        #endregion namespace_subscription_registered_endpoint
+
+        var endpointOrientedTopology = transport.UseEndpointOrientedTopology();
+        endpointOrientedTopology.RegisterPublisher(typeof(MyEvent), "sales");
+
+        #region
+
         #endregion
     }
 
@@ -140,4 +147,8 @@ class MultipleNamespaces
 
     public class MyMessage :
         ICommand { }
+
+    public class MyEvent :
+        IEvent
+    { }
 }
