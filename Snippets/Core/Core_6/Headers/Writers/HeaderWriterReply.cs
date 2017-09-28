@@ -52,7 +52,7 @@
         {
         }
 
-        class Mutator : 
+        class Mutator :
             IMutateIncomingTransportMessages
         {
 
