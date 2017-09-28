@@ -5,7 +5,7 @@ reviewed: 2017-09-28
 component: Testing
 related:
  - nservicebus/testing
- - nservicebus/upgrades/5to7
+ - nservicebus/upgrades/6to7
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
