@@ -121,7 +121,7 @@ WARNING: All message handlers and sagas that are included in the endpoint should
 
 The endpoint instance returned from `Endpoint.Create()` or `Endpoint.Start()` implements `IMessageSession` which contains `Send()` and `Publish()` methods that can be used outside of a message handler or saga. If the endpoint sends messages in the same part of the code that creates/starts the endpoint then call these methods on the returned endpoint instance directly.
 
-NOTE: As the `Send` and `Publish` methods on the endpoint instance should not be used from within a handler or saga, there is no implementation of the interface injected into the configured IoC container. For recommendations on how to get access to `IMessageSession` in other locations, see [Dependency Injection](moving-away-from-ibus.md#dependency-injection).
+NOTE: As the `Send` and `Publish` methods on the endpoint instance should not be used from within a handler or saga, there is no implementation of the interface injected into dependency injection. For recommendations on how to get access to `IMessageSession` in other locations, see [Dependency Injection](moving-away-from-ibus.md#dependency-injection).
 
 See also:
 
