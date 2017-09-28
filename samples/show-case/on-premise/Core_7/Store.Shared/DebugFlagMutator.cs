@@ -6,23 +6,12 @@ using NServiceBus.MessageMutator;
 
 public class DebugFlagMutator :
     IMutateIncomingTransportMessages,
-    IMutateOutgoingTransportMessages,
-    INeedInitialization
+    IMutateOutgoingTransportMessages
 {
     public static bool Debug => debug.Value;
 
     static ThreadLocal<bool> debug = new ThreadLocal<bool>();
-
-    public void Customize(EndpointConfiguration endpointConfiguration)
-    {
-        endpointConfiguration.RegisterComponents(
-            registration: components =>
-            {
-                components.ConfigureComponent<DebugFlagMutator>(DependencyLifecycle.InstancePerCall);
-            });
-    }
-
-
+    
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
         var headers = context.Headers;

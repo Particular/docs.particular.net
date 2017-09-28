@@ -2,6 +2,7 @@
 using System.Text;
 using NServiceBus;
 using NServiceBus.Encryption.MessageProperty;
+using NServiceBus.MessageMutator;
 
 public static class CommonConfiguration
 {
@@ -17,5 +18,6 @@ public static class CommonConfiguration
             encryptionKeyIdentifier: defaultKey,
             key: ascii.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
         endpointConfiguration.EnableMessagePropertyEncryption(encryptionService);
+        endpointConfiguration.RegisterMessageMutator(new DebugFlagMutator());
     }
 }

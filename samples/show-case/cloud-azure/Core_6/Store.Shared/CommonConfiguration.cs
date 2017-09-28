@@ -3,6 +3,7 @@ using System.Text;
 using Microsoft.Azure;
 using NServiceBus;
 using NServiceBus.Encryption.MessageProperty;
+using NServiceBus.MessageMutator;
 
 public static class CommonConfiguration
 {
@@ -33,5 +34,6 @@ public static class CommonConfiguration
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.RegisterMessageMutator(new DebugFlagMutator());
     }
 }
