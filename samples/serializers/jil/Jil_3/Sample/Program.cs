@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Jil;
 using NServiceBus;
 using NServiceBus.Jil;
+using NServiceBus.MessageMutator;
 
 static class Program
 {
@@ -27,14 +28,10 @@ static class Program
                     excludeNulls: true,
                     includeInherited: true));
         // register the mutator so the the message on the wire is written
-        endpointConfiguration.RegisterComponents(components =>
-        {
-            components.ConfigureComponent<MessageBodyWriter>(DependencyLifecycle.InstancePerCall);
-        });
+        endpointConfiguration.RegisterMessageMutator(new MessageBodyWriter());
 
         #endregion
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
