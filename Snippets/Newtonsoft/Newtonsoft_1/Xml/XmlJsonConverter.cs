@@ -9,8 +9,8 @@ class XmlJsonConverter : JsonConverter
 {
     public override void WriteJson(JsonWriter writer, object value, NewtonsoftJsonSerializer serializer)
     {
-        var container = (XContainer) value;
-        writer.WriteValue(container.ToString(SaveOptions.DisableFormatting));
+        var xcontainer = (XContainer) value;
+        writer.WriteValue(xcontainer.ToString(SaveOptions.DisableFormatting));
     }
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, NewtonsoftJsonSerializer serializer)
