@@ -45,7 +45,7 @@ It is no longer possible to access the builder to create an encryption service. 
 
 ## Conventions
 
-[Conventions](/nservicebus/messaging/conventions.md) are no longer be injected into the [Container](/nservicebus/dependency-injection/). Conventions need to be retrieved with `Settings.Get<Conventions>()` over `ReadOnlySettings`.
+[Conventions](/nservicebus/messaging/conventions.md) are no longer be injected into [dependency injection](/nservicebus/dependency-injection/). Conventions need to be retrieved with `Settings.Get<Conventions>()` over `ReadOnlySettings`.
 
 
 ## Dependency injection
@@ -62,12 +62,12 @@ To access it at runtime create a new [`Feature`](/nservicebus/pipeline/features.
 snippet: 5to6-IConfigureComponentsNotInjected
 
 
-## Containers passed to the configuration API are no longer disposed
+## Instance passed to the configuration API are no longer disposed
 
 snippet: 5-to-6-autofac-existing
 
-While the above example shows how an existing container can be passed into the configuration API using Autofac, the same behavior can also be applied to all of the [currently supported dependency injection](/nservicebus/dependency-injection/). Previous versions of the containers treated the externally passed in container as if it was owned by the container adapter and disposed the container when the bus was disposed. This behavior changed. When a container customization is passed like above, then the container is no longer disposed. It is the responsibility of the container owner to dispose the container. 
+While the above example shows how an existing DI instance can be passed into the configuration API using Autofac, the same behavior can also be applied to all of the [currently supported dependency injection](/nservicebus/dependency-injection/). Previous versions of DI treated the externally passed in DI instance as if it was owned by the DI adapter and disposed the DI when the bus was disposed. This behavior changed. When a DI customization is passed like above, then the DI insatnce is no longer disposed. It is the responsibility of the DI owner to dispose the DI instance. 
 
 snippet: 5-to-6-autofac
 
-The above example shows how a new container can be assigned using the Configuration API. While the container used in this example is Autofac, the same behavior can also be applied to all of the [currently supported dependency injection](/nservicebus/dependency-injection/). When passing a new container, the endpoint owns the container and will also be responsible for disposing the container when it is stopped.
+The above example shows how a new DI instance can be assigned using the Configuration API. While the DI instance used in this example is Autofac, the same behavior can also be applied to all of the [currently supported dependency injection](/nservicebus/dependency-injection/). When passing a new DI instance, the endpoint owns that instance and will also be responsible for disposing it when endpoint stopped.
