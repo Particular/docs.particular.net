@@ -33,15 +33,15 @@ In a web hosted scenario an [IIS Recycle](https://msdn.microsoft.com/en-us/libra
 
 ## Dependency injection integration
 
-Web request handlers (MVC Controllers, WCF Handlers, NancyFx Modules, etc.) require access to the endpoint messaging session in order to send messages as a result of incoming HTTP requests. Many of the supported web application hosts resolve these web request handlers using an IoC container. NServiceBus already creates and manages it's own IoC container. 
+Web request handlers (MVC Controllers, WCF Handlers, NancyFx Modules, etc.) require access to the endpoint messaging session in order to send messages as a result of incoming HTTP requests. Many of the supported web application hosts resolve these web request handlers using dependency injection. NServiceBus already creates and manages it's own dependency injection. 
 
-It seems reasonable to re-use the same dependency injection for both tasks. This will not work as the endpoint messaging session is not registered in the NServiceBus managed IoC container. This is to prevent NServiceBus message handlers from taking a dependency on the endpoint messaging session. See [Moving away from IBus - Dependency Injection](/nservicebus/upgrades/5to6/moving-away-from-ibus.md#dependency-injection) for more info. 
+It seems reasonable to re-use the same dependency injection for both tasks. This will not work as the endpoint messaging session is not registered in the NServiceBus managed dependency injection. This is to prevent NServiceBus message handlers from taking a dependency on the endpoint messaging session. See [Moving away from IBus - Dependency Injection](/nservicebus/upgrades/5to6/moving-away-from-ibus.md#dependency-injection) for more info. 
 
-The recommended approach to handle this is to have two IoC containers: one for the web host and it's web request handlers, and another for the NServiceBus endpoint and it's message handlers. There are some things to consider when adopting this approach.
+The recommended approach to handle this is to have two dependency injection instances: one for the web host and it's web request handlers, and another for the NServiceBus endpoint and it's message handlers. There are some things to consider when adopting this approach.
 
-1. Any service which is registered with the NServiceBus dependency injection will be available to be injected into NServiceBus message handlers but not web request handlers.
-2. Any service which is registered with the web host dependency injection will be available to be injected into web request handlers but not NServiceBus message handlers.
-3. Any service which is registered with both containers can be resolved into both web request handlers and NServiceBus message bus handlers _but_:
-	1. these will be different objects with different lifetimes.
-	2. even if the services are registered with a singleton lifetime there will still be one created for each container
-	3. if a service really needs to be shared and single instance, it must be created externally during the web application host startup, and that specific instance must be registered in both containers.
+ 1. Any service which is registered with the NServiceBus dependency injection will be available to be injected into NServiceBus message handlers but not web request handlers.
+ 1. Any service which is registered with the web host dependency injection will be available to be injected into web request handlers but not NServiceBus message handlers.
+ 1. Any service which is registered with both dependency injection instances can be resolved into both web request handlers and NServiceBus message bus handlers _but_:
+    1. these will be different objects with different lifetimes.
+    1. even if the services are registered with a singleton lifetime there will still be one created for each dependency injection instance
+    1. if a service really needs to be shared and single instance, it must be created externally during the web application host startup, and that specific instance must be registered in both dependency injection instances.
