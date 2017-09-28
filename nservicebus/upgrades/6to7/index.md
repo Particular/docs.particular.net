@@ -240,3 +240,8 @@ snippet: 6to7ConnectionStrings
 ## Installers
 
 NServiceBus Version 7 will only run installers when explicitly enabled via the `endpointConfiguration.EnableInstallers()` API. In previous versions, installers are automatically run when starting the endpoint with a debugger attached, this behavior has been removed in Version 7. Therefore, the `endpointConfiguration.DisableInstallers()` API has been obsoleted and is no longer required.
+
+
+## DistributionStrategy
+
+The `string SelectReceiver(string[] receiverAddresses)` signature has been removed from the `DistributionStrategy` base class. When writing a custom distribution strategy, implement the `string SelectDestination(DistributionContext context)` method instead which provides additional information usable for routing decisions. Receiver addresses can still be accessed via the `context.ReceiverAddresses` property.

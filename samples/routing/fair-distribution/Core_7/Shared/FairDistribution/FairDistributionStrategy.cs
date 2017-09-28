@@ -13,9 +13,9 @@ public class FairDistributionStrategy :
         this.settings = settings;
     }
 
-    public override string SelectReceiver(string[] receiverAddresses)
+    public override string SelectDestination(DistributionContext context)
     {
         return settings.Get<FlowManager>()
-            .FindShortestQueue(receiverAddresses);
+            .FindShortestQueue(context.ReceiverAddresses);
     }
 }
