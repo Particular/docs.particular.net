@@ -24,11 +24,7 @@ public static class OutgoingMessageBodyWriterHelper
     public static void RegisterOutgoingMessageLogger(this EndpointConfiguration endpointConfiguration)
     {
         // register the mutator so the the message on the wire is written
-        endpointConfiguration.RegisterComponents(
-            registration: components =>
-            {
-                components.ConfigureComponent<OutgoingMessageBodyWriter>(DependencyLifecycle.InstancePerCall);
-            });
+        endpointConfiguration.RegisterMessageMutator(new OutgoingMessageBodyWriter());
     }
 }
 
