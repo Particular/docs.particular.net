@@ -17,7 +17,7 @@ The BinarySerializer is deprecated. Use one of the supported serializers, or an 
 
 ## No dependency injection for IMessageSerializer
 
-The `IMessageSerializer` instances are now produced by a factory (as described in [this article](/nservicebus/serialization/custom-serializer.md)) instead of being resolved through a container.
+The `IMessageSerializer` instances are now produced by a factory (as described in [this article](/nservicebus/serialization/custom-serializer.md)) instead of being resolved through [dependency injection](/nservicebus/dependency-injection/).
 
 
 ## Built-in serializers are internal
