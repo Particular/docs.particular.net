@@ -14,7 +14,6 @@ class Program
 
         Console.Title = "Samples.MessageBodyEncryption.Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageBodyEncryption.Endpoint1");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         #region RegisterMessageEncryptor
