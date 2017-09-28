@@ -6,9 +6,9 @@ At startup, the Host invokes all the classes that implement the `IWantToRunWhenE
 
 WARNING: Implementations of `IWantToRunWhenEndpointStartsAndStops` are not started and stopped on a dedicated thread. They are executed on the thread starting and disposing the endpoint. It is the responsibility of the implementing class to execute its operations in parallel if needed (i.e. for CPU bound work). Failure to do so will prevent the endpoint from being started and/or disposed.
 
- * Instances of `IWantToRunWhenEndpointStartsAndStops` are located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/dependency-injection/) during endpoint creation. These are registered as `Instance Per Call`.
+ * Instances of `IWantToRunWhenEndpointStartsAndStops` are located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured dependency injection](/nservicebus/dependency-injection/) during endpoint creation. These are registered as `Instance Per Call`.
  * They are started before the transport and any satellites have started. Therefore the endpoint will not receive any messages until this process has completed.
- * These instances are created by the [Container](/nservicebus/dependency-injection/) which means they:
+ * These instances are created through [dependency injection](/nservicebus/dependency-injection/) which means they:
   * Will have dependencies injected.
   * Do not require a default constructor.
  * These instances will be started asynchronously in the same method which started the bus.

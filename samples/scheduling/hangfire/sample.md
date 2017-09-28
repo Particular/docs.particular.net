@@ -72,7 +72,7 @@ The Hangfire server should be disposed when the endpoint is shut down.
 
 snippet: shutdown
 
-The Hangfire scheduler implements the `IDisposable` interface. For cleanup purposes, keep a reference to the scheduler instance and call `Dispose()` at shutdown. Alternatively, let a container do this as part of the container cleanup procedure.
+The Hangfire scheduler implements the `IDisposable` interface. For cleanup purposes, keep a reference to the scheduler instance and call `Dispose()` at shutdown. Alternatively, use [dependency injection](/nservicebus/dependency-injection/) and let cleanup be automatically be managed.
 
 
 ### Logging

@@ -54,7 +54,7 @@ snippet: serialization-mapper
 
 ### Behavior Configuration
 
-This replaces the existing serialization behavior and also injects the Serialization Mapper into the container.
+This replaces the existing serialization behavior and also add the Serialization Mapper to [dependency injection](/nservicebus/dependency-injection/).
 
 snippet: behavior-configuration
 

@@ -41,7 +41,7 @@ The field ListPrice must be between 1 and 5.
 
 The `IMutateTransportMessages` and `IMessageMutator` interfaces give access to the message so that the the inbound and/or outbound message can be modified.
 
-As a consumer implement the desired interface and load it into the NServiceBus container.
+As a consumer implement the desired interface and load it into [dependency injection](/nservicebus/dependency-injection/).
 
 Similar interfaces exist for `IMessageMutator`, i.e., `IMutateTransportMessages`, which mutates transport messages. The main difference from `IMessageMutator` is that the transport message may have several messages in a single transport message.
 
