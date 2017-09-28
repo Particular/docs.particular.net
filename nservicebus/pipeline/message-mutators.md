@@ -58,9 +58,11 @@ partial: imutatetransportmessages
 
 ## Registering a Mutator
 
-Mutators are **NOT** automatically registered in [dependency injection](/nservicebus/dependency-injection/), so to have them invoked, register them in the `EndpointConfiguration`:
+Mutators are registered using:
 
 snippet: MutatorRegistration
+
+NOTE: Mutators are **NOT** automatically registered in [dependency injection](/nservicebus/dependency-injection/), should DI be needed please use a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) instead.
 
 NOTE: Mutators are non-deterministic in terms of order of execution. If more fine grained control is required over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/manipulate-with-behaviors.md).
 
