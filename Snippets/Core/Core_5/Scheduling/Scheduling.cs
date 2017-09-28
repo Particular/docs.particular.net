@@ -12,7 +12,7 @@
         {
             #region ScheduleTask
 
-            // 'Schedule' is an instance class that can be resolved from the container.
+            // 'Schedule' is an instance class that can be resolved from dependency injection
             // To send a message every 5 minutes
             schedule.Every(
                 timeSpan: TimeSpan.FromMinutes(5),

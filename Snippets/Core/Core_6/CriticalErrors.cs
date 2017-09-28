@@ -66,7 +66,7 @@ namespace Core6
             #region InvokeCriticalError
 
             // 'criticalError' is an instance of NServiceBus.CriticalError
-            // This instance can be resolved from the container.
+            // This instance can be resolved from dependency injection
             criticalError.Raise(errorMessage, exception);
 
             #endregion

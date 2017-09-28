@@ -22,7 +22,7 @@ Features allow:
 
  * Configuring required dependencies.
  * Enabling or disabling via configuration or based on conditions and dependencies.
- * Accessing the pipeline, settings and the container.
+ * Accessing the pipeline, settings and dependency injection.
 
 
 ## Feature API
