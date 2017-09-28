@@ -126,6 +126,6 @@ Shipping and Sales use different namespaces, therefore the adapter has to be con
 
 snippet: UseNamespaceHeader
 
-The actual destination address consists of the queue name and the namespace alias which is included in the failed messages:
+The destination address consists of the queue name and the namespace alias which is included in the failed messages:
 
 snippet: NamespaceAlias

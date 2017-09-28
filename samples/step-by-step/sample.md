@@ -138,7 +138,7 @@ The handler class is automatically discovered by NServiceBus because it implemen
 
 The next step is to create a subscriber for this event.
 
-NOTE: The solution could be executed at this stage and would run without exceptions. However, there are no subscribers to the `OrderPlaced` event, so the sample is not yet complete. In practice it's perfectly valid to have a publisher with no subscribers; a new subscriber can be added at a later date. In such a situation, no messages are exchanged on the transport level, meaning there's no actual communication between endpoints when the event is published.
+NOTE: The solution could be executed at this stage and would run without exceptions. However, there are no subscribers to the `OrderPlaced` event, so the sample is not yet complete. In practice it's perfectly valid to have a publisher with no subscribers; a new subscriber can be added at a later date. In such a situation, no messages are exchanged on the transport level, meaning there's no communication between endpoints when the event is published.
 
 
 ## The Subscriber

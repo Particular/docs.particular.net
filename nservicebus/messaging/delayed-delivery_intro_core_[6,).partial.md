@@ -1,2 +1,2 @@
 
-Delaying a message is done using `SendOptions` and the `DelayDeliveryWith` method. This allows to defer the actual sending of a message to any endpoint. The behavior of delayed handling using `DelayDeliveryWith` can be seen in [Delayed Delivery Sample](/samples/delayed-delivery).
+Delaying a message is done using `SendOptions` and the `DelayDeliveryWith` method. This allows to defer the sending of a message to any endpoint. The behavior of delayed handling using `DelayDeliveryWith` can be seen in [Delayed Delivery Sample](/samples/delayed-delivery).

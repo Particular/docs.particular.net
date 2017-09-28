@@ -63,7 +63,7 @@ Therefore, it makes sense that logical routing is defined in code.
 
 snippet: RoutingSettings
 
-`RoutingSettings<T>` is scoped to the actual transport being used, and routing options are exposed as extension methods on this class. Therefore, only routing options that are viable for the transport in use will appear. Routing configurations only applicable to Microsoft Azure, for example, won't clutter up the API when using the MSMQ transport.
+`RoutingSettings<T>` is scoped to the transport being used, and routing options are exposed as extension methods on this class. Therefore, only routing options that are viable for the transport in use will appear. Routing configurations only applicable to Microsoft Azure, for example, won't clutter up the API when using the MSMQ transport.
 
 In order to define routes, start with the `routing` variable and call the `RouteToEndpoint` method as needed, which comes in three varieties:
 

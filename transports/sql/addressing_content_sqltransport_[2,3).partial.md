@@ -22,7 +22,7 @@ snippet: sqlserver-multischema-config-push
 
 snippet: sqlserver-multischema-config-pull
 
-NOTE: Although the API uses the term `Endpoint` the actual values provided/returned are physical queue names, not logical endpoint names as defined in Version 6 of NServiceBus.
+NOTE: Although the API uses the term `Endpoint` the values provided/returned are physical queue names, not logical endpoint names as defined in Version 6 of NServiceBus.
 
 The connection string convention is supported for backwards compatibility. In the example below the connection string `NServiceBus/Transport/Billing` overrides the default if sending to the `Billing` queue, in which case `billingSchema` is used.
 

@@ -27,8 +27,8 @@ WARNING: This sample is not compatible with message serialization against Versio
 
 The solution contains 3 projects
 
- * `Shared` contains the common message declarations and the actual behavior functionality.
- * `Sender` and `Receiver` are the actual endpoint using the behaviors.
+ * `Shared` contains the common message declarations and the behavior functionality.
+ * `Sender` and `Receiver` are the endpoints using the behaviors.
 
 
 ### The attribute definitions

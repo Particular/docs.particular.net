@@ -18,7 +18,7 @@ In certain scenarios it might be useful to define additional profiles. For examp
 
 snippet: defining_profile
 
-Note that the profile definition does not contain any configuration. The actual configuration for the profile is provided in profile behaviors.
+Note that the profile definition does not contain any configuration. The configuration for the profile is provided in profile behaviors.
 
 
 ## Profile behaviors

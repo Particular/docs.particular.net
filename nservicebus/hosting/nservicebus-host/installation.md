@@ -53,7 +53,7 @@ NServiceBus.Host.exe /install
 
 ### ServiceName
 
-To set the actual name of the Windows Services in the registry, specify `/serviceName:ServiceName`. By default, the name of the service is the name of the endpoint and the endpoint name is the namespace of the endpoint configuration class.
+To set the name of the Windows Services in the registry, specify `/serviceName:ServiceName`. By default, the name of the service is the name of the endpoint and the endpoint name is the namespace of the endpoint configuration class.
 
 Note: The Windows Service name is different from what is displayed in the Windows Service Manager. The Windows Service Manager shows the *DisplayName*.
 

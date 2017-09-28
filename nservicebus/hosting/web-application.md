@@ -23,7 +23,7 @@ NServiceBus can be hosted in any web technology that support .NET. This includes
  * [NancyFX](http://nancyfx.org/)
 
 
-As most web technologies operate in a scale out manner NServiceBus is **usually** hosted in a "Send-only" manner. In this mode the given web application technology acts as a "forwarder" of messages rather than the "processor". So the handling code (MVC controller, NancyFX module etc) of a given web request simply leverages the  send APIs and no processing is done in the web process. The actual message handling is done in a [Windows Service Endpoint](windows-service.md).
+As most web technologies operate in a scale out manner NServiceBus is **usually** hosted in a "Send-only" manner. In this mode the given web application technology acts as a "forwarder" of messages rather than the "processor". So the handling code (MVC controller, NancyFX module etc) of a given web request simply leverages the  send APIs and no processing is done in the web process. The message handling is done in a [Windows Service Endpoint](windows-service.md).
 
 
 ## Endpoint Lifecycle

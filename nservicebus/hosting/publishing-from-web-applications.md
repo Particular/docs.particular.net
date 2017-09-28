@@ -29,7 +29,7 @@ But, things change:
 
 ## Publish/Subscribe Mechanics
 
-First it's important to understand how [publish/subscribe](/nservicebus/messaging/publish-subscribe/) actually works, consisting of the subscription phase, and then the actual publish operation.
+First it's important to understand how [publish/subscribe](/nservicebus/messaging/publish-subscribe/) operates, consisting of the subscription phase, and then the publish operation.
 
 
 ### Subscription

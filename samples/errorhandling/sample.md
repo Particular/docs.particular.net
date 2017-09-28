@@ -29,8 +29,8 @@ snippet: Disable
 
 ## The output
 
+WARNING: This sample uses `Console.Writeline` instead of standard logging only for brevity and should not be used in production code.
 
-WARNING: This sample uses `Console.Writeline` instead of standard logging only for brevity and should not be used in actual projects. 
 
 ### Without Delayed Retries
 

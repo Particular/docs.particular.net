@@ -15,7 +15,7 @@ The Scheduler is a lightweight/non-durable API that helps schedule a task that n
 
 Scheduling a task depends on [delayed delivery](/nservicebus/messaging/delayed-delivery.md). If the delayed delivery operation fails, the Scheduler will be interrupted and a `ScheduledTask` message will be forwarded to the error queue.
 
-The Scheduler leverages the queuing system to trigger scheduled actions. Under heavy load there may be some disparity between the expected time of a scheduled action and actual execution time due to the delay between timeout messages being generated and processed. On approach to mitigating this behavior is to run the Scheduler in a dedicated endpoint so that appropriate resource allocation can put in place to ensure timely execution of scheduled actions. Or, alternatively, use a difference scheduling technology, for example:
+The Scheduler leverages the queuing system to trigger scheduled actions. Under heavy load there may be some disparity between the expected time of a scheduled action and execution time due to the delay between timeout messages being generated and processed. On approach to mitigating this behavior is to run the Scheduler in a dedicated endpoint so that appropriate resource allocation can put in place to ensure timely execution of scheduled actions. Or, alternatively, use a difference scheduling technology, for example:
 
  * A [.NET Timer](https://msdn.microsoft.com/en-us/library/system.threading.timer.aspx).
  * [Quartz.NET](https://www.quartz-scheduler.net/). See [Quartz.NET Sample](/samples/scheduling/quartz/).

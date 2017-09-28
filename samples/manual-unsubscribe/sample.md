@@ -100,7 +100,7 @@ The Publisher handles the `ManualUnsubscribe` message. This handling consists of
 
 #### 1. Handler
 
-The actual `IHandleMessages<ManualUnsubscribe>` implementation.
+The `IHandleMessages<ManualUnsubscribe>` implementation.
 
 snippet: unsubscribe-handling
 

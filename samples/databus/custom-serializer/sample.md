@@ -18,9 +18,9 @@ WARNING: The FileShareDataBus **does not** remove physical attachments once the 
 
 This sample contains three projects:
 
-* Shared - A class library containing the sample messages and the custom DataBus serilaizer.
-* Sender - A console application responsible for sending the large messages.
-* Receiver - A console application responsible for receiving the large messages from the sender.
+ * Shared - A class library with messages and the custom DataBus serilaizer.
+ * Sender - A console application responsible for sending the large messages.
+ * Receiver - A console application responsible for receiving the large messages from the sender.
 
 
 ### Shared project

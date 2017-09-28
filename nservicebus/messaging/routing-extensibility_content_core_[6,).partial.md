@@ -41,7 +41,7 @@ The publishers collection is thread-safe and all operations on that collection a
 
 ### Physical routing
 
-Physical routing is responsible for mapping the destination logical endpoint to the actual transport address (queue name).
+Physical routing is responsible for mapping the destination logical endpoint to the transport address (queue name).
 
 When using a [broker transport](/transports/#types-of-transports-broker-transports), the physical routing is entirely managed by NServiceBus and does not require any configuration.
 

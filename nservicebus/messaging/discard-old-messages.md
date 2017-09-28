@@ -53,7 +53,7 @@ snippet: PurgeMessagesAtStartup
 
 ## Caveats
 
-TimeToBeReceived relies on underlying functionality in the transport infrastructure to discard expired messages. This feature's runtime behavior is highly affected by the actual implementation in the different transports.
+TimeToBeReceived relies on underlying functionality in the transport infrastructure to discard expired messages. This feature's runtime behavior is highly affected by the implementation in the different transports.
 
 
 ### MSMQ transport

@@ -31,7 +31,7 @@ When entity name does not follow the rules, an exception is raised by the broker
 | Rule         | Letters, numbers, periods (`.`), hyphens (`-`), and underscores (`_`). | 50  |
 
 
-When sanitization strategy is specified, the validation settings can be overridden. The validation settings determine how entity names are validated. They should correspond to the actual validation rules in the configured Azure Service Bus namespace. The rules implementations vary depending on the namespace type, and are changing over time (in some cases without notice and update of the [relevant MSDN documentation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas)). The default settings align with the recently created Standard namespaces.
+When sanitization strategy is specified, the validation settings can be overridden. The validation settings determine how entity names are validated. They should correspond to the validation rules in the configured Azure Service Bus namespace. The rules implementations vary depending on the namespace type, and are changing over time (in some cases without notice and update of the [relevant MSDN documentation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas)). The default settings align with the recently created Standard namespaces.
 
 
 ## Sanitization

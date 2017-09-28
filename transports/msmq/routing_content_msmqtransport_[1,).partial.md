@@ -44,7 +44,7 @@ snippet: InstanceMappingFile-FilePath
 
 ## Custom instance mapping
 
-Physical routing is responsible for mapping the destination logical endpoint to the actual transport address (queue name).
+Physical routing is responsible for mapping the destination logical endpoint to the transport address (queue name).
 
 The instance mapping aspect of routing, as well as all other aspects, can be customized if the standard built-in file-based mapping is not feasible (e.g. in elastically scaled-out environments). 
 

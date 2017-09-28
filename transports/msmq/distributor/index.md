@@ -46,7 +46,7 @@ For more information about Pub/Sub in a Distributor scenario see the [Distributo
 
 ## Performance
 
-For each message being processed, the distributor process performs a few additional operations: it receives a ready message from a Worker, sends the work message to the Worker and receives a ready message post processing. That means that using Distributor introduces a certain processing overhead, that is independent of how much actual work is done. Therefore the Distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short-lived units of work (a quick read from the database and dispatching a message using `Bus.Send` or  `Bus.Publish`).
+For each message being processed, the distributor process performs a few additional operations: it receives a ready message from a Worker, sends the work message to the Worker and receives a ready message post processing. That means that using Distributor introduces a certain processing overhead, that is independent of how much work is done. Therefore the Distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short-lived units of work (a quick read from the database and dispatching a message using `Bus.Send` or  `Bus.Publish`).
 
 To get a sense of the expected performance take maximum MSMQ throughput of a given machine (e.g. by running NServiceBus with `NOOP` handlers) and divide it by 4.
 

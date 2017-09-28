@@ -83,7 +83,7 @@ snippet: on-timeout
 
 snippet: enqueue-request-for-processor
 
-NOTE: normally, actual work would not be done by the Sagas, and would be delegated to a dedicated handler. For simplicity of this sample, a handler was omitted.
+NOTE: Normally, work would not be done by the Sagas, and would be delegated to a dedicated handler. For simplicity of this sample, a handler was omitted.
 
 
 ## Processor logic

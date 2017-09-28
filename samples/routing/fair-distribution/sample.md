@@ -83,7 +83,7 @@ snippet: ProcessACKs
 
 ### Smart routing
 
-The calculated number of in-flight messages is then used to distribute messages in such a way that all instances of the downstream endpoint have roughly the same number of messages in their input queues. That way the load is adjusted to the actual capacity of the given instance, e.g. instances running on weaker machines process less messages. As a result no instance is getting overwhelmed and no instance is underutilized when work is available.
+The calculated number of in-flight messages is then used to distribute messages in such a way that all instances of the downstream endpoint have roughly the same number of messages in their input queues. That way the load is adjusted to the capacity of the given instance, e.g. instances running on weaker machines process less messages. As a result no instance is getting overwhelmed and no instance is underutilized when work is available.
 
 The bigger the `N` value (number of messages between every ACK), the bigger may be the difference between input queues lengths. On the other hand, lower `N` values cause more traffic as more ACKs are being sent upstream.    
 
