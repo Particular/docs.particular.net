@@ -9,7 +9,7 @@
     {
         public void MutateIncoming(TransportMessage transportMessage)
         {
-            // the bytes containing the incoming messages.
+            // the bytes of the incoming messages.
             var bytes = transportMessage.Body;
 
             // optionally replace the Body

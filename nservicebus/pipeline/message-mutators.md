@@ -58,7 +58,7 @@ partial: imutatetransportmessages
 
 ## Registering a Mutator
 
-Mutators are **NOT** automatically registered in the container, so to have them invoked, register them in the `EndpointConfiguration`:
+Mutators are **NOT** automatically registered in [dependency injection](/nservicebus/dependency-injection/), so to have them invoked, register them in the `EndpointConfiguration`:
 
 snippet: MutatorRegistration
 

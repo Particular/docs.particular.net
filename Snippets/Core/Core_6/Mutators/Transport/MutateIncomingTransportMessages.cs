@@ -9,7 +9,7 @@
     {
         public Task MutateIncoming(MutateIncomingTransportMessageContext context)
         {
-            // the bytes containing the incoming messages.
+            // the bytes of the incoming messages.
             var bytes = context.Body;
 
             // optionally replace the Body
