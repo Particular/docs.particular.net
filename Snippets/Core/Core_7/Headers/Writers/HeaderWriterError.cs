@@ -6,7 +6,7 @@
     using Common;
     using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
-    using NServiceBus.MessageMutator;
+    using NServiceBus.Pipeline;
     using NUnit.Framework;
 
     [TestFixture]
@@ -30,12 +30,9 @@
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterError>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.RegisterComponents(
-                registration: components =>
-                {
-                    components.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
-                });
+            endpointConfiguration.UseTransport<LearningTransport>();
+            endpointConfiguration.Pipeline.Register(typeof(Mutator),"Capture headers on failed messages");
+
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Immediate(settings => settings.NumberOfRetries(1));
             recoverability.Delayed(settings =>
@@ -67,8 +64,7 @@
             }
         }
 
-        class Mutator :
-            IMutateIncomingTransportMessages
+        class Mutator : Behavior<IIncomingLogicalMessageContext>
         {
             public Mutator(Notifications busNotifications)
             {
@@ -88,9 +84,9 @@
 
             static bool hasCapturedMessage;
 
-            public Task MutateIncoming(MutateIncomingTransportMessageContext context)
+            public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
             {
-                if (!hasCapturedMessage && context.IsMessageOfTye<MessageToSend>())
+                if (!hasCapturedMessage && context.Message.Instance is MessageToSend)
                 {
                     hasCapturedMessage = true;
                     var headers = context.Headers;
@@ -99,7 +95,7 @@
                         text: sendingText,
                         suffix: "Sending");
                 }
-                return Task.CompletedTask;
+                return next();
             }
         }
     }

@@ -21,13 +21,9 @@
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterReturn>(callbackTypes);
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.MakeInstanceUniquelyAddressable("A");
-            endpointConfiguration.UsePersistence<LearningPersistence>();
             endpointConfiguration.UseTransport<LearningTransport>();
-            endpointConfiguration.RegisterComponents(
-                registration: components =>
-                {
-                    components.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
-                });
+            endpointConfiguration.RegisterMessageMutator(new Mutator());
+
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
             await endpointInstance.SendLocal(new MessageToSend())

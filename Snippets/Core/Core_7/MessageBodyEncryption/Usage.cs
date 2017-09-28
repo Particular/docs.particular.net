@@ -1,18 +1,14 @@
 ﻿namespace Core7.MessageBodyEncryption
 {
     using NServiceBus;
+    using NServiceBus.MessageMutator;
 
     class Usage
     {
         Usage(EndpointConfiguration endpointConfiguration)
         {
             #region UsingMessageBodyEncryptor
-            endpointConfiguration.RegisterComponents(
-                registration: components =>
-                {
-                    components.ConfigureComponent<MessageEncryptor>(DependencyLifecycle.InstancePerCall);
-                });
-
+            endpointConfiguration.RegisterMessageMutator(new MessageEncryptor());
             #endregion
         }
     }
