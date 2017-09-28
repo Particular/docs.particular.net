@@ -12,10 +12,10 @@ class MyProfileHandler :
     {
         if (Config is AnInterfaceICareAbout)
         {
-            // set something in the container
+            // set something in dependency injection
             return;
         }
-        // set something else in the container
+        // set something else in dependency injection
     }
 
     public IConfigureThisEndpoint Config { get; set; }

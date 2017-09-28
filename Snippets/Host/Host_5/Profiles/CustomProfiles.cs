@@ -7,7 +7,7 @@ class LiteEmailBehavior :
 {
     public void ProfileActivated(BusConfiguration busConfiguration)
     {
-        // set the NullEmailSender in the container
+        // set the NullEmailSender in dependency injection
     }
 
     public void ProfileActivated(Configure config)
@@ -20,7 +20,7 @@ class IntegrationEmailBehavior :
 {
     public void ProfileActivated(BusConfiguration busConfiguration)
     {
-        // set the FileEmailSender in the container
+        // set the FileEmailSender in dependency injection
     }
 
     public void ProfileActivated(Configure config)
@@ -33,7 +33,7 @@ class ProductionEmailBehavior :
 {
     public void ProfileActivated(BusConfiguration busConfiguration)
     {
-        // set the SmtpEmailSender in the container
+        // set the SmtpEmailSender in dependency injection
     }
 
     public void ProfileActivated(Configure config)

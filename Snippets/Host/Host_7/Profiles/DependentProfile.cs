@@ -7,7 +7,7 @@ class MyProfileHandler :
 {
     public void ProfileActivated(EndpointConfiguration endpointConfiguration)
     {
-        // set something else in the container
+        // set something else in dependency injection
     }
 }
 #endregion
