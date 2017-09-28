@@ -129,6 +129,11 @@ The `RemoveDeliveryConstaint` extension method has been renamed to `RemoveDelive
 The `GetMesssageIntent` extension method has been renamed to `GetMessageIntent`.
 
 
+### StorageType
+
+`NSerciceBus.Persistence.StorageType` has been moved to the root `NServiceBus` namespace to prevent uneeded using when specifying individual storage types explicitly.
+
+
 ## Assembly scanning
 
 
