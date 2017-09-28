@@ -18,7 +18,7 @@ While sending command user can choose to defer handling or delivery of the messa
 
 ## The Shared Project
 
-The `Shared` project is the container for shared classes including message definitions. This project will be shared between the client and server so both sides agree on the typed message descriptions. It is referenced by all projects in the solution.
+The `Shared` project is for shared classes including message definitions. This project will be shared between the client and server so both sides agree on the typed message descriptions. It is referenced by all projects in the solution.
 
 
 ### PlaceOrder Command

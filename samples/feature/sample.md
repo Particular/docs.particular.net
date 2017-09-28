@@ -29,7 +29,7 @@ The Diagnostics Feature enables all dependent to be easily toggled enabling or d
 
 ### Custom Logger
 
-This Feature injects a custom logger into the container that can then be used by below Features.
+This Feature injects a custom logger into dependency injection that can then be used by below Features.
 
 snippet: CustomLogger
 

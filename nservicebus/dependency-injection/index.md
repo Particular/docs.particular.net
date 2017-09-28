@@ -92,7 +92,7 @@ Support for other containers is provided via custom integrations.
 
 ## Using an existing instance
 
-The above pages all have examples of how to pass in an instance of an existing container. This is useful to make use of the full features and share the behavior with NServiceBus.
+The above pages all have examples of how to pass in an instance. This is useful to make use of the full features and share the behavior with NServiceBus.
 
 
 partial: content
@@ -100,6 +100,6 @@ partial: content
 
 ## Plugging in
 
-If a specific library is not already supported, then create a plugin using the `IContainer` abstraction. Once this is created and registered, NServiceBus will use the custom container to look up its own dependencies.
+If a specific library is not already supported, then create a plugin using the `IContainer` abstraction. Once this is created and registered, NServiceBus will use the custom dependency injection to look up its own dependencies.
 
 partial: custom

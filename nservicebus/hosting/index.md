@@ -92,7 +92,7 @@ Most usages of the bus will occur where the NServiceBus APIs are used. For examp
 
 #### Using dependency injection
 
-NServiceBus supports [dependency injection](/nservicebus/dependency-injection/). At startup, the instance of a bus session will be injected into the configured container and can be access via that container.
+NServiceBus supports [dependency injection](/nservicebus/dependency-injection/). At startup, the instance of a bus session will be injected into the configured dependency injection and can be access via that instance.
 
 Related:
 

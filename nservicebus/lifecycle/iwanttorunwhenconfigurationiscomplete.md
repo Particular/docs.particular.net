@@ -26,7 +26,7 @@ Instances are:
 
 partial: order
 
-Once created `Run(...)` is called on each instance. These calls are made sequentially on the thread that is creating the bus. The order of these calls is determined by the order in which the configured container returns instances.
+Once created `Run(...)` is called on each instance. These calls are made sequentially on the thread that is creating the bus. The order of these calls is determined by the order in which dependency injection returns instances.
 
 Exceptions thrown by instances of `IWantToRunWhenConfigurationIsComplete` are not handled by NServiceBus. These will bubble up to the creator of the bus.
 

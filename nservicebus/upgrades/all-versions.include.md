@@ -204,7 +204,7 @@ No versions released.
 | 1.1.x     | 2017-03-21     | -                 | -                                 |
 | ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-06-21~~    | ~~Superseded by 1.1.x~~           |
 
-### Container packages
+### DependencyInjection packages
 
 #### NServiceBus.Autofac
 

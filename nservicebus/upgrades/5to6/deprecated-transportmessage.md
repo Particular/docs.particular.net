@@ -8,7 +8,7 @@ upgradeGuideCoreVersions:
  - 6
 ---
 
-Previous versions used `TransportMessage` as a generic container both for outgoing and incoming messages. For a better separation of concerns that class has been split into `IncomingMessage` and `OutgoingMessage`. So all code paths related to outgoing messages will use `OutgoingMessage` and all code paths related to incoming messages will use `IncomingMessages`. The class `TransportMessage` has been deprecated entirely. Here are a few common scenarios related to `TransportMessage` and how they can be addressed with either `IncomingMessage` or `OutgoingMessage`.
+Previous versions used `TransportMessage` as a generic holder both for outgoing and incoming messages. For a better separation of concerns that class has been split into `IncomingMessage` and `OutgoingMessage`. So all code paths related to outgoing messages will use `OutgoingMessage` and all code paths related to incoming messages will use `IncomingMessages`. The class `TransportMessage` has been deprecated entirely. Here are a few common scenarios related to `TransportMessage` and how they can be addressed with either `IncomingMessage` or `OutgoingMessage`.
 
 
 ## Body

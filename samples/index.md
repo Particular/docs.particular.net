@@ -109,4 +109,4 @@ Many samples make use of `SendLocal` and sending to an endpoint directly by spec
 
 ### [Dependency injection](/nservicebus/dependency-injection/)
 
-Samples default to using the built-in DI container since it does not require pulling in any external NuGet packages. Switching to an external DI container will give greater flexibility in DI customizations.
+Samples default to using the built-in dependency injection since it does not require pulling in any external NuGet packages. Switching to external dependency injection will give greater flexibility in customizations.

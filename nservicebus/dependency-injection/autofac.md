@@ -24,7 +24,7 @@ snippet: Autofac
 
 snippet: Autofac_Existing
 
-WARNING: As of Autofac 4.2.1, the [`ContainerBuilder.Update` method is marked as obsolete](https://github.com/autofac/Autofac/issues/811). In the future, updating the container passed to NServiceBus may not be possible.
+WARNING: As of Autofac 4.2.1, the [`ContainerBuilder.Update` method is marked as obsolete](https://github.com/autofac/Autofac/issues/811). In the future, updating the instance passed to NServiceBus may not be possible.
 
 
 ### DependencyLifecycle Mapping

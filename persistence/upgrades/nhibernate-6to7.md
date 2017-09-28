@@ -16,13 +16,13 @@ upgradeGuideCoreVersions:
 
 ## Accessing the ISession
 
-The way the NHibernate's `ISession` object is accessed has changed. This object is no longer accessible through the IoC Container or `NHibernateStorageContext`. When Property or Constructor injection is used to get an instance of `ISession` directly or through `NHibernateStorageContext`, the code needs to be refactored after the upgrade to this version.
+The way the NHibernate's `ISession` object is accessed has changed. This object is no longer accessible through dependency injection or `NHibernateStorageContext`. When Property or Constructor injection is used to get an instance of `ISession` directly or through `NHibernateStorageContext`, the code needs to be refactored after the upgrade to this version.
 
 snippet: NHibernateAccessingSessionUpgrade6To7
 
 As shown in the above snippet, the only way to access the `ISession` object is through the `Session()` extension method on `IMessageHandlerContext.SynchronizedStorageSession`.
 
-The reasoning behind removing the registration from the IoC Container was not exposing internal components of NServiceBus as much as possible and having less behavioral changes in future versions. As such, the extension method called `RegisterManagedSessionInTheContainer()` which used to enable this behavior is made obsolete and can be removed.
+The reasoning behind removing the registration from dependency injection was not exposing internal components of NServiceBus as much as possible and having less behavioral changes in future versions. As such, the extension method called `RegisterManagedSessionInTheContainer()` which used to enable this behavior is made obsolete and can be removed.
 
 
 ## Customizing the ISession Creation
