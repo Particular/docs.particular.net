@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.MessageMutator;
 using XmlSample;
 
 static class Program
@@ -14,12 +15,8 @@ static class Program
         // this is optional since Xml is the default serializer
         endpointConfiguration.UseSerialization<XmlSerializer>();
         // register the mutator so the the message on the wire is written
-        endpointConfiguration.RegisterComponents(components =>
-        {
-            components.ConfigureComponent<MessageBodyWriter>(DependencyLifecycle.InstancePerCall);
-        });
+        endpointConfiguration.RegisterMessageMutator(new MessageBodyWriter());
         #endregion
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
