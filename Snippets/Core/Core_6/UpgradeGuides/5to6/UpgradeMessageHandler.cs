@@ -1,6 +1,7 @@
 ﻿#pragma warning disable 1998
 namespace Core6.UpgradeGuides._5to6
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -266,6 +267,197 @@ namespace Core6.UpgradeGuides._5to6
     }
 
     #endregion
+
+    #region 5to6-handler-with-dependency-used-in-various-contexts
+
+    public class MyDependencyUsedInVariousContexts
+    {
+        IBus bus;
+
+        public MyDependencyUsedInVariousContexts(IBus bus)
+        {
+            this.bus = bus;
+        }
+
+        // might be called from webapi or from within the handler
+        public void Do()
+        {
+            foreach (var changedCustomer in LoadChangedCustomers())
+            {
+                bus.Publish(new CustomerChanged { Name = changedCustomer.Name });
+            }
+        }
+
+        static IEnumerable<Customer> LoadChangedCustomers()
+        {
+            return Enumerable.Empty<Customer>();
+        }
+    }
+
+    [Route("api/[controller]")]
+    public class WebController : Controller
+    {
+        MyDependencyUsedInVariousContexts dependency;
+
+        public WebController(MyDependencyUsedInVariousContexts dependency)
+        {
+            this.dependency = dependency;
+        }
+
+        [HttpPost]
+        public IActionResult Create()
+        {
+            dependency.Do();
+
+            return null;
+        }
+    }
+
+    public class HandlerWithDependencyUsedInVariousContexts :
+        IHandleMessagesFromPreviousVersions<MyMessage>
+    {
+        MyDependencyUsedInVariousContexts dependency;
+
+        public HandlerWithDependencyUsedInVariousContexts(MyDependencyUsedInVariousContexts dependency)
+        {
+            this.dependency = dependency;
+        }
+
+        public void Handle(MyMessage message)
+        {
+            dependency.Do();
+        }
+    }
+
+    #endregion
+
+    #region 5to6-handler-with-dependency-used-in-various-contexts-new
+
+    public class ContextDecorator
+    {
+        IMessageSession messageSession;
+        IMessageHandlerContext messageHandlerContext;
+
+        public ContextDecorator(IEndpointInstance session)
+        {
+            messageSession = session;
+        }
+
+        public ContextDecorator(IMessageHandlerContext context)
+        {
+            messageHandlerContext = context;
+        }
+
+        public Task Publish(object message)
+        {
+            if (messageSession != null)
+            {
+                return messageSession.Publish(message);
+            }
+
+            if (messageHandlerContext != null)
+            {
+                return messageHandlerContext.Publish(message);
+            }
+
+            throw new InvalidOperationException("Decorator was not properly resolved.");
+        }
+    }
+
+    public class MyDependencyUsedInVariousContextsNew
+    {
+        ContextDecorator bus;
+
+        public MyDependencyUsedInVariousContextsNew(ContextDecorator bus)
+        {
+            this.bus = bus;
+        }
+
+        // might be called from webapi or from within the handler
+        public async Task Do()
+        {
+            foreach (var changedCustomer in LoadChangedCustomers())
+            {
+                await bus.Publish(new CustomerChanged { Name = changedCustomer.Name })
+                    .ConfigureAwait(false);
+            }
+        }
+
+        static IEnumerable<Customer> LoadChangedCustomers()
+        {
+            return Enumerable.Empty<Customer>();
+        }
+    }
+
+    [Route("api/[controller]")]
+    public class WebControllerNew : Controller
+    {
+        MyDependencyUsedInVariousContextsNew dependency;
+
+        // binding resolves ctor with IEndpointInstance
+        public WebControllerNew(MyDependencyUsedInVariousContextsNew dependency)
+        {
+            this.dependency = dependency;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create()
+        {
+            await dependency.Do();
+
+            return null;
+        }
+    }
+
+    public class HandlerWithDependencyUsedInVariousContextsNew :
+        IHandleMessages<MyMessage>
+    {
+        ScopeOrBetterConcreteFactory scope;
+
+        public HandlerWithDependencyUsedInVariousContextsNew(ScopeOrBetterConcreteFactory scope)
+        {
+            this.scope = scope;
+        }
+
+        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        {
+            var dependency = scope.Resolve<MyDependencyUsedInVariousContextsNew>(new NamedParameter("context", context));
+            await dependency.Do();
+        }
+    }
+
+    #endregion
+
+    public class ScopeOrBetterConcreteFactory
+    {
+        public TDependency Resolve<TDependency>(NamedParameter parameter)
+        {
+            return default;
+        }
+    }
+
+    public class NamedParameter
+    {
+        public NamedParameter(string name, object value)
+        {
+            
+        }
+    }
+
+    public interface IActionResult { }
+
+    public sealed class HttpPostAttribute : Attribute
+    {
+    }
+
+    public sealed class RouteAttribute : Attribute
+    {
+        public RouteAttribute(string route)
+        {
+        }
+    }
+
+    public class Controller { }
 
     public interface IHandleMessagesFromPreviousVersions<in TMessage>
     {
