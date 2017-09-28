@@ -381,7 +381,7 @@ And checking `Ignore YAML Front-matter`
 
 ## EIP references 
 
-[Enterprise Integration Patters (EIP)](http://www.enterpriseintegrationpatterns.com/) is a bible of messaging. We sometimes use the same or similar patterns, but name them differently. When describing such a pattern, it's useful to reference the related EIP pattern, to make it easier to understand.
+[Enterprise Integration Patterns (EIP)](http://www.enterpriseintegrationpatterns.com/) is a bible of messaging. We sometimes use the same or similar patterns, but name them differently. When describing such a pattern, it's useful to reference the related EIP pattern, to make it easier to understand.
 
 
 ### Terms we use and are aligned with EIP
