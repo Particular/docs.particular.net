@@ -6,7 +6,7 @@
     using Common;
     using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
-    using NServiceBus.MessageMutator;
+    using NServiceBus.Pipeline;
     using NUnit.Framework;
 
     [TestFixture]
@@ -26,16 +26,12 @@
         public async Task Write()
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
-            endpointConfiguration.SendFailedMessagesTo("error");
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterError>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.RegisterComponents(
-                registration: components =>
-                {
-                    components.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
-                });
+            endpointConfiguration.UseTransport<LearningTransport>();
+            endpointConfiguration.Pipeline.Register(typeof(CaptureHeadersBehavior),"Captures headers on messages going to the error q");
+
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Immediate(settings => settings.NumberOfRetries(1));
             recoverability.Delayed(settings =>
@@ -67,10 +63,9 @@
             }
         }
 
-        class Mutator :
-            IMutateIncomingTransportMessages
+        class CaptureHeadersBehavior : Behavior<IIncomingLogicalMessageContext>
         {
-            public Mutator(Notifications busNotifications)
+            public CaptureHeadersBehavior(Notifications busNotifications)
             {
                 var errorsNotifications = busNotifications.Errors;
                 errorsNotifications.MessageSentToErrorQueue += (sender, retry) =>
@@ -88,9 +83,9 @@
 
             static bool hasCapturedMessage;
 
-            public Task MutateIncoming(MutateIncomingTransportMessageContext context)
+            public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
             {
-                if (!hasCapturedMessage && context.IsMessageOfTye<MessageToSend>())
+                if (!hasCapturedMessage && context.Message.Instance is MessageToSend)
                 {
                     hasCapturedMessage = true;
                     var headers = context.Headers;
@@ -99,7 +94,8 @@
                         text: sendingText,
                         suffix: "Sending");
                 }
-                return Task.CompletedTask;
+
+                return next();
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Bson;
 using NServiceBus;
 using NServiceBus.Jil;
+using NServiceBus.MessageMutator;
 using NServiceBus.MessagePack;
 using NServiceBus.Wire;
 
@@ -40,15 +41,10 @@ static class Program
         endpointConfiguration.AddDeserializer<WireSerializer>();
 
         // register the mutator so the the message on the wire is written
-        endpointConfiguration.RegisterComponents(
-            registration: components =>
-            {
-                components.ConfigureComponent<IncomingMessageBodyWriter>(DependencyLifecycle.InstancePerCall);
-            });
+        endpointConfiguration.RegisterMessageMutator(new IncomingMessageBodyWriter());
 
         #endregion
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

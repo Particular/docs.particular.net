@@ -13,7 +13,6 @@ static class Program
         endpointConfiguration.UseSerialization<MessagePackSerializer>();
         endpointConfiguration.RegisterOutgoingMessageLogger();
         #endregion
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

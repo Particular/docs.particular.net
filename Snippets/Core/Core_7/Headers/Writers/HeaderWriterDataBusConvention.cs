@@ -23,18 +23,13 @@
             dataBus.BasePath(@"..\..\..\storage");
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
             endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.UsePersistence<LearningPersistence>();
             endpointConfiguration.UseTransport<LearningTransport>();
             var conventions = endpointConfiguration.Conventions();
             conventions.DefiningDataBusPropertiesAs(property =>
             {
                 return property.Name.StartsWith("LargeProperty");
             });
-            endpointConfiguration.RegisterComponents(
-                registration: components =>
-                {
-                    components.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall);
-                });
+            endpointConfiguration.RegisterMessageMutator(new Mutator());
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);

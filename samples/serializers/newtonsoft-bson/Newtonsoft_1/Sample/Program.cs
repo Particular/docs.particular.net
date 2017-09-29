@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Bson;
 using NServiceBus;
+using NServiceBus.MessageMutator;
 
 static class Program
 {
@@ -21,15 +22,10 @@ static class Program
 
         #region registermutator
 
-        endpointConfiguration.RegisterComponents(
-            registration: components =>
-            {
-                components.ConfigureComponent<MessageBodyWriter>(DependencyLifecycle.InstancePerCall);
-            });
+        endpointConfiguration.RegisterMessageMutator(new MessageBodyWriter());
 
         #endregion
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

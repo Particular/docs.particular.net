@@ -3,6 +3,7 @@ using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.MessageMutator;
 
 class Program
 {
@@ -10,16 +11,11 @@ class Program
     {
         Console.Title = "Samples.UsernameHeader.Endpoint1";
         var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint1");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         #region ComponentRegistration
 
-        endpointConfiguration.RegisterComponents(
-            registration: components =>
-            {
-                components.ConfigureComponent<UsernameMutator>(DependencyLifecycle.InstancePerCall);
-            });
+        endpointConfiguration.RegisterMessageMutator(new UsernameMutator());
 
         #endregion
 

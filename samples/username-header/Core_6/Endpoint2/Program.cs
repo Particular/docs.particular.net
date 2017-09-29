@@ -8,7 +8,6 @@ class Program
     {
         Console.Title = "Samples.UsernameHeader.Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint2");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

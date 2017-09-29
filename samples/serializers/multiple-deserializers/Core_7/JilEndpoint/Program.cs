@@ -20,7 +20,6 @@ static class Program
         serialization.ContentTypeKey("Jil");
         endpointConfiguration.RegisterOutgoingMessageLogger();
         #endregion
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

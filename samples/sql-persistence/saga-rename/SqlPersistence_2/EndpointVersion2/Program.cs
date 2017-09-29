@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
+using NServiceBus.MessageMutator;
 
 class Program
 {
@@ -45,11 +46,7 @@ class Program
 
         #region registerMutator
 
-        endpointConfiguration.RegisterComponents(
-            registration: components =>
-            {
-                components.ConfigureComponent<ReplyMutator>(DependencyLifecycle.InstancePerCall);
-            });
+        endpointConfiguration.RegisterMessageMutator(new ReplyMutator());
 
         #endregion
 
