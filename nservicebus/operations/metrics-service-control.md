@@ -10,8 +10,21 @@ related:
 ---
 
 ## WIP 
+This component enables sending monitoring data to ServiceControl.Monitoring instance.
 
-This is a components that enables data to [v6 add metrics data] be sent to ServiceControl.Monitoring, so data is visible in ServicePulse.
-
-To add this functionality to an endpoint the configuration looks like this:
+It can be enabled via:
 snippet: SendMetricDataToServiceControl
+
+###Argumets:
+#####Service Control Metrics Address:
+ The default is "particular.monitoring" which is ServiceControl monitoring instance input queue.
+
+#####Instance Id: 
+An override for `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`.
+
+
+By default the monitoring plug-in will use [host identifiers](nservicebus/hosting/override-hostid) to indentify the monitored endpoint instance.
+
+The value of `$.diagnostics.hostdisplayname` is expected to be human readable. This might be problematic when using the [Azure Host](nservicebus/hosting/cloud-services-host/faq#host-identifier) as it uses Role Name for the `$.diagnostics.hostdisplayname`, which results in the same display name for all instances. 
+
+Note: `InstanceId` needs to be both unique a d human readable
