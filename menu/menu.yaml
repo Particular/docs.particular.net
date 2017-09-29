@@ -133,7 +133,7 @@
     - Title: Azure Cloud Services Host
       Articles:
       - Url: nservicebus/upgrades/acs-host-7to8
-        Title: Version 7 to 8      
+        Title: Version 7 to 8
       - Url: nservicebus/upgrades/acs-host-6to7
         Title: Version 6 to 7
     - Title: Gateway
@@ -144,6 +144,8 @@
       Articles:
       - Url: nservicebus/upgrades/testing-5to6
         Title: Version 5 to 6
+      - Url: nservicebus/upgrades/testing-6to7
+        Title: Version 6 to 7
     - Title: Message Property Encryption
       Articles:
       - Url: nservicebus/upgrades/externalize-encryption
@@ -359,9 +361,9 @@
     - Url: samples/unit-testing
       Title: AAA style tests
     - Url: nservicebus/testing/fluent
-      Title: Fluent style tests      
+      Title: Fluent style tests
     - Url: nservicebus/messaging/callbacks-testing
-      Title: Callbacks      
+      Title: Callbacks
   - Url: nservicebus/recoverability
     Title: Recoverability
     Articles:
@@ -489,7 +491,7 @@
     - Url: nservicebus/operations/management-using-powershell
       Title: PowerShell
     - Url: nservicebus/operations/metrics
-      Title: Metrics      
+      Title: Metrics
     - Url: nservicebus/operations/performance-counters
       Title: Performance Counters
     - Url: nservicebus/operations/tuning
@@ -498,7 +500,7 @@
       Title: Running on Windows
     - Url: nservicebus/endpoints/decommissioning-endpoints
       Title: Decommissioning Endpoints
-      
+
 - Name: Transports
   Url: transports
   Topics:
@@ -519,11 +521,11 @@
       - Url: transports/upgrades/asq-6to7
         Title: Version 6 to 7
       - Url: transports/upgrades/asq-7to8
-        Title: Version 7 to 8        
+        Title: Version 7 to 8
     - Title: Azure Service Bus
       Articles:
       - Url: transports/upgrades/asb-7to8
-        Title: Version 7 to 8      
+        Title: Version 7 to 8
       - Url: transports/upgrades/asb-6to7
         Title: Version 6 to 7
     - Title: RabbitMQ
@@ -743,7 +745,7 @@
     - Url: transports/sqs/transaction-support
       Title: Transaction
     - Url: transports/sqs/operations-scripting
-      Title: Scripting      
+      Title: Scripting
   - Url: transports/eventstore
     Title: Event Store
   - Url: transports/kafka
@@ -763,7 +765,7 @@
     - Title: Azure Storage
       Articles:
       - Url: persistence/upgrades/asp-1to2
-        Title: Version 1 to 2      
+        Title: Version 1 to 2
       - Url: persistence/upgrades/asp-6to1
         Title: NServiceBus.Azure Version 6
       - Url: persistence/upgrades/asp-saga-pruning
