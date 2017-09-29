@@ -10,9 +10,16 @@ redirects:
  - nservicebus/publish-subscribe-sample
 related:
  - nservicebus/messaging/publish-subscribe
+ - tutorials/intro-to-nservicebus
 ---
 
-Before running the sample, look over the solution structure, the projects, and the classes. The projects `Publisher`,and `Subscriber` are Console Applications that each host an instance of NServiceBus.
+The Publish/Subscribe pattern allows greater flexibility in developing distributed systems by decoupling system components from each other. Once the system is capable of publishing an event, additional capabilities can be added to the system by adding a new event subscriber. A new subscriber can be added in a separate physical process, without changing or redeploying the code that publishes the message.
+
+This sample shows how to publish an event message from a messaging endpoint in one physical process, subscribe to the event in a separate messaging endpoint in a second physical process, and execute a message handler when an event message is received.
+
+downloadbutton
+
+Before running the sample, look over the solution structure, the projects, and the classes. The projects `Publisher`,and `Subscriber` are console applications that each host an instance of an NServiceBus messaging endpoint.
 
 
 ## Defining messages
