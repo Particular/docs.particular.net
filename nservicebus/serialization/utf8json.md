@@ -7,7 +7,7 @@ related:
  - samples/serializers/utf8json
 ---
 
-Using [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet dependency on [Jil](https://github.com/kevin-montrose/Jil).
+Using [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet dependency on [Utf8Json](https://github.com/neuecc/Utf8Json).
 
 
 ## Usage
