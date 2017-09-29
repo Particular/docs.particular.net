@@ -25,16 +25,8 @@ As part of upgrading to NServiceBus.Testing Version 7, projects will also requir
 
 ### AssertSagaCompletionIs
 
-The `AssertSagaCompletionIs` method has been obsoleted and replaced by `ExpectSagaCompleted` and `ExpectSagaNotCompleted`. Instead of:
+The `AssertSagaCompletionIs` method has been obsoleted and replaced by `ExpectSagaCompleted` and `ExpectSagaNotCompleted`.
 
-    Test.Saga<MySaga>()
-        .WhenHandling<TestSaga.CompleteSagaMessage>()
-        .AssertSagaCompletionIs(true);
-
-use the new expectations to write:
-
-    Test.Saga<MySaga>()
-        .ExpectSagaCompleted()
-        .WhenHandling<TestSaga.CompleteSagaMessage>();
+snippet: 6to7-ExpectSagaCompleted
 
 Note how the `ExpectSagaCompleted` and `ExpectSagaNotCompleted` expectations must be placed **before** a `When` method, similar to other expectation methods.

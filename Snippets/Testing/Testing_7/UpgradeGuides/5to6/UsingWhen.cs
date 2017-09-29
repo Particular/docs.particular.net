@@ -32,7 +32,7 @@
 
                 .ExpectPublish<MyEvent>()
                 .WhenSagaTimesOut()
-                .AssertSagaCompletionIs(true);
+                .ExpectSagaCompleted();
         }
 
         [Test]
@@ -59,7 +59,7 @@
 
                 .ExpectPublish<MyEvent>()
                 .WhenSagaTimesOut()
-                .AssertSagaCompletionIs(true);
+                .ExpectSagaCompleted();
         }
     }
 }

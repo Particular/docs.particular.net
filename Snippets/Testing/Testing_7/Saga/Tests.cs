@@ -29,7 +29,7 @@
                     })
                 .ExpectPublish<MyOtherEvent>()
                 .WhenSagaTimesOut()
-                .AssertSagaCompletionIs(true);
+                .ExpectSagaCompleted();
         }
 
         #endregion
