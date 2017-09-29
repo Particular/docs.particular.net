@@ -17,7 +17,7 @@ upgradeGuideCoreVersions:
 
 NServiceBus.Testing requires NServiceBus Version 7.
 
-As part of upgrading to NServiceBus.Testing Version 7, projects will also require an upgrade to [NServiceBus Version 6](/nservicebus/upgrades/6to7/).
+As part of upgrading to NServiceBus.Testing Version 7, projects will also require an upgrade to [NServiceBus Version 7](/nservicebus/upgrades/6to7/).
 
 
 ## Testing Sagas
@@ -30,11 +30,11 @@ The `AssertSagaCompletionIs` method has been obsoleted and replaced by `ExpectSa
     Test.Saga<MySaga>()
         .WhenHandling<TestSaga.CompleteSagaMessage>()
         .AssertSagaCompletionIs(true);
-        
-use the new expecations to write:
+
+use the new expectations to write:
 
     Test.Saga<MySaga>()
         .ExpectSagaCompleted()
         .WhenHandling<TestSaga.CompleteSagaMessage>();
-        
-Note how the `ExpectSagaCompleted` and `ExpectSagaNotCompleted` expectations must be placed **before** a `When` method, similar to other expecation methods.
+
+Note how the `ExpectSagaCompleted` and `ExpectSagaNotCompleted` expectations must be placed **before** a `When` method, similar to other expectation methods.
