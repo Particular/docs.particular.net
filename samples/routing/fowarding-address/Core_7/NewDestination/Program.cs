@@ -4,27 +4,20 @@ using NServiceBus;
 
 class Program
 {
-    static async Task Main(string[] args)
+    static async Task Main()
     {
-        try
-        {
-            Console.Title = "NewDestination";
-            var config = new EndpointConfiguration("NewDestination");
-            config.UseTransport<LearningTransport>();
+        Console.Title = "NewDestination";
+        var config = new EndpointConfiguration("NewDestination");
+        config.UseTransport<LearningTransport>();
 
-            var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(config)
+            .ConfigureAwait(false);
 
-            Console.WriteLine("Endpoint Started. [ENTER] to exit");
+        Console.WriteLine("Endpoint Started. Press any key to exit");
 
-            while (Console.ReadKey(true).Key != ConsoleKey.Enter)
-            {
-            }
+        Console.ReadKey();
 
-            await endpoint.Stop().ConfigureAwait(false);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-        }
+        await endpoint.Stop()
+            .ConfigureAwait(false);
     }
 }

@@ -7,7 +7,8 @@ using NServiceBus.Transport;
 
 static class IncomingPhysicalMessageContextExtensions
 {
-    public static IRoutingContext CreateRoutingContext(this IIncomingPhysicalMessageContext context,
+    public static IRoutingContext CreateRoutingContext(
+        this IIncomingPhysicalMessageContext context,
         IReadOnlyCollection<RoutingStrategy> routingStrategies)
     {
         return new ForwardingRoutingContext(
@@ -17,7 +18,9 @@ static class IncomingPhysicalMessageContextExtensions
         );
     }
 
-    class ForwardingRoutingContext : ContextBag, IRoutingContext
+    class ForwardingRoutingContext :
+        ContextBag,
+        IRoutingContext
     {
         public ForwardingRoutingContext(OutgoingMessage message,
             IReadOnlyCollection<RoutingStrategy> routingStrategies,

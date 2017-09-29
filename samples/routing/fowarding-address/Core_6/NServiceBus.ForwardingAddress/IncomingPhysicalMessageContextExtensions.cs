@@ -17,7 +17,9 @@ static class IncomingPhysicalMessageContextExtensions
         );
     }
 
-    class ForwardingRoutingContext : ContextBag, IRoutingContext
+    class ForwardingRoutingContext :
+        ContextBag,
+        IRoutingContext
     {
         public ForwardingRoutingContext(OutgoingMessage message,
             IReadOnlyCollection<RoutingStrategy> routingStrategies,

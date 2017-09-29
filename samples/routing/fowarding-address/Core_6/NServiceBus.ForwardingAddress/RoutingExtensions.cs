@@ -1,24 +1,22 @@
-﻿namespace NServiceBus
+﻿using System;
+using NServiceBus;
+using NServiceBus.Configuration.AdvanceExtensibility;
+using NServiceBus.Features;
+using NServiceBus.Routing;
+
+#region forwarding-routing-extensions
+public static class RoutingExtensions
 {
-    using System;
-    using Configuration.AdvanceExtensibility;
-    using Features;
-    using Routing;
-
-    #region forwarding-routing-extensions
-    public static class RoutingExtensions
+    public static void ForwardToEndpoint(this RoutingSettings routing, Type messageTypeToForward, string destinationEndpointName)
     {
-        public static void ForwardToEndpoint(this RoutingSettings routing, Type messageTypeToForward, string destinationEndpointName)
-        {
-            var settings = routing.GetSettings();
+        var settings = routing.GetSettings();
 
-            var endpointRoute = UnicastRoute.CreateFromEndpointName(destinationEndpointName);
+        var endpointRoute = UnicastRoute.CreateFromEndpointName(destinationEndpointName);
 
-            settings.GetOrCreate<ForwardingAddressDirectory>()
-                .ForwardToRoute(messageTypeToForward, endpointRoute);
+        settings.GetOrCreate<ForwardingAddressDirectory>()
+            .ForwardToRoute(messageTypeToForward, endpointRoute);
 
-            settings.EnableFeatureByDefault<LeaveForwardingAddressFeature>();
-        }
+        settings.EnableFeatureByDefault<LeaveForwardingAddressFeature>();
     }
-    #endregion
 }
+#endregion

@@ -5,11 +5,12 @@ using NServiceBus;
 
 #region new-handler
 
-class ImportantMessageHandler : IHandleMessages<ImportantMessage>
+class ImportantMessageHandler :
+    IHandleMessages<ImportantMessage>
 {
     public Task Handle(ImportantMessage message, IMessageHandlerContext context)
     {
-        Console.WriteLine("Got a very important message from the new handler!");
+        Console.WriteLine("Got a very important message from the new handler");
         return Task.CompletedTask;
     }
 }

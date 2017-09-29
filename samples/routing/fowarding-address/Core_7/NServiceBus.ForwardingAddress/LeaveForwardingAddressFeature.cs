@@ -5,28 +5,31 @@ using NServiceBus.Transport;
 
 #region forwarding-feature
 
-class LeaveForwardingAddressFeature : Feature
+class LeaveForwardingAddressFeature :
+    Feature
 {
     protected override void Setup(FeatureConfigurationContext context)
     {
-        var forwardingAddressDirectory = context.Settings.Get<ForwardingAddressDirectory>();
-        var transportInfrastructure = context.Settings.Get<TransportInfrastructure>();
+        var settings = context.Settings;
+        var forwardingAddressDirectory = settings.Get<ForwardingAddressDirectory>();
+        var transportInfrastructure = settings.Get<TransportInfrastructure>();
 
         var routeResolver = new UnicastRouteResolver(
             i => transportInfrastructure.ToTransportAddress(LogicalAddress.CreateRemoteAddress(i)),
-            context.Settings.Get<EndpointInstances>(),
-            context.Settings.Get<DistributionPolicy>()
+            settings.Get<EndpointInstances>(),
+            settings.Get<DistributionPolicy>()
         );
 
         var rerouteBehavior = new RerouteMessagesWithForwardingAddress(
             forwardingAddressDirectory.ToLookup(),
             routeResolver
         );
-        
+
         var invokeForwardingPipeline = new ForwardMessagesWithForwardingAddress();
 
-        context.Pipeline.Register(rerouteBehavior, "Finds forwarding addresses and resolves them");
-        context.Pipeline.Register(invokeForwardingPipeline, "Forwards messages to their matching forwarding addresses");
+        var pipeline = context.Pipeline;
+        pipeline.Register(rerouteBehavior, "Finds forwarding addresses and resolves them");
+        pipeline.Register(invokeForwardingPipeline, "Forwards messages to their matching forwarding addresses");
     }
 }
 

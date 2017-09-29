@@ -5,35 +5,28 @@ using NServiceBus;
 
 class Program
 {
-    static async Task Main(string[] args)
+    static async Task Main()
     {
-        try
-        {
-            Console.Title = "OriginalDestination";
+        Console.Title = "OriginalDestination";
 
-            #region forward-message-to-new-destination
+        #region forward-message-to-new-destination
 
-            var config = new EndpointConfiguration("OriginalDestination");
-            var transport = config.UseTransport<LearningTransport>();
-            var routing = transport.Routing();
+        var config = new EndpointConfiguration("OriginalDestination");
+        var transport = config.UseTransport<LearningTransport>();
+        var routing = transport.Routing();
 
-            routing.ForwardToEndpoint(typeof(ImportantMessage), "NewDestination");
+        routing.ForwardToEndpoint(typeof(ImportantMessage), "NewDestination");
 
-            #endregion
+        #endregion
 
-            var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(config)
+            .ConfigureAwait(false);
 
-            Console.WriteLine("Endpoint Started. [ENTER] to exit");
+        Console.WriteLine("Endpoint Started. Press any key to exit");
 
-            while (Console.ReadKey(true).Key != ConsoleKey.Enter)
-            {
-            }
+        Console.ReadKey();
 
-            await endpoint.Stop().ConfigureAwait(false);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-        }
+        await endpoint.Stop()
+            .ConfigureAwait(false);
     }
 }

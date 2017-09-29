@@ -5,7 +5,8 @@ using NServiceBus;
 
 #region old-handler
 
-internal class ImportantMessageHandler : IHandleMessages<ImportantMessage>
+class ImportantMessageHandler :
+    IHandleMessages<ImportantMessage>
 {
     public Task Handle(ImportantMessage message, IMessageHandlerContext context)
     {

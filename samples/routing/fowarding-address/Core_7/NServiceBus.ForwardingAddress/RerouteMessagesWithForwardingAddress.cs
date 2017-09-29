@@ -7,7 +7,8 @@ using NServiceBus.Routing;
 
 #region set-forwarding-address-behavior
 
-class RerouteMessagesWithForwardingAddress : Behavior<IIncomingLogicalMessageContext>
+class RerouteMessagesWithForwardingAddress :
+    Behavior<IIncomingLogicalMessageContext>
 {
     public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
     {
@@ -33,14 +34,12 @@ class RerouteMessagesWithForwardingAddress : Behavior<IIncomingLogicalMessageCon
             context.Message.MessageType,
             context.Message.Instance);
 
-        var routingStrategy = routeResolver.ResolveRoute(
+        return routeResolver.ResolveRoute(
             forwardingRoute,
             outgoingLogicalMessage,
             context.MessageId,
             context.Headers,
             context.Extensions);
-
-        return routingStrategy;
     }
 
     public RerouteMessagesWithForwardingAddress(ILookup<Type, UnicastRoute> forwardingRoutesLookup, UnicastRouteResolver routeResolver)
