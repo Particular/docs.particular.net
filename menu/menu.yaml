@@ -411,6 +411,8 @@
       Title: Xml
     - Url: nservicebus/serialization/jil
       Title: Jil
+    - Url: nservicebus/serialization/utf8json
+      Title: Utf8Json
     - Url: nservicebus/serialization/wire
       Title: Wire
     - Url: nservicebus/serialization/hyperion

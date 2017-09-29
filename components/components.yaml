@@ -309,6 +309,17 @@
   NugetOrder:
     - NServiceBus
 
+- Key: Utf8Json
+  Name: Utf8Json Serializer
+  DocoUrl: nservicebus/serialization/utf8json
+  GitHubOwner: SimonCropp
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Utf8Json/blob/master/LICENSE
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Utf8Json
+  NugetOrder:
+    - NServiceBus.Utf8Json
+
 - Key: Jil
   Name: Jil Serializer
   DocoUrl: nservicebus/serialization/jil
