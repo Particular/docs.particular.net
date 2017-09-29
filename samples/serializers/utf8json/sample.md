@@ -30,15 +30,18 @@ snippet: message
 
 ```json
 {
- "Date": "\/Date(1442274949826)\/",
- "CustomerId": 12,
- "OrderId": 9,
- "OrderItems": [{
-  "Quantity": 2,
-  "ItemId": 6
- }, {
-  "Quantity": 4,
-  "ItemId": 5
- }]
+   "OrderId":9,
+   "Date":"2017-09-29T22:38:06.9444190+10:00",
+   "CustomerId":12,
+   "OrderItems":[  
+      {
+         "ItemId":6,
+         "Quantity":2
+      },
+      {
+         "ItemId":5,
+         "Quantity":4
+      }
+   ]
 }
 ```
