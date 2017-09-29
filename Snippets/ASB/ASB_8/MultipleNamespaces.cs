@@ -96,16 +96,18 @@ class MultipleNamespaces
             name: "destination1",
             connectionString: "Endpoint=sb://destination1.servicebus.windows.net;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
 
-        // Step 3 - Associate endpoint "sales" with the namespace to route 
+        // Step 3 - Associate endpoint "sales" with the namespace to route
         // MyMessage messages to (physical routing)
         destination.RegisteredEndpoints.Add("sales");
 
-        #endregion namespace_subscription_registered_endpoint
+        #endregion
+
+        #region namespace_subscription_registered_endpoint
 
         var endpointOrientedTopology = transport.UseEndpointOrientedTopology();
-        endpointOrientedTopology.RegisterPublisher(typeof(MyEvent), "sales");
-
-        #region
+        endpointOrientedTopology.RegisterPublisher(
+            type: typeof(MyEvent),
+            publisherName: "sales");
 
         #endregion
     }
