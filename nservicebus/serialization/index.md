@@ -23,6 +23,7 @@ The [Newtonsoft JSON Serializer](newtonsoft.md) provides an effective general-pu
  * [Wire](wire.md)
  * [Hyperion](hyperion.md)
  * [Jil](jil.md)
+ * [Utf8Json](utf8json.md)
  * [Bond](bond.md)
  * [ZeroFormatter](zeroformatter.md)
  * [JSON/BSON](json.md) (deprecated in Versions 7 and above)
