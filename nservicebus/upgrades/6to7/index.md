@@ -128,6 +128,9 @@ The `RemoveDeliveryConstaint` extension method has been renamed to `RemoveDelive
 
 The `GetMesssageIntent` extension method has been renamed to `GetMessageIntent`.
 
+## Pipeline configuration
+
+`RegisterStep.IsEnabled` has been removed. Instead of overriding this method to disable registration, users should instead not register the steps in the pipeline at all.
 
 ### StorageType
 
