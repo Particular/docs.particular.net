@@ -4,6 +4,7 @@ component: MessagePack
 reviewed: 2017-09-30
 related:
  - samples/serializers/messagepack
+ - nservicebus/serialization/msgpack
 redirects:
  - nservicebus/serialization/message-pack
 ---
@@ -18,11 +19,11 @@ snippet: MessagePackSerialization
 include: interface-not-supported
 
 
-### Custom Settings
+### Resolver
 
-Customizes the instance of `SerializerOptions` used for serialization.
+Customizes the instance of `IFormatterResolver` used for serialization.
 
-snippet: MessagePackCustomSettings
+snippet: MessagePackResolver
 
 
 include: custom-contenttype-key

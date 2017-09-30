@@ -4,6 +4,7 @@ component: MsgPack
 reviewed: 2017-09-30
 related:
  - samples/serializers/msgpack
+ - nservicebus/serialization/messagepack
 redirects:
  - nservicebus/serialization/message-pack
 ---

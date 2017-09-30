@@ -124,6 +124,8 @@
         Title: Version 6 to 7
     - Title: NServiceBus.Azure deprecated
       Url: nservicebus/upgrades/azure-deprecation
+    - Title: MessagePack changes
+      Url: nservicebus/upgrades/messagepack-changes
     - Title: Azure BlobStorage DataBus
       Articles:
       - Url: nservicebus/upgrades/absdatabus-6to1
