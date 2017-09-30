@@ -1,10 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessagePack_1", "MessagePack_1\MessagePack_1.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessagePack_2", "MessagePack_2\MessagePack_2.csproj", "{2F5517C6-0BF9-4437-AF4E-7B2578A6C4CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessagePack_2", "MessagePack_2\MessagePack_2.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +11,6 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{100E3F2F-409C-4E7F-AEAD-599179DC0C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{100E3F2F-409C-4E7F-AEAD-599179DC0C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F5517C6-0BF9-4437-AF4E-7B2578A6C4CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F5517C6-0BF9-4437-AF4E-7B2578A6C4CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
