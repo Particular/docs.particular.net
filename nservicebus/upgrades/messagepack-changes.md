@@ -16,7 +16,7 @@ The [NServiceBus.MessagePack project](https://github.com/SimonCropp/NServiceBus.
  * [MsgPack-CLI project](https://github.com/msgpack/msgpack-cli)
  * [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp)
 
-To support both, MsgPack-CLI has been moved to [NServiceBus.MsgPack](https://github.com/SimonCropp/NServiceBus.MsgPack). [NServiceBus.MessagePack](https://github.com/SimonCropp/NServiceBus.MessagePack) has been changed to support MessagePack-CSharp.
+To support both, MsgPack-CLI support has been moved to [NServiceBus.MsgPack](https://github.com/SimonCropp/NServiceBus.MsgPack). [NServiceBus.MessagePack](https://github.com/SimonCropp/NServiceBus.MessagePack) has been changed to support MessagePack-CSharp.
 
 To continue using MessagePack via the MsgPack-CLI implementation uninstall the [NServiceBus.MessagePack Package](https://www.nuget.org/packages/NServiceBus.MessagePack/) and install the [NServiceBus.MsgPack Package](https://www.nuget.org/packages/NServiceBus.MsgPack/).
 
