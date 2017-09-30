@@ -13,9 +13,11 @@ class Usage
     void SqlServerUsage(EndpointConfiguration endpointConfiguration)
     {
         #region SqlPersistenceUsageSqlServer
-
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+            
         var connection = @"Data Source=.\SqlExpress;Initial Catalog=dbname;Integrated Security=True";
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.CacheFor(TimeSpan.FromMinutes(1));        
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
@@ -59,6 +61,8 @@ class Usage
 
         var connection = "server=localhost;user=root;database=dbname;port=3306;password=pass;AllowUserVariables=True;AutoEnlist=false";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
         persistence.SqlDialect<SqlDialect.MySql>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
@@ -75,6 +79,8 @@ class Usage
 
         var connection = "Data Source=localhost;User Id=username;Password=pass;Enlist=false;";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
         persistence.SqlDialect<SqlDialect.Oracle>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
