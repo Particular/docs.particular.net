@@ -37,6 +37,7 @@ Log4Net: NServiceBus.Log4Net
 Mailer: NServiceBus.Mailer
 Mandrill: NServiceBus.Mandrill
 MessagePack: NServiceBus.MessagePack
+MsgPack: NServiceBus.MsgPack
 Metrics: NServiceBus.Metrics
 MessageRouting: NServiceBus.MessageRouting
 MongoSbmako: NServiceBus.MongoDB
