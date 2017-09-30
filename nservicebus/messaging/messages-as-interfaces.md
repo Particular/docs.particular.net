@@ -25,7 +25,8 @@ Without the ability to extend a message to multiple others, composition would be
 The following serializers **do not support** messages defined as interfaces. 
 
  * [Bond](/nservicebus/serialization/bond.md)
- * [MessagePack](/nservicebus/serialization/message-pack.md)
+ * [MessagePack](/nservicebus/serialization/messagepack.md)
+ * [MsgPack](/nservicebus/serialization/msgpack.md)
  * [Protobuf-Net](/nservicebus/serialization/protobufnet.md)
  * [Protobuf-Google](/nservicebus/serialization/protobufgoogle.md)
  * [Wire](/nservicebus/serialization/wire.md)
