@@ -124,6 +124,8 @@
         Title: Version 6 to 7
     - Title: NServiceBus.Azure deprecated
       Url: nservicebus/upgrades/azure-deprecation
+    - Title: MessagePack changes
+      Url: nservicebus/upgrades/messagepack-changes
     - Title: Azure BlobStorage DataBus
       Articles:
       - Url: nservicebus/upgrades/absdatabus-6to1
@@ -417,8 +419,10 @@
       Title: Wire
     - Url: nservicebus/serialization/hyperion
       Title: Hyperion
-    - Url: nservicebus/serialization/message-pack
-      Title: Message Pack
+    - Url: nservicebus/serialization/messagepack
+      Title: MessagePack
+    - Url: nservicebus/serialization/msgpack
+      Title: MsgPack
     - Url: nservicebus/serialization/protobufgoogle
       Title: ProtoBuf-Google
     - Url: nservicebus/serialization/protobufnet

@@ -432,7 +432,7 @@
 
 - Key: MessagePack
   Name: MessagePack Serializer
-  DocoUrl: nservicebus/serialization/message-pack
+  DocoUrl: nservicebus/serialization/messagepack
   GitHubOwner: SimonCropp
   Category: Serializer
   SupportLevel: Community
@@ -440,6 +440,17 @@
   ProjectUrl: https://github.com/SimonCropp/NServiceBus.MessagePack
   NugetOrder:
     - NServiceBus.MessagePack
+
+- Key: MsgPack
+  Name: MsgPack Serializer
+  DocoUrl: nservicebus/serialization/msgpack
+  GitHubOwner: SimonCropp
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.MsgPack/blob/master/LICENSE
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.MsgPack
+  NugetOrder:
+    - NServiceBus.MsgPack
 
 - Key: MongoPersistenceSbmako
   Name: MongoDB Persistence (Carlos Sandoval)

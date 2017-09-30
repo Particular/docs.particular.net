@@ -1,11 +1,11 @@
 ---
 title: MessagePack Serializer Usage
 summary: Using the MessagePack serializer in an endpoint.
-reviewed: 2016-10-31
+reviewed: 2017-09-30
 component: MessagePack
 related:
 - nservicebus/serialization
-- nservicebus/serialization/message-pack
+- nservicebus/serialization/messagepack
 ---
 
 

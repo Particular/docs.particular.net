@@ -1,4 +1,4 @@
-﻿using MsgPack.Serialization;
+﻿using MessagePack.Resolvers;
 using NServiceBus;
 using MessagePackSerializer = NServiceBus.MessagePack.MessagePackSerializer;
 
@@ -15,14 +15,10 @@ class Usage
 
     void CustomSettings(EndpointConfiguration endpointConfiguration)
     {
-        #region MessagePackCustomSettings
+        #region MessagePackResolver
 
-        var context = new SerializationContext
-        {
-            DefaultDateTimeConversionMethod = DateTimeConversionMethod.UnixEpoc
-        };
         var serialization = endpointConfiguration.UseSerialization<MessagePackSerializer>();
-        serialization.Context(context);
+        serialization.Resolver(ContractlessStandardResolver.Instance);
 
         #endregion
     }

@@ -41,7 +41,7 @@ snippet: configJil
 
 ### MessagePackEndpoint
 
-Send messages using the [MessagePack Serializer](/samples/serializers/message-pack/).
+Send messages using the [MessagePack Serializer](/samples/serializers/messagepack/).
 
 snippet: configMessagePack
 

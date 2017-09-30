@@ -6,8 +6,8 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MsgPack.Cli" Version="0.*" />
+    <PackageReference Include="MessagePack" Version="1.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.MessagePack" Version="1.0.*" />
+    <PackageReference Include="NServiceBus.MessagePack" Version="2.*" />
   </ItemGroup>
 </Project>

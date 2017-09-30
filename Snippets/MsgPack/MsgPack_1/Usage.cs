@@ -1,27 +1,27 @@
 ﻿using MsgPack.Serialization;
 using NServiceBus;
-using MessagePackSerializer = NServiceBus.MessagePack.MessagePackSerializer;
+using MsgPackSerializer = NServiceBus.MsgPack.MsgPackSerializer;
 
 class Usage
 {
     Usage(EndpointConfiguration endpointConfiguration)
     {
-        #region MessagePackSerialization
+        #region MsgPackSerialization
 
-        endpointConfiguration.UseSerialization<MessagePackSerializer>();
+        endpointConfiguration.UseSerialization<MsgPackSerializer>();
 
         #endregion
     }
 
     void CustomSettings(EndpointConfiguration endpointConfiguration)
     {
-        #region MessagePackCustomSettings
+        #region MsgPackCustomSettings
 
         var context = new SerializationContext
         {
             DefaultDateTimeConversionMethod = DateTimeConversionMethod.UnixEpoc
         };
-        var serialization = endpointConfiguration.UseSerialization<MessagePackSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<MsgPackSerializer>();
         serialization.Context(context);
 
         #endregion
@@ -29,9 +29,9 @@ class Usage
 
     void ContentTypeKey(EndpointConfiguration endpointConfiguration)
     {
-        #region MessagePackContentTypeKey
+        #region MsgPackContentTypeKey
 
-        var serialization = endpointConfiguration.UseSerialization<MessagePackSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<MsgPackSerializer>();
         serialization.ContentTypeKey("custom-key");
 
         #endregion
