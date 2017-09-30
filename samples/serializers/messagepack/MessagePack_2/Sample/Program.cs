@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using MessagePack.Resolvers;
 using NServiceBus;
 using NServiceBus.MessagePack;
 
@@ -17,7 +18,9 @@ static class Program
         Console.Title = "Samples.Serialization.MessagePack";
         #region config
         var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.MessagePack");
-        endpointConfiguration.UseSerialization<MessagePackSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<MessagePackSerializer>();
+        serialization.Resolver(ContractlessStandardResolver.Instance);
+
         #endregion
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
