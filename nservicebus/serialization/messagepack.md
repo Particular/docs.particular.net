@@ -5,6 +5,7 @@ reviewed: 2017-09-30
 related:
  - samples/serializers/messagepack
  - nservicebus/serialization/msgpack
+ - nservicebus/upgrades/messagepack-changes
 redirects:
  - nservicebus/serialization/message-pack
 ---

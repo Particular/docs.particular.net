@@ -1,5 +1,5 @@
 ---
-title: MessagePack changes
+title: MessagePack NuGet changes
 summary: Changes to MessagePack to support both the MessagePack and MsgPack.Cli NuGet packages.
 reviewed: 2017-09-28
 component: MessagePack

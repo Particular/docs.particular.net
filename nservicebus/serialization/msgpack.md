@@ -5,6 +5,7 @@ reviewed: 2017-09-30
 related:
  - samples/serializers/msgpack
  - nservicebus/serialization/messagepack
+ - nservicebus/upgrades/messagepack-changes
 ---
 
 Serialize messages with the [MessagePack](http://msgpack.org/) binary format via the [MsgPack.Cli](https://github.com/msgpack/msgpack-cli) project.
