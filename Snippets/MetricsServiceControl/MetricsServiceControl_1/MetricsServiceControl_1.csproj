@@ -2,10 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="1.0.0-beta0002" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="1.0.0-*" />
   </ItemGroup>
 
 </Project>

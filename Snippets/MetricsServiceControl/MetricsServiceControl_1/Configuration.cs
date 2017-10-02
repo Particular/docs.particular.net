@@ -3,13 +3,15 @@
     using NServiceBus;
     using NServiceBus.Metrics.ServiceControl;
 
-    public class Configuration
+    class Configuration
     {
-        public void ConfigureEndpoint(BusConfiguration busConfiguration)
+        void ConfigureEndpoint(BusConfiguration busConfiguration)
         {
             #region SendMetricDataToServiceControl
 
-            busConfiguration.SendMetricDataToServiceControl("SERVICE_CONTROL_METRICS_ADDRESS", "INSTANCE_ID_OPTIONAL");
+            busConfiguration.SendMetricDataToServiceControl(
+                serviceControlMetricsAddress: "address",
+                instanceId: "INSTANCE_ID_OPTIONAL");
 
             #endregion
         }
