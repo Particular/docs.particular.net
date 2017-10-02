@@ -33,4 +33,4 @@ By default the monitoring plug-in will use [host identifiers](/nservicebus/hosti
 
 The value of `$.diagnostics.hostdisplayname` is expected to be human readable. This might be problematic when using the [Azure Host](/nservicebus/hosting/cloud-services-host/faq.md#host-identifier) as it uses Role Name for the `$.diagnostics.hostdisplayname`, which results in the same display name for all instances.
 
-Note: The `InstanceId` needs to be both unique a d human readable
+Note: The `InstanceId` needs to be both unique and human readable.
