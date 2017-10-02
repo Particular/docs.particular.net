@@ -23,8 +23,8 @@ snippet: SendMetricDataToServiceControl
 An override for `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`.
 
 
-By default the monitoring plug-in will use [host identifiers](nservicebus/hosting/override-hostid) to indentify the monitored endpoint instance.
+By default the monitoring plug-in will use [host identifiers](/nservicebus/hosting/override-hostid.md) to indentify the monitored endpoint instance.
 
-The value of `$.diagnostics.hostdisplayname` is expected to be human readable. This might be problematic when using the [Azure Host](nservicebus/hosting/cloud-services-host/faq#host-identifier) as it uses Role Name for the `$.diagnostics.hostdisplayname`, which results in the same display name for all instances. 
+The value of `$.diagnostics.hostdisplayname` is expected to be human readable. This might be problematic when using the [Azure Host](/nservicebus/hosting/cloud-services-host/faq.md#host-identifier) as it uses Role Name for the `$.diagnostics.hostdisplayname`, which results in the same display name for all instances. 
 
 Note: `InstanceId` needs to be both unique a d human readable
