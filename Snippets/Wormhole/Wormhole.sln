@@ -2,7 +2,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 15.0.26430.04
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wormhole_1", "Wormhole_1\Wormhole_1.csproj", "{AA684AD6-808E-4E27-B2DA-912F0E7F6A95}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wormhole_2", "Wormhole_2\Wormhole_2.csproj", "{6B65CB5B-7DFA-4FAF-92C3-3B7AF222E8A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,8 +14,13 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AA684AD6-808E-4E27-B2DA-912F0E7F6A95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA684AD6-808E-4E27-B2DA-912F0E7F6A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B65CB5B-7DFA-4FAF-92C3-3B7AF222E8A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B65CB5B-7DFA-4FAF-92C3-3B7AF222E8A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0625F752-F96C-4142-AD86-4684EE560DD2}
 	EndGlobalSection
 EndGlobal
