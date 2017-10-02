@@ -23,16 +23,20 @@ While it may seem excessive at first, the business implications of the system ge
 
 ## No saga instance available
 
-If a message is received while there is no saga instance, then by default this message gets discarded and succesfully processed. When you have a saga instance that is already completed then it makes sense to discard other messages.
+If a message is received while there is no saga instance, then by default this message gets discarded. When you have a saga instance that is already completed then it makes sense to discard other messages.
 
-This can also happen for saga instance creation. A message is received that expects a saga instance to be there but that message is not received yet. In this case the message should not be discarded. There are two options to resolve this:
+NOTE: Assume out of order delivery as this can happen due to error recovery and/or concurrent message processing.
 
-- Let the saga instance be created for message B
-- Override the saga not found behavior and throw an exception
+This message discarding behavior can also happen for saga instance creation. When a message is received that expects a saga instance to be there but that message that would create the saga instance has not yet been received or completed processing.
 
-By getting the saga instance created for message B that is received before message A we now have to make sure that the behavior of the saga will remain correct. For example, when a message is send when B is received then maybe state from message A needs to be included that is added to the saga instance when A is received. This state is not yet stored in the saga thus the message cannot be send yet. We now need to check that when message A is received if message B is already processed and then have the message send. This can make the saga much more complex!
+There are two options to avoid discarding incoming messages in this scenario:
 
-A simpler solution is to throw an error when the saga instance does not exist so that it gets moved to the error queue then it is required to override saga not found behavior by implementing `IHandleSagaNotFound` and throw an exception. 
+- Let the saga instance be created for the message processing that previously assumed the saga instance would already exist using `IAmStartedBy<T>`
+- Override the saga not found behavior and throw an exception using `IHandleSagaNotFound`
+
+By letting the saga instance also be created for a message that previously relied on another message that would have create the saga instance we now have to make sure that the behavior of the saga will remain correct. Lets assume that we relied on message A to be processed before B but we now also have the saga instance created when B is received then maybe state from message A needs to be included that is added to the saga instance when A is received. This state is not yet stored in the saga if message B is processed before message A thus the message cannot be send yet. We now need to check that when message A is received if message B is already processed and then have the message send. This can make the saga much more complex!
+
+A simpler solution is to throw an error when the saga instance does not exist so that it eventually gets moved to the error queue after all immediate and delayed retries attempts are done. Override saga not found behavior by [implementing `IHandleSagaNotFound` and throw an exception](saga-not-found.md). 
 
 ## A simple Saga
 
