@@ -12,8 +12,9 @@ related:
 
 Correlation is needed in order to find existing saga instances based on data on the incoming message. In the example the `OrderId ` property of the `CompleteOrder` message is used to find the existing saga instance for that order.
 
-To declare this use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to. Note that NServiceBus will only allow correlation on a single saga property and that the property types must match.
+To declare this use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to.
 
+NOTE: Message properties must correlate to a single saga property and have the same type.
 
 partial: note
 
@@ -24,7 +25,7 @@ When `MyMessage` arrives, NServiceBus asks the saga persistence infrastructure t
 
 ## Message Property Expression
 
-If correlating on more than one property is necessary, or matched properties are of different types, use a [custom saga finder](saga-finding.md).
+If correlating on more than one saga property is necessary, or matched properties are of different types, use a [custom saga finder](saga-finding.md).
 
 
 partial: expression
