@@ -19,8 +19,8 @@ public class EndpointSide
     }
 
     public void ConfigureGateways(
-        WormholeGatewayConfiguration<MsmqTransport, MsmqTransport> configSiteA,
-        WormholeGatewayConfiguration<MsmqTransport, MsmqTransport> configSiteB)
+        WormholeGatewayConfiguration<LearningTransport, LearningTransport> configSiteA,
+        WormholeGatewayConfiguration<LearningTransport, LearningTransport> configSiteB)
     {
         #region RemoteSiteA
 
