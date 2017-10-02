@@ -14,8 +14,7 @@ Correlation is needed in order to find existing saga instances based on data on 
 
 To declare this use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to.
 
-NOTE: NServiceBus will only allows message mappings that all correlate to a single saga property and that all property types must match. Use a [custom saga finder](saga-finding.md). to correlate different properties and/or types.
-
+NOTE: NServiceBus  only allows message mappings where the message properties correlate to a single saga property and have the same type. 
 
 partial: note
 
