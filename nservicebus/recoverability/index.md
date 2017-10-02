@@ -1,6 +1,6 @@
 ---
 title: Recoverability
-summary: Explains how exception are handled, and actions retries, during message processing
+summary: Explains how exceptions are handled, and actions retried, during message processing
 component: Core
 tags:
  - Exceptions
