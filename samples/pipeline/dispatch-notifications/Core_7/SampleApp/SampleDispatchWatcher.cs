@@ -5,7 +5,9 @@ using NServiceBus.Transport;
 using System.Collections.Generic;
 
 #region sample-dispatch-watcher
-class SampleDispatchWatcher : IWatchDispatches
+
+class SampleDispatchWatcher :
+    IWatchDispatches
 {
     public Task Notify(IEnumerable<TransportOperation> operations)
     {
@@ -16,15 +18,20 @@ class SampleDispatchWatcher : IWatchDispatches
         return Task.CompletedTask;
     }
 
-    private string Read(AddressTag addressTag)
+    string Read(AddressTag addressTag)
     {
         if (addressTag is UnicastAddressTag u)
+        {
             return $"Unicast: {u.Destination}";
+        }
         if (addressTag is MulticastAddressTag m)
+        {
             return $"Multicast: {m.MessageType}";
+        }
         throw new ArgumentException(
             message: "addressTag is not a recognized address type",
             paramName: nameof(addressTag));
     }
 }
+
 #endregion

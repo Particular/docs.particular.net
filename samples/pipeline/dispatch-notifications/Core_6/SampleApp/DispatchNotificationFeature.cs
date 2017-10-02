@@ -2,13 +2,13 @@
 using NServiceBus.Features;
 
 #region dispatch-notification-feature
-class DispatchNotificationFeature : Feature
+class DispatchNotificationFeature :
+    Feature
 {
     protected override void Setup(FeatureConfigurationContext context)
     {
         var watches = context.Settings.Get<List<IWatchDispatches>>();
-        var behavior = new DispatchNotificationBehavior(watches.ToArray());
-
+        var behavior = new DispatchNotificationBehavior(watches);
         context.Pipeline.Register(behavior, "Notifies watches after a dispatch operation");
     }
 }

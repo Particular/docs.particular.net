@@ -4,24 +4,29 @@ using NServiceBus;
 
 class Program
 {
-    static async Task Main(string[] args)
+    static async Task Main()
     {
-        Console.Title = "SampleEndpoint";
+        Console.Title = "Samples.DispatchNotification";
 
         #region endpoint-configuration
-        var config = new EndpointConfiguration("SampleEndpoint");
-        config.UseTransport<LearningTransport>();
-
-        config.NotifyDispatch(new SampleDispatchWatcher());
+        var endpointConfiguration = new EndpointConfiguration("Samples.DispatchNotification");
+        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.NotifyDispatch(new SampleDispatchWatcher());
         #endregion
 
-        var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
+
+        Console.WriteLine("Press any key to send a message");
+        Console.WriteLine("Press Escape to exit");
 
         while (Console.ReadKey(true).Key != ConsoleKey.Escape)
         {
-            await endpoint.SendLocal(new SomeMessage());
+            await endpoint.SendLocal(new SomeMessage())
+                .ConfigureAwait(false);
         }
 
-        await endpoint.Stop().ConfigureAwait(false);
+        await endpoint.Stop()
+            .ConfigureAwait(false);
     }
 }

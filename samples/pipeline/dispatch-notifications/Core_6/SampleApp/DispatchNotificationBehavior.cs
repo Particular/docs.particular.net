@@ -1,25 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
 #region dispatch-notification-behavior
-class DispatchNotificationBehavior : Behavior<IDispatchContext>
+class DispatchNotificationBehavior :
+    Behavior<IDispatchContext>
 {
-    public override async Task Invoke(IDispatchContext context, Func<Task> next)
-    {
-        await next().ConfigureAwait(false);
+    List<IWatchDispatches> watches;
 
-        foreach (var watch in watches)
-        {
-            await watch.Notify(context.Operations).ConfigureAwait(false);
-        }
-    }
-
-    private readonly IWatchDispatches[] watches;
-
-    public DispatchNotificationBehavior(IWatchDispatches[] watches)
+    public DispatchNotificationBehavior(List<IWatchDispatches> watches)
     {
         this.watches = watches;
+    }
+
+    public override async Task Invoke(IDispatchContext context, Func<Task> next)
+    {
+        await next()
+            .ConfigureAwait(false);
+        var tasks = watches.Select(watch => watch.Notify(context.Operations));
+        await Task.WhenAll(tasks)
+            .ConfigureAwait(false);
     }
 }
 #endregion

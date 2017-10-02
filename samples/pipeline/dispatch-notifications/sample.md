@@ -1,5 +1,5 @@
 ---
-title: Dipsatch notification pipeline extension
+title: Dispatch notification pipeline extension
 summary: Extending the pipeline to fire a notification when messages are dispatched.
 reviewed: 2017-09-29
 component: Core
@@ -17,7 +17,7 @@ This sample shows how to extend the NServiceBus message processing pipeline with
 
 ## Code Walk Through
 
-The solution contains a single endpoint with a dispatch notifications turned on. Disptch notifications are handled by a classes that implement a simple interface:
+The solution contains a single endpoint with a dispatch notifications turned on. Dispatch notifications are handled by a classes that implement a simple interface:
 
 snippet: watch-interface
 
@@ -43,7 +43,7 @@ The feature injects the watches configured by the user into a new pipeline behav
 
 snippet: dispatch-notification-behavior
 
-The behavior notifies all of the watches after the transport operations have been dispatched. 
+The behavior notifies all of the watches after the transport operations have been dispatched.
 
 
 ## Running the Code
