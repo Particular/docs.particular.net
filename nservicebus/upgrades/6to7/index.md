@@ -253,3 +253,19 @@ NServiceBus Version 7 will only run installers when explicitly enabled via the `
 ## DistributionStrategy
 
 The `string SelectReceiver(string[] receiverAddresses)` signature has been removed from the `DistributionStrategy` base class. When writing a custom distribution strategy, implement the `string SelectDestination(DistributionContext context)` method instead which provides additional information usable for routing decisions. Receiver addresses can still be accessed via the `context.ReceiverAddresses` property.
+
+
+## HandleCurrentMessageLater
+
+The `IMessageHandlerContext.HandleCurrentMessageLater()` method has been deprecated. Due to the different transports, the actual behavior of this method could vary which is why it's usage should be replaced by more expressive APIs to provide a consistent behavior across all transports.
+
+To handle the current message later and abort the current processing attempt, throw an exception in your message handler and let [recoverability](/nservicebus/recoverability) reschedule the message. Be aware of the following restrictions:
+* recoverability is only enabled when the transport is configured to use some sort of transactions (!= `TransactionMode.None`).
+* when throwing an exception, the current transaction will be rolled back, causing outgoing messages to be discarded.
+* the retry attempts and delays depend on the specific configuration.
+* depending on the transport's transaction behavior, the message will reappear at the front or at the back of the queue.
+
+To finish the currently processed message but invoke the same handler after some time, send a copy of the current message via `IMessageHandlerContext.SendLocal(...)`.  Be aware of the following restrictions:
+* reusing the incming message instance is possible, however it does not copy the headers of the incoming message. Headers need to be manually set on the outgoing message via the `SendOptions.SetHeader(...)` API.
+* a delay can be added using the send options, for more options see the [delayed delivery](/nservicebus/messaging/delayed-delivery.md) section.
+* The sent message will be added at the back of the queue.
