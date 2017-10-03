@@ -18,7 +18,7 @@ partial: intro
 
 partial: receivealgorithm
 
-partial: doNotCreateQueuesOnInstallApi
+partial: disableinstaller
 
 partial: label
 
