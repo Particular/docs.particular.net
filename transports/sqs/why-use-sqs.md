@@ -2,6 +2,7 @@
 title: Why Use SQS?
 summary: Explore when it makes sense to use SQS as a transport.
 component: SQS
+reviewed: 2017-10-03
 tags:
 - AWS
 redirects:
@@ -12,9 +13,9 @@ When building a system using NServiceBus that is deployed on auto-scaled EC2 ins
 
 ## Importance of Auto Scaling
 
-Auto Scaling matters because it minimizes infrastructure costs and gives the system self-healing capabilities.
+Auto Scaling (AS) matters because it minimizes infrastructure costs and gives the system self-healing capabilities.
 
-Auto Scaling exists so that a system can scale up and down based on demand. When the demands on a system are high, e.g., there are many incoming web requests or many messages in a queue, auto scaling should automatically add more workers to keep up. When that demand subsides, auto scaling should automatically terminate workers to minimize unused infrastructure and keep costs to a minimum. If configured well, AS will give a system just enough processing power to cope with the load on it at any given time, for the lowest possible cost.
+Auto Scaling exists so that a system can scale up and down based on demand. When the demands on a system are high, e.g. there are many incoming web requests or many messages in a queue, auto scaling should automatically add more workers to keep up. When that demand subsides, auto scaling should automatically terminate workers to minimize unused infrastructure and keep costs to a minimum. If configured well, AS will give a system just enough processing power to cope with the load on it at any given time, for the lowest possible cost.
 
 Auto Scaling isn't just about scaling however. Perhaps even more importantly, it gives a system the ability to recover from faults automatically - to heal itself.
 
@@ -41,8 +42,8 @@ Consider the following idiomatic NServiceBus setup on AWS. An endpoint is deploy
 
 This approach gives great sending performance (as sending only needs to write to the local drive) and great durability of messages (as EBS is geo-redundant by default). This approach will work really well for a ["pet"](http://www.lauradhamilton.com/servers-pets-versus-cattle) EC2 instance.
 
-However, this approach doesn't mesh well with [AWS Auto Scaling](https://aws.amazon.com/autoscaling/) (AS hereafter). When AS needs to scale down, it simply terminates EC2 instances with little warning. AS provides no mechanism to allow any on-instance queues to drain before the instance is terminated. It is possible to hook in to the shutdown flow offered by EC2 and start offloading queue messages when a shutdown is imminent, but it can never be guaranteed that messages won't be lost - once the shutdown time arrives, it's lights out, regardless if there are messages still in the queues or not.  If the default AS setup is used, the EBS volume attached to the instance will be terminated as well - resulting in loss of messages.
+However, this approach doesn't mesh well with [AWS Auto Scaling](https://aws.amazon.com/autoscaling/). When AS needs to scale down, it simply terminates EC2 instances with little warning. AS provides no mechanism to allow any on-instance queues to drain before the instance is terminated. It is possible to hook in to the shutdown flow offered by EC2 and start offloading queue messages when a shutdown is imminent, but it can never be guaranteed that messages won't be lost - once the shutdown time arrives, it's lights out, regardless if there are messages still in the queues or not.  If the default AS setup is used, the EBS volume attached to the instance will be terminated as well - resulting in loss of messages.
 
-AS can be configured to not terminate any EBS volumes when scaling down, however this leaves an orphaned volume, potentially with messages on it, with nothing processing them. Naturally this is a problem when there are SLAs to meet.
+AS can be configured to not terminate any EBS volumes when scaling down. However this leaves an orphaned volume, potentially with messages on it, with nothing processing them. Naturally this is a problem when there are SLAs to meet.
 
 To solve these problems, the guidance from Amazon is to use SQS as the transport. This transport will help get the most out of AWS and the Auto Scaling feature.
