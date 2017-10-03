@@ -257,10 +257,10 @@ The `string SelectReceiver(string[] receiverAddresses)` signature has been remov
 
 ## HandleCurrentMessageLater
 
-The `IMessageHandlerContext.HandleCurrentMessageLater()` method has been deprecated. Due to the different transports, the actual behavior of this method could vary which is why it's usage should be replaced by more expressive APIs to provide a consistent behavior across all transports.
+The `IMessageHandlerContext.HandleCurrentMessageLater()` method has been deprecated.
 
 To handle the current message later and abort the current processing attempt, throw an exception in the message handler and let [recoverability](/nservicebus/recoverability) reschedule the message. Be aware of the following restrictions:
-* recoverability is only enabled when the transport is configured to use some sort of transactions (!= `TransactionMode.None`).
+* retries are only enabled when the transport is configured to use some sort of transactions (!= `TransactionMode.None`).
 * when throwing an exception, the current transaction will be rolled back, causing outgoing messages to be discarded.
 * the retry attempts and delays depend on the specific configuration.
 * depending on the transport's transaction behavior, the message will reappear at the front or at the back of the queue.
