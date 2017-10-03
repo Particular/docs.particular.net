@@ -128,9 +128,11 @@ The `RemoveDeliveryConstaint` extension method has been renamed to `RemoveDelive
 
 The `GetMesssageIntent` extension method has been renamed to `GetMessageIntent`.
 
+
 ## Pipeline configuration
 
 `RegisterStep.IsEnabled` has been removed. Instead of overriding this method to disable registration, users should instead not register the steps in the pipeline at all.
+
 
 ### StorageType
 
@@ -159,7 +161,9 @@ The [.Retries message receiver](/nservicebus/recoverability/configure-delayed-re
 
 The [MSMQ transport](/transports/msmq) is no longer part of the NServiceBus NuGet package. It has been moved into a separate package, [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/).
 
+
 ### Namespace changes
+
 The `MsmqPersistence` class and its configuration API, `SubscriptionQueue()`, have been moved from `NServiceBus.Persistence.Legacy` namespace to `NServiceBus`. 
 
 MSMQ persistence was originally put into the legacy namespace because of its limited capabilities in scale-out scenarios with the distributor. Sender-side distribution changes this and makes MSMQ persistence a viable persistence mechanism when scaling out MSMQ. It was therefore moved from the legacy namespace and back into `NServiceBus`.
@@ -253,3 +257,21 @@ NServiceBus Version 7 will only run installers when explicitly enabled via the `
 ## DistributionStrategy
 
 The `string SelectReceiver(string[] receiverAddresses)` signature has been removed from the `DistributionStrategy` base class. When writing a custom distribution strategy, implement the `string SelectDestination(DistributionContext context)` method instead which provides additional information usable for routing decisions. Receiver addresses can still be accessed via the `context.ReceiverAddresses` property.
+
+
+## HandleCurrentMessageLater
+
+The `IMessageHandlerContext.HandleCurrentMessageLater()` method has been deprecated.
+
+To handle the current message later and abort the current processing attempt, throw an exception in the message handler and let [recoverability](/nservicebus/recoverability) reschedule the message. Be aware of the following restrictions:
+
+ * Retries are only enabled when the transport is configured to use some sort of transactions (!= `TransactionMode.None`).
+ * When throwing an exception, the current transaction will be rolled back, causing outgoing messages to be discarded.
+ * The retry attempts and delays depend on the specific configuration.
+ * Depending on the transport's transaction behavior, the message will reappear at the front or at the back of the queue.
+
+To complete processing of the current message without invoking additional handlers and reprocess it later, send a copy of the current message via `IMessageHandlerContext.SendLocal(...)`.  Be aware of the following restrictions:
+
+ * Reusing the incoming message instance is possible, however it does not copy the headers of the incoming message. Headers need to be manually set on the outgoing message via the `SendOptions.SetHeader(...)` API.
+ * A delay can be added using the send options, for more options see the [delayed delivery](/nservicebus/messaging/delayed-delivery.md) section.
+ * The sent message will be added at the back of the queue.
