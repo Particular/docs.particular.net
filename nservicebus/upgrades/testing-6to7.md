@@ -20,13 +20,15 @@ NServiceBus.Testing requires NServiceBus Version 7.
 As part of upgrading to NServiceBus.Testing Version 7, projects will also require an upgrade to [NServiceBus Version 7](/nservicebus/upgrades/6to7/).
 
 
-## Testing Sagas
-
-
-### AssertSagaCompletionIs
+## AssertSagaCompletionIs
 
 The `AssertSagaCompletionIs` method has been obsoleted and replaced by `ExpectSagaCompleted` and `ExpectSagaNotCompleted`.
 
 snippet: 6to7-ExpectSagaCompleted
 
 Note how the `ExpectSagaCompleted` and `ExpectSagaNotCompleted` expectations must be placed **before** a `When` method, similar to other expectation methods.
+
+
+## ExpectHandleCurrentMessageLater
+
+The `ExpectHandleCurrentMessageLater` has been obsoleted as `IMessageHandlerContext.HandleCurrentMessageLater()` has been deprecated in NServiceBus Version 7.
