@@ -21,7 +21,7 @@ snippet: License
 
 ### Application configuration file
 
-WARN: This option is only available when targeting the full .NET Framework.
+WARNING: This option is only available when targeting the full .NET Framework.
 
 It is possible to specify the license in `app.config`:
 
@@ -49,7 +49,7 @@ license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;201
 
 ### Windows Registry
 
-WARN: This option is only available when targeting the full .NET Framework.
+WARNING: This option is only available when targeting the full .NET Framework.
 
 Licenses stored in a registry key named `License` in the following registry locations are automatically detected:
 * `HKEY_LOCAL_MACHINE\Software\ParticularSoftware`
