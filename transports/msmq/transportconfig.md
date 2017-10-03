@@ -18,6 +18,8 @@ partial: intro
 
 partial: receivealgorithm
 
+partial: doNotCreateQueuesOnInstallApi
+
 partial: label
 
 
