@@ -265,7 +265,7 @@ To handle the current message later and abort the current processing attempt, th
 * the retry attempts and delays depend on the specific configuration.
 * depending on the transport's transaction behavior, the message will reappear at the front or at the back of the queue.
 
-To finish the currently processed message but invoke the same handler after some time, send a copy of the current message via `IMessageHandlerContext.SendLocal(...)`.  Be aware of the following restrictions:
-* reusing the incming message instance is possible, however it does not copy the headers of the incoming message. Headers need to be manually set on the outgoing message via the `SendOptions.SetHeader(...)` API.
+To complete processing of the current message without invoking additional handlers and reprocess it later, send a copy of the current message via `IMessageHandlerContext.SendLocal(...)`.  Be aware of the following restrictions:
+* reusing the incoming message instance is possible, however it does not copy the headers of the incoming message. Headers need to be manually set on the outgoing message via the `SendOptions.SetHeader(...)` API.
 * a delay can be added using the send options, for more options see the [delayed delivery](/nservicebus/messaging/delayed-delivery.md) section.
 * The sent message will be added at the back of the queue.
