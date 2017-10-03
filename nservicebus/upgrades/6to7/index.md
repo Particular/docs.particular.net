@@ -272,6 +272,6 @@ To handle the current message later and abort the current processing attempt, th
 
 To complete processing of the current message without invoking additional handlers and reprocess it later, send a copy of the current message via `IMessageHandlerContext.SendLocal(...)`. Be aware of the following restrictions:
 
- * Reusing the incoming message instance is possible, however it does not copy the headers of the incoming message. Headers need to be manually set on the outgoing message via the [Outgoing Headers API](/nservicebus/messaging/header-manipulation.md?#writing-outgoing-headers).
+ * Reusing the incoming message instance is possible, however it does not copy the headers of the incoming message. Headers need to be manually set on the outgoing message via the [Outgoing Headers API](/nservicebus/messaging/header-manipulation.md#writing-outgoing-headers).
  * A delay can be added using the send options, for more options see the [delayed delivery](/nservicebus/messaging/delayed-delivery.md) section.
  * The sent message will be added at the back of the queue.
