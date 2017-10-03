@@ -20,12 +20,12 @@ It can be enabled via:
 snippet: SendMetricDataToServiceControl
 
 
-#### Service Control Metrics Address:
+#### Service Control Metrics Address
 
 The default is "particular.monitoring" which is ServiceControl monitoring instance input queue.
 
 
-#### Instance Id:
+#### Instance Id
 
 An override for `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`.
 
