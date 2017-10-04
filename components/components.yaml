@@ -726,7 +726,7 @@
   DocoUrl: nservicebus/hosting/windows-service-template
   GitHubOwner: Particular/bootstrap-windowsservice-maintainers
   Category: Host
-  ProjectUrl: https://github.com/Particular/NServiceBus.Templates/
+  ProjectUrl: https://github.com/Particular/dotnetTemplates
   NugetOrder:
     - NServiceBus.Template.WindowsService
 
@@ -763,7 +763,7 @@
   DocoUrl: servicecontrol/transport-adapter/template
   GitHubOwner: Particular/servicecontrol-maintainers
   Category: Host
-  ProjectUrl: https://github.com/Particular/NServiceBus.Templates/
+  ProjectUrl: https://github.com/Particular/dotnetTemplates
   NugetOrder:
     - NServiceBus.Template.TransportAdapter.WindowsService
 
