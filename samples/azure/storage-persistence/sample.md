@@ -2,7 +2,7 @@
 title: Azure Storage Persistence
 summary: Using Azure Storage to store Sagas, Timeouts and Subscriptions.
 component: ASP
-reviewed: 2017-08-01
+reviewed: 2017-10-03
 tags:
 - Saga
 - Timeout
@@ -88,47 +88,16 @@ snippet: UsingHelpers
 
 The saga data from the 'OrderSagaData' table contents
 
-```
-PartitionKey:= 21a6f7ed-65d2-42ff-a4d3-a50e00ea76ba
-  RowKey:= 21a6f7ed-65d2-42ff-a4d3-a50e00ea76ba
-  Id:= 21a6f7ed-65d2-42ff-a4d3-a50e00ea76ba
-  Originator:= Samples.Azure.StoragePersistence.Client@RETINA
-  OriginalMessageId:= 0d574aa7-0d39-4e93-8233-a50e00ea764f
-  OrderId:= 79cc2072-c724-4cc0-9202-b6c4918a3de2
-  OrderDescription:= The saga for order 79cc2072-c724-4cc0-9202-b6c4918...
-```
+partial: sagadata
 
 
 ### The Timeouts
 
-The timeout data from the `TimeoutDataTableName` table
-
-```
-  PartitionKey:= 2015090918
-    RowKey:= 06800d44-9fc4-49b5-a9e9-a50e00ea76c0
-    Destination:= Samples.Azure.StoragePersistence.Server@RETINA
-    Headers:= {"NServiceBus.MessageId":"06800d44-9fc4-49b5-a9e9-...
-    OwningTimeoutManager:= Samples.Azure.StoragePersistence.Server
-    SagaId:= 21a6f7ed-65d2-42ff-a4d3-a50e00ea76ba
-    StateAddress:= 06800d44-9fc4-49b5-a9e9-a50e00ea76c0
-    Time:= 9/09/2015 6:06:59 PM
-```
-
-The timeout serialized message from the `timeoutstate` blob container.
-
-```
-'timeoutstate' container contents
-  Blob:= 06800d44-9fc4-49b5-a9e9-a50e00ea76c0
-    ﻿{"OrderDescription":"The saga for order 79cc2072-c724-4cc0-9202-b6c4918a3de2"}
-```
+partial: timeouts
 
 
 ### The Subscriptions
 
 The Client endpoint registered in the `Subscription` table contents
 
-```
-PartitionKey:= OrderCompleted, Version=0.0.0.0
-  RowKey:= U2FtcGxlcy5BenVyZS5TdG9yYWdlUGVyc2lzdGVuY2UuQ2xpZW50QFJFVElOQQ==
-  DecodedRowKey:= Samples.Azure.StoragePersistence.Client@RETINA
-```
+partial: subscriptions
