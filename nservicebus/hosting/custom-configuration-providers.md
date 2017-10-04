@@ -1,7 +1,7 @@
 ---
 title: Overriding app.config settings
 summary: NServiceBus uses the process config file as its default source of configuration.
-reviewed: 2016-03-16
+reviewed: 2017-10-04
 versions: '[3,7)'
 component: Core
 redirects:
@@ -20,7 +20,7 @@ The preferred method of overriding a specific section is to use the `IProvideCon
 
 snippet: CustomConfigProvider
 
-Adding the code above is enough since NServiceBus will automatically use if found in the types scanned.
+Adding the code above is enough since NServiceBus will automatically use it if found in the types scanned.
 
 
 ## Code only configuration
