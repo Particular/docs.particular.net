@@ -49,7 +49,7 @@ See also [windows-service installation](/nservicebus/hosting/windows-service.md#
 #### Installation
 
 ```
-sc.exe create nsbSample binpath= "\"[Full Debug Directory]\Sample.exe\""
+sc.exe create nsbSample binpath= "\"[Full Directory]\Sample.exe\""
 ```
 
 
