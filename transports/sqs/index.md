@@ -69,3 +69,17 @@ By default, [AWS Access Key ID and AWS Secret Access Key](http://docs.aws.amazon
  * Secret Access Key goes in `AWS_SECRET_ACCESS_KEY`
 
 snippet: SqsTransport
+
+
+## Retries and Timeouts
+
+
+The SQS transport uses the default [retries and timeouts](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/retries-timeouts.html) values implemented by the [AWS SDK for .NET](https://aws.amazon.com/sdk-for-net/):
+
+| Parameter          | Default value |
+|--------------------|---------------|
+| `MaxErrorRetries`  | 4             |
+| `RequestTimeout`   | 100s          |
+| `ReadWriteTimeout` | 300s          |
+
+NOTE: NServiceBus will perform [immediate](/nservicebus/recoverability/#immediate-retries) and [delayed](/nservicebus/recoverability/#delayed-retries) retries in addition to retries performed internally by the SQS client.
