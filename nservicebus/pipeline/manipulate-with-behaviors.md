@@ -39,6 +39,10 @@ To replace the implementation of an existing step replace it with a custom behav
 
 snippet: ReplacePipelineStep
 
+In order to replace the existing step it is necessary to provide a step id. The most reliable way of determining the step id, is to find the step definition in the NServiceBus source code. 
+
+Note, however, that step ids are hard-coded strings and may change in the future resulting in an unexpected behavior change. In case of replacing built-in steps, create automatic tests that will detect potential id change or step removal.
+
 Note: Steps can also be registered from a [Feature](features.md).
 
 

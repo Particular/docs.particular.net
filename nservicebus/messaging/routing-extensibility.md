@@ -9,7 +9,7 @@ related:
  - nservicebus/messaging/routing
 ---
 
-Extending the routing with a custom data source makes sense in following scenarios:
+Extending the [NServiceBus routing subsystem](/nservicebus/messaging/routing.md) with a custom data source makes sense in following scenarios:
 
  * When centralizing all routing information in a database.
  * When dynamically calculating routes based on endpoint discovery protocol (similar of [UDDI](https://en.wikipedia.org/wiki/Web_Services_Discovery)).

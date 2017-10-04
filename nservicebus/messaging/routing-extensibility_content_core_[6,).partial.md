@@ -7,7 +7,7 @@ To learn more about implementing a routing extension see the [custom routing sam
 
 ### Command routing
 
-Routing extensions can access the route table from `EndpointConfiguration` level or from the feature level:
+To extend [command routing](/nservicebus/messaging/routing.md#command-routing), routing extensions can access the route table from `EndpointConfiguration` level or from the feature level:
 
 snippet: RoutingExtensibility-RouteTableConfig
 
@@ -28,7 +28,7 @@ snippet: RoutingExtensibility-TriggerEndpointShutdown
 
 ### Event routing
 
-Event routing differs depending on the transport capabilities. [Multicast transports](/transports/#types-of-transports-multicast-enabled-transports) which support [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) pattern natively implement the event routing themselves. Refer to specific transport documentation for details on extensibility points.
+[Event routing](/nservicebus/messaging/routing.md#event-routing) differs depending on the transport capabilities. [Multicast transports](/transports/#types-of-transports-multicast-enabled-transports) which support [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) pattern natively implement the event routing themselves. Refer to specific transport documentation for details on extensibility points.
 
 Transports without that support rely on NServiceBus core routing for event delivery. The key concept is the collection of publishers. For each event it contains information on the logical endpoint that publishes it. Routing extensions can access the publishers collections from `EndpointConfiguration` or from the `Feature` set up code:
 
