@@ -2,7 +2,7 @@
 title: Sagas Not Found
 summary: How a message is handled when it could be executed by a saga but no saga could be found.
 component: Core
-reviewed: 2016-03-15
+reviewed: 2017-10-04
 tags:
 - Saga
 related:
