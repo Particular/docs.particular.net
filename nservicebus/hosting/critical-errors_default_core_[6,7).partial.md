@@ -1,0 +1,1 @@
+The default behavior is to stop the endpoint should a critical error occur. 

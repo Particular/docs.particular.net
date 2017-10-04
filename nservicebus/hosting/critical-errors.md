@@ -15,11 +15,9 @@ NServiceBus has built-in [recoverability](/nservicebus/recoverability/), however
  * An exception occurs reading from the input queue.
 
 
-### Default action handling in NServiceBus
+### Default behavior
 
-The default behavior that will be taken in any kind of self hosting scenario.
-
-snippet: DefaultCriticalErrorAction
+partial: default
 
 
 ### Logging of critical errors

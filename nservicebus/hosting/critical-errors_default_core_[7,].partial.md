@@ -1,0 +1,1 @@
+The default behavior to log the exception and keep retrying indefinitely.
