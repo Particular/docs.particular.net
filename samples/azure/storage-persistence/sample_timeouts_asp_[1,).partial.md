@@ -1,0 +1,1 @@
+The sample is using Azure Storage Queues transport. From version 7.4 and above, the transport is using native delayed delivery and does not rely on the Azure Storage persistence for timeouts.
