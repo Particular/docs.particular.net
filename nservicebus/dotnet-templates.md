@@ -93,8 +93,6 @@ The wildcard `*` can be used to target the current released version.
 dotnet new --install [TemplatePackageName]::*
 ```
 
-See also
-
 
 ### Install Location
 
