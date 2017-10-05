@@ -1,0 +1,1 @@
+ * `DescriptionCustomizer(Action<TopicDescription>)`: A factory method that allows to modify a `TopicDescription` object created for the Azure Service Bus SDK. Use this factory method to override any (future) settings that are not supported by the Topics API.
