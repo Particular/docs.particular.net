@@ -52,6 +52,11 @@ The signature for the mutators now passes context arguments that give access to 
 See [header manipulation](/nservicebus/messaging/header-manipulation.md) for one example on how this might look.
 
 
+### HandleCurrentMessageLater and the Outbox
+
+The `HandleCurrentMessageLater` API can no longer be used in conjuction with the Outbox. Use the [recoverability](/nservicebus/recoverability) or [delayed delivery](/nservicebus/messaging/delayed-delivery.md) APIs instead when using the Outbox.
+
+
 ## Migration
 
 
