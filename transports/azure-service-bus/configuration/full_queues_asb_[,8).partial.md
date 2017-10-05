@@ -1,0 +1,3 @@
+ * `EnableExpress(bool)`: Enables express mode, defaults to `false`. For more information refer to [MSDN](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress)
+ * `EnableExpress(Func<string, bool>, string)`: Enables express mode when the given condition is `true`.
+ * `DescriptionFactory(Func<string, string, ReadOnlySettings, QueueDescription> factory)`: A factory method that allows to modify a `QueueDescription` object created for the Azure Service Bus SDK. Use this factory method to override any (future) settings that are not supported by the Topics API.

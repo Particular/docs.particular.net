@@ -1,0 +1,1 @@
+ * `DescriptionCustomizer(Action<QueueDescription>)`: A factory method that allows to modify a `QueueDescription` object created by the Azure Service Bus SDK. Use this factory method to override any (future) settings that are not supported by the Queues API.
