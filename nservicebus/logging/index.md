@@ -43,7 +43,7 @@ Note: Moving to custom logging means none of the approaches used in the above [D
 
 ## When to configure logging
 
-It is important to configure logging before any endpoint configuration is done since logging is configured in the static context of each NServiceBus class. So it should be configured as early as possible at the startup of the app. For example
+It is important to configure logging before any endpoint configuration is done since logging is configured in the static context of each NServiceBus class. It should be configured as early as possible at the startup of the app. For example
 
  * At the start of the `Main` of a console app or windows service.
  * At the start of the `Global.Application_Start` in a asp.net application.
