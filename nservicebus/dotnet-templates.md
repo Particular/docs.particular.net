@@ -38,6 +38,22 @@ To add to an existing solution:
 snippet: nsbservice-addToSolution
 
 
+### Options
+
+snippet: nsbservice-options
+
+
+#### Target Framework
+
+The target framework for the project.
+
+`-f|--framework`
+
+Default: `net462`
+
+Supported: `net47`, `net462`, `net452`
+
+
 ## ServiceControl Transport Adapter
 
 This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for the [ServiceControl Transport Adapter](/servicecontrol/transport-adapter/).
@@ -51,6 +67,22 @@ This will create a new directory named `MyAdapter` containing a windows service 
 To add to an existing solution:
 
 snippet: scadapterservice-addToSolution
+
+
+### Options
+
+snippet: scadapterservice-options
+
+
+#### Target Framework
+
+The target framework for the project.
+
+`-f|--framework`
+
+Default: `net462`
+
+Supported: `net47`, `net462`, `net452`
 
 
 ## dotnet new information
