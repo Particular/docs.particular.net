@@ -13,19 +13,19 @@ redirects:
 ---
 
 
-The Particular [dotnet new](https://docs.microsoft.com/dotnet/core/tools/dotnet-new) templates makes it easier automatically bootstrap a variety of common project and code related scenarios.
+The Particular [dotnet new](https://docs.microsoft.com/dotnet/core/tools/dotnet-new) templates makes it easier to bootstrap a variety of common project and code related scenarios.
 
 
 ## Installation
 
-Install using the following:
+Install using the following command:
 
 snippet: install
 
 
 ## NServiceBus Endpoint Windows Service
 
-This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for NServiceBus. Follows the approach outlined in [Windows Service Hosting](/nservicebus/hosting/windows-service.md).
+This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for NServiceBus. The template follows the approach outlined in [Windows Service Hosting](/nservicebus/hosting/windows-service.md).
 
 The template can be used via the following.
 
