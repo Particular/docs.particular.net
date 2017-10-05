@@ -4,9 +4,10 @@ summary: How to host NServiceBus in a Windows Service
 reviewed: 2016-07-28
 component: Core
 tags:
-- Hosting
-- Windows Service
+ - Hosting
+ - Windows Service
 related:
+ - nservicebus/dotnet-templates
  - samples/hosting/windows-service
  - nservicebus/lifecycle
  - samples/startup-shutdown-sequence

@@ -4,10 +4,11 @@ summary: Hosting NServiceBus as a Windows Service in process with support for st
 reviewed: 2016-03-21
 component: Core
 tags:
-- Hosting
-- Windows Service
+ - Hosting
+ - Windows Service
 related:
-- nservicebus/hosting
+ - nservicebus/dotnet-templates
+ - nservicebus/hosting
 ---
 
 ## Code walk-through
