@@ -12,14 +12,8 @@ include: host-deprecated-warning
 
 ## Logging configuration
 
-This article explains how to customize default configuration. Refer to the [Profiles - Logging](/nservicebus/hosting/nservicebus-host/profiles.md#logging) section for more details about logging configuration in built-in profiles.
-
-Logging configuration for NServiceBus Host can be customized by providing endpoint configuration or using profiles.
-
-
-### Via endpoint configuration
+This article explains how to customize the logging configuration when using the NServiceBus.Host. For more details about logging configuration in built-in profiles, refer to the [NServiceBus.Host Profiles - Logging](profiles.md#logging) section.
 
 partial: customize
-
 
 partial: profile
