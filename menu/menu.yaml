@@ -28,6 +28,8 @@
       Title: Configuration choices Sample
     - Url: nservicebus/concept-overview
       Title: Concepts
+    - Url: nservicebus/dotnet-templates
+      Title: dotnet new Templates
     - Url: platform/installer
       Title: Platform Installer
     - Url: nservicebus/licensing
@@ -267,9 +269,6 @@
       Title: Decommissioning Endpoints
     - Url: nservicebus/hosting/windows-service
       Title: Windows Service
-      Articles:
-      - Url: nservicebus/hosting/windows-service-template
-        Title: dotnet new Template
     - Url: nservicebus/hosting/override-hostid
       Title: Overriding the host identifier
     - Url: nservicebus/hosting/custom-configuration-providers
@@ -1014,5 +1013,3 @@
       Articles:
       - Title: Incompatible transport features
         Url: servicecontrol/transport-adapter/incompatible-features
-      - Title: dotnet new Template
-        Url: servicecontrol/transport-adapter/template

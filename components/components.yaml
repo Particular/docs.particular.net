@@ -721,15 +721,6 @@
   NugetOrder:
     - NServiceBus.Bootstrap.WindowsService
 
-- Key: ServiceTemplate
-  Name: Windows Service 'dotnet new' Template
-  DocoUrl: nservicebus/hosting/windows-service-template
-  GitHubOwner: Particular/bootstrap-windowsservice-maintainers
-  Category: Host
-  ProjectUrl: https://github.com/Particular/dotnetTemplates
-  NugetOrder:
-    - NServiceBus.Template.WindowsService
-
 - Key: ServiceControl
   Name: ServiceControl
   DocoUrl: servicecontrol
@@ -758,14 +749,14 @@
   NugetOrder:
     - ServiceControl.TransportAdapter
 
-- Key: SCTransportAdapterTemplate
-  Name: ServiceControl Transport Adapter 'dotnet new' Template
-  DocoUrl: servicecontrol/transport-adapter/template
-  GitHubOwner: Particular/servicecontrol-maintainers
+- Key: Templates
+  Name: dotnet new Templates
+  DocoUrl: nservicebus/dotnet-templates
+  GitHubOwner: Particular/bootstrap-windowsservice-maintainers
   Category: Host
   ProjectUrl: https://github.com/Particular/dotnetTemplates
   NugetOrder:
-    - NServiceBus.Template.TransportAdapter.WindowsService
+    - ParticularTemplates
 
 - Key: ServicePulse
   Name: ServicePulse

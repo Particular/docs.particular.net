@@ -66,11 +66,9 @@ SagaAudit4: ServiceControl.Plugin.Nsb4.SagaAudit
 Serilog: NServiceBus.Serilog
 SerilogTracing: NServiceBus.Serilog.Tracing
 ServiceBootstrap: NServiceBus.Bootstrap.WindowsService
-ServiceTemplate: NServiceBus.Template.WindowsService
 ServiceControl: ServiceControl
 ServiceControlContracts: ServiceControl.Contracts
 SCTransportAdapter: ServiceControl.TransportAdapter
-SCTransportAdapterTemplate: NServiceBus.Template.TransportAdapter.WindowsService
 ServiceFabricPersistence: NServiceBus.Persistence.ServiceFabric
 ServicePulse: ServicePulse
 ServiceInsight: ServiceInsight
@@ -84,6 +82,7 @@ Sqs: NServiceBus.AmazonSQS
 StructureMap: NServiceBus.StructureMap
 SystemXml: NServiceBus.Serializers.SystemXml
 Testing: NServiceBus.Testing
+Templates: ParticularTemplates
 Unity: NServiceBus.Unity
 Wire: NServiceBus.Wire
 Wcf: NServiceBus.Wcf
