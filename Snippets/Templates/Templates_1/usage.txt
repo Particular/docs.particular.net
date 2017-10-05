@@ -4,28 +4,28 @@ dotnet new --install ParticularTemplates::1.0.0-alpha*
 
 
 # startcode scadapterservice-usage
-dotnet new scadapterservice --name MyAdapter
+dotnet new scadapterwinservice --name MyAdapter
 # endcode
 
 # startcode scadapterservice-options
-dotnet new scadapterservice --help
+dotnet new scadapterwinservice --help
 # endcode
 
 # startcode scadapterservice-addToSolution
-dotnet new scadapterservice --name MyAdapter
+dotnet new scadapterwinservice --name MyAdapter
 dotnet sln add "MyAdapter/MyAdapter.csproj"
 # endcode
 
 
 # startcode nsbservice-usage
-dotnet new nsbservice --name MyWindowsService
+dotnet new nsbwinservice --name MyWindowsService
 # endcode
 
 # startcode nsbservice-options
-dotnet new nsbservice --help
+dotnet new nsbwinservice --help
 # endcode
 
 # startcode nsbservice-addToSolution
-dotnet new nsbservice --name MyWindowsService
+dotnet new nsbwinservice --name MyWindowsService
 dotnet sln add "MyWindowsService/MyWindowsService.csproj"
 # endcode
