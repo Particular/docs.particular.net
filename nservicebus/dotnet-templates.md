@@ -7,8 +7,9 @@ related:
  - nservicebus/hosting/windows-service
  - samples/hosting/windows-service
  - samples/servicecontrol/adapter-mixed-transports
-tags:
- - Hosting
+redirects:
+ - nservicebus/hosting/windows-service-template
+ - servicecontrol/transport-adapter/template
 ---
 
 
