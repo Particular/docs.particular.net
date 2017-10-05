@@ -94,6 +94,15 @@ dotnet new --install [TemplatePackageName]::*
 ```
 
 
+### Template Reset
+
+To reset the installed templates to default list use:
+
+```ps
+dotnet new --debug:reinit
+```
+
+
 ### Install Location
 
 The downloaded NuGet packages are cached on on disk at:
