@@ -16,11 +16,6 @@ The NServiceBus Host will be deprecated as of Version 9 and users are recommende
 include: host-deprecate
 
 
-## Installation incompatible with NuGet
-
-NuGet no longer support packages adding source files and modifying project files. This means that installing the host won't result in a runnable endpoint. Existing endpoints using the host can be upgraded without issues.
-
-
 ## Migrating procedure
 
 Switching to self hosting is as easy as creating a new console project and moving relevant code and config over. See the [self hosting sample](/samples/hosting/self-hosting/) for details.

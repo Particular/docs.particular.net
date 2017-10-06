@@ -17,11 +17,6 @@ The NServiceBus Azure Host will be deprecated as of Version 9 and users are reco
 include: host-deprecate
 
 
-## Installation incompatible with NuGet
-
-NuGet no longer support packages adding source files and modifying project files. This means that installing the host won't result in a runnable endpoint. Existing endpoints using the host can be upgraded without issues.
-
-
 ## Migrating procedure
 
 See the [self hosting sample](/samples/azure/self-host/) for details. For multi-hosting it is recommended to apply self-hosting with multiple endpoints similar to the [multi hosting sample](/samples/hosting/multi-hosting).
