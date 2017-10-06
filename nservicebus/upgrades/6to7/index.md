@@ -279,6 +279,6 @@ To complete processing of the current message without invoking additional handle
 
  ## Default critical error behavior
 
-In NServiceBus Versions 6 and below, the default behavior was to stop the endpoint when critical errors occur. In Versions 7 and above, the default behavior is to keep the endpoint running and resume the normal operation after the failure condition is resolved.
+In NServiceBus Versions 6 and below, the default behavior was to stop the endpoint when critical errors occur. In Versions 7 and above, the default behavior is to keep the endpoint running and keep retrying the failed messages until the failure condition is resolved.
 
- See the [critical errors documentation](/nservicebus/hosting/critical-errors.md) for details on how to customize this behavior.
+See the [critical errors documentation](/nservicebus/hosting/critical-errors.md) for details on how to customize this behavior.
