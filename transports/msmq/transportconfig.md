@@ -18,6 +18,8 @@ partial: intro
 
 partial: receivealgorithm
 
+partial: disableinstaller
+
 partial: label
 
 
