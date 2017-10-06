@@ -2,7 +2,7 @@
 title: Child lifetime
 summary: Child lifetimes are a snapshot of the main instance; transient instances are treated as as singletons in the child lifetime.
 component: Core
-reviewed: 2017-10-05
+reviewed: 2017-10-06
 redirects:
  - nservicebus/nservicebus-support-for-child-containers
  - nservicebus/containers/child-containers
