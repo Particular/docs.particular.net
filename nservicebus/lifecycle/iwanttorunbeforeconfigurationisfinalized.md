@@ -2,7 +2,7 @@
 title: Before Configuration Finalized
 summary: An interface that allows hooking into the configuration sequence of NServiceBus.
 component: Core
-reviewed: 2016-03-17
+reviewed: 2017-10-06
 tags:
  - life-cycle
 related:
@@ -17,9 +17,9 @@ Instances are:
  * Created just before the configuration is frozen.
  * Created on the same thread that is creating the bus.
  * Created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they:
-  * Are not resolved by [dependency injection](/nservicebus/dependency-injection/) (even if they are registered there).
-  * Will not have any dependencies injected.
-  * Must have a default constructor.
+    * Are not resolved by [dependency injection](/nservicebus/dependency-injection/) (even if they are registered there).
+    * Will not have any dependencies injected.
+    * Must have a default constructor.
 
 Once created `Run(...)` is called on each instance. These calls are made sequentially on the thread that is creating the bus. The order of these calls is determined by the order of the scanned types list as a result of the assembly scan.
 

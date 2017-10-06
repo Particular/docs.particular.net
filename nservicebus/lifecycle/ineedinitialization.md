@@ -18,7 +18,7 @@ Instances are:
  * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md).
  * Created as one of the very first steps when the bus is created.
  * Created on the same thread that is creating the bus.
- * Created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they
+ * Created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they:
     * Are not resolved from [dependency injection](/nservicebus/dependency-injection/) (even if they are registered there).
     * Will not have any dependencies injected.
     * Must have a default constructor.
