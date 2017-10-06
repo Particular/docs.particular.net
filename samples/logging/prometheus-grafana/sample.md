@@ -1,7 +1,9 @@
 ---
 title: Capture and visualize metrics using Prometheus and Grafana
 component: Metrics
-reviewed: 2017-08-07
+tags:
+- Metrics
+reviewed: 2017-10-06
 ---
 
 [Prometheus](https://prometheus.io) is a monitoring solution for storing time series data like metrics. [Grafana](https://grafana.com) allows to visualize the data stored in Prometheus (and other sources). This sample demonstrates how to capture NServiceBus metrics, storing these in Prometheus and visualizing these metrics using Grafana.
