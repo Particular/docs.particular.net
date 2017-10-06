@@ -1,10 +1,11 @@
 ---
 title: Stack Trace Cleaning
 summary: Shows how to minimize the stack trace written to the Error queue and the log output.
-reviewed: 2016-04-18
+reviewed: 2017-10-06
 component: Core
 tags:
 - Pipeline
+- Logging
 related:
 - nservicebus/pipeline
 - nservicebus/logging
