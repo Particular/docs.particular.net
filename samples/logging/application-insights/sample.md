@@ -1,5 +1,6 @@
 ---
 title: Report metrics to Azure Application Insights
+summary: Shows how to report NServiceBus metrics data to Azure Application Insights
 component: Metrics
 reviewed: 2017-10-06
 tags:
