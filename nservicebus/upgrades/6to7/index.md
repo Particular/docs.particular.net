@@ -276,8 +276,9 @@ To complete processing of the current message without invoking additional handle
  * A delay can be added using the send options, for more options see the [delayed delivery](/nservicebus/messaging/delayed-delivery.md) section.
  * The sent message will be added at the back of the queue.
 
+
  ## Default critical error behavior
 
- Previously the default behavior was to stop the endpoint on critical errors. The new default behavior is to keep the endpoint running and should the failure condition be resolved resume normal operations.
+In NServiceBus Versions 6 and below, the default behavior was to stop the endpoint when critical errors occur. In Versions 7 and above, the default behavior is to keep the endpoint running and resume the normal operation after the failure condition is resolved.
 
  See the [critical errors documentation](/nservicebus/hosting/critical-errors.md) for details on how to customize this behavior.
