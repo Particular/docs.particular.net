@@ -54,7 +54,13 @@ See [header manipulation](/nservicebus/messaging/header-manipulation.md) for one
 
 ### HandleCurrentMessageLater and the Outbox
 
-The `HandleCurrentMessageLater` method can no longer be used in conjuction with the Outbox. Use the [recoverability](/nservicebus/recoverability) or [delayed delivery](/nservicebus/messaging/delayed-delivery.md) APIs instead when using the Outbox.
+The `HandleCurrentMessageLater` method can no longer be used in conjunction with the [Outbox](/nservicebus/outbox/). 
+
+When this scenario is detected an exception with the following message will be throw:
+
+> HandleCurrentMessageLater cannot be used in conjunction with the Outbox. Use the recoverability mechanisms or delayed delivery instead.
+
+Use the [recoverability](/nservicebus/recoverability) or [delayed delivery](/nservicebus/messaging/delayed-delivery.md) APIs instead when using the Outbox. 
 
 
 ## Migration
