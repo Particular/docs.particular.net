@@ -1,7 +1,7 @@
 ---
 title: Write metrics to the trace log
 component: Metrics
-reviewed: 2017-07-21
+reviewed: 2017-10-06
 related:
  - nservicebus/operations/metrics
 ---
