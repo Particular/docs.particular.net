@@ -1,8 +1,6 @@
 ---
 title: Capture and visualize metrics using Prometheus and Grafana
 component: Metrics
-tags:
-- Metrics
 reviewed: 2017-10-06
 ---
 

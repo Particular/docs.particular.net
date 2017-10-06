@@ -3,8 +3,6 @@ title: Metrics
 summary: Measuring the performance and health of an endpoint.
 reviewed: 2017-10-06
 component: Metrics
-tags:
-- Metrics
 related:
  - nservicebus/operations
 related:

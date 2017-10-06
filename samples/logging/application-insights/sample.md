@@ -5,7 +5,6 @@ component: Metrics
 reviewed: 2017-10-06
 tags:
 - Azure
-- Metrics
 related:
  - nservicebus/operations/metrics
  - samples/azure
