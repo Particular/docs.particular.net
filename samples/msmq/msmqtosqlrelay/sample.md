@@ -11,17 +11,16 @@ redirects:
 - samples/msmqtosqlrelay
 ---
 
+This sample is an example of transport integration, showing how to receive events published by an endpoint whose transport is different from that of the subscriber. In this particular example, events published from an MSMQ endpoint will be relayed to an SQL endpoint for downstream SQL subscribers. The strategy shown can be applied to any transport integration, such as integrating the work of different teams, or crossing the boundary between on-premises and cloud-based systems.
 
-## SQL Relay (Transport Integration)
+downloadbutton
 
-This sample shows how to receive events published by an endpoint whose transport is different from that of the subscriber. In this particular example, events published from an MSMQ endpoint will be relayed to an SQL endpoint for downstream SQL subscribers.
-
-The solution comprises of these four projects.
+The solution consists of an endpoint that publishes MSMQ messages, an endpoint that uses the SQL Transport, a NativeMsmqToSql program that moves messages from MSMQ to SQL, and a Shared assembly.
 
 
 ## Shared
 
-This project contains the schema for the events that will be published by `MsmqPublisher` endpoint. It contains an event called, `SomethingHappened`
+This project contains the schema for the events that will be published by `MsmqPublisher` endpoint. It contains an event called `SomethingHappened`:
 
 snippet: event
 
