@@ -2,11 +2,13 @@ To configure MSMQ as the subscription persistence:
 
 snippet: ConfiguringMsmqPersistence
 
-By default NServiceBus uses a queue called `NServiceBus.Subscriptions`. If not specified otherwise, all endpoints will share that queue to store subscriptions. The following warning message will get logged:
+If the subscription storage is not specified, NServiceBus uses a queue called `[Endpoint].Subscriptions`. This is to avoid all endpoints deployed on the same server from having to share the same queue to store subscriptions. When a subscription queue is not specified and the default queue is being used, the following message will get logged:
 
-> NServiceBus.Features.MsmqSubscriptionPersistence Could not find configuration section for Msmq Subscription Storage and no name was specified for this endpoint. Going to default the subscription queue
+>The queue used to store subscriptions has not been configured, the default '{EndpointName}.Subscriptions' will be used.
 
-WARNING: When using MSMQ Subscription Persistence on multiple endpoints running on the same machine, every endpoint **must have** a dedicated subscription storage queue.
+WARNING: When using MSMQ Subscription Persistence on multiple endpoints running on the same machine, every endpoint **must have** a dedicated subscription storage queue. 
+
+As some older versions of NServiceBus, specifically Versions 5.x and Versions 6.x) used a default queue called `NServiceBus.Subscriptions`, in order to avoid message loss, an exception will be thrown on startup asking to either specify the subscription queue or to [migrate the subscription messages to the new default queue]().
 
 In order to specify a different queue, use the code api or specify a configuration section.
 
