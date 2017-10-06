@@ -121,7 +121,7 @@ sc.exe config SalesEndpoint depend= MSMQ/MSDTC/RavenDB
 
 Windows has a Windows Service Recovery mechanism that makes sure that a crashed service will be restarted.
 
-The endpoint can fail when using the [NServiceBus Host](nservicebus-host/) or when [self hosting and implementing a critical error handler that exits the process](critical-errors.md#default-action-handling-in-nservicebus) in case a critical error occurs. 
+The endpoint can fail when using the [NServiceBus Host](nservicebus-host/) or when [self hosting and implementing a critical error handler that exits the process](critical-errors.md#default-behavior) in case a critical error occurs. 
 
 If Windows Service Recovery is not configured, then the message processing will halt. Therefore it's important to configure Recovery options, when hosting an NServiceBus endpoint as a Windows Service. 
 

@@ -50,17 +50,6 @@ namespace Core7
             #endregion
         }
 
-
-        Task DefaultAction(IEndpointInstance endpoint)
-        {
-            #region DefaultCriticalErrorAction
-
-            return endpoint.Stop();
-
-            #endregion
-        }
-
-
         void InvokeCriticalError(CriticalError criticalError, string errorMessage, Exception exception)
         {
             #region InvokeCriticalError
