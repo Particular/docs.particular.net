@@ -21,8 +21,9 @@ downloadbutton
 
 The solution contains four projects. The **ClientUI**, **Sales**, and **Billing** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales** and **Billing** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as POCO class files.
 
+![Solution Explorer view](solution-explorer.png)
 
-As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an **OrderPlaced** event using the publish/subscribe pattern, which will be received by the **Billing** endpoint.
+As shown in the diagram below, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an **OrderPlaced** event using the publish/subscribe pattern, which will be received by the **Billing** endpoint.
 
 ![Initial Solution](before.svg)
 
@@ -32,6 +33,8 @@ The solution mimics a real-life retail system, where [the command](/nservicebus/
 ## Running the solution
 
 The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when you run the solution it should open three console applications, one for each messaging endpoint.
+
+![3 console applications, one for each endpoint](3-console-windows.png)
 
 In the **ClientUI** application, press `P` to place an order, and watch what happens in other windows. 
 
@@ -48,6 +51,8 @@ INFO  Billing.OrderPlacedHandler Billing has received OrderPlaced, OrderId = 9b1
 ```
 
 Press the `P` key repeatedly in the **ClientUI** window and watch the messages flow between endpoints.
+
+![Messages flowing between endpoints](messages-flowing.png)
 
 
 ## Reliability
