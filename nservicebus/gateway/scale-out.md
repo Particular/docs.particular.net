@@ -1,11 +1,11 @@
 ---
 title: Scale out
-reviewed: 2016-03-17
+reviewed: 2017-10-06
 related:
  - samples/gateway
 ---
 
-Due to specifics of the protocol used, the gateway is designed to run on at most one instance of each endpoint. Depending on the transport there are different strategies for designating a gateway hosting endpoint instance:
+Due to specifics of the protocol used, the gateway is designed to run on at most one instance of each endpoint. Depending on the transport there are different strategies for designating a gateway hosting endpoint instance.
 
 
 ### MSMQ scaled-out with the distributor
@@ -17,7 +17,7 @@ When scaling out MSMQ through the [distributor](/transports/msmq/distributor), t
 
 ### Brokered transports - RabbitMQ, SQL Server, Azure and MSMQ scaled-out with new unified scalability model in version 6
 
-With brokered transports or bus transports with sender-side distribution all instances are equal. All can host the gateway, but one of them needs to be explicitly selected as the receiver of the incoming HTTP gateway traffic. Any endpoints sending to the gateway of that endpoint must be configured to use the HTTP address of the selected endpoint instance.
+With brokered transports or bus transports with sender-side distribution, all instances are equal. All can host the gateway, but one of them needs to be explicitly selected as the receiver of the incoming HTTP gateway traffic. Any endpoints sending to the gateway of that endpoint must be configured to use the HTTP address of the selected endpoint instance.
 
 Use an HTTP Load Balancer(LB) to avoid hard-coding individual endpoint instance gateway HTTP addresses in the gateway senders. Configure sending endpoints to send to the LB and let the LB forward the traffic to the HTTP address of the selected endpoint instance.
 
