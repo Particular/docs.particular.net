@@ -1,12 +1,15 @@
 ---
 title: Report metrics to Azure Application Insights
 component: Metrics
-reviewed: 2017-07-29
+reviewed: 2017-10-06
 tags:
 - Azure
 - Metrics
 related:
  - nservicebus/operations/metrics
+ - samples/azure/
+redirects:
+- samples/application-insights
 ---
 
 [Azure Application Insights](https://azure.microsoft.com/en-us/services/application-insights/) provides monitoring and alerting capabilities that can be leveraged to monitor the health of NServiceBus endpoints. This sample demonstrates the ability to report metric data to Azure Application Insights and present it graphically:
