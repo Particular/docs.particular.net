@@ -1,6 +1,5 @@
 ﻿using System;
 using NServiceBus;
-using NServiceBus.Persistence;
 
 class Usage
 {
