@@ -1,7 +1,6 @@
 ﻿namespace Core7.Persistence
 {
     using NServiceBus;
-    using NServiceBus.Persistence;
 
     class PersistenceOrder
     {
