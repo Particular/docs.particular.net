@@ -8,7 +8,7 @@ tags:
 - Metrics
 related:
  - nservicebus/operations/metrics
- - samples/azure/
+ - samples/azure
 redirects:
 - samples/application-insights
 ---
