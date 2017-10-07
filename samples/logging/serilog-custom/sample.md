@@ -10,7 +10,10 @@ related:
  - nservicebus/logging/serilog-tracing
 ---
 
-Illustrates customizing logging usage by configuring Serilog targets and rules.
+
+## Introduction
+
+Illustrates customizing logging by configuring Serilog targets and rules.
 
 
 ### Configure Serilog

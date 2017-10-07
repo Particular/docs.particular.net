@@ -1,7 +1,7 @@
 ---
 title:  Microsoft Logging
 summary: Logging to Microsoft.Extensions.Logging
-reviewed: 2017-09-11
+reviewed: 2017-10-07
 component: MsLogging
 tags:
  - Logging

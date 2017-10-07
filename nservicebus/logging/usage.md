@@ -1,6 +1,6 @@
 ---
 title: Writing a log entry
-reviewed: 2017-10-06
+reviewed: 2017-10-07
 component: Core
 tags:
 - Logging

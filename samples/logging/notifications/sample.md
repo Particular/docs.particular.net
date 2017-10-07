@@ -1,12 +1,12 @@
 ---
 title: Notifications
-reviewed: 2017-01-31
+reviewed: 2017-10-07
 component: Core
 related:
 - nservicebus/recoverability
 ---
 
-## Code walk-through
+## Introduction
 
 This sample shows how to use the notification API to capture the following:
 

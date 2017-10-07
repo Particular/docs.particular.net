@@ -2,7 +2,7 @@
 title: CommonLogging
 summary: Logging to CommonLogging
 component: CommonLogging
-reviewed: 2016-08-23
+reviewed: 2017-10-07
 related:
 - samples/logging/commonlogging
 ---

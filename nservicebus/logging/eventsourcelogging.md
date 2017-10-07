@@ -1,7 +1,7 @@
 ---
 title: EventSourceLogging
 summary: Logging to EventSourceLogging
-reviewed: 2017-02-17
+reviewed: 2017-10-07
 component: EventSourceLogging
 tags:
 - Logging

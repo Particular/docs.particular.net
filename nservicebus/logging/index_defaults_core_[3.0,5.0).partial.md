@@ -1,4 +1,4 @@
-In these versions default logging was only enabled in the NServiceBus Host. For self hosting [enable the logging using code](log4net.md).
+Logging is only enabled in the NServiceBus Host. For self hosting [enable the logging using code](log4net.md).
 
 See [NServiceBus Host Profiles](/nservicebus/hosting/nservicebus-host/profiles.md) for the default logging in the NServiceBus Host.
 

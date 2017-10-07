@@ -1,7 +1,7 @@
 ---
 title: Serilog Tracing
 summary: Writing diagnostic log entries via Serilog Tracing
-reviewed: 2016-11-02
+reviewed: 2017-10-07
 component: SerilogTracing
 tags:
  - Logging

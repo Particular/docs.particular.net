@@ -1,7 +1,7 @@
 ---
 title: Custom Microsoft Logging configuration
 summary: Customizing Microsoft Logging usage by configuring providers and log levels.
-reviewed: 2017-09-12
+reviewed: 2017-10-07
 component: MsLogging
 tags:
 - Logging
@@ -10,12 +10,12 @@ related:
 ---
 
 
-## Code walk-through
+## Introduction
 
-Illustrates customizing Microsoft Logging usage by configuring providers and log levels.
+Illustrates customizing [Microsoft Logging](https://github.com/aspnet/Logging) usage by configuring providers and log levels.
 
 
-### Configure Microsoft Logging
+## Configure Microsoft Logging
 
 snippet: MsLoggingInCode
 

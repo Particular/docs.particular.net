@@ -1,7 +1,7 @@
 ---
 title: Default Logging
 summary: The default logging capability of NServiceBus.
-reviewed: 2016-08-18
+reviewed: 2017-10-07
 component: Core
 tags:
 - Logging
@@ -9,9 +9,10 @@ related:
 - nservicebus/logging
 ---
 
-## Code walk-through
 
-This sample shows the default logging functionality in NServiceBus.
+## Introduction
+
+This sample shows the [default logging functionality](/nservicebus/logging/#default-logging) in NServiceBus.
 
 
 ## Verifying that the sample works correctly

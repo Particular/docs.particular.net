@@ -1,7 +1,7 @@
 ---
 title: Serilog Seq Logging
-summary: Customizing Serilog usage by configuring Serilog targets and rules.
-reviewed: 2016-03-21
+summary: Customizing Serilog usage to log to Seq.
+reviewed: 2017-10-07
 component: SerilogTracing
 tags:
  - Logging
@@ -10,14 +10,17 @@ related:
  - nservicebus/logging/serilog-tracing
 ---
 
+## Introduction
+
+Illustrates customizing [Serilog](https://serilog.net/) usage to log to [Seq](https://getseq.net/).
+
+
 ## Prerequisites
 
 An instance of [Seq](https://getseq.net/) running one `http://localhost:5341`.
 
 
 ## Code walk-through
-
-Illustrates customizing logginNServiceBus.Serilog) usage by configuring Serilog targets and rules.
 
 
 ### Configure Serilog

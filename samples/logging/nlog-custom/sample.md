@@ -1,7 +1,7 @@
 ---
 title: Custom NLog configuration
 summary: Customizing NLog usage by configuring NLog targets and rules.
-reviewed: 2016-03-21
+reviewed: 2017-10-07
 component: NLog
 tags:
 - Logging
@@ -10,9 +10,9 @@ related:
 ---
 
 
-## Code walk-through
+## Introduction
 
-Illustrates customizing NLog usage by configuring NLog targets and rules.
+Illustrates customizing [NLog](http://nlog-project.org/) usage by configuring [NLog targets](https://github.com/nlog/nlog/wiki/Targets) and rules.
 
 
 ### Configure NLog

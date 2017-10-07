@@ -1,7 +1,7 @@
 ---
 title: Logging
 summary: Manage and integrate with NServiceBus logging.
-reviewed: 2016-08-10
+reviewed: 2017-10-07
 component: Core
 tags:
 - Logging
@@ -37,8 +37,9 @@ For more advanced logging, it is recommended to utilize one of the many mature l
  * [CommonLogging integration](common-logging.md)
  * [Serilog integration](serilog.md)
  * [EventSourceLogging integration](eventsourcelogging.md)
+ * [Microsoft.Extensions.Logging integration](microsoft.md)
 
-Note: Moving to custom logging means none of the approaches used in the above [Default Logging](#default-logging) apply.
+Note: Moving to custom logging means the [default logging](#default-logging) approaches are replaced.
 
 
 ## When to configure logging

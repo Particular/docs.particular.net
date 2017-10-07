@@ -1,7 +1,7 @@
 ---
 title: Serilog
 summary: Logging to Serilog
-reviewed: 2016-10-31
+reviewed: 2017-10-07
 component: Serilog
 tags:
  - Logging

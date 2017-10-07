@@ -1,7 +1,7 @@
 ---
 title: Host Profile Logging
 summary: Configure logging using the profile functionality of the NServiceBus host.
-reviewed: 2016-03-30
+reviewed: 2017-10-07
 component: Host
 tags:
 - Logging
@@ -10,9 +10,12 @@ related:
 ---
 
 
-## Code walk-through
+## Introduction
 
-Illustrates how to configure logging using the [profiles](/nservicebus/hosting/nservicebus-host/profiles.md) functionality of the NServiceBus host.
+Illustrates how to configure logging using the [profiles](/nservicebus/hosting/nservicebus-host/profiles.md) functionality of the [NServiceBus host](/nservicebus/hosting/nservicebus-host/).
+
+
+## Code walk-through
 
 
 ### Change the default profile

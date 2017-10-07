@@ -1,7 +1,7 @@
 ---
 title: Anotar Logging
 summary: Illustrates using the community run project Anotar to simplify logging.
-reviewed: 2017-04-21
+reviewed: 2017-10-07
 component: Anotar
 tags:
 - Logging
@@ -10,14 +10,16 @@ related:
 ---
 
 
-This sample shows how to used the community run project [Anotar](https://github.com/Fody/Anotar) to simplify logging when integrating with NServiceBus.
+## Introduction
+
+This sample shows how to used the [Anotar](https://github.com/Fody/Anotar) to simplify logging when integrating with NServiceBus.
 
 Anotar simplifies logging through a static class and some IL manipulation done by [Fody](https://github.com/Fody). When using Anotar no static log field is necessary per class and extra information is captured for each log entry written.
 
 
 ## Including Anotar
 
-When the Anotar NuGet package is pulled in Fody will create a configuration file (`FodyWeavers.xml`) with the following:
+After adding the Anotar NuGet package add a configuration file (`FodyWeavers.xml`) with the following:
 
 snippet: weavers
 

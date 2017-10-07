@@ -12,6 +12,9 @@ redirects:
 - samples/application-insights
 ---
 
+
+## Introduction
+
 [Azure Application Insights](https://azure.microsoft.com/en-us/services/application-insights/) provides monitoring and alerting capabilities that can be leveraged to monitor the health of NServiceBus endpoints. This sample demonstrates the ability to report metric data to Azure Application Insights and present it graphically:
 
 ![example graph events](example-graph-events.png "width=500")
