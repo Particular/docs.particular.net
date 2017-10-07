@@ -42,6 +42,49 @@ class Usage
         #endregion
     }
 
+    void SendToMulitpleAccountUsingConnectionSTring(IEndpointInstance endpointInstance)
+    {
+        #region storage_account_routing_send_options_full_connectionstring
+
+        endpointInstance.Send(
+            destination: "sales@DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];",
+            message: new MyMessage());
+
+        #endregion
+    }
+
+    void SendToMulitpleAccountUsingAlias(IEndpointInstance endpointInstance)
+    {
+        #region storage_account_routing_send_options_alias
+
+        endpointInstance.Send(
+            destination: "sales@accountName",
+            message: new MyMessage());
+
+        #endregion
+    }
+
+    void RegisterEndpoint(EndpointConfiguration configuration)
+    {
+        var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
+        var routing = transportConfig
+                            .ConnectionString("connectionString")
+                            .AccountRouting();
+        var anotherAccount = routing.AddAccount("AnotherAccountName","anotherConnectionString");
+        anotherAccount.RegisteredEndpoints.Add("Receiver"));
+        
+        configuration..Routing().RouteToEndpoint(typeof(MyMessage), typeof(Receiver));
+    }
+
+    void SendToMulitpleAccountUsingRegisterdEndpoint(IEndpointInstance endpointInstance)
+    {
+        #region storage_account_routing_registered_publisher
+
+        endpointInstance.Send(message: new MyMessage());
+
+        #endregion
+    }
+
     void MultipleAccountAliasesInsteadOfConnectionStrings1(EndpointConfiguration endpointConfiguration)
     {
         #region AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
@@ -109,4 +152,12 @@ class Usage
     internal interface IConfigureThisEndpoint
     {
     }
+
+    public class MyMessage :
+        ICommand
+    { }
+
+    public class MyEvent :
+        IEvent
+    { }
 }
