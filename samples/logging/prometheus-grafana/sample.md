@@ -88,7 +88,7 @@ Prometheus needs to be configured to pull data from the endpoint. For more infor
 
 Copy the following files into the root folder of the Prometheus installation.
 
- * [nservicebus.rules](nservicebus.rules)
+ * [nservicebus.rules.txt](nservicebus.rules.txt)
  * [prometheus.yml](prometheus.yml)
 
 Overwrite the existing `prometheus.yml` in the Prometheus demo installation. Or proceed with the manual configuration if desired.
@@ -127,13 +127,13 @@ The pre-calculated query can then be used.
 nservicebus_success_total:avg_rate5m
 ```
 
-For efficiency reasons the sample dashboard shown later requires three queries defined in a rules file. Create `nservicebus.rules` in the root folder of the Prometheus installation and add the three rules as defined above.
+For efficiency reasons the sample dashboard shown later requires three queries defined in a rules file. Create `nservicebus.rules.txt` in the root folder of the Prometheus installation and add the three rules as defined above.
 
 To enable the rules edit `prometheus.yml` and add:
 
 ```
 rule_files:
-  - 'nservicebus.rules'
+  - 'nservicebus.rules.txt'
 ```
 
 
@@ -154,7 +154,7 @@ avg(rate(nservicebus_success_total[5m]))
 
 Prometheus configuration files demonstrating the concepts from this sample:
 
- * [nservicebus.rules](nservicebus.rules)
+ * [nservicebus.rules.txt](nservicebus.rules.txt)
  * [prometheus.yml](prometheus.yml)
 
 
