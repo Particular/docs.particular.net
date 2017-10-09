@@ -1,6 +1,6 @@
 ### Transport packages
 
-#### [NServiceBus.AmazonSQS](https://docs.particular.net/nuget/NServiceBus.AmazonSQS)
+#### [NServiceBus.AmazonSQS](/nuget/NServiceBus.AmazonSQS)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -9,7 +9,7 @@
 | 1.3.x     | 2017-04-26     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 | ~~1.2.x~~ | ~~2015-04-08~~ | ~~2017-07-26~~    | ~~Superseded by 1.3.x~~           |
 
-#### [NServiceBus.Azure.Transports.WindowsAzureServiceBus](https://docs.particular.net/nuget/NServiceBus.Azure.Transports.WindowsAzureServiceBus)
+#### [NServiceBus.Azure.Transports.WindowsAzureServiceBus](/nuget/NServiceBus.Azure.Transports.WindowsAzureServiceBus)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -17,7 +17,7 @@
 | ~~7.1.x~~ | ~~2016-12-05~~ | ~~2017-06-21~~    | ~~Superseded by 7.2.x~~           |
 | 6.4.x     | 2016-01-12     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](https://docs.particular.net/nuget/NServiceBus.Azure.Transports.WindowsAzureStorageQueues)
+#### [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](/nuget/NServiceBus.Azure.Transports.WindowsAzureStorageQueues)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -27,7 +27,7 @@
 | ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 7.2.x~~           |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.RabbitMQ](https://docs.particular.net/nuget/NServiceBus.RabbitMQ)
+#### [NServiceBus.RabbitMQ](/nuget/NServiceBus.RabbitMQ)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -36,7 +36,7 @@
 | ~~4.2.x~~ | ~~2016-11-30~~ | ~~2017-07-05~~    | ~~Superseded by 4.3.x~~           |
 | 3.5.x     | 2016-09-20     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.SqlServer](https://docs.particular.net/nuget/NServiceBus.SqlServer)
+#### [NServiceBus.SqlServer](/nuget/NServiceBus.SqlServer)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -46,7 +46,7 @@
 
 ### Persistence packages
 
-#### [NServiceBus.Azure](https://docs.particular.net/nuget/NServiceBus.Azure)
+#### [NServiceBus.Azure](/nuget/NServiceBus.Azure)
 
 _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServiceBus.Persistence.AzureStorage._
 
@@ -54,7 +54,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.NHibernate](https://docs.particular.net/nuget/NServiceBus.NHibernate)
+#### [NServiceBus.NHibernate](/nuget/NServiceBus.NHibernate)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -63,7 +63,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-04-19~~    | ~~Superseded by 7.1.x~~           |
 | 6.2.x     | 2015-05-27     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.Persistence.AzureStorage](https://docs.particular.net/nuget/NServiceBus.Persistence.AzureStorage)
+#### [NServiceBus.Persistence.AzureStorage](/nuget/NServiceBus.Persistence.AzureStorage)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -72,13 +72,13 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | ~~1.2.x~~ | ~~2017-03-24~~ | ~~2017-09-02~~    | ~~Superseded by 1.3.x~~           |
 | ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 1.2.x~~           |
 
-#### [NServiceBus.Persistence.ServiceFabric](https://docs.particular.net/nuget/NServiceBus.Persistence.ServiceFabric)
+#### [NServiceBus.Persistence.ServiceFabric](/nuget/NServiceBus.Persistence.ServiceFabric)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.0.x     | 2017-09-04     | -                 | -                                 |
 
-#### [NServiceBus.Persistence.Sql](https://docs.particular.net/nuget/NServiceBus.Persistence.Sql)
+#### [NServiceBus.Persistence.Sql](/nuget/NServiceBus.Persistence.Sql)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -86,7 +86,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | ~~2.0.x~~ | ~~2017-04-14~~ | ~~2017-07-28~~    | ~~Superseded by 2.1.x~~           |
 | 1.0.x     | 2017-02-02     | 2018-04-14        | Superseded by 2.0.x               |
 
-#### [NServiceBus.RavenDB](https://docs.particular.net/nuget/NServiceBus.RavenDB)
+#### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -97,7 +97,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 ### Serializer packages
 
-#### [NServiceBus.Newtonsoft.Json](https://docs.particular.net/nuget/NServiceBus.Newtonsoft.Json)
+#### [NServiceBus.Newtonsoft.Json](/nuget/NServiceBus.Newtonsoft.Json)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -106,14 +106,14 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 ### DependencyInjection packages
 
-#### [NServiceBus.Autofac](https://docs.particular.net/nuget/NServiceBus.Autofac)
+#### [NServiceBus.Autofac](/nuget/NServiceBus.Autofac)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 6.0.x     | 2016-10-11     | -                 | -                                 |
 | 5.1.x     | 2016-09-19     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.CastleWindsor](https://docs.particular.net/nuget/NServiceBus.CastleWindsor)
+#### [NServiceBus.CastleWindsor](/nuget/NServiceBus.CastleWindsor)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -121,28 +121,28 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 6.0.x     | 2016-10-11     | 2017-12-15        | Superseded by 6.1.x               |
 | 5.0.x     | 2014-09-29     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.Ninject](https://docs.particular.net/nuget/NServiceBus.Ninject)
+#### [NServiceBus.Ninject](/nuget/NServiceBus.Ninject)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 6.0.x     | 2016-10-11     | -                 | -                                 |
 | 5.1.x     | 2015-08-14     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.Spring](https://docs.particular.net/nuget/NServiceBus.Spring)
+#### [NServiceBus.Spring](/nuget/NServiceBus.Spring)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 7.0.x     | 2016-10-11     | -                 | -                                 |
 | 6.0.x     | 2015-06-25     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.StructureMap](https://docs.particular.net/nuget/NServiceBus.StructureMap)
+#### [NServiceBus.StructureMap](/nuget/NServiceBus.StructureMap)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 6.0.x     | 2016-10-11     | -                 | -                                 |
 | 5.1.x     | 2016-10-04     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.Unity](https://docs.particular.net/nuget/NServiceBus.Unity)
+#### [NServiceBus.Unity](/nuget/NServiceBus.Unity)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -151,7 +151,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 ### Logger packages
 
-#### [NServiceBus.CommonLogging](https://docs.particular.net/nuget/NServiceBus.CommonLogging)
+#### [NServiceBus.CommonLogging](/nuget/NServiceBus.CommonLogging)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -159,14 +159,14 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 3.0.x     | 2016-10-11     | 2017-11-16        | Superseded by 4.0.x               |
 | 2.1.x     | 2015-02-18     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.Log4Net](https://docs.particular.net/nuget/NServiceBus.Log4Net)
+#### [NServiceBus.Log4Net](/nuget/NServiceBus.Log4Net)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2016-10-11     | -                 | -                                 |
 | 1.0.x     | 2014-09-29     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.NLog](https://docs.particular.net/nuget/NServiceBus.NLog)
+#### [NServiceBus.NLog](/nuget/NServiceBus.NLog)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -175,7 +175,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 ### Databus packages
 
-#### [NServiceBus.Azure](https://docs.particular.net/nuget/NServiceBus.Azure)
+#### [NServiceBus.Azure](/nuget/NServiceBus.Azure)
 
 _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServiceBus.Persistence.AzureStorage._
 
@@ -183,7 +183,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.DataBus.AzureBlobStorage](https://docs.particular.net/nuget/NServiceBus.DataBus.AzureBlobStorage)
+#### [NServiceBus.DataBus.AzureBlobStorage](/nuget/NServiceBus.DataBus.AzureBlobStorage)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -192,21 +192,21 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 ### Host packages
 
-#### [NServiceBus.Bootstrap.WindowsService](https://docs.particular.net/nuget/NServiceBus.Bootstrap.WindowsService)
+#### [NServiceBus.Bootstrap.WindowsService](/nuget/NServiceBus.Bootstrap.WindowsService)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2016-10-11     | -                 | -                                 |
 | 1.1.x     | 2015-06-28     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.Host](https://docs.particular.net/nuget/NServiceBus.Host)
+#### [NServiceBus.Host](/nuget/NServiceBus.Host)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 7.0.x     | 2016-10-11     | -                 | -                                 |
 | 6.0.x     | 2014-11-25     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.Hosting.Azure](https://docs.particular.net/nuget/NServiceBus.Hosting.Azure)
+#### [NServiceBus.Hosting.Azure](/nuget/NServiceBus.Hosting.Azure)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -214,7 +214,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 7.1.x~~           |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [ParticularTemplates](https://docs.particular.net/nuget/ParticularTemplates)
+#### [ParticularTemplates](/nuget/ParticularTemplates)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -222,7 +222,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 ### Other packages
 
-#### [NServiceBus.Callbacks](https://docs.particular.net/nuget/NServiceBus.Callbacks)
+#### [NServiceBus.Callbacks](/nuget/NServiceBus.Callbacks)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -230,94 +230,94 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 1.1.x     | 2017-01-16     | 2018-05-08        | Superseded by 2.0.x               |
 | ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-04-16~~    | ~~Superseded by 1.1.x~~           |
 
-#### [NServiceBus.Callbacks.Testing](https://docs.particular.net/nuget/NServiceBus.Callbacks.Testing)
+#### [NServiceBus.Callbacks.Testing](/nuget/NServiceBus.Callbacks.Testing)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2017-05-08     | -                 | -                                 |
 | 1.1.x     | 2017-01-16     | 2018-05-08        | Superseded by 2.0.x               |
 
-#### [NServiceBus.Distributor.MSMQ](https://docs.particular.net/nuget/NServiceBus.Distributor.MSMQ)
+#### [NServiceBus.Distributor.MSMQ](/nuget/NServiceBus.Distributor.MSMQ)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 5.0.x     | 2014-10-02     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
 
-#### [NServiceBus.Encryption.MessageProperty](https://docs.particular.net/nuget/NServiceBus.Encryption.MessageProperty)
+#### [NServiceBus.Encryption.MessageProperty](/nuget/NServiceBus.Encryption.MessageProperty)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.0.x     | 2017-02-09     | -                 | -                                 |
 
-#### [NServiceBus.Gateway](https://docs.particular.net/nuget/NServiceBus.Gateway)
+#### [NServiceBus.Gateway](/nuget/NServiceBus.Gateway)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2016-10-11     | -                 | -                                 |
 | 1.0.x     | 2014-09-29     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.Host](https://docs.particular.net/nuget/NServiceBus.Host)
+#### [NServiceBus.Host](/nuget/NServiceBus.Host)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 7.0.x     | 2016-10-11     | -                 | -                                 |
 | 6.0.x     | 2014-11-25     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.Metrics](https://docs.particular.net/nuget/NServiceBus.Metrics)
+#### [NServiceBus.Metrics](/nuget/NServiceBus.Metrics)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.1.x     | 2017-07-25     | -                 | -                                 |
 | 1.0.x     | 2017-04-25     | 2017-10-25        | Superseded by 1.1.x               |
 
-#### [NServiceBus.Metrics.PerformanceCounters](https://docs.particular.net/nuget/NServiceBus.Metrics.PerformanceCounters)
+#### [NServiceBus.Metrics.PerformanceCounters](/nuget/NServiceBus.Metrics.PerformanceCounters)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.1.x     | 2017-04-25     | -                 | -                                 |
 | ~~1.0.x~~ | ~~2017-03-28~~ | ~~2017-07-25~~    | ~~Superseded by 1.1.x~~           |
 
-#### [NServiceBus.Testing](https://docs.particular.net/nuget/NServiceBus.Testing)
+#### [NServiceBus.Testing](/nuget/NServiceBus.Testing)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 6.0.x     | 2016-10-11     | -                 | -                                 |
 | 5.2.x     | 2016-04-29     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
-#### [NServiceBus.Wcf](https://docs.particular.net/nuget/NServiceBus.Wcf)
+#### [NServiceBus.Wcf](/nuget/NServiceBus.Wcf)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.0.x     | 2016-10-11     | -                 | -                                 |
 
-#### [ServiceControl.Contracts](https://docs.particular.net/nuget/ServiceControl.Contracts)
+#### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.1.x     | 2015-02-05     | -                 | -                                 |
 
-#### [ServiceControl.Plugin.Nsb5.CustomChecks](https://docs.particular.net/nuget/ServiceControl.Plugin.Nsb5.CustomChecks)
+#### [ServiceControl.Plugin.Nsb5.CustomChecks](/nuget/ServiceControl.Plugin.Nsb5.CustomChecks)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2017-02-08     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
 | 1.0.x     | 2014-09-30     | 2018-02-08        | Superseded by 2.0.x               |
 
-#### [ServiceControl.Plugin.Nsb5.Heartbeat](https://docs.particular.net/nuget/ServiceControl.Plugin.Nsb5.Heartbeat)
+#### [ServiceControl.Plugin.Nsb5.Heartbeat](/nuget/ServiceControl.Plugin.Nsb5.Heartbeat)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-08     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
 | 2.0.x     | 2015-09-14     | 2018-02-08        | Superseded by 3.0.x               |
 
-#### [ServiceControl.Plugin.Nsb5.SagaAudit](https://docs.particular.net/nuget/ServiceControl.Plugin.Nsb5.SagaAudit)
+#### [ServiceControl.Plugin.Nsb5.SagaAudit](/nuget/ServiceControl.Plugin.Nsb5.SagaAudit)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2017-02-08     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
 | 1.0.x     | 2014-09-30     | 2018-02-08        | Superseded by 2.0.x               |
 
-#### [ServiceControl.Plugin.Nsb6.CustomChecks](https://docs.particular.net/nuget/ServiceControl.Plugin.Nsb6.CustomChecks)
+#### [ServiceControl.Plugin.Nsb6.CustomChecks](/nuget/ServiceControl.Plugin.Nsb6.CustomChecks)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -325,7 +325,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 2.0.x     | 2016-10-24     | 2018-02-07        | Superseded by 3.0.x               |
 | 1.0.x     | 2016-10-11     | 2017-10-24        | Superseded by 2.0.x               |
 
-#### [ServiceControl.Plugin.Nsb6.Heartbeat](https://docs.particular.net/nuget/ServiceControl.Plugin.Nsb6.Heartbeat)
+#### [ServiceControl.Plugin.Nsb6.Heartbeat](/nuget/ServiceControl.Plugin.Nsb6.Heartbeat)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -333,7 +333,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 2.0.x     | 2016-10-24     | 2018-02-07        | Superseded by 3.0.x               |
 | 1.0.x     | 2016-10-11     | 2017-10-24        | Superseded by 2.0.x               |
 
-#### [ServiceControl.Plugin.Nsb6.SagaAudit](https://docs.particular.net/nuget/ServiceControl.Plugin.Nsb6.SagaAudit)
+#### [ServiceControl.Plugin.Nsb6.SagaAudit](/nuget/ServiceControl.Plugin.Nsb6.SagaAudit)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
@@ -341,7 +341,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 2.0.x     | 2016-10-24     | 2018-02-07        | Superseded by 3.0.x               |
 | 1.0.x     | 2016-10-11     | 2017-10-24        | Superseded by 2.0.x               |
 
-#### [ServiceControl.TransportAdapter](https://docs.particular.net/nuget/ServiceControl.TransportAdapter)
+#### [ServiceControl.TransportAdapter](/nuget/ServiceControl.TransportAdapter)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
