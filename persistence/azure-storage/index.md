@@ -34,7 +34,7 @@ To ensure that only one saga can be created for one correlation property value, 
 If a migration from 6.2.3 or earlier to a newer version was performed without applying [saga deduplication](/persistence/upgrades/asp-saga-deduplication.md), `DuplicatedSagaFoundException` can be observed because of duplicates violating a unique property of a saga. The exception message will include all the information to track down the error for example: 
 
 ```
-Sagas of type MySaga with the following identifiers 'GUID1', 'GUID2' are considered duplicates because of the violation of the Unique property CorrelationId.`
+Sagas of type MySaga with the following identifiers 'GUID1', 'GUID2' are considered duplicates because of the violation of the Unique property CorrelationId.
 ```
 
 The way to address them is go through the upgrade guide linked above.
@@ -43,3 +43,10 @@ The way to address them is go through the upgrade guide linked above.
 ### Supported saga properties' types
 
 Azure Storage Persistence supports exactly the same set of types as [Azure Table Storage](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model). When a saga containing a property of an unsupported type is persisted, an exception containing a following information is thrown: `The property type 'the_property_name' is not supported in windows azure table storage`. If an object of a non-supported type is required to be stored, then it's a user responsibility to serialize/deserialize the value.
+
+
+### Saga Correlation property restrictions
+
+Saga correlation property values are subject to the underlying Azure Storage table `PartitionKey` and `RowKey` restrictions:
+* Up to 1KB in size
+* Cannot contain [invalid characters](https://docs.microsoft.com/en-us/rest/api/storageservices/Understanding-the-Table-Service-Data-Model#tables-entities-and-properties)
