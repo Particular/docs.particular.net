@@ -169,7 +169,7 @@ A new API called, [DisableInstaller](/transports/msmq/transportconfig.md#receivi
 
 ### Msmq Subscription Storage
 
-The default queue for the subscription storage has been switched from `NServiceBus.Subscriptions` to `[EndpointName].Subscriptions` if no subscription queue has been explicitly configured.
+The default queue for the subscription storage has been switched from `NServiceBus.Subscriptions` to `[EndpointName].Subscriptions` if the subscription queue has not been explicitly configured.
 
 However, if a subscription storage queue is not provided during configuration time and if the endpoint detects a local queue in the server called, `NServiceBus.Subscriptions`, an exception will be thrown to prevent potential loss of messages. To prevent this, [move the subscription messages to the new queue](/nservicebus/upgrades/6to7/moving-msmq-subscriptions.md).
 
