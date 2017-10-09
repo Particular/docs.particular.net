@@ -16,7 +16,7 @@ public static class VerificationLogger
             var cloudStorageAccount = CloudStorageAccount.Parse(RoleEnvironment.GetConfigurationSettingValue("HostWorker.ConnectionString"));
             var cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
             var table = cloudTableClient.GetTableReference("SelfHostedEndpointsOutput");
-            await table.CreateAsync().ConfigureAwait(false);
+            await table.CreateIfNotExistsAsync().ConfigureAwait(false);
             return table;
         });
     }
