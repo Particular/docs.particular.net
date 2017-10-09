@@ -55,7 +55,7 @@ class Usage
 
     void Region(EndpointConfiguration endpointConfiguration)
     {
-        #region QueueNamePrefix
+        #region Region
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         transport.Region("ap-southeast-2");
