@@ -112,6 +112,8 @@ This is the name of the host of the proxy server that the client must authentica
 
 Note that the username and password for the proxy can not be specified via the connection string; they are sourced from environment variables instead. The username must be set in `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_USERNAME` and the password must be set in `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_PASSWORD`.
 
-**Example**:
+
+snippet: proxy
+
 
 partial: nativeDeferral
