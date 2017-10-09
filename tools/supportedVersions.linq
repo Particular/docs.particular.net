@@ -102,7 +102,7 @@ public static class TextWriterExtensions
 			force,
 			() =>
 			{
-				output.WriteLine($"### {package.Id}");
+				output.WriteLine($"### [{package.Id}](https://docs.particular.net/nuget/{package.Id})");
 				output.WriteLine();
 			});
 
@@ -134,7 +134,7 @@ public static class TextWriterExtensions
 					{
 						if (!packageHeadingWritten)
 						{
-							output.WriteLine($"#### {package.Id}");
+							output.WriteLine($"#### [{package.Id}](https://docs.particular.net/nuget/{package.Id})");							
 							output.WriteLine();
 
 							if (endOfLifePackages.TryGetValue(package.Id, out var reason))
