@@ -75,7 +75,7 @@ class Usage
         #region AzureStorageQueueSanitization
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.SanitizeQueueNamesWith(queueName => queueName.Replace(".", "-"));
+        transport.SanitizeQueueNamesWith(queueName => queueName.Replace('.', '-'));
 
         #endregion
     }
