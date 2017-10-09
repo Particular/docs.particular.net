@@ -12,6 +12,4 @@ On the other hand, if this is set to 1, and 10 messages are available in the que
 
 **Example**: To set this to 1, specify:
 
-```
-MaxReceiveMessageBatchSize=1;
-```
+snippet: MaxReceiveMessageBatchSize

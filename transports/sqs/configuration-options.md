@@ -22,9 +22,8 @@ This tells the endpoint where to look for AWS credentials. This can be one of:
 
 **Example**: To use the credentials of an EC2 role, specify:
 
-```
-CredentialSource=InstanceProfile;
-```
+snippet: CredentialSource
+
 
 partial: maxReceiveMessageBatchSize
 
@@ -41,9 +40,7 @@ The maximum value is 14 days.
 
 **Example**: To set this to the maximum value, specify:
 
-```
-MaxTTLDays=14;
-```
+snippet: MaxTTL
 
 
 ## QueueNamePrefix
@@ -56,9 +53,7 @@ This string value will be prepended to the name of every SQS queue referenced by
 
 **Example**: For a development instance, specify:
 
-```
-QueueNamePrefix=DEV-;
-```
+snippet: QueueNamePrefix
 
 Queue names for the endpoint called "SampleEndpoint" might then look like:
 
@@ -80,9 +75,7 @@ This is the Amazon Web Services [Region](http://docs.aws.amazon.com/general/late
 
 **Example**: For the Sydney region, specify
 
-```
-Region=ap-southeast-2;
-```
+snippet: Region
 
 
 ## S3BucketForLargeMessages
@@ -97,24 +90,16 @@ If the specified bucket doesn't exist, it will be created at endpoint start up.
 
 **Example**: To use a bucket named `nsb-sqs-messages`, specify:
 
-```
-S3BucketForLargeMessages=nsb-sqs-messages;
-```
+snippet: S3BucketForLargeMessages
 
 
-## S3KeyPrefix
+### S3KeyPrefix
 
 **Optional**
 
 **Default**: Empty.
 
 This is the path within the specified S3 Bucket to store large message bodies. It is an error to specify this option without specifying a value for S3BucketForLargeMessages.
-
-**Example**: To specify a path of "my/sample/path", specify:
-
-```
-S3BucketForLargeMessages=my-bucket;S3KeyPrefix=my/sample/path;
-```
 
 
 ## ProxyHost and ProxyPort
@@ -123,14 +108,12 @@ S3BucketForLargeMessages=my-bucket;S3KeyPrefix=my/sample/path;
 
 **Default**: Empty.
 
-This is the name of the host of the proxy server that the client must authenticate to, if one exists. If `ProxyHost` is specified, `ProxyPort` must also be specified.
+This is the name of the host of the proxy server that the client must authenticate to.
 
 Note that the username and password for the proxy can not be specified via the connection string; they are sourced from environment variables instead. The username must be set in `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_USERNAME` and the password must be set in `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_PASSWORD`.
 
-**Example**:
 
-```
-ProxyHost=127.0.0.1;ProxyPort=8888
-```
+snippet: proxy
+
 
 partial: nativeDeferral
