@@ -1,6 +1,6 @@
 ---
 title: Migrating Msmq subscription messages
-reviewed: 2017-10-5
+reviewed: 2017-10-05
 component: MsmqTransport
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -12,7 +12,14 @@ When using Msmq Subscription storage in NServiceBus Versions 5.x and Versions 6.
 
 To rectify this, starting from Version 1.0 and above of NServiceBus.Transport.Msmq, if a queue called "NServiceBus.Subscriptions" is detected, an exception will be thrown to prevent potential loss of messages. 
 
-1. Create a transactional queue called [EndpointName].Subscriptions. This can be done by executing the powershell script, `CreateQueues.ps1` that comes packaged with the NuGet package. Browse to the lib folder to locate the scripts, for example, `C:\Users\username\.nuget\packages\nservicebus.transport.msmq\1.0.0\lib\net452\Scripts`. 
+
+## Create the subscriptions queue
+
+Create a transactional queue called [EndpointName].Subscriptions and substitute the actual name for the endpoint. This can be done by using the Powershell scripts, using [native tools or other tools like QueueExplorer](/transports/msmq/viewing-message-content-in-msmq.md#windows-native-tools). When creating queues manually, ensure that the queues are marked, "transactional". 
+
+### Using Powershell Script
+
+Use the `CreateQueue` function that's part of `CreateQueues.ps1`. This powershell script, comes packaged with the NServiceBus.Transport.Msmq NuGet package. Browse to the lib folder to locate the scripts, for example, `C:\Users\username\.nuget\packages\nservicebus.transport.msmq\1.0.0\lib\net452\Scripts`. 
 
 2. [Load the `CreateQueues.ps1` powershell script](https://technet.microsoft.com/en-us/library/bb613481.aspx) and run the `CreateQueue` function as shown below:
 
@@ -20,13 +27,15 @@ To rectify this, starting from Version 1.0 and above of NServiceBus.Transport.Ms
     # CreateQueue -QueueName "EndpointName.Subscriptions" -Account $env:USERNAME
 ```
 
-3. Use a tool like [QueueExplorer](http://www.cogin.com/mq/index.php) to locate the messages in the `NServiceBus.Subscriptions` queue to move them to the new subscriptions queue. Select the message in right hand pane. Right-Click and select the `Cut` option. Now select the newly created subscriptions queue. Right click on the messages pane and select the `Paste` option to move the message. 
 
-4. Once all the subscription messages have been moved, delete the `NServiceBus.Subscriptions` queue.
+## Move the subscription messages 
 
-WARNING: If more than one endpoint is sharing the same queue, ensure that individual subscription queues are first created and all the relevant messages are moved to the appropriate queues before deleting the `NServiceBus.Subscriptions` queue.
+Use a tool like [QueueExplorer](http://www.cogin.com/mq/index.php) to locate the messages in the `NServiceBus.Subscriptions` queue and to move them to the new subscriptions queue. If the subscription queue was being shared among multiple endpoints, select only the messages intended for the endpoint. Identify which messages need to be moved by inspecting the message body and looking for the event information and also by inspecting the information in the `LABEL` column.
+
+Select the identified messages first on the right-hand pane and then right click to select the `Cut` option. Now select the newly created subscriptions queue by clicking on the name of the queue. Right click on the messages pane and select the `Paste` option to move the message. 
+
+Once all the subscription messages have been moved, delete the `NServiceBus.Subscriptions` queue.
+
+WARNING: If more than one endpoint is sharing the same queue, ensure that individual subscription queues are first created and all the relevant messages are moved to the appropriate queues before deleting the `NServiceBus.Subscriptions` queue. QueueExplorer can also be used to copy messages, if a copy of the same subscription message needs to be added to more subscription queues.
 
 ![Moving Messages using QueueExplorer](moving-messages.png)
-
-
-
