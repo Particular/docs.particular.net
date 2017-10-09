@@ -9,8 +9,10 @@
         {
             #region SendMetricDataToServiceControl
 
+            const string SERVICE_CONTROL_METRICS_ADDRESS = "particular.monitoring";
+
             endpointConfiguration.SendMetricDataToServiceControl(
-                serviceControlMetricsAddress: "address",
+                serviceControlMetricsAddress: SERVICE_CONTROL_METRICS_ADDRESS,
                 instanceId: "INSTANCE_ID_OPTIONAL");
 
             #endregion
