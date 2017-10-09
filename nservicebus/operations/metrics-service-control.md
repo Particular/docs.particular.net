@@ -10,8 +10,7 @@ related:
 ---
 
 
-This component enables sending monitoring data to ServiceControl.Monitoring instance.
-
+This component enables sending monitoring data gathered with NServiceBus.Metrics to an instance of ServiceControl.Monitoring service.
 
 ## Enabling
 
