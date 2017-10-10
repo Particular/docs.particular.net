@@ -5,4 +5,10 @@
     <Configurations>Debug</Configurations>
     <WarningsAsErrors>IDE0018</WarningsAsErrors>
   </PropertyGroup>
+
+  <Target Name="DisableAnalyzers" BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <Analyzer Remove="@(Analyzer)"/>
+    </ItemGroup>
+  </Target>
 </Project>
