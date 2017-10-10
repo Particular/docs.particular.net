@@ -6,9 +6,9 @@ summary: Setting up NServiceBus endpoints to be monitored by the Particular Serv
 
 include: monitoring-intro-paragraph
 
-[Sample monitoring solution](tutorials/monitoring/)
+[Sample monitoring solution](tutorials/monitoring/0-sample-solution)
 
-This second lesson guides your through setting up all of the server side components that are used to monitor an NServiceBus system.
+This third lesson guides your through setting up all of the endpoints in your system to be monitored by the Particular Software Platform.
 
 
 ## Configure endpoints

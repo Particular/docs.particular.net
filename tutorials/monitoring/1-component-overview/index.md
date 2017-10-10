@@ -10,7 +10,7 @@ extensions:
 
 include: monitoring-intro-paragraph
 
-[Sample monitoring solution](tutorials/monitoring/)
+[Sample monitoring solution](tutorials/monitoring/0-sample-solution)
 
 This first lesson explains all of the components involved in monitoring an NServiceBus solution with the Particular Service Platform.
 

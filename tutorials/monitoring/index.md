@@ -7,19 +7,12 @@ suppressRelated: true
 
 include: monitoring-intro-paragraph
 
-downloadbutton
-
-
-### Using the sample solution
-
-The endpoints in the sample solution communicate using the SQL Transport. Each endpoint will create it's own tables the first time it is run. It uses these tables like queues to store incoming messages.
-
-Before running the solution the first time, you need to create the database and schema that all endpoints will use. Included in the solution download is a set-up script.
-
-TODO: Details on how to run the setup script
+[Sample monitoring solution](tutorials/monitoring/0-sample-solution)
 
 
 ## Overview
+
+- **[Lesson 0: Setting up sample solution](0-sample-solution/)** - download and set up a sample solution that can be used for the rest of this tutorial. 
 
 - **[Lesson 1: Component overview](1-component-overview/)** - learn about all of the monitoring components in the Particular Service Platform.
 
@@ -27,10 +20,12 @@ TODO: Details on how to run the setup script
 
 - **[Lesson 3: Configuring endpoints to send data to ServiceControl](3-configuring-endpoints/)** - learn how to configure endpoints to send monitoring data to the Particular Service Platform.
 
-- **Lesson 4: Throughput and processing time** - learn how measure individual endpoint performance by examining message throughput and processing time.
+- **Lesson 4: Throughput and processing time** - learn how to measure individual endpoint performance by examining message throughput and processing time.
 
 - **Lesson 5: Queue length and critical time** - learn how to measure inter-endpoint performance by examining queue length and critical time.
 
 - **Lesson 6: Failure rates** - learn how to detect hidden problems in your solution by watching failure rates.
 
-**Go to [**Lesson 1: Component overview**](1-component-overview/) to begin.**
+**If you already have an NServiceBus system to monitor start at [**Lesson 1: Component overview**](1-component-overview/).**
+
+**If you do not have an NServiceBus system to monitor start at [**Lesson 0: Setting up a sample solution**](0-sample-solution/).**
