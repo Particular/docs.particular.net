@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 
 class Usage
 {
@@ -38,7 +39,7 @@ class Usage
         #region MaxTTL
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        transport.MaxTTLDays(10);
+        transport.MaxTimeToLive(TimeSpan.FromDays(10));
 
         #endregion
     }

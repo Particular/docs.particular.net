@@ -45,3 +45,10 @@ When the transport is used in combination with large messages on S3 the followin
  * PutLifecycleConfiguration
  * GetLifecycleConfiguration
  * ListAllMyBuckets
+
+
+## MaxTTLDays renamed MaxTimeToLive
+
+The `MaxTTLDays` method has been renamed to `MaxTimeToLive` and now takes a [TimeSpan](https://msdn.microsoft.com/en-us/library/system.timespan.aspx)
+
+snippet: 3to4_MaxTTL
