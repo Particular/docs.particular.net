@@ -21,8 +21,7 @@
         RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)
         {
             var action = DefaultRecoverabilityPolicy.Invoke(config, context);
-            var delayedRetryAction = action as DelayedRetry;
-            if (delayedRetryAction == null)
+            if (!(action is DelayedRetry delayedRetryAction))
             {
                 return action;
             }

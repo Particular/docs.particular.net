@@ -46,8 +46,7 @@ public static class MissingTaskUsageDetector
                 yield return $"Type '{declaringType.FullName}' contains a call to '{taskMethod.DeclaringType.Name}.{taskMethod.Name}' near line {lineNumber} where no usage of the returned Task is detected.";
             }
             taskMethod = null;
-            var operand = instruction.Operand as MethodReference;
-            if (operand != null && operand.ReturnsTask())
+            if (instruction.Operand is MethodReference operand && operand.ReturnsTask())
             {
                 taskMethod = operand;
             }

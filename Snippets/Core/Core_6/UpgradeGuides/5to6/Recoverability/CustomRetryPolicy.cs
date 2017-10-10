@@ -35,8 +35,7 @@
             // call the default recoverability of default behavior is desired
             var action = DefaultRecoverabilityPolicy.Invoke(config, context);
 
-            var delayedRetryAction = action as DelayedRetry;
-            if (delayedRetryAction != null)
+            if (action is DelayedRetry delayedRetryAction)
             {
                 // perform some logic and decide when to do delayed retries
                 return RecoverabilityAction.DelayedRetry(TimeSpan.FromSeconds(5));
