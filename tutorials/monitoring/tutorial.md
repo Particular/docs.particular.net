@@ -1,19 +1,19 @@
 ---
 title: Monitoring NServiceBus solutions
 reviewed: 2017-10-02
-summary: Getting started with the monitoring capabilities built in to the Particular Platform.
+summary: Getting started with the monitoring capabilities built in to the Particular Service.
 ---
 
-This tutorial will guide you through getting started with the monitoring capabilities built in to the Particular Platform.
+This tutorial will guide you through getting started with the monitoring capabilities built in to the Particular Service Platform.
 
-You can follow along with this tutorial to configure any solution for monitoring with the Particular Platform. If you do not have a solution to monitor just yet, you can get started by downloading our sample solution.
+You can follow this tutorial to configure any NServiceBus based solution for monitoring with the Particular Service Platform. If you do not have a solution to monitor just yet, you can get started by downloading our sample solution.
 
 downloadbutton
 
 
 ## Component overview
 
-The following diagram shows all of the components that are involved in monitoring an NServiceBus solution.
+The following diagram shows all the components involved in monitoring an NServiceBus solution with the Particular Service Platform.
 
 ```mermaid
 graph TD
@@ -41,9 +41,9 @@ scinstance --> pulse
 
 ![the above renders like this](component-overview.png)
 
-Each endpoint in the solution is configured to collect metrics about it's own operation using the NServiceBus.Metrics NuGet package. This package hooks into the NServiceBus pipeline and calculates key metric data. It also adds headers to outgoing messages to track queue length.
+Each endpoint in the solution is configured to collect metrics about it's own operation using the NServiceBus.Metrics NuGet package. This package hooks into the NServiceBus pipeline to calculate and expose key metric data. It also adds headers to outgoing messages to track queue length.
 
-The NServiceBus.Metrics.ServiceControl NuGet package collects the generated metric data and periodically sends it to a centralized monitoring queue. It does this with the same transport that the endpoints use to exchange business messages.
+The NServiceBus.Metrics.ServiceControl NuGet package collects the generated metric data in memory and periodically sends it to a centralized monitoring queue. It does this using the same transport that the endpoints use to exchange business messages.
 
 A ServiceControl Monitoring Instance reads the messages from the monitoring queue and aggregates monitoring data for all of your endpoints. Each environment should have it's own Monitoring Instance. Monitoring Instances are created and managed with the ServiceControl Management Utility. 
 
@@ -52,7 +52,7 @@ ServicePulse connects to a ServiceControl Monitoring Instance and visualizes the
 
 ## Setting up
 
-In order to configure an environment for monitoring with the Particular Platform you will need to install and configure the components in the order listed.
+In order to configure an environment for monitoring with the Particular Service Platform you will need to install and configure the components in the order listed.
 
 
 ### Create Monitoring Instance
@@ -86,7 +86,7 @@ SCREENSHOT - SCMU Main Page with monitoring instance running
 
 ### Install ServicePulse
 
-ServicePulse is a web application for production monitoring and recoverability. To enable it's monitoring features, you must connect ServicePule to a ServiceControl Monitoring Instance.
+ServicePulse is a web application for production monitoring and recoverability. To enable it's monitoring features, you must connect ServicePulse to a ServiceControl Monitoring Instance.
 
 Download and run the latest ServicePulse installer. On the ServicePulse Configuration screen check the Monitoring option and enter the location of the monitoring instance API.
 
