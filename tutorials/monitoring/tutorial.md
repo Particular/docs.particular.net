@@ -18,22 +18,25 @@ The following diagram shows all of the components that are involved in monitorin
 ```mermaid
 graph TD
 
-subgraph Endpoint1
-  metrics1(NServiceBus.Metrics) --> plugin1
-  plugin1(NServiceBus.Metrics.ServiceControl)
+subgraph Endpoint
+  nsb(NServiceBus) --> metrics
+  metrics(NServiceBus.Metrics) --> plugin
+
+  plugin(NServiceBus.Metrics.ServiceControl)
 end
 
-subgraph Endpoint2
-  metrics2(NServiceBus.Metrics) --> plugin2
-  plugin2(NServiceBus.Metrics.ServiceControl) 
-end
+plugin --> q(Monitoring Queue)
 
-plugin1 --> q(Monitoring Queue)
-plugin2 --> q(Monitoring Queue)
+nsb --> auditQ(Audit Queue)
+nsb --> errorQ(Error Queue)
+
+auditQ --> scinstance(ServiceControl Instance)
+errorQ --> scinstance
 
 q --> scmonitoring[Monitoring Instance]
 
 scmonitoring --> pulse[ServicePulse]
+scinstance --> pulse
 ```
 
 ![the above renders like this](component-overview.png)
