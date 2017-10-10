@@ -9,13 +9,17 @@
         {
             var endpointConfiguration = new EndpointConfiguration("MonitoredEndpoint");
 
-            #region enable-metrics
+            #region error-config
+            endpointConfiguration.SendFailedMessagesTo("error");
+            #endregion
 
-            var metrics = endpointConfiguration.EnableMetrics();
-
+            #region audit-config
+            endpointConfiguration.AuditProcessedMessagesTo("audit");
             #endregion
 
             #region send-metric-data-to-servicecontrol
+
+            var metrics = endpointConfiguration.EnableMetrics();
 
             metrics.SendMetricDataToServiceControl(
                 serviceControlMetricsAddress: "Particular.Monitoring", 
