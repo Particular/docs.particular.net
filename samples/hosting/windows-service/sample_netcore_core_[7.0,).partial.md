@@ -22,7 +22,7 @@ To use the installation approach described above, a self contained exe is requir
 dotnet publish WindowsServiceHosting.Core.sln --framework netcoreapp2.0 --runtime win10-x64
 ```
 
-`Sample.Core.exe` will then exist in `Sample\bin\Debug\netcoreapp2.0\win10-x64`.
+`Sample.Core.exe` will then exist in `Sample\bin\Debug\netcoreapp2.0\win10-x64\publish`.
 
 
 ### Via dotnet.exe
