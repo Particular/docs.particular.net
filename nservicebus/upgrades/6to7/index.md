@@ -165,7 +165,7 @@ The [MSMQ transport](/transports/msmq) is no longer part of the NServiceBus NuGe
 
 To facilitate the creation of queues for endpoints during deployment, the NuGet package now comes packaged with a `Scripts` folder with two new scripts called, `CreateQueues.ps1` and `DeleteQueues.ps1`. These can be located as part of the package. For example, under `%USERPROFILE%\.nuget\packages\nservicebus.transport.msmq\1.0.0\lib\net452\Scripts`. 
 
-A new API called, [DisableInstaller](/transports/msmq/transportconfig.md#receiving-algorithm-disableinstaller) can now be used to disable the auto creation of queues during startup.
+A new API called, [DisableInstaller](/transports/msmq/transportconfig.md?version=msmqtransport_1#receiving-algorithm-disableinstaller) can now be used to disable the auto-creation of queues during startup.
 
 ### Msmq Subscription Storage
 
