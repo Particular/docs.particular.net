@@ -16,13 +16,13 @@ To move messages from the `NServiceBus.Subscriptions` queue to the new queue, re
 
 ## Create the subscriptions queue
 
-Create a transactional queue called [EndpointName].Subscriptions and substitute the actual name for the endpoint. This can be done by using the Powershell scripts, using [native tools or other tools like QueueExplorer](/transports/msmq/viewing-message-content-in-msmq.md#windows-native-tools). If creating queues manually using UI tools, ensure that the queues are marked, "transactional". 
+Create a transactional queue called [EndpointName].Subscriptions and substitute the actual name of the endpoint. This can be done by using the PowerShell scripts, [Windows MMC Snap-in or other tools like QueueExplorer](/transports/msmq/viewing-message-content-in-msmq.md#windows-native-tools). If creating queues manually using UI tools, ensure that the queues are marked, "transactional". 
 
-### Using Powershell Script
+### Using PowerShell Script
 
-Use the `CreateQueue` function that's part of `CreateQueues.ps1`. This powershell script, comes packaged with the NServiceBus.Transport.Msmq NuGet package. Browse to the lib folder to locate the scripts, for example, `%USERPROFILE%\.nuget\packages\nservicebus.transport.msmq\1.0.0\lib\net452\Scripts`. 
+Use the `CreateQueue` function that's part of `CreateQueues.ps1`. This PowerShell script comes packaged with the NServiceBus.Transport.Msmq NuGet package. Browse to the lib folder to locate the scripts, for example, `%USERPROFILE%\.nuget\packages\nservicebus.transport.msmq\1.0.0\lib\net452\Scripts`. 
 
-2. [Load the `CreateQueues.ps1` powershell script](https://technet.microsoft.com/en-us/library/bb613481.aspx) and run the `CreateQueue` function as shown below:
+2. [Load the `CreateQueues.ps1` PowerShell script](https://technet.microsoft.com/en-us/library/bb613481.aspx) and run the `CreateQueue` function as shown below:
 
 ```
     # CreateQueue -QueueName "EndpointName.Subscriptions" -Account $env:USERNAME
@@ -31,7 +31,7 @@ Use the `CreateQueue` function that's part of `CreateQueues.ps1`. This powershel
 
 ## Move the subscription messages 
 
-Once the new queue is created, use a tool like [QueueExplorer](http://www.cogin.com/mq/index.php) to locate the messages in the `NServiceBus.Subscriptions` queue and move them to the newly created subscriptions queue. If the `NServiceBus.Subscriptions`queue was being shared among multiple endpoints, select only the messages intended for the endpoint that is being upgraded to NServiceBus.Transport.Msmq package. Identify which messages need to be moved by inspecting the message body and looking for the event information and also by inspecting the information in the `LABEL` column.
+Once the new queue is created, use a tool like [QueueExplorer](http://www.cogin.com/mq/index.php) to locate the messages in the `NServiceBus.Subscriptions` queue and move them to the newly created subscriptions queue. If the `NServiceBus.Subscriptions`queue was being shared among multiple endpoints, select only the messages intended for the endpoint that is being upgraded to NServiceBus.Transport.Msmq package. Identify which messages need to be moved by inspecting the message body and looking for the event information and also by inspecting the subscriber queue name in the `LABEL` column.
 
 Select the identified messages first on the right-hand pane and then right click to select the `Cut` option. Now select the newly created subscriptions queue by clicking on the name of the queue. Right click on the messages pane and select the `Paste` option to move the messages. 
 

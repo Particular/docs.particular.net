@@ -8,9 +8,9 @@ If the subscription storage is not specified, NServiceBus uses a queue called `[
 
 WARNING: When using MSMQ Subscription Persistence on multiple endpoints running on the same machine, every endpoint **must have** a dedicated subscription storage queue. 
 
-As some older versions of NServiceBus, specifically Versions 5.x and Versions 6.x) used a default queue called `NServiceBus.Subscriptions`, in order to avoid message loss, an exception will be thrown on startup asking to either specify the subscription queue or to [migrate the subscription messages to the new default queue]().
+Versions 5.x and Versions 6.x of NServiceBus used a default queue called `NServiceBus.Subscriptions`. En exception is thrown on startup if this queue is detected. Either specify the subscription queue explicitly or [move the subscription messages to the new default queue](/nservicebus/upgrades/6to7/moving-msmq-subscriptions.md) to avoid message loss.
 
-In order to specify a different queue, use the code api or specify a configuration section.
+In order to specify a different queue, use the code API or specify a configuration section.
 
 
 ### Via Code
