@@ -161,6 +161,18 @@ The [.Retries message receiver](/nservicebus/recoverability/configure-delayed-re
 
 The [MSMQ transport](/transports/msmq) is no longer part of the NServiceBus NuGet package. It has been moved into a separate package, [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/).
 
+### Provision of PowerShell Scripts
+
+To facilitate the creation of queues for endpoints during deployment, the NuGet package now comes packaged with a `Scripts` folder with two new scripts called, `CreateQueues.ps1` and `DeleteQueues.ps1`. These can be located as part of the package. For example, under `%USERPROFILE%\.nuget\packages\nservicebus.transport.msmq\1.0.0\lib\net452\Scripts`. 
+
+A new API called, [DisableInstaller](/transports/msmq/transportconfig.md?version=msmqtransport_1#receiving-algorithm-disableinstaller) can now be used to disable the auto-creation of queues during startup.
+
+### Msmq Subscription Storage
+
+The default queue for the subscription storage has been switched from `NServiceBus.Subscriptions` to `[EndpointName].Subscriptions` if the subscription queue has not been explicitly configured.
+
+However, if a subscription storage queue is not provided during configuration time and if the endpoint detects a local queue in the server called, `NServiceBus.Subscriptions`, an exception will be thrown to prevent potential loss of messages. To prevent this, [move the subscription messages to the new queue](/nservicebus/upgrades/6to7/moving-msmq-subscriptions.md).
+
 
 ### Namespace changes
 
