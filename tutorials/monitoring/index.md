@@ -18,7 +18,7 @@ include: monitoring-intro-paragraph
 
 - **[Lesson 2: Setting up monitoring environment](2-setting-up-environment/)**  - learn how set up all of the server side monitoring components of the Particular Service Platform.
 
-- **[Lesson 3: Configuring endpoints to send data to ServiceControl](3-configuring-endpoints/)** - learn how to configure endpoints to send monitoring data to the Particular Service Platform.
+- **[Lesson 3: Configuring endpoints](3-configuring-endpoints/)** - learn how to configure endpoints to send monitoring data to the Particular Service Platform.
 
 - **Lesson 4: Throughput and processing time** - learn how to measure individual endpoint performance by examining message throughput and processing time.
 

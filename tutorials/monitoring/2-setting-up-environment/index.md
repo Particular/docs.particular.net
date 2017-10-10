@@ -4,7 +4,7 @@ reviewed: 2017-10-10
 summary: Setting up the Particular Service Platform to monitor an NServiceBus system.
 extensions:
 - !!tutorial
-  nextText: "Next Lesson: Configuring endpoints to send data to ServiceControl"
+  nextText: "Next Lesson: Configuring endpoints"
   nextUrl: tutorials/monitoring/3-configuring-endpoints
 ---
 

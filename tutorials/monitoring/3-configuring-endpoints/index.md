@@ -1,5 +1,5 @@
 ---
-title: "Monitoring NServiceBus solutions: Configuring endpoints to send data to ServiceControl"
+title: "Monitoring NServiceBus solutions: Configuring endpoints"
 reviewed: 2017-10-10
 summary: Setting up NServiceBus endpoints to be monitored by the Particular Service Platform.
 ---
