@@ -1,5 +1,7 @@
 ServiceControl is the monitoring brain in the Particular Service Platform. It collects data on every single message flowing through the system (Audit Queue), errors (Error Queue), as well as additional information regarding sagas, endpoints heartbeats and custom checks (Control Queue). The information is then exposed to [ServicePulse](/servicepulse) and [ServiceInsight](/serviceinsight) via an HTTP API and SignalR notifications.
 
+In certain situations it may be necessary to use multiple instances of ServiceControl for monitoring a system. For example, when configuring ServiceControl it's necessary to specify which NServiceBus transport will be used. If a system uses endpoints running on top of various transports, then it's necessary to configure an instance per each transport. Refer to the [ServiceControl instances](/servicecontrol/servicecontrol-instances/) article to learn more.
+
 NOTE: The ServiceControl HTTP API may change at any time. It is designed for use by ServicePulse and ServiceInsight only. Use of this HTTP API for other purposes is discouraged.
 
 It is important to understand that the data is still collected even if ServiceControl is down. When it starts working again, it will process all the information that was saved in the meantime.
