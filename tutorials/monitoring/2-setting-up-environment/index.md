@@ -1,5 +1,5 @@
 ---
-title: "Monitoring NServiceBus solutions: Setting up monitoring environment
+title: "Monitoring NServiceBus solutions: Setting up monitoring environment"
 reviewed: 2017-10-10
 summary: Setting up the Particular Service Platform to monitor an NServiceBus system.
 extensions:
