@@ -24,7 +24,9 @@ The error queue is created with a new ServiceControl instance. By default, it is
 
 You can configure the location of the error queue. Add the following code to your endpoint configuration:
 
-snippet: error-config
+```csharp
+endpointConfiguration.SendFailedMessagesTo("error");
+```
 
 NOTE: If you are using the MSMQ transport then you also need to specify the machine where the error queue is located. i.e. `error@MACHINENAME`. This should be the same machine where your ServiceControl instance is installed.
 
@@ -37,7 +39,9 @@ The audit queue is created with a new ServiceControl instance. By default, it is
 
 You can enable auditing and configure the location of the audit queue. Add the following code to your endpoint configuration:
 
-snippet: audit-config
+```csharp
+endpointConfiguration.AuditProcessedMessagesTo("audit");
+```
 
 NOTE: If you are using the MSMQ transport then you also need to specify the machine where the audit queue is located. i.e. `audit@MACHINENAME`. This should be the same machine where your ServiceControl instance is installed.
 
@@ -58,7 +62,14 @@ NOTE: This will also install the **NServiceBus.Metrics** package.
 
 You can then enable monitoring and configure the location of the monitoring queue. Add the following code to your endpoint configuration:
 
-snippet: send-metric-data-to-servicecontrol
+```csharp
+var metrics = endpointConfiguration.EnableMetrics();
+
+metrics.SendMetricDataToServiceControl(
+    serviceControlMetricsAddress: "Particular.Monitoring", 
+    interval: TimeSpan.FromSeconds(10)
+);
+```
 
 NOTE: If you are using the MSMQ transport then you also need to specify the machine where the monitoring queue is located. i.e. `Particular.Monitoring@MACHINENAME`. This should be the same machine where your Monitoring instance is installed.
 
