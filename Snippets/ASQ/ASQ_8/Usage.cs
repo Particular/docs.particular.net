@@ -66,21 +66,41 @@ class Usage
 
     void RegisterEndpoint(EndpointConfiguration configuration)
     {
+        #region storage_account_routing_registered_endpoint
+
         var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
         var routing = transportConfig
                             .ConnectionString("connectionString")
                             .AccountRouting();
         var anotherAccount = routing.AddAccount("AnotherAccountName","anotherConnectionString");
-        anotherAccount.RegisteredEndpoints.Add("Receiver"));
-        
-        configuration..Routing().RouteToEndpoint(typeof(MyMessage), typeof(Receiver));
+        anotherAccount.RegisteredEndpoints.Add("Receiver");
+
+        transportConfig.Routing().RouteToEndpoint(typeof(MyMessage), "Receiver");
+
+        #endregion
     }
 
     void SendToMulitpleAccountUsingRegisterdEndpoint(IEndpointInstance endpointInstance)
     {
-        #region storage_account_routing_registered_publisher
+        #region storage_account_routing_send_registered_endpoint
 
         endpointInstance.Send(message: new MyMessage());
+
+        #endregion
+    }
+
+    void RegisterPublisher(EndpointConfiguration configuration)
+    {
+        #region storage_account_routing_registered_publisher
+
+        var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
+        var routing = transportConfig
+                            .ConnectionString("anotherConnectionString")
+                            .AccountRouting();
+        var anotherAccount = routing.AddAccount("PublisherAccountName", "connectionString");
+        anotherAccount.RegisteredEndpoints.Add("Publisher");
+
+        transportConfig.Routing().RegisterPublisher(typeof(MyEvent), "Publisher");
 
         #endregion
     }
@@ -160,4 +180,5 @@ class Usage
     public class MyEvent :
         IEvent
     { }
+
 }

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <!-- startcode storage_account_routing_send_message_mapping -->
+  <MessageEndpointMappings>
+    <add Messages="Contracts"
+         Namespace="Contracts.Commands.ForEndpoint2"
+         Endpoint="Endpoint2@DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];" />
+  </MessageEndpointMappings>
+  <!-- endcode -->
+  <!-- startcode storage_account_routing_subscribe_message_mapping -->
+  <MessageEndpointMappings>
+    <add Messages="Contracts"
+         Namespace="Contracts.Events.FromEndpoint1"
+         Endpoint="Endpoint1@DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];" />
+  </MessageEndpointMappings>
+  <!-- endcode -->
+</config>
