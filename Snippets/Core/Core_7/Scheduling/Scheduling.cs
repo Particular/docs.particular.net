@@ -18,6 +18,7 @@
                     timeSpan: TimeSpan.FromMinutes(5),
                     task: pipelineContext =>
                     {
+                        // use the pipelineContext parameter to send messages
                         var message = new CallLegacySystem();
                         return pipelineContext.Send(message);
                     })
