@@ -7,7 +7,7 @@ suppressRelated: true
 
 include: monitoring-intro-paragraph
 
-[Sample monitoring solution](tutorials/monitoring/0-sample-solution)
+[Sample monitoring solution](/tutorials/monitoring/0-sample-solution/)
 
 
 ## Overview
