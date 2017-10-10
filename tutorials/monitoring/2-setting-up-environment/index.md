@@ -45,7 +45,7 @@ NOTE: If you are using the sample solution from this tutorial, select SQLServer.
 
 Under AUDIT FORWARDING select either On or Off. 
 
-NOTE: If you are using the sample solution from this tutorial, select Off. See [audit fowarding](servicecontrol/errorlog-auditlog-behavior.md) for more information.
+NOTE: If you are using the sample solution from this tutorial, select Off. See [audit fowarding](/servicecontrol/errorlog-auditlog-behavior.md) for more information.
 
 Click the Add button. Your ServiceControl instance will start and be listed on the main page of the ServiceControl Management Utility.
 
