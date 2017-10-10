@@ -10,7 +10,7 @@ extensions:
 
 include: monitoring-intro-paragraph
 
-[Sample monitoring solution](tutorials/monitoring/0-sample-solution/)
+include: monitoring-sample-solution
 
 This third lesson guides you through setting up all of the endpoints in your system to be monitored by the Particular Software Platform.
 

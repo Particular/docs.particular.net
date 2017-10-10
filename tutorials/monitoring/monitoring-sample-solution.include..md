@@ -1,0 +1,1 @@
+[Sample monitoring solution](/tutorials/monitoring/0-sample-solution/)

@@ -12,7 +12,7 @@ include: monitoring-intro-paragraph
 
 This fourth lesson guides you through the throughput and processing time metrics and teaches you how to use those metrics to interpret the performance of an individual endpoint. Examples are shown using the sample monitoring solution.
 
-[Sample monitoring solution](tutorials/monitoring/0-sample-solution/)
+include: monitoring-sample-solution
 
 
 

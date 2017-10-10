@@ -10,8 +10,7 @@ extensions:
 
 include: monitoring-intro-paragraph
 
-[Sample monitoring solution](tutorials/monitoring/0-sample-solution/)
-
 This fifth lesson guides you through the queue length and critical time metrics and teaches you how those metrics impact your overall system. Examples are shown using the sample monitoring solution.
 
+include: monitoring-sample-solution
 
