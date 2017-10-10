@@ -2,6 +2,7 @@
 title: "Monitoring NServiceBus solutions: Throughput and processing time"
 reviewed: 2017-10-10
 summary: Measuring individual endpoint performance with throughput and processing time.
+extensions:
 - !!tutorial
   nextText: "Next Lesson: Queue length and critical time"
   nextUrl: tutorials/monitoring/5-cross-endpoint-performance
