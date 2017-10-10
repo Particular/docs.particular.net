@@ -20,11 +20,11 @@ include: monitoring-intro-paragraph
 
 - **[Lesson 3: Configuring endpoints](3-configuring-endpoints/)** - learn how to configure endpoints to send monitoring data to the Particular Service Platform.
 
-- **Lesson 4: Throughput and processing time** - learn how to measure individual endpoint performance by examining message throughput and processing time.
+- **[Lesson 4: Throughput and processing time](4-endpoint-performance/)** - learn how to measure individual endpoint performance by examining message throughput and processing time.
 
-- **Lesson 5: Queue length and critical time** - learn how to measure inter-endpoint performance by examining queue length and critical time.
+- **[Lesson 5: Queue length and critical time](5-cross-endpoint-performance/)** - learn how to measure inter-endpoint performance by examining queue length and critical time.
 
-- **Lesson 6: Failure rates** - learn how to detect hidden problems in your solution by watching failure rates.
+- **[Lesson 6: Failure rates](6-failure-rates/)** - learn how to detect hidden problems in your solution by watching failure rates.
 
 **If you already have an NServiceBus system to monitor start at [**Lesson 1: Component overview**](1-component-overview/).**
 

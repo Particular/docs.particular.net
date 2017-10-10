@@ -2,13 +2,16 @@
 title: "Monitoring NServiceBus solutions: Configuring endpoints"
 reviewed: 2017-10-10
 summary: Setting up NServiceBus endpoints to be monitored by the Particular Service Platform.
+- !!tutorial
+  nextText: "Next Lesson: Throughput and processing time"
+  nextUrl: tutorials/monitoring/4-endpoint-performance
 ---
 
 include: monitoring-intro-paragraph
 
-[Sample monitoring solution](tutorials/monitoring/0-sample-solution)
+[Sample monitoring solution](tutorials/monitoring/0-sample-solution/)
 
-This third lesson guides your through setting up all of the endpoints in your system to be monitored by the Particular Software Platform.
+This third lesson guides you through setting up all of the endpoints in your system to be monitored by the Particular Software Platform.
 
 
 ## Configure endpoints
