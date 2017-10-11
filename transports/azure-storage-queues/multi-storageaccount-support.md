@@ -31,7 +31,7 @@ A typical implementation uses a single storage account to send and receive messa
 
 ![Single storage account](azure01.png "width=500")
 
-When the number of instances of endpoints are increased, all endpoints continue reading and writing to the same storage account. Once the limit of 2,000 message/sec per queue or 20,000 message/sec per storage account is reached, Azure throttles the message throughput.
+When the number of instances of endpoints is increased, all endpoints continue reading and writing to the same storage account. Once the limit of 2,000 message/sec per queue or 20,000 message/sec per storage account is reached, Azure storage service throttles the message throughput.
 
 ![Single storage account with scaled out endpoints](azure02.png "width=500")
 
@@ -41,7 +41,7 @@ While an endpoint can only read from a single Azure storage account, it can send
 
 ## Scale Units
 
-Scaleout and splitting endpoints over multiple storage accounts works to a certain extent, but it cannot be applied infinitely while expecting throughput to increase accordingly. Only so much throughput from a single resource or group of resources grouped together is possible.
+Scaleout and splitting endpoints over multiple storage accounts works to a certain extent, but it cannot be applied infinitely while expecting throughput to increase accordingly. Only so much throughput from a single resource or group of resources is possible.
 
 A suitable techniques to overcome this problem includes resource partitioning and use of scale units. A scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput, create more scale units. Scale units do not share resources.
 
@@ -49,11 +49,11 @@ An example of a partitioned application with a different number of deployed scal
 
 ![Scale units](azure04.png "width=500")
 
-NOTE: Use real Azure storage accounts because the Azure storage emulator only supports a single fixed account named `devstoreaccount1`.
+NOTE: Use real Azure storage accounts. Do not use Azure storage emulator as it only supports a single fixed account named devstoreaccount1.".
 
 ## Cross namespace routing
 
-NServiceBus allows to specify destination addresses using an `"endpoint@physicallocation"` in various places such as the [Send](/nservicebus/messaging/send-a-message.md) and [Routing](/nservicebus/messaging/routing.md) API or the `MessageEndpointMappings`. In this notation the `physicallocation` section represents the location where the endpoint's infrastructure is hosted, such as a storage account.
+NServiceBus allows to specify destination addresses using an `"endpoint@physicallocation"` when messages are dispatched, in various places such as the [Send](/nservicebus/messaging/send-a-message.md) and [Routing](/nservicebus/messaging/routing.md) API or the `MessageEndpointMappings`. In this notation the `physicallocation` section represents the location where the endpoint's infrastructure is hosted, such as a storage account.
 
 Using this notation it is possible to route messages to any endpoint hosted in any storage account.
 

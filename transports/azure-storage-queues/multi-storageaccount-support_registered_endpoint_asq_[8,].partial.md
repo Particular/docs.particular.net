@@ -10,6 +10,6 @@ snippet: storage_account_routing_send_registered_endpoint
 
 ### publishers
 
-Similar to sending to an endpoint, the transport can also be configured to subscribe on publishers in another storage account, using:
+Similar to sending to an endpoint, the transport can also be configured to subscribe to events published by endpoints in another storage account, using:
 
 snippet: storage_account_routing_registered_publisher
