@@ -147,7 +147,7 @@ When using the default (execute at startup) approach to installation the value c
 snippet: TablePrefix
 
 
-#### Database Schema
+### Database Schema
 
 When using Microsoft SQL Server, a database schema other than the default `dbo` can be defined in the configuration API as follows:
 
@@ -156,19 +156,19 @@ snippet: Schema
 Note that the same value will need to be passed to the SQL installation scripts as a parameter.
 
 
-#### Manual installation
+### Manual installation
 
 When performing a custom script execution the TablePrefix is required. See also [Installer Workflow](installer-workflow.md).
 
 Note that `scriptDirectory` can be either the root directory for all scripts for, alternatively, the specific locations for a given storage type i.e. Saga, Outbox, Subscription and Timeout scripts.
 
 
-##### SQL Server
+#### SQL Server
 
 snippet: ExecuteScriptsSqlServer
 
 
-##### MySQL
+#### MySQL
 
 snippet: ExecuteScriptsMySql
 
