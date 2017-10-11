@@ -45,6 +45,14 @@ at System.Messaging.MessageQueue.SendInternal(Object obj, MessageQueueTransactio
 
 The cause of this exception is that the MSMQ has run out of space for holding on to messages. This could be due to messages sent that could not be delivered, or messages received that have not been processed.
 
+## MessageQueueException (0x80004005): Message Queue service is not available.
+
+This exception may occur if the MSMQ service is stopped or crashed.
+
+- If self-hosting, [make sure a critical error callback is configured](/nservicebus/hosting/critical-errors.md#custom-handling).
+- Make sure that [Windows Service Restart Recovery](/nservicebus/hosting/windows-service.md#installation-restart-recovery) is enabled to restart your Windows Services.
+- [Create Windows Service depencies for your endpoint to the MSMQ service](/nservicebus/hosting/windows-service.md#installation-service-dependencies) so that your endpoints will automatically be stopped/started in case the MSMQ service is restarted (only then, they will not restart on a stop/start, only restart).
+
 
 ### Resolution
 
