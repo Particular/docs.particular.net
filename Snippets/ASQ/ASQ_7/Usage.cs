@@ -78,6 +78,28 @@ class Usage
         #endregion
     }
 
+    void SendToMulitpleAccountUsingConnectionSTring(IEndpointInstance endpointInstance)
+    {
+        #region storage_account_routing_send_options_full_connectionstring
+
+        endpointInstance.Send(
+            destination: "sales@DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];",
+            message: new MyMessage());
+
+        #endregion
+    }
+
+    void SendToMulitpleAccountUsingAlias(IEndpointInstance endpointInstance)
+    {
+        #region storage_account_routing_send_options_alias
+
+        endpointInstance.Send(
+            destination: "sales@accountName",
+            message: new MyMessage());
+
+        #endregion
+    }
+
     // Reference NServiceBus.Host instead of NServiceBus.Hosting.Azure as the usage is the same
     // This prevents Azure storage library conflicts as the libraries are being updated
 
@@ -98,4 +120,8 @@ class Usage
     internal interface IConfigureThisEndpoint
     {
     }
+
+    public class MyMessage :
+       ICommand
+    { }
 }
