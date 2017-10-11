@@ -69,18 +69,6 @@ namespace Core7.Scanning
             #endregion
         }
 
-        void ScanningUpgrade(EndpointConfiguration endpointConfiguration)
-        {
-            #region 5to6ScanningUpgrade
-
-            var scanner = endpointConfiguration.AssemblyScanner();
-            scanner.ExcludeAssemblies(
-                "BadAssembly1.dll",
-                "BadAssembly2.dll");
-
-            #endregion
-        }
-
         void ScanningApDomainAssemblies(EndpointConfiguration endpointConfiguration)
         {
             #region ScanningApDomainAssemblies
