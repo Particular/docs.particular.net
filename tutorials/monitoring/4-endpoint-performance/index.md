@@ -15,6 +15,48 @@ This fourth lesson guides you through the throughput and processing time metrics
 include: monitoring-sample-solution
 
 
+## Throughput and processing time
+
+Two of the simplest measures of endpoint performance are throughput and processing time. 
+
+Throughput is a measure of how much work the endpoint is doing. It is the rate at which the endpoint is able to process messages from it's input queue. While throughput can reflect endpoint performance, it is also heavily influenced by how much work there is to do. A highly optimized endpoint with only a few messages per second to process will still have a low throughput. 
+
+Processing time is a measure of the time it takes for the endpoint to process a single message. A higher processing time indicates a slower endpoint and a lower processing time indicates a faster endpoint. The amount of work assigned to an endpoint has less of an impact on processing time than it does on throughput. This makes it a better guage for individual endpoint performance.
 
 
+### Sample walkthrough
+
+The following walk through uses the sample solution to simulate changes in throughput and processing time and observe the relationships between them.
+
+**Run the sample solution. Open ServicePulse to the Monitoring tab**
+
+SCREENSHOT - ServicePulse monitoring tab - Sample solution
+
+Look at the Sales endpoint in the ServicePulse monitoring tab. The first column shows the current throughput. By default, the Sales endpoint is receiving one `OrderPlaced` command from the ClientUI endpoint every second. It is taking half a second to process each one. The throughput is hovering around 1 msg / second and the processing time around 500ms.
+
+**In the ClientUI endpoint, toggle High Throughput mode**
+
+SCREENSHOT - ServicePulse monitoring tab - Sample Solution - High Throughput
+
+Look at the Sales endpoint in the ServicePulse monitoring tab again. In High Throughput mode, the Sales endpoint is receiving 200 `OrderPlaced` commands per second. Notice that throughput has gone up but processing time remains steady. Although the Sales endpoint is processing more messages, it still takes 500ms to process each message.
+
+**In the Sales endpoint, increase the time taken to handle each order to 3 seconds**
+
+SCREENSHOT - ServicePulse monitoring tab - Sample Solution - High Throughput - 3s processing time
+
+Now that it takes longer to process each message, the throughput for the endpoint goes down. By dedicating more resources to each individual message, the endpoint is not able to pull messages from it's input queue as fast as before.
+
+Notice the effect that a slower Sales endpoint has on the throughput of the Shipping and Billing endpoints. Each of these endpoints subscribe to the `OrderPlaced` event that is published by Sales. Now that Sales is running slower, the rate at which these events are being published has gone down which results in less work for the subscribing endpoints.
+
+**In the Sales endpoint, turn on resource degradation simulation**
+
+Whenever an endpoint is reliant on an external resource (such as a database, file system, remote web api, etc.), processing time wil be affected by the performance of that resource. As these resources come under heavy load, they can begin to slow down. This simulation shows the effect of a degrading resource on throughput and processing time. For every 5 seconds that the simulation is run, it will take 1 additional second to process each message.
+
+SCREENSHOT - ServicePulse monitoring tab - Sample Solution - High Throughput - Degrading Resource
+
+As the resource starts to slow down, processing time starts to creep up and throughput starts to go down. If you leave this simulation running long enough, message processing will start to time out and fail.
+
+Allow the simulation to run for a while and then turn it off. This represents a resource being restarted after a failure. Notice that processing time and throughput immediately snaps back to it's previous value.
+
+TODO: Demonstrate slow processing time on a single endpoint with multiple message types
 
