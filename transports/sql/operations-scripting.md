@@ -74,7 +74,7 @@ snippet: create-queues-for-endpoint
 snippet: create-queues-for-endpoint-powershell
 
 
-### Using the create create endpoint queues
+### Using the create endpoint queues
 
 
 #### In C&#35;

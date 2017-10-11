@@ -75,7 +75,7 @@ To create all queues for a given endpoint name.
 snippet: rabbit-create-queues-for-endpoint
 
 
-### Using the create create endpoint queues
+### Using the create endpoint queues
 
 snippet: rabbit-create-queues-endpoint-usage
 
