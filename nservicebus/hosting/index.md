@@ -2,7 +2,7 @@
 title: Hosting
 summary: Outlines the various approaches to endpoint hosting
 component: Core
-reviewed: 2016-08-24
+reviewed: 2017-10-12
 tags:
 - Hosting
 redirects:
@@ -130,12 +130,37 @@ Related:
 
 ### Hosting in Azure
 
-There are a variety of ways to host in Azure. Depending on the requirements self-hosting may be an option or, alternatively, a custom Azure host may be required. See [Hosting in Azure Cloud Services](/nservicebus/hosting/cloud-services-host/) for more information.
+Beyond virtual machines Azure provides a number of ways to host an NServiceBus endpoint.
+
+#### Azure Cloud Services
+
+[Azure Cloud services](https://azure.microsoft.com/en-us/services/cloud-services/) is a Platform-as-a-Service (PaaS) option for hosting one or more NServiceBus endpoints. See the following articles and samples for more information:
+
+ * [Hosting in Azure Cloud Services](/nservicebus/hosting/cloud-services-host/)
+ * [Shared Hosting in Azure Cloud Services Sample](/samples/azure/shared-host/)
+
+#### Azure App Services
+[Azure App Services](https://azure.microsoft.com/en-us/services/app-service/) is another PaaS option which provides the capability to web host NServiceBus endpoints. By adding one or more continuously running Web Jobs to your App Service NServiceBus endpoints can also be hosted as a background process. See the following articles and samples for more information:
+
+* [Hosting in a continuously running Web Job](/nservicebus/hosting/azure-appservice-webjob-hosting)
+* [Sending from an ASP.NET MVC Controller](/samples/web/send-from-mvc-controller/)
+
+#### Service Fabric on Azure
+[Service Fabric on Azure](https://azure.microsoft.com/en-us/services/service-fabric/) provides a way to leverage the same highly available and scalable infrastructure that powers many of Azure's own services. See the following articles and samples for more information:
+
+* [Service Fabric Hosting](/nservicebus/hosting/service-fabric-hosting)
+* [Service Fabric Partition Aware Routing](/samples/azure/azure-service-fabric-routing/)
+
+#### Azure Container Services
+[Azure Container Services](https://azure.microsoft.com/en-us/services/container-service/) provides a way to deploy and run Docker containers in Azure. By containerizing your NServiceBus self-hosted endpoint you can take advantage of Docker capabilities in the Azure cloud.
+
+ * [Hosting your endpoints in Docker Linux containers](/samples/hosting/docker/)
+
 
 Related:
 
- * [Shared Hosting in Azure Cloud Services Sample](/samples/azure/shared-host/)
  
+  
  
 ## ILMerging NServiceBus assemblies
 
