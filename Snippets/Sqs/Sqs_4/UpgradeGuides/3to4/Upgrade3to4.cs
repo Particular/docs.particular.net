@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Net;
+using Amazon;
+using Amazon.Runtime;
+using Amazon.S3;
+using Amazon.SQS;
 using NServiceBus;
 
 class Upgrade3to4
@@ -18,21 +23,20 @@ class Upgrade3to4
         #region 3to4_S3BucketForLargeMessages
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        var s3Configuration = transport.S3();
-        s3Configuration.BucketForLargeMessages("bucketname", "keyprefix");
+        var s3Configuration = transport.S3("bucketname", "keyprefix");
 
         #endregion
     }
 
-    void S3Proxy(EndpointConfiguration endpointConfiguration)
+    void S3Proxy(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix, string userName, string password)
     {
         #region 3to4_S3Proxy
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        var s3Configuration = transport.S3();
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
         s3Configuration.ClientFactory(() => new AmazonS3Client(
             new AmazonS3Config { 
-                ProxyCredentials = new NetworkCredentials(userName, password),
+                ProxyCredentials = new NetworkCredential(userName, password),
                 ProxyHost = "127.0.0.1", 
                 ProxyPort = 8888 
             }));
@@ -40,41 +44,39 @@ class Upgrade3to4
         #endregion
     }
 
-    void S3Region(EndpointConfiguration endpointConfiguration)
+    void S3Region(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
     {
         #region 3to4_S3Region
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        // set AWS_REGION environment variable or override client factory
-        var s3Configuration = transport.S3();
+        // set AWS_DEFAULT_REGION environment variable or override client factory
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
         s3Configuration.ClientFactory(() => new AmazonS3Client(
             new AmazonS3Config { 
-                Region = "ap-southeast-2"
+                RegionEndpoint = RegionEndpoint.APSoutheast2
             }));
 
         #endregion
     }
 
-    void S3CredentialSource(EndpointConfiguration endpointConfiguration)
+    void S3CredentialSource(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
     {
         #region 3to4_S3CredentialSourceManual
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        var s3Configuration = transport.S3();
-        // SqsCredentialSource.InstanceProfile
-        s3Configuration.ClientFactory(() => new AmazonS3Client(new InstanceProfileAWSCredentials()));
-        // SqsCredentialSource.EnvironmentVariables
-        s3Configuration.ClientFactory(() => new AmazonS3Client(new EnvironmentVariablesAWSCredentials()));
+        
+        // picks up credentials as specified by the Amazon SDK
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
 
         #endregion
     }
 
-    void S3CredentialSourceManual(EndpointConfiguration endpointConfiguration)
+    void S3CredentialSourceManual(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
     {
         #region 3to4_S3CredentialSourceManual
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        var s3Configuration = transport.S3();
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
         // SqsCredentialSource.InstanceProfile
         s3Configuration.ClientFactory(() => new AmazonS3Client(new InstanceProfileAWSCredentials()));
         // SqsCredentialSource.EnvironmentVariables
@@ -93,7 +95,7 @@ class Upgrade3to4
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         transport.ClientFactory(() => new AmazonSQSClient(
             new AmazonSQSConfig { 
-                ProxyCredentials = new NetworkCredentials(userName, password),
+                ProxyCredentials = new NetworkCredential(userName, password),
                 ProxyHost = "127.0.0.1", 
                 ProxyPort = 8888 
             }));
@@ -106,10 +108,10 @@ class Upgrade3to4
         #region 3to4_Region
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        // set AWS_REGION environment variable or override client factory
+        // set AWS_DEFAULT_REGION environment variable or override client factory
         transport.ClientFactory(() => new AmazonSQSClient(
-            new AmazonSQSConfig { 
-                Region = "ap-southeast-2"
+            new AmazonSQSConfig {
+                RegionEndpoint = RegionEndpoint.APSoutheast2
             }));
 
         #endregion
