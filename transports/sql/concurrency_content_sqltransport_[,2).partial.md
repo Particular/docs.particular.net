@@ -2,4 +2,4 @@ Each endpoint running SQL Server transport spins up a fixed number of threads (c
 
 By default, there are 4 input queues created for every endpoint (apart from the main one, there are two for handling timeouts and one for the retries). As a consequence, if `MaximumConcurrencyLevel` is set to 10, there are 40 threads running and constantly polling the database.
 
-Read more information about [tuning endpoint message processing](/nservicebus/operations/tuning?version=core_4).
+Read more information about [tuning endpoint message processing](/nservicebus/operations/tuning.md?version=core_4).
