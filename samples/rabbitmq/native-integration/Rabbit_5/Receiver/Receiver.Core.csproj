@@ -1,14 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="5.0.0-*" />
-    <PackageReference Include="RabbitMQ.Client" Version="4.*" />
+    <PackageReference Include="RabbitMQ.Client" Version="5.*" />
   </ItemGroup>
+
 </Project>
