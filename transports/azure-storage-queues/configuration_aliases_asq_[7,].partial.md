@@ -10,4 +10,4 @@ This feature can be enabled when configuring the `AzureStorageQueueTransport`:
 
 snippet: AzureStorageQueueUseAccountAliasesInsteadOfConnectionStrings
 
-See also [Using aliases instead of connection strings](/transports/azure-storage-queues/multi-storageaccount-support.md) in respect to multinamespace support.
+See also [Using aliases instead of connection strings](/transports/azure-storage-queues/multi-storageaccount-support.md#cross-namespace-routing-using-aliases-instead-of-connection-strings) in respect to multinamespace support.
