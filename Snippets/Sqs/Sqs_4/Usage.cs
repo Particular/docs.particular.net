@@ -38,6 +38,17 @@ class Usage
         #endregion
     }
 
+    void S3CredentialSource(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
+    {
+        #region S3CredentialSource
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
+        s3Configuration.ClientFactory(() => new AmazonS3Client(new InstanceProfileAWSCredentials()));
+
+        #endregion
+    }
+
     void MaxTTL(EndpointConfiguration endpointConfiguration)
     {
         #region MaxTTL
@@ -63,9 +74,23 @@ class Usage
         #region Region
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        // set AWS_DEFAULT_REGION environment variable or override client factory
         transport.ClientFactory(() => new AmazonSQSClient(
             new AmazonSQSConfig { 
+                RegionEndpoint = RegionEndpoint.APSoutheast2
+            }));
+
+        #endregion
+    }
+
+    void S3Region(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
+    {
+        #region S3Region
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
+        s3Configuration.ClientFactory(() => new AmazonS3Client(
+            new AmazonS3Config
+            {
                 RegionEndpoint = RegionEndpoint.APSoutheast2
             }));
 
@@ -115,6 +140,23 @@ class Usage
                 ProxyCredentials = new NetworkCredential(userName, password),
                 ProxyHost = "127.0.0.1", 
                 ProxyPort = 8888 
+            }));
+
+        #endregion
+    }
+
+    void S3Proxy(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix, string userName, string password)
+    {
+        #region S3Proxy
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
+        s3Configuration.ClientFactory(() => new AmazonS3Client(
+            new AmazonS3Config
+            {
+                ProxyCredentials = new NetworkCredential(userName, password),
+                ProxyHost = "127.0.0.1",
+                ProxyPort = 8888
             }));
 
         #endregion
