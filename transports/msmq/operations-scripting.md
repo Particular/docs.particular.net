@@ -13,6 +13,8 @@ Example code and scripts to facilitate deployment and operational actions agains
 
 These examples use the [System.Messaging.dll](https://msdn.microsoft.com/en-us/library/System.Messaging.aspx) and [System.Transactions.dll](https://msdn.microsoft.com/en-us/library/system.transactions.aspx) assemblies.
 
+INFO: When using the C# code samples, make sure to add the proper includes for both System.Messaging and System.Transactions in the program that's using these functions. When using the PowerShell scripts, include these assemblies by calling `Add-Type` for these assemblies in the script. 
+
 
 ## Native Send
 
