@@ -28,9 +28,12 @@ class Upgrade3to4
         #endregion
     }
 
-    void S3Proxy(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix, string userName, string password)
+    void S3Proxy(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
     {
         #region 3to4_S3Proxy
+
+        var userName = Environment.GetEnvironmentVariable("NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_USERNAME");
+        var password = Environment.GetEnvironmentVariable("NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_PASSWORD");
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         var s3Configuration = transport.S3(bucketName, keyPrefix);
@@ -49,7 +52,6 @@ class Upgrade3to4
         #region 3to4_S3Region
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        // set AWS_DEFAULT_REGION environment variable or override client factory
         var s3Configuration = transport.S3(bucketName, keyPrefix);
         s3Configuration.ClientFactory(() => new AmazonS3Client(
             new AmazonS3Config { 
@@ -61,7 +63,7 @@ class Upgrade3to4
 
     void S3CredentialSource(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
     {
-        #region 3to4_S3CredentialSourceManual
+        #region 3to4_S3CredentialSource
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         
@@ -79,7 +81,7 @@ class Upgrade3to4
         var s3Configuration = transport.S3(bucketName, keyPrefix);
         // SqsCredentialSource.InstanceProfile
         s3Configuration.ClientFactory(() => new AmazonS3Client(new InstanceProfileAWSCredentials()));
-        // SqsCredentialSource.EnvironmentVariables
+        // or SqsCredentialSource.EnvironmentVariables
         s3Configuration.ClientFactory(() => new AmazonS3Client(new EnvironmentVariablesAWSCredentials()));
 
         #endregion
@@ -108,7 +110,6 @@ class Upgrade3to4
         #region 3to4_Region
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        // set AWS_DEFAULT_REGION environment variable or override client factory
         transport.ClientFactory(() => new AmazonSQSClient(
             new AmazonSQSConfig {
                 RegionEndpoint = RegionEndpoint.APSoutheast2
