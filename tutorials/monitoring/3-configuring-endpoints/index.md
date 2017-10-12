@@ -14,10 +14,16 @@ include: monitoring-sample-solution
 
 This third lesson guides you through setting up all of the endpoints in your system to be monitored by the Particular Software Platform.
 
+NOTE: If you are using the sample monitoring solution, each endpoint contains placeholder comments in it's `Program.cs` for each of the snippets presented below.
+
 
 ## Configure endpoints
 
-In order to be monitored by the Particular Service Platform, each endpoint needs to be configured to send data to three different queues: error, audit, and monitoring. It is recommended to go through this entire process for a single endpoint and ensure that it is working before continuing on to the next endpoint.
+In order to be monitored by the Particular Service Platform, each endpoint needs to be configured to send data to three different queues: error, audit, and monitoring.
+
+It is recommended to go through this entire process for a single endpoint and ensure that it is working before continuing on to the next endpoint.
+
+NOTE: If you are setting up the sample monitoring solution, start with the Sales endpoint. 
 
 
 ### Error

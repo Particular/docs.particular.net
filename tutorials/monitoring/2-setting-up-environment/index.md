@@ -22,7 +22,7 @@ In order to configure an environment for monitoring with the Particular Service 
 
 ### Install ServiceControl
 
-ServiceControl is a suite of back-end tools that collect useful information about your running system. The main installer includes a desktop utility called the ServiceControl Managemeny Utility which can be used to create an manage ServiceControl and Monitoring instances.
+ServiceControl is a suite of back-end tools that collect useful information about your running system. The main installer includes a desktop utility called the ServiceControl Management Utility which can be used to create and manage ServiceControl and Monitoring instances.
 
 Download and run the latest ServiceControl installer.
 
@@ -39,6 +39,8 @@ In the ServiceControl Management Utility, click **+ NEW INSTANCE** and select **
 
 SCREENSHOT - SMCU Main Page with Drop-down opened and Add ServiceControl instance selected
 
+NOTE: Creating and managing ServiceControl instances requires a license file. If you do not already have a license then the ServiceControl Management Utility will generate a trial license for you. If you have already had a trial license and it has expired, then follow the on-screen prompts to extend your trial license. It is a short form and your new license file will get sent to your email address. See (/servicecontrol/license.md) for information about how to install your trial license.
+
 Under TRANSPORT CONFIGURATION select the transport that your NServiceBus system runs on. Depending on the transport you may be required to add an additional connection string.
 
 NOTE: If you are using the sample solution from this tutorial, select SQLServer. The connection string will be `Server=.\SQLEXPRESS;Database=MonitoringSample; Integrated Security=True`
@@ -53,7 +55,7 @@ SCREENSHOT - SCMU Main Page with ServiceControl instance installed and running
 
 The listing for the ServiceControl instance includes a URL link. This URL will be needed when installing ServicePulse below.
 
-NOTE: Creating the ServiceControl instance will also create the audit and error queues if they did not already exist. By default these are called audit and error respectively.
+NOTE: Creating the ServiceControl instance will also create the audit and error queues if they did not already exist. By default these are called _audit_ and _error_ respectively.
 
 
 ### Create Monitoring Instance
@@ -74,7 +76,7 @@ SCREENSHOT - SCMU Main Page with Monitoring instance installed and running
 
 The listing for the Monitoring instance includes a URL link. This URL will be needed when installing ServicePulse below.
 
-NOTE: Creating the Monitoring instance will also create the monitoring queue if it did not already exist. By default this queue is called Particular.Monitoring. 
+NOTE: Creating the Monitoring instance will also create the monitoring queue if it did not already exist. By default this queue is called _Particular.Monitoring_. 
 
 
 

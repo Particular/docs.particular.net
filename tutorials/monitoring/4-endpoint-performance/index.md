@@ -10,7 +10,7 @@ extensions:
 
 include: monitoring-intro-paragraph
 
-This fourth lesson guides you through the throughput and processing time metrics and teaches you how to use those metrics to interpret the performance of an individual endpoint. Examples are shown using the sample monitoring solution.
+This fourth lesson guides you through the throughput and processing time metrics and teaches you how to use those metrics to interpret the performance of an individual endpoint. The walkthrough uses the sample monitoring solution from [Lesson 3: Configuring endpoints](/tutorials/monitoring/3-configuring-endpoints/) to illustrate these concepts.
 
 include: monitoring-sample-solution
 
@@ -21,7 +21,7 @@ Two of the simplest measures of endpoint performance are throughput and processi
 
 Throughput is a measure of how much work the endpoint is doing. It is the rate at which the endpoint is able to process messages from it's input queue. While throughput can reflect endpoint performance, it is also heavily influenced by how much work there is to do. A highly optimized endpoint with only a few messages per second to process will still have a low throughput. 
 
-Processing time is a measure of the time it takes for the endpoint to process a single message. A higher processing time indicates a slower endpoint and a lower processing time indicates a faster endpoint. The amount of work assigned to an endpoint has less of an impact on processing time than it does on throughput. This makes it a better guage for individual endpoint performance.
+Processing time is the time it takes for the endpoint to process a single message. A higher processing time indicates a slower endpoint and a lower processing time indicates a faster endpoint. The amount of work assigned to an endpoint has less of an impact on processing time than it does on throughput. This makes it a better guage for individual endpoint performance.
 
 
 ### Sample walkthrough
