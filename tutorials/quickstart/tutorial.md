@@ -21,11 +21,11 @@ downloadbutton
 
 The solution contains four projects. The **ClientUI**, **Sales**, and **Billing** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales** and **Billing** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as POCO class files.
 
-![Solution Explorer view](solution-explorer.png)
+![Solution Explorer view](solution-explorer.png "width=240")
 
 As shown in the diagram below, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an **OrderPlaced** event using the publish/subscribe pattern, which will be received by the **Billing** endpoint.
 
-![Initial Solution](before.svg)
+![Initial Solution](before.svg "width=680")
 
 The solution mimics a real-life retail system, where [the command](/nservicebus/messaging/messages-events-commands.md#command) to place an order is sent as a result of a customer interaction, and the processing occurs in the background. Publishing [an event](/nservicebus/messaging/messages-events-commands.md#event) allows us to isolate the code to bill the credit card from the code to place the order, reducing coupling and making the system easier to maintain over the long term. Later in this tutorial, we'll see how to add a second subscriber in the **Shipping** endpoint which would begin the process of shipping the order.
 
@@ -119,7 +119,7 @@ As mentioned previously, publishing events using the [Publish-Subscribe pattern]
 
 As shown in the diagram, we'll be adding a new messaging endpoint called **Shipping** that will also subscribe to the `OrderPlaced` event.
 
-![Completed Solution](after.svg)
+![Completed Solution](after.svg "width=680")
 
 
 ### Create a new endpoint
@@ -128,7 +128,7 @@ First we'll create the **Shipping** project and set up its dependencies.
 
 To start, in the **Solution Explorer** window, right-click the **RetailDemo** solution and select **Add** > **New Project**.
 
-![New Project Dialog](new-project.png)
+![New Project Dialog](new-project.png "width=680")
 
 1. In the **Add New Project** dialog, be sure to select at least **.NET Framework 4.6.1** in the dropdown menu at the top of the window for access to the `Task.CompletedTask` API.
 1. Select a new **Console App (.NET Framework)** project (or just **Console Application**).
