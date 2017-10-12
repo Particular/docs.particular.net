@@ -11,4 +11,4 @@ SQL Server transport uses an adaptive concurrency model. The transport adapts th
 
 If the number of consecutive successful polls is greater than an internal threshold, a new polling thread is started (provided the `MaximumConcurrencyLevel` is not exceeded). On the other hand, if the number of consecutive failed polls is greater than a threshold, the thread dies.
 
-Read more information about [tuning endpoint message processing](/nservicebus/operations/tuning.md?version=core_5).
+Read more information about [tuning endpoint message processing](/nservicebus/operations/tuning.md).
