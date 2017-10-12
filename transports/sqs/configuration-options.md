@@ -13,7 +13,7 @@ partial: maxReceiveMessageBatchSize
 
 partial: source
 
-parital: clientfactory
+partial: clientfactory
 
 ## MaxTTLDays
 
