@@ -119,20 +119,6 @@ class Usage
         #endregion
     }
 
-    void MultipleAccountAliasesInsteadOfConnectionStrings2(EndpointConfiguration endpointConfiguration)
-    {
-        #region AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings2
-
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.ConnectionString("account_B_connection_string");
-        transport.UseAccountAliasesInsteadOfConnectionStrings();
-        transport.DefaultAccountAlias("account_B");
-        var accountRouting = transport.AccountRouting();
-        accountRouting.AddAccount("account_A", "account_A_connection_string");
-
-        #endregion
-    }
-
     void UseSha1(EndpointConfiguration endpointConfiguration)
     {
         #region AzureStorageQueueSanitization
