@@ -41,7 +41,7 @@ While an endpoint can only read from a single Azure storage account, it can send
 
 ## Scale Units
 
-Scaleout and splitting endpoints over multiple storage accounts works to a certain extent, but it cannot be applied infinitely while expecting throughput to increase accordingly. Only so much throughput from a single resource or group of resources is possible.
+Scaleout and splitting endpoints over multiple storage accounts works to a certain extent, but it cannot be applied infinitely while expecting throughput to increase linearly. Only so much throughput from a single resource or group of resources is possible.
 
 A suitable techniques to overcome this problem includes resource partitioning and use of scale units. A scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput, create more scale units. Scale units do not share resources.
 
