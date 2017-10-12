@@ -4,7 +4,7 @@ component: raven
 tags:
  - Persistence
  - Subscription
-reviewed: 2017-08-21
+reviewed: 2017-10-12
 redirects:
  - nservicebus/ravendb/subscription-versioning
 ---
