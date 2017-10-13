@@ -21,10 +21,11 @@ downloadbutton
 
 The solution contains four projects. The **ClientUI**, **Sales**, and **Billing** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales** and **Billing** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as POCO class files.
 
+![Solution Explorer view](solution-explorer.png "width=240")
 
-As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an **OrderPlaced** event using the publish/subscribe pattern, which will be received by the **Billing** endpoint.
+As shown in the diagram below, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an **OrderPlaced** event using the publish/subscribe pattern, which will be received by the **Billing** endpoint.
 
-![Initial Solution](before.svg)
+![Initial Solution](before.svg "width=680")
 
 The solution mimics a real-life retail system, where [the command](/nservicebus/messaging/messages-events-commands.md#command) to place an order is sent as a result of a customer interaction, and the processing occurs in the background. Publishing [an event](/nservicebus/messaging/messages-events-commands.md#event) allows us to isolate the code to bill the credit card from the code to place the order, reducing coupling and making the system easier to maintain over the long term. Later in this tutorial, we'll see how to add a second subscriber in the **Shipping** endpoint which would begin the process of shipping the order.
 
@@ -32,6 +33,8 @@ The solution mimics a real-life retail system, where [the command](/nservicebus/
 ## Running the solution
 
 The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when you run the solution it should open three console applications, one for each messaging endpoint.
+
+![3 console applications, one for each endpoint](3-console-windows.png)
 
 In the **ClientUI** application, press `P` to place an order, and watch what happens in other windows. 
 
@@ -49,6 +52,8 @@ INFO  Billing.OrderPlacedHandler Billing has received OrderPlaced, OrderId = 9b1
 
 Press the `P` key repeatedly in the **ClientUI** window and watch the messages flow between endpoints.
 
+![Messages flowing between endpoints](messages-flowing.png)
+
 
 ## Reliability
 
@@ -60,9 +65,14 @@ See how that is achieved by following these steps:
 1. Close the **Billing** window.
 1. Send several messages by pressing `P` in the **ClientUI** window.
 1. Notice how messages are flowing from **ClientUI** to **Sales**. **Sales** is still publishing messages, even though **Billing** can't process them at the moment.
-1. Restart the **Billing** application by right-clicking the **Billing** project in Visual Studio's Solution Explorer, then selecting **Debug** > **Start new instance**.
+
+![ClientUI and Sales processing messages while Billing is shut down](billing-shut-down.png)
+
+5. Restart the **Billing** application by right-clicking the **Billing** project in Visual Studio's Solution Explorer, then selecting **Debug** > **Start new instance**.
 
 When the **Billing** endpoint starts, it will pick up messages published earlier by **Sales** and will complete the process for orders that were waiting to be billed.
+
+![Billing endpoint processing through backlog](billing-processing-backlog.png)
 
 Let's consider more carefully what happened. First, we had two processes communicating with each other with very little ceremony. The communication didn't break down even when the **Billing** service was unavailable. If we had implemented **Billing** as a REST endpoint, the **Sales** service would have thrown an HTTP exception when it was unable to communicate with it and *that request would have been lost*. By using NServiceBus we get a guarantee that even if message processing endpoints are temporarily unavailable, every message will eventually get delivered and processed.
 
@@ -83,7 +93,9 @@ snippet: ThrowTransientException
 3. Start the solution without debugging (Ctrl+F5), or alternatively, start the solution and then select **Detach All** in the **Debug** menu. This will make it easier to observe exceptions occurring without being interrupted by Visual Studio's Exception Assistant.
 3. In the **ClientUI** window, send one message at a time by pressing `P`, and watch the **Sales** window.
 
-As you will see in the **Sales** window, 80% of the messages will go through as normal, but when an exception occurs, the output will be different:
+![Transient exceptions](transient-exceptions.png)
+
+As you can see in the **Sales** window, 80% of the messages will go through as normal, but when an exception occurs, the output will be different. The first attempt of `PlaceOrderHandler` will throw and log an exception, but then in the very next log entry, processing will be retried and likely succeed.
 
 ```
 INFO  NServiceBus.RecoverabilityExecutor Immediate Retry is going to retry message '43400b29-c235-471f-ab4f-a7760145ea88' because of an exception:
@@ -107,17 +119,24 @@ As mentioned previously, publishing events using the [Publish-Subscribe pattern]
 
 As shown in the diagram, we'll be adding a new messaging endpoint called **Shipping** that will also subscribe to the `OrderPlaced` event.
 
-![Completed Solution](after.svg)
+![Completed Solution](after.svg "width=680")
 
 
 ### Create a new endpoint
 
-First we'll create the **Shipping** project and set up its dependencies:
+First we'll create the **Shipping** project and set up its dependencies.
 
-1. In the **Solution Explorer** window, right-click the **RetailDemo** solution and select **Add** > **New Project**.
+To start, in the **Solution Explorer** window, right-click the **RetailDemo** solution and select **Add** > **New Project**.
+
+![New Project Dialog](new-project.png "width=680")
+
 1. In the **Add New Project** dialog, be sure to select at least **.NET Framework 4.6.1** in the dropdown menu at the top of the window for access to the `Task.CompletedTask` API.
-1. Select a new **Console App (.NET Framework)** project (or just **Console Application**) and name it **Shipping**.
+1. Select a new **Console App (.NET Framework)** project (or just **Console Application**).
+1. Name the project **Shipping**.
 1. Click **OK** to create the project and add it to the solution.
+
+Now, we need to add references to the NServiceBus package and Messages project.
+
 1. In the newly created **Shipping** project, add the `NServiceBus` NuGet package, which is already present in the other projects in the solution. In the Package Manager Console window type:
     ```
     Install-Package NServiceBus -ProjectName Shipping
@@ -157,6 +176,8 @@ snippet: OrderPlacedHandler
 ### Run the updated solution
 
 Now run the solution, and assuming you remembered to [update the startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), a window for the **Shipping** endpoint will open in addition to the other three.
+
+![Addition of Shipping endpoint](add-shipping-endpoint.png)
 
 As you place orders by pressing `P` in the **ClientUI** window, you will see the **Shipping** endpoint reacting to `OrderPlaced` events:
 
