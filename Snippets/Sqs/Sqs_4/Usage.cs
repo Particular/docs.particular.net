@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Net;
+using Amazon;
+using Amazon.Runtime;
+using Amazon.S3;
+using Amazon.SQS;
 using NServiceBus;
 
 class Usage
@@ -8,8 +13,7 @@ class Usage
         #region SqsTransport
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        transport.Region("ap-southeast-2");
-        transport.S3BucketForLargeMessages("myBucketName", "my/key/prefix");
+        var s3Configuration = transport.S3("myBucketName", "my/key/prefix");
 
         #endregion
     }
@@ -29,7 +33,18 @@ class Usage
         #region CredentialSource
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        transport.CredentialSource(SqsCredentialSource.InstanceProfile);
+        transport.ClientFactory(() => new AmazonSQSClient(new InstanceProfileAWSCredentials()));
+
+        #endregion
+    }
+
+    void S3CredentialSource(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
+    {
+        #region S3CredentialSource
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
+        s3Configuration.ClientFactory(() => new AmazonS3Client(new InstanceProfileAWSCredentials()));
 
         #endregion
     }
@@ -59,31 +74,90 @@ class Usage
         #region Region
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        transport.Region("ap-southeast-2");
+        transport.ClientFactory(() => new AmazonSQSClient(
+            new AmazonSQSConfig { 
+                RegionEndpoint = RegionEndpoint.APSoutheast2
+            }));
 
         #endregion
     }
+
+    void S3Region(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
+    {
+        #region S3Region
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
+        s3Configuration.ClientFactory(() => new AmazonS3Client(
+            new AmazonS3Config
+            {
+                RegionEndpoint = RegionEndpoint.APSoutheast2
+            }));
+
+        #endregion
+    }
+
+    void ClientFactory(EndpointConfiguration endpointConfiguration)
+    {
+        #region ClientFactory
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        transport.ClientFactory(() => new AmazonSQSClient(new AmazonSQSConfig()));
+
+        #endregion
+    }    
 
     void S3BucketForLargeMessages(EndpointConfiguration endpointConfiguration)
     {
         #region S3BucketForLargeMessages
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        transport.S3BucketForLargeMessages(
-            s3BucketForLargeMessages: "ap-southeast-2",
-            s3KeyPrefix: "my/sample/path");
+        var s3Configuration = transport.S3(
+            bucketForLargeMessages: "ap-southeast-2",
+            keyPrefix: "my/sample/path");
 
         #endregion
     }
 
-    void Proxy(EndpointConfiguration endpointConfiguration)
+    void S3ClientFactory(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
+    {
+        #region S3ClientFactory
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
+        s3Configuration.ClientFactory(() => new AmazonS3Client(new AmazonS3Config()));
+
+        #endregion
+    }    
+
+    void Proxy(EndpointConfiguration endpointConfiguration, string userName, string password)
     {
         #region Proxy
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        transport.Proxy(
-            proxyHost: "127.0.0.1",
-            proxyPort: 8888);
+        transport.ClientFactory(() => new AmazonSQSClient(
+            new AmazonSQSConfig { 
+                ProxyCredentials = new NetworkCredential(userName, password),
+                ProxyHost = "127.0.0.1", 
+                ProxyPort = 8888 
+            }));
+
+        #endregion
+    }
+
+    void S3Proxy(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix, string userName, string password)
+    {
+        #region S3Proxy
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
+        s3Configuration.ClientFactory(() => new AmazonS3Client(
+            new AmazonS3Config
+            {
+                ProxyCredentials = new NetworkCredential(userName, password),
+                ProxyHost = "127.0.0.1",
+                ProxyPort = 8888
+            }));
 
         #endregion
     }

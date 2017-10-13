@@ -17,8 +17,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.Simple");
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        transport.Region("us-east-1");
-        transport.S3BucketForLargeMessages("bucketname", "my/key/prefix");
+        transport.S3("bucketname", "my/key/prefix");
 
         #endregion
         endpointConfiguration.SendFailedMessagesTo("error");

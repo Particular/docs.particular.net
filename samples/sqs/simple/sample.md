@@ -21,8 +21,11 @@ Add the [AWS Access Key ID and AWS Secret Access Key](http://docs.aws.amazon.com
 
  * Access Key ID in `AWS_ACCESS_KEY_ID`
  * Secret Access Key in `AWS_SECRET_ACCESS_KEY`
+ * Default Region in `AWS_DEFAULT_REGION`
 
 See also [AWS Account Identifiers](http://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html), [Managing Access Keys for a AWS Account](http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html), and [IAM Security Credentials](https://console.aws.amazon.com/iam/home#/security_credential).
+
+See also [AWS Regions](http://docs.aws.amazon.com/general/latest/gr/rande.html) for a list of available regions.
 
 
 ### SQS
@@ -41,7 +44,7 @@ A [Amazon S3](https://console.aws.amazon.com/s3) bucket is required to leverage 
 
 ## Endpoint Configuration
 
-Configure the endpoint to use the [SQS Transport](/transports/sqs/) and set the appropriate [AWS Region](http://docs.aws.amazon.com/general/latest/gr/rande.html).
+Configure the endpoint to use the [SQS Transport](/transports/sqs/).
 
 snippet: ConfigureEndpoint
 
