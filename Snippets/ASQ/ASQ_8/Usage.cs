@@ -42,6 +42,69 @@ class Usage
         #endregion
     }
 
+    void SendToMulitpleAccountUsingConnectionSTring(IEndpointInstance endpointInstance)
+    {
+        #region storage_account_routing_send_options_full_connectionstring
+
+        endpointInstance.Send(
+            destination: "sales@DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];",
+            message: new MyMessage());
+
+        #endregion
+    }
+
+    void SendToMulitpleAccountUsingAlias(IEndpointInstance endpointInstance)
+    {
+        #region storage_account_routing_send_options_alias
+
+        endpointInstance.Send(
+            destination: "sales@accountName",
+            message: new MyMessage());
+
+        #endregion
+    }
+
+    void RegisterEndpoint(EndpointConfiguration configuration)
+    {
+        #region storage_account_routing_registered_endpoint
+
+        var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
+        var routing = transportConfig
+                            .ConnectionString("connectionString")
+                            .AccountRouting();
+        var anotherAccount = routing.AddAccount("AnotherAccountName","anotherConnectionString");
+        anotherAccount.RegisteredEndpoints.Add("Receiver");
+
+        transportConfig.Routing().RouteToEndpoint(typeof(MyMessage), "Receiver");
+
+        #endregion
+    }
+
+    void SendToMulitpleAccountUsingRegisterdEndpoint(IEndpointInstance endpointInstance)
+    {
+        #region storage_account_routing_send_registered_endpoint
+
+        endpointInstance.Send(message: new MyMessage());
+
+        #endregion
+    }
+
+    void RegisterPublisher(EndpointConfiguration configuration)
+    {
+        #region storage_account_routing_registered_publisher
+
+        var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
+        var routing = transportConfig
+                            .ConnectionString("anotherConnectionString")
+                            .AccountRouting();
+        var anotherAccount = routing.AddAccount("PublisherAccountName", "connectionString");
+        anotherAccount.RegisteredEndpoints.Add("Publisher");
+
+        transportConfig.Routing().RegisterPublisher(typeof(MyEvent), "Publisher");
+
+        #endregion
+    }
+
     void MultipleAccountAliasesInsteadOfConnectionStrings1(EndpointConfiguration endpointConfiguration)
     {
         #region AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
@@ -52,20 +115,6 @@ class Usage
         transport.DefaultAccountAlias("account_A");
         var accountRouting = transport.AccountRouting();
         accountRouting.AddAccount("account_B", "account_B_connection_string");
-
-        #endregion
-    }
-
-    void MultipleAccountAliasesInsteadOfConnectionStrings2(EndpointConfiguration endpointConfiguration)
-    {
-        #region AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings2
-
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.ConnectionString("account_B_connection_string");
-        transport.UseAccountAliasesInsteadOfConnectionStrings();
-        transport.DefaultAccountAlias("account_B");
-        var accountRouting = transport.AccountRouting();
-        accountRouting.AddAccount("account_A", "account_A_connection_string");
 
         #endregion
     }
@@ -109,4 +158,13 @@ class Usage
     internal interface IConfigureThisEndpoint
     {
     }
+
+    public class MyMessage :
+        ICommand
+    { }
+
+    public class MyEvent :
+        IEvent
+    { }
+
 }

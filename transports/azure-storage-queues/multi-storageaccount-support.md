@@ -2,7 +2,7 @@
 title: Multiple storage accounts
 summary: Use multiple Azure storage accounts for scale out
 component: ASQ
-reviewed: 2016-10-26
+reviewed: 2017-10-13
 tags:
 - Azure
 - Performance
@@ -15,16 +15,17 @@ related:
  - transports/azure-storage-queues/configuration
 ---
 
-Endpoints running on Azure Storage Queues transport using a single storage account is subject to potential throttling once the maximum number of messages is written to the storage account. To overcome this limitation, use multiple storage accounts. To better understand scale out options with storage accounts, it is necessary understand Azure storage account scalability and performance.
+Endpoints running on the Azure Storage Queues transport using a single storage account are subject to potential throttling once the maximum number of concurrent requests to the storage account is reached. Multiple storage accounts can be used to overcome this limitation. To better understand scale out options with storage accounts, it is advised to first read carefully the [Azure storage account scalability and performance targets](https://docs.microsoft.com/en-us/azure/storage/common/storage-scalability-targets) article.
 
 
 ## Azure Storage Scalability and Performance
 
-All messages in a queue are accessed via a single queue partition. A single queue is targeted to process up to 2,000 messages per second. Scalability targets for storage accounts can vary based on region with up to 20,000 messages per second (throughput achieved using an object size of 1KB). This is subject to change and should be periodically verified using [Azure Storage Scalability and Performance Targets](https://docs.microsoft.com/en-us/azure/storage/storage-scalability-targets).
+All messages in a queue are accessed via a single queue partition. A single queue is targeted to process up to 2,000 messages per second. Scalability targets for storage accounts can vary based on the region, reaching up to 20,000 messages per second (throughput achieved using an object size of 1KB). This is subject to change and should be periodically verified.
 
-When the number of messages exceeds this quota, storage service responds with an [HTTP 503 Server Busy message](https://docs.microsoft.com/en-us/azure/media-services/media-services-encoding-error-codes). This message indicates that the platform is throttling the queue. If a single storage account is unable to handle an application's request rate, an application could also leverage several different storage accounts using a storage account per endpoint. This ensures application scalability without choking a single storage account. This also allows discrete control over queue processing, based on the sensitivity and priority of the messages that are handled by different endpoints. High priority endpoints could have more workers dedicated to them than low priority endpoints.
+When the number of messages per second exceeds this quota, the storage service responds with an [HTTP 503 Server Busy message](https://docs.microsoft.com/en-us/azure/media-services/media-services-encoding-error-codes). This message indicates that the platform is throttling the queue. If a single storage account is unable to handle an application's request rate, the application could leverage several different storage accounts using a storage account per endpoint. This ensures application scalability without saturating a single storage account. This also gives a discrete control over queue processing, based on the sensitivity and priority of the messages that are handled by different endpoints. For example, high priority endpoints could have more dedicated workers than low priority endpoints.
 
-NOTE: Using multiple storage accounts is currently NOT compatible with ServiceControl. A [ServiceControl transport adapter](/servicecontrol/transport-adapter/), or multiple installations of ServiceControl, is required in order to leverage both.
+NOTE: Using multiple storage accounts is currently NOT compatible with ServiceControl, it is necessary to use [ServiceControl transport adapter](/servicecontrol/transport-adapter/) or multiple installations of ServiceControl for monitoring in such situation.
+
 
 ## Scaling Out
 
@@ -32,51 +33,38 @@ A typical implementation uses a single storage account to send and receive messa
 
 ![Single storage account](azure01.png "width=500")
 
-When the number of instances with endpoints are increased, all endpoints continue reading and writing to the same storage account. Once the limit of 2,000 message/sec per queue or 20,000 message/sec per storage account is reached, Azure throttles the message throughput.
+When the number of instances of endpoints is increased, all endpoints continue reading and writing to the same storage account. Once the limit of 2,000 message/sec per queue or 20,000 message/sec per storage account is reached, Azure storage service throttles messages throughput.
 
 ![Single storage account with scaled out endpoints](azure02.png "width=500")
 
-While an endpoint can only read from a single Azure storage account, it can send messages to multiple storage accounts. Configure this by specifying a connection string when message mapping. Each endpoint will have its own storage account to overcome the Azure storage account throughput limitation of 20,000 messages/sec.
-
-Example: Endpoint 1 sends messages to Endpoint 2. Endpoint 1 defines message mapping with a connection string associated with the Endpoint 2 Azure storage account. The same idea applies to Endpoint 1 sending messages to Endpoint 2.
-
-Message mapping for Endpoint 1:
-
-```xml
-<MessageEndpointMappings>
-  <add Messages="Contracts"
-       Namespace="Contracts.Commands.ForEndpoint2"
-       Endpoint="Endpoint2@connection_string_for_endpoint_2" />
-</MessageEndpointMappings>
-```
-
-Message mapping for Endpoint 2:
-
-```xml
-<MessageEndpointMappings>
-  <add Messages="Contracts"
-       Namespace="Contracts.Commands.ForEndpoint1"
-       Endpoint="Endpoint1@connection_string_for_endpoint_1" />
-</MessageEndpointMappings>
-```
-
-Each endpoint uses its own Azure storage account, thereby increasing message throughput.
-
+While an endpoint can only read from a single Azure storage account, it can send messages to multiple storage accounts. This way one can set up a solution using multiple storage accounts where each endpoint uses its own Azure storage account, thereby increasing message throughput.
 
 ![Scale out with multiple storage accounts](azure03.png "width=500")
 
 
-partial: aliases
-
-
 ## Scale Units
 
-Scaleout works to a certain extent, but it cannot be applied infinitely while expecting throughput to increase accordingly. Only so much throughput from a single resource or group of resources grouped together is possible.
+Scaleout and splitting endpoints over multiple storage accounts works to a certain extent, but it cannot be applied infinitely while expecting throughput to increase linearly. Each resource and group of resources has certain throughput limitations.
 
-Suitable techniques in the cloud include resource partitioning and use of scale units. A scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput, create more scale units. Scale units do not share resources.
+A suitable technique to overcome this problem includes resource partitioning and usage of scale units. A scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput more scale units can be created. Scale units do not share resources.
 
 An example of a partitioned application with a different number of deployed scale units is an application deployed in various regions.
 
 ![Scale units](azure04.png "width=500")
 
-NOTE: Use real Azure storage accounts because the Azure storage emulator only supports a single fixed account named `devstoreaccount1`.
+NOTE: Use real Azure storage accounts. Do not use Azure storage emulator as it only supports a single fixed account named devstoreaccount1.".
+
+
+## Cross namespace routing
+
+NServiceBus allows to specify destination addresses using an `"endpoint@physicallocation"` when messages are dispatched, in various places such as the [Send](/nservicebus/messaging/send-a-message.md) and [Routing](/nservicebus/messaging/routing.md) API or the `MessageEndpointMappings`. In this notation the `physicallocation` section represents the location where the endpoint's infrastructure is hosted, such as a storage account.
+
+Using this notation it is possible to route messages to any endpoint hosted in any storage account.
+
+partial: message-endpoint-mapping
+
+partial: routing-send-options-full-connectionstring
+
+partial: aliases
+
+partial: registered-endpoint
