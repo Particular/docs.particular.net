@@ -20,7 +20,7 @@ snippet: S3CredentialSource
 
 **Default**: `AWS SDK`.
 
-By default the endpoint sues the SDK to retrieve the default AWS region from the `AWS_DEFAULT_REGION` environment variable.
+By default the endpoint uses the SDK to retrieve the default AWS region from the `AWS_DEFAULT_REGION` environment variable.
 
 This is the Amazon Web Services [Region](http://docs.aws.amazon.com/general/latest/gr/rande.html) in which to access the SQS service. Must be a valid [AWS region code](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions).
 

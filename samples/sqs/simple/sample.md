@@ -25,7 +25,7 @@ Add the [AWS Access Key ID and AWS Secret Access Key](http://docs.aws.amazon.com
 
 See also [AWS Account Identifiers](http://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html), [Managing Access Keys for a AWS Account](http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html), and [IAM Security Credentials](https://console.aws.amazon.com/iam/home#/security_credential).
 
-See also [AWS Regions](http://docs.aws.amazon.com/general/latest/gr/rande.html) for available regions to configure.
+See also [AWS Regions](http://docs.aws.amazon.com/general/latest/gr/rande.html) for a list of available regions.
 
 
 ### SQS
