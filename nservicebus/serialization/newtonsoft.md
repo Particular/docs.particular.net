@@ -2,7 +2,7 @@
 title: Json.NET Serializer
 summary: A JSON serializer that uses Newtonsoft Json.NET.
 component: Newtonsoft
-reviewed: 2016-03-17
+reviewed: 2017-10-13
 related:
  - samples/serializers/newtonsoft
  - samples/serializers/newtonsoft-bson
@@ -10,16 +10,7 @@ related:
 
 Using [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet dependency on [Json.NET](http://www.newtonsoft.com/json).
 
-
-## How the NServiceBus core uses Json.net
-
-The core of [NServiceBus uses Json.net](json.md). However it is [ILMerged](https://github.com/Microsoft/ILMerge) where this library has a standard dll and NuGet dependency. While ILMerging reduces versioning issues in the core it does cause several restrictions:
-
- * Can't use a different version of Json.net
- * Can't use Json.net attributes
- * Can't customize the Json.net serialization behaviors.
-
-These restrictions do not apply to this serializer.
+partial: howcoreusesjson
 
 
 ## Usage
@@ -74,7 +65,7 @@ snippet: NewtonsoftBson
 The only incompatibility with the [core serializer](json.md) is that this serializer does not support the serialization of `XContainer` and `XDocument` properties. If XML properties are required on messages strings should be used instead. If `XContainer` and `XDocument` properties are required [use a JsonConverter](newtonsoft.md#compatibility-with-the-core-json-serializer-use-a-jsonconverter-for-xcontainer-and-xdocument).
 
 {{WARNING:
-This serializer is not compatible with multiple bundled messages (when using the `Send(object[] messages)` APIs) sent from Versions 3 and below of NServiceBus. If this scenario is detected then an exception with the following message will be thrown: 
+This serializer is not compatible with multiple bundled messages (when using the `Send(object[] messages)` APIs) sent from Versions 3 and below of NServiceBus. If this scenario is detected then an exception with the following message will be thrown:
 
 ```
 Multiple messages in the same stream are not supported.
