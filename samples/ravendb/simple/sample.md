@@ -14,7 +14,6 @@ reviewed: 2017-08-21
 
 include: dtc-warning
 
-include: raven-resourcemanagerid-warning
 
 ## Code walk-through
 
