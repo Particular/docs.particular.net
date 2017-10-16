@@ -1,6 +1,6 @@
 ---
 title: Particular Service Platform Overview
-reviewed: 2016-03-17
+reviewed: 2017-10-16
 redirects:
  - nservicebus/preparing-your-machine-to-run-nservicebus
 ---
