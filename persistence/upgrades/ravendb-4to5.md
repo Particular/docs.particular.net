@@ -43,6 +43,8 @@ When converting an older project, the old versioned subscriptions behavior can b
 
 snippet: 4to5-LegacySubscriptionVersioning
 
-When using this setting, RavenDB Persistence will log a warning at each endpoint startup.
+When using this setting, RavenDB Persistence will log a warning at each endpoint startup:
+
+> RavenDB Persistence is using legacy versioned subscription storage. This capability will be removed in NServiceBus.RavenDB 6.0.0. Subscription documents need to be converted to the new unversioned format, after which `persistence.DisableSubscriptionVersioning()` should be used.
 
 For more details, see [Subscription versioning](/persistence/ravendb/subscription-versioning.md?version=raven_5).
