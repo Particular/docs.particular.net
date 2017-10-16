@@ -33,7 +33,7 @@ SQL persistence automatically generates names of database objects such as tables
 
 Note: In case of Oracle SQL persistence will throw an exception in case the name length is too long. 
 
-Note: In case of database engines other than Oracle, the SQL persistence will not validate name length, for two reasons. Firstly, the supported name length value is higher and should be sufficient for typical scenarios. Secondly, it is possible to modify the setting locally to support longer names.
+Note: In case of database engines other than Oracle, the SQL persistence will not validate name length, for two reasons. Firstly, the supported name length value is higher and should be sufficient for typical scenarios. Secondly, it is possible to modify the setting locally to support longer names. In case of long names for sagas, etc. the database engine may perform automatic name truncation.
 
 
 ### Unicode support
