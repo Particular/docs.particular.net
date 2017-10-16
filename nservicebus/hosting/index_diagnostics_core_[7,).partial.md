@@ -14,5 +14,8 @@ snippet: CustomDiagnosticsWriter
 
 ### Adding startup diagnostics sections
 
-TBD: Should we have this info here?
+To extend the startup diagnostics with custom sections use:
+
+snippet: CustomDiagnosticsSection
+
  

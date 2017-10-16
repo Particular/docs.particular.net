@@ -1,7 +1,9 @@
 ﻿namespace Core7
 {
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
     using NServiceBus;
+    using NServiceBus.Settings;
 
     public class StartUpDiagnostics
     {
@@ -22,6 +24,18 @@
             {
                 //custom logic to write data
                 return Task.CompletedTask;
+            });
+
+            #endregion
+        }
+        void CustomDiagnosticsSection(ReadOnlySettings settings)
+        {
+            #region CustomDiagnosticsSection
+
+            settings.AddStartupDiagnosticsSection("MySection", new
+            {
+                SomeSetting = "some data",
+                SomeOtherSetting = 10
             });
 
             #endregion
