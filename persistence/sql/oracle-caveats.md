@@ -7,7 +7,7 @@ redirects:
  - nservicebus/sql-persistence/oracle-caveats
 ---
 
-The SQL Persistence provides autonomy between endpoints by using separate tables for every endpoint based on the endpoint name. However, due to Oracle's 30-character limit on table names and index names, the SQL Persistence must make some compromises.
+The SQL Persistence provides autonomy between endpoints by using separate tables for every endpoint based on the endpoint name. However, due to Oracle's 30-character limit on table names and index names in [Oracle 12.1 and below](https://docs.oracle.com/database/121/SQLRF/sql_elements008.htm#SQLRF00223), the SQL Persistence must make some compromises.
 
 
 ## Table Names
