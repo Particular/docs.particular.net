@@ -31,7 +31,7 @@ SQL persistence automatically generates names of database objects such as tables
 - MySQL supports [max. 64 characters](https://dev.mysql.com/doc/refman/5.7/en/identifiers.html).
 - SQL Server supports [max. 128 characters](https://docs.microsoft.com/en-us/sql/sql-server/maximum-capacity-specifications-for-sql-server).
 
-In case of Oracle SQL persistence will throw an exception in case the name length is too long. 
+Note: In case of Oracle SQL persistence will throw an exception in case the name length is too long. 
 
 Note: In case of database engines other than Oracle, the SQL persistence will not validate name length, for two reasons. Firstly, the supported name length value is higher and should be sufficient for typical scenarios. Secondly, it is possible to modify the setting locally to support longer names.
 
