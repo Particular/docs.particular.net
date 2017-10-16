@@ -23,6 +23,15 @@ The SQL Persistence uses [Json.NET](http://www.newtonsoft.com/json) to serialize
 partial: supportedimpls
 
 
+### Supported object names lengths
+
+SQL persistence automatically generates names of database objects such as tables, indexes and procedures used internally. Every database engine has their own rules and limitations regarding maximum allowed name length:
+
+- Oracle 12.2 and below supports [max. 30 characters](https://docs.oracle.com/database/121/SQLRF/sql_elements008.htm#SQLRF00223), see the [Oracle Caveats](/persistence/sql/oracle-caveats.md) article to learn more
+- MySQL supports [max. 64 characters](https://dev.mysql.com/doc/refman/5.7/en/identifiers.html)
+- SQL Server supports [max. 128 characters](https://docs.microsoft.com/en-us/sql/sql-server/maximum-capacity-specifications-for-sql-server)
+
+
 ### Unicode support
 
 SQL persistence itself supports Unicode characters, however data may become corrupted during saving if the database settings are incorrect. If Unicode support is required, follow the guidelines for each database engine, in particular set the correct character set and collation for databases storing persistence data.
