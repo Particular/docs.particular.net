@@ -2,7 +2,7 @@
 title: Licensing
 summary: Outlines RavenDB license agreement
 component: raven
-reviewed: 2017-08-21
+reviewed: 2017-10-16
 related:
  - nservicebus/operations
  - nservicebus/licensing
