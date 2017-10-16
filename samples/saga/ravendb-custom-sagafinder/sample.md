@@ -13,8 +13,6 @@ reviewed: 2017-08-21
 
 include: dtc-warning
 
-include: raven-resourcemanagerid-warning
-
 include: sagafinder-into
 
 This sample also use multiple Unique attributes using the default [RavenDB Unique Constraint bundle](https://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints).
