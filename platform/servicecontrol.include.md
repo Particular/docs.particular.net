@@ -2,7 +2,7 @@ ServiceControl is a suite of back-end tools that collect useful information abou
 
 NOTE: The ServiceControl HTTP API may change at any time. It is designed for use by ServicePulse and ServiceInsight only. Use of this HTTP API for other purposes is discouraged.
 
-Each NServiceBus endpoint can be configured to send data about it's operation to a set of centralized queues that are unique to the system being monitored. These queues are monitored by a [ServiceControl instance](/servicecontrol/servicecontrol-instances/) which collects and processes this data. ServiceControl instances are created and managed using the ServiceControl Management Utility.
+Each NServiceBus endpoint can be configured to send data about its operation to a set of centralized queues that are unique to the system being monitored. These queues are monitored by a [ServiceControl instance](/servicecontrol/servicecontrol-instances/) which collects and processes this data. ServiceControl instances are created and managed using the ServiceControl Management Utility.
 
 NOTE: All endpoints should be configured to forward to the same audit, error, and ServiceControl instance queues unless the system has been sharded between multiple ServiceControl instances.
 
