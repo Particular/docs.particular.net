@@ -60,6 +60,18 @@ WARNING: On production, servers uninstalling MSMQ deletes all queues and message
 For more information on this error, see [John Breakwell's article in MSDN](https://blogs.msdn.microsoft.com/johnbreakwell/2006/09/18/insufficient-resources-run-away-run-away/).
 
 
+## MessageQueueException (0x80004005): Message Queue service is not available.
+
+This exception may occur if the MSMQ service is stopped or crashed.
+
+
+### Resolution
+
+- Ensure that the [Windows Service Restart Recovery is enabled to restart Windows Services automatically when they stop or crash](/nservicebus/hosting/windows-service.md#installation-restart-recovery).
+- For every endpoint [configure dependencies on the MSMQ service](/nservicebus/hosting/windows-service.md#installation-service-dependencies). The endpoints will then be automatically stopped/restarted in case the MSMQ service is restarted. Note the endpoints will be only restarted if the MSMQ service is _restarted_, but not if it's only _stopped_ or only _started_.
+- If self-hosting, ensure that the [critical error handling is configured](/nservicebus/hosting/critical-errors.md#custom-handling) correctly and custom callback method has been provided.
+
+
 ## Virtual Private Networks (VPN)
 
 MSMQ is cannot to dynamically detect network interfaces. If a connection to a VPN is established after the MSMQ service starts, a restart of the MSMQ service is required. Once it starts with the interface, the VPN is free to disconnect/reconnect whenever it wants.
