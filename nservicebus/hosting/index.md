@@ -136,7 +136,9 @@ Related:
 
  * [Shared Hosting in Azure Cloud Services Sample](/samples/azure/shared-host/)
  
- 
+
+partial: diagnostics
+
 ## ILMerging NServiceBus assemblies
 
 Since NServiceBus makes assumptions on aspects like assembly names, ILMerging any of the NServiceBus* assemblies is not supported.
