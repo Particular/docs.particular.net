@@ -294,3 +294,8 @@ To complete processing of the current message without invoking additional handle
 In NServiceBus Versions 6 and below, the default behavior was to stop the endpoint when critical errors occur. In Versions 7 and above, the default behavior is to keep the endpoint running to allow infrastructure like transports, persisters, etc to try to recover from the failure condition. One example would be the queuing system being unavailable or not being able to connect to the database.
 
 See the [critical errors documentation](/nservicebus/hosting/critical-errors.md) for details on how to customize this behavior.
+
+
+## Startup diagnostics written to disk
+
+As endpoints starts up a diagnostics file is written to disk in a subfolder called `.diagnostics`. See the [startup diagnostics documentation](/nservicebus/hosting/index.md?version=core_7#startup-diagnostics) for more details.
