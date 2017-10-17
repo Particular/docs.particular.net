@@ -45,6 +45,7 @@ at System.Messaging.MessageQueue.SendInternal(Object obj, MessageQueueTransactio
 
 The cause of this exception is that the MSMQ has run out of space for holding on to messages. This could be due to messages sent that could not be delivered, or messages received that have not been processed.
 
+
 ### Resolution
 
  1. Make sure that the hard disk drive has sufficient space.
@@ -58,15 +59,17 @@ WARNING: On production, servers uninstalling MSMQ deletes all queues and message
 
 For more information on this error, see [John Breakwell's article in MSDN](https://blogs.msdn.microsoft.com/johnbreakwell/2006/09/18/insufficient-resources-run-away-run-away/).
 
+
 ## MessageQueueException (0x80004005): Message Queue service is not available.
 
 This exception may occur if the MSMQ service is stopped or crashed.
 
+
 ### Resolution
 
-- If self-hosting, ensure that the [critical error handling is configured](/nservicebus/hosting/critical-errors.md#custom-handling) correctly and custom callback method has been provided.
 - Ensure that the [Windows Service Restart Recovery is enabled to restart Windows Services automatically when they stop or crash](/nservicebus/hosting/windows-service.md#installation-restart-recovery).
-- For every endpoint [configure dependencies on the MSMQ service](/nservicebus/hosting/windows-service.md#installation-service-dependencies). The endpoints will then be automatically stopped/restarted in case the MSMQ service is restarted. Note the endpoints will be only restarted if the MSMQ service is restarted, but not if it's only stopped or only started.
+- For every endpoint [configure dependencies on the MSMQ service](/nservicebus/hosting/windows-service.md#installation-service-dependencies). The endpoints will then be automatically stopped/restarted in case the MSMQ service is restarted. Note the endpoints will be only restarted if the MSMQ service is _restarted_, but not if it's only _stopped_ or only _started_.
+- If self-hosting, ensure that the [critical error handling is configured](/nservicebus/hosting/critical-errors.md#custom-handling) correctly and custom callback method has been provided.
 
 
 ## Virtual Private Networks (VPN)
