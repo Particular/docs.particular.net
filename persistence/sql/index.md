@@ -23,7 +23,7 @@ The SQL Persistence uses [Json.NET](http://www.newtonsoft.com/json) to serialize
 partial: supportedimpls
 
 
-### Supported object names lengths
+### Supported name lengths
 
 SQL persistence automatically generates names of database objects such as tables, indexes and procedures used internally. Every database engine has their own rules and limitations regarding maximum allowed name length. The default values are:
 
