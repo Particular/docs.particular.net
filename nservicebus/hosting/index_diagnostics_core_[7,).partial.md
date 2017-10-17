@@ -24,6 +24,6 @@ To extend the startup diagnostics with custom sections use:
 
 snippet: CustomDiagnosticsSection
 
-Settings can be accessed from a [feature](/nservicebus/pipeline/features.md#feature-setup) or via the [endpoint configuration](https://docs.particular.net/nservicebus/pipeline/features.md#feature-settings-endpointconfiguration).
+Settings can be accessed from a [feature](/nservicebus/pipeline/features.md#feature-setup) or via the [endpoint configuration](/nservicebus/pipeline/features.md#feature-settings-endpointconfiguration).
 
  
