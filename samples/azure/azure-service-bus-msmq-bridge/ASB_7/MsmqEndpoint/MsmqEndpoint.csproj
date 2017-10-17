@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <TargetFrameworks>net461</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Bridge.Connector" Version="1.*" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+  
+</Project>
