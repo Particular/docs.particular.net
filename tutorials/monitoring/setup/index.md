@@ -87,8 +87,6 @@ In the ServiceControl Management Utility, click **+ New** and select **ServiceCo
 
 SCREENSHOT - SMCU Main Page with Drop-down opened and Add ServiceControl instance selected
 
-NOTE: Creating and managing ServiceControl instances requires a license file. If you do not already have a license then the ServiceControl Management Utility will generate a trial license for you. If you have already had a trial license and it has expired, then follow the on-screen prompts to extend your trial license. It is a short form and your new license file will get sent to your email address. See (/servicecontrol/license.md) for information about how to install your trial license.
-
 Under **Trasport Configuration** select the transport that your NServiceBus system runs on. Depending on the transport you may be required to add an additional connection string.
 
 NOTE: If you are using the sample solution from this tutorial, select SQLServer. The connection string will be `Server=.\SQLEXPRESS;Database=MonitoringSample; Integrated Security=True`
