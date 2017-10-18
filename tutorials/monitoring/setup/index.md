@@ -83,17 +83,17 @@ Once it has finished installing, run the ServiceControl Management Utility.
 
 A ServiceControl instance collects messages from the error queue and manages retrying them. It also collects messages from the audit queue. 
 
-In the ServiceControl Management Utility, click **+ NEW INSTANCE** and select **ServiceControl instance** from the list of options.
+In the ServiceControl Management Utility, click **+ New** and select **ServiceControl instance** from the list of options.
 
 SCREENSHOT - SMCU Main Page with Drop-down opened and Add ServiceControl instance selected
 
 NOTE: Creating and managing ServiceControl instances requires a license file. If you do not already have a license then the ServiceControl Management Utility will generate a trial license for you. If you have already had a trial license and it has expired, then follow the on-screen prompts to extend your trial license. It is a short form and your new license file will get sent to your email address. See (/servicecontrol/license.md) for information about how to install your trial license.
 
-Under TRANSPORT CONFIGURATION select the transport that your NServiceBus system runs on. Depending on the transport you may be required to add an additional connection string.
+Under **Trasport Configuration** select the transport that your NServiceBus system runs on. Depending on the transport you may be required to add an additional connection string.
 
 NOTE: If you are using the sample solution from this tutorial, select SQLServer. The connection string will be `Server=.\SQLEXPRESS;Database=MonitoringSample; Integrated Security=True`
 
-Under AUDIT FORWARDING select either On or Off. 
+Under **Audit Forwarding** select either On or Off. 
 
 NOTE: If you are using the sample solution from this tutorial, select Off. See [audit fowarding](/servicecontrol/errorlog-auditlog-behavior.md) for more information.
 
@@ -110,11 +110,11 @@ NOTE: Creating the ServiceControl instance will also create the audit and error 
 
 A Monitoring instance collects data from the monitoring queue and aggregates information from all of the endpoints in the system.
 
-In the ServiceControl Management Utility, click **+ NEW INSTANCE** and select **Monitoring instance** from the list of options.
+In the ServiceControl Management Utility, click **+ New** and select **Monitoring instance** from the list of options.
 
 SCREENSHOT - SCMU Main Page with Drop-down opened and Add Monitoring instance selected
 
-Under TRANSPORT CONFIGURATION select the transport that your NServiceBus system runs on. Depending on the transport selected you may be required to add an additional connection string.
+Under **Transport Configuration** select the transport that your NServiceBus system runs on. Depending on the transport selected you may be required to add an additional connection string.
 
 NOTE: If you are using the sample solution from this tutorial, select SQLServer. The connection string will be `Server=.\SQLEXPRESS;Database=MonitoringSample; Integrated Security=True`
 
