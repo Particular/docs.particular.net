@@ -37,7 +37,7 @@ Once the environment is up and running you can run the sample solution that is i
 
 The solution contains 4 endpoints which communicate by exchanging messages use the SQL Transport.
 
-IMAGE of solution
+![Solution Diagram](diagram.svg)
 
 These endpoints are also configured to send monitoring data to the Particular Software Platform which you can see in ServicePulse. 
 
