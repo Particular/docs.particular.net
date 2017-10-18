@@ -17,8 +17,8 @@ class Program
         #region bridge-general-configuration
 
         var bridgeConfiguration = Bridge
-            .Between<MsmqTransport>("Bridge-Publisher")
-            .And<AzureServiceBusTransport>("Bridge-Subscriber", transport =>
+            .Between<MsmqTransport>("Bridge-MSMQ")
+            .And<AzureServiceBusTransport>("Bridge-ASB", transport =>
             {
                 transport.ConnectionString(connectionString);
                 transport.UseForwardingTopology();

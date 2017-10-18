@@ -6,8 +6,8 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Azure.ServiceBus.Subscriber";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Subscriber");
+        Console.Title = "Samples.Azure.ServiceBus.AsbEndpoint";
+        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.AsbEndpoint");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -24,16 +24,16 @@ class Program
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.DisableLegacyRetriesSatellite();
 
-        #region connect-msmq-side-of-bridge
+        #region connect-asb-side-of-bridge
 
         var routing = transport.Routing();
-        var bridge = routing.ConnectToBridge("Bridge-Subscriber");
+        var bridge = routing.ConnectToBridge("Bridge-ASB");
 
         #endregion
 
         #region subscribe-to-event-via-bridge
 
-        bridge.RegisterPublisher(typeof(MyEvent), "Samples.Azure.ServiceBus.Publisher");
+        bridge.RegisterPublisher(typeof(MyEvent), "Samples.Azure.ServiceBus.MsmqEndpoint");
 
         #endregion
 
