@@ -87,7 +87,7 @@ In the ServiceControl Management Utility, click **+ New** and select **ServiceCo
 
 SCREENSHOT - SMCU Main Page with Drop-down opened and Add ServiceControl instance selected
 
-Under **Trasport Configuration** select the transport that your NServiceBus system runs on. Depending on the transport you may be required to add an additional connection string.
+Under **Transport Configuration** select the transport that your NServiceBus system runs on. Depending on the transport you may be required to add an additional connection string.
 
 NOTE: If you are using the sample solution from this tutorial, select SQLServer. The connection string will be `Server=.\SQLEXPRESS;Database=MonitoringSample; Integrated Security=True`
 
