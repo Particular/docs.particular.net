@@ -1,0 +1,10 @@
+The downloadable solution will go in this folder.
+
+It should:
+- Resemble the sample in the NServiceBus 101 tutorial
+- Run on the Learning Transport and Persistence
+- Contain endpoints from all currently supported major versions (v5, v6, and v7)
+
+Outstanding questions:
+- Should the endpoints already be configured to send data to Particular.Monitoring?
+  - If so, should this configuration be commented out?
