@@ -8,6 +8,14 @@ related:
 ---
 
 
+Endpoints running on different transports cannot exchange messages and require additional integration work.
+Common example would be
+ * A hybrid solution that spans endpoints deployed on-premises and in a cloud environment.
+ * Departments within organization integrating their systems that use of different messaging technologies for historical reasons.
+
+Traditionally, such integrations would require native messaging or relaying. Bridging is an alternative, allowing endpoints to communicate over different transports and no need to get into low-level messaging technology code. With time, when endpoints can standardize on a single transport, bridging can be removed with a minimal impact on the entire system.
+
+
 ## Prerequisites
 
 include: asb-connectionstring
@@ -27,7 +35,7 @@ Covered scenarios are:
 
 ### Bridging
 
-Endpoints are bridged using [Transport Brindge](/nservicebus/bridge/). `Bridge` project is implemented as a standalone process that runs side-by-side with the bridged endpoints, `MsmqEndpoint` and `AsbEndpoint`.
+Endpoints are bridged using [Transport Bridge](/nservicebus/bridge/). `Bridge` project is implemented as a standalone process that runs side-by-side with the bridged endpoints, `MsmqEndpoint` and `AsbEndpoint`.
 
 
 #### MSMQ endpoint configuration
@@ -42,7 +50,7 @@ Command routing to Azure Service Bus endpoint is specified using bridge extensio
 
 snippet: route-command-via-bridge
 
-NOTE: to access bridge extension method, project has to reference NServiceBus.Bridge.Connector NuGet package.
+NOTE: to access bridge extension method, project has to reference `NServiceBus.Bridge.Connector` NuGet package.
 
 
 #### Azure Service Bus endpoint configuration
