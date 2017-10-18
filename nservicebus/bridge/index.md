@@ -31,7 +31,7 @@ The Bridge can handle both sends and publishes in a close-to-transparent manner,
 
 ## Topology
 
-The Bridge is in essence a pair of NServiceBus endpoints that forward messages between each other. Regular endpoints connect to the Bridge using *connectors* that allow them to configure the routing
+The Bridge is a process hosting a pair of NServiceBus endpoints that forward messages between each other. Regular endpoints connect to the Bridge using *connectors* that allow them to configure the routing
 
 snippet: connector
 
