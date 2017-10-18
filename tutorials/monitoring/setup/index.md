@@ -89,11 +89,7 @@ SCREENSHOT - SMCU Main Page with Drop-down opened and Add ServiceControl instanc
 
 Under **Transport Configuration** select the transport that your NServiceBus system runs on. Depending on the transport you may be required to add an additional connection string.
 
-NOTE: If you are using the sample solution from this tutorial, select SQLServer. The connection string will be `Server=.\SQLEXPRESS;Database=MonitoringSample; Integrated Security=True`
-
-Under **Audit Forwarding** select either On or Off. 
-
-NOTE: If you are using the sample solution from this tutorial, select Off. See [audit fowarding](/servicecontrol/errorlog-auditlog-behavior.md) for more information.
+Under **Audit Forwarding** select either On or Off. If you are not currently using an audit queue for anything, you can safely turn this Off. See [audit fowarding](/servicecontrol/errorlog-auditlog-behavior.md) for more information.
 
 Click the Add button. Your ServiceControl instance will start and be listed on the main page of the ServiceControl Management Utility.
 
@@ -113,8 +109,6 @@ In the ServiceControl Management Utility, click **+ New** and select **Monitorin
 SCREENSHOT - SCMU Main Page with Drop-down opened and Add Monitoring instance selected
 
 Under **Transport Configuration** select the transport that your NServiceBus system runs on. Depending on the transport selected you may be required to add an additional connection string.
-
-NOTE: If you are using the sample solution from this tutorial, select SQLServer. The connection string will be `Server=.\SQLEXPRESS;Database=MonitoringSample; Integrated Security=True`
 
 Click the Add button. Your Monitoring instance will start and be listed on the main page of the ServiceControl Management Utility.
 
@@ -152,8 +146,6 @@ NOTE: If Monitoring was not enabled during installation, the monitoring tab will
 In order to be monitored by the Particular Service Platform, each endpoint needs to be configured to send data to three different queues: error, audit, and monitoring.
 
 It is recommended to go through this entire process for a single endpoint and ensure that it is working before continuing on to the next endpoint.
-
-NOTE: If you are setting up the sample monitoring solution, start with the Sales endpoint. 
 
 
 ### Error
