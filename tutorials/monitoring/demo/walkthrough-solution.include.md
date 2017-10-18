@@ -1,0 +1,1 @@
+This walkthrough uses the sample solution included in the demo download package to illustrate monitoring concepts in the Particular Service Platform. For instructions on how to download and run this sample, see [Monitoring NServiceBus solutions: Demo](./).
