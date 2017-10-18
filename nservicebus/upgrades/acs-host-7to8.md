@@ -52,3 +52,10 @@ Overriding endpoint name using the `EndpointName` attribute or `DefineEndpointNa
 #### Executing custom code on start and stop
 
 The host allowed custom code to run at start and stop by implementing `IWantToRunWhenEndpointStartsAndStops`. Since self-hosted endpoints are in full control over start and stop operations this code can be executed explicitly when starting/stopping.
+
+
+#### Azure Configuration Source
+
+Azure configuration source provided the capability to load configuration settings from either the configuration file or from the cloud services role environment. This logic can simply be replaced by:
+
+snippet: azure-configuration-source-replacement
