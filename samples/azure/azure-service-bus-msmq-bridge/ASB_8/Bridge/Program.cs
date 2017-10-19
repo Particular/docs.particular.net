@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Bridge;
+using NServiceBus.Configuration.AdvancedExtensibility;
+using NServiceBus.Serialization;
 
 class Program
 {
@@ -27,6 +29,9 @@ class Program
             {
                 transport.ConnectionString(connectionString);
                 transport.UseForwardingTopology();
+                var settings = transport.GetSettings();
+                var serializer = Tuple.Create(new NewtonsoftSerializer() as SerializationDefinition, settings);
+                settings.Set("MainSerializer", serializer);
             });
 
         bridgeConfiguration.AutoCreateQueues();
