@@ -69,4 +69,4 @@ snippet: configuration-resolver
 
 Sometimes it is usefull to host an endpoint inside the role environment (e.g. production), or outside of it (e.g. development). The role environment related code available in the cloud services SDK cannot handle this scenario though and will throw exceptions when it is used outside of the runtime. The following class can help resolve this issue by detecting whether the role environment is available.
 
-snippet: azure-configuration-source-replacement
+snippet: safe-role-environment
