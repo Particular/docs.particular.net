@@ -1,42 +1,39 @@
-﻿namespace Metrics_1
+﻿using System;
+using NServiceBus;
+
+public class Configuration
 {
-    using System;
-    using NServiceBus;
-
-    public class Configuration
+    public void ConfigureEndpoint(EndpointConfiguration endpointConfiguration)
     {
-        public void ConfigureEndpoint(EndpointConfiguration endpointConfiguration)
-        {
-            #region Metrics-Enable
+        #region Metrics-Enable
 
-            var metrics = endpointConfiguration.EnableMetrics();
+        var metrics = endpointConfiguration.EnableMetrics();
 
-            #endregion
+        #endregion
 
-            #region Metrics-Observers
+        #region Metrics-Observers
 
-            metrics.RegisterObservers(
-                register: context =>
+        metrics.RegisterObservers(
+            register: context =>
+            {
+                foreach (var duration in context.Durations)
                 {
-                    foreach (var duration in context.Durations)
-                    {
-                        duration.Register(
-                            observer: (ref DurationEvent @event) =>
-                            {
-                                Console.WriteLine($"Duration: '{duration.Name}'. Value: '{@event.Duration}'");
-                            });
-                    }
-                    foreach (var signal in context.Signals)
-                    {
-                        signal.Register(
-                            observer: (ref SignalEvent @event) =>
-                            {
-                                Console.WriteLine($"Signal: '{signal.Name}'. Type: '{@event.MessageType}'");
-                            });
-                    }
-                });
+                    duration.Register(
+                        observer: (ref DurationEvent @event) =>
+                        {
+                            Console.WriteLine($"Duration: '{duration.Name}'. Value: '{@event.Duration}'");
+                        });
+                }
+                foreach (var signal in context.Signals)
+                {
+                    signal.Register(
+                        observer: (ref SignalEvent @event) =>
+                        {
+                            Console.WriteLine($"Signal: '{signal.Name}'. Type: '{@event.MessageType}'");
+                        });
+                }
+            });
 
-            #endregion
-        }
+        #endregion
     }
 }

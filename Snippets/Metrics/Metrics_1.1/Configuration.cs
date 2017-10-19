@@ -1,77 +1,74 @@
-﻿#pragma warning disable 618
-namespace Metrics_1
+﻿using System;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Logging;
+
+#pragma warning disable 618
+public class Configuration
 {
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.Logging;
-
-    public class Configuration
+    public void ConfigureEndpoint(EndpointConfiguration endpointConfiguration)
     {
-        public void ConfigureEndpoint(EndpointConfiguration endpointConfiguration)
-        {
-            #region Metrics-Enable
+        #region Metrics-Enable
 
-            var metrics = endpointConfiguration.EnableMetrics();
+        var metrics = endpointConfiguration.EnableMetrics();
 
-            #endregion
+        #endregion
 
-            #region Metrics-Log
+        #region Metrics-Log
 
-            metrics.EnableLogTracing(interval: TimeSpan.FromMinutes(5));
+        metrics.EnableLogTracing(interval: TimeSpan.FromMinutes(5));
 
-            #endregion
+        #endregion
 
-            #region Metrics-Log-Info
+        #region Metrics-Log-Info
 
-            metrics.EnableLogTracing(
-                interval: TimeSpan.FromMinutes(5),
-                logLevel: LogLevel.Info);
+        metrics.EnableLogTracing(
+            interval: TimeSpan.FromMinutes(5),
+            logLevel: LogLevel.Info);
 
-            #endregion
+        #endregion
 
-            #region Metrics-Tracing
+        #region Metrics-Tracing
 
-            metrics.EnableMetricTracing(interval: TimeSpan.FromSeconds(5));
+        metrics.EnableMetricTracing(interval: TimeSpan.FromSeconds(5));
 
-            #endregion
+        #endregion
 
-            #region Metrics-Custom-Function
+        #region Metrics-Custom-Function
 
-            metrics.EnableCustomReport(
-                func: data =>
+        metrics.EnableCustomReport(
+            func: data =>
+            {
+                // process metrics
+                return Task.CompletedTask;
+            },
+            interval: TimeSpan.FromSeconds(5));
+
+        #endregion
+
+        #region Metrics-Observers
+
+        metrics.RegisterObservers(
+            register: context =>
+            {
+                foreach (var duration in context.Durations)
                 {
-                    // process metrics
-                    return Task.CompletedTask;
-                },
-                interval: TimeSpan.FromSeconds(5));
-
-            #endregion
-
-            #region Metrics-Observers
-
-            metrics.RegisterObservers(
-                register: context =>
+                    duration.Register(
+                        observer: length =>
+                        {
+                            Console.WriteLine($"Duration: '{duration.Name}'. Value: '{length}'");
+                        });
+                }
+                foreach (var signal in context.Signals)
                 {
-                    foreach (var duration in context.Durations)
-                    {
-                        duration.Register(
-                            observer: length =>
-                            {
-                                Console.WriteLine($"Duration: '{duration.Name}'. Value: '{length}'");
-                            });
-                    }
-                    foreach (var signal in context.Signals)
-                    {
-                        signal.Register(
-                            observer: () =>
-                            {
-                                Console.WriteLine($"Signal: '{signal.Name}'");
-                            });
-                    }
-                });
+                    signal.Register(
+                        observer: () =>
+                        {
+                            Console.WriteLine($"Signal: '{signal.Name}'");
+                        });
+                }
+            });
 
-            #endregion
-        }
+        #endregion
     }
 }
