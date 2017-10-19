@@ -10,9 +10,9 @@ namespace Core7.UpgradeGuides._6to7.Routing
         {
             #region 6to7endpoint-mapping-Routing-Logical
 
-            var transportExtensions = endpointConfiguration.UseTransport<MyTransport>();
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
 
-            var routing = transportExtensions.Routing();
+            var routing = transport.Routing();
             routing.RouteToEndpoint(
                 assembly: typeof(AcceptOrder).Assembly,
                 destination: "Sales");
@@ -33,9 +33,9 @@ namespace Core7.UpgradeGuides._6to7.Routing
         {
             #region 6to7endpoint-mapping-Routing-RegisterPublisher
 
-            var transportExtensions = endpointConfiguration.UseTransport<MyTransport>();
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
 
-            var routing = transportExtensions.Routing();
+            var routing = transport.Routing();
             routing.RegisterPublisher(
                 assembly: typeof(OrderAccepted).Assembly,
                 publisherEndpoint: "Sales");

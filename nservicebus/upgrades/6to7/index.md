@@ -226,8 +226,8 @@ Exceptions of type `Exception` are now thrown instead of `ConfigurationErrorsExc
 
 License files are now stored on the local file system so that they can accessed by all endpoints running on the machine. By default, endpoints will check the following locations for a `license.xml` file:
 
- * `{Environment.SpecialFolder.LocalApplicationData}\ParticularSoftware`
- * `{Environment.SpecialFolder.CommonApplicationData}\ParticularSoftware`
+ * `{SpecialFolder.LocalApplicationData}\ParticularSoftware`
+ * `{SpecialFolder.CommonApplicationData}\ParticularSoftware`
 
 
 ### Application-specific license location

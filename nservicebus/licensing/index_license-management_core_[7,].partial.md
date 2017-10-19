@@ -6,8 +6,8 @@ A license located at `{AppDomain.CurrentDomain.BaseDirectory}/license.xml` will 
 ### Machine wide license locations
 
 Licenses can be shared across all endpoints and Particular Service Platform applications by placing them into one of the following locations:
-* `{Environment.SpecialFolder.LocalApplicationData}\ParticularSoftware\license.xml`
-* `{Environment.SpecialFolder.CommonApplicationData}\ParticularSoftware\license.xml`
+* `{SpecialFolder.LocalApplicationData}\ParticularSoftware\license.xml`
+* `{SpecialFolder.CommonApplicationData}\ParticularSoftware\license.xml`
 
 Note: Depending on the operating system, the paths may be case sensitive.
 
