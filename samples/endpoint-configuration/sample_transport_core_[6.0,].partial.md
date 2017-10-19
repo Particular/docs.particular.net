@@ -1,1 +1,1 @@
-This sample uses the [Learning](/transports/learning/) transport.
+This sample uses the [learning](/transports/learning/) transport.

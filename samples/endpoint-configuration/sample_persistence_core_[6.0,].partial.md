@@ -1,1 +1,1 @@
-This sample uses the [Learning](/persistence/learning/) persistence.
+This sample uses the [learning](/persistence/learning/) persistence.
