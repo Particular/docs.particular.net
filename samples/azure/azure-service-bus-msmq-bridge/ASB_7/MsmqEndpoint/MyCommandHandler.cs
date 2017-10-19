@@ -10,6 +10,6 @@ public class MyCommandHandler :
     public Task Handle(MyCommand message, IMessageHandlerContext context)
     {
         log.Info($"Received MyCommand: {message.Property}");
-        return Task.CompletedTask;
+        return context.Publish<MyEvent>(@event => { @event.Property = "event from MSMQ endpoint"; });
     }
 }

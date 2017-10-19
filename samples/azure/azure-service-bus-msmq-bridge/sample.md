@@ -29,28 +29,13 @@ This sample shows an integration between two endpoints running on two different 
 
 Covered scenarios are:
 
- * Sending commands from MSMQ endpoint to Azure Service Bus endpoint.
+ * Sending commands from Azure Service Bus endpoint to MSMQ endpoint.
  * Publishing events from MSMQ endpoint and subscribing to those events from Azure Service Bus endpoint.
 
 
 ### Bridging
 
 Endpoints are bridged using [Transport Bridge](/nservicebus/bridge/). `Bridge` project is implemented as a standalone process that runs side-by-side with the bridged endpoints, `MsmqEndpoint` and `AsbEndpoint`.
-
-
-#### MSMQ endpoint configuration
-
-MSMQ endpoint is bridged via `Bridge-MSMQ` queue:
-
-snippet: connect-msmq-side-of-bridge
-
-![MSMQ topology][msmq-topology]
-
-Command routing to Azure Service Bus endpoint is specified using bridge extension method:
-
-snippet: route-command-via-bridge
-
-NOTE: to access bridge extension method, project has to reference `NServiceBus.Bridge.Connector` NuGet package.
 
 
 #### Azure Service Bus endpoint configuration
@@ -61,9 +46,22 @@ snippet: connect-asb-side-of-bridge
 
 ![Azure Service Bus topology][asb-topology]
 
+Command routing to MSMQ endpoint is specified using bridge extension method:
+
+snippet: route-command-via-bridge
+
+NOTE: to access bridge extension method, project has to reference `NServiceBus.Bridge.Connector` NuGet package.
+
 To subscribe to an event published by MSMQ endpoint, Azure Service Bus endpoint must register publishing endpoint using bridge extension method: 
 
 snippet: subscribe-to-event-via-bridge
+
+
+#### MSMQ endpoint configuration
+
+MSMQ endpoint is bridged via `Bridge-MSMQ` queue:
+
+![MSMQ topology][msmq-topology]
 
 
 #### Bridge configuration

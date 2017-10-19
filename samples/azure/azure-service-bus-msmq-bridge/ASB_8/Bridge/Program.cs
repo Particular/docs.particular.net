@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Transactions;
 using NServiceBus;
 using NServiceBus.Bridge;
 
@@ -31,13 +30,13 @@ class Program
 
         #region suppress-transaction-scope-for-asb
 
-        bridgeConfiguration.InterceptForawrding(async (queue, message, forward) =>
-        {
-            using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
-            {
-                await forward().ConfigureAwait(false);
-            }
-        });
+//        bridgeConfiguration.InterceptForwarding(async (queue, message, forward) =>
+//        {
+//            using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
+//            {
+//                await forward().ConfigureAwait(false);
+//            }
+//        });
 
         #endregion
 

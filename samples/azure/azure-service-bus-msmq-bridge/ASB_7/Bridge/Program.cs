@@ -8,6 +8,8 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        Console.Title = "Samples.Azure.ServiceBus.Bridge";
+
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
