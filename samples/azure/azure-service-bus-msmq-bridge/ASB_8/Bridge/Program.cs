@@ -7,11 +7,17 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        Console.Title = "Samples.Azure.ServiceBus.Bridge";
+
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
+
+        // TODO: ASB requires serializer to be registered.
+        // Currently, there's no way to specify serialization for the bridged endpoints
+        // endpointConfiguration.UseSerialization<T>();
 
         #region bridge-general-configuration
 
@@ -29,6 +35,8 @@ class Program
         #endregion
 
         #region suppress-transaction-scope-for-asb
+
+        // TODO: Bridge 2.x doesn't support this yet
 
 //        bridgeConfiguration.InterceptForwarding(async (queue, message, forward) =>
 //        {

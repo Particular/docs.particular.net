@@ -29,6 +29,12 @@ class Program
 
         #endregion
 
+        #region route-command-via-bridge
+
+        bridge.RouteToEndpoint(typeof(MyCommand), "Samples.Azure.ServiceBus.MsmqEndpoint");
+
+        #endregion
+
         #region subscribe-to-event-via-bridge
 
         bridge.RegisterPublisher(typeof(MyEvent), "Samples.Azure.ServiceBus.MsmqEndpoint");
@@ -38,8 +44,20 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
+        Console.WriteLine("Press Enter to send a command");
+        Console.WriteLine("Press any other key to exit");
+
+        while (true)
+        {
+            var key = Console.ReadKey().Key;
+            if (key != ConsoleKey.Enter)
+            {
+                break;
+            }
+
+            await endpointInstance.Send(new MyCommand { Property = "command from ASB endpoint" }).ConfigureAwait(false);
+            Console.WriteLine("\nCommand sent");
+        }
 
         await endpointInstance.Stop()
             .ConfigureAwait(false);
