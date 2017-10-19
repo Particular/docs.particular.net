@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Queues Transport Upgrade Version 7 to 8
 summary: Instructions on how to upgrade Azure Storage Queues Transport Version 7 to 8.
-reviewed: 2017-09-18
+reviewed: 2017-10-18
 component: ASQ
 related:
 - transports/azure-storage-queues
@@ -33,3 +33,10 @@ In Versions 7 and below, the transport was setting the default serialization. In
 For backwards compatibility, `NServiceBus.Newtonsoft.Json` serializer should be used.
 
 snippet: AzureStorageQueueSerialization
+
+
+## Delayed delivery
+
+In Versions 8 and above, [delayed delivery](/transports/azure-storage-queues/delayed-delivery.md) implemented by the transport can be turned off to disable unnecessary Azure Storage table polling.
+
+snippet: delayed-delivery-disabled
