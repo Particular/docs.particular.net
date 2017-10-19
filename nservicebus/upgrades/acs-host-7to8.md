@@ -59,3 +59,14 @@ The host allowed custom code to run at start and stop by implementing `IWantToRu
 Azure configuration source provided the capability to load configuration settings from either the configuration file or from the cloud services role environment. This logic can simply be replaced by:
 
 snippet: azure-configuration-source-replacement
+
+Depending on whether the endpoint is hosted in a web or workerrole, the configuration file must be resolved from a different location.
+
+snippet: configuration-resolver
+
+
+#### Role Environment Interaction
+
+Sometimes it is usefull to host an endpoint inside the role environment (e.g. production), or outside of it (e.g. development). The role environment related code available in the cloud services SDK cannot handle this scenario though and will throw exceptions when it is used outside of the runtime. The following class can help resolve this issue by detecting whether the role environment is available.
+
+snippet: azure-configuration-source-replacement

@@ -23,7 +23,7 @@ class AzureConfigurationSourceReplacement
         }
         else
         {
-            var section = ConfigurationHelper.GetConfigurationHandler()
+            var section = ConfigurationResolver.GetConfigurationHandler()
                               .GetSection(sectionName) as MyConfigurationSection;
             value = section.MyAttribute;
         }
@@ -32,9 +32,9 @@ class AzureConfigurationSourceReplacement
     }
 }
 
-#region safe-role-environment
+#region configuration-resolver
 
-static class ConfigurationHelper
+static class ConfigurationResolver
 {
     public static Configuration GetConfigurationHandler()
     {
