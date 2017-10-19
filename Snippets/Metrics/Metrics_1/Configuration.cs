@@ -1,51 +1,48 @@
-﻿namespace Metrics_1
+﻿using System;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Logging;
+
+public class Configuration
 {
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.Logging;
-
-    public class Configuration
+    public void ConfigureEndpoint(EndpointConfiguration endpointConfiguration)
     {
-        public void ConfigureEndpoint(EndpointConfiguration endpointConfiguration)
-        {
-            #region Metrics-Enable
+        #region Metrics-Enable
 
-            var metrics = endpointConfiguration.EnableMetrics();
+        var metrics = endpointConfiguration.EnableMetrics();
 
-            #endregion
+        #endregion
 
-            #region Metrics-Log
+        #region Metrics-Log
 
-            metrics.EnableLogTracing(interval: TimeSpan.FromMinutes(5));
+        metrics.EnableLogTracing(interval: TimeSpan.FromMinutes(5));
 
-            #endregion
+        #endregion
 
-            #region Metrics-Log-Info
+        #region Metrics-Log-Info
 
-            metrics.EnableLogTracing(
-                interval: TimeSpan.FromMinutes(5),
-                logLevel: LogLevel.Info);
+        metrics.EnableLogTracing(
+            interval: TimeSpan.FromMinutes(5),
+            logLevel: LogLevel.Info);
 
-            #endregion
+        #endregion
 
-            #region Metrics-Tracing
+        #region Metrics-Tracing
 
-            metrics.EnableMetricTracing(interval: TimeSpan.FromSeconds(5));
+        metrics.EnableMetricTracing(interval: TimeSpan.FromSeconds(5));
 
-            #endregion
+        #endregion
 
-            #region Metrics-Custom-Function
+        #region Metrics-Custom-Function
 
-            metrics.EnableCustomReport(
-                func: data =>
-                {
-                    // process metrics
-                    return Task.CompletedTask;
-                },
-                interval: TimeSpan.FromSeconds(5));
+        metrics.EnableCustomReport(
+            func: data =>
+            {
+                // process metrics
+                return Task.CompletedTask;
+            },
+            interval: TimeSpan.FromSeconds(5));
 
-            #endregion
-        }
+        #endregion
     }
 }

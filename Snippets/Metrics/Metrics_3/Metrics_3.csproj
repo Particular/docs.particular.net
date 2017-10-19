@@ -6,6 +6,6 @@
     <RootNamespace />
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Metrics" Version="1.0.*" />
+    <PackageReference Include="NServiceBus.Metrics" Version="3.0-*" />
   </ItemGroup>
 </Project>

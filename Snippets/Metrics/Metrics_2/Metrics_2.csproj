@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net462</TargetFrameworks>
     <LangVersion>7.1</LangVersion>
+    <RootNamespace />
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Metrics" Version="2.0.0-alpha0027" />
