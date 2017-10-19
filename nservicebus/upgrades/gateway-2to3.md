@@ -20,3 +20,9 @@ snippet: 2to3EnableGatewayAfter
 to enable and configure sites and channels instead of:
 
 snippet: 2to3EnableGatewayBefore
+
+## Configuration
+
+When running on .NET Core, configuration options in configuration files will **no longer be automatically detected**. Use the code first API instead.
+
+When running on the .NET Framework, settings in configuration files will still be used, however a warning will be logged indicating that it should be explicitly configured using the code first API instead.
