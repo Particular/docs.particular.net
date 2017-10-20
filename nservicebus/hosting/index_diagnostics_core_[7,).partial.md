@@ -10,6 +10,8 @@ snippet: SetDiagnosticsPath
 
 At every endpoint startup the current diagnostics will be written to `{endpointName}-configuration.json`. If possible attach this file(s) to support requests.
 
+WARNING: The structure of the json data produced should not be considered stable. Nodes may be added, removed or moved in minor and patch versions.
+
 
 ### Writing to other targets
 
