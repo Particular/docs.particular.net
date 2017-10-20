@@ -1,5 +1,4 @@
-﻿using NServiceBus;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -9,7 +8,7 @@ using System.Web.Hosting;
 
 class AzureConfigurationSourceReplacement
 {
-    AzureConfigurationSourceReplacement(EndpointConfiguration endpointConfiguration)
+    string AzureConfigurationSourceReplacementExample()
     {
         #region azure-configuration-source-replacement
 
@@ -29,6 +28,8 @@ class AzureConfigurationSourceReplacement
         }
 
         #endregion
+
+        return value;
     }
 }
 
@@ -76,13 +77,7 @@ static class SafeRoleEnvironment
 
     }
 
-    public static bool IsAvailable
-    {
-        get
-        {
-            return isAvailable;
-        }
-    }
+    public static bool IsAvailable => isAvailable;
 
     public static string CurrentRoleInstanceId
     {
