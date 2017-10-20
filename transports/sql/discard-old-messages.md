@@ -1,5 +1,5 @@
 ---
-title: Discarding Old Messages
+title: Discarding old messages
 reviewed: 2017-10-20
 component: SqlTransport
 ---

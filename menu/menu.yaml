@@ -660,13 +660,15 @@
     - Url: transports/sql/native-delayed-delivery
       Title: Native Delayed Delivery
     - Url: transports/sql/connection-settings
-      Title: Connection Settings
+      Title: Connection settings
     - Url: transports/sql/addressing
       Title: Addressing
     - Url: transports/sql/transactions
       Title: Transaction support
     - Url: transports/sql/concurrency
       Title: Concurrency handling
+    - Url: transports/sql/discard-old-messages
+      Title: Discarding old messages
     - Url: transports/sql/deployment-options
       Title: Deployment options
     - Url: transports/sql/operations-scripting
@@ -678,7 +680,7 @@
     - Url: transports/sql/callbacks
       Title: Callback support
     - Url: transports/sql/queuepeek
-      Title: Queue Peek Settings
+      Title: Queue peek settings
   - Url: transports/msmq
     Title: MSMQ
     Articles:
