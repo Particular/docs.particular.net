@@ -1,4 +1,4 @@
-The messages with Time-To-Be-Received (TTBR) set are pushed through the message pump, just like regular messages, irrespectively if their TTBR already elapsed or not. The receive query compares the current UTC time in the database with the `Expires` column value and sets a flag indicating if a given message has expired.
+The messages with specified  Time-To-Be-Received (TTBR) are pushed through the message pump, just like regular messages, irrespectively if their TTBR already elapsed or not. The receive query compares the current UTC time in the database with the `Expires` column value and sets a flag indicating if a given message has expired.
 
 When the message is received from the database that flag is checked and if it is set, the message is dropped and not passed into the processing pipeline.
 
