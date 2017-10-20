@@ -45,11 +45,11 @@ By default, the ClientUI endpoint sends a steady stream of 1 `PlaceOrder` messag
 
 The rest of this tutorial is divided up into sub-sections. Each sub-section explains a few of the metrics and explain how to use the sample solution to explore these metrics.
 
-- **[Throughput and processing time](walkthough-1.md)** - dives into measuring individual endpoint performance with the throughput and processing time metrics.
+- **[Throughput and processing time](walkthrough-1.md)** - dives into measuring individual endpoint performance with the throughput and processing time metrics.
 
-- **[Queue length and critical time](walkthough-2.md)** - learn how to mesaure inter-endpoint performance and look for congestion with the queue length and critical time metrics.
+- **[Queue length and critical time](walkthrough-2.md)** - learn how to mesaure inter-endpoint performance and look for congestion with the queue length and critical time metrics.
 
-- **[Scheduled retry rates](walkthough-3.md)** - talks about how to find hidden problems in your solution by watching scheduled retry rates.
+- **[Scheduled retry rates](walkthrough-3.md)** - talks about how to find hidden problems in your solution by watching scheduled retry rates.
 
 
 include: next-steps
