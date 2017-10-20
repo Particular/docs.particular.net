@@ -49,10 +49,7 @@ static class ConfigurationResolver
         return ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
     }
 
-    static bool IsWebsite()
-    {
-        return HostingEnvironment.IsHosted;
-    }
+    static bool IsWebsite() => HostingEnvironment.IsHosted;
 }
 
 #endregion
