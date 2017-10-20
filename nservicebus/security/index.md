@@ -16,6 +16,7 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 
  * [Message Property Encryption](/nservicebus/security/property-encryption.md) ([Sample](/samples/encryption/basic-encryption/))
  * [Message Body Encryption](/nservicebus/security/body-encryption.md) ([Sample](/samples/encryption/message-body-encryption/))
+ * [Newtonsoft JSON Encryption](/samples/encryption/newtonsoft-json-encryption/)
 
 
 ## Transports
