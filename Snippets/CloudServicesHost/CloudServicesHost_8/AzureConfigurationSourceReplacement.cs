@@ -41,7 +41,10 @@ static class ConfigurationResolver
 {
     public static Configuration GetConfigurationHandler()
     {
-        if (IsWebsite()) return WebConfigurationManager.OpenWebConfiguration(HostingEnvironment.ApplicationVirtualPath);
+        if (IsWebsite())
+        {
+            return WebConfigurationManager.OpenWebConfiguration(HostingEnvironment.ApplicationVirtualPath);
+        }
 
         return ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
     }
