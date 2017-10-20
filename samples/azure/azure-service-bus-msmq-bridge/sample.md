@@ -63,6 +63,8 @@ snippet: subscribe-to-event-via-bridge
 
 MSMQ endpoint is bridged via `Bridge-MSMQ` queue:
 
+snippet: connect-msmq-side-of-bridge
+
 ![MSMQ topology][msmq-topology]
 
 
