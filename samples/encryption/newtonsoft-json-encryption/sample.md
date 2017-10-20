@@ -7,7 +7,7 @@ tags:
 - Encryption
 ---
 
-Leverages the NServiceBus.Newtonsoft.Encryption extension to Encrypting specific nodes of a serialized message. This is done using the extension points of [Json.NET](https://www.newtonsoft.com/json), and as such is more efficient (in terms of memory and CPU) than the [Message Property Encryption component](/nservicebus/security/property-encryption.md).
+Leverages the [NServiceBus.Newtonsoft.Encryption](https://github.com/SimonCropp/Newtonsoft.Json.Encryption) extension to Encrypting specific nodes of a serialized message. This is done using the extension points of [Json.NET](https://www.newtonsoft.com/json), and as such is more efficient (in terms of memory and CPU) than the [Message Property Encryption component](/nservicebus/security/property-encryption.md).
 
 
 ## Run the solution.
