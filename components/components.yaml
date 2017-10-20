@@ -531,7 +531,7 @@
   DocoUrl: https://github.com/SimonCropp/Newtonsoft.Json.Encryption
   GitHubOwner: SimonCropp
   SupportLevel: Community
-  Category: Serializer
+  Category: Other
   ProjectUrl: https://github.com/SimonCropp/Newtonsoft.Json.Encryption
   NugetOrder:
     - NServiceBus.Newtonsoft.Encryption
