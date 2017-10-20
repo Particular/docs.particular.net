@@ -472,6 +472,8 @@
       Title: CommonLogging
     - Url: nservicebus/logging/serilog
       Title: Serilog
+    - Url: nservicebus/logging/serilog-tracing
+      Title: Serilog Tracing
     - Url: nservicebus/logging/eventsourcelogging
       Title: EventSourceLogging
     - Url: nservicebus/operations/auditing
