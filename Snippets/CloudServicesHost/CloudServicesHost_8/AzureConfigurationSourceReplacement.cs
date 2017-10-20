@@ -27,6 +27,8 @@ class AzureConfigurationSourceReplacement
             value = section.MyAttribute;
         }
 
+        // return value; // value for mySection.myAttribute
+
         #endregion
 
         return value;
