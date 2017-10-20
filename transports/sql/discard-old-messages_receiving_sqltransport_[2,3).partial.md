@@ -1,0 +1,3 @@
+The messages with Time-To-Be-Received (TTBR) set are pushed through the message pump, just like regular messages, irrespectively if their TTBR already elapsed or not. The receive query returns the difference between the expiry time and the current UTC time in the database so that the transport can make a decision if a given message has expired.
+
+In addition to that, the expired messages are removed from the queue by a scheduled job which runs every 5 minutes. Each run the job attempts to remove all expired messages, in batches, using series a `delete` statements. Each batch is limited to 10000 messages.
