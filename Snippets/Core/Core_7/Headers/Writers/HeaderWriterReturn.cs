@@ -20,6 +20,7 @@
             var callbackTypes = typeof(RequestResponseExtensions).Assembly.GetTypes();
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterReturn>(callbackTypes);
             endpointConfiguration.SetTypesToScan(typesToScan);
+            endpointConfiguration.EnableCallbacks();
             endpointConfiguration.MakeInstanceUniquelyAddressable("A");
             endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.RegisterMessageMutator(new Mutator());
