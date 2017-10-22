@@ -1,6 +1,7 @@
 ﻿namespace Core7.Persistence
 {
     using NServiceBus;
+    using NServiceBus.Persistence;
 
     class PersistenceOrder
     {
@@ -44,5 +45,13 @@
             endpointConfiguration.UsePersistence<RavenDBPersistence>();
             #endregion
         }
+    }
+
+    class RavenDBPersistence : PersistenceDefinition
+    {
+    }
+
+    class NHibernatePersistence:PersistenceDefinition
+    {
     }
 }

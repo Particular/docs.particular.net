@@ -46,4 +46,12 @@
             #endregion
         }
     }
+
+    class NHibernatePersistence:PersistenceDefinition
+    {
+    }
+
+    class RavenDBPersistence:PersistenceDefinition
+    {
+    }
 }
