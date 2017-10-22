@@ -1,6 +1,8 @@
 ﻿namespace Core7.UpgradeGuides._6to7
 {
     using NServiceBus;
+    using NServiceBus.Settings;
+    using NServiceBus.Transport;
 
     class Upgrade
     {
@@ -14,6 +16,15 @@
 
             #endregion
         }
+    }
 
+    class MsmqTransport:TransportDefinition
+    {
+        public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override string ExampleConnectionStringForErrorMessage { get; }
     }
 }
