@@ -1,4 +1,4 @@
-startcode MsSqlServer_SagadGetByPropertySql
+startcode MsSqlServer_SagaGetByPropertySql
 
 select
     Id,

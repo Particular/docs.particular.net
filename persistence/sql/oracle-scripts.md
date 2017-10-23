@@ -128,7 +128,7 @@ snippet: Oracle_SagaSaveSql
 
 Used by `ISagaPersister.Get(propertyName...)`.
 
-snippet: Oracle_SagadGetByPropertySql
+snippet: Oracle_SagaGetByPropertySql
 
 
 #### GetBySagaId

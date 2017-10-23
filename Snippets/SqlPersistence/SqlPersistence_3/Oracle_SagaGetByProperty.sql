@@ -1,4 +1,4 @@
-startcode Oracle_SagadGetByPropertySql
+startcode Oracle_SagaGetByPropertySql
 
 select
     Id,

@@ -1,4 +1,4 @@
-startcode MsSqlServer_SagadGetByPropertySql
+startcode MySql_SagaGetByPropertySql
 
 select
     Id,
@@ -6,7 +6,7 @@ select
     Concurrency,
     Metadata,
     Data
-from EndpointNameSagaName
+from EndpointName_SagaName
 where Correlation_PropertyName = @propertyValue
 
 endcode
