@@ -15,7 +15,7 @@ begin
   select count(*) into n from user_tables where table_name = 'ORDERSAGA';
   if(n = 0)
   then
-    
+ 
     sqlStatement :=
        'create table "ORDERSAGA"
        (
@@ -59,7 +59,7 @@ select data_type ||
         end || ')'
     end
   end into dataType
-from all_tab_columns 
+from all_tab_columns
 where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERNUMBER';
 
 if(dataType <> 'NUMBER(19)')
@@ -100,7 +100,7 @@ select data_type ||
         end || ')'
     end
   end into dataType
-from all_tab_columns 
+from all_tab_columns
 where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERID';
 
 if(dataType <> 'VARCHAR2(38)')

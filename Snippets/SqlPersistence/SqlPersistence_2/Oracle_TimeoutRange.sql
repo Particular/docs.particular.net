@@ -2,5 +2,5 @@ startcode Oracle_TimeoutRangeSql
 
 select Id, ExpireTime
 from "ENDPOINTNAMETO"
-where ExpireTime between :StartTime and :EndTime
+where ExpireTime > :StartTime and ExpireTime <= :EndTime
 endcode

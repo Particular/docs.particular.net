@@ -15,7 +15,7 @@ public class ScriptWriter
     [Test]
     public void Write()
     {
-        var directory = Path.Combine(TestContext.CurrentContext.TestDirectory, "../../");
+        var directory = Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../");
         foreach (var variant in Enum.GetValues(typeof(BuildSqlVariant)).Cast<BuildSqlVariant>())
         {
             Write(directory, variant, "TimeoutCreate", TimeoutScriptBuilder.BuildCreateScript(variant));

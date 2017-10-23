@@ -20,7 +20,7 @@ begin
          expiretime date,
          headers clob not null,
          persistenceversion varchar2(23) not null,
-         constraint "' || tableName || '_PK" primary key 
+         constraint "' || tableName || '_PK" primary key
          (
            id
          )

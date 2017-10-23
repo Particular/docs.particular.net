@@ -1,7 +1,7 @@
 startcode MsSqlServer_SubscriptionSubscribeSql
 
 declare @dummy int;
-merge [dbo].[EndpointNameSubscriptionData] with (holdlock) as target
+merge [dbo].[EndpointNameSubscriptionData] with (holdlock, tablock) as target
 using(select @Endpoint as Endpoint, @Subscriber as Subscriber, @MessageType as MessageType) as source
 on target.Endpoint = source.Endpoint and
    target.Subscriber = source.Subscriber and

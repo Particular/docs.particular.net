@@ -13,7 +13,7 @@ begin
         (
           messagetype nvarchar2(200) not null,
           subscriber nvarchar2(200) not null,
-          endpoint varchar2(200) not null,
+          endpoint varchar2(200),
           persistenceversion varchar2(23),
           constraint "' || tableName || '_PK" primary key
           (

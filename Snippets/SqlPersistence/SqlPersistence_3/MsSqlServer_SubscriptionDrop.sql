@@ -3,10 +3,10 @@ declare @tableName nvarchar(max) = '[' + @schema + '].[' + @tablePrefix + 'Subsc
 
 if exists
 (
-    select * 
-    from sys.objects 
-    where 
-        object_id = object_id(@tableName) and 
+    select *
+    from sys.objects
+    where
+        object_id = object_id(@tableName) and
         type in ('U')
 )
 begin
