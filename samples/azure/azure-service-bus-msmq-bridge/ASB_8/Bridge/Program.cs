@@ -4,6 +4,7 @@ using NServiceBus;
 using NServiceBus.Bridge;
 using NServiceBus.Configuration.AdvancedExtensibility;
 using NServiceBus.Serialization;
+using NServiceBus.Settings;
 
 class Program
 {
@@ -30,7 +31,7 @@ class Program
                 transport.ConnectionString(connectionString);
                 transport.UseForwardingTopology();
                 var settings = transport.GetSettings();
-                var serializer = Tuple.Create(new NewtonsoftSerializer() as SerializationDefinition, settings);
+                var serializer = Tuple.Create(new NewtonsoftSerializer() as SerializationDefinition, new SettingsHolder());
                 settings.Set("MainSerializer", serializer);
             });
 
