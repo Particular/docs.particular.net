@@ -130,6 +130,8 @@ snippet: MySqlScripts
 
 partial: scriptsoracle
 
+partial: scriptspostgresql
+
 
 partial: scripttoggle
 
@@ -184,3 +186,6 @@ snippet: ExecuteScriptsSqlServer
 snippet: ExecuteScriptsMySql
 
 partial: executescriptsoracle
+
+
+partial: executescriptspostgresql

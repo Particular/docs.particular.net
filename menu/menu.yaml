@@ -830,6 +830,8 @@
       Title: MySQL Scripts
     - Url: persistence/sql/oracle-scripts
       Title: Oracle Scripts
+    - Url: persistence/sql/postgresql-scripts
+      Title: PostgreSQL Scripts
   - Url: persistence/azure-storage
     Title: Azure Storage
     Articles:
