@@ -143,7 +143,7 @@ select @dropIndexQuery =
     select 'drop index ' + name + ' on ' + @tableName + ';'
     from sysindexes
     where
-        Id = (select object_id from sys.objects where name = @tableName) and
+        Id = object_id(@tableName) and
         Name is not null and
         Name like 'Index_Correlation_%' and
         Name <> N'Index_Correlation_OrderNumber' and
@@ -153,17 +153,22 @@ exec sp_executesql @dropIndexQuery
 
 /* PurgeObsoleteProperties */
 
+declare @tableNameWithoutSchema nvarchar(max) = @tablePrefix + N'OrderSaga';
+
 declare @dropPropertiesQuery nvarchar(max);
 select @dropPropertiesQuery =
 (
     select 'alter table ' + @tableName + ' drop column ' + column_name + ';'
     from information_schema.columns
     where
-        table_name = @tableName and
+        table_name = @tableNameWithoutSchema and
+        table_schema = @schema and
         column_name like 'Correlation_%' and
         column_name <> N'Correlation_OrderNumber' and
         column_name <> N'Correlation_OrderId'
 );
 exec sp_executesql @dropPropertiesQuery
+
+/* CompleteSagaScript */
 
 endcode

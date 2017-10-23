@@ -72,13 +72,18 @@ public class ScriptWriter
                 new MessageType("MessageTypeName", new Version())
             }));
 
-            var sagaCommandBuilder = new SagaCommandBuilder();
+            var sagaCommandBuilder = new SagaCommandBuilder(variant);
             Write(directory, variant, "SagaComplete", sagaCommandBuilder.BuildCompleteCommand("EndpointName_SagaName"));
             Write(directory, variant, "SagadGetByProperty", sagaCommandBuilder.BuildGetByPropertyCommand("PropertyName", "EndpointName_SagaName"));
             Write(directory, variant, "SagaGetBySagaId", sagaCommandBuilder.BuildGetBySagaIdCommand("EndpointName_SagaName"));
             Write(directory, variant, "SagaSave", sagaCommandBuilder.BuildSaveCommand("CorrelationProperty", "TransitionalCorrelationProperty", "EndpointName_SagaName"));
             Write(directory, variant, "SagaUpdate", sagaCommandBuilder.BuildUpdateCommand("TransitionalCorrelationProperty", "EndpointName_SagaName"));
-            Write(directory, variant, "SagaSelect", sagaCommandBuilder.BuildSelectFromCommand("EndpointName_SagaName"));
+
+            // since we don't have doco on oracle saga finders
+            if (variant != SqlVariant.Oracle)
+            {
+                Write(directory, variant, "SagaSelect", sagaCommandBuilder.BuildSelectFromCommand("EndpointName_SagaName"));
+            }
         }
     }
 
