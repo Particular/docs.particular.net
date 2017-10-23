@@ -6,7 +6,7 @@ related:
  - nservicebus/operations
 redirects:
  - nservicebus/sql-persistence/oracle-scripts
-versions: '[2.1,)'
+versions: '[2,)'
 ---
 
 
