@@ -62,6 +62,8 @@ snippet: SqlPersistenceUsageMySql
 
 partial: usageoracle
 
+partial: usagepostgresql
+
 
 ## NuGet Packages
 
