@@ -34,7 +34,7 @@ partial: names
 
 SQL persistence itself supports Unicode characters, however data may become corrupted during saving if the database settings are incorrect. If Unicode support is required, follow the guidelines for each database engine, in particular set the correct character set and collation for databases storing persistence data.
 
-Refer to the dedicated [MySQL](https://dev.mysql.com/doc/refman/5.7/en/charset-applications.html), [SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/collations/collation-and-unicode-support) or [Oracle](https://docs.oracle.com/cd/B19306_01/server.102/b14225/ch2charset.htm) documentation for details.
+Refer to the dedicated [MySQL](https://dev.mysql.com/doc/refman/5.7/en/charset-applications.html), [SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/collations/collation-and-unicode-support), [Oracle](https://docs.oracle.com/cd/B19306_01/server.102/b14225/ch2charset.htm) or [PostgreSQL](https://www.postgresql.org/docs/9.1/static/multibyte.html) documentation for details.
 
 
 ## Usage
