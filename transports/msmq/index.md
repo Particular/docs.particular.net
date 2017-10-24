@@ -2,16 +2,39 @@
 title: MSMQ Transport
 summary: MSMQ is the primary durable communications technology for Microsoft but does not dynamically detect network interfaces.
 component: MsmqTransport
+related:
+ - samples/msmq/simple
+ - samples/msmq/persistence
+ - samples/msmq/dlq-customcheck
+ - samples/msmq/msmqtosqlrelay
 reviewed: 2016-08-31
 redirects:
  - nservicebus/msmq-information
  - nservicebus/msmq
+tags:
+ - Transport
 ---
+
+## Configuring the endpoint
 
 partial: default
 
 
-## NServiceBus Configuration
+## Advantages
+
+ * MSMQ is natively available as part of the Windows operating system. In Windows servers, the MSMQ role might need to be turned on.  
+ * MSMQ offers transactional queues which also support distributed transactions. With the transactional behavior, it is possible to get exactly-once delivery.
+ * MSMQ provides a store and forward mechanism. Therefore it promotes a more natural [bus-style architecture](/transports/#types-of-transports-bus-transports). When sending messages to unavailable servers, the messages are stored locally in the outgoing queues and will be automatically delivered once the machine comes back online.
+ 
+
+## Disadvantages
+
+ * MSMQ does not offer a native Publish-Subscribe mechanism, therefore it requires NServiceBus persistence to be configured for storing event subscriptions. [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
+ * Many organizations don't have the same level of operational expertise with MSMQ, as for example with SQL Server, so it may require additional training. For example, as MSMQ is not a broker transport, the messages could be on different servers, and managing the storage space on each machine is important.
+ * As MSMQ is a store and forward transport, it requires more setup for load balancing. I.e. it requires either a [distributor or sender side distribution](/transports/msmq/scaling-out.md) to be configured.
+
+
+## MSMQ Configuration
 
 NServiceBus requires a specific MSMQ configuration to operate.
 
