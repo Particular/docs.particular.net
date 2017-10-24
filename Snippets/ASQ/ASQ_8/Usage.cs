@@ -119,16 +119,6 @@ class Usage
         #endregion
     }
 
-    void UseSha1(EndpointConfiguration endpointConfiguration)
-    {
-        #region AzureStorageQueueSanitization
-
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.SanitizeQueueNamesWith(queueName => queueName.Replace('.', '-'));
-
-        #endregion
-    }
-
     void SetSerialization(EndpointConfiguration endpointConfiguration)
     {
         #region AzureStorageQueueSerialization
