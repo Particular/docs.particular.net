@@ -39,6 +39,9 @@ snippet: saga
 include: sagafinder-process
 
 
+partial: postgresconfig
+
+
 ## Saga Finders
 
 A Saga Finder is only required for the `PaymentTransactionCompleted` message since the other messages (`StartOrder` and `CompleteOrder`) are correlated based on `OrderSagaData.OrderId`.
@@ -54,3 +57,5 @@ snippet: SqlServerFinder
 ### MySql
 
 snippet: MySqlFinder
+
+partial: postgresfinder

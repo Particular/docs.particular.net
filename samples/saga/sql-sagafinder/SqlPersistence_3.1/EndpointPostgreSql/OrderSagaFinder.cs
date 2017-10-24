@@ -4,7 +4,7 @@ using NServiceBus.Extensibility;
 using NServiceBus.Persistence;
 using NServiceBus.Sagas;
 
-#region PostgeSqlFinder
+#region PostgreSqlFinder
 class OrderSagaFinder :
     IFindSagas<OrderSagaData>.Using<CompletePaymentTransaction>
 {
