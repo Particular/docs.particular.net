@@ -26,7 +26,11 @@ By default SQL persistence uses an endpoint's name as a table prefix, the maximu
 
 ## Using `pg_temp.` schema in installation scripts
 
+The table creation for the SQL Persistence require some dynamic SQL script execution. To achieve this in PostgreSql it is necessary to create temporary functions. These functions are created in the PostgreSql temporary-table schema, commonly referred to as `pg_temp`.
 
+As per [Client Connection Defaults](https://www.postgresql.org/docs/9.2/static/runtime-config-client.html) `pg_temp` is:
+
+> the current session's temporary-table schema, pg_temp_nnn, is always searched if it exists. It can be explicitly listed in the path by using the alias pg_temp
 
 
 ## Custom Finders
