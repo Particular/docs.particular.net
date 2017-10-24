@@ -132,30 +132,4 @@ class Configure
     {
         // See the config file
     }
-
-    void ManualDtcSettingExample()
-    {
-        var UrlToRavenDB = "http://localhost:8080";
-
-        #region RavenDBManualDtcSettingExample
-        // Value must uniquely identify endpoint on the machine and remain stable on process restarts
-        var resourceManagerId = new Guid("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
-
-        var dtcRecoveryBasePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-        var recoveryPath = Path.Combine(dtcRecoveryBasePath, "NServiceBus.RavenDB", resourceManagerId.ToString());
-
-        var store = new DocumentStore
-        {
-            Url = UrlToRavenDB,
-            ResourceManagerId = resourceManagerId,
-            TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(recoveryPath)
-        };
-        store.Initialize();
-
-        var endpointConfiguration = new EndpointConfiguration("EndpointName");
-        var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
-        persistence.SetDefaultDocumentStore(store);
-
-        #endregion
-    }
 }
