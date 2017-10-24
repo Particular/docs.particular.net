@@ -1,7 +1,10 @@
-﻿using System.Threading;
+﻿using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Common;
 using Core7.Headers.Writers;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NServiceBus;
 using NUnit.Framework;
 
@@ -18,13 +21,15 @@ public class StartUpDiagnosticsWriter
         string diagnostics = null;
         endpointConfiguration.CustomDiagnosticsWriter(x =>
         {
-             diagnostics = x;
+            diagnostics = x;
             return Task.CompletedTask;
         });
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        SnippetLogger.Write(diagnostics);
+        var jsonFormatted = JToken.Parse(diagnostics).ToString(Formatting.Indented);
+        var substring  = string.Join("\r", jsonFormatted.Split('\r').Take(20)) + "\r\n...";
+        SnippetLogger.Write(substring);
         await endpointInstance.Stop();
     }
 }

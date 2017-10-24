@@ -13,6 +13,13 @@ At every endpoint startup the current diagnostics will be written to `{endpointN
 WARNING: The structure and format of the data produced should not be considered stable or parsable. Nodes may be added, removed or moved in minor and patch versions.
 
 
+### Example content
+
+Formatted for readability.
+
+snippet: StartUpDiagnosticsWriter
+
+
 ### Writing to other targets
 
 To take full control of how diagnostics are written use:
