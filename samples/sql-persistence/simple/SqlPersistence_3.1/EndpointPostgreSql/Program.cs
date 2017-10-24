@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Npgsql;
+using NpgsqlTypes;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
 
@@ -27,7 +28,13 @@ internal class Program
         }
 
         var connection = $"Host=localhost;Username={username};Password={password};Database=NsbSamplesSqlPersistence";
-        persistence.SqlDialect<SqlDialect.PostgreSql>();
+        var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
+        dialect.JsonBParameterModifier(
+            modifier: parameter =>
+            {
+                var npgsqlParameter = (NpgsqlParameter)parameter;
+                npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
+            });
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
