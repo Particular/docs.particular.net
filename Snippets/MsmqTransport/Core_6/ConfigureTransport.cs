@@ -5,7 +5,8 @@ class ConfigureTransport
     {
         #region msmq-config-basic
         
-        endpointConfiguration.UseTransport<MsmqTransport>();
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.ConnectionString("deadLetter=false;");
 
         #endregion
     }
