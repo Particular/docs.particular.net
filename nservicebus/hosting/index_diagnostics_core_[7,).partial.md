@@ -1,6 +1,6 @@
 ## Startup diagnostics
 
-To make troubleshooting easier, diagnostic information is collected during enpoint startup and written to a `.diagnostics` subfolder in the host output directory.
+To make troubleshooting easier, diagnostic information is collected during endpoint startup and written to a `.diagnostics` sub-folder in the host output directory.
 
 NOTE: By default, the output directory is called `AppDomain.CurrentDomain.BaseDirectory`, except for WebApps where `App_Data` is used instead.
 
@@ -15,7 +15,7 @@ WARNING: The structure of the json data produced should not be considered stable
 
 ### Writing to other targets
 
-To take full controll of how diagnostics are written use:
+To take full control of how diagnostics are written use:
 
 snippet: CustomDiagnosticsWriter
 
