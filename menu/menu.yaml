@@ -825,7 +825,9 @@
     - Url: persistence/sql/installer-workflow
       Title: Installer Workflow
     - Url: persistence/sql/oracle-caveats
-      Title: Oracle Caveats
+      Title: Oracle dialect design
+    - Url: persistence/sql/postgresql-design
+      Title: PostgreSQL dialect design
     - Url: persistence/sql/sqlserver-scripts
       Title: MS SQL Server Scripts
     - Url: persistence/sql/mysql-scripts
