@@ -31,7 +31,7 @@ Or, alternatively, change the connection string to point to different Oracle ins
 ### PostgreSQL
 
  1. Ensure an instance of PostgreSQL (Version 10 or later) is installed and accessible on `localhost`.
- 1. Add the username to access the instance to an environment variable named `PostgreSqlPassword`.
- 1. Add the password to access the instance to an environment variable named `OraclePassword`.
+ 1. Add the username to access the instance to an environment variable named `PostgreSqlUserName`.
+ 1. Add the password to access the instance to an environment variable named `PostgreSqlPassword`.
 
 Or, alternatively, change the connection string to point to different PostgreSQL instance.
