@@ -20,19 +20,19 @@ public static class BackwardsCompatibleQueueNameSanitizer
     static string Sanitize(string queueName, bool useMd5Hashing = true)
     {
         var queueNameInLowerCase = queueName.ToLowerInvariant();
-        return ShortenQueueNameIfNecessary(queueNameInLowerCase, SanitizeQueueName(queueNameInLowerCase), useMd5Hashing);
+        return ShortenQueueNameIfNecessary(SanitizeQueueName(queueNameInLowerCase), useMd5Hashing);
     }
 
-    static string ShortenQueueNameIfNecessary(string queueName, string hashedQueueName, bool useMd5Hashing)
+    static string ShortenQueueNameIfNecessary(string sanitizedQueueName, bool useMd5Hashing)
     {
-        if (hashedQueueName.Length <= 63)
+        if (sanitizedQueueName.Length <= 63)
         {
-            return hashedQueueName;
+            return sanitizedQueueName;
         }
 
-        var shortenedName = useMd5Hashing ? ShortenWithMd5(queueName) : ShortenWithSha1(queueName);
+        var shortenedName = useMd5Hashing ? ShortenWithMd5(sanitizedQueueName) : ShortenWithSha1(sanitizedQueueName);
 
-        return $"{hashedQueueName.Substring(0, 63 - shortenedName.Length - 1).Trim('-')}-{shortenedName}";
+        return $"{sanitizedQueueName.Substring(0, 63 - shortenedName.Length - 1).Trim('-')}-{shortenedName}";
     }
 
     static string SanitizeQueueName(string queueName)
