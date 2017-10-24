@@ -52,4 +52,4 @@ When implementing custom sanitization, consider factors such as readability and 
  * Hashed queue names could lead to difficult names to use during production troubleshooting or debugging.
  * Sanitized queue names stay in the system and cannot be replaced until no longer used.
 
-Possible way to avoid sanitization is to define endpoint name as short and meaningful.
+Possible way to avoid sanitization is to define endpoint name short and meaningful.
