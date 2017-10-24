@@ -10,7 +10,7 @@ snippet: SetDiagnosticsPath
 
 At every endpoint startup the current diagnostics will be written to `{endpointName}-configuration.json`. If possible attach this file(s) to support requests.
 
-WARNING: The structure of the json data produced should not be considered stable. Nodes may be added, removed or moved in minor and patch versions.
+WARNING: The structure and format of the data produced should not be considered stable or parsable. Nodes may be added, removed or moved in minor and patch versions.
 
 
 ### Writing to other targets
@@ -28,4 +28,3 @@ snippet: CustomDiagnosticsSection
 
 Settings can be accessed from a [feature](/nservicebus/pipeline/features.md#feature-setup) or via the [endpoint configuration](/nservicebus/pipeline/features.md#feature-settings-endpointconfiguration).
 
- 
