@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Core", "Client\Clien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerShared.Core", "ServerShared\ServerShared.Core.csproj", "{A891BE78-C888-40BB-8037-FEAC5048BC92}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointPostgreSql.Core", "EndpointPostgreSql\EndpointPostgreSql.Core.csproj", "{BC8E45B1-CAE6-46A7-A0CD-326AE109FEC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,8 @@ Global
 		{2FE71442-7F81-428E-B945-D564850D6564}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A891BE78-C888-40BB-8037-FEAC5048BC92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A891BE78-C888-40BB-8037-FEAC5048BC92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC8E45B1-CAE6-46A7-A0CD-326AE109FEC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC8E45B1-CAE6-46A7-A0CD-326AE109FEC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
