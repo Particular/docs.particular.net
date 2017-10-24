@@ -191,7 +191,7 @@
         Title: Batched message dispatch
       - Url: nservicebus/messaging/callbacks
         Title: Client side Callbacks
-      - Url: nservicebus/messaging/discard-expired-messages
+      - Url: nservicebus/messaging/discard-old-messages
         Title: Discarding Expired Messages
       - Url: nservicebus/messaging/non-durable-messaging
         Title: Non-Durable Messaging
@@ -667,8 +667,8 @@
       Title: Transaction support
     - Url: transports/sql/concurrency
       Title: Concurrency handling
-    - Url: transports/sql/discard-old-messages
-      Title: Discarding old messages
+    - Url: transports/sql/discard-expired-messages
+      Title: Discarding expired messages
     - Url: transports/sql/deployment-options
       Title: Deployment options
     - Url: transports/sql/operations-scripting
