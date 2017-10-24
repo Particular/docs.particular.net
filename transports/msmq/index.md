@@ -22,16 +22,16 @@ partial: default
 
 ## Advantages
 
- * MSMQ is natively available as part of the Windows operating system. In Servers, the MSMQ role might need to be turned on.  
- * MSMQ offers transactional queues which also support distributed transactions. With the transactional behavior, it is easy to get exactly-only delivery achievable.
- * MSMQ provides a store and forward mechanism. Therefore it promotes a more natural [bus-style architecture](/transports/#types-of-transports-bus-transports). When sending messages to unavailable servers, the messages are stored in the Outgoing queues and will be automatically delivered once the machine comes back online.
+ * MSMQ is natively available as part of the Windows operating system. In Windows servers, the MSMQ role might need to be turned on.  
+ * MSMQ offers transactional queues which also support distributed transactions. With the transactional behavior, it is possible to get exactly-once delivery.
+ * MSMQ provides a store and forward mechanism. Therefore it promotes a more natural [bus-style architecture](/transports/#types-of-transports-bus-transports). When sending messages to unavailable servers, the messages are stored locally in the outgoing queues and will be automatically delivered once the machine comes back online.
  
 
 ## Disadvantages
 
- * Does not offer a native Publish-Subscribe mechanism, therefore it requires NServiceBus persistence to be configured for storing event subscriptions. [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
- * Many organizations don't have the same level of expertise with MSMQ, as for example with SQL Server, so it may require additional training. As MSMQ is not a broker transport, the messages could be on different servers, and managing the storage space on each machine is important.
- * As MSMQ is a store and forward transport, it does not support the competing-consumer pattern. In order to balance load, it requires either a [distributor or sender side distribution](/transports/msmq/scaling-out.md) to be configured.
+ * MSMQ does not offer a native Publish-Subscribe mechanism, therefore it requires NServiceBus persistence to be configured for storing event subscriptions. [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
+ * Many organizations don't have the same level of operational expertise with MSMQ, as for example with SQL Server, so it may require additional training. For example, as MSMQ is not a broker transport, the messages could be on different servers, and managing the storage space on each machine is important.
+ * As MSMQ is a store and forward transport, it requires more setup for load balancing. I.e. it requires either a [distributor or sender side distribution](/transports/msmq/scaling-out.md) to be configured.
 
 
 ## MSMQ Configuration
