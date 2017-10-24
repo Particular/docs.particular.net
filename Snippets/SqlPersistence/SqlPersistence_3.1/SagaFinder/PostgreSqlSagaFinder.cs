@@ -15,7 +15,7 @@
         {
             return session.GetSagaData<MySagaData>(
                 context: context,
-                whereClause: "JSON_VALUE(Data,'$.PropertyPathInJson') = @propertyValue",
+                whereClause: @"""Data""->>'PropertyPathInJson' = @propertyValue",
                 appendParameters: (builder, append) =>
                 {
                     var parameter = builder();
