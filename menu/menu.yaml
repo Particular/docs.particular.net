@@ -816,6 +816,8 @@
       Title: Business data
     - Url: persistence/sql/saga
       Title: Sagas
+    - Url: persistence/sql/saga-finder
+      Title: Saga finders
     - Url: persistence/sql/saga-concurrency
       Title: Saga concurrency
     - Url: persistence/sql/subscriptions
