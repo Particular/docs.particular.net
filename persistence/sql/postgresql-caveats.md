@@ -31,7 +31,3 @@ The table creation for the SQL Persistence require some dynamic SQL script execu
 As per [Client Connection Defaults](https://www.postgresql.org/docs/9.2/static/runtime-config-client.html) `pg_temp` is:
 
 > the current session's temporary-table schema, pg_temp_nnn, is always searched if it exists. It can be explicitly listed in the path by using the alias pg_temp
-
-
-## Custom Finders
-
