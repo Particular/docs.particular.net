@@ -2,7 +2,6 @@
 {
     using System;
     using NServiceBus;
-    using Raven.Client.Document;
 
     class Outbox
     {
@@ -11,13 +10,6 @@
             #region OutboxRavendBTimeToKeep
             endpointConfiguration.SetTimeToKeepDeduplicationData(TimeSpan.FromDays(7));
             endpointConfiguration.SetFrequencyToRunDeduplicationDataCleanup(TimeSpan.FromMinutes(1));
-            #endregion
-
-            // ReSharper disable once UseObjectOrCollectionInitializer
-            var documentStore = new DocumentStore();
-
-            #region OutboxDisableDocStoreDtc
-            documentStore.EnlistInDistributedTransactions = false;
             #endregion
         }
     }
