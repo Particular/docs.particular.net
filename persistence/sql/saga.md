@@ -178,6 +178,3 @@ snippet: SqlPersistenceCustomReader
 Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
 
 snippet: SqlPersistenceCustomWriter
-
-
-partial: finder

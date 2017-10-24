@@ -818,6 +818,8 @@
       Title: Business data
     - Url: persistence/sql/saga
       Title: Sagas
+    - Url: persistence/sql/saga-finder
+      Title: Saga finders
     - Url: persistence/sql/saga-concurrency
       Title: Saga concurrency
     - Url: persistence/sql/subscriptions
@@ -825,13 +827,17 @@
     - Url: persistence/sql/installer-workflow
       Title: Installer Workflow
     - Url: persistence/sql/oracle-caveats
-      Title: Oracle Caveats
+      Title: Oracle dialect design
+    - Url: persistence/sql/postgresql-design
+      Title: PostgreSQL dialect design
     - Url: persistence/sql/sqlserver-scripts
       Title: MS SQL Server Scripts
     - Url: persistence/sql/mysql-scripts
       Title: MySQL Scripts
     - Url: persistence/sql/oracle-scripts
       Title: Oracle Scripts
+    - Url: persistence/sql/postgresql-scripts
+      Title: PostgreSQL Scripts
   - Url: persistence/azure-storage
     Title: Azure Storage
     Articles:

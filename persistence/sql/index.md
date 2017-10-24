@@ -27,18 +27,14 @@ partial: supportedimpls
 
 SQL persistence automatically generates names of database objects such as tables, indexes and procedures used internally. Every database engine has their own rules and limitations regarding maximum allowed name length. The default values are:
 
-- Oracle 12.2 and below supports [max. 30 characters](https://docs.oracle.com/database/121/SQLRF/sql_elements008.htm#SQLRF00223), see the [Oracle Caveats](/persistence/sql/oracle-caveats.md) article to learn more.
-- MySQL supports [max. 64 characters](https://dev.mysql.com/doc/refman/5.7/en/identifiers.html).
-- SQL Server supports [max. 128 characters](https://docs.microsoft.com/en-us/sql/sql-server/maximum-capacity-specifications-for-sql-server).
-
-Note: In case of Oracle SQL persistence will throw an exception in case the name length is too long. In case of database engines other than Oracle, the SQL persistence will not validate name length, for two reasons. Firstly, the supported name length value is higher and should be sufficient for typical scenarios. Secondly, it is possible to modify the setting locally to support longer names. In case of long names for sagas, etc. the database engine may perform automatic name truncation.
+partial: names
 
 
 ### Unicode support
 
 SQL persistence itself supports Unicode characters, however data may become corrupted during saving if the database settings are incorrect. If Unicode support is required, follow the guidelines for each database engine, in particular set the correct character set and collation for databases storing persistence data.
 
-Refer to the dedicated [MySQL](https://dev.mysql.com/doc/refman/5.7/en/charset-applications.html), [SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/collations/collation-and-unicode-support) or [Oracle](https://docs.oracle.com/cd/B19306_01/server.102/b14225/ch2charset.htm) documentation for details.
+Refer to the dedicated [MySQL](https://dev.mysql.com/doc/refman/5.7/en/charset-applications.html), [SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/collations/collation-and-unicode-support), [Oracle](https://docs.oracle.com/cd/B19306_01/server.102/b14225/ch2charset.htm) or [PostgreSQL](https://www.postgresql.org/docs/9.1/static/multibyte.html) documentation for details.
 
 
 ## Usage
@@ -65,6 +61,8 @@ snippet: SqlPersistenceUsageMySql
  * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .NET connector does not currently support.}}
 
 partial: usageoracle
+
+partial: usagepostgresql
 
 
 ## NuGet Packages
@@ -130,6 +128,8 @@ snippet: MySqlScripts
 
 partial: scriptsoracle
 
+partial: scriptspostgresql
+
 
 partial: scripttoggle
 
@@ -184,3 +184,6 @@ snippet: ExecuteScriptsSqlServer
 snippet: ExecuteScriptsMySql
 
 partial: executescriptsoracle
+
+
+partial: executescriptspostgresql
