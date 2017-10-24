@@ -191,8 +191,8 @@
         Title: Batched message dispatch
       - Url: nservicebus/messaging/callbacks
         Title: Client side Callbacks
-      - Url: nservicebus/messaging/discard-old-messages
-        Title: Discarding Old Messages
+      - Url: nservicebus/messaging/discard-expired-messages
+        Title: Discarding Expired Messages
       - Url: nservicebus/messaging/non-durable-messaging
         Title: Non-Durable Messaging
       - Url: nservicebus/messaging/forwarding
