@@ -4,6 +4,8 @@ using System.Globalization;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Npgsql;
+using NpgsqlTypes;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
 
@@ -79,11 +81,32 @@ class Usage
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
-        persistence.SqlDialect<SqlDialect.PostgreSql>();
+        var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
+        dialect.JsonBParameterModifier(
+            modifier: parameter =>
+            {
+                var npgsqlParameter = (NpgsqlParameter)parameter;
+                npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
+            });
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
                 return new NpgsqlConnection(connection);
+            });
+
+        #endregion
+    }
+    void JsonBParameterModifier(EndpointConfiguration endpointConfiguration)
+    {
+        #region JsonBParameterModifier
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
+        dialect.JsonBParameterModifier(
+            modifier: parameter =>
+            {
+                var npgsqlParameter = (NpgsqlParameter)parameter;
+                npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
             });
 
         #endregion
