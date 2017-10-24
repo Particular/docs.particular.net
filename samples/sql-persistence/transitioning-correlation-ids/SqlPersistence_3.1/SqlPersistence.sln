@@ -1,67 +1,109 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointSqlServerPhase1", "Phase1\EndpointSqlServer\EndpointSqlServerPhase1.csproj", "{48F718EE-6C45-41BA-80EC-81BF34D4A623}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointSqlServerPhase1", "Phase1\EndpointSqlServer\EndpointSqlServerPhase1.csproj", "{48F718EE-6C45-41BA-80EC-81BF34D4A623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointMySqlPhase1", "Phase1\EndpointMySql\EndpointMySqlPhase1.csproj", "{E13E8EC1-53BC-4401-93DF-C8B88DBE8112}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointMySqlPhase1", "Phase1\EndpointMySql\EndpointMySqlPhase1.csproj", "{E13E8EC1-53BC-4401-93DF-C8B88DBE8112}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Phase1", "Phase1", "{928B2B43-FAAA-4115-922F-9E8902954D38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedPhase1", "Phase1\Shared\SharedPhase1.csproj", "{01FBA766-B587-4373-83FE-3BD5F5182D52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedPhase1", "Phase1\Shared\SharedPhase1.csproj", "{01FBA766-B587-4373-83FE-3BD5F5182D52}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Phase2", "Phase2", "{792B0C49-FE6A-4A4E-A185-5AEA3AB8EFB4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Phase3", "Phase3", "{129CE6A1-F4D6-4BDF-B171-C34999756130}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointMySqlPhase2", "Phase2\EndpointMySql\EndpointMySqlPhase2.csproj", "{64F7F635-92A4-4730-B963-2135870DE05E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointMySqlPhase2", "Phase2\EndpointMySql\EndpointMySqlPhase2.csproj", "{64F7F635-92A4-4730-B963-2135870DE05E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointSqlServerPhase2", "Phase2\EndpointSqlServer\EndpointSqlServerPhase2.csproj", "{C16C32D7-6251-4FCF-9F41-5896E26BD866}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointSqlServerPhase2", "Phase2\EndpointSqlServer\EndpointSqlServerPhase2.csproj", "{C16C32D7-6251-4FCF-9F41-5896E26BD866}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedPhase2", "Phase2\Shared\SharedPhase2.csproj", "{79986B98-6559-41CC-81C7-61CC26BC83F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedPhase2", "Phase2\Shared\SharedPhase2.csproj", "{79986B98-6559-41CC-81C7-61CC26BC83F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointMySqlPhase3", "Phase3\EndpointMySql\EndpointMySqlPhase3.csproj", "{19395CFB-4FE7-4021-81FA-5439CA501B86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointMySqlPhase3", "Phase3\EndpointMySql\EndpointMySqlPhase3.csproj", "{19395CFB-4FE7-4021-81FA-5439CA501B86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointSqlServerPhase3", "Phase3\EndpointSqlServer\EndpointSqlServerPhase3.csproj", "{C3A867A6-FCA4-4763-8CAC-4E6C28EB92DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointSqlServerPhase3", "Phase3\EndpointSqlServer\EndpointSqlServerPhase3.csproj", "{C3A867A6-FCA4-4763-8CAC-4E6C28EB92DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedPhase3", "Phase3\Shared\SharedPhase3.csproj", "{7EA5D1D1-0860-4269-B1D6-056F09B08C68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedPhase3", "Phase3\Shared\SharedPhase3.csproj", "{7EA5D1D1-0860-4269-B1D6-056F09B08C68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointOraclePhase1", "Phase1\EndpointOracle\EndpointOraclePhase1.csproj", "{44E0BDCF-5461-4F0E-A0C6-A32F8388EEA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointOraclePhase1", "Phase1\EndpointOracle\EndpointOraclePhase1.csproj", "{44E0BDCF-5461-4F0E-A0C6-A32F8388EEA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointOraclePhase2", "Phase2\EndpointOracle\EndpointOraclePhase2.csproj", "{9B87B80E-DE32-471D-A0D3-03A6B8C70A3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointOraclePhase2", "Phase2\EndpointOracle\EndpointOraclePhase2.csproj", "{9B87B80E-DE32-471D-A0D3-03A6B8C70A3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointOraclePhase3", "Phase3\EndpointOracle\EndpointOraclePhase3.csproj", "{510F7022-B9CB-4DE4-B21C-FA7AD127C037}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointOraclePhase3", "Phase3\EndpointOracle\EndpointOraclePhase3.csproj", "{510F7022-B9CB-4DE4-B21C-FA7AD127C037}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointPostgreSqlPhase1", "Phase1\EndpointPostgreSql\EndpointPostgreSqlPhase1.csproj", "{17813C58-ED35-4C29-B32F-35F24F773210}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointPostgreSqlPhase2", "Phase2\EndpointPostgreSql\EndpointPostgreSqlPhase2.csproj", "{2F17AF4A-D952-48BB-B0E3-0B444DC294EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointPostgreSqlPhase3", "Phase3\EndpointPostgreSql\EndpointPostgreSqlPhase3.csproj", "{0115E23C-C224-4936-8C6B-58C76DE40ADD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{48F718EE-6C45-41BA-80EC-81BF34D4A623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{48F718EE-6C45-41BA-80EC-81BF34D4A623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48F718EE-6C45-41BA-80EC-81BF34D4A623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48F718EE-6C45-41BA-80EC-81BF34D4A623}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E13E8EC1-53BC-4401-93DF-C8B88DBE8112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E13E8EC1-53BC-4401-93DF-C8B88DBE8112}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E13E8EC1-53BC-4401-93DF-C8B88DBE8112}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E13E8EC1-53BC-4401-93DF-C8B88DBE8112}.Release|Any CPU.Build.0 = Release|Any CPU
 		{01FBA766-B587-4373-83FE-3BD5F5182D52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{01FBA766-B587-4373-83FE-3BD5F5182D52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01FBA766-B587-4373-83FE-3BD5F5182D52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01FBA766-B587-4373-83FE-3BD5F5182D52}.Release|Any CPU.Build.0 = Release|Any CPU
 		{64F7F635-92A4-4730-B963-2135870DE05E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{64F7F635-92A4-4730-B963-2135870DE05E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64F7F635-92A4-4730-B963-2135870DE05E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64F7F635-92A4-4730-B963-2135870DE05E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C16C32D7-6251-4FCF-9F41-5896E26BD866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C16C32D7-6251-4FCF-9F41-5896E26BD866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C16C32D7-6251-4FCF-9F41-5896E26BD866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C16C32D7-6251-4FCF-9F41-5896E26BD866}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79986B98-6559-41CC-81C7-61CC26BC83F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79986B98-6559-41CC-81C7-61CC26BC83F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79986B98-6559-41CC-81C7-61CC26BC83F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79986B98-6559-41CC-81C7-61CC26BC83F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19395CFB-4FE7-4021-81FA-5439CA501B86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19395CFB-4FE7-4021-81FA-5439CA501B86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19395CFB-4FE7-4021-81FA-5439CA501B86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19395CFB-4FE7-4021-81FA-5439CA501B86}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C3A867A6-FCA4-4763-8CAC-4E6C28EB92DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C3A867A6-FCA4-4763-8CAC-4E6C28EB92DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3A867A6-FCA4-4763-8CAC-4E6C28EB92DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3A867A6-FCA4-4763-8CAC-4E6C28EB92DE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7EA5D1D1-0860-4269-B1D6-056F09B08C68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7EA5D1D1-0860-4269-B1D6-056F09B08C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EA5D1D1-0860-4269-B1D6-056F09B08C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EA5D1D1-0860-4269-B1D6-056F09B08C68}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44E0BDCF-5461-4F0E-A0C6-A32F8388EEA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44E0BDCF-5461-4F0E-A0C6-A32F8388EEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44E0BDCF-5461-4F0E-A0C6-A32F8388EEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44E0BDCF-5461-4F0E-A0C6-A32F8388EEA4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9B87B80E-DE32-471D-A0D3-03A6B8C70A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B87B80E-DE32-471D-A0D3-03A6B8C70A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B87B80E-DE32-471D-A0D3-03A6B8C70A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B87B80E-DE32-471D-A0D3-03A6B8C70A3C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{510F7022-B9CB-4DE4-B21C-FA7AD127C037}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{510F7022-B9CB-4DE4-B21C-FA7AD127C037}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{510F7022-B9CB-4DE4-B21C-FA7AD127C037}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{510F7022-B9CB-4DE4-B21C-FA7AD127C037}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17813C58-ED35-4C29-B32F-35F24F773210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17813C58-ED35-4C29-B32F-35F24F773210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17813C58-ED35-4C29-B32F-35F24F773210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17813C58-ED35-4C29-B32F-35F24F773210}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F17AF4A-D952-48BB-B0E3-0B444DC294EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F17AF4A-D952-48BB-B0E3-0B444DC294EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F17AF4A-D952-48BB-B0E3-0B444DC294EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F17AF4A-D952-48BB-B0E3-0B444DC294EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0115E23C-C224-4936-8C6B-58C76DE40ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0115E23C-C224-4936-8C6B-58C76DE40ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0115E23C-C224-4936-8C6B-58C76DE40ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0115E23C-C224-4936-8C6B-58C76DE40ADD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,5 +121,11 @@ Global
 		{44E0BDCF-5461-4F0E-A0C6-A32F8388EEA4} = {928B2B43-FAAA-4115-922F-9E8902954D38}
 		{9B87B80E-DE32-471D-A0D3-03A6B8C70A3C} = {792B0C49-FE6A-4A4E-A185-5AEA3AB8EFB4}
 		{510F7022-B9CB-4DE4-B21C-FA7AD127C037} = {129CE6A1-F4D6-4BDF-B171-C34999756130}
+		{17813C58-ED35-4C29-B32F-35F24F773210} = {928B2B43-FAAA-4115-922F-9E8902954D38}
+		{2F17AF4A-D952-48BB-B0E3-0B444DC294EE} = {792B0C49-FE6A-4A4E-A185-5AEA3AB8EFB4}
+		{0115E23C-C224-4936-8C6B-58C76DE40ADD} = {129CE6A1-F4D6-4BDF-B171-C34999756130}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {40402549-B734-4C50-BA59-0CA4938DA039}
 	EndGlobalSection
 EndGlobal
