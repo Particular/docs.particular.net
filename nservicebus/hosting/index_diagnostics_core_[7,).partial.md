@@ -15,7 +15,7 @@ WARNING: The structure and format of the data produced should not be considered 
 
 ### Example content
 
-Formatted for readability.
+Example partial content of the startup diagnostics (Formatted for readability).
 
 snippet: StartUpDiagnosticsWriter
 
