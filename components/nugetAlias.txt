@@ -39,6 +39,7 @@ Mandrill: NServiceBus.Mandrill
 MessagePack: NServiceBus.MessagePack
 MsgPack: NServiceBus.MsgPack
 Metrics: NServiceBus.Metrics
+MetricsServiceControl: NServiceBus.Metrics.ServiceControl
 MessageRouting: NServiceBus.MessageRouting
 MongoSbmako: NServiceBus.MongoDB
 MongoTekmaven: NServiceBus.Persistence.MongoDb
