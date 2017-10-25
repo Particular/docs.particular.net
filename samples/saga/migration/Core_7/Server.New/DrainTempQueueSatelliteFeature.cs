@@ -53,7 +53,7 @@ public class DrainTempQueueSatelliteFeature :
         log.Info($"Moving message from {tempQueue} to {mainQueue}");
 
         var operations = new TransportOperations(operation);
-        return dispatcher.Dispatch(operations, context.TransportTransaction, context.Context);
+        return dispatcher.Dispatch(operations, context.TransportTransaction, context.Extensions);
     }
 }
 #endregion
