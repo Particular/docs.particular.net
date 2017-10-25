@@ -13,11 +13,6 @@
     <PackageReference Include="WindowsAzure.ServiceBus" Version="4.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.0.0-*" />
   </ItemGroup>
-
-  <!-- Temporarily override to force the Bridge to work against the latest beta of Raw -->
-  <ItemGroup>
-    <PackageReference Include="NServiceBus.Raw" Version="3.0.0-*" />
-  </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />

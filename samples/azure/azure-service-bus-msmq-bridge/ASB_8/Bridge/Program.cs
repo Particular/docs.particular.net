@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Transactions;
 using NServiceBus;
 using NServiceBus.Bridge;
 using NServiceBus.Configuration.AdvancedExtensibility;
@@ -36,7 +37,7 @@ class Program
             });
 
         bridgeConfiguration.AutoCreateQueues();
-        bridgeConfiguration.UseSubscriptionPersistece<InMemoryPersistence>((configuration, persistence) => { });
+        bridgeConfiguration.UseSubscriptionPersistence<InMemoryPersistence>((configuration, persistence) => { });
 
         #endregion
 
@@ -44,13 +45,13 @@ class Program
 
         // TODO: Bridge 2.x doesn't support this yet
 
-//        bridgeConfiguration.InterceptForwarding(async (queue, message, forward) =>
-//        {
-//            using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
-//            {
-//                await forward().ConfigureAwait(false);
-//            }
-//        });
+        bridgeConfiguration.InterceptForwarding(async (queue, message, forward) =>
+        {
+            using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
+            {
+                await forward().ConfigureAwait(false);
+            }
+        });
 
         #endregion
 
