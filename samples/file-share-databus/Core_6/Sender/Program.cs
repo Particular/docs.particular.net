@@ -12,7 +12,7 @@ class Program
         #region ConfigureDataBus
 
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
-        dataBus.BasePath("..\\..\\..\\storage");
+        dataBus.BasePath(@"..\..\..\storage");
 
         #endregion
 
@@ -63,7 +63,7 @@ class Program
 
         #endregion
 
-        Console.WriteLine("Message sent, the payload is stored in: ..\\..\\..\\storage");
+        Console.WriteLine(@"Message sent, the payload is stored in: ..\..\..\storage");
     }
 
     static async Task SendMessageTooLargePayload(IEndpointInstance endpointInstance)
