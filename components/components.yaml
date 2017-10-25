@@ -927,3 +927,12 @@
   NugetOrder:
     - NServiceBus.Wormhole
     - NServiceBus.Wormhole.Gateway
+
+- Key: UniformSession
+  Name: UniformSession Support
+  DocoUrl: nservicebus/uniformsession
+  GitHubOwner: Particular/nservicebus-maintainers
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.UniformSession
+  NugetOrder:
+    - NServiceBus.UniformSession
