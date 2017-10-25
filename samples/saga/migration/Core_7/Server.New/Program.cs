@@ -19,6 +19,7 @@ class Program
 
         endpointConfiguration.UseTransport<LearningTransport>();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.SqlDialect<SqlDialect.MsSqlServer>();
         var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSagaMigration;Integrated Security=True;";
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
