@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Queues Transport Upgrade Version 7 to 8
 summary: Instructions on how to upgrade Azure Storage Queues Transport Version 7 to 8.
-reviewed: 2017-10-18
+reviewed: 2017-10-24
 component: ASQ
 related:
 - transports/azure-storage-queues
@@ -23,7 +23,7 @@ In previous versions, the transport was responsible for sanitization of the queu
 
 In Versions 8 and above, the transport is no longer performing sanitization by default. Instead, sanitization logic can be [registered](/transports/azure-storage-queues/sanitization.md).
 
-snippet: AzureStorageQueueSanitization
+snippet: azure-storage-queue-sanitization
 
 
 ## Serialization is mandatory
