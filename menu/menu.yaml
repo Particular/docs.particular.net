@@ -501,6 +501,8 @@
       Title: Metrics
     - Url: nservicebus/operations/performance-counters
       Title: Performance Counters
+    - Url: nservicebus/operations/metrics-service-control
+      Title: Metrics Data to ServiceControl      
     - Url: nservicebus/operations/tuning
       Title: Tuning endpoint message processing
     - Url: nservicebus/operations/running-on-windows

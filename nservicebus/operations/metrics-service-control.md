@@ -1,7 +1,7 @@
 ---
 title: Metrics data to ServiceControl
 summary: Reporting metrics to ServiceControl.
-reviewed: 2017-09-26
+reviewed: 2017-10-25
 component: MetricsServiceControl
 related:
  - nservicebus/operations
@@ -10,21 +10,23 @@ related:
 ---
 
 
-This component enables sending monitoring data gathered with NServiceBus.Metrics to an instance of ServiceControl.Monitoring service.
+This component enables sending monitoring data gathered with `NServiceBus.Metrics` to an instance of `ServiceControl.Monitoring` service.
 
-## Enabling
+## Configuration
+
+After adding package to the project, metrics are sent to ServiceControl once enabled.
 
 It can be enabled via:
 
 snippet: SendMetricDataToServiceControl
 
 
-#### Service Control Metrics Address
+### Service Control Metrics Address
 
-The default is "particular.monitoring" which is ServiceControl monitoring instance input queue.
+The default is `particular.monitoring` which is ServiceControl monitoring instance input queue.
 
 
-#### Instance Id
+### Instance Id
 
 An override for `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`.
 
