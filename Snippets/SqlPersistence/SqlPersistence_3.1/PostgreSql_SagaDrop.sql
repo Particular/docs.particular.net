@@ -3,7 +3,7 @@ startcode PostgreSql_SagaDropSql
 /* TableNameVariable */
 
 /* DropTable */
-create or replace function pg_temp.drop_saga_table_OrderSaga(tablePrefix varchar)
+create or replace function pg_temp.drop_saga_table_OrderSaga(tablePrefix varchar, schema varchar)
     returns integer as
     $body$
     declare
@@ -11,13 +11,13 @@ create or replace function pg_temp.drop_saga_table_OrderSaga(tablePrefix varchar
         dropTable text;
     begin
         tableNameNonQuoted := tablePrefix || 'OrderSaga';
-        dropTable = 'drop table if exists public."' || tableNameNonQuoted || '";';
+        dropTable = 'drop table if exists "' || schema || '"."' || tableNameNonQuoted || '";';
         execute dropTable;
         return 0;
     end;
     $body$
     language 'plpgsql';
 
-select pg_temp.drop_saga_table_OrderSaga(@tablePrefix);
+select pg_temp.drop_saga_table_OrderSaga(@tablePrefix, @schema);
 
 endcode

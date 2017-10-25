@@ -6,7 +6,7 @@ select
     "Concurrency",
     "Metadata",
     "Data"
-from "EndpointName_SagaName"
+from EndpointName_SagaName
 where "Correlation_PropertyName" = @propertyValue
 
 endcode

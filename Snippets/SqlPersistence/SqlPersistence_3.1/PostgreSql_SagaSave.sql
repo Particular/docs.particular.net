@@ -1,6 +1,6 @@
 startcode PostgreSql_SagaSaveSql
 
-insert into "EndpointName_SagaName"
+insert into EndpointName_SagaName
 (
     "Id",
     "Metadata",

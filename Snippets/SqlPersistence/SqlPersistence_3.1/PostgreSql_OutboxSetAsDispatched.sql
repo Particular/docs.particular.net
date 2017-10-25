@@ -1,9 +1,9 @@
 startcode PostgreSql_OutboxSetAsDispatchedSql
 
-update public."EndpointNameOutboxData"
+update "public"."EndpointNameOutboxData"
 set
     "Dispatched" = true,
-    "DispatchedAt" = @DispatchedAt at time zone 'UTC',
+    "DispatchedAt" = @DispatchedAt,
     "Operations" = '[]'
 where "MessageId" = @MessageId
 endcode

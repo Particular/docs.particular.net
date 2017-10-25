@@ -6,7 +6,7 @@ select
     "Concurrency",
     "Metadata",
     "Data"
-from public."EndpointName_SagaName"
+from EndpointName_SagaName
 where "Id" = @Id
 
 endcode

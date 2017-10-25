@@ -6,6 +6,6 @@ select
     "State",
     "Time",
     "Headers"
-from public."EndpointNameTimeoutData"
+from "public"."EndpointNameTimeoutData"
 where "Id" = @Id
 endcode

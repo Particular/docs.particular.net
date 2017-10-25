@@ -3,6 +3,6 @@ startcode PostgreSql_OutboxGetSql
 select
     "Dispatched",
     "Operations"
-from public."EndpointNameOutboxData"
+from "public"."EndpointNameOutboxData"
 where "MessageId" = @MessageId
 endcode

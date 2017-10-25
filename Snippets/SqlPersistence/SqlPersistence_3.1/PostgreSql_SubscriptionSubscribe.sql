@@ -1,6 +1,6 @@
 startcode PostgreSql_SubscriptionSubscribeSql
 
-insert into public."EndpointNameSubscriptionData"
+insert into "public"."EndpointNameSubscriptionData"
 (
     "Id",
     "Subscriber",

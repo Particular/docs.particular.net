@@ -1,6 +1,6 @@
 startcode PostgreSql_TimeoutAddSql
 
-insert into public."EndpointNameTimeoutData"
+insert into "public"."EndpointNameTimeoutData"
 (
     "Id",
     "Destination",
@@ -16,7 +16,7 @@ values
     @Destination,
     @SagaId,
     @State,
-    @Time at time zone 'UTC',
+    @Time,
     @Headers,
     @PersistenceVersion
 )

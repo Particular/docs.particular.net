@@ -6,7 +6,7 @@ startcode PostgreSql_SagaCreateSql
 
 /* CreateTable */
 
-create or replace function pg_temp.create_saga_table_OrderSaga(tablePrefix varchar)
+create or replace function pg_temp.create_saga_table_OrderSaga(tablePrefix varchar, schema varchar)
     returns integer as
     $body$
     declare
@@ -16,7 +16,7 @@ create or replace function pg_temp.create_saga_table_OrderSaga(tablePrefix varch
         columnType varchar;
     begin
         tableNameNonQuoted := tablePrefix || 'OrderSaga';
-        script = 'create table if not exists public."' || tableNameNonQuoted || '"
+        script = 'create table if not exists "' || schema || '"."' || tableNameNonQuoted || '"
 (
     "Id" uuid not null,
     "Metadata" text not null,
@@ -30,7 +30,7 @@ create or replace function pg_temp.create_saga_table_OrderSaga(tablePrefix varch
 
 /* AddProperty OrderNumber */
 
-        script = 'alter table public."' || tableNameNonQuoted || '" add column if not exists "Correlation_OrderNumber" int';
+        script = 'alter table "' || schema || '"."' || tableNameNonQuoted || '" add column if not exists "Correlation_OrderNumber" int';
         execute script;
 
 /* VerifyColumnType Int */
@@ -48,11 +48,11 @@ create or replace function pg_temp.create_saga_table_OrderSaga(tablePrefix varch
 
 /* WriteCreateIndex OrderNumber */
 
-        script = 'create unique index if not exists "' || tablePrefix || '_i_919CC583A044D760C1FA433AD451B9E67BFD7C07" on public."' || tableNameNonQuoted || '" using btree ("Correlation_OrderNumber" asc);';
+        script = 'create unique index if not exists "' || tablePrefix || '_i_919CC583A044D760C1FA433AD451B9E67BFD7C07" on "' || schema || '"."' || tableNameNonQuoted || '" using btree ("Correlation_OrderNumber" asc);';
         execute script;
 /* AddProperty OrderId */
 
-        script = 'alter table public."' || tableNameNonQuoted || '" add column if not exists "Correlation_OrderId" uuid';
+        script = 'alter table "' || schema || '"."' || tableNameNonQuoted || '" add column if not exists "Correlation_OrderId" uuid';
         execute script;
 
 /* VerifyColumnType Guid */
@@ -70,7 +70,7 @@ create or replace function pg_temp.create_saga_table_OrderSaga(tablePrefix varch
 
 /* CreateIndex OrderId */
 
-        script = 'create unique index if not exists "' || tablePrefix || '_i_9ACA1354611B1EEE42F739F02F62E0AB88D036F3" on public."' || tableNameNonQuoted || '" using btree ("Correlation_OrderId" asc);';
+        script = 'create unique index if not exists "' || tablePrefix || '_i_9ACA1354611B1EEE42F739F02F62E0AB88D036F3" on "' || schema || '"."' || tableNameNonQuoted || '" using btree ("Correlation_OrderId" asc);';
         execute script;
 /* PurgeObsoleteIndex */
 
@@ -83,6 +83,6 @@ create or replace function pg_temp.create_saga_table_OrderSaga(tablePrefix varch
     $body$
 language 'plpgsql';
 
-select pg_temp.create_saga_table_OrderSaga(@tablePrefix);
+select pg_temp.create_saga_table_OrderSaga(@tablePrefix, @schema);
 
 endcode

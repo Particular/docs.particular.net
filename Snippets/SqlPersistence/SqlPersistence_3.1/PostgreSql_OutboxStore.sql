@@ -1,6 +1,6 @@
 startcode PostgreSql_OutboxStoreSql
 
-insert into public."EndpointNameOutboxData"
+insert into "public"."EndpointNameOutboxData"
 (
     "MessageId",
     "Operations",
