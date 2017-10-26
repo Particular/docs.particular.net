@@ -48,7 +48,7 @@ Any NServiceBus endpoint can run as a Worker node. To activate it, create a hand
 
 ### When hosting in NServiceBus.Host.exe
 
-If hosting the endpoint with NServiceBus.Host.exe, to run as a Worker, use this command line:
+If hosting the endpoint with `NServiceBus.Host.exe`, to run as a Worker, use this command line:
 
 partial: worker
 
