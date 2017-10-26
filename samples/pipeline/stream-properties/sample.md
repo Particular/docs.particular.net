@@ -19,7 +19,7 @@ The main difference is that with streams, the data doesn't all need to be loaded
 
 ## Stream Storage helper
 
-This provides an extension method to `Configure` to simplify passing in settings to the stream storage.
+This provides an extension method to simplify passing in settings to the stream storage.
 
 snippet: stream-storage-helper
 

@@ -167,6 +167,14 @@ To facilitate the creation of queues for endpoints during deployment, the NuGet 
 
 A new API called, [DisableInstaller](/transports/msmq/transportconfig.md?version=msmqtransport_1#receiving-algorithm-disableinstaller) can now be used to disable the auto-creation of queues during startup.
 
+
+### New Transport Configuration API
+
+Passing in the [connection string](/transports/msmq/connection-strings.md) is no longer supported. If the connection string is passed, an exception will be thrown at endpoint start-up.
+
+New APIs have been added for each of the setting namely, DisableDeadLetterQueueing, DisableConnectionCachingForSends, UseNonTransactionalQueues, EnableJournaling and TimeToReachQueue. See the [transport configuration documentation](/transports/msmq/transportconfig.md) for more details on the usage.
+
+
 ### Msmq Subscription Storage
 
 The default queue for the subscription storage has been switched from `NServiceBus.Subscriptions` to `[EndpointName].Subscriptions` if the subscription queue has not been explicitly configured.

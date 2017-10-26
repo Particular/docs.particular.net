@@ -22,7 +22,7 @@ So the code to enable this would be something similar to.
 
 snippet: InstallerWorkflow
 
-In this manner a developers machine can be identified by the existence of the `IsDevelopement` environment variable. A development machine could also be identified by checking a machine name convention, command line argument or any other toggle based on the specific environment.
+In this manner a developers machine can be identified by the existence of the `IsDevelopment` environment variable. A development machine could also be identified by checking a machine name convention, command line argument or any other toggle based on the specific environment.
 
 
 ### Development Workflow

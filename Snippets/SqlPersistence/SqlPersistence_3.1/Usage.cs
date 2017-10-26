@@ -40,6 +40,16 @@ class Usage
         #endregion
     }
 
+    void ExecuteAtStartup(EndpointConfiguration endpointConfiguration)
+    {
+        #region ExecuteAtStartup
+
+        endpointConfiguration.EnableInstallers();
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+
+        #endregion
+    }
+
     void InstallerWorkflow(EndpointConfiguration endpointConfiguration)
     {
         #region InstallerWorkflow

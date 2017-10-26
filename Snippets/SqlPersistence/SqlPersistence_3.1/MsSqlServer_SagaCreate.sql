@@ -3,6 +3,8 @@ startcode MsSqlServer_SagaCreateSql
 /* TableNameVariable */
 
 declare @tableName nvarchar(max) = '[' + @schema + '].[' + @tablePrefix + N'OrderSaga]';
+declare @tableNameWithoutSchema nvarchar(max) = @tablePrefix + N'OrderSaga';
+
 
 /* Initialize */
 
@@ -55,7 +57,8 @@ set @dataType_OrderNumber = (
   select data_type
   from information_schema.columns
   where
-    table_name = ' + @tableName + N' and
+    table_name = @tableNameWithoutSchema and
+    table_schema = @schema and
     column_name = 'Correlation_OrderNumber'
 );
 if (@dataType_OrderNumber <> 'bigint')
@@ -107,7 +110,8 @@ set @dataType_OrderId = (
   select data_type
   from information_schema.columns
   where
-    table_name = ' + @tableName + N' and
+    table_name = @tableNameWithoutSchema and
+    table_schema = @schema and
     column_name = 'Correlation_OrderId'
 );
 if (@dataType_OrderId <> 'uniqueidentifier')
@@ -152,8 +156,6 @@ select @dropIndexQuery =
 exec sp_executesql @dropIndexQuery
 
 /* PurgeObsoleteProperties */
-
-declare @tableNameWithoutSchema nvarchar(max) = @tablePrefix + N'OrderSaga';
 
 declare @dropPropertiesQuery nvarchar(max);
 select @dropPropertiesQuery =
