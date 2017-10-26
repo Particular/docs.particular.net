@@ -10,7 +10,7 @@ redirects:
 ---
 
 
-The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the rabbitmq-config-useroutingtopologyexchanges it creates to send and publish messages.
+The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the exchanges it creates to send and publish messages.
 
 
 ## Conventional Routing Topology
@@ -70,9 +70,9 @@ If the built-in routing topologies do not satisfy the requirements of the system
  1. Define the routing topology by creating a class implementing `IRoutingTopology`.
  1. Register it with the transport calling `UseRoutingTopology` as shown below.
 
-partial: delegate-argument
+partial: custom-delegate-argument
 
-partial: argument
+partial: custom-no-argument
 
 For each queue required by the endpoint, the transport will first declare that queue and will then call the `Initialize` method of the routing topology. The routing topology should then perform all initialization related to that specific queue such as the creation of appropriate exchanges and bindings.
 
