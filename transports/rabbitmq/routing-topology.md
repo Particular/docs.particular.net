@@ -31,6 +31,9 @@ When an endpoint subscribes to an event, it first ensures that the above infrast
 When an endpoint publishes an event, it first ensures that the above infrastructure exists. It then sends the message to the exchange corresponding to the type being published.
 
 
+partial: enable-conventional-routing-topology
+
+
 ## Direct Routing Topology
 
 The `DirectRoutingTopology` routes all events through a single exchange, `amq.topic` by default. Events are published using a routing key based on the event type, and subscribers will use that key to filter their subscriptions.

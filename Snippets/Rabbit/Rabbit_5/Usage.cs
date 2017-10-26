@@ -13,16 +13,6 @@ class Usage
         #endregion
     }
 
-    void TopologySelection(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-config-topology
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseConventionalRoutingTopology();
-
-        #endregion
-    }
-
     void CustomConnectionString(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-connectionstring-in-code
@@ -44,6 +34,16 @@ class Usage
                 var headers = deliveryArgs.BasicProperties.Headers;
                 return headers["MyCustomId"].ToString();
             });
+
+        #endregion
+    }
+
+    void UseConventionalRoutingTopology(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-config-useconventionalroutingtopology
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseConventionalRoutingTopology();
 
         #endregion
     }
