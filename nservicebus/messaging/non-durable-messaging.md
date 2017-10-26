@@ -56,7 +56,7 @@ Note: When using non transactional queues an endpoint has to be [configured to n
 
 ### RabbitMQ
 
-Non-durable messages are sent using the RabbitMQ non-persistent delivery mode, which means the messages are not persisted to disk by the broker. If durable messaging has been disabled globally, the exchanges and queues created by the broker will be declared as non-durable as well. If the broker is restarted, all non-durable exchanges and queues will be removed along with any messages in those queues.
+partial: rabbitmq
 
 partial: rabbitmq-confirms
 
