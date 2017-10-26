@@ -1,7 +1,7 @@
 
 ### EnableJournaling
 
-This API Enables the use of journaling messages. With this option, MSMQ will store a copy of every message received in the journal queue that has been processed. 
+This API Enables the use of journaling messages. With this option, MSMQ will store a copy of every message received and processed in the [journal queue](https://msdn.microsoft.com/en-us/library/ms702011.aspx). 
  
 snippet: enable-journaling
 
