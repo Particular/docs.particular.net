@@ -150,7 +150,7 @@ snippet: ExecuteAtStartup
 NOTE: Note that this is also a valid approach for higher level environments.
 
 
-### Optionally take control of script
+### Optionally take control of script execution
 
 However in higher level environment scenarios, where standard installers are being run, but the SQL persistence installation scripts have been executed as part of a deployment, it may be necessary to explicitly disable the SQL persistence installers executing while leaving standard installers enabled.
 
