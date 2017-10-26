@@ -5,5 +5,5 @@ This API Enables the use of journaling messages. With this option, MSMQ will sto
  
 snippet: enable-journaling
 
-WARN: This setting should be used ONLY when debugging as it can potentially use up the MSMQ journal storage quota based on the message volume.
+WARN: This setting should be used ONLY when debugging as it can potentially use up the MSMQ storage quota based on the message volume.
 

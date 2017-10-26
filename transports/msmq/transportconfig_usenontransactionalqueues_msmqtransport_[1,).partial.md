@@ -3,7 +3,7 @@
 
 This setting should be used with caution. As the queues are not transactional, any message that has an exception during processing will not be rolled back to the queue. Therefore this setting must only be used where loss of messages is an acceptable scenario. 
 
-While there may be a performance gain when using non-transactional queues, it should be carefully weighed against message loss. 
+While there may be a performance gain when using non-transactional queues, it should be carefully weighed against  the possibility of message loss. 
 
 snippet: use-nontransactional-queues
 

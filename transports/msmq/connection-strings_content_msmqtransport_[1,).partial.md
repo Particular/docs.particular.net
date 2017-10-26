@@ -1,3 +1,3 @@
-WARN: Using the different MSMQ settings via connection string is no longer supported. If the ConnectionString is used, then an exception will be thrown. 
+WARN: Passing in the [connection string](/transports/msmq/connection-strings.md) is no longer supported. If the connection string is passed, an exception will be thrown at endpoint start-up. 
 
 [Explicit API](/transports/msmq/transportconfig.md) has now been added in the transport configuration for each of these options.
