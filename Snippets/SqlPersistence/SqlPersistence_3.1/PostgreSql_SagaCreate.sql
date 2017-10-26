@@ -14,6 +14,7 @@ create or replace function pg_temp.create_saga_table_OrderSaga(tablePrefix varch
         script text;
         count int;
         columnType varchar;
+        columnToDelete text;
     begin
         tableNameNonQuoted := tablePrefix || 'OrderSaga';
         script = 'create table if not exists "' || schema || '"."' || tableNameNonQuoted || '"
@@ -30,20 +31,21 @@ create or replace function pg_temp.create_saga_table_OrderSaga(tablePrefix varch
 
 /* AddProperty OrderNumber */
 
-        script = 'alter table "' || schema || '"."' || tableNameNonQuoted || '" add column if not exists "Correlation_OrderNumber" int';
+        script = 'alter table "' || schema || '"."' || tableNameNonQuoted || '" add column if not exists "Correlation_OrderNumber" integer';
         execute script;
 
 /* VerifyColumnType Int */
 
         columnType := (
-            select data_type || ' ' || coalesce(' (' || character_maximum_length || ')', '')
+            select data_type
             from information_schema.columns
             where
-            table_name = 'tableNameNonQuoted' and
+            table_schema = schema and
+            table_name = tableNameNonQuoted and
             column_name = 'Correlation_OrderNumber'
         );
-        if columnType <> 'int' then
-            raise exception 'Incorrect data type for Correlation_OrderNumber. Expected int got %', columnType;
+        if columnType <> 'integer' then
+            raise exception 'Incorrect data type for Correlation_OrderNumber. Expected "integer" got "%"', columnType;
         end if;
 
 /* WriteCreateIndex OrderNumber */
@@ -58,14 +60,15 @@ create or replace function pg_temp.create_saga_table_OrderSaga(tablePrefix varch
 /* VerifyColumnType Guid */
 
         columnType := (
-            select data_type || ' ' || coalesce(' (' || character_maximum_length || ')', '')
+            select data_type
             from information_schema.columns
             where
-            table_name = 'tableNameNonQuoted' and
+            table_schema = schema and
+            table_name = tableNameNonQuoted and
             column_name = 'Correlation_OrderId'
         );
         if columnType <> 'uuid' then
-            raise exception 'Incorrect data type for Correlation_OrderId. Expected uuid got %', columnType;
+            raise exception 'Incorrect data type for Correlation_OrderId. Expected "uuid" got "%"', columnType;
         end if;
 
 /* CreateIndex OrderId */
@@ -75,6 +78,23 @@ create or replace function pg_temp.create_saga_table_OrderSaga(tablePrefix varch
 /* PurgeObsoleteIndex */
 
 /* PurgeObsoleteProperties */
+
+for columnToDelete in
+(
+    select column_name
+    from information_schema.columns
+    where
+        table_name = tableNameNonQuoted and
+        column_name LIKE 'Correlation_%' and
+        column_name <> 'Correlation_OrderNumber' and
+        column_name <> 'Correlation_OrderId'
+)
+loop
+	script = '
+alter table "' || schema || '"."' || tableNameNonQuoted || '"
+drop column "' || columnToDelete || '"';
+    execute script;
+end loop;
 
 /* CompleteSagaScript */
 

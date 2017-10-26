@@ -12,7 +12,7 @@
     <ProjectReference Include="..\Shared\SharedPhase1.Core.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.1.0-*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.1.0-pullrequest0183*" />
     <PackageReference Include="Npgsql" Version="*" />
   </ItemGroup>
 </Project>

@@ -15,7 +15,7 @@ begin
   select count(*) into n from user_tables where table_name = 'ORDERSAGA';
   if(n = 0)
   then
- 
+
     sqlStatement :=
        'create table "ORDERSAGA"
        (
@@ -64,7 +64,7 @@ where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERNUMBER';
 
 if(dataType <> 'NUMBER(19)')
 then
-  raise_application_error(-20000, 'Incorrect Correlation Property data type');
+  raise_application_error(-20000, 'Incorrect data type for Correlation_CORR_ORDERNUMBER.  Expected "NUMBER(19)" got "' || dataType || '".');
 end if;
 
 /* WriteCreateIndex OrderNumber */
@@ -105,7 +105,7 @@ where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERID';
 
 if(dataType <> 'VARCHAR2(38)')
 then
-  raise_application_error(-20000, 'Incorrect Correlation Property data type');
+  raise_application_error(-20000, 'Incorrect data type for Correlation_CORR_ORDERID.  Expected "VARCHAR2(38)" got "' || dataType || '".');
 end if;
 
 /* CreateIndex OrderId */
