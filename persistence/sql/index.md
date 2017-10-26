@@ -163,11 +163,13 @@ Table prefix is the string that is prefixed to every table name, i.e. Saga, Outb
 
 The default TablePrefix is [Endpoint Name](/nservicebus/endpoints/specify-endpoint-name.md) with all periods (`.`) replaced with underscores (`_`).
 
-A Table Prefix is required at runtime and install time.
+A Table Prefix is used at runtime and install time. 
+
+NOTE: While the above default Table Prefix at runtime can be inferred by code, it cannot be inferred when [running deployment scripts manually](#installation-manual-installation) and as such much be passed in as a parameter.
 
 When using the default (execute at startup) approach to installation the value configured in code will be used.
 
-snippet: TablePrefix
+snippet: TablePrefix 
 
 
 ### Database Schema
@@ -176,7 +178,7 @@ When using Microsoft SQL Server, a database schema other than the default `dbo` 
 
 snippet: Schema
 
-Note that the same value will need to be passed to the SQL installation scripts as a parameter.
+NOTE: The same value will need to be passed to the SQL installation scripts as a parameter.
 
 
 ### Manual installation
