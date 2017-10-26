@@ -66,6 +66,9 @@ snippet: rabbitmq-config-usedirectroutingtopologywithcustomconventions
 WARNING: In some cases, the direct routing topology may not deliver message types with "non-system" interfaces in their inheritance hierarchy. A "non-system" interface is any interface which is not contained in a .NET Framework assembly (any assembly signed with the same public key as mscorlib), and is not one of the [marker interfaces](/nservicebus/messaging/messages-events-commands.md#defining-messages-marker-interfaces). When using the direct routing topology, message types must not inherit from "non-system" interfaces. To guarantee delivery of message types which inherit from non-system interfaces, the conventional routing topology must be used.
 
 
+partial: exchange-queue-durability
+
+
 ## Custom Routing Topology
 
 If the built-in routing topologies do not satisfy the requirements of the system, a custom routing topology may be used. To do this:

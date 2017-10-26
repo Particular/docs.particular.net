@@ -179,4 +179,25 @@ class Usage
 
         #endregion
     }
+
+    void DisableDurableExchangesAndQueues(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-disable-durable-exchanges
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseDurableExchangesAndQueues(false);
+
+        #endregion
+    }
+
+    void DisableDurableMessagesAndEnableDurableExchangesAndQueues(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-disable-durable-messages
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        endpointConfiguration.DisableDurableMessages();
+        transport.UseDurableExchangesAndQueues(true);
+
+        #endregion
+    }
 }
