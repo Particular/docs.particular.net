@@ -930,7 +930,7 @@
 
 - Key: UniformSession
   Name: UniformSession Support
-  DocoUrl: nservicebus//messaging/uniformsession
+  DocoUrl: nservicebus/messaging/uniformsession
   GitHubOwner: Particular/nservicebus-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.UniformSession
