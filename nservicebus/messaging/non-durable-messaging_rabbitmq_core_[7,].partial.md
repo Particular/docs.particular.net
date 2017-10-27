@@ -1,0 +1,1 @@
+Non-durable messages are sent using the RabbitMQ non-persistent delivery mode, which means the messages are not persisted to disk by the broker.
