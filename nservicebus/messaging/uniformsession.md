@@ -12,7 +12,7 @@ NServiceBus v6 and higher introduced a few design changes that how code that is 
 - Clear separation of concerns between message operations outside the message handling pipeline (`IEndpointInstance` and `IMessageSession`) vs. inside the message handling pipeline (`IMessageHandlerContext`). Operations inside the message handling pipeline enlist in the transaction available and participate in the batching operations of the transport. Operations outside the pipeline don't have those capabilities. The duality of the `IBus` interface was removed by introducing separate explicit interfaces for each usage scenario.
 - Message operations are asynchronous by default
 
-These changes lead to better designed and sufer user code because:
+These changes lead to better designed and safer user code because:
 
 - Child containers no longer need to be mutated when a message arrives to rebind the current message handler context which simplifies container integration especially for immutable containers
 - If a component needs state that is created by NServiceBus per message handling pipeline invocation the state has to be either
