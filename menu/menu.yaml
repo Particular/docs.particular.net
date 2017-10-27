@@ -191,6 +191,8 @@
         Title: Batched message dispatch
       - Url: nservicebus/messaging/callbacks
         Title: Client side Callbacks
+      - Url: nservicebus/messaging/uniformsession
+        Title: Uniform Session between message session and pipeline
       - Url: nservicebus/messaging/discard-old-messages
         Title: Discarding Expired Messages
       - Url: nservicebus/messaging/non-durable-messaging
