@@ -25,6 +25,7 @@ snippet: SendMetricDataToServiceControl
 
 The default is `particular.monitoring` which is ServiceControl monitoring instance input queue.
 
+partial: interval
 
 ### Instance Id
 
