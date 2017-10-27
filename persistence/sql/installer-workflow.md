@@ -29,7 +29,7 @@ Depending on the organization and the used tooling, the process can be fully aut
 
 ### Development Workflow
 
-The main purpose in this type of environment is having the `Just hit F5` experience, by automatically creating required tables in a local database (or remote database used only for development). The risk and potential impact of accidentally corrupting the database schema or existing data is minimal.
+The main purpose in this type of environment is having the `Just hit F5` experience, by automatically creating required tables in a local database (or remote database used only for development). Keep in mind that the risk and potential impact of accidentally corrupting the database schema or existing data is minimal in this environment.
 
 A typical workflow on developers machine consists of the following steps:
 
