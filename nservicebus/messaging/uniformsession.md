@@ -5,3 +5,41 @@ reviewed: 2017-10-27
 component: UniformSession
 ---
 
+NServiceBus v6 and higher introduced a few design changes that directly impacts all the code that is using previous versions of NServiceBus. The [changes](/nservicebus/upgrades/5to6/moving-away-from-ibus.md) are:
+
+- In previous versions, the `IBus` interface was automatically registered in the IOC container. In Version 6, the new context-aware interfaces, for example, `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., are not automatically registered in dependency injection.
+- In Versions 5 and below, when a custom component was registered in the container, the custom component had access to the `IBus` instance via dependency injection.
+- Clear separation of concerns between message operations outside the message handling pipeline (`IEndpointInstance` and `IMessageSession`) vs inside the message handling pipeline (`IMessageHandlerContext`). Operations inside the message handling pipeline enlist in the transaction available and participates in the batching operations of the transport. Operations outside the pipeline don't have those capabilities. The ambivalent behavior of the `IBus` interface is therefore replaced with explicit and intention revealing interfaces.
+- Message operations are asynchronous by default
+
+These design changes enable a path to a better design because:
+
+- Child containers used no longer need to be mutated when a message arrives to rebind the current message handler context which enables wider container integration especially for immutable containers
+- If a component needs state that is created by the framework per message handling pipeline invocation the state has to be either
+    - Explicitely carried into the components that need it and thus the component callstack will need to become asynchronous or
+    - Managed in the ports and adapters of the system, i.ex. the message handler which is already asynchronous thus the component hierarchy can remain synchronous because the side effect incurring I/O operations are no longer the domain logic's concern.
+- The domain logic becomes side effect free and no longer produces messages but returns an explicit decision matrix which will be interpreted by the caller to create the necessary side effects
+
+It is advised to embrace the design approach if possible. That being said for customers transitioning from previous version to NServiceBus v6 and higher the design decision caused some grief. This package reintroduces an opt-in approach for an uniform session approach that works seamlessly as a message session outside the pipeline and as a pipeline context inside the message handling pipeline. The message operations provided on the uniform session represent a common denominator but do not support more advanced scenarios like persistence session access.
+
+## Prerequisites for the uniform session functionality
+
+In NServiceBus Version 6 and above install the `NServiceBus.UniformSession` NuGet package. This package has to be referenced by the endpoint.
+
+## Usage
+
+`IUniformSession` is automatically registered in the container and can be safely injected into component hierarchies that are reused between different contexts such as WebApi and the message handler for example. The following snippets illustrates such a scenario:
+
+snippet: uniformsession-usage
+
+## Safeguards
+
+The uniform session should not be cached and thus exceed the lifetime of the usage it was design for. The uniform session automatically prevents the following scenarios:
+
+- Cannot be cached from within the message handling pipeline and used outside the pipeline (to prevent message leakage or transaction interference)
+- Cannot be cached outside the message handling pipeline and used inside the pipeline (to prevent message loss)
+- Cannot be cached over the lifetime of an endpoint, once an endpoint is stopped the corresponding session will marked as unusable
+
+## Multi-endpoint hosting
+
+For multiple endpoints hosted in the same process a container per endpoint is required. If a single container is reused the bindings of the uniform session might be overwritten and this could lead to unpredictable behavior.
