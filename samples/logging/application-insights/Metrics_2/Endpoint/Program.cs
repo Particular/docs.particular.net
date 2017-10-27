@@ -13,7 +13,7 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var envInstrumentationKey = "ApplicationInsightKey";
-        var instrumentationKey = "96a7f6de-01de-4d5c-a585-cf6e72d61f0f";//Environment.GetEnvironmentVariable(envInstrumentationKey);
+        var instrumentationKey = Environment.GetEnvironmentVariable(envInstrumentationKey);
 
         if (string.IsNullOrEmpty(instrumentationKey))
         {
