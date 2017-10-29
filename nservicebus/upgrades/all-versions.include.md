@@ -515,7 +515,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.1.x     | 2017-07-25     | -                 | -                                 |
+| 2.0.x     | 2017-10-27     | -                 | -                                 |
+| 1.1.x     | 2017-07-25     | 2018-10-27        | Superseded by 2.0.x               |
 | ~~1.0.x~~ | ~~2017-04-25~~ | ~~2017-10-25~~    | ~~Superseded by 1.1.x~~           |
 
 #### [NServiceBus.Metrics.PerformanceCounters](/nuget/NServiceBus.Metrics.PerformanceCounters)
@@ -527,7 +528,9 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 #### [NServiceBus.Metrics.ServiceControl](/nuget/NServiceBus.Metrics.ServiceControl)
 
-No versions released.
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 1.0.x     | 2017-10-27     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
 
 #### [NServiceBus.Testing](/nuget/NServiceBus.Testing)
 
