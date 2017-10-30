@@ -20,7 +20,7 @@ Create a transactional queue called [EndpointName].Subscriptions and substitute 
 
 ### Using PowerShell Script
 
-Use the `CreateQueue` function that's part of `CreateQueues.ps1`. This PowerShell script comes packaged with the NServiceBus.Transport.Msmq NuGet package. Browse to the lib folder to locate the scripts, for example, `%USERPROFILE%\.nuget\packages\nservicebus.transport.msmq\1.0.0\lib\net452\Scripts`. 
+Use the `CreateQueue` function that's part of `CreateQueues.ps1`. This PowerShell script comes with the NServiceBus.Transport.Msmq NuGet package and is copied to a subfolder called `NServiceBus.Transport.Msmq` in the output folder of any project referencing it. Browse to the output folder to locate the scripts, for example, `bin\Debug\net461\NServiceBus.Transport.Msmq`. 
 
 2. [Load the `CreateQueues.ps1` PowerShell script](https://technet.microsoft.com/en-us/library/bb613481.aspx) and run the `CreateQueue` function as shown below:
 
