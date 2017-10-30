@@ -6,12 +6,20 @@ tags:
 related:
  - nservicebus/operations
  - samples/sql-persistence
-reviewed: 2016-11-29
+ - persistence/sql/install
+reviewed: 2017-10-29
 redirects:
  - nservicebus/sql-persistence/installer-workflow
 ---
 
-WARNING: Read about [SQL Persistence NuGet Packages](/persistence/sql/#nuget-packages) before proceeding.
+
+{{WARNING:
+
+The following pages should be reviewed prior to this page:
+
+ * [SQL Persistence NuGet Packages](/persistence/sql/#nuget-packages)
+ * [Installation and deployment](/persistence/sql/install.md)
+}}
 
 
 ## Contrasting Workflows
@@ -24,7 +32,7 @@ In this example the `IsDevelopment` environment variable is used to enable scrip
 
 In higher environments (especially in production) the installation should be designed as an integral part of the deployment process. In particular, it is recommended to put in place mechanisms to verify generated scripts and test them before running in production. It may be also necessary to customize certain settings (e.g. schemas) or to modify the scripts themselves for every environment.
 
-Depending on the organization and the used tooling, the process can be fully automated, partially automated or even fully manual.
+Depending on the organization and the choice of tooling, the process can be fully automated, partially automated or even fully manual.
 
 
 ### Development Workflow
@@ -44,7 +52,7 @@ A typical workflow on developers machine consists of the following steps:
 
 ### Higher Environment Workflow
 
-The workflow in a higher environment will differ based on the specifics of an organizations process. For example, it's possible to allow endpoints [to automatically execute scripts](/persistence/sql/#installation-script-execution-runs-by-default-at-endpoint-startup) or [to take full control and execute them using custom code](/persistence/sql/#installation-optionally-take-control-of-script-execution).
+The workflow in a higher environment will differ based on the specifics of an organizations process. For example, it's possible to allow endpoints [to automatically execute scripts](/persistence/sql/install.md#script-execution-runs-by-default-at-endpoint-startup) or [to take full control and execute them using custom code](/persistence/sql/install.md#optionally-take-control-of-script-execution).
 
 In case of taking the full control of scripts execution, it is necessary to plug in the script execution into whatever deployment pipeline the organization has in place, for example:
 
