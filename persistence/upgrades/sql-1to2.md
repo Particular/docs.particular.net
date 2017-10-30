@@ -86,7 +86,7 @@ WARNING: An exception will be thrown if any of ], [ or &grave; are detected in t
 
 ## Missing Indexes
 
-Some missing indexes have been added. These indexes will be added the next time the [installers](/persistence/sql/#installation) are executed. No explicit SQL migration is required.
+Some missing indexes have been added. These indexes will be added the next time the [installers](/persistence/sql/install.md) are executed. No explicit SQL migration is required.
 
 
 ### TimeoutData

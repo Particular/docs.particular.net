@@ -42,7 +42,7 @@ Run the following upgrade script
 
 snippet: ConvertOutboxToNonclustered
 
-This script takes a [tablePrefix](/persistence/sql/#installation-table-prefix) as a parameter and then performs the following actions:
+This script takes a [tablePrefix](/persistence/sql/install.md#table-prefix) as a parameter and then performs the following actions:
 
  * Find the index name by querying [sys.tables](https://docs.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-tables-transact-sql) and [sys.indexes](https://docs.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-indexes-transact-sql).
  * Execute a dynamic [DROP CONSTRAINT](https://docs.microsoft.com/en-us/sql/relational-databases/tables/delete-check-constraints) command.

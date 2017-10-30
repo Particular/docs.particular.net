@@ -20,7 +20,7 @@ SQL persistence internally honors the UpperCamelCase (also called PascalCase) co
 
 The SQL Persistence provides autonomy between endpoints by using separate tables for every endpoint based on the endpoint name. By default PostgreSQL [limits object names to 63 characters](https://www.postgresql.org/docs/current/static/sql-syntax-lexical.html#sql-syntax-identifiers).
 
-By default SQL persistence uses an endpoint's name as a table prefix, the maximum length of the table prefix is 20 characters. The table prefix [can be customized](/persistence/sql/#installation-table-prefix).
+By default SQL persistence uses an endpoint's name as a table prefix, the maximum length of the table prefix is 20 characters. The table prefix [can be customized](/persistence/sql/install.md#table-prefix).
 
 
 ## Using `pg_temp.` schema in installation scripts
