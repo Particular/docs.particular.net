@@ -10,7 +10,10 @@ static class Program
         Console.Title = "ChangeMessageIdentity.Phase2";
 
         var endpointConfiguration = new EndpointConfiguration("ChangeMessageIdentity.Phase2");
-        endpointConfiguration.SharedConfig();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
+
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
         #region RegisterMessageMutator
 

@@ -9,7 +9,10 @@ static class Program
         Console.Title = "ChangeMessageIdentity.Phase1";
 
         var endpointConfiguration = new EndpointConfiguration("ChangeMessageIdentity.Phase1");
-        endpointConfiguration.SharedConfig();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
+
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
