@@ -6,11 +6,11 @@
     using NServiceBus.UniformSession;
 
     #region uniformsession-usage
-    class ComponentReused
+    class ReusedComponent
     {
         IUniformSession session;
 
-        public ComponentReused(IUniformSession session)
+        public ReusedComponent(IUniformSession session)
         {
             this.session = session;
         }
@@ -25,9 +25,9 @@
     [Route("api/[controller]")]
     class MyController : Controller
     {
-        ComponentReused component;
+        ReusedComponent component;
 
-        public MyController(ComponentReused component)
+        public MyController(ReusedComponent component)
         {
             this.component = component;
         }
@@ -44,9 +44,9 @@
 
     class MyHandler : IHandleMessages<MyCommand>
     {
-        ComponentReused component;
+        ReusedComponent component;
 
-        public MyHandler(ComponentReused component)
+        public MyHandler(ReusedComponent component)
         {
             this.component = component;
         }

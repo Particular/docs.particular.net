@@ -1,16 +1,17 @@
 ---
-title: Uniform Session between message session and pipeline
-summary: Uniform Session allows to bridge the gap between the message session and the pipeline context and enables dependency injection.
+title: Uniform Session
+summary: Uniform Session introduces a uniform message session across the endpoint.
 reviewed: 2017-10-27
 component: UniformSession
 ---
 
-NServiceBus v6 and higher introduced a few design changes that how code that is using previous versions is structured. The [changes](/nservicebus/upgrades/5to6/moving-away-from-ibus.md) are:
+NServiceBus Version 6 introduced significant design changes on how to send messages. Here's a rough outline of the changes:
 
-- In previous versions, the `IBus` interface was automatically registered in the IOC container. In Version 6, the new context-aware interfaces, for example, `IEndpointInstance`, `IMessageSession` and `IMessageHandlerContext`, etc., are not automatically registered in dependency injection.
-- In Versions 5 and below, when a custom component was registered in the container, the custom component had access to the `IBus` instance via dependency injection.
-- Clear separation of concerns between message operations outside the message handling pipeline (`IEndpointInstance` and `IMessageSession`) vs. inside the message handling pipeline (`IMessageHandlerContext`). Operations inside the message handling pipeline enlist in the transaction available and participate in the batching operations of the transport. Operations outside the pipeline don't have those capabilities. The duality of the `IBus` interface was removed by introducing separate explicit interfaces for each usage scenario.
-- Message operations are asynchronous by default
+- Clear separation of concerns between message operations outside the message handling pipeline (`IMessageSession`) vs. inside the message handling pipeline (`IMessageHandlerContext`). Operations inside the message handling pipeline enlist in the transaction available and participate in the batching operations of the transport. Operations outside the pipeline don't have those capabilities. The duality of the `IBus` interface was removed by introducing separate explicit interfaces for each usage scenario.
+- In previous versions, the `IBus` interface was automatically registered in the IOC container. In Version 6, the new context-aware interfaces are not automatically registered in dependency injection.
+
+For more details on the Version 6 changes, refer to the [Moving away from IBus section](/nservicebus/upgrades/5to6/moving-away-from-ibus.md) of the NServiceBus Version 5 to 6 upgrade guide.
+
 
 These changes lead to better designed and safer user code because:
 
@@ -22,9 +23,11 @@ These changes lead to better designed and safer user code because:
 
 It is advised to embrace the design approach if possible. That being said for customers transitioning from previous versions the design decision caused some grief. This package reintroduces an opt-in approach for a uniform session approach that works seamlessly as a message session outside the pipeline and as a pipeline context inside the message handling pipeline. The message operations provided on the uniform session represent a common denominator but do not support more advanced scenarios like persistence session access.
 
+
 ## Prerequisites for the uniform session functionality
 
-In NServiceBus Version 6 and above install the `NServiceBus.UniformSession` NuGet package.
+Install the `NServiceBus.UniformSession` NuGet package available for endpoints using NServiceBus Version 6 and later.
+
 
 ## Usage
 
@@ -32,18 +35,20 @@ In NServiceBus Version 6 and above install the `NServiceBus.UniformSession` NuGe
 
 snippet: uniformsession-usage
 
-Due to the duality of `IUniformSession` `ComponentReused` will behave different depending on where it is used.
+Due to the duality of `IUniformSession` (it can represent either `IMessageSession` or `IMessageHandlerContext`), `ReusedComponent` will behave different depending on where it is used.
 
-- If used in the controller as shown above all messages will be immediately dispatched
-- If used in the handler as shown above messages are [only dispatched](/nservicebus/messaging/batched-dispatch.md) when the handler completed
+- If used in the MVC controller as shown above all messages will be immediately dispatched
+- If used in the handler as shown above messages are [only dispatched when the handler completed](/nservicebus/messaging/batched-dispatch.md)
+
 
 ## Safeguards
 
-The uniform session should not be cached and thus exceed the lifetime of the usage it was designed for. The uniform session automatically prevents the following scenarios:
+The uniform session must not be cached as the injected session's lifetime matches the current call context. To avoid potential message loss or runtime exceptions due to incorrect caching, the uniform session automatically prevents the following scenarios:
 
 - Cannot be cached from within the message handling pipeline and used outside the pipeline (to prevent message leakage or transaction interference)
 - Cannot be cached outside the message handling pipeline and used inside the pipeline (to prevent message loss)
 - Cannot be cached over the lifetime of an endpoint, once an endpoint is stopped the corresponding session will be marked as unusable
+
 
 ## Multi-endpoint hosting
 
