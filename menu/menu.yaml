@@ -826,6 +826,8 @@
       Title: Saga concurrency
     - Url: persistence/sql/subscriptions
       Title: Subscriptions
+    - Url: persistence/sql/install
+      Title: Installation and deployment
     - Url: persistence/sql/installer-workflow
       Title: Installer Workflow
     - Url: persistence/sql/oracle-caveats

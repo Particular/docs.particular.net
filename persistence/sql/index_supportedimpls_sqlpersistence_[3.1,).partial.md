@@ -5,9 +5,10 @@
    * Due to the 30-character limit on table, key, and index names, there are some [Oracle-specific caveats to consider](oracle-caveats.md).
  * [PostgreSQL](https://www.postgresql.org/) ([Version 10](https://www.postgresql.org/docs/10/static/release-10.html) and above).
 
-WARNING: This persistence will run on the free version of the above engines, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express), [MySQL Community Edition](https://www.mysql.com/products/community/), [Oracle XE](http://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html), and PostgreSQL. However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place from the software vendor or another third party support provider. For example:
+{{WARNING: This persistence will run on the free version of the above engines, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express), [MySQL Community Edition](https://www.mysql.com/products/community/), [Oracle XE](http://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html), and PostgreSQL. However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place from the software vendor or another third party support provider. For example:
 
  * [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx)
  * [MySQL support](https://www.mysql.com/support/)
  * [Oracle Support](https://www.oracle.com/support/index.html)
  * [PostgreSQL Commercial support](https://www.postgresql.org/support/professional_support/)
+}}
