@@ -1,5 +1,5 @@
 ---
-title: Change Message Identity
+title: Change/Move Message Type
 reviewed: 2017-10-30
 component: Core
 related:
