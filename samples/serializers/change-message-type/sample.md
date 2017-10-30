@@ -9,7 +9,7 @@ redirects:
 - samples/serializers/change-message-identity
 ---
 
-This sample illustrates an approach for change a message type. This includes any one, or multiple, of the following scenarios:
+This sample illustrates an approach for changing a message type. This includes any one, or multiple, of the following scenarios:
 
  * Moving a message type between assemblies.
  * Renaming a message type.
