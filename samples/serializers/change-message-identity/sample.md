@@ -23,7 +23,7 @@ This sample shows moving a message using multiple of the above mentioned scenari
 
 **Phase 1**
 
-In the Phase 1 endpoint the message is:
+In the Phase 1 endpoint the message type is:
 
  * Named `CreateOrderPhase1`.
  * Exists in an assembly named `SamplePhase1`.
