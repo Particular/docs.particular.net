@@ -4,10 +4,9 @@
     <TargetFrameworks>net461</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyName>SamplePhase1</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
   </ItemGroup>
 </Project>

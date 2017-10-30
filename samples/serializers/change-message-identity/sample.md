@@ -1,163 +1,58 @@
 ---
-title: Transition serialization formats
-reviewed: 2016-10-18
+title: ChangeMessageIdentity
+reviewed: 2017-10-30
 component: Core
 related:
 - nservicebus/serialization
+- samples/serializers/transitioning-formats
 ---
 
-This sample illustrates an approach for introducing a breaking change to the [message serialization](/nservicebus/serialization/) format in way that requires no endpoint downtime and no manipulation of message bodies.
+This sample illustrates an approach for change a message identity. This includes any one, or multiple, of the following scenarios:
 
-NOTE: This sample uses 4 "Phase" Endpoint Projects to illustrate the iterations of a single endpoint in one solution.
+ * Moving a message type between assemblies.
+ * Renaming a message type.
+ * Renaming the assembly containing the message type.
+ * Adding, removing or changing the [strong name](https://docs.microsoft.com/en-us/dotnet/framework/app-domains/strong-named-assemblies) of the assembly containing the message type
 
-The [External Json.NET Serializer](/nservicebus/serialization/newtonsoft.md) is used in this sample, but the Phased upgrade approach is applicable to changing the format any serializer or even moving between different serializers.
+NOTE: This sample uses 2 "Phase" Endpoint Projects to illustrate the iterations of a single endpoint in one solution.
 
 
-## Message Contracts
+## Scenario
 
-snippet: messages
+This sample shows moving a message using multiple of the above mentioned scenarios.
 
+**Phase 1**
 
-## Message Compatibility
+In the Phase 1 endpoint the message is:
 
-To highlight compatibility between iterations of the endpoint, each Phase sends a message to itself, the upper phase, and the lower phase.
+ * Named `CreateOrderPhase1`.
+ * Exists in an assembly named `SamplePhase1`.
+ * Exists in an assembly that is not strong named.
 
-For example Phase3 sends to itself, Phase2, and Phase4.
 
-snippet: send-to-both
+**Phase 2**
 
+In the Phase 2 endpoint the message type is:
 
-## Serialization format change
+ * Named `CreateOrderPhase2`.
+ * Exists in an assembly named `SamplePhase2`.
+ * Exists in an assembly that is strong named.
 
-For demonstration purposes this sample uses a hypothetical scenario where the Json serialization format need to change the approach for serializing dictionaries. From using contents for the key and value to using an explicitly named key and value approach.
 
+## Mutation
 
-### Json using standard approach
+This change is achieved via the use of a [IMutateIncomingTransportMessages](/nservicebus/pipeline/message-mutators.md?version=core_7#transport-messages-mutators-imutateincomingtransportmessages).
 
-```json
-{
-  "OrderId": 9,
-  "OrderItems": {
-    "3": {
-      "Quantity": 2
-    },
-    "8": {
-      "Quantity": 7
-    }
-  }
-}
-```
+The mutator is registered at endpoint startup:
 
+snippet: RegisterMessageMutator
 
-### JSON using key-value approach
 
-```json
-{
-  "OrderId": 9,
-  "OrderItems": [
-    {
-      "Key": 3,
-      "Value": {
-        "Quantity": 2
-      }
-    },
-    {
-      "Key": 8,
-      "Value": {
-        "Quantity": 7
-      }
-    }
-  ]
-}
-```
+The mutator then replaces the [NServiceBus.EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) via the use of [Type.GetType(typeName, assemblyResolver, typeResolver)](https://msdn.microsoft.com/en-us/library/ee332932.aspx) API.
 
+snippet: Mutator
 
-### Implementing the change
 
-This is implemented using [NewtonSoft ContractResolver](http://www.newtonsoft.com/json/help/html/contractresolver.htm) and changing the using an array contract for the dictionary instead of the default.
+## Running the sample
 
-snippet: ExtendedResolver
-
-
-## Diagnostic helpers
-
-To help visualize the serialization changes there are two [Behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) that write the contents of each incoming and outgoing message.
-
-snippet: IncomingWriter
-
-snippet: OutgoingWriter
-
-Both Behaviors are registered at configuration time:
-
-snippet: AddMessageBodyWriter
-
-snippet: writer-registration
-
-
-## Phases
-
-Note that in production system each of the phases would need to be applied to every endpoint that needs communicate with the new serialization format. So each endpoint can be at-most one phase out of sync with any other endpoint it needs to communicate with.
-
-
-### Phase 1
-
-Endpoint is running:
-
- * Version 1 serialization. 
-
-This is the initial state  where all endpoints are using the standard `JsonSerializerSettings` registered with the `ContentTypeKey` of `jsonv1`. All endpoints are sending and receiving V1 messages.
-
-snippet: Phase1
-
-
-### Phase 2
-
-Endpoint is running:
-
- * Version 1 serialization.
- * Version 2 deserialization.
-
-The new `JsonSerializerSettings` registered as a deserializer with the `ContentTypeKey` of `jsonv2`. This makes all endpoint capable of receiving V2 messages while still sending V1 messages.
-
-snippet: Phase2
-
-
-### Phase 3
-
-Endpoint is running:
-
- * Version 2 serialization
- * Version 1 deserialization
-
-The serializer and deserializer are switched. So all endpoints can still receive V1 messages but will be sending V2 messages.
-
-snippet: Phase3
-
-
-### Phase 4
-
-Endpoint is running:
-
- * Version 2 serialization
-
-All endpoints are now sending and receiving V2 messages.
-
-snippet: Phase4
-
-
-## Messages in transit
-
-It is important to consider both [Discard Old Messages](/nservicebus/messaging/discard-old-messages.md) and how the [Error Queue](/nservicebus/recoverability/configure-error-handling.md) is handled. For example the following time-line could be problematic 
-
- * A message makes use of the old serialization format.
- * The message a long Time-To-Be-Received (TTBR).
- * The message fails processing and is forwarded to the error queue.
- * The above change in serialization format is performed.
- * A retry of the message is attempted.
-
-Given the type of serialization change that has occurred, the structure of the message contract, and the serializer being used the resulting behavior is non-deterministic. The serializer may throw and exception for the old format or it may swallow the error and proceed with missing data.
-
-So either
-
- * Delay the upgrading of each Phase so the overlapping time is greater than the maximum TTBR of message contracts. Or;
- * During the deployment of each Phase verify that messages in the error queue will not exhibit the above problem.
+When the sample is run both endpoints will startup. The Phase1 endpoint will send a `CreateOrderPhase1` message to Phase2. Phase2 will then mutate the message into a `CreateOrderPhase2` and handle the message.
