@@ -10,7 +10,8 @@ class MessageIdentityMutator :
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
         var headers = context.Headers;
-        if (!headers.TryGetValue("NServiceBus.EnclosedMessageTypes", out var messageType))
+        var messageTypeKey = "NServiceBus.EnclosedMessageTypes";
+        if (!headers.TryGetValue(messageTypeKey, out var messageType))
         {
             return Task.CompletedTask;
         }
@@ -43,7 +44,7 @@ class MessageIdentityMutator :
         {
             throw new Exception($"Could not determine type: {messageType}");
         }
-        headers["NServiceBus.EnclosedMessageTypes"] = type.AssemblyQualifiedName;
+        headers[messageTypeKey] = type.AssemblyQualifiedName;
 
         return Task.CompletedTask;
     }
