@@ -29,13 +29,13 @@ Depending on the organization and the used tooling, the process can be fully aut
 
 ### Development Workflow
 
-The main purpose in this type of environment is having the `Just hit F5` experience, by automatically creating required tables in a local database (or remote database used only for development). Keep in mind that the risk and potential impact of accidentally corrupting the database schema or existing data is minimal in this environment.
+The main purpose in this type of environment is having the "Just hit F5" experience, by automatically creating required tables in a local database (or remote database used only for development). The risk and potential impact of accidentally corrupting the database schema or existing data is minimal in this environment.
 
 A typical workflow on developers machine consists of the following steps:
 
- 1. In the project add references to both `NServiceBus.Persistence.Sql` and `NServiceBus.Persistence.Sql.MsBuild` packages.
+ 1. In the project add references to both [NServiceBus.Persistence.Sql](/persistence/sql/#nuget-packages-nservicebus-persistence-sql) and [NServiceBus.Persistence.Sql.MsBuild](/persistence/sql/#nuget-packages-nservicebus-persistence-sql-msbuild) packages.
  1. Build the project.
- 1. During build `NServiceBus.Persistence.Sql.MsBuild` automatically creates scripts in `bin\Debug\NServiceBus.Persistence.Sql`.
+ 1. During build [NServiceBus.Persistence.Sql.MsBuild](/persistence/sql/#nuget-packages-nservicebus-persistence-sql-msbuild) automatically creates scripts in `bin\Debug\NServiceBus.Persistence.Sql`.
  1. Start solution in Visual Studio.
  1. NServiceBus endpoint starts and executes its configuration code, including checking for toggle enabling installer execution.
  1. If enabled, SQL installer scripts are executed and the required persistence tables are created.
@@ -47,8 +47,9 @@ A typical workflow on developers machine consists of the following steps:
 The workflow in a higher environment will differ based on the specifics of an organizations process. For example, it's possible to allow endpoints [to automatically execute scripts](/persistence/sql/#installation-script-execution-runs-by-default-at-endpoint-startup) or [to take full control and execute them using custom code](/persistence/sql/#installation-optionally-take-control-of-script-execution).
 
 In case of taking the full control of scripts execution, it is necessary to plug in the script execution into whatever deployment pipeline the organization has in place, for example:
-- When using Octopus deploy, the scripts would be executed in a ["Step"]( https://octopus.com/docs/deploying-applications/adding-steps).
-- When using TeamCity, the scripts would be executed in a ["Build Step"]( https://confluence.jetbrains.com/display/TCD8/Configuring+Build+Steps). 
+
+ * When using Octopus deploy, the scripts would be executed in a ["Step"]( https://octopus.com/docs/deploying-applications/adding-steps).
+ * When using TeamCity, the scripts would be executed in a ["Build Step"]( https://confluence.jetbrains.com/display/TCD8/Configuring+Build+Steps).
 
 The generated scripts do not contain all variables, because some of them are gathered only at runtime, e.g. `@schema` and `@tablePrefix`. Those variables need to be explicitly provided when scripts are executed. Installers automatically gather that information from endpoint configuration (e.g. by default the endpoint name is used as a `@tablePrefix` value).
 
