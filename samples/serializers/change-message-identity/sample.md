@@ -1,5 +1,5 @@
 ---
-title: ChangeMessageIdentity
+title: Change Message Identity
 reviewed: 2017-10-30
 component: Core
 related:
