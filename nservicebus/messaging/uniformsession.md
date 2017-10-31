@@ -12,15 +12,6 @@ NServiceBus Version 6 introduced significant design changes on how to send messa
 
 For more details on the Version 6 changes, refer to the [Moving away from IBus section](/nservicebus/upgrades/5to6/moving-away-from-ibus.md) of the NServiceBus Version 5 to 6 upgrade guide.
 
-
-These changes lead to better designed and safer user code because:
-
-- Child containers no longer need to be mutated when a message arrives to rebind the current message handler context which simplifies container integration especially for immutable containers
-- If a component needs state that is created by NServiceBus per message handling pipeline invocation the state has to be either
-    - Explicitly carried into the components that need it and thus the component callstack will need to become asynchronous or
-    - Managed in the ports and adapters of the system, i.ex. the message handler which is already asynchronous thus the component hierarchy can remain synchronous because the side effect incurring I/O operations are no longer the domain logic's concern.
-- The domain logic becomes side-effect free and no longer produces messages but returns an explicit decision matrix which will be interpreted by the caller to create the necessary side effects
-
 It is advised to embrace the design approach if possible. That being said for customers transitioning from previous versions the design decision caused some grief. This package reintroduces an opt-in approach for a uniform session approach that works seamlessly as a message session outside the pipeline and as a pipeline context inside the message handling pipeline. The message operations provided on the uniform session represent a common denominator but do not support more advanced scenarios like persistence session access.
 
 
