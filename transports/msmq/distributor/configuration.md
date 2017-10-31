@@ -93,11 +93,15 @@ When your workers are using NServiceBus 6, then there is the ability to configur
 
 Using [sender side distribution](h/transports/msmq/sender-side-distribution) instead of using the distributor might be a better alternative if you are able to use NServiceBus 6 and is much more suitable for scenarios where IO is the bottleneck. 
 
+#### Do not run all distributors on a single box
+
+Distributor endpoints are often deployed on *the distributor machine*. This is one machine that hosts all distributor endpoints. This becomes the bottleneck under load as all messages flow throught this machine. An alternative is to have multiple distributor machines on physically different networks interface cards.
+
+Alternative, when first hosting all endpoints on a single machine do not use the distributor to now run *all* endpoints on multiple workers. First balance your current endpoints by moving endpoints. Eventually you will have only a single endpoint running on a machine. If this machine now becomes your bottleneck then you might first want to upscale this first and if upscaling becomes too costly then make use of the distributor. 
+
 #### Upscaling
 
-The distributor is very chatty. If the type of load isn't CPU bound then using the distributor might not be the ideal solution as using the distributor will add overal processing latency (2 hops) and network utilization and can result in hitting network and/or disk IO limits. Please ensure which of these factors are your bottlenecks.
-
-If the network and/or disk IO is your bottleneck then use faster alternatives which might not be possible for the network and only upscaling might be possible.
+The distributor is very chatty. Network latency and bandwidth will lower the overal throughput when the CPU isn't your current bottleneck, using the distributor might not be the ideal solution as using the distributor will result in roughly 4 times the number of send messages thus has a severy impact on your network resources.
 
 
 ### Each worker is getting events directly, bypassing the distributor 
