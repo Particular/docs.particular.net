@@ -12,7 +12,7 @@ NServiceBus Version 6 introduced significant design changes on how to send messa
 
 For more details on the Version 6 changes, refer to the [Moving away from IBus section](/nservicebus/upgrades/5to6/moving-away-from-ibus.md) of the NServiceBus Version 5 to 6 upgrade guide.
 
-It is advised to embrace the design approach if possible. That being said for customers transitioning from previous versions the design decision caused some grief. This package reintroduces an opt-in approach for a uniform session approach that works seamlessly as a message session outside the pipeline and as a pipeline context inside the message handling pipeline. The message operations provided on the uniform session represent a common denominator but do not support more advanced scenarios like persistence session access.
+It is encouraged to embrace the design approach introduced in Version 6 if possible. That being said for customers transitioning from previous versions the design decision caused some grief. This package reintroduces an opt-in approach for a uniform session approach that works seamlessly as a message session outside the pipeline and as a pipeline context inside the message handling pipeline. The message operations provided on the uniform session represent a common denominator but do not support more advanced scenarios like persistence session access.
 
 
 ## Prerequisites for the uniform session functionality
