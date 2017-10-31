@@ -107,6 +107,10 @@ By using this approach, the asynchronous APIs won't ripple through all the layer
 
 snippet: 5to6-handler-with-dependency-which-accesses-context
 
+### Uniform session
+
+If a step by step migration like shown above is not possible or takes a longer period, the uniform session package can be used to unify the message session with the pipeline context into a uniform session. For more information about the uniform session consult the [uniform session documentation](/nservicebus/messaging/uniformsession.md). It is advised to use this package for the transition phase until the new design approach started with NServiceBus v6 can be fully embraced.
+
 
 ## UnicastBus made internal
 
