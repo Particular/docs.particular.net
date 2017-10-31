@@ -46,7 +46,7 @@ Due to the duality of `IUniformSession` (it can represent either `IMessageSessio
 The uniform session must not be cached as the injected session's lifetime matches the current call context. To avoid potential message loss or runtime exceptions due to incorrect caching, the uniform session automatically prevents the following scenarios:
 
 - Cannot be cached from within the message handling pipeline and used outside the pipeline (to prevent message leakage or transaction interference)
-- Cannot be cached outside the message handling pipeline and used inside the pipeline (to prevent message loss)
+- Cannot be cached outside the message handling pipeline and used inside the pipeline (to prevent message duplication)
 - Cannot be cached over the lifetime of an endpoint, once an endpoint is stopped the corresponding session will be marked as unusable
 
 
