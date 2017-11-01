@@ -49,11 +49,11 @@ Contains message definitions shared by the server and the client.
 
 ### Client
 
-The client first specify the logical routing:
+The client configures the logical routing:
 
 snippet: Logical-Routing
 
-In addition to the logical routing, the client uses an [instance mapping file](/transports/msmq/routing.md) to tell NServiceBus about the specific instances of the server. This is done as follows:
+In addition to the logical routing, the client also uses an [instance mapping file](/transports/msmq/routing.md) to tell NServiceBus about the specific instances of the server. This is done as follows:
 
 snippet: File-Based-Routing
 
