@@ -3,15 +3,15 @@
   <!--startcode sqlserver-non-standard-schema-connString-xml -->
   <connectionStrings>
     <add name="NServiceBus/Transport"
-         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Queue Schema=myschema"/>
+         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=db; Integrated Security=True; Queue Schema=myschema"/>
   </connectionStrings>
   <!--endcode-->
   <!--startcode sqlserver-non-standard-schema-messagemapping -->
   <connectionStrings>
     <add name="NServiceBus/Transport"
-         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True;Queue Schema=salesSchema"/>
+         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=db; Integrated Security=True;Queue Schema=salesSchema"/>
     <add name="NServiceBus/Transport/Billing"
-         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True;Queue Schema=billingSchema"/>
+         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=db; Integrated Security=True;Queue Schema=billingSchema"/>
   </connectionStrings>
   <UnicastBusConfig>
     <MessageEndpointMappings>

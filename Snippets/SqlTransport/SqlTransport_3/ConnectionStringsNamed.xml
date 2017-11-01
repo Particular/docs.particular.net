@@ -3,7 +3,7 @@
 <configuration>
   <connectionStrings>
     <add name="MyConnectionString"
-         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Queue Schema=nsb; Max Pool Size=80"/>
+         connectionString="Data Source=INSTANCE_NAME; Initial Catalog=db; Integrated Security=True; Queue Schema=nsb; Max Pool Size=80"/>
   </connectionStrings>
 </configuration>
 <!--endcode-->
