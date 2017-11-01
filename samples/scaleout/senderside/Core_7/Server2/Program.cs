@@ -13,6 +13,7 @@ class Program
         endpointConfiguration.MakeInstanceUniquelyAddressable(discriminator);
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
