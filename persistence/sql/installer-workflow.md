@@ -52,6 +52,8 @@ A typical workflow on developers machine consists of the following steps:
 
 ### Higher Environment Workflow
 
+NOTE: "Higher Environment" is a general term to refer to any non-development environment. For example "Integration" or "Production".
+
 The workflow in a higher environment will differ based on the specifics of an organizations process. For example, it's possible to allow endpoints [to automatically execute scripts](/persistence/sql/install.md#script-execution-runs-by-default-at-endpoint-startup) or [to take full control and execute them using custom code](/persistence/sql/install.md#optionally-take-control-of-script-execution).
 
 In case of taking the full control of scripts execution, it is necessary to plug in the script execution into whatever deployment pipeline the organization has in place, for example:
