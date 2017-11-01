@@ -11,7 +11,7 @@ related:
  - samples/scaleout/distributor
 ---
 
-NOTE: This sample is only relevant for the MSMQ transport. The other broker-based transports scale out using the [competing consumer pattern](/transports/scale-out.md#broker-transports). The functionality in this sample is available in version 6 and above. 
+NOTE: This sample is only relevant for the MSMQ transport. The other broker-based transports scale out using the [competing consumer pattern](/transports/scale-out.md#broker-transports). The functionality in this sample is available for NServiceBus Core Versions 6 and above. 
 
 Sometimes a single endpoint for handling messages is not enough, so there is a need to scale out. The following sample demonstrates how to scale out existing MSMQ message processing by distributing messages on the sender side.
 
