@@ -150,7 +150,7 @@ By default, Visual Studio will create the project using C# 7.0. Let's change it 
 1. Click **OK**.
 1. Save and close the **Shipping** properties page.
 
-![Change Language Version](change-language-version.png)
+![Change Language Version](change-language-version.png "width=680")
 
 Now, we need to add references to the NServiceBus package and Messages project.
 
