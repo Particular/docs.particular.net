@@ -8,7 +8,7 @@
             #region sqlserver-config-connectionstring
 
             var transport = busConfiguration.UseTransport<SqlServerTransport>();
-            transport.ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=db");
+            transport.ConnectionString("Data Source=instance;Initial Catalog=db");
 
             #endregion
         }

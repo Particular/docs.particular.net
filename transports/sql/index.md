@@ -17,6 +17,16 @@ The SQL Server transport implements a message queuing mechanism on top of [Micro
 
 WARNING: Although this transport will run on the free version of the engine, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express), it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place from [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx), or another third party support provider.
 
+
+## Usage
+
+A basic use of the SQL Server Transport is as follows:
+
+snippet: usage
+
+See also [Connection Settings](/transports/sql/connection-settings.md).
+
+
 ## How it works
 
 SQL Server transport uses SQL Server to store queues and messages. It doesn't use any queuing services provided by SQL Server, the queuing logic is implemented within the transport. The SQL Server transport is best thought of as a brokered transport like RabbitMQ rather than [store-and-forward](/nservicebus/architecture/principles.md#messaging-versus-rpc-store-and-forward-messaging) transport such as MSMQ.

@@ -18,7 +18,7 @@ class MultiSchema
         #region sqlserver-non-standard-schema-connString
 
         var transport = busConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=db; Queue Schema=myschema");
+        transport.ConnectionString("Data Source=instance;Initial Catalog=db; Queue Schema=myschema");
 
         #endregion
     }
