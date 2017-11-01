@@ -138,7 +138,7 @@ To start, in the **Solution Explorer** window, right-click the **RetailDemo** so
 {{NOTE:
 **ProTip:** The existing projects in this solution are using the newer, leaner, .NET Core style project files, but the current Visual Studio tooling doesn't make it very easy to do the same for the **Shipping** project. If you like, you can create a project of type **Console App (.NET Core)** and then manually edit the **Shipping.csproj** file to change the `TargetFramework` value from `netcoreapp2.0` to `net461`.
 
-Letting Visual Studio create an older-style `*.csproj` file will work just fine, but will just look slightly different in Visual Studio, with nested **Properties**, **References**, and **packages.config** items instead of **Dependencies**.
+Creating a **Console App (.NET Framework)** project which uses the older-style `*.csproj` file will work just fine, but will just look slightly different in Visual Studio, with nested **Properties**, **References**, and **packages.config** items instead of **Dependencies**.
 }}
 
 By default, Visual Studio will create the project using C# 7.0. Let's change it to C# 7.1 so that we can use nice features like [an async Main method](https://blogs.msdn.microsoft.com/mazhou/2017/05/30/c-7-series-part-2-async-main/):
