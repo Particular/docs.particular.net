@@ -6,6 +6,7 @@
     using NServiceBus.UniformSession;
 
     #region uniformsession-usage
+
     class ReusedComponent
     {
         IUniformSession session;
@@ -15,15 +16,15 @@
             this.session = session;
         }
 
-        public async Task Do()
+        public Task Do()
         {
-            await session.Send(new MyMessage())
-                .ConfigureAwait(false);
+            return session.Send(new MyMessage());
         }
     }
 
     [Route("api/[controller]")]
-    class MyController : Controller
+    class MyController :
+        Controller
     {
         ReusedComponent component;
 
@@ -42,7 +43,8 @@
         }
     }
 
-    class MyHandler : IHandleMessages<MyCommand>
+    class MyHandler :
+        IHandleMessages<MyCommand>
     {
         ReusedComponent component;
 
@@ -50,17 +52,22 @@
         {
             this.component = component;
         }
-        public async Task Handle(MyCommand message, IMessageHandlerContext context)
+
+        public Task Handle(MyCommand message, IMessageHandlerContext context)
         {
-            await component.Do()
-                .ConfigureAwait(false);
+            return component.Do();
         }
     }
 
     #endregion
 
-    class MyMessage { }
-    class MyCommand { }
+    class MyMessage
+    {
+    }
+
+    class MyCommand
+    {
+    }
 
     class Controller
     {
@@ -69,8 +76,15 @@
             return default;
         }
     }
-    class HttpPostAttribute : Attribute { }
-    class FromBodyAttribute : Attribute { }
+
+    class HttpPostAttribute : Attribute
+    {
+    }
+
+    class FromBodyAttribute : Attribute
+    {
+    }
+
     class RouteAttribute : Attribute
     {
         string v;
@@ -80,6 +94,12 @@
             this.v = v;
         }
     }
-    class Input { }
-    interface IActionResult { }
+
+    class Input
+    {
+    }
+
+    interface IActionResult
+    {
+    }
 }

@@ -6,6 +6,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.UniformSession" Version="1.0.0-*" />
-    <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>

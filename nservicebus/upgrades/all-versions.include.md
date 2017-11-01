@@ -555,6 +555,10 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | ~~2.6.x~~ | ~~2011-08-09~~ | ~~2014-03-08~~    | ~~Extended by NServiceBus 2.6.x~~ |
 | ~~2.5.x~~ | ~~2011-06-15~~ | ~~2011-11-09~~    | ~~Superseded by 2.6.x~~           |
 
+#### [NServiceBus.UniformSession](/nuget/NServiceBus.UniformSession)
+
+No versions released.
+
 #### [NServiceBus.Wcf](/nuget/NServiceBus.Wcf)
 
 | Version   | Released       | Supported until   | Notes                             |
