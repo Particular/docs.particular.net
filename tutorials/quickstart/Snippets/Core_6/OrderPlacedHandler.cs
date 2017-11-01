@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿#region OrderPlacedHandler
+
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
-
-#region OrderPlacedHandler
+using Messages;
 
 namespace Shipping
 {
@@ -21,8 +22,11 @@ namespace Shipping
 
 #endregion
 
-public class OrderPlaced 
-    : IEvent
+namespace Messages
 {
-    public string OrderId { get; set; }
+    public class OrderPlaced 
+        : IEvent
+    {
+        public string OrderId { get; set; }
+    }
 }
