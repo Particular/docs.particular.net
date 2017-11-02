@@ -1,6 +1,6 @@
 ---
 title: Topologies
-reviewed: 2017-05-05
+reviewed: 2017-11-02
 component: ASB
 versions: '[7,)'
 tags:
@@ -72,7 +72,7 @@ The `ForwardingTopology` supports up to 2,000 endpoints with up to 2,000 events 
 |---------------------------------------------|---------------------------|--------------------|
 | Decoupled Publishers / Subscribers          | no                        | yes                |
 | Polymorphic events support                  | no                        | yes                |
-| Event overflow protections                  | no                        | yes                |
+| Event overflow protection                   | no                        | yes                |
 | Subscriber auto-scaling based on queue size | no                        | yes                |
 | Reduced number of connections to the broker | no                        | yes                |
 
