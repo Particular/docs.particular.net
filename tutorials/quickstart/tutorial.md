@@ -68,7 +68,7 @@ See how that is achieved by following these steps:
 
 {{NOTE: If all console windows were closed after closing **Billing** window make sure that you pressed Ctrl+F5 not F5.
 
-This is known dotnet/project-system issue https://github.com/dotnet/project-system/issues/2874
+This is a [known `dotnet/project-system` issue](https://github.com/dotnet/project-system/issues/2874).
 }}
 
 ![ClientUI and Sales processing messages while Billing is shut down](billing-shut-down.png)
