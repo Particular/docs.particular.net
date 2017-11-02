@@ -16,7 +16,7 @@ snippet: 3to4_MaxTTL
 
 ## Region
 
-To specify a region set the `AWS_DEFAULT_REGION` environment variable or overload the client factory.
+To specify a region set the `AWS_REGION` environment variable or overload the client factory.
 
 snippet: 3to4_Region
 
@@ -44,7 +44,7 @@ snippet: 3to4_S3BucketForLargeMessages
 
 ### Region
 
-To specify a region set the `AWS_DEFAULT_REGION` environment variable or overload the client factory.
+To specify a region set the `AWS_REGION` environment variable or overload the client factory.
 
 snippet: 3to4_S3Region
 
