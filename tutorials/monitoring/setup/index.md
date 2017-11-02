@@ -72,28 +72,30 @@ In order to configure an environment for monitoring with the Particular Service 
 
 ServiceControl is a suite of back-end tools that collect useful information about your running system. The main installer includes a desktop utility called the ServiceControl Management Utility which can be used to create and manage ServiceControl and Monitoring instances.
 
-Download and run the latest ServiceControl installer.
+Download and run the latest [ServiceControl installer](https://github.com/Particular/ServiceControl/releases/download/1.42.0/Particular.ServiceControl-1.42.0.exe).
 
-SCREENSHOT - ServiceControl Installer
+NOTE: You should run the latest version of the installer, even if you already have ServiceControl installed. Only versions 1.43 and above of the ServiceControl Management Utility can create and manage Monitoring instances.
 
 Once it has finished installing, run the ServiceControl Management Utility.
 
 
 ### Create ServiceControl instance
 
+NOTE: You can use an existing ServiceControl instance if it is version 1.43 or above.
+
 A ServiceControl instance collects messages from the error queue and manages retrying them. It also collects messages from the audit queue. 
 
 In the ServiceControl Management Utility, click **+ New** and select **ServiceControl instance** from the list of options.
 
-SCREENSHOT - SMCU Main Page with Drop-down opened and Add ServiceControl instance selected
+![ServiceControl Management Utility - Add new ServiceControl instance](scmu-add-new-sc-instance.png)
 
-Under **Transport Configuration** select the transport that your NServiceBus system runs on. Depending on the transport you may be required to add an additional connection string.
+Scroll down to the **Transport Configuration** section. Select the transport that your NServiceBus system runs on. Depending on the transport you may be required to add an additional connection string.
 
 Under **Audit Forwarding** select either On or Off. If you are not currently using an audit queue for anything, you can safely turn this Off. See [audit fowarding](/servicecontrol/errorlog-auditlog-behavior.md) for more information.
 
 Click the Add button. Your ServiceControl instance will start and be listed on the main page of the ServiceControl Management Utility.
 
-SCREENSHOT - SCMU Main Page with ServiceControl instance installed and running
+![ServiceControl Management Utility - List instance - ServiceControl instance](scmu-list-sc-instance.png)
 
 The listing for the ServiceControl instance includes a URL link. This URL will be needed when installing ServicePulse below.
 
@@ -106,13 +108,13 @@ A Monitoring instance collects data from the monitoring queue and aggregates inf
 
 In the ServiceControl Management Utility, click **+ New** and select **Monitoring instance** from the list of options.
 
-SCREENSHOT - SCMU Main Page with Drop-down opened and Add Monitoring instance selected
+![ServiceControl Management Utility - Add new Monitoring instance](scmu-add-new-mon-instance.png)
 
-Under **Transport Configuration** select the transport that your NServiceBus system runs on. Depending on the transport selected you may be required to add an additional connection string.
+Scroll down to the **Transport Configuration** section. Select the transport that your NServiceBus system runs on. Depending on the transport selected you may be required to add an additional connection string.
 
 Click the Add button. Your Monitoring instance will start and be listed on the main page of the ServiceControl Management Utility.
 
-SCREENSHOT - SCMU Main Page with Monitoring instance installed and running
+![ServiceControl Management Utility - List instance - Monitoring instance](scmu-list-mon-instance.png)
 
 The listing for the Monitoring instance includes a URL link. This URL will be needed when installing ServicePulse below.
 
@@ -126,17 +128,19 @@ ServicePulse is a web application for production monitoring and recoverability. 
 
 Download and run the latest ServicePulse installer. 
 
+NOTE: If you already have ServicePulse running on your machine you will need to uninstall it and download the latest version in order to be able to configure ServicePulse to connect to a ServiceControl Monitoring instance.
+
 On the ServicePulse Configuration screen ensure that Recoverability is enabled and enter the URL of the ServiceControl instance API. Check the box marked Monitoring and enter the URL of the Monitoring instance API. 
 
-SCREENSHOT - ServicePulse installer - ServicePulse Configuration screen - filled in
+![ServicePulse Installer - ServiceControl configuration](sp-installer-sc-config.png)
 
 You can find the URLs for each instance API in the ServiceControl Management Utility.
 
-SCREENSHOT - SCMU - Instance APIs highlighted
+![ServiceControl Management Utility - Instance List - Api Addresses Highlighted](scmu-list-api-addresses.png)
 
 Launch ServicePulse and navigate to the Monitoring tab.
 
-SCREENSHOT - ServicePulse Monitoring Tab - Empty
+![ServicePulse - Monitoring Tab - Empty](sp-monitoring-empty.png)
 
 NOTE: If Monitoring was not enabled during installation, the monitoring tab will not be visible.
 
@@ -210,4 +214,10 @@ NOTE: If you are using the MSMQ transport then you also need to specify the mach
 
 Now that everything is installed, run the system and open up ServicePulse. In the monitoring tab you should see a list of running endpoints.
 
-SCREENSHOT - ServicePulse Monitoring tab - list of endpoints happily sending data
+![ServicePulse - Monitoring Tab - With Endpoints](sp-monitoring-with-endpoints.png)
+
+## Next Steps
+
+- Learn more about [ServiceControl](/servicecontrol/)
+- Learn more about [ServicePulse](/servicepulse/)
+- Learn more about the [NServiceBus.Metrics](/nservicebus/operations/metrics.md) plugin
