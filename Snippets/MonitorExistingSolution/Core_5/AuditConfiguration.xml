@@ -1,4 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!-- startcode SetupMonitoring-ConfigureError -->
-
+<!-- startcode SetupMonitoring-ConfigureAudit -->
+<configuration>
+  <configSections>
+    <section name="AuditConfig"
+             type="NServiceBus.Config.AuditConfig, NServiceBus.Core" />
+  </configSections>
+  <AuditConfig QueueName="audit" />
+</configuration>
 <!-- endcode -->

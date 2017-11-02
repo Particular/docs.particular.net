@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!-- startcode SetupMonitoring-ConfigureAudit -->
+<!-- startcode SetupMonitoring-ConfigureError -->
 <configuration>
   <configSections>
-    <section name="AuditConfig"
-             type="NServiceBus.Config.AuditConfig, NServiceBus.Core" />
+    <section name="MessageForwardingInCaseOfFaultConfig"
+             type="NServiceBus.Config.MessageForwardingInCaseOfFaultConfig, NServiceBus.Core" />
   </configSections>
-  <AuditConfig QueueName="audit" />
+  <MessageForwardingInCaseOfFaultConfig ErrorQueue="error" />
 </configuration>
 <!-- endcode -->
