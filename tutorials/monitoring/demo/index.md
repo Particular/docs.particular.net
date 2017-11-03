@@ -47,7 +47,7 @@ The rest of this tutorial is divided up into sub-sections. Each sub-section expl
 
 - **[Which message types are taking the longest to process?](walkthrough-1.md)** - take a look at individual endpoint performance and decide where to optimize.
 
-- **[Queue length and critical time](walkthrough-2.md)** - learn how to mesaure inter-endpoint performance and look for congestion with the queue length and critical time metrics.
+- **[Which endpoints have the most work to do?](walkthrough-2.md)** - look for peaks of traffic and decide when to scale out. 
 
 - **[Scheduled retry rates](walkthrough-3.md)** - talks about how to find hidden problems in your solution by watching scheduled retry rates.
 
