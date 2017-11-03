@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode CustomGatewayTimeoutConfig-->
+<configuration>
+  <configSections>
+    <section name="GatewayConfig"
+             type="NServiceBus.Config.GatewayConfig, NServiceBus.Core" />
+  </configSections>
+  <GatewayConfig TransactionTimeout="00:01:00"/>
+</configuration>
+<!--endcode -->
