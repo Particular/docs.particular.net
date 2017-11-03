@@ -45,7 +45,7 @@ By default, the ClientUI endpoint sends a steady stream of 1 `PlaceOrder` messag
 
 The rest of this tutorial is divided up into sub-sections. Each sub-section explains a few of the metrics and explain how to use the sample solution to explore these metrics.
 
-- **[Throughput and processing time](walkthrough-1.md)** - dives into measuring individual endpoint performance with the throughput and processing time metrics.
+- **[Which message types are taking the longest to process?](walkthrough-1.md)** - take a look at individual endpoint performance and decide where to optimize.
 
 - **[Queue length and critical time](walkthrough-2.md)** - learn how to mesaure inter-endpoint performance and look for congestion with the queue length and critical time metrics.
 

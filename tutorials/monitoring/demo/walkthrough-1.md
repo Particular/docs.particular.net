@@ -1,64 +1,92 @@
 ---
 title: "Monitoring NServiceBus solutions: Demo - Endpoint performance"
-reviewed: 2017-10-10
+reviewed: 2017-11-03
 summary: Measuring individual endpoint performance with the throughput and processing time metrics.
 ---
 
-This part of the tutorial guides you through the throughput and processing time metrics and teaches you how to use those metrics to interpret the performance of an individual endpoint. 
+_Which message types are taking the longest to process?_
+
+This is the first question that you should be asking when you start monitoring an NServiceBus system. The handlers for these message types are the slowest part of your system and if you want to spend time optimizing code, these message handlers are the best candidates to see improvements in your system.
+
+This part of the tutorial guides you through finding the message types that take the longest to process.
 
 include: walkthrough-solution
 
 
-## Throughput and processing time
+## Metrics
 
-Two of the simplest measures of endpoint performance are throughput and processing time. 
+Finding the message type that takes the longest to process requires two metrics: throughput and processing time.
 
 Throughput is a measure of how much work the endpoint is doing. It is the rate at which the endpoint is able to process messages from it's input queue. While throughput can reflect endpoint performance, it is also heavily influenced by how much work there is to do. A highly optimized endpoint with only a few messages per second to process will still have a low throughput. 
 
 Processing time is the time it takes for the endpoint to process a single message. A higher processing time indicates a slower endpoint and a lower processing time indicates a faster endpoint. The amount of work assigned to an endpoint has less of an impact on processing time than it does on throughput. This makes it a better guage for individual endpoint performance.
 
 
-### Sample walkthrough
+## Sample walkthrough
 
-The following walk through uses the sample solution to simulate changes in throughput and processing time and observe the relationships between them.
+The following walk through shows you how to find the message types that take the longest to process and demonstrates the effect of reducing that time on processing time and throughput.
 
 **Run the sample solution. Open ServicePulse to the Monitoring tab.**
 
-SCREENSHOT - ServicePulse monitoring tab - Sample solution
+![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring_tab-sample_low_throughput.png)
 
-Look at the Sales endpoint in the ServicePulse monitoring tab. The first column shows the current throughput. By default, the Sales endpoint is receiving one `OrderPlaced` command from the ClientUI endpoint every second. It is taking half a second to process each one. The throughput is hovering around 1 msg / second and the processing time around 500ms.
+Look at the processing time and throughput for each endpoint. By default, the Sales endpoint is processing one message every second (throughput) and it takes around 1.3 seconds to process each message (processing time).
 
-**In the ClientUI endpoint, toggle High Throughput mode.**
+You can see that the Sales endpoint has the highest processing time so it is taking the longest to process messages. At low volumes of traffic, it's difficult to see the impact that this has on the rest of the system. Let's add some more traffic.
 
-SCREENSHOT - ServicePulse monitoring tab - Sample Solution - High Throughput
+**Find the ClientUI endpoint window and toggle High-Throughput mode. Now go back to the ServicePulse Monitoring Tab.**
 
-Look at the Sales endpoint in the ServicePulse monitoring tab again. In High Throughput mode, the Sales endpoint is receiving 200 `OrderPlaced` commands per second. Notice that throughput has gone up but processing time remains steady. Although the Sales endpoint is processing more messages, it still takes 500ms to process each message.
+In high throughput mode, the ClientUI endpoint sends 20 orders to Sales every second. Now look at the processing time and throughput of each endpoint. The throughput of Sales will increase and then plateau at around 3 messages / second. This is as fast Sales can currently process messages. It can process 4 messages in parallel but each message takes 1.3 seconds to process.
 
-**In the Sales endpoint, increase the time taken to handle each order to 3 seconds.**
+![Service Pulse monitoring tab showing sample endpoints in high throuhgput mode](servicepulse-monitoring_tab-sample_high_throughput.png)
 
-SCREENSHOT - ServicePulse monitoring tab - Sample Solution - High Throughput - 3s processing time
+Notice that the throughput of Billing mirrors the throughput of Sales. Billing is processing messages that are produced from Sales. Although the Billing endpoint can process messages quite a bit faster than Sales can (it has a lower processing time), it can only process messages as quickly as Sales is producing them. If we can make Sales run faster, then our throughput for Sales _and_ Billing can be increased.
 
-Now that it takes longer to process each message, the throughput for the endpoint goes down. By dedicating more resources to each individual message, the endpoint is not able to pull messages from it's input queue as fast as before.
+Let's see what the impact of optimizing the sales endpoint is.  
 
-Notice the effect that a slower Sales endpoint has on the throughput of the Shipping and Billing endpoints. Each of these endpoints subscribe to the `OrderPlaced` event that is published by Sales. Now that Sales is running slower, the rate at which these events are being published has gone down which results in less work for the subscribing endpoints. Through no fault of their own, these endpoints are slowed down.
+**Find the Sales endpoint window and reduce the time to process messages from 1.3 seconds down 0.2 seconds. Now go back to the ServicePulse Monitoring Tab.**
 
-**In the Sales endpoint, turn on resource degradation simulation.**
+![Service Pulse monitoring tab - Sales processing time decreased - Throughput increased](servicepulse-monitoring_tab-sample_fast_sales.png)
 
-Whenever an endpoint is reliant on an external resource (such as a database, file system, remote web api, etc.), processing time wil be affected by the performance of that resource. As these resources come under heavy load, they can begin to slow down. This simulation shows the effect of a degrading resource on throughput and processing time. For every 5 seconds that the simulation is run, it will take 1 additional second to process each message.
+As the time to process each order goes down, the throughput for Sales goes up (to somewhere around 20). So does the throughput for Billing which is now receiving work faster and keeping up with the new load. By optimizing a single message handler, you can make more than one endpoint process work faster.
 
-SCREENSHOT - ServicePulse monitoring tab - Sample Solution - High Throughput - Degrading Resource
+Optimizing the Sales endpoint was simple because Sales only processes a single message type. Now that we've optimized that, let's look at the next slowest endpoint, Shipping. 
 
-As the resource starts to slow down, processing time starts to creep up and throughput starts to go down. If you leave this simulation running long enough, message processing will start to time out and fail.
+The Shipping endpoint handles two different types of messages: `OrderPlaced` (which comes from Sales), and `OrderBilled` which comes from shipping. The value shown for processing time on the ServicePulse monitoring tab is an average of all of the samples taken in a short period. For processing time, this might mean a mix of different message types are used to come up with the single value displayed. If we want to make the endpoint go faster, where do we focus our efforts?
 
-Allow the simulation to run for a while and then turn it off. This represents a resource being restarted after a failure. Notice that processing time and throughput immediately snaps back to it's previous value.
+**In ServicePulse, click the Shipping endpoint to open the Details view.**
 
-**Restart the sample to reset all values to their defaults. Enable high throughput mode in the ClientUI endpoint. In the Shipping endpoint slow down the processing of OrderBilled events to 3 seconds.**
+![Service Pulse monitoring details - Shipping - OrderBilled is slow](servicepulse-monitoring_details-shipping_slow.png)
 
-The Shipping endpoint handles two different message types: `OrderPlaced` and `OrderBilled`. The throughput and processing time of an endpoint are average values. If one message type takes significantly longer to process than other message types then it will be raising the average processing time and reducing the average throughput, slowing down the endpoint overall.  
+In the details view we can see a breakdown of processing time and throughput for each message type. The throughput for the two messages types should be roughly equivalent. The Shipping endpoint is able to process 4 of each message type per second. The throughput for these message types differs though. Processing an `OrderPlaced` event takes roughly 200 ms but processing an `OrderBilled` event takes closer to 700 ms. If you average these values you get the processing time for the whole endpoint, roughly 450 ms.
 
-**In the ServicePulse monitoring tab, click the Shipping endpoint to navigate to the detailed view.**
+The slowest type of message to process is `OrderBilled`. If we can speed up the processing of `OrderBilled` message we can increase the throughput for the Shipping endpoint which will allow us to process _both_ message types faster.
 
-The detailed view shows a breakdown of throughput and processing time by message type. Here you can see the processing time for `OrderBilled` events is much higher than the processing time of `OrderPlaced` events. Improving the processing time for `OrderBilled` events will speed up the overall processing time of the endpoint and at full capacity, improve the overall throughput. If reducing the processing time is not possible, you can move the `OrderBilled` event handler to a new endpoint. This will improve the throughput for `OrderPlaced` events left in the original endpoint.
+**Find the Shipping endpoint window and reduce the time to process `OrderBilled` events to 0.2 seconds.**
 
+![Service Pulse monitoring details - Shipping - OrderBilled is fast](servicepulse-monitoring_details-shipping_fast.png)
+
+As the processing time for one message type goes down, the endpoint processing time goes down. When that happens, just as with Sales, the throughput goes up. It should hover close to 20 messages per second and that throughput is divided roughly 50/50 between the two message types. This is because for every `OrderBilled` event in the input queue, there is also an `OrderPlaced` event and they are evenly distributed. 
+
+
+### What if the throughput on my message types is not an even split?
+
+In the previous example we looked at the Shipping endpoint which handled two different message types. These message types had roughly even throughput but different processing times. When that happens, you can quickly boost overall endpoint performance by reducing the processing time on the slowest handler. When there is a bigger gap in throughput, the answer is not so clear.
+
+For the moment, let's take the (rare) case where the processing time for each message type are about the same. In this case, you should look at the message type with the highest throughput and optimize the handler for that message type. As the endpoint is processing more messages of that type, optimizing that handler will have the greatest impact on overall endpoint performance. Before doing this, you should remember that the throughput is impacted by how fast messages of that type are being generated, not just by how fast you can process them. You might get more benefit by optimizing a process in the endpoint that _sends_ messages of this type. 
+
+When the processing time and throughput are different you need to take both figures into account. If a message type is being processed more (higher throughput) then the endpoint becomes more sensitive to how long it takes to process messages of that type (processing time).  
+
+
+### What if a slow message handler cannot be further optimized?
+
+Sometimes, you are faced with a message handler that is still slow, even after you have optimized it as much as you can. These message handlers have a negative impact on the processing time and throughput of the endpoints they run in and that means the throughput of other message types handled by the same endpoint are also impacted.
+
+When this happens, the best thing to do is to move the slow message handler to it's own dedicated endpoint. The new endpoint will have it's own queue of the slow-to-process message types and will start processing them as soon as they arrive (rather than having the slow messages waiting in the queue for other message types to be handled).
+
+The original endpoint will also get a boost in productivity as it will process the remaining message types faster on average. This results in the endpoint throughput going up.
+
+
+## Next steps
 
 [Next Lesson: Queue length and critical time](./walkthrough-2.md)
