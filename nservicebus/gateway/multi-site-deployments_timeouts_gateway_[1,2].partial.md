@@ -1,7 +1,7 @@
 ## Transaction timeouts
 
-Transmitting messages to remote sites will by default use the default transaction timeout of the underlying transport. A custom timeout value can be configured as follows:
+Transmitting messages to remote sites will use the default transaction timeout of the underlying transport. To override this, a custom timeout value can be configured:
 
-snippet: CustomGatewayTimeoutConfig
+snippet: GatewayCustomTransactionTimeoutConfig
 
-NOTE: The value must be a valid [`System.TimeSpan`](https://msdn.microsoft.com/en-us/library/se73z7b9)
+NOTE: The value must be a valid [`System.TimeSpan`](https://msdn.microsoft.com/en-us/library/se73z7b9).

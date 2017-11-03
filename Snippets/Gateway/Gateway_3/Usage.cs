@@ -68,6 +68,16 @@ class Usage
         #endregion
     }
 
+    void TransactionTimeout(EndpointConfiguration endpointConfiguration)
+    {
+        #region GatewayCustomTransactionTimeout
+
+        var gateway = endpointConfiguration.Gateway();
+        gateway.TransactionTimeout(TimeSpan.FromSeconds(40));
+
+        #endregion
+    }
+
     class CustomChannelReceiver :
         IChannelReceiver
     {
