@@ -1,4 +1,4 @@
-﻿namespace Core5
+﻿namespace Core5.Tutorials.SetupMonitoring
 {
     using NServiceBus;
     using NServiceBus.Metrics.ServiceControl;

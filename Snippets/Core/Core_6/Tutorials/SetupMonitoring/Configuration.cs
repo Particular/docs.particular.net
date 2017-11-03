@@ -1,4 +1,4 @@
-﻿namespace Core6
+﻿namespace Core6.Tutorials.SetupMonitoring
 {
     using NServiceBus;
     using System;
