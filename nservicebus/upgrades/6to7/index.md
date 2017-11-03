@@ -170,7 +170,9 @@ A new API called, [DisableInstaller](/transports/msmq/transportconfig.md?version
 
 ### New Transport Configuration API
 
-Passing in the [connection string](/transports/msmq/connection-strings.md) is no longer supported. If the connection string is passed, an exception will be thrown at endpoint start-up.
+Passing in the [connection string](/transports/msmq/connection-strings.md) is no longer supported. If the connection string is passed, the following exception will be thrown at endpoint start-up:
+
+> System.Exception : Passing in MSMQ settings such as DeadLetterQueue, Journaling etc via a connection string is no longer supported.  Use code level API.
 
 New APIs have been added for each of the setting namely, DisableDeadLetterQueueing, DisableConnectionCachingForSends, UseNonTransactionalQueues, EnableJournaling and TimeToReachQueue. See the [transport configuration documentation](/transports/msmq/transportconfig.md) for more details on the usage.
 
