@@ -142,7 +142,7 @@ The important part is, if a message is accidentally sent to an endpoint we didn'
 Now we need to change the ClientUI so that it is sending `PlaceOrder` to the Sales endpoint.
 
  1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
- 1. In the `AsyncMain` method of the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the MSMQ transport:
+ 1. In the `AsyncMain` method of the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning transport:
 
 snippet: AddingRouting
 
