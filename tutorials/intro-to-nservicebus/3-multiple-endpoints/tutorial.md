@@ -59,11 +59,11 @@ Therefore, it makes sense that logical routing is defined in code.
 
 ### Defining logical routes
 
-[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `transport` object returned when we defined the message transport, as shown in this example using the MSMQ transport:
+[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `transport` object returned when we defined the message transport, as shown in this example using the Learning transport:
 
 snippet: RoutingSettings
 
-`RoutingSettings<T>` is scoped to the transport being used, and routing options are exposed as extension methods on this class. Therefore, only routing options that are viable for the transport in use will appear. Routing configurations only applicable to Microsoft Azure, for example, won't clutter up the API when using the MSMQ transport.
+`RoutingSettings<T>` is scoped to the transport being used, and routing options are exposed as extension methods on this class. Therefore, only routing options that are viable for the transport in use will appear. Routing configurations only applicable to Microsoft Azure, for example, won't clutter up the API when using the Learning transport.
 
 In order to define routes, start with the `routing` variable and call the `RouteToEndpoint` method as needed, which comes in three varieties:
 
