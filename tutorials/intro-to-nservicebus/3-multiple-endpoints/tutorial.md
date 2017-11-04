@@ -99,7 +99,8 @@ Most of this configuration looks exactly the same as our ClientUI endpoint. It's
 For example, if the ClientUI endpoint used `.UseSerialization<XmlSerializer>()` while the Sales endpoint used `.UseSerialization<JsonSerializer>()`, the Sales endpoint would not be able to understand the XML-serialized messages it received from ClientUI, because it would be expecting JSON instead.
 
 {{NOTE:
-**ProTip:** To allow sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. See [Serialization](https://docs.particular.net/nservicebus/serialization/)}}
+**ProTip:** To allow sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. See [Serialization](https://docs.particular.net/nservicebus/serialization/)
+}}
 
 While most of the configuration is the same, let me draw your attention to two specific lines that are different:
 
