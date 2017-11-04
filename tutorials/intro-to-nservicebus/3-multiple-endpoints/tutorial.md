@@ -179,6 +179,11 @@ INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e19d6160-595a-4c30-
 
 At this point, we've managed to create two processes and achieve inter-process communication between them. Now, let's try something different. Close the Sales endpoint window so that only ClientUI is running, and then press `P` several times to send several messages to the Sales endpoint. Note that it works just fine; messages are sent, and nothing fails because the Sales endpoint happens to be offline.
 
+{{NOTE: If ClientUI console window was closed after closing Sales window make sure that you pressed Ctrl+F5 not F5.
+
+This is a [known `dotnet/project-system` issue](https://github.com/dotnet/project-system/issues/2874).
+}}
+
 Now, restart the Sales endpoint. After it starts up, it receives and processes all the messages that were waiting for it in the queue.
 
 The value in this approach is the ability to take a part of your system offline and have the rest of it proceed normally as though nothing is wrong, and then have everything return to normal when the offline piece comes back online.
