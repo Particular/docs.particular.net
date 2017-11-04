@@ -59,7 +59,7 @@ Therefore, it makes sense that logical routing is defined in code.
 
 ### Defining logical routes
 
-[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `transport` object returned when we defined the message transport, as shown in this example using the MSMQ transport:
+[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `transport` object returned when we defined the message transport, as shown in this example using the Learning transport:
 
 snippet: RoutingSettings
 
