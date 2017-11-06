@@ -12,36 +12,39 @@ TODO: Add link to download which will be on S3 somewhere
 
 ## Prerequisites
 
-TODO: Decide on Docker vs LocalDB
+
 
 
 ## Running the sample
 
+The sample zip file includes 4 endpoints and Particular Software Platform components, all of which have been configured to talk to each other using a SQL Server instance. 
+
 Once you have downloaded the sample zip, unzip it's contents into a folder. For the rest of this tutorial, we will refer to this folder as `MonitoringDemo`.
 
-Open a powerhsell prompt to the demo folder and execute the following:
+Open the `MonitoringDemo` folder and double-click on `run.bat`. This will open a new powershell prompt that looks like this:
 
-```ps
-.\Run.ps1
+```
+================ NSB Montoring Setup ================
+1: Use existing SQL Server instance.
+2: Use LocalDB (may require LocalDB installation).
+Q: Quit.
+
+Please make a selection and press <ENTER>:
 ```
 
-This script will:
-- Start up and configure a SQL Database server (using LocalDB or Docker, see above) for all of the Particular Software Platform components and the sample solution to communicate through.
-- Start up all of the Particular Software Platform components
-- Open a browser window to open the new ServicePulse instance
+In order to communicate with each other, all of the components in the sample need access to a shared SQL Server database. If you have an existing SQL Server instance available, select the first option and the demo will use it. If you do not, or you would prefer to keep the demo pieces separate, select the 2nd option. This will install a copy of LocalDB 2016 (if you do not already have it installed) and create a breand new instance called `"particular-monitoring` for use with the demo.
 
+In either case, the script will set up a database called `ParticularMonitoringDemo`. It will then start up the different components of the Particular Service Platform and the 4 endpoints that make up the sample solution. A browser window will open showing ServicePulse on the Monitoring tab. 
 
-### Solution walktrhough
+![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring_tab-sample_low_throughput.png)
 
-Once the environment is up and running you can run the sample solution that is included in the download package. Open the `MonitoringDemo\Solution\MonitoringDemo.sln` solution in Visual Studio. Once the solution has loaded, run it.
-
-The solution contains 4 endpoints which communicate by exchanging messages use the SQL Transport.
+There should be 4 endpoints shown in the list, exchanging messages. These 4 endpoints are configured like this:
 
 ![Solution Diagram](diagram.svg)
 
-These endpoints are also configured to send monitoring data to the Particular Software Platform which you can see in ServicePulse. 
+By default, the ClientUI endpoint sends a steady stream of 1 `PlaceOrder` messages every second. 
 
-By default, the ClientUI endpoint sends a steady stream of 1 `PlaceOrder` message every second. Open the ServicePulse Monitoring tab. You should see all 4 endpoints with graphs indicating some of the most important metrics. 
+The endpoints are also configured to send monitoring data to the Particular Software Platform which you can see in ServicePulse. 
 
 The rest of this tutorial is divided up into sub-sections. Each sub-section explains a few of the metrics and explain how to use the sample solution to explore these metrics.
 
@@ -49,7 +52,7 @@ The rest of this tutorial is divided up into sub-sections. Each sub-section expl
 
 - **[Which endpoints have the most work to do?](walkthrough-2.md)** - look for peaks of traffic and decide when to scale out. 
 
-- **[Scheduled retry rates](walkthrough-3.md)** - talks about how to find hidden problems in your solution by watching scheduled retry rates.
+- **[Are any of the endpoints struggling?](walkthrough-3.md)** - find hidden problems in your system and fix them before they become .
 
 
 include: next-steps

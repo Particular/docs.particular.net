@@ -1,5 +1,5 @@
 ---
-title: "Monitoring NServiceBus solutions: Demo - Endpoint performance"
+title: "Monitoring NServiceBus Demo - Slow handlers"
 reviewed: 2017-11-03
 summary: Measuring individual endpoint performance with the throughput and processing time metrics.
 ---
@@ -89,4 +89,8 @@ The original endpoint will also get a boost in productivity as it will process t
 
 ## Next steps
 
-[Next Lesson: Queue length and critical time](./walkthrough-2.md)
+Explore the demo
+- [Which endpoints have the most work to do?](./walkthrough-2.md)
+- [Are any of the endpoints struggling?](./walktrhough-3.md)
+
+include: next-steps
