@@ -30,7 +30,7 @@ The database created by this sample is `NsbSamplesSagaMigration`.
  1. Uncomment the `#define MIGRATION` line in `TestSaga.cs`.
  1. Start the solution.
  1. Start and complete some new sagas (e.g. `start A`, `start B` and `start C`).
- 1. Verify sagas are started by running `SELECT * FROM [nservicebus].[dbo].[NewTestSaga]`.
+ 1. Verify sagas are started by running `SELECT * FROM [NsbSamplesSagaMigration].[dbo].[NewTestSaga]`.
  1. Verify that the messages were handled by "Server.New" endpoint.
  1. Notice that "Server" console shows information indicating that the not-found handler has been used.
  1. Complete the previously created sagas (`complete 2` or `complete 3`) to drain the saga store.
