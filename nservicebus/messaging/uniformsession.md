@@ -26,10 +26,7 @@ Install the `NServiceBus.UniformSession` NuGet package available for endpoints u
 
 snippet: uniformsession-usage
 
-Due to the duality of `IUniformSession` (it can represent either `IMessageSession` or `IMessageHandlerContext`), `ReusedComponent` will behave different depending on where it is used.
-
- * If used in the MVC controller as shown above all messages will be immediately dispatched
- * If used in the handler as shown above messages are [only dispatched when the handler completed](/nservicebus/messaging/batched-dispatch.md)
+`IUniformSession` does represent either a `IMessageSession` or `IMessageHandlerContext`. When injecting `IUniformSession`, the instance will automatically resolve to the correct session type based on the call hierarchy. To learn more about the session types, read the ['sending messages' documentation page](/nservicebus/messaging/send-a-message.md).
 
 
 ## Safeguards
