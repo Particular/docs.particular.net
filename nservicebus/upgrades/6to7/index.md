@@ -312,6 +312,6 @@ As endpoints starts up a diagnostics file is written to disk in a subfolder call
 
 ## Routing for send only endpoints
 
-Routing messages to the local endpoint or local instance is no longer allowed for send only endpoints since they are not able to receive messages. When detected the following exception is thrown:
+Routing messages to the local endpoint or local instance is no longer allowed for send only endpoints, since they are not able to receive messages. When detected, the following exception is thrown:
 
 `System.InvalidOperationException: Cannot route to instances of this endpoint since it's configured to be in send-only mode.`
