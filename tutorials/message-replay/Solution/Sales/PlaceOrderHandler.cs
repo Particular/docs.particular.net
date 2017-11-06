@@ -7,6 +7,8 @@ using NServiceBus.Logging;
 
 namespace Sales
 {
+    using System;
+
     public class PlaceOrderHandler :
         IHandleMessages<PlaceOrder>
     {
