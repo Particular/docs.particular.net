@@ -17,6 +17,7 @@ class Program
         Console.Title = "Samples.SqlSagaFinder.SqlServer";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.SqlServer");
         endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.EnableInstallers();
 
         #region sqlServerConfig
 
