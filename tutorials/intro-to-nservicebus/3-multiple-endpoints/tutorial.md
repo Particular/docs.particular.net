@@ -59,11 +59,11 @@ Therefore, it makes sense that logical routing is defined in code.
 
 ### Defining logical routes
 
-[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `transport` object returned when we defined the message transport, as shown in this example using the Learning transport:
+[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `transport` object returned when we defined the message transport, as shown in this example using the Learning Transport:
 
 snippet: RoutingSettings
 
-`RoutingSettings<T>` is scoped to the transport being used, and routing options are exposed as extension methods on this class. Therefore, only routing options that are viable for the transport in use will appear. Routing configurations only applicable to Microsoft Azure, for example, won't clutter up the API when using the Learning transport.
+`RoutingSettings<T>` is scoped to the transport being used, and routing options are exposed as extension methods on this class. Therefore, only routing options that are viable for the transport in use will appear. Routing configurations only applicable to Microsoft Azure, for example, won't clutter up the API when using the Learning Transport.
 
 In order to define routes, start with the `routing` variable and call the `RouteToEndpoint` method as needed, which comes in three varieties:
 
@@ -98,9 +98,9 @@ Most of this configuration looks exactly the same as our ClientUI endpoint. It's
 
 For example, if the ClientUI endpoint used `.UseSerialization<XmlSerializer>()` while the Sales endpoint used `.UseSerialization<JsonSerializer>()`, the Sales endpoint would not be able to understand the XML-serialized messages it received from ClientUI, because it would be expecting JSON instead.
 
-{{NOTE:
-**ProTip:** To allow sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. See [Serialization](/nservicebus/serialization)
-}}
+NOTE: **ProTip:** It's also possible to specify [multiple deserializers](/nservicebus/serialization/#specifying-additional-deserializers) to enable receiving messages serialized in different formats, for instance to enable integration between teams, or to enable the use of a high-performance serializer in a performance-critical subsystem.
+
+To allow sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. See [Serialization](/nservicebus/serialization)
 
 While most of the configuration is the same, let me draw your attention to two specific lines that are different:
 
@@ -146,7 +146,7 @@ The important part is, if a message is accidentally sent to an endpoint we didn'
 Now we need to change the ClientUI so that it is sending `PlaceOrder` to the Sales endpoint.
 
  1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
- 1. In the `AsyncMain` method of the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning transport:
+ 1. In the `AsyncMain` method of the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning Transport:
 
 snippet: AddingRouting
 
@@ -181,14 +181,14 @@ INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = af0d1aa7-1611-4aa0-
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e19d6160-595a-4c30-98b5-ea07bc44a6f8
 ```
 
-At this point, we've managed to create two processes and achieve inter-process communication between them. Now, let's try something different. Close the Sales endpoint window so that only ClientUI is running, and then press `P` several times to send several messages to the Sales endpoint. Note that it works just fine; messages are sent, and nothing fails because the Sales endpoint happens to be offline.
+At this point, we've managed to create two processes and achieve inter-process communication between them. Now, let's try something different.
 
-{{NOTE: If ClientUI console window was closed after closing Sales window make sure that you pressed Ctrl+F5 not F5.
+1. In Visual Studio's **Debug** menu, select **Detach All** so that we can close one console window without Visual Studio closing all the other windows as well. Alternatively, you can run the solution using **Debug** > **Start Without Debugging** or Ctrl+F5.
+1. Close the Sales endpoint window so that only ClientUI is running.
+1. Press `P` several times to send several messages to the Sales endpoint. Note that it works just fine; messages are sent, and nothing fails because the Sales endpoint happens to be offline.
+1. Restart the Sales endpoint by right-clicking the **Sales** project and selecting **Debug** > **Start new instance**.
 
-This is a [known `dotnet/project-system` issue](https://github.com/dotnet/project-system/issues/2874).
-}}
-
-Now, restart the Sales endpoint. After it starts up, it receives and processes all the messages that were waiting for it in the queue.
+After Sales starts up, it receives and processes all the messages that were waiting for it in the queue.
 
 The value in this approach is the ability to take a part of your system offline and have the rest of it proceed normally as though nothing is wrong, and then have everything return to normal when the offline piece comes back online.
 
