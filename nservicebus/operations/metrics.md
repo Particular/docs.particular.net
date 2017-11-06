@@ -58,7 +58,7 @@ Critical time is the time between when a message is sent and when it is fully pr
 
 ### Retries
 
-This metric measures the number of retries scheduled by the endpoint (immediate or delayed).
+This metric measures the number of [retries](/nservicebus/recoverability) scheduled by the endpoint (immediate or delayed).
 
 ### Queue length
 
