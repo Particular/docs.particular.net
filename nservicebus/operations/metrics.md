@@ -56,6 +56,9 @@ Critical time is the time between when a message is sent and when it is fully pr
  * Queue wait time: The time a message spends in the destination queue before being picked up and processed
  * Processing time: The time it takes for the destination endpoint to process the message
 
+### Retries
+
+This metric measures the number of [retries](/nservicebus/recoverability) scheduled by the endpoint (immediate or delayed).
 
 ### Queue length
 
