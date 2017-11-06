@@ -79,6 +79,9 @@ An example usage of Correlation Identifier within NServiceBus is [callbacks](/ns
 
 Messages sent from a Saga using the `ReplyToOriginator` method will have their `Correlation Id` set based on the message which caused the saga to be created. See [Notifying callers of status](/nservicebus/sagas/#notifying-callers-of-status) for more information about the `ReplyToOriginator` method.
 
+### CorrId
+
+`CorrId` is an MSMQ specific header semantically identical to `NServiceBus.CorrelationId`.  Only included for backward compatibility with endpoints running version 3 or older of NServiceBus. 
 
 ### NServiceBus.ConversationId
 

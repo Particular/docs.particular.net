@@ -19,6 +19,8 @@ include: sqlpersistence-prereqs
 
 This samples uses a hypothetical "Order" scenario where the requirement is to transition from an an int correlation id `OrderNumber` to a guid correlation id `OrderId`. 
 
+To move between phases, after running each phase adjust startup projects list in solution properties, e.g. after phase 1 disable endpoints that contain "Phase1" in name, and enable endpoints that contain "Phase2" in name.
+
 
 ## Phases
 

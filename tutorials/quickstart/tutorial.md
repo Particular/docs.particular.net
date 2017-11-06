@@ -61,15 +61,10 @@ One of the most powerful advantages of asynchronous messaging is reliability. Fa
 
 See how that is achieved by following these steps:
 
-1. Run the solution in Visual Studio by pressing Ctrl+F5 and ensure all three console windows are active.
+1. In Visual Studio's **Debug** menu, select **Detach All** so that we can close one console window without Visual Studio closing all the other windows as well. Alternatively, you can run the solution using **Debug** > **Start Without Debugging** or Ctrl+F5.
 1. Close the **Billing** window.
 1. Send several messages by pressing `P` in the **ClientUI** window.
 1. Notice how messages are flowing from **ClientUI** to **Sales**. **Sales** is still publishing messages, even though **Billing** can't process them at the moment.
-
-{{NOTE: If all console windows were closed after closing **Billing** window make sure that you pressed Ctrl+F5 not F5.
-
-This is a [known `dotnet/project-system` issue](https://github.com/dotnet/project-system/issues/2874).
-}}
 
 ![ClientUI and Sales processing messages while Billing is shut down](billing-shut-down.png)
 

@@ -309,3 +309,9 @@ See the [critical errors documentation](/nservicebus/hosting/critical-errors.md)
 ## Startup diagnostics written to disk
 
 As endpoints starts up a diagnostics file is written to disk in a subfolder called `.diagnostics`. See the [startup diagnostics documentation](/nservicebus/hosting/?version=core_7#startup-diagnostics) for more details.
+
+## Routing for send-only endpoints
+
+Routing messages to the local endpoint or local instance is no longer allowed for send-only endpoints, since they are not able to receive messages. When detected, the following exception is thrown:
+
+`System.InvalidOperationException: Cannot route to instances of this endpoint since it's configured to be in send-only mode.`
