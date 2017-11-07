@@ -9,4 +9,4 @@ Step-by-step tutorials to help you learn how to use the monitoring capabilities 
 
 ### [Setting up monitoring in your own environment](setup/)
 
-A setp-by-step guide that shows how to configure the Particular Service Platform and your solution in order to enable monitoring.
+A step-by-step guide that shows how to configure the Particular Service Platform and your solution in order to enable monitoring.
