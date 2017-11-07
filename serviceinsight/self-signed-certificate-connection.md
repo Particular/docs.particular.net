@@ -16,9 +16,9 @@ ServiceControl can be configured to run on a SSL, but if a self-signed certifica
 Open `ServiceInsight.exe.config` from the installation directory and change the value for the following entry to `True` (the dafault value is False):
 
 ```XML
-<setting name="AllowSelfSignedCertificates" serializeAs="String">
-    <value>True</value>
-</setting>
+<appSettings>
+    <add key="SkipCertificateValidation" value="False" />
+</appSettings>
 ``` 
 
 NOTE: Since the application by default installs in the `Program Files` folder, admninistrative priviledge might be required to edit the config file above. 
