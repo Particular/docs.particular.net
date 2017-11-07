@@ -9,7 +9,7 @@ redirects:
 - nservicebus/architecture/nservicebus-and-biztalk
 ---
 
-NServiceBus is designed for communication between business-oriented services in SOA and DDD projects. It is not a replacement for RPC technologies such as WCF or broker integration tools like BizTalk. Successful systems use a mix of approaches and technologies for communication, not just NServiceBus.
+NServiceBus is designed for communication between business-oriented services in SOA and DDD projects. It is not a replacement for RPC technologies such as WCF or broker integration tools like BizTalk or other EIPs like TIBCO, Mule ESB or Boomi and many others. Successful systems use a mix of approaches and technologies for communication, not just NServiceBus.
 
 This article discusses the similarities and differences between NServiceBus and its Microsoft counterparts.
 
