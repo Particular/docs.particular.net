@@ -47,7 +47,7 @@ Every system being monitored will push data to three main queues:
 
 - Monitoring: Each endpoint will gather and send metric data to this queue. This data holds information about the health and performance of an endpoint.
 - Audit: When an endpoint successfully processes a message, a copy of the message will be forwarded to this queue. The audited message will have additional headers which contain data about the processing of the message.
-- Error: When an endpoint fails to process a message (after exhausting automated retry attenpts), a copy of the message is fowarded to this queue. The failed message will have additional headers which contain data about the failed attempt to process the message.
+- Error: When an endpoint fails to process a message (after exhausting automated retry attempts), a copy of the message is fowarded to this queue. The failed message will have additional headers which contain data about the failed attempt to process the message.
 
 The core NServiceBus package can be configured to send messages to the Audit and Error queues. In order to send data to the Monitoring queue, two additional packages are required:
 
