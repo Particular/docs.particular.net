@@ -39,21 +39,19 @@ The first indication that an endpoint is going to run into trouble is when proce
 
 **Find the Shipping endpoint windows and toggle the resource degradation simulation.**
 
-SCREENSHOT - ServicePulse - Monitoring tab - Resource degradation
+![ServicePulse Monitoring tab showing resource degradation on Shipping endpoint](servicepulse-monitoring_tab-resource_degradation.png)
 
 Watch the processing time on the shipping endpoint. As the (simulated) third-party resources slow down, processing the messages takes longer and processing time goes up. To find the root cause, you need to know which message types are causing the problem.
 
 **In the ServicePulse UI, click the Shipping endpoint to open a detailed view.**
 
-SCREENSHOT - ServicePulse - Shipping Details - Resource Degradation
+![ServicePulse Details tab showing resource degradation on OrderPlaced events](servicepulse-monitoring_details-resource_degradation.png)
 
 Here you can see a breakdown of processing time by message type. Even though the Shipping endpoint processes two types of message, only one of them is slowing down. There is something that is slowing down the processing of `OrderPlaced` events that is not affecting the processing of `OrderBilled` events.
 
 NOTE: This is contrived example and there isn't really a 3rd party resource that is failing.  We're just simulating it with `Task.Delay`. 
 
 **Find the Shipping endpoint window and toggle the resource degradation simulation off. Return the ServicePulse monitoring tab.**
-
-SCREENSHOT - ServicePulse - Monitoring tab - After Resource Degradation
 
 Now look at the processing time for the Shipping endpoint again. As soon as the remote resource recovers, the processing time snaps back to where it was before. This is what it looks like when a failing resource is restarted. 
 
@@ -70,7 +68,7 @@ Now look at the scheduled retry rate for the Billing endpoint in the ServicePuls
 
 NOTE: As the endpoint is wasting resources attempting to process a message that fails, the number of successfully processed messages (throughput) goes down. This has the effect of forcing messages to spend longer in the input queue which can impact queue length and critical time as well (to find out why, see [Which endpoints have the most work to do?](./walkthrough-2.md)).
 
-TODO: Lead customer through finding the log file and figuring out what the problem is.
+If you are concerned about the number of messages that are being retried you can always check the endpoint logs. When messages are scheduled to be retried, details about the message and the failure are logged at the WARN log level.
 
 
 ### Messages are failing, even after being retried
@@ -81,7 +79,7 @@ The final indication that an endpoint is having problems is when messages actual
 
 With such a high failure rate, it won't take long before messages begin exceeding the number of retries configured for the Billing endpoint. When this happens these failed messages will appear in the Failed Messages tab in ServicePulse.
 
-SCREENSHOT - ServicePulse - Failed Messages tab
+![ServicePulse failed messages tab](servicepulse-failed_messages.png)
 
 When ServiceControl receives failed messages from an endpoint it will group them together according to the exception type and the place in the code where the exception is thrown. You can open up an exception group and look at each failed individually. This includes a full stack-trace, as well as access to the message headers and the body of the message.
 
@@ -91,7 +89,7 @@ Once the conditions that led to the error are resolved, you can retry all of the
 
 ServiceControl will prepare the messages to be retried and then return them to the Billing endpoint where they will be successfully processed.
 
-SCREENSHOT - ServicePulse - Failed Messages - Retried
+![ServicePulse failed messages retried](servicepulse-failed_messages-retried.png)
 
 
 ## Next steps
