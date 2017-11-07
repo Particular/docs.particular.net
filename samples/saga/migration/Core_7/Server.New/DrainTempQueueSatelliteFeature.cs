@@ -26,9 +26,7 @@ public class DrainTempQueueSatelliteFeature :
     protected override void Setup(FeatureConfigurationContext context)
     {
         var settings = context.Settings;
-        var qualifiedAddress = settings.LogicalAddress()
-            .CreateQualifiedAddress("New");
-        tempQueue = settings.GetTransportAddress(qualifiedAddress);
+        tempQueue = "Samples.SagaMigration.Server.New";
         mainQueue = settings.LocalAddress();
 
         context.AddSatelliteReceiver(
