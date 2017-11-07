@@ -26,7 +26,7 @@ Install the `NServiceBus.UniformSession` NuGet package available for endpoints u
 
 snippet: uniformsession-usage
 
-`IUniformSession` represents either a `IMessageSession` or `IMessageHandlerContext` depending on where it's used. Injected `IUniformSession` instances will automatically resolve to the correct session type based on the call hierarchy. To learn more about the session types, read the ['sending messages' documentation page](/nservicebus/messaging/send-a-message.md).
+`IUniformSession` represents either a `IMessageSession` or `IMessageHandlerContext` depending on where it's used. Injected `IUniformSession` instances will automatically resolve to the correct session type based on the call hierarchy. To learn more about the session types, read the [Sending messages](/nservicebus/messaging/send-a-message.md) article.
 
 
 ## Safeguards
