@@ -52,28 +52,28 @@ As the time to process each order goes down, the throughput for Sales goes up (t
 
 Optimizing the Sales endpoint was simple because Sales only processes a single message type. Now that we've optimized that, let's look at the next slowest endpoint, Shipping. 
 
-The Shipping endpoint handles two different types of messages: `OrderPlaced` (which comes from Sales), and `OrderBilled` which comes from shipping. The value shown for processing time on the ServicePulse monitoring tab is an average of all of the samples taken in a short period. For processing time, this might mean a mix of different message types are used to come up with the single value displayed. If we want to make the endpoint go faster, where do we focus our efforts?
+The Shipping endpoint handles two different types of messages: `OrderPlaced` (which comes from Sales), and `OrderBilled` (which comes from Shipping). The value shown for processing time on the ServicePulse monitoring tab is an average of all of the samples taken in a short period. For processing time, this might mean a mix of different message types are used to come up with the single value displayed. If we want to make the endpoint go faster, where do we focus our efforts?
 
 **In ServicePulse, click the Shipping endpoint to open the Details view.**
 
 ![Service Pulse monitoring details - Shipping - OrderBilled is slow](servicepulse-monitoring_details-shipping_slow.png)
 
-In the details view we can see a breakdown of processing time and throughput for each message type. The throughput for the two messages types should be roughly equivalent. The Shipping endpoint is able to process 4 of each message type per second. The throughput for these message types differs though. Processing an `OrderPlaced` event takes roughly 200 ms but processing an `OrderBilled` event takes closer to 700 ms. If you average these values you get the processing time for the whole endpoint, roughly 450 ms.
+In the details view we can see a breakdown of processing time and throughput for each message type. The throughput for the two messages types should be roughly equivalent. The Shipping endpoint is able to process 4 of each message type per second. The processing time for these message types differs though. Processing an `OrderPlaced` event takes roughly 200 ms but processing an `OrderBilled` event takes closer to 700 ms. If you average these values you get the processing time for the whole endpoint, roughly 450 ms.
 
-The slowest type of message to process is `OrderBilled`. If we can speed up the processing of `OrderBilled` message we can increase the throughput for the Shipping endpoint which will allow us to process _both_ message types faster.
+The slowest type of message to process is `OrderBilled`. If we can speed up the processing of `OrderBilled` message we can increase the throughput for the whole Shipping endpoint which will allow us to process _both_ message types faster.
 
 **Find the Shipping endpoint window and reduce the time to process `OrderBilled` events to 0.2 seconds.**
 
 ![Service Pulse monitoring details - Shipping - OrderBilled is fast](servicepulse-monitoring_details-shipping_fast.png)
 
-As the processing time for one message type goes down, the endpoint processing time goes down. When that happens, just as with Sales, the throughput goes up. It should hover close to 20 messages per second and that throughput is divided roughly 50/50 between the two message types. This is because for every `OrderBilled` event in the input queue, there is also an `OrderPlaced` event and they are evenly distributed. 
+As the processing time for one message type goes down, the overall endpoint processing time goes down. When that happens, just as with Sales, the throughput goes up. It should hover close to 20 messages per second and that throughput is divided roughly 50/50 between the two message types. This is because for every `OrderBilled` event in the input queue, there is also an `OrderPlaced` event and they are evenly distributed. 
 
 
 ### What if the throughput on my message types is not an even split?
 
 In the previous example we looked at the Shipping endpoint which handled two different message types. These message types had roughly even throughput but different processing times. When that happens, you can quickly boost overall endpoint performance by reducing the processing time on the slowest handler. When there is a bigger gap in throughput, the answer is not so clear.
 
-For the moment, let's take the (rare) case where the processing time for each message type are about the same. In this case, you should look at the message type with the highest throughput and optimize the handler for that message type. As the endpoint is processing more messages of that type, optimizing that handler will have the greatest impact on overall endpoint performance. Before doing this, you should remember that the throughput is impacted by how fast messages of that type are being generated, not just by how fast you can process them. You might get more benefit by optimizing a process in the endpoint that _sends_ messages of this type. 
+Let's start with the simplest case, where the processing time for each message type are about the same. In this case, you should look at the message type with the highest throughput and optimize the handler for that message type. As the endpoint is processing more messages of that type, optimizing that handler will have the greatest impact on overall endpoint performance. Before doing this, you should remember that the throughput is impacted by how fast messages of that type are being generated, not just by how fast you can process them. You might get more benefit by optimizing a process in the endpoint that _sends_ messages of this type. 
 
 When the processing time and throughput are different you need to take both figures into account. If a message type is being processed more (higher throughput) then the endpoint becomes more sensitive to how long it takes to process messages of that type (processing time).  
 

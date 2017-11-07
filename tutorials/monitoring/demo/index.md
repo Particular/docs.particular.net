@@ -65,7 +65,7 @@ The endpoints are also configured to send monitoring data to the Particular Soft
 
 Explore the demo further by asking some questions:
 
-- **[Which message types are taking the longest to process?](walkthrough-1.md)** - take a look at individual endpoint performance and decide where to optimize.
+- **[Which message types take the longest to process?](walkthrough-1.md)** - take a look at individual endpoint performance and decide where to optimize.
 
 - **[Which endpoints have the most work to do?](walkthrough-2.md)** - look for peaks of traffic and decide when to scale out. 
 
