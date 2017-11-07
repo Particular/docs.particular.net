@@ -3,6 +3,7 @@ title: "Monitoring NServiceBus solutions: Getting started"
 reviewed: 2017-11-07
 summary: Setting up the Particular Service Platform to monitor an NServiceBus system.
 component: Core
+versions: [5,)
 ---
 
 This tutorial will guide you through the steps required to set up your NServiceBus solution for monitoring with the Particular Service Platform.
