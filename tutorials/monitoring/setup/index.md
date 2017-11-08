@@ -6,7 +6,9 @@ component: Core
 versions: '[5,)'
 ---
 
-This tutorial will guide you through the steps required to set up your NServiceBus solution for monitoring with the Particular Service Platform.
+This tutorial will guide you through the steps required to set up your NServiceBus solution for monitoring with the Particular Service Platform. The tutorial assumes that you're configuring monitoring for an existing solution and doesn't explain how to create a new application.
+
+Note: At the moment systems using the [Learning Transport](/transports/learning/) can't be monitored as described below. If you're using solution from other tutorials or samples, ensure that you've configured NServiceBus to use another transport.
 
 
 ## Component overview
@@ -40,8 +42,7 @@ scmonitoring --> pulse[ServicePulse]
 scinstance --> pulse
 
 ```
-
-An NServiceBus system monitored using the Particular Software Platform will push data to three main queues:
+A running NServiceBus system can be configured to send data about it's operation to three main queues:
 
 - `Monitoring`: Each endpoint will gather and send metric data to this queue. This data holds information about the health and performance of an endpoint.
 - `Audit`: When an endpoint successfully processes a message, a copy of the message will be forwarded to this queue. The audited message will have additional headers which contain data about the processing of the message.
@@ -57,7 +58,7 @@ ServiceControl is a suite of back-end tools that collect useful information abou
 - [ServiceControl instance](/servicecontrol/servicecontrol-instances/): collects messages from the audit and error queues.
 - [Monitoring instance](/servicecontrol/monitoring-instances/): collects data from the monitoring queue about all of the endpoints in an NServiceBus system. 
 
-Both of these instance types can be set-up and managed with the ServiceControl Management Utility.
+Both of these instance types can be set-up and managed with the `ServiceControl Management Utility`.
 
 [ServicePulse](/servicepulse/) is a web application that connects to ServiceControl and provides production monitoring and recoverability. It contains pages to visualize the monitoring data in a Monitoring instance. It can also be used to review and manage failed messages that are managed by a ServiceControl instance.
 
@@ -70,7 +71,7 @@ In order to configure an environment for monitoring with the Particular Service 
 
 ### Install ServiceControl
 
-The main ServiceControl installer includes a desktop utility called the ServiceControl Management Utility which can be used to create and manage both types of instance.
+The main ServiceControl installer includes a desktop utility called the `ServiceControl Management Utility` which can be used to create and manage both types of instance.
 
 Download and run the latest [ServiceControl installer](https://github.com/Particular/ServiceControl/releases/download/1.43.0/Particular.ServiceControl-1.43.0.exe).
 
@@ -83,7 +84,7 @@ Once it has finished installing, run the ServiceControl Management Utility.
 
 NOTE: You can use an existing ServiceControl instance if it is version 1.43 or above.
 
-In the ServiceControl Management Utility, click **+ New** and select **ServiceControl instance** from the list of options.
+In the `ServiceControl Management Utility`, click **+ New** and select **ServiceControl instance** from the list of options.
 
 ![ServiceControl Management Utility - Add new ServiceControl instance](scmu-add-new-sc-instance.png)
 
@@ -91,7 +92,7 @@ Scroll down to the **Transport Configuration** section. Select the transport tha
 
 Under **Audit Forwarding** select either On or Off. If you are not currently using an audit queue for anything, you can safely turn this Off. See [audit fowarding](/servicecontrol/errorlog-auditlog-behavior.md) for more information.
 
-Click the Add button. Your ServiceControl instance will start and be listed on the main page of the ServiceControl Management Utility.
+Click the Add button. Your ServiceControl instance will start and be listed on the main page of the `ServiceControl Management Utility`.
 
 ![ServiceControl Management Utility - List instance - ServiceControl instance](scmu-list-sc-instance.png)
 
@@ -104,13 +105,13 @@ NOTE: Creating the ServiceControl instance will also create the audit and error 
 
 A Monitoring instance collects data from the monitoring queue and aggregates information from all of the endpoints in the system.
 
-In the ServiceControl Management Utility, click **+ New** and select **Monitoring instance** from the list of options.
+In the `ServiceControl Management Utility`, click **+ New** and select **Monitoring instance** from the list of options.
 
 ![ServiceControl Management Utility - Add new Monitoring instance](scmu-add-new-mon-instance.png)
 
 Scroll down to the **Transport Configuration** section. Select the transport that your NServiceBus system runs on. Depending on the transport selected you may be required to add an additional connection string.
 
-Click the Add button. Your Monitoring instance will start and be listed on the main page of the ServiceControl Management Utility.
+Click the Add button. Your Monitoring instance will start and be listed on the main page of the `ServiceControl Management Utility`.
 
 ![ServiceControl Management Utility - List instance - Monitoring instance](scmu-list-mon-instance.png)
 
@@ -132,7 +133,7 @@ On the ServicePulse Configuration screen ensure that Recoverability is enabled a
 
 ![ServicePulse Installer - ServiceControl configuration](sp-installer-sc-config.png)
 
-You can find the URLs for each instance API in the ServiceControl Management Utility.
+You can find the URLs for each instance API in the `ServiceControl Management Utility`.
 
 ![ServiceControl Management Utility - Instance List - Api Addresses Highlighted](scmu-list-api-addresses.png)
 
