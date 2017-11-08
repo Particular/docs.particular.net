@@ -85,3 +85,5 @@ Dashboards can be created by using NewRelic Insights. The following steps have t
 ![Metric Version 1 dashboard](newrelic-dashboard-metric1.png)
 
 ![Metric Version 2 and higher dashboard](newrelic-dashboard-metric2andhigher.png)
+
+![Multiple metrics combined](newrelic-dashboard-combined.png)
