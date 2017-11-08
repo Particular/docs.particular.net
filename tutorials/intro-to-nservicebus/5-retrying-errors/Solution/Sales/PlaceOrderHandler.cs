@@ -3,6 +3,8 @@ using Messages;
 using NServiceBus;
 using NServiceBus.Logging;
 
+#pragma warning disable 162
+
 namespace Sales
 {
     using System;

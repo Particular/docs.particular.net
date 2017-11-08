@@ -30,21 +30,21 @@ The transport will route messages to destination based on the configuration. If 
 
 ### Queues names examples
 
-The following table shows the queue table name for each deployment option, where the SQL server name is `sql_server_instace_01`, the default NServiceBus database name is `nsb_database` and the default NServiceBus schema is `nsb_schema`:
+The following table shows the queue table name for each deployment option, where the SQL server name is `sql_server_instance_01`, the default NServiceBus database name is `nsb_database` and the default NServiceBus schema is `nsb_schema`:
 
 | Deployment option | Endpoint | Queue table name                                                      |
 |-------------------|----------|-----------------------------------------------------------------------|
-| Default           | Sales    | `[sql_server_instace_01]`.`[nsb_database]`.`[nsb_schema]`.`[Sales]`           |
-|                   | Billing  | `[sql_server_instace_01]`.`[nsb_database]`.`[nsb_schema]`.`[Billing]`         |
+| Default           | Sales    | `[sql_server_instance_01]`.`[nsb_database]`.`[nsb_schema]`.`[Sales]`           |
+|                   | Billing  | `[sql_server_instance_01]`.`[nsb_database]`.`[nsb_schema]`.`[Billing]`         |
 ||||
-| Multi-schema      | Sales    | `[sql_server_instace_01]`.`[nsb_database]`.**`[sales_schema]`**.`[Sales]`     |
-|                   | Billing  | `[sql_server_instace_01]`.`[nsb_database]`.**`[billing_schema]`**.`[Billing]` |
+| Multi-schema      | Sales    | `[sql_server_instance_01]`.`[nsb_database]`.**`[sales_schema]`**.`[Sales]`     |
+|                   | Billing  | `[sql_server_instance_01]`.`[nsb_database]`.**`[billing_schema]`**.`[Billing]` |
 ||||
-| Multi-catalog     | Sales    | `[sql_server_instace_01]`.**`[sales_database]`**.`[nsb_schema]`.`[Sales]`     |
-|                   | Billing  | `[sql_server_instace_01]`.**`[billing_database]`**.`[nsb_schema]`.`[Billing]` |
+| Multi-catalog     | Sales    | `[sql_server_instance_01]`.**`[sales_database]`**.`[nsb_schema]`.`[Sales]`     |
+|                   | Billing  | `[sql_server_instance_01]`.**`[billing_database]`**.`[nsb_schema]`.`[Billing]` |
 ||||
-| Multi-instance    | Sales    | **`[sql_server_instace_01]`**.`[nsb_database]`.`[nsb_schema]`.`[Sales]`       |
-|                   | Billing  | **`[sql_server_instace_02]`**.`[nsb_database]`.`[nsb_schema]`.`[Billing]`     |
+| Multi-instance    | Sales    | **`[sql_server_instance_01]`**.`[nsb_database]`.`[nsb_schema]`.`[Sales]`       |
+|                   | Billing  | **`[sql_server_instance_02]`**.`[nsb_database]`.`[nsb_schema]`.`[Billing]`     |
 
 Note: The tables mentioned above will serve as the incoming queues for endpoints. NServiceBus will also create additional queues, e.g. retries queue. The names of additional queues are made up of the endpoint name and suffix, e.g. `[endpoint_queue_name].[Retries]`.
 

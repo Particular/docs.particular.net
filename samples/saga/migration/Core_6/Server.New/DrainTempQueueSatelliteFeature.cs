@@ -26,9 +26,7 @@ public class DrainTempQueueSatelliteFeature :
     protected override void Setup(FeatureConfigurationContext context)
     {
         var settings = context.Settings;
-        var qualifiedAddress = settings.LogicalAddress()
-            .CreateQualifiedAddress("New");
-        tempQueue = settings.GetTransportAddress(qualifiedAddress);
+        tempQueue = "Samples.SagaMigration.Server.New";
         mainQueue = settings.LocalAddress();
 
         context.AddSatelliteReceiver(
@@ -53,7 +51,7 @@ public class DrainTempQueueSatelliteFeature :
         log.Info($"Moving message from {tempQueue} to {mainQueue}");
 
         var operations = new TransportOperations(operation);
-        return dispatcher.Dispatch(operations, context.TransportTransaction, context.Context);
+        return dispatcher.Dispatch(operations, context.TransportTransaction, context.Extensions);
     }
 }
 #endregion

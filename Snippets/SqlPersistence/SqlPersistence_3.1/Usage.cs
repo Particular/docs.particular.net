@@ -163,6 +163,22 @@ class Usage
         #endregion
     }
 
+    void PostgresTypeNameHandling(EndpointConfiguration endpointConfiguration)
+    {
+        #region PostgresTypeNameHandling
+
+        var settings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto,
+            MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead
+        };
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var sagaSettings = persistence.SagaSettings();
+        sagaSettings.JsonSettings(settings);
+
+        #endregion
+    }
+
     void JsonSettingsForVersion(EndpointConfiguration endpointConfiguration)
     {
         #region SqlPersistenceJsonSettingsForVersion
