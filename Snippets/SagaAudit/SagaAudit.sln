@@ -16,6 +16,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SagaAudit5_2", "SagaAudit5_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaAudit_1", "SagaAudit_1\SagaAudit_1.csproj", "{B7CCAB21-E59E-4526-9E49-D40A25A7F69E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaAudit_2", "SagaAudit_2\SagaAudit_2.csproj", "{2E6AAC9E-DE63-41FA-B2A3-B14F5080D717}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaAudit_3", "SagaAudit_3\SagaAudit_3.csproj", "{1371EA0A-8A91-4D10-BDAF-CBCAFABF2820}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +54,14 @@ Global
 		{B7CCAB21-E59E-4526-9E49-D40A25A7F69E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7CCAB21-E59E-4526-9E49-D40A25A7F69E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7CCAB21-E59E-4526-9E49-D40A25A7F69E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E6AAC9E-DE63-41FA-B2A3-B14F5080D717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E6AAC9E-DE63-41FA-B2A3-B14F5080D717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E6AAC9E-DE63-41FA-B2A3-B14F5080D717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E6AAC9E-DE63-41FA-B2A3-B14F5080D717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1371EA0A-8A91-4D10-BDAF-CBCAFABF2820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1371EA0A-8A91-4D10-BDAF-CBCAFABF2820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1371EA0A-8A91-4D10-BDAF-CBCAFABF2820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1371EA0A-8A91-4D10-BDAF-CBCAFABF2820}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

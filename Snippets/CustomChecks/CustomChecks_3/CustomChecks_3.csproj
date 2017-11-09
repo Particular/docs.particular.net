@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.SagaAudit" Version="1.0.0-*" />
+    <PackageReference Include="NServiceBus.CustomChecks" Version="3.0.0-*" />
   </ItemGroup>
 </Project>

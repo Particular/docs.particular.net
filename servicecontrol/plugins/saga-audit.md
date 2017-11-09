@@ -2,7 +2,7 @@
 title: SagaAudit Plugin
 summary: Helps visualize and debug Sagas with ServiceInsight
 component: SagaAudit
-reviewed: 2016-11-15
+reviewed: 2017-11-08
 ---
 
 DANGER: **For Development only**. This plugin will result in a significant increase in the load placed on ServiceControl. As such it should not be used in production.
@@ -35,10 +35,16 @@ This plugin results in an increase in load in several areas
 The increase in load is proportional to size of the saga data multiplied by the number of messages the the saga receives. Since both these variables are dependent on the specific saga implementation it is not possible to give accurate predictions on the impact of this load in a production system.
 
 
-### Deprecated NuGet
+### Deprecated NuGet Packages
 
-If using the older version of the plugin, namely **ServiceControl.Plugin.SagaAudit** remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.
+The following SagaAudit plugin packages have been deprecated and unlisted. If using one of these versions replace package references to use **NServiceBus.SagaAudit**.
 
+- **ServiceControl.Plugin.SagaAudit**
+- **ServiceControl.Plugin.Nsb5.SagaAudit**
+- **ServiceControl.Plugin.Nsb6.SagaAudit**
+
+
+## Configuration
 
 partial: config
 

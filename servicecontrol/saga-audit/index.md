@@ -34,33 +34,17 @@ This plugin results in an increase in load in several areas
 
 The increase in load is proportional to size of the saga data multiplied by the number of messages the the saga receives. Since both these variables are dependent on the specific saga implementation it is not possible to give accurate predictions on the impact of this load in a production system.
 
+## Configuration
 
-### Deprecated NuGet Packages
+The SagaAudit plugin is enabled via
 
-The following SagaAudit plugin packages have been deprecated and unlisted. If using one of these versions replace package references to use **NServiceBus.SagaAudit**.
+partial: SagaAuditNew_Enable
 
-- **ServiceControl.Plugin.SagaAudit**
-- **ServiceControl.Plugin.Nsb5.SagaAudit**
-- **ServiceControl.Plugin.Nsb6.SagaAudit**
-
-partial: config
+In order to not run it in Production environments at all times it is advised to enable it conditionally, based on an environment variable or configuration setting. To temporarily start visualizing a saga in production, change the setting and restart the endpoint. Use ServiceInsight to view the visualization and when done, change the configuration back and restart the service.
 
 
-## Removing the plugin from Production
+## Custom serialization
 
-Removing the plugin before deployment to production depends on how the plugin is configured.
+The SagaAudit plugin serializes the saga data objects using a simple json serializer. This serializer should be fine for most use cases. It handles well all primitive types (including `TimeSpan` and `DateTime`), their nullable variants as well as nested objects. However, if more sophisticated mechanism is required, the serialization method can be provided by the user
 
-Disable plugin in production via config: 
-
- 1. Stop the endpoint.
- 1. Delete the SagaAudit plugin dll from the endpoint's bin directory. 
- 1. If there is an automated deployment processes in place, ensure that this dll is no longer included.
- 1. Restart the endpoint.
-
-partial: remove-code-config
-
-Disabling the SagaAudit plugin will stop sending the saga state change messages to ServiceControl reducing message load to ServiceControl. Turn it back on if or when needed.
-
-## Temporarily debugging sagas in Production
-
-To temporarily start visualizing a saga in production, the Saga Audit plugin can be deployed with the endpoint hosting the saga. Deploy the assembly at the same location as the endpoint is running, configure it and restart the endpoint. Use ServiceInsight to view the visualization and when done, follow the steps above to remove the plugin and restart the service.
+partial: SagaAuditNew_CustomSerialization

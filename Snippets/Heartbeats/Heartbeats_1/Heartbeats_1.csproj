@@ -4,6 +4,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.SagaAudit" Version="1.0.0-*" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="1.0.0-*" />
   </ItemGroup>
 </Project>

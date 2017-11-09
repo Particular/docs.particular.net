@@ -7,7 +7,7 @@ class MyClass
     {
         #region SagaAuditNew_Enable
 
-        var endpointConfiguration = new BusConfiguration();
+        var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
         endpointConfiguration.AuditSagaStateChanges(
             serviceControlQueue: "ServiceControl_Queue");
 
@@ -18,7 +18,7 @@ class MyClass
     {
         #region SagaAuditNew_CustomSerialization
 
-        var endpointConfiguration = new BusConfiguration();
+        var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
         endpointConfiguration.AuditSagaStateChanges(
             serviceControlQueue: "ServiceControl_Queue",
             customSagaEntitySerialization: saga =>
