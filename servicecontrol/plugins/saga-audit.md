@@ -2,7 +2,7 @@
 title: SagaAudit Plugin
 summary: Helps visualize and debug Sagas with ServiceInsight
 component: SagaAudit
-versions: 'SagaAudit5:*;SagaAudit6:*'
+versions: 'SagaAudit4:*;SagaAudit5:*;SagaAudit6:*'
 reviewed: 2017-11-08
 ---
 
@@ -43,7 +43,6 @@ The following SagaAudit plugin packages have been deprecated and unlisted. If us
 - **ServiceControl.Plugin.SagaAudit**
 - **ServiceControl.Plugin.Nsb5.SagaAudit**
 - **ServiceControl.Plugin.Nsb6.SagaAudit**
-
 
 ## Configuration
 
