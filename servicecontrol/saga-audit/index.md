@@ -2,6 +2,7 @@
 title: SagaAudit Plugin
 summary: Helps visualize and debug Sagas with ServiceInsight
 component: SagaAudit
+versions: 'SagaAudit:*'
 reviewed: 2017-11-08
 ---
 
@@ -38,7 +39,7 @@ The increase in load is proportional to size of the saga data multiplied by the 
 
 The SagaAudit plugin is enabled via
 
-partial: SagaAuditNew_Enable
+snippet: SagaAuditNew_Enable
 
 In order to not run it in Production environments at all times it is advised to enable it conditionally, based on an environment variable or configuration setting. To temporarily start visualizing a saga in production, change the setting and restart the endpoint. Use ServiceInsight to view the visualization and when done, change the configuration back and restart the service.
 
@@ -47,4 +48,4 @@ In order to not run it in Production environments at all times it is advised to 
 
 The SagaAudit plugin serializes the saga data objects using a simple json serializer. This serializer should be fine for most use cases. It handles well all primitive types (including `TimeSpan` and `DateTime`), their nullable variants as well as nested objects. However, if more sophisticated mechanism is required, the serialization method can be provided by the user
 
-partial: SagaAuditNew_CustomSerialization
+snippet: SagaAuditNew_CustomSerialization

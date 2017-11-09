@@ -3,6 +3,7 @@ title: CustomChecks Plugin
 summary: Define a custom set of conditions that are checked on the endpoint.
 reviewed: 2017-11-09
 component: CustomChecks
+versions: 'CustomChecks:*'
 ---
 
 The CustomChecks Plugin enables custom endpoint monitoring. It allows the developer of an NServiceBus endpoint to define a set of conditions that are checked on endpoint startup or periodically.
@@ -41,7 +42,7 @@ NOTE: It is essential to deploy this plugin to the endpoint in production in ord
 
 The SagaAudit plugin is enabled via
 
-partial: CustomCheckNew_Enable
+snippet: CustomCheckNew_Enable
 
 In order to prevent running it in Development environment at all times it is advised to enable it conditionally, based on an environment variable or configuration setting.
 

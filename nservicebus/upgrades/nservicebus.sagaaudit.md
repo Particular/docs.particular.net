@@ -7,6 +7,7 @@ related:
  - servicecontrol/plugins
  - servicecontrol/plugins/saga-audit
 isUpgradeGuide: true
+ignoreSeoRecommendations: true
 upgradeGuideCoreVersions:
  - 5
  - 6
@@ -16,7 +17,7 @@ upgradeGuideCoreVersions:
 
 ## Connecting to ServiceControl
 
-The NserviceBus.SagaAudit package replaces the **ServiceControl.Plugin.Nsb5.SagaAudit** and **ServiceControl.Plugin.Nsb6.SagaAudit** packages. It also introduces the NServiceBus v7 compatible version SagaAudit plugin.
+The NserviceBus.SagaAudit package replaces the **ServiceControl.Plugin.Nsb5.SagaAudit** and **ServiceControl.Plugin.Nsb6.SagaAudit** packages. It also introduces a new version compatible with NServiceBus Version 7.
 
 To update, remove the deprecated package and install the NServiceBus.SagaAudit package.
 

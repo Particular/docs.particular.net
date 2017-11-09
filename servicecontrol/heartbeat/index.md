@@ -3,6 +3,7 @@ title: Heartbeat Plugin
 summary: Use the Heartbeat plugin to monitor the health of the endpoints
 reviewed: 2017-11-09
 component: Heartbeats
+versions: 'Heartbeats:*'
 related:
  - servicepulse/intro-endpoints-heartbeats
 redirects:
@@ -24,7 +25,7 @@ NOTE: It is essential to deploy this plugin to the endpoint in production for Se
 
 ## Configuration
 
-partial: queue
+snippet: HeartbeatsNew_Enable
 
 
 ### Heartbeat Interval

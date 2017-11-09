@@ -3,6 +3,7 @@ title: Heartbeat Plugin
 summary: Use the Heartbeat plugin to monitor the health of the endpoints
 reviewed: 2017-11-09
 component: Heartbeats
+versions: 'Heartbeats3:*;Heartbeats4:*;Heartbeats5:*;Heartbeats6:*'
 related:
  - servicepulse/intro-endpoints-heartbeats
 ---

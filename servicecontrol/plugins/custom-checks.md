@@ -3,6 +3,7 @@ title: CustomChecks Plugin
 summary: Define a custom set of conditions that are checked on the endpoint.
 reviewed: 2017-11-09
 component: CustomChecks
+versions: 'CustomChecks3:*;CustomChecks4:*;CustomChecks5:*;CustomChecks6:*'
 related:
  - samples/servicecontrol/monitoring3rdparty
 ---
