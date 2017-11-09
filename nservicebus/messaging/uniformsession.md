@@ -22,7 +22,11 @@ Install the `NServiceBus.UniformSession` NuGet package available for endpoints u
 
 ## Usage
 
-`IUniformSession` is automatically registered in the container and can safely be injected into component hierarchies that are reused in different contexts such as WebApi and the message handler for example. The following snippet illustrates such a scenario:
+To enable the uniform session functionality, enable the package via the endpoint configuration:
+
+snippet: enable-uniformsession
+
+When enabled, `IUniformSession` is automatically registered in the container and can safely be injected into component hierarchies that are reused in different contexts such as WebApi and the message handler for example. The following snippet illustrates such a scenario:
 
 snippet: uniformsession-usage
 
