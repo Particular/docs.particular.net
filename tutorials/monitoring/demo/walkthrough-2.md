@@ -50,7 +50,7 @@ Now look at the queue length and critical time for each endpoint. Notice that th
 
 NOTE: The sample endpoint included in the demo has been artificially limited so that it can only handle 4 messages concurrently. 
 
-**Once there are 1000 messages in the backlog, turn off High-Throughput mode.**
+**Once there are 1,000 messages in the backlog, turn off High-Throughput mode.**
 
 Now that the spike in traffic is over, there is still a large backlog of messages to get through. At a throughput of 4 messages per second, it's going to take 250 seconds (just over 4 minutes) to get through all of the backlog. That doesn't account for the new messages still being added to the Sales input queue by the ClientUI endpoint.
 
@@ -62,7 +62,7 @@ This batch file will start 3 more instances of the Sales endpoint (for a total o
 
 As the throughput of the Sales endpoint increases watch what happens to the Billing and Shipping endpoints. As these endpoints are waiting for `OrderPlaced` events from the Sales endpoint, increasing the throughput of Sales also increases the throughput of these downstream endpoints. Neither of them seems to be building up a large queue length or critical time, so we don't need to scale them out.
 
-NOTE: This scale-out example is contrived and it works because the message handlers are using little/no system resources (simulating message processing latency with `Task.Delay`). In a production scenario you'd likely run a second instance of the endpoint on a different machine.
+NOTE: This scale-out example is a simulation, and it only works on a single machine because the message handlers are using little/no system resources (simulating message processing latency with `Task.Delay`). In a production scenario you'd likely run a second instance of the endpoint on a different machine.
 
 Once you have more than one instance of an endpoint running, ServicePulse will show a count of how many instances are running in the overview screen.
 
@@ -85,7 +85,7 @@ When an endpoint instance stops sending data, it will be displayed with an error
 
 Critical time covers the entire life-time of a message, from when it is first sent to when it has been completely processed. This includes the length of time it takes for the endpoint to process the message, which is already measured by processing time.
 
-As processing time is a component of critical time, if processing time increases, so will critical time. Not only that, but an increase in processing time is often accompianied by a decrease in throughput (see [Which message types take the longest to process?](walkthrough-1.md) to find out why). This decrease in throughput can result in a backlog of messages (increased queue length) meaning that messages spend more time waiting to be processed, and that also increases the critical time.
+As processing time is a component of critical time, if processing time increases, so will critical time. Not only that, but an increase in processing time is often accompanied by a decrease in throughput (see [Which message types take the longest to process?](walkthrough-1.md) to find out why). This decrease in throughput can result in a backlog of messages (increased queue length) meaning that messages spend more time waiting to be processed, and that also increases the critical time.
 
 If processing time is increasing, it is often a sign that there is some resource that is failing and the endpoint relies on that resource to process it's messages. i.e. A database server or remote web server that is taking longer to process requests. If this is the case, scaling out your endpoint might just make the problem worse as you'll be putting additional pressure on these resources which may slow down even further, or in the worst case, start to break.
 
