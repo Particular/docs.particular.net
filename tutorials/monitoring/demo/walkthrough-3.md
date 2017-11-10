@@ -28,7 +28,7 @@ The following walk through uses the sample solution to simulate problems with en
 
 **Run the sample solution. Open ServicePulse to the Monitoring tab.**
 
-![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring_tab-sample_low_throughput.png)
+![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png)
 
 NServiceBus endpoints frequently rely on other resources to do their work. This might take the form of a database server that holds persisted data or a web server that hosts an API that the endpoint needs to call. The endpoints themselves are designed to tolerate failure but there are some early indicators that failure is coming.
 
@@ -39,13 +39,13 @@ The first indication that an endpoint is going to run into trouble is when proce
 
 **Find the Shipping endpoint windows and toggle the resource degradation simulation.**
 
-![ServicePulse Monitoring tab showing resource degradation on Shipping endpoint](servicepulse-monitoring_tab-resource_degradation.png)
+![ServicePulse Monitoring tab showing resource degradation on Shipping endpoint](servicepulse-monitoring-tab-resource-degradation.png)
 
 Watch the processing time on the shipping endpoint. As the (simulated) third-party resources slow down, processing the messages takes longer and processing time goes up. To find the root cause, you need to know which message types are causing the problem.
 
 **In the ServicePulse UI, click the Shipping endpoint to open a detailed view.**
 
-![ServicePulse Details tab showing resource degradation on OrderPlaced events](servicepulse-monitoring_details-resource_degradation.png)
+![ServicePulse Details tab showing resource degradation on OrderPlaced events](servicepulse-monitoring-details-resource-degradation.png)
 
 Here you can see a breakdown of processing time by message type. Even though the Shipping endpoint processes two types of message, only one of them is slowing down. There is something that is slowing down the processing of `OrderPlaced` events that is not affecting the processing of `OrderBilled` events.
 
@@ -79,7 +79,7 @@ The final indication that an endpoint is having problems is when messages actual
 
 With such a high failure rate, it won't take long before messages begin exceeding the number of retries configured for the Billing endpoint. When this happens these failed messages will appear in the Failed Messages tab in ServicePulse.
 
-![ServicePulse failed messages tab](servicepulse-failed_messages.png)
+![ServicePulse failed messages tab](servicepulse-failed-messages.png)
 
 When ServiceControl receives failed messages from an endpoint it will group them together according to the exception type and the place in the code where the exception is thrown. You can open up an exception group and look at each failed individually. This includes a full stack-trace, as well as access to the message headers and the body of the message.
 
@@ -89,7 +89,7 @@ Once the conditions that led to the error are resolved, you can retry all of the
 
 ServiceControl will prepare the messages to be retried and then return them to the Billing endpoint where they will be successfully processed.
 
-![ServicePulse failed messages retried](servicepulse-failed_messages-retried.png)
+![ServicePulse failed messages retried](servicepulse-failed-messages-retried.png)
 
 
 ## Next steps

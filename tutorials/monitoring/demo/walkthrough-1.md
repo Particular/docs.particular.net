@@ -28,7 +28,7 @@ The following walk through shows you how to find the message types that take the
 
 **Run the sample solution. Open ServicePulse to the Monitoring tab.**
 
-![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring_tab-sample_low_throughput.png)
+![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png)
 
 Look at the processing time and throughput for each endpoint. By default, the Sales endpoint is processing one message every second (throughput) and it takes around 1.3 seconds to process each message (processing time).
 
@@ -38,7 +38,7 @@ You can see that the Sales endpoint has the highest processing time so it is tak
 
 In high throughput mode, the ClientUI endpoint sends 20 orders to Sales every second. Now look at the processing time and throughput of each endpoint. The throughput of Sales will increase and then plateau at around 3 messages / second. This is as fast Sales can currently process messages. It can process 4 messages in parallel but each message takes 1.3 seconds to process.
 
-![Service Pulse monitoring tab showing sample endpoints in high throuhgput mode](servicepulse-monitoring_tab-sample_high_throughput.png)
+![Service Pulse monitoring tab showing sample endpoints in high throuhgput mode](servicepulse-monitoring-tab-sample-high-throughput.png)
 
 Notice that the throughput of Billing mirrors the throughput of Sales. Billing is processing messages that are produced from Sales. Although the Billing endpoint can process messages quite a bit faster than Sales can (it has a lower processing time), it can only process messages as quickly as Sales is producing them. If we can make Sales run faster, then our throughput for Sales _and_ Billing can be increased.
 
@@ -46,7 +46,7 @@ Let's see what the impact of optimizing the sales endpoint is.
 
 **Find the Sales endpoint window and reduce the time to process messages from 1.3 seconds down 0.2 seconds. Now go back to the ServicePulse Monitoring Tab.**
 
-![Service Pulse monitoring tab - Sales processing time decreased - Throughput increased](servicepulse-monitoring_tab-sample_fast_sales.png)
+![Service Pulse monitoring tab - Sales processing time decreased - Throughput increased](servicepulse-monitoring-tab-sample-fast-sales.png)
 
 As the time to process each order goes down, the throughput for Sales goes up (to somewhere around 20). So does the throughput for Billing which is now receiving work faster and keeping up with the new load. By optimizing a single message handler, you can make more than one endpoint process work faster.
 
@@ -56,7 +56,7 @@ The Shipping endpoint handles two different types of messages: `OrderPlaced` (wh
 
 **In ServicePulse, click the Shipping endpoint to open the Details view.**
 
-![Service Pulse monitoring details - Shipping - OrderBilled is slow](servicepulse-monitoring_details-shipping_slow.png)
+![Service Pulse monitoring details - Shipping - OrderBilled is slow](servicepulse-monitoring-details-shipping-slow.png)
 
 In the details view we can see a breakdown of processing time and throughput for each message type. The throughput for the two messages types should be roughly equivalent. The Shipping endpoint is able to process 4 of each message type per second. The processing time for these message types differs though. Processing an `OrderPlaced` event takes roughly 200 ms but processing an `OrderBilled` event takes closer to 700 ms. If you average these values you get the processing time for the whole endpoint, roughly 450 ms.
 
@@ -64,7 +64,7 @@ The slowest type of message to process is `OrderBilled`. If we can speed up the 
 
 **Find the Shipping endpoint window and reduce the time to process `OrderBilled` events to 0.2 seconds.**
 
-![Service Pulse monitoring details - Shipping - OrderBilled is fast](servicepulse-monitoring_details-shipping_fast.png)
+![Service Pulse monitoring details - Shipping - OrderBilled is fast](servicepulse-monitoring-details-shipping-fast.png)
 
 As the processing time for one message type goes down, the overall endpoint processing time goes down. When that happens, just as with Sales, the throughput goes up. It should hover close to 20 messages per second and that throughput is divided roughly 50/50 between the two message types. This is because for every `OrderBilled` event in the input queue, there is also an `OrderPlaced` event and they are evenly distributed. 
 
