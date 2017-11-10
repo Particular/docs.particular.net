@@ -94,6 +94,10 @@ Alternatively, you can increase the maximum concurrency level and allow for a hi
 
 If an endpoint is affecting the performance of other endpoints you can move an endpoint to its own dedicated host.
 
+### Scale-out over multiple machines
+
+If moving an endpoint to its own dedicated machine isn't sufficient you can also scale-out an endpoint and have it running on multiple machines. 
+
 
 ## Next steps
 
