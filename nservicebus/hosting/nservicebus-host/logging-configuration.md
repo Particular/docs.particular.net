@@ -14,7 +14,7 @@ include: host-deprecated-warning
 
 This article explains how to customize the logging configuration when using the NServiceBus Host. For more details about logging configuration with the built-in profiles, refer to the [NServiceBus.Host Profiles - Logging](profiles.md#logging) section.
 
-## Constructor of IConfigureThisEndpoint implementation
+### Constructor of IConfigureThisEndpoint implementation
 
 It is advised to customize logging in the constructor of the class that implements `IConfigureThisEndpoint`. This is recommended as this class is the earliest opportunity to initialize [any custom logging framework](/nservicebus/logging/#custom-logging).
 
