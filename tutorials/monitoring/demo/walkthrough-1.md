@@ -91,6 +91,6 @@ The original endpoint will also get a boost in productivity as it will process t
 
 Explore the demo
 - [Which endpoints have the most work to do?](./walkthrough-2.md)
-- [Are any of the endpoints struggling?](./walktrhough-3.md)
+- [Are any of the endpoints struggling?](./walkthrough-3.md)
 
 include: next-steps
