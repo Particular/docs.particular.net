@@ -49,7 +49,7 @@ Watch the processing time on the shipping endpoint. As the (simulated) third-par
 
 Here you can see a breakdown of processing time by message type. Even though the Shipping endpoint processes two types of message, only one of them is slowing down. There is something that is slowing down the processing of `OrderPlaced` events that is not affecting the processing of `OrderBilled` events.
 
-NOTE: This is contrived example and there isn't really a 3rd party resource that is failing.  We're just simulating it with `Task.Delay`. 
+NOTE: This example is a simulation, and there isn't really a 3rd party resource that is failing.  We're just simulating it with `Task.Delay`. 
 
 **Find the Shipping endpoint window and toggle the resource degradation simulation off. Return the ServicePulse monitoring tab.**
 
@@ -58,7 +58,7 @@ Now look at the processing time for the Shipping endpoint again. As soon as the 
 
 ### Messages are being retried
 
-The second indication that an endpoint is running into problems is that message processing starts to fail and the endpoint starts scheduling messages to be retried. When an exception is thrown in a message handler, NServiceBus will roll back the message being processed to the queue that it came from and try to handle that message again at a later time. If the exception is caused by a temporary problem, then waiting a small period of time and re-processing the message will succeed.
+The second indication that an endpoint is running into problems is that message processing starts to fail and the endpoint starts scheduling messages to be retried. When an exception is thrown in a message handler, NServiceBus will not remove the message being processed from the queue that it came from and try to handle that message again at a later time. If the exception is caused by a temporary problem, then waiting a small period of time and re-processing the message will succeed.
 
 If there are occasional network outages or database deadlocks, this works perfectly. The message still gets processed successfully and the system continues on as if nothing happened. When the rate of these errors starts to increase, it might be masking a deeper issue.
 
@@ -68,7 +68,7 @@ Now look at the scheduled retry rate for the Billing endpoint in the ServicePuls
 
 NOTE: As the endpoint is wasting resources attempting to process a message that fails, the number of successfully processed messages (throughput) goes down. This has the effect of forcing messages to spend longer in the input queue which can impact queue length and critical time as well (to find out why, see [Which endpoints have the most work to do?](./walkthrough-2.md)).
 
-If you are concerned about the number of messages that are being retried you can always check the endpoint logs. When messages are scheduled to be retried, details about the message and the failure are logged at the WARN log level.
+If you are concerned about the number of messages that are being retried then you can always check the endpoint logs. When messages are scheduled to be retried, details about the message and the failure are logged at the WARN log level.
 
 
 ### Messages are failing, even after being retried
@@ -81,13 +81,13 @@ With such a high failure rate, it won't take long before messages begin exceedin
 
 ![ServicePulse failed messages tab](servicepulse-failed-messages.png)
 
-When ServiceControl receives failed messages from an endpoint it will group them together according to the exception type and the place in the code where the exception is thrown. You can open up an exception group and look at each failed individually. This includes a full stack-trace, as well as access to the message headers and the body of the message.
+When ServiceControl receives failed messages from an endpoint it will group them together according to the Exception Type and the place in the code where the exception is thrown. In ServicePulse you can open up an exception group and look at each failed individually. This includes a full stack-trace, as well as access to the message headers and the body of the message.
 
-Once the conditions that led to the error are resolved, you can retry all of the messages in bulk, from ServiceInsight.
+Once the conditions that led to the error are resolved, you can retry all of the messages in bulk, from ServicePulse.
 
 **Find the Billing endpoint UI and decrease the failure rate back down to 0%. In the ServicePulse Failed Messages tab, click the Request retry button. Confirm that you are ready to retry the messages.**
 
-ServiceControl will prepare the messages to be retried and then return them to the Billing endpoint where they will be successfully processed.
+ServiceControl will stage the messages to be retried and then return them to the Billing endpoint where they will be successfully processed.
 
 ![ServicePulse failed messages retried](servicepulse-failed-messages-retried.png)
 
