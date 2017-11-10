@@ -7,7 +7,7 @@ summary: A self-contained demo solution that you can run to explore the monitori
 The best way to get started with the monitoring features in the Particular Service Platform is to try them out with a real system. This downloadable sample contains all of the necessary parts of the platform, already configured and ready to run. It also includes 4 sample endpoints that all communicate by exchanging messages over the SQL Transport.
 
 
-TODO: Add link to download which will be on S3 somewhere
+https://github.com/Particular/MonitoringDemo/archive/0.2.zip
 
 
 ## Prerequisites
