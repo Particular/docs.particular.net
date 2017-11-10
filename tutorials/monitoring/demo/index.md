@@ -12,13 +12,13 @@ https://github.com/Particular/MonitoringDemo/archive/0.2.zip
 
 ## Prerequisites
 
-In order to run the downloaded sample you will need the following prerequistites.
+In order to run the downloaded sample you will need the following prerequisites.
 
-- Windows (version?): the Particular Service Platform requires the Windows operating system
-- Powershell (version?)
-- SQL Server (version?)
+- Windows 8 or higher: the Particular Service Platform requires the Windows operating system
+- Powershell 2.0 or higher
+- SQL Server 2012 or newer, any edition including LocalDB
   - You may provide your own instance of SQL Server or the download package includes an installer for SQL Server LocalDB
-- .NET 4.6.1 (check version)
+- .NET Framework 4.6.1 (check version)
 
 
 ## Running the sample
