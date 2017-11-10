@@ -47,4 +47,4 @@ It is important to configure logging before any endpoint configuration is done s
 
  * At the start of the `Main` of a console app or windows service.
  * At the start of the `Global.Application_Start` in a asp.net application.
- * Using endpoint configuration API in an application hosted via NServiceBus Host(/nservicebus/hosting/nservicebus-host/logging-configuration.md)
+ * [Using endpoint configuration API in an application hosted via NServiceBus Host](/nservicebus/hosting/nservicebus-host/logging-configuration.md)
