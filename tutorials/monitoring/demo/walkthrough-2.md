@@ -70,7 +70,7 @@ Once you have more than one instance of an endpoint running, ServicePulse will s
 
 In this view you can see all of the instances that are running.
 
-![ServicePulse Details tab showing instances of scaled out Sales endpoint](servicepulse-monitoring_details-scaled-out-sales.png)
+![ServicePulse Details tab showing instances of scaled out Sales endpoint](servicepulse-monitoring-details-scaled-out-sales.png)
 
 Each instance provides it's own breakdown of metric data. If one particular instance is having a problem you'll be able to see it here. 
 
