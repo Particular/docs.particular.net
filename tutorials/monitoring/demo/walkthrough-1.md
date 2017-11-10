@@ -15,7 +15,7 @@ include: walkthrough-solution
 
 ## Metrics
 
-Finding the message type that takes the longest to process requires two metrics: throughput and processing time.
+Finding the message type that takes the longest to process requires two metrics: *throughput* and *processing time*.
 
 Throughput is a measure of how much work the endpoint is doing. It is the rate at which the endpoint is able to process messages from it's input queue. While throughput can reflect endpoint performance, it is also heavily influenced by how much work there is to do. A highly optimized endpoint with only a few messages per second to process will still have a low throughput. 
 
@@ -34,7 +34,7 @@ Look at the processing time and throughput for each endpoint. By default, the Sa
 
 You can see that the Sales endpoint has the highest processing time so it is taking the longest to process messages. At low volumes of traffic, it's difficult to see the impact that this has on the rest of the system. Let's add some more traffic.
 
-**Find the ClientUI endpoint window and toggle High-Throughput mode. Now go back to the ServicePulse Monitoring Tab.**
+**Find the ClientUI endpoint window and toggle *High-Throughput* mode. Now go back to the ServicePulse Monitoring Tab.**
 
 In high throughput mode, the ClientUI endpoint sends 20 orders to Sales every second. Now look at the processing time and throughput of each endpoint. The throughput of Sales will increase and then plateau at around 3 messages / second. This is as fast Sales can currently process messages. It can process 4 messages in parallel but each message takes 1.3 seconds to process.
 
@@ -75,8 +75,8 @@ In the previous example we looked at the Shipping endpoint which handled two dif
 
 Let's start with the simplest case, where the processing time for each message type are about the same. In this case, you should look at the message type with the highest throughput and optimize the handler for that message type. As the endpoint is processing more messages of that type, optimizing that handler will have the greatest impact on overall endpoint performance. Before doing this, you should remember that the throughput is impacted by how fast messages of that type are being generated, not just by how fast you can process them. You might get more benefit by optimizing a process in the endpoint that _sends_ messages of this type. 
 
-When the processing time and throughput are different you need to take both figures into account. If a message type is being processed more (higher throughput) then the endpoint becomes more sensitive to how long it takes to process messages of that type (processing time).  
 
+When the processing time and throughput are different you need to take both figures into account. If a message type is being processed more (higher throughput) then the endpoint becomes more sensitive to how long it takes to process messages of that type (processing time).  
 
 ### I have a slow message handler cannot be further optimized
 
@@ -85,6 +85,14 @@ Sometimes, you are faced with a message handler that is still slow, even after y
 When this happens, the best thing to do is to move the slow message handler to it's own dedicated endpoint. The new endpoint will have it's own queue of the slow-to-process message types and will start processing them as soon as they arrive (rather than having the slow messages waiting in the queue for other message types to be handled).
 
 The original endpoint will also get a boost in productivity as it will process the remaining message types faster on average. This results in the endpoint throughput going up.
+
+#### Increasing maximum concurrency
+
+Alternatively, you can increase the maximum concurrency level and allow for a higher degree of parallel processing. The default maximum concurrency level is the number of cores of the host machine. Increasing this to 2, 3, 4 times or even more can increase throughput if your handlers are waiting a lot on remote calls to complete.
+
+#### Move endpoint to another host
+
+If an endpoint is affecting the performance of other endpoints you can move an endpoint to its own dedicated host.
 
 
 ## Next steps
