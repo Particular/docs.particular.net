@@ -81,7 +81,7 @@ When an endpoint instance stops sending data, it will be displayed with an error
 ![ServicePulse Monitoring tab showing instance of Sales endpoint has stopped sending data](servicepulse-monitoring_tab-instance_stopped.png)
 
 
-### Critical time is going up, but so is processing time. What does that mean?
+### Critical time is going up, but so is processing time
 
 Critical time covers the entire life-time of a message, from when it is first sent to when it has been completely processed. This includes the length of time it takes for the endpoint to process the message, which is already measured by processing time.
 
@@ -92,7 +92,7 @@ If processing time is increasing, it is often a sign that there is some resource
 You need to do some deeper investigation to resolve this type of issue. First, use the details view to find the message types that are taking the longest to process. Look at the handler code for these message types and try to identify any calls that are I/O-bound. Identify which resources are being accessed. Look at the behavior of these resources and see why they might be slowing down. Is there any way to prevent that from happening? Should you be reducing your concurrency or even throttling your requests to the resource to ensure it stays up and running?
 
 
-### The queue length on my endpoint has started going down, why is critical time still increasing?
+### The queue length on my endpoint has started going down but critical time still increasing
 
 Critical time is a delayed measurement. It measures the amount of time a message _took_ to get processed after it was sent. When queue length, network latency, and processing time are relatively stable, then critical time can be used to predict how long a new message will take to get processed. If any of those factors are changing significantly then critical time is less useful as a predictive measurement.
 

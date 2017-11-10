@@ -69,7 +69,7 @@ The slowest type of message to process is `OrderBilled`. If we can speed up the 
 As the processing time for one message type goes down, the overall endpoint processing time goes down. When that happens, just as with Sales, the throughput goes up. It should hover close to 20 messages per second and that throughput is divided roughly 50/50 between the two message types. This is because for every `OrderBilled` event in the input queue, there is also an `OrderPlaced` event and they are evenly distributed. 
 
 
-### What if the throughput on my message types is not an even split?
+### The throughput on my message types is not an even split
 
 In the previous example we looked at the Shipping endpoint which handled two different message types. These message types had roughly even throughput but different processing times. When that happens, you can quickly boost overall endpoint performance by reducing the processing time on the slowest handler. When there is a bigger gap in throughput, the answer is not so clear.
 
@@ -78,7 +78,7 @@ Let's start with the simplest case, where the processing time for each message t
 When the processing time and throughput are different you need to take both figures into account. If a message type is being processed more (higher throughput) then the endpoint becomes more sensitive to how long it takes to process messages of that type (processing time).  
 
 
-### What if a slow message handler cannot be further optimized?
+### I have a slow message handler cannot be further optimized
 
 Sometimes, you are faced with a message handler that is still slow, even after you have optimized it as much as you can. These message handlers have a negative impact on the processing time and throughput of the endpoints they run in and that means the throughput of other message types handled by the same endpoint are also impacted.
 
