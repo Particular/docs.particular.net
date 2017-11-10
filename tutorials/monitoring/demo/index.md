@@ -23,32 +23,35 @@ In order to run the downloaded sample you will need the following prerequisites.
 
 ## Running the sample
 
-The sample zip file includes 4 endpoints and Particular Software Platform components, all of which have been configured to talk to each other using a SQL Server instance.
+The sample zip file includes 4 endpoints and the Particular Software Platform components, all of which have been configured to talk to each other using a SQL Server instance.
 
 Once you have downloaded the sample zip, unzip it's contents into a folder. For the rest of this tutorial, we will refer to this folder as `MonitoringDemo`.
 
 Open the `MonitoringDemo` folder and double-click on `run.bat`. This script will:
 
-1. Ask you to select a SQL Server to use as a transport. All of the components of the demo communicate by using a shared SQL Server database. You will be prompted to use an existing SQL Server instance or to have the demo create it's own dedicated instance.
-2. Creates the database with all of the necessary tables that the demo components will use.
-3. Updates the configuration files for all of the components to with connection string details.
-4. Runs ServiceControl components, each in their own window. You will be prompted to run each of these with elevated privileges so that they can bind to their network ports.
-  - A ServiceControl instance (binds to port 33333)
-  - A Monitoring instance (binds to port 33633)
+1. Ask you to select a SQL Server to use as a transport. All of the components of the demo communicate by using a shared SQL Server database. You will be prompted to *use an existing SQL Server instance* or have the demo create it's *own dedicated SQL LocalDB instance*.
+2. You will be prompted to run the remaining steps with elevated privileges. This is needed so that processes can bind to their network ports and for SQL database creation.
+2. Creates an LocalDB instance if required.
+2. Creates the SQL database catalog with all of the necessary tables that the demo components will use.
+3. Updates the configuration files for all of the components with the correct connection string details.
+4. Runs ServiceControl components, each in their own window.
+  - A ServiceControl instance (binds to port 33533)
+  - A Monitoring instance (binds to port 33833)
 5. Runs the sample endpoints, each in their own window
-6. Runs ServicePulse, in it's own window (binds to port 9090)
+6. Runs ServicePulse, in it's own window (binds to port 8051)
 7. Opens your default browser to the ServicePulse monitoring tab.
+8. Wait for ENTER key, and will quit all processes and optionally removes the created SQL LocalDB instance.
 
 
 ### Selecting a SQL Server instance
 
-In order to communicate with each other, all of the components in the sample need access to a shared SQL Server database. If you have an existing SQL Server instance available, select the first option and the demo will use it. 
+In order to communicate, all of the components in the sample need access to a shared SQL Server database instance. If you have an existing SQL Server instance available, select the first option and the demo will use it. 
 
-After selecting a database instance, you will be prompted for the name of the database to use. This should be a brand new database as it will be dropped and recreated every time you run the sample.
+After selecting a database instance (default is `localhost`), you will be prompted for the name of the database to use (default is `ParticularMonitoringDemo`). This creates the specified database catalog if it does not exist. It is already exists, the database will not be dropped.
 
-After you have selected a database instance, you will be asked to provide credentials. You can opt to use integrated security or supply a user name and password to use a SQL login. The credentials that you supply will be used to drop and recreate the database so they must have enough privileges on the target SQL Server instance.
+After you have selected a database instance, you will be asked to provide credentials. You can opt to use Integrated Security or to supply a user name and password to use a SQL login. The credentials that you supply will be used check connectivity and to create the database catalog if needed, so they must have enough privileges on the selected SQL Server instance.
 
-If you do not have your own SQL Server instance, or you would prefer to keep the demo pieces separate, select the 2nd option. This will install a copy of SQL Server LocalDB 2016 (if you do not already have it installed) and create a brand new instance called `particular-monitoring` for use with the demo.
+If you do not have your own SQL Server instance, or you would prefer to keep the demo pieces separate, select the 2nd option. This requires a SQL Server LocalDB installation (2012 or newer).
 
 
 ### Demo walk through
