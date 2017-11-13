@@ -20,12 +20,14 @@ In order to run the downloaded sample you will need the following prerequisites.
   - You may provide your own instance of SQL Server or the download package includes an installer for SQL Server LocalDB
 - .NET Framework 4.6.1 (check version)
 
-
 ## Running the sample
 
 The sample zip file includes 4 endpoints and the Particular Software Platform components, all of which have been configured to talk to each other using a SQL Server instance.
 
-Once you have downloaded the sample zip, unzip it's contents into a folder. For the rest of this tutorial, we will refer to this folder as `MonitoringDemo`.
+Once you have downloaded the zip package make sure to **unblock** it
+![Unblock the package](unblock-demo-package.png)
+
+After unblocking extract it's contents into a folder. For the rest of this tutorial, we will refer to this folder as `MonitoringDemo`.
 
 Open the `MonitoringDemo` folder and double-click on `run.bat`. This script will:
 
