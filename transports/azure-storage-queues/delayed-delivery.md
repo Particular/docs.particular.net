@@ -8,7 +8,7 @@ related:
 - persistence
 - persistence/azure-storage
 - persistence/azure-storage/performance-tuning
-reviewed: 2017-09-18
+reviewed: 2017-10-18
 ---
 
 

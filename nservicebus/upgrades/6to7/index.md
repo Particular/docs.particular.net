@@ -29,7 +29,7 @@ Configuring Audit via the following APIs have been deprecated:
  
 
 Instead use one of the following:
-
+BadImageFormatException
 
 #### Configure by the code API
 
@@ -144,7 +144,7 @@ The `GetMesssageIntent` extension method has been renamed to `GetMessageIntent`.
 
 ### Mismatched assemblies
 
-64-bit assemblies are no longer silently excluded from scanning when running in a x86 process. Instead startup will fail with a `System.BadImageFormatException`. Use the [exclude API](/nservicebus/hosting/assembly-scanning.md#assemblies-to-scan) to exclude the assembly and avoid the exception.
+64-bit assemblies are no longer silently excluded from scanning when running in a x86 process. Instead startup will fail with a [BadImageFormatException](https://msdn.microsoft.com/en-us/library/system.badimageformatexception.aspx). Use the [exclude API](/nservicebus/hosting/assembly-scanning.md#assemblies-to-scan) to exclude the assembly and avoid the exception.
 
 
 ### AppDomain scanning
@@ -163,9 +163,19 @@ The [MSMQ transport](/transports/msmq) is no longer part of the NServiceBus NuGe
 
 ### Provision of PowerShell Scripts
 
-To facilitate the creation of queues for endpoints during deployment, the NuGet package now comes packaged with a `Scripts` folder with two new scripts called, `CreateQueues.ps1` and `DeleteQueues.ps1`. These can be located as part of the package. For example, under `%USERPROFILE%\.nuget\packages\nservicebus.transport.msmq\1.0.0\lib\net452\Scripts`. 
+Two new scripts called, `CreateQueues.ps1` and `DeleteQueues.ps1` have been added to the NuGet package, to facilitate the creation of queues for endpoints during deployment. These scripts are copied to a subfolder called `NServiceBus.Transport.Msmq` in the output folder of any project referencing it. Browse to the output folder to locate the scripts, for example, `bin\Debug\net461\NServiceBus.Transport.Msmq`.
 
 A new API called, [DisableInstaller](/transports/msmq/transportconfig.md?version=msmqtransport_1#receiving-algorithm-disableinstaller) can now be used to disable the auto-creation of queues during startup.
+
+
+### New Transport Configuration API
+
+Passing in the [connection string](/transports/msmq/connection-strings.md) is no longer supported. If the connection string is passed, the following exception will be thrown at endpoint start-up:
+
+> System.Exception : Passing in MSMQ settings such as DeadLetterQueue, Journaling etc via a connection string is no longer supported.  Use code level API.
+
+New APIs have been added for each of the setting namely, DisableDeadLetterQueueing, DisableConnectionCachingForSends, UseNonTransactionalQueues, EnableJournaling and TimeToReachQueue. See the [transport configuration documentation](/transports/msmq/transportconfig.md) for more details on the usage.
+
 
 ### Msmq Subscription Storage
 
@@ -226,8 +236,8 @@ Exceptions of type `Exception` are now thrown instead of `ConfigurationErrorsExc
 
 License files are now stored on the local file system so that they can accessed by all endpoints running on the machine. By default, endpoints will check the following locations for a `license.xml` file:
 
- * `{Environment.SpecialFolder.LocalApplicationData}\ParticularSoftware`
- * `{Environment.SpecialFolder.CommonApplicationData}\ParticularSoftware`
+ * `{SpecialFolder.LocalApplicationData}\ParticularSoftware`
+ * `{SpecialFolder.CommonApplicationData}\ParticularSoftware`
 
 
 ### Application-specific license location
@@ -299,3 +309,9 @@ See the [critical errors documentation](/nservicebus/hosting/critical-errors.md)
 ## Startup diagnostics written to disk
 
 As endpoints starts up a diagnostics file is written to disk in a subfolder called `.diagnostics`. See the [startup diagnostics documentation](/nservicebus/hosting/?version=core_7#startup-diagnostics) for more details.
+
+## Routing for send-only endpoints
+
+Routing messages to the local endpoint or local instance is no longer allowed for send-only endpoints, since they are not able to receive messages. When detected, the following exception is thrown:
+
+`System.InvalidOperationException: Cannot route to instances of this endpoint since it's configured to be in send-only mode.`

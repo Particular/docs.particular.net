@@ -13,16 +13,6 @@ class Usage
         #endregion
     }
 
-    void TopologySelection(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-config-topology
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseConventionalRoutingTopology();
-
-        #endregion
-    }
-
     void CustomConnectionString(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-connectionstring-in-code
@@ -44,6 +34,16 @@ class Usage
                 var headers = deliveryArgs.BasicProperties.Headers;
                 return headers["MyCustomId"].ToString();
             });
+
+        #endregion
+    }
+
+    void UseConventionalRoutingTopology(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-config-useconventionalroutingtopology
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseConventionalRoutingTopology();
 
         #endregion
     }
@@ -176,6 +176,27 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=broker1;RequestedHeartbeat=600");
+
+        #endregion
+    }
+
+    void DisableDurableExchangesAndQueues(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-disable-durable-exchanges
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseDurableExchangesAndQueues(false);
+
+        #endregion
+    }
+
+    void DisableDurableMessagesAndEnableDurableExchangesAndQueues(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-disable-durable-messages
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        endpointConfiguration.DisableDurableMessages();
+        transport.UseDurableExchangesAndQueues(true);
 
         #endregion
     }

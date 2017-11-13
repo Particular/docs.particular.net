@@ -34,8 +34,9 @@ public static void SetStartupProjects(string codeDirectory)
 
 public static IEnumerable<string> GetStartupProjects(string solutionFile)
 {
-	var solutionDirectory = Path.Combine(Path.GetDirectoryName(solutionFile));
-	var defaultProjectsTextFile = Path.Combine(solutionDirectory, "DefaultStartupProjects.txt");
+	var nameWithoutExtension = Path.GetFileNameWithoutExtension(solutionFile);
+	var solutionDirectory = Path.GetDirectoryName(solutionFile);
+	var defaultProjectsTextFile = Path.Combine(solutionDirectory, $"{nameWithoutExtension}.StartupProjects.txt");
 	if (!File.Exists(defaultProjectsTextFile))
 	{
 		var startProjectFinder = new StartProjectFinder();
@@ -51,9 +52,11 @@ public static IEnumerable<string> GetStartupProjects(string solutionFile)
 	foreach (var startupProject in defaultProjects)
 	{
 		var project = allPossibleProjects.FirstOrDefault(x => x.RelativePath == startupProject);
-		if (project != null)
+		if (project == null)
 		{
-			yield return project.Guid;
-			}
+			var error = $"Could not find the relative path to the default startup project '{startupProject}'. Ensure `{defaultProjectsTextFile}` contains relative (to the solution directory) paths to project files.";
+			throw new Exception(error);
+		}
+		yield return project.Guid;
 	}
 }

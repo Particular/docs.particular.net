@@ -22,7 +22,8 @@ namespace Core7.UpgradeGuides._6to7.Audit
             #region 6to7AuditReadAppSettings
             var appSettings = ConfigurationManager.AppSettings;
             var auditQueue = appSettings.Get("auditQueue");
-            var timeToBeReceived = TimeSpan.Parse(appSettings.Get("timeToBeReceived"));
+            var timeToBeReceivedSetting = appSettings.Get("timeToBeReceived");
+            var timeToBeReceived = TimeSpan.Parse(timeToBeReceivedSetting);
             endpointConfiguration.AuditProcessedMessagesTo(
                 auditQueue: auditQueue,
                 timeToBeReceived: timeToBeReceived);

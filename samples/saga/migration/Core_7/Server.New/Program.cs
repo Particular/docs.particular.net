@@ -12,6 +12,7 @@ class Program
     {
         Console.Title = "Samples.SagaMigration.Server.New";
         var endpointConfiguration = new EndpointConfiguration("Samples.SagaMigration.Server");
+        endpointConfiguration.EnableInstallers();
 
 #if !POST_MIGRATION
         endpointConfiguration.OverrideLocalAddress("Samples.SagaMigration.Server.New");
@@ -19,6 +20,7 @@ class Program
 
         endpointConfiguration.UseTransport<LearningTransport>();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.SqlDialect<SqlDialect.MsSqlServer>();
         var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSagaMigration;Integrated Security=True;";
         persistence.ConnectionBuilder(
             connectionBuilder: () =>

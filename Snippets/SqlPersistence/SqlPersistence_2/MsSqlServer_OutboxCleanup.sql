@@ -2,5 +2,5 @@ startcode MsSqlServer_OutboxCleanupSql
 
 delete top (@BatchSize) from [dbo].[EndpointNameOutboxData]
 where Dispatched = 'true'
-    and DispatchedAt < @Date
+    and DispatchedAt < @DispatchedBefore
 endcode

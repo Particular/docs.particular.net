@@ -388,6 +388,16 @@
   NugetOrder:
     - NServiceBus.Metrics
 
+- Key: MetricsServiceControl
+  Name: Metrics.ServiceControl
+  DocoUrl: nservicebus/operations/metrics-service-control
+  GitHubOwner: Particular/metrics-maintainers
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.ServiceControl
+  NugetOrder:
+    - NServiceBus.Metrics.ServiceControl
+    - NServiceBus.Metrics
+    
 - Key: MsLogging
   Name: MicrosoftLogging
   DocoUrl: nservicebus/logging/microsoft
@@ -531,7 +541,7 @@
   DocoUrl: https://github.com/SimonCropp/Newtonsoft.Json.Encryption
   GitHubOwner: SimonCropp
   SupportLevel: Community
-  Category: Serializer
+  Category: Other
   ProjectUrl: https://github.com/SimonCropp/Newtonsoft.Json.Encryption
   NugetOrder:
     - NServiceBus.Newtonsoft.Encryption
@@ -715,7 +725,7 @@
 - Key: ServiceBootstrap
   Name: Windows Service Bootstrap
   DocoUrl: nservicebus/hosting/windows-service
-  GitHubOwner: Particular/bootstrap-windowsservice-maintainers
+  GitHubOwner: Particular/host-maintainers
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Bootstrap.WindowsService
   NugetOrder:
@@ -752,7 +762,7 @@
 - Key: Templates
   Name: dotnet new Templates
   DocoUrl: nservicebus/dotnet-templates
-  GitHubOwner: Particular/bootstrap-windowsservice-maintainers
+  GitHubOwner: Particular/host-maintainers
   Category: Host
   ProjectUrl: https://github.com/Particular/dotnetTemplates
   NugetOrder:
@@ -917,3 +927,12 @@
   NugetOrder:
     - NServiceBus.Wormhole
     - NServiceBus.Wormhole.Gateway
+
+- Key: UniformSession
+  Name: UniformSession Support
+  DocoUrl: nservicebus/messaging/uniformsession
+  GitHubOwner: Particular/nservicebus-maintainers
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.UniformSession
+  NugetOrder:
+    - NServiceBus.UniformSession

@@ -377,4 +377,24 @@
         }
     }
 
+
+
+    public static class FakeExtensions
+    {
+        public static void UseNHibernateGatewayDeduplication(this Configure configure)
+        {
+        }
+        public static void UseNHibernateSagaPersister(this Configure configure)
+        {
+        }
+        public static void UseNHibernateTimeoutPersister(this Configure configure)
+        {
+        }
+        public static void UseNHibernateSubscriptionPersister(this Configure configure)
+        {
+        }
+        public static void UseNHibernateGatewayPersister(this Configure configure)
+        {
+        }
+    }
 }

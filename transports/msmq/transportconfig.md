@@ -20,6 +20,16 @@ partial: receivealgorithm
 
 partial: disableinstaller
 
+partial: disabledlq
+
+partial: disableconnectioncachingforsends
+
+partial: usenontransactionalqueues
+
+partial: enablejournaling
+
+partial: ttrq
+
 partial: label
 
 

@@ -56,7 +56,8 @@ set @dataType_OrderNumber = (
   from information_schema.columns
   where
     table_name = ' + @tableName + N' and
-    column_name = 'Correlation_OrderNumber'
+    column_name = 'Correlation_OrderNumber' and
+    table_schema = schema_name()
 );
 if (@dataType_OrderNumber <> 'bigint')
   begin
@@ -108,7 +109,8 @@ set @dataType_OrderId = (
   from information_schema.columns
   where
     table_name = ' + @tableName + N' and
-    column_name = 'Correlation_OrderId'
+    column_name = 'Correlation_OrderId' and
+    table_schema = schema_name()
 );
 if (@dataType_OrderId <> 'uniqueidentifier')
   begin
@@ -143,7 +145,7 @@ select @dropIndexQuery =
     select 'drop index ' + name + ' on ' + @tableName + ';'
     from sysindexes
     where
-        Id = (select object_id from sys.objects where name = @tableName) and
+        Id = (select object_id from sys.objects where name = @tableName and schema_id = schema_id(schema_name())) and
         Name is not null and
         Name like 'Index_Correlation_%' and
         Name <> N'Index_Correlation_OrderNumber' and
@@ -162,7 +164,8 @@ select @dropPropertiesQuery =
         table_name = @tableName and
         column_name like 'Correlation_%' and
         column_name <> N'Correlation_OrderNumber' and
-        column_name <> N'Correlation_OrderId'
+        column_name <> N'Correlation_OrderId' and
+        table_schema = schema_name()
 );
 exec sp_executesql @dropPropertiesQuery
 

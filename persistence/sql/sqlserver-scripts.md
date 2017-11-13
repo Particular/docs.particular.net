@@ -127,7 +127,7 @@ snippet: MsSqlServer_SagaSaveSql
 
 Used by `ISagaPersister.Get(propertyName...)`.
 
-snippet: MsSqlServer_SagadGetByPropertySql
+snippet: MsSqlServer_SagaGetByPropertySql
 
 
 #### GetBySagaId

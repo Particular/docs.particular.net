@@ -22,7 +22,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 7.4.x     | 2017-07-17     | -                 | -                                 |
-| 7.3.x     | 2017-06-02     | 2017-10-17        | Superseded by 7.4.x               |
+| ~~7.3.x~~ | ~~2017-06-02~~ | ~~2017-10-17~~    | ~~Superseded by 7.4.x~~           |
 | ~~7.2.x~~ | ~~2017-03-24~~ | ~~2017-09-02~~    | ~~Superseded by 7.3.x~~           |
 | ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 7.2.x~~           |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
@@ -41,7 +41,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.1.x     | 2017-07-14     | -                 | -                                 |
-| 3.0.x     | 2016-10-11     | 2017-10-14        | Superseded by 3.1.x               |
+| ~~3.0.x~~ | ~~2016-10-11~~ | ~~2017-10-14~~    | ~~Superseded by 3.1.x~~           |
 | 2.2.x     | 2015-09-25     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 ### Persistence packages
@@ -60,7 +60,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 7.2.x     | 2017-04-19     | -                 | -                                 |
 | ~~7.1.x~~ | ~~2017-01-19~~ | ~~2017-07-19~~    | ~~Superseded by 7.2.x~~           |
-| ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-04-19~~    | ~~Superseded by 7.1.x~~           |
 | 6.2.x     | 2015-05-27     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 #### [NServiceBus.Persistence.AzureStorage](/nuget/NServiceBus.Persistence.AzureStorage)
@@ -228,7 +227,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2017-05-08     | -                 | -                                 |
 | 1.1.x     | 2017-01-16     | 2018-05-08        | Superseded by 2.0.x               |
-| ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-04-16~~    | ~~Superseded by 1.1.x~~           |
 
 #### [NServiceBus.Callbacks.Testing](/nuget/NServiceBus.Callbacks.Testing)
 
@@ -267,8 +265,9 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.1.x     | 2017-07-25     | -                 | -                                 |
-| 1.0.x     | 2017-04-25     | 2017-10-25        | Superseded by 1.1.x               |
+| 2.0.x     | 2017-10-27     | -                 | -                                 |
+| 1.1.x     | 2017-07-25     | 2018-10-27        | Superseded by 2.0.x               |
+| ~~1.0.x~~ | ~~2017-04-25~~ | ~~2017-10-25~~    | ~~Superseded by 1.1.x~~           |
 
 #### [NServiceBus.Metrics.PerformanceCounters](/nuget/NServiceBus.Metrics.PerformanceCounters)
 
@@ -276,6 +275,12 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.1.x     | 2017-04-25     | -                 | -                                 |
 | ~~1.0.x~~ | ~~2017-03-28~~ | ~~2017-07-25~~    | ~~Superseded by 1.1.x~~           |
+
+#### [NServiceBus.Metrics.ServiceControl](/nuget/NServiceBus.Metrics.ServiceControl)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 1.0.x     | 2017-10-27     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
 
 #### [NServiceBus.Testing](/nuget/NServiceBus.Testing)
 
@@ -323,7 +328,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-07     | -                 | -                                 |
 | 2.0.x     | 2016-10-24     | 2018-02-07        | Superseded by 3.0.x               |
-| 1.0.x     | 2016-10-11     | 2017-10-24        | Superseded by 2.0.x               |
+| ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-10-24~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb6.Heartbeat](/nuget/ServiceControl.Plugin.Nsb6.Heartbeat)
 
@@ -331,7 +336,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-07     | -                 | -                                 |
 | 2.0.x     | 2016-10-24     | 2018-02-07        | Superseded by 3.0.x               |
-| 1.0.x     | 2016-10-11     | 2017-10-24        | Superseded by 2.0.x               |
+| ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-10-24~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb6.SagaAudit](/nuget/ServiceControl.Plugin.Nsb6.SagaAudit)
 
@@ -339,14 +344,13 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-07     | -                 | -                                 |
 | 2.0.x     | 2016-10-24     | 2018-02-07        | Superseded by 3.0.x               |
-| 1.0.x     | 2016-10-11     | 2017-10-24        | Superseded by 2.0.x               |
+| ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-10-24~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.TransportAdapter](/nuget/ServiceControl.TransportAdapter)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.2.x     | 2017-07-20     | -                 | -                                 |
-| 1.0.x     | 2017-05-22     | 2017-10-20        | Superseded by 1.2.x               |
+| ~~1.0.x~~ | ~~2017-05-22~~ | ~~2017-10-20~~    | ~~Superseded by 1.2.x~~           |
 | 0.2.x     | 2017-01-25     | 2018-05-22        | Superseded by 1.0.x               |
-| ~~0.1.x~~ | ~~2017-01-23~~ | ~~2017-04-25~~    | ~~Superseded by 0.2.x~~           |
 

@@ -8,6 +8,6 @@ class Usage
 
         endpointConfiguration.AzureConfigurationSource();
 
-        #endregion
+        #endregion      
     }
 }

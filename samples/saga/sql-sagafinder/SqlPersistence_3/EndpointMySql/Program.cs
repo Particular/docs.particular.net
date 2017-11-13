@@ -12,6 +12,8 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.MySql");
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
+
         #region MySqlConfig
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();

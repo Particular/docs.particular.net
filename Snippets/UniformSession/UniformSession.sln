@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 15.0.26730.12
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniformSession_1", "UniformSession_1\UniformSession_1.csproj", "{E944BF45-28BC-4C9B-95D5-140A07B82B5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Callbacks_2", "UniformSession_2\UniformSession_2.csproj", "{98127351-37B6-4B87-89CC-4BEC0765B554}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E944BF45-28BC-4C9B-95D5-140A07B82B5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E944BF45-28BC-4C9B-95D5-140A07B82B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98127351-37B6-4B87-89CC-4BEC0765B554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98127351-37B6-4B87-89CC-4BEC0765B554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1524F115-7060-4BF3-9801-ABE6BE37FDCD}
+	EndGlobalSection
+EndGlobal

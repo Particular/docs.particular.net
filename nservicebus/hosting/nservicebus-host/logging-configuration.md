@@ -12,14 +12,14 @@ include: host-deprecated-warning
 
 ## Logging configuration
 
-This article explains how to customize default configuration. Refer to the [Profiles - Logging](/nservicebus/hosting/nservicebus-host/profiles.md#logging) section for more details about logging configuration in built-in profiles.
+This article explains how to customize the logging configuration when using the NServiceBus Host. For more details about logging configuration with the built-in profiles, refer to the [NServiceBus.Host Profiles - Logging](profiles.md#logging) section.
 
-Logging configuration for NServiceBus Host can be customized by providing endpoint configuration or using profiles.
+### Constructor of IConfigureThisEndpoint implementation
 
+It is prefered to customize logging in the constructor of the class that implements `IConfigureThisEndpoint`. This is recommended, as this class is the earliest opportunity to initialize [any custom logging framework](/nservicebus/logging/#custom-logging).
 
-### Via endpoint configuration
+WARNING: If logging is not initialized in the constructor and anything goes wrong during startup of the NServiceBus.Host errors could be written to the default NServiceBus logging location, and not in the expected custom log output location(s).
 
 partial: customize
-
 
 partial: profile

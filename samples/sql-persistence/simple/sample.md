@@ -45,13 +45,9 @@ Contains the `OrderSaga` functionality and is referenced by the Server endpoints
 
 ## SQL Scripts
 
-Note that only `ServerShared` has the [NServiceBus.Persistence.Sql.MsBuild NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) installed. This will cause the following script directories to be populated at build time 
+Note that only `ServerShared` has the [NServiceBus.Persistence.Sql.MsBuild NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) installed. This will cause the script director `ServerShared\bin\Debug\NServiceBus.Persistence.Sql\[Variant]` to be populated at build time.
 
- * `ServerShared\bin\Debug\NServiceBus.Persistence.Sql\MsSqlServer`
- * `ServerShared\bin\Debug\NServiceBus.Persistence.Sql\MySql`
- * `ServerShared\bin\Debug\NServiceBus.Persistence.Sql\Oracle`
-
-These scripts will then be copied to the output of `EndpointMySql`, `EndpointSqlServer` and `EndpointOracle` and executed at startup. 
+These scripts will then be copied to the output of each endpoint and executed at startup.
 
 The endpoints know which scripts to execute via the use of the `persistence.SqlVariant();` API usage at configuration time.
 
@@ -79,6 +75,9 @@ snippet: MySqlConfig
 #### Oracle
 
 snippet: OracleConfig
+
+
+partial: postgresql
 
 
 ## Order Saga Data

@@ -112,10 +112,15 @@ Required when using partials views, recommended also when using snippets in mult
 ### Versions
 
 ```
-versions: '[4,)'
+versions: '[1,2)'
 ```
 
-Optional. Used for specifying what versions the given page covers, especially relevant for features that are not available in all supported versions. Format is 'nuget_version_range'
+In case of components that consist of multiple packages it's also possible to explicitly specify ranges of versions for each package separately:
+```
+versions: 'PackageA:[1,2); PackageB : [3,4); PackageC :*'
+```
+
+Optional. Used for specifying what versions the given page covers, especially relevant for features that are not available in all supported versions. The old format 'nuget_version_range' or 'package_name: nuget_version_range; package_name_2: nuget:version_range2'.
 
 
 ### Reviewed

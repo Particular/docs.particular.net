@@ -10,7 +10,7 @@ redirects:
 ---
 
 
-The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the rabbitmq-config-useroutingtopologyexchanges it creates to send and publish messages.
+The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the exchanges it creates to send and publish messages.
 
 
 ## Conventional Routing Topology
@@ -29,6 +29,9 @@ For each type being published, a series of fanout exchanges are created to model
 When an endpoint subscribes to an event, it first ensures that the above infrastructure exists. It then adds a binding from the exchange corresponding to the subscribed type to its own exchange.
 
 When an endpoint publishes an event, it first ensures that the above infrastructure exists. It then sends the message to the exchange corresponding to the type being published.
+
+
+partial: enable-conventional-routing-topology
 
 
 ## Direct Routing Topology
@@ -63,6 +66,9 @@ snippet: rabbitmq-config-usedirectroutingtopologywithcustomconventions
 WARNING: In some cases, the direct routing topology may not deliver message types with "non-system" interfaces in their inheritance hierarchy. A "non-system" interface is any interface which is not contained in a .NET Framework assembly (any assembly signed with the same public key as mscorlib), and is not one of the [marker interfaces](/nservicebus/messaging/messages-events-commands.md#defining-messages-marker-interfaces). When using the direct routing topology, message types must not inherit from "non-system" interfaces. To guarantee delivery of message types which inherit from non-system interfaces, the conventional routing topology must be used.
 
 
+partial: exchange-queue-durability
+
+
 ## Custom Routing Topology
 
 If the built-in routing topologies do not satisfy the requirements of the system, a custom routing topology may be used. To do this:
@@ -70,12 +76,12 @@ If the built-in routing topologies do not satisfy the requirements of the system
  1. Define the routing topology by creating a class implementing `IRoutingTopology`.
  1. Register it with the transport calling `UseRoutingTopology` as shown below.
 
-partial: delegate-argument
+partial: custom-delegate-argument
 
-partial: argument
+partial: custom-no-argument
 
-For each queue required by the endpoint, the transport will first declare that queue and will then call the `Initialize` method of the routing topology. The routing topology should then perform all initialization related to that specific queue such as the creation of appropriate exchanges and bindings.
+partial: transport-queue-declaration
 
-partial: queue-declaration
+partial: control-queue-declaration
 
 partial: support-delayed-delivery

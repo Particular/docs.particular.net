@@ -1,6 +1,7 @@
 ---
 title: Delayed Delivery
-reviewed: 2016-03-21
+summary: A simple ordering system that defers handling or delivery of a message
+reviewed: 2017-10-19
 component: Core
 tags:
 - Defer
@@ -8,60 +9,60 @@ related:
 - nservicebus/messaging/delayed-delivery
 ---
 
-In this sample shows a very simple ordering system that:
+This sample shows a simple ordering system that:
 
- * Sends a command from a client to a server.
- * That server handles the command.
+ * sends a command from a client to a server
+ * handles the command on the server
 
-While sending command user can choose to defer handling or delivery of the message.
+While sending the command, the user can choose to defer handling or delivery of the message.
 
 
 ## The Shared Project
 
-The `Shared` project is for shared classes including message definitions. This project will be shared between the client and server so both sides agree on the typed message descriptions. It is referenced by all projects in the solution.
+The `Shared` project is for shared classes including message definitions. This project is shared between the client and server so both sides agree on the typed message descriptions. It is referenced by all projects in the solution.
 
 
 ### PlaceOrder Command
 
-Used to place an order, used in Defer Message Handling scenario
+This is the command for placing an order; it used in the Defer Message Handling scenario
 
 snippet: PlaceOrder
 
 
 ### PlaceDelayedOrder Command
 
-Used to place an order, used in Defer Message Delivery scenario
+This command also places an order but is used in the Defer Message Delivery scenario.
 
 snippet: PlaceDelayedOrder
 
 
 ## Defer message handling
 
-This flow is shown when user chose 1 on Client Console. In this case message is deferred after receiving on the `Server`.
+Choose option 1 in the client console to defer _handling_ the message after receiving it on the server.
 
 
 ### The Client
 
-The `Client` is the initiate for the ordering process. The sending code in the client is as follows.
+The `Client` initiates the ordering process. The sending code in the client is as follows.
 
 snippet: SendOrder
 
 
 ### The Server
 
-The `Server` project processes an Order. It receives `PlaceOrder` sent from `Client` and for the first time defers it's handling for some time.
+The `Server` processes an Order. It receives `PlaceOrder` sent from `Client` and for the first time defers its handling for five seconds.
 
 snippet: PlaceOrderHandler
 
 
 ## Defer message delivery
 
-This flow is shown when user chose 2 on Client Console. In this case message is deferred before being send on the `Client`.
+Choose option 2 in the client console to defer _delivery_ of the message on the client.
 
 
 ### The Client
 
-The `Client` is the initiate for the ordering process. The 'Client' defers sending of a message as can be seen below.
+The `Client` initiates the ordering process. The 'Client' defers sending the message as can be seen below.
 
 snippet: DeferOrder
 
@@ -71,6 +72,6 @@ partial: HandleDefer
 
 ### The Server
 
-The `Server` project processes an Order. It receives `PlaceDelayedOrder` sent from `Client` and process it.
+The `Server` project processes an Order. It receives `PlaceDelayedOrder` sent from `Client` and processes it normally.
 
 snippet: PlaceDelayedOrderHandler

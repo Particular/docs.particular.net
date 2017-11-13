@@ -61,7 +61,7 @@ One of the most powerful advantages of asynchronous messaging is reliability. Fa
 
 See how that is achieved by following these steps:
 
-1. Run the solution in Visual Studio and ensure all three console windows are active.
+1. In Visual Studio's **Debug** menu, select **Detach All** so that we can close one console window without Visual Studio closing all the other windows as well. Alternatively, you can run the solution using **Debug** > **Start Without Debugging** or Ctrl+F5.
 1. Close the **Billing** window.
 1. Send several messages by pressing `P` in the **ClientUI** window.
 1. Notice how messages are flowing from **ClientUI** to **Sales**. **Sales** is still publishing messages, even though **Billing** can't process them at the moment.
@@ -134,6 +134,23 @@ To start, in the **Solution Explorer** window, right-click the **RetailDemo** so
 1. Select a new **Console App (.NET Framework)** project (or just **Console Application**).
 1. Name the project **Shipping**.
 1. Click **OK** to create the project and add it to the solution.
+
+{{NOTE:
+**ProTip:** The existing projects in this solution are using the newer, leaner, .NET Core style project files, but the current Visual Studio tooling doesn't make it very easy to do the same for the **Shipping** project. If you like, you can create a project of type **Console App (.NET Core)** and then manually edit the **Shipping.csproj** file to change the `TargetFramework` value from `netcoreapp2.0` to `net461`.
+
+Creating a **Console App (.NET Framework)** project which uses the older-style `*.csproj` file will work just fine, but will just look slightly different in Visual Studio, with nested **Properties**, **References**, and **packages.config** items instead of **Dependencies**.
+}}
+
+By default, Visual Studio will create the project using C# 7.0. Let's change it to C# 7.1 so that we can use nice features like [an async Main method](https://blogs.msdn.microsoft.com/mazhou/2017/05/30/c-7-series-part-2-async-main/):
+
+1. In the **Solution Explorer**, right-click on the **Shipping** project and choose **Properties**.
+1. Switch to the **Build** tab.
+1. Under the **Output** heading, click the **Advanced…** button in the far lower-right corner.
+1. Change **Language version** to **C# latest minor version (latest)**.
+1. Click **OK**.
+1. Save and close the **Shipping** properties page.
+
+![Change Language Version](change-language-version.png "width=680")
 
 Now, we need to add references to the NServiceBus package and Messages project.
 

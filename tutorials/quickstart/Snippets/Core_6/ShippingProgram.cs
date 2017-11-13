@@ -1,8 +1,8 @@
-﻿using System;
+﻿#region ShippingProgram
+
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
-
-#region ShippingProgram
 
 namespace Shipping
 {

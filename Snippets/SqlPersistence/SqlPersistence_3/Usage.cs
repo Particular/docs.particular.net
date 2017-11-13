@@ -5,7 +5,6 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NServiceBus;
-using NServiceBus.Persistence;
 using NServiceBus.Persistence.Sql;
 
 class Usage
@@ -13,11 +12,11 @@ class Usage
     void SqlServerUsage(EndpointConfiguration endpointConfiguration)
     {
         #region SqlPersistenceUsageSqlServer
-            
+
         var connection = @"Data Source=.\SqlExpress;Initial Catalog=dbname;Integrated Security=True";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var subscriptions = persistence.SubscriptionSettings();
-        subscriptions.CacheFor(TimeSpan.FromMinutes(1));        
+        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
@@ -39,6 +38,15 @@ class Usage
         #endregion
     }
 
+    void ExecuteAtStartup(EndpointConfiguration endpointConfiguration)
+    {
+        #region ExecuteAtStartup
+
+        endpointConfiguration.EnableInstallers();
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+
+        #endregion
+    }
 
     void InstallerWorkflow(EndpointConfiguration endpointConfiguration)
     {
@@ -197,6 +205,7 @@ class Usage
 
         #endregion
     }
+
     void ExecuteScripts(string scriptDirectory, string tablePrefix)
     {
         #region ExecuteScriptsSqlServer
@@ -262,6 +271,7 @@ class Usage
         #endregion
 
         #region ExecuteScriptsOracle
+
         using (var connection = new OracleConnection("ConnectionString"))
         {
             connection.Open();
@@ -286,8 +296,7 @@ class Usage
                 transaction.Commit();
             }
         }
+
         #endregion
     }
-
-
 }

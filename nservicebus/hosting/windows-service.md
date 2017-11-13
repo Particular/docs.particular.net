@@ -34,7 +34,7 @@ snippet: ServiceHelper
 
 There is a [Bootstrapping starter package](https://www.nuget.org/packages/NServiceBus.Bootstrap.WindowsService) on NuGet that automates most of the above code.
 
-NOTE: The `NServiceBus.Bootstrap.WindowsService` package will not work properly using the `PackageReference` in project files, for more information see [nuget documentation](https://docs.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files). To get it working, use the `Packages.config` Nuget package manager format in Visual Studio 2017 or higher.
+NOTE: The `NServiceBus.Bootstrap.WindowsService` package will not work properly using the `PackageReference` in project files, for more information see [nuget documentation](https://docs.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files). To get it working, use the `Packages.config` NuGet package manager format in Visual Studio 2017 or higher.
 
 
 ### How to use
@@ -55,7 +55,7 @@ This NuGet helps get started on a new self hosted NServiceBus application. For e
 
 ### Transport
 
-The LearningTransport is selected by default. 
+The LearningTransport is selected by default.
 
 WARNING: Choose a production grade transport before deploying to production.
 

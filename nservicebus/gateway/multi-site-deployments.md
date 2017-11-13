@@ -122,3 +122,5 @@ Or specify the physical routing in code:
 partial: codefirstchannels
 
 partial: wildcard
+
+partial: timeouts

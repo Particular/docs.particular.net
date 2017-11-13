@@ -21,7 +21,7 @@ class Program
             });
 
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
-        dataBus.BasePath("..\\..\\..\\storage");
+        dataBus.BasePath(@"..\..\..\storage");
 
         #endregion
 
@@ -58,7 +58,7 @@ class Program
             SomeProperty = "This message contains a large collection that will be sent on the data bus",
             LargeData = new DataBusProperty<Measurement[]>(measurements)
         };
-        Console.WriteLine("Message send, the payload is stored in: ..\\..\\..\\storage");
+        Console.WriteLine(@"Message send, the payload is stored in: ..\..\..\storage");
         return endpointInstance.Send("Samples.DataBus.Receiver", message);
     }
 

@@ -3,7 +3,7 @@
 <configuration>
   <connectionStrings>
      <add name="NServiceBus/Transport"
-          connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True"/>
+          connectionString="Data Source=instance; Initial Catalog=db; Integrated Security=True"/>
   </connectionStrings>
 </configuration>
 <!--endcode-->

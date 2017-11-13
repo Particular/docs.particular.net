@@ -12,7 +12,7 @@ At startup each endpoint will create its required SQL assets including databases
 
 ### MySQL
 
- 1. Ensure an instance of MySQL (Version 5.7 or above) is installed and accessible as on `localhost` and port `3306`.
+ 1. Ensure an instance of MySQL (Version 5.7 or above) is installed and accessible on `localhost` and port `3306`.
  1. Add the username to access the instance to an environment variable named `MySqlUserName`.
  1. Add the password to access the instance to an environment variable named `MySqlPassword`.
 
@@ -21,8 +21,17 @@ Or, alternatively, change the connection string to point to different MySQL inst
 
 ### Oracle
 
- 1. Ensure an instance of Oracle Database (11g or later) is installed and accessible as on `localhost` on port `1521` with service name `XE`.
+ 1. Ensure an instance of Oracle Database (Version 11g or later) is installed and accessible on `localhost` on port `1521` with service name `XE`.
  1. Add the username to access the instance to an environment variable named `OracleUserName`.
  1. Add the password to access the instance to an environment variable named `OraclePassword`.
 
 Or, alternatively, change the connection string to point to different Oracle instance.
+
+
+### PostgreSQL
+
+ 1. Ensure an instance of PostgreSQL (Version 10 or later) is installed and accessible on `localhost`.
+ 1. Add the username to access the instance to an environment variable named `PostgreSqlUserName`.
+ 1. Add the password to access the instance to an environment variable named `PostgreSqlPassword`.
+
+Or, alternatively, change the connection string to point to different PostgreSQL instance.

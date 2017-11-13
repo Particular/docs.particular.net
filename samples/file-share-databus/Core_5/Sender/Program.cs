@@ -10,7 +10,7 @@ class Program
         busConfiguration.EndpointName("Samples.DataBus.Sender");
         #region ConfigureDataBus
         var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
-        dataBus.BasePath("..\\..\\..\\storage");
+        dataBus.BasePath(@"..\..\..\storage");
         #endregion
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
@@ -53,7 +53,7 @@ class Program
         bus.Send("Samples.DataBus.Receiver",message);
 
         #endregion
-        Console.WriteLine("Message sent, the payload is stored in: ..\\..\\..\\storage");
+        Console.WriteLine(@"Message sent, the payload is stored in: ..\..\..\storage");
     }
 
     static void SendMessageTooLargePayload(IBus bus)

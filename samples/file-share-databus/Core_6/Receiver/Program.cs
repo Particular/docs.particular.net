@@ -9,7 +9,7 @@ class Program
         Console.Title = "Samples.DataBus.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
-        dataBus.BasePath("..\\..\\..\\storage");
+        dataBus.BasePath(@"..\..\..\storage");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

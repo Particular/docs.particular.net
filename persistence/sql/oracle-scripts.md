@@ -6,7 +6,7 @@ related:
  - nservicebus/operations
 redirects:
  - nservicebus/sql-persistence/oracle-scripts
-versions: '[2.1,)'
+versions: '[2,)'
 ---
 
 
@@ -128,7 +128,7 @@ snippet: Oracle_SagaSaveSql
 
 Used by `ISagaPersister.Get(propertyName...)`.
 
-snippet: Oracle_SagadGetByPropertySql
+snippet: Oracle_SagaGetByPropertySql
 
 
 #### GetBySagaId

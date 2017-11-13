@@ -39,7 +39,7 @@ By default up to five immediate retries are performed if the message processing 
 
 Note: The configured value describes the minimum number of times a message will be retried if its processing consistently fails. Especially in environments with competing consumers on the same queue, there is an increased chance of retrying a failing message more times across the endpoints.
 
-Note: Depending on the concurrency and transactionality settings of the endpoint immediate retries might happen even if configured to be off. To ensure that no retries is performed the endpoints needs to be configured to be either [non transactional](/transports/transactions.md) or the [concurrency retricted to 1](/nservicebus/operations/tuning.md).
+Note: Depending on the concurrency and transactionality settings of the endpoint immediate retries might happen even if configured to be off. To ensure that no retries is performed the endpoints needs to be configured to be either [non transactional](/transports/transactions.md) or the [concurrency restricted to 1](/nservicebus/operations/tuning.md).
 
 
 ### Transport transaction requirements

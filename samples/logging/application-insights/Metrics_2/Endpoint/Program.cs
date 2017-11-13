@@ -28,8 +28,6 @@ class Program
 
         #endregion
 
-        // TODO: See https://github.com/Particular/NServiceBus.Metrics/issues/41
-
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 

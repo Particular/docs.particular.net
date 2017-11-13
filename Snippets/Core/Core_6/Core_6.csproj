@@ -11,8 +11,7 @@
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Autofac" Version="6.*" />
     <PackageReference Include="NServiceBus.Callbacks" Version="1.*" />
-    <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />
-    <PackageReference Include="NServiceBus.RavenDB" Version="4.*" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="2.0.0-beta0003" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="System.Reactive" Version="3.*" />
     <ProjectReference Include="..\..\Common\Common.csproj" />

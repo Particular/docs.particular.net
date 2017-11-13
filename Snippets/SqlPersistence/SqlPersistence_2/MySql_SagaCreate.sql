@@ -169,7 +169,7 @@ deallocate prepare script;
 
 /* PurgeObsoleteProperties */
 
-select concat('alter table ', @tableName, ' drop column ', column_name, ';')
+select concat('alter table ', table_name, ' drop column ', column_name, ';')
 from information_schema.columns
 where
     table_schema = database() and
@@ -188,5 +188,7 @@ select if (
 prepare script from @dropPropertiesQuery;
 execute script;
 deallocate prepare script;
+
+/* CompleteSagaScript */
 
 endcode

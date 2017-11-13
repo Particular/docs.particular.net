@@ -1,22 +1,23 @@
 ---
 title: Callback Usage
+summary: Demonstrates the use of callbacks
 component: Callbacks
-reviewed: 2016-03-21
+reviewed: 2017-10-19
 ---
 
  1. Run the solution. Two console applications and a web application will start.
  1. In the WebSender application, click links from the landing page to trigger each scenario.
- 1. In the Sender console application, when prompted to press various keys to trigger each scenario.
+ 1. In the Sender console application, press various keys to trigger each scenario when prompted.
 
 
-## Shared Project
+## Shared project
 
 A class library containing the messages and shared code.
 
 
-### Status Enum
+### Status enum
 
-To be used for the enum callback scenario.
+This is used for the enum callback scenario.
 
 ```
 public enum Status
@@ -29,10 +30,9 @@ public enum Status
 
 ## WebSender project
 
-An ASP.NET MVC application responsible for sending messages and handling the web callback from the reply. Depending upon NServiceBus version, the method for integrating with asynchronous controllers is very different.
+An ASP.NET MVC application responsible for sending messages and handling the web callback from the reply. Depending upon the NServiceBus version, the method for integrating with asynchronous controllers is very different.
 
-Note: All the usages of the Bus are done via a static instance stored on the root `MvcApplication` that is configured in the `Global.cs`.
-
+partial: static
 
 ### Send and callback for an enum
 
@@ -51,7 +51,7 @@ snippet: Web_SendObjectMessage
 
 ## Sender project
 
-A console application responsible for sending a messages and handling the callback from the reply, as an alternative to a web application.
+A console application responsible for sending messages and handling the callback from the reply, as an alternative to a web application.
 
 
 ### Send and callback for an enum
@@ -71,7 +71,7 @@ snippet: SendObjectMessage
 
 ## Receiver project
 
-A console application responsible replying to messages from either the web application or the console application.
+A console application responsible for replying to messages from either the web application or the console application.
 
 
 ### Return an enum
@@ -84,7 +84,7 @@ snippet: EnumMessageHandler
 snippet: IntMessageHandler
 
 
-### Return an Object
+### Return an object
 
 Note that this scenario requires a `Reply` with a real message.
 

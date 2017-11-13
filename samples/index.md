@@ -63,7 +63,7 @@ Samples default to using the using [Learning Transport](/transports/learning/) a
 
 #### Versions 5 and below
 
-Samples default to using the using the [MSMQ Transport](/transports/msmq/). See [MSMQ NServiceBus Configuration](/transports/msmq/#nservicebus-configuration) to configure MSMQ in a way that is compatible with NServiceBus.
+Samples default to using the using the [MSMQ Transport](/transports/msmq/). See [MSMQ Configuration](/transports/msmq/#msmq-configuration) to configure MSMQ in a way that is compatible with NServiceBus.
 
 On startup each sample will create the required queues. By default the samples use the prefix `samples.` for all queue names. There is no process to clean up these queues, as such after running samples those queues remain in MSMQ. To clean up these queues manually use a [MSMQ management tool](/transports/msmq/viewing-message-content-in-msmq.md) or [programmatically using the native MSMQ API](/transports/msmq/operations-scripting.md#delete-queues).
 

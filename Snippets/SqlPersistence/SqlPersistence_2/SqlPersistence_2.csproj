@@ -5,8 +5,8 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.0.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="2.0.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="2.*" />
     <PackageReference Include="NUnit" Version="3.*" />
   </ItemGroup>
 </Project>

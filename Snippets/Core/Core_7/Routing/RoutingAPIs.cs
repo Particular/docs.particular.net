@@ -10,9 +10,9 @@ namespace Core7.Routing
         {
             #region Routing-Logical
 
-            var transportExtensions = endpointConfiguration.UseTransport<MyTransport>();
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
 
-            var routing = transportExtensions.Routing();
+            var routing = transport.Routing();
             routing.RouteToEndpoint(
                 assembly: typeof(AcceptOrder).Assembly,
                 destination: "Sales");
@@ -33,9 +33,9 @@ namespace Core7.Routing
         {
             #region Routing-RegisterPublisher
 
-            var transportExtensions = endpointConfiguration.UseTransport<MyTransport>();
+            var transport = endpointConfiguration.UseTransport<MyTransport>();
 
-            var routing = transportExtensions.Routing();
+            var routing = transport.Routing();
             routing.RegisterPublisher(
                 assembly: typeof(OrderAccepted).Assembly,
                 publisherEndpoint: "Sales");

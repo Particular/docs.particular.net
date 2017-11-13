@@ -1,0 +1,3 @@
+Phase1\EndpointMySql\EndpointMySqlPhase1.csproj
+Phase1\EndpointSqlServer\EndpointSqlServerPhase1.csproj
+Phase1\EndpointPostgreSql\EndpointPostgreSqlPhase1.csproj

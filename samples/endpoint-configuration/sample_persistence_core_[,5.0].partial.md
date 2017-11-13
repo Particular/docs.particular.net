@@ -1,1 +1,1 @@
-This sample uses the [In-Memory](/persistence/in-memory.md) persistence.
+This sample uses the [in-memory](/persistence/in-memory.md) persistence.

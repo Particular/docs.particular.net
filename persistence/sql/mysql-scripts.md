@@ -127,7 +127,7 @@ snippet: MySql_SagaSaveSql
 
 Used by `ISagaPersister.Get(propertyName...)`.
 
-snippet: MySql_SagadGetByPropertySql
+snippet: MySql_SagaGetByPropertySql
 
 
 #### GetBySagaId

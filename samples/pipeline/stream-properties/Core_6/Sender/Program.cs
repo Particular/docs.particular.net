@@ -15,7 +15,7 @@ class Program
 
         #region configure-stream-storage
 
-        endpointConfiguration.SetStreamStorageLocation("..\\..\\..\\storage");
+        endpointConfiguration.SetStreamStorageLocation(@"..\..\..\storage");
 
         #endregion
 

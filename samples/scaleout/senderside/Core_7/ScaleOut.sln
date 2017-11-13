@@ -1,17 +1,14 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server1", "Server1\Server1.csproj", "{965DD3D2-1BE1-4E91-8B14-03FDD8AAE2DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server1", "Server1\Server1.csproj", "{965DD3D2-1BE1-4E91-8B14-03FDD8AAE2DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{83485B93-3606-4014-AFF6-5C4289357BB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messages", "Messages\Messages.csproj", "{83485B93-3606-4014-AFF6-5C4289357BB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnawareClient", "UnawareClient\UnawareClient.csproj", "{D867E8E1-159C-467F-A9B0-510342B498EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server2", "Server2\Server2.csproj", "{0217AE59-43A6-4BA4-8858-DB21C01E30EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server2", "Server2\Server2.csproj", "{0217AE59-43A6-4BA4-8858-DB21C01E30EB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwareClient", "AwareClient\AwareClient.csproj", "{098644ED-2C4F-4A90-BEDD-FBCB64F2BB2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{098644ED-2C4F-4A90-BEDD-FBCB64F2BB2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,8 +19,6 @@ Global
 		{965DD3D2-1BE1-4E91-8B14-03FDD8AAE2DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83485B93-3606-4014-AFF6-5C4289357BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{83485B93-3606-4014-AFF6-5C4289357BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D867E8E1-159C-467F-A9B0-510342B498EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D867E8E1-159C-467F-A9B0-510342B498EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0217AE59-43A6-4BA4-8858-DB21C01E30EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0217AE59-43A6-4BA4-8858-DB21C01E30EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{098644ED-2C4F-4A90-BEDD-FBCB64F2BB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -31,5 +26,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8C6EE37-ED84-4186-9EB4-C2DC832721A0}
 	EndGlobalSection
 EndGlobal

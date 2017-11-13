@@ -9,7 +9,7 @@ class Program
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.DataBus.Receiver");
         var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
-        dataBus.BasePath("..\\..\\..\\storage");
+        dataBus.BasePath(@"..\..\..\storage");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         using (var bus = Bus.Create(busConfiguration).Start())
