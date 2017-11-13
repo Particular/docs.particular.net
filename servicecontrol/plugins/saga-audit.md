@@ -4,7 +4,11 @@ summary: Helps visualize and debug Sagas with ServiceInsight
 component: SagaAudit
 versions: 'SagaAudit4:*;SagaAudit5:*;SagaAudit6:*'
 reviewed: 2017-11-08
+related:
+ - nservicebus/sagas/saga-audit
 ---
+
+WARNING: The following documentation describes deprecated packages ServiceControl.Plugin.Nsb5.SagaAudit and ServiceControl.Plugin.Nsb6.SagaAudit. To learn about the replacement package see [NServiceBus.SagaAudit](/nservicebus/sagas/saga-audit.md). To learn how to upgrade consult the [upgrade guide](/nservicebus/upgrades/nservicebus.sagaaudit.md).
 
 DANGER: **For Development only**. This plugin will result in a significant increase in the load placed on ServiceControl. As such it should not be used in production.
 
