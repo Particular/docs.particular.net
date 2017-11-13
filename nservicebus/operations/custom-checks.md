@@ -8,6 +8,18 @@ versions: 'CustomChecks:*'
 
 The CustomChecks Plugin enables custom endpoint monitoring. It allows the developer of an NServiceBus endpoint to define a set of conditions that are checked on endpoint startup or periodically.
 
+```mermaid
+graph LR
+
+subgraph Endpoint
+CustomChecks[Custom Checks]
+end
+	
+CustomChecks -- Custom Check<br>Data --> SCQ[ServiceControl<br>Input Queue]
+
+SCQ --> ServiceControl
+```
+
 These conditions are solution and/or endpoint specific. It is recommended that they include the set of explicit (and implicit) assumptions about what enables the endpoint to function as expected versus what will make the endpoint fail.
 
 For example, custom checks can include checking that a third-party service provider is accessible from the endpoint host, verifying that resources required by the endpoint are above a defined minimum threshold, and more.

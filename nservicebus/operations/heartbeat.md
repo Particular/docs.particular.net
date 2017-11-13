@@ -12,6 +12,18 @@ redirects:
 
 The Heartbeat plugin enables endpoint health monitoring in ServicePulse. It sends heartbeat messages from the endpoint to the ServiceControl queue. These messages are sent every 10 seconds (by default).
 
+```mermaid
+graph LR
+	
+subgraph Endpoint
+Heartbeats
+end
+	
+Heartbeats -- Heartbeat<br>Data --> SCQ
+
+SCQ[ServiceControl<br>Input Queue] --> SC[ServiceControl]
+```
+
 An endpoint that is marked for monitoring (by ServicePulse) will be expected to send a heartbeat message within the specified time interval. As long as a monitored endpoint sends heartbeat messages, it is marked as "active". Marking an endpoint as active means it is able to properly and periodically send messages using the endpoint-defined transport.
 
 Note that even if an endpoint is able to send heartbeat messages and it is marked as "active", other failures may occur within the endpoint and its host that may prevent it from performing as expected. For example, the endpoint may not be able to process incoming messages, or it may be able to send messages to the ServiceControl queue but not to another queue. To monitor and get alerts for such cases, develop a custom check using the CustomChecks plugin.

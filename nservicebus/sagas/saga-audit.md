@@ -8,7 +8,8 @@ reviewed: 2017-11-08
 
 DANGER: **For Development only**. This plugin will result in a significant increase in the load placed on ServiceControl. As such it should not be used in production.
 
-The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/serviceinsight/#the-saga-view). It is built specifically to help developers verify Saga logic during development. It does this by capturing Saga message behavior and changes in Saga data/state as the Saga is being processed. It then sends this information to a ServiceControl endpoint setup in the development environment.
+The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/serviceinsight/#the-saga-view). It is built specifically to help developers verify Saga logic during development. It does this by capturing Saga message behavior and changes in Saga data/state as the Saga is being processed. It then sends this information to a ServiceControl endpoint setup in the development environment. The information is available in the *Saga* view in ServiceInsight.
+
 
 NOTE: Saga audit messages will not be sent to ServiceControl if an Exception is thrown during Saga processing.
 
@@ -19,10 +20,25 @@ The SagaAudit plugin captures the following information:
 
  * The incoming messages (including timeouts) that initiate change in the saga.
  * The outgoing messages that the saga sends.
- * A snapshot of the current saga data.
- * The saga state
+ * A snapshot of the current saga state.
 
-All this information is sent to and stored in ServiceControl. Note that the saga audit data is transmitted to ServiceControl via a message and is serialized using the built in JSON Serializer of NServiceBus.
+```mermaid
+graph LR
+subgraph Endpoint
+Auditing
+SagaAudit[Saga Audit]
+end
+	
+SagaAudit -- Saga Change<br>Audit Data --> SCQ[ServiceControl<br>Input Queue]
+	
+Auditing -- Message<br>Audit Data --> AuditQ[audit<br>queue]
+
+AuditQ --> ServiceControl
+	
+SCQ --> ServiceControl
+```
+
+All this information is sent to and stored in ServiceControl. Note that the saga state audit data is transmitted to ServiceControl via a separate message and is serialized using the built in JSON Serializer of NServiceBus.
 
 
 ## Impact on ServiceControl performance
