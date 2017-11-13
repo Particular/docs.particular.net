@@ -364,6 +364,8 @@
         Title: Concurrency
       - Url: nservicebus/sagas/reply-replaytooriginator-differences
         Title: Reply and ReplyToOriginator differences
+      - Url: nservicebus/sagas/saga-audit
+        Title: Debugging sagas in ServiceInsight
   - Url: nservicebus/testing
     Title: Testing
     Articles:
