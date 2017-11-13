@@ -1,11 +1,11 @@
 ---
-title: Upgrade from ServiceControl.Plugin.NsbX.SagaAudit to NServiceBus.SagaAudit
-summary: Instructions on how to upgrade SagaAudit Plugins to the new NServiceBus.SagaAudit package
+title: Upgrade from ServiceControl.Plugin.NsbX.Heartbeat to NServiceBus.Heartbeat
+summary: Instructions on how to upgrade Heartbeat Plugins to the new NServiceBus.Heartbeat package
 reviewed: 2017-11-08
 component: ServiceControl
 related:
  - servicecontrol/plugins
- - servicecontrol/plugins/saga-audit
+ - servicecontrol/plugins/heartbeat
 isUpgradeGuide: true
 ignoreSeoRecommendations: true
 upgradeGuideCoreVersions:
@@ -17,14 +17,14 @@ upgradeGuideCoreVersions:
 
 ## Connecting to ServiceControl
 
-The NserviceBus.SagaAudit package replaces the **ServiceControl.Plugin.Nsb5.SagaAudit** and **ServiceControl.Plugin.Nsb6.SagaAudit** packages. It also introduces a new version compatible with NServiceBus Version 7.
+The NserviceBus.Heartbeat package replaces the **ServiceControl.Plugin.Nsb5.Heartbeat** and **ServiceControl.Plugin.Nsb6.Heartbeat** packages. It also introduces a new version compatible with NServiceBus Version 7.
 
-To update, remove the deprecated package and install the NServiceBus.SagaAudit package.
+To update, remove the deprecated package and install the NServiceBus.Heartbeat package.
 
-snippet: NSBSagaAudit_Upgrade_InstallPackage
+snippet: NSBHeartbeat_Upgrade_InstallPackage
 
 ## Configuration
 
 The deprecated packages allowed configuration of ServiceControl queue via a convention in which an application setting `ServiceControl/Queue` was picked up automatically. The new package requires explicit configuration. When upgrading, the following code needs to be added to the endpoint setup code to retrieve the ServiceControl queue from the configuration file and pass it to the plugin.
 
-snippet: NSBSagaAudit_Upgrade_Configure
+snippet: NSBHeartbeat_Upgrade_Configure

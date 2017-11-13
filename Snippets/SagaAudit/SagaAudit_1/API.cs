@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using NServiceBus;
 
-class MyClass
+class API
 {
     public void Enable()
     {

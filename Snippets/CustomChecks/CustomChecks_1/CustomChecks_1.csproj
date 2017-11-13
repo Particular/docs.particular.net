@@ -5,5 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.CustomChecks" Version="1.0.0-*" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>
