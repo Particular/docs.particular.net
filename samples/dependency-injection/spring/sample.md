@@ -1,7 +1,7 @@
 ---
 title: Spring Dependency Injection Usage
 component: Spring
-reviewed: 2016-03-21
+reviewed: 2017-11-14
 tags:
  - dependency injection
 related:
@@ -11,7 +11,7 @@ redirects:
  - samples/containers/spring
 ---
 
-### Configuring to use Spring
+### Configuring an endpoint to use Spring
 
 snippet: ContainerConfiguration
 

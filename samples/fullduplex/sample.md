@@ -1,7 +1,7 @@
 ---
 title: Full Duplex
 summary: Using full-duplex and request/response communication.
-reviewed: 2016-03-21
+reviewed: 2017-11-14
 component: Core
 tags:
 - Messaging Patterns
@@ -15,21 +15,20 @@ Run the solution. Two console applications start up, `Client` and `Server`.
 
 ## Code walk-through
 
-
 ### Messages
 
-Look at the messages the `Shared` project:
+Look at the messages in the `Shared` project:
 
 snippet: RequestMessage
 
 snippet: ResponseMessage
 
-The two classes here implement the NServiceBus `IMessage` interface, indicating that they are messages. The only thing these classes have are properties, each with both get and set access. The `RequestDataMessage` is sent from the client to the server, and the `DataResponseMessage` replies from the server to the client.
+The two classes here implement the NServiceBus `IMessage` interface, indicating that they are messages. The only thing these classes have are properties, each with get and set access. The `RequestDataMessage` is sent from the client to the server, and the `DataResponseMessage` replies from the server to the client.
 
 
 ### Client
 
-The client console has a input loop that does the following
+The client console has an input loop:
 
 snippet: ClientLoop
 
@@ -51,7 +50,7 @@ The `Handle` method of this class contains this:
 
 snippet: DataResponseReply
 
-Finally, the bus replies with the response message, sending it to the InputQueue specified in the `MsmqTransportConfig` section, in the app.config of the `Client` endpoint. The bus knows to send the responses to where the message is sent every time the bus sends a message from the queue.
+Finally, the bus replies with the response message, sending it to the InputQueue specified in the `MsmqTransportConfig` section in the app.config of the `Client` endpoint. The bus knows to send the responses to where the message is sent every time the bus sends a message from the queue.
 
 When configuring the routing in the bus, continue with the premise of regular request/response communication such that clients need to know where the server is, but servers do not need to know about clients.
 

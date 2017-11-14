@@ -1,7 +1,7 @@
 ---
 title: Autofac Dependency Injection Usage
 component: Autofac
-reviewed: 2016-03-21
+reviewed: 2017-11-14
 tags:
  - dependency injection
 related:
@@ -11,7 +11,7 @@ redirects:
  - samples/containers/autofac
 ---
 
-### Configuring to use Autofac
+### Configuring an endpoint to use Autofac
 
 snippet: ContainerConfiguration
 

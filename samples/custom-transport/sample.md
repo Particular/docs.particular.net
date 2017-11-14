@@ -1,23 +1,23 @@
 ---
 title: Building a transport
 summary: Building a Transport using the file system as a store.
-reviewed: 2016-03-21
+reviewed: 2017-11-14
 component: Core
 related:
 - transports
 ---
 
-This sample show how to build a Transport using the file system as a data store.
+This sample show how to build a transport using the file system as a data store.
 
 
-DANGER: This is for learning purposes only and NOT for use in production. 
+DANGER: This is for learning purposes only and NOT for use in production.
 
 **This sample requires Visual Studio 2017.**
 
 
 ## Sample Structure
 
-The sample has two endpoint, `Endpoint1` and `Endpoint2`.
+The sample has two endpoints, `Endpoint1` and `Endpoint2`.
 
 Both endpoints are configured to use the `FileTransport`.
 
@@ -41,16 +41,16 @@ snippet: StartMessageInteraction
 snippet: MessageAHandler
 
 
-#### Endpoint1 Handles the reply
+#### Endpoint1 handles the reply
 
 `Endpoint1` then handles that reply.
 
 snippet: MessageBHandler
 
 
-## Running the Sample
+## Running the sample
 
-Start the sample with both `Endpoint1` and `Endpoint2` as startup projects. This will Force both endpoints to create their underlying file system queues.
+Start the sample with both `Endpoint1` and `Endpoint2` as startup projects. This will force both endpoints to create their underlying file system queues.
 
 Now start `Endpoint1`. Notice it will send a message at startup.
 
@@ -59,40 +59,40 @@ Now look at the file system for `Endpoint2` `%temp%\FileTransport\Samples.Custom
 Now start `Endpoint2`. The reply message will appear in its file system `%temp%\FileTransport\Samples.CustomTransport.Endpoint2\`.
 
 
-## Transport Implementation
+## Transport implementation
 
 
 ### Transport definition
 
-The `TransportDefinition` allows a Transport to define how it interacts with the core of NServiceBus.
+The `TransportDefinition` allows a transport to define how it interacts with the core of NServiceBus.
 
 snippet: TransportDefinition
 
 
 ### Storage location
 
-This transport is hard coded to persist message to `%TEMP%FileTransport/ADDRESS/`.
+This transport is hard coded to persist messages to `%TEMP%FileTransport/ADDRESS/`.
 
 snippet: BaseDirectoryBuilder
 
 
-### Header Serializer
+### Header serializer
 
-To serialize [Headers](/nservicebus/messaging/headers.md) headers this Transport uses JSON via[DataContractJsonSerializer](https://msdn.microsoft.com/en-us/library/system.runtime.serialization.json.datacontractjsonserializer.aspx)
+To serialize [headers](/nservicebus/messaging/headers.md) this transport uses JSON via [DataContractJsonSerializer](https://msdn.microsoft.com/en-us/library/system.runtime.serialization.json.datacontractjsonserializer.aspx)
 
 snippet: HeaderSerializer
 
 
-### QueueCreation
+### Queue creation
 
 At startup a transport can optionally [create queues](/transports/queuecreation.md).
 
 snippet: QueueCreation
 
 
-### DirectoryBasedTransaction
+### Handling transactions
 
-How a Transport handles transactions differs greatly between specific implementations. For demonstration purposes this Transport uses a highly simplified file system based transaction.
+How a transport handles transactions differs greatly between specific implementations. For demonstration purposes this transport uses a highly simplified file system based transaction.
 
 snippet: DirectoryBasedTransaction
 
@@ -104,21 +104,21 @@ The dispatcher is responsible for translating a message (its binary body and hea
 snippet: Dispatcher
 
 
-### MessagePump
+### Message pump
 
-The message pump is responsible for reading message from the underlying transport and pushing them into the [Message Handling Pipeline](/nservicebus/pipeline/).
+The message pump is responsible for reading message from the underlying transport and pushing them into the [message handling pipeline](/nservicebus/pipeline/).
 
 snippet: MessagePump
 
 
-## Transport Tests
+## Transport tests
 
 NServiceBus provides a test suite targeting transport implementations to verify the implementation.
 
 
 ### Pulling in the tests
 
-The tests are shipped in the `NServiceBus.TransportTests.Sources` NuGet package. This package can be installed into a dedicated test project, in this sample, `CustomTransport.TransportTests` is used to contain the transport tests.
+The tests are shipped in the `NServiceBus.TransportTests.Sources` NuGet package. This package can be installed into a dedicated test project. In this sample, `CustomTransport.TransportTests` contains the transport tests.
 
 
 ### Configuring the tests
@@ -130,4 +130,4 @@ snippet: TransportTestConfiguration
 
 ### Running the tests
 
-The transport tests can be run with all test runners supporting NUnit.
+The transport tests can be run with all test runners that support NUnit.

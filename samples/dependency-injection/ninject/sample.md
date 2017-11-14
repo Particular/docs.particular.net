@@ -1,7 +1,7 @@
 ---
 title: Ninject Dependency Injection Usage
 component: Ninject
-reviewed: 2016-03-21
+reviewed: 2017-11-14
 tags:
  - dependency injection
 related:
@@ -11,7 +11,7 @@ redirects:
  - samples/containers/ninject
 ---
 
-### Configuring to use Ninject
+### Configuring an endpoint to use Ninject
 
 snippet: ContainerConfiguration
 
