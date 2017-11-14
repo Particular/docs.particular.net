@@ -10,7 +10,6 @@ This tutorial will guide you through the steps required to set up your NServiceB
 
 Note: At the moment systems using the [Learning Transport](/transports/learning/) can't be monitored as described below. If you're using solution from other tutorials or samples, ensure that you've configured NServiceBus to use another transport.
 
-
 ## Component overview
 
 ```mermaid
@@ -62,12 +61,9 @@ Both of these instance types can be set-up and managed with the `ServiceControl 
 
 [ServicePulse](/servicepulse/) is a web application that connects to ServiceControl and provides production monitoring and recoverability. It contains pages to visualize the monitoring data in a Monitoring instance. It can also be used to review and manage failed messages that are managed by a ServiceControl instance.
 
-
-
 ## Setting up Particular Service Platform
 
 In order to configure an environment for monitoring with the Particular Service Platform you will need to install and configure the components in the order listed.
-
 
 ### Install ServiceControl
 
@@ -175,7 +171,6 @@ Configure your endpoint to send processed messages to an audit queue.
 partial: audit-config
 
 NOTE: If you are using the MSMQ transport then you also need to specify the machine where the audit queue is located. i.e. `audit@MACHINENAME`. This should be the same machine where your ServiceControl instance is installed.
-
 
 ### Monitoring
 
