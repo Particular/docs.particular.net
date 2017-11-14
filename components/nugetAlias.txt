@@ -17,7 +17,6 @@ CustomChecks3: ServiceControl.Plugin.Nsb3.CustomChecks
 CustomChecks4: ServiceControl.Plugin.Nsb4.CustomChecks
 CustomChecks5: ServiceControl.Plugin.Nsb5.CustomChecks
 CustomChecks6: ServiceControl.Plugin.Nsb6.CustomChecks
-CustomChecks: NServiceBus.CustomChecks
 CloudServicesHost: NServiceBus.Hosting.Azure
 Distributor: NServiceBus.Distributor.MSMQ
 EntityFramework: GoodlyFere.NServiceBus.EntityFramework
@@ -30,7 +29,6 @@ Heartbeats3: ServiceControl.Plugin.Nsb3.Heartbeat
 Heartbeats4: ServiceControl.Plugin.Nsb4.Heartbeat
 Heartbeats5: ServiceControl.Plugin.Nsb5.Heartbeat
 Heartbeats6: ServiceControl.Plugin.Nsb6.Heartbeat
-Heartbeats: NServiceBus.Heartbeat
 Hyperion: NServiceBus.Hyperion
 Host: NServiceBus.Host
 Jil: NServiceBus.Jil
@@ -66,7 +64,6 @@ Raven: NServiceBus.RavenDB
 SagaAudit6: ServiceControl.Plugin.Nsb6.SagaAudit
 SagaAudit5: ServiceControl.Plugin.Nsb5.SagaAudit
 SagaAudit4: ServiceControl.Plugin.Nsb4.SagaAudit
-SagaAudit: NServiceBus.SagaAudit
 Serilog: NServiceBus.Serilog
 SerilogTracing: NServiceBus.Serilog.Tracing
 ServiceBootstrap: NServiceBus.Bootstrap.WindowsService

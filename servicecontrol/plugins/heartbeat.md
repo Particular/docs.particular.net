@@ -1,11 +1,12 @@
 ---
 title: Heartbeat Plugin
 summary: Use the Heartbeat plugin to monitor the health of the endpoints
-reviewed: 2017-11-09
+reviewed: 2017-07-12
 component: Heartbeats
-versions: 'Heartbeats3:*;Heartbeats4:*;Heartbeats5:*;Heartbeats6:*'
 related:
  - servicepulse/intro-endpoints-heartbeats
+redirects:
+ - servicecontrol/heartbeat-configuration
 ---
 
 The Heartbeat plugin enables endpoint health monitoring in ServicePulse. It sends heartbeat messages from the endpoint to the ServiceControl queue. These messages are sent every 10 seconds (by default).
@@ -21,16 +22,20 @@ An inactive endpoint indicates that there is a failure in the communication path
 NOTE: It is essential to deploy this plugin to the endpoint in production for ServicePulse to be able to monitor the endpoint.
 
 
-### Deprecated NuGet Packages
+### Deprecated NuGet
 
-The following Heartbeat plugin packages have been deprecated and unlisted. If using one of these versions replace package references to use **NServiceBus.Heartbeat**.
+The first release of the Heartbeat plugin the NuGet packages was named **ServiceControl.Plugin.Heartbeat**. **This packages is now obsolete and should be remove**. Replace it with the appropriate plugin based on the NServiceBus version. The new NServiceBus version specific packages are:
 
-- **ServiceControl.Plugin.Heartbeat**
-- **ServiceControl.Plugin.Nsb5.Heartbeat**
-- **ServiceControl.Plugin.Nsb6.Heartbeat**
+| NServiceBus Version | Nuget Package                        | 
+|---------------------|--------------------------------------|
+| 3.x                 | [ServiceControl.Plugin.Nsb3.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat/) |  
+| 4.x                 | [ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat/) |  
+| 5.x                 | [ServiceControl.Plugin.Nsb5.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat/) |  
+| 6.x                 | [ServiceControl.Plugin.Nsb6.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.Heartbeat/) |  
 
 
 ## Configuration
+
 
 partial: queue
 

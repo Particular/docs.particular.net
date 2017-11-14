@@ -1,9 +1,8 @@
 ---
 title: CustomChecks Plugin
 summary: Define a custom set of conditions that are checked on the endpoint.
-reviewed: 2017-11-09
+reviewed: 2016-10-06
 component: CustomChecks
-versions: 'CustomChecks3:*;CustomChecks4:*;CustomChecks5:*;CustomChecks6:*'
 related:
  - samples/servicecontrol/monitoring3rdparty
 ---
@@ -42,15 +41,8 @@ The result of a custom check is either success or a failure (with a detailed des
 NOTE: It is essential to deploy this plugin to the endpoint in production in order to receive error notifications about the custom check failures in the ServicePulse dashboard.
 
 
-### Deprecated NuGet Packages
+### Deprecated NuGet
 
-The following CustomChecks plugin packages have been deprecated and unlisted. If using one of these versions replace package references to use **NServiceBus.CustomChecks**.
-
-- **ServiceControl.Plugin.CustomChecks**
-- **ServiceControl.Plugin.Nsb5.CustomChecks**
-- **ServiceControl.Plugin.Nsb6.CustomChecks**
-
-
-## Configuration
+If using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks**, remove the package and replace it with the appropriate plugin based on the NServiceBus version. This package has been deprecated and unlisted.
 
 partial: config
