@@ -4,7 +4,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.SagaAudit" Version="1.0.0-*" />
+    <PackageReference Include="NServiceBus.SagaAudit" Version="1.*" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>
