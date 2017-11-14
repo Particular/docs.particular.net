@@ -28,7 +28,10 @@ public class DistributionStrategies
 
         public override string SelectReceiver(string[] receiverAddresses)
         {
-            return receiverAddresses[random.Next(receiverAddresses.Length)];
+            int index;
+            var length = receiverAddresses.Length;
+            lock(random) index = random.Next(length);
+            return receiverAddresses[random.Next(index)];
         }
     }
 
@@ -55,8 +58,11 @@ public class DistributionStrategies
 
             public override string SelectDestination(DistributionContext context)
             {
+                int index;
+                var length = context.ReceiverAddresses.Length;
+                lock(random) index = random.Next(length);
                 // access to headers, payload...
-                return context.ReceiverAddresses[random.Next(context.ReceiverAddresses.Length)];
+                return context.ReceiverAddresses[index];
             }
         }
 
