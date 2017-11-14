@@ -52,7 +52,7 @@ NOTE: It is essential to deploy this plugin to the endpoint in production in ord
 
 ### Configuration
 
-The SagaAudit plugin is enabled via
+The CustomChecks plugin is enabled via
 
 snippet: CustomCheckNew_Enable
 
