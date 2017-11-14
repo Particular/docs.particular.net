@@ -160,6 +160,7 @@
   Category: Other
   ProjectUrl: https://github.com/Particular/?query=CustomChecks
   NugetOrder:
+    - NServiceBus.CustomChecks
     - ServiceControl.Plugin.Nsb6.CustomChecks
     - ServiceControl.Plugin.Nsb5.CustomChecks
     - ServiceControl.Plugin.Nsb4.CustomChecks
@@ -264,6 +265,7 @@
   Category: Other
   ProjectUrl: https://github.com/Particular/?query=Heartbeat
   NugetOrder:
+    - NServiceBus.Heartbeat
     - ServiceControl.Plugin.Nsb6.Heartbeat
     - ServiceControl.Plugin.Nsb5.Heartbeat
     - ServiceControl.Plugin.Nsb4.Heartbeat
@@ -696,6 +698,7 @@
   Category: Other
   ProjectUrl: https://github.com/Particular/?query=SagaAudit
   NugetOrder:
+    - NServiceBus.SagaAudit
     - ServiceControl.Plugin.Nsb6.SagaAudit
     - ServiceControl.Plugin.Nsb5.SagaAudit
     - ServiceControl.Plugin.Nsb4.SagaAudit
