@@ -742,6 +742,8 @@
         Title: Publish-Subscribe
       - Url: transports/msmq/distributor/error-handling
         Title: Error handling
+      - Url: transports/msmq/distributor/troubleshooting
+        Title: Troubleshooting
   - Url: transports/rabbitmq
     Title: RabbitMQ
     Articles:
