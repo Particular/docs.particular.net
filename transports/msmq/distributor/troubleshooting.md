@@ -10,29 +10,43 @@ related:
 
 ## Troubleshooting
 
+To scale out MSMQ processing, a Distributor node accepts messages in one queue and then distributes/forwards it to eligible workers as they come available. This is accomplished by having each worker send a `ReadyMessage` to the distributor's *control queue* when it is ready for more work, and then the distributor forwards a message to that worker. [This process is explained in the distributor guidance](https://docs.particular.net/transports/msmq/distributor/#how-the-distributor-works).
+
+
+This troubleshooting guide is specific to issues when using the MSMQ distributor, please read [Troubleshooting MSMQ](/transports/msmq/troubleshooting.md) too as it contains value information regarding MSMQ. These MSMQ environment problems are the leading cause of distributor issues, due to worker's `ReadyMessages` getting stuck in the workers' outgoing queues, unable to reach the distributor, or messages stuck in the distributor's outgoing queue, unable to reach the workers.
+
+
 ### Performance issues, throughput is low
 
-#### Maximum concurrency
+Please make sure you understand the networking overhead. The distributor is not suitable for all scale-out scenarios. Please see:
+
+- https://docs.particular.net/transports/msmq/distributor/#performance
+
+#### Possibly increase Maximum concurrency
 
 Make sure that the maximum concurrency level is increased on the distributor. By default, the maximum concurrency level is 1. Also, make sure that the workers have the maximum concurrency level set higher.
 
-#### Prefetching
+Monitor your server its CPU, DISK, RAM and network resources to find correct maximum concurrency level that suits the workload.
+
+#### Enable prefetching
 
 When your workers are using NServiceBus 6, then there is the ability to configure the worker capacity independently from the maximum concurrency. By assigning a capacity value higher then the maximum concurrency you are able to reduce the latency to start working on a next message as by default the worker first reports it is available for work and then gets a new message forwarded by the distributor.
 
-#### Sender side distribution
+#### Distributor causes network/disk congestion
 
-Using [sender side distribution](h/transports/msmq/sender-side-distribution) instead of using the distributor might be a better alternative if you are able to use NServiceBus 6 and is much more suitable for scenarios where IO is the bottleneck. 
+Try to avoid running all distributor nodes on a single machine. Please read our guidance on [distributor deployment configurations](index.md#deploymentconfigurations).
 
-#### Do not run all distributors on a single box
+If a distributor node cannot forward messages fast enough to the workers even though the workers are not hitting any limits then this could be caused because either the network bandwidth isn't sufficient or because the disk where MSMQ is stored on is too slow. An alternative might be using [sender side distribution](h/transports/msmq/sender-side-distribution) instead if you are able to use NServiceBus 6 and is much more suitable for scenarios where IO is the bottleneck where the distributor is more suited where the CPU is the bottleneck.
 
-Distributor endpoints are often deployed on *the distributor machine*. This is one machine that hosts all distributor endpoints. This becomes the bottleneck under load as all messages flow throught this machine. An alternative is to have multiple distributor machines on physically different networks interface cards.
 
-Alternative, when first hosting all endpoints on a single machine do not use the distributor to now run *all* endpoints on multiple workers. First balance your current endpoints by moving endpoints. Eventually you will have only a single endpoint running on a machine. If this machine now becomes your bottleneck then you might first want to upscale this first and if upscaling becomes too costly then make use of the distributor. 
-
-#### Upscaling
+#### Up scaling
 
 The distributor is very chatty. Network latency and bandwidth will lower the overal throughput when the CPU isn't your current bottleneck, using the distributor might not be the ideal solution as using the distributor will result in roughly 4 times the number of send messages thus has a severy impact on your network resources.
+
+
+### SendLocal sends messages via the distributor
+
+This is by design, when a worker uses `SendLocal` this means the message can be processed by any of the worker nodes. We want the backlog of messages on the worker nodes to be very minimal and be at max the number of messages specified as its processing capacity.
 
 
 ### Each worker is getting events directly, bypassing the distributor 

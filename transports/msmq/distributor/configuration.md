@@ -9,23 +9,21 @@ redirects:
  - nservicebus/msmq/distributor/configuration
 ---
 
-## Versions
 
-### NServiceBus 4.2 and below
-
-In Version 4.2 and below Distributor was included in the NServiceBus package.
-
-### NServiceBus 4.3 to 5.0
-
-In Version 4.3 the built-in Distributor has been deprecated. The new dedicated [NServiceBus.Distributor.MSMQ](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) package should be used instead.
-
-### NServiceBus 6.0 and above
-
-Running an embedded distributor process alongside the worker (also known as Master mode) is not supported in Versions 6 and higher. Instead, a stand alone Distributor endpoint running NServiceBus 5 should be used. 
-
-Worker configuration sections like `MasterNodeConfig` are obsoleted and `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor` should be used instead. For more information refer to [Upgrading a Distributor-based scaled out endpoint to Version 6](/samples/scaleout/distributor-upgrade/) documentation.
+partial: versions
 
 ## Distributor configuration
+
+The distributor requires an additional queue where workers can send their status updates. This is the **control** queue. The default **control** address is the endpoint name including the suffix `.distributor.control`.
+
+```
+EndpointName.distributor.control
+```
+
+The distributor stores meta data about the worker availability in the the queue with the suffix `.distributor.storage`.
+
+NOTE: It is perfectly fine for messages to be in there when the system is idle and should be the sum of the capacity of all workers. If each worker had a maximum concurrency level of 8 and you have 4 workers then you will see 32 message in this queue.
+
 
 ### When hosting endpoints in NServiceBus.Host.exe
 
@@ -76,3 +74,31 @@ If self-hosting the endpoint here is the code required to enlist the endpoint wi
 snippet: ConfiguringWorker
 
 Similar to self-hosting, if running NServiceBus prior to Version 6, ensure the `app.config` of the worker contains the `MasterNodeConfig` section to point to the hostname where the distributor process is running.
+
+
+
+## Advanced
+
+### Override distributor queues
+
+The distributor process uses two queues for its runtime operation. The `DataInputQueue` is the queue where the client processes send their messages. The `ControlInputQueue` is the queue where the worker nodes send their control messages.
+
+
+To use values other than the NServiceBus defaults override them, as shown in the `UnicastBusConfig` section below:
+
+```xml
+<UnicastBusConfig DistributorControlAddress="EndpointName.Distributor.Control@MachineWhereDistributorRuns"
+                  DistributorDataAddress="EndpointName@MachineWhereDistributorRuns">
+  <MessageEndpointMappings>
+    <!-- regular entries -->
+  </MessageEndpointMappings>
+</UnicastBusConfig>
+```
+
+
+### Prioritizing on message type
+
+Similar to standard NServiceBus routing, it is not desirable to have high priority messages to get stuck behind lower priority messages, so just as it is possible to have separate NServiceBus processes for different message types, it is also possible to set up different distributor process instances (with separate queues) for various message types.
+
+In this case, name the queues just like the messages. For example, `SubmitPurchaseOrder.StrategicCustomers.Sales`. This is the name of the distributor's data queue and the input queues of each of the workers.
+

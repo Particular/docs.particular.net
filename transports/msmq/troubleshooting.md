@@ -16,6 +16,19 @@ redirects:
 This article details common problems encountered with the MSMQ Transport and how to resolve them.
 
 
+## Worker QMId needs to be unique
+
+Every installation of MSMQ on a Windows machine is represented uniquely by a Queue Manager ID (QMId). The QMId is stored as a key in the registry, `HKEY_LOCAL_MACHINE\Software\Microsoft\MSMQ\Parameters\Machine Cache`. MSMQ uses the QMId to know where it should send acks and replies for incoming messages.
+
+It is very important that all the machines have their own unique QMId. If two or more machines share the same QMId, only one of those machines is able so successfully send and receive messages with MSMQ. Exactly which machine works changes in a seemingly random fashion.
+
+The primary reason for machines ending up with duplicate QMIds is cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049.aspx) tool.
+
+If there are two or more machines with the same QMId reinstall the MSMQ feature to generate a new QMId.
+
+Check out [John Breakwell's blog](https://blogs.msdn.microsoft.com/johnbreakwell/2007/02/06/msmq-prefers-to-be-unique/) for more details.
+
+
 ## Messages stuck or not arriving
 
 MSMQ uses store-and-forward to communicate with remote machines. Messages are stored locally, and then the MSMQ service repeatedly attempts to deliver them to the destination queue on the remote machine.
@@ -25,13 +38,6 @@ Approaches for diagnosing messages stuck in the outgoing queue.
  * Check the **Outgoing Queues** on each server involved, while the problem is occurring. Each item represents a connection to a remote server. Items stuck here represent an inability to transfer messages to the remote server. The **State** and **Connection History** columns may point to a connectivity issue between servers.
  * Check the Microsoft support article [MSMQ service might not send or receive messages after a restart](https://support.microsoft.com/en-us/kb/2554746). This details how an error in how MSMQ binds to IP addresses and ports can cause one server to be unable to validate messages coming from another, causing them to be rejected.
  * If servers are cloned from the same virtual machine image, this causes them to have the same `QMId` in the registry key `HKEY_LOCAL_MACHINE\Software\Microsoft\MSMQ\Parameters\Machine Cache`, which interferes with message delivery. Use the workaround described in [MSMQ prefers to be unique](https://blogs.msdn.microsoft.com/johnbreakwell/2007/02/06/msmq-prefers-to-be-unique/) to reset the `QMId` on an existing machine, but it is preferable to use [Microsoft's Sysprep tool](https://support.microsoft.com/en-us/kb/314828) before capturing the virtual machine image.
-
-
-### Note on MSMQ Distributor
-
-To scale out MSMQ processing, a Distributor node accepts messages in one queue and then distributes it to eligible workers as they come available. This is accomplished by having each worker send a ReadyMessage to the distributor's *control queue* when it is ready for more work, and then the distributor forwards a message to that worker.
-
-The problems outlined above are the leading cause of distributor issues, due to worker's ReadyMessages getting stuck in the workers' outgoing queues unable to reach the distributor or messages stuck in the distributor's outgoing queue unable to reach the workers.
 
 
 ## MessageQueueException: Insufficient resources to perform operation

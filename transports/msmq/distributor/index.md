@@ -18,7 +18,7 @@ The NServiceBus Distributor is similar in behavior to standard [load balancers](
 
 As a standard NServiceBus process, the Distributor maintains all the fault-tolerant and performance characteristics of NServiceBus but is designed to never overwhelm any of the worker nodes.
 
-WARNING: Keep in mind that the Distributor is designed for load balancing within a single site, do not use it between sites. For information on using NServiceBus across multiple physical sites, see [the gateway](/nservicebus/gateway/multi-site-deployments.md).
+WARNING: Keep in mind that the Distributor is designed for *load balancing within a single site*, do not use it between sites. For information on using NServiceBus across multiple physical sites, see [the gateway](/nservicebus/gateway/multi-site-deployments.md).
 
 
 ## How the Distributor works
@@ -56,44 +56,92 @@ WARNING: The default concurrency of the distributor process is set to 1. That me
 
 Increasing the concurrency on the workers might not lead to increased performance if the executed code is multi-threaded, e.g. if the worker does CPU-intensive work using all the available cores such as video encoding.
 
-
-## Routing with the Distributor
-
-The distributor process uses two queues for its runtime operation. The `DataInputQueue` is the queue where the client processes send their messages. The `ControlInputQueue` is the queue where the worker nodes send their control messages.
-
-To use values other than the NServiceBus defaults override them, as shown in the `UnicastBusConfig` section below:
-
-```xml
-<UnicastBusConfig DistributorControlAddress="EndpointName.Distributor.Control@MachineWhereDistributorRuns"
-                  DistributorDataAddress="EndpointName@MachineWhereDistributorRuns">
-  <MessageEndpointMappings>
-    <!-- regular entries -->
-  </MessageEndpointMappings>
-</UnicastBusConfig>
-```
-
-If those settings do not exist, the control queue is assumed as the endpoint name of the worker, concatenated with the `distributor.control@HostWhereDistributorIsRunning` string.
-
-Similar to standard NServiceBus routing, it is not desirable to have high priority messages to get stuck behind lower priority messages, so just as it is possible to have separate NServiceBus processes for different message types, it is also possible to set up different distributor process instances (with separate queues) for various message types.
-
-In this case, name the queues just like the messages. For example, `SubmitPurchaseOrder.StrategicCustomers.Sales`. This is the name of the distributor's data queue and the input queues of each of the workers.
-
-
-## Worker QMId needs to be unique
-
-Every installation of MSMQ on a Windows machine is represented uniquely by a Queue Manager ID (QMId). The QMId is stored as a key in the registry, `HKEY_LOCAL_MACHINE\Software\Microsoft\MSMQ\Parameters\Machine Cache`. MSMQ uses the QMId to know where it should send acks and replies for incoming messages.
-
-It is very important that all the machines have their own unique QMId. If two or more machines share the same QMId, only one of those machines is able so successfully send and receive messages with MSMQ. Exactly which machine works changes in a seemingly random fashion.
-
-The primary reason for machines ending up with duplicate QMIds is cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049.aspx) tool.
-
-If there are two or more machines with the same QMId reinstall the MSMQ feature to generate a new QMId.
-
-Check out [John Breakwell's blog](https://blogs.msdn.microsoft.com/johnbreakwell/2007/02/06/msmq-prefers-to-be-unique/) for more details.
-
-
 ## High availability
 
-If the distributor process goes down, even if its worker nodes remain running, they do not receive any messages. It is important to execute the distributor process on a cluster that has its queues configured as clustered resources.
+If the distributor process goes down, even if its worker nodes remain running, they do not receive any messages. [It is important making sure that the distributor is running in a high-availability configuration](deploying-to-a-cluster.md).
+ server migration.
+
+## Risk on resource IO congestion
 
 The distributor process is disk and network IO restricted. If a single endpoint does not saturate either of these, then it is possible to host multiple distributor processes on a single server.
+
+Make sure you are monitoring your servers using infrastructure monitoring tools.
+
+## Deployment configurations
+
+Very often we see that first thereis a single server and when capacity isn't enough this server is mirrored/cloned with the traditional mindset to create a farm of servers and put the distributor in front as a traditional load-balancer. This often isn't the best way to scale-out and this section gives guidance on possible options with pros and cons.
+
+In most environments there is one server that is hosting multiple endpoints. 
+
+![Single machine configuration](configurations/single-box.png)
+
+If one machine doesn't have enough capacity you can scale-out. Not yet by using the distributor but by moving endpoints and isolating them on their own server. if there is any risk of congestion it is evenly distributed.
+
+![Machine per endpoint](configurations/box-per-endpoint.png)
+
+Eventually you can reach the limits of what a single machine can do, even after scaling up. You can now selectively scale-out an endpoint. The distributor acts like a load-balancer, all messages send to *Endpoint C* will first be send to *Machine Z* and forwarded to workers if available. You will often see that there are performance issues with just a few endpoints. There is no need to scale-out all endpoints, just scale-out the endpoints that need it.
+
+![Scale-out using distributor](configurations/distributor.png)
+
+#### One distributor machine
+
+This is the most common setup we encounter. There is a single distributor machine that hosts all the distributor endpoints.
+
+![The distributor machine](configurations/single-distributor-machine.png)
+
+This configuration has a few pros and cons
+
+- When all endpoints are mirrored, the endpoints that are Idle most of the time which waste RAM resources.
+- Deployment configuration is simple, all machines are configured the same.
+- Every single message will always flow via the *Distributor machine*, this server is now a **single point of failure**. For this reason it is really important to have this configuration deployed on a high-available environment with redundant storage.
+- If all machines have similar specification it would be that the workers are idle and the distributor is busy of vice versa.
+- The deployment is fairly static and there is no room for tuning.
+- Most simplest routing configuration as routes are pretty much the same for all servers and message mappings.
+
+
+Note: This setup is often used when running on bare metal without using virtualization and common when using clustering to achieve high availability.
+
+#### Balanced distributor setup
+
+To mitigate most issues related to network congestion another setup can be to not have a single distributor machine but to deploy distributors across your available servers on the same servers as your workers.
+
+![Distributor and Worker combination](configurations/distributor-worker-combo.png)
+
+This results in the network traffic to be balanced across available servers. You now do not have a single point of failure and this model becomes more interesting with more servers especially if you have more server than you need workers.
+
+Pros and cons:
+
+- The distributor nodes still are not isolated and can result in congestion issues.
+- No single point of failure
+- You can mix and match, no need to have the same amount of workers. For some you do not need the distributor and for others you need workers on most of your servers/
+- Manageable routing configuration, still capable of doing this manually.
+
+
+Note: This setup
+
+#### Single distributor per machine
+
+![Machine per distributor](configurations/machine-per-distributor.png)
+
+Pros and cons:
+
+- This isolates each distributor.
+- There is not a single point of failure for all your endpoints.
+- Still scaling out all endpoints.
+- Manageable routing configuration, still capable of doing this manually.
+- Can still suffer from throughput limitations. In that case [sender side distribution](../sender-side-distribution.md) might be an alternative.
+
+Note: This setup is more common in environments that use virtualization.
+
+
+#### Machine per distributor and per worker
+
+![Machine per distributor and per worker](configurations/machine-per-instance.png)
+
+- Every machine works in complete isolation
+- Every machine can get different specifications
+- Some endpoints do not even require the distributor
+- Complex routing configuration, not suitable to store routes in application configuration files.
+- Can still suffer from throughput limitations. In that case [sender side distribution](../sender-side-distribution.md) might be an alternative.
+
+Note: This setup is **very** suitable for virtualization and in IAAS cloud.
