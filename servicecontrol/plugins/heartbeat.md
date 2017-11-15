@@ -8,6 +8,8 @@ related:
  - servicepulse/intro-endpoints-heartbeats
 ---
 
+WARNING: The following documentation describes deprecated packages ServiceControl.Plugin.Nsb5.Heartbeat and ServiceControl.Plugin.Nsb6.Heartbeat. To learn about the replacement package see [NServiceBus.Heartbeat](/nservicebus/operations/heartbeat.md). To learn how to upgrade consult the [upgrade guide](/nservicebus/upgrades/nservicebus.heartbeat.md).
+
 The Heartbeat plugin enables endpoint health monitoring in ServicePulse. It sends heartbeat messages from the endpoint to the ServiceControl queue. These messages are sent every 10 seconds (by default).
 
 An endpoint that is marked for monitoring (by ServicePulse) will be expected to send a heartbeat message within the specified time interval. As long as a monitored endpoint sends heartbeat messages, it is marked as "active". Marking an endpoint as active means it is able to properly and periodically send messages using the endpoint-defined transport.
