@@ -16,6 +16,6 @@ Following table compares both approaches:
 | Round-robin load balancing                  | Fair load balancing                         |
 
 
-WARNING: A scaled-out endpoint without a Distributor cannot subscribe to events published by an endpoint running Version 5 or lower of NServiceBus, otherwise each event will be delivered to each instance. The workaround is to put a Distributor in front of the scaled-out endpoint. Rrefer to [the distributor sample](/samples/scaleout/distributor/) for details).
+WARNING: A scaled-out endpoint without a Distributor cannot subscribe to events published by an endpoint running Version 5 or lower of NServiceBus, otherwise each event will be delivered to each instance. The workaround is to put a Distributor in front of the scaled-out endpoint. Refer to [the distributor sample](/samples/scaleout/distributor/) for details).
 
 include: sender-side-distribution-with-distributor
