@@ -129,7 +129,7 @@ NOTE: If you already have ServicePulse running on your machine you will need to 
 
 On the ServicePulse Configuration screen ensure that Recoverability is enabled and enter the URL of the ServiceControl instance API. Check the box marked Monitoring and enter the URL of the Monitoring instance API. 
 
-![ServicePulse Installer - ServiceControl configuration](sp-installer-sc-config.png "width=387")
+![ServicePulse Installer - ServiceControl configuration](sp-installer-sc-config.png "width=615")
 
 You can find the URLs for each instance API in the `ServiceControl Management Utility`.
 
