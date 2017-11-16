@@ -7,7 +7,7 @@ tags:
  - Transport
 redirects:
  - nservicebus/msmq/dead-letter-queues
- related:
+related:
  - samples/msmq/dlq-customcheck
 ---
 
