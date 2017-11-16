@@ -59,7 +59,7 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Waiting to receive timeout and reply. Should happen withing 10 seconds");
+        Console.WriteLine("Waiting to receive timeout and reply. Should happen within 10 seconds");
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
         await endpointInstance.Stop()
