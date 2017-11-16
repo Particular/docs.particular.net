@@ -123,7 +123,7 @@ NOTE: Creating the Monitoring instance will also create the monitoring queue if 
 
 [ServicePulse](/servicepulse/) is a web application for production monitoring and recoverability. It connects to a Monitoring instance to display monitoring data and to a ServiceControl instance to display recoverability data.
 
-Download and run the latest [ServicePulse installer](https://github.com/Particular/ServicePulse/releases/download/1.10.0/Particular.ServicePulse-1.10.0.exe). 
+Download and run the latest [ServicePulse installer](https://github.com/Particular/ServicePulse/releases/download/1.10.1/Particular.ServicePulse-1.10.1.exe). 
 
 NOTE: If you already have ServicePulse running on your machine you will need to uninstall it and download the latest version in order to be able to configure ServicePulse to connect to a ServiceControl Monitoring instance.
 
