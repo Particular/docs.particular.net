@@ -23,24 +23,25 @@ In order to run the downloaded sample you will need the following prerequisites.
 
 The sample zip file includes 4 endpoints and the Particular Software Platform components, all of which have been configured to talk to each other using a SQL Server instance.
 
-Once you have downloaded the zip package make sure to **unblock** it
-![Unblock the package](unblock-demo-package.png)
+Once you have downloaded the zip package make sure to **unblock** it:
 
-After unblocking extract it's contents into a folder. For the rest of this tutorial, we will refer to this folder as `MonitoringDemo`.
+![Unblock the package](unblock-demo-package.png "width=401")
+
+After unblocking extract its contents into a folder. For the rest of this tutorial, we will refer to this folder as `MonitoringDemo`.
 
 Open the `MonitoringDemo` folder and double-click on `run.bat`. This script will:
 
 1. Ask you to select a SQL Server to use as a transport. All of the components of the demo communicate by using a shared SQL Server database. You will be prompted to *use an existing SQL Server instance* or have the demo create it's *own dedicated SQL LocalDB instance*.
 2. You will be prompted to run the remaining steps with elevated privileges. This is needed so that processes can bind to their network ports and for SQL database creation.
-2. Creates an LocalDB instance if required.
-2. Creates the SQL database catalog with all of the necessary tables that the demo components will use.
-3. Updates the configuration files for all of the components with the correct connection string details.
-4. Runs ServiceControl components, each in their own window.
+2. Create a LocalDB instance if required.
+2. Create the SQL database catalog with all of the necessary tables that the demo components will use.
+3. Update the configuration files for all of the components with the correct connection string details.
+4. Run ServiceControl components, each in their own window.
   - A ServiceControl instance (binds to port 33533)
   - A Monitoring instance (binds to port 33833)
-5. Runs the sample endpoints, each in their own window
-6. Runs ServicePulse, in it's own window (binds to port 8051)
-7. Opens your default browser to the ServicePulse monitoring tab.
+5. Run the sample endpoints, each in their own window
+6. Run ServicePulse, in it's own window (binds to port 8051)
+7. Open your default browser to the ServicePulse monitoring tab.
 8. Wait for ENTER key, and will quit all processes and optionally removes the created SQL LocalDB instance.
 
 
