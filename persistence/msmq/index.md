@@ -1,6 +1,6 @@
 ---
 title: MSMQ persistence
-summary: MSMQ Persistence Documentation Table of Contents
+summary: MSMQ Subscription Persistence for NServiceBus
 component: MSMQPersistence
 reviewed: 2017-11-16
 ---
