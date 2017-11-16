@@ -74,3 +74,28 @@ The SQS transport uses the default [retries and timeouts](http://docs.aws.amazon
 | `ReadWriteTimeout` | 300s          |
 
 NOTE: NServiceBus will perform [immediate](/nservicebus/recoverability/#immediate-retries) and [delayed](/nservicebus/recoverability/#delayed-retries) retries in addition to retries performed internally by the SQS client.
+
+
+
+
+## Troubleshooting
+
+
+### AmazonSQSException: Request is throttled
+
+When sending messages it can happen that your sending is throttled. When that happens the following exception is logged.
+```
+2017-11-14 23:10:24,314|ERROR|18|NServiceBus.Transports.SQS.MessageDispatcher|Exception from Send.
+Amazon.SQS.AmazonSQSException: Request is throttled. ---> Amazon.Runtime.Internal.HttpErrorResponseException: The remote server returned an error: (403) Forbidden. ---> System.Net.WebException: The remote server returned an error: (403) Forbidden.
+```
+
+When this happens while receiving a message then this can safely be ignored as (recoverability features](/nservicebus/recoverability/) should resolve this. If you are sending messages outside of a receiving message context you will have to be be aware that your send can fail. Especially when sending messages in bulk, specifically in parallel, you can get throttled if the sender has enough resources to suddenly flood the AmazonSQS infrastructure.
+
+A storage query that reads 100,000 items/records and for each a message gets produces and then sending these in parallel is vulneralble to get throttled.
+
+- Limit the amount of concurrent send tasks
+  - Send 100,000 messages of which, for example, max 100 messages in parallel by [using a Semaphore](/nservicebus/handlers/async-handlers?version=core_7#concurrency-large-amount-of-concurrent-message-operations), you still not limit the rate and usually you can still easily get into sending thousands of messages per second.
+- Rate limit the sending
+  - Send messages in a maximum rate like 250 messages per second [using a rate limiter](https://gist.github.com/ramonsmits/a3eeb6277376b48295b206e78a262b92).
+
+
