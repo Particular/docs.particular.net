@@ -37,8 +37,8 @@ Open the `MonitoringDemo` folder and double-click on `run.bat`. This script will
 2. Create the SQL database catalog with all of the necessary tables that the demo components will use.
 3. Update the configuration files for all of the components with the correct connection string details.
 4. Run ServiceControl components, each in their own window.
-  - A ServiceControl instance (binds to port 33533)
-  - A Monitoring instance (binds to port 33833)
+    - A ServiceControl instance (binds to port 33533)
+    - A Monitoring instance (binds to port 33833)
 5. Run the sample endpoints, each in their own window
 6. Run ServicePulse, in it's own window (binds to port 8051)
 7. Open your default browser to the ServicePulse monitoring tab.
