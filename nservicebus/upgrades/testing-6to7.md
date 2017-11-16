@@ -36,7 +36,7 @@ The `ExpectHandleCurrentMessageLater` has been obsoleted as `IMessageHandlerCont
 
 ## WhenHandling
 
-An override of the `WhenHandling` method has been added which accepts a preconstructed message.
+An overload of the `WhenHandling` method has been added which accepts a preconstructed message.
 
 snippet: 6to7-WhenHandling
 
