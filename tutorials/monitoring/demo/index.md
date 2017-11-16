@@ -60,7 +60,7 @@ If you do not have your own SQL Server instance, or you would prefer to keep the
 
 Once everything is running, you will have 4 endpoints which are configured like this:
 
-![Solution Diagram](diagram.svg)
+![Solution Diagram](diagram.svg "width=680")
 
 By default, the ClientUI endpoint sends a steady stream of 1 `PlaceOrder` messages every second. 
 
