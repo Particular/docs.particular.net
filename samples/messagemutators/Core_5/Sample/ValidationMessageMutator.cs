@@ -7,7 +7,8 @@ using NServiceBus.MessageMutator;
 #region ValidationMessageMutator
 
 public class ValidationMessageMutator :
-    IMessageMutator
+    IMutateIncomingMessages,
+    IMutateOutgoingMessages
 {
     static ILog log = LogManager.GetLogger("ValidationMessageMutator");
 

@@ -1,0 +1,1 @@
+NOTE: You could implement `IMessageMutator` instead of implementing both `IMutateIncomingMessages` and `IMutateOutgoingMessages`. The `IMessageMutator` interface is simply a shorthand that combines the other two.

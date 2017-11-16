@@ -1,0 +1,1 @@
+Since the sample uses the default MSMQ transport, this message will fail without the mutator since it would exceed MSMQ's message size limit of 4MB. However, the outgoing transport message mutator compresses it to a size within the MSMQ limit and the message will get to the server.
