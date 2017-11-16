@@ -84,7 +84,7 @@ NOTE: You can use an existing ServiceControl instance if it is version 1.43 or a
 
 In the `ServiceControl Management Utility`, click **+ New** and select **ServiceControl instance** from the list of options.
 
-![ServiceControl Management Utility - Add new ServiceControl instance](scmu-add-new-sc-instance.png)
+![ServiceControl Management Utility - Add new ServiceControl instance](scmu-add-new-sc-instance.png "width=615")
 
 Scroll down to the **Transport Configuration** section. Select the transport that your NServiceBus system runs on. Depending on the transport you may be required to add an additional connection string.
 
@@ -92,7 +92,7 @@ Under **Audit Forwarding** select either On or Off. If you are not currently usi
 
 Click the Add button. Your ServiceControl instance will start and be listed on the main page of the `ServiceControl Management Utility`.
 
-![ServiceControl Management Utility - List instance - ServiceControl instance](scmu-list-sc-instance.png)
+![ServiceControl Management Utility - List instance - ServiceControl instance](scmu-list-sc-instance.png "width=615")
 
 The listing for the ServiceControl instance includes a URL link. This URL will be needed when installing ServicePulse below.
 
@@ -105,13 +105,13 @@ A Monitoring instance collects data from the monitoring queue and aggregates inf
 
 In the `ServiceControl Management Utility`, click **+ New** and select **Monitoring instance** from the list of options.
 
-![ServiceControl Management Utility - Add new Monitoring instance](scmu-add-new-mon-instance.png)
+![ServiceControl Management Utility - Add new Monitoring instance](scmu-add-new-mon-instance.png "width=615")
 
 Scroll down to the **Transport Configuration** section. Select the transport that your NServiceBus system runs on. Depending on the transport selected you may be required to add an additional connection string.
 
 Click the Add button. Your Monitoring instance will start and be listed on the main page of the `ServiceControl Management Utility`.
 
-![ServiceControl Management Utility - List instance - Monitoring instance](scmu-list-mon-instance.png)
+![ServiceControl Management Utility - List instance - Monitoring instance](scmu-list-mon-instance.png "width=615")
 
 The listing for the Monitoring instance includes a URL link. This URL will be needed when installing ServicePulse below.
 
@@ -129,11 +129,11 @@ NOTE: If you already have ServicePulse running on your machine you will need to 
 
 On the ServicePulse Configuration screen ensure that Recoverability is enabled and enter the URL of the ServiceControl instance API. Check the box marked Monitoring and enter the URL of the Monitoring instance API. 
 
-![ServicePulse Installer - ServiceControl configuration](sp-installer-sc-config.png)
+![ServicePulse Installer - ServiceControl configuration](sp-installer-sc-config.png "width=387")
 
 You can find the URLs for each instance API in the `ServiceControl Management Utility`.
 
-![ServiceControl Management Utility - Instance List - Api Addresses Highlighted](scmu-list-api-addresses.png)
+![ServiceControl Management Utility - Instance List - Api Addresses Highlighted](scmu-list-api-addresses.png "width=615")
 
 Launch ServicePulse and navigate to the Monitoring tab.
 
