@@ -18,7 +18,7 @@ This sample shows how to create a custom [message mutator](/nservicebus/pipeline
 ### Executing the sample
 
  1. Run the solution.
- 1. Press 's' in the window to send a valid message. Then press 'e' to send an invalid message. You will get an exception which is expected. The console  output will look something like this:
+ 1. Press 's' in the window to send a valid message. Then press 'e' to send an invalid message. (The exception is expected.) The console output will look something like this:
 
 ```
 Press 's' to send a valid message, press 'e' to send a failed message. To exit, 'q'
@@ -81,7 +81,7 @@ partial: msmq
 
 ## Sending an invalid message
 
-The sample sends a similar message but with data that fails our logical message mutator's validation:
+The sample sends a similar message but with data that fails the logical message mutator's validation:
 
 snippet: SendingLarge
 
