@@ -30,6 +30,11 @@ Nagle's algorithm is a performance optimization for TCP/IP based networks but it
 
 Setting the [Expect100Continue property](https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.expect100continue.aspx) to `false` configures the client to not wait for a 100-Continue response from the server before transmitting data. Waiting for 100-Continue is an optimization to avoid sending larger payloads when the server rejects the request. That optimization isn't necessary for Azure Storage operations and disabling it may result in faster requests.
 
+## Saga Storage Optimizations
+
+### Disabled Secondary Index Scanning When Creating New Sagas
+
+A secondary index record was not created by the persister contained in the `NServiceBus.Azure` package. To provide backwards compatibilty, the `NServiceBus.Persistence.AzureStorage` package performs a full table scan, across all partitions, for secondary index records before creating a new saga. For systems that have only used the `NServiceBus.Persistence.AzureStorage` library, or have verified that all saga instances have a secondary index record, full table scans can be safely disabled by using the [AssumeSecondaryIndicesExist](/persistence/azure-storage/configuration#configuration-properties-saga-configuration) setting.
 
 ## Azure Storage Performance Checklist
 
