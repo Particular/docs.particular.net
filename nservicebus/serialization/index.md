@@ -35,7 +35,7 @@ The [Newtonsoft JSON Serializer](newtonsoft.md) provides an effective general-pu
 
 The default serializer used in NServiceBus projects is the custom [XmlSerializer](xml.md).
 
-NOTE: If you are transitioning to a new serializer then messages that are currently 'in flight' are formatted using the previous format. These messages cannot be deserialized prior to NServiceBus 6. Make sure *all* queues of all endpoints are drained/empty. **This includes Saga Timeout and Deferred messages via timeout persistence.** Live migration is only support from NServiceBus 6 and higher.
+NOTE: If you are transitioning to a new serializer then messages that are currently 'in flight' are formatted using the previous format. These messages cannot be deserialized prior to NServiceBus 6. Make sure *all* queues of all endpoints are drained/empty. **This includes [Saga Timeout](/nservicebus/sagas/timeouts.md) and [Deferred/Delayed](/nservicebus/messaging/delayed-delivery.md) messages via timeout persistence.** Live migration is only support from NServiceBus 6 and higher.
 
 The pages dedicated to particular Serializers show how to configure the endpoint to use each of them. Unless explicitly configured otherwise, NServiceBus will use [XmlSerializer](xml.md) for serializing and deserializing all messages.
 
