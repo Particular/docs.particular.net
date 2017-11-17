@@ -13,4 +13,4 @@ This stand-alone demo contains all of the platform components, preconfigured to 
 
 ### [Setting up monitoring in your own environment](setup/)
 
-A setp-by-step guide that shows how to configure the Particular Service Platform and your solution in order to enable monitoring.
+A step-by-step guide that shows how to configure the Particular Service Platform and your solution in order to enable monitoring.
