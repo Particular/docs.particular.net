@@ -6,8 +6,8 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="6.4.2-*" />
-    <PackageReference Include="NServiceBus.Unity" Version="8.0.0-*" />
-    <PackageReference Include="Unity" Version="5.2.1" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Unity" Version="8.*" />
+    <PackageReference Include="Unity" Version="5.*" />
   </ItemGroup>
 </Project>
