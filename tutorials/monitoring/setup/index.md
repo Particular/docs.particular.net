@@ -71,7 +71,7 @@ In order to configure an environment for monitoring with the Particular Service 
 
 The main ServiceControl installer includes a desktop utility called the `ServiceControl Management Utility` which can be used to create and manage both types of instance.
 
-Download and run the latest [ServiceControl installer](https://github.com/Particular/ServiceControl/releases/download/1.43.0/Particular.ServiceControl-1.43.0.exe).
+Download and run the latest [ServiceControl installer](https://particular.net/start-servicecontrol-download).
 
 NOTE: You should run the latest version of the installer, even if you already have ServiceControl installed. Only versions 1.43 and above of the ServiceControl Management Utility can create and manage Monitoring instances.
 
