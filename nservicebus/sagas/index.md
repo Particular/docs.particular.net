@@ -56,9 +56,42 @@ This interface tells NServiceBus that the saga not only handles `StartOrder`, bu
 partial: at-least-one
 
 
+### Dealing with out of order delivery
+
+NOTE: Always assume that messages can be delivered out of order, e.g. due to invoking the error recovery mechanism, network latency, and/or concurrent message processing.
+
+In case of saga instance creation the out of order delivery can cause a message to be discarded, e.g. if the received message expects a saga instance to exist, but the message creating saga instance has not yet been received or has not yet been processed.
+
+To ensure messages are not discarded when they arrive out of order:
+
+- Let the saga instance be created for all the messages that previously assumed the saga instance would already exist using `IAmStartedBy<T>`, i.e. implement multiple `IAmStartedBy<T>` interfaces for message types handled by that saga.
+- Override the saga not found behavior and throw an exception using `IHandleSagaNotFound` and rely on NServiceBus recoverability mechanisms to retry messages and resolve out of order issues.
+
+
+#### Multiple message types starting a saga
+
+If multiple message types can start a saga, it's necessary to ensure that saga behavior will remain correct for all possible combinations of order in which those messages are received.
+
+Lets assume that initially the assumption was that message `A` will be processed before the message `B`. Often in such situation saga will store some state from the message `A` that saga tries to access when processing message `B`. However, if message `B` is processed first and starts the saga, then the expected state is not updated yet by message `A`. 
+
+Therefore, if a saga can be started by multiple messages, it is necessary to always explicilty verify that saga contains all required information when processing message `B`, rather than just assume that information will always be there. For example, verify that saga data properties contain non null values. Note that this will complicate the design of the saga, but will make it more resilient and will allow to handle it out of order messages correctly.
+
+
+#### Relying on recoverability mechanism
+
+In most scenarios an acceptable solution to deal with out of order message delivery is to simply throw an error when the saga instance does not exist. The message will be automatically retried, which may resolve the issue or will end up in the error queue, from where it can be manually retried.
+
+To override the default saga not found behavior [implement `IHandleSagaNotFound` and throw an exception](saga-not-found.md). 
+
+
 ## Correlating messages to a saga
 
 Correlation is needed in order to find existing saga instances based on data on the incoming message. See [Message Correlation](message-correlation.md) for more details.
+
+
+## Message discard behavior when saga not found
+
+If a message handled by a saga is received, but no related saga instance is found, then by default that message is discarded. Usually that happens when the saga had been already completed when further messages arrive and indeed such messages should be discarded. If a different behavior is expected for specific scenarios, the default behavior [can be modified](saga-not-found.md).
 
 
 ## Ending a long-running process
