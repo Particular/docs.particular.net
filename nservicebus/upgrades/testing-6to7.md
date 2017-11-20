@@ -32,3 +32,11 @@ Note how the `ExpectSagaCompleted` and `ExpectSagaNotCompleted` expectations mus
 ## ExpectHandleCurrentMessageLater
 
 The `ExpectHandleCurrentMessageLater` has been obsoleted as `IMessageHandlerContext.HandleCurrentMessageLater()` has been deprecated in NServiceBus Version 7.
+
+
+## WhenHandling
+
+An overload of the `WhenHandling` method has been added which accepts a preconstructed message.
+
+snippet: 6to7-WhenHandling
+
