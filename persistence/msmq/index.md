@@ -9,4 +9,4 @@ The MSMQ Subscription storage can be used to enable publish/subscribe with MSMQ 
 
 NOTE: This can only be used to store subscriptions. To be able to use sagas, timeouts, deferred messages a different persister is required.
 
-- [How to configure MSMQ Subscription storage](/persistence/msmq/subscription).
+- [How to configure MSMQ Subscription storage](/persistence/msmq/subscription.md).
