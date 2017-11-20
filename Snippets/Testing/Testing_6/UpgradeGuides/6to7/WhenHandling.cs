@@ -14,7 +14,7 @@
             var message = new CompleteSagaMessage();
 
             Test.Saga<MySaga>()
-                .WhenHandling<CompleteSagaMessage>(msg => { /* msg created for you */ })
+                .WhenHandling<CompleteSagaMessage>(msg => { /* msg has already been created */ })
                 .AssertSagaCompletionIs(true);
 
             #endregion
