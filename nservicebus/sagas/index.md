@@ -91,7 +91,7 @@ Correlation is needed in order to find existing saga instances based on data on 
 
 ## Message discard behavior when saga not found
 
-If a message handled by a saga is received, but no related saga instance is found, then by default that message is discarded. Usually that happens when the saga had been already completed when further messages arrive and indeed such messages should be discarded. If a different behavior is expected for specific scenarios, the default behavior [can be modified](nservicebus/sagas/saga-not-found.md).
+If a message handled by a saga is received, but no related saga instance is found, then by default that message is discarded. Usually that happens when the saga had been already completed when further messages arrive and indeed such messages should be discarded. If a different behavior is expected for specific scenarios, the default behavior [can be modified](saga-not-found.md).
 
 
 ## Ending a long-running process
