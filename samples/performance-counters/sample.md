@@ -4,14 +4,14 @@ summary: Using the built in Performance Counters.
 reviewed: 2017-03-17
 component: PerfCounters
 related:
-- nservicebus/operations/performance-counters
+- nservicebus/operations/metrics/performance-counters
 - nservicebus/operations/management-using-powershell
 ---
 
 
 ## Install Counters
 
-Refer to [Performance Counters](/nservicebus/operations/performance-counters.md) to see how to install the performance counters.
+Refer to [Performance Counters](/nservicebus/operations/metrics/performance-counters.md) to see how to install the performance counters.
 
 
 ## Enabling Counters For The Endpoint

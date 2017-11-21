@@ -201,4 +201,4 @@ Now that everything is installed, run the system and open up ServicePulse. In th
 
 - Learn more about [ServiceControl](/servicecontrol/)
 - Learn more about [ServicePulse](/servicepulse/)
-- Learn more about the [NServiceBus.Metrics](/nservicebus/operations/metrics.md) plugin
+- Learn more about the [NServiceBus.Metrics](/nservicebus/operations/metrics/) plugin

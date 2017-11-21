@@ -22,7 +22,7 @@ This sample reports the following metrics to Prometheus:
  * Processing time seconds
 
 
-For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/nservicebus/operations/metrics.md#metrics-captured).
+For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/nservicebus/operations/metrics/#metrics-captured).
 
 
 ## Prerequisites
