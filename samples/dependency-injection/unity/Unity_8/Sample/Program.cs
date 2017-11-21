@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.Practices.Unity;
 using NServiceBus;
+using Unity;
 
 static class Program
 {
