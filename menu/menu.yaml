@@ -509,10 +509,11 @@
       Title: PowerShell
     - Url: nservicebus/operations/metrics
       Title: Metrics
-    - Url: nservicebus/operations/performance-counters
-      Title: Performance Counters
-    - Url: nservicebus/operations/metrics-service-control
-      Title: Metrics Data to ServiceControl
+      Articles:
+      - Url: nservicebus/operations/metrics/performance-counters
+        Title: Performance Counters
+      - Url: nservicebus/operations/metrics/service-control
+        Title: Metrics Data to ServiceControl
     - Url: nservicebus/operations/heartbeat
       Title: Monitoring endpoint heartbeat
     - Url: nservicebus/operations/custom-checks

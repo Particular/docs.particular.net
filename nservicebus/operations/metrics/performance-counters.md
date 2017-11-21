@@ -7,6 +7,7 @@ redirects:
  - nservicebus/monitoring-nservicebus-endpoints
  - nservicebus/operations/monitoring-endpoints
  - nservicebus/operations/fail-or-hang-during-performance-counter-setup
+ - nservicebus/operations/performance-counters
 related:
  - nservicebus/operations
  - nservicebus/recoverability

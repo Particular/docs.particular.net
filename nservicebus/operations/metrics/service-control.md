@@ -7,6 +7,8 @@ related:
  - nservicebus/operations
 related:
  - samples/logging/metrics
+redirects:
+ - nservicebus/operations/metrics-service-control
 ---
 
 
