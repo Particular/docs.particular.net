@@ -6,7 +6,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\Phase1\EndpointOracle\Program.cs">
+    <Compile Include="..\..\Phase1\EndpointMySql\Program.cs">
       <Link>Program.cs</Link>
     </Compile>
   </ItemGroup>
@@ -15,9 +15,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
+    <PackageReference Include="MySql.Data" Version="6.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.*" />
-    <PackageReference Include="Oracle.ManagedDataAccess" Version="12.*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.0.0-*" />
   </ItemGroup>
 </Project>

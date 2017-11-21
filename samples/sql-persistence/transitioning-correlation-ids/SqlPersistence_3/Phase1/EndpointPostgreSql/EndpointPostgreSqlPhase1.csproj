@@ -6,18 +6,13 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\Phase1\EndpointOracle\Program.cs">
-      <Link>Program.cs</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\SharedPhase3.csproj" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
+    <ProjectReference Include="..\Shared\SharedPhase1.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.*" />
-    <PackageReference Include="Oracle.ManagedDataAccess" Version="12.*" />
+    <PackageReference Include="Npgsql" Version="*" />
   </ItemGroup>
 </Project>

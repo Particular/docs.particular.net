@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
@@ -9,10 +9,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
-    <ProjectReference Include="..\Shared\SharedPhase1.csproj" />
+    <ProjectReference Include="..\Shared\SharedPhase1.Core.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.*" />
-    <PackageReference Include="Oracle.ManagedDataAccess" Version="12.*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.1.0-pullrequest0183*" />
+    <PackageReference Include="Npgsql" Version="*" />
   </ItemGroup>
 </Project>
