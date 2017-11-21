@@ -1,5 +1,5 @@
-﻿using Microsoft.Practices.Unity;
-using NServiceBus;
+﻿using NServiceBus;
+using Unity;
 
 class Usage
 {
