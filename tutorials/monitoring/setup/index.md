@@ -180,7 +180,7 @@ An NServiceBus endpoint can be configured to send data about it's health and per
 
 The monitoring queue is created with a new Monitoring instance. By default, it is named `Particular.Monitoring`.
 
-To get an NServiceBus endpoint to send metric data to the monitoring queue you need to install the ServiceControl metrics package:
+To get an NServiceBus endpoint to send metric data to the monitoring queue you need to install the ServiceControl metrics package. From the Visual Studio **Package Manager Console** window, execute the following:
 
 snippet: SetupMonitoring-InstallPackage
 
