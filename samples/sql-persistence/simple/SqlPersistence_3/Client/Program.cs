@@ -23,6 +23,8 @@ class Program
         Console.WriteLine("Press 'S' to send a StartOrder message to the SqlServer endpoint");
         Console.WriteLine("Press 'M' to send a StartOrder message to the MySql endpoint");
         Console.WriteLine("Press 'O' to send a StartOrder message to the Oracle endpoint");
+        Console.WriteLine("Press 'P' to send a StartOrder message to the PostgreSql endpoint");
+
         Console.WriteLine("Press any other key to exit");
 
         while (true)
@@ -54,6 +56,13 @@ class Program
                 await endpointInstance.Send("EndpointOracle", startOrder)
                     .ConfigureAwait(false);
                 Console.WriteLine($"StartOrder Message sent to EndpointOracle with OrderId {orderId}");
+                continue;
+            }
+            if (key.Key == ConsoleKey.P)
+            {
+                await endpointInstance.Send("EndpointPostgreSql", startOrder)
+                    .ConfigureAwait(false);
+                Console.WriteLine($"StartOrder Message sent to EndpointPostgreSql with OrderId {orderId}");
                 continue;
             }
             break;
