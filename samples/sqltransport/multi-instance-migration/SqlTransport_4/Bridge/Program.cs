@@ -27,7 +27,7 @@ namespace Bridge
                         t => t.ConnectionString(ReceiverConnectionString));
 
             bridgeConfig.AutoCreateQueues();
-            bridgeConfig.UseSubscriptionPersistece<SqlPersistence>((e, p) =>
+            bridgeConfig.UseSubscriptionPersistence<SqlPersistence>((e, p) =>
             {
                 p.ConnectionBuilder(() => new SqlConnection(BridgeConnectionString));
                 p.SqlDialect<SqlDialect.MsSqlServer>();
