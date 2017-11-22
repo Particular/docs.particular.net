@@ -23,7 +23,7 @@ WARNING: Keep in mind that the Distributor is designed for *load balancing withi
 
 ## How the Distributor works
 
-Worker nodes send messages to the distributor process, indicating when they are ready for work. These messages arrive at the distributor via a separate 'control' queue:
+Worker nodes send messages to the distributor process, indicating when they are ready for accepting work. These messages arrive at the distributor via a separate 'control' queue:
 
 ![worker registration](how-distributor-works-1.png)
 
@@ -48,100 +48,112 @@ For more information about Pub/Sub in a Distributor scenario see the [Distributo
 
 For each message being processed, the distributor process performs a few additional operations: it receives a ready message from a Worker, sends the work message to the Worker and receives a ready message post processing. That means that using Distributor introduces a certain processing overhead, that is independent of how much work is done. Therefore the Distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short-lived units of work (a quick read from the database and dispatching a message using `Bus.Send` or  `Bus.Publish`).
 
-To get a sense of the expected performance take maximum MSMQ throughput of a given machine (e.g. by running NServiceBus with `NOOP` handlers) and divide it by 4.
+To get a sense of the expected performance take the maximum MSMQ throughput of a given machine (e.g. by running NServiceBus with `NOOP` handlers) and divide it by 4.
 
-If scaling out small units of work is required consider splitting the handlers into smaller vertical slices of functionality and deploying them to dedicated endpoints.
+If scaling out small units of work is required, consider splitting the handlers into smaller vertical slices of functionality and deploying them to dedicated endpoints.
 
 WARNING: The default concurrency of the distributor process is set to 1. That means the messages are processed sequentially. Make sure that the [**MaximumConcurrencyLevel** has been increased in the configuration](/nservicebus/operations/tuning.md#tuning-concurrency) on the endpoint that runs distributor process. A good rule of thumb to set this value to 2-4 times the amount of cores of a given machine. While fine-tuning, inspect disk, CPU and network resources until one of these reaches its maximum capacity.
 
 Increasing the concurrency on the workers might not lead to increased performance if the executed code is multi-threaded, e.g. if the worker does CPU-intensive work using all the available cores such as video encoding.
 
+
 ## High availability
 
-If the distributor process goes down, even if its worker nodes remain running, they do not receive any messages. [It is important making sure that the distributor is running in a high-availability configuration](deploying-to-a-cluster.md).
- server migration.
+If the distributor process goes down, even if its worker nodes remain running, they do not receive any messages. Therefore it is important to [ensure that the distributor is running in a high-availability configuration](deploying-to-a-cluster.md).
+
 
 ## Risk on resource IO congestion
 
-The distributor process is disk and network IO restricted. If a single endpoint does not saturate either of these, then it is possible to host multiple distributor processes on a single server.
+The distributor process is restricted by hardware parameters such as disk and network IO. If a single endpoint does not fully utilize either of these parameters, then it is possible to host multiple distributor processes on a single server.
 
-Make sure you are monitoring your servers using infrastructure monitoring tools.
+Ensure you are monitoring your servers using infrastructure monitoring tools to verify if hardware isn't becoming a bottleneck.
+
 
 ## Deployment configurations
 
-Very often we see that first thereis a single server and when capacity isn't enough this server is mirrored/cloned with the traditional mindset to create a farm of servers and put the distributor in front as a traditional load-balancer. This often isn't the best way to scale-out and this section gives guidance on possible options with pros and cons.
+Typically, in the beginning the system is deployed to a single server only. When its capacity isn't enough then this server is mirrored/cloned to create a farm of servers, where the distributor is put in front to act as a load-balancer. However, in case of distributor this usually isn't the best way to scale-out.
 
-In most environments there is one server that is hosting multiple endpoints. 
+In this section we describe available options and cover their pros and cons.
+
+In most environments, multiple endpoints are hosted on a single server: 
 
 ![Single machine configuration](configurations/single-box.png)
 
-If one machine doesn't have enough capacity you can scale-out. Not yet by using the distributor but by moving endpoints and isolating them on their own server. if there is any risk of congestion it is evenly distributed.
+If one machine doesn't have enough capacity you can scale-out by moving endpoints to separate servers. Even if there is any risk of congestion, it is then evenly distributed:
 
 ![Machine per endpoint](configurations/box-per-endpoint.png)
 
-Eventually you can reach the limits of what a single machine can do, even after scaling up. You can now selectively scale-out an endpoint. The distributor acts like a load-balancer, all messages send to *Endpoint C* will first be send to *Machine Z* and forwarded to workers if available. You will often see that there are performance issues with just a few endpoints. There is no need to scale-out all endpoints, just scale-out the endpoints that need it.
+Eventually you can reach the limits of what a single machine can do, even after scaling up. You can now selectively scale-out an endpoint. The distributor acts like a load-balancer, all messages sent to *Endpoint C* will first be send to *Machine Z* and forwarded to workers according to their availability. 
+
+Often the load is not even across all endpoints, so performance problems are related to just a few of the endpoints. There is no need to scale-out all endpoints, just scale-out the endpoints that need it:
 
 ![Scale-out using distributor](configurations/distributor.png)
 
+
 #### One distributor machine
 
-This is the most common setup we encounter. There is a single distributor machine that hosts all the distributor endpoints.
+This is the most common setup for systems using the distributor. There is a single distributor machine that hosts all the distributor endpoints:
 
 ![The distributor machine](configurations/single-distributor-machine.png)
 
-This configuration has a few pros and cons
-
-- When all endpoints are mirrored, the endpoints that are Idle most of the time which waste RAM resources.
-- Deployment configuration is simple, all machines are configured the same.
-- Every single message will always flow via the *Distributor machine*, this server is now a **single point of failure**. For this reason it is really important to have this configuration deployed on a high-available environment with redundant storage.
-- If all machines have similar specification it would be that the workers are idle and the distributor is busy of vice versa.
-- The deployment is fairly static and there is no room for tuning.
-- Most simplest routing configuration as routes are pretty much the same for all servers and message mappings.
-
-
-Note: This setup is often used when running on bare metal without using virtualization and common when using clustering to achieve high availability.
-
-#### Balanced distributor setup
-
-To mitigate most issues related to network congestion another setup can be to not have a single distributor machine but to deploy distributors across your available servers on the same servers as your workers.
-
-![Distributor and Worker combination](configurations/distributor-worker-combo.png)
-
-This results in the network traffic to be balanced across available servers. You now do not have a single point of failure and this model becomes more interesting with more servers especially if you have more server than you need workers.
 
 Pros and cons:
 
-- The distributor nodes still are not isolated and can result in congestion issues.
-- No single point of failure
-- You can mix and match, no need to have the same amount of workers. For some you do not need the distributor and for others you need workers on most of your servers/
-- Manageable routing configuration, still capable of doing this manually.
+- Deployment configuration is simple, all machines are configured in the same way.
+- The routing configuration is simple, as routes are the same for all servers and message mappings.
+- Every single message will always flow via the *Distributor machine*, this server is now a **single point of failure**. For this reason it is really important to have this configuration deployed on a high-available environment with redundant storage.
+- When all endpoints are mirrored, the endpoints that have lower load can be idle and unnecessarily waste RAM resources.
+- If all machines have similar parameters, then resources won't be optimally utilized, i.e. either the workers will be idle while the distributor is very busy or vice versa.
+- The deployment is fairly static and there is no room for tuning.
+
+Note: This setup is often used in environments that are not heavily using virtualization and common when using clustering to achieve high availability.
 
 
-Note: This setup
+#### Balanced distributor setup
+
+To mitigate most issues related to network congestion, the potential solution is to deploy distributors across the available servers together with workers:
+
+![Distributor and Worker combination](configurations/distributor-worker-combo.png)
+
+This results in the network traffic to be balanced across available servers. There is not a single point of failure and this model becomes more appealing with more servers, especially if you have more servers than workers.
+
+Pros and cons:
+
+- There's no single point of failure.
+- The distributor nodes still are not fully isolated which can result in congestion issues.
+- The routing configuration is a bit more complex than in the setup with a single distributor machine, but can still be managed manually.
+- There's no need to have the same amount of workers and distributors on each machine, the number of endpoints/processes can be adjusted to optimally utilize the capacity of the hardware.
+
 
 #### Single distributor per machine
+
+In this setup every distributor endpoint is deployed to a separate machine:
 
 ![Machine per distributor](configurations/machine-per-distributor.png)
 
 Pros and cons:
 
-- This isolates each distributor.
+- Every distributor endpoint is isolated.
 - There is not a single point of failure for all your endpoints.
-- Still scaling out all endpoints.
-- Manageable routing configuration, still capable of doing this manually.
-- Can still suffer from throughput limitations. In that case [sender side distribution](../sender-side-distribution.md) might be an alternative.
+- All endpoints can be scaled out.
+- The routing configuration is a bit more complex than in previous setups, but can still be managed manually.
+- Can suffer from throughput limitations. In that case [sender side distribution](../sender-side-distribution.md) might be an alternative.
 
 Note: This setup is more common in environments that use virtualization.
 
 
 #### Machine per distributor and per worker
 
+In this setup every distributor and worker endpoint is deployed to a separate machine:
+
 ![Machine per distributor and per worker](configurations/machine-per-instance.png)
 
-- Every machine works in complete isolation
-- Every machine can get different specifications
-- Some endpoints do not even require the distributor
-- Complex routing configuration, not suitable to store routes in application configuration files.
+Pros and cons:
+
+- Every machine works in complete isolation.
+- Every machine can have different parameters, appropriate for the given endpoint.
+- Some endpoints do not require the distributor.
+- The routing configuration is really complex, it is not suitable to store routes in application configuration files.
 - Can still suffer from throughput limitations. In that case [sender side distribution](../sender-side-distribution.md) might be an alternative.
 
-Note: This setup is **very** suitable for virtualization and in IAAS cloud.
+Note: This setup is especially appropriate for virtualized environments and in IAAS cloud.

@@ -26,7 +26,7 @@ The primary reason for machines ending up with duplicate QMIds is cloning of vir
 
 If there are two or more machines with the same QMId reinstall the MSMQ feature to generate a new QMId.
 
-Check out [John Breakwell's blog](https://blogs.msdn.microsoft.com/johnbreakwell/2007/02/06/msmq-prefers-to-be-unique/) for more details.
+Read [this blog post](https://blogs.msdn.microsoft.com/johnbreakwell/2007/02/06/msmq-prefers-to-be-unique/) for more details.
 
 
 ## Messages stuck or not arriving
