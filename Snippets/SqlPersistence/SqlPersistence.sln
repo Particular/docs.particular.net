@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_All", "SqlPe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_3", "SqlPersistence_3\SqlPersistence_3.csproj", "{8CEF80B8-F46F-4ADD-A6B9-B83F74815974}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_3.1", "SqlPersistence_3.1\SqlPersistence_3.1.csproj", "{578C95EA-137D-480F-AFB1-9E9BBE5B8D38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_4", "SqlPersistence_4\SqlPersistence_4.csproj", "{578C95EA-137D-480F-AFB1-9E9BBE5B8D38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

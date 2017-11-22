@@ -6,10 +6,11 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="3.*" />
     <PackageReference Include="NUnit" Version="3.*" />
+    <PackageReference Include="Npgsql" Version="*" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />

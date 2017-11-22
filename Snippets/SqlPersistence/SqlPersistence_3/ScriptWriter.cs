@@ -44,7 +44,8 @@ public class ScriptWriter
         {
             new SqlDialect.MsSqlServer(),
             new SqlDialect.MySql(),
-            new SqlDialect.Oracle()
+            new SqlDialect.Oracle(),
+            new SqlDialect.PostgreSql()
         };
 
         foreach (var dialect in dialects)
@@ -77,17 +78,16 @@ public class ScriptWriter
                 new MessageType("MessageTypeName", new Version())
             }));
 
-            var sagaCommandBuilder = new SagaCommandBuilder(dialect);
-            Write(directory, dialect, "SagaComplete", sagaCommandBuilder.BuildCompleteCommand("EndpointName_SagaName"));
-            Write(directory, dialect, "SagaGetByProperty", sagaCommandBuilder.BuildGetByPropertyCommand("PropertyName", "EndpointName_SagaName"));
-            Write(directory, dialect, "SagaGetBySagaId", sagaCommandBuilder.BuildGetBySagaIdCommand("EndpointName_SagaName"));
-            Write(directory, dialect, "SagaSave", sagaCommandBuilder.BuildSaveCommand("CorrelationProperty", "TransitionalCorrelationProperty", "EndpointName_SagaName"));
-            Write(directory, dialect, "SagaUpdate", sagaCommandBuilder.BuildUpdateCommand("TransitionalCorrelationProperty", "EndpointName_SagaName"));
+            Write(directory, dialect, "SagaComplete", dialect.BuildCompleteCommand("EndpointName_SagaName"));
+            Write(directory, dialect, "SagaGetByProperty", dialect.BuildGetByPropertyCommand("PropertyName", "EndpointName_SagaName"));
+            Write(directory, dialect, "SagaGetBySagaId", dialect.BuildGetBySagaIdCommand("EndpointName_SagaName"));
+            Write(directory, dialect, "SagaSave", dialect.BuildSaveCommand("CorrelationProperty", "TransitionalCorrelationProperty", "EndpointName_SagaName"));
+            Write(directory, dialect, "SagaUpdate", dialect.BuildUpdateCommand("TransitionalCorrelationProperty", "EndpointName_SagaName"));
 
             // since we don't have doco on oracle saga finders
             if (!(dialect is SqlDialect.Oracle))
             {
-                Write(directory, dialect, "SagaSelect", sagaCommandBuilder.BuildSelectFromCommand("EndpointName_SagaName"));
+                Write(directory, dialect, "SagaSelect", dialect.BuildSelectFromCommand("EndpointName_SagaName"));
             }
         }
     }
