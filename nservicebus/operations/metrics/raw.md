@@ -1,6 +1,5 @@
 ---
 title: Consume raw data from Metrics
-summary: Consume raw data from Metrics.
 reviewed: 2017-11-22
 component: Metrics
 related:

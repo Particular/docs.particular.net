@@ -1,6 +1,5 @@
 ---
 title: Reporting Metrics data to ServiceControl
-summary: Reporting Metrics data to ServiceControl.
 reviewed: 2017-11-22
 component: MetricsServiceControl
 related:
