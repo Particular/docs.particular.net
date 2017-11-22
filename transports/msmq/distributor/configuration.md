@@ -14,7 +14,7 @@ partial: versions
 
 ## Distributor configuration
 
-The distributor requires an additional queue where workers can send their status updates. This is the **control** queue. The default **control** address is the endpoint name including the suffix `.distributor.control`.
+The distributor requires an additional queue where workers can send their status updates. This is the **control** queue. The default address is `endpoint_name.distributor.control`.
 
 ```
 EndpointName.distributor.control
