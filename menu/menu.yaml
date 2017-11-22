@@ -511,9 +511,9 @@
       Title: Metrics
       Articles:
       - Url: nservicebus/operations/metrics/performance-counters
-        Title: Performance Counters
+        Title: Configure reporting to Performance Counters
       - Url: nservicebus/operations/metrics/service-control
-        Title: Metrics Data to ServiceControl
+        Title: Configure reporting to Service Control
     - Url: nservicebus/operations/heartbeat
       Title: Monitoring endpoint heartbeat
     - Url: nservicebus/operations/custom-checks
