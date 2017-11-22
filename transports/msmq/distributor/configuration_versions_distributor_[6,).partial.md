@@ -6,4 +6,4 @@ NOTE: This endpoints only acts like a load balancer, it does NOT require *any* h
 
 ## Upgrading to NServiceBus 6
 
-Worker configuration sections like `MasterNodeConfig` are obsoleted in favor or our code API `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor`. For more information refer to [Upgrading a Distributor-based scaled out endpoint to Version 6](/samples/scaleout/distributor-upgrade/) documentation.
+Worker configuration sections like `MasterNodeConfig` are obsoleted in favor or the code API `endpointConfiguraiton.EnlistWithLegacyMSMQDistributor`. For more information refer to the [Upgrading a Distributor-based scaled out endpoint to Version 6](/samples/scaleout/distributor-upgrade/) article.
