@@ -30,12 +30,12 @@ Monitor server's CPU, DISK, RAM and network resources to determine the optimium 
 
 #### Enable prefetching
 
-When your workers are using NServiceBus 6, then it is possible to configure the worker's capacity independently from the maximum concurrency. By assigning a capacity value higher than the maximum concurrency it is possible to reduce the latency before the worker processes a next message. By default the worker first reports it is available for work and only then gets a new message forwarded by the distributor.
+When workers are using NServiceBus 6, then it is possible to configure the worker's capacity independently from the maximum concurrency. By assigning a capacity value higher than the maximum concurrency it is possible to reduce the latency before the worker processes a next message. By default the worker first reports it is available for work and only then gets a new message forwarded by the distributor.
 
 
 #### Scale up
 
-If the CPU is not the bottleneck, then network latency and bandwidth will limit the overall throughput. Using the distributor might not be the ideal solution in such situation, as using the distributor will result in roughly 4 times the number of messages sent for each piece of work thus it will have an impact on your network resources.
+If the CPU is not the bottleneck, then network latency and bandwidth will limit the overall throughput. Using the distributor might not be the ideal solution in such situation, as using the distributor will result in roughly 4 times the number of messages sent for each piece of work thus it will have an impact on the network resources.
 
 Instead, in some situations it may be more appropriate to simply scale up hardware instead of using distributor and scale-out.
 
