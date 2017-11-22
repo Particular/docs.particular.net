@@ -22,7 +22,7 @@ EndpointName.distributor.control
 
 The distributor stores metadata about the worker availability in the the queue with the suffix `.distributor.storage`.
 
-NOTE: It is a valid situation for messages to be in the queue when the system is idle. The number of the messages should be the sum of the capacity of all workers. If each worker had a maximum concurrency level of 8 and you have 4 workers then you will see 32 message in the queue.
+NOTE: It is a valid situation for messages to be in the queue when the system is idle. The number of the messages should be the sum of the capacity of all workers. If each worker had a maximum concurrency level of 8 and there are 4 workers then there will be 32 message in the queue.
 
 
 ### When hosting endpoints in NServiceBus.Host.exe
