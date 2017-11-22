@@ -15,4 +15,7 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UpgradeGuides\" />
+  </ItemGroup>
 </Project>
