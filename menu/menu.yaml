@@ -514,6 +514,8 @@
         Title: Configure reporting to Performance Counters
       - Url: nservicebus/operations/metrics/service-control
         Title: Configure reporting to Service Control
+      - Url: nservicebus/operations/metrics/raw
+        Title: Consume raw data from Metrics
     - Url: nservicebus/operations/heartbeat
       Title: Monitoring endpoint heartbeat
     - Url: nservicebus/operations/custom-checks
