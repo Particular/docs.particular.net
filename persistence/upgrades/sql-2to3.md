@@ -6,7 +6,6 @@ component: SqlPersistence
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
- - 7
 ---
 
 

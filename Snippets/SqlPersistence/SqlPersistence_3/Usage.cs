@@ -4,7 +4,10 @@ using System.Globalization;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Npgsql;
+using NpgsqlTypes;
 using NServiceBus;
+using NServiceBus.Persistence;
 using NServiceBus.Persistence.Sql;
 
 class Usage
@@ -81,6 +84,45 @@ class Usage
         #endregion
     }
 
+    void PostgreSqlUsage(EndpointConfiguration endpointConfiguration)
+    {
+        #region SqlPersistenceUsagePostgreSql
+
+        var connection = "Server=localhost;Port=5432;Database=dbname;User Id=user;Password=pass;";
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var subscriptions = persistence.SubscriptionSettings();
+        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
+        var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
+        dialect.JsonBParameterModifier(
+            modifier: parameter =>
+            {
+                var npgsqlParameter = (NpgsqlParameter)parameter;
+                npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
+            });
+        persistence.ConnectionBuilder(
+            connectionBuilder: () =>
+            {
+                return new NpgsqlConnection(connection);
+            });
+
+        #endregion
+    }
+    void JsonBParameterModifier(EndpointConfiguration endpointConfiguration)
+    {
+        #region JsonBParameterModifier
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
+        dialect.JsonBParameterModifier(
+            modifier: parameter =>
+            {
+                var npgsqlParameter = (NpgsqlParameter)parameter;
+                npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
+            });
+
+        #endregion
+    }
+
     void OracleUsage(EndpointConfiguration endpointConfiguration)
     {
         #region SqlPersistenceUsageOracle
@@ -114,6 +156,22 @@ class Usage
                     DateTimeStyles = DateTimeStyles.RoundtripKind
                 }
             }
+        };
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var sagaSettings = persistence.SagaSettings();
+        sagaSettings.JsonSettings(settings);
+
+        #endregion
+    }
+
+    void PostgresTypeNameHandling(EndpointConfiguration endpointConfiguration)
+    {
+        #region PostgresTypeNameHandling
+
+        var settings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto,
+            MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead
         };
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var sagaSettings = persistence.SagaSettings();
@@ -244,6 +302,35 @@ class Usage
         #region ExecuteScriptsMySql
 
         using (var connection = new MySqlConnection("ConnectionString"))
+        {
+            connection.Open();
+            using (var transaction = connection.BeginTransaction())
+            {
+                foreach (var createScript in Directory.EnumerateFiles(
+                    path: scriptDirectory,
+                    searchPattern: "*_Create.sql",
+                    searchOption: SearchOption.AllDirectories))
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandText = File.ReadAllText(createScript);
+                        var parameter = command.CreateParameter();
+                        parameter.ParameterName = "tablePrefix";
+                        parameter.Value = tablePrefix;
+                        command.Parameters.Add(parameter);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                transaction.Commit();
+            }
+        }
+
+        #endregion
+
+        #region ExecuteScriptsPostgreSql
+
+        using (var connection = new NpgsqlConnection("ConnectionString"))
         {
             connection.Open();
             using (var transaction = connection.BeginTransaction())

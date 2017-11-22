@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net461</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <ProjectReference Include="..\ServerShared\ServerShared.csproj" />
+    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.0.0-*" />
+    <PackageReference Include="npgsql" Version="3.*" />
+  </ItemGroup>
+</Project>
