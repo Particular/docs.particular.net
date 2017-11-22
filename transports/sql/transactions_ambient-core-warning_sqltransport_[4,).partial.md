@@ -1,5 +1,5 @@
 
-#### .NET Core 2.0 unsupported
+#### Transaction scope mode is not supported in .NET Core 2.0 
 
 The default transaction mode, i.e. transaction scope, is currently not supported in .NET Core 2.0. The attempt to use it will result in the following exception:
 
