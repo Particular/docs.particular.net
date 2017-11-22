@@ -2,26 +2,13 @@
 title: Metrics
 summary: Measuring the performance and health of an endpoint.
 reviewed: 2017-11-22
-component: Metrics
 related:
  - nservicebus/operations
 related:
  - samples/logging/metrics
 ---
 
-The `NServiceBus.Metrics` package can be used to collect information and measure endpoint health and performance. When a system is broken down into multiple processes, each with its own queue, then bottlenecks may be identified by tracking:
-
- * the number of messages in each queue
- * the incoming rate of messages for each queue
- * the processing rate for each queue.
-
-
-## Enabling NServiceBus.Metrics
-
-snippet: Metrics-Enable
-
-partial: reporting
-
+Gathering metrics is important to know how a system works and if it works properly. When a system is broken down into multiple processes, each with its own queue, gathering and reporting metrics becomes vital. Below, there's a list of metrics that are captured and reported by NServiceBus.
 
 ## Metrics captured
 
