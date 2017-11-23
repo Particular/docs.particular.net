@@ -1026,6 +1026,18 @@
       Articles:
       - Title: Expose internal database
         Url: servicecontrol/use-ravendb-studio
+  - Title: Monitoring instances
+    Url: servicecontrol/monitoring-instances
+    Articles:
+      - Title: Installation
+        Url: servicecontrol/monitoring-instances/installation
+        Articles:
+          - Title: Managing via Powershell
+            Url: servicecontrol/monitoring-instances/installation/installation-powershell
+          - Title: Settings
+            Url: servicecontrol/monitoring-instances/installation/creating-config-file
+          - Title: Configure the URI
+            Url: servicecontrol/monitoring-instances/installation/setting-custom-hostname
   - Title: Integration
     Url: servicecontrol/integration
     Articles:
