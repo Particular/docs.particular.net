@@ -51,7 +51,7 @@ Another alternative is using [sender side distribution](/transports/msmq/sender-
 
 ### SendLocal sends messages via the distributor
 
-This is by design, when a worker uses `SendLocal` this means the message can be processed by any of the worker nodes. We want the backlog of messages on the worker nodes to be minimal and be at a maximum equal to the number of messages specified as its processing capacity.
+This is by design, when a worker uses `SendLocal` this means the message can be processed by any of the worker nodes. The backlog of messages on the worker nodes should be minimal and be at a maximum equal to the number of messages specified as its processing capacity.
 
 
 ### Each worker is getting events directly, bypassing the distributor 
