@@ -56,7 +56,7 @@ Overriding endpoint name using the `EndpointName` attribute or `DefineEndpointNa
 
 Defining endpoint SLA via the `EndpointSLA` attribute is no longer supported. 
 
-Install the `NServiceBus.WindowsPerformanceCounters` package and follow the [configuration instructions](/nservicebus/operations/performance-counters.md).
+Install the `NServiceBus.WindowsPerformanceCounters` package and follow the [configuration instructions](/nservicebus/operations/metrics/performance-counters.md).
 
 
 #### Executing custom code when endpoint starts and stops

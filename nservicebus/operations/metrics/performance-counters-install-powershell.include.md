@@ -1,6 +1,6 @@
 ## Installing Counters
 
-The NServiceBus Performance counters can be installed using the [NServiceBus PowerShell tools](management-using-powershell.md).
+The NServiceBus Performance counters can be installed using the [NServiceBus PowerShell tools](/nservicebus/operations/management-using-powershell.md).
 
 ```ps
 Import-Module NServiceBus.PowerShell

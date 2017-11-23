@@ -58,7 +58,7 @@ The path calculation is performed relative to the current project directory. So,
 
 ### Script Usage
 
-The above task takes preconfigured values and based on configured [Metrics](metrics.md) generated PowerShell and/or cs files containing code creating performance counters. After running that task to create performance counters the following calls have to be made with elevated permissions:
+The above task takes preconfigured values and based on configured [Metrics](.) generated PowerShell and/or cs files containing code creating performance counters. After running that task to create performance counters the following calls have to be made with elevated permissions:
 
 ```cs
 CounterCreator.Create();

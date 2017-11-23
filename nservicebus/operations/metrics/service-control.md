@@ -1,12 +1,13 @@
 ---
-title: Metrics data to ServiceControl
-summary: Reporting metrics to ServiceControl.
-reviewed: 2017-10-25
+title: Reporting Metrics data to ServiceControl
+reviewed: 2017-11-22
 component: MetricsServiceControl
 related:
  - nservicebus/operations
 related:
  - samples/logging/metrics
+redirects:
+ - nservicebus/operations/metrics-service-control
 ---
 
 

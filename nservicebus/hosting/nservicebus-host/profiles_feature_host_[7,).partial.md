@@ -1,1 +1,1 @@
- * `PerformanceCounters` turns on the [NServiceBus performance counters](/nservicebus/operations/performance-counters.md).
+ * `PerformanceCounters` turns on the [NServiceBus performance counters](/nservicebus/operations/metrics/performance-counters.md).

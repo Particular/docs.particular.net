@@ -1,6 +1,6 @@
 ## Performance Monitor Users local security group
 
-When [running installers](installers.md) the service account will be automatically added to the local Performance Monitor Users group if executed with elevated privileges.
+When [running installers](/nservicebus/operations/installers.md) the service account will be automatically added to the local Performance Monitor Users group if executed with elevated privileges.
 
 
 ## System.InvalidOperationException

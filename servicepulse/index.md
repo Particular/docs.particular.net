@@ -5,7 +5,7 @@ component: ServicePulse
 related:
 - servicecontrol/setting-custom-hostname
 - servicecontrol/plugins
-- nservicebus/operations/performance-counters
+- nservicebus/operations/metrics/performance-counters
 ---
 
 include: servicepulse

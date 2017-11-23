@@ -392,7 +392,7 @@
 
 - Key: MetricsServiceControl
   Name: Metrics.ServiceControl
-  DocoUrl: nservicebus/operations/metrics-service-control
+  DocoUrl: nservicebus/operations/metrics/service-control
   GitHubOwner: Particular/metrics-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.ServiceControl
@@ -599,7 +599,7 @@
 
 - Key: PerfCounters
   Name: Performance Counters
-  DocoUrl: nservicebus/operations/performance-counters
+  DocoUrl: nservicebus/operations/metrics/performance-counters
   Category: Other
   GitHubOwner: Particular/metrics-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.PerformanceCounters
