@@ -1,27 +1,42 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sender", "Sender\Sender.csproj", "{B58159EB-9EFD-443F-A80E-8C90B0AF1907}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endpoint.NHibernate", "Endpoint.NHibernate\Endpoint.NHibernate.csproj", "{1EEC6A8C-DB3C-4F20-93CE-5004BF16AD7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver", "Receiver\Receiver.csproj", "{1EEC6A8C-DB3C-4F20-93CE-5004BF16AD7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messages", "Messages\Messages.csproj", "{BF92D39E-42F6-44E9-8F7F-819993235621}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{BF92D39E-42F6-44E9-8F7F-819993235621}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{D3A62F4C-4DC1-4DA7-8405-223FF3A341D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endpoint.SqlPersistence", "Endpoint.SqlPersistence\Endpoint.SqlPersistence.csproj", "{4705F4AF-7E82-4DE6-A427-8CBF35F8D048}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B58159EB-9EFD-443F-A80E-8C90B0AF1907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B58159EB-9EFD-443F-A80E-8C90B0AF1907}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EEC6A8C-DB3C-4F20-93CE-5004BF16AD7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EEC6A8C-DB3C-4F20-93CE-5004BF16AD7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EEC6A8C-DB3C-4F20-93CE-5004BF16AD7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EEC6A8C-DB3C-4F20-93CE-5004BF16AD7F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BF92D39E-42F6-44E9-8F7F-819993235621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BF92D39E-42F6-44E9-8F7F-819993235621}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF92D39E-42F6-44E9-8F7F-819993235621}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF92D39E-42F6-44E9-8F7F-819993235621}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3A62F4C-4DC1-4DA7-8405-223FF3A341D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A62F4C-4DC1-4DA7-8405-223FF3A341D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A62F4C-4DC1-4DA7-8405-223FF3A341D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A62F4C-4DC1-4DA7-8405-223FF3A341D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4705F4AF-7E82-4DE6-A427-8CBF35F8D048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4705F4AF-7E82-4DE6-A427-8CBF35F8D048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4705F4AF-7E82-4DE6-A427-8CBF35F8D048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4705F4AF-7E82-4DE6-A427-8CBF35F8D048}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8FAE114A-700C-4161-997B-14C2431526D3}
 	EndGlobalSection
 EndGlobal

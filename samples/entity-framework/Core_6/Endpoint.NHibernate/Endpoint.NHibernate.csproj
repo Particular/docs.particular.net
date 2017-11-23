@@ -6,7 +6,10 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+    <PackageReference Include="EntityFramework" Version="6.*" />
     <PackageReference Include="NHibernate" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />

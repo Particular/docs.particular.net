@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net461</TargetFrameworks>
@@ -6,10 +6,13 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NHibernate" Version="4.*" />
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+    <PackageReference Include="EntityFramework" Version="6.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.0.0" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="3.0.0" />
     <PackageReference Include="NServiceBus.SqlServer" Version="3.*" />
   </ItemGroup>
 </Project>
