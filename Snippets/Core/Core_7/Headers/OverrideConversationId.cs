@@ -6,7 +6,7 @@ public class ConversationIdHeaderOverride
 {
     public async Task Handle()
     {
-        IMessageHandlerContext context = null;
+        IMessageSession context = null;
         #region override-conversation-id
         var sendOptions = new SendOptions();
         sendOptions.SetHeader(Headers.ConversationId, "MyCustomConversationId/" + System.Guid.NewGuid());
