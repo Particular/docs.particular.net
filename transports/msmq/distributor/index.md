@@ -73,7 +73,7 @@ Monitor servers using standard infrastructure monitoring tools to verify if hard
 
 Typically, in the beginning the system is deployed to a single server only. When its capacity isn't enough then this server is mirrored/cloned to create a farm of servers, where the distributor is put in front to act as a load-balancer. However, in case of distributor this usually isn't the best way to scale-out.
 
-In this section we describe available options and cover their pros and cons.
+This section describes available options and cover their pros and cons.
 
 In most environments, multiple endpoints are hosted on a single server: 
 
