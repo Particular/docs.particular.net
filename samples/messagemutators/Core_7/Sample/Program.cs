@@ -21,7 +21,7 @@ class Program
         #region ComponentRegistration
 
         endpointConfiguration.RegisterMessageMutator(new ValidationMessageMutator());
-        endpointConfiguration.RegistermessageMutator(new TransportMessageCompressionMutator());
+        endpointConfiguration.RegisterMessageMutator(new TransportMessageCompressionMutator());
 
         #endregion
 
