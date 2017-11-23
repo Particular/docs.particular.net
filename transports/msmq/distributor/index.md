@@ -79,7 +79,7 @@ In most environments, multiple endpoints are hosted on a single server:
 
 ![Single machine configuration](configurations/single-box.png)
 
-If one machine doesn't have enough capacity then solution can be scaled out by moving endpoints to separate servers. Even if there is any risk of congestion, it is then evenly distributed:
+If one machine doesn't have enough capacity the solution can be scaled out by moving endpoints to separate servers. Even if there is any risk of congestion, it is then evenly distributed:
 
 ![Machine per endpoint](configurations/box-per-endpoint.png)
 
