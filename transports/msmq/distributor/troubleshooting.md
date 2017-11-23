@@ -11,7 +11,7 @@ related:
 
 ## Troubleshooting
 
-To scale out MSMQ processing, a Distributor node accepts messages in one queue and then distributes/forwards it to available workers. Every worker sends a `ReadyMessage` to the distributor's *control queue* when it can perform work, then the distributor forwards a message to that worker. This process is explained in detail in the [How the Distributor works](https://docs.particular.net/transports/msmq/distributor/#how-the-distributor-works) section.
+To scale out MSMQ processing, a Distributor node accepts messages in one queue and then distributes/forwards it to available workers. Every worker sends a `ReadyMessage` to the distributor's *control queue* when it can perform work, then the distributor forwards a message to that worker. This process is explained in detail in the [How the Distributor works](/transports/msmq/distributor/#how-the-distributor-works) section.
 
 This troubleshooting guide covers issues related to MSMQ distributor only, and extends the [Troubleshooting MSMQ](/transports/msmq/troubleshooting.md) article. The problems with the MSMQ environment itself are the most common cause of distributor issues, for example due to worker's `ReadyMessages` getting stuck in the workers' outgoing queues, unable to reach the distributor, or messages getting stuck in the distributor's outgoing queue, unable to reach the workers.
 
@@ -46,7 +46,7 @@ Avoid running all distributor nodes on a single machine, evaluate other [distrib
 
 If a distributor node cannot forward messages fast enough to the workers even though the workers are not fully utilizing available resources, then possible causes are that either the network bandwidth isn't sufficient or the disk used by MSMQ is too slow. 
 
-Another alternative is using [sender side distribution](/transports/msmq/sender-side-distribution), which is recommended for scenarios where IO is the bottleneck.
+Another alternative is using [sender side distribution](/transports/msmq/sender-side-distribution.md), which is recommended for scenarios where IO is the bottleneck.
 
 
 ### SendLocal sends messages via the distributor

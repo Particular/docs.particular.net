@@ -10,7 +10,7 @@ reviewed: 2017-11-15
 
 Distributors are a single-point-of-failure if deployed to just a single machine. Make them highly available on a Windows Failover Cluster to avoid this.
 
-Note: If you are using virtualization then usually the virtualization host itself can offer high availability as well as data redundancy. Windows Failover clustering might not be required, especially if the chosen virtualization layer supports live server migration.
+Note: When using virtualization then usually the virtualization host itself can offer high availability as well as data redundancy. Windows Failover clustering might not be required, especially if the chosen virtualization layer supports live server migration.
 
 The following procedure is a high-level guide on how to deploy distributors onto a Microsoft Windows Failover cluster.
 

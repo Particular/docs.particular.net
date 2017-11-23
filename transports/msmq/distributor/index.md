@@ -66,7 +66,7 @@ If the distributor process goes down, even if its worker nodes remain running, t
 
 The distributor process is restricted by hardware parameters such as disk and network IO. If a single endpoint does not fully utilize either of these parameters, then it is possible to host multiple distributor processes on a single server.
 
-Ensure you are monitoring your servers using infrastructure monitoring tools to verify if hardware isn't becoming a bottleneck.
+Monitor servers using standard infrastructure monitoring tools to verify if hardware isn't becoming a bottleneck.
 
 
 ## Deployment configurations
@@ -79,11 +79,11 @@ In most environments, multiple endpoints are hosted on a single server:
 
 ![Single machine configuration](configurations/single-box.png)
 
-If one machine doesn't have enough capacity you can scale-out by moving endpoints to separate servers. Even if there is any risk of congestion, it is then evenly distributed:
+If one machine doesn't have enough capacity then solution can be scaled out by moving endpoints to separate servers. Even if there is any risk of congestion, it is then evenly distributed:
 
 ![Machine per endpoint](configurations/box-per-endpoint.png)
 
-Eventually you can reach the limits of what a single machine can do, even after scaling up. You can now selectively scale-out an endpoint. The distributor acts like a load-balancer, all messages sent to *Endpoint C* will first be send to *Machine Z* and forwarded to workers according to their availability. 
+Eventually, the solution will reach the limits of what a single machine can do, even after scaling up. The next step is selectively scaling out certain endpoints. The distributor acts like a load-balancer, all messages sent to *Endpoint C* will first be send to *Machine Z* and forwarded to workers according to their availability. 
 
 Often the load is not even across all endpoints, so performance problems are related to just a few of the endpoints. There is no need to scale-out all endpoints, just scale-out the endpoints that need it:
 
@@ -115,7 +115,7 @@ To mitigate most issues related to network congestion, the potential solution is
 
 ![Distributor and Worker combination](configurations/distributor-worker-combo.png)
 
-This results in the network traffic to be balanced across available servers. There is not a single point of failure and this model becomes more appealing with more servers, especially if you have more servers than workers.
+This results in the network traffic to be balanced across available servers. There is not a single point of failure and this model becomes more appealing with more servers, especially if there are more servers than workers.
 
 Pros and cons:
 
@@ -134,7 +134,7 @@ In this setup every distributor endpoint is deployed to a separate machine:
 Pros and cons:
 
 - Every distributor endpoint is isolated.
-- There is not a single point of failure for all your endpoints.
+- There is not a single point of failure.
 - All endpoints can be scaled out.
 - The routing configuration is a bit more complex than in previous setups, but can still be managed manually.
 - Can suffer from throughput limitations. In that case [sender side distribution](../sender-side-distribution.md) might be an alternative.
