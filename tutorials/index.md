@@ -12,7 +12,14 @@ Step-by-step tutorials to help you learn how to use NServiceBus. Tutorials inclu
 
 include: quickstart-tutorial-intro-paragraph
 
-
 ### [Introduction to NServiceBus](intro-to-nservicebus/)
 
 include: nsb101-intro-paragraph
+
+### [Monitoring NServiceBus demo walkthrough](demo/)
+
+This stand-alone demo contains all of the platform components, preconfigured to work together. The package also contains a sample solution that you can run in conjunction with the metrics walkthrough to explore each of the metrics being reported and how they are related.
+
+### [Monitoring NServiceBus tutorial](setup/)
+
+A step-by-step guide that shows how to configure the Particular Service Platform and your solution in order to enable monitoring.
