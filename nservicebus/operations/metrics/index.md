@@ -57,6 +57,7 @@ Each sender maintains a monotonic counter of messages sent over each of its outg
 
 ServiceControl collects these metrics for all links and estimates the length of the input queue for each receiver based on how many messages were sent in total over all incoming links and how many of those messages have already been received.
 
+Note: The estimation algorithm doesn't take into consideration message reordering (caused for example by message retries) or effects caused by delayed message delivery.
 
 #### Example
 
