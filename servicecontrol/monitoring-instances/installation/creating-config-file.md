@@ -14,6 +14,14 @@ The configuration of a Monitoring instance can be adjusted via ServiceControl Ma
 
 Prior to modifying these configuration settings review [Setting a Custom Hostname](setting-custom-hostname.md):
 
+### Monitoring/EndpointName
+The endpoint name to be used by Monitoring instance and as a result it's [input queue](/nservicebus/endpoints/specify-endpoint-name#input-queue).
+
+Type: string
+
+Default: `Particular.Monitoring`
+
+Warn: After changing this setting it's necessary to run Monitoring instance setup procedure by executing `ServiceControl.Monitoring.exe -s` in the command prompt. This ensures that all necessary queues are created and properly configured.
 
 ### Monitoring/HttpHostname
 
