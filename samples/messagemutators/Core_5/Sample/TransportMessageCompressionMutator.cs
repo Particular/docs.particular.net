@@ -8,7 +8,8 @@ using NServiceBus.Unicast.Messages;
 #region TransportMessageCompressionMutator
 
 public class TransportMessageCompressionMutator :
-    IMutateTransportMessages
+    IMutateIncomingTransportMessages,
+    IMutateOutgoingTransportMessages
 {
     static ILog log = LogManager.GetLogger("TransportMessageCompressionMutator");
 

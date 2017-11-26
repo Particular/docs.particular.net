@@ -14,6 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointMySql", "EndpointMy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointOracle", "EndpointOracle\EndpointOracle.csproj", "{4F6C77AE-8E0E-4A53-889C-EA2B735EE45E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointPostgreSql", "EndpointPostgreSql\EndpointPostgreSql.csproj", "{797823CE-E877-48D7-B420-85D346557664}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,8 @@ Global
 		{AA022B1B-664D-4A1A-BEF2-0815464F2097}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F6C77AE-8E0E-4A53-889C-EA2B735EE45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F6C77AE-8E0E-4A53-889C-EA2B735EE45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{797823CE-E877-48D7-B420-85D346557664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{797823CE-E877-48D7-B420-85D346557664}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

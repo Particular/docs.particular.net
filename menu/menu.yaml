@@ -160,10 +160,16 @@
         Title: Migrate To External Nuget
       - Url: nservicebus/upgrades/encryption-1to2
         Title: Version 1 to 2
-    - Title: Nsb6 ServiceControl Plugins
+    - Title: ServiceControl Plugins
       Articles:
       - Url: nservicebus/upgrades/nsb6-sc-plugins-1to2
         Title: Version 1 to 2
+      - Url: nservicebus/upgrades/nservicebus.sagaaudit
+        Title: ServiceControl.Plugin.X.SagaAudit to NServiceBus.SagaAudit
+      - Url: nservicebus/upgrades/nservicebus.customchecks
+        Title: ServiceControl.Plugin.X.CustomChecks to NServiceBus.CustomChecks
+      - Url: nservicebus/upgrades/nservicebus.heartbeat
+        Title: ServiceControl.Plugin.X.Hartbeat to NServiceBus.Hartbeat
   - Url: nservicebus/messaging
     Title: Messaging
     Articles:
@@ -358,6 +364,8 @@
         Title: Concurrency
       - Url: nservicebus/sagas/reply-replaytooriginator-differences
         Title: Reply and ReplyToOriginator differences
+      - Url: nservicebus/sagas/saga-audit
+        Title: Debugging sagas in ServiceInsight
   - Url: nservicebus/testing
     Title: Testing
     Articles:
@@ -501,10 +509,17 @@
       Title: PowerShell
     - Url: nservicebus/operations/metrics
       Title: Metrics
-    - Url: nservicebus/operations/performance-counters
-      Title: Performance Counters
-    - Url: nservicebus/operations/metrics-service-control
-      Title: Metrics Data to ServiceControl      
+      Articles:
+      - Url: nservicebus/operations/metrics/performance-counters
+        Title: Configure reporting to Performance Counters
+      - Url: nservicebus/operations/metrics/service-control
+        Title: Configure reporting to Service Control
+      - Url: nservicebus/operations/metrics/raw
+        Title: Consume raw data from Metrics
+    - Url: nservicebus/operations/heartbeat
+      Title: Monitoring endpoint heartbeat
+    - Url: nservicebus/operations/custom-checks
+      Title: Monitoring endpoint health with cutom checks
     - Url: nservicebus/operations/tuning
       Title: Tuning endpoint message processing
     - Url: nservicebus/operations/running-on-windows
@@ -1014,6 +1029,18 @@
       Articles:
       - Title: Expose internal database
         Url: servicecontrol/use-ravendb-studio
+  - Title: Monitoring instances
+    Url: servicecontrol/monitoring-instances
+    Articles:
+      - Title: Installation
+        Url: servicecontrol/monitoring-instances/installation
+        Articles:
+          - Title: Managing via Powershell
+            Url: servicecontrol/monitoring-instances/installation/installation-powershell
+          - Title: Settings
+            Url: servicecontrol/monitoring-instances/installation/creating-config-file
+          - Title: Configure the URI
+            Url: servicecontrol/monitoring-instances/installation/setting-custom-hostname
   - Title: Integration
     Url: servicecontrol/integration
     Articles:

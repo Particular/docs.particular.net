@@ -1,7 +1,7 @@
 ---
 title: StructureMap Dependency Injection Usage
 component: StructureMap
-reviewed: 2016-03-21
+reviewed: 2017-11-14
 tags:
  - dependency injection
 related:
@@ -11,7 +11,7 @@ redirects:
  - samples/containers/structuremap
 ---
 
-### Configuring to use StructureMap
+### Configuring an endpoint to use StructureMap
 
 snippet: ContainerConfiguration
 

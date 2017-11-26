@@ -1,7 +1,7 @@
 ---
 title: Endpoints multi hosting
 summary: Hosting multiple endpoints in one process.
-reviewed: 2016-03-21
+reviewed: 2017-11-15
 component: Core
 tags:
 - Hosting
@@ -12,11 +12,11 @@ related:
 
 ## Code walk-through
 
-This sample shows how to host multiple Endpoints in one process. At start up the application creates two Endpoint Instances, connected to different queues using different configurations:
+This sample shows how to host multiple endpoints in one process. At start up the application creates two endpoint instances, connected to different queues using different configurations:
 
 snippet: multi-hosting
 
-One important thing to keep in mind is that internally [dependency injection](/nservicebus/dependency-injection/) is utilized to register all its components as well as user-implemented handlers, sagas and components; dependency injection is automatically configured at start up scanning all the assemblies found in the directory where the program is executed from, in order to enforce that each bus instance registers only its own components it is important to specify an assembly scan policy using [one of the supported approaches](/nservicebus/hosting/assembly-scanning.md):
+One important thing to keep in mind is that internally [dependency injection](/nservicebus/dependency-injection/) is used to register components, handlers, and sagas; dependency injection is automatically configured at start up to scan all the assemblies found in the directory where the program is executed from. In order to ensure that each endpoint instance registers only its own components, it is important to specify an assembly scan policy using [one of the supported approaches](/nservicebus/hosting/assembly-scanning.md):
 
 snippet: multi-hosting-assembly-scan
 

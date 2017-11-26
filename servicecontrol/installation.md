@@ -45,7 +45,7 @@ Installing MSMQ is optional in the Platform Installer. See [Platform Installer -
 
 ## Performance Counter
 
-Metrics are reported via the [Performance Counters](/nservicebus/operations/performance-counters.md) if the counters are installed.
+Metrics are reported via the [Performance Counters](/nservicebus/operations/metrics/performance-counters.md) if the counters are installed.
 
 For instructions on how to install the Performance Counters without the Platform Installer refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
 

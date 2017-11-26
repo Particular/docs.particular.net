@@ -24,39 +24,11 @@ public static void SetStartupProjects(string codeDirectory)
 	var startProjectSuoCreator = new StartProjectSuoCreator();
 	foreach (var solutionFile in Directory.EnumerateFiles(codeDirectory, "*.sln", SearchOption.AllDirectories))
 	{
-		var startProjects = GetStartupProjects(solutionFile).ToList();
+		var startProjectFinder = new StartProjectFinder();
+		var startProjects = startProjectFinder.GetStartProjects(solutionFile).ToList();
 		if (startProjects.Any())
 		{
 			startProjectSuoCreator.CreateForSolutionFile(solutionFile, startProjects, VisualStudioVersions.Vs2017);
 		}
-	}
-}
-
-public static IEnumerable<string> GetStartupProjects(string solutionFile)
-{
-	var nameWithoutExtension = Path.GetFileNameWithoutExtension(solutionFile);
-	var solutionDirectory = Path.GetDirectoryName(solutionFile);
-	var defaultProjectsTextFile = Path.Combine(solutionDirectory, $"{nameWithoutExtension}.StartupProjects.txt");
-	if (!File.Exists(defaultProjectsTextFile))
-	{
-		var startProjectFinder = new StartProjectFinder();
-		foreach (var startProject in startProjectFinder.GetStartProjects(solutionFile))
-		{
-			yield return startProject;
-		}
-		yield break;
-	}
-	var allPossibleProjects = SolutionProjectExtractor.GetAllProjectFiles(solutionFile).ToList();
-	var defaultProjects = File.ReadAllLines(defaultProjectsTextFile)
-		.Where(x => !string.IsNullOrWhiteSpace(x));
-	foreach (var startupProject in defaultProjects)
-	{
-		var project = allPossibleProjects.FirstOrDefault(x => x.RelativePath == startupProject);
-		if (project == null)
-		{
-			var error = $"Could not find the relative path to the default startup project '{startupProject}'. Ensure `{defaultProjectsTextFile}` contains relative (to the solution directory) paths to project files.";
-			throw new Exception(error);
-		}
-		yield return project.Guid;
 	}
 }

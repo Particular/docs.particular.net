@@ -28,7 +28,7 @@ The database created by this sample is `NsbSamplesSql`.
  1. On the Receiver console notice that order was submitted.
  1. On the Sender console notice that the order was accepted.
  1. Finally, after a couple of seconds, on the Receiver console notice that the timeout message has been received.
- 1. Open SQL Server Management Studio and go to the `Samples.Sql` database. Verify that there is a row in the saga state table (`receiver.OrderLifecycleSaga`) and in the orders table (`receiver.SubmittedOrder`)
+ 1. Open SQL Server Management Studio and go to the `NsbSamplesSql` database. Verify that there is a row in the saga state table (`receiver.OrderLifecycleSaga`) and in the orders table (`receiver.SubmittedOrder`)
 
 
 ## Code walk-through

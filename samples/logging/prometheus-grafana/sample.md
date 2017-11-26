@@ -22,7 +22,7 @@ This sample reports the following metrics to Prometheus:
  * Processing time seconds
 
 
-For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/nservicebus/operations/metrics.md#metrics-captured).
+For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/nservicebus/operations/metrics/#metrics-captured).
 
 
 ## Prerequisites
@@ -116,9 +116,15 @@ Edit `prometheus.yml` and  add a new target for scraping similar to
 Queries can be expensive operations. Prometheus allows defining pre-calculated queries by configuring rules that calculate rates based on the counters. 
 
 ```
-nservicebus_success_total:avg_rate5m = avg(rate(nservicebus_success_total[5m]))
-nservicebus_failure_total:avg_rate5m = avg(rate(nservicebus_failure_total[5m]))
-nservicebus_fetched_total:avg_rate5m = avg(rate(nservicebus_fetched_total[5m]))
+groups:
+- name: NServiceBus
+  rules:
+  - record: nservicebus_success_total:avg_rate5m
+    expr: avg(rate(nservicebus_success_total[5m]))
+  - record: nservicebus_failure_total:avg_rate5m
+    expr: avg(rate(nservicebus_failure_total[5m]))
+  - record: nservicebus_fetched_total:avg_rate5m
+    expr: avg(rate(nservicebus_fetched_total[5m]))
 ```
 
 The pre-calculated query can then be used.

@@ -6,7 +6,7 @@ isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
 related: 
- - nservicebus/operations/performance-counters
+ - nservicebus/operations/metrics/performance-counters
 ---
 
 include: externalize-perfcounters

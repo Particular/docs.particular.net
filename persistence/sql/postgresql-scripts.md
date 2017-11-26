@@ -4,7 +4,7 @@ component: SqlPersistence
 reviewed: 2017-10-23
 related:
  - nservicebus/operations
-versions: '[3.1,)'
+versions: '[3,)'
 ---
 
 

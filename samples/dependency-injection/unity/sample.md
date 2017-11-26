@@ -1,7 +1,7 @@
 ---
 title: Unity Dependency Injection Usage
 component: Unity
-reviewed: 2016-03-21
+reviewed: 2017-11-14
 tags:
 - dependency injection
 related:
@@ -11,7 +11,7 @@ redirects:
  - samples/containers/unity
 ---
 
-### Configuring to use Unity
+### Configuring an endpoint to use Unity
 
 snippet: ContainerConfiguration
 

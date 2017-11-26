@@ -99,7 +99,7 @@ The `PartitioningIntent` is to be interpreted as follows:
 
  * `Creating`: returns a set of namespaces in which entities should be created at startup, most likely all namespaces.
  * `Receiving`: returns a set of namespaces to which the transport should listen, very likely to be all namespaces as well.
- * `Sending`: returns a set of namespaces to which the next send operation should go. In this operation it's very important to differentiate between `NamespaceMode.Active` and `NamespaceMode.Passive`. The transport will send the message to **ALL** active namespaces and if one of those send operation fails it will attempt to execute that operation on one of the passive namespaces returned.
+ * `Sending`: returns a set of namespaces to which the next send/publish operation should go. In this operation it's very important to differentiate between `NamespaceMode.Active` and `NamespaceMode.Passive`. The transport will send the message to **ALL** active namespaces and if one of those send operation fails it will attempt to execute that operation on one of the passive namespaces returned.
 
 If the implementation of a namespace partitioning strategy requires configuration settings, these settings can be accessed by letting NServiceBus inject the `ReadOnlySettings` into the constructor of the strategy.
 

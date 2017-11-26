@@ -12,7 +12,7 @@ related:
 
 It is possible to use an external container to satisfy both requirements.
 
-Note: While this sample illustrates the scenario using [Autofac](/nservicebus/dependency-injection/autofac.md), the same can be achieved by using most other [DI libraries](/nservicebus/dependency-injection/).
+Note: While this sample illustrates the scenario using [Autofac](/nservicebus/dependency-injection/autofac.md), the same can be achieved by using most other [DI libraries](/nservicebus/dependency-injection/). Using Autofac requires adding reference to the `Autofac.Extensions.DependencyInjection` package.
 
 
 ### Configuring to use shared DI

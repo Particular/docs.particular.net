@@ -1,7 +1,7 @@
 ---
 title: Self hosting
 summary: Hosting in-process Endpoints
-reviewed: 2016-03-21
+reviewed: 2017-11-15
 component: Core
 tags:
 - Hosting

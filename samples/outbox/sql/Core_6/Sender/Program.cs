@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
@@ -33,7 +32,9 @@ class Program
             {
                 return new SqlConnection(connection);
             });
-        persistence.Schema("sender");
+
+        var dialectSettings = persistence.SqlDialect<SqlDialect.MsSqlServer>();
+        dialectSettings.Schema("sender");
         persistence.TablePrefix("");
 
         var subscriptions = persistence.SubscriptionSettings();

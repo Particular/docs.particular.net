@@ -30,6 +30,8 @@ Examples where concurrency tuning is relevant are
 
  * Non thread safe code that needs to run sequentially
  * Databases that might deadlock when getting too many concurrent requests
+ 
+ NOTE: The endpoint needs to be restarted for concurrency changes to take effect.
 
 
 ## Throttling

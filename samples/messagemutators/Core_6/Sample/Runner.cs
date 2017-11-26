@@ -26,8 +26,6 @@ public class Runner
                         ProductId = "XJ128",
                         ProductName = "Milk",
                         ListPrice = 4,
-                        // 7MB. MSMQ should throw an exception, but it will not since the buffer will be compressed
-                        // before it reaches MSMQ.
                         Image = new byte[1024 * 1024 * 7]
                     };
                     await endpointInstance.SendLocal(smallMessage)
@@ -46,8 +44,6 @@ public class Runner
                             ProductId = "XJ128",
                             ProductName = "Really long product name",
                             ListPrice = 15,
-                            // 7MB. MSMQ should throw an exception, but it will not since the buffer will be compressed
-                            // before it reaches MSMQ.
                             Image = new byte[1024 * 1024 * 7]
                         };
                         await endpointInstance.SendLocal(largeMessage)

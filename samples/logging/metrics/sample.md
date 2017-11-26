@@ -9,7 +9,7 @@ redirects:
 ---
 
 
-Illustrates how to write [metrics](/nservicebus/operations/metrics.md) information to the trace log.
+Illustrates how to write [metrics](/nservicebus/operations/metrics) information to the trace log.
 
 
 ## Running the sample

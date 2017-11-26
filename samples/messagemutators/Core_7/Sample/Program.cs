@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.MessageMutator;
 
 class Program
 {
@@ -19,12 +20,8 @@ class Program
 
         #region ComponentRegistration
 
-        endpointConfiguration.RegisterComponents(
-            registration: components =>
-            {
-                components.ConfigureComponent<ValidationMessageMutator>(DependencyLifecycle.InstancePerCall);
-                components.ConfigureComponent<TransportMessageCompressionMutator>(DependencyLifecycle.InstancePerCall);
-            });
+        endpointConfiguration.RegisterMessageMutator(new ValidationMessageMutator());
+        endpointConfiguration.RegisterMessageMutator(new TransportMessageCompressionMutator());
 
         #endregion
 

@@ -1,0 +1,1 @@
+NOTE: `IMutateTransportMessages` could be used in place of `IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`. The `IMutateTransportMessages` interface is simply a shorthand that combines the other two.

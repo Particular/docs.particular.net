@@ -37,7 +37,8 @@ class Program
             {
                 return new SqlConnection(connection);
             });
-        persistence.Schema("receiver");
+        var dialectSettings = persistence.SqlDialect<SqlDialect.MsSqlServer>();
+        dialectSettings.Schema("receiver");
         persistence.TablePrefix("");
 
         var subscriptions = persistence.SubscriptionSettings();

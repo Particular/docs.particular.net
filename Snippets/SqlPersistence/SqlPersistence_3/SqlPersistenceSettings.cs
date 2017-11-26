@@ -4,7 +4,8 @@
 [assembly: SqlPersistenceSettings(
     MsSqlServerScripts = true,
     MySqlScripts = true,
-    OracleScripts = true)]
+    OracleScripts = true,
+    PostgreSqlScripts = true)]
 #endregion
 /**
 
@@ -14,6 +15,10 @@
 
 #region MySqlScripts
 [assembly: SqlPersistenceSettings(MySqlScripts = true)]
+#endregion
+
+#region PostgresSqlScripts
+[assembly: SqlPersistenceSettings(PostgreSqlScripts = true)]
 #endregion
 
 #region OracleScripts

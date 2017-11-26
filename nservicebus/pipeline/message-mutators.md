@@ -2,7 +2,7 @@
 title: Message Mutators
 summary: Message Mutators allow mutation of messages in the pipeline
 component: Core
-reviewed: 2017-03-30
+reviewed: 2017-11-15
 tags:
  - Mutator
 redirects:
@@ -12,12 +12,12 @@ related:
  - nservicebus/messaging/headers
 ---
 
-Message Mutators allow mutation of messages in the pipeline.
+Message mutators allow mutation of messages in the pipeline.
 
-NServiceBus supports two categories of Message Mutators:
+NServiceBus supports two categories of message mutators:
 
 
-## Logical Message Mutators
+## Logical message mutators
 
 Message mutators change/react to individual messages being sent or received. The `IMutateOutgoingMessages` or `IMutateIncomingMessages` interfaces allow the implementation of hooks for the sending and receiving sides.
 
@@ -37,7 +37,7 @@ snippet: IMutateOutgoingMessages
 partial: imessagemutator
 
 
-## Transport Messages Mutators
+## Transport messages mutators
 
 Transport message mutators work on the serialized transport message and are useful for compression, header manipulation, etc.
 Create transport message mutators by implementing the `IMutateIncomingTransportMessages` or `IMutateOutgoingTransportMessages` interfaces.
@@ -56,22 +56,22 @@ snippet: IMutateOutgoingTransportMessages
 partial: imutatetransportmessages
 
 
-## Registering a Mutator
+## Registering a mutator
 
 Mutators are registered using:
 
 snippet: MutatorRegistration
 
-NOTE: Mutators are **NOT** automatically registered using [dependency injection](/nservicebus/dependency-injection/) container, if DI is needed then use a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md).
+NOTE: Mutators are **NOT** automatically registered using [dependency injection](/nservicebus/dependency-injection/) container. If DI is needed then use a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md).
 
-NOTE: Mutators are non-deterministic in terms of order of execution. If more fine grained control is required over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/manipulate-with-behaviors.md).
+NOTE: Mutators are non-deterministic in terms of order of execution. If more fine-grained control is required over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/manipulate-with-behaviors.md).
 
 
 ## When a mutator throws an exception
 
-If a incoming mutator throws an exception, the message aborts, rolls back to the queue, and [recoverability](/nservicebus/recoverability/) is applied.
+If an incoming mutator throws an exception, the message aborts, rolls back to the queue, and [recoverability](/nservicebus/recoverability/) is applied.
 
-If an outgoing mutator throws an exception, the exception bubbles up to the method performing the Send or Publish. If the operation is performed on a context in the pipeline the message aborts, rolls back to the queue, and [recoverability](/nservicebus/recoverability/) is applied. If the operation is performed on the message session the exception might bubble up to the user code or tear down the application domain if not properly handled. 
+If an outgoing mutator throws an exception, the exception bubbles up to the method performing the Send or Publish. If the operation is performed on a context in the pipeline the message aborts, rolls back to the queue, and [recoverability](/nservicebus/recoverability/) is applied. If the operation is performed on the message session the exception might bubble up to the user code or tear down the application domain if not properly handled.
 
 partial: nonnulltask
 

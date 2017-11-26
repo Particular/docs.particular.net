@@ -1,7 +1,7 @@
 ---
 title: Header Manipulation
 summary: All extension points for mutating messages.
-reviewed: 2016-03-21
+reviewed: 2017-11-14
 component: Core
 tags:
 - Header
@@ -17,12 +17,12 @@ related:
 
 ## Introduction
 
-Headers can be read and manipulated at many extension points. This Sample shows a minimal usage of that manipulation at each of those points.
+Headers can be read and manipulated at many extension points. This sample shows a minimal usage of that manipulation at each of those points.
 
 
 ## Reading incoming headers inside the outgoing context
 
-For all the below samples that mutate the outgoing pipeline they also (optionally) read from the incoming context. The reason it is "optionally" is that an incoming context will only exist when the current message being sent was triggered from inside a Saga or a handler. For all other scenarios it will be null.
+For all the below samples that mutate the outgoing pipeline they also (optionally) read from the incoming context. The reason it is optional is that an incoming context will only exist when the current message being sent was triggered from inside a saga or a handler. For all other scenarios it will be null.
 
 
 ## Adding headers when sending a Message
@@ -72,7 +72,7 @@ Configure the pipeline changes as follows.
 
 snippet: pipeline-config
 
-Note that the injection is contextual to the other exiting steps in the pipeline. Do in this case the injection is happening after Transport message mutation has occurred.
+Note that the injection is contextual to the other existing steps in the pipeline. In this case the injection is happening after transport message mutation has occurred.
 
 
 ### The outgoing Behavior
@@ -87,13 +87,13 @@ snippet: incoming-header-behavior
 
 ## Globally for all outgoing messages
 
-A list of headers can be defined that are automatically appended to all messages sent though a give instance of the Bus.
+partial: globalheaders
 
 snippet: global-all-outgoing
 
 
 ## The Handler
 
-While the current contextual headers can be read in any of the above scenarios in this sample all headers will be written from the receiving Handler.
+While the current contextual headers can be read in any of the above scenarios, in this sample all headers will be written from the receiving handler.
 
 snippet: handler

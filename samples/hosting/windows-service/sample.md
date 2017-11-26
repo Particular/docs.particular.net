@@ -1,7 +1,7 @@
 ---
 title: Hosting in a Windows Service
 summary: Hosting NServiceBus as a Windows Service in process with support for streamlined debugging experience from Visual Studio.
-reviewed: 2016-03-21
+reviewed: 2017-11-15
 component: Core
 tags:
  - Hosting
@@ -13,19 +13,19 @@ related:
 
 ## Code walk-through
 
-This sample shows how to host NServiceBus as a Windows Service in process with support for streamlined debugging experience from Visual Studio.
+This sample shows how to host NServiceBus as a Windows service in process with support for streamlined debugging experience from Visual Studio.
 
-NServiceBus comes with a host exe that abstracts much of the hosting complexity. Its many features include installation, un-installation and configuring the windows service. It provides these features though a reasonable amount of custom code and the use of some powerful libraries like [TopShelf](http://topshelf-project.com/). Since the NServiceBus Host is a general solution with dependencies there are some drawback associated with using it.
+NServiceBus comes with a host executable that abstracts much of the hosting complexity. Its features include installation, un-installation and configuring the Windows service. It provides these features though custom code and the use of libraries like [TopShelf](http://topshelf-project.com/). Since the NServiceBus Host is a general solution with dependencies there are some things to keep in mind while using it.
 
-The sample is a console application whose `Main` entry point detects if the application is run in interactive mode or not; when run in interactive mode the `service` is manually created and invoked as any other C# class instance, otherwise the `Run` method is called to invoke the base `ServiceBase` class API.
+The sample is a console application whose `Main` entry point detects if the application is run in interactive mode or not. When run in interactive mode, the `service` is manually created and invoked as any other C# class instance, otherwise the `Run` method is called to invoke the base `ServiceBase` class API.
 
 snippet: windowsservice-hosting-main
 
-The `OnStart` method, manually called when running in interactive mode and automatically called by the Windows Service when running as service, configures the Endpoint Instance:
+The `OnStart` method, manually called when running in interactive mode and automatically called by the Windows service when running as a service, configures the Endpoint Instance:
 
 snippet: windowsservice-hosting-onstart
 
-When the interactive application is shut down or the Windows Service is stopped the `OnStop` method is called perform the required clean up:
+When the interactive application is shut down or the Windows service is stopped, the `OnStop` method is called to perform the required clean up:
 
 snippet: windowsservice-hosting-onstop
 

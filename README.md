@@ -112,10 +112,15 @@ Required when using partials views, recommended also when using snippets in mult
 ### Versions
 
 ```
-versions: '[4,)'
+versions: '[1,2)'
 ```
 
-Optional. Used for specifying what versions the given page covers, especially relevant for features that are not available in all supported versions. Format is 'nuget_version_range'
+In case of components that consist of multiple packages it's also possible to explicitly specify ranges of versions for each package separately:
+```
+versions: 'PackageA:[1,2); PackageB : [3,4); PackageC :*'
+```
+
+Optional. Used for specifying what versions the given page covers, especially relevant for features that are not available in all supported versions. The old format 'nuget_version_range' or 'package_name: nuget_version_range; package_name_2: nuget:version_range2'.
 
 
 ### Reviewed
@@ -461,7 +466,7 @@ Do not write a sample when:
 
 ### Startup projects
 
-When a sample is zipped the [VS startup projects](https://msdn.microsoft.com/en-us/library/a1awth7y.aspx) are also configured. This is done by using https://github.com/ParticularLabs/SetStartupProjects. By default startable projects are [detected though interrogating the project settings](https://github.com/ParticularLabs/SetStartupProjects/blob/master/src/SetStartupProjects/StartProjectFinder.cs). To override this convention and hard code the list of startup projects add a file named `{SolutionName}.StartupProjects.txt` in the same directory as the solution file. It should contain the relative paths to the project files you would like to use for startup projects. 
+When a sample is zipped the [VS startup projects](https://msdn.microsoft.com/en-us/library/a1awth7y.aspx) are also configured. This is done by using https://github.com/SimonCropp/SetStartupProjects. By default startable projects are [detected though interrogating the project settings](https://github.com/SimonCropp/SetStartupProjects/blob/master/src/SetStartupProjects/StartProjectFinder.cs). To override this convention and hard code the list of startup projects add a file named `{SolutionName}.StartupProjects.txt` in the same directory as the solution file. It should contain the relative paths to the project files you would like to use for startup projects. 
 
 For example if the solution "TheSolution.sln" contains two endpoints and you only want to start `Endpoint1` the content of `TheSolution.StartupProjects.txt` would be:
 

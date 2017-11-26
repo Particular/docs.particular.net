@@ -25,6 +25,7 @@ class Program
             {
                 return new SqlConnection(connection);
             });
+        persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.TablePrefix("New");
         SqlHelper.EnsureDatabaseExists(connection);
         var endpoint = await Endpoint.Start(endpointConfiguration)
