@@ -46,7 +46,7 @@ Instead of managing of connections and transactions themselves, users can delega
  * Data access context is automatically shared between all handlers executed for a given message, making it easier to guarantee *idempotency* (no partial successes where one handler managed to commit the changes while other didn't).
  * Data access context is also shared with the [Saga](/nservicebus/sagas) that might participate in handling a given message.
 
-The downside to this approach is that, in order to share the same data access context across business data transactions and NServiceBus internal database actions, the database technology used must be one of the NServiceBus supported persistence options. NServiceBus supports SQL Server and Oracle via NServiceBus.NHibernate persistence and RavenDB via NServiceBus.RavenDB persistence.
+The downside to this approach is that, in order to share the same data access context across business data transactions and NServiceBus internal database actions, the database technology used must be one of the NServiceBus supported persistence options. NServiceBus supports SQL Server and Oracle via NServiceBus.Persistence.Sql or NServiceBus.NHibernate persistence and RavenDB via NServiceBus.RavenDB persistence.
 
 NOTE: There is support for accessing business data via NServiceBus Azure Storage persistence because Azure data stores support only single-entity operations.
 
@@ -54,6 +54,7 @@ partial: api
 
 The documentation below provides more detail on how to share the same data access context for business data and NServiceBus, when using:
 
+ * [Persistence.Sql](/persistence/sql/accessing-data.md)
  * [NHibernate](/persistence/nhibernate/accessing-data.md)
  * [RavenDB](/persistence/ravendb/#shared-session)
 
