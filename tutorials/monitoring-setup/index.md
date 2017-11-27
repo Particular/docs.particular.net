@@ -4,6 +4,8 @@ reviewed: 2017-11-07
 summary: Setting up the Particular Service Platform to monitor an NServiceBus system.
 component: Core
 versions: '[5,)'
+redirects:
+- tutorials/monitoring/setup
 ---
 
 Warning: The monitoring tools described on this page are in `Beta` and are subject to change prior to the final release.
