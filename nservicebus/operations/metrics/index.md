@@ -10,6 +10,8 @@ related:
 
 Gathering metrics is important to know how a system works and if it works properly. When a system is broken down into multiple processes, each with its own queue, gathering and reporting metrics becomes vital. Below, there's a list of metrics that are captured and reported by NServiceBus.
 
+Note: Depending on the version of the reporting package and the way metrics are gathered, the set of available metrics may vary.
+
 ## Metrics captured
 
 NServiceBus and ServiceControl capture a number of different metrics about a running endpoint including the processing time, the number of messages in each queue (differentiating between those pulled from the queue, those processed successfully, and those which failed processing), as well as "critical time".
