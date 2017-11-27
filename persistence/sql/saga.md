@@ -30,7 +30,7 @@ All sagas need to inherit from `SqlSaga<T>`. This is a custom base class that ha
 partial: attribute-required
 
 
-## IL detection of correlation property
+## Compile time detection of correlation property
 
 The divergence from the standard standard NServiceBus saga API is required since the SQL Persistence need to be able to determine certain meta data about a saga at compile time.
 
