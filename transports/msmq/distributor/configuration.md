@@ -64,7 +64,7 @@ Configure the name of the master node server as shown in this `app.config` examp
 </configuration>
 ```
 
-Read about the `DistributorControlAddress` and the `DistributorDataAddress` in the [Routing with the Distributor](/transports/msmq/distributor/#routing-with-the-distributor) section.
+Read about the `DistributorControlAddress` and the `DistributorDataAddress` in the [Routing with the Distributor](#routing-with-the-distributor) section.
 
 
 ### When self-hosting
