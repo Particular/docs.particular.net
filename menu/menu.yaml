@@ -519,7 +519,7 @@
     - Url: nservicebus/operations/heartbeat
       Title: Monitoring endpoint heartbeat
     - Url: nservicebus/operations/custom-checks
-      Title: Monitoring endpoint health with cutom checks
+      Title: Monitoring endpoint health with custom checks
     - Url: nservicebus/operations/tuning
       Title: Tuning endpoint message processing
     - Url: nservicebus/operations/running-on-windows
