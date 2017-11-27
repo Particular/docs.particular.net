@@ -11,7 +11,7 @@ related:
  - samples/logging/new-relic
 ---
 
-When [Performance Counters](./performance-counters.md) reporting and [Service Control](./service-control.md) reporting is not enough, it's possible to consume raw metrics data, directly attaching to the public API provided by the package. First, the Metrics themselves need to be enabled. Then, a custom reporter can be attached to send data to any collector e.g. New Relic, Azure Application Insights or Prometheus.
+When [Performance Counters](./performance-counters.md) reporting and [Service Control](./service-control.md) reporting is not enough, it's possible to consume raw metrics data, directly attaching to the public API provided by the package. First, the Metrics themselves need to be enabled. Then, a custom reporter can be attached to send data to any collector e.g. Service Control, Azure Application Insights etc.
 
 ## Enabling NServiceBus.Metrics
 
