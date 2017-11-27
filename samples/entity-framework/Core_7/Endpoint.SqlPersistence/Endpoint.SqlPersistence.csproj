@@ -2,14 +2,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net461</TargetFrameworks>
+    <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Messages\Messages.csproj" />
     <PackageReference Include="EntityFramework" Version="6.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.0.0-*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="4.0.0-*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-beta0004" />
   </ItemGroup>
 </Project>

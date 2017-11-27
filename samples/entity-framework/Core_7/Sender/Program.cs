@@ -9,9 +9,7 @@ using NServiceBus.Transport.SQLServer;
 
 class Program
 {
-    const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-    static readonly string[] locations = {"London", "Paris", "Oslo", "Madrid"};
-
+   
     static async Task Main()
     {
         var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesEfUow;Integrated Security=True";
@@ -44,8 +42,12 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
+        const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+        var locations = new[] { "London", "Paris", "Oslo", "Madrid" };
+
         try
         {
+
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
