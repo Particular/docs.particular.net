@@ -10,7 +10,7 @@ related:
 
 NServiceBus takes instances of .NET objects (messages, events and commands) and then sends/receives them over a specified [Transport](/transports/). As part of this the object needs to be serialized and deserialized. To achieve this NServiceBus uses **Serializers**.
 
-NOTE: If you are transitioning to a new serializer then messages that are currently 'in flight' are formatted using the previous serialization format. **This includes [Saga Timeout](/nservicebus/sagas/timeouts.md) and [Deferred/Delayed](/nservicebus/messaging/delayed-delivery.md) messages via timeout persistence.** 
+NOTE: When transitioning to a new serializer then messages that are currently 'in flight' are formatted using the previous serialization format. **This includes [Saga Timeout](/nservicebus/sagas/timeouts.md) and [Deferred/Delayed](/nservicebus/messaging/delayed-delivery.md) messages via timeout persistence.** 
 
 partial: livemigration
 
