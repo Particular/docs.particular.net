@@ -62,7 +62,7 @@ Make sure that:
 
 - The assembly `NServiceBus.Distributor.MSMQ.dll` is in the endpoint folder.
 - When using the [NServiceBus.Host](/nservicebus/hosting/nservicebus-host/), the `NServiceBus.MSMQWorker` profile is set on the commandline and that the worker was installed with this argument on the commandline.
-- When using [custom assembly scanning](/nservicebus/hosting/assembly-scanning/), the in/exclusions are not excluding the `NServiceBus.Distributor.MSMQ.dll` assembly.
+- When using [custom assembly scanning](/nservicebus/hosting/assembly-scanning.md), the in/exclusions are not excluding the `NServiceBus.Distributor.MSMQ.dll` assembly.
 - The log contains the following entry:
 ```  
 Name: Distributor
