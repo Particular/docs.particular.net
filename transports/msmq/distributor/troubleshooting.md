@@ -42,7 +42,7 @@ Instead, in some situations it may be more appropriate to simply scale up hardwa
 
 #### Verify network and disk congestion
 
-Avoid running all distributor nodes on a single machine, evaluate other [distributor deployment configurations](/transports/msmq/distributor/#deploymentconfigurations).
+Avoid running all distributor nodes on a single machine, evaluate other [distributor deployment configurations](/transports/msmq/distributor/#deployment-configurations).
 
 If a distributor node cannot forward messages fast enough to the workers even though the workers are not fully utilizing available resources, then possible causes are that either the network bandwidth isn't sufficient or the disk used by MSMQ is too slow. 
 
