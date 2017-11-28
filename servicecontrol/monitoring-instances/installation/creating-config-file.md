@@ -15,7 +15,7 @@ The configuration of a Monitoring instance can be adjusted via ServiceControl Ma
 Prior to modifying these configuration settings review [Setting a Custom Hostname](setting-custom-hostname.md):
 
 ### Monitoring/EndpointName
-The endpoint name to be used by Monitoring instance and as a result it's [input queue](/nservicebus/endpoints/specify-endpoint-name.md#input-queue).
+The endpoint name to be used by Monitoring instance and the name of the Monitoring queue.
 
 Type: string
 
