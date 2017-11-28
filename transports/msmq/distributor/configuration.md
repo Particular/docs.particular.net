@@ -64,7 +64,7 @@ Configure the name of the master node server as shown in this `app.config` examp
 </configuration>
 ```
 
-Read about the `DistributorControlAddress` and the `DistributorDataAddress` in the [Override distributor queues (advanced)](#override-distributor-queues) section.
+Read about the `DistributorControlAddress` and the `DistributorDataAddress` in the [Override distributor queues (advanced)](#advanced-override-distributor-queues) section.
 
 
 ### When self-hosting
