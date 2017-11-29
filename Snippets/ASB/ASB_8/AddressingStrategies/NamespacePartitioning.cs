@@ -19,6 +19,8 @@ public class MyNamespacePartitioningStrategy :
     {
         throw new NotImplementedException();
     }
+
+    public bool SendingNamespacesCanBeCached { get; }
 }
 
 #endregion

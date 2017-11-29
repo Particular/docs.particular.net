@@ -1,5 +1,3 @@
-using System;
-using System.Reflection;
 using NServiceBus;
 
 class Upgrade7to8
