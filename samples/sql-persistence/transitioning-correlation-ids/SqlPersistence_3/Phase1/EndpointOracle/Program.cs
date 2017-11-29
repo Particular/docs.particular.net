@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
@@ -10,10 +8,18 @@ partial class Program
 {
     static async Task Main()
     {
+<<<<<<< HEAD
         //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
         Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
+=======
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
+>>>>>>> parent of ac6888549... Add workaround for .NET Core bug (#3187)
         Console.Title = "EndpointOracle";
 
         var endpointConfiguration = new EndpointConfiguration("EndpointOracle");

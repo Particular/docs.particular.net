@@ -1,8 +1,6 @@
 using System;
 using System.ComponentModel;
-using System.Globalization;
 using System.ServiceProcess;
-using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -11,13 +9,6 @@ class ProgramService :
     ServiceBase
 {
     IEndpointInstance endpointInstance;
-
-    static ProgramService()
-    {
-        //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-    }
 
     #region windowsservice-hosting-main
 
