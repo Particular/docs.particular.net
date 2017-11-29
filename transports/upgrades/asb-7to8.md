@@ -39,6 +39,7 @@ snippet: 7to8_asb-incoming-message-convention
 
 snippet: 7to8_asb-outgoing-message-convention
 
+
 ## Serialization is mandatory
 
 In Versions 7 and below, the transport was setting the default serialization. In Versions 8 and above, the transport is no longer sets the default serialization. Instead, it should be configured. 
@@ -46,3 +47,14 @@ In Versions 7 and below, the transport was setting the default serialization. In
 For backwards compatibility, `NServiceBus.Newtonsoft.Json` serializer should be used.
 
 snippet: 7to8_asb-backwardscompatible-serializer
+
+
+## Send/publish namespaces caching
+
+In Version 7 to control sending/publishing namespaces caching, the transport required to provide an implementation of two contracts. 
+
+snippet: custom-namespace-partitioning-strategy-with-caching 
+
+From Versions 8 and above, only a single contract is required.
+
+snippet: 7to8_asb-namespace-partitioning-caching

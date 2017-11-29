@@ -8,7 +8,7 @@ using NServiceBus.Transport.AzureServiceBus;
 #region replicated-namespace-partitioning-strategy
 
 public class ReplicatedNamespacePartitioningStrategy :
-    INamespacePartitioningStrategy
+    INamespacePartitioningStrategy, ICacheSendingNamespaces
 {
     static ILog log = LogManager.GetLogger<ReplicatedNamespacePartitioningStrategy>();
     NamespaceConfigurations namespaces;
@@ -39,6 +39,8 @@ public class ReplicatedNamespacePartitioningStrategy :
                     mode: NamespaceMode.Active);
             });
     }
+
+    public bool SendingNamespacesCanBeCached { get; } = true;
 }
 
 #endregion

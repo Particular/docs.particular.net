@@ -15,10 +15,7 @@ public class ReplicatedNamespacePartitioningStrategy :
 
     public ReplicatedNamespacePartitioningStrategy(ReadOnlySettings settings)
     {
-        if (
-            settings.TryGet("AzureServiceBus.Settings.Topology.Addressing.Namespaces", out namespaces) &&
-            namespaces.Count > 1
-            )
+        if (settings.TryGet("AzureServiceBus.Settings.Topology.Addressing.Namespaces", out namespaces) && namespaces.Count > 1)
         {
             return;
         }
@@ -28,8 +25,7 @@ public class ReplicatedNamespacePartitioningStrategy :
     public IEnumerable<RuntimeNamespaceInfo> GetNamespaces(PartitioningIntent partitioningIntent)
     {
         log.Info($"Determining namespace for {partitioningIntent}");
-        return namespaces.Select(
-            selector: namespaceInfo =>
+        return namespaces.Select(selector: namespaceInfo =>
             {
                 log.Info($"Choosing namespace {namespaceInfo.Alias} ({namespaceInfo.Connection})");
                 return new RuntimeNamespaceInfo(
@@ -39,6 +35,8 @@ public class ReplicatedNamespacePartitioningStrategy :
                     mode: NamespaceMode.Active);
             });
     }
+
+    public bool SendingNamespacesCanBeCached { get; } = true;
 }
 
 #endregion

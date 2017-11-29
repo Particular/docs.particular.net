@@ -22,3 +22,25 @@ public class MyNamespacePartitioningStrategy :
 }
 
 #endregion
+
+#region custom-namespace-partitioning-strategy-with-caching
+
+public class MyNamespacePartitioningStrategyWithControlledCaching :
+    INamespacePartitioningStrategy, ICacheSendingNamespaces
+{
+    ReadOnlySettings settings;
+
+    public MyNamespacePartitioningStrategyWithControlledCaching(ReadOnlySettings settings)
+    {
+        this.settings = settings;
+    }
+
+    public IEnumerable<RuntimeNamespaceInfo> GetNamespaces(PartitioningIntent partitioningIntent)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool SendingNamespacesCanBeCached { get; } = false;
+}
+
+#endregion
