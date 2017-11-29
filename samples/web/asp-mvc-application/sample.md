@@ -38,9 +38,7 @@ Now, look at the code. This sample has three projects:
 
 ## Initializing the bus
 
-The sample controllers hold a reference of the bus, which is used later to send messages and receive a response.
-
-In `AsyncPagesMvc`, open `Global.asax.cs` and see the code for the `ApplicationStart` method:
+The sample controllers holds a reference to the instance used later to send messages and receive a response (`IBus` implementation for NServiceBus Versions 5 and below, `IEndpointInstance` for Versions 6 and above). In `AsyncPagesMvc`, open `Global.asax.cs` and see the code for the `ApplicationStart` method:
 
 snippet: ApplicationStart
 
@@ -57,13 +55,13 @@ Using `AsyncController`:
 snippet: AsyncController
 
 
-### Synchronous message sending: SendAndBlockController controller (version 4-5)
+### Synchronous message sending: SendAndBlockController controller
 
 Open the SendAndBlockController class:
 
 snippet: SendAndBlockController
 
-The controller is referencing its `IBus` (NServiceBus injected it when the controller was instantiated). The code calls the send method, passing in the newly created command object. The bus isn't anything special in the code; it's just an object for calling methods.
+The controller is sending a message using the instance injected in controller's constructor (`IBus` implementation for NServiceBus Versions 5 and below, `IEndpointInstance` for Versions 6 and above). The code calls the send method, passing in the newly created command object. 
 
 The call registers a callback method that will be called (with this parameter) as soon as a response is received by the server.
 
