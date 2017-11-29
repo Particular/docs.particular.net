@@ -41,7 +41,7 @@ snippet: ScheduleTask
 
 ## When not to use it
 
- * As soon as the task starts to get some branching logic (`if` or `switch` statements) or business logic is added, instead of a simple message send, consider moving to a [saga](/nservicebus/sagas).
+ * As soon as the task starts to get some branching logic (`if` or `switch` statements) or business logic is added, instead of a simple message send, consider moving to a [saga](/nservicebus/sagas) and using [saga timeouts](/nservicebus/sagas/timeouts.md).
  * Often, instead of polling for a certain state using the Scheduler API, it is more appropriate to publish an event when the expected state transition occurs, and the necessary action is then taken by a message handler which is subscribed to it.
  * When there are requirements that are not currently supported by the Scheduler API. For example, scaling out the  tasks, canceling or deleting a scheduled task, doing a side-by-side deployment of a scheduled task as outlined in the following section.
 
