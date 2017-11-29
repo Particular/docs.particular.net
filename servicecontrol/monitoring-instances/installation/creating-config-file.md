@@ -21,7 +21,7 @@ Type: string
 
 Default: `Particular.Monitoring`
 
-Warn: After changing this setting it's necessary to run Monitoring instance setup procedure by executing `ServiceControl.Monitoring.exe -s` in the command prompt. This ensures that all necessary queues are created and properly configured.
+Warning: After changing this setting it's necessary to run Monitoring instance setup procedure by executing `ServiceControl.Monitoring.exe -s` in the command prompt. This ensures that all necessary queues are created and properly configured.
 
 ### Monitoring/HttpHostname
 
