@@ -7,11 +7,7 @@
 
 ### System.ServiceProcess.ServiceController
 
-The `ServiceBase` functionality is provided by the [System.ServiceProcess.ServiceController](https://www.nuget.org/packages/System.ServiceProcess.ServiceController/) package. However the current stable version does not provide enough functionality so an [unstable version](https://dotnet.myget.org/feed/dotnet-core/package/nuget/System.ServiceProcess.ServiceController) is currently being used. The package is resolved using a [custom package source](https://docs.microsoft.com/en-us/nuget/schema/nuget-config-file#package-source-sections) in the `nuget.config` at the root of the sample solution.
-
-```
-<add key="dotnet-core" value="https://dotnet.myget.org/F/dotnet-core/api/v3/index.json" />
-```
+The `ServiceBase` functionality is provided by the [System.ServiceProcess.ServiceController](https://www.nuget.org/packages/System.ServiceProcess.ServiceController/) package.
 
 
 ### Via a self contained exe
