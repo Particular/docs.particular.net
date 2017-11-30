@@ -1,5 +1,3 @@
-﻿using System.Globalization;
-using System.Threading;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -11,10 +9,6 @@ public class Startup
 {
     public Startup(IHostingEnvironment env)
     {
-        //required to prevent possible occurrence of .NET Core issue https://github.com/dotnet/coreclr/issues/12668
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-
         var builder = new ConfigurationBuilder()
             .SetBasePath(env.ContentRootPath)
             .AddEnvironmentVariables();
