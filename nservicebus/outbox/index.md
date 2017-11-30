@@ -13,6 +13,7 @@ related:
 - persistence/nhibernate/outbox
 - persistence/service-fabric/outbox
 - persistence/ravendb/outbox
+- persistence/sql/outbox
 ---
 
 The Outbox is an infrastructure feature which simulates the reliability of distributed transactions without requiring use of the Distributed Transaction Coordinator (DTC).
@@ -82,4 +83,4 @@ WARNING: When verifying outbox functionality, it can sometimes be helpful to tem
 
 The Outbox feature requires persistence in order to perform deduplication and store outgoing downstream messages.
 
-Refer to the dedicated pages for [NHibernate](/persistence/nhibernate/outbox.md), [RavenDB](/persistence/ravendb/outbox.md) or [ServiceFabric](/persistence/service-fabric/outbox.md) persistence.
+Refer to the dedicated pages for [NHibernate](/persistence/nhibernate/outbox.md), [RavenDB](/persistence/ravendb/outbox.md), [SQL](/persistence/sql/outbox.md) or [ServiceFabric](/persistence/service-fabric/outbox.md) persistence.
