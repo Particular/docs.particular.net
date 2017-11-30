@@ -14,7 +14,7 @@ namespace Core6.Handlers.DataAccess
             {
                 var session = context.SynchronizedStorageSession.MyOrmSession();
                 var order = session.Get(message.OrderId);
-                if (this.MessageHasAlreadyBeenProcessed(context.MessageId, order))
+                if (MessageHasAlreadyBeenProcessed(context.MessageId, order))
                 {
                     // Subsequent handlers are not invoked as the message has been processed.
                     context.DoNotContinueDispatchingCurrentMessageToHandlers();
@@ -24,6 +24,12 @@ namespace Core6.Handlers.DataAccess
                     this.MarkAsProcessed(context.MessageId, order);
                 }
                 return Task.CompletedTask;
+            }
+
+            bool MessageHasAlreadyBeenProcessed(string messageId, Order order)
+            {
+                // Custom code to determine of this message have already been processed
+                return false;
             }
         }
 
