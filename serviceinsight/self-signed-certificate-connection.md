@@ -10,7 +10,7 @@ tags:
 - ServiceInsight
 ---
 
-ServiceControl can be configured to run over a secured connection, but if a self-signed certificate is used for this purpose, ServiceInsight still would not connect to that instance. While using a self-sign certificate is generally not recommended, ServiceInsight provides an override configuration entry to allow you to connect to instances secured with such certificates. 
+ServiceControl can be configured to run over a secured connection, but if a self-signed certificate is used for this purpose, ServiceInsight still would not connect to that instance. While using a self-sign certificate is generally not recommended, ServiceInsight provides an override configuration entry to allow connecting to instances secured with such certificates. 
 
 ![ServiceInsight refuses to connect](./images/ssl-validation.png)
 
