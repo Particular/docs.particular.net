@@ -7,11 +7,11 @@
         AdditionalDeserializers(EndpointConfiguration endpointConfiguration)
         {
             #region AdditionalDeserializers
-            // configures XML serialization as default
-            endpointConfiguration.UseSerialization<XmlSerializer>();
-            // configures additional deserialization
-            var mySerializer = endpointConfiguration.AddDeserializer<MyCustomSerializerDefinition>();
+            // Configures new default serialization
+            var mySerializer = endpointConfiguration.UseSerialization<MyCustomSerializerDefinition>();
             mySerializer.Settings("serializerSetting");
+            // Configures additional deserializer, like the previous (default) serializer to be compatible with in-flight messages.
+            endpointConfiguration.AddDeserializer<XmlSerializer>();
             #endregion
         }
     }
