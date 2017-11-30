@@ -10,11 +10,6 @@ namespace Core6.Handlers.DataAccess
             throw new NotImplementedException();
         }
 
-        public static bool MessageHasAlreadyBeenProcessed(this Managed.IdempotencyEnforcer o, string messageId, Order order)
-        {
-            throw new NotImplementedException();
-        }
-
         public static void MarkAsProcessed(this Managed.IdempotencyEnforcer o, string messageId, Order order)
         {
         }

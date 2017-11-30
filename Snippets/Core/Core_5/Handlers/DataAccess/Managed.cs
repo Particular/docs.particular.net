@@ -20,7 +20,7 @@ namespace Core5.Handlers
             {
                 var session = bus.MyOrmSession();
                 var order = session.Get(message.OrderId);
-                if (this.MessageHasAlreadyBeenProcessed(bus.CurrentMessageContext.Id, order))
+                if (MessageHasAlreadyBeenProcessed(bus.CurrentMessageContext.Id, order))
                 {
                     // Subsequent handlers are not invoked as the message has been processed.
                     bus.DoNotContinueDispatchingCurrentMessageToHandlers();
@@ -29,6 +29,12 @@ namespace Core5.Handlers
                 {
                     this.MarkAsProcessed(bus.CurrentMessageContext.Id, order);
                 }
+            }
+
+            bool MessageHasAlreadyBeenProcessed(string messageId, Order order)
+            {
+                // Custom code to determine of this message have already been processed
+                return false;
             }
         }
 
