@@ -4,9 +4,7 @@ reviewed: 2016-09-28
 summary: ServiceInsight refuses to connect to a ServiceControl instance running on SSL with self-signed certificate.
 component: ServiceInsight
 tags:
-- HTTPS
 - ServiceControl
-- Certificate
 - ServiceInsight
 ---
 
