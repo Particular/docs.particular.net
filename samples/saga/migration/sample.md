@@ -2,7 +2,7 @@
 title: Migrating saga persistence
 summary: How to migrate from one type of saga persistence to another without an off-line migration procedure
 component: Core
-reviewed: 2017-07-17
+reviewed: 2017-12-01
 tags:
 - Saga
 related:
@@ -24,21 +24,21 @@ The database created by this sample is `NsbSamplesSagaMigration`.
  1. Wait until `Type 'start <SagaId>' or 'complete <SagaId>'` is shown in the "Client" console window.
  1. Start a couple of sagas with easy to remember IDs (e.g. `start 1`, `start 2` and `start 3`).
  1. Verify sagas are started by running `SELECT * FROM [NsbSamplesSagaMigration].[dbo].[TestSaga]`.
- 1. Verify that the messages were handled by "Server" endpoint.
- 1. Complete one of the sagas (e.g. `complete 1`). Observe the message flow. It can take up to 10 seconds to complete as the flow involves a saga timeout. The result should be completion of a saga (verify by checking that a corresponding row is removed from the saga table by running again the previous query).
+ 1. Verify that the messages were handled by the "Server" endpoint.
+ 1. Complete one of the sagas (e.g. `complete 1`) and observe the message flow. It can take up to 10 seconds to complete as the flow involves a saga timeout. The result should be completion of a saga (verify by checking that a corresponding row is removed from the saga table by re-running the previous query).
  1. Stop the solution.
  1. Uncomment the `#define MIGRATION` line in `TestSaga.cs`.
  1. Start the solution.
  1. Start and complete some new sagas (e.g. `start A`, `start B` and `start C`).
  1. Verify sagas are started by running `SELECT * FROM [NsbSamplesSagaMigration].[dbo].[NewTestSaga]`.
- 1. Verify that the messages were handled by "Server.New" endpoint.
- 1. Notice that "Server" console shows information indicating that the not-found handler has been used.
+ 1. Verify that the messages were handled by the "Server.New" endpoint.
+ 1. Notice that the "Server" console shows information indicating that the not-found handler has been used.
  1. Complete the previously created sagas (`complete 2` or `complete 3`) to drain the saga store.
- 1. Verify the messages are handled by the old "Server" endpoint, not the "Server.New".
+ 1. Verify the messages are handled by the old "Server" endpoint, not the "Server.New" endpoint.
  1. Complete one of the new sagas (e.g. `complete A`) to verify it is handled properly by "Server.New"
  1. Complete another saga (e.g. `complete B`) and stop the solution as soon as `Got a follow-up message.` is shown in the console.
  1. Run `SELECT [Destination], [SagaId] FROM [NsbSamplesSagaMigration].[dbo].[NewTimeoutData]` to verify the timeout is stored in the database and the destination is the "Server.New" queue.
- 1. Uncomment the `#define POST_MIGRATION` in `Program.cs` and `DrainTempQueueSatelliteFeature.cs` of "Server.New". This changes the input queue of "Server.New" back to the well-known `Samples.SagaMigration.Server` and enables an additional receiver that drains the temporary queue.
+ 1. Uncomment the `#define POST_MIGRATION` line in `Program.cs` and `DrainTempQueueSatelliteFeature.cs` of "Server.New". This changes the input queue of "Server.New" back to the well-known `Samples.SagaMigration.Server` and enables an additional receiver that drains the temporary queue.
  1. Start only the "Server.New" project by right-clicking the project in Solution Explorer and selecting "Debug -> Start new instance".
  1. Notice "Server.New" prints `Moving message from Samples.SagaMigration.Server.New@<machine> to Samples.SagaMigration.Server@<machine>` and then `Got timeout. Completing.` which means the timeout has been successfully redirected from the temporary queue. This happens only if there were outstanding timeout messages present when new version of the endpoint replaced the old one.
 
@@ -49,10 +49,10 @@ This sample contains four projects:
 
  * Shared - contains definitions of messages exchanged between the Client and the Server.
  * Client - initiates a multi-message conversation with the server.
- * Server - implements a long running process via the Saga feature. Uses [NHibernate-based](/persistence/nhibernate) saga persister.
- * Server.New - implements the same functionality as Server but uses [SQL-based](/persistence/sql) saga persister.
+ * Server - implements a long running process via the Saga feature. Uses the [NHibernate-based](/persistence/nhibernate) saga persister.
+ * Server.New - implements the same functionality as Server but uses the [SQL-based](/persistence/sql) saga persister.
 
-The sample shows how to gradually migrate from one saga persister to another without requiring an off-line migration procedure/script. In this example NHibernate and SQL persisters as source and target respectively but any persister can be used in any role i.e. the same method can be used to migrate e.g. from RavenDB to NHibernate persister.
+The sample shows how to gradually migrate from one saga persister to another without requiring an off-line migration procedure/script. In this example NHibernate and SQL persisters are the source and target respectively but any persister can be used in any role i.e. the same method can be used to migrate, for example, from RavenDB to NHibernate.
 
 
 ### Message flow
@@ -66,7 +66,7 @@ The message flow is designed to demonstrate the correctness of migration logic:
 
 snippet: Handlers
 
-To summarize, sagas can be either looked up by their correlation property value or the storage ID.
+To summarize, sagas can be looked up by either their correlation property value or the storage ID.
 
 
 ### How it works
