@@ -89,7 +89,17 @@ Identifier of the conversation that this message is part of. It enables the trac
 
 The first message that is sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are subsequently sent, thus forming a _conversation_. Each message that is sent within a conversation also has a `RelatedTo` value that identifies the originating message that caused it to be sent. 
 
-NOTE: `Conversation Id` is very similar to `Correlation Id`. Both headers are sticky and are copied to each new message that an endpoint produces. Whereas `Conversation Id` is always copied from the incoming message being handled, `Correlation Id` can come from another source (such as when replying from a Saga using `ReplyToOriginator(...)`).
+In certain scenarios Conversation Id has to be assigned manually, because NServiceBus can't infer that messages are correlated. For example, when a `CancelOrder` message needs to become part of an existing order conversation, then the Order Id can be used for correlating messages. This can be adhieved by overriding the header with a custom value:
+
+snippet: override-conversation-id
+
+Note that it is not possible to override an existing Conversation Id, it results in the following error:
+
+```
+Cannot set the NServiceBus.ConversationId header to 'XXXXX' as it cannot override the incoming header value ('2f4076a0-d8de-4297-9d18-a830015dd42a').
+```
+
+NOTE: `Conversation Id` is very similar to `Correlation Id`. Both headers are copied to each new message that an endpoint produces. Whereas `Conversation Id` is always copied from the incoming message being handled, `Correlation Id` can come from another source (such as when replying from a Saga using `ReplyToOriginator(...)`).
 
 
 ### NServiceBus.RelatedTo
