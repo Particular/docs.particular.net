@@ -253,12 +253,34 @@ class Usage
         #endregion
     }
 
-    void Schema(EndpointConfiguration endpointConfiguration)
+    void MsSqlSchema(EndpointConfiguration endpointConfiguration)
     {
-        #region Schema
+        #region MsSqlSchema
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
+        dialect.Schema("MySchema");
+
+        #endregion
+    }
+
+    void OracleSchema(EndpointConfiguration endpointConfiguration)
+    {
+        #region OracleSchema
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var dialect = persistence.SqlDialect<SqlDialect.Oracle>();
+        dialect.Schema("MySchema");
+
+        #endregion
+    }
+
+    void PostgreSqlSchema(EndpointConfiguration endpointConfiguration)
+    {
+        #region PostgreSqlSchema
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
         dialect.Schema("MySchema");
 
         #endregion

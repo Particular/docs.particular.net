@@ -2,11 +2,16 @@
 title: PostgreSQL dialect design
 component: SqlPersistence
 related:
-reviewed: 2017-10-23
+reviewed: 2017-11-23
+redirects:
+ - nservicebus/sql-persistence/postgresql-design
 ---
 
+## Schema support
 
-Design decisions made in SQL Persistence's PostgreSQL dialect implementation:
+The PostgreSQL dialect supports multiple schemas. By default, when schema is not specified, it uses `public` schema when referring to database objects. When schema is specified multiple endpoints can co-exist within the same database without affecting each other.
+
+
 
 
 ## Case sensitivity - UpperCamelCase

@@ -189,11 +189,23 @@ class Usage
         #endregion
     }
 
-    void Schema(EndpointConfiguration endpointConfiguration)
+    void OracleSchema(EndpointConfiguration endpointConfiguration)
     {
-        #region Schema
+        #region OracleSchema 2.1
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.SqlVariant(SqlVariant.Oracle);
+        persistence.Schema("MySchema");
+
+        #endregion
+    }
+
+    void MsSqlSchema(EndpointConfiguration endpointConfiguration)
+    {
+        #region MsSqlSchema
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.SqlVariant(SqlVariant.MsSqlServer);
         persistence.Schema("MySchema");
 
         #endregion

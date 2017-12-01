@@ -5,12 +5,24 @@ related:
 reviewed: 2017-04-06
 redirects:
  - nservicebus/sql-persistence/oracle-caveats
+ - nservicebus/sql-persistence/oracle-design
 ---
+
+
+## Unicode support
+
+include: unicode-support
+
+Refer to the dedicated [Oracle documentation](https://docs.oracle.com/cd/B19306_01/server.102/b14225/ch2charset.htm) for details.
+
+## Supported name lengths
+
 
 The SQL Persistence provides autonomy between endpoints by using separate tables for every endpoint based on the endpoint name. However, due to Oracle's 30-character limit on table names and index names in [Oracle 12.1 and below](https://docs.oracle.com/database/121/SQLRF/sql_elements008.htm#SQLRF00223), the SQL Persistence must make some compromises.
 
+include: name-length-validation-on
 
-## Table Names
+### Table Names
 
 NOTE: For a complete example of the schema created by the SQL Persistence for Oracle, see [Oracle Scripts](oracle-scripts.md).
 
@@ -54,6 +66,6 @@ NOTE: If saga name or correlation property name change, the name of the index wi
 If a saga name is longer than 27 characters, an exception will be thrown, and a [substitute table name must be specified](saga.md#table-structure-table-name).
 
 
-## Custom Finders
+### Custom Finders
 
 Because Oracle 11g does not support any JSON query capability, custom saga finders that locate saga data by querying into the JSON payload of the saga are not supported by SQL Persistence when using Oracle.
