@@ -7,7 +7,7 @@ namespace WebApplication.Modules
     {
         private readonly IMessageSession messageSession;
 
-        public SendMessageModule(IMessageSession messageSession) : base("/sendMessage")
+        public SendMessageModule(IMessageSession messageSession) : base("/sendmessage")
         {
             this.messageSession = messageSession;
             

@@ -6,7 +6,7 @@ namespace WebApplication.Modules
     {
         public RootModule() : base()
         {
-            this.Get["/"] = r => this.Response.AsRedirect("/sendMessage");
+            this.Get["/"] = r => this.Response.AsRedirect("/sendmessage");
         }
     }
 }
