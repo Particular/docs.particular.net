@@ -24,4 +24,15 @@ class DelayedDelivery
 
         #endregion
     }
+
+    public void DisableDelayedDelivery(EndpointConfiguration endpointConfiguration)
+    {
+        #region delayed-delivery-disabled [7.5,)
+
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        var delayedDelivery = transport.DelayedDelivery();
+        delayedDelivery.DisableDelayedDelivery();
+
+        #endregion
+    }
 }
