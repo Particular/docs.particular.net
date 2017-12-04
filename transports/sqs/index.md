@@ -89,7 +89,7 @@ When sending messages it can happen that your sending is throttled. When that ha
 Amazon.SQS.AmazonSQSException: Request is throttled. ---> Amazon.Runtime.Internal.HttpErrorResponseException: The remote server returned an error: (403) Forbidden. ---> System.Net.WebException: The remote server returned an error: (403) Forbidden.
 ```
 
-When this happens while receiving a message then this can safely be ignored as [recoverability features](/nservicebus/recoverability/) should resolve this. If you are sending messages outside of a receiving message context you will have to be be aware that your send can fail. Especially when sending messages in bulk, specifically in parallel, you can get throttled if the sender has enough resources to suddenly flood the AmazonSQS infrastructure.
+When this happens while receiving a message then this can safely be ignored as [recoverability features](/nservicebus/recoverability/) should resolve this. If you are sending messages outside of a receiving message context you will have to be be aware that your send can fail. Especially when sending messages in bulk, specifically in parallel, you can get throttled if the sender has enough resources to suddenly flood the Amazon SQS infrastructure.
 
 A storage query that reads 100,000 items/records and for each a message gets produces and then sending these in parallel is vulneralble to get throttled.
 
