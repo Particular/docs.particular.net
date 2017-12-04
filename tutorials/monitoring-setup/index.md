@@ -16,7 +16,7 @@ Note: At the moment systems using the [Learning Transport](/transports/learning/
 - [Setting up Particular Service Platform](#setting-up-particular-service-platform)
   - [Install ServiceControl](#install-servicecontrol)
   - [Create ServiceControl instance](#create-servicecontrol-instance)
-  - [Create ServiceControl Monitoring Instance](#create-monitoring-instance)
+  - [Create ServiceControl Monitoring Instance](#create-servicecontrol-monitoring-instance)
 - [Configure NServiceBus endpoints](#configure-nservicebus-endpoints)
   - [Error](#configure-nservicebus-endpoints-error)
   - [Audit](#configure-nservicebus-endpoints-audit)
