@@ -21,7 +21,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 7.4.x     | 2017-07-17     | -                 | -                                 |
+| 7.5.x     | 2017-12-04     | -                 | -                                 |
+| 7.4.x     | 2017-07-17     | 2018-03-04        | Superseded by 7.5.x               |
 | ~~7.3.x~~ | ~~2017-06-02~~ | ~~2017-10-17~~    | ~~Superseded by 7.4.x~~           |
 | ~~7.2.x~~ | ~~2017-03-24~~ | ~~2017-09-02~~    | ~~Superseded by 7.3.x~~           |
 | ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 7.2.x~~           |
@@ -298,7 +299,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.0.x     | 2017-10-27     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
+| 1.1.x     | 2017-11-29     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
+| 1.0.x     | 2017-10-27     | 2018-02-28        | Superseded by 1.1.x               |
 
 #### [NServiceBus.SagaAudit](/nuget/NServiceBus.SagaAudit)
 
