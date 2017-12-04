@@ -51,6 +51,8 @@ This metric measures the number of [retries](/nservicebus/recoverability) schedu
 
 ### Queue length
 
+Warning: Queue length metric is experimental and there are scenarios in which claculated value for the metric can substantialy differ from the actual one.
+
 This metric tracks the **estimated** number of messages in the input queue of an endpoint. The reason why this value needs to be estimated is that when scaling out certain queuing environments, under high load, the number of messages actually in a given input queue would not reflect all the messages *in transit* to that queue, thus reporting much lower values. For this reason, a different approach is used - one based on *links* rather than queues.
 
 A _link_ is a communication channel between a sender of the message and its receiver. Each link is uniquely identified by some combination of destination address, message assembly, and the [host identifier](/nservicebus/hosting/override-hostid.md#host-identifier) of the sender. The exact composition of link identifiers depends on the transport properties and type of message being sent.
@@ -59,7 +61,9 @@ Each sender maintains a monotonic counter of messages sent over each of its outg
 
 ServiceControl collects these metrics for all links and estimates the length of the input queue for each receiver based on how many messages were sent in total over all incoming links and how many of those messages have already been received.
 
-Note: The estimation algorithm doesn't take into consideration message reordering (caused for example by message retries) or effects caused by delayed message delivery.
+As noted before current implementation might produce estimates which significantly differ from the actual queue length value. This might happen in the following scenarios:
+ * [Sender Side Distribution](/transports/msmq/sender-side-distribution) with non homegenous receiver instances i.e. fast and slow once,
+ * High error rate scenarios in which signification number of messages is scheduled for [delayed retry](/nservicebus/recoverability/#delayed-retries) or moved to the [error](https://docs.particular.net/nservicebus/recoverability/#fault-handling) queue
 
 #### Example
 
