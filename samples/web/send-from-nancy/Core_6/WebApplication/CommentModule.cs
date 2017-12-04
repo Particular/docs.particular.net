@@ -3,21 +3,22 @@ using Nancy.TinyIoc;
 using NServiceBus;
 using System.Threading.Tasks;
 
-namespace Web
+namespace WebApplication
 {
-    public class CommentModule : NancyModule
+    public class SendMessageModule : NancyModule
     {
-        private readonly IDbContext dbContext;
         private readonly IMessageSession messageSession;
 
-        public CommentModule(IDbContext dbContext, IMessageSession messageSession) : base("/comment")
+        public SendMessageModule(IMessageSession messageSession) : base("/sendMessage")
         {
-            this.dbContext = dbContext;
             this.messageSession = messageSession;
             
             this.Get["/", true] = async (r, c) => 
             {
-                return await Task.Run(() => this.dbContext.GetData());
+                var message = new MyMessage();
+                await messageSession.Send(message)
+                    .ConfigureAwait(false);
+                return "Message sent to endpoint";
             };
         }
     }
@@ -26,7 +27,7 @@ namespace Web
     {
         public RootModule() : base()
         {
-            this.Get["/"] = r => this.Response.AsRedirect("/comment");
+            this.Get["/"] = r => this.Response.AsRedirect("/sendMessage");
         }
     }
 
