@@ -24,7 +24,7 @@ snippet: SendMetricDataToServiceControl
 
 ### Service Control Metrics Address
 
-The default is `particular.monitoring` which is ServiceControl monitoring instance input queue.
+The default instance name is `particular.monitoring` which is also used as the input queue for ServiceControl Monitoring.
 
 partial: interval
 
@@ -32,8 +32,13 @@ partial: interval
 
 An override for `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`.
 
-By default the monitoring plug-in will use [host identifiers](/nservicebus/hosting/override-hostid.md) to identify the monitored endpoint instance.
+This value is shown in the list of instances on the endpoint details page in ServicePulse Monitoring. By default the monitoring plug-in will use the [NServiceBushost host id hash identifier](/nservicebus/hosting/override-hostid.md) to identify the monitored endpoint instance.
+
+A human readable value can be passed.
+
+
+#### Azure host
 
 The value of `$.diagnostics.hostdisplayname` is expected to be human readable. This might be problematic when using the [Azure Host](/nservicebus/hosting/cloud-services-host/faq.md#host-identifier) as it uses Role Name for the `$.diagnostics.hostdisplayname`, which results in the same display name for all instances.
 
-Note: The `InstanceId` needs to be both unique and human readable.
+Note: Make sure that the `InstanceId` is both unique and human readable.
