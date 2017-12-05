@@ -89,14 +89,15 @@ partial: codefirstsites
 
 NServiceBus automatically sets the required headers to enable sending messages back over the gateway using the familiar `Reply`.
 
-NOTE: The gateway is opinionated. It considers cross-site interactions through it to be inside the boundaries of a logical service. 
+{{NOTE:
+The gateway is opinionated. It considers cross-site interactions through it to be inside the boundaries of a logical service. 
 
 This internal communication between logically connected, but separately deployed components is restricted to use send semantics. The gateway exposes this through the `SendToSites()` method. 
 
 Since publish/subscribe semantics are intended for communication between different logical services; the gateway does not support it. Publish/subscribe is fine between the endpoints on the same site, however.
 
 In a scenario with multiple logical services deployed cross-site, run separate gateways for each one.
-
+}}
 
 ## Securing the gateway with SSL
 
