@@ -78,6 +78,9 @@ Both of these instance types can be set-up and managed with the `ServiceControl 
 
 In order to configure an environment for monitoring with the Particular Service Platform you will need to install and configure the components in the order listed.
 
+NOTE: Installing the Platform tools is easiest by running the [Particular Platform Installer](https://particular.net/downloads) which automates downloading and installing all tools but individual installers can be downloaded if the tools need to be installed in an environment that is not directly connected to the internet.
+
+
 ### Install ServiceControl
 
 The main ServiceControl installer includes a desktop utility called the `ServiceControl Management Utility` which can be used to create and manage both types of instance.
@@ -132,11 +135,13 @@ NOTE: Creating the Monitoring instance will also create the monitoring queue if 
 
 ### Install ServicePulse
 
+NOTE: Make sure that ServiceControl and ServiceControl.Monitoring instances are added first.
+
 [ServicePulse](/servicepulse/) is a web application for production monitoring and recoverability. It connects to a Monitoring instance to display monitoring data and to a ServiceControl instance to display recoverability data.
 
 Download and run the latest [ServicePulse installer](https://github.com/Particular/ServicePulse/releases/download/1.10.1/Particular.ServicePulse-1.10.1.exe). 
 
-NOTE: If you already have ServicePulse running on your machine you will need to uninstall it and download the latest version in order to be able to configure ServicePulse to connect to a ServiceControl Monitoring instance.
+NOTE: In order to be able to configure ServicePulse to connect to a ServiceControl Monitoring instance you must download the latest version, then uninstall your current version and install the download version.
 
 On the ServicePulse Configuration screen ensure that Recoverability is enabled and enter the URL of the ServiceControl instance API. Check the box marked Monitoring and enter the URL of the Monitoring instance API. 
 
