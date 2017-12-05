@@ -15,13 +15,13 @@ The configuration of a Monitoring instance can be adjusted via ServiceControl Ma
 Prior to modifying these configuration settings review [Setting a Custom Hostname](setting-custom-hostname.md):
 
 ### Monitoring/EndpointName
-The endpoint name to be used by Monitoring instance and the name of the Monitoring queue.
+The endpoint name to be used by the monitoring instance and the name of the monitoring queue.
 
 Type: string
 
 Default: `Particular.Monitoring`
 
-Warning: After changing this setting it's necessary to run Monitoring instance setup procedure by executing `ServiceControl.Monitoring.exe -s` in the command prompt. This ensures that all necessary queues are created and properly configured.
+Warning: After changing this setting it's necessary to run the monitoring instance setup procedure by executing `ServiceControl.Monitoring.exe -s` in the command prompt. This ensures that all necessary queues are created and properly configured.
 
 ### Monitoring/HttpHostname
 
@@ -31,7 +31,7 @@ Type: string
 
 Default: `localhost`
 
-NOTE: This setting must have a value in order for the Monitoring instance API to be available from remote machines. 
+NOTE: This setting must have a value in order for the Monitoring instance API to be available from remote machines.
 
 
 ### Monitoring/HttpPort

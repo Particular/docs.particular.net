@@ -1,6 +1,6 @@
 ---
-title: EntityFramework integration
-summary: Integrating EntityFramework with NHibernate and SQL persistences.
+title: Entity Framework integration
+summary: Integrating Entity Framework with NHibernate and SQL persistence.
 reviewed: 2017-11-27
 component: Core
 related:
