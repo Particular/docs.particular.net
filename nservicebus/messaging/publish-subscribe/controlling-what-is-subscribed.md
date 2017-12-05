@@ -10,7 +10,7 @@ reviewed: 2016-11-07
 
 ## Automatic subscriptions
 
-The default mode for managing subscriptions is *auto subscribe*. When a subscriber endpoint is started, it determines  which events it needs to subscribe to. This auto subscription mechanism happens each time the subscriber is restarted. For more information how publish and subscribe works refer to the [Publish-Suscribe](/nservicebus/messaging/publish-subscribe) documentation page. 
+The default mode for managing subscriptions is *auto subscribe*.  Every time a subscriber endpoint is started, it determines which events it needs to subscribe to and automatically subscribes to them. For more information on how publish and subscribe works, refer to [Publish-Suscribe](/nservicebus/messaging/publish-subscribe).
 
 Messages matching the following criteria will be auto subscribed at startup.
 
