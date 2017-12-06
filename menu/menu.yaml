@@ -65,6 +65,9 @@
       Title: Callbacks 1 to 2
     - Url: nservicebus/upgrades/6to7
       Title: NServiceBus 6 to 7
+      Articles:
+      - Url: nservicebus/upgrades/encryption-1to2
+        Title: Version 1 to 2
     - Url: nservicebus/upgrades/6to6.2
       Title: NServiceBus 6 to 6.2
     - Url: nservicebus/upgrades/5to6
@@ -108,8 +111,6 @@
       Title: NServiceBus 4 to 5
     - Url: nservicebus/upgrades/3to4
       Title: NServiceBus 3 to 4
-    - Url: nservicebus/upgrades/perfcounters-1to2
-      Title: Upgrade PerfCounters 1 to 2
     - Url: nservicebus/upgrades/encryption-key-identifiers
       Title: Upgrade encryption configuration
     - Title: Metrics
@@ -158,7 +159,7 @@
       Articles:
       - Url: nservicebus/upgrades/externalize-perfcounters
         Title: Migrate To External Nuget
-      - Url: nservicebus/upgrades/encryption-1to2
+      - Url: nservicebus/upgrades/perfcounters-1to2
         Title: Version 1 to 2
     - Title: ServiceControl Plugins
       Articles:
