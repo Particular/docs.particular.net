@@ -67,7 +67,7 @@
       Title: NServiceBus 6 to 7
       Articles:
       - Url: nservicebus/upgrades/encryption-1to2
-        Title: Version 1 to 2
+        Title: Encryption
     - Url: nservicebus/upgrades/6to6.2
       Title: NServiceBus 6 to 6.2
     - Url: nservicebus/upgrades/5to6
