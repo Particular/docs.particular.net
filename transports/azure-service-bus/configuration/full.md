@@ -28,7 +28,7 @@ A topology defines what the underlying layout of Azure Service Bus messaging ent
 
 The [Forwarding Topology](/transports/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology) defines a queue per endpoint and a shared topic to do the publishing. Topic prefix can be configured using the following setting:
 
- * `BundlePrefix(string)`: The prefix used in the entity name to differentiate share topic (bundle) from other topics.
+ * `BundlePrefix(string)`: The prefix used in the entity name to differentiate shared topic (bundle) from other topics.
 
 ### Endpoint Oriented Topology
 
