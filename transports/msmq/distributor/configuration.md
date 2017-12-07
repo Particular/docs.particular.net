@@ -84,7 +84,7 @@ Similar to self-hosting, if running NServiceBus prior to Version 6, ensure the `
 The distributor process uses two queues for its runtime operation. The `DataInputQueue` is the queue where the client processes send their messages. The `ControlInputQueue` is the queue where the worker nodes send their control messages.
 
 
-The NServiceBus default values for these settings can be overriden, as shown in the `UnicastBusConfig` section below:
+The NServiceBus default values for these settings can be overridden, as shown in the `UnicastBusConfig` section below:
 
 ```xml
 <UnicastBusConfig DistributorControlAddress="EndpointName.Distributor.Control@MachineWhereDistributorRuns"

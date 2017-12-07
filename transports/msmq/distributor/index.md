@@ -18,7 +18,7 @@ The NServiceBus Distributor is similar in behavior to standard [load balancers](
 
 As a standard NServiceBus process, the Distributor maintains all the fault-tolerant and performance characteristics of NServiceBus but is designed to never overwhelm any of the worker nodes.
 
-WARNING: Keep in mind that the Distributor is designed for *load balancing within a single site* and not between different sites. For information on using NServiceBus across multiple physical sites, use [the gateway](/nservicebus/gateway/multi-site-deployments.md).
+WARNING: Keep in mind that the Distributor is designed for *load balancing within a single site* and not between different sites. For information on using NServiceBus across multiple physical sites, see [the gateway](/nservicebus/gateway/multi-site-deployments.md).
 
 
 ## How the Distributor works
