@@ -1,8 +1,8 @@
 ---
 title: Tutorials
 suppressRelated: true
-reviewed: 2017-01-26
-summary: Step-by-step tutorials to help you learn how to use NServiceBus, with detailed instructions and a downloadable solution with the completed example.
+reviewed: 2017-12-07
+summary: Step-by-step tutorials to help you learn how to use NServiceBus, with detailed instructions and downloadable solutions with the completed examples.
 redirects:
 - tutorials/monitoring
 ---
@@ -24,4 +24,4 @@ This stand-alone demo contains all of the platform components, preconfigured to 
 
 ### [Monitoring NServiceBus tutorial](monitoring-setup/)
 
-A step-by-step guide that shows how to configure the Particular Service Platform and your solution in order to enable monitoring.
+A step-by-step guide that shows how to configure the Particular Service Platform and your solution in order to monitor your system.

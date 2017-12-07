@@ -39,7 +39,7 @@ public static DateTime ToUtcDateTime(string wireFormattedString)
 ```
 
 
-## Serialization Headers
+## Serialization headers
 
 The following headers include information for the receiving endpoint on the [message serialization](/nservicebus/serialization/) option that was used.
 
@@ -85,7 +85,7 @@ Messages sent from a [saga](https://docs.particular.net/nservicebus/sagas/) usin
 
 ### NServiceBus.ConversationId
 
-Identifier of the conversation that this message is part of. It enables the tracking of message flows that span more than one message exchange. `Conversation Id` and `RelatedTo` fields allow [Service Insight](/serviceinsight/#flow-diagram) to reconstruct the entire message flow.
+Identifier of the conversation that this message is part of. It enables the tracking of message flows that span more than one message exchange. `Conversation Id` and `RelatedTo` fields allow [ServiceInsight](/serviceinsight/#flow-diagram) to reconstruct the entire message flow.
 
 The first message that is sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are subsequently sent, thus forming a _conversation_. Each message that is sent within a conversation also has a `RelatedTo` value that identifies the originating message that caused it to be sent.
 
@@ -127,7 +127,7 @@ Message intent can have one of the following values:
 Downstream message [handlers](/nservicebus/handlers) or [sagas](/nservicebus/sagas) use this value as the reply queue address when replying or returning a message.
 
 
-## Send Headers
+## Send headers
 
 When a message is sent, the headers will be as follows:
 
@@ -136,7 +136,7 @@ snippet: HeaderWriterSend
 In the above example, headers are for a Send and hence the `MessageIntent` header is `Send`. If the message were published instead, the `MessageIntent` header would be `Publish`.
 
 
-## Reply Headers
+## Reply headers
 
 When replying to a message:
 
@@ -146,7 +146,7 @@ When replying to a message:
  * The `CorrelationId` will be same as the initiating `CorrelationId`.
 
 
-### Example Reply Headers
+### Example reply headers
 
 Given an initiating message with the following headers:
 
@@ -157,14 +157,14 @@ the headers of the reply message will be:
 snippet: HeaderWriterReplyReplying
 
 
-## Publish Headers
+## Publish headers
 
 When a message is published the headers will be as follows:
 
 snippet: HeaderWriterPublish
 
 
-## Return from a Handler
+## Return from a handler
 
 When returning a message instead of replying:
 
@@ -172,7 +172,7 @@ When returning a message instead of replying:
  * The `ReturnMessage.ErrorCode` contains the value that was supplied to the `Bus.Return` method.
 
 
-### Example Return Headers
+### Example return headers
 
 Given an initiating message with the following headers:
 
@@ -183,7 +183,7 @@ the headers of reply message will be:
 snippet: HeaderWriterReturnReturning
 
 
-## Timeout Headers
+## Timeout headers
 
 
 ### NServiceBus.ClearTimeouts
@@ -206,7 +206,7 @@ The queue name a timeout should be routed back to when it fires.
 A marker header to indicate that this message resulted from a Defer.
 
 
-## Saga Related Headers
+## Saga-related headers
 
 When a message is dispatched from within a saga the message will contain the following:
 
@@ -214,12 +214,12 @@ When a message is dispatched from within a saga the message will contain the fol
  * An `OriginatingSagaType` which is the fully qualified type name of the saga that sent the message.
 
 
-### Example "Send from Saga" Headers
+### Example "send from saga" headers
 
 snippet: HeaderWriterSagaSending
 
 
-### Replying to a Saga
+### Replying to a saga
 
 A message reply is performed from a saga will have the following headers:
 
@@ -228,7 +228,7 @@ A message reply is performed from a saga will have the following headers:
  * Since this is a reply to a the initial saga then the headers will contain `SagaId` and `SagaType` headers that match the initial saga.
 
 
-### Example "Replying to a Saga" Headers
+### Example "replying to a saga" headers
 
 
 #### Via calling Bus.Reply
@@ -241,38 +241,38 @@ snippet: HeaderWriterSagaReplying
 snippet: HeaderWriterSagaReplyingToOriginator
 
 
-### Requesting a Timeout from a Saga
+### Requesting a timeout from a saga
 
-When requesting a Timeout from a Saga:
+When requesting a timeout from a saga:
 
  * The `OriginatingSagaId`, `OriginatingSagaType`, `SagaId` and `SagaType` will all match the Saga that requested the Timeout.
  * The `Timeout.RouteExpiredTimeoutTo` header contains the queue name for where the callback for the timeout should be sent.
  * The `Timeout.Expire` header contains the timestamp for when the timeout should fire.
 
 
-#### Example Timeout Headers
+#### Example timeout headers
 
 snippet: HeaderWriterSagaTimeout
 
 
-## Defer a Message
+## Defer a message
 
 When deferring, the message will have similar header to a Send with a few differences:
 
  * The message will have `IsDeferredMessage` with the value of `true`.
- * Since the Defer feature uses the Timeouts feature the Timeout headers will exist.
+ * Since the defer feature uses the timeouts feature the timeout headers will exist.
  * The `Timeout.RouteExpiredTimeoutTo` header contains the queue name for where the callback for the timeout should be sent.
  * The `Timeout.Expire` header contains the timestamp for when the timeout should fire.
 
 
-### Example Defer Headers
+### Example defer headers
 
 snippet: HeaderWriterDefer
 
 
-## Diagnostic and Informational Headers
+## Diagnostic and informational headers
 
-Headers used to give visibility into "where", "when" and "by whom" Of a message. Used by [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/).
+Headers used to give visibility into "where", "when" and "by whom" of a message. They are used by [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/).
 
 
 ### $.diagnostics
@@ -286,17 +286,17 @@ The [host details](/nservicebus/hosting/override-hostid.md) of the endpoint wher
 
 ### NServiceBus.TimeSent
 
-The timestamp of when the message was sent. Used by the [Performance Counters](/nservicebus/operations/metrics/performance-counters.md).
+The timestamp when the message was sent. Used by the [Performance Counters](/nservicebus/operations/metrics/performance-counters.md).
 
 
 ### NServiceBus.OriginatingEndpoint
 
-The endpoint name where the message was sent from.
+The endpoint name the message was sent from.
 
 
 ### NServiceBus.OriginatingMachine
 
-The machine name where the message was sent from.
+The machine name the message was sent from.
 
 
 ### NServiceBus.Version
@@ -304,14 +304,14 @@ The machine name where the message was sent from.
 The NServiceBus version number.
 
 
-## Audit Headers
+## Audit headers
 
-Headers added when a message is [Audited](/nservicebus/operations/auditing.md)
+Headers added when a message is [audited](/nservicebus/operations/auditing.md)
 
 
 ### NServiceBus.ProcessingEnded
 
-The timestamp processing of a message ended.
+The timestamp when processing of a message ended.
 
 
 ### NServiceBus.ProcessingEndpoint
@@ -326,23 +326,23 @@ The machine name of the endpoint where the message was processed.
 
 ### NServiceBus.ProcessingStarted
 
-The timestamp the processing of this message started.
+The timestamp when the processing of this message started.
 
 
-### Example Audit Headers
+### Example audit headers
 
 Given an initiating message with the following headers:
 
 snippet: HeaderWriterAuditSend
 
-When that message fails to be processed it will be sent to the Error queue with the following headers:
+when that message fails to be processed, it will be sent to the error queue with the following headers:
 
 snippet: HeaderWriterAuditAudit
 
 
 ## Retries handling headers
 
-Headers used to facilitate [Retries](/nservicebus/recoverability/).
+Headers used to facilitate [retries](/nservicebus/recoverability/).
 
 Note: These headers will only exist after the initial retry has occurred.
 
@@ -354,115 +354,115 @@ The queue at which the message processing failed.
 
 ### NServiceBus.FLRetries
 
-The number of [Immediate Retries](/nservicebus/recoverability/#immediate-retries) that has been performed for a message.
+The number of [immediate retries](/nservicebus/recoverability/#immediate-retries) that have been performed for a message.
 
 
 ### NServiceBus.Retries
 
-The number of [Delayed Retries](/nservicebus/recoverability/#delayed-retries) that has been performed for a message.
+The number of [delayed retries](/nservicebus/recoverability/#delayed-retries) that have been performed for a message.
 
 
 ### NServiceBus.Retries.Timestamp
 
-A timestamp used by [Delayed Retries](/nservicebus/recoverability/#delayed-retries) to determine if the maximum time for retrying has been reached.
+A timestamp used by [delayed retries](/nservicebus/recoverability/#delayed-retries) to determine if the maximum time for retrying has been reached.
 
 
 ## Error forwarding headers
 
-When a message handled by [recoverability](/nservicebus/recoverability/), it will have the following extra headers added to the existing headers. If retries occurred, then those messages will be included with the exception of `NServiceBus.Retries`, which is removed.
+When a message is handled by [recoverability](/nservicebus/recoverability/), it will have the following extra headers added to the existing headers. If retries occurred, then those messages will be included with the exception of `NServiceBus.Retries`, which is removed.
 
 
 ### NServiceBus.ExceptionInfo.ExceptionType
 
-The [Type.FullName](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) of the Exception. Obtained by calling `Exception.GetType().FullName`.
+The [Type.FullName](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) of the Exception. It is obtained by calling `Exception.GetType().FullName`.
 
 
 ### NServiceBus.ExceptionInfo.InnerExceptionType
 
-The full Type name of the [InnerException](https://msdn.microsoft.com/en-us/library/system.exception.innerexception.aspx) if it exists. Obtained by calling `Exception.InnerException.GetType().FullName`.
+The full type name of the [InnerException](https://msdn.microsoft.com/en-us/library/system.exception.innerexception.aspx) if it exists. It is obtained by calling `Exception.InnerException.GetType().FullName`.
 
 
 ### NServiceBus.ExceptionInfo.HelpLink
 
-The [Exception HelpLink](https://msdn.microsoft.com/en-us/library/system.exception.helplink.aspx).
+The [exception help link](https://msdn.microsoft.com/en-us/library/system.exception.helplink.aspx).
 
 
 ### NServiceBus.ExceptionInfo.Message
 
-The [Exception Message](https://msdn.microsoft.com/en-us/library/system.exception.message.aspx).
+The [exception message](https://msdn.microsoft.com/en-us/library/system.exception.message.aspx).
 
 
 ### NServiceBus.ExceptionInfo.Source
 
-The [Exception Source](https://msdn.microsoft.com/en-us/library/system.exception.source.aspx).
+The [exception source](https://msdn.microsoft.com/en-us/library/system.exception.source.aspx).
 
 
 ### NServiceBus.ExceptionInfo.StackTrace
 
-The [Exception StackTrace](https://msdn.microsoft.com/en-us/library/system.exception.stacktrace.aspx).
+The [exception stack trace](https://msdn.microsoft.com/en-us/library/system.exception.stacktrace.aspx).
 
 
-### Example Error Headers
+### Example error headers
 
 Given an initiating message with the following headers:
 
 snippet: HeaderWriterErrorSending
 
-When that message fails to be processed it will be sent to the Error queue with the following headers:
+when that message fails to be processed, it will be sent to the error queue with the following headers:
 
 snippet: HeaderWriterErrorError
 
 
-## Encryption Headers
+## Encryption headers
 
 Headers when using [message property encryption](/nservicebus/security/property-encryption.md).
 
 
 ### NServiceBus.RijndaelKeyIdentifier
 
-Identifies which encryption key used for encryption the message property fragments.
+Identifies the encryption key used for encryption of the message property fragments.
 
 
-#### Example Headers
+#### Example headers
 
 snippet: HeaderWriterEncryption
 
 
-#### Example Body
+#### Example body
 
 snippet: HeaderWriterEncryptionBody
 
 
-## FileShare DataBus Headers
+## FileShare DataBus headers
 
-When using the [FileShare DataBus](/nservicebus/messaging/databus/file-share.md) extra headers and serialized message information is necessary to correlate between the information on the queue and the data on the file system.
+When using the [FileShare DataBus](/nservicebus/messaging/databus/file-share.md), extra headers and serialized message information are necessary to correlate between the information on the queue and the data on the file system.
 
 
-### When using DataBusProperty
+### Using DataBusProperty
 
 When using the `DataBusProperty`, NServiceBus uses that property as a placeholder at serialization time. The serialized value of that property will contain a key. This key maps to a named header. That header then provides the path suffix of where that binary data is stored on disk on the file system.
 
 
-#### Example Headers
+#### Example headers
 
 snippet: HeaderWriterDataBusProperty
 
 
-#### Example Body
+#### Example body
 
 snippet: HeaderWriterDataBusPropertyBody
 
 
-### When using Convention
+### Using conventions
 
-When using [Conventions](/nservicebus/messaging/conventions.md) there is no way to store a correlation value inside the serialized property. Instead, each property has a matching header with the property name used as the header suffix. That header then provides the path suffix of where that binary data is stored on disk on the file system.
+When using [conventions](/nservicebus/messaging/conventions.md) there is no way to store a correlation value inside the serialized property. Instead, each property has a matching header with the property name used as the header suffix. That header then provides the path suffix of where that binary data is stored on disk on the file system.
 
 
-#### Example Headers
+#### Example headers
 
 snippet: HeaderWriterDataBusConvention
 
 
-#### Example Body
+#### Example body
 
 snippet: HeaderWriterDataBusConventionBody
