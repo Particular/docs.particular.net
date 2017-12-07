@@ -77,7 +77,7 @@ Message correlation connects request messages with their corresponding response 
 
 An example of Correlation Identifier usage within NServiceBus can be found in [callbacks](/nservicebus/messaging/callbacks.md).
 
-Messages sent from a [saga](https://docs.particular.net/nservicebus/sagas/) using the `ReplyToOriginator` method will have their `Correlation Id` set based on the message which caused the saga to be created. See [Notifying callers of status](/nservicebus/sagas/#notifying-callers-of-status) for more information about the `ReplyToOriginator` method.
+Messages sent from a [saga](/nservicebus/sagas/) using the `ReplyToOriginator` method will have their `Correlation Id` set based on the message which caused the saga to be created. See [Notifying callers of status](/nservicebus/sagas/#notifying-callers-of-status) for more information about the `ReplyToOriginator` method.
 
 ### CorrId
 
