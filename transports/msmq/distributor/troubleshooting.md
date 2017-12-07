@@ -11,9 +11,9 @@ related:
 
 ## Troubleshooting
 
-To scale out MSMQ processing, a Distributor node accepts messages in one queue and then distributes/forwards it to available workers. Every worker sends a `ReadyMessage` to the distributor's *control queue* when it can perform work, then the distributor forwards a message to that worker. This process is explained in detail in the [How the Distributor works](/transports/msmq/distributor/#how-the-distributor-works) section.
+To scale out MSMQ processing, a Distributor node accepts messages in one queue and then forwards it to available workers. Every worker sends a `ReadyMessage` to the distributor *control queue* when it is ready to perform work and then the distributor forwards a message to that worker. This process is explained in detail in the [How the Distributor works](/transports/msmq/distributor/#how-the-distributor-works) section.
 
-This troubleshooting guide covers issues related to MSMQ distributor only, and extends the [Troubleshooting MSMQ](/transports/msmq/troubleshooting.md) article. The problems with the MSMQ environment itself are the most common cause of distributor issues, for example due to worker's `ReadyMessages` getting stuck in the workers' outgoing queues, unable to reach the distributor, or messages getting stuck in the distributor's outgoing queue, unable to reach the workers.
+This troubleshooting guide covers issues related to MSMQ distributor only, and extends the [Troubleshooting MSMQ](/transports/msmq/troubleshooting.md) article. The problems with the MSMQ environment itself are the most common cause of distributor issues, for example due to worker's `ReadyMessages` getting stuck in the worker outgoing queue (unable to reach the distributor) or messages getting stuck in the distributor outgoing queue (unable to reach the worker).
 
 
 ### Performance issues
@@ -21,21 +21,21 @@ This troubleshooting guide covers issues related to MSMQ distributor only, and e
 The distributor is not suitable for all scale-out scenarios, before using Distributor ensure that [it is appropriate in the given deployment setup](/transports/msmq/distributor/#performance).
 
 
-#### Increase Maximum concurrency
+#### Increase maximum concurrency
 
 By default, the maximum concurrency level is 1. Ensure that the maximum concurrency level is increased on the distributor. Also, make sure that the workers have a higher maximum concurrency level.
 
-Monitor server's CPU, DISK, RAM and network resources to determine the optimium maximum concurrency level for real workloads.
+Monitor server CPU, DISK, RAM and network resources to determine the optimal maximum concurrency level for real workloads.
 
 
 #### Enable prefetching
 
-When workers are using NServiceBus 6, then it is possible to configure the worker's capacity independently from the maximum concurrency. By assigning a capacity value higher than the maximum concurrency it is possible to reduce the latency before the worker processes a next message. By default the worker first reports it is available for work and only then gets a new message forwarded by the distributor.
+When workers are using NServiceBus 6, then it is possible to configure the worker capacity independently from the maximum concurrency. By assigning a capacity value higher than the maximum concurrency it is possible to reduce the latency before the worker processes a next message. By default the worker first reports it is available for work and only then gets a new message forwarded by the distributor.
 
 
 #### Scale up
 
-If the CPU is not the bottleneck, then network latency and bandwidth will limit the overall throughput. Using the distributor might not be the ideal solution in such situation, as using the distributor will result in roughly 4 times the number of messages sent for each piece of work thus it will have an impact on the network resources.
+If the CPU is not the bottleneck, then network latency and bandwidth will limit the overall throughput. Using the distributor might not be the ideal solution in such situation, as using the distributor will result in roughly 4 times the number of messages sent for each piece of work, thus having negative impact on the network resources.
 
 Instead, in some situations it may be more appropriate to simply scale up hardware instead of using distributor and scale-out.
 
@@ -61,8 +61,8 @@ The worker is very likely to not be running as a worker, but as a regular endpoi
 Make sure that:
 
 - The assembly `NServiceBus.Distributor.MSMQ.dll` is in the endpoint folder.
-- When using the [NServiceBus.Host](/nservicebus/hosting/nservicebus-host/), the `NServiceBus.MSMQWorker` profile is set on the commandline and that the worker was installed with this argument on the commandline.
-- When using [custom assembly scanning](/nservicebus/hosting/assembly-scanning.md), the in/exclusions are not excluding the `NServiceBus.Distributor.MSMQ.dll` assembly.
+- When using the [NServiceBus.Host](/nservicebus/hosting/nservicebus-host/), the `NServiceBus.MSMQWorker` profile is set on the command line and that the worker was installed with this argument on the commandline.
+- When using [custom assembly scanning](/nservicebus/hosting/assembly-scanning.md), the `NServiceBus.Distributor.MSMQ.dll` assembly is not excluded.
 - The log contains the following entry:
 ```  
 Name: Distributor
@@ -75,7 +75,7 @@ Startup Tasks: None
 
 ### The distributor queue is building up while it is running
 
-The distributor is probably unaware of any workers. When a worker starts, it signals its availability at the distributor and this event is written to the log:
+The distributor is probably unaware of any workers. When a worker starts, it signals its availability to the distributor and this event is logged:
 
 ```
 INFO  NServiceBus.Distributor.MSMQ.MsmqWorkerAvailabilityManager Worker at 'Samples.Scaleout.Subscriber.Worker2@TUIN' is available to take on more work.
@@ -99,9 +99,9 @@ The distributor is likely not running as the distributor, but as a regular endpo
 Make sure that:
 
 - The assembly `NServiceBus.Distributor.MSMQ.dll` is in the endpoint folder.
-- When using the NServiceBus.Host, that the worker has the `NServiceBus.MSMQWorker` profile on the commandline and that the worker was installed with this argument on the commandline.
+- When using the NServiceBus.Host, that the worker has the `NServiceBus.MSMQWorker` profile on the command line and that the worker was installed with this argument on the command line.
 - When using the NServiceBus.Host, that the distributor has either the `NServiceBus.MSMQDistributor` or `NServiceBus.MSMQMaster`
-- When using custom assembly scanning, the in/exclusions will not exclude the `NServiceBus.Distributor.MSMQ.dll` assembly.
+- When using custom assembly scanning, the `NServiceBus.Distributor.MSMQ.dll` assembly is not excluded.
 - The log contains the following entry:
 ```  
 Name: Distributor
