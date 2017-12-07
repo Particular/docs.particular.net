@@ -1,7 +1,7 @@
 ---
 title: Message Headers
 summary: List of built-in NServiceBus message headers.
-reviewed: 2016-11-08
+reviewed: 2017-12-07
 component: Core
 versions: '[5.0,)'
 tags:
@@ -15,7 +15,7 @@ related:
  - nservicebus/messaging/header-manipulation
 ---
 
-The headers in a message contain information that is used by the messaging infrastructure to help with the message delivery. Message headers are very similar, in both implementation and usage, to HTTP headers. To learn more about how to use custom headers, see the [header manipulation](/nservicebus/messaging/header-manipulation.md) article.
+The headers in a message contain information that is used by the messaging infrastructure to help with the message delivery. Message headers are very similar, in both implementation and usage, to HTTP headers. To learn more about how to use custom headers, see [Manipulating message headers](/nservicebus/messaging/header-manipulation.md).
 
 
 ## Timestamp format
@@ -46,7 +46,7 @@ The following headers include information for the receiving endpoint on the [mes
 
 ### NServiceBus.ContentType
 
-The type of serialization used for the message, for example `text/xml` or `text/json`. This header was added in Version 4.0. In some cases, it may be useful to use the `NServiceBus.Version` header to determine how to use the value in this header appropriately.
+The type of serialization used for the message, for example `text/xml` or `text/json`. In some cases, it may be useful to use the `NServiceBus.Version` header to determine how to use the value in this header appropriately.
 
 
 ### NServiceBus.EnclosedMessageTypes
@@ -61,7 +61,7 @@ NOTE: In integration scenarios, this header can be safely omitted if the endpoin
 
 ## Messaging interaction headers
 
-The following headers are used in various ways to enable different messaging interaction patterns such as Request-Response, etc.
+The following headers are used to enable different messaging interaction patterns, such as Request-Response.
 
 
 ### NServiceBus.MessageId
@@ -73,38 +73,38 @@ A [unique ID for the current message](/nservicebus/messaging/message-identity.md
 
 NServiceBus implements the [Correlation Identifier](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CorrelationIdentifier.html) pattern by using a `Correlation Id` header.
 
-Message correlation connects request messages with their corresponding response messages. The `Correlation Id` of the response message is the `Correlation Id` of its corresponding request message. Each outgoing message which is sent outside of a message handler will have it's `Correlation Id` set to it's `Message Id`.
+Message correlation connects request messages with their corresponding response messages. The `Correlation Id` of the response message is the `Correlation Id` of its corresponding request message. Each outgoing message which is sent outside of a message handler will have its `Correlation Id` set to its `Message Id`.
 
-An example usage of Correlation Identifier within NServiceBus is [callbacks](/nservicebus/messaging/callbacks.md).
+An example of Correlation Identifier usage within NServiceBus can be found in [callbacks](/nservicebus/messaging/callbacks.md).
 
-Messages sent from a Saga using the `ReplyToOriginator` method will have their `Correlation Id` set based on the message which caused the saga to be created. See [Notifying callers of status](/nservicebus/sagas/#notifying-callers-of-status) for more information about the `ReplyToOriginator` method.
+Messages sent from a [saga](https://docs.particular.net/nservicebus/sagas/) using the `ReplyToOriginator` method will have their `Correlation Id` set based on the message which caused the saga to be created. See [Notifying callers of status](/nservicebus/sagas/#notifying-callers-of-status) for more information about the `ReplyToOriginator` method.
 
 ### CorrId
 
-`CorrId` is an MSMQ specific header semantically identical to `NServiceBus.CorrelationId`.  Only included for backward compatibility with endpoints running version 3 or older of NServiceBus. 
+`CorrId` is an MSMQ specific header semantically identical to `NServiceBus.CorrelationId`. It is included only for backward compatibility with endpoints running version 3 or older of NServiceBus.
 
 ### NServiceBus.ConversationId
 
-Identifier of the conversation that this message is part of. It enables the tracking of message flows that span more than one message exchange. `Conversation Id` and `RelatedTo` fields allow [ServiceInsight](/serviceinsight/#flow-diagram) to reconstruct the entire message flow.
+Identifier of the conversation that this message is part of. It enables the tracking of message flows that span more than one message exchange. `Conversation Id` and `RelatedTo` fields allow [Service Insight](/serviceinsight/#flow-diagram) to reconstruct the entire message flow.
 
-The first message that is sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are subsequently sent, thus forming a _conversation_. Each message that is sent within a conversation also has a `RelatedTo` value that identifies the originating message that caused it to be sent. 
+The first message that is sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are subsequently sent, thus forming a _conversation_. Each message that is sent within a conversation also has a `RelatedTo` value that identifies the originating message that caused it to be sent.
 
-In certain scenarios Conversation Id has to be assigned manually, because NServiceBus can't infer that messages are correlated. For example, when a `CancelOrder` message needs to become part of an existing order conversation, then the Order Id can be used for correlating messages. This can be adhieved by overriding the header with a custom value:
+In certain scenarios Conversation Id has to be assigned manually, because NServiceBus can't infer that messages are correlated. For example, when a `CancelOrder` message needs to become part of an existing order conversation, then the Order Id can be used for correlating messages. This can be achieved by overriding the header with a custom value:
 
 snippet: override-conversation-id
 
-Note that it is not possible to override an existing Conversation Id, it results in the following error:
+Note that attempting to override an existing Conversation Id will produce the following error:
 
 ```
 Cannot set the NServiceBus.ConversationId header to 'XXXXX' as it cannot override the incoming header value ('2f4076a0-d8de-4297-9d18-a830015dd42a').
 ```
 
-NOTE: `Conversation Id` is very similar to `Correlation Id`. Both headers are copied to each new message that an endpoint produces. Whereas `Conversation Id` is always copied from the incoming message being handled, `Correlation Id` can come from another source (such as when replying from a Saga using `ReplyToOriginator(...)`).
+NOTE: `Conversation Id` is very similar to `Correlation Id`. Both headers are copied to each new message that an endpoint produces. Whereas `Conversation Id` is always copied from the incoming message being handled, `Correlation Id` can come from another source (such as when replying from a saga using `ReplyToOriginator(...)`).
 
 
 ### NServiceBus.RelatedTo
 
-The `MessageId` that caused this message to be sent. Whenever a message is sent or published from inside a message handler, it's `RelatedTo` header is set to the `MessageId` of the incoming message that was being handled.
+The `MessageId` that caused the current message to be sent. Whenever a message is sent or published from inside a message handler, it's `RelatedTo` header is set to the `MessageId` of the incoming message that was being handled.
 
 NOTE: For a single request-response interaction `Correlation Id` and `RelatedTo` are very similar. Both headers are able to correlate the response message back to the request message. Once a _conversation_ is longer than a single request-response interaction, `Correlation Id` can be used to correlate a response to the original request. `RelatedTo` can only correlate a message back to the previous message in the same _conversation_.
 
@@ -115,7 +115,7 @@ Message intent can have one of the following values:
 
 | Value         | Description |
 | ------------- |-------------|
-| Send |Regular point-to-point send. Note that messages sent to Error queue will also have a `Send` intent|
+| Send |Regular point-to-point send. Note that messages sent to the error queue will also have a `Send` intent|
 | Publish |The message is an event that has been published and will be sent to all subscribers.|
 | Subscribe |A control message indicating that the source endpoint would like to subscribe to a specific message.|
 | Unsubscribe |A control message indicating that the source endpoint would like to unsubscribe to a specific message.|
@@ -124,16 +124,16 @@ Message intent can have one of the following values:
 
 ### NServiceBus.ReplyToAddress
 
-Downstream message [Handlers](/nservicebus/handlers) or [Sagas](/nservicebus/sagas) use this value as the reply queue address when replying or returning a message.
+Downstream message [handlers](/nservicebus/handlers) or [sagas](/nservicebus/sagas) use this value as the reply queue address when replying or returning a message.
 
 
 ## Send Headers
 
-When a message is sent the headers will be as follows:
+When a message is sent, the headers will be as follows:
 
 snippet: HeaderWriterSend
 
-The above example headers are for a Send and hence the `MessageIntent` header is `Send`. If the message was published instead, the `MessageIntent` header would be `Publish`.
+In the above example, headers are for a Send and hence the `MessageIntent` header is `Send`. If the message were published instead, the `MessageIntent` header would be `Publish`.
 
 
 ## Reply Headers
@@ -152,7 +152,7 @@ Given an initiating message with the following headers:
 
 snippet: HeaderWriterReplySending
 
-The headers of reply message will be as follows:
+the headers of the reply message will be:
 
 snippet: HeaderWriterReplyReplying
 
@@ -168,7 +168,7 @@ snippet: HeaderWriterPublish
 
 When returning a message instead of replying:
 
- * The Return has the same points as the Reply example from above with some additions.
+ * The Return has the same points as the Reply example above with some additions.
  * The `ReturnMessage.ErrorCode` contains the value that was supplied to the `Bus.Return` method.
 
 
@@ -178,7 +178,7 @@ Given an initiating message with the following headers:
 
 snippet: HeaderWriterReturnSending
 
-The headers of reply message will be as follows:
+the headers of reply message will be:
 
 snippet: HeaderWriterReturnReturning
 
@@ -193,12 +193,12 @@ A marker header to indicate that the contained control message is requesting tha
 
 ### NServiceBus.Timeout.Expire
 
-A timestamp that indicates when a timeout to be fired.
+A timestamp that indicates when a timeout should be fired.
 
 
 ### NServiceBus.Timeout.RouteExpiredTimeoutTo
 
-The queue name where a timeout should be routed back to when it fires.
+The queue name a timeout should be routed back to when it fires.
 
 
 ### NServiceBus.IsDeferredMessage
@@ -208,10 +208,10 @@ A marker header to indicate that this message resulted from a Defer.
 
 ## Saga Related Headers
 
-When a message is dispatched from within a Saga the message will contain the following:
+When a message is dispatched from within a saga the message will contain the following:
 
- * A `OriginatingSagaId` header which matches the ID used as the index for the Saga Data stored in persistence.
- * A `OriginatingSagaType` which is the fully qualified type name of the saga that sent the message.
+ * An `OriginatingSagaId` header which matches the ID used as the index for the saga data stored in persistence.
+ * An `OriginatingSagaType` which is the fully qualified type name of the saga that sent the message.
 
 
 ### Example "Send from Saga" Headers
@@ -221,11 +221,11 @@ snippet: HeaderWriterSagaSending
 
 ### Replying to a Saga
 
-A message Reply is performed from a Saga will have the following headers:
+A message reply is performed from a saga will have the following headers:
 
- * The send headers are the same as a normal Reply headers with a few additions.
- * Since this reply is from a secondary Saga then `OriginatingSagaId` and `OriginatingSagaType` will match the second saga.
- * Since this is a Reply to a the initial Saga then the headers will contain `SagaId` and `SagaType` headers that match the initial Saga.
+ * The send headers are the same as a normal reply headers with a few additions.
+ * Since this reply is from a secondary saga then `OriginatingSagaId` and `OriginatingSagaType` will match the second saga.
+ * Since this is a reply to a the initial saga then the headers will contain `SagaId` and `SagaType` headers that match the initial saga.
 
 
 ### Example "Replying to a Saga" Headers
@@ -257,7 +257,7 @@ snippet: HeaderWriterSagaTimeout
 
 ## Defer a Message
 
-When doing a Defer the message will have similar header to a Send with a few editions:
+When deferring, the message will have similar header to a Send with a few differences:
 
  * The message will have `IsDeferredMessage` with the value of `true`.
  * Since the Defer feature uses the Timeouts feature the Timeout headers will exist.
@@ -354,7 +354,7 @@ The queue at which the message processing failed.
 
 ### NServiceBus.FLRetries
 
-The number of [Immediate Retries](/nservicebus/recoverability/#immediate-retries) that has been performed for a message. 
+The number of [Immediate Retries](/nservicebus/recoverability/#immediate-retries) that has been performed for a message.
 
 
 ### NServiceBus.Retries
