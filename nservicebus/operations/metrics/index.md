@@ -51,7 +51,7 @@ This metric measures the number of [retries](/nservicebus/recoverability) schedu
 
 ### Queue length
 
-Warning: the queue length metric is experimental and  the calculated value for the metric can substantially differ from the actual value under certain scenarios.
+Warning: the queue length metric is experimental and  the calculated value for the metric can substantially differ from the actual value under [certain scenarios](#metrics-captured-queue-length-known-limitations).
 
 This metric tracks the **estimated** number of messages in the input queue of an endpoint. The reason why this value needs to be estimated is that when scaling out certain queuing environments, under high load, the number of messages actually in a given input queue would not reflect all the messages *in transit* to that queue, thus reporting much lower values. For this reason, a different approach is used - one based on *links* rather than queues.
 
