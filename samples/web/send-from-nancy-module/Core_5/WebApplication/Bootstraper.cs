@@ -10,13 +10,16 @@ public class Bootstraper : DefaultNancyBootstrapper
 
         #region ConfigureApplicationContainer
 
+        // Configure bus
         var busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Nancy.Sender");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
+        // Create bus instance
         var bus = Bus.CreateSendOnly(busConfiguration);
 
+        // Register bus instance
         container.Register<ISendOnlyBus>(bus);
 
         #endregion
