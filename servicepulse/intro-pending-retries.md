@@ -1,7 +1,7 @@
 ---
 title: Pending Retries Message Management
 summary: Describes how ServicePulse detects and monitors failed messages in the pending state, and allows retrying, or archiving them.
-reviewed: 2016-12-15
+reviewed: 2017-12-09
 ---
 
 In Versions 1.6.6 and above, ServicePulse includes an additional screen to view and manage failed messages that have been requested to be retried but have not completed yet.
@@ -27,6 +27,7 @@ The Pending Retries Messages screen shows failed messages which have been retrie
 Failed messages that are retried may stay in the pending state for the following reasons:
 
  * The retrying endpoint is not working (e.g. crashed or is scaled-out) and the retried messages is waiting in the queue and has not yet been processed.
+ * The retry operation failed and the message is in ServiceControl's Dead Letter Queue.
  * The retrying endpoint does not have auditing enabled but has successfully processed the retried message.
 
 The messages displayed in this screen can be filtered based on the time period by selecting one of the options, such as messages in the last 2 hours, messages in the previous day or week. The default option is set to display all of the pending messages.
