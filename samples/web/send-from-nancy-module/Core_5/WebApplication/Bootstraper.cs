@@ -2,34 +2,23 @@
 using Nancy.TinyIoc;
 using NServiceBus;
 
-namespace WebApplication
+public class Bootstraper : DefaultNancyBootstrapper
 {
-    public class Bootstraper : DefaultNancyBootstrapper
+    protected override void ConfigureApplicationContainer(TinyIoCContainer container)
     {
-        protected override void ConfigureApplicationContainer(TinyIoCContainer container)
-        {
-            base.ConfigureApplicationContainer(container);
+        base.ConfigureApplicationContainer(container);
 
-            #region BusConfiguration
+        #region ConfigureApplicationContainer
 
-            var busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName("Samples.Nancy.Sender");
-            busConfiguration.UsePersistence<InMemoryPersistence>();
-            busConfiguration.EnableInstallers();
+        var busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.Nancy.Sender");
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.EnableInstallers();
 
-            #endregion
+        var bus = Bus.CreateSendOnly(busConfiguration);
 
-            #region CreateBus
+        container.Register<ISendOnlyBus>(bus);
 
-            var bus = Bus.CreateSendOnly(busConfiguration);
-
-            #endregion
-
-            #region ServiceRegistration
-
-            container.Register<ISendOnlyBus>(bus);
-
-            #endregion
-        }
+        #endregion
     }
 }

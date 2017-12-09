@@ -1,22 +1,21 @@
 ﻿using Nancy;
 using NServiceBus;
 
-namespace WebApplication.Modules
+#region Module
+public class SendMessageModule : NancyModule
 {
-    public class SendMessageModule : NancyModule
+    private readonly ISendOnlyBus bus;
+
+    public SendMessageModule(ISendOnlyBus bus) : base("/sendmessage")
     {
-        private readonly ISendOnlyBus bus;
+        this.bus = bus;
 
-        public SendMessageModule(ISendOnlyBus bus) : base("/sendmessage")
+        this.Get["/"] = r =>
         {
-            this.bus = bus;
-
-            this.Get["/"] = r =>
-            {
-                var message = new MyMessage();
-                bus.Send("Samples.Nancy.Endpoint", message);
-                return "Message sent to endpoint";
-            };
-        }
+            var message = new MyMessage();
+            bus.Send("Samples.Nancy.Endpoint", message);
+            return "Message sent to endpoint";
+        };
     }
 }
+#endregion
