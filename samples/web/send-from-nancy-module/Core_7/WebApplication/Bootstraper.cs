@@ -2,43 +2,28 @@
 using Nancy.TinyIoc;
 using NServiceBus;
 
-namespace WebApplication
+public class Bootstraper : DefaultNancyBootstrapper
 {
-    public class Bootstraper : DefaultNancyBootstrapper
+    protected override void ConfigureApplicationContainer(TinyIoCContainer container)
     {
-        protected override void ConfigureApplicationContainer(TinyIoCContainer container)
-        {
-            base.ConfigureApplicationContainer(container);
+        base.ConfigureApplicationContainer(container);
 
-            #region EndpointConfiguration
+        #region ConfigureApplicationContainer
 
-            var endpointConfiguration = new EndpointConfiguration("Samples.Nancy.Sender");
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
-            endpointConfiguration.UsePersistence<LearningPersistence>();
-            endpointConfiguration.SendOnly();
+        var endpointConfiguration = new EndpointConfiguration("Samples.Nancy.Sender");
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.SendOnly();
 
-            #endregion
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(
+            assembly: typeof(MyMessage).Assembly,
+            destination: "Samples.Nancy.Endpoint");
 
-            #region Routing
+        var endpointInstance = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 
-            var routing = transport.Routing();
-            routing.RouteToEndpoint(
-                assembly: typeof(MyMessage).Assembly,
-                destination: "Samples.Nancy.Endpoint");
+        container.Register<IMessageSession>(endpointInstance);
 
-            #endregion
-
-            #region EndpointStart
-
-            var endpointInstance = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
-
-            #endregion
-
-            #region ServiceRegistration
-
-            container.Register<IMessageSession>(endpointInstance);
-
-            #endregion
-        }
+        #endregion
     }
 }

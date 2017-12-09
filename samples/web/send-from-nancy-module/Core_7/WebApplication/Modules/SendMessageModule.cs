@@ -1,23 +1,22 @@
 ﻿using Nancy;
 using NServiceBus;
 
-namespace WebApplication.Modules
+#region Module
+public class SendMessageModule : NancyModule
 {
-    public class SendMessageModule : NancyModule
-    {
-        private readonly IMessageSession messageSession;
+    private readonly IMessageSession messageSession;
 
-        public SendMessageModule(IMessageSession messageSession) : base("/sendmessage")
+    public SendMessageModule(IMessageSession messageSession) : base("/sendmessage")
+    {
+        this.messageSession = messageSession;
+
+        this.Get["/", true] = async (r, c) =>
         {
-            this.messageSession = messageSession;
-            
-            this.Get["/", true] = async (r, c) => 
-            {
-                var message = new MyMessage();
-                await messageSession.Send(message)
-                    .ConfigureAwait(false);
-                return "Message sent to endpoint";
-            };
-        }
+            var message = new MyMessage();
+            await messageSession.Send(message)
+                .ConfigureAwait(false);
+            return "Message sent to endpoint";
+        };
     }
 }
+#endregion
