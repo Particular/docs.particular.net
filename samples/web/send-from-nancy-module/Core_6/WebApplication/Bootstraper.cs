@@ -2,7 +2,8 @@
 using Nancy.TinyIoc;
 using NServiceBus;
 
-public class Bootstraper : DefaultNancyBootstrapper
+public class Bootstraper :
+    DefaultNancyBootstrapper
 {
     protected override void ConfigureApplicationContainer(TinyIoCContainer container)
     {

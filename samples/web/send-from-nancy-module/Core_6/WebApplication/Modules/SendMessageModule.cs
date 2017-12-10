@@ -2,7 +2,8 @@
 using NServiceBus;
 
 #region Module
-public class SendMessageModule : NancyModule
+public class SendMessageModule :
+    NancyModule
 {
     private readonly IMessageSession messageSession;
 

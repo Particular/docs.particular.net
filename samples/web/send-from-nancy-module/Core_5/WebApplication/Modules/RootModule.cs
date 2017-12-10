@@ -1,6 +1,7 @@
 ﻿using Nancy;
 
-public class RootModule : NancyModule
+public class RootModule :
+    NancyModule
 {
     public RootModule() : base()
     {
