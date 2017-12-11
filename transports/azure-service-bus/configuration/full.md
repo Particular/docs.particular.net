@@ -8,7 +8,7 @@ tags:
 redirects:
  - nservicebus/azure-service-bus/configuration/configuration
  - nservicebus/azure-service-bus/configuration/full
-reviewed: 2017-10-05
+reviewed: 2017-12-11
 ---
 
 
@@ -17,28 +17,28 @@ INFO: This document is intended for Versions 7 and above.
 The full configuration API can be accessed from the `UseTransport<AzureServiceBusTransport>()` extension method and provides low level access to various aspects of the transport's behavior.
 
 
-## Configuring The Topology
+## Configuring the topology
 
-A topology defines what the underlying layout of Azure Service Bus messaging entities looks like, specifically what entities are used and how they relate to each other. There are 2 built-in topologies: `EndpointOrientedTopology` and `ForwardingTopology`. For more information refer to the [Topologies](/transports/azure-service-bus/topologies) article.
+A topology defines what the underlying layout of Azure Service Bus messaging entities looks like, specifically what entities are used and how they relate to each other. There are 2 built-in topologies: `EndpointOrientedTopology` and `ForwardingTopology`. For more information, refer to the [Topologies](/transports/azure-service-bus/topologies) article.
 
  * `UseForwardingTopology()`: Selects `ForwardingTopology` as the topology to be used by the transport.
  * `UseEndpointOrientedTopology()`: Selects `UseEndpointOrientedTopology` as the topology to be used by the transport.
 
-### Forwarding Topology
+### Forwarding topology
 
-The [Forwarding Topology](/transports/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology) defines a queue per endpoint and a shared topic to do the publishing. Topic prefix can be configured using the following setting:
+The [forwarding topology](/transports/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology) defines a queue per endpoint and a shared topic to do the publishing. Topic prefix can be configured using the following setting:
 
  * `BundlePrefix(string)`: The prefix used in the entity name to differentiate shared topic (bundle) from other topics.
 
-### Endpoint Oriented Topology
+### Endpoint oriented topology
 
-The [Endpoint Oriented Topology](/transports/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology) defines a queue and a topic per endpoint. It can be configured using the following settings:
+The [endpoint oriented topology](/transports/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology) defines a queue and a topic per endpoint. It can be configured using the following settings:
 
  * `RegisterPublisherForType(string, Type)`: Registers the publishing endpoint for a given type.
  * `RegisterPublisherForAssembly(string, Assembly)`: Registers the publishing endpoint for all types in an assembly.
 
 
-## Controlling Entities
+## Controlling entities
 
 The topology will create entities it needs, based on the following settings:
 
@@ -51,18 +51,18 @@ The topology will create entities it needs, based on the following settings:
 
 The following settings are available to define how queues should be created:
 
- * `MaxSizeInMegabytes(SizeInMegabytes)`: The size of the queue, in megabytes. Defaults to 1,024 MB. 
- * `LockDuration(TimeSpan)`: The period of time that Azure Service Bus will lock a message before trying to redeliver it, defaults to 30 seconds.
+ * `MaxSizeInMegabytes(SizeInMegabytes)`: The size of the queue, in megabytes. Defaults to 1,024 MB.
+ * `LockDuration(TimeSpan)`: The period of time that Azure Service Bus will lock a message before trying to redeliver it. Defaults to 30 seconds.
  * `ForwardDeadLetteredMessagesTo(string)`: Forward all dead lettered messages to the specified entity. This setting is off by default.
- * `ForwardDeadLetteredMessagesTo(Func<string, bool>, string)`: Forward all dead lettered messages to the specified entity if the given condition equals to `true` (e.g. it allows to exclude forwarding dead lettered messages on the error queue). This setting is off by default.
- * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message, defaults to `TimeSpan.MaxValue`.
- * `EnableDeadLetteringOnMessageExpiration(bool)`: Messages that expire will be dead lettered, defaults to `false`.
+ * `ForwardDeadLetteredMessagesTo(Func<string, bool>, string)`: Forward all dead lettered messages to the specified entity if the given condition is true (e.g. it allows to exclude forwarding dead lettered messages on the error queue). This setting is off by default.
+ * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message. Defaults to `TimeSpan.MaxValue`.
+ * `EnableDeadLetteringOnMessageExpiration(bool)`: Messages that expire will be dead lettered. Defaults to `false`.
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the queue if it hasn't been used for the specified time period. By default the queue will not be automatically deleted.
- * `EnablePartitioning(bool)`: Enables partitioning, defaults to `false`. For more information on partitioning refer to the [Partitioned messaging entities](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning) article on MSDN.
- * `EnableBatchedOperations(bool)`: Enables server side batched operations, defaults to `true`.
- * `RequiresDuplicateDetection(bool)`: Specifies whether the queue should perform native broker duplicate detection, defaults to `false`.
+ * `EnablePartitioning(bool)`: Enables partitioning. Defaults to `false`. For more information on partitioning refer to the [partitioned messaging entities](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning) article on MSDN.
+ * `EnableBatchedOperations(bool)`: Enables server side batched operations. Defaults to `true`.
+ * `RequiresDuplicateDetection(bool)`: Specifies whether the queue should perform native broker duplicate detection. Defaults to `false`.
  * `DuplicateDetectionHistoryTimeWindow(TimeSpan)`: The time period in which native broker duplicate detection should occur.
- * `SupportOrdering(bool)`: Best effort message ordering on the queue, defaults to `false`.
+ * `SupportOrdering(bool)`: Best effort message ordering on the queue. Defaults to `false`.
 partial: queues
 
 
@@ -71,14 +71,14 @@ partial: queues
 The following settings are available to define how topics should be created:
 
  * `MaxSizeInMegabytes(SizeInMegabytes)`: The size of the topic, in megabytes. Defaults to 1,024 MB.
- * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message, defaults to `TimeSpan.MaxValue`.
+ * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message. Defaults to `TimeSpan.MaxValue`.
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the topic if it hasn't been used for the specified time period. By default the topic will not be automatically deleted.
- * `EnableBatchedOperations(bool)`: Enables server side batched operations, defaults to `true`.
+ * `EnableBatchedOperations(bool)`: Enables server side batched operations. Defaults to `true`.
  * `EnableFilteringMessagesBeforePublishing(bool)`: Enables filtering messages before they are published, which validates that subscribers exist before a message is published. Defaults to `false`.
- * `EnablePartitioning(bool)`: Enables partitioning, defaults to `false`. For more information on partitioning refer to the [Partitioned messaging entities](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning) article on MSDN.
- * `RequiresDuplicateDetection(bool)`: Specifies whether the topic should perform native broker duplicate detection, defaults to `false`.
+ * `EnablePartitioning(bool)`: Enables partitioning, defaults to `false`. For more information on partitioning refer to the [partitioned messaging entities](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning) article on MSDN.
+ * `RequiresDuplicateDetection(bool)`: Specifies whether the topic should perform native broker duplicate detection. Defaults to `false`.
  * `DuplicateDetectionHistoryTimeWindow(TimeSpan)`: The time period in which native broker duplicate detection should occur.
- * `SupportOrdering(bool)`: Best effort message ordering on the topic, defaults to `false`.
+ * `SupportOrdering(bool)`: Best effort message ordering on the topic. Defaults to `false`.
 partial: topics
 
 
@@ -86,13 +86,13 @@ partial: topics
 
 The following settings are available to define how subscriptions should be created:
 
- * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message, defaults to `TimeSpan.MaxValue`.
- * `EnableBatchedOperations(bool)`: Enables server side batched operations, defaults to `true`.
- * `EnableDeadLetteringOnFilterEvaluationExceptions(bool)`: Dead letters messages when a filter evaluation doesn't match, defaults to `false`.
+ * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message. Defaults to `TimeSpan.MaxValue`.
+ * `EnableBatchedOperations(bool)`: Enables server side batched operations. Defaults to `true`.
+ * `EnableDeadLetteringOnFilterEvaluationExceptions(bool)`: Dead letters messages when a filter evaluation doesn't match. Defaults to `false`.
  * `EnableDeadLetteringOnMessageExpiration(bool)`: Dead letters messages when they expire.
  * `ForwardDeadLetteredMessagesTo(string)`: Forwards all dead lettered messages to the specified entity. This setting is off by default.
  * `ForwardDeadLetteredMessagesTo(Func<string, bool>, string)`: Forwards all dead lettered messages to the specified entity if the given condition is `true`. This setting is off by default.
- * `LockDuration(TimeSpan)`: The period of time that Azure Service Bus will lock a message before trying to redeliver it, defaults to 30 seconds.
+ * `LockDuration(TimeSpan)`: The period of time that Azure Service Bus will lock a message before trying to redeliver it. Defaults to 30 seconds.
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the subscription if it hasn't been used for the specified time period. By default the subscription will not be automatically deleted.
 partial: subscriptions
 
@@ -159,7 +159,7 @@ Enable the latter using the following configuration setting:
 
 To learn more about the supported transactional behaviors in the Azure Service Bus transport, refer to the [Transaction Support in Azure](/transports/azure-service-bus/transaction-support.md) article.
 
- 
+
 ## Physical Addressing Logic
 
 One of the responsibilities of the transport is determining the names and physical location of the entities. It is achieved by turning logical endpoint names into physical addresses of the Azure Service Bus entities, which is called *Physical Addressing Logic*. The following configuration settings allow to redefine this aspect of the transport:

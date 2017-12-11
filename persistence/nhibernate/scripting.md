@@ -2,14 +2,14 @@
 title: NHibernate Persistence Scripts
 summary: Collection of scripts for managing NHibernate Persistence
 component: NHibernate
-reviewed: 2017-04-05
+reviewed: 2017-12-11
 related:
  - nservicebus/operations
 redirects:
  - nservicebus/nhibernate/scripting
 ---
 
-WARNING: Ensure to create a backup of the database before executing any of the listed scripts.
+WARNING: Ensure a backup of the database is created before executing any of the listed scripts.
 
 
 ## Remove subscriptions
@@ -29,11 +29,11 @@ Where:
 
 ## Fix up TimeoutEntity_EndpointIdx index
 
-Previous versions of NServiceBus had an issue which caused the `TimeoutEntity_EndpointIdx` index to be either missing or created incorrectly. The new versions have built-in check and log warnings in cases when
- * the `TimeoutEntity_EndpointIdx` index has incorrect column order
- * the system could not find `TimeoutEntity_EndpointIdx` index
+Older versions of NServiceBus had an issue which caused the `TimeoutEntity_EndpointIdx` index to be either missing or created incorrectly. Now there is a built-in check and log warnings in cases when
+ * the `TimeoutEntity_EndpointIdx` index has an incorrect column order
+ * the system can not find `TimeoutEntity_EndpointIdx` index
 
-In order to mitigate the problem use following scripts to drop the index (if created incorrectly)
+In order to mitigate the problem, use following scripts to drop the index (if created incorrectly)
 
 ```
 DROP INDEX [TimeoutEntity_EndpointIdx] ON [dbo].[TimeoutEntity] WITH ( ONLINE = OFF )
