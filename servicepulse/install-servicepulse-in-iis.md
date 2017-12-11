@@ -61,6 +61,8 @@ ServicePulse relies on the ServiceControl REST API. It is possible to add a [rev
 
 This is useful to lock down access to ServicePulse or to expose the web site over a single port.
 
+NOTE: If ServiceControl is configured with a different host then `localhost` then change the hostname value back to `localhost`.
+
 Installation Steps:
 
  1. Install the IIS [Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing) extension.
