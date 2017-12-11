@@ -12,7 +12,7 @@ The configuration of a Monitoring instance can be adjusted via ServiceControl Ma
 
 ## Host Settings
 
-Prior to modifying these configuration settings review [Setting a Custom Hostname](setting-custom-hostname.md):
+Prior to modifying these configuration settings review [Setting a Custom Hostname](configure-the-uri.md):
 
 ### Monitoring/EndpointName
 The endpoint name to be used by Monitoring instance and the name of the Monitoring queue.
