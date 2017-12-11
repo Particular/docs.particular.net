@@ -32,6 +32,7 @@ public class EndpointConfig :
         transport.DelayedDelivery().DisableTimeoutManager();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.DisableNotUsedFeatures();
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
     }
 }
 
