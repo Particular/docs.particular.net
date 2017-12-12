@@ -28,6 +28,8 @@ The default is `particular.monitoring` which is ServiceControl monitoring instan
 
 partial: interval
 
+partial: ttbr
+
 ### Instance Id
 
 An override for `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`.
