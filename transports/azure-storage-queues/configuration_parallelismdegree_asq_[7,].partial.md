@@ -18,7 +18,7 @@ Degree of parallelism = square root of MaxConcurrency
 | 200 | 14 |
 | 1000 | 32 [max] |
 
-This means that `DegreeOfReceiveParallelism` message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example with the default `BatchSize` of 32 and a degree of parallelism of 10 the transport will be able to receive 320 messages from the storage queue at the same time.
+This means that `DegreeOfReceiveParallelism` message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example using a `BatchSize` of 32 (Default) and parallelism set to 10 will allow the transport to receive 320 messages from the storage queue at the same time.
 
 WARNING: Changing the value of `DegreeOfReceiveParallelism` will influence the total number of storage operations against Azure Storage Services and can result in higher costs.
 
