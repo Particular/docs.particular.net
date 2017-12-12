@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net461</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="3.0.0-beta0005" />
+    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters.MsBuild" Version="3.0.0-beta0005" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-beta0012" />
+  </ItemGroup>
+</Project>
