@@ -2,7 +2,7 @@
 title: Monitor Azure Service Bus endpoints with the ServiceControl adapter
 summary: Centralized monitoring of Azure Service Bus endpoints with the ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2017-08-11
+reviewed: 2017-12-12
 related:
  - servicecontrol
  - servicecontrol/transport-adapter
