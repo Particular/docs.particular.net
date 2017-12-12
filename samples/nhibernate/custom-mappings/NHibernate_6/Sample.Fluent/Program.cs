@@ -9,7 +9,7 @@ class Program
 {
     static void Main()
     {
-        Console.Title = "Samples.CustomNhMappings.Loquacious";
+        Console.Title = "Samples.CustomNhMappings.Fluent";
         var nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
@@ -20,7 +20,7 @@ class Program
         nhConfiguration = AddFluentMappings(nhConfiguration);
 
         var busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.CustomNhMappings.Loquacious");
+        busConfiguration.EndpointName("Samples.CustomNhMappings.Fluent");
         busConfiguration.EnableInstallers();
 
         var persistence = busConfiguration.UsePersistence<NHibernatePersistence>();
