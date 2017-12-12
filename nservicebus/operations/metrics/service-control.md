@@ -11,7 +11,7 @@ redirects:
 ---
 
 
-This component enables sending monitoring data gathered with `NServiceBus.Metrics` to an instance of `ServiceControl.Monitoring` service.
+The component `NServiceBus.Metrics.ServiceControl` enables sending monitoring data gathered with `NServiceBus.Metrics` to an instance of `ServiceControl.Monitoring` service.
 
 ## Configuration
 
