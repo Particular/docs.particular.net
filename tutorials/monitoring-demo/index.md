@@ -8,7 +8,8 @@ redirects:
 
 The best way to get started with the monitoring features in the Particular Service Platform is to try them out with a real system. This downloadable sample contains all of the necessary parts of the platform, already configured and ready to run. It also includes 4 sample endpoints that all communicate by exchanging messages over the SQL Transport.
 
-To download the sample please navigate to https://github.com/Particular/MonitoringDemo/releases/latest and click `Source Code (zip)` link.
+<div class="text-center inline-download hidden-xs"><a id='download-demo' href='https://github.com/particular/monitoringdemo/zipball/master' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the demo now</a>
+</div>
 
 
 ## Prerequisites
