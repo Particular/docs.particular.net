@@ -71,9 +71,9 @@ To ensure messages are not discarded when they arrive out of order:
 
 If multiple message types can start a saga, it's necessary to ensure that saga behavior will remain correct for all possible combinations of order in which those messages are received.
 
-For example, the `StartOrder` message contains both `OrderId` and `CustomerId` but the `CompleteOrder` message only contains the `OrderId` but requires `CustomerId` to complete the order saga (e.g. initiate a shipping process). When `StartOrder` is processed first, the saga persists both `OrderId` and `CustomerId` in the saga data and when `CompleteOrder` message arrives second, it retrieves `CustomerId` from saga data.
+In the previous example, the `StartOrder` message contains both `OrderId` and `CustomerId` but the `CompleteOrder` message only contains the `OrderId`. The handler for `CompleteOrder` requires `CustomerId` to complete the order saga (e.g. initiate a shipping process). When `StartOrder` is processed first, the saga persists both `OrderId` and `CustomerId` in the saga data and when `CompleteOrder` message arrives second, it retrieves `CustomerId` from saga data.
 
-When messages arrive in reverse order, the handler method for `CompleteOrder` message does not yet have access to `CustomerId` because the `StartOrder` message has not been processed yet and the saga cannot complete. In such case when the `StartOrder` message arrives second, the handler method should notice that the `CompleteOrder` has already been processed and use the `CustomerId` it contains to initiate shipping and complete the saga. This complicates the design of the saga, but makes it more resilient and allows it to handle out of order messages correctly.
+When messages arrive in reverse order, the handler method for `CompleteOrder` message does not yet have access to `CustomerId` because the `StartOrder` message has not been processed yet. In such case when the `StartOrder` message arrives second, the handler method must notice that the `CompleteOrder` has already been processed and use the `CustomerId` it contains to initiate the shipping process and complete the saga. This complicates the design of the saga, but makes it more resilient and allows it to handle out of order messages correctly.
 
 
 #### Relying on recoverability
