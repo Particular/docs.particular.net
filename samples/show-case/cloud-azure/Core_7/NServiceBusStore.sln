@@ -1,0 +1,43 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 15.0.26730.12
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Messages", "Store.Messages\Store.Messages.csproj", "{59F2BA7E-4DA5-49F8-9DBC-520FA99F4679}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.CustomerRelations", "Store.CustomerRelations\Store.CustomerRelations.csproj", "{CD522757-4C40-49C7-94C5-CD5DA956BAFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Operations", "Store.Operations\Store.Operations.csproj", "{0B353423-4655-4523-B4E0-F191DDDF0ABF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Sales", "Store.Sales\Store.Sales.csproj", "{C2D005B5-065F-4F81-BA1F-259F90E00AEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.ContentManagement", "Store.ContentManagement\Store.ContentManagement.csproj", "{C90A7D6C-99BB-4736-B2E5-D6AEA04A8D0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.ECommerce", "Store.ECommerce\Store.ECommerce.csproj", "{F295D85E-4447-44E4-A9CC-3E017CF2B0D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Shared", "Store.Shared\Store.Shared.csproj", "{68263F62-14C1-4FB8-B7D5-0D1565951F5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59F2BA7E-4DA5-49F8-9DBC-520FA99F4679}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59F2BA7E-4DA5-49F8-9DBC-520FA99F4679}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD522757-4C40-49C7-94C5-CD5DA956BAFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD522757-4C40-49C7-94C5-CD5DA956BAFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B353423-4655-4523-B4E0-F191DDDF0ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B353423-4655-4523-B4E0-F191DDDF0ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2D005B5-065F-4F81-BA1F-259F90E00AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2D005B5-065F-4F81-BA1F-259F90E00AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C90A7D6C-99BB-4736-B2E5-D6AEA04A8D0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C90A7D6C-99BB-4736-B2E5-D6AEA04A8D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F295D85E-4447-44E4-A9CC-3E017CF2B0D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F295D85E-4447-44E4-A9CC-3E017CF2B0D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68263F62-14C1-4FB8-B7D5-0D1565951F5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68263F62-14C1-4FB8-B7D5-0D1565951F5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
