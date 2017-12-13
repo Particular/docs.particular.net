@@ -39,3 +39,9 @@ changes to this code configuration:
 snippet: AzurePersistenceSubscriptionsAllConnectionsCustomization
 
 The new configuration APIs are accessible through extension methods on the `UsePersistence<AzureStoragePersistence, StorageType.Sagas>()`, `UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()`, and `UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()` extension points in the endpoint configuration. See [Azure Storage Persistence Code Configuration](/persistence/azure-storage/configuration.md#configuration-with-code) for more details on code configuration API use.
+
+Related errors:
+
+- `An error occurred creating the configuration section handler for AzureSagaPersisterConfig: Could not load file or assembly 'NServiceBus.Azure' or one of its dependencies. The system cannot find the file specified.`
+- `An error occurred creating the configuration section handler for AzureSubscriptionStorageConfig: Could not load file or assembly 'NServiceBus.Azure' or one of its dependencies. The system cannot find the file specified.`
+- `An error occurred creating the configuration section handler for AzureTimeoutPersisterConfig: Could not load file or assembly 'NServiceBus.Azure' or one of its dependencies. The system cannot find the file specified.`

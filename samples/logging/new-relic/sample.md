@@ -7,7 +7,7 @@ reviewed: 2017-10-31
 
 ## Introduction
 
-[NewRelic](https://newrelic.com/) is a monitoring solution for storing application performance data, custom events, etc. This sample demonstrates how to capture, store and visualize NServiceBus metrics in NewRelic.
+This sample demonstrates how to capture, store and visualize NServiceBus metrics in [NewRelic](https://newrelic.com/), a monitoring solution for storing application performance data, custom events, etc.
 
 
 ![NewRelic NServiceBus processing time](newrelic-processingtime.png)

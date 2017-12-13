@@ -18,12 +18,12 @@ The NServiceBus Distributor is similar in behavior to standard [load balancers](
 
 As a standard NServiceBus process, the Distributor maintains all the fault-tolerant and performance characteristics of NServiceBus but is designed to never overwhelm any of the worker nodes.
 
-WARNING: Keep in mind that the Distributor is designed for *load balancing within a single site*, do not use it between sites. For information on using NServiceBus across multiple physical sites, see [the gateway](/nservicebus/gateway/multi-site-deployments.md).
+WARNING: Keep in mind that the Distributor is designed for *load balancing within a single site* and not between different sites. For information on using NServiceBus across multiple physical sites, see [the gateway](/nservicebus/gateway/multi-site-deployments.md).
 
 
 ## How the Distributor works
 
-Worker nodes send messages to the distributor process, indicating when they are ready for accepting work. These messages arrive at the distributor via a separate 'control' queue:
+Worker nodes send messages to the distributor process, indicating when they are ready to accept more work. These messages arrive at the distributor via a separate 'control' queue:
 
 ![worker registration](how-distributor-works-1.png)
 
@@ -48,7 +48,7 @@ For more information about Pub/Sub in a Distributor scenario see the [Distributo
 
 For each message being processed, the distributor process performs a few additional operations: it receives a ready message from a Worker, sends the work message to the Worker and receives a ready message post processing. That means that using Distributor introduces a certain processing overhead, that is independent of how much work is done. Therefore the Distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short-lived units of work (a quick read from the database and dispatching a message using `Bus.Send` or  `Bus.Publish`).
 
-To get a sense of the expected performance take the maximum MSMQ throughput of a given machine (e.g. by running NServiceBus with `NOOP` handlers) and divide it by 4.
+To get a sense of the expected performance take the maximum MSMQ throughput on a given machine (e.g. by running NServiceBus with `NOOP` handlers) and divide it by 4.
 
 If scaling out small units of work is required, consider splitting the handlers into smaller vertical slices of functionality and deploying them to dedicated endpoints.
 
@@ -59,21 +59,21 @@ Increasing the concurrency on the workers might not lead to increased performanc
 
 ## High availability
 
-If the distributor process goes down, even if its worker nodes remain running, they do not receive any messages. Therefore it is important to [ensure that the distributor is running in a high-availability configuration](deploying-to-a-cluster.md).
+If the distributor process goes down, the worker nodes do not receive any messages, even though they remain running. That is why it is important to [ensure that the distributor is running in a high availability configuration](deploying-to-a-cluster.md).
 
 
 ## Risk on resource IO congestion
 
-The distributor process is restricted by hardware parameters such as disk and network IO. If a single endpoint does not fully utilize either of these parameters, then it is possible to host multiple distributor processes on a single server.
+The distributor process is constrained by hardware parameters such as disk and network IO bandwidth. If a single endpoint does not fully utilize either of these resources, then it is possible to host multiple distributor processes on a single server.
 
 Monitor servers using standard infrastructure monitoring tools to verify if hardware isn't becoming a bottleneck.
 
 
 ## Deployment configurations
 
-Typically, in the beginning the system is deployed to a single server only. When its capacity isn't enough then this server is mirrored/cloned to create a farm of servers, where the distributor is put in front to act as a load-balancer. However, in case of distributor this usually isn't the best way to scale-out.
+Typically, in the beginning the system is deployed to a single server only. When its capacity isn't enough then this server is mirrored/cloned to create a farm of servers and the distributor is put in front to act as a load balancer. However, in case of distributor this usually isn't the best way to scale-out.
 
-This section describes available options and cover their pros and cons.
+This section describes available options and covers their pros and cons.
 
 In most environments, multiple endpoints are hosted on a single server: 
 
@@ -83,9 +83,9 @@ If one machine doesn't have enough capacity the solution can be scaled out by mo
 
 ![Machine per endpoint](configurations/box-per-endpoint.png)
 
-Eventually, the solution will reach the limits of what a single machine can do, even after scaling up. The next step is selectively scaling out certain endpoints. The distributor acts like a load-balancer, all messages sent to *Endpoint C* will first be send to *Machine Z* and forwarded to workers according to their availability. 
+Eventually, the solution will reach the limits of what a single machine can do, even after scaling up. The next step is selectively scale out certain endpoints. The distributor acts like a load balancer, all messages sent to *Endpoint C* will first be send to *Machine Z* and forwarded to workers according to their availability. 
 
-Often the load is not even across all endpoints, so performance problems are related to just a few of the endpoints. There is no need to scale-out all endpoints, just scale-out the endpoints that need it:
+Often the load is not even across all endpoints, so performance problems are related to just a few of the endpoints. There is no need to scale out all endpoints, only those endpoints that need it:
 
 ![Scale-out using distributor](configurations/distributor.png)
 
@@ -101,7 +101,7 @@ Pros and cons:
 
 - Deployment configuration is simple, all machines are configured in the same way.
 - The routing configuration is simple, as routes are the same for all servers and message mappings.
-- Every single message will always flow via the *Distributor machine*, this server is now a **single point of failure**. For this reason it is really important to have this configuration deployed on a high-available environment with redundant storage.
+- Every single message will always flow via the *Distributor machine*, this server is now a **single point of failure**. For this reason it is really important to have this configuration deployed on a highly available environment with redundant storage.
 - When all endpoints are mirrored, the endpoints that have lower load can be idle and unnecessarily waste RAM resources.
 - If all machines have similar parameters, then resources won't be optimally utilized, i.e. either the workers will be idle while the distributor is very busy or vice versa.
 - The deployment is fairly static and there is no room for tuning.
@@ -156,4 +156,4 @@ Pros and cons:
 - The routing configuration is really complex, it is not suitable to store routes in application configuration files.
 - Can still suffer from throughput limitations. In that case [sender side distribution](../sender-side-distribution.md) might be an alternative.
 
-Note: This setup is especially appropriate for virtualized environments and in IAAS cloud.
+Note: This setup is especially appropriate for virtualized environments and in the cloud when using the IaaS model.

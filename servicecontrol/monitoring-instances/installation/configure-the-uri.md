@@ -2,6 +2,8 @@
 title: Configure the URI
 summary: How to configure a Monitoring instance to be exposed through a custom hostname and IP port
 reviewed: 2017-07-29
+redirects:
+- servicecontrol/monitoring-instances/installation/setting-custom-hostname
 ---
 
 

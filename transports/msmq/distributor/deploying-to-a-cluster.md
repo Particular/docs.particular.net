@@ -10,14 +10,14 @@ reviewed: 2017-11-15
 
 Distributors are a single-point-of-failure if deployed to just a single machine. Make them highly available on a Windows Failover Cluster to avoid this.
 
-Note: When using virtualization then usually the virtualization host itself can offer high availability as well as data redundancy. Windows Failover clustering might not be required, especially if the chosen virtualization layer supports live server migration.
+Note: Usually the virtualization host itself can offer high availability as well as data redundancy. Windows Server Failover Clustering (WSFC) might not be required, especially if the chosen virtualization layer supports live server migration.
 
 The following procedure is a high-level guide on how to deploy distributors onto a Microsoft Windows Failover cluster.
 
-NOTE: It is NOT required to use the distributor to achieve high-availability. A regular endpoint can also be deployed on a Windows Failover cluster.
+NOTE: It is NOT required to use the distributor to achieve high availability. A regular endpoint can also be deployed on a WSFC cluster.
 
  * This procedure assumes that the MSMQ transport uses distributed transactions (default). When using **SendsAtomicWithReceive** mode, then all steps related to the Distributed Transaction Coordinator (MSDTC) can be skipped.
- * This procedure assumes only a single cluster group, meaning MSMQ and MSDTC are installed once on a cluster node. This results in both MSMQ and MSDTC being active on the same node for improved performance, i.e. it allows to avoid a situation when MSMQ is active on node A and MSDTC is active on node B which would result in one additional network hop inside a distributor transaction.
+ * This procedure assumes only a single cluster group, meaning MSMQ and MSDTC are installed once on a cluster node. This results in both MSMQ and MSDTC being active on the same node for improved performance, i.e. it allows to avoid a situation when MSMQ is active on node A and MSDTC is active on node B which would result in one additional network hop inside a distributed transaction.
 
 
 ## Windows Failover Cluster setup for distributors

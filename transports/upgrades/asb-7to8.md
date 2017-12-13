@@ -31,6 +31,14 @@ See also [Azure Service Bus Transport Topologies](/transports/azure-service-bus/
 Controlling entity creation has been simplified. Instead of having to provide a full implementation of `DescriptionFactory` where all settings on the description object had to be provided, a customizer (`DescriptionCustomizer`) has been introduced where only the customized properties can be changed. `DescriptionCustomizer` can be found on the `Queues`, `Topics` and `Subscriptions` API extension points.
 
 
+## Queue and Subscription MaxDeliveryCount
+
+In version 7 the transport was setting `MaxDeliveryCount` to match immediate retries specified by each endpoint to ensure messages are not dead-lettered accidentally.
+
+In version 8 and above, `MaxDeliveryCount` is set to `int.MaxValue` to ensure messages are still not dead-lettered accidentally and remove dependency on endpoints' immediate retries configuration.  
+
+Customization of `MaxDeliveryCount` is strongly discouraged, yet can be performed using `DescriptionCustomizer` API for queues and topics.  
+
 ## BrokeredMessage conventions
 
 Due to complexity, and resultant risk, of implementation, the API to specify how the `BrokeredMessage` body is stored and retrieved by overriding the default conventions is obsoleted and the following methods were deprecated:

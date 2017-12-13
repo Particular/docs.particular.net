@@ -800,7 +800,7 @@
       - Url: persistence/upgrades/asp-1to2
         Title: Version 1 to 2
       - Url: persistence/upgrades/asp-6to1
-        Title: NServiceBus.Azure Version 6
+        Title: NServiceBus.Azure Version 6 to Version 1
       - Url: persistence/upgrades/asp-saga-pruning
         Title: Version 6.2.4 to 6.2.5
       - Url: persistence/upgrades/asp-saga-deduplication
@@ -1045,7 +1045,7 @@
           - Title: Settings
             Url: servicecontrol/monitoring-instances/installation/creating-config-file
           - Title: Configure the URI
-            Url: servicecontrol/monitoring-instances/installation/setting-custom-hostname
+            Url: servicecontrol/monitoring-instances/installation/configure-the-uri
   - Title: Integration
     Url: servicecontrol/integration
     Articles:

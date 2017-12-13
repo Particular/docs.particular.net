@@ -24,7 +24,7 @@ Processing time is the time it takes for an endpoint to process a single message
 
 ### Number of messages pulled from queue
 
-This metric measures the number of messages that the endpoint reads from it's input queue regardless of whether message processing succeeds or fails. 
+This metric measures the number of messages that the endpoint reads from it's input queue regardless of whether message processing succeeds or fails.
 
 
 ### Number of messages successfully processed

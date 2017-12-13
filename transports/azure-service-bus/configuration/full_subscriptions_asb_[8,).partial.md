@@ -1,0 +1,1 @@
+ * `DescriptionCustomizer(Action<SubscriptionDescription>)`: A factory method that allows to modify a `SubscriptionDescription` object created for the Azure Service Bus SDK. Use this factory method to override any (future) settings that are not supported by the Subscription API.

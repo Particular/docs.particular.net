@@ -1,0 +1,2 @@
+ * `MaxDeliveryCount(int)`: Sets the maximum delivery count, defaults to the number of Immediate Retries + 1. In case Immediate Retries are disabled, the transport will default `MaxDeliveryCount` to 10 attempts.  
+ * `DescriptionFactory(Func<string, string, ReadOnlySettings, SubscriptionDescription> factory)`: A factory method that allows to modify a `SubscriptionDescription` object created for the Azure Service Bus SDK. Use this factory method to override any (future) settings that are not supported by the Subscription API.
