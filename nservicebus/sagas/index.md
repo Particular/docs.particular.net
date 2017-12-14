@@ -60,7 +60,7 @@ partial: at-least-one
 
 NOTE: Always assume that messages can be delivered out of order, e.g. due to error recovery, network latency, or concurrent message processing.
 
-When a saga is created, out of order delivery can cause a message to be discarded. In the previous example, this could happen if a `CompleteOrder` message is received before the `StartOrder` message has had a chance to create the saga.
+Sagas not designed to handle the arrival of messages out of order can result in some messages being discarded. In the previous example, this could happen if a `CompleteOrder` message is received before the `StartOrder` message has had a chance to create the saga.
 
 To ensure messages are not discarded when they arrive out of order:
 
