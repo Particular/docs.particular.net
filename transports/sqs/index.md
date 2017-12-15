@@ -83,7 +83,7 @@ NOTE: NServiceBus will perform [immediate](/nservicebus/recoverability/#immediat
 
 ### AmazonSQSException: Request is throttled
 
-When sending messages it can happen that your sending is throttled. When that happens the following exception is logged.
+When sending messages it can happen that the send operation is throttled. When that happens the following exception is logged.
 ```
 2017-11-14 23:10:24,314|ERROR|18|NServiceBus.Transports.SQS.MessageDispatcher|Exception from Send.
 Amazon.SQS.AmazonSQSException: Request is throttled. ---> Amazon.Runtime.Internal.HttpErrorResponseException: The remote server returned an error: (403) Forbidden. ---> System.Net.WebException: The remote server returned an error: (403) Forbidden.
