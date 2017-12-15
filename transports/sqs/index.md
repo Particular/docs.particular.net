@@ -91,6 +91,6 @@ Amazon.SQS.AmazonSQSException: Request is throttled. ---> Amazon.Runtime.Interna
 
 When this happens while receiving a message then this can safely be ignored as [recoverability features](/nservicebus/recoverability/) should resolve it. When sending messages outside a message handler those message operations can fail. Sending messages in bulk might increase the chance of being throttled on send to avoid flodding the Amazon SQS infrastructure.
 
-By batching multiple concurrent message operations together in a smart way it is possible to adhere to the throttling constraints. For example send a maximum of 100 messages concurrently as outlined in the [sending large amount of messages guidelines](/nservicebus/handlers/async-handlers.md#large-amount-of-concurrent-message-operations).
+By batching multiple concurrent message operations together in a smart way it is possible to adhere to the throttling constraints. For example send a maximum of 100 messages concurrently as outlined in the [sending large amount of messages guidelines](/nservicebus/handlers/async-handlers#concurrency-large-amount-of-concurrent-message-operations).
 
 
