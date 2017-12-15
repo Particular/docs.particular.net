@@ -1,9 +1,6 @@
-﻿using System;
-using System.IO;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Persistence.RavenDB;
 using Raven.Client.Document;
-using Raven.Client.Document.DTC;
 
 class Configure
 {
@@ -15,7 +12,7 @@ class Configure
         // configure documentStore here
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseSharedAsyncSession(
-            getAsyncSessionFunc: () =>
+            getAsyncSessionFunc: headers =>
             {
                 var session = documentStore.OpenAsyncSession();
                 // customize session here
