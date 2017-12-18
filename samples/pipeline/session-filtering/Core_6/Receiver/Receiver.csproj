@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net461</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <PackageReference Include="NServiceBus" Version="6.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SessionFilter\Shared.csproj" />
+  </ItemGroup>
+</Project>
