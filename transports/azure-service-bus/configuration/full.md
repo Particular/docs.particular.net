@@ -53,8 +53,8 @@ The following settings are available to define how queues should be created:
 
  * `MaxSizeInMegabytes(SizeInMegabytes)`: The size of the queue, in megabytes. Defaults to 1,024 MB.
  * `LockDuration(TimeSpan)`: The period of time that Azure Service Bus will lock a message before trying to redeliver it. Defaults to 30 seconds.
- * `ForwardDeadLetteredMessagesTo(string)`: Forward all dead lettered messages to the specified entity. This setting is off by default.
- * `ForwardDeadLetteredMessagesTo(Func<string, bool>, string)`: Forward all dead lettered messages to the specified entity if the given condition is true (e.g. it allows to exclude forwarding dead lettered messages on the error queue). This setting is off by default.
+ * `ForwardDeadLetteredMessagesTo(string)`: Forwards all dead lettered messages to the specified entity. This setting is set to off by default.
+ * `ForwardDeadLetteredMessagesTo(Func<string, bool>, string)`: Forwards all dead lettered messages to the specified entity if the given condition is true (e.g. excluding forwarding dead lettered messages in the error queue). This setting is set to off by default.
  * `DefaultMessageTimeToLive(TimeSpan)`: The maximum age of a message. Defaults to `TimeSpan.MaxValue`.
  * `EnableDeadLetteringOnMessageExpiration(bool)`: Messages that expire will be dead lettered. Defaults to `false`.
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the queue if it hasn't been used for the specified time period. By default the queue will not be automatically deleted.
@@ -90,7 +90,7 @@ The following settings are available to define how subscriptions should be creat
  * `EnableBatchedOperations(bool)`: Enables server side batched operations. Defaults to `true`.
  * `EnableDeadLetteringOnFilterEvaluationExceptions(bool)`: Dead letters messages when a filter evaluation doesn't match. Defaults to `false`.
  * `EnableDeadLetteringOnMessageExpiration(bool)`: Dead letters messages when they expire.
- * `ForwardDeadLetteredMessagesTo(string)`: Forwards all dead lettered messages to the specified entity. This setting is off by default.
+ * `ForwardDeadLetteredMessagesTo(string)`: Forwards all dead lettered messages to the specified entity. This setting is set to off by default.
  * `ForwardDeadLetteredMessagesTo(Func<string, bool>, string)`: Forwards all dead lettered messages to the specified entity if the given condition is `true`. This setting is off by default.
  * `LockDuration(TimeSpan)`: The period of time that Azure Service Bus will lock a message before trying to redeliver it. Defaults to 30 seconds.
  * `AutoDeleteOnIdle(TimeSpan)`: Automatically deletes the subscription if it hasn't been used for the specified time period. By default the subscription will not be automatically deleted.
