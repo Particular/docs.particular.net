@@ -33,9 +33,9 @@ Controlling entity creation has been simplified. Instead of having to provide a 
 
 ## Queue and Subscription MaxDeliveryCount
 
-In version 7 the transport was setting `MaxDeliveryCount` to match immediate retries specified by each endpoint to ensure messages are not dead-lettered accidentally.
+In version 7 the transport sets `MaxDeliveryCount` to match immediate retries specified by each endpoint to ensure messages are not dead-lettered accidentally.
 
-In version 8 and above, `MaxDeliveryCount` is set to `int.MaxValue` to ensure messages are still not dead-lettered accidentally and remove dependency on endpoints' immediate retries configuration.  
+In version 8 and above, `MaxDeliveryCount` is set to `int.MaxValue` to ensure messages are not dead-lettered accidentally and to remove the dependency on the endpoints' immediate retries configuration.
 
 Customization of `MaxDeliveryCount` is strongly discouraged, yet can be performed using `DescriptionCustomizer` API for queues and topics.  
 
