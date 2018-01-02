@@ -28,3 +28,11 @@ snippet: NSBHeartbeat_Upgrade_InstallPackage
 The deprecated packages allowed configuration of ServiceControl queue via a convention in which an application setting `ServiceControl/Queue` was picked up automatically. The new package requires explicit configuration. When upgrading, the following code needs to be added to the endpoint setup code to retrieve the ServiceControl queue from the configuration file and pass it to the plugin.
 
 snippet: NSBHeartbeat_Upgrade_Configure
+
+## Heartbeats feature made internal
+
+The deprecated packages contained a public feature class called `Heartbeats`. This feature was enabled by default and exposed publicly so that it could be disabled using the features API. 
+
+snippet: NSBHeartbeat_Upgrade_Disable
+
+This feature is no longer enabled by default and requires explicit configuration (above) in order to activate. The feature class itself has been made internal and any code referencing it to disable the feature can be removed. 
