@@ -1,0 +1,1 @@
+SQL persistence automatically generates names of database objects such as tables, indexes and procedures used internally. Every database engine has its own rules and limitations regarding maximum allowed name length. 

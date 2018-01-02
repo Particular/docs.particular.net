@@ -836,6 +836,28 @@
   - Url: persistence/sql
     Title: SQL
     Articles:
+    - Url: persistence/sql/dialect-mssql
+      Title: SQL Server
+      Articles:
+      - Url: persistence/sql/sqlserver-scripts
+        Title: Scripts
+    - Url: persistence/sql/dialect-mysql
+      Title: MySQL
+      Articles:
+      - Url: persistence/sql/mysql-scripts
+        Title: Scripts
+    - Url: persistence/sql/dialect-oracle
+      Title: Oracle
+      Articles:
+      - Url: persistence/sql/oracle-scripts
+        Title: Scripts
+    - Url: persistence/sql/dialect-postgresql
+      Title: PostgreSQL
+      Articles:
+      - Url: persistence/sql/postgresql-scripts
+        Title: Scripts
+    - Url: persistence/sql/controlling-script-generation
+      Title: Script generation
     - Url: persistence/sql/accessing-data
       Title: Business data
     - Url: persistence/sql/saga
@@ -852,18 +874,6 @@
       Title: Installation and deployment
     - Url: persistence/sql/installer-workflow
       Title: Installer Workflow
-    - Url: persistence/sql/oracle-caveats
-      Title: Oracle dialect design
-    - Url: persistence/sql/postgresql-design
-      Title: PostgreSQL dialect design
-    - Url: persistence/sql/sqlserver-scripts
-      Title: MS SQL Server Scripts
-    - Url: persistence/sql/mysql-scripts
-      Title: MySQL Scripts
-    - Url: persistence/sql/oracle-scripts
-      Title: Oracle Scripts
-    - Url: persistence/sql/postgresql-scripts
-      Title: PostgreSQL Scripts
   - Url: persistence/azure-storage
     Title: Azure Storage
     Articles:
