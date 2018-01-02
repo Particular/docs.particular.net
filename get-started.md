@@ -25,6 +25,8 @@ The [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) tutorial giv
 
 The [Scaling Applications with Microservices and NServiceBus 6](https://www.pluralsight.com/courses/microservices-nservicebus6-scaling-applications) Pluralsight course provides guidance on MicroServices and how to build them using NServiceBus.
 
+The [Monitoring NServiceBus](/tutorials/monitoring-demo/) tutorial is the best way to get familiar with the monitoring features in the Particular Service Platform before deploying monitoring on a real system. The included downloadable sample contains all of the necessary parts of the platform, already configured and ready to run.
+
 
 ## Samples
 
