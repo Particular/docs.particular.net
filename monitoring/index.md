@@ -1,6 +1,5 @@
 ---
 title: Monitoring
-summary: Monitoring
 reviewed: 2018-01-03
 ---
 
