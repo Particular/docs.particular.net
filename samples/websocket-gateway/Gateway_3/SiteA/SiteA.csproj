@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net461</TargetFrameworks>
+    <LangVersion>7.1</LangVersion>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+    <ProjectReference Include="..\WebSocketGateway\WebSocketGateway.csproj" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-beta0013" />
+    <PackageReference Include="NServiceBus.Gateway" Version="3.0.0-beta0005" />
+  </ItemGroup>
+</Project>
