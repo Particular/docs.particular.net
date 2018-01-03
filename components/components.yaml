@@ -939,3 +939,14 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.UniformSession
   NugetOrder:
     - NServiceBus.UniformSession
+
+  Key: GatewayChannelHttpVNext
+  Name: HttpVNext Gateway Channel
+  DocoUrl: nservicebus/gateway/httpvnext-channel
+  GitHubOwner: welshdave
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/welshdave/NServiceBus.Gateway.Channels.HttpVNext/blob/master/LICENSE
+  ProjectUrl: https://github.com/welshdave/NServiceBus.Gateway.Channels.HttpVNext
+  NugetOrder:
+    - NServiceBus.Gateway.Channels.HttpVNext
