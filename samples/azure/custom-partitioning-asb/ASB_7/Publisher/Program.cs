@@ -16,6 +16,9 @@ class Program
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString1' environment variable. Check the sample prerequisites.");
         }
+        await NamespaceOutageEmulator.EnsureNoOutageIsEmulated(connectionString1)
+            .ConfigureAwait(false);
+
         var connectionString2 = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString2");
         if (string.IsNullOrWhiteSpace(connectionString2))
         {
@@ -31,20 +34,22 @@ class Program
 
         #endregion
 
-        Console.WriteLine("Default strategy is DataDistributionPartitioningStrategy.");
-        Console.WriteLine("Press 'c' to change to RoundRobinWithFailoverPartitioningStrategy.");
+        Instruction.WriteLine("Default strategy is DataDistributionPartitioningStrategy.");
+        Instruction.WriteLine("Press 'c' to change to RoundRobinWithFailoverPartitioningStrategy or any other key to continue w/o changes.");
         var usingStrategyWithFailover = false;
 
         var strategyChoice = Console.ReadKey();
+        Console.WriteLine();
         if (strategyChoice.Key == ConsoleKey.C)
         {
-            usingStrategyWithFailover = true;
-
             #region CustomPartitioning_RoundRobinWithFailoverStrategy
 
             namespacePartitioning.UseStrategy<RoundRobinWithFailoverPartitioningStrategy>();
 
             #endregion
+
+            usingStrategyWithFailover = true;
+            namespaceOutageEmulator = new NamespaceOutageEmulator(connectionString1);
         }
         else
         {
@@ -67,12 +72,12 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Press 'e' to publish an event");
+        Instruction.WriteLine("Press 'e' to publish an event");
         if (usingStrategyWithFailover)
         {
-            Console.WriteLine("Press 'f' to emulate 'AzureServiceBus.ConnectionString1' failure.");
+            Instruction.WriteLine("Press 'f' to toggle namespace with 'AzureServiceBus.ConnectionString1' failure.");
         }
-        Console.WriteLine("Press any other key to exit");
+        Instruction.WriteLine("Press any other key to exit");
 
         while (true)
         {
@@ -81,7 +86,9 @@ class Program
 
             if (key.Key == ConsoleKey.F)
             {
-
+                await namespaceOutageEmulator.Toggle()
+                    .ConfigureAwait(false);
+                continue;
             }
 
             if (key.Key != ConsoleKey.E)
@@ -101,4 +108,6 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
+
+    static NamespaceOutageEmulator namespaceOutageEmulator;
 }
