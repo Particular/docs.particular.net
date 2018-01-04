@@ -34,6 +34,18 @@ In order to monitor endpoints health and activity it is necessary to [configure 
  * [Endpoints and Heartbeats in ServicePulse](/servicepulse/intro-endpoints-heartbeats.md).
 
 
+## Real-time Monitoring
+
+The Monitoring view shows an overview of all logical endpoints in your system showing various metrics. You can navigate to the details to clicking on an endpoint name which will show the same metrics but then either per received message type or per endpoint instance.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/X8oQjKnKpBM?rel=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+
+**Learn more:**
+
+ * [Explanation of metrics](/nservicebus/operations/metrics/)
+ * [Monitoring tutorial](/tutorials/monitoring-setup/)
+
+
 ## Failed messages
 
 ServicePulse informs about the failed messages by showing in the Dashboard event messages and showing a red Failed Messages icon with the number of failing messages. 
