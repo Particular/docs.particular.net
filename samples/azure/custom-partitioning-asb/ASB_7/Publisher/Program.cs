@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using Publisher;
 
 class Program
 {
     static async Task Main()
     {
         Console.Title = "Samples.ASB.Partitioning.Publisher";
+
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Partitioning.Publisher");
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString1 = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString1");
@@ -26,9 +28,32 @@ class Program
         var namespacePartitioning = transport.NamespacePartitioning();
         namespacePartitioning.AddNamespace("namespace1", connectionString1);
         namespacePartitioning.AddNamespace("namespace2", connectionString2);
-        namespacePartitioning.UseStrategy<ReplicatedNamespacePartitioningStrategy>();
 
         #endregion
+
+        Console.WriteLine("Default strategy is DataDistributionPartitioningStrategy.");
+        Console.WriteLine("Press 'c' to change to RoundRobinWithFailoverPartitioningStrategy.");
+        var usingStrategyWithFailover = false;
+
+        var strategyChoice = Console.ReadKey();
+        if (strategyChoice.Key == ConsoleKey.C)
+        {
+            usingStrategyWithFailover = true;
+
+            #region CustomPartitioning_RoundRobinWithFailoverStrategy
+
+            namespacePartitioning.UseStrategy<RoundRobinWithFailoverPartitioningStrategy>();
+
+            #endregion
+        }
+        else
+        {
+            #region CustomPartitioning_DataDistributionStrategy
+
+            namespacePartitioning.UseStrategy<DataDistributionPartitioningStrategy>();
+
+            #endregion
+        }
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<JsonSerializer>();
@@ -43,6 +68,10 @@ class Program
             .ConfigureAwait(false);
 
         Console.WriteLine("Press 'e' to publish an event");
+        if (usingStrategyWithFailover)
+        {
+            Console.WriteLine("Press 'f' to emulate 'AzureServiceBus.ConnectionString1' failure.");
+        }
         Console.WriteLine("Press any other key to exit");
 
         while (true)
@@ -50,12 +79,17 @@ class Program
             var key = Console.ReadKey();
             Console.WriteLine();
 
-            var eventId = Guid.NewGuid();
+            if (key.Key == ConsoleKey.F)
+            {
+
+            }
 
             if (key.Key != ConsoleKey.E)
             {
                 break;
             }
+
+            var eventId = Guid.NewGuid();
             var someEvent = new SomeEvent
             {
                 EventId = eventId
