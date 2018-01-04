@@ -7,6 +7,8 @@
     using NServiceBus.Settings;
     using NServiceBus.Transport.AzureServiceBus;
 
+    #region roundrobin-with-failover-strategy
+
     public class RoundRobinWithFailoverPartitioningStrategy : 
         INamespacePartitioningStrategy, ICacheSendingNamespaces
     {
@@ -46,4 +48,6 @@
 
         public bool SendingNamespacesCanBeCached { get; } = false;
     }
+
+    #endregion
 }

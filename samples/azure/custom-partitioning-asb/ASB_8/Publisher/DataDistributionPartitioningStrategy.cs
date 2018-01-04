@@ -5,7 +5,7 @@ using NServiceBus.Logging;
 using NServiceBus.Settings;
 using NServiceBus.Transport.AzureServiceBus;
 
-#region replicated-namespace-partitioning-strategy
+#region data-distribution-strategy
 
 public class DataDistributionPartitioningStrategy :
     INamespacePartitioningStrategy
