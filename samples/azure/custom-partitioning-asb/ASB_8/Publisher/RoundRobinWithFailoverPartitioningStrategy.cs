@@ -49,5 +49,5 @@
         public bool SendingNamespacesCanBeCached { get; } = false;
     }
 
-
-#endregion}
+    #endregion
+}
