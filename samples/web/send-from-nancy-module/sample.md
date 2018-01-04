@@ -1,8 +1,8 @@
 ---
-title: Sending from an NANCY Module
-summary: Illustrates how to send messages to a NServiceBus endpoint from a NANCY Web application.
+title: Sending from a Nancy module
+summary: Illustrates how to send messages to a NServiceBus endpoint from a Nancy web application.
 component: Core
-reviewed: 2017-12-09
+reviewed: 2018-01-04
 related:
 - nservicebus/dependency-injection
 - nservicebus/hosting
@@ -10,14 +10,14 @@ related:
 ---
 
 
-### Initialize the NANCY Web endpoint
+### Initialize the Nancy web endpoint
 
 Open `Bootstraper.cs` and look at the `ConfigureApplicationContainer` method.
 
 snippet: ConfigureApplicationContainer
 
 
-### Injection into the Module
+### Injection into the module
 
 The endpoint instance is injected into the `SendMessageModule` at construction time.
 
