@@ -7,11 +7,9 @@ public class MyHandler :
 {
     static ILog log = LogManager.GetLogger<MyHandler>();
 
-    #region MessageHandler
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         log.Info("Message received at endpoint");
         return Task.CompletedTask;
     }
-    #endregion
 }
