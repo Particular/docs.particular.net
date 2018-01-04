@@ -33,23 +33,37 @@ class NamespaceOutageEmulator
     public static async Task EnsureNoOutageIsEmulated(string connectionString)
     {
         var namespaceManager = NamespaceManager.CreateFromConnectionString(connectionString);
-        var topic1 = await namespaceManager.GetTopicAsync("bundle-1")
-            .ConfigureAwait(false);
-        var topic2 = await namespaceManager.GetTopicAsync("bundle-2")
-            .ConfigureAwait(false);
 
-        if (topic1.Status != EntityStatus.Active)
+        try
         {
-            topic1.Status = EntityStatus.Active;
-            await namespaceManager.UpdateTopicAsync(topic1)
+            var topic1 = await namespaceManager.GetTopicAsync("bundle-1")
                 .ConfigureAwait(false);
+
+            if (topic1.Status != EntityStatus.Active)
+            {
+                topic1.Status = EntityStatus.Active;
+                await namespaceManager.UpdateTopicAsync(topic1)
+                    .ConfigureAwait(false);
+            }
+        }
+        catch (MessagingEntityNotFoundException)
+        {
         }
 
-        if (topic2.Status != EntityStatus.Active)
+        try
         {
-            topic2.Status = EntityStatus.Active;
-            await namespaceManager.UpdateTopicAsync(topic2)
+            var topic2 = await namespaceManager.GetTopicAsync("bundle-2")
                 .ConfigureAwait(false);
+
+            if (topic2.Status != EntityStatus.Active)
+            {
+                topic2.Status = EntityStatus.Active;
+                await namespaceManager.UpdateTopicAsync(topic2)
+                    .ConfigureAwait(false);
+            }
+        }
+        catch (MessagingEntityNotFoundException)
+        {
         }
     }
 
