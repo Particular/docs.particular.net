@@ -7,13 +7,13 @@ using NServiceBus.Transport.AzureServiceBus;
 
 #region replicated-namespace-partitioning-strategy
 
-public class ReplicatedNamespacePartitioningStrategy :
+public class DataDistributionPartitioningStrategy :
     INamespacePartitioningStrategy, ICacheSendingNamespaces
 {
-    static ILog log = LogManager.GetLogger<ReplicatedNamespacePartitioningStrategy>();
+    static ILog log = LogManager.GetLogger<DataDistributionPartitioningStrategy>();
     NamespaceConfigurations namespaces;
 
-    public ReplicatedNamespacePartitioningStrategy(ReadOnlySettings settings)
+    public DataDistributionPartitioningStrategy(ReadOnlySettings settings)
     {
         if (
             settings.TryGet("AzureServiceBus.Settings.Topology.Addressing.Namespaces", out namespaces) &&
@@ -22,7 +22,7 @@ public class ReplicatedNamespacePartitioningStrategy :
         {
             return;
         }
-        throw new Exception("The 'Replicated' namespace partitioning strategy requires more than one namespace. Configure additional connection strings");
+        throw new Exception($"The '{nameof(DataDistributionPartitioningStrategy)}' namespace partitioning strategy requires more than one namespace. Configure additional connection strings");
     }
 
     public IEnumerable<RuntimeNamespaceInfo> GetNamespaces(PartitioningIntent partitioningIntent)
