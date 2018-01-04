@@ -67,6 +67,9 @@ snippet: roundrobin-with-failover-strategy
 A custom namespace strategy is registered using `NamespacePartitioning().UseStrategy<T>`. Note that multiple namespaces can be registered using the `NamespacePartitioning().AddNamespace()` API:
 
 snippet: CustomPartitioning
+snippet: CustomPartitioning_DataDistributionStrategy
+or
+snippet: CustomPartitioning_RoundRobinWithFailoverStrategy
 
 
 ## Running the sample
