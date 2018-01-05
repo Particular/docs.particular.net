@@ -36,7 +36,7 @@ In order to monitor endpoints health and activity it is necessary to [configure 
 
 ## Real-time Monitoring
 
-The Monitoring view shows an overview of all logical endpoints in your system showing various metrics. You can navigate to the details to clicking on an endpoint name which will show the same metrics but then either per received message type or per endpoint instance.
+The Monitoring view shows an overview of all logical endpoints in a system showing various metrics. Navigate to the details by clicking on an endpoint name. This shows the same metrics but then split by message type or per endpoint instance.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/X8oQjKnKpBM?rel=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 
