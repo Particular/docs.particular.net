@@ -26,7 +26,7 @@ class Program
 
         #region ConfigureClient
 
-        var wormholeRoutingSettings = endpointConfiguration.UseWormholeGateway("Gateway.SiteA");
+        var wormholeRoutingSettings = endpointConfiguration.UseWormholeGateway("Gateway.SiteA.2");
         wormholeRoutingSettings.RouteToSite<Ping>("SiteB");
 
         #endregion

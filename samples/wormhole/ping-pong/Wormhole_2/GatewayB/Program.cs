@@ -10,11 +10,11 @@ class Program
     {
         Console.Title = "Samples.Wormhole.PingPong.GatewayB";
 
-        var gatewayConfig = new WormholeGatewayConfiguration<MsmqTransport, HttpTransport>("Gateway.SiteB", "SiteB");
+        var gatewayConfig = new WormholeGatewayConfiguration<MsmqTransport, HttpTransport>("Gateway.SiteB.2", "SiteB");
 
         #region ConfigureGatewayB
 
-        gatewayConfig.ConfigureRemoteSite("SiteA", "Gateway.SiteA");
+        gatewayConfig.ConfigureRemoteSite("SiteA", "Gateway.SiteA.2");
         gatewayConfig.ForwardToEndpoint("Shared", "Samples.Wormhole.PingPong.Server");
 
         #endregion

@@ -25,7 +25,7 @@ class Program
 
         #region ConfigureServer
 
-        endpointConfiguration.UseWormholeGateway("Gateway.SiteB");
+        endpointConfiguration.UseWormholeGateway("Gateway.SiteB.2");
 
         #endregion
 
