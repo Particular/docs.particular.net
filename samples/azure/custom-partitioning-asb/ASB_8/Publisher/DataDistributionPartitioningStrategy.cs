@@ -5,15 +5,15 @@ using NServiceBus.Logging;
 using NServiceBus.Settings;
 using NServiceBus.Transport.AzureServiceBus;
 
-#region replicated-namespace-partitioning-strategy
+#region data-distribution-strategy
 
-public class ReplicatedNamespacePartitioningStrategy :
+public class DataDistributionPartitioningStrategy :
     INamespacePartitioningStrategy
 {
-    static ILog log = LogManager.GetLogger<ReplicatedNamespacePartitioningStrategy>();
+    static ILog log = LogManager.GetLogger<DataDistributionPartitioningStrategy>();
     NamespaceConfigurations namespaces;
 
-    public ReplicatedNamespacePartitioningStrategy(ReadOnlySettings settings)
+    public DataDistributionPartitioningStrategy(ReadOnlySettings settings)
     {
         if (settings.TryGet("AzureServiceBus.Settings.Topology.Addressing.Namespaces", out namespaces) && namespaces.Count > 1)
         {
