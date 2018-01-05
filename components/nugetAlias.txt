@@ -25,6 +25,7 @@ EventStoreTransport: NServiceBus.EventStore
 EventSourceLogging: NServiceBus.EventSourceLogging
 FileBasedRouting: NServiceBus.FileBasedRouting
 Gateway: NServiceBus.Gateway
+GatewayChannelHttpVNext: NServiceBus.Gateway.Channels.HttpVNext
 HandlerOrdering: NServiceBus.HandlerOrdering
 Heartbeats3: ServiceControl.Plugin.Nsb3.Heartbeat
 Heartbeats4: ServiceControl.Plugin.Nsb4.Heartbeat
