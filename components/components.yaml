@@ -940,7 +940,7 @@
   NugetOrder:
     - NServiceBus.UniformSession
 
-  Key: GatewayChannelHttpVNext
+- Key: GatewayChannelHttpVNext
   Name: HttpVNext Gateway Channel
   DocoUrl: nservicebus/gateway/httpvnext-channel
   GitHubOwner: welshdave
