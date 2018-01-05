@@ -687,8 +687,6 @@
       Title: Addressing
     - Url: transports/sql/transactions
       Title: Transaction support
-    - Url: transports/sql/concurrency
-      Title: Concurrency handling
     - Url: transports/sql/discard-expired-messages
       Title: Discarding expired messages
     - Url: transports/sql/deployment-options
