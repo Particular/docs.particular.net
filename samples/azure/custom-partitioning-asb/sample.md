@@ -57,7 +57,7 @@ snippet: data-distribution-strategy
 
 #### Round-Robin with failover strategy
 
-`RoundRobinWithFailoverPartitioningStrategy` is alternating between two namespaces to distribute load among namespaces and ensure no throttling is taking place on the Azure Service Bus service level. This achieves high availability. Should one of the namespace fail, the strategy will fail over to use the other namespace. This achieves failover implementation.
+`RoundRobinWithFailoverPartitioningStrategy` is alternating between two namespaces to distribute load among namespaces and ensure no throttling is taking place on the Azure Service Bus service level. This achieves high availability. Should one of the namespace fail, the strategy will fail over to use the other namespace. This achieves Disaster Recovery.
 
 snippet: roundrobin-with-failover-strategy
 
@@ -84,5 +84,5 @@ snippet: CustomPartitioning_RoundRobinWithFailoverStrategy
 
 ### Emulating namespace failure
 
-To namespace failure can be toggled to emulate an outage for one of the namespaces represented by `AzureServiceBus.ConnectionString1` connection string. When namespace is in failed state, events published to namespace with connection string `AzureServiceBus.ConnectionString1` should be delivered to the second namespace (namespace with connection string `AzureServiceBus.ConnectionString2`).  
+The namespace failure can be toggled to emulate an outage for one of the namespaces represented by `AzureServiceBus.ConnectionString1` connection string. When namespace is in failed state, events published to namespace with connection string `AzureServiceBus.ConnectionString1` should be delivered to the second namespace (namespace with connection string `AzureServiceBus.ConnectionString2`).  
 
