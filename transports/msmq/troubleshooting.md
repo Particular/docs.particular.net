@@ -97,12 +97,12 @@ Outgoing queues shows 3 values:
 - Unacknowledges (msgs)
 - Unprocessed (msgs)
 
-
 By default the *Number of messages* shows the messages count of messages that have not yet been delivered or processed. It does not indicate the number of messages that still need to be send. To get the Number of unsend messages you have to subtract *Unprocessed (msgs)* from this.
 This means that if an endpoint at the receipient is stopped or slow that the messages remaining to be processed are included in this count.
 
 When MSMQ dead-lettering is disabled *Number of messages* will only indicate the number of message remaining to be delivered. *Unprocessed (msgs)* will always show the value 0 when dead lettering is disabled.
 
+For more information please read [MSMQ dead-letter queues](dead-letter-queues.md).
 
 
 ## Useful links
