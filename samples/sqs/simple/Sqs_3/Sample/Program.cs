@@ -11,7 +11,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.Simple");
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        transport.Region("us-east-1");
+        transport.Region(region: Environment.GetEnvironmentVariable("AWS_REGION", EnvironmentVariableTarget.User));
         transport.S3BucketForLargeMessages("bucketname", "my/key/prefix");
 
         #endregion
