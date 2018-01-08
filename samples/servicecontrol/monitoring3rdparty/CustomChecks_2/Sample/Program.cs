@@ -14,7 +14,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        endpointConfiguration.CustomCheckPlugin("Particular.ServiceControl");
+        endpointConfiguration.ReportCustomChecksTo("Particular.ServiceControl");
 
         await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 

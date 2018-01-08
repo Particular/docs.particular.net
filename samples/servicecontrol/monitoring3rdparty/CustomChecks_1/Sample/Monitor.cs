@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Net.Http;
+using NServiceBus.CustomChecks;
 using NServiceBus.Logging;
-using ServiceControl.Plugin.CustomChecks;
 
 #region thecustomcheck
 
 class ThirdPartyMonitor :
-    PeriodicCheck
+    CustomCheck
 {
     const string url = "http://localhost:57789";
     static ILog log = LogManager.GetLogger<ThirdPartyMonitor>();
@@ -16,7 +16,7 @@ class ThirdPartyMonitor :
         : base(
             id: $"Monitor {url}",
             category: "Monitor 3rd Party ",
-            interval: TimeSpan.FromSeconds(10))
+            repeatAfter: TimeSpan.FromSeconds(10))
     {
     }
 
