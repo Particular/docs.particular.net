@@ -34,7 +34,10 @@ static class Program
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
+        #region Cleanup
         await endpointInstance.Stop()
             .ConfigureAwait(false);
+        Log.CloseAndFlush();
+        #endregion
     }
 }

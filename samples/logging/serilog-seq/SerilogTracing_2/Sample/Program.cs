@@ -40,5 +40,8 @@ class Program
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
+        #region Cleanup
+        Log.CloseAndFlush();
+        #endregion
     }
 }
