@@ -88,6 +88,17 @@ Part of the outbox is deduplication which makes sure that a message with the exa
 
 Keep in mind that the maximum lifetime is not set too low! If the time window is set to 30 minutes, a message is forwarded to the error queue and manually retried by an operator potentially hours or days later while the original message was already correctly processed then this manual retry could apply the same data modifications again because the outbox record that prevents this is already purged as it was expired.
 
+### Required storage
+
+Outbox requires storage. The required space can be calculated as follows:
+
+    Total outbox records = Message througput per second * Deduplication period in seconds
+
+
+If the system is processing a high volume of messages per second having a large deduplication timeframe might not be ideal as outbox records will occupy storage. Most persisters run a cleanup task every minute. Depending on the throughput this cleanup interval can be run more often.
+
+A single outbox record - after all transport operations have been dispatched - usually requires less then 50 bytes of which most are taken for storing the original message ID as this is a string value.
+
 ## Persistence
 
 The Outbox feature requires persistence in order to perform deduplication and store outgoing downstream messages.
