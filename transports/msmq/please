@@ -51,7 +51,7 @@ at System.Messaging.MessageQueue.SendInternal(Object obj, MessageQueueTransactio
 
 The cause of this exception is that the MSMQ has run out of space for holding on to messages. This could be due to messages sent that could not be delivered, or messages received that have not been processed.
 
-Also check the Outgoing queues if messages send to remote servers are received and processed. NServiceBus has dead letter queues enabled by default which results in a message to remain in the Outgoing queue of the sender until the message is not only delivered but also processed at the receiver. For more information please read [MSMQ dead-letter queues](dead-letter-queues.md).
+Also check the Outgoing queues if messages send to remote servers are received and processed. NServiceBus has dead letter queues enabled by default which results in a message to remain in the Outgoing queue of the sender until the message is not only delivered but also processed at the receiver. For more information, read [MSMQ dead-letter queues](dead-letter-queues.md).
 
 
 ### Resolution
@@ -104,7 +104,7 @@ This means that if an endpoint at the receipient is stopped or slow that the mes
 
 When MSMQ dead-lettering is disabled *Number of messages* will only indicate the number of message remaining to be delivered. *Unprocessed (msgs)* will always show the value 0 when dead lettering is disabled.
 
-For more information please read [MSMQ dead-letter queues](dead-letter-queues.md).
+For more information, read [MSMQ dead-letter queues](dead-letter-queues.md).
 
 
 ## Useful links
