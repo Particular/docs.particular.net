@@ -6,6 +6,7 @@ component: SqlTransport
 tags:
 - Transactions
 - Transport
+- Concurrency
 redirects:
  - nservicebus/sqlserver/design
  - transports/sqlserver/design

@@ -1,9 +1,9 @@
-### Default
+## Default
 
 include: deployment-options-default
 
 
-### Multi-instance
+## Multi-instance
 
 include: deployment-options-multi-instance
 

@@ -1,11 +1,11 @@
-### Default
+## Default
 
 include: deployment-options-default
 
-### Multi-schema
+## Multi-schema
 
 include: deployment-options-multi-schema
 
-### Multi-catalog
+## Multi-catalog
 
 include: deployment-options-multi-catalog

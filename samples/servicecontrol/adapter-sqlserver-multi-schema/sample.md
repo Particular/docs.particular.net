@@ -12,7 +12,7 @@ related:
 
 This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using SQL Server transport with endpoints using separate schemas for queues.
 
-The purpose of the adapter is to isolate ServiceControl from the specifics of the physical deployment topology of the business endpoints (such as [SQL Server multi-schema](/transports/sql/deployment-options.md#modes-overview-multi-schema) mode) which are not supported out-of-the-box by ServiceControl.
+The purpose of the adapter is to isolate ServiceControl from the specifics of the physical deployment topology of the business endpoints (such as [SQL Server multi-schema](/transports/sql/deployment-options.md#multi-schema) mode) which are not supported out-of-the-box by ServiceControl.
 
 
 ## Prerequisistes

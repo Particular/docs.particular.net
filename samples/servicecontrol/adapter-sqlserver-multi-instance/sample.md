@@ -12,7 +12,7 @@ related:
 
 This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using SQL Server transport in a multi-database mode.
 
-The purpose of the adapter is to isolate ServiceControl from the specifics of the physical deployment topology of the business endpoints (such as [SQL Server multi-instance](/transports/sql/deployment-options.md#modes-overview-multi-instance.md) mode). 
+The purpose of the adapter is to isolate ServiceControl from the specifics of the physical deployment topology of the business endpoints (such as [SQL Server multi-instance](/transports/sql/deployment-options.md?version=SqlTransport_3#multi-instance.md) mode). 
 
 
 ## Prerequisistes
@@ -59,7 +59,7 @@ This topology is used in business endpoints (Sales, Shipping) as well as in the 
 
 The Sales and Shipping projects contain endpoints that simulate the execution of a business process. The process consists of two events: `OrderAccepted` published by Sales and subscribed by Shipping and `OrderShipped` published by Shipping and subscribed by Sales.
 
-The Sales and Shipping endpoints use separate databases and their transports are configured in the [multi-instance](/transports/sql/deployment-options.md#modes-overview-multi-instance) mode using the topology definition from the `Connections` class.
+The Sales and Shipping endpoints use separate databases and their transports are configured in the [multi-instance](/transports/sql/deployment-options.md?version=SqlTransport_3#multi-instance.md) mode using the topology definition from the `Connections` class.
 
 The business endpoints include a message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality.
 
@@ -72,7 +72,7 @@ The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has
 
 snippet: AdapterTransport
 
-The following code configures the adapter to use [multi-instance](/transports/sql/deployment-options.md#modes-overview-multi-instance) mode of SQL Server transport when communicating with the business endpoints.
+The following code configures the adapter to use [multi-instance](/transports/sql/deployment-options.md?version=SqlTransport_3#multi-instance.md) mode of SQL Server transport when communicating with the business endpoints.
 
 snippet: EndpointSideConfig
 

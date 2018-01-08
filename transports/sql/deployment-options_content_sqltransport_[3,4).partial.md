@@ -1,20 +1,20 @@
-### Default
+## Default
 
 include: deployment-options-default
 
-### Multi-schema
+## Multi-schema
 
 include: deployment-options-multi-schema
 
 NOTE: The `queue schema` NServiceBus-specific query string property is no longer supported in Version 3 and above. Code-based addressing configuration has to be used instead.
 
-### Multi-catalog
+## Multi-catalog
 
 Starting from Version 3.1.1 SQL Server transport supports the multi-catalog mode.
 
 include: deployment-options-multi-catalog
 
-### Multi-instance
+## Multi-instance
 
 WARNING: The multi-instance option is deprecated and has been removed in Version 4. In order to enable it, use `EnableLegacyMultiInstanceMode`.
 
