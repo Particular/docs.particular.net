@@ -78,9 +78,23 @@ In order to gradually convert an entire system from the DTC to the Outbox:
 
 WARNING: When verifying outbox functionality, it can sometimes be helpful to temporarily [stop the MSDTC Service](https://technet.microsoft.com/en-us/library/cc770732.aspx). This ensures that the Outbox is working as expected, and no other resources are enlisting in distributed transactions.
 
+## Concurrency
+
+Outbox does not prevent invoking handlers or sagas more then once, it only prevents that any changes configured in persistence is only committed once. If an endpoint allows concurrent message processing or is scaled out it can happen that the same message is processed more then once. If you are using non-transactional resources then make sure processing is idempotent. If this is unwanted then make sure you only run a single endpoint and have [configured the endpoint to process messages sequentially by setting the maximum concurrency to 1](/nservicebus/operations/tuning.md#tuning-concurrency).
+
+## Deduplication
+
+Part of the outbox is deduplication which makes sure that a message with the exact same identification can be detected and ignored. After all messages have been send this data is stored for while. The default duration depends per persistence implementation and all can be configured on how long an outbox record needs to be stored and some can be configured on how often outbox cleanup needs to occur.
+
+Keep in mind that the maximum lifetime is not set too low! If the time window is set to 30 minutes, a message is forwarded to the error queue and manually retried by an operator potentially hours or days later while the original message was already correctly processed then this manual retry could apply the same data modifications again because the outbox record that prevents this is already purged as it was expired.
 
 ## Persistence
 
 The Outbox feature requires persistence in order to perform deduplication and store outgoing downstream messages.
 
-Refer to the dedicated pages for [NHibernate](/persistence/nhibernate/outbox.md), [RavenDB](/persistence/ravendb/outbox.md), [SQL](/persistence/sql/outbox.md) or [ServiceFabric](/persistence/service-fabric/outbox.md) persistence.
+Refer to the dedicated persistence pages:
+
+- [NHibernate](/persistence/nhibernate/outbox.md)
+- [RavenDB](/persistence/ravendb/outbox.md)
+- [SQL](/persistence/sql/outbox.md)
+- [ServiceFabric](/persistence/service-fabric/outbox.md)
