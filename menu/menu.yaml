@@ -699,8 +699,6 @@
       Title: Entity Framework caveats
     - Url: transports/sql/callbacks
       Title: Callback support
-    - Url: transports/sql/queuepeek
-      Title: Queue peek settings
   - Url: transports/msmq
     Title: MSMQ
     Articles:

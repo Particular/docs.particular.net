@@ -6,4 +6,13 @@ When all tasks are done the transport switches back to the *peek* mode.
 
 In certain conditions the initial estimate of number of pending messages might be wrong e.g. when there is more than one instance of a scaled-out endpoint consuming messages from the same queue. In this case one of the receive tasks is going to fail (`delete` returns no results). When this happens, the transport immediately switches back to the *peek* mode.
 
+The default peek interval, if there is has been no messages in the queue, is 1 second. The recommended range for this setting is between 100 milliseconds to 10 seconds. If a value higher than the maximum recommended settings is used, a warning message will be logged. While a value less than 100 milliseconds will put too much unnecessary stress on the database, a value of larger than 10 seconds should also be use with caution as it may result in messages backing up in the queue. 
+
+### Peek delay setting configuration
+
+Use the following code:
+
+snippet: sqlserver-config-delay
+
+
 Read more information about [tuning endpoint message processing](/nservicebus/operations/tuning.md).
