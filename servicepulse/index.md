@@ -43,7 +43,7 @@ The Monitoring view shows an overview of all logical endpoints in a system showi
 **Learn more:**
 
  * [Explanation of metrics](/nservicebus/operations/metrics/)
- * [Monitoring tutorial](/tutorials/monitoring-setup/)
+ * [Setup Monitoring tutorial](/tutorials/monitoring-setup/)
 
 
 ## Failed messages
