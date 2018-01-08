@@ -8,7 +8,7 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         transport.Region("ap-southeast-2");
-        // bucket only required for messages larger than 256KB
+        // S3 bucket only required for messages larger than 256KB
         transport.S3BucketForLargeMessages("myBucketName", "my/key/prefix");
 
         #endregion
