@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Net.Http;
+using System.Threading.Tasks;
+using NServiceBus.CustomChecks;
 using NServiceBus.Logging;
-using ServiceControl.Plugin.CustomChecks;
 
 #region thecustomcheck
 
 class ThirdPartyMonitor :
-    PeriodicCheck
+    CustomCheck
 {
     const string url = "http://localhost:57789";
     static ILog log = LogManager.GetLogger<ThirdPartyMonitor>();
@@ -16,15 +17,16 @@ class ThirdPartyMonitor :
         : base(
             id: $"Monitor {url}",
             category: "Monitor 3rd Party ",
-            interval: TimeSpan.FromSeconds(10))
+            repeatAfter: TimeSpan.FromSeconds(10))
     {
     }
 
-    public override CheckResult PerformCheck()
+    public override async Task<CheckResult> PerformCheck()
     {
         try
         {
-            using (var response = client.GetAsync(url).Result)
+            using (var response = await client.GetAsync(url)
+                .ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
