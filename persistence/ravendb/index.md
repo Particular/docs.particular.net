@@ -41,6 +41,8 @@ There are a variety of options for configuring the connection to a RavenDB Serve
 
 ## Shared session
 
+NOTE: Shared RavenDB session is automatically activated when enabling Outbox or when Sagas are present.
+
 NServiceBus supports sharing the same RavenDB document session between Saga persistence, Outbox persistence, and business data, so that a single transaction can be used to persist the data for all three concerns atomically.
 
 Shared session is only applicable to Saga and Outbox storage. It can be configured via
