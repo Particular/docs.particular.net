@@ -19,6 +19,6 @@ A ServiceControl instance can track which endpoint instance are running by liste
 
 Beyond heartbeats, an endpoint can include [custom code to check anything and report status](/monitoring/custom-checks/). These checks can be run on a regular schedule and can be be used to ensure that 3rd party web services and applications are running as expected.
 
-ServicePulse can be used to [track which endpoints are active and inactive](/monitoring/heartbeats/heartbeats-in-servicepulse.md) as well as [monitor the status of Custom Checks]().
+ServicePulse can be used to [track which endpoints are active and inactive](/monitoring/heartbeats/in-servicepulse.md) as well as [monitor the status of Custom Checks](/monitoring/custom-checks/in-servicepulse.md).
 
-When an endpoint becomes active or inactive an [event is raised](/monitoring/heartbeats/notification-events.md) enabling integration with any other dashboard or tool. [Events are also raised when Custom Checks change status]().
+When an endpoint becomes active or inactive an [event is raised](/monitoring/heartbeats/notification-events.md) enabling integration with any other dashboard or tool. [Events are also raised when Custom Checks change status](/monitoring/custom-checks/notification-events.md).
