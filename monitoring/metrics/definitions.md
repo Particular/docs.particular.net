@@ -1,11 +1,9 @@
 ---
-title: Metrics
+title: Metric definitions
 summary: Measuring the performance and health of an endpoint.
-reviewed: 2017-11-22
-related:
- - nservicebus/operations
-related:
- - samples/logging/metrics
+reviewed: 2018-01-12
+redirects:
+  - nservicebus/operations/metrics
 ---
 
 Gathering metrics is important to know how a system works and if it works properly. When a system is broken down into multiple processes, each with its own queue, gathering and reporting metrics becomes vital. Below, there's a list of metrics that are captured and reported by NServiceBus.
