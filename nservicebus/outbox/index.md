@@ -81,9 +81,7 @@ WARNING: When verifying outbox functionality, it can sometimes be helpful to tem
 
 ## Message identity and idempotent processing
 
-If handlers are idempotent then outbox might not be required at all. When implementating idempotent processing keep in mind that any generated message *must* apply the same message identifier if invoked more then once to have deduplication working on the infrastructure level or to solve this at the logical level by validating message data.
-
-- [Message Identity](/nservicebus/messaging/message-identity.md)
+If handlers are idempotent then outbox might not be required at all. When implementating idempotent processing keep in mind that any generated message *must* apply the same message identifier if invoked more-then-once to have deduplication working on the infrastructure level or to solve this at the logical level by validating message data. [Read more on how to set a message identifier.](/nservicebus/messaging/message-identity.md)
 
 
 ## Concurrency
@@ -119,7 +117,7 @@ Outbox requires storage. The required space can be calculated as follows:
 
     Total outbox records = Message througput per second * Deduplication period in seconds
 
-A single outbox record - after all transport operations have been dispatched - usually requires less then 50 bytes of which most are taken for storing the original message ID as this is a string value.
+A single outbox record - after all transport operations have been dispatched - usually requires less than 50 bytes of which most are taken for storing the original message ID as this is a string value.
 
 NOTE: If the system is processing a high volume of messages per second having a large deduplication timeframe might not be ideal as outbox records will occupy storage.
 
@@ -132,7 +130,7 @@ How outbox cleanup is performed is different per persistence implementation. Mos
 
 The Outbox feature requires persistence in order to perform deduplication and store outgoing downstream messages.
 
-Refer to the dedicated persistence pages:
+For more information refer to the dedicated persistence pages:
 
 - [NHibernate](/persistence/nhibernate/outbox.md)
 - [RavenDB](/persistence/ravendb/outbox.md)
