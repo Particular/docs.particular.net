@@ -12,7 +12,6 @@ class Program
         #region AdapterTransport
 
         var transportAdapterConfig = new TransportAdapterConfig<SqlServerTransport, SqlServerTransport>("ServiceControl.SqlServer.Adapter");
-
         #endregion
 
         #region EndpointSideConfig
