@@ -17,6 +17,8 @@ The RabbitMQ transport has the concept of a routing topology, which controls how
 
 partial: mandatory
 
+The `ConventionalRoutingTopology` relies on [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) to route messages. 
+
 ### Sending using Conventional Routing Topology
 
 Each endpoint creates its own fanout exchange and queue, using its own name as the name of the exchange and queue. It also creates a binding between the exchange and queue. Messages are sent to the endpoint by sending them to the endpoint's exchange. The binding then routes the message to the endpoint's queue.
