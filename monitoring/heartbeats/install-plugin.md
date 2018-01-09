@@ -10,7 +10,7 @@ To install the Heartbeats plugin into an endpoint add the following to the endpo
 
 snippet: HeartbeatsNew_Enable
 
-WARN: When installing the heartbeat plugin, also configure each instance with a deterministic [Host Identifier](t/nservicebus/hosting/override-hostid.md). This identifier is used to keep track of which instance is sending heartbeat messages to the ServiceControl instance.
+WARN: When installing the heartbeat plugin, also configure each instance with a deterministic [Host Identifier](/nservicebus/hosting/override-hostid.md). This identifier is used to keep track of which instance is sending heartbeat messages to the ServiceControl instance.
 
 
 ### Heartbeat interval
