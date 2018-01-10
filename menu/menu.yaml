@@ -1077,3 +1077,36 @@
       Articles:
       - Title: Incompatible transport features
         Url: servicecontrol/transport-adapter/incompatible-features
+
+- Name: Monitoring
+  Url: monitoring
+  Topics:
+  - Title: Getting started
+    Url: tutorials/monitoring-demo
+  - Title: Endpoint performance
+    Url:
+    Articles:
+    - Title: Metrics
+      Url: nservicebus/operations/metrics
+    - Title: Report to ServicePulse
+      Url: nservicebus/operations/metrics/service-control
+    - Title: Report to Windows Performance Counters
+      Url: nservicebus/operations/metrics/performance-counters
+    - Title: Report to Trace Log
+      Url: samples/logging/metrics
+    - Title: Report to Azure Application Insights
+      Url: samples/logging/application-insights
+    - Title: Report to New Relic
+      Url: samples/logging/new-relic
+    - Title: Report to Prometheus
+      Url: samples/logging/prometheus-grafana
+    - Title: Consuming raw metric data
+      Url: nservicebus/operations/metrics/raw
+  - Title: Endpoint health
+    Articles:
+    - Title: Heartbeats
+      Url: nservicebus/operations/heartbeat
+    - Title: Custom Checks
+      Url: nservicebus/operations/custom-checks
+  - Title: Installation
+    Url: tutorials/monitoring-setup
