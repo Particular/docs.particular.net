@@ -45,11 +45,11 @@ class Program
 
         // TODO: Bridge 2.x doesn't support this yet
 
-        bridgeConfiguration.InterceptForwarding(async (queue, message, forward) =>
+        bridgeConfiguration.InterceptForwarding(async (queue, message, dispatch, forward) =>
         {
             using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
             {
-                await forward().ConfigureAwait(false);
+                await forward(dispatch).ConfigureAwait(false);
             }
         });
 
