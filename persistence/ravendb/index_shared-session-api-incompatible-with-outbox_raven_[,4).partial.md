@@ -1,0 +1,1 @@
+ERROR: In this version of NServiceBus.RavenDB, the API used to customize the `IDocumentSession` instance is incompatible with the [Outbox feature](/nservicebus/outbox/). [Contact support](https://particular.net/contactus) if this poses a problem.

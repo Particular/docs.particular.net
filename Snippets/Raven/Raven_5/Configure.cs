@@ -4,9 +4,9 @@ using Raven.Client.Document;
 
 class Configure
 {
-    void SharedSessionForSagasAndOutbox(EndpointConfiguration endpointConfiguration)
+    void CustomizeDocumentSession(EndpointConfiguration endpointConfiguration)
     {
-        #region ravendb-persistence-shared-session-for-sagas
+        #region ravendb-persistence-customize-document-session
 
         var documentStore = new DocumentStore();
         // configure documentStore here
