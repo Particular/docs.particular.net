@@ -103,7 +103,7 @@ If you are using non-transactional resources then make sure processing is idempo
 
 NOTE: This problem is not specific to Outbox but mentioned here as sometimes it is assumed Outbox does deduplication that prevents more-than-once invocation.
 
-Try to avoid mixing transaction and non transactional tasks. If performing non transactional tasks send a message to perform this tasks in isolation.
+Try to avoid mixing transactional and non transactional tasks. If performing non transactional tasks send a message to perform this task in isolation.
 
 
 ## Outbox expiration duration
