@@ -44,7 +44,7 @@ class Program
         #region suppress-transaction-scope-for-asb
 
         // TODO: Bridge 2.x doesn't support this yet
-        
+
         bridgeConfiguration.InterceptForwarding(async (queue, message, dispatch, forward) =>
         {
             using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
