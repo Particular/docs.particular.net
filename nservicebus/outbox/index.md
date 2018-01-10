@@ -81,25 +81,27 @@ WARNING: When verifying outbox functionality, it can sometimes be helpful to tem
 
 ## Message identity and idempotent processing
 
-If handlers are idempotent then outbox might not be required at all. When implementating idempotent processing keep in mind that any generated message *must* apply the same message identifier if invoked more-then-once to have deduplication working on the infrastructure level or to solve this at the logical level by validating message data. [Read more on how to set a message identifier.](/nservicebus/messaging/message-identity.md)
+If handlers are idempotent then outbox might not be required at all. When considering not using the outbox and implementing idempotent processing keep in mind that any generated message *must* apply the same message identifier if invoked more-then-once to have deduplication working on the infrastructure level or to solve this at the logical level by validating message data. [Read more on how to set a message identifier.](/nservicebus/messaging/message-identity.md)
 
 
 ## Concurrency
 
-Outbox cannot prevent that handlers or sagas are invoked at most once. Under certain scenarios this can happen:
+Outbox cannot guarantee that handlers or sagas are invoked exactly once. Outbox does not prevent concurrent attempts to process the same message but ensures that the outcome of the processing is persisted only once for resources that share the outbox transaction.
+
+The following scenarios might cause handlers to be invoked multiple times:
 
 - Sender sends multiple physical message with the same message identifier (submit order form)
 - Transport can send multiple messages when having a failover, they operate in a at-least-once delivery model
-- The outbox dispatch stage can be invoked more then once if the previous dispatch (partially) failed and is now retried.
+- The outbox dispatch stage can be invoked more-than-once if the previous dispatch (partially) failed and is retried.
 
-Multiple physical copied of the same logical message now exist. If an endpoint allows concurrent message processing or is scaled out it can happen that these multiple copies are processed concurrently.
+In those scenarios, multiple physical copies of the same logical message exist in the queue. If an endpoint allows concurrent message processing or is scaled out it can happen that these multiple copies are processed concurrently.
 
 
 ## Non transactional resources
 
-Outbox does not perform deduplication! If you are using non-transactional resources then make sure processing is idempotent. If this is unwanted then this can be almost prevented completely by making sure only a single endpoint instance and have [configured the endpoint to process messages sequentially by setting the maximum concurrency to 1](/nservicebus/operations/tuning.md#tuning-concurrency).
+If you are using non-transactional resources then make sure processing is idempotent. Non-transactional resources are not guaranteed to be handled in an idempotent way by the Outbox. If this is unwanted then this can be almost prevented completely by making sure only a single endpoint instance and have [configured the endpoint to process messages sequentially by setting the maximum concurrency to 1](/nservicebus/operations/tuning.md#tuning-concurrency). Only data modified via SynchronizedStorageSession are made idempotent via the outbox.
 
-NOTE: This problem is not specific to Outbox but mentioned here as sometimes it is assumed Outbox does deduplication.
+NOTE: This problem is not specific to Outbox but mentioned here as sometimes it is assumed Outbox does deduplication that prevents more-than-once invocation.
 
 Try to avoid mixing transaction and non transactional tasks. If performing non transactional tasks send a message to perform this tasks in isolation.
 
@@ -108,8 +110,7 @@ Try to avoid mixing transaction and non transactional tasks. If performing non t
 
 Part of the outbox is guarantee that the data remains consistent if the same message is processed more-than-once. A message with the exact same identification can be detected and ignored. This data is stored in the outbox record and kept for a configurable duration. The default expiration duration depends per persistence implementation. All implemetations can be configured on how long an outbox record needs to be stored and some can be configured on how often outbox cleanup needs to occur.
 
-Keep in mind that the maximum lifetime is not set too low! If the time window is set to 30 minutes, a message is forwarded to the error queue and manually retried by an operator potentially hours or days later while the original message was already correctly processed then this manual retry could apply the same data modifications again because the outbox record that prevents this is already purged as it was expired.
-
+Ensure that the retention period of the outbox is longer than the maximum time the message can be retried, including delayed retries and manual retries via ServiceControl. Additional care must be taken by operators of ServicePulse to not retry messages older than the outbox retention period.
 
 ## Required storage
 
