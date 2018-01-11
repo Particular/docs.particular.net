@@ -121,6 +121,8 @@
         Title: Version 1 to 1.1
     - Title: NServiceBus Host
       Articles:
+      - Url: nservicebus/upgrades/host-4to5
+        Title: Version 4 to 5
       - Url: nservicebus/upgrades/host-7to8
         Title: Version 7 to 8
       - Url: nservicebus/upgrades/host-6to7
