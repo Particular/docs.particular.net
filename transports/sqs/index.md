@@ -76,10 +76,7 @@ The SQS transport uses the default [retries and timeouts](http://docs.aws.amazon
 NOTE: NServiceBus will perform [immediate](/nservicebus/recoverability/#immediate-retries) and [delayed](/nservicebus/recoverability/#delayed-retries) retries in addition to retries performed internally by the SQS client.
 
 
-
-
 ## Troubleshooting
-
 
 ### AmazonSQSException: Request is throttled
 
