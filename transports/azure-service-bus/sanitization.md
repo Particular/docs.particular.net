@@ -6,7 +6,7 @@ tags:
 - Transport
 related: 
 - samples/azure/custom-sanitization-asb
-reviewed: 2017-05-05
+reviewed: 2018-01-10
 redirects:
  - nservicebus/azure-service-bus/sanitization
 ---
@@ -53,6 +53,8 @@ When implementing custom sanitization, consider factors such as readability and 
  * Truncated long entity names could conflict.
  * Hashed entity names could lead to difficult names to use during production troubleshooting or debugging.
  * Sanitized entity names stay in the system and cannot be replaced until no longer used.
+ * Composition strategy needs to work in conjunction with custom sanitization.
+     * If `HierarchyComposition` is used, generated path needs to be shared with custom sanitization strategy and be exempted from sanitization.
 
 
 ### Possible ways to avoid sanitization
