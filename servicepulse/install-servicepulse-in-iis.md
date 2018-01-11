@@ -61,7 +61,7 @@ ServicePulse relies on the ServiceControl REST API. It is possible to add a [rev
 
 This is useful to lock down access to ServicePulse or to expose the web site over a single port.
 
-NOTE: If ServiceControl is configured with a different host then `localhost` then change the hostname value back to `localhost`.
+NOTE: If ServiceControl is configured with a different host other than `localhost` then change the hostname value back to `localhost`.
 
 Installation Steps:
 
