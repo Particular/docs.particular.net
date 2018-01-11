@@ -20,9 +20,9 @@ CustomChecks -- Custom Check<br>Data --> SCQ[ServiceControl<br>Input Queue]
 
 SCQ --> ServiceControl
 
-ServiceControl -. Integration<br/>Events .-> Integration[Integration<br/>Event Handler]
+SC -. Integration<br/>Events .-> Integration[Integration<br/>Event Handler]
 
-ServiceControl -- Custom Check<br>Data --> ServicePulse
+SC -- Custom Check<br>Data --> ServicePulse
 ```
 
 
