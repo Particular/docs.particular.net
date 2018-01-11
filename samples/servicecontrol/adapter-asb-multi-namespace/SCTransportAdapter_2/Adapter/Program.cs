@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Configuration.AdvancedExtensibility;
+using NServiceBus.MessageInterfaces;
+using NServiceBus.Serialization;
+using NServiceBus.Settings;
 using ServiceControl.TransportAdapter;
 
 class Program
@@ -41,6 +45,8 @@ class Program
                 var composition = transport.Composition();
                 composition.UseStrategy<HierarchyComposition>()
                     .PathGenerator(path => "scadapter/");
+
+                WorkaroundForServializerRequiredByASB(transport);
             });
 
         #endregion
@@ -53,13 +59,14 @@ class Program
             customization: transport =>
             {
                 var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.SC");
-                if (!string.IsNullOrWhiteSpace(connectionString))
+                if (string.IsNullOrWhiteSpace(connectionString))
                 {
-                    transport.ConnectionString(connectionString);
-                    transport.UseEndpointOrientedTopology();
-                    return;
+                    throw new Exception("Could not read 'AzureServiceBus.ConnectionString.SC' environment variable. Check sample prerequisites.");
                 }
-                throw new Exception("Could not read 'AzureServiceBus.ConnectionString.SC' environment variable. Check sample prerequisites.");
+                transport.ConnectionString(connectionString);
+                transport.UseEndpointOrientedTopology();
+
+                WorkaroundForServializerRequiredByASB(transport);
             });
 
         #endregion
@@ -93,5 +100,20 @@ class Program
 
         await adapter.Stop()
             .ConfigureAwait(false);
+    }
+
+    static void WorkaroundForServializerRequiredByASB(TransportExtensions<AzureServiceBusTransport> transport)
+    {
+        var settings = transport.GetSettings();
+        var serializer = Tuple.Create(new FakeSerializer() as SerializationDefinition, new SettingsHolder());
+        settings.Set("MainSerializer", serializer);
+    }
+
+    class FakeSerializer : SerializationDefinition
+    {
+        public override Func<IMessageMapper, IMessageSerializer> Configure(ReadOnlySettings settings)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
