@@ -17,7 +17,7 @@ WARN: When installing the heartbeat plugin, also configure each instance with a 
 
 Heartbeat messages are sent by the plugin, at a predefined interval of 10 seconds. As shown above, the interval value can be overridden on a per endpoint basis.
 
-When configuring heartbeat interval, ensure ServiceContol setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) is greater than the heartbeat interval. 
+NOTE: When configuring heartbeat interval, ensure ServiceContol setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) is greater than the heartbeat interval. 
 
 
 ### Time-To-Live (TTL)
