@@ -10,7 +10,5 @@ upgradeGuideCoreVersions:
 
 ## Roles are obsolete
 
-In Versions 5 and above roles are obsoleted and should not be used. The functionality of AsA_Server, and AsA_Publisher have been made defaults in core and can be safely removed. 
-
-https://docs.particular.net/nservicebus/hosting/nservicebus-host/?version=host_5#roles-built-in-configurations
+In Versions 5 and above roles are obsoleted and should not be used. The functionality of `AsA_Server`, and `AsA_Publisher` have been made the defaults in core and can be safely removed. Read the [Host guidance on alternatives for using roles](/nservicebus/hosting/nservicebus-host/?version=host_5#roles-built-in-configurations).
 
