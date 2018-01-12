@@ -18,15 +18,12 @@ The following diagram shows the topology of the solution:
 ```mermaid
 graph RL
 
-  subgraph Namespace 2
+  subgraph Namespace 1
+    sales["fa:fa-money Sales"]
     shipping["fa:fa-truck Shipping"]
   end
 
-  subgraph Namespace 1
-    sales["fa:fa-money Sales"]
-  end
-
-  subgraph Namespace 3
+  subgraph Namespace 2
     sc["fa:fa-wrench Service Control"]
   end
 
@@ -84,11 +81,8 @@ The Shipping endpoint has the Heartbeats plugin installed to enable uptime monit
 
 Both endpoints are configured to use:
 
- * [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
- * [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
- * Different namespaces with [cross-namespace routing](/transports/azure-service-bus/multiple-namespaces-support.md#cross-namespace-routing) enabled.
- * [Namespace hierary](/transports/azure-service-bus/namespace-hierarchy.md) to prefix all entities with `scadapter/`.
-
+ * [Secure connection strings](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts).
+ 
 snippet: featuresunsuportedbysc
 
 
@@ -105,10 +99,8 @@ snippet: AdapterTransport
 
 The following code configures the adapter to match advanced transport features enabled on the endpoints:
 
- * [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
- * [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
- * [Multiple namespace](/transports/azure-service-bus/multiple-namespaces-support.md#round-robin-namespace-partitioning).
- * [Namespace hierary](/transports/azure-service-bus/namespace-hierarchy.md)
+ * [Secure connection strings](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts).
+ * [Multi-storage accounts](/transports/azure-storage-queues/multi-storageaccount-support.md).
 
 snippet: EndpointSideConfig
 
@@ -116,14 +108,14 @@ While the following code configures the adapter to communicate with ServiceContr
 
 snippet: SCSideConfig
 
-Since ServiceControl has been installed under a non-default instance name (`Particular.ServiceControl.ASB`) the control queue name needs to be overridden in the adapter configuration:
+Since ServiceControl has been installed under a non-default instance name (`Particular.ServiceControl.ASQ`) the control queue name needs to be overridden in the adapter configuration:
 
 snippet: ControlQueueOverride
 
 Shipping and Sales use different namespaces, therefore the adapter has to be configured to properly route retried messages:
 
-snippet: UseNamespaceHeader
+snippet: UseStorageAccountHeader
 
-The destination address consists of the queue name and the namespace alias which is included in the failed messages:
+The destination address consists of the queue name and the storage account alias which is included in the failed messages:
 
 snippet: NamespaceAlias
