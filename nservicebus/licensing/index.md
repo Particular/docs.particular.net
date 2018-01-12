@@ -38,7 +38,16 @@ No log entries written by NServiceBus 3.
 
 ### NServiceBus 4
 
+With License
+```
+2018-01-12 17:44:40,861 [1] INFO  NServiceBus.Licensing.LicenseManager [(null)] <(null)> - UpgradeProtectionExpiration: 02/23/2019 00:00:00
+```
 
+
+Expired trial license
+```
+2018-01-12 17:48:58,863 [1] WARN  NServiceBus.Licensing.LicenseManager [(null)] <(null)> - Trial for the Particular Service Platform has expired
+```
 
 ## License validity
 
