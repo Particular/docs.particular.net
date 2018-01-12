@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net461</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ServiceModel" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.Raw" Version="3.0.0-*" />
+    <PackageReference Include="ServiceControl.TransportAdapter" Version="2.0.0-*" />
+    <PackageReference Include="WindowsAzure.ServiceBus" Version="4.*" />
+  </ItemGroup>
+</Project>
