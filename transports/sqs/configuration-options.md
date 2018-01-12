@@ -9,7 +9,7 @@ redirects:
 - nservicebus/sqs/configuration-options
 ---
 
-NOTE: The transport does not support `transport.ConnectionString(...)` to specify the connection string via code.
+partial: connectionstringsupport
 
 partial: maxReceiveMessageBatchSize
 
