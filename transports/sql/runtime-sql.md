@@ -17,7 +17,7 @@ snippet: CreateQueueTextSql
 
 ### Creating table structure in Production
 
-There are some special considerations for creating the queue tables in higher environments e.g. Production.
+There are some special considerations for creating the queue tables in the Production environments.
 
 
 #### NServiceBus installers

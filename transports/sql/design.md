@@ -66,6 +66,8 @@ The clustered index of the queue table is based on the `RowVersion` column to en
 
 ## Behavior
 
+The following section describes the runtime behavior of SQL Server transport when sending and receiving messages.
+
 
 ### Sending
 
