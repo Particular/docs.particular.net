@@ -108,7 +108,7 @@ Try to avoid mixing transactional and non transactional tasks. If performing non
 
 ## Outbox expiration duration
 
-Part of the outbox is guarantee that the data remains consistent if the same message is processed more-than-once. A message with the exact same identification can be detected and ignored. This data is stored in the outbox record and kept for a configurable duration. The default expiration duration depends per persistence implementation. All implemetations can be configured on how long an outbox record needs to be stored and some can be configured on how often outbox cleanup needs to occur.
+Part of the outbox is to guarantee that the data remains consistent if the same message is processed more-than-once. A message with the exact same identification can be detected and ignored. This data is stored in the outbox record and kept for a configurable duration. The default expiration duration depends per persistence implementation. All implemetations can be configured on how long an outbox record needs to be stored and some can be configured on how often outbox cleanup needs to occur.
 
 Ensure that the retention period of the outbox is longer than the maximum time the message can be retried, including delayed retries and manual retries via ServiceControl. Additional care must be taken by operators of ServicePulse to not retry messages older than the outbox retention period.
 
@@ -124,7 +124,7 @@ NOTE: If the system is processing a high volume of messages per second having a 
 
 ## Outbox cleanup interval
 
-How outbox cleanup is performed is different per persistence implementation. Most persisters run a cleanup task every minute. Depending on the throughput this cleanup interval can be run more often to make a single cleanup operation purge less records per interval.
+How outbox cleanup is performed depends per persistence implementation. Most persisters run a cleanup task every minute. Depending on the throughput this cleanup interval can be run more often to make a single cleanup operation purge less records per interval.
 
 
 ## Persistence
