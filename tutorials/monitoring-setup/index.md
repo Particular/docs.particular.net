@@ -135,7 +135,7 @@ NOTE: Creating the Monitoring instance will also create the monitoring queue if 
 
 ### Install ServicePulse
 
-NOTE: Make sure that ServiceControl and ServiceControl.Monitoring instances are added first.
+NOTE: Make sure that ServiceControl and ServiceControl Monitoring instances are added first.
 
 [ServicePulse](/servicepulse/) is a web application for production monitoring and recoverability. It connects to a Monitoring instance to display monitoring data and to a ServiceControl instance to display recoverability data.
 
