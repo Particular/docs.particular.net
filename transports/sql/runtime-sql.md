@@ -15,9 +15,9 @@ At installation time the queue creation script is executed
 snippet: CreateQueueTextSql
 
 
-### Creating table structure in production
+### Creating table structure in Production
 
-There are some special considerations for creating the queue tables in higher environments e.g. production.
+There are some special considerations for creating the queue tables in higher environments e.g. Production.
 
 
 #### NServiceBus installers
@@ -29,13 +29,15 @@ It is required that the user account under which the installation of the host is
 
 #### Scripted
 
-Using NServiceBus installers not allow to review the actual T-SQL statements that are going be executed. For that reason some prefer to store the actual scripts in a version control system.  
+Using NServiceBus installers does not allow to review the actual T-SQL statements that are going be executed. For that reason some prefer to store the actual scripts in a version control system.  
  
 The script above is parametrized at execution time with the queue name so it cannot be used as-is. The scripts could, alternatively, be generated off the Development or Staging environment, and then directly executed on Production environment by DBAs to replicate that table structure. 
 
-To generate this DDL script, right-click the database and from "Tasks" menu choose "Generate Scripts..." and generate the scripts for relevant tables.
+To capture the script for later execution use SQL Server Management Studio. Connect to the server (e.g. Development or Staging) and right-click the database with the queue tables. From "Tasks" menu choose "Generate Scripts..." and generate the scripts for relevant tables.
 
 ![](generating-ddl.png)
+
+Store these scripts so they can be executed as part of the Production deployment.
 
 
 ## Runtime

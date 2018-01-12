@@ -11,5 +11,7 @@ Although the multi-catalog and multi-schema modes are not supported explicitly, 
  * `initial catalog` for multi-catalog deployments
  * `queue schema` for multi-schema deployments
 
+The downside of this mode is fact that it requires the Distributed Transaction Coordinator (DTC) even if all catalogs and/or schemas are in the same instance of SQL Server.
+
 NOTE: The `queue schema` is an NServiceBus-specific extension to the SQL Server connection string syntax and can only be used in connection strings used by SQL Server Transport.
  

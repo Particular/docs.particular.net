@@ -7,6 +7,6 @@ In the multi-catalog mode queue tables exist in multiple catalogs provided all t
 
 In order to use this mode the transport-specific [addressing](/transports/sql/addressing.md) information has to be provided to map endpoints and/or queues to catalogs.
 
-The multi-schema mode does not require Distributed Transaction Coordinator (DTC) to ensure *exactly-once* message processing.
+The multi-catalog mode does not require Distributed Transaction Coordinator (DTC) to ensure *exactly-once* message processing.
 
-The multi-catalog mode can be combined with the multi-schema mode so that groups of endpoints are assigned catalogs and, within each catalogs, each endpoint (or a sub-group of endpoints) has its own schema.
+The multi-catalog mode can be combined with the multi-schema mode so that groups of endpoints are assigned catalogs and, within each catalog, each endpoint (or a sub-group of endpoints) has its own schema.
