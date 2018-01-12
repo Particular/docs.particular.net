@@ -8,7 +8,9 @@ The endpoints of an NServiceBus system collect different types of information ab
 
 ## Endpoint performance
 
-Endpoints collect information about how well they are processing messages. This data can be [sent to ServiceControl Monitoring for visualization in ServicePulse](/nservicebus/operations/metrics/service-control.md). 
+Endpoints collect [performance metrics](/monitoring/metrics/) about their own operation. This data can be [sent to a ServiceControl Monitoring instance](/monitoring/metrics/install-plugin.md) for [visualization in ServicePulse](/monitoring/metrics/in-servicepulse.md). 
+
+Alternatively, by [consuming the raw data](/monitoring/metrics/raw.md), endpoint performance metrics can be sent to any metrics database.
 
 Use this data to understand [which message handlers need to be optimized](/tutorials/monitoring-demo/walkthrough-1.md), [which endpoints need to be scaled out](/tutorials/monitoring-demo/walkthrough-2.md), and [where there are recoverable errors slowing the system down](/tutorials/monitoring-demo/walkthrough-3.md).
 
