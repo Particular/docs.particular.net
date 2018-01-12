@@ -2,7 +2,7 @@
 title: Configuration Options
 summary: Configuration options for the SQS transport.
 component: SQS
-reviewed: 2017-06-28
+reviewed: 2018-01-11
 tags:
 - AWS
 redirects:
