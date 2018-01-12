@@ -99,7 +99,7 @@ In those scenarios, multiple physical copies of the same logical message exist i
 
 ## Non transactional resources
 
-If non-transactional resources are being accessed then make sure processing is idempotent. Non-transactional resources are not guaranteed to be handled in an idempotent way by the Outbox. If more-than-once invocation is unwanted then this can be almost prevented completely by making sure only a single endpoint instance is running and have [configured the endpoint to process messages sequentially by setting the maximum concurrency to 1](/nservicebus/operations/tuning.md#tuning-concurrency). Only data modified via SynchronizedStorageSession is made idempotent via the outbox and has exact-once semantics.
+If non-transactional resources are being accessed then make sure processing is idempotent. Non-transactional resources are not guaranteed to be handled in an idempotent way by the Outbox. If more-than-once invocation is unwanted then this can be almost prevented completely by making sure only a single endpoint instance is running and have [configured the endpoint to process messages sequentially by setting the maximum concurrency to 1](/nservicebus/operations/tuning.md#tuning-concurrency). Only data modified via a shared storage session is made idempotent via the outbox and has exact-once semantics. See [persistence specific documention](#Persistence) on how to obtain the shared storage session.
 
 NOTE: This problem is not specific to Outbox but mentioned here as sometimes it is assumed Outbox does deduplication that prevents more-than-once invocation.
 
