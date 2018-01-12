@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Bridge;
@@ -12,15 +13,13 @@ class Program
     {
         Console.Title = "Bridge.Red";
 
-        #region BridgeConfig
-
         var bridgeConfig = Bridge
             .Between<SqlServerTransport>("Samples.Bridge.Backplane.Bridge.Red", t =>
             {
                 t.ConnectionString(ConnectionStrings.Red);
                 t.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             })
-            .And<RabbitMQTransport>("Samples.Bridge.Backplane.Bridge.Red.Rabbit", t =>
+            .And<RabbitMQTransport>("Samples.Bridge.Backplane.Bridge.Red", t =>
             {
                 t.ConnectionString("host=localhost");
                 t.UseConventionalRoutingTopology();
@@ -29,25 +28,10 @@ class Program
         bridgeConfig.AutoCreateQueues();
         bridgeConfig.UseSubscriptionPersistence<InMemoryPersistence>((config, persistence) => { });
 
-        #endregion
-
-        bridgeConfig.InterceptForwarding((queue, message, dispatch, forward) =>
-        {
-            return forward(async (messages, transaction, context) =>
-            {
-                transaction.TryGet<SqlConnection>(out var conn);
-                if (conn != null)
-                {
-                    //Duplicate messages coming from SQL Server to RabbitMQ to simulate connectivity problems.
-                    await dispatch(messages, transaction, context);
-                    await dispatch(messages, transaction, context);
-                }
-                else
-                {
-                    await dispatch(messages, transaction, context);
-                }
-            });
-        });
+        bridgeConfig.InterceptForwarding(FuncUtils.Fold(
+            Logger.Log, 
+            Duplicator.DuplicateRabbitMQMessages, 
+            new Deduplicator(ConnectionStrings.Red).DeduplicateSQLMessages));
 
         SqlHelper.EnsureDatabaseExists(ConnectionStrings.Red);
         SqlHelper.CreateReceivedMessagesTable(ConnectionStrings.Red);

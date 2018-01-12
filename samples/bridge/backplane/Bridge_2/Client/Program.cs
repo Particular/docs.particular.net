@@ -28,7 +28,7 @@ class Program
 
         var bridge = transport.Routing().ConnectToBridge("Samples.Bridge.Backplane.Bridge.Blue");
         bridge.RouteToEndpoint(typeof(MyMessage), "Samples.Bridge.Backplane.Server");
-        //bridge.RegisterPublisher(typeof(MyEvent), "Samples.Bridge.Backplane.Server");
+        bridge.RegisterPublisher(typeof(MyEvent), "Samples.Bridge.Backplane.Server");
 
         #endregion
 

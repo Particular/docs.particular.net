@@ -12,10 +12,10 @@ class MyMessageHandler :
         #region RequestHandler
 
         log.Info($"Request {message.Id}");
-        //await context.Publish(new MyEvent
-        //{
-        //    Id = message.Id
-        //}).ConfigureAwait(false);
+        await context.Publish(new MyEvent
+        {
+            Id = message.Id
+        }).ConfigureAwait(false);
 
         await context.Reply(new MyReply
         {

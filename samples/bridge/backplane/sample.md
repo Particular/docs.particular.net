@@ -1,12 +1,17 @@
 ---
-title: Using bridge to connect endpoints that use different transports
+title: Connecting multiple SQL Server instances with a backplane
+summary: Use a backplane to connect endpoints that use different SQL Server instances 
 component: Bridge
 reviewed: 2018-01-10
 related:
- - nservicebus/bridge
+- transports/sql
+- transports/rabbitmq
+- nservicebus/bridge
 ---
 
-The sample demonstrates how NServiceBus.Bridge can be used to connect endpoints that use different transports, in this case MSMQ and RabbitMQ.
+The sample demonstrates how to use Switch from NServiceBus.Bridge package to connect endpoints running SQL Server transport that use different instances of SQL Server. This is an alternative to the multi-instance mode of SQL Server transport which has been removed in Version 4.
+
+The RabbitMQ broker is used as a backplane in this sample. RabbitMQ is used to connect
 
 ## Prerequisistes
 
