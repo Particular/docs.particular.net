@@ -75,6 +75,9 @@ snippet: ConfiguringWorker
 
 Similar to self-hosting, if running NServiceBus prior to Version 6, ensure the `app.config` of the worker contains the `MasterNodeConfig` section to point to the hostname where the distributor process is running.
 
+## Outbox
+
+The distributor can be used in combination with the [outbox](/nservicebus/outbox/) feature. Outbox must be enabled on the Workers. It must also be enabled if a Worker is configured as Distributor Master (distributor/worker combination). Outbox is only required for persistence operations, the forwarding of messages to workers is purely a transport operation and Outbox will not participate in the forwarding logic.
 
 
 ## Advanced
