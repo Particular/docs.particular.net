@@ -1,6 +1,6 @@
 ---
-title: Monitor Azure Storage Queues endpoints with the ServiceControl adapter
-summary: Centralized monitoring of Azure Storage Queues endpoints with the ServiceControl adapter
+title: Monitor Azure Storage Queues endpoints with ServiceControl adapter
+summary: Centralized monitoring of Azure Storage Queues endpoints with ServiceControl adapter
 component: SCTransportAdapter
 reviewed: 2018-01-12
 related:
