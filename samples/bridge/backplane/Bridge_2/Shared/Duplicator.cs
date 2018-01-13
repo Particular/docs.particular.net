@@ -8,6 +8,8 @@ public class Duplicator
 {
     public static Task DuplicateRabbitMQMessages(string queue, MessageContext message, Dispatch dispatch, Func<Dispatch, Task> forward)
     {
+        #region Duplicate
+
         var duplicate = message.TransportTransaction.TryGet<SqlConnection>(out var _);
 
         return forward(async (messages, transaction, context) =>
@@ -18,5 +20,7 @@ public class Duplicator
             }
             await dispatch(messages, transaction, context).ConfigureAwait(false);
         });
+
+        #endregion
     }
 }

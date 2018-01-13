@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Bridge;
-using NServiceBus.Transport;
 
 class Program
 {
@@ -14,12 +10,12 @@ class Program
         Console.Title = "Bridge.Red";
 
         var bridgeConfig = Bridge
-            .Between<SqlServerTransport>("Samples.Bridge.Backplane.Bridge.Red", t =>
+            .Between<SqlServerTransport>("Red", t =>
             {
                 t.ConnectionString(ConnectionStrings.Red);
                 t.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             })
-            .And<RabbitMQTransport>("Samples.Bridge.Backplane.Bridge.Red", t =>
+            .And<RabbitMQTransport>("Red", t =>
             {
                 t.ConnectionString("host=localhost");
                 t.UseConventionalRoutingTopology();

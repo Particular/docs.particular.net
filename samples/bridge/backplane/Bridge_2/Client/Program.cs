@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
@@ -10,25 +10,20 @@ class Program
         Console.Title = "Client";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
-        var endpointConfiguration = new EndpointConfiguration("Samples.Bridge.Backplane.Client");
+
+        var endpointConfiguration = new EndpointConfiguration("Client");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(ConnectionStrings.Blue);
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        var recoverability = endpointConfiguration.Recoverability();
-        recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
-        recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
+        #region ClientBridgeRouting
 
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.AuditProcessedMessagesTo("audit");
-        endpointConfiguration.EnableInstallers();
-
-        #region ClientBridgeConfig
-
-        var bridge = transport.Routing().ConnectToBridge("Samples.Bridge.Backplane.Bridge.Blue");
-        bridge.RouteToEndpoint(typeof(MyMessage), "Samples.Bridge.Backplane.Server");
-        bridge.RegisterPublisher(typeof(MyEvent), "Samples.Bridge.Backplane.Server");
+        var routing = transport.Routing();
+        var bridge = routing.ConnectToBridge("Blue");
+        bridge.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
         #endregion
 
@@ -36,17 +31,29 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        Console.WriteLine("Press <enter> to send a message");
+        Console.WriteLine("Press enter to send a message");
+        Console.WriteLine("Press any key to exit");
+
         while (true)
         {
-            Console.ReadLine();
-            var id = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-            var message = new MyMessage
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key != ConsoleKey.Enter)
             {
-                Id = id
+                break;
+            }
+            var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+            Console.WriteLine($"Placing order {orderId}");
+            var message = new PlaceOrder
+            {
+                OrderId = orderId,
+                Value = random.Next(100)
             };
             await endpointInstance.Send(message)
                 .ConfigureAwait(false);
         }
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 }

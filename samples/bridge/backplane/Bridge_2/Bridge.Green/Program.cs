@@ -7,17 +7,15 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Bridge.Blue";
-
-        #region BridgeConfig
+        Console.Title = "Bridge.Green";
 
         var bridgeConfig = Bridge
-            .Between<SqlServerTransport>("Blue", t =>
+            .Between<SqlServerTransport>("Green", t =>
             {
-                t.ConnectionString(ConnectionStrings.Blue);
+                t.ConnectionString(ConnectionStrings.Green);
                 t.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             })
-            .And<RabbitMQTransport>("Blue", t =>
+            .And<RabbitMQTransport>("Green", t =>
             {
                 t.ConnectionString("host=localhost");
                 t.UseConventionalRoutingTopology();
@@ -26,21 +24,19 @@ class Program
         bridgeConfig.AutoCreateQueues();
         bridgeConfig.UseSubscriptionPersistence<InMemoryPersistence>((config, persistence) => { });
 
-        #endregion
+        #region GreenForwarding
 
-        #region BlueForwarding
-
-        bridgeConfig.Forwarding.ForwardTo("PlaceOrder", "Red");
+        bridgeConfig.Forwarding.RegisterPublisher("OrderAccepted", "Red");
 
         #endregion
-
-        SqlHelper.EnsureDatabaseExists(ConnectionStrings.Blue);
-        SqlHelper.CreateReceivedMessagesTable(ConnectionStrings.Blue);
 
         bridgeConfig.InterceptForwarding(FuncUtils.Fold(
             Logger.Log,
             Duplicator.DuplicateRabbitMQMessages,
             new Deduplicator(ConnectionStrings.Blue).DeduplicateSQLMessages));
+
+        SqlHelper.EnsureDatabaseExists(ConnectionStrings.Green);
+        SqlHelper.CreateReceivedMessagesTable(ConnectionStrings.Green);
 
         var bridge = bridgeConfig.Create();
 
@@ -52,5 +48,5 @@ class Program
         await bridge.Stop().ConfigureAwait(false);
     }
 
-    
+
 }
