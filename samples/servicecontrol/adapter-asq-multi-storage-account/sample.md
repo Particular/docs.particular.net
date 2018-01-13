@@ -1,6 +1,6 @@
 ---
-title: Monitor Azure Storage Queue endpoints with the ServiceControl adapter
-summary: Centralized monitoring of Azure Storage Queue endpoints with the ServiceControl adapter
+title: Monitor Azure Storage Queues endpoints with the ServiceControl adapter
+summary: Centralized monitoring of Azure Storage Queues endpoints with the ServiceControl adapter
 component: SCTransportAdapter
 reviewed: 2018-01-12
 related:
@@ -47,7 +47,7 @@ The adapter also deals with advanced features of the Azure Storage Queues transp
  1. An environment variable named `AzureStorageQueue.ConnectionString.1` with the connection string for the Azure Storage Queues account to be used by `Sales` and `Shipping` endpoints.
  1. An environment variable named `AzureStorageQueue.ConnectionString.SC` with the connection string for the Azure Storage Queues account to be used by ServiceControl and the adapter.
  1. [Install ServiceControl](/servicecontrol/installation.md).
- 1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using Azure Service Bus transport:
+ 1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using Azure Storage Queues transport:
 	 
    * Add a new ServiceControl instance: 
    * Use `Particular.ServiceControl.ASQ` as the instance name (ensure there is no other instance of SC running with the same name).
@@ -93,9 +93,13 @@ The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has
  * endpoint facing
  * ServiceControl facing
 
-In this sample both use Azure Service Bus transport:
+In this sample both use Azure Storage Queues transport:
 
 snippet: AdapterTransport
+
+Azure Storage Queues service doesn't support message headers. NServiceBus transport implements transport headers by using `MessageWrapper` to store headers and body as serialized storage message. For adapter to function it has to know how to de-serialize/serialize messages.
+
+snippet: serializer-workaround
 
 The following code configures the adapter to match advanced transport features enabled on the endpoints:
 
