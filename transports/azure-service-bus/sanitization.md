@@ -54,7 +54,7 @@ When implementing custom sanitization, consider factors such as readability and 
  * Hashed entity names could lead to difficult names to use during production troubleshooting or debugging.
  * Sanitized entity names stay in the system and cannot be replaced until no longer used.
  * Composition strategy needs to work in conjunction with custom sanitization.
-     * If `HierarchyComposition` is used, generated path needs to be shared with custom sanitization strategy and be exempted from sanitization.
+     * If `HierarchyComposition` is used, the generated path must be shared with the custom sanitization strategy and be exempted from sanitization.
 
 
 ### Possible ways to avoid sanitization

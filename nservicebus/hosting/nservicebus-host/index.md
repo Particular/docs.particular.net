@@ -23,13 +23,14 @@ To use the host, create a new C# class library and reference the [NServiceBus.Ho
 
 ## Host Versions
 
-Versions of the host prior to 5 aligned with NServiceBus core. Since version NServiceBus.Host 6 the releases are out of bound as the host was maintained and released independently.
+Versions of the host prior to 5.0 were aligned with NServiceBus core. Since version 6 of NServiceBus.Host the releases are maintained and released independently and the version numbers don't match between NServiceBus.Host and NServiceBus core. This table shows the NServiceBus.Host versions and the corresponding version of NServiceBus core.
 
-| NServiceBus | NServiceBus.Host  |
+
+| NServiceBus.Host | NServiceBus  |
 |:-----------:|:-----------------:|
-|     7.x     |        8.x        |
-|     6.x     |        7.x        |
-|     5.x     |        6.x        |
+|     8.x     |        7.x        |
+|     7.x     |        6.x        |
+|     6.x     |        5.x        |
 |     5.x     |        5.x        |
 |     4.x     |        4.x        |
 |     3.x     |        3.x        |
