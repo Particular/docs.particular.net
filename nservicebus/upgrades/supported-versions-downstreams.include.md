@@ -4,7 +4,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 3.0.x     | 2017-09-01     | -                 | -                                 |
+| 3.1.x     | 2017-12-15     | -                 | -                                 |
+| 3.0.x     | 2017-09-01     | 2018-03-15        | Superseded by 3.1.x               |
 | 2.0.x     | 2017-05-28     | 2018-09-01        | Superseded by 3.0.x               |
 | 1.3.x     | 2017-04-26     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 | ~~1.2.x~~ | ~~2015-04-08~~ | ~~2017-07-26~~    | ~~Superseded by 1.3.x~~           |
@@ -14,7 +15,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 7.2.x     | 2017-03-21     | -                 | -                                 |
-| ~~7.1.x~~ | ~~2016-12-05~~ | ~~2017-06-21~~    | ~~Superseded by 7.2.x~~           |
 | 6.4.x     | 2016-01-12     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 #### [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](/nuget/NServiceBus.Azure.Transports.WindowsAzureStorageQueues)
@@ -33,7 +33,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 4.4.x     | 2017-09-18     | -                 | -                                 |
-| 4.3.x     | 2017-04-05     | 2017-12-18        | Superseded by 4.4.x               |
+| ~~4.3.x~~ | ~~2017-04-05~~ | ~~2017-12-18~~    | ~~Superseded by 4.4.x~~           |
 | ~~4.2.x~~ | ~~2016-11-30~~ | ~~2017-07-05~~    | ~~Superseded by 4.3.x~~           |
 | 3.5.x     | 2016-09-20     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
@@ -104,7 +104,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.1.x     | 2017-03-21     | -                 | -                                 |
-| ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-06-21~~    | ~~Superseded by 1.1.x~~           |
 
 ### DependencyInjection packages
 
@@ -120,7 +119,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 6.1.x     | 2017-09-15     | -                 | -                                 |
-| 6.0.x     | 2016-10-11     | 2017-12-15        | Superseded by 6.1.x               |
+| ~~6.0.x~~ | ~~2016-10-11~~ | ~~2017-12-15~~    | ~~Superseded by 6.1.x~~           |
 | 5.0.x     | 2014-09-29     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 #### [NServiceBus.Ninject](/nuget/NServiceBus.Ninject)
@@ -299,7 +298,9 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.1.x     | 2017-11-29     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
+| 2.0.x     | 2017-12-12     | -                 | -                                 |
+| 1.2.x     | 2017-12-13     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
+| 1.1.x     | 2017-11-29     | 2018-03-13        | Superseded by 1.2.x               |
 | 1.0.x     | 2017-10-27     | 2018-02-28        | Superseded by 1.1.x               |
 
 #### [NServiceBus.SagaAudit](/nuget/NServiceBus.SagaAudit)

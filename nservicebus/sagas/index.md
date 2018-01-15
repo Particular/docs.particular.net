@@ -60,25 +60,25 @@ partial: at-least-one
 
 NOTE: Always assume that messages can be delivered out of order, e.g. due to error recovery, network latency, or concurrent message processing.
 
-When a saga is created, out of order delivery can cause a message to be discarded. In the previous example, this could happen if a `CompleteOrder` message is received before the `StartOrder` message has had a chance to create the saga.
+Sagas not designed to handle the arrival of messages out of order can result in some messages being discarded. In the previous example, this could happen if a `CompleteOrder` message is received before the `StartOrder` message has had a chance to create the saga.
 
 To ensure messages are not discarded when they arrive out of order:
 
 - Implement multiple `IAmStartedBy<T>` interfaces for any message type that assumes the saga instance should already exist
-- Override the saga not found behavior and throw an exception using `IHandleSagaNotFound` and rely on NServiceBus recoverability mechanisms to retry messages and resolve out of order issues.
+- Override the saga not found behavior and throw an exception using `IHandleSagaNotFound` and rely on NServiceBus recoverability capability to retry messages and resolve out of order issues.
 
 #### Multiple message types starting a saga
 
 If multiple message types can start a saga, it's necessary to ensure that saga behavior will remain correct for all possible combinations of order in which those messages are received.
 
-Assume that message `A` will be processed before message `B`. Often in such situation saga will store some state from the message `A` that saga tries to access when processing message `B`. However, if message `B` is processed first and starts the saga, then the expected state is not updated yet by message `A`.
+In the previous example, the `StartOrder` message contains both an `OrderId` and a `CustomerId` but the `CompleteOrder` message contains only an `OrderId`. The handler for `CompleteOrder` requires `CustomerId` to complete the order saga (i.e. initiate a shipping process). If a `StartOrder` message is processed first, the saga persists both the `OrderId` and the `CustomerId` in the saga data and when a corresponding `CompleteOrder` message arrives later, it retrieves the `CustomerId` from the saga data.
 
-Therefore, if a saga can be started by multiple messages, it is necessary to always explicitly verify that the saga contains all required information when processing message `B`, rather than just assume that information will always be there. For example, verify that saga data properties contain non-null values. Note that this will complicate the design of the saga, but will make it more resilient and will allow it to handle out of order messages correctly.
+When messages arrive in reverse order, the handler for the `CompleteOrder` message does not yet have access to the `CustomerId` because the related `StartOrder` message has not been processed yet. In this case, when the `StartOrder` message arrives later, the handler must notice that the `CompleteOrder` has already been processed and use its `CustomerId` to initiate the shipping process and complete the saga. This complicates the design of the saga, but makes it more resilient and allows it to handle messages out of order.
 
 
 #### Relying on recoverability
 
-In most scenarios, an acceptable solution to deal with out of order message delivery is to throw an error when the saga instance does not exist. The message will be automatically retried, which may resolve the issue, or it will end up in the error queue, where it can be manually retried.
+In most scenarios, an acceptable solution to deal with out of order message delivery is to throw an exception when the saga instance does not exist. The message will be automatically retried, which may resolve the issue, or it will end up in the error queue, where it can be manually retried.
 
 To override the default saga not found behavior [implement `IHandleSagaNotFound` and throw an exception](saga-not-found.md).
 
@@ -88,9 +88,9 @@ To override the default saga not found behavior [implement `IHandleSagaNotFound`
 Correlation is needed in order to find existing saga instances based on data on the incoming message. See [Message Correlation](message-correlation.md) for more details.
 
 
-## Message discard behavior when saga not found
+## Discarding messages when saga is not found
 
-If a message handled by a saga is received, but no related saga instance is found, then by default that message is discarded. Usually that happens when the saga has been already completed when further messages arrive and indeed these messages should be discarded. If a different behavior is expected for specific scenarios, the default behavior [can be modified](saga-not-found.md).
+If a message a saga handles a message, but no related saga instance is found, then that message is discarded by default. Typically that happens when the saga has been already completed when the messages arrives and discarding the message is correct. If a different behavior is expected for specific scenarios, the default behavior [can be modified](saga-not-found.md).
 
 
 ## Ending a long-running process

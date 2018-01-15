@@ -21,6 +21,22 @@ The NServiceBus Host takes an opinionated approach to hosting. Endpoints using N
 To use the host, create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/). The package will automatically create a sample endpoint configuration and will set the `NServiceBus.Host.exe` as the endpoint's startup project.
 
 
+## Host Versions
+
+Versions of the host prior to 5.0 were aligned with NServiceBus core. Since version 6 of NServiceBus.Host the releases are maintained and released independently and the version numbers don't match between NServiceBus.Host and NServiceBus core. This table shows the NServiceBus.Host versions and the corresponding version of NServiceBus core.
+
+
+| NServiceBus.Host | NServiceBus  |
+|:-----------:|:-----------------:|
+|     8.x     |        7.x        |
+|     7.x     |        6.x        |
+|     6.x     |        5.x        |
+|     5.x     |        5.x        |
+|     4.x     |        4.x        |
+|     3.x     |        3.x        |
+|     2.x     |        2.x        |
+
+
 ## Application Domains
 
 The `NServiceBus.Host.exe` creates a separate *service* [Application Domain](https://docs.microsoft.com/en-us/dotnet/framework/app-domains/application-domains) to run NServiceBus and the user code. The new domain is assigned a configuration file named after the dll that contains the class implementing `IConfigureThisEndpoint`. All the configuration should be done in that file (as opposed to `NServiceBus.Host.exe.config`). In most cases that means just adding the `app.config` file to the project and letting MSBuild take care of renaming it while moving to the `bin` directory.

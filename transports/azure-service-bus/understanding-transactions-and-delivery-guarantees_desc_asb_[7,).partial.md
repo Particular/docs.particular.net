@@ -1,6 +1,6 @@
 When running in `SendsAtomicWithReceive` mode, the Azure Service Bus (ASB) transport opens a transaction scope that cannot be enlisted by any other resource manager. As a result any custom behaviors or satellites need to explicitly wrap their transaction scope with a suppress scope.
 
-This transaction scope is a requirement to allow the ASB transport to take advantage of [the via entity path / transfer queue](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions) feature. This capability allows the transport to provide better delivery guarantees by reducing the number of duplicates sent out in case of exceptions occurring after the send operation.
+This transaction scope is a requirement to allow the ASB transport to take advantage of [the via entity path / transfer queue](https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.ServiceBus.Messaging/AtomicTransactions) feature. This capability allows the transport to provide better delivery guarantees by reducing the number of duplicates sent out in case of exceptions occurring after the send operation.
 
 Using a transfer queue, send operations to different ASB entities can be executed via a single entity, the receive queue, and be completed in a single operation together with the acknowledgment that the receive operation has completed. Therefor messages are only sent when the receive operation completes. 
 

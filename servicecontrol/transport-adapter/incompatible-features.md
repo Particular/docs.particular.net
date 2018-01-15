@@ -9,7 +9,7 @@ Some features of NServiceBus, particularly related to physical routing of messag
 
 ## SQL Server transport
 
-The [multi-instance](/transports/sql/deployment-options.md#modes-overview-multi-instance) where endpoints connect to different instances of SQL Server is not supported because ServiceControl can't send a retried failed message to the endpoint's own database.
+The [multi-instance](/transports/sql/deployment-options.md?version=SqlTransport_3#multi-instance.md) where endpoints connect to different instances of SQL Server is not supported because ServiceControl can't send a retried failed message to the endpoint's own database.
 
 
 ## RabbitMQ transport

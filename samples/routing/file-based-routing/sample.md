@@ -30,7 +30,7 @@ Make sure MSMQ is installed and configured as described in the [MSMQ Transport -
 
 ### Verifying that the sample works correctly
 
- 1. The Sales console display information about accepted orders in round-robin fashion.
+ 1. The Sales console displays information about accepted orders.
  1. The Shipping endpoint displays information that orders were shipped.
  1. The Billing endpoint displays information that orders were billed.
 

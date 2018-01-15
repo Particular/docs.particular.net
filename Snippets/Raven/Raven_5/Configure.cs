@@ -1,21 +1,18 @@
-﻿using System;
-using System.IO;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Persistence.RavenDB;
 using Raven.Client.Document;
-using Raven.Client.Document.DTC;
 
 class Configure
 {
-    void SharedSessionForSagasAndOutbox(EndpointConfiguration endpointConfiguration)
+    void CustomizeDocumentSession(EndpointConfiguration endpointConfiguration)
     {
-        #region ravendb-persistence-shared-session-for-sagas
+        #region ravendb-persistence-customize-document-session
 
         var documentStore = new DocumentStore();
         // configure documentStore here
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseSharedAsyncSession(
-            getAsyncSessionFunc: () =>
+            getAsyncSessionFunc: headers =>
             {
                 var session = documentStore.OpenAsyncSession();
                 // customize session here

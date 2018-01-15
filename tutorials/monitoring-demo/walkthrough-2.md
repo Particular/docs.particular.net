@@ -1,14 +1,14 @@
 ---
 title: "Monitoring NServiceBus Demo - Message backlogs"
 reviewed: 2017-11-03
-summary: How to mesaure inter-endpoint performance and look for congestion with the queue length and critical time metrics.
+summary: How to measure inter-endpoint performance and look for congestion with the queue length and critical time metrics.
 ---
 
 _Which endpoints have the most work to do?_
 
-Each endpoint has a backlog of messages to process in it's input queue. As each endpoint processes it's own backlog it is also generating new messages that go into the backlog of other endpoints in the system. When a spike in traffic occurs, either due to increased activity by end users or because a large batch process kicks off, it can be useful to monitor the changes to backlog load across the system. Using this information you can decide to scale some of your endpoints out to meet the increased demand.
+Each endpoint has a backlog of messages to process in its input queue. As each endpoint processes its own backlog it is also generating new messages that go into the backlog of other endpoints in the system. When a spike in traffic occurs, either due to increased activity by end users or because a large batch process kicks off, it can be useful to monitor the changes to backlog load across the system. Using this information you can decide to scale some of your endpoints out to meet the increased demand.
 
-This part of the tutorial guides you finding the endpoints with the greatest backlog of work to do.
+This part of the tutorial guides you to the endpoints with the greatest backlog of work to do.
 
 include: walkthrough-solution
 
@@ -17,7 +17,7 @@ include: walkthrough-solution
 
 To measure endpoint backlogs we're going to use two metrics: queue length and critical time.
 
-Queue lenth is an estimate of how many messages are in the input queue of an endpoint, representing the backlog of messages to be processed. If an endpoint is processing messages faster than it is receiving them then queue length will go down. Conversely, when an endpoint is receiving messages faster than it can process them, queue length will go.
+Queue length is an estimate of how many messages are in the input queue of an endpoint, representing the backlog of messages to be processed. If an endpoint is processing messages faster than it is receiving them then queue length will decrease. Conversely, when an endpoint is receiving messages faster than it can process them, queue length will increase.
 
 Critical time is the time between when a message is initially sent and when it has been completely processed. Critical time includes the time it takes for a message to get from a sending endpoint to the destination queue, the time the message spends waiting to get to the front of that queue to be processed, and the time it takes the receiving endpoint to process the message. Critical time is the time it takes for your system to react to a specific message.
 

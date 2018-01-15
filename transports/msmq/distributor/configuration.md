@@ -75,6 +75,9 @@ snippet: ConfiguringWorker
 
 Similar to self-hosting, if running NServiceBus prior to Version 6, ensure the `app.config` of the worker contains the `MasterNodeConfig` section to point to the hostname where the distributor process is running.
 
+## Outbox
+
+The distributor can be used in combination with the [outbox](/nservicebus/outbox/) feature. Outbox must be enabled on the Workers. It must also be enabled if a Worker is configured as Distributor Master (distributor/worker combination). Outbox is only required for persistence operations, the forwarding of messages to workers is purely a transport operation and Outbox will not participate in the forwarding logic.
 
 
 ## Advanced
@@ -84,7 +87,7 @@ Similar to self-hosting, if running NServiceBus prior to Version 6, ensure the `
 The distributor process uses two queues for its runtime operation. The `DataInputQueue` is the queue where the client processes send their messages. The `ControlInputQueue` is the queue where the worker nodes send their control messages.
 
 
-To use values other than the NServiceBus defaults override them, as shown in the `UnicastBusConfig` section below:
+The NServiceBus default values for these settings can be overridden, as shown in the `UnicastBusConfig` section below:
 
 ```xml
 <UnicastBusConfig DistributorControlAddress="EndpointName.Distributor.Control@MachineWhereDistributorRuns"
@@ -100,5 +103,5 @@ To use values other than the NServiceBus defaults override them, as shown in the
 
 Similar to standard NServiceBus routing, it is not desirable to have high priority messages to get stuck behind lower priority messages, so just as it is possible to have separate NServiceBus processes for different message types, it is also possible to set up different distributor process instances (with separate queues) for various message types.
 
-In this case, name the queues just like the messages. For example, `SubmitPurchaseOrder.StrategicCustomers.Sales`. This is the name of the distributor's data queue and the input queues of each of the workers.
+In this case, name the queues after the message type. For example: `SubmitPurchaseOrder.StrategicCustomers.Sales` becomes the name of the distributor data queue and the input queues of each of the workers.
 

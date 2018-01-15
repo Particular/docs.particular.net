@@ -11,8 +11,8 @@
             #region OverrideLoggingDefaultsInCode
 
             var defaultFactory = LogManager.Use<DefaultFactory>();
-            defaultFactory.Directory("pathToLoggingDirectory");
             defaultFactory.Level(LogLevel.Debug);
+            defaultFactory.Directory("pathToLoggingDirectory");
 
             #endregion
         }

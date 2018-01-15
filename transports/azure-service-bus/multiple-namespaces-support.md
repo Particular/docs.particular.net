@@ -1,7 +1,7 @@
 ---
 title: Multiple namespace support
 summary: Configuring Azure Service Bus transport to support different partitioning strategies and destination namespaces
-reviewed: 2017-05-05
+reviewed: 2018-01-05
 component: ASB
 versions: '[7,)'
 tags:
@@ -52,6 +52,11 @@ The `FailOverNamespacePartitioning` can be used to provide High Availability. It
 snippet: fail_over_partitioning_strategy
 
 Exactly two namespaces have to be configured when using `FailOverNamespacePartitioning` strategy. When only one or more than two namespaces are specified, then a [ConfigurationErrorsException](https://msdn.microsoft.com/en-us/library/system.configuration.configurationerrorsexception.aspx) will be thrown at startup.
+
+
+### Combining High Availability and failover options 
+
+To achieve High Availability and failover, a custom strategy can be used. For example, a combination of Round Robin and failover strategies would ensure that messages are not throttled by the broker and sent when one of the namespaces is experiencing outage. See [custom namespace partitioning sample](/samples/azure/custom-partitioning-asb) for details.
 
 
 partial: caching

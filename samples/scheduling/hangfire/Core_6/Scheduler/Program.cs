@@ -56,6 +56,7 @@ class Program
         scheduler.Dispose();
         await endpointInstance.Stop()
             .ConfigureAwait(false);
+        Log.CloseAndFlush();
 
         #endregion
     }

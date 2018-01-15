@@ -65,6 +65,9 @@
       Title: Callbacks 1 to 2
     - Url: nservicebus/upgrades/6to7
       Title: NServiceBus 6 to 7
+      Articles:
+      - Url: nservicebus/upgrades/encryption-1to2
+        Title: Encryption
     - Url: nservicebus/upgrades/6to6.2
       Title: NServiceBus 6 to 6.2
     - Url: nservicebus/upgrades/5to6
@@ -108,8 +111,6 @@
       Title: NServiceBus 4 to 5
     - Url: nservicebus/upgrades/3to4
       Title: NServiceBus 3 to 4
-    - Url: nservicebus/upgrades/perfcounters-1to2
-      Title: Upgrade PerfCounters 1 to 2
     - Url: nservicebus/upgrades/encryption-key-identifiers
       Title: Upgrade encryption configuration
     - Title: Metrics
@@ -120,6 +121,8 @@
         Title: Version 1 to 1.1
     - Title: NServiceBus Host
       Articles:
+      - Url: nservicebus/upgrades/host-4to5
+        Title: Version 4 to 5
       - Url: nservicebus/upgrades/host-7to8
         Title: Version 7 to 8
       - Url: nservicebus/upgrades/host-6to7
@@ -158,7 +161,7 @@
       Articles:
       - Url: nservicebus/upgrades/externalize-perfcounters
         Title: Migrate To External Nuget
-      - Url: nservicebus/upgrades/encryption-1to2
+      - Url: nservicebus/upgrades/perfcounters-1to2
         Title: Version 1 to 2
     - Title: ServiceControl Plugins
       Articles:
@@ -684,8 +687,6 @@
       Title: Addressing
     - Url: transports/sql/transactions
       Title: Transaction support
-    - Url: transports/sql/concurrency
-      Title: Concurrency handling
     - Url: transports/sql/discard-expired-messages
       Title: Discarding expired messages
     - Url: transports/sql/deployment-options
@@ -698,8 +699,6 @@
       Title: Entity Framework caveats
     - Url: transports/sql/callbacks
       Title: Callback support
-    - Url: transports/sql/queuepeek
-      Title: Queue peek settings
   - Url: transports/msmq
     Title: MSMQ
     Articles:
@@ -799,7 +798,7 @@
       - Url: persistence/upgrades/asp-1to2
         Title: Version 1 to 2
       - Url: persistence/upgrades/asp-6to1
-        Title: NServiceBus.Azure Version 6
+        Title: NServiceBus.Azure Version 6 to Version 1
       - Url: persistence/upgrades/asp-saga-pruning
         Title: Version 6.2.4 to 6.2.5
       - Url: persistence/upgrades/asp-saga-deduplication
@@ -835,6 +834,28 @@
   - Url: persistence/sql
     Title: SQL
     Articles:
+    - Url: persistence/sql/dialect-mssql
+      Title: SQL Server
+      Articles:
+      - Url: persistence/sql/sqlserver-scripts
+        Title: Scripts
+    - Url: persistence/sql/dialect-mysql
+      Title: MySQL
+      Articles:
+      - Url: persistence/sql/mysql-scripts
+        Title: Scripts
+    - Url: persistence/sql/dialect-oracle
+      Title: Oracle
+      Articles:
+      - Url: persistence/sql/oracle-scripts
+        Title: Scripts
+    - Url: persistence/sql/dialect-postgresql
+      Title: PostgreSQL
+      Articles:
+      - Url: persistence/sql/postgresql-scripts
+        Title: Scripts
+    - Url: persistence/sql/controlling-script-generation
+      Title: Script generation
     - Url: persistence/sql/accessing-data
       Title: Business data
     - Url: persistence/sql/saga
@@ -851,18 +872,6 @@
       Title: Installation and deployment
     - Url: persistence/sql/installer-workflow
       Title: Installer Workflow
-    - Url: persistence/sql/oracle-caveats
-      Title: Oracle dialect design
-    - Url: persistence/sql/postgresql-design
-      Title: PostgreSQL dialect design
-    - Url: persistence/sql/sqlserver-scripts
-      Title: MS SQL Server Scripts
-    - Url: persistence/sql/mysql-scripts
-      Title: MySQL Scripts
-    - Url: persistence/sql/oracle-scripts
-      Title: Oracle Scripts
-    - Url: persistence/sql/postgresql-scripts
-      Title: PostgreSQL Scripts
   - Url: persistence/azure-storage
     Title: Azure Storage
     Articles:
@@ -1033,6 +1042,8 @@
       Articles:
       - Title: Expose internal database
         Url: servicecontrol/use-ravendb-studio
+      - Title: Import failed audits
+        Url: servicecontrol/import-failed-audits
   - Title: Monitoring instances
     Url: servicecontrol/monitoring-instances
     Articles:
@@ -1044,7 +1055,7 @@
           - Title: Settings
             Url: servicecontrol/monitoring-instances/installation/creating-config-file
           - Title: Configure the URI
-            Url: servicecontrol/monitoring-instances/installation/setting-custom-hostname
+            Url: servicecontrol/monitoring-instances/installation/configure-the-uri
   - Title: Integration
     Url: servicecontrol/integration
     Articles:

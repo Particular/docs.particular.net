@@ -11,7 +11,7 @@ redirects:
 ---
 
 
-This component enables sending monitoring data gathered with `NServiceBus.Metrics` to an instance of `ServiceControl.Monitoring` service.
+The component `NServiceBus.Metrics.ServiceControl` enables sending monitoring data gathered with `NServiceBus.Metrics` to an instance of `ServiceControl.Monitoring` service.
 
 ## Configuration
 
@@ -27,6 +27,8 @@ snippet: SendMetricDataToServiceControl
 The default instance name is `particular.monitoring` which is also used as the input queue for ServiceControl Monitoring.
 
 partial: interval
+
+partial: ttbr
 
 ### Instance Id
 

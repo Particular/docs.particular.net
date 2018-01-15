@@ -41,29 +41,29 @@ There are a variety of options for configuring the connection to a RavenDB Serve
 
 ## Shared session
 
-NServiceBus supports sharing the same RavenDB document session between Saga persistence, Outbox persistence, and business data, so that a single transaction can be used to persist the data for all three concerns atomically.
+NServiceBus supports sharing the same RavenDB document session between Saga persistence, Outbox persistence, and business data, so that a single persistence transaction can be used to persist the data for all three concerns atomically. Shared sessions are automatically configured when an endpoint has enabled the [Outbox feature](/nservicebus/outbox/) or contains [sagas](/nservicebus/sagas/).
 
-Shared session is only applicable to Saga and Outbox storage. It can be configured via
-
-snippet: ravendb-persistence-shared-session-for-sagas
-
-This optionally allows customization of the document session that is created for Saga, Outbox, and handler logic to share.
-
-The session that is created is then made available.
-
-include: raven-dispose-warning
-
-
-### Using in a Handler
+To use the shared session in a message handler:
 
 snippet: ravendb-persistence-shared-session-for-handler
 
-
-### Using in a Saga
+Although additional database operations inside a saga handler are not recommended (see warning below) the shared session can also be accessed from a saga handler:
 
 include: saga-business-data-access
 
 snippet: ravendb-persistence-shared-session-for-saga
+
+
+## Customizing the IDocumentSession
+
+partial: shared-session-api-incompatible-with-outbox
+
+The creation of the RavenDB `IDocumentSession` instance used by NServiceBus and made available as the [shared session](#shared-session) can be customized as shown in the following snippet. Despite the name of the method, this option *does not enable the shared session* but only affects the customization of that session.
+
+snippet: ravendb-persistence-customize-document-session
+
+include: raven-dispose-warning
+
 
 partial: unsafereads
 

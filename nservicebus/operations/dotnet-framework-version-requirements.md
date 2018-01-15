@@ -11,19 +11,19 @@ redirects:
 
 ### NServiceBus Version 7.x
 
-Requires at least [.NET Core 2.0](https://www.microsoft.com/net/core/) **or** at least [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642)
+Requires [.NET Core 2.0](https://www.microsoft.com/net/core/) (or higher) **or** [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642) (or higher)
 
 
 ### NServiceBus Version 6.x
 
-Requires at least [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=17851)
+Requires [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=17851) (or higher)
 
 
 ### NServiceBus Version 5.x
 
-Requires at least [.NET Framework Version 4.5](https://www.microsoft.com/en-au/download/details.aspx?id=30653)
+Requires [.NET Framework Version 4.5](https://www.microsoft.com/en-au/download/details.aspx?id=30653) (or higher)
 
 
 ### NServiceBus Version 3.x and 4.x
 
-Requires at least [.NET Framework Version 4.0](https://www.microsoft.com/en-au/download/details.aspx?id=17851)
+Requires [.NET Framework Version 4.0](https://www.microsoft.com/en-au/download/details.aspx?id=17851) (or higher)

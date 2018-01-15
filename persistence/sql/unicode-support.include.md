@@ -1,0 +1,1 @@
+SQL persistence itself supports Unicode characters, however data may become corrupted during saving if the database settings are incorrect. If Unicode support is required, follow the guidelines for each database engine, in particular set the correct character set and collation for databases storing persistence data.

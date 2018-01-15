@@ -1,1 +1,1 @@
-The current recommendation, and the default prior to Version 5, is the `ConventionalRoutingTopology`, which relies on [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) to route messages. 
+The recommended routing topology is the `ConventionalRoutingTopology`. It was the default topology prior to Version 5. This topology relies on [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) to route messages. 

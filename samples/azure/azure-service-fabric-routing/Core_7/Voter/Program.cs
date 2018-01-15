@@ -89,6 +89,9 @@ class Program
         await endpointInstance.Send(closeElection2)
             .ConfigureAwait(false);
 
+        Console.WriteLine("Press any key to exit the sample");
+        Console.ReadKey(true);
+        
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }

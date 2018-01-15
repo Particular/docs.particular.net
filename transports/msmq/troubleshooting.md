@@ -51,6 +51,8 @@ at System.Messaging.MessageQueue.SendInternal(Object obj, MessageQueueTransactio
 
 The cause of this exception is that the MSMQ has run out of space for holding on to messages. This could be due to messages sent that could not be delivered, or messages received that have not been processed.
 
+Also check the Outgoing queues if messages send to remote servers are received and processed. NServiceBus has dead letter queues enabled by default which results in a message to remain in the Outgoing queue of the sender until the message is not only delivered but also processed at the receiver. For more information, read [MSMQ dead-letter queues](dead-letter-queues.md).
+
 
 ### Resolution
 
@@ -88,6 +90,21 @@ It is recommended to have batch setup scripts that run on server startups to con
 ## Network Load Balancing cannot be used
 
 While non-transactional messaging in a Network Load Balancing (NLB) environment is possible, it is much harder to achieve load-balancing in transactional MSMQ. [Microsoft provides a detailed answer](https://support.microsoft.com/en-us/kb/899611).
+
+## Number of messages in Outgoing queues has a high value
+
+Outgoing queues shows 3 values:
+
+- Number of messages
+- Unacknowledges (msgs)
+- Unprocessed (msgs)
+
+By default the *Number of messages* shows the messages count of messages that have not yet been delivered or processed. It does not indicate the number of messages that still need to be send. Calculate the Number of unsend messages by subtracting *Unprocessed (msgs)* from *Number of messages*.
+This means that if an endpoint at the receipient is stopped or slow that the messages remaining to be processed are included in this count.
+
+When MSMQ dead-lettering is disabled *Number of messages* will only indicate the number of message remaining to be delivered. *Unprocessed (msgs)* will always show the value 0 when dead lettering is disabled.
+
+For more information, read [MSMQ dead-letter queues](dead-letter-queues.md).
 
 
 ## Useful links

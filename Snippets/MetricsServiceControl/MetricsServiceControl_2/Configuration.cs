@@ -17,6 +17,12 @@ class Configuration
             interval: TimeSpan.FromSeconds(10),
             instanceId: "INSTANCE_ID_OPTIONAL");
         #endregion
+
+        #region ServiceControlTTBR
+
+        metrics.SetServiceControlMetricsMessageTTBR(TimeSpan.FromHours(1));
+
+        #endregion
     }
     void SendMetricDataToServiceControlHostId(EndpointConfiguration endpointConfiguration)
     {
