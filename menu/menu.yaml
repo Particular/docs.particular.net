@@ -1,10 +1,9 @@
-- Name: NServiceBus
+- Name: Getting Started
+  Url: get-started
   Topics:
   - Url: get-started
     Title: Getting Started
     Articles:
-    - Url: platform
-      Title: Service Platform
     - Url: tutorials/quickstart
       Title: Quick Start Tutorial
     - Url: tutorials/intro-to-nservicebus
@@ -22,6 +21,13 @@
         Title: Retrying errors
     - Url: tutorials/message-replay
       Title: Message Replay Tutorial
+- Name: NServiceBus
+  Topics:
+  - Url: nservicebus
+    Title: General
+    Articles:
+    - Url: platform
+      Title: Service Platform
     - Url: samples/step-by-step
       Title: Step by Step Sample
     - Url: samples/endpoint-configuration

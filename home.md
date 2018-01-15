@@ -125,8 +125,8 @@ span.blue {
 <div class="row">
 <div class="col-md-12 block middle">
   <div class="ic">
-    <a href="/get-started.md" onclick="ga('send', 'event', 'Action Performed', 'Clicked Get-Started CTA (Docs Home, Direct to get-started)'); return true">
-      <i class="glyphicon glyphicon-play mainicon"></i><br>Getting Started
+    <a href="/get-started/" onclick="ga('send', 'event', 'Action Performed', 'Clicked Get-Started CTA (Docs Home, Direct to get-started)'); return true">
+      <img src="/content/images/menu/getting-started-icon.svg" height="72" width="72"/><br>Getting Started
     </a>
   </div>
   <div class="ic">
