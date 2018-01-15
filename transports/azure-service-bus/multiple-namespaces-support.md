@@ -56,7 +56,7 @@ Exactly two namespaces have to be configured when using `FailOverNamespacePartit
 
 ### Combining High Availability and failover options 
 
-To achieve High Availability and failover, a custom strategy can be used. For example, a combination of Round Robin and failover strategies would ensure that messages are not throttled by the broker and sent when one of the namespaces is experiencing outage. See [custom namespace partitioning sample](/samples/azure/custom-partitioning-asb) for details.
+To achieve high availability and failover, a custom strategy can be used. For example, a combination of round robin and failover strategies would ensure that messages are not throttled by the broker and sent when one of the namespaces is experiencing an outage. See [custom namespace partitioning sample](/samples/azure/custom-partitioning-asb) for details.
 
 
 partial: caching
@@ -87,4 +87,4 @@ snippet: default_namespace_alias
 
 or use `NamespacePartitioning().AddNamespace()` with a different alias instead of the `ConnectionString()` method in the source endpoint.
 
-And ensure that the same alias and connection string are registered with the replying endpoint using the `NamespaceRouting().AddNamespace()` method.
+Also, ensure that the same alias and connection string are registered with the replying endpoint using the `NamespaceRouting().AddNamespace()` method.

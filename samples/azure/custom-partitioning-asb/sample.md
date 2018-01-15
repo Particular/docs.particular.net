@@ -2,7 +2,7 @@
 title: Custom ASB Namespace Partitioning
 summary: Determine which namespace Azure Service Bus Transport uses for partitioning.
 component: ASB
-reviewed: 2018-01-05
+reviewed: 2018-01-15
 related:
  - transports/azure-service-bus
  - transports/azure-service-bus/sanitization
@@ -34,11 +34,11 @@ This sample has three endpoints
 
 snippet: SomeEvent
 
-using a custom partitionining strategy registered at startup time. Events are published to the appropreate namespace(s) based on the registered strategy which decides that events should be published to multiple namespaces.
+using a custom partitionining strategy registered at startup time. Events are published to the appropriate namespace(s) based on the registered strategy which decides that events should be published to multiple namespaces.
 
-By default, the sample is configured to use data distribution strategy. Data distribution strategy publishes events to all registered namespaces. 
+By default, the sample is configured to use the data distribution strategy. This strategy publishes events to all registered namespaces. 
 
-Alternative strategy is Round-Robin with failover strategy. This strategy demonstrates how to achieve high availability and disaster recoverability. 
+An alternate strategy is Round-Robin with failover. This strategy demonstrates how to achieve high availability and disaster recoverability. 
 
 
 ## Subscriber
@@ -57,7 +57,7 @@ snippet: data-distribution-strategy
 
 #### Round-Robin with failover strategy
 
-`RoundRobinWithFailoverPartitioningStrategy` is alternating between two namespaces to distribute load among namespaces and ensure no throttling is taking place on the Azure Service Bus service level. This achieves high availability. Should one of the namespace fail, the strategy will fail over to use the other namespace. This achieves Disaster Recovery.
+`RoundRobinWithFailoverPartitioningStrategy` alternates between two namespaces to distribute load among namespaces and ensure no throttling is taking place on the Azure Service Bus service level. This achieves high availability. Should one of the namespace fail, the strategy will fail over to use the other namespace. This achieves disaster recovery.
 
 snippet: roundrobin-with-failover-strategy
 
@@ -84,5 +84,5 @@ snippet: CustomPartitioning_RoundRobinWithFailoverStrategy
 
 ### Emulating namespace failure
 
-The namespace failure can be toggled to emulate an outage for one of the namespaces represented by `AzureServiceBus.ConnectionString1` connection string. When namespace is in failed state, events published to namespace with connection string `AzureServiceBus.ConnectionString1` should be delivered to the second namespace (namespace with connection string `AzureServiceBus.ConnectionString2`).  
+The namespace failure can be toggled to emulate an outage for one of the namespaces represented by `AzureServiceBus.ConnectionString1` connection string. When the namespace is in failed state, events published to the namespace with connection string `AzureServiceBus.ConnectionString1` should be delivered to the second namespace (namespace with connection string `AzureServiceBus.ConnectionString2`).  
 

@@ -34,7 +34,7 @@ class Program
         #endregion
 
         Instruction.WriteLine("Default strategy is DataDistributionPartitioningStrategy.");
-        Instruction.WriteLine("Press 'c' to change to RoundRobinWithFailoverPartitioningStrategy or any other key to continue w/o changes.");
+        Instruction.WriteLine("Press 'c' to change to RoundRobinWithFailoverPartitioningStrategy or any other key to continue.");
         var usingStrategyWithFailover = false;
 
         var strategyChoice = Console.ReadKey();
