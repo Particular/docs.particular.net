@@ -8,8 +8,6 @@ redirects:
 - tutorials/monitoring/setup
 ---
 
-Warning: The monitoring tools described on this page are in `Beta` and are subject to change prior to the final release.
-
 This tutorial will guide you through the steps required to set up your NServiceBus solution for monitoring with the Particular Service Platform. The tutorial assumes that you're configuring monitoring for an existing solution and doesn't explain how to create a new application.
 
 Note: At the moment systems using the [Learning Transport](/transports/learning/) can't be monitored as described below. If you're using solution from other tutorials or samples, ensure that you've configured NServiceBus to use another transport.
