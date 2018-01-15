@@ -72,7 +72,7 @@ Security considerations for SQL Server Transport should follow [the principle of
 
 Each endpoint should use a dedicated SQL Server principal with `SELECT` and `DELETE` permissions on its input queue tables and `INSERT` permission on input queue tables of endpoints it sends messages to. Each endpoint should also have permissions to insert rows to audit and error queue tables.
 
-[Multi-schema](/transports/sql/deployment-options.md#modes-overview-multi-schema) configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
+[Multi-schema](/transports/sql/deployment-options.md#multi-schema) configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
 
 
 ### ServiceControl

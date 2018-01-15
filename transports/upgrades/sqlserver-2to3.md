@@ -51,7 +51,7 @@ NOTE: The above statement is true only when not using the NHibernate persistence
 
 ### Multi-schema support
 
-The configuration API for [multi-schema support](/transports/sql/deployment-options.md#modes-overview-multi-schema) has now changed. The `Queue Schema` parameter is no longer supported in the config file and the code configuration API.
+The configuration API for [multi-schema support](/transports/sql/deployment-options.md#multi-schema) has now changed. The `Queue Schema` parameter is no longer supported in the config file and the code configuration API.
 
 The schema for the configured endpoint can be specified using `DefaultSchema` method:
 
@@ -68,7 +68,7 @@ snippet: 2to3-sqlserver-multischema-config
 
 ### Multi-instance support
 
-The configuration API for [multi-instance support](/transports/sql/deployment-options.md#modes-overview-multi-instance) has now changed. Multiple connection strings have to be provided by connection factory method passed to `EnableLegacyMultiInstanceMode` method.
+The configuration API for [multi-instance support](/transports/sql/deployment-options.md#multi-instance) has now changed. Multiple connection strings have to be provided by connection factory method passed to `EnableLegacyMultiInstanceMode` method.
 
 Note that `EnableLegacyMultiInstanceMode` method replaces both [pull and push modes](/transports/sql/connection-settings.md#multiple-connection-strings) from Version 2.x.
 

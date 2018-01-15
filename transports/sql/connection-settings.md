@@ -37,6 +37,6 @@ partial: factory
 
 ## Circuit Breaker
 
-A built in circuit breaker is used to handle intermittent SQL Server connectivity problems.
+A built in circuit breaker is used to handle intermittent SQL Server connectivity problems. When a failure occurs when trying to connect, a circuit breaker enters an *armed* state. If the failure is not resolved before the configured *wait time* elapses, the circuit breaker triggers the [critical errors](/nservicebus/hosting/critical-errors.md) handling procedure.
 
 partial: circuit-breaker
