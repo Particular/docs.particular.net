@@ -2,6 +2,10 @@
 title: Send Metrics data to ServiceControl
 reviewed: 2018-01-12
 component: MetricsServiceControl
+related:
+  - samples/logging/metrics
+redirects:
+  - nservicebus/operations/metrics/service-control
 ---
 
 

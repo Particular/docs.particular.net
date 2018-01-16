@@ -508,15 +508,6 @@
       Title: Installers
     - Url: nservicebus/operations/management-using-powershell
       Title: PowerShell
-    - Url: nservicebus/operations/metrics
-      Title: Metrics
-      Articles:
-      - Url: nservicebus/operations/metrics/performance-counters
-        Title: Configure reporting to Performance Counters
-      - Url: nservicebus/operations/metrics/service-control
-        Title: Configure reporting to Service Control
-      - Url: nservicebus/operations/metrics/raw
-        Title: Consume raw data from Metrics
     - Url: nservicebus/operations/tuning
       Title: Tuning endpoint message processing
     - Url: nservicebus/operations/running-on-windows
