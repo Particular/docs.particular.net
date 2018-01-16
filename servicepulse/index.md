@@ -31,7 +31,7 @@ In order to monitor endpoints health and activity it is necessary to [configure 
 
 **Learn more:**
 
- * [Endpoints and Heartbeats in ServicePulse](/servicepulse/intro-endpoints-heartbeats.md).
+ * [Heartbeats in ServicePulse](/monitoring/heartbeats/in-servicepulse.md).
 
 
 ## Real-time Monitoring

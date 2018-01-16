@@ -34,7 +34,7 @@ Each endpoint in the system should be [configured to send audit copies of every 
 
 Each endpoint in the system should be [configured to send failed messages to a central error queue](/nservicebus/recoverability/) after those messages have gone through immediate and delayed retries. A ServiceControl instance reads the messages in the error queue and makes them available to be retried manually in ServicePulse and ServiceInsight. ServiceControl can [optionally forward these messages into an Error Log queue](/servicecontrol/errorlog-auditlog-behavior.md) for further processing if required. 
 
-Each endpoint may have additional plugins installed which collect and send data to a ServiceControl instance. See [ServiceControl Endpoint Plugins](/servicecontrol/plugins/) for a complete list.
+Each endpoint may have additional plugins installed which collect and send data to a ServiceControl instance. The [Heartbeats plugin](/monitoring/heartbeats/) can be used to detect which endpoint instances are running and which are offline. The [Custom Checks plugin](/monitoring/custom-checks/) enables endpoints to send user-defined health reports to ServiceControl on a regular schedule. The [Saga Audit plugin](/nservicebus/sagas/saga-audit) instruments
 
 Each ServiceControl instance raises external integration events when important situations are detected. These are standard NServiceBus events that can be subscribed to by any NServiceBus endpoint. See [Use ServiceControl events](/servicecontrol/contracts.md) for a complete list.
 

@@ -11,6 +11,8 @@ redirects:
  - servicecontrol/external-integrations
 related:
  - samples/servicecontrol/events-subscription
+ - monitoring/heartbeats/notification-events
+ - monitoring/custom-checks/notification-events
 ---
 
 
@@ -60,49 +62,11 @@ snippet: ServiceControlEventsConfig
 snippet: MessageFailedHandler
 
 
-### Common information contained in events
+### Monitoring events
 
-Both heartbeat and custom check events contain identifying information about the host and the endpoint.
+ServiceControl will also publish events based on collected monitoring data.
 
-
-### Alerting on HeartbeatStopped Event
-
-[Heartbeats](/servicepulse/intro-endpoints-heartbeats.md#active-vs-inactive-endpoints) are used to track endpoints health.
-
-Once an endpoint stops sending heartbeats to the ServiceControl queue then a `HeartbeatStopped` event will be published.
-
-The message contains the time it was detected and the last heartbeat time.
-
-Similarly to the code above it is possible to subscribe to the event, handle it, and perform custom actions.
-
-
-### Alerting on HeartbeatRestored Event
-
-Once an endpoint resumes sending heartbeats to the ServiceControl queue then a `HeartbeatRestored` event will be published.
-
-The event contains the time the heartbeat was restored.
-
-Similarly to the code above it is possible to subscribe to the event, handle it and provide custom actions.
-
-
-### Alerting on CustomCheckFailed Event
-
-[Custom checks](/servicepulse/intro-endpoints-custom-checks.md) are used to alert OPS of possible issues with third parties.
-
-Once a custom check fails a `CustomCheckFailed` event will be published.
-
-The message contains the time it was detected and the failure reason.
-
-Similarly to the code above it is possible to subscribe to the event, handle it, and provide custom actions.
-
-
-### Alerting on CustomCheckSucceeded Event
-
-Once a custom check succeeds ServiceControl will publish a `CustomCheckSucceeded` event.
-
-The message contains the time it was detected.
-
-Similarly to the code above it is possible to subscribe to the event, handle it, and perform custom actions.
+See [Heartbeat notification events](/monitoring/heartbeats/notification-events) and [Custom check notification events](/monitoring/custom-checks/notification-events) for a description of these events.
 
 
 ## Decommissioning alert subscribers

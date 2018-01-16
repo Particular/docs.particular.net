@@ -517,8 +517,6 @@
         Title: Configure reporting to Service Control
       - Url: nservicebus/operations/metrics/raw
         Title: Consume raw data from Metrics
-    - Url: nservicebus/operations/heartbeat
-      Title: Monitoring endpoint heartbeat
     - Url: nservicebus/operations/custom-checks
       Title: Monitoring endpoint health with custom checks
     - Url: nservicebus/operations/tuning
@@ -963,8 +961,6 @@
     Articles:
     - Url: servicepulse/installation
       Title: Installation
-    - Url: servicepulse/intro-endpoints-heartbeats
-      Title: Endpoints and Heartbeats
     - Url: servicepulse/intro-failed-messages
       Title: Failed Messages
     - Url: servicepulse/intro-failed-message-retries
@@ -1064,8 +1060,6 @@
     - Title: Plugins
       Url: servicecontrol/plugins
       Articles:
-      - Title: Heartbeats
-        Url: servicecontrol/plugins/heartbeat
       - Title: Custom checks
         Url: servicecontrol/plugins/custom-checks
       - Title: Saga audits

@@ -1,9 +1,12 @@
 ---
 title: Heartbeats
-summary: 
+summary: Use the Heartbeat plugin to monitor the health of the endpoints
 reviewed: 2018-01-05
 component: Heartbeats
 versions: 'Heartbeats:*'
+redirects:
+ - servicecontrol/heartbeat-configuration
+ - nservicebus/operations/heartbeat
 ---
 
 The Heartbeat plugin enables endpoint health monitoring by sending regular heartbeat messages from the endpoint to a ServiceControl instance. The ServiceControl instance keeps track of which endpoint instances are sending heartbeats and which ones are not. 
