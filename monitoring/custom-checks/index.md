@@ -2,8 +2,8 @@
 title: Custom Checks
 summary: Define a custom set of conditions that are checked on the endpoint.
 reviewed: 2018-01-03
-component: CustomChecks
-versions: 'CustomChecks:*'
+redirects:
+  - nservicebus/operations/custom-checks
 ---
 
 

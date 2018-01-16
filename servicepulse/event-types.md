@@ -24,7 +24,7 @@ The `HeartbeatStopped` event is published each time the monitoring infrastructur
 
 The `HeartbeatRestored` event is published to notify that a previously stopped heartbeat has been restored and the related endpoint is running as expected.
 
-More details on [Endpoints and Heartbeats in ServicePulse](intro-endpoints-heartbeats.md).
+More details on [Endpoints and Heartbeats in ServicePulse](/monitoring/heartbeats/in-servicepulse.md).
 
 
 ### MessageFailed

@@ -2,19 +2,21 @@
 title: Managing custom checks in ServicePulse
 summary: Describes how ServicePulse monitors custom check activity
 reviewed: 2018-01-05
-component: CustomChecks
-versions: 'CustomChecks:*'
+redircts:
+  - servicepulse/intro-endpoints-custom-checks
 ---
 
 ServicePulse monitors the health and activity of an NServiceBus endpoint using [Heartbeats](/monitoring/heartbeats/) and [Custom Checks](/monitoring/custom-checks/).
 
 The main dashboard shows a custom checks icon which will indicate if there are any failing custom checks.
 
+![Custom checks dashboard notification showing a failing custom check](custom-checks-dashboard-notification.png)
+
 IMAGE: Main Dashboard with custom checks icon showing red with 2 or 3 failing custom checks. 
 
 Click this icon to go to the custom checks details page. This page shows a list of all custom checks and their current status.
 
-IMAGE: Custom Checks overview
+![Custom checks details page](custom-checks-details.png)
 
 Each custom check includes information about the endpoint instance that reported the status and how long ago the status was updated.
 

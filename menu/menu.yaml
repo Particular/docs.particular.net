@@ -517,8 +517,6 @@
         Title: Configure reporting to Service Control
       - Url: nservicebus/operations/metrics/raw
         Title: Consume raw data from Metrics
-    - Url: nservicebus/operations/custom-checks
-      Title: Monitoring endpoint health with custom checks
     - Url: nservicebus/operations/tuning
       Title: Tuning endpoint message processing
     - Url: nservicebus/operations/running-on-windows
@@ -969,8 +967,6 @@
       Title: Archived Messages
     - Url: servicepulse/intro-pending-retries
       Title: Pending Retries
-    - Url: servicepulse/intro-endpoints-custom-checks
-      Title: Custom Checks
     - Url: servicepulse/redirect
       Title: Redirects
     - Url: servicepulse/event-types
@@ -1060,8 +1056,6 @@
     - Title: Plugins
       Url: servicecontrol/plugins
       Articles:
-      - Title: Custom checks
-        Url: servicecontrol/plugins/custom-checks
       - Title: Saga audits
         Url:  servicecontrol/plugins/saga-audit
     - Title: Integration events
