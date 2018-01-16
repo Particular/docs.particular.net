@@ -1079,34 +1079,39 @@
         Url: servicecontrol/transport-adapter/incompatible-features
 
 - Name: Monitoring
-  Url: monitoring
   Topics:
-  - Title: Getting started
-    Url: tutorials/monitoring-demo
-  - Title: Endpoint performance
-    Url:
+  - Title: Intro to Monitoring
+    Url: monitoring
+  - Title: Heartbeats
+    Url: monitoring/heartbeats
+    Articles: 
+    - Title: Install plugin
+      Url: monitoring/heartbeats/install-plugin
+    - Title: Managing in ServicePulse
+      Url: monitoring/heartbeats/in-servicepulse
+    - Title: Notification events
+      Url: monitoring/heartbeats/notification-events
+  - Title: Custom Checks
+    Url: monitoring/custom-checks
     Articles:
-    - Title: Metrics
-      Url: nservicebus/operations/metrics
-    - Title: Report to ServicePulse
-      Url: nservicebus/operations/metrics/service-control
-    - Title: Report to Windows Performance Counters
-      Url: nservicebus/operations/metrics/performance-counters
-    - Title: Report to Trace Log
-      Url: samples/logging/metrics
-    - Title: Report to Azure Application Insights
-      Url: samples/logging/application-insights
-    - Title: Report to New Relic
-      Url: samples/logging/new-relic
-    - Title: Report to Prometheus
-      Url: samples/logging/prometheus-grafana
-    - Title: Consuming raw metric data
-      Url: nservicebus/operations/metrics/raw
-  - Title: Endpoint health
+    - Title: Install plugin
+      Url: monitoring/custom-checks/install-plugin
+    - Title: Writing Custom Checks
+      Url: monitoring/custom-checks/writing-custom-checks
+    - Title: Managing in ServicePulse
+      Url: monitoring/custom-checks/in-servicepulse
+    - Title: Notification events
+      Url: monitoring/custom-checks/notification-events
+  - Title: Performance Metrics
+    Url: monitoring/metrics
     Articles:
-    - Title: Heartbeats
-      Url: nservicebus/operations/heartbeat
-    - Title: Custom Checks
-      Url: nservicebus/operations/custom-checks
-  - Title: Installation
-    Url: tutorials/monitoring-setup
+    - Title: Metrics captured
+      Url: monitoring/metrics/definitions
+    - Title: Install plugin
+      Url: monitoring/metrics/install-plugin
+    - Title: Managing in ServicePulse
+      Url: monitoring/metrics/in-servicepulse
+    - Title: Performance Counters
+      Url: monitoring/metrics/performance-counters
+    - Title: Accessing raw metric data
+      Url: monitoring/metrics/raw
