@@ -28,6 +28,7 @@ Monitoring instances can be configured to use one of the supported [transports](
  * [Azure Service Bus](/transports/azure-service-bus/)
  * [SQL Server](/transports/sql/)
  * [RabbitMQ](/transports/rabbitmq/)
+ * [AmazonSQS](/transports/sqs/)
 
 Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
