@@ -2,7 +2,7 @@
 title: Managing custom checks in ServicePulse
 summary: Describes how ServicePulse monitors custom check activity
 reviewed: 2018-01-05
-redircts:
+redirects:
   - servicepulse/intro-endpoints-custom-checks
 ---
 
