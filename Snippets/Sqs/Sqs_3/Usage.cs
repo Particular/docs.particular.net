@@ -70,7 +70,7 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         transport.S3BucketForLargeMessages(
-            s3BucketForLargeMessages: "ap-southeast-2",
+            s3BucketForLargeMessages: "nsb-sqs-messages",
             s3KeyPrefix: "my/sample/path");
 
         #endregion
