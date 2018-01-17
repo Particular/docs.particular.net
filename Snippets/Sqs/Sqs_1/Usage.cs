@@ -58,7 +58,7 @@ class Usage
         #region S3BucketForLargeMessages
 
         var transport = busConfiguration.UseTransport<SqsTransport>();
-        transport.ConnectionString("S3BucketForLargeMessages=my-bucket");
+        transport.ConnectionString("S3BucketForLargeMessages=nsb-sqs-messages");
 
         #endregion
     }
