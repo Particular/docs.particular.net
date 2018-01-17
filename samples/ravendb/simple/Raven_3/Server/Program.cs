@@ -8,34 +8,35 @@ class Program
     static void Main()
     {
         Console.Title = "Samples.RavenDB.Server";
-        using (new RavenHost())
+
+        #region Config
+
+        var busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.RavenDB.Server");
+        busConfiguration.Transactions().DisableDistributedTransactions();
+
+        using (var documentStore = new DocumentStore
         {
-            #region Config
+            Url = "http://localhost:8080",
+            DefaultDatabase = "RavenSimpleSample",
+            EnlistInDistributedTransactions = false
+        })
+        {
+            documentStore.Initialize();
 
-            var busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName("Samples.RavenDB.Server");
-            using (var documentStore = new DocumentStore
+            var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
+            // Only required to simplify the sample setup
+            persistence.DoNotSetupDatabasePermissions();
+            persistence.SetDefaultDocumentStore(documentStore);
+
+            #endregion
+
+            busConfiguration.EnableInstallers();
+
+            using (var bus = Bus.Create(busConfiguration).Start())
             {
-                Url = "http://localhost:32076",
-                DefaultDatabase = "RavenSampleData"
-            })
-            {
-                documentStore.Initialize();
-
-                var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
-                // Only required to simplify the sample setup
-                persistence.DoNotSetupDatabasePermissions();
-                persistence.SetDefaultDocumentStore(documentStore);
-
-                #endregion
-
-                busConfiguration.EnableInstallers();
-
-                using (var bus = Bus.Create(busConfiguration).Start())
-                {
-                    Console.WriteLine("Press any key to exit");
-                    Console.ReadKey();
-                }
+                Console.WriteLine("Press any key to exit");
+                Console.ReadKey();
             }
         }
     }

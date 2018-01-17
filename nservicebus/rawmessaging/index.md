@@ -28,4 +28,4 @@ The following code implements the callback invoked when a message arrives at a r
 
 snippet: Receiving
 
-Notice the method gets a `dispatcher` object which can be used to send messages. The transport transaction object can be passed from the receiving context to the dispatcher, in order to ensure transactions span both send and receive. Make sure that the underlying transport infrastructure supports the [`SendsAtomicWithReceives` mode](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive), when using this option.
+Notice the method gets a `dispatcher` object which can be used to send messages. The transport transaction object can be passed from the receiving context to the dispatcher, in order to ensure transactions span both send and receive. Make sure that the underlying transport infrastructure supports the [`SendsAtomicWithReceive` mode](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive), when using this option.
