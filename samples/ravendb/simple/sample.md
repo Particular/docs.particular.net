@@ -29,7 +29,7 @@ This sample shows a simple Client + Server scenario.
 
 ### Raven Config
 
-Configure the endpoint to use RavenDB persistence. You may need to change the Url to match your RavenDB database Url.
+Configure the endpoint to use RavenDB persistence. The Url/Port may need to be changed to match the database in use.
 
 snippet: config
 
