@@ -82,8 +82,14 @@ void CleanUpProjects()
 			{
 				langVersion.Value = "7.1";
 			}
-		}
-		xdocument.Save(projectFile);
+        }
+        
+        var settings = new XmlWriterSettings { Encoding = new UTF8Encoding(), Indent = true, OmitXmlDeclaration = true };
+        using (var writer = XmlWriter.Create(projectFile, settings))
+        {
+            xdocument.Save(writer);
+        }
+     
 		CollapseEmptyElements(projectFile);
 	}
 }
@@ -123,7 +129,7 @@ string GetRelativePath(string filespec, string folder)
 
 static void CollapseEmptyElements(string file)
 {
-	XmlDocument doc = new XmlDocument();
+	var doc = new XmlDocument();
 	doc.Load(file);
 	CollapseEmptyElements(doc.DocumentElement);
 	doc.Save(file);
