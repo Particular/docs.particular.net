@@ -11,7 +11,7 @@ redirects:
 
 The Heartbeat plugin enables endpoint health monitoring by sending regular heartbeat messages from the endpoint to a ServiceControl instance. The ServiceControl instance keeps track of which endpoint instances are sending heartbeats and which ones are not. 
 
-NOTE: Even if an endpoint is able to send heartbeat messages, other failures may occur within the endpoint and its host that prevent it from performing as expected. For example, the endpoint may not be able to process incoming messages, or it may be able to send messages to the ServiceControl queue but not another queue.
+NOTE: Even if an endpoint is able to send heartbeat messages, other failures may occur within the endpoint and its host that prevent it from performing as expected. For example, the endpoint may not be able to process incoming messages, or it may be able to send messages to the ServiceControl queue but not another queue. [Performance metrics](/monitoring/metrics/) can be used to monitor the processing of messages within an endpoint.
 
 ```mermaid
 graph LR

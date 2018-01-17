@@ -18,7 +18,7 @@ end
 	
 CustomChecks -- Custom Check<br>Data --> SCQ[ServiceControl<br>Input Queue]
 
-SCQ --> ServiceControl
+SCQ --> SC[ServiceControl<br>instance]
 
 SC -. Integration<br/>Events .-> Integration[Integration<br/>Event Handler]
 
@@ -50,7 +50,7 @@ It is recommended that to periodically check that the endpoint (and its host) ca
 
 #### Examples:
 
-- In a store & forward pattern (MSMQ): can an endpoint hosted on one machine connect to another machine, on which another endpoint is located ?
+- In a store & forward pattern (MSMQ): are messages getting stuck in outgoing queues because of a connectivity problem between two machines?
 - In a broker pattern: can the endpoint connect to the broker (e.g., SQL Server)?
 - If required by the endpoint, can the endpoint connect to the local intranet?
 - If required by the endpoint, can the endpoint connect to the internet?
@@ -60,7 +60,7 @@ It is recommended that to periodically check that the endpoint (and its host) ca
 ### Storage
 
 - When local or remote storage is required by the endpoint, is that storage location available, accessible, and properly configured (security, permissions, quota, etc.)?
-- When local or remote storage is required by the endpoint, is there enough available storage left for required operations? If there is a requirement for a minimum free space available, is that requirement met?
+- When local or remote storage is required by the endpoint, is there enough available storage left for required operations? If there is a requirement for a minimum free space available, is that requirement met? Gather a collection of measurements over time and extrapolate when the storage will run out. Is that time below some critical threshold?  
 
 
 ### External Services

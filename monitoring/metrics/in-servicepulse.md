@@ -50,7 +50,7 @@ NOTE: The screen is refreshed more frequently when a shorter reporting period is
 
 All performance metric data is retained in memory in the ServiceControl Monitoring instance. Restarting the ServiceControl Monitoring instance will cause all performance metric data to be lost.
 
-Performance metric data is only kept by the ServiceControl Monitoring instance long enough to support the longest reporting period (24 hours).
+Performance metric data is only kept by the ServiceControl Monitoring instance long enough to support the longest reporting period (1 hour).
 
 
 ## Disconnected endpoints

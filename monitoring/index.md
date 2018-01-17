@@ -17,7 +17,7 @@ Use this data to understand [which message handlers need to be optimized](/tutor
 
 ## Endpoint health
 
-A ServiceControl instance can track which endpoint instance are running by listening to a [continual stream of heartbeat messages](/monitoring/heartbeats/). Endpoints that fail to send heartbeats within a defined period of time are considered to be inactive. When an inactive endpoint starts sending heartbeats again, it becomes active. 
+A ServiceControl instance can track which endpoint instances are running by listening to a [continual stream of heartbeat messages](/monitoring/heartbeats/). Endpoints that fail to send heartbeats within a defined period of time are considered to be inactive. When an inactive endpoint starts sending heartbeats again, it becomes active. 
 
 Beyond heartbeats, an endpoint can include [custom code to check anything and report status](/monitoring/custom-checks/). These checks can be run on a regular schedule and can be be used to ensure that 3rd party web services and applications are running as expected.
 

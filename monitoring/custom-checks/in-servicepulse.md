@@ -12,8 +12,6 @@ The main dashboard shows a custom checks icon which will indicate if there are a
 
 ![Custom checks dashboard notification showing a failing custom check](custom-checks-dashboard-notification.png)
 
-IMAGE: Main Dashboard with custom checks icon showing red with 2 or 3 failing custom checks. 
-
 Click this icon to go to the custom checks details page. This page shows a list of all custom checks and their current status.
 
 ![Custom checks details page](custom-checks-details.png)

@@ -21,7 +21,7 @@ By default, each new endpoint discovered by ServicePulse is monitored for heartb
 
 Whether or not an endpoint instance is monitored can be configured in the ServicePulse configuration page. 
 
-![Configuration page](sp-configiration-page.png)
+![Configuration page](sp-configuration-page.png)
 
 Setting the endpoint to "Off" will prevent it from appearing on the endpoints overview screen and from affecting the dashboard.
 
