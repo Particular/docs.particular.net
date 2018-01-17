@@ -15,7 +15,11 @@ class Program
         using (var documentStore = new DocumentStore
         {
             Url = "http://localhost:8080",
-            DefaultDatabase = "RavenSimpleSample"
+            DefaultDatabase = "RavenSimpleSample",
+
+#if NET461
+            EnlistInDistributedTransactions = false
+#endif
         })
         {
             documentStore.Initialize();
