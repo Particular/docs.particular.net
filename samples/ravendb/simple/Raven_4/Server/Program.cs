@@ -27,7 +27,8 @@ class Program
 
             #endregion
 
-            endpointConfiguration.UseTransport<LearningTransport>();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.Transactions(TransportTransactionMode.ReceiveOnly);
             endpointConfiguration.EnableInstallers();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
