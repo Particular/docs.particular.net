@@ -57,6 +57,8 @@ snippet: handler
 
 The data in RavenDB is stored in three different collections.
 
+WARNING: By default, this sample uses the [Learning Transport](/transports/learning/), which has built-in support for timeouts and subscriptions. To see the data for timeouts and subscriptions, it's necessary to change the sample to a different transport that does not have these native features such as [MSMQ](/transports/msmq/).
+
 
 ### The Saga Data
 
