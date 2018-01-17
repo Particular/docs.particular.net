@@ -29,18 +29,11 @@ This sample shows a simple Client + Server scenario.
 
 ### Raven Config
 
-Configure the endpoint to use RavenDB persistence.
+Configure the endpoint to use RavenDB persistence. You may need to change the Url to match your RavenDB database Url.
 
 snippet: config
 
 include: raven-dispose-warning
-
-
-### In Process Raven Host
-
-It is possible to self-host RavenDB so that no running instance of RavenDB server is required to run the sample.
-
-snippet: ravenhost
 
 
 ### Order Saga Data
