@@ -74,6 +74,7 @@ void CleanUpProjects()
 		if (propertyGroup != null)
 		{
 			var langVersion = propertyGroup.Element("LangVersion");
+            
 			if (langVersion == null)
 			{
 				propertyGroup.Add(new XElement("LangVersion", "7.1"));
@@ -82,6 +83,14 @@ void CleanUpProjects()
 			{
 				langVersion.Value = "7.1";
 			}
+
+            var targetFrameworks = propertyGroup.Element("TargetFrameworks");
+
+            if (targetFrameworks != null && !targetFrameworks.Value.Contains(";"))
+            {
+                targetFrameworks.AddAfterSelf(new XElement("TargetFramework", targetFrameworks.Value));
+                targetFrameworks.Remove();
+            }
         }
         
         var settings = new XmlWriterSettings { Encoding = new UTF8Encoding(), Indent = true, OmitXmlDeclaration = true };
