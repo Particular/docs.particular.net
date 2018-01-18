@@ -19,6 +19,10 @@ The app will import the designated license file into the registry. The license f
 ![](managementutil-addlicense.png 'width=500')
 
 
+#### Imported locations
+ 
+The license is then imported at *the machine level* in the registry (`HKLM\SOFTWARE\ParticularSoftware\@License`) and on the file system (`%ProgramData%\ParticularSoftware\license.xml`).
+
 ## ServiceControl PowerShell
 
 To import a license using PowerShell:
