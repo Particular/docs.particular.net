@@ -27,6 +27,10 @@ The license can be loaded by clicking the "Browse..." button and selecting the l
 
 ![trial period licensed](images/trial-period-licensed.png)
 
+#### Imported locations
+
+The license is then imported in the registry (`HKCU\SOFTWARE\ParticularSoftware\@License`) and since 1.8.0 also on the  file system at (`%LOCALAPPDATA%\ParticularSoftware\license.xml`).
+
 
 ## Using other platform tools
 
