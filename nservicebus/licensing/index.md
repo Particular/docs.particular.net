@@ -37,3 +37,5 @@ partial: limitations
 There are several options available for installing the license file. 
 
 partial: license-management
+
+NOTE: The easiest way to globally manage a license is by importing the license via the ServiceControl Management Utility. All platform tools and NServiceBus will detect the license  as the license will be imported at the machine level.
