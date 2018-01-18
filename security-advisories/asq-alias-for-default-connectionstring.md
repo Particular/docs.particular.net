@@ -3,7 +3,6 @@ title: Security Advisory 2018-01-18
 summary: Azure Storage Queues vulnerability
 reviewed: 2018-01-09
 tags:
- - ASQ
  - Transport
  - Security
 ---
