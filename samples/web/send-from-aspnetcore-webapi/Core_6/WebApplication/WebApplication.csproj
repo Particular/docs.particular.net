@@ -1,7 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFrameworks>net461</TargetFrameworks>
+    <TargetFramework>net461</TargetFramework>
     <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>

@@ -74,6 +74,7 @@ void CleanUpProjects()
 		if (propertyGroup != null)
 		{
 			var langVersion = propertyGroup.Element("LangVersion");
+            
 			if (langVersion == null)
 			{
 				propertyGroup.Add(new XElement("LangVersion", "7.1"));
@@ -82,8 +83,22 @@ void CleanUpProjects()
 			{
 				langVersion.Value = "7.1";
 			}
-		}
-		xdocument.Save(projectFile);
+
+            var targetFrameworks = propertyGroup.Element("TargetFrameworks");
+
+            if (targetFrameworks != null && !targetFrameworks.Value.Contains(";"))
+            {
+                targetFrameworks.AddAfterSelf(new XElement("TargetFramework", targetFrameworks.Value));
+                targetFrameworks.Remove();
+            }
+        }
+        
+        var settings = new XmlWriterSettings { Encoding = new UTF8Encoding(), Indent = true, OmitXmlDeclaration = true };
+        using (var writer = XmlWriter.Create(projectFile, settings))
+        {
+            xdocument.Save(writer);
+        }
+     
 		CollapseEmptyElements(projectFile);
 	}
 }
@@ -123,7 +138,7 @@ string GetRelativePath(string filespec, string folder)
 
 static void CollapseEmptyElements(string file)
 {
-	XmlDocument doc = new XmlDocument();
+	var doc = new XmlDocument();
 	doc.Load(file);
 	CollapseEmptyElements(doc.DocumentElement);
 	doc.Save(file);

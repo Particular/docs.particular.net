@@ -1,7 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461</TargetFrameworks>
+    <TargetFramework>net461</TargetFramework>
     <AssemblyName>Endpoint</AssemblyName>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
     <OutputType>exe</OutputType>
