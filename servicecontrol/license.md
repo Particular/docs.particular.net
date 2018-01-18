@@ -34,6 +34,12 @@ To import a license using PowerShell:
 Import-ServiceControlLicense <LicenseFile>
 ```
 
+#### Imported locations
+ 
+The license is then imported at *the machine level* in the registry (`HKLM\SOFTWARE\ParticularSoftware\@License`) and on the file system (`%ProgramData%\ParticularSoftware\license.xml`).
+
+Also see the [Import-ServiceControlLicense](powershell.md#licensing) guidance.
+
 ## Using other platform tools
 
 See the [ServiceInsight licensing page](/serviceinsight/license.md) or the [instructions for licensing manually using the registry](/nservicebus/licensing/#license-management-using-the-registry) for more information.
