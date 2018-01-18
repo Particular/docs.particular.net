@@ -80,14 +80,14 @@ NOTE: NServiceBus will perform [immediate](/nservicebus/recoverability/#immediat
 
 ### AmazonSQSException: Request is throttled
 
-When sending messages it can happen that the send operation is throttled. When that happens the following exception is logged.
+SQS can throttle some send operations. When that happens the following exception is logged.
 ```
 2017-11-14 23:10:24,314|ERROR|18|NServiceBus.Transports.SQS.MessageDispatcher|Exception from Send.
 Amazon.SQS.AmazonSQSException: Request is throttled. ---> Amazon.Runtime.Internal.HttpErrorResponseException: The remote server returned an error: (403) Forbidden. ---> System.Net.WebException: The remote server returned an error: (403) Forbidden.
 ```
 
-When this happens while receiving a message then this can safely be ignored as [recoverability features](/nservicebus/recoverability/) should resolve it. When sending messages outside a message handler those message operations can fail. Sending messages in bulk increases the chance of being throttled on send.
+For incoming messages this can be safely ignored as [recoverability feature](/nservicebus/recoverability/) should resolve it. For outgoing messages sent outside of a handler context, send operation can fail. Sending messages in bulk increases the chance of being throttled on send.
 
-By limiting the maximum number of concurrent sendsit is possible to avoid Amazon throttling errors. For example allow only a small amount of messages to be send concurrently as outlined in the [sending large amount of messages guidelines](/nservicebus/handlers/async-handlers.md#concurrency-large-amount-of-concurrent-message-operations).
+To avoid possible Amazon throttling errors, limit the maximum number of concurrent sends. For example, allow only a small amount of messages to be sent concurrently as outlined in the [sending large amount of messages](/nservicebus/handlers/async-handlers.md#concurrency-large-amount-of-concurrent-message-operations) guidelines.
 
 
