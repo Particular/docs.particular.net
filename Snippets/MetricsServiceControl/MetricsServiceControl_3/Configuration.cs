@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Net.NetworkInformation;
 using NServiceBus;
 
 class Configuration
@@ -20,6 +22,23 @@ class Configuration
 
         metrics.SetServiceControlMetricsMessageTTBR(TimeSpan.FromHours(1));
 
+        #endregion
+    }
+    void SendMetricDataToServiceControlHostId(EndpointConfiguration endpointConfiguration)
+    {
+        #region SendMetricDataToServiceControlHostId
+        const string SERVICE_CONTROL_METRICS_ADDRESS = "particular.monitoring";
+
+        var endpointName = "MyEndpoint";
+        var machineName = $"{Dns.GetHostName()}.{IPGlobalProperties.GetIPGlobalProperties().DomainName}";
+        var instanceIdentifier = $"{endpointName}@{machineName}";
+
+        var metrics = endpointConfiguration.EnableMetrics();
+
+        metrics.SendMetricDataToServiceControl(
+            serviceControlMetricsAddress: SERVICE_CONTROL_METRICS_ADDRESS,
+            interval: TimeSpan.FromSeconds(10),
+            instanceId: instanceIdentifier);
         #endregion
     }
 }
