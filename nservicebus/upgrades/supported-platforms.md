@@ -8,8 +8,6 @@ related:
  - nservicebus/upgrades/supported-versions
 ---
 
-## Supported Platforms
-
 NServiceBus is supported on the .NET Framework and .NET Core.
 
 Note: If possible, packages will target [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) instead of individual platforms. While this means that packages might work with additional platforms, only the .NET Framework and .NET Core are officially supported by Particular Software.
