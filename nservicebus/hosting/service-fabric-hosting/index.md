@@ -24,6 +24,8 @@ With stateless services, the number of instances of a service can range from one
 
 snippet: StatelessEndpointCommunicationListener
 
+NOTE: If Stateless services are used to host web application frameworks such as ASP.NET, ASP.NET Core or WebAPI it is recommended to start the endpoint inside the service collection extensions instead of the communication listener as shown in [using NServiceBus in an ASP.NET Core WebAPI Application](/samples/web/send-from-aspnetcore-webapi/). This approach is simpler than having to coordinate multiple communication listener since no coordination is needed between the listeners.
+
 ### Stateful service
 
 The process of configuring and starting an endpoint hosted in a stateful service is very similar to stateless service hosting approach. The main difference is that the endpoint cannot be started until after the `OpenAsync` method has returned as the `StateManager` instance has not been fully configured yet. This is fairly trivial to solve by calling the `Endpoint.Start` operation from the `RunAsync` operation instead.
