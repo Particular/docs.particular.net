@@ -29,7 +29,7 @@ The license can be loaded by clicking the "Browse..." button and selecting the l
 
 #### Imported locations
 
-The license is imported *at the user level * in the registry (`HKCU\SOFTWARE\ParticularSoftware\@License`) and since 1.8.0 also on the file system (`%LOCALAPPDATA%\ParticularSoftware\license.xml`).
+The license is imported at *the user level* in the registry (`HKCU\SOFTWARE\ParticularSoftware\@License`) and since 1.8.0 also on the file system (`%LOCALAPPDATA%\ParticularSoftware\license.xml`).
 
 
 ## Using other platform tools
