@@ -91,8 +91,6 @@ snippet: start-bus
 
 ## Shut down the [endpoint](/nservicebus/endpoints/)
 
-The bus implements `IDisposable` and should be shut down when the process is shut down.
-
 partial: stop-endpoint
 
 snippet: stop-endpoint
