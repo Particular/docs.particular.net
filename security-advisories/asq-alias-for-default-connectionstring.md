@@ -61,7 +61,7 @@ Update the NuGet package using `Update-Package NServiceBus.Azure.Transports.Wind
 
 **Option 2: In-place update**
 
-Update the NuGet package using `Update-Package NServiceBus.Azure.Transports.WindowsAzureStorageQueues`, stop affected endpoints, copy the new `NServiceBus.Core.dll` assembly, overwriting the one(s) currently deployed for the endpoints, and restart the affected endpoints.
+Update the NuGet package using `Update-Package NServiceBus.Azure.Transports.WindowsAzureStorageQueues`, stop affected endpoints, copy the new `NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll` assembly, overwriting the one(s) currently deployed for the endpoints, and restart the affected endpoints.
 
 
 ### Version 7.5.x users should upgrade to Version 7.5.3 or higher.
@@ -72,7 +72,7 @@ Update the NuGet package using `Update-Package NServiceBus.Azure.Transports.Wind
 
 **Option 2  In-place update**
 
-Update the NuGet package using `Update-Package NServiceBus.Azure.Transports.WindowsAzureStorageQueues`, stop affected endpoints, copy the new `NServiceBus.Core.dll` assembly, overwriting the one(s) currently deployed for the endpoints, and restart the affected endpoints.
+Update the NuGet package using `Update-Package NServiceBus.Azure.Transports.WindowsAzureStorageQueues`, stop affected endpoints, copy the new `NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll` assembly, overwriting the one(s) currently deployed for the endpoints, and restart the affected endpoints.
 
 
 ## Contact Info
