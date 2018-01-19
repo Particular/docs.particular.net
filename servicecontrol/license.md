@@ -38,7 +38,7 @@ Import-ServiceControlLicense <LicenseFile>
  
 The license is then imported at *the machine level* in the registry (`HKLM\SOFTWARE\ParticularSoftware\@License`) and on the file system (`%ProgramData%\ParticularSoftware\license.xml`).
 
-Also see the [Import-ServiceControlLicense](powershell.md#licensing) guidance.
+Also see the [Import-ServiceControlLicense](powershell.md#general-cmdlets-and-aliases-licensing) guidance.
 
 ## Using other platform tools
 
