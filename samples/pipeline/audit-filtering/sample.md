@@ -7,6 +7,7 @@ tags:
  - Pipeline
  - Audit
 related:
+ - samples/audit-filter
  - nservicebus/pipeline
  - nservicebus/operations/auditing
 ---

@@ -261,6 +261,8 @@
       Title: Raw messaging
     - Url: nservicebus/wormhole
       Title: Wormhole Gateway
+    - Url: nservicebus/audit-filter
+      Title: AuditFilter
     - Url: nservicebus/mailer
       Title: Mailer
     - Url: nservicebus/outbox

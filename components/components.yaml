@@ -39,6 +39,17 @@
     - NServiceBus.DataBus.AzureBlobStorage
     - NServiceBus.Azure
 
+- Key: AuditFilter
+  Name: Audit Filter
+  DocoUrl: nservicebus/audit-filter
+  GitHubOwner: SimonCropp
+  SupportLevel: Community
+  Category: Other
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.AuditFilter
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.AuditFilter/license.txt
+  NugetOrder:
+    - NServiceBus.AuditFilter
+
 - Key: SQS
   Name: Amazon SQS Transport
   DocoUrl: transports/sqs
