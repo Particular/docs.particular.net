@@ -22,14 +22,12 @@ Specific versions of RavenDB Persistence are tied to a major version of NService
 
 | NServiceBus | RavenDB Persistence | RavenDB Client | Platform    |
 |:-----------:|:-------------------:|:--------------:|:-----------:|
-|     7.x     |        5.0.x        |       3.5      | .NET 4.5.2  |
+|     7.x     |        5.0.x        |       3.5      | .NET 4.5.2 / .NET Core 2.0  |
 |     6.x     |        4.1.x        |       3.5      | .NET 4.5.2  |
 |     6.x     |        4.0.x        |       3.0      | .NET 4.5.2  |
 |     5.x     |        3.2.x        |       3.5      | .NET 4.5.2  |
 |     5.x     |        3.0.x        |       3.0      | .NET 4.5.2  |
 |     5.x     |         2.x         |       2.5      | .NET 4.5.2  |
-
-NOTE: .NET Core is currently an unsupported platform.
 
 See the [NServiceBus Packages Supported Versions](/nservicebus/upgrades/supported-versions.md#persistence-packages-nservicebus-ravendb) to see the support details for each version of RavenDB Persistence.
 
