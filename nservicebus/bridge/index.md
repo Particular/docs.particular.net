@@ -2,7 +2,10 @@
 title: Transport Bridge
 summary: How to connect parts of the system that use different transports 
 component: Bridge
-reviewed: 2017-08-11
+related:
+- samples/azure/azure-service-bus-msmq-bridge
+- samples/msmq/sql-bridge
+reviewed: 2018-01-21
 ---
 
 `NServiceBus.Bridge` is a component that allows to connect parts of NServiceBus-based solution that use different transports. Contrary to [Gateway](/nservicebus/gateway/) and [Wormhole](/nservicebus/wormhole), the Bridge handles both sends and publishes and it does so as transparently as possible:
