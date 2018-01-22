@@ -2,7 +2,7 @@
 title: Transport Bridge
 summary: How to connect parts of the system that use different transports 
 component: Bridge
-samples:
+related:
 - samples/azure/azure-service-bus-msmq-bridge
 - samples/msmq/sql-bridge
 reviewed: 2018-01-21
