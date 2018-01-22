@@ -13,7 +13,7 @@ redirects:
 
 ### Throughput
 
-Scaling out is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](/nservicebus/operations/metrics/performance-counters.md) on the endpoint.
+Scaling out is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](/monitoring/metrics/performance-counters.md) on the endpoint.
 
 ### High-availability
 

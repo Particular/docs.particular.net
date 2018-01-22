@@ -10,7 +10,7 @@ redirects:
   - servicecontrol/plugins/custom-checks
 ---
 
-WARNING: The following documentation describes deprecated packages ServiceControl.Plugin.Nsb5.CustomChecks and ServiceControl.Plugin.Nsb6.CustomChecks. To learn about the replacement package see [NServiceBus.CustomChecks](/nservicebus/operations/custom-checks.md). To learn how to upgrade consult the [upgrade guide](/nservicebus/upgrades/nservicebus.customchecks.md).
+WARNING: The following documentation describes deprecated packages ServiceControl.Plugin.Nsb5.CustomChecks and ServiceControl.Plugin.Nsb6.CustomChecks. To learn about the replacement package see [NServiceBus.CustomChecks](/monitoring/custom-checks). To learn how to upgrade consult the [upgrade guide](/nservicebus/upgrades/nservicebus.customchecks.md).
 
 The CustomChecks Plugin enables custom endpoint monitoring. It allows the developer of an NServiceBus endpoint to define a set of conditions that are checked on endpoint startup or periodically.
 

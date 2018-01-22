@@ -4,7 +4,7 @@ summary: Introduction to ServicePulse monitoring events
 reviewed: 2016-10-06
 component: ServicePulse
 related:
-- servicepulse/intro-endpoints-custom-checks
+- monitoring/custom-checks/in-servicepulse
 ---
 
 ServicePulse gives an overview of the system health, based on endpoints heartbeats and custom checks, and a detailed view of all the failed messages.

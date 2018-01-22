@@ -5,7 +5,7 @@ reviewed: 2017-11-08
 component: ServiceControl
 related:
  - servicecontrol/plugins
- - servicecontrol/plugins/custom-checks
+ - monitoring/custom-checks/legacy
 isUpgradeGuide: true
 ignoreSeoRecommendations: true
 upgradeGuideCoreVersions:

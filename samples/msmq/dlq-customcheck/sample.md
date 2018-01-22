@@ -5,7 +5,7 @@ component: MsmqTransport
 related:
 - transports/msmq
 - transports/msmq/dead-letter-queues
-- servicecontrol/plugins/custom-checks
+- monitoring/custom-checks
 ---
 
 

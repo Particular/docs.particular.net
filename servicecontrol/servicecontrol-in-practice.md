@@ -37,7 +37,7 @@ Turn off [Audit Forwarding](/servicecontrol/errorlog-auditlog-behavior.md) if it
 
 ### Heartbeats
 
-Not all endpoints are mission critical and need to be monitored with [heartbeats](/monitoring/heartbeats/) using the same SLA. For endpoints that are less critical to business, [adjust the Heartbeat Interval](/monitoring/service-control/install-plugin). Increasing the interval ensures that ServiceControl is able to process heartbeats in a timely manner. Increasing the heartbeat interval for endpoints requires a corresponding increase in the [heartbeat grace period](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
+Not all endpoints are mission critical and need to be monitored with [heartbeats](/monitoring/heartbeats/) using the same SLA. For endpoints that are less critical to business, [adjust the Heartbeat Interval](/monitoring/heartbeats/install-plugin.md). Increasing the interval ensures that ServiceControl is able to process heartbeats in a timely manner. Increasing the heartbeat interval for endpoints requires a corresponding increase in the [heartbeat grace period](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
 
 Heartbeat messages tend to be frequent, and a large backlog can occur if ServiceControl is offline for an extended period. When this happens, it can take ServiceControl some time to process old heartbeats when it restarts.
 

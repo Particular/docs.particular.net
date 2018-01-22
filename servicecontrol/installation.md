@@ -45,7 +45,7 @@ Installing MSMQ is optional in the Platform Installer. See [Platform Installer -
 
 ## Performance Counter
 
-Metrics are reported via the [Performance Counters](/nservicebus/operations/metrics/performance-counters.md) if the counters are installed.
+Metrics are reported via the [Performance Counters](/monitoring/metrics/performance-counters.md) if the counters are installed.
 
 For instructions on how to install the Performance Counters without the Platform Installer refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
 
@@ -86,4 +86,4 @@ If this is a new installation of ServiceControl click on the `Add New Instance` 
 
 When adding the first instance of the ServiceControl service the default service name is "Particular.ServiceControl". It is possible choose to change this name to a custom service name. In doing so this is also changing the queue name associated with this instance of ServiceControl.
 
-The ServiceControl queue name is required for configuring the endpoint plugins. See [Install Heartbeats plugin](/monitoring/heartbeats/install-plugin) and [Install Custom Checks plugin](/monitoring/custom-checks/install-plugin) for more information.
+The ServiceControl queue name is required for configuring the endpoint plugins. See [Install Heartbeats plugin](/monitoring/heartbeats/install-plugin.md) and [Install Custom Checks plugin](/monitoring/custom-checks/install-plugin.md) for more information.

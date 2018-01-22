@@ -3,13 +3,13 @@ title: Write metrics to the trace log
 component: Metrics
 reviewed: 2017-10-06
 related:
- - nservicebus/operations/metrics
+ - monitoring/metrics
 redirects:
  - samples/metrics/tracing
 ---
 
 
-Illustrates how to write [metrics](/nservicebus/operations/metrics) information to the trace log.
+Illustrates how to write [metrics](/monitoring/metrics) information to the trace log.
 
 
 ## Running the sample

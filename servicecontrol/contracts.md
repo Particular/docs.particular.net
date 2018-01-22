@@ -66,7 +66,7 @@ snippet: MessageFailedHandler
 
 ServiceControl will also publish events based on collected monitoring data.
 
-See [Heartbeat notification events](/monitoring/heartbeats/notification-events) and [Custom check notification events](/monitoring/custom-checks/notification-events) for a description of these events.
+See [Heartbeat notification events](/monitoring/heartbeats/notification-events.md) and [Custom check notification events](/monitoring/custom-checks/notification-events.md) for a description of these events.
 
 
 ## Decommissioning alert subscribers

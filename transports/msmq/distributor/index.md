@@ -39,7 +39,7 @@ The distributor stores this information. When a message arrives at the distribut
 
 All pending work stays in the distributor process' queue (rather than building up in each of the workers' queues), giving visibility of how long messages are waiting. This is important for complying with time-based service level agreements (SLAs).
 
-For more information on monitoring, see [Performance Counters](/nservicebus/operations/metrics/performance-counters.md).
+For more information on monitoring, see [Performance Counters](/monitoring/metrics/performance-counters.md).
 
 For more information about Pub/Sub in a Distributor scenario see the [Distributor and Publish-Subscribe](/transports/msmq/distributor/publish-subscribe.md) article.
 

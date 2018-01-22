@@ -54,7 +54,7 @@ To enable ServiceControl to gather this information, configure the solution appr
 
  * [enable auditing](/nservicebus/operations/auditing.md) to collect data on individual messages;
  * configure [recoverability](/nservicebus/recoverability) to store information about message processing failures;
- * install the [heartbeats](/monitoring/heartbeats/install-plugin), [custom checks](/monitoring/custom-checks/install-plugin), and [other plugins](/servicecontrol/plugins/) into endpoints.
+ * install the [heartbeats](/monitoring/heartbeats/install-plugin.md), [custom checks](/monitoring/custom-checks/install-plugin.md), and [other plugins](/servicecontrol/plugins/) into endpoints.
 
 NOTE: All endpoints in a single environment should be configured to forward to the same audit, error, and ServiceControl plugin queues.
 

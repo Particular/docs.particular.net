@@ -62,9 +62,9 @@ snippet: DisableRetries
 
 The `MessageFailed` event is published for any standard NServiceBus endpoint that is monitored by ServiceControl.
 
-In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint needs to use the [heartbeats plugin](/servicecontrol/plugins/heartbeat.md).
+In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint needs to use the [heartbeats plugin](/monitoring/heartbeats).
 
-NOTE: Heartbeat control messages are sent [every 30 seconds by default](/servicecontrol/plugins/heartbeat.md#configuration-time-to-live-ttl). That means there might be up to 30 seconds delay before ServiceControl realizes that it lost or restored connection with the endpoint.
+NOTE: Heartbeat control messages are sent [every 30 seconds by default](/monitoring/heartbeats/legacy#configuration-time-to-live-ttl). That means there might be up to 30 seconds delay before ServiceControl realizes that it lost or restored connection with the endpoint.
 
 
 ### EndpointsMonitor

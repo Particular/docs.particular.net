@@ -5,7 +5,7 @@ component: ServicePulse
 related:
 - servicecontrol/setting-custom-hostname
 - servicecontrol/plugins
-- nservicebus/operations/metrics/performance-counters
+- monitoring/metrics/performance-counters
 ---
 
 include: servicepulse
@@ -42,7 +42,7 @@ The monitoring view shows an overview of all logical endpoints in a system showi
 
 **Learn more:**
 
- * [Explanation of metrics](/nservicebus/operations/metrics/)
+ * [Explanation of metrics](/monitoring/metrics/)
  * [Setup Monitoring tutorial](/tutorials/monitoring-setup/)
 
 
