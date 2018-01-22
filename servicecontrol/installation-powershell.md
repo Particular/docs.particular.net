@@ -36,7 +36,7 @@ Get-Help Get-ServiceControlInstances
 ### Adding an instance
 
 ```ps
-New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -Transport MSMQ -ErrorQueue error1 -AuditQueue audit1
+New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -Transport MSMQ -ErrorQueue error1 -AuditQueue audit1 -ForwardAuditMessages:$false
 ```
 
 There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or hostname.
