@@ -6,7 +6,7 @@ component: AuditFilter
 
 ## Introduction
 
-Uses the [AuditFilter](/nservicebus/auditfilter/) project control what message are sent to the audit queue.
+Uses the [AuditFilter](/nservicebus/audit-filter/) project control what message are sent to the audit queue.
 
 
 ## Code Walk-through
