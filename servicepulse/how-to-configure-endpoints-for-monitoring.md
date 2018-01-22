@@ -18,6 +18,6 @@ related:
 
 **Prerequisites for ServicePulse monitoring of endpoints:**
 
-1. [NServiceBus.Heartbeat](/nservicebus/operations/heartbeat.md) and/or [NServiceBus.CustomChecks](/nservicebus/operations/custom-checks.md) packages must be configured.
+1. [NServiceBus.Heartbeat](/montoring/heartbeats/install-package.md) and/or [NServiceBus.CustomChecks](/monitoring/custom-checks/install-package.md) packages must be configured.
 1. Auditing must be enabled for all monitored endpoints (see [Auditing With NServiceBus](/nservicebus/operations/auditing.md)).
 1. All endpoints must forward audited data to a single audit and error queue that is monitored by a ServiceControl instance.

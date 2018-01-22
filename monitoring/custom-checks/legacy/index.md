@@ -6,6 +6,8 @@ component: CustomChecks
 versions: 'CustomChecks3:*;CustomChecks4:*;CustomChecks5:*;CustomChecks6:*'
 related:
  - samples/servicecontrol/monitoring3rdparty
+redirects:
+  - servicecontrol/plugins/custom-checks
 ---
 
 WARNING: The following documentation describes deprecated packages ServiceControl.Plugin.Nsb5.CustomChecks and ServiceControl.Plugin.Nsb6.CustomChecks. To learn about the replacement package see [NServiceBus.CustomChecks](/nservicebus/operations/custom-checks.md). To learn how to upgrade consult the [upgrade guide](/nservicebus/upgrades/nservicebus.customchecks.md).

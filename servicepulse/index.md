@@ -31,7 +31,7 @@ In order to monitor endpoints health and activity it is necessary to [configure 
 
 **Learn more:**
 
- * [Endpoints and Heartbeats in ServicePulse](/servicepulse/intro-endpoints-heartbeats.md).
+ * [Heartbeats in ServicePulse](/monitoring/heartbeats/in-servicepulse.md).
 
 
 ## Real-time Monitoring
@@ -66,4 +66,4 @@ ServicePulse allows for developing Custom and Period Checks that can verify any 
 
 **Learn more:**
 
- * [Custom Check Monitoring in ServicePulse](/servicepulse/intro-endpoints-custom-checks.md).
+ * [Custom Check Monitoring in ServicePulse](/monitoring/custom-checks/in-servicepulse.md).
