@@ -329,6 +329,6 @@ Type: timespan
 
 Default: `00:00:40` (40 secs)
 
-When configuring heartbeat grace period, make sure it is greater than [heartbeat interval defined by plugin](/monitoring/heartbeats/install-plugin).
+When configuring heartbeat grace period, make sure it is greater than [heartbeat interval defined by plugin](/monitoring/heartbeats/install-plugin.md).
 
 Note: When monitoring multiple endpoints, ensure that heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
