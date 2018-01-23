@@ -6,7 +6,7 @@ reviewed: 2017-10-06
 tags:
 - Azure
 related:
- - nservicebus/operations/metrics
+ - monitoring/metrics
  - samples/azure
 redirects:
 - samples/application-insights
@@ -25,7 +25,7 @@ This sample reports the following metrics to Application Insights:
  * Failed messages per second
  * Successful messages per second
  
- The sample also shows data like `Average message processing time in milliseconds` and `Maximum critical time in milliseconds`. For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/nservicebus/operations/metrics/#metrics-captured).
+ The sample also shows data like `Average message processing time in milliseconds` and `Maximum critical time in milliseconds`. For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/monitoring/metrics/definitions.md).
 
 ## Prerequisites
 

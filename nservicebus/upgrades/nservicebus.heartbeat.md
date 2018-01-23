@@ -5,7 +5,7 @@ reviewed: 2017-11-08
 component: ServiceControl
 related:
  - servicecontrol/plugins
- - servicecontrol/plugins/heartbeat
+ - monitoring/heartbeats/legacy
 isUpgradeGuide: true
 ignoreSeoRecommendations: true
 upgradeGuideCoreVersions:

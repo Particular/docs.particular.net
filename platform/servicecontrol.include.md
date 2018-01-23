@@ -1,4 +1,4 @@
-ServiceControl is a suite of back-end tools that collect useful information about a running NServiceBus system. It collects data on every single message flowing through the system (Audit Queue), errors (Error Queue), as well as additional information regarding sagas, endpoints heartbeats and custom checks (Control Queue). The information is then exposed to [ServicePulse](/servicepulse) and [ServiceInsight](/serviceinsight) via an HTTP API and SignalR notifications.
+ServiceControl is a suite of back-end tools that collect useful information about a running NServiceBus system. It collects data on every single message flowing through the system (Audit Queue), errors (Error Queue), as well as additional information regarding sagas, endpoints [heartbeats](/monitoring/heartbeats/) and [custom checks](/monitoring/custom-checks/) (Control Queue). The information is then exposed to [ServicePulse](/servicepulse) and [ServiceInsight](/serviceinsight) via an HTTP API and SignalR notifications.
 
 NOTE: The ServiceControl HTTP API may change at any time. It is designed for use by ServicePulse and ServiceInsight only. Use of this HTTP API for other purposes is discouraged.
 

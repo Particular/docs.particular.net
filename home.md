@@ -238,7 +238,7 @@ span.blue {
     <h4>Real-time monitoring that is custom tailored to fit a distributed systems</h4>
     <p></p>
     <ul>
-      <li><a href="/servicepulse/intro-endpoints-heartbeats.md">Monitoring Endpoints</a></li>
+      <li><a href="/monitoring/metrics/in-servicepulse.md">Monitoring Endpoints</a></li>
       <li><a href="/servicepulse/intro-failed-messages.md">Handling Failed Messages</a></li>
     </ul>
     <a href="/servicepulse/"><h3>All ServicePulse articles</h3></a><br/>

@@ -3,26 +3,16 @@ title: Heartbeat Plugin
 summary: Use the Heartbeat plugin to monitor the health of the endpoints
 reviewed: 2017-11-09
 component: Heartbeats
-versions: 'Heartbeats:*'
+versions: 'Heartbeats3:*;Heartbeats4:*;Heartbeats5:*;Heartbeats6:*'
 related:
- - servicepulse/intro-endpoints-heartbeats
+ - monitoring/heartbeats
 redirects:
- - servicecontrol/heartbeat-configuration
+ - servicecontrol/plugins/heartbeat
 ---
 
+WARNING: The following documentation describes deprecated packages ServiceControl.Plugin.Nsb5.Heartbeat and ServiceControl.Plugin.Nsb6.Heartbeat. To learn about the replacement package see [NServiceBus.Heartbeat](/monitoring/heartbeats/). To learn how to upgrade consult the [upgrade guide](/nservicebus/upgrades/nservicebus.heartbeat.md).
+
 The Heartbeat plugin enables endpoint health monitoring in ServicePulse. It sends heartbeat messages from the endpoint to the ServiceControl queue. These messages are sent every 10 seconds (by default).
-
-```mermaid
-graph LR
-	
-subgraph Endpoint
-Heartbeats
-end
-	
-Heartbeats -- Heartbeat<br>Data --> SCQ
-
-SCQ[ServiceControl<br>Input Queue] --> SC[ServiceControl]
-```
 
 An endpoint that is marked for monitoring (by ServicePulse) will be expected to send a heartbeat message within the specified time interval. As long as a monitored endpoint sends heartbeat messages, it is marked as "active". Marking an endpoint as active means it is able to properly and periodically send messages using the endpoint-defined transport.
 
@@ -35,21 +25,51 @@ An inactive endpoint indicates that there is a failure in the communication path
 NOTE: It is essential to deploy this plugin to the endpoint in production for ServicePulse to be able to monitor the endpoint.
 
 
+### Deprecated NuGet Packages
+
+The following Heartbeat plugin packages have been deprecated and unlisted. If using one of these versions replace package references to use **NServiceBus.Heartbeat**.
+
+- **ServiceControl.Plugin.Heartbeat**
+- **ServiceControl.Plugin.Nsb5.Heartbeat**
+- **ServiceControl.Plugin.Nsb6.Heartbeat**
+
+
 ## Configuration
 
-snippet: HeartbeatsNew_Enable
+partial: queue
 
 
 ### Heartbeat Interval
 
-ServiceControl heartbeats are sent, by the plugin, at a predefined interval of 10 seconds. As shown above, the interval value can be overridden on a per endpoint basis.
+ServiceControl heartbeats are sent, by the plugin, at a predefined interval of 10 seconds. The interval value can be overridden on a per endpoint basis adding the following application setting to the endpoint configuration file:
+
+snippet: heartbeatsIntervalConfig
+
+Where the value is convertible to a `TimeSpan` value. The above sample is setting the endpoint heartbeat interval to 30 seconds.
+
+
+partial: intervalCode
+
 
 When configuring heartbeat interval, ensure ServiceControl setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) is greater than the heartbeat interval.
 
 
 ### Time-To-Live (TTL)
 
-When the plugin sends heartbeat messages, the default TTL is fixed to four times the value of the Heartbeat interval. As shown above, the interval value can be overridden on a per endpoint basis.
+When the plugin sends heartbeat messages, the default TTL is fixed to four times the configured value of the Heartbeat interval.
+
+TTL is now configurable, as of Version 1.1.0
+
+Add the app setting in app.config as shown to configure the TTL to a custom value instead of the default value based on heartbeat interval. Provide the timespan string for the value as shown. In this example, a heartbeat message will be sent every 30 seconds and the TTL for the heartbeat message is 3 minutes.
+
+snippet: heartbeatsTtlConfig
+
+Note: To enable the change the endpoint needs to be restarted.
+
+partial: ttlCode
+
+
+partial: disable
 
 
 ## Expired heartbeat messages

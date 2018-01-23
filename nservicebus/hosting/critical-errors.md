@@ -71,6 +71,6 @@ Any code in the endpoint can invoke the Critical Error action.
 snippet: InvokeCriticalError
 
 
-## ServicePulse and ServiceControl Heartbeat functionality
+## Heartbeat functionality
 
-The [ServicePulse/ServiceControl Heartbeat functionality](/servicepulse/intro-endpoints-heartbeats.md) is configured to start pinging ServiceControl immediately after the bus starts. It only stops when the process exits. So the only way for a Critical Error to result in a Heartbeat failure in ServicePulse/ServiceControl is for the Critical Error to kill the process.
+The [Heartbeat functionality](/monitoring/heartbeats/) is configured to start pinging ServiceControl immediately after the bus starts. It only stops when the process exits. So the only way for a Critical Error to result in a Heartbeat failure in ServicePulse/ServiceControl is for the Critical Error to kill the process.

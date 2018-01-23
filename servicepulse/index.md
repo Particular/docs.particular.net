@@ -5,7 +5,7 @@ component: ServicePulse
 related:
 - servicecontrol/setting-custom-hostname
 - servicecontrol/plugins
-- nservicebus/operations/metrics/performance-counters
+- monitoring/metrics/performance-counters
 ---
 
 include: servicepulse
@@ -31,7 +31,7 @@ In order to monitor an endpoint's health and activity, it is necessary to [confi
 
 **Learn more:**
 
- * [Endpoints and Heartbeats in ServicePulse](/servicepulse/intro-endpoints-heartbeats.md).
+ * [Heartbeats in ServicePulse](/monitoring/heartbeats/in-servicepulse.md).
 
 
 ## Real-time monitoring
@@ -42,7 +42,7 @@ The monitoring view shows an overview of all logical endpoints in a system showi
 
 **Learn more:**
 
- * [Explanation of metrics](/nservicebus/operations/metrics/)
+ * [Explanation of metrics](/monitoring/metrics/)
  * [Setup Monitoring tutorial](/tutorials/monitoring-setup/)
 
 
@@ -66,4 +66,4 @@ ServicePulse allows development of custom and period checks that can verify any 
 
 **Learn more:**
 
- * [Custom Check Monitoring in ServicePulse](/servicepulse/intro-endpoints-custom-checks.md).
+ * [Custom Check Monitoring in ServicePulse](/monitoring/custom-checks/in-servicepulse.md).

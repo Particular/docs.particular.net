@@ -34,6 +34,6 @@ include: servicepulse
 
 ## Working with the platform
 
-Having ServiceControl and ServiceInsight installed locally on a machine gives significant benefits during development, especially when investigating failures and defects. Additionally, if developing a [custom check](/servicecontrol/plugins/custom-checks.md) it is useful to have the full platform installed on a development machine.
+Having ServiceControl and ServiceInsight installed locally on a machine gives significant benefits during development, especially when investigating failures and defects. Additionally, if developing a [custom check](/monitoring/custom-checks/) it is useful to have the full platform installed on a development machine.
 
 After a solution is deployed, ServiceControl and ServicePulse should exist in each environment it was deployed to (e.g. one instance per integration, another one for test and one more for production). ServiceInsight is a client install, so it can be installed on a local machine only and point it to the specific environment or local instance URL.

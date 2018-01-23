@@ -6,7 +6,7 @@ There are several cases when routing is not used and the transport needs specifi
 
  * [Error queue](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address)
  * [Audit queue](/nservicebus/operations/auditing.md#configuring-auditing)
- * [ServiceControl queue](/servicecontrol/plugins/heartbeat.md#configuration-servicecontrol-queue)
+ * [ServiceControl queue](/monitoring/heartbeats/install-plugin.md)
  * [Overriding the default routing mechanism](/nservicebus/messaging/send-a-message.md#overriding-the-default-routing)
  * Replies to endpoints using SQL Server transport Version 2 and earlier
 

@@ -4,7 +4,7 @@ summary: Introduction to ServicePulse monitoring events
 reviewed: 2016-10-06
 component: ServicePulse
 related:
-- servicepulse/intro-endpoints-custom-checks
+- monitoring/custom-checks/in-servicepulse
 ---
 
 ServicePulse gives an overview of the system health, based on endpoints heartbeats and custom checks, and a detailed view of all the failed messages.
@@ -24,7 +24,7 @@ The `HeartbeatStopped` event is published each time the monitoring infrastructur
 
 The `HeartbeatRestored` event is published to notify that a previously stopped heartbeat has been restored and the related endpoint is running as expected.
 
-More details on [Endpoints and Heartbeats in ServicePulse](intro-endpoints-heartbeats.md).
+More details on [Endpoints and Heartbeats in ServicePulse](/monitoring/heartbeats/in-servicepulse.md).
 
 
 ### MessageFailed

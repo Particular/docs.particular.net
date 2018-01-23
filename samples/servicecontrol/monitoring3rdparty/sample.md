@@ -5,7 +5,7 @@ component: CustomChecks
 reviewed: 2016-03-21
 related:
  - servicecontrol/plugins
- - servicepulse/intro-endpoints-custom-checks
+ - monitoring/custom-checks/in-servicepulse
 redirects:
  - samples/custom-checks/monitoring3rdparty
 ---
