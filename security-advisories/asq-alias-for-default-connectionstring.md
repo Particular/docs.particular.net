@@ -12,19 +12,19 @@ This advisory discloses a security vulnerability that has been found in Azure St
  * All endpoints should be upgraded to the latest version of the Azure Storage Queues package to fix this vulnerability if:
    * using the [Azure Storage Queues](/transports/azure-storage-queues) transport version 7
    * using a single storage account
-   * using [alias to secure connection string](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts)
+   * using [an alias to secure connection strings](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts)
 
 This advisory affects all versions of the Azure Storage Queues version 7.
 
 
 ## Vulnerability: default connection string is sent over the wire
 
-A vulnerability has been fixed to remove the raw value of the default connection string from Storage Queues message when it should not be included (when the `UseAccountAliasesInsteadOfConnectionStrings()` API is used).
+A vulnerability has been fixed to remove the raw value of the default connection string from an Azure Storage Queues message when it should not be included (i.e. when the `UseAccountAliasesInsteadOfConnectionStrings()` API is used).
 
 
 ## Impact
 
-A message logged could expose Azure Storage connection string used by the transport. This would allow an attacker with access to log files to gain access to the Azure Storage account.
+A message logged could expose the Azure Storage connection string used by the transport. This would allow an attacker with access to log files to gain access to the Azure Storage account.
 
 
 ## Exploitability
@@ -44,8 +44,8 @@ Versions 7.5.0-7.5.2 and 7.4.0-7.4.2 of Azure Storage Queues transport are affec
 
 If it is not possible to upgrade all endpoints that are using the affected version of the transport, the following can be used as a **risk mitigation**:
 
- * Verify logs do not contain connection string
- * Validate no external access to log files
+ * Verify logs do not contain the connection string
+ * Validate that there is no external access to log files
 
 
 ## Fix

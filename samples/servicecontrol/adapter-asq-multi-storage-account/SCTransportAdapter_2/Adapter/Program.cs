@@ -14,7 +14,8 @@ class Program
 
         #region AdapterTransport
 
-        var transportAdapterConfig = new TransportAdapterConfig<AzureStorageQueueTransport, AzureStorageQueueTransport>("ServiceControl.ASQ.Adapter");
+        var transportAdapterConfig =
+            new TransportAdapterConfig<AzureStorageQueueTransport, AzureStorageQueueTransport>("ServiceControl.ASQ.Adapter");
 
         #endregion
 
