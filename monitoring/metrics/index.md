@@ -8,7 +8,7 @@ versions: 'Metrics:*'
 
 The Metrics plugin collects metric data about the performance of running endpoints. This data can be forwarded to a ServiceControl Monitoring instance and then viewed in ServicePulse.
 
-To see performance monitoring in action, try our [standalone demo](/tutorials/monitoring-demo/).
+To see performance monitoring in action, try the [standalone demo](/tutorials/monitoring-demo/).
 
 For a full list of the performance metrics captured and their formal definitions, see [Metric definitions](definitions.md).
 
