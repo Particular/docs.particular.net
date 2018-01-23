@@ -6,7 +6,7 @@ component: SqlTransport
 versions: '[3,)'
 ---
 
-The SQL Server transport can take advantage of native [delayed delivery](/nservicebus/messaging/delayed-delivery.md) without then need to run the [timeout manager](/nservicebus/messaging/timeout-manager.md). Instead, the transport creates infrastructure which can delay messages using native SQL Server transport features. To enable the native delayed delivery use the following API:
+The SQL Server transport can take advantage of native [delayed delivery](/nservicebus/messaging/delayed-delivery.md) without the need to run the [timeout manager](/nservicebus/messaging/timeout-manager.md). Instead, the transport creates infrastructure which can delay messages using native SQL Server transport features. To enable the native delayed delivery use the following API:
 
 snippet: EnableNativeDelayedDelivery
 
