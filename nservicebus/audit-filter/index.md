@@ -31,7 +31,7 @@ With exclude by default
 snippet: DefaultExcludeFromAudit
 
 
-### Delgate Filter fallback
+### Delegate Filter fallback
 
 The fallback/default value can also be controlled by a delegate.
 
