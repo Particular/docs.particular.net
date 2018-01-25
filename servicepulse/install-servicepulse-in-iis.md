@@ -61,7 +61,7 @@ ServicePulse relies on the ServiceControl REST API. It is possible to add a [rev
 
 This is useful to lock down access to ServicePulse or to expose the web site over a single port.
 
-NOTE: If ServiceControl is configured with a different host other than `localhost` then change the hostname value back to `localhost`.
+NOTE: If ServiceControl is configured with a host other than `localhost` then change the hostname value back to `localhost`.
 
 Installation Steps:
 
@@ -178,6 +178,6 @@ Extension | Mime Type
 .ttf  | application/octet-stream
 .svg | image/svg+xml               
 .woff | application/font-woff       
-.woff2 | application/font-woff2 
+.woff2 | application/font-woff2
 
 NOTE: Some of these mime types will already be setup on newer versions of IIS. Verify that all the listed mime types are present.

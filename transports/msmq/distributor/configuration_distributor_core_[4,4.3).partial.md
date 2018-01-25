@@ -1,4 +1,4 @@
-To start the endpoint as a Distributor run the host from the command line, as follows:
+To start the endpoint as a Distributor, run the host from the command line as follows:
 
 ```dos
 NServiceBus.Host.exe NServiceBus.Distributor

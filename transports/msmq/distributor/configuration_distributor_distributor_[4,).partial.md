@@ -1,4 +1,4 @@
-To start the endpoint as a Distributor install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and then run the host from the command line, as follows:
+To start the endpoint as a Distributor, install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and then run the host from the command line as follows:
 
 ```dos
 NServiceBus.Host.exe NServiceBus.MSMQDistributor
