@@ -10,7 +10,7 @@ class Program
         Console.Title = "Samples.ConsumerDrivenContracts.Producer";
         var endpointConfiguration = new EndpointConfiguration("Samples.ConsumerDrivenContracts.Producer");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
