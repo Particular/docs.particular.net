@@ -1,7 +1,7 @@
 ---
 title: Upgrading a Distributor endpoint from Version 5 to 6
 summary: Upgrading an existing scaled-out endpoint that uses Distributor to version 6 of NServiceBus
-reviewed: 2016-03-21
+reviewed: 2018-01-26
 component: Core
 tags:
 - Scalability
@@ -26,12 +26,12 @@ This sample uses the same solution as the Version 5 [distributor sample](/sample
 
 Versions 6 and above no longer support running an embedded distributor so a separate project has to be added to the solution.
 
-This new project is going to reference `NServiceBus` Version 5.X because distributor does not have a Version 6 compatible release. It also needs to reference the `NServiceBus.Distributor.MSMQ` package.
+This new project references `NServiceBus` Version 5.X because the distributor does not have a Version 6 compatible release. The project also needs to reference the `NServiceBus.Distributor.MSMQ` package.
 
 
 ### Writing the distributor code
 
-Following code is required to set up the distributor
+The following code is required to set up the distributor
 
 snippet: DistributorCode
 
@@ -76,15 +76,15 @@ A new setting was introduced in Version 6, which allows to explicitly control th
 
 ### Upgrading the handlers
 
-Handlers need to be upgraded to conform to new Version 6 API.
+The handlers need to be upgraded to conform to new Version 6 API.
 
 
 ### Removing the shared code
 
 Because the sender still uses Version 5 and the workers are on Version 6, the shared elements need to be moved to their target projects:
 
- * `ConfigErrorQueue` class copied to `Sender` and `Distributor` projects.
- * `Sender` and `Worker` projects configured to use unobtrusive mode.
+ * Copy the `ConfigErrorQueue` class to the `Sender` and `Distributor` projects.
+ * Configure the `Sender` and `Worker` projects to use unobtrusive mode.
 
 
 ## Final state
