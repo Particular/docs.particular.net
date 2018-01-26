@@ -71,3 +71,15 @@ If no OverrideTimeToBeReceived is defined then:
 ## Configuring auditing
 
 partial: configuration
+
+## Filtering audit messages
+
+By default all messages are audited, to control what message types that gets audited see our [audit filter sample](/nservicebus/audit-filter/).
+
+### Filtering out individual properties
+
+Auditing works by sending an exact copy of the received message to the audit queue so filtering out individual propeties is not supported.
+
+Property filtering requirements usually comes from properties either containing sensitive information like credit card numbers and passwords or them being large in size like videos and images.
+
+For sensitive properties we recommend property [encryption](/nservicebus/security/property-encryption) and for large properties we recommend to [stream them instead](/samples/pipeline/stream-properties/) to avoid including the actual payload in the audited message.
