@@ -76,7 +76,7 @@ partial: configuration
 
 By default all messages are audited. To control which message types are audit, see the [audit filter sample](/samples/pipeline/audit-filtering/).
 
-### Filtering out individual properties
+### Filtering individual properties
 
 Auditing works by sending an exact copy of the received message to the audit queue so filtering out individual propeties is not supported.
 
