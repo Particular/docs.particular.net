@@ -78,7 +78,7 @@ By default all messages are audited. To control which message types are audit, s
 
 ### Filtering individual properties
 
-Auditing works by sending an exact copy of the received message to the audit queue so filtering out individual properties is not supported.
+Auditing works by sending an exact copy of the received message to the audit queue, so filtering out individual properties is not supported.
 
 Property filtering requirements usually comes from properties either containing sensitive information like credit card numbers and passwords or them being large in size like videos and images.
 
