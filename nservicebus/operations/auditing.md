@@ -74,7 +74,7 @@ partial: configuration
 
 ## Filtering audit messages
 
-By default all messages are audited, to control what message types that gets audited see our [audit filter sample](/nservicebus/audit-filter/).
+By default all messages are audited, to control what message types that gets audited see our [audit filter sample](/samples/pipeline/audit-filtering/).
 
 ### Filtering out individual properties
 
