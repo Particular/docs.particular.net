@@ -80,4 +80,4 @@ By default all messages are audited. To control which message types are audit, s
 
 Auditing works by sending an exact copy of the received message to the audit queue, so filtering out individual properties is not supported.
 
-For sensitive properties, e.g. credit card numbers or passwords, we recommend [message property encryption](/nservicebus/security/property-encryption/) and for large properties we recommend to [stream them instead](/samples/pipeline/stream-properties/) to avoid including the actual payload in the audited message.
+For sensitive properties, e.g. credit card numbers or passwords, we recommend [message property encryption](/nservicebus/security/property-encryption.md) and for large properties we recommend to [stream them instead](/samples/pipeline/stream-properties/) to avoid including the actual payload in the audited message.
