@@ -15,8 +15,6 @@ class Program
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=rabbitmq");
         transport.UseConventionalRoutingTopology();
-        var delayedDelivery = transport.DelayedDelivery();
-        delayedDelivery.DisableTimeoutManager();
         endpointConfiguration.EnableInstallers();
 
         // The RabbitMQ container starts before endpoints but it may
