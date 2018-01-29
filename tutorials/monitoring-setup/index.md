@@ -8,19 +8,19 @@ redirects:
 - tutorials/monitoring/setup
 ---
 
-This tutorial will guide you through the steps required to set up your NServiceBus solution for monitoring with the Particular Service Platform. The tutorial assumes that you're configuring monitoring for an existing solution and doesn't explain how to create a new application. See the [quick start tutorial](https://docs.particular.net/tutorials/quickstart/) for details on how to do that.
+This tutorial will guide you through the steps required to set up your NServiceBus solution for monitoring with the Particular Service Platform. The tutorial assumes that you're configuring monitoring for an existing solution and doesn't explain how to create a new application. See the [quick start tutorial](/tutorials/quickstart/) for details on how to do that.
 
-Note: At the moment systems using the [Learning Transport](/transports/learning/) can't be monitored as described below. If you're using solution from other tutorials or samples, ensure that you've configured NServiceBus to use [another transport](https://docs.particular.net/transports/).
+Note: At the moment systems using the [Learning Transport](/transports/learning/) can't be monitored as described below. If you're using solution from other tutorials or samples, ensure that you've configured NServiceBus to use [another transport](/transports/).
 
-- [Component overview](#component-overview)
-- [Setting up Particular Service Platform](#setting-up-particular-service-platform)
-  - [Install ServiceControl](#setting-up-particular-service-platform-install-servicecontrol)
-  - [Create ServiceControl instance](#setting-up-particular-service-platform-create-servicecontrol-instance)
-  - [Create ServiceControl Monitoring Instance](#setting-up-particular-service-platform-create-servicecontrol-monitoring-instance)
-- [Configure NServiceBus endpoints](#configure-nservicebus-endpoints)
-  - [Error](#configure-nservicebus-endpoints-error)
-  - [Audit](#configure-nservicebus-endpoints-audit)
-  - [Monitoring](#configure-nservicebus-endpoints-monitoring)
+- [Component overview](/tutorials/monitoring-setup/#component-overview)
+- [Setting up Particular Service Platform](/tutorials/monitoring-setup/#setting-up-the-particular-service-platform)
+  - [Install ServiceControl](/tutorials/monitoring-setup/#setting-up-the-particular-service-platform-install-servicecontrol)
+  - [Create ServiceControl instance](/tutorials/monitoring-setup/#setting-up-the-particular-service-platform-create-a-servicecontrol-instance)
+  - [Create ServiceControl Monitoring Instance](/tutorials/monitoring-setup/#setting-up-the-particular-service-platform-create-a-servicecontrol-monitoring-instance)
+- [Configure NServiceBus endpoints](/tutorials/monitoring-setup/#configure-nservicebus-endpoints)
+  - [Error](/tutorials/monitoring-setup/#configure-nservicebus-endpoints-error)
+  - [Audit](/tutorials/monitoring-setup/#configure-nservicebus-endpoints-audit)
+  - [Monitoring](/tutorials/monitoring-setup/#configure-nservicebus-endpoints-monitoring)
 
 
 ## Component overview
