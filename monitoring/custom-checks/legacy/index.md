@@ -1,7 +1,7 @@
 ---
 title: CustomChecks Plugin
 summary: Define a custom set of conditions that are checked on the endpoint.
-reviewed: 2017-11-09
+reviewed: 2018-01-26
 component: CustomChecks
 versions: 'CustomChecks3:*;CustomChecks4:*;CustomChecks5:*;CustomChecks6:*'
 related:
@@ -18,7 +18,7 @@ These conditions are solution and/or endpoint specific. It is recommended that t
 
 For example, custom checks can include checking that a third-party service provider is accessible from the endpoint host, verifying that resources required by the endpoint are above a defined minimum threshold, and more.
 
-As mentioned above, there are two types of custom checks.
+There are two types of custom checks: custom checks, and period checks.
 
 
 ### Custom check
@@ -41,7 +41,7 @@ NOTE: For NServiceBus Version 6 the `PeriodicCheck` class has been deprecated. I
 
 ### Results
 
-The result of a custom check is either success or a failure (with a detailed description defined by the developer). This result is sent as a message to the ServiceControl queue and status will be shown in the ServicePulse UI.
+The result of a custom check is either success or failure (with a detailed description defined by the developer). This result is sent as a message to the ServiceControl queue and the status will be shown in the ServicePulse UI.
 
 NOTE: It is essential to deploy this plugin to the endpoint in production in order to receive error notifications about the custom check failures in the ServicePulse dashboard.
 

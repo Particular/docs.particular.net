@@ -1,13 +1,13 @@
 ---
 title: Expired heartbeat messages
-summary: 
-reviewed: 2018-01-05
+summary:
+reviewed: 2018-01-26
 component: Heartbeats
 versions: 'Heartbeats:*'
 ---
 
 
-Heartbeat messages have a time to be received (TTBR) set based on the TTL (Time To Live) value.  If ServiceControl does not consume the heartbeat messages before the TTBR expires then those messages may be discarded. Transports like MSMQ and Azure Service Bus support Dead Letter Queues (DLQ) and the expired heartbeat messages can be explicitly configured to be forwarded to the DLQ instead of being discarded. 
+Heartbeat messages have a time to be received (TTBR) set based on the time to live (TTL) value.  If ServiceControl does not consume the heartbeat messages before the TTBR expires then those messages may be discarded. Transports like MSMQ and Azure Service Bus support dead letter queues (DLQ) and the expired heartbeat messages can be explicitly configured to be forwarded to the DLQ instead of being discarded.
 
 
 ### MSMQ

@@ -1,7 +1,7 @@
 ---
 title: Custom Checks
 summary: Define a custom set of conditions that are checked on the endpoint.
-reviewed: 2018-01-03
+reviewed: 2018-01-26
 redirects:
   - nservicebus/operations/custom-checks
 ---
@@ -15,7 +15,7 @@ graph LR
 subgraph Endpoint
 CustomChecks[Custom Checks]
 end
-	
+
 CustomChecks -- Custom Check<br>Data --> SCQ[ServiceControl<br>Input Queue]
 
 SCQ --> SC[ServiceControl<br>instance]
@@ -26,17 +26,17 @@ SC -- Custom Check<br>Data --> ServicePulse
 ```
 
 
-## Set up Custom Checks
+## Set up custom checks
 
 To enable custom checks in an environment:
 
 1. [Install a ServiceControl instance](/servicecontrol/servicecontrol-instances/)
 2. [Install the Custom Checks plugin in endpoints that will contain custom checks](install-plugin.md) and [write a custom check](writing-custom-checks.md)
-3. [View the status of Custom Checks in ServicePulse](in-servicepulse.md)
+3. [View the status of custom checks in ServicePulse](in-servicepulse.md)
 4. Optionally [subscribe to integration events from ServiceControl when custom checks succeed or fail](notification-events.md)
 
 
-## Common scenarios for Custom Checks
+## Common scenarios for custom checks
 
 While the specific needs and dependencies of solutions and endpoints may vary significantly, there are common scenarios of required external conditions and services.
 
@@ -45,7 +45,7 @@ While the specific needs and dependencies of solutions and endpoints may vary si
 
 Most endpoints require connectivity to local intranet or external internet. Some also require VPN connectivity.
 
-It is recommended that to periodically check that the endpoint (and its host) can indeed connect to the resources it requires.
+It is recommended to periodically check that the endpoint (and its host) can indeed connect to the resources it requires.
 
 
 #### Examples:

@@ -1,7 +1,7 @@
 ---
 title: Install Heartbeats Plugin
 summary: Enabling endpoint instance monitoring by installing the Heartbeats plugin
-reviewed: 2018-01-05
+reviewed: 2018-01-26
 component: Heartbeats
 versions: 'Heartbeats:*'
 ---
@@ -15,13 +15,13 @@ WARN: When installing the heartbeat plugin, also configure each instance with a 
 
 ### Heartbeat interval
 
-Heartbeat messages are sent by the plugin, at a predefined interval of 10 seconds. As shown above, the interval value can be overridden on a per endpoint basis.
+Heartbeat messages are sent by the plugin at a predefined interval of 10 seconds. As shown above, the interval value can be overridden on a per endpoint basis.
 
-NOTE: When configuring heartbeat interval, ensure ServiceContol setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) is greater than the heartbeat interval. 
+NOTE: When configuring the heartbeat interval, ensure the ServiceContol setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) is greater than the heartbeat interval.
 
 
 ### Time-To-Live (TTL)
 
-When the plugin sends heartbeat messages, the default TTL is fixed to four times the value of the Heartbeat interval. As shown above, the interval value can be overridden on a per endpoint basis.
+When the plugin sends heartbeat messages, the default TTL is fixed to four times the value of the heartbeat interval. As shown above, the interval value can be overridden on a per endpoint basis.
 
-WARN: See [expired heartbeats](expired-heartbeats.md) for more information about what happens to expired heartbeats.
+WARN: See [Expired heartbeats](expired-heartbeats.md) for more information about what happens to expired heartbeats.

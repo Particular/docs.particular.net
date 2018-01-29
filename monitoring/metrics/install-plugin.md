@@ -1,6 +1,6 @@
 ---
 title: Send Metrics data to ServiceControl
-reviewed: 2018-01-12
+reviewed: 2018-01-26
 component: MetricsServiceControl
 related:
   - samples/logging/metrics
@@ -13,7 +13,7 @@ The component `NServiceBus.Metrics.ServiceControl` enables sending monitoring da
 
 ## Configuration
 
-After adding package to the project, metrics are sent to ServiceControl once enabled.
+After adding the package to the project, metrics are sent to ServiceControl once enabled.
 
 It can be enabled via:
 
@@ -22,7 +22,7 @@ snippet: SendMetricDataToServiceControl
 
 ### Service Control Metrics Address
 
-The default instance name is `particular.monitoring` which is also used as the input queue for ServiceControl Monitoring.
+The default instance name is `particular.monitoring` which is also used as the input queue for ServiceControl monitoring.
 
 partial: interval
 
@@ -45,4 +45,3 @@ Note: It is **not** required to add a process identification. The `InstanceId` d
 #### Azure host
 
 The value of `$.diagnostics.hostdisplayname` is expected to be human readable. This might be problematic when using the [Azure Host](/nservicebus/hosting/cloud-services-host/faq.md#host-identifier) as it uses Role Name for the `$.diagnostics.hostdisplayname`, which results in the same display name for all instances.
-

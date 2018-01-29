@@ -14,7 +14,7 @@ Enabled by default and will only write to the counter if it exists.
 
 ## Queue Message Receive Rate
 
-**Counter Name:** `# of msgs pulled from the input queue /sec`
+**Counter Name:** `# of msgs pulled from the input queue / sec`
 
 **Added in:** Version 4
 
@@ -32,7 +32,7 @@ Enabled by default and will only write to the counter if it exists.
 
 **Added in:** Version 4
 
-The current number of failed processed messages by the transport per second.
+The current number of messages per second that the transport failed to process.
 
 
 ### Configuration
