@@ -74,7 +74,7 @@ partial: configuration
 
 ## Filtering audit messages
 
-By default all messages are audited, to control what message types that gets audited see our [audit filter sample](/samples/pipeline/audit-filtering/).
+By default all messages are audited. To control which message types are audit, see the [audit filter sample](/samples/pipeline/audit-filtering/).
 
 ### Filtering out individual properties
 
