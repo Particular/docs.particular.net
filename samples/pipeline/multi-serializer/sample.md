@@ -90,7 +90,7 @@ snippet: deserialize-behavior
  * Start only the `Sender`.
  * Send both json and xml.
 
-Now have a look at the [Learning Transport's message storage](https://docs.particular.net/transports/learning/viewing-messages) and there will be two messages in the `Receiver` folder.
+Now have a look at the [Learning Transport's message storage](/transports/learning/viewing-messages.md) and there will be two messages in the `Receiver` folder.
 
 **A xml message with the content**
 
