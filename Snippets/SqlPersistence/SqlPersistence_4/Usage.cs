@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Npgsql;
@@ -404,6 +405,25 @@ class Usage
                 transaction.Commit();
             }
         }
+
+        #endregion
+    }
+
+    async Task ScriptRunnerUsage()
+    {
+        const string connectionString = "";
+
+        #region ScriptRunner
+
+        await ScriptRunner.Install(
+            sqlDialect: new SqlDialect.MsSqlServer(),
+            tablePrefix: "MyEndpoint",
+            connectionBuilder: () => new SqlConnection(connectionString), 
+            scriptDirectory: @"C:\Scripts",
+            shouldInstallOutbox: true,
+            shouldInstallSagas: true,
+            shouldInstallSubscriptions: true,
+            shouldInstallTimeouts: true);
 
         #endregion
     }

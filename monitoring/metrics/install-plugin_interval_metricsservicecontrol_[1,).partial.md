@@ -1,3 +1,3 @@
 ### Interval
 
-Specifies maximal delay for sending metrics report.
+Specifies maximum delay for sending metrics report.

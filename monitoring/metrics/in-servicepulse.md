@@ -1,10 +1,10 @@
 ---
 title: Performance Metrics in ServicePulse
 summary: Describes how to use ServicePulse to review endpoint performance metrics
-reviewed: 2018-01-12
+reviewed: 2018-01-26
 ---
 
-ServicePulse collects displays performance monitoring data about running endpoints on the Monitoring tab.
+ServicePulse collects and displays performance monitoring data about running endpoints on the Monitoring tab.
 
 ![ServicePulse monitoring tab](servicepulse-monitoring-tab.png)
 
@@ -18,7 +18,7 @@ Clicking on an endpoint in the main monitoring tab will open the endpoint detail
 
 ![ServicePulse monitoring details page](servicepulse-monitoring-details.png)
 
-The endpoint details page shows larger graphs for each of the performance metrics gathered for the logical endpoint. It also contains a number of breakdown views. 
+The endpoint details page shows larger graphs for each of the performance metrics gathered for the logical endpoint. It also contains a number of breakdown views.
 
 The default breakdown view is by Message Type.
 
@@ -30,14 +30,14 @@ The second breakdown view is by Instance.
 
 ![ServicePulse details breakdown by physical instance](servicepulse-physicalinstance-breakdown.png)
 
-Each logical endpoint can be running one or more physical instances. This view shows a breakdown of performance metrics for each physical instance. 
+Each logical endpoint can be running one or more physical instances. This view shows a breakdown of performance metrics for each physical instance.
 
-NOTE: Each physical instance should be configured with it's own instance id, which is shown here. See [installing the plugin](install-plugin.md) for more information about instance ids.
+NOTE: Each physical instance should be configured with it's own instance id, which is shown here. See [Installing the plugin](install-plugin.md) for more information about instance ids.
 
 
 ## Reporting period
 
-The main monitoring tab and the endpoint details page both contain an option to change the reporting period. 
+The main monitoring tab and the endpoint details page both contain an option to change the reporting period.
 
 ![ServicePulse reporting period](servicepulse-reportingperiod.png)
 

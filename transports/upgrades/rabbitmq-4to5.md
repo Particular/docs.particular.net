@@ -49,3 +49,10 @@ snippet: rabbitmq-disable-durable-exchanges
 If DisableDurableMessages has been called, the transport will throw an exception unless `UseDurableExchangesAndQueues` is also called:
 
 snippet: rabbitmq-disable-durable-messages
+
+
+## Delayed Delivery
+
+The timeout manager is no longer enabled by default, so the `DisableTimeoutManager` API has been deprecated. If an endpoint still has undelivered messages stored in its persistence database, the new `EnableTimeoutManager` API can be used to ensure those messages are delivered.
+
+snippet: rabbitmq-delay-enable-timeout-manager
