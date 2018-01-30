@@ -26,7 +26,7 @@ snippet: OpenConnection
 
 And use the `NServiceBus.Attachments.TimeToKeep.Default` which is: 
 
- * If `messageTimeToBeReceived` is defined then keep attachment for twice that time.
+ * If [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) is defined then keep attachment for twice that time.
  * Else; keep for 10 days.
 
 This usage results in the following:
