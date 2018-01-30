@@ -29,18 +29,11 @@ This sample shows a simple Client + Server scenario.
 
 ### Raven Config
 
-Configure the endpoint to use RavenDB persistence.
+Configure the endpoint to use RavenDB persistence. The `Url` may need to be changed to match the database in use.
 
 snippet: config
 
 include: raven-dispose-warning
-
-
-### In Process Raven Host
-
-It is possible to self-host RavenDB so that no running instance of RavenDB server is required to run the sample.
-
-snippet: ravenhost
 
 
 ### Order Saga Data
@@ -63,6 +56,8 @@ snippet: handler
 ## The Data in RavenDB
 
 The data in RavenDB is stored in three different collections.
+
+WARNING: By default, this sample uses the [Learning Transport](/transports/learning/), which has built-in support for timeouts and subscriptions. To see the data for timeouts and subscriptions, it's necessary to change the sample to a different transport that does not have these native features such as [MSMQ](/transports/msmq/).
 
 
 ### The Saga Data

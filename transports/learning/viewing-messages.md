@@ -7,7 +7,7 @@ The Learning Transport stores all messages on disk as individual files. By defau
 
 Each endpoint in a project will have a subfolder in the `.learningtransport` folder.
 
-![Learning transport endpoints](learningtransport-endpoints.png "Learning transport endpoints)
+![Learning transport endpoints](learningtransport-endpoints.png "Learning transport endpoints")
 
 Within the endpoint folder, each message will be represented by a `<GUID>.metadata.txt` file that will exist at the root of the folder. This file contains metadata, such as the message headers, for the message. 
 

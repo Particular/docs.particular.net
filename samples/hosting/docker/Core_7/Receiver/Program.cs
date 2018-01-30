@@ -17,8 +17,6 @@ class Program
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=rabbitmq");
         transport.UseConventionalRoutingTopology();
-        var delayedDelivery = transport.DelayedDelivery();
-        delayedDelivery.DisableTimeoutManager();
 
         #endregion
 

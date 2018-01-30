@@ -2,6 +2,7 @@
 title: MSMQ Distributor Troubleshooting
 summary: Describes how to solve common issues with the distributor.
 component: distributor
+reviewed: 2018-01-26
 tags:
 - Scalability
 related:

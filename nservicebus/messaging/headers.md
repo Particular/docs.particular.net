@@ -286,7 +286,7 @@ The [host details](/nservicebus/hosting/override-hostid.md) of the endpoint wher
 
 ### NServiceBus.TimeSent
 
-The timestamp when the message was sent. Used by the [Performance Counters](/nservicebus/operations/metrics/performance-counters.md).
+The timestamp when the message was sent. Used by the [Performance Counters](/monitoring/metrics/performance-counters.md).
 
 
 ### NServiceBus.OriginatingEndpoint

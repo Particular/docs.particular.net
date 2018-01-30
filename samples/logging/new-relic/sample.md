@@ -23,7 +23,7 @@ This sample reports the following metrics to NewRelic:
  * Retries in Version 2 and later
 
 
-For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/nservicebus/operations/metrics/#metrics-captured) section.
+For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/monitoring/metrics/definitions.md) section.
 
 
 ## Prerequisites

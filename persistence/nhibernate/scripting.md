@@ -33,14 +33,14 @@ Older versions of NServiceBus had an issue which caused the `TimeoutEntity_Endpo
  * the `TimeoutEntity_EndpointIdx` index has an incorrect column order
  * the system can not find `TimeoutEntity_EndpointIdx` index
 
-In order to mitigate the problem, use following scripts to drop the index (if created incorrectly)
+In cases where the index was created incorrectly, use the following scripts to drop the index:
 
 ```
 DROP INDEX [TimeoutEntity_EndpointIdx] ON [dbo].[TimeoutEntity] WITH ( ONLINE = OFF )
 GO
 ```
 
-and create the correct one
+and following script to create the correct one
 
 ```
 CREATE CLUSTERED INDEX [TimeoutEntity_EndpointIdx] ON [dbo].[TimeoutEntity]

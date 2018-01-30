@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Npgsql;
@@ -252,12 +253,34 @@ class Usage
         #endregion
     }
 
-    void Schema(EndpointConfiguration endpointConfiguration)
+    void MsSqlSchema(EndpointConfiguration endpointConfiguration)
     {
-        #region Schema
+        #region MsSqlSchema
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
+        dialect.Schema("MySchema");
+
+        #endregion
+    }
+
+    void OracleSchema(EndpointConfiguration endpointConfiguration)
+    {
+        #region OracleSchema
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var dialect = persistence.SqlDialect<SqlDialect.Oracle>();
+        dialect.Schema("MySchema");
+
+        #endregion
+    }
+
+    void PostgreSqlSchema(EndpointConfiguration endpointConfiguration)
+    {
+        #region PostgreSqlSchema
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
         dialect.Schema("MySchema");
 
         #endregion
@@ -382,6 +405,25 @@ class Usage
                 transaction.Commit();
             }
         }
+
+        #endregion
+    }
+
+    async Task ScriptRunnerUsage()
+    {
+        const string connectionString = "";
+
+        #region ScriptRunner
+
+        await ScriptRunner.Install(
+            sqlDialect: new SqlDialect.MsSqlServer(),
+            tablePrefix: "MyEndpoint",
+            connectionBuilder: () => new SqlConnection(connectionString), 
+            scriptDirectory: @"C:\Scripts",
+            shouldInstallOutbox: true,
+            shouldInstallSagas: true,
+            shouldInstallSubscriptions: true,
+            shouldInstallTimeouts: true);
 
         #endregion
     }

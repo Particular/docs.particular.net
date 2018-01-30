@@ -1,16 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461</TargetFrameworks>
+    <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="5.0.0-*" />
-    <PackageReference Include="RavenDB.Client" Version="3.*" />
-    <PackageReference Include="RavenDB.Database" Version="3.*" />
+    <PackageReference Include="RavenDB.Client" Version="3.5.5-*" />
   </ItemGroup>
 </Project>

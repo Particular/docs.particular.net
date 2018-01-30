@@ -31,7 +31,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 3.0.x     | 2017-09-01     | -                 | -                                 |
+| 3.1.x     | 2017-12-15     | -                 | -                                 |
+| 3.0.x     | 2017-09-01     | 2018-03-15        | Superseded by 3.1.x               |
 | 2.0.x     | 2017-05-28     | 2018-09-01        | Superseded by 3.0.x               |
 | 1.3.x     | 2017-04-26     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 | ~~1.2.x~~ | ~~2015-04-08~~ | ~~2017-07-26~~    | ~~Superseded by 1.3.x~~           |
@@ -77,7 +78,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 4.4.x     | 2017-09-18     | -                 | -                                 |
-| 4.3.x     | 2017-04-05     | 2017-12-18        | Superseded by 4.4.x               |
+| ~~4.3.x~~ | ~~2017-04-05~~ | ~~2017-12-18~~    | ~~Superseded by 4.4.x~~           |
 | ~~4.2.x~~ | ~~2016-11-30~~ | ~~2017-07-05~~    | ~~Superseded by 4.3.x~~           |
 | ~~4.1.x~~ | ~~2016-10-31~~ | ~~2017-02-28~~    | ~~Superseded by 4.2.x~~           |
 | ~~4.0.x~~ | ~~2016-10-11~~ | ~~2017-01-31~~    | ~~Superseded by 4.1.x~~           |
@@ -236,7 +237,7 @@ No versions released.
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 6.1.x     | 2017-09-15     | -                 | -                                 |
-| 6.0.x     | 2016-10-11     | 2017-12-15        | Superseded by 6.1.x               |
+| ~~6.0.x~~ | ~~2016-10-11~~ | ~~2017-12-15~~    | ~~Superseded by 6.1.x~~           |
 | 5.0.x     | 2014-09-29     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 | ~~4.7.x~~ | ~~2014-10-07~~ | ~~2016-09-29~~    | ~~Extended by NServiceBus 4.7.x~~ |
 | ~~4.6.x~~ | ~~2014-05-02~~ | ~~2015-01-07~~    | ~~Superseded by 4.7.x~~           |
@@ -549,7 +550,9 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.1.x     | 2017-11-29     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
+| 2.0.x     | 2017-12-12     | -                 | -                                 |
+| 1.2.x     | 2017-12-13     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
+| 1.1.x     | 2017-11-29     | 2018-03-13        | Superseded by 1.2.x               |
 | 1.0.x     | 2017-10-27     | 2018-02-28        | Superseded by 1.1.x               |
 
 #### [NServiceBus.SagaAudit](/nuget/NServiceBus.SagaAudit)

@@ -1,7 +1,7 @@
 ---
 title: Multi-tenant endpoints
 summary: Configure persistence to support multi-tenant scenarios with database-per-tenant isolation.
-reviewed: 2016-03-21
+reviewed: 2018-01-29
 component: Core
 tags:
 - Outbox
@@ -85,7 +85,7 @@ snippet: ConnectionProvider
 
 partial: CapturePipelineExecutor
 
-The connection provider looks at the current message processing context. If there is an existing connection to the tenant database, it creates a new one with the same connection string. Otherwise it defaults to creating a connection to the shared database.
+The connection provider looks at the current message processing context. If there is an existing connection to the tenant database, it creates a new one with the same connection string. Otherwise, the connection provider defaults to creating a connection to the shared database.
 
 snippet: GetConnectionFromContext
 
@@ -99,14 +99,14 @@ The `MultiTenantOpenSqlConnectionBehavior` behavior extracts the `TenantId` head
 
 snippet: OpenTenantDatabaseConnection
 
-This behavior needs to replace the built-in behavior
+This behavior needs to replace the built-in behavior.
 
 snippet: ReplaceOpenSqlConnection
 
 
 #### Propagating the tenant information downstream
 
-Finally the `PropagateTenantIdBehavior` behavior makes sure that tenant information is not lost and all outgoing messages have the same tenant ID as the message being processed.
+Finally, the `PropagateTenantIdBehavior` behavior makes sure that tenant information is not lost and that all outgoing messages have the same tenant ID as the message being processed.
 
 snippet: PropagateTenantId
 

@@ -10,7 +10,7 @@ upgradeGuideCoreVersions:
 
 ## RegisterObservers replaces basic methods
 
-The `EnableMetricTracing`, `EnableCustomReport` and `EnableLogTracing` methods have been deprecated and replaced with the more extensible [`RegisterObservers`](/nservicebus/operations/metrics/raw.md#reporting-metrics-data-to-any-external-storage).
+The `EnableMetricTracing`, `EnableCustomReport` and `EnableLogTracing` methods have been deprecated and replaced with the more extensible [`RegisterObservers`](/monitoring/metrics/raw.md#reporting-metrics-data-to-any-external-storage).
 
 Also note that the older methods supported an `interval` TimeSpan. In the new API batching up metrics, and flushing them at a given interval, is the domain of the calling code.
 

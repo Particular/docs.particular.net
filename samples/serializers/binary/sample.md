@@ -1,7 +1,7 @@
 ---
 title: Binary Formatter Serializer
 summary: Using the core Binary Formatter serializer.
-reviewed: 2016-03-21
+reviewed: 2018-01-26
 component: Binary
 related:
 - nservicebus/serialization

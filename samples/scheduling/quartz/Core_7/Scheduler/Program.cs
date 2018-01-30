@@ -76,6 +76,7 @@ class Program
             .ConfigureAwait(false);
         await endpointInstance.Stop()
             .ConfigureAwait(false);
+        Log.CloseAndFlush();
 
         #endregion
     }

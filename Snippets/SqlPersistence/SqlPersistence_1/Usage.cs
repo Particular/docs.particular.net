@@ -177,7 +177,7 @@ class Usage
 
     void Schema(EndpointConfiguration endpointConfiguration)
     {
-        #region Schema
+        #region MsSqlSchema
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.TablePrefix("MySchema.");

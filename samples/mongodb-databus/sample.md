@@ -1,6 +1,6 @@
 ---
 title: MongoDB DataBus
-reviewed: 2016-03-21
+reviewed: 2018-01-29
 component: MongoDatabusTekmaven
 tags:
  - DataBus
@@ -8,9 +8,12 @@ related:
  - persistence/mongodb-tekmaven
  - nservicebus/messaging/databus
 ---
+## Prerequisites
+Local installation of MongoDB
 
- 1. Run the solution. Two console applications start.
- 1. Find the Sender application by looking for the one with "Sender" in its path and pressing Enter in the window to send a message. A message has just been sent that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
+## Running the project
+ 1. Run the solution. Two console applications will start.
+ 1. Find the Sender application by looking for the console with "Sender" in its path. Press Enter in the window to send a message. A message has just been sent that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
  1. Click 'e' and Enter. A message larger than the allowed 4MB is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown at the "Sender" application.
 
 
@@ -25,11 +28,11 @@ This sample contains three projects:
 
 ### Messages project
 
-Look at the Messages project, at the two messages. Start with the large message that is not utilizing the DataBus mechanism. The message is a simple byte array command:
+There are two messages defined in the Messages project. Start by looking at `AnotherMessageWithLargePayload` which is not utilizing the DataBus mechanism. The message is a simple byte array command:
 
 snippet: AnotherMessageWithLargePayload
 
-The other message utilizes the DataBus mechanism:
+The `MessageWithLargePayload` message utilizes the DataBus mechanism:
 
 snippet: MessageWithLargePayload
 
@@ -45,7 +48,7 @@ Note that the connection string used for the databus is shared by the [MongoDB P
 
 ### Sender project
 
-The following sender project code sends the `MessageWithLargePayload `message, utilizing the NServiceBus attachment mechanism:
+The following `Sender` project code sends the `MessageWithLargePayload` message utilizing the NServiceBus attachment mechanism:
 
 snippet: SendMessageLargePayload
 
@@ -53,7 +56,7 @@ The following `Sender` project code sends the `AnotherMessageWithLargePayload` m
 
 snippet: SendMessageTooLargePayload
 
-In both cases, a 5MB message is sent, but in the `MessageWithLargePayload `it goes through, while `AnotherMessageWithLargePayload` fails.
+In both cases, a 5MB message is sent, but in the `MessageWithLargePayload` message the payload goes through, while the `AnotherMessageWithLargePayload` message fails.
 
 Go to the `Receiver` project to see the receiving application.
 

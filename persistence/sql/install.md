@@ -25,6 +25,8 @@ However in higher level environment scenarios, where standard installers are bei
 
 snippet: DisableInstaller
 
+partial: script-runner
+
 
 ## Table Prefix
 
@@ -43,11 +45,9 @@ snippet: TablePrefix
 
 ## Database Schema
 
-When using Microsoft SQL Server, a database schema other than the default `dbo` can be defined in the configuration API as follows:
+When using a database that supports schemas, a schema value other than default can be defined in the configuration API. Consult the documentation of selected SQL dialect for details. 
 
-snippet: Schema
-
-NOTE: The same value will need to be passed to the SQL installation scripts as a parameter.
+NOTE: The same value will need to be passed to the installation scripts as a parameter.
 
 
 ## Manual installation

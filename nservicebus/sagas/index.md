@@ -60,7 +60,7 @@ partial: at-least-one
 
 NOTE: Always assume that messages can be delivered out of order, e.g. due to error recovery, network latency, or concurrent message processing.
 
-When a saga is created, out of order delivery can cause a message to be discarded. In the previous example, this could happen if a `CompleteOrder` message is received before the `StartOrder` message has had a chance to create the saga.
+Sagas not designed to handle the arrival of messages out of order can result in some messages being discarded. In the previous example, this could happen if a `CompleteOrder` message is received before the `StartOrder` message has had a chance to create the saga.
 
 To ensure messages are not discarded when they arrive out of order:
 
@@ -71,9 +71,9 @@ To ensure messages are not discarded when they arrive out of order:
 
 If multiple message types can start a saga, it's necessary to ensure that saga behavior will remain correct for all possible combinations of order in which those messages are received.
 
-Assume that message `A` should be processed before message `B`. Often in such a situation the saga will persist some data from message `A` to be read when the saga processes message `B`. However, if message `B` is processed first and starts the saga, then the data from message `A` has not been persisted yet.
+In the previous example, the `StartOrder` message contains both an `OrderId` and a `CustomerId` but the `CompleteOrder` message contains only an `OrderId`. The handler for `CompleteOrder` requires `CustomerId` to complete the order saga (i.e. initiate a shipping process). If a `StartOrder` message is processed first, the saga persists both the `OrderId` and the `CustomerId` in the saga data and when a corresponding `CompleteOrder` message arrives later, it retrieves the `CustomerId` from the saga data.
 
-Therefore, if a saga can be started by multiple messages, it is necessary to verify that the saga contains all required information when processing message `B` rather than assume that information is always there (e.g., verify that saga data properties contain non-null values). Note that this complicates the design of the saga, but makes it more resilient and allows it to handle out of order messages correctly.
+When messages arrive in reverse order, the handler for the `CompleteOrder` message does not yet have access to the `CustomerId` because the related `StartOrder` message has not been processed yet. In this case, when the `StartOrder` message arrives later, the handler must notice that the `CompleteOrder` has already been processed and use its `CustomerId` to initiate the shipping process and complete the saga. This complicates the design of the saga, but makes it more resilient and allows it to handle messages out of order.
 
 
 #### Relying on recoverability

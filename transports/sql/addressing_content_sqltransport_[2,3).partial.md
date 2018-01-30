@@ -1,6 +1,6 @@
 ## Format
 
-The SQL Server address has following canonical form
+The SQL Server Transport address has following canonical form
 
 ```
 table

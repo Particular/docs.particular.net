@@ -18,9 +18,9 @@ class Configure
         #endregion
     }
 
-    void SharedSessionForSagasAndOutbox(BusConfiguration busConfiguration)
+    void CustomizeDocumentSession(BusConfiguration busConfiguration)
     {
-        #region ravendb-persistence-shared-session-for-sagas
+        #region ravendb-persistence-customize-document-session
 
         var myDocumentStore = new DocumentStore();
         // configure documentStore properties here

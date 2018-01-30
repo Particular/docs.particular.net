@@ -1,10 +1,9 @@
-- Name: NServiceBus
+- Name: Getting Started
+  Url: get-started
   Topics:
   - Url: get-started
     Title: Getting Started
     Articles:
-    - Url: platform
-      Title: Service Platform
     - Url: tutorials/quickstart
       Title: Quick Start Tutorial
     - Url: tutorials/intro-to-nservicebus
@@ -22,6 +21,13 @@
         Title: Retrying errors
     - Url: tutorials/message-replay
       Title: Message Replay Tutorial
+- Name: NServiceBus
+  Topics:
+  - Url: nservicebus
+    Title: General
+    Articles:
+    - Url: platform
+      Title: Service Platform
     - Url: samples/step-by-step
       Title: Step by Step Sample
     - Url: samples/endpoint-configuration
@@ -52,6 +58,8 @@
         Title: Supported versions
       - Url: nservicebus/upgrades/all-versions
         Title: All versions
+      - Url: nservicebus/upgrades/supported-platforms
+        Title: Supported platforms
     - Url: nservicebus/upgrades/release-policy
       Title: Release Policy
     - Url: security-advisories
@@ -121,6 +129,8 @@
         Title: Version 1 to 1.1
     - Title: NServiceBus Host
       Articles:
+      - Url: nservicebus/upgrades/host-4to5
+        Title: Version 4 to 5
       - Url: nservicebus/upgrades/host-7to8
         Title: Version 7 to 8
       - Url: nservicebus/upgrades/host-6to7
@@ -251,6 +261,8 @@
       Title: Raw messaging
     - Url: nservicebus/wormhole
       Title: Wormhole Gateway
+    - Url: nservicebus/audit-filter
+      Title: AuditFilter
     - Url: nservicebus/mailer
       Title: Mailer
     - Url: nservicebus/outbox
@@ -508,19 +520,6 @@
       Title: Installers
     - Url: nservicebus/operations/management-using-powershell
       Title: PowerShell
-    - Url: nservicebus/operations/metrics
-      Title: Metrics
-      Articles:
-      - Url: nservicebus/operations/metrics/performance-counters
-        Title: Configure reporting to Performance Counters
-      - Url: nservicebus/operations/metrics/service-control
-        Title: Configure reporting to Service Control
-      - Url: nservicebus/operations/metrics/raw
-        Title: Consume raw data from Metrics
-    - Url: nservicebus/operations/heartbeat
-      Title: Monitoring endpoint heartbeat
-    - Url: nservicebus/operations/custom-checks
-      Title: Monitoring endpoint health with custom checks
     - Url: nservicebus/operations/tuning
       Title: Tuning endpoint message processing
     - Url: nservicebus/operations/running-on-windows
@@ -580,9 +579,9 @@
     - Title: Amazon SQS
       Articles:
       - Url: transports/upgrades/amazonsqs-3to4
-        Title: Version 3 to 4      
+        Title: Version 3 to 4
       - Url: transports/upgrades/amazonsqs-2to3
-        Title: Version 2 to 3        
+        Title: Version 2 to 3
   - Url: transports/learning
     Title: Learning Transport
     Articles:
@@ -685,8 +684,6 @@
       Title: Addressing
     - Url: transports/sql/transactions
       Title: Transaction support
-    - Url: transports/sql/concurrency
-      Title: Concurrency handling
     - Url: transports/sql/discard-expired-messages
       Title: Discarding expired messages
     - Url: transports/sql/deployment-options
@@ -699,8 +696,6 @@
       Title: Entity Framework caveats
     - Url: transports/sql/callbacks
       Title: Callback support
-    - Url: transports/sql/queuepeek
-      Title: Queue peek settings
   - Url: transports/msmq
     Title: MSMQ
     Articles:
@@ -836,6 +831,28 @@
   - Url: persistence/sql
     Title: SQL
     Articles:
+    - Url: persistence/sql/dialect-mssql
+      Title: SQL Server
+      Articles:
+      - Url: persistence/sql/sqlserver-scripts
+        Title: Scripts
+    - Url: persistence/sql/dialect-mysql
+      Title: MySQL
+      Articles:
+      - Url: persistence/sql/mysql-scripts
+        Title: Scripts
+    - Url: persistence/sql/dialect-oracle
+      Title: Oracle
+      Articles:
+      - Url: persistence/sql/oracle-scripts
+        Title: Scripts
+    - Url: persistence/sql/dialect-postgresql
+      Title: PostgreSQL
+      Articles:
+      - Url: persistence/sql/postgresql-scripts
+        Title: Scripts
+    - Url: persistence/sql/controlling-script-generation
+      Title: Script generation
     - Url: persistence/sql/accessing-data
       Title: Business data
     - Url: persistence/sql/saga
@@ -852,18 +869,6 @@
       Title: Installation and deployment
     - Url: persistence/sql/installer-workflow
       Title: Installer Workflow
-    - Url: persistence/sql/oracle-caveats
-      Title: Oracle dialect design
-    - Url: persistence/sql/postgresql-design
-      Title: PostgreSQL dialect design
-    - Url: persistence/sql/sqlserver-scripts
-      Title: MS SQL Server Scripts
-    - Url: persistence/sql/mysql-scripts
-      Title: MySQL Scripts
-    - Url: persistence/sql/oracle-scripts
-      Title: Oracle Scripts
-    - Url: persistence/sql/postgresql-scripts
-      Title: PostgreSQL Scripts
   - Url: persistence/azure-storage
     Title: Azure Storage
     Articles:
@@ -953,8 +958,6 @@
     Articles:
     - Url: servicepulse/installation
       Title: Installation
-    - Url: servicepulse/intro-endpoints-heartbeats
-      Title: Endpoints and Heartbeats
     - Url: servicepulse/intro-failed-messages
       Title: Failed Messages
     - Url: servicepulse/intro-failed-message-retries
@@ -963,8 +966,6 @@
       Title: Archived Messages
     - Url: servicepulse/intro-pending-retries
       Title: Pending Retries
-    - Url: servicepulse/intro-endpoints-custom-checks
-      Title: Custom Checks
     - Url: servicepulse/redirect
       Title: Redirects
     - Url: servicepulse/event-types
@@ -1034,6 +1035,8 @@
       Articles:
       - Title: Expose internal database
         Url: servicecontrol/use-ravendb-studio
+      - Title: Import failed audits
+        Url: servicecontrol/import-failed-audits
   - Title: Monitoring instances
     Url: servicecontrol/monitoring-instances
     Articles:
@@ -1052,10 +1055,6 @@
     - Title: Plugins
       Url: servicecontrol/plugins
       Articles:
-      - Title: Heartbeats
-        Url: servicecontrol/plugins/heartbeat
-      - Title: Custom checks
-        Url: servicecontrol/plugins/custom-checks
       - Title: Saga audits
         Url:  servicecontrol/plugins/saga-audit
     - Title: Integration events
@@ -1065,3 +1064,41 @@
       Articles:
       - Title: Incompatible transport features
         Url: servicecontrol/transport-adapter/incompatible-features
+
+- Name: Monitoring
+  Topics:
+  - Title: Intro to Monitoring
+    Url: monitoring
+  - Title: Heartbeats
+    Url: monitoring/heartbeats
+    Articles: 
+    - Title: Install plugin
+      Url: monitoring/heartbeats/install-plugin
+    - Title: Managing in ServicePulse
+      Url: monitoring/heartbeats/in-servicepulse
+    - Title: Notification events
+      Url: monitoring/heartbeats/notification-events
+  - Title: Custom Checks
+    Url: monitoring/custom-checks
+    Articles:
+    - Title: Install plugin
+      Url: monitoring/custom-checks/install-plugin
+    - Title: Writing Custom Checks
+      Url: monitoring/custom-checks/writing-custom-checks
+    - Title: Managing in ServicePulse
+      Url: monitoring/custom-checks/in-servicepulse
+    - Title: Notification events
+      Url: monitoring/custom-checks/notification-events
+  - Title: Performance Metrics
+    Url: monitoring/metrics
+    Articles:
+    - Title: Metrics captured
+      Url: monitoring/metrics/definitions
+    - Title: Install plugin
+      Url: monitoring/metrics/install-plugin
+    - Title: Managing in ServicePulse
+      Url: monitoring/metrics/in-servicepulse
+    - Title: Performance Counters
+      Url: monitoring/metrics/performance-counters
+    - Title: Accessing raw metric data
+      Url: monitoring/metrics/raw

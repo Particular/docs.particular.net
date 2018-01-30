@@ -125,8 +125,8 @@ span.blue {
 <div class="row">
 <div class="col-md-12 block middle">
   <div class="ic">
-    <a href="/get-started.md" onclick="ga('send', 'event', 'Action Performed', 'Clicked Get-Started CTA (Docs Home, Direct to get-started)'); return true">
-      <i class="glyphicon glyphicon-play mainicon"></i><br>Getting Started
+    <a href="/get-started/" onclick="ga('send', 'event', 'Action Performed', 'Clicked Get-Started CTA (Docs Home, Direct to get-started)'); return true">
+      <img src="/content/images/menu/getting-started-icon.svg" height="64" width="64" style="margin: 4px 0;" /><br>Getting Started
     </a>
   </div>
   <div class="ic">
@@ -136,7 +136,7 @@ span.blue {
   </div>
   <div class="ic">
     <a href="https://discuss.particular.net">
-      <i class="glyphicon glyphicon-user mainicon"></i><br>Discussion group
+      <img src="/content/images/discussiongroup_v1.svg" style="height:72px; width: 110px; margin-bottom: 1px;"><br>Discussion group
     </a>
   </div>
   <div class="ic">
@@ -238,7 +238,7 @@ span.blue {
     <h4>Real-time monitoring that is custom tailored to fit a distributed systems</h4>
     <p></p>
     <ul>
-      <li><a href="/servicepulse/intro-endpoints-heartbeats.md">Monitoring Endpoints</a></li>
+      <li><a href="/monitoring/metrics/in-servicepulse.md">Monitoring Endpoints</a></li>
       <li><a href="/servicepulse/intro-failed-messages.md">Handling Failed Messages</a></li>
     </ul>
     <a href="/servicepulse/"><h3>All ServicePulse articles</h3></a><br/>

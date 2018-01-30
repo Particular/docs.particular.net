@@ -1,5 +1,7 @@
 ## Multiple connection strings
 
+NOTE: Support for multiple connection strings has been removed in Version 4
+
 include: multi-instance-connection-requirements
 
 Connection strings for the remote endpoint can be configured using following API

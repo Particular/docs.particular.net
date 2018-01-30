@@ -10,7 +10,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CustomNhMappings.Loquacious";
+        Console.Title = "Samples.CustomNhMappings.Fluent";
         var nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
@@ -20,7 +20,7 @@ class Program
 
         nhConfiguration = AddFluentMappings(nhConfiguration);
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Loquacious");
+        var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Fluent");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseTransport<LearningTransport>();
 

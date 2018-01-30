@@ -46,7 +46,7 @@ This sample contains the following projects:
 
 ### Sender project
 
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. In Version 3 it is configured to use SQL Server transport and run in the [*multi-instance*](/transports/sql/deployment-options.md#modes-overview-multi-instance) mode. `ConnectionProvider.GetConnection` method is used for providing connections.
+The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. In Version 3 it is configured to use SQL Server transport and run in the [*multi-instance*](/transports/sql/deployment-options.md?version=SqlTransport_3#multi-instance.md) mode. `ConnectionProvider.GetConnection` method is used for providing connections.
 
 snippet: SenderConfigurationV3
 
@@ -61,7 +61,7 @@ snippet: SenderConfigurationV4
 
 ### Receiver project
 
-The Receiver mimics a back-end system. In Version 3 it is configured to use SQL Server transport in the [*multi-instance*](/transports/sql/deployment-options.md#modes-overview-multi-instance) mode.
+The Receiver mimics a back-end system. In Version 3 it is configured to use SQL Server transport in the [*multi-instance*](/transports/sql/deployment-options.md?version=SqlTransport_3#multi-instance.md) mode.
 
 snippet: ReceiverConfigurationV3
 

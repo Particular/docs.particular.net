@@ -39,6 +39,17 @@
     - NServiceBus.DataBus.AzureBlobStorage
     - NServiceBus.Azure
 
+- Key: AuditFilter
+  Name: Audit Filter
+  DocoUrl: nservicebus/audit-filter
+  GitHubOwner: SimonCropp
+  SupportLevel: Community
+  Category: Other
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.AuditFilter
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.AuditFilter/license.txt
+  NugetOrder:
+    - NServiceBus.AuditFilter
+
 - Key: SQS
   Name: Amazon SQS Transport
   DocoUrl: transports/sqs
@@ -155,10 +166,10 @@
 
 - Key: CustomChecks
   Name: ServiceControl CustomChecks
-  DocoUrl: servicecontrol/plugins/custom-checks
+  DocoUrl: monitoring/custom-checks
   GitHubOwner: Particular/servicecontrol-maintainers
   Category: Other
-  ProjectUrl: https://github.com/Particular/?query=CustomChecks
+  ProjectUrl: https://github.com/Particular/?q=CustomChecks
   NugetOrder:
     - NServiceBus.CustomChecks
     - ServiceControl.Plugin.Nsb6.CustomChecks
@@ -260,10 +271,10 @@
 
 - Key: Heartbeats
   Name: ServiceControl Heartbeats
-  DocoUrl: servicecontrol/plugins/heartbeat
+  DocoUrl: monitoring/heartbeats
   GitHubOwner: Particular/servicecontrol-maintainers
   Category: Other
-  ProjectUrl: https://github.com/Particular/?query=Heartbeat
+  ProjectUrl: https://github.com/Particular/?q=Heartbeat
   NugetOrder:
     - NServiceBus.Heartbeat
     - ServiceControl.Plugin.Nsb6.Heartbeat
@@ -383,7 +394,7 @@
 
 - Key: Metrics
   Name: Metrics
-  DocoUrl: nservicebus/operations/metrics
+  DocoUrl: monitoring/metrics
   GitHubOwner: Particular/metrics-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Metrics
@@ -392,7 +403,7 @@
 
 - Key: MetricsServiceControl
   Name: Metrics.ServiceControl
-  DocoUrl: nservicebus/operations/metrics/service-control
+  DocoUrl: monitoring/metrics
   GitHubOwner: Particular/metrics-maintainers
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.ServiceControl
@@ -599,7 +610,7 @@
 
 - Key: PerfCounters
   Name: Performance Counters
-  DocoUrl: nservicebus/operations/metrics/performance-counters
+  DocoUrl: monitoring/metrics/performance-counters
   Category: Other
   GitHubOwner: Particular/metrics-maintainers
   ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.PerformanceCounters
@@ -696,7 +707,7 @@
   DocoUrl: servicecontrol/plugins/saga-audit
   GitHubOwner: Particular/servicecontrol-maintainers
   Category: Other
-  ProjectUrl: https://github.com/Particular/?query=SagaAudit
+  ProjectUrl: https://github.com/Particular/?q=SagaAudit
   NugetOrder:
     - NServiceBus.SagaAudit
     - ServiceControl.Plugin.Nsb6.SagaAudit
@@ -939,3 +950,14 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.UniformSession
   NugetOrder:
     - NServiceBus.UniformSession
+
+- Key: GatewayChannelHttpVNext
+  Name: HttpVNext Gateway Channel
+  DocoUrl: nservicebus/gateway/httpvnext-channel
+  GitHubOwner: welshdave
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/welshdave/NServiceBus.Gateway.Channels.HttpVNext/blob/master/LICENSE
+  ProjectUrl: https://github.com/welshdave/NServiceBus.Gateway.Channels.HttpVNext
+  NugetOrder:
+    - NServiceBus.Gateway.Channels.HttpVNext

@@ -9,7 +9,7 @@ related:
  - persistence/upgrades/sql-2to3
  - persistence/upgrades/sql-1to2
  - persistence/upgrades/sql-1.0.0-1.0.1
-reviewed: 2017-11-30
+reviewed: 2018-01-02
 ---
 
 
@@ -19,48 +19,6 @@ The SQL Persistence uses [Json.NET](http://www.newtonsoft.com/json) to serialize
 ## Supported SQL implementations
 
 partial: supportedimpls
-
-
-### Supported name lengths
-
-SQL persistence automatically generates names of database objects such as tables, indexes and procedures used internally. Every database engine has its own rules and limitations regarding maximum allowed name length. The default values are:
-
-partial: names
-
-
-### Unicode support
-
-SQL persistence itself supports Unicode characters. However data may become corrupted during saving if the database settings are incorrect. If Unicode support is required, follow the guidelines for each database engine; in particular set the correct character set and collation for databases storing persistence data.
-
-Refer to the dedicated [MySQL](https://dev.mysql.com/doc/refman/5.7/en/charset-applications.html), [SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/collations/collation-and-unicode-support), [Oracle](https://docs.oracle.com/cd/B19306_01/server.102/b14225/ch2charset.htm) or [PostgreSQL](https://www.postgresql.org/docs/9.1/static/multibyte.html) documentation for details.
-
-
-## Usage
-
-Install the [NServiceBus.Persistence.Sql](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/) and [NServiceBus.Persistence.Sql.MsBuild](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild/) NuGet packages.
-
-
-### SQL Server
-
-snippet: SqlPersistenceUsageSqlServer
-
-include: mssql-dtc-warning
-
-
-### MySQL
-
-Using the [MySql.Data NuGet Package](https://www.nuget.org/packages/MySql.Data/).
-
-snippet: SqlPersistenceUsageMySql
-
-{{Note: The following settings are required for [MySQL connection strings](https://dev.mysql.com/doc/connector-net/en/connector-net-connection-options.html).
-
- * `AllowUserVariables=True`: since the Persistence uses [user variables](https://dev.mysql.com/doc/refman/5.7/en/user-variables.html).
- * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .NET connector does not currently support.}}
-
-partial: usageoracle
-
-partial: usagepostgresql
 
 
 ## NuGet Packages
@@ -92,43 +50,4 @@ DANGER: NServiceBus.Persistence.Sql.ScriptBuilder is currently not ready for gen
 
 ## Script creation
 
-SQL installation scripts are created at compile time by the `NServiceBus.Persistence.Sql.MsBuild` NuGet package.
-
-partial: scriptlocation
-
-For example for a project named `ClassLibrary` built in Debug mode the following directories will be created.
-
- * `ClassLibrary\bin\Debug\NServiceBus.Persistence.Sql\MsSqlServer`
- * `ClassLibrary\bin\Debug\NServiceBus.Persistence.Sql\MySql`
- * `ClassLibrary\bin\Debug\NServiceBus.Persistence.Sql\Oracle`
-
-Scripts will also be included in the list of project output files. This means those files produced will be copied to the output directory of any project that references it.
-
-Scripts creation can configured via `[SqlPersistenceSettings]` applied to the target assembly.
-
-NOTE: SQL scripts are _not_ copied to the publish directory with `dotnet publish`.
-
-WARNING: Projects using `project.json` are **not** supported. The `project.json` approach was an experiment by Microsoft at a new project system that was not based on MSBuild. Since `project.json` did not support running MSBuild files shipped inside a NuGet the SQL Persistence script creation does not work. This experiment has since been abandoned. To fix this either migrate back to the old Visual Studio 2015 project format (`.csproj` and `packages.config`) or migrate to the new [Visual Studio 2017 project format](https://docs.microsoft.com/en-us/dotnet/core/tools/project-json-to-csproj). [dotnet-migrate](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-migrate) can help migrating to the new `.csproj` format.
-
-### To produce all scripts
-
-snippet: AllSqlScripts
-
-
-### To produce only MS SQL Server scripts
-
-snippet: SqlServerScripts
-
-
-### To produce only MySQL scripts
-
-snippet: MySqlScripts
-
-partial: scriptsoracle
-
-partial: scriptspostgresql
-
-
-partial: scripttoggle
-
-partial: promote
+SQL installation scripts are created at compile time by the `NServiceBus.Persistence.Sql.MsBuild` NuGet package. To learn more see [controlling script generation](/persistence/sql/controlling-script-generation.md).

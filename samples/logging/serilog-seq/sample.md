@@ -31,3 +31,8 @@ snippet: ConfigureSerilog
 ### Pass that configuration to NServiceBus
 
 snippet: UseConfig
+
+
+### Ensure logging is flushed on shutdown
+
+snippet: Cleanup

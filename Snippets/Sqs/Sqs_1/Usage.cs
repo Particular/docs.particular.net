@@ -7,6 +7,7 @@ class Usage
         #region SqsTransport
 
         var transport = busConfiguration.UseTransport<SqsTransport>();
+        // S3 bucket only required for messages larger than 256KB
         transport.ConnectionString("Region=ap-southeast-2;S3BucketForLargeMessages=myBucketName;S3KeyPrefix=my/key/prefix;");
 
         #endregion
@@ -57,7 +58,7 @@ class Usage
         #region S3BucketForLargeMessages
 
         var transport = busConfiguration.UseTransport<SqsTransport>();
-        transport.ConnectionString("S3BucketForLargeMessages=my-bucket");
+        transport.ConnectionString("S3BucketForLargeMessages=nsb-sqs-messages");
 
         #endregion
     }

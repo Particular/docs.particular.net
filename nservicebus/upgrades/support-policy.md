@@ -6,6 +6,7 @@ related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy
  - nservicebus/upgrades/supported-versions
+ - nservicebus/upgrades/supported-platforms
 ---
 
 ## Supported Versions
