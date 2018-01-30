@@ -29,6 +29,17 @@
   NugetOrder:
     - Anotar.NServiceBus.Fody
 
+- Key: AttachmentsSql
+  Name: Sql Attachments
+  DocoUrl: nservicebus/messaging/attachments-sql
+  Category: Other
+  GitHubOwner: SimonCropp
+  SupportLevel: Community
+  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Attachments/blob/master/license.txt
+  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Attachments
+  NugetOrder:
+    - Anotar.NServiceBus.Fody
+
 - Key: ABSDataBus
   Name: Azure Blob Storage Databus
   DocoUrl: nservicebus/azure
