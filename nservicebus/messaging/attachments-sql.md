@@ -1,11 +1,11 @@
 ---
-title: Sql Attachments
-summary: Use Sql Server varbinary to store attachments for messages.
+title: SQL Attachments
+summary: Use SQL Server varbinary to store attachments for messages.
 reviewed: 2018-01-29
 component: AttachmentsSql
 ---
 
-Uses a Sql Server [varbinary](https://docs.microsoft.com/en-us/sql/t-sql/data-types/binary-and-varbinary-transact-sql) to store attachments for messages.
+Uses a SQL Server [varbinary](https://docs.microsoft.com/en-us/sql/t-sql/data-types/binary-and-varbinary-transact-sql) to store attachments for messages.
 
 
 ## Usage
@@ -39,7 +39,7 @@ snippet: EnableAttachmentsRecommended
 
 ### Script execution runs by default at endpoint startup
 
-To streamline development the attachment installer is, by default, executed at endpoint startup, in the same manner as all other installers.
+To streamline development the attachment installer is, by default, executed at endpoint startup, in the same manner as all other [installers](/nservicebus/operations/installers.md).
 
 snippet: ExecuteAtStartup
 
@@ -81,7 +81,7 @@ While the below examples illustrate adding an attachment to `SendOptions`, equiv
 
 #### Factory Approach
 
-The most common approach for adding an attachment will be by providing a delegate that constructs the stream. The execution of this delegate is then deferred until later in the outgoing pipeline, when the instance of the stream is required to be persisted.
+The recommended approach for adding an attachment is by providing a delegate that constructs the stream. The execution of this delegate is then deferred until later in the outgoing pipeline, when the instance of the stream is required to be persisted. 
 
 There are both async ans sync variants.
 
@@ -152,6 +152,7 @@ This can be helpful in a saga that is operating in a [Scatter-Gather](http://www
 ## Unit Testing
 
 The below examples also use the [NServiceBus.Testing](/nservicebus/testing/) extension.
+
 
 ### Testing outgoing attachments
 
