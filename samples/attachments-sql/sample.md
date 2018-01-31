@@ -6,7 +6,7 @@ component: AttachmentsSql
 
 ## Introduction
 
-Uses the [SQL Attachments](/nservicebus/messaging/attachments-sql.md) project to store attachments for messages.
+Uses the [SQL Attachments](/nservicebus/messaging/attachments-sql.md) extension to store attachments for messages.
 
 
 ## Prerequisites

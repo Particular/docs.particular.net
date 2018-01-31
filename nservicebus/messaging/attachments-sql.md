@@ -12,7 +12,7 @@ Uses a SQL Server [varbinary](https://docs.microsoft.com/en-us/sql/t-sql/data-ty
 
 ## Usage
 
-Two settings are required as part of the default usage
+Two settings are required as part of the default usage:
 
  * A connection factory that returns an open instance of a [SqlConnection](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlconnection.aspx). Note that any Exception that occurs during opening the connection should be handled by the factory.
  * A default time to keep for attachments.
@@ -26,7 +26,7 @@ Extract out the connection factory to a helper method
 
 snippet: OpenConnection
 
-And use the `NServiceBus.Attachments.TimeToKeep.Default` for attachment cleanup. See [Controlling the lifetime of attachments](./#controlling-attachment-lifetime)
+Also uses the `NServiceBus.Attachments.TimeToKeep.Default` for attachment cleanup. See [Controlling the lifetime of attachments](./#controlling-attachment-lifetime)
 
 This usage results in the following:
 
