@@ -13,10 +13,10 @@ public class Outgoing
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var sendOptions = new SendOptions();
-            var outgoingAttachments = sendOptions.Attachments();
-            outgoingAttachments.Add(
+            var attachments = sendOptions.Attachments();
+            attachments.Add(
                 name: "attachment1",
-                stream: () => File.OpenRead("FilePath.txt"));
+                streamFactory: () => File.OpenRead("FilePath.txt"));
             return context.Send(new OtherMessage(), sendOptions);
         }
     }
@@ -33,10 +33,10 @@ public class Outgoing
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var sendOptions = new SendOptions();
-            var outgoingAttachments = sendOptions.Attachments();
-            outgoingAttachments.Add(
+            var attachments = sendOptions.Attachments();
+            attachments.Add(
                 name: "attachment1",
-                stream: () => httpClient.GetStreamAsync("theUrl"));
+                streamFactory: () => httpClient.GetStreamAsync("theUrl"));
             return context.Send(new OtherMessage(), sendOptions);
         }
     }
@@ -51,9 +51,9 @@ public class Outgoing
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var sendOptions = new SendOptions();
-            var outgoingAttachments = sendOptions.Attachments();
+            var attachments = sendOptions.Attachments();
             var stream = File.OpenRead("FilePath.txt");
-            outgoingAttachments.Add(
+            attachments.Add(
                 name: "attachment1",
                 stream: stream,
                 cleanup: () => File.Delete("FilePath.txt"));

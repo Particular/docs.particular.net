@@ -24,10 +24,7 @@ Extract out the connection factory to a helper method
 
 snippet: OpenConnection
 
-And use the `NServiceBus.Attachments.TimeToKeep.Default` which is: 
-
- * If [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) is defined then keep attachment for twice that time.
- * Else; keep for 10 days.
+And use the `NServiceBus.Attachments.TimeToKeep.Default` for attachment cleanup. See [Controlling the lifetime of attachments](./#controlling-attachment-lifetime)
 
 This usage results in the following:
 
@@ -60,6 +57,24 @@ Attachment cleanup is enabled by default. It can be disabled using the following
 snippet: DisableCleanupTask
 
 
+## Controlling attachment lifetime 
+
+When the cleanup task runs it uses the `Expiry` column to determine if a given attachment should be deleted. This column is populated when an attachment ti written. When adding an attachment to an outgoing message, all methods accept an optional parameter `timeToKeep` of the type `GetTimeToKeep`. `GetTimeToKeep` is defined as:
+
+```
+public delegate TimeSpan GetTimeToKeep(TimeSpan? messageTimeToBeReceived);
+```
+
+Where `messageTimeToBeReceived` is value of [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md). If no `timeToKeep` parameter for a specific attachment is defined then the endpoint level `timeToKeep` is used.
+
+The result of `timeToKeep` is then added to the current date and persisted to the `Expiry` column.
+
+The method `NServiceBus.Attachments.TimeToKeep.Default` provides a recommended default for for attachment lifetime calculation: 
+
+ * If [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) is defined then keep attachment for twice that time.
+ * Else; keep for 10 days.
+
+
 ## Table Name
 
 The default table name and schema is `dbo.Attachments`. It can be changed with the following:
@@ -86,7 +101,6 @@ The recommended approach for adding an attachment is by providing a delegate tha
 There are both async ans sync variants.
 
 snippet: OutgoingFactory
-
 
 snippet: OutgoingFactoryAsync
 

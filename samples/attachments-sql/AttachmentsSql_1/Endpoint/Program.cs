@@ -45,7 +45,7 @@ class Program
                 var attachments = sendOptions.Attachments();
                 attachments.Add(
                     name: "attachmentName",
-                    stream: () =>
+                    streamFactory: () =>
                     {
                         return File.OpenRead("fileToStream.txt");
                     });
