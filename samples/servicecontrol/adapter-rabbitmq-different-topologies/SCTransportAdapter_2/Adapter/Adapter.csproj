@@ -11,7 +11,6 @@
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="5.0.0-*" />
     <PackageReference Include="NServiceBus.Raw" Version="3.0.0-*" />
-    <PackageReference Include="RabbitMQ.Client" Version="4.*" />
     <PackageReference Include="ServiceControl.TransportAdapter" Version="2.0.0-*" />
   </ItemGroup>
 </Project>

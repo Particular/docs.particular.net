@@ -18,7 +18,6 @@ class Program
             {
                 transport.ConnectionString("host=localhost");
                 var delayedDelivery = transport.DelayedDelivery();
-                delayedDelivery.DisableTimeoutManager();
 
                 transport.UseConventionalRoutingTopology();
             });
@@ -34,7 +33,6 @@ class Program
             {
                 transport.ConnectionString("host=localhost");
                 var delayedDelivery = transport.DelayedDelivery();
-                delayedDelivery.DisableTimeoutManager();
 
                 transport.UseDirectRoutingTopology();
             });

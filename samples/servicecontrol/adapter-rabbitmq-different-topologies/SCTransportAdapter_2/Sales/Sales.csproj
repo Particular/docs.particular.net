@@ -10,6 +10,5 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="5.0.0-*" />
-    <PackageReference Include="RabbitMQ.Client" Version="4.*" />
   </ItemGroup>
 </Project>
