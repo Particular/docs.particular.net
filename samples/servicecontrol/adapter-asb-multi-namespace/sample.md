@@ -58,7 +58,7 @@ include: asb-connectionstring
    * Use `Particular.ServiceControl.ASB` as the instance name (ensure there is no other instance of SC running with the same name).
    * Use connection string supplied with the `AzureServiceBus.ConnectionString.SC` environment variable.
    
-NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default port number for API. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
+NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default instance name and port number. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
  
  1. Ensure the `ServiceControl` process is running before running the sample.
  1. [Install ServicePulse](/servicepulse/installation.md)

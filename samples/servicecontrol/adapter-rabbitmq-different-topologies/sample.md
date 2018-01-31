@@ -23,31 +23,14 @@ This sample shows how to configure ServiceControl to monitor endpoints and retry
    * Use default `Particular.ServiceControl` as the instance name (ensure there is no other instance of SC running with the same name).
    * Specify `host=localhost` as a connection string. ServiceControl Management Utility will automatically create queues and exchanges on the broker.
 
-NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default port number for API. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
+NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default instance name and port number. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
  
  4. Ensure the `ServiceControl` process is running before running the sample.
  5. [Install ServicePulse](/servicepulse/installation.md)
 
 NOTE: In order to connect to a different RabbitMQ broker, ensure all connection strings in the sample are updated.
 
-
-## Running the project
-
- 1. Start the Adapter, Sales and Shipping projects.
- 1. Open ServicePulse (by default it's available at `http://localhost:9090/#/dashboard`) and select the Endpoints Overview. `Samples.ServiceControl.RabbitMQAdapter.Shipping` endpoint should be visible in the Active Endpoints tab as it has the Heartbeats plugin installed.
- 1. Go to the Sales console and press `o` to send a message.
- 1. Notice the Sales endpoint receives its own message and successfully processes it.
- 1. Press `f` to simulate message processing failure.
- 1. Go to the Shipping console and also press `f` to simulate message processing failure.
- 1. Press `o` in Sales to create more messages.
- 1. Notice both messages failed processing in their respective endpoints.
- 1. Open ServicePulse and select the Failed Messages view.
- 1. Notice the existence of one failed message group with two messages. Open the group.
- 1. Press the "Retry all" button.
- 1. Go to the Shipping console and verify that the message has been successfully processed.
- 1. Go to the Sales console and verify that the message has been successfully processed.
- 1. Shut down the Shipping endpoint.
- 1. Open ServicePulse and notice a red label next to the heart icon. Click on the that icon to open the Endpoints Overview. Notice that `Samples.ServiceControl.RabbitMQAdapter.Shipping` is now displayed in the Inactive Endpoints tab.
+include: adapter-running-project-simple
 
 
 ## Code walk-through 
