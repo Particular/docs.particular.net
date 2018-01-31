@@ -3,6 +3,8 @@ title: SQL Attachments
 summary: Use SQL Server varbinary to store attachments for messages.
 reviewed: 2018-01-29
 component: AttachmentsSql
+related:
+ - samples/attachments-sql
 ---
 
 Uses a SQL Server [varbinary](https://docs.microsoft.com/en-us/sql/t-sql/data-types/binary-and-varbinary-transact-sql) to store attachments for messages.
