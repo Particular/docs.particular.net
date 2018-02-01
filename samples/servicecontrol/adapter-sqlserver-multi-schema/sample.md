@@ -26,7 +26,7 @@ The purpose of the adapter is to isolate ServiceControl from the specifics of th
    * Use "User" account and provide credentials to allow for integrated authentication.
    * Specify `Data Source=.\SqlExpress;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10` as a connection string. ServiceControl Manager will automatically create queue tables in the database.
 
-NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default port number for API. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
+NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default instance name and port number. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
 
  4. Ensure the `ServiceControl` process is running before running the sample.
  5. [Install ServicePulse](/servicepulse/installation.md).
@@ -75,7 +75,7 @@ The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has
 
 snippet: AdapterTransport
 
-The following code configures the adapter to use a custom schema (`adapter`) within the shared database. It also maps the schema for the Shipping endpoint. Notice there is no need to map the schema for the Sales endpoint. This is because NServiceBus version 5 and below did not include the schema name in the address.
+The following code configures the adapter to use a custom schema (`adapter`) within the shared database. It also maps the schema for the Shipping endpoint. This is because NServiceBus Version 5 and below did not include the schema name in the address. Notice there is no need to map the schema for the Sales endpoint which uses NServiceBus 6. Starting from Version 6, the schema name [is included in the address](/transports/sql/addressing.md?version=sqlserver_3). 
 
 snippet: EndpointSideConfig
 

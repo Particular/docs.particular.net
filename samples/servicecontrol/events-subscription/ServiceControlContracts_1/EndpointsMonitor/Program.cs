@@ -8,7 +8,8 @@ class Program
     {
         Console.Title = "EndpointsMonitor";
         var endpointConfiguration = new EndpointConfiguration("EndpointsMonitor");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
