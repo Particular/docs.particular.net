@@ -29,7 +29,7 @@ Configuring Audit via the following APIs have been deprecated:
  
 
 Instead use one of the following:
-BadImageFormatException
+
 
 #### Configure by the code API
 
