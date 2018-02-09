@@ -28,8 +28,8 @@ Configuring Audit via the following APIs have been deprecated:
  * `HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceBus\AuditQueue` registry key
  
 
-Instead use one of the following:
-BadImageFormatException
+Instead use the following:
+`endpointConfiguration.AuditProcessedMessagesTo("targetAuditQueue");`
 
 #### Configure by the code API
 
