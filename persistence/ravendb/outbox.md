@@ -30,5 +30,7 @@ These default settings can be changed by specifying new defaults in the settings
 
 snippet: OutboxRavendBTimeToKeep
 
+By specifying a value of -1 milliseconds for `SetFrequencyToRunDeduplicationDataCleanup` the cleanup task is disabled. This can be usefull when an endpoint is scaled out and instances are competing to run the cleanup task.
+
 
 partial: effect-on-docstore
