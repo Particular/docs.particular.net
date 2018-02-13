@@ -93,6 +93,8 @@ In certain scenarios Conversation Id has to be assigned manually, because NServi
 
 snippet: override-conversation-id
 
+partial: conversationid
+
 Note that attempting to override an existing Conversation Id will produce the following error:
 
 ```
