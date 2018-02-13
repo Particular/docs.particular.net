@@ -22,15 +22,8 @@ class Program
 
         endpointConfiguration.EnableInstallers();
 
-        // The RabbitMQ container starts before endpoints but it may
-        // take several seconds for the broker to become reachable.
-        #region WaitForRabbitBeforeStart
-        await RabbitHelper.WaitForRabbitToStart()
-            .ConfigureAwait(false);
-
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        #endregion
 
         Console.WriteLine("Use 'docker-compose down' to stop containers.");
 
