@@ -89,9 +89,9 @@ When throttling happens the following exception is logged:
 Amazon.SQS.AmazonSQSException: Request is throttled. ---> Amazon.Runtime.Internal.HttpErrorResponseException: The remote server returned an error: (403) Forbidden. ---> System.Net.WebException: The remote server returned an error: (403) Forbidden.
 ```
 
-Throttling is more likely to happen when sending a large number messages concurrently (in parallel). For example when using async/await, using a list of tasks to be executed with `Task.WaitAll()` could cause throttling and partial message delivery if any of the sends result in an thottling error.
+Throttling is more likely to happen when sending a large number messages concurrently. For example when using async/await, using a list of tasks.
 
-To avoid possible Amazon throttling errors, limit the maximum number of concurrent sends. For example, allow only a small amount of messages to be sent concurrently as outlined in the [sending large amount of messages](/nservicebus/handlers/async-handlers.md#concurrency-large-amount-of-concurrent-message-operations) guidelines or don't use concurrent sends at all and sequentially send your messages.
+To avoid possible Amazon throttling errors, limit the maximum number of concurrent sends. For example, allow only a small amount of messages to be sent concurrently as outlined in the [sending large amount of messages](/nservicebus/handlers/async-handlers.md#concurrency-large-amount-of-concurrent-message-operations) guidelines or send messages sequentially.
 
 Throttling can happen during any send or receive operation and can happen during the following scenarios:
 
@@ -102,17 +102,22 @@ Throttling can happen during any send or receive operation and can happen during
 
 #### Incoming message (receiving)
 
-For incoming messages throttling errors can be safely ignored as the message pump will just try to fetch the next available message again.
+For incoming messages throttling errors can be safely ignored as the message pump will try to fetch the next available message again.
 
 #### Sending from within a handler
 
-The [recoverability feature](/nservicebus/recoverability/) should resolve it as any message sends and fails results in an exception which will be processed by the recoverability logic. If an incoming message would continiously result in a throttling error then the message will eventually be moved to the error queue.
+Failing message sends raise an exception when throttled. The exception will be handled by the [recoverability feature](/nservicebus/recoverability/). An incoming message that continuously fails due to throttling errors will be moved to the error queue.
 
-A throttling error could result in ghost messages. Ghost messages are messages send even though the handler failed due to not being able to transmit all messages to the transport succesfully. This makes a throttling error similar to any other error could and can occur both with the default [batched message dispatch](/nservicebus/messaging/batched-dispatch) or when using [immediate dispatch](nservicebus/messaging/send-a-message#dispatching-a-message-immediately).
+A throttling error could result in partial message delivery while the incoming message is not processed succesfully and can occur regardless of using the default [batched message dispatch](/nservicebus/messaging/batched-dispatch) or when using [immediate dispatch](nservicebus/messaging/send-a-message#dispatching-a-message-immediately).
+
+Throttling errors are similar to any other technical error that can occur.
+
 
 #### Sending outside of a handler
 
-As message sending does not happen within a handler any failures during sending will not rely on the [recoverability feature](/nservicebus/recoverability/). Any retry logic must be manually implemented. If a throttling exception occurs 1 or more message are likely not transmitted to the transport if these is no custom error logic.
+As message sending does not happen within a handler any failures during sending will not rely on the [recoverability feature](/nservicebus/recoverability/). Any retry logic must be manually implemented.
+
+If no custom error logic is implemented and a throttling exception occurs then or more messages are likely not transmitted to the transport. Custom retry logic could either retry all regenerated messages again or have each individual message wrapped and retried.
 
 
 
