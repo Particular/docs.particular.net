@@ -80,7 +80,7 @@ NOTE: NServiceBus will perform [immediate](/nservicebus/recoverability/#immediat
 
 ### AmazonSQSException: Request is throttled
 
-Amazon SQS could apply throttling, it can deal with a very large continious throughput but if there are sudden spikes the service can apply throttling.
+Amazon SQS could apply throttling, it can deal with a very large continuous throughput but if there are sudden spikes the service can apply throttling.
 
 When throttling happens the following exception is logged:
 
