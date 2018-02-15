@@ -117,7 +117,7 @@ Throttling errors are similar to any other technical error that can occur.
 
 As message sending does not happen within a handler context any failures during sending will not rely or be covered by the [recoverability feature](/nservicebus/recoverability/). Any retry logic must be manually implemented.
 
-When throttling occurs with no custom error logic implemented one or more messages might not have been transmitted to Amazon SQS. The custom retry logic could either retry all messages to be sent again included already succeeded messages or only retry only individual message that failed.
+When throttling occurs with no custom error logic implemented one or more messages might not have been transmitted to Amazon SQS. The custom retry logic could either retry all messages to be sent again including already succeeded messages or only retry individual messages that failed.
 
 
 
