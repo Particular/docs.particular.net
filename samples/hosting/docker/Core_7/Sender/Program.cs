@@ -17,11 +17,6 @@ class Program
         transport.UseConventionalRoutingTopology();
         endpointConfiguration.EnableInstallers();
 
-        // The RabbitMQ container starts before endpoints but it may
-        // take several seconds for the broker to become reachable.
-        await RabbitHelper.WaitForRabbitToStart()
-            .ConfigureAwait(false);
-
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
                     .ConfigureAwait(false);
 

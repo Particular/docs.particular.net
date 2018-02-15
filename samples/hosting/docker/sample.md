@@ -123,6 +123,10 @@ services:
         image: "rabbitmq:3-management"
         ports:
             - "15672:15672"
+        healthcheck:
+            test: ["CMD-SHELL", "if rabbitmqctl status; then \nexit 0 \nfi \nexit 1"]
+            interval: 10s
+            retries: 5
 ```
 
 
@@ -135,8 +139,4 @@ snippet: TransportConfiguration
 
 ### Waiting for RabbitMQ broker to become available
 
-Docker Compose manages the dependencies between the containers and starts the `rabbitmq` container first but there is still a delay between when the RabbitMQ container starts and when the broker starts to accept client connections. Endpoints must wait for the broker to become available before starting the endpoint:
-
-snippet: WaitForRabbitBeforeStart
-
-snippet: WaitForRabbit
+This sample takes advantage of Docker [healthchecks](https://docs.docker.com/engine/reference/builder/#healthcheck) to ensure RabbitMQ is available before starting the endpoints.
