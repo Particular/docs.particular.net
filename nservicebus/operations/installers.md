@@ -15,6 +15,8 @@ Installers ensure that endpoint specific artifacts (e.g. queues, directories, da
 
 ## Running installers
 
+NOTE: Running installers requires the process to run with permissions to create/delete tables, queues, folders and other resources. If the installers are run during regular endpoint startup the endpoint instance is not running least privilege. Prevent running the process with too many permissions while processing messages and run least privilege. This means only using the running the installers during setup. Probably running the process twice each time with different permissions. Once with elevated permissions during setup to allow creating and updating resources, and the other with regular permissions during normal message processing.
+
 partial: default-behavior
 
 Installers can be enabled to always run at startup:
