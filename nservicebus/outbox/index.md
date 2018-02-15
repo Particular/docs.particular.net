@@ -81,7 +81,9 @@ WARNING: When verifying outbox functionality, it can sometimes be helpful to tem
 
 ## Message identity and idempotent processing
 
-If handlers are idempotent then outbox might not be required at all. When considering not using the outbox and implementing idempotent processing keep in mind that any generated message *must* apply the same message identifier if invoked more-then-once to have deduplication working on the infrastructure level or to solve this at the logical level by validating message data. [Read more on how to set a message identifier.](/nservicebus/messaging/message-identity.md)
+If handlers are idempotent then outbox might not be required at all. Outbox relies on message identity to guarantee consistency. When using outbox on both the sender and receiver message identifiers are consistent if a handler is invoked more-then-once for a message. 
+If a sender does not use the outbox or when sending a message outside of a handler the sender *must* generate and apply the same message identifier to guarantee consistency via the outbox when that logic is invoked more-then-once.
+The same message identity is also important to have deduplication working on the infrastructure level on some transport that support this. [Read more on how to set a message identifier.](/nservicebus/messaging/message-identity.md)
 
 
 ## Concurrency
@@ -90,16 +92,15 @@ Outbox cannot guarantee that handlers or sagas are invoked exactly once. Outbox 
 
 The following scenarios might cause handlers to be invoked multiple times:
 
-- Sender sends multiple physical message with the same message identifier (submit order form)
-- Transport can send multiple messages when having a failover, they operate in a at-least-once delivery model
-- The outbox dispatch stage can be invoked more-than-once if the previous dispatch (partially) failed and is retried.
+- When a sender sends multiple physical message with the same message identifier. An example is a order form which is submitted multiple times.
+- When a transport performs a failover and operates in a at-least-once delivery model and has not marked a message as processed while this is the case but the acknowledgement was not processed by the tranport yet.
+- When a failure occurs during the outbox dispatch stage. The dispatch stage will to be invoked more-than-once and each time message can message can partially be delivered to the transport infrastructure.
 
-In those scenarios, multiple physical copies of the same logical message exist in the queue. If an endpoint allows concurrent message processing or is scaled out it can happen that these multiple copies are processed concurrently.
-
+In the above scenarios, multiple physical copies of the same logical message exist in the queue. If an endpoint allows concurrent message processing, or it is scaled out, its possible that the multiple copies of the message can be processed concurrently.
 
 ## Non transactional resources
 
-If non-transactional resources are being accessed then make sure processing is idempotent. Non-transactional resources are not guaranteed to be handled in an idempotent way by the Outbox. If more-than-once invocation is unwanted then this can be almost prevented completely by making sure only a single endpoint instance is running and have [configured the endpoint to process messages sequentially by setting the maximum concurrency to 1](/nservicebus/operations/tuning.md#tuning-concurrency). Only data modified via a shared storage session is made idempotent via the outbox and has exact-once semantics. See [persistence specific documention](/nservicebus/outbox/#Persistence) on how to obtain the shared storage session.
+If non-transactional resources are being accessed then make sure processing is idempotent. Non-transactional resources are not guaranteed to be handled in an idempotent way by the Outbox. If more-than-once invocation is not wanted, then this can be prevented almost completely by making sure that only a single endpoint instance is running and having [configured that endpoint with a maximum concurrency of 1](/nservicebus/operations/tuning.md#tuning-concurrency). Only data modified via a shared storage session is made idempotent via the outbox and has exact-once semantics. See [persistence specific documention](/nservicebus/outbox/#Persistence) on how to obtain the shared storage session.
 
 NOTE: This problem is not specific to Outbox but mentioned here as sometimes it is assumed Outbox does deduplication that prevents more-than-once invocation.
 
@@ -108,23 +109,25 @@ Try to avoid mixing transactional and non transactional tasks. If performing non
 
 ## Outbox expiration duration
 
-Part of the outbox is to guarantee that the data remains consistent if the same message is processed more-than-once. A message with the exact same identification can be detected and ignored. This data is stored in the outbox record and kept for a configurable duration. The default expiration duration depends per persistence implementation. All implemetations can be configured on how long an outbox record needs to be stored and some can be configured on how often outbox cleanup needs to occur.
+Part of the purpose of the outbox is to guarantee that the data remains consistent if the same message is processed more than once. A message with the exact same identification can be detected and ignored. The identification data for each outbox record is retained. The default duration that the data is retained for will vary depending on the persistence chosen for the outbox. The default duration, as well as the frequency of data removal, can be overrode for all outbox persistences.
 
 Ensure that the retention period of the outbox is longer than the maximum time the message can be retried, including delayed retries and manual retries via ServiceControl. Additional care must be taken by operators of ServicePulse to not retry messages older than the outbox retention period.
 
 ## Required storage
 
-Outbox requires storage. The required space can be calculated as follows:
+Outbox requires storage. The amount of storage space required for Outbox can be calculated as follows:
 
     Total outbox records = Message througput per second * Deduplication period in seconds
 
-A single outbox record - after all transport operations have been dispatched - usually requires less than 50 bytes of which most are taken for storing the original message ID as this is a string value.
+A single outbox record, after all transport operations have been dispatched, usually requires less than 50 bytes of which most are taken for storing the original message ID as this is a string value.
 
-NOTE: If the system is processing a high volume of messages per second having a large deduplication timeframe might not be ideal as outbox records will occupy storage.
+NOTE: If the system is processing a high volume of messages, having a long deduplication timeframe will increase the amount of storage space that is required by Outbox.
 
 ## Outbox cleanup interval
 
-How outbox cleanup is performed depends per persistence implementation. Most persisters run a cleanup task every minute. Depending on the throughput this cleanup interval can be run more often to make a single cleanup operation purge less records per interval.
+Outbox cleanup varies depending on the persistence that is chosen. Most persisters run a cleanup task every minute.
+
+Depending on the throughput of the system's endpoints, the Outbox cleanup interval can be run more frequently. This will allow each cleanup operation to purge the fewest records possible each time it runs, which will allow the cleanup to execute faster.
 
 
 ## Persistence
