@@ -125,7 +125,7 @@ services:
             - "15672:15672"
         healthcheck:
             test: ["CMD-SHELL", "if rabbitmqctl status; then \nexit 0 \nfi \nexit 1"]
-            interval: 3s
+            interval: 10s
             retries: 5
 ```
 
