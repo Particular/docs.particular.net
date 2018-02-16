@@ -221,7 +221,7 @@ Setting a custom [correlation ID](/nservicebus/messaging/headers.md#messaging-in
 
 ## Accessing Conversation ID
 
-In NServiceBus Version 6, the `Conversation Id` header on outgoing messages was set within the `IOutgoingPhysicalMessageContext` pipeline stage. In Versions 7 and above, the `Conversation Id` header will be set as part of [the `IOutgoingLogicalMessageContext` stage](/nservicebus/pipeline/steps-stages-connectors#stages-outgoing-pipeline-stages).
+In NServiceBus Version 6, the `Conversation Id` header on outgoing messages was set within the `IOutgoingPhysicalMessageContext` pipeline stage. In Versions 7 and above, the `Conversation Id` header will be set as part of [the `IOutgoingLogicalMessageContext` stage](/nservicebus/pipeline/steps-stages-connectors.md#stages-outgoing-pipeline-stages).
 
 
 ## ConfigurationErrorsException
