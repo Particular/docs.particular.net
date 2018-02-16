@@ -15,7 +15,7 @@ include: upgrade-major
 
 ## Config
 
-The Configuration APIs `IProvideConfiguration`, `IConfigurationSource` and `CustomConfigurationSource` have been deprecated. The equivalent code based API can be used instead.
+The Configuration APIs `IProvideConfiguration`, `IConfigurationSource` and `CustomConfigurationSource` have been deprecated. The equivalent code-based API are shown here:
 
 
 ### [Audit](/nservicebus/operations/auditing.md)
