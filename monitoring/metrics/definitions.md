@@ -65,7 +65,7 @@ As noted before, the current implementation might produce estimates which signif
  * High error rate scenarios in which significant number of messages are scheduled for [delayed retrying](/nservicebus/recoverability/#delayed-retries) or moved to the [error](/nservicebus/recoverability/#fault-handling) queue
  * In [Distributor](/transports/msmq/distributor/)-based deployments there is no queue length metric provided for the distributor node, only for the workers
  * After restarting any component the estimated queue length value can be off until all messages sent before restart are consumed
- *  In [Service Fabric Stateful Services with Partition Affine Routing](/samples/azure/azure-service-fabric-routing/sample.md) the queue length cannot be determined. Individual partitions can have a different backlog of messages e.g. one partition has more messages to be processed then another or is faster than another.
+ *  In [Service Fabric Stateful Services with Partition Affine Routing](/samples/azure/azure-service-fabric-routing/) the queue length cannot be determined. Individual partitions can have a different backlog of messages e.g. one partition has more messages to be processed then another or is faster than another.
 
 #### Example
 
