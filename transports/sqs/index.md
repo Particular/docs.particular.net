@@ -108,7 +108,7 @@ For incoming messages throttling errors can be safely ignored as the message pum
 
 Failing message sends raise an exception when throttled. The exception will be handled by the [recoverability feature](/nservicebus/recoverability/). An incoming message that continuously fails due to throttling errors will be moved to the error queue.
 
-A throttling error could result in partial message delivery while the incoming message is not processed succesfully and can occur regardless of using the default [batched message dispatch](/nservicebus/messaging/batched-dispatch) or when using [immediate dispatch](nservicebus/messaging/send-a-message#dispatching-a-message-immediately).
+A throttling error could result in partial message delivery while the incoming message is not processed succesfully and can occur regardless of using the default [batched message dispatch](/nservicebus/messaging/batched-dispatch.md) or when using [immediate dispatch](nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately).
 
 Throttling errors are similar to any other technical error that can occur.
 
