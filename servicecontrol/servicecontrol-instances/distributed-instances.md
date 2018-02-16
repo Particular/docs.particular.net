@@ -10,3 +10,8 @@ component: ServiceControl
 - SC Master instances must be configured with Address and API URI of remotes - JSON string
 - Paging for message view in SI is wonky
 - Data from remote instances that cannot be reached by the master instance will not be included in the results
+
+### Disabling Recoverability
+
+- Set Error queue name to `!disabled`
+- Error forwarding, if enabled, will be ignored.
