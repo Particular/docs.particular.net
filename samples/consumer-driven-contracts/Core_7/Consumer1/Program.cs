@@ -12,6 +12,9 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
 
+        // uncomment below to demonstrate json
+        //endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+
         var routing = transport.Routing();
         routing.RegisterPublisher(typeof(Consumer1Contract), "Samples.ConsumerDrivenContracts.Producer");
 
