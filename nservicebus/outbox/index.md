@@ -81,8 +81,8 @@ WARNING: When verifying outbox functionality, it can sometimes be helpful to tem
 
 ## Message identity and idempotent processing
 
-If handlers are idempotent then outbox might not be required at all. Outbox relies on message identity to guarantee consistency. When using outbox on both the sender and receiver message identifiers are consistent if a handler is invoked more-then-once for a message. 
-If a sender does not use the outbox or when sending a message outside of a handler the sender *must* generate and apply the same message identifier to guarantee consistency via the outbox when that logic is invoked more-then-once.
+If handlers are idempotent then outbox might not be required at all. Outbox relies on message identity to guarantee consistency. When using outbox on both the sender and receiver message identifiers are consistent if a handler is invoked more-than-once for a message. 
+If a sender does not use the outbox or when sending a message outside of a handler the sender *must* generate and apply the same message identifier to guarantee consistency at the receiver.
 The same message identity is also important to have deduplication working on the infrastructure level on some transport that support this. [Read more on how to set a message identifier.](/nservicebus/messaging/message-identity.md)
 
 
