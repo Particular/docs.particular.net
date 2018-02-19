@@ -80,18 +80,18 @@ NOTE: NServiceBus will perform [immediate](/nservicebus/recoverability/#immediat
 
 ### AmazonSQSException: Request is throttled
 
-Amazon SQS could apply throttling, it can deal with a very large continuous throughput but if there are sudden spikes the service can apply throttling.
+Amazon SQS can handle large, continuous throughput but if there are sudden spikes, the service may apply throttling.
 
-When throttling happens the following exception is logged:
+When throttling happens, the following exception is logged:
 
 ```
 2017-11-14 23:10:24,314|ERROR|18|NServiceBus.Transports.SQS.MessageDispatcher|Exception from Send.
 Amazon.SQS.AmazonSQSException: Request is throttled. ---> Amazon.Runtime.Internal.HttpErrorResponseException: The remote server returned an error: (403) Forbidden. ---> System.Net.WebException: The remote server returned an error: (403) Forbidden.
 ```
 
-Throttling is more likely to happen when sending a large number messages concurrently. For example when using async/await, using a list of tasks.
+Throttling is more likely to happen when sending a large number messages concurrently. For example, using a list of tasks when using async/await.
 
-To avoid possible Amazon throttling errors, limit the maximum number of concurrent sends. For example, allow only a small amount of messages to be sent concurrently as outlined in the [sending large amount of messages](/nservicebus/handlers/async-handlers.md#concurrency-large-amount-of-concurrent-message-operations) guidelines or send messages sequentially.
+To avoid Amazon throttling errors, limit the maximum number of concurrent sends. For example, allow only a small amount of messages to be sent concurrently as outlined in the [sending large amount of messages](/nservicebus/handlers/async-handlers.md#concurrency-large-amount-of-concurrent-message-operations) guidelines or send messages sequentially.
 
 Throttling can happen during any send or receive operation and can happen during the following scenarios:
 
@@ -106,19 +106,15 @@ For incoming messages throttling errors can be safely ignored as the message pum
 
 #### Sending from within a handler
 
-Failing message sends raise an exception when throttled. The exception will be handled by the [recoverability feature](/nservicebus/recoverability/). An incoming message that continuously fails due to throttling errors will be moved to the error queue.
+Failing message sends raise an exception when throttled. The exception will be handled by the [recoverability feature](/nservicebus/recoverability/) mechanism. An incoming message that continuously fails due to throttling errors will be moved to the error queue.
 
-A throttling error could result in partial message delivery while the incoming message is not processed succesfully and can occur regardless of using the default [batched message dispatch](/nservicebus/messaging/batched-dispatch.md) or when using [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately).
+A throttling error could result in partial message delivery while the incoming message is not processed successfully and can occur regardless of using the default [batched message dispatch](/nservicebus/messaging/batched-dispatch.md) or when using [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately).
 
 Throttling errors are similar to any other technical error that can occur.
 
 
 #### Sending outside of a handler
 
-As message sending does not happen within a handler context any failures during sending will not rely or be covered by the [recoverability feature](/nservicebus/recoverability/). Any retry logic must be manually implemented.
+As message sending does not happen within a handler context any failures during sending will not rely or be covered by the [recoverability feature](/nservicebus/recoverability/) mechanism. Any retry logic must be manually implemented.
 
-When throttling occurs with no custom error logic implemented one or more messages might not have been transmitted to Amazon SQS. The custom retry logic could either retry all messages to be sent again including already succeeded messages or only retry individual messages that failed.
-
-
-
-
+When throttling occurs with no custom error logic implemented, one or more messages might not have been transmitted to Amazon SQS. The custom retry logic could either retry all messages to be sent again, including already succeeded messages or only retry individual messages that failed.
