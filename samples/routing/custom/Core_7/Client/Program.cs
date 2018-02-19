@@ -13,7 +13,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Client");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 

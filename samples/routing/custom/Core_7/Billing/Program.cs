@@ -9,7 +9,7 @@ class Program
         Console.Title = "Samples.CustomRouting.Billing";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Billing");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
