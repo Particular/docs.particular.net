@@ -43,7 +43,7 @@ If an incoming message is found in Outbox storage, then it is treated as a dupli
 
 Even though an incoming message has been processed and business data has been saved, the framework might fail to immediately send the downstream messages. For example, the message queueing system may be unavailable, or the NServiceBus endpoint may be stopped before the messages can be dispatched. However, whenever an NServiceBus endpoint is started or is already running, and the framework detects downstream messages in Outbox storage which are not marked as dispatched, it will attempt to dispatch them at that time.
 
-Note: On the wire level, the Outbox guarantees `at-least-once` message delivery, meaning downstream messages may be sent and processed multiple times. At the handler level, however, the Outbox guarantees only transactionally exact-once or non-transactional at-least-once message processing, identital to distributed transactions. This higher guarantee level is due to the deduplication that happens on the receiving side.
+Note: On the wire level, the Outbox guarantees `at-least-once` message delivery, meaning downstream messages may be sent and processed multiple times. At the handler level, however, the Outbox guarantees only transactionally exact-once or non-transactional at-least-once message processing, identical to distributed transactions. This higher guarantee level is due to the deduplication that happens on the receiving side.
 
 
 ## Important design considerations
