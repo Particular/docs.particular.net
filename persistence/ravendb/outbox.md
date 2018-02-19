@@ -1,7 +1,7 @@
 ---
 title: Outbox with RavenDB persistence
 component: Raven
-reviewed: 2016-08-24
+reviewed: 2018-02-19
 versions: '[2.0,)'
 tags:
  - Outbox
@@ -14,7 +14,7 @@ reviewed: 2017-08-21
 
 include: dtc-warning
 
-The [Outbox](/nservicebus/outbox) feature requires persistence in order to store the messages and enable deduplication.
+The [Outbox](/nservicebus/outbox) feature requires persistence in order to store messages and enable deduplication.
 
 
 ## Extra collections created by the RavenDB Outbox persistence
@@ -30,7 +30,7 @@ These default settings can be changed by specifying new defaults in the settings
 
 snippet: OutboxRavendBTimeToKeep
 
-By specifying a value of -1 (`Timeout.InfiniteTimeSpan`) for `SetFrequencyToRunDeduplicationDataCleanup` the cleanup task is disabled. This can be usefull when an endpoint is scaled out and instances are competing to run the cleanup task.
+By specifying a value of -1 (`Timeout.InfiniteTimeSpan`) for `SetFrequencyToRunDeduplicationDataCleanup` the cleanup task is disabled. This can be useful when an endpoint is scaled out and instances are competing to run the cleanup task.
 
 
 partial: effect-on-docstore
