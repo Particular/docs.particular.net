@@ -1,6 +1,6 @@
 ---
 title: Multiple ServiceControl Instances
-reviewed: 2017-07-16
+reviewed: 2018-02-20
 component: ServiceControl
 ---
 
@@ -56,15 +56,19 @@ As an example two ServiceControl instances are used where one is the master and 
 1. Start ServiceControl master.
 1. Validate ServiceInsight and ServicePulse are connecting to the master instance only.
 
-### Spliting an existing installation
+### Splitting an existing installation
 
 This section walks through converting a single existing ServiceControl installation into a master-slave configuration.
+
+1. Add an additional ServiceControl instance intended to inject audit messages only. Disable Error queue processing. This will be a slave instance.
+2. Configure endpoints to send audit messages to the newly added ServiceControl instance.
+3. Make the original endpoint a designated master by adding `ServiceControl/RemoteInstances` setting, pointing to the slave instance of ServiceControl.
 
 ### Advanced scenarios
 
 #### Electing a new master
 
-Useful or not?
+QUESTION: Useful or not?
 
 Server Slow: Master (7 days, error enabled, audit enabled)
 Server Fast 1: Slave 1 (error disabled, audit enabled)
@@ -80,21 +84,21 @@ Point tools to Slave 1 which is the new master
 
 ServiceInsight connected to
 - ServiceControl with Audit and Error disabled
-- ServiceControl points to Region A and Region B SC endpoint
+- ServiceControl points to Region A and Region B ServiceControl instances
 
 Region A:
-- SP Region A connected to SC Region A
+- ServicePulse Region A connected to ServiceControl Region A
 
 Region B:
-- SP Region B connected to SC Region B
+- ServicePulse Region B connected to ServiceControl Region B
 
 ### Known Constraints / Issues
 
 - Only supports Audits
-- SC Master instances must be configured with Address and API URI of remotes - JSON string
-- Paging for message view in SI is wonky
+- ServiceControl Master instances must be configured with Address and API URI of remotes - JSON string
+- ServiceInsight pagination doesn't work as traditional pagination would
 - Data from remote instances that cannot be reached by the master instance will not be included in the results
-- Cyclic loops could be created if not configured carefully
+- Incorrect configuration could introduce cyclic loops
 - Having multiple masters is discouraged
 
 ### Disabling Auditing
