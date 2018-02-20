@@ -4,6 +4,22 @@ reviewed: 2017-07-16
 component: ServiceControl
 ---
 
+NOTE: A multi-instance ServiceControl installation might be more complex to maintain. Before splitting ServiceControl it is recommended to follow the capacity planning guides described in the [ServiceControl Capacity Planning](/servicecontrol/capacity-and-planning.md) documentation.
+
+Operating ServiceControl at scale with many endpoints producing many thousands of audit messages per second can lead to bottlenecks and congestions when a single Service Control instance is used. ServiceControl can be operated in a "multi-instance mode" which allows to overcome the bottlenecks of a single ServiceControl instance. 
+
+Running multiple instances of ServiceControl is supported to reduce the load of a ServiceControl instance by spliting the audit queue into multiple audit queues. In a message based system the audit queue, in contrast to the error queue for recoverability purposes, is the queue with the most load since all consumed messages are forwarded to the audit queue. ServiceControl ingests the messages available in the audit queue and aggregates them for querying and analysis purposes in [ServiceInsight](/serviceinsight/). 
+
+Aggregating the data for querying and analysis takes up considerable amount of computation, memory as well as queuing system ressources. Under high load a single instance might not be able to keep up with indexing that data and the audited messages might start piling up. Under occasional spiky loads this might not be a problem since ServiceControl will eventually catch up processing the data. Under continuous high load it might make sense to split up ServiceControl into multiple instances and the single audit queue into multiple audit queues. 
+
+The following high-level actions need to be taken:
+
+- A ServiceControl master instance needs to be installed and configured to route API queries to its slave instances
+- One or multiple ServiceControl slave instances need to be installed
+- Endpoints need to route audited messages to different [audit queues](/nservicebus/operations/auditing.md) either of the master or one of the slaves
+
+WARN: Recoverability or error queue handling with multiple ServiceControl instances is not supported. Thus all endpoints still need to route error messages to a centralized [error queue](/nservicebus/recoverability/configure-error-handling.md).
+
 ### Known Constraints / Issues
 
 - Only supports Audits
