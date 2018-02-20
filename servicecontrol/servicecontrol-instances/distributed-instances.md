@@ -20,14 +20,51 @@ The following high-level actions need to be taken:
 
 WARN: Recoverability or error queue handling with multiple ServiceControl instances is not supported. Thus all endpoints still need to route error messages to a centralized [error queue](/nservicebus/recoverability/configure-error-handling.md).
 
+### Multi-instance installation
+
+This chapter walks through a fresh installation of multiple ServiceControl instances. 
+
+```mermaid
+graph TD
+SI[ServiceInsight] -. connected to .->Master
+SP[ServicePulse] -. connected to .-> Master
+Endpoints -- audits to--> AuditsMain[audit-main]
+OtherEndpoints -- audits to--> AuditsSlave(audit-slave)
+Endpoints -- errors to --> Errors(error)
+OtherEndpoints -- errors to --> Errors(error)
+Master[ServiceControl<br/>Master]
+Slave[ServiceControl<br/>Slave]
+AuditsMain -- ingested by --> Master
+Errors-- ingested by --> Master
+AuditsSlave -- ingested by --> Slave
+Master -. connected to .-> Slave
+```
+
+As an example two ServiceControl instances are used where one is the master and the other one the slave for auditing. Some of the endpoints will forward their audit messages to `audit-main` while some of the endpoints will forward their audit messages to `audit-slave`. All error messages are forwared to `error` queue. ServiceInsight and ServicePulse are connected to the master instance.
+
+### Spliting an existing installation
+
+### Advanced scenarios
+
+#### Multi-region handling
+
+#### Optimizations
+
 ### Known Constraints / Issues
 
 - Only supports Audits
 - SC Master instances must be configured with Address and API URI of remotes - JSON string
 - Paging for message view in SI is wonky
 - Data from remote instances that cannot be reached by the master instance will not be included in the results
+- Cyclic loops could be created if not configured carefully
+- Having multiple masters is discouraged
 
 ### Disabling Recoverability
 
 - Set Error queue name to `!disabled`
 - Error forwarding, if enabled, will be ignored.
+
+### Disabling Auditing
+
+- Set Audit queue name to `!disabled`
+- Audit forwarding, if enabled, will be ignored.
