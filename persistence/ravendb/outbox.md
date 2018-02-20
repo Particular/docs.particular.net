@@ -30,7 +30,7 @@ These default settings can be changed by specifying new defaults in the settings
 
 snippet: OutboxRavendBTimeToKeep
 
-By specifying a value of -1 (`Timeout.InfiniteTimeSpan`) for `SetFrequencyToRunDeduplicationDataCleanup` the cleanup task is disabled. This can be useful when an endpoint is scaled out and instances are competing to run the cleanup task.
+By specifying a value of -1 millisecond (`Timeout.InfiniteTimeSpan` or string value `"-00:00:00.001"`) for `SetFrequencyToRunDeduplicationDataCleanup` the cleanup task is disabled. This can be useful when an endpoint is scaled out and instances are competing to run the cleanup task. If you want to pass a string value use the value .
 
 
 partial: effect-on-docstore
