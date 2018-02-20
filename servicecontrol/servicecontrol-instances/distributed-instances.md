@@ -43,7 +43,7 @@ Master -. connected to .-> Slave
 As an example two ServiceControl instances are used where one is the master and the other one the slave for auditing. Some of the endpoints will forward their audit messages to `audit-master` while some of the endpoints will forward their audit messages to `audit-slave`. All error messages are forwared to `error` queue. ServiceInsight and ServicePulse are connected to the master instance.
 
 1. Install ServiceControl master instance which points to `audit-master` according to the [installation guidelines](https://docs.particular.net/servicecontrol/installation).
-1. Install ServiceControl slave instance which points to `audit-slave` according to the [installation guidelines](https://docs.particular.net/servicecontrol/installation). The ServiceControl instance name and the port are required to configure the master instance. For example `Particular.ServiceControl.Slave` and the port `33334`. Make sure the error queue processing is disabled by either entering `!disable` into the error queue field in the ServiceControl Management or passing as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script. 
+1. Install ServiceControl slave instance which points to `audit-slave` according to the [installation guidelines](https://docs.particular.net/servicecontrol/installation). The ServiceControl instance name and the port are required to configure the master instance. For example `Particular.ServiceControl.Slave` and the port `33334`. Make sure the error queue processing is disabled by either entering `!disable` into the error queue field in the ServiceControl Management or passing as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script. Error forwarding, if enabled, will be ignored.
 1. Stop the ServiceControl master instance and edit the [`ServiceControl.exe.config` ](/servicecontrol/creating-config-file.md) with the `RemoteInstances` key. The value for the key is a json array.
 
 ```xml
@@ -58,11 +58,35 @@ As an example two ServiceControl instances are used where one is the master and 
 
 ### Spliting an existing installation
 
+This section walks through converting a single existing ServiceControl installation into a master-slave configuration.
+
 ### Advanced scenarios
+
+#### Electing a new master
+
+Useful or not?
+
+Server Slow: Master (7 days, error enabled, audit enabled)
+Server Fast 1: Slave 1 (error disabled, audit enabled)
+Server Fast 2: Slave 2 (error disabled, audit enabled)
+
+endpoints point to Slave 1 Audit and Slave 2 audit
+after 7 days
+Configure slave 1 to be the new master, enable error
+Shutdown master
+Point tools to Slave 1 which is the new master
 
 #### Multi-region handling
 
-#### Optimizations
+ServiceInsight connected to
+- ServiceControl with Audit and Error disabled
+- ServiceControl points to Region A and Region B SC endpoint
+
+Region A:
+- SP Region A connected to SC Region A
+
+Region B:
+- SP Region B connected to SC Region B
 
 ### Known Constraints / Issues
 
@@ -72,11 +96,6 @@ As an example two ServiceControl instances are used where one is the master and 
 - Data from remote instances that cannot be reached by the master instance will not be included in the results
 - Cyclic loops could be created if not configured carefully
 - Having multiple masters is discouraged
-
-### Disabling Recoverability
-
-- Set Error queue name to `!disabled`
-- Error forwarding, if enabled, will be ignored.
 
 ### Disabling Auditing
 
