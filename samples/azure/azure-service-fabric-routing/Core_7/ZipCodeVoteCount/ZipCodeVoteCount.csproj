@@ -7,13 +7,13 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="WindowsAzure.ServiceBus" Version="4.*" />
-    <PackageReference Include="Microsoft.ServiceFabric.Data" Version="2.7.*" />
-    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.7.*" />
+    <PackageReference Include="WindowsAzure.ServiceBus" Version="4.1.7" />
+    <PackageReference Include="Microsoft.ServiceFabric.Data" Version="3.0.456" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="3.0.456" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="8.0.0-*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Persistence.ServiceFabric" Version="2.0.0-*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <ProjectReference Include="..\Contracts\Contracts.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
