@@ -2,6 +2,7 @@
 title: Getting Started
 summary: Quick list of instructions and hints to get started with NServiceBus and the Particular Service Platform
 reviewed: 2018-02-19
+suppressRelated: true
 ---
 
 ## Basics
