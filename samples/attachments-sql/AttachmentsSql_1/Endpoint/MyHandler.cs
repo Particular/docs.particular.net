@@ -23,7 +23,8 @@ public class MyHandler :
                 {
                     while (true)
                     {
-                        var line = await reader.ReadLineAsync();
+                        var line = await reader.ReadLineAsync()
+                            .ConfigureAwait(false);
                         if (line == null)
                         {
                             break;

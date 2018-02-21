@@ -50,7 +50,8 @@ class Program
                         return File.OpenRead("fileToStream.txt");
                     });
 
-                await endpoint.Send(new MyMessage(), sendOptions);
+                await endpoint.Send(new MyMessage(), sendOptions)
+                    .ConfigureAwait(false);
                 #endregion
                 continue;
             }
