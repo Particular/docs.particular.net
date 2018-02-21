@@ -66,9 +66,28 @@ This section walks through converting a single existing ServiceControl installat
 
 ### Advanced scenarios
 
-#### Electing a new master
+#### Audit retention
 
-QUESTION: Useful or not?
+```mermaid
+graph TD
+SI[ServiceInsight] -. connected to .->Master
+SP[ServicePulse] -. connected to .-> Master
+HighVolumeEndpoints -- audits to--> AuditsHigh[audit-high]
+LowVolumeEndpoints -- audits to--> AuditsLow(audit-low)
+Master[ServiceControl<br/>Master<br/>Retention: 1day]
+Slave[ServiceControl<br/>Slave<br/>Retention: 7days]
+AuditsHigh-- ingested by --> Master
+AuditsLow-- ingested by --> Slave
+Master -. connected to .-> Slave
+```
+
+Each ServiceControl instance can have different settings. For example it is possible to have different [audit retention periods](/servicecontrol/creating-config-file.md#data-retention-servicecontrolauditretentionperiod). With that in mind high volume endpoints can report audits to a ServiceControl instance with shorter retention periods (thus evicting old messages faster). This allows to cater settings as well as ressources being used by ServiceControl to the needs of the endpoints configured to audit to a specific ServiceControl instance.
+
+#### Migration
+
+Sometimes it is required to migrate a ServiceControl master to a different machine with more hardware ressources. By taking the audit retention period into account it is possible to migrate ServiceControl instances without needing to backup and restore data.
+
+Describe
 
 Server Slow: Master (7 days, error enabled, audit enabled)
 Server Fast 1: Slave 1 (error disabled, audit enabled)
@@ -92,12 +111,13 @@ Region A:
 Region B:
 - ServicePulse Region B connected to ServiceControl Region B
 
-### Known Constraints / Issues
+### Known Limitations
 
-- Only supports Audits
-- ServiceControl Master instances must be configured with Address and API URI of remotes - JSON string
-- ServiceInsight pagination doesn't work as traditional pagination would
+- Splitting into multiple ServiceControl instances is only supported for auditing
+- Only one ServiceControl instance should have error handling / recoverability enabled (usually the master) unless the multi-region scenario is used
+- Pagination with ServiceInsight doesn't work as traditional pagination would. For example pages might be filled unevenly depending on how the load is scattered between the different ServiceControl instances that are aggregated
 - Data from remote instances that cannot be reached by the master instance will not be included in the results
+- Multi-instance configuration is a manual setup process and cannot be done via the ServiceControl Management
 - Incorrect configuration could introduce cyclic loops
 - Having multiple masters is discouraged
 
