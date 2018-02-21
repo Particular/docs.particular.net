@@ -25,36 +25,36 @@ The Outbox feature can be used instead of the DTC, to mimic the same level of co
 
 ## How it works
 
-The Outbox feature is implemented using the [Outbox](http://gistlabs.com/2014/05/the-outbox/) and the [Deduplication](https://en.wikipedia.org/wiki/Data_deduplication#In-line_deduplication) patterns.
+The Outbox feature is implemented using the [outbox](http://gistlabs.com/2014/05/the-outbox/) and the [deduplication](https://en.wikipedia.org/wiki/Data_deduplication#In-line_deduplication) patterns.
 
-Every time an incoming message is processed, a copy of that message is stored in the persistent _Outbox storage_. Whenever a new message is received, the framework determines whether that message has been processed already by checking for its presence in Outbox storage.
+Every time an incoming message is processed, a copy of that message is stored in the persistent _outbox storage_. Whenever a new message is received, the framework determines whether that message has been processed already by checking for its presence in outbox storage.
 
-If the message is not found in Outbox storage then it is processed in the regular way, shown in the following diagram:
+If the message is not found in outbox storage then it is processed in the regular way, shown in the following diagram:
 
 ![No DTC Diagram](outbox.svg)
 
 Processing a new incoming message consists of the following steps:
 
  * The handlers responsible for processing the message are invoked.
- * The _downstream messages_ (messages sent while processing the message, e.g. from inside handlers) are stored in Outbox storage and business data is saved. Both operations are executed within a single (non-distributed) transaction.
- * The downstream messages are sent and then marked as _dispatched_ in Outbox storage.
+ * The _downstream messages_ (messages sent while processing the message, e.g. from inside handlers) are stored in outbox storage and business data is saved. Both operations are executed within a single (non-distributed) transaction.
+ * The downstream messages are sent and then marked as _dispatched_ in outbox storage.
 
-If an incoming message is found in Outbox storage, then it is treated as a duplicate and is not processed again.
+If an incoming message is found in outbox storage, then it is treated as a duplicate and is not processed again.
 
-Even though an incoming message has been processed and business data has been saved, the framework might fail to immediately send the downstream messages. For example, the message queueing system may be unavailable, or the NServiceBus endpoint may be stopped before the messages can be dispatched. However, whenever an NServiceBus endpoint is started or is already running, and the framework detects downstream messages in Outbox storage which are not marked as dispatched, it will attempt to dispatch them at that time.
+Even though an incoming message has been processed and business data has been saved, the framework might fail to immediately send the downstream messages. For example, the message queueing system may be unavailable, or the NServiceBus endpoint may be stopped before the messages can be dispatched. However, whenever an NServiceBus endpoint is started or is already running, and the framework detects downstream messages in outbox storage which are not marked as dispatched, it will attempt to dispatch them at that time.
 
 Note: On the wire level, the Outbox guarantees `at-least-once` message delivery, meaning downstream messages may be sent and processed multiple times. At the handler level, however, the Outbox guarantees only transactionally exact-once or non-transactional at-least-once message processing, identical to distributed transactions. This higher guarantee level is due to the deduplication that happens on the receiving side.
 
 
 ## Important design considerations
 
-WARNING: Because the Outbox uses a single (non-distributed) database transaction to store all data, the business data and Outbox storage *must exist in the same database*.
+WARNING: Because the Outbox uses a single (non-distributed) database transaction to store all data, the business data and outbox storage *must exist in the same database*.
 
  * The Outbox feature works only for messages sent from NServiceBus message handlers.
  * Endpoints using DTC can only communicate with endpoints using the Outbox if either of the following conditions are satisfied:
    * Endpoints using the Outbox do not send messages to endpoints using DTC. However, endpoints using DTC can send messages to endpoints using the Outbox.
    * If endpoints using the Outbox send messages to endpoints using DTC, then the handlers processing those messages are [idempotent](https://en.wikipedia.org/wiki/Idempotence).
- * The Outbox may generate duplicate messages if outgoing messages are successfully dispatched but the _Mark as dispatched_ phase fails. This may happen for a variety of reasons, including _Outbox storage_ connectivity issues and deadlocks.
+ * The Outbox may generate duplicate messages if outgoing messages are successfully dispatched but the _Mark as dispatched_ phase fails. This may happen for a variety of reasons, including _outbox storage_ connectivity issues and deadlocks.
 
 
 ## Enabling the Outbox
@@ -81,47 +81,47 @@ WARNING: When verifying outbox functionality, it can sometimes be helpful to tem
 
 ## Message identity and idempotent processing
 
-If handlers are idempotent then outbox might not be required at all. Outbox relies on message identity to guarantee consistency. When using outbox on both the sender and receiver message identifiers are consistent if a handler is invoked more-than-once for a message. If a sender does not use the outbox or when sending a message outside of a handler the sender *must* generate and apply the same message identifier to guarantee consistency at the receiver. [Read more on how to set a message identifier.](/nservicebus/messaging/message-identity.md)
+Using the Outbox might not be required if message handlers are idempotent. If the Outbox is needed, it will rely on [message identity](/nservicebus/messaging/message-identity.md) to perform deduplication. 
+
+If an endpoint is configured to use Outbox, and it sends a message more than once, those messages will all have the same identifier value. The consistency of the identifier value across the duplicate messages is enforced by the Outbox.
+
+If the endpoint does not use Outbox when sending messages, or if a message is sent outside of a handler, the code that is sending the message is responsible for ensuring that the identifier value is consistent when that message is sent multiple times. This will ensure that when the receiving handler's outbox instance sees the incoming messages it identifies them as being identical. At that point, the receiving outbox is able to deduplicate the identical messages.
+
+Some transports have message deduplication built into them natively. This deduplication operates at the infrastructure level and doesn't rely out Outbox or any NServiceBus code. It is important to ensure that identity is managed by the code that is sending the messages. 
 
 ## Concurrency
 
-Outbox cannot guarantee that handlers or sagas are invoked exactly once. Outbox does not prevent concurrent attempts to process the same message but ensures that the outcome of the processing is persisted only once for resources that share the outbox transaction.
+ Outbox doesn't prevent concurrent attempts to process the same message. What Outbox can do is ensure that the outcome, when processing multiple copies of the same message, is persisted only once for resources that share the outbox transaction.
 
-The following scenarios might cause handlers to be invoked multiple times:
+Processing of multiple messages can occur if there are multiple physical copies of a message in the queue and if there are multiple ways for messages to be processed at the same time. This will occur if and endpoint:
+- has a concurrency setting greater than 1
+- is scaled out and running as multiple processes
 
-- When a sender sends multiple physical message with the same message identifier. An example is a order form which is submitted multiple times.
-- When a transport performs a failover and operates in a at-least-once delivery model and has not marked a message as processed while this is the case but the acknowledgement was not processed by the tranport yet.
-- When a failure occurs during the outbox dispatch stage. The dispatch stage will to be invoked more-than-once and each time message can message can partially be delivered to the transport infrastructure.
-
-In the above scenarios, multiple physical copies of the same logical message exist in the queue. If an endpoint allows concurrent message processing, or it is scaled out, its possible that the multiple copies of the message can be processed concurrently.
-
+In either of these situations it is possible that multiple physical copies of the message will be retrieved from the queue and processed simultaneously.
 
 ## Non transactional resources
 
-If non-transactional resources are being accessed then make sure processing is idempotent. Non-transactional resources are not guaranteed to be handled in an idempotent way by the Outbox. If more-than-once invocation is not wanted, then this can be prevented almost completely by making sure that only a single endpoint instance is running and having [configured that endpoint with a maximum concurrency of 1](/nservicebus/operations/tuning.md#tuning-concurrency). Only data modified via a shared storage session is made idempotent via the outbox and has exact-once semantics. See [persistence specific documention](/nservicebus/outbox/#Persistence) on how to obtain the shared storage session.
+When accessing non-transactional resources, such as a REST endpoint, as part of a message handler it is important to ensure that message processing is idempotent. Outbox does not guarantee that it will handle non-transactional resources in an idempotent manner. To prevent more-than-once invocation of a non-transactional resource, configure the endpoint to have a [maximum concurrency of 1](/nservicebus/operations/tuning.md#tuning-concurrency).
 
-NOTE: This problem is not specific to Outbox but mentioned here as sometimes it is assumed Outbox does deduplication that prevents more-than-once invocation.
+NOTE: Invoking non-transactional resources multiple times is not a problem that is specific to Outbox. Its mentioned here since it is commonly assumed that outbox deduplication will prevent more-than-once invocation.
 
 Try to avoid mixing transactional and non transactional tasks. If performing non transactional tasks send a message to perform this task in isolation.
 
 
 ## Outbox expiration duration
 
-Part of the purpose of the outbox is to guarantee that the data remains consistent if the same message is processed more than once. A message with the exact same identification can be detected and ignored. The identification data for each outbox record is retained. The default duration that the data is retained for will vary depending on the persistence chosen for the outbox. The default duration, as well as the frequency of data removal, can be overrode for all outbox persistences.
+Part of the purpose of the Outbox is to guarantee that the data remains consistent if the same message is processed more than once. A message with the exact same identification can be detected and ignored. To determine if a message has been processed before, the identification data for each outbox record is retained. The duration that this data is retained for will vary depending on the persistence chosen for the Outbox. The default duration, as well as the frequency of data removal, can be overrode for all outbox persistences.
 
-Ensure that the retention period of the outbox is longer than the maximum time the message can be retried, including delayed retries and manual retries via ServiceControl. Additional care must be taken by operators of ServicePulse to not retry messages older than the outbox retention period.
+It is important to ensure that the retention period of outbox data is longer than the maximum time the message can be retried, including delayed retries and manual retries via ServiceControl. Additional care must be taken by operators of ServicePulse to not retry messages older than the Outbox retention period. If a message is processed, manually or automatically, after the outbox data retention period has lapsed, that message will be seen as the first of its kind and it will not be deduplicated.
 
+Most outbox persisters run a cleanup task every minute, but the exact frequency varies depending on the persistence that is chosen.
 
-## Outbox cleanup interval
-
-Outbox cleanup varies depending on the persistence that is chosen. Most persisters run a cleanup task every minute.
-
-Depending on the throughput of the system's endpoints, the Outbox cleanup interval can be run more frequently. This will allow each cleanup operation to purge the fewest records possible each time it runs, which will allow the cleanup to execute faster.
+Depending on the throughput of the system's endpoints, the outbox cleanup interval may need to be run more frequently. Increased frequency will allow each cleanup operation to purge the fewest records possible each time it runs. Purging fewer records will make the purge operation run faster which will ensure that it completes before the next purge operation is due to start.
 
 
-## Required storage
+## Storage requirements
 
-Outbox requires storage. The amount of storage space required for Outbox can be calculated as follows:
+The amount of storage space required for Outbox can be calculated as follows:
 
     Total outbox records = Message througput per second * Deduplication period in seconds
 
@@ -131,9 +131,9 @@ NOTE: If the system is processing a high volume of messages, having a long dedup
 
 ## Persistence
 
-The Outbox feature requires persistence in order to perform deduplication and store outgoing downstream messages.
+The Outbox feature requires persistence in order to perform deduplication and to store outgoing downstream messages.
 
-For more information refer to the dedicated persistence pages:
+For more information on the outbox persistence options available refer to the dedicated persistence pages:
 
 - [NHibernate](/persistence/nhibernate/outbox.md)
 - [RavenDB](/persistence/ravendb/outbox.md)
