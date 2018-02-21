@@ -98,6 +98,7 @@ The following scenarios might cause handlers to be invoked multiple times:
 
 In the above scenarios, multiple physical copies of the same logical message exist in the queue. If an endpoint allows concurrent message processing, or it is scaled out, its possible that the multiple copies of the message can be processed concurrently.
 
+
 ## Non transactional resources
 
 If non-transactional resources are being accessed then make sure processing is idempotent. Non-transactional resources are not guaranteed to be handled in an idempotent way by the Outbox. If more-than-once invocation is not wanted, then this can be prevented almost completely by making sure that only a single endpoint instance is running and having [configured that endpoint with a maximum concurrency of 1](/nservicebus/operations/tuning.md#tuning-concurrency). Only data modified via a shared storage session is made idempotent via the outbox and has exact-once semantics. See [persistence specific documention](/nservicebus/outbox/#Persistence) on how to obtain the shared storage session.
@@ -113,6 +114,14 @@ Part of the purpose of the outbox is to guarantee that the data remains consiste
 
 Ensure that the retention period of the outbox is longer than the maximum time the message can be retried, including delayed retries and manual retries via ServiceControl. Additional care must be taken by operators of ServicePulse to not retry messages older than the outbox retention period.
 
+
+## Outbox cleanup interval
+
+Outbox cleanup varies depending on the persistence that is chosen. Most persisters run a cleanup task every minute.
+
+Depending on the throughput of the system's endpoints, the Outbox cleanup interval can be run more frequently. This will allow each cleanup operation to purge the fewest records possible each time it runs, which will allow the cleanup to execute faster.
+
+
 ## Required storage
 
 Outbox requires storage. The amount of storage space required for Outbox can be calculated as follows:
@@ -122,13 +131,6 @@ Outbox requires storage. The amount of storage space required for Outbox can be 
 A single outbox record, after all transport operations have been dispatched, usually requires less than 50 bytes of which most are taken for storing the original message ID as this is a string value.
 
 NOTE: If the system is processing a high volume of messages, having a long deduplication timeframe will increase the amount of storage space that is required by Outbox.
-
-## Outbox cleanup interval
-
-Outbox cleanup varies depending on the persistence that is chosen. Most persisters run a cleanup task every minute.
-
-Depending on the throughput of the system's endpoints, the Outbox cleanup interval can be run more frequently. This will allow each cleanup operation to purge the fewest records possible each time it runs, which will allow the cleanup to execute faster.
-
 
 ## Persistence
 
