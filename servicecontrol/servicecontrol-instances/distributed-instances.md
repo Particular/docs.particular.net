@@ -43,7 +43,18 @@ Master -. connected to .-> Slave
 As an example two ServiceControl instances are used where one is the master and the other one the slave for auditing. Some of the endpoints will forward their audit messages to `audit-master` while some of the endpoints will forward their audit messages to `audit-slave`. All error messages are forwared to `error` queue. ServiceInsight and ServicePulse are connected to the master instance.
 
 1. Install ServiceControl master instance which points to `audit-master` according to the [installation guidelines](https://docs.particular.net/servicecontrol/installation).
-1. Install ServiceControl slave instance which points to `audit-slave` according to the [installation guidelines](https://docs.particular.net/servicecontrol/installation). The ServiceControl instance name and the port are required to configure the master instance. For example `Particular.ServiceControl.Slave` and the port `33334`. Make sure the error queue processing is disabled by either entering `!disable` into the error queue field in the ServiceControl Management or passing as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script. Error forwarding, if enabled, will be ignored.
+1. Install ServiceControl slave instance which points to `audit-slave` according to the [installation guidelines](https://docs.particular.net/servicecontrol/installation). The ServiceControl instance name and the port are required to configure the master instance. For example `Particular.ServiceControl.Slave` and the port `33334`. Make sure the error queue processing is disabled by either entering `!disable` into the error queue field in the ServiceControl Management, passing as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script or editing `ServiceControl.exe.config` like shown below
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <appSettings>
+        <add key="ServiceBus/ErrorQueue" value="!disabled" />
+    </appSettings>
+</configuration>
+```
+
+Error forwarding, if enabled, will be ignored.
 1. Stop the ServiceControl master instance and edit the [`ServiceControl.exe.config` ](/servicecontrol/creating-config-file.md) with the `RemoteInstances` key. The value for the key is a json array.
 
 ```xml
@@ -111,6 +122,32 @@ Region A:
 Region B:
 - ServicePulse Region B connected to ServiceControl Region B
 
+#### Configuration of multiple slaves
+
+Multiple slave instances can be configured like shown below.
+
+```xml
+<configuration>
+  <appSettings>
+    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Slave1'},{'api_uri':'http://localhost:33335/api', 'queue_address':'Particular.ServiceControl.Slave2'}]'"/>
+  </appSettings>/
+</configuration>
+```
+
+#### Disabling Auditing
+
+With multiple instances in place it is possible to disable the auditing in the master and only audit in the slaves. Auditing can be disabled by adding `!disabled` to the audit queue name configuration either in the ServiceControl Management utility or by editing the `ServiceControl.exe.config` like shown below.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <appSettings>
+        <add key="ServiceBus/AuditQueue" value="!disabled" />
+    </appSettings>
+</configuration>
+```
+Audit forwarding, if enabled, will be ignored.
+
 ### Known Limitations
 
 - Splitting into multiple ServiceControl instances is only supported for auditing
@@ -120,8 +157,3 @@ Region B:
 - Multi-instance configuration is a manual setup process and cannot be done via the ServiceControl Management
 - Incorrect configuration could introduce cyclic loops
 - Having multiple masters is discouraged
-
-### Disabling Auditing
-
-- Set Audit queue name to `!disabled`
-- Audit forwarding, if enabled, will be ignored.
