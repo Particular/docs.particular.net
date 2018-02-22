@@ -41,7 +41,8 @@ public class OrdersHandler : IHandleMessages<SubmitOrder>
 
 Jump into our [Quick Start](/tutorials/quickstart/) and build your first end-to-end NServiceBus solution in just 15 minutes. Covering all the elements of one-way messaging, publish-subscribe, and automatic recovery from exceptions, you'll know just enough to be dangerous.
 
-[Let's go!](/tutorials/quickstart/)
+<div class="text-center inline-download"><a href="/tutorials/quickstart/" class="btn btn-primary btn-lg">Let's go! <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+</div>
 
 ## Other resources
 
