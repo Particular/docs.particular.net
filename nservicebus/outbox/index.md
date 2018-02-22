@@ -79,42 +79,16 @@ In order to gradually convert an entire system from the DTC to the Outbox:
 WARNING: When verifying outbox functionality, it can sometimes be helpful to temporarily [stop the MSDTC Service](https://technet.microsoft.com/en-us/library/cc770732.aspx). This ensures that the Outbox is working as expected, and no other resources are enlisting in distributed transactions.
 
 
-## Message identity and idempotent processing
+## Message identity
 
-Using the Outbox might not be required if message handlers are idempotent. If the Outbox is needed, it will rely on [message identity](/nservicebus/messaging/message-identity.md) to perform deduplication. 
-
-If an endpoint is configured to use Outbox, and it sends a message more than once, those messages will all have the same identifier value. The consistency of the identifier value across the duplicate messages is enforced by the Outbox.
-
-If the endpoint does not use Outbox when sending messages, or if a message is sent outside of a handler, the code that is sending the message is responsible for ensuring that the identifier value is consistent when that message is sent multiple times. This will ensure that when the receiving handler's outbox instance sees the incoming messages it identifies them as being identical. At that point, the receiving outbox is able to deduplicate the identical messages.
-
-Some transports have message deduplication built into them natively. This deduplication operates at the infrastructure level and doesn't rely out Outbox or any NServiceBus code. It is important to ensure that identity is managed by the code that is sending the messages. 
-
-## Concurrency
-
- Outbox doesn't prevent concurrent attempts to process the same message. What Outbox can do is ensure that the outcome, when processing multiple copies of the same message, is persisted only once for resources that share the outbox transaction.
-
-Processing of multiple messages can occur if there are multiple physical copies of a message in the queue and if there are multiple ways for messages to be processed at the same time. This will occur if and endpoint:
-- has a concurrency setting greater than 1
-- is scaled out and running as multiple processes
-
-In either of these situations it is possible that multiple physical copies of the message will be retrieved from the queue and processed simultaneously.
-
-## Non transactional resources
-
-When accessing non-transactional resources, such as a REST endpoint, as part of a message handler it is important to ensure that message processing is idempotent. Outbox does not guarantee that it will handle non-transactional resources in an idempotent manner. To prevent more-than-once invocation of a non-transactional resource, configure the endpoint to have a [maximum concurrency of 1](/nservicebus/operations/tuning.md#tuning-concurrency).
-
-NOTE: Invoking non-transactional resources multiple times is not a problem that is specific to Outbox. Its mentioned here since it is commonly assumed that outbox deduplication will prevent more-than-once invocation.
-
-Try to avoid mixing transactional and non transactional tasks. If performing non transactional tasks send a message to perform this task in isolation.
+The outbox only uses the incoming [message identifier](/nservicebus/messaging/message-identity.md) as a unique key for deduplicating messages. If the sender does not use outbox when sending messages, it is responsible for ensuring that the message identifier value is consistent when that message is sent multiple times.
 
 
 ## Outbox expiration duration
 
-Part of the purpose of the Outbox is to guarantee that the data remains consistent if the same message is processed more than once. A message with the exact same identification can be detected and ignored. To determine if a message has been processed before, the identification data for each outbox record is retained. The duration that this data is retained for will vary depending on the persistence chosen for the Outbox. The default duration, as well as the frequency of data removal, can be overrode for all outbox persistences.
+To determine if a message has been processed before, the identification data for each outbox record is retained. The duration that this data is retained for will vary depending on the persistence chosen for the Outbox. The default duration, as well as the frequency of data removal, can be overriden for all outbox persistences.
 
-It is important to ensure that the retention period of outbox data is longer than the maximum time the message can be retried, including delayed retries and manual retries via ServiceControl. Additional care must be taken by operators of ServicePulse to not retry messages older than the Outbox retention period. If a message is processed, manually or automatically, after the outbox data retention period has lapsed, that message will be seen as the first of its kind and it will not be deduplicated.
-
-Most outbox persisters run a cleanup task every minute, but the exact frequency varies depending on the persistence that is chosen.
+After the outbox data retention period has lapsed, a retried message will be seen as the first of its kind and will be reprocessed. It is important to ensure that the retention period of outbox data is longer than the maximum time the message can be retried, including delayed retries and manual retries via ServicePulse.
 
 Depending on the throughput of the system's endpoints, the outbox cleanup interval may need to be run more frequently. Increased frequency will allow each cleanup operation to purge the fewest records possible each time it runs. Purging fewer records will make the purge operation run faster which will ensure that it completes before the next purge operation is due to start.
 
