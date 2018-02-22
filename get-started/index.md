@@ -5,8 +5,6 @@ reviewed: 2018-02-19
 suppressRelated: true
 ---
 
-## Basics
-
 The core principles of NServiceBus can be distilled to a simple API. For a deeper look into the API, check out the [Quick Start Tutorial](/tutorials/quickstart/) for a quick look at what NServiceBus can do, or the [Messaging Basics Tutorial](/tutorials/intro-to-nservicebus/) to really dig in and learn how NServiceBus works.
 
 
