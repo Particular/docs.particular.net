@@ -5,9 +5,7 @@ reviewed: 2018-02-19
 suppressRelated: true
 ---
 
-## Basics
-
-The core principles of NServiceBus can be distilled to a simple API. For a deeper look into the API, check out the [Quick Start Tutorial](/tutorials/quickstart/) for a quick look at what NServiceBus can do, or the [Messaging Basics Tutorial](/tutorials/intro-to-nservicebus/) to really dig in and learn how NServiceBus works.
+NServiceBus makes it quick and easy to send, process, and publish messages across a wide variety of on-premises and cloud-based queuing technologies. With all the low-level serialization, threading, and transaction management handled out-of-the box, just grab the nuget package and go:
 
 
 ### Installing
@@ -38,6 +36,13 @@ public class OrdersHandler : IHandleMessages<SubmitOrder>
 }
 ```
 
+
+## See it in action
+
+Jump into our [Quick Start](/tutorials/quickstart/) and build your first end-to-end NServiceBus solution in just 15 minutes. Covering all the elements of one-way messaging, publish-subscribe, and automatic recovery from exceptions, you'll know just enough to be dangerous.
+
+<div class="text-center inline-download"><a href="/tutorials/quickstart/" class="btn btn-primary btn-lg">Let's go! <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+</div>
 
 ## Other resources
 
