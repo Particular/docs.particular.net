@@ -26,7 +26,7 @@ Extract out the connection factory to a helper method
 
 snippet: OpenConnection
 
-Also uses the `NServiceBus.Attachments.TimeToKeep.Default` method for attachment cleanup. See [Controlling the lifetime of attachments](#controlling-attachment-lifetime)
+Also uses the `NServiceBus.Attachments.TimeToKeep.Default` method for attachment cleanup.
 
 This usage results in the following:
 
@@ -194,7 +194,7 @@ snippet: CustomMockMessageAttachments
 
 Putting these parts together allows a handler, using incoming attachments, to be tested.
 
-snippet: TestOutgoingHandler
+snippet: TestIncomingHandler
 
 snippet: TestIncoming
 
