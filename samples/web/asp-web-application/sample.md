@@ -1,7 +1,7 @@
 ---
-title: Using NServiceBus in a ASP.NET Web Application
+title: Using NServiceBus in an ASP.NET Web Application
 component: Core
-reviewed: 2016-03-21
+reviewed: 2018-02-23
 redirects:
 - nservicebus/using-nservicebus-in-a-asp.net-web-application
 related:
@@ -9,9 +9,9 @@ related:
 - nservicebus/hosting/publishing-from-web-applications
 ---
 
-Run the solution, a new browser window/tab opens, as well as a console application.
+Run the solution. A new browser window/tab opens, as well as a console application.
 
-Enter the number "1" into the text box in the browser, and click "Go". Notice the result "None" appear, as shown:
+Enter the number "1" into the text box in the browser and click "Go". Notice the result "None" appears, as shown:
 
 ![AsyncPages sample running](async-pages-running.png "AsyncPages sample running")
 

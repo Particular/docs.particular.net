@@ -1,8 +1,8 @@
 ---
-title: Newtonsoft Json Serializer
-summary: Use the Newtonsoft Json serializer in an endpoint.
-reviewed: 2016-03-21
-component: NewtonSoft
+title: Newtonsoft JSON Serializer
+summary: Using the Newtonsoft JSON serializer in an endpoint
+reviewed: 2018-02-19
+component: Newtonsoft
 related:
  - nservicebus/serialization
  - samples/serializers/newtonsoft-bson
@@ -20,9 +20,9 @@ This sample uses the Newtonsoft serializer [NServiceBus.Newtonsoft.Json](https:/
 snippet: config
 
 
-## Diagnostic Mutator
+## Diagnostic mutator
 
-A helper that will Write out the contents of any incoming message.
+A helper that will log the contents of any incoming message.
 
 snippet: mutator
 
@@ -31,15 +31,15 @@ Register the mutator.
 snippet: registermutator
 
 
-## The message send
+## Sending the message
 
 snippet: message
- 
 
-## The Output
+
+## Output
 
 ```json
-?{
+{
   "OrderId": 9,
   "Date": "2015-09-15T10:23:44.9367871+10:00",
   "CustomerId": 12,

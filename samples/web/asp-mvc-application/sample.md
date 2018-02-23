@@ -1,7 +1,7 @@
 ---
 title: Using NServiceBus with ASP.NET MVC
-summary: Integrating NServiceBus in ASP.NET MVC web applications, to be able to send messages from the website.
-reviewed: 2016-03-21
+summary: Integrating NServiceBus with ASP.NET MVC web applications to send messages from a website.
+reviewed: 2018-02-23
 component: Core
 redirects:
 - nservicebus/using-nservicebus-with-asp.net-mvc
@@ -14,8 +14,8 @@ Run the solution. A new browser window/tab opens, as well as a console applicati
 
 The web sample starts with two available methods of sending a command to the server and waiting for a response from it:
 
- * `SendAndBlock`: a controller uses NServiceBus
- * `SendAsync`: an `AsyncController` uses NServiceBus
+ * `SendAndBlock`: a controller that uses NServiceBus
+ * `SendAsync`: an `AsyncController` that uses NServiceBus
 
 The sample covers only the sending of the asynchronous message as the send and block are similar in NServiceBus.
 
@@ -29,20 +29,20 @@ Choosing SendAsync results in the following page:
 
 Changing the number in the text box from even to odd changes the result.
 
-Now, look at the code. This sample has three projects:
+This sample has three projects:
 
- * `AsyncPagesMvc`: ASP.NET MVC application that sends messages (found in `Messages` project)
+ * `AsyncPagesMvc`: ASP.NET MVC application that sends messages (found in the `Messages` project)
  * `Shared`: Common code including declaration of messages
- * `Server`: Destination of messages sent from the MVC  project. Hosted in a console application
+ * `Server`: Destination of messages sent from the MVC project. Hosted in a console application
 
 
 ## Initializing the bus
 
-The sample controllers holds a reference to the instance used later to send messages and receive a response (`IBus` implementation for NServiceBus Versions 5 and below, `IEndpointInstance` for Versions 6 and above). In `AsyncPagesMvc`, open `Global.asax.cs` and see the code for the `ApplicationStart` method:
+The sample controller holds a reference to the instance used later to send messages and receive a response (`IBus` implementation for NServiceBus version 5 and below, `IEndpointInstance` for version 6 and above). In `AsyncPagesMvc`, open `Global.asax.cs` and see the code for the `ApplicationStart` method:
 
 snippet: ApplicationStart
 
-For more details on how to inject NServiceBus classes into the controllers, check the [Sending from an ASP.NET MVC Controller](/samples/web/send-from-mvc-controller/).
+For more details on how to inject NServiceBus classes into the controllers, check [Sending from an ASP.NET MVC Controller](/samples/web/send-from-mvc-controller/).
 
 
 ## Sending a message
@@ -61,7 +61,7 @@ Open the SendAndBlockController class:
 
 snippet: SendAndBlockController
 
-The controller is sending a message using the instance injected in controller's constructor (`IBus` implementation for NServiceBus Versions 5 and below, `IEndpointInstance` for Versions 6 and above). The code calls the send method, passing in the newly created command object. 
+The controller is sending a message using the instance injected in controller's constructor (`IBus` implementation for NServiceBus version 5 and below, `IEndpointInstance` for version 6 and above). The code calls the send method, passing in the newly created command object.
 
 The call registers a callback method that will be called (with this parameter) as soon as a response is received by the server.
 

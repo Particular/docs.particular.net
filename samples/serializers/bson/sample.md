@@ -20,7 +20,7 @@ snippet: config
 
 ## Diagnostic mutator
 
-A helper that will write out the contents of any incoming message.
+A helper that will log the contents of any incoming message.
 
 snippet: mutator
 
