@@ -9,9 +9,8 @@ class Program
     {
         Console.Title = "Samples.Metrics.Tracing.Endpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseTransport<MsmqTransport>();
-        endpointConfiguration.SendFailedMessagesTo("errors");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var envInstrumentationKey = "ApplicationInsightKey";
         var instrumentationKey = Environment.GetEnvironmentVariable(envInstrumentationKey);
