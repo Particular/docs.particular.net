@@ -178,7 +178,7 @@ Master -.->SCA
 
 Using ServiceInsight with a system split into multiple regions is possible using multiple ServiceControl instances. In this scenario each region will contain a dedicated instance of ServiceControl and ServicePulse.
 
-An instance of ServiceControl will be required that does not service any region configured as a master instance. ServiceInsight can then be connected to the master instance of ServiceControl in order to view messages across all regions.
+An instance of ServiceControl configured as a master will be required that does not service any region. ServiceInsight can then be connected to the master instance of ServiceControl in order to view messages across all regions.
 
 #### Configuration of multiple slaves
 
