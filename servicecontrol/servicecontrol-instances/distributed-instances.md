@@ -138,11 +138,11 @@ AuditsLow-- ingested by --> Slave
 Master -. connected to .-> Slave
 ```
 
-Each ServiceControl instance can have different settings. For example it is possible to have different [audit retention periods](/servicecontrol/creating-config-file.md#data-retention-servicecontrolauditretentionperiod). With that in mind high volume endpoints can report audits to a ServiceControl instance with shorter retention periods (thus evicting old messages faster). This allows to cater settings as well as ressources being used by ServiceControl to the needs of the endpoints configured to audit to a specific ServiceControl instance.
+Each ServiceControl instance can have different settings. For example it is possible to have different [audit retention periods](/servicecontrol/creating-config-file.md#data-retention-servicecontrolauditretentionperiod). With that in mind high volume endpoints can report audits to a ServiceControl instance with shorter retention periods (thus evicting old messages faster). This allows to cater settings as well as resources being used by ServiceControl to the needs of the endpoints configured to audit to a specific ServiceControl instance.
 
 #### Migration
 
-Sometimes it is required to migrate a ServiceControl master to a different machine with more hardware ressources. By taking the audit retention period into account it is possible to migrate ServiceControl instances without needing to backup and restore data.
+Sometimes it is required to migrate a ServiceControl master to a different machine with more hardware resources. By taking the audit retention period into account it is possible to migrate ServiceControl instances without needing to backup and restore data.
 
 Describe
 
