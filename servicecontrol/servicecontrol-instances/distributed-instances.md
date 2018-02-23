@@ -196,10 +196,10 @@ Audit forwarding, if enabled, will be ignored.
 
 ### Known Limitations
 
-- Splitting into multiple ServiceControl instances is only supported for auditing
-- Only one ServiceControl instance should have error handling / recoverability enabled (usually the master) unless the multi-region scenario is used
-- Pagination with ServiceInsight doesn't work as traditional pagination would. For example pages might be filled unevenly depending on how the load is scattered between the different ServiceControl instances that are aggregated
-- Data from remote instances that cannot be reached by the master instance will not be included in the results
-- Multi-instance configuration is a manual setup process and cannot be done via the ServiceControl Management
-- Incorrect configuration could introduce cyclic loops
-- Having multiple masters is discouraged
+- Splitting into multiple ServiceControl instances is only supported for auditing.
+- Only one ServiceControl instance should have error handling / recoverability enabled (usually the master) unless the multi-region scenario is used.
+- Pagination with ServiceInsight doesn't work as traditional pagination would. For example pages might be filled unevenly depending on how the load is scattered between the different ServiceControl instances that are aggregated.
+- Data from remote instances that cannot be reached by the master instance will not be included in the results.
+- Multi-instance configuration is a manual setup process and cannot be done via the ServiceControl Management application.
+- Incorrect configuration could introduce cyclic loops.
+- Having multiple masters is discouraged.
