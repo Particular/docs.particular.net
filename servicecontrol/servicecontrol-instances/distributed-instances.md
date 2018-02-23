@@ -41,8 +41,8 @@ Master -. connected to .-> Slave
 As an example two ServiceControl instances are used where one is the master and the other one the slave for auditing. All of the endpoints will forward their audit messages to `audit`. All error messages are forwared to `error` queue. ServiceInsight and ServicePulse are connected to the master instance.
 
 
-1. Install ServiceControl master instance which points to `audit` according to the [installation guidelines](https://docs.particular.net/servicecontrol/installation).
-1. Install ServiceControl slave instance which points to `audit` according to the [installation guidelines](https://docs.particular.net/servicecontrol/installation). The ServiceControl instance name and the port are required to configure the master instance. For example `Particular.ServiceControl.Slave` and the port `33334`. Make sure the error queue processing is disabled by either entering `!disable` into the error queue field in the ServiceControl Management, passing as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script or editing `ServiceControl.exe.config` like shown below
+1. Install ServiceControl master instance which points to `audit` according to the [installation guidelines](/servicecontrol/installation).
+1. Install ServiceControl slave instance which points to `audit` according to the [installation guidelines](/servicecontrol/installation). The ServiceControl instance name and the port are required to configure the master instance. For example `Particular.ServiceControl.Slave` and the port `33334`. Make sure the error queue processing is disabled by either entering `!disable` into the error queue field in the ServiceControl Management, passing as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script or editing `ServiceControl.exe.config` like shown below
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -88,8 +88,8 @@ Master -. connected to .-> Slave
 
 As an example two ServiceControl instances are used where one is the master and the other one the slave for auditing. Some of the endpoints will forward their audit messages to `audit-master` while some of the endpoints will forward their audit messages to `audit-slave`. All error messages are forwared to `error` queue. ServiceInsight and ServicePulse are connected to the master instance.
 
-1. Install ServiceControl master instance which points to `audit-master` according to the [installation guidelines](https://docs.particular.net/servicecontrol/installation).
-1. Install ServiceControl slave instance which points to `audit-slave` according to the [installation guidelines](https://docs.particular.net/servicecontrol/installation). The ServiceControl instance name and the port are required to configure the master instance. For example `Particular.ServiceControl.Slave` and the port `33334`. Make sure the error queue processing is disabled by either entering `!disable` into the error queue field in the ServiceControl Management, passing as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script or editing `ServiceControl.exe.config` like shown below
+1. Install ServiceControl master instance which points to `audit-master` according to the [installation guidelines](/servicecontrol/installation).
+1. Install ServiceControl slave instance which points to `audit-slave` according to the [installation guidelines](/servicecontrol/installation). The ServiceControl instance name and the port are required to configure the master instance. For example `Particular.ServiceControl.Slave` and the port `33334`. Make sure the error queue processing is disabled by either entering `!disable` into the error queue field in the ServiceControl Management, passing as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script or editing `ServiceControl.exe.config` like shown below
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
