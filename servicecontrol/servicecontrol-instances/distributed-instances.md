@@ -28,7 +28,7 @@ This section walks through a fresh installation of multiple ServiceControl insta
 graph TD
 SI[ServiceInsight] -. connected to .->Master
 SP[ServicePulse] -. connected to .-> Master
-Endpoints -- audits to--> AuditsMain[audit]
+Endpoints -- audits to--> AuditsMain(audit)
 Endpoints -- errors to --> Errors(error)
 Master[ServiceControl<br/>Master]
 Slave[ServiceControl<br/>Slave]
