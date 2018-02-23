@@ -1,7 +1,7 @@
 ---
 title: BSON Serializer
-summary: Using the core BSON serializer.
-reviewed: 2018-01-26
+summary: Using the core BSON serializer
+reviewed: 2030-01-01
 component: Json
 related:
 - nservicebus/serialization
@@ -10,7 +10,7 @@ related:
 
 This sample uses the BSON serializer in the core.
 
-WARNING: In Versions 6 and above the built in BSON serializer has been deprecated. The [Newtonsoft serializer](/nservicebus/serialization/newtonsoft.md) can be used as a replacement
+WARNING: In NServiceBus version 6 and above the built-in BSON serializer has been deprecated. The [Newtonsoft serializer](/nservicebus/serialization/newtonsoft.md) can be used as a replacement
 
 
 ## Configuring to use BSON
@@ -18,9 +18,9 @@ WARNING: In Versions 6 and above the built in BSON serializer has been deprecate
 snippet: config
 
 
-## Diagnostic Mutator
+## Diagnostic mutator
 
-A helper that will Write out the contents of any incoming message.
+A helper that will write out the contents of any incoming message.
 
 snippet: mutator
 
