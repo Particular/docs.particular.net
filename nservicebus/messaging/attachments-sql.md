@@ -61,7 +61,7 @@ snippet: DisableCleanupTask
 
 ## Controlling attachment lifetime 
 
-When the cleanup task runs it uses the `Expiry` column to determine if a given attachment should be deleted. This column is populated when an attachment ti written. When adding an attachment to an outgoing message, all methods accept an optional parameter `timeToKeep` of the type `GetTimeToKeep`. `GetTimeToKeep` is defined as:
+When the cleanup task runs it uses the `Expiry` column to determine if a given attachment should be deleted. This column is populated when an attachment is written. When adding an attachment to an outgoing message, all methods accept an optional parameter `timeToKeep` of the type `GetTimeToKeep`. `GetTimeToKeep` is defined as:
 
 ```
 public delegate TimeSpan GetTimeToKeep(TimeSpan? messageTimeToBeReceived);
@@ -100,7 +100,7 @@ While the below examples illustrate adding an attachment to `SendOptions`, equiv
 
 The recommended approach for adding an attachment is by providing a delegate that constructs the stream. The execution of this delegate is then deferred until later in the outgoing pipeline, when the instance of the stream is required to be persisted. 
 
-There are both async ans sync variants.
+There are both async and sync variants.
 
 snippet: OutgoingFactory
 
