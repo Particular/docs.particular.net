@@ -34,6 +34,8 @@ class Program
 
         message.Properties["NServiceBus.EnclosedMessageTypes"] = "NativeMessage";
         message.Properties["NServiceBus.Transport.Encoding"] = "application/octect-stream";
+        // Required to support ServiceControl that is using ASB v6.x
+        message.Properties["NServiceBus.MessageIntent"] = "Send";
 
         #endregion
 
