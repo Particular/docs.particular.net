@@ -1,0 +1,1 @@
+The `getAsyncSessionFunc` receives the incoming message headers as argument. Message headers can be used to support multi-tenant environments customizioong the shared session based on the currently processed message.
