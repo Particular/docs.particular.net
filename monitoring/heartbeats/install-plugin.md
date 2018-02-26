@@ -10,7 +10,7 @@ To install the Heartbeats plugin into an endpoint add the following to the endpo
 
 snippet: HeartbeatsNew_Enable
 
-WARN: When installing the heartbeat plugin, also configure each instance with a deterministic [Host Identifier](/nservicebus/hosting/override-hostid.md). This identifier is used to keep track of which instance is sending heartbeat messages to the ServiceControl instance.
+WARNING: When installing the heartbeat plugin, also configure each instance with a deterministic [Host Identifier](/nservicebus/hosting/override-hostid.md). This identifier is used to keep track of which instance is sending heartbeat messages to the ServiceControl instance.
 
 
 ### Heartbeat interval
@@ -24,4 +24,4 @@ NOTE: When configuring the heartbeat interval, ensure the ServiceContol setting 
 
 When the plugin sends heartbeat messages, the default TTL is fixed to four times the value of the heartbeat interval. As shown above, the interval value can be overridden on a per endpoint basis.
 
-WARN: See [Expired heartbeats](expired-heartbeats.md) for more information about what happens to expired heartbeats.
+WARNING: See [Expired heartbeats](expired-heartbeats.md) for more information about what happens to expired heartbeats.
