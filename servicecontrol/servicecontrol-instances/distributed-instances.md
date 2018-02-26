@@ -18,7 +18,7 @@ The following high-level actions need to be taken:
 - One or more ServiceControl slave instances need to be installed
 - If the audit queue was split then the production endpoints need to route audited messages to different [audit queues](/nservicebus/operations/auditing.md) which will be consumed by different instances of ServiceControl (either master instances or slave instances)
 
-WARN: Recoverability or error queue handling cannot be scaled out to multiple ServiceControl instances yet. Thus all endpoints still need to route error messages to a centralized [error queue](/nservicebus/recoverability/configure-error-handling.md).
+WARNING: Recoverability or error queue handling cannot be scaled out to multiple ServiceControl instances yet. Thus all endpoints still need to route error messages to a centralized [error queue](/nservicebus/recoverability/configure-error-handling.md).
 
 ### Multi-instance installation with competing consumers
 
