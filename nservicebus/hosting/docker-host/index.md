@@ -23,4 +23,4 @@ When running Docker containers, the host operating system is considered a node f
 ### Inclusion
 Each Docker container needs to have a `license.xml` file included in it. A placeholder of this file is created when the Docker endpoint template is used to create a new endpoint. This file will need to be replaced with a valid `license.xml` file prior to building the Docker container.
 
-An endpoint running in Docker will look for the `license.xml` file in [the same locations](nservicebus/licensing/?version=core_7#license-management) as it would in any other hosting situation.
+An endpoint running in Docker will look for the `license.xml` file in [the same locations](nservicebus/licensing) as it would in any other hosting situation.
