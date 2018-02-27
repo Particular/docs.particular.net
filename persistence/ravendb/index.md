@@ -62,6 +62,7 @@ snippet: ravendb-persistence-customize-document-session
 
 include: raven-dispose-warning
 
+partial: multitenant
 
 partial: unsafereads
 
