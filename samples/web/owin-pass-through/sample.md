@@ -1,7 +1,7 @@
 ---
 title: OWIN HTTP Message Pass Through
-summary: Illustrates how to hook into the low level OWIN pipeline to place message onto the bus or directly onto the queue
-reviewed: 2016-04-05
+summary: How to hook into the OWIN pipeline to place a message onto the bus or directly onto the queue
+reviewed: 2018-02-26
 component: Core
 related:
  - samples/gateway
@@ -11,104 +11,103 @@ related:
 
 ## Introduction
 
-This sample leverages OWIN (Open Web Interface for .NET) to add light weight HTTP message pass through middleware (general term for an extension to OWIN) that can be re-used in a variety of web technologies. This middleware provides the bridge between a HTTP stream (via JavaScript on a web page) and the queue used by NServiceBus.
+This sample leverages OWIN (Open Web Interface for .NET) to add light weight HTTP message pass through middleware (general term for an extension to OWIN) that can be re-used in a variety of web technologies. This middleware provides the bridge between an HTTP stream (via JavaScript on a web page) and the queue used by NServiceBus.
 
-The flow of this samples is as follows
+The flow of this sample is:
 
  * User performs some action on a webpage that triggers some JavaScript
  * JavaScript posts the message body to a specific URL
- * OWIN intercepts that post and passes to the bus middleware
- * The middleware takes the HTTP request, optionally deserializes it, and places it on the queue
+ * OWIN intercepts that post and passes the data to the middleware
+ * The middleware takes the HTTP request, optionally deserializes it, and places it in a queue
 
 
 ## What is [OWIN](http://owin.org/)
 
 > OWIN defines a standard interface between .NET web servers and web applications. The goal of the OWIN interface is to decouple server and application, encourage the development of simple modules for .NET web development, and, by being an open standard, stimulate the open source ecosystem of .NET web development tools.
 
-So extensions to NServiceBus that plug into OWIN can be easily applied to [many .NET web server technologies](http://owin.org/#projects).
+Extensions to NServiceBus that plug into OWIN can be applied easily to [many .NET web server technologies](http://owin.org/#projects).
 
 
 ## The purpose of this sample
 
-The primary purpose of this sample is to illustrate how simple it is to bridge the world of HTTP with the world of a service bus. The secondary purpose is to illustrate, as well as compare and contrast, two ways of communicating with the NServiceBus. i.e. using the NServiceBus API and using the native queue.
+This sample illustrates how simple it is to bridge the world of HTTP with the world of a service bus. The secondary purpose is to illustrate two different ways of communicating with the NServiceBus. I.e. using the NServiceBus API and using the native queue.
 
 
-## Comparisons with the [NServiceBus Gateway](/nservicebus/gateway)
-
+## Comparisons with the [NServiceBus gateway](/nservicebus/gateway)
 
 ### Performance
 
- * The Gateway uses a [HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx) while this sample allows leveraging the full power of the choice of webserver.
- * The Gateway is limited to run in a single endpoint while this samples supports the use any well known web scale out technologies.
+ * The gateway uses an [HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx) while this sample allows leveraging the full power of the choice of webserver.
+ * The gateway is limited to run in a single endpoint while this sample supports the use of any well-known web scale-out technology.
 
 
-### Full Control of the incoming message
+### Full control of the incoming message
 
-This sample allow the customization of the http-to-message handling code that places the message on the queue. As such this allows:
+This sample allow the customization of the http-to-message handling code that places the message on the queue. This allows:
 
- * Write custom validation rules on the message
- * Return custom errors to the HTTP client
- * Apply custom authentication and authorization
- * Perform custom serialization
+ * Writing custom validation rules on the message
+ * Returning custom errors to the HTTP client
+ * Custom authentication and authorization
+ * Custom serialization
 
 
 ### Hosting
 
-The gateway is designed to run inside a NServiceBus endpoint. This sample code can run with the selection of technologies e.g. it will work with IIS, self-hosted, asp.mvc, NancyFX or within a NServiceBus endpoint in the same way as the Gateway.
+The gateway is designed to run inside an NServiceBus endpoint. The sample code can run with different technologies (e.g. IIS, self-hosted, asp.mvc, NancyFX or within an NServiceBus endpoint) in the same way as the gateway.
 
 
-### Cross Site effects
+### Cross-site effects
 
-When using the gateway to perform a HTTP pass through the call will most likely be hosted on a different domain. As such a normal HTTP request will be blocked. To work around this a [JSONP request](https://en.wikipedia.org/wiki/JSONP) is required.
+When using the gateway to perform a HTTP pass through, the call will most likely be hosted on a different domain. As such, a normal HTTP request will be blocked. To work around this, a [JSONP request](https://en.wikipedia.org/wiki/JSONP) is required.
 
-With the OWIN approach full control over the HTTP pipeline is possible and hence can leverage CORS to avoid the need for JSONP.
+With the OWIN approach, full control over the HTTP pipeline is possible and can leverage CORS to avoid the need for JSONP.
 
 
 ## CORS
 
-For layout and simplicity reasons this sample hosts the client side HTML/JavaScript parts in their own WebApplication. This means [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) need to be enabled on the HTTP server hosted in the endpoint. This is done using another OWIN Middleware from the Katana project called [Microsoft.Owin.Cors](https://www.nuget.org/packages/Microsoft.Owin.Cors/).
+For simplicity, this sample hosts the client-side HTML/JavaScript parts in their own WebApplication. This means [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) must be enabled on the HTTP server hosted in the endpoint. This is done using another OWIN middleware from the Katana project called [Microsoft.Owin.Cors](https://www.nuget.org/packages/Microsoft.Owin.Cors/).
 
-Note: CORS is enabled for all via `builder.UseCors(CorsOptions.AllowAll);`. Most likely this should be changed any real world usage.
+Note: CORS is enabled via `builder.UseCors(CorsOptions.AllowAll);`. In most cases, this should be changed for real world usage.
 
 
 ## WebServer/OWIN Hosting
 
-This sample uses a [Self Hosted](https://katanaproject.codeplex.com/wikipage?title=Selfhosting) instance of [Katana](https://www.asp.net/aspnet/overview/owin-and-katana) to serve up HTTP and provide an OWIN pipeline.
+This sample uses a [self hosted](https://katanaproject.codeplex.com/wikipage?title=Selfhosting) instance of [Katana](https://www.asp.net/aspnet/overview/owin-and-katana) to serve up HTTP and provide an OWIN pipeline.
 
 
-## The Endpoint Configuration
+## The endpoint configuration
 
-The endpoint configuration is fairly standard. The one exception is that the endpoint instance is passed in to the OWIN configuration code.
+The endpoint configuration is standard except that the endpoint instance is passed in to the OWIN configuration code.
 
 snippet: startbus
 
 
-## HTTP Hosting and OWIN middleware
+## HTTP hosting and OWIN middleware
 
 A self-hosted instance of Katana is started and then different middleware are injected into the OWIN pipeline. Note that they are wired to map to specific URL suffixes.
 
- * `/to-bus` for the Bus based interception
- * `/to-msmq` for the direct to MSMQ interception
+ * `/to-bus` for the bus-based interception
+ * `/to-msmq` for the direct-to-MSMQ interception
 
 snippet: startowin
 
 
-## Bus based middleware
+## Bus-based middleware
 
-The Bus based approach takes the following steps
+The bus-based approach takes the following steps:
 
  * Reads text for the message body from the HTTP request
  * Reads the message type name from the required headers
  * Converts the message type name to a .NET Type
- * Uses Type and message body, in conjunction with Json.net, to deserialize an instance of the real message
- * Places that message on the bus via a `SendLocal`
+ * Uses type and message body, in conjunction with Json.net, to deserialize an instance of the real message
+ * Places that message on the bus via `SendLocal`
 
 snippet: OwinToBus
 
 
-## MSMQ based middleware
+## MSMQ-based middleware
 
-The MSMQ based approach takes the following steps:
+The MSMQ-based approach takes the following steps:
 
  * Reads text for the message body from the HTTP request.
  * Reads the message type name from the required headers.
@@ -118,21 +117,21 @@ The MSMQ based approach takes the following steps:
 snippet: OwinToMsmq
 
 
-### Header Helper
+### Header helper
 
-A helper method for creating an header string that is compatible with the NServiceBus MSMQ transport:
+A helper method for creating a header string that is compatible with the NServiceBus MSMQ transport:
 
 snippet: msmqheaderserializer
 
 
 ## Comparing the two approaches
 
-|| Bus Based | Native MSMQ
+|| Bus-based | Native MSMQ
 |-|-|-|
-| Code Complexity | Simple. | Slightly more complicated since knowledge of the transport is required. |
-| Performance | Slightly slower and uses more memory since every message needs to be deserialized before being sent to the Bus. | Slightly faster and less memory since no deserialization or translation needs to occur. |
-| Transport compatibility | Works with any NServiceBus transport. | Requires some native code for each transport. |
-| Serialization errors | Errors in deserialization will result in the request failing and an error being returned to the client. | Errors in deserialization will occur when the bus attempts to process the message and hence will leverage the built in error handling functionality of NServiceBus. |
+| Code Complexity | Simple | Slightly more complicated; knowledge of the transport is required |
+| Performance | Slightly slower and uses more memory; every message needs to be deserialized before being sent to the bus | Slightly faster and less memory; no deserialization or translation needs to occur |
+| Transport compatibility | Works with any NServiceBus transport | Requires some native code for each transport |
+| Serialization errors | Deserialization errors will result in the request failing and an error being returned to the client | Deserialization errors will occur when the bus attempts to process the message and will leverage the built-in error handling functionality of NServiceBus |
 
 
 ## JavaScript HTTP Post
