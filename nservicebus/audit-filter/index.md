@@ -2,7 +2,7 @@
 title: Audit Filter
 summary: Filtering what messages are sent to the audit Queue
 component: AuditFilter
-reviewed: 2017-01-20
+reviewed: 2018-01-26
 related:
  - samples/audit-filter
 ---
@@ -31,7 +31,7 @@ With exclude by default
 snippet: DefaultExcludeFromAudit
 
 
-### Delegate Filter fallback
+### Delegate filter fallback
 
 The fallback/default value can also be controlled by a delegate.
 
@@ -49,13 +49,13 @@ HasIncludeAttribute{Has Include<br />Attribute?}
 
 Include[Include in Audit]
 Exclude[Exclude From Audit]
-Default{What is the<br /> defualt?}
+Default{What is the<br /> default?}
 
 HasFilter{Has Filter<br />Defined?}
 WhatFilter{Filter return<br /> value?}
 
 HasIncludeAttribute --Yes--> Include
-HasIncludeAttribute --No--> HasExcludeAttribute 
+HasIncludeAttribute --No--> HasExcludeAttribute
 HasExcludeAttribute --No--> HasFilter
 HasExcludeAttribute --Yes--> Exclude
 HasFilter--Yes--> WhatFilter

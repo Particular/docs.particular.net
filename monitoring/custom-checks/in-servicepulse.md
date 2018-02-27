@@ -1,7 +1,7 @@
 ---
 title: Managing custom checks in ServicePulse
 summary: Describes how ServicePulse monitors custom check activity
-reviewed: 2018-01-05
+reviewed: 2018-01-26
 redirects:
   - servicepulse/intro-endpoints-custom-checks
 ---
@@ -21,12 +21,12 @@ Each custom check includes information about the endpoint instance that reported
 
 ## Muting custom checks
 
-When a custom check fails it will continue to make the main Custom Checks badge on the dashboard red until the custom check reports success. 
+When a custom check fails it will continue to make the main Custom Checks badge on the dashboard red until the custom check reports success.
 
-Sometimes a custom check reports an error that is easily solved. The status of the custom check will not be updated in ServicePulse until the custom check is executed again. 
+Sometimes a custom check reports an error that is easily solved. The status of the custom check will not be updated in ServicePulse until the custom check is executed again.
 
-If it is a one-off custom check, then the endpoint hosting it will need to be restarted in order to execute the custom check again. If it is a periodic custom check, then it will be automatically executed again after it's scheduled period. 
+If it is a one-off custom check, then the endpoint hosting it will need to be restarted in order to execute the custom check again. If it is a periodic custom check, then it will be automatically executed again after it's scheduled period.
 
-Rather than wait for the failing custom check to be executed again to update it's status, it can be muted. Muted custom checks are removed from ServicePulse and will not contribute to the main custom checks dashboard badge. 
+Rather than wait for the failing custom check to be executed again to update its status, it can be muted. Muted custom checks are removed from ServicePulse and will not contribute to the main custom checks dashboard badge.
 
-Whenever a muted custom check is executed and reports it's status to ServiceControl, it is automatically un-muted.
+Whenever a muted custom check is executed and reports its status to ServiceControl, it is automatically un-muted.

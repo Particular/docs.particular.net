@@ -11,6 +11,9 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
+        // uncomment below to demonstrate json
+        //endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 

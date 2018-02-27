@@ -1,7 +1,7 @@
 ---
 title: JSON Serializer
-summary: Using the core JSON serializer.
-reviewed: 2016-03-21
+summary: Using the core JSON serializer
+reviewed: 2018-02-23
 component: Json
 related:
 - nservicebus/serialization
@@ -19,19 +19,19 @@ This samples uses the JSON serializer in the core.
 snippet: config
 
 
-## Diagnostic Mutator
+## Diagnostic mutator
 
-A helper that will Write out the contents of any incoming message.
+A helper that will log the contents of any incoming message.
 
 snippet: mutator
 
 
-## The message send
+## Sending the message
 
 snippet: message
- 
 
-## The Output
+
+## Output
 
 ```json
 {

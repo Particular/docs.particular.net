@@ -79,7 +79,7 @@ The Object response scenario allows an object instance to be returned.
 
 #### The Response message
 
-This feature leverages the message Reply mechanism of the bus and hence the response need to be a message.
+This feature leverages the message Reply mechanism of the bus and hence the response needs to be a message.
 
 snippet: CallbackResponseMessage
 

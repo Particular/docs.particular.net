@@ -19,8 +19,10 @@
         Title: Publishing events
       - Url: tutorials/intro-to-nservicebus/5-retrying-errors
         Title: Retrying errors
-    - Url: tutorials/message-replay
-      Title: Message Replay Tutorial
+    - Url: tutorials
+      Title: More tutorials
+    - Url: get-started/high-level-content
+      Title: High-level content
 - Name: NServiceBus
   Topics:
   - Url: nservicebus
@@ -267,6 +269,8 @@
       Title: Mailer
     - Url: nservicebus/outbox
       Title: Outbox
+    - Url: nservicebus/messaging/attachments-sql
+      Title: Sql Attachments
     - Url: nservicebus/messaging/databus
       Title: Databus
       Articles:

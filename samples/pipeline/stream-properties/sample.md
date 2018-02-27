@@ -1,7 +1,7 @@
 ---
 title: Handling Stream properties via the pipeline
 summary: Add support for writing Streams to a file share that can be accessed by multiple endpoints.
-reviewed: 2016-03-21
+reviewed: 2018-01-26
 component: Core
 tags:
 - Pipeline
@@ -30,7 +30,7 @@ snippet: configure-stream-storage
 
 ## Write Stream properties to disk
 
-This happens in as part of the outgoing pipeline, see `StreamSendBehavior.cs`.
+This happens as part of the outgoing pipeline, see `StreamSendBehavior.cs`.
 
 snippet: SendBehaviorDefinition
 
@@ -89,7 +89,7 @@ snippet: send-message-with-http-stream
 
 snippet: send-message-with-file-stream
 
-NOTE: If using a `MemoryStream` ensure that the [Position](https://msdn.microsoft.com/en-us/library/system.io.memorystream.position.aspx) is set back to `0` before sending the message. Also note that writing large amounts of data to a `MemoryStream` will result in significant memory usage (perhaps resulting in an `OutOfMemoryException`) and put pressure on Garbage Collection.
+NOTE: When using a `MemoryStream` ensure that the [Position](https://msdn.microsoft.com/en-us/library/system.io.memorystream.position.aspx) is set back to `0` before sending the message. Also note that writing large amounts of data to a `MemoryStream` will result in significant memory usage (perhaps resulting in an `OutOfMemoryException`) and put pressure on Garbage Collection.
 
 
 ## Handler
@@ -99,4 +99,4 @@ snippet: message-with-stream-handler
 
 ## Difference to the Databus
 
-The [built in DataBus](/nservicebus/messaging/databus/) relies on byte arrays and memory streams to operate. As such it has limitations in the amount of data it can send.
+The [built in DataBus](/nservicebus/messaging/databus/) relies on byte arrays and memory streams to operate. As such, there are limitations to the amount of data that it can send.

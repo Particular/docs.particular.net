@@ -8,7 +8,8 @@ class Program
     {
         Console.Title = "NServiceBusEndpoint";
         var endpointConfiguration = new EndpointConfiguration("NServiceBusEndpoint");
-        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

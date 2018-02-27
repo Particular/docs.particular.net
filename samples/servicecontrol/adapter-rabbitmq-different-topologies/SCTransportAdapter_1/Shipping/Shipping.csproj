@@ -7,9 +7,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
-    <PackageReference Include="RabbitMQ.Client" Version="4.*" />
     <PackageReference Include="ServiceControl.Plugin.Nsb6.Heartbeat" Version="3.*" />
   </ItemGroup>
 </Project>

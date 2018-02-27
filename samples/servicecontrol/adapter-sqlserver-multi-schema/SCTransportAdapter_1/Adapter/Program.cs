@@ -22,11 +22,12 @@ class Program
             {
                 var connection = @"Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
                 transport.ConnectionString(connection);
+                transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
 
                 //Use custom schema
                 transport.DefaultSchema("adapter");
 
-                //Necassary to correctly route retried messages because
+                //Necessary to correctly route retried messages because
                 //SQL Server transport 2.x did not include schema information in the address
                 transport.UseSchemaForQueue(
                     queueName: "Samples.ServiceControl.SqlServerTransportAdapter.Shipping",

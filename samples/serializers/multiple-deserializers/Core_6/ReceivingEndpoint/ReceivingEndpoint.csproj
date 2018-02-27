@@ -8,12 +8,12 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="Jil" Version="2.*" />
     <PackageReference Include="MsgPack.Cli" Version="0.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="Newtonsoft.Json.Bson" Version="1.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Jil" Version="2.0.*" />
     <PackageReference Include="NServiceBus.MessagePack" Version="1.0.*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="1.1.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="1.*" />
     <PackageReference Include="NServiceBus.Wire" Version="2.0.*" />
     <PackageReference Include="Wire" Version="0.*" />
   </ItemGroup>

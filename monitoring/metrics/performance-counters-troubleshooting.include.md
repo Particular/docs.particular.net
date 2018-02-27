@@ -1,11 +1,11 @@
 ## Performance Monitor Users local security group
 
-When [running installers](/nservicebus/operations/installers.md) the service account will be automatically added to the local Performance Monitor Users group if executed with elevated privileges.
+When [running installers](/nservicebus/operations/installers.md), the service account will be automatically added to the local Performance Monitor Users group if executed with elevated privileges.
 
 
 ## System.InvalidOperationException
 
-If the endpoint instance throws one of the  following exceptions at startup, then [the performance counters need to be reinstalled](#installing-counters)
+If the endpoint instance throws one of the following exceptions at startup, then [the performance counters need to be reinstalled](#installing-counters)
 
  * `InvalidOperationException: The requested Performance Counter is not a custom counter, it has to be initialized as ReadOnly.`
  * `InvalidOperationException: NServiceBus performance counter for 'Critical Time' is not set up correctly.`
@@ -17,7 +17,7 @@ Corrupted performance counters can cause the endpoint to either hang completely 
 
 `NServiceBus performance counter for '{counterName}' is not set up correctly`
 
-Should this happen try rebuilding the performance counter library using the following steps:
+Should this happen, try rebuilding the performance counter library using the following steps:
 
  1. Open an elevated command prompt
  1. Execute the following command to rebuild the performance counter library: `lodctr /r`

@@ -1,7 +1,7 @@
 ---
 title: Add handler timing pipeline
 summary: Wraps handlers in a Stopwatch and logs a warning if a handler exceeds a given threshold.
-reviewed: 2016-03-21
+reviewed: 2018-01-26
 component: Core
 tags:
 - Pipeline
@@ -16,7 +16,7 @@ This sample leverages the pipeline to add timing to handlers. It injects a Behav
 
 ## The Handler
 
-The handler sleeps for a random amount of time so as to sometimes trigger the threshold.
+The handler sleeps for a random amount of time it will trigger the threshold occasionally.
 
 snippet: handler
 

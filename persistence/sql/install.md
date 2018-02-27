@@ -25,6 +25,8 @@ However in higher level environment scenarios, where standard installers are bei
 
 snippet: DisableInstaller
 
+partial: script-runner
+
 
 ## Table Prefix
 

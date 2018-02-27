@@ -1,6 +1,6 @@
 # How to Contribute
 
-Before you start, ensure you have
+Before you start, ensure you have:
 
  *  Created a [GitHub account](https://github.com/join)
  *  Signed the Particular [Contributor License Agreement](https://particular.net/contributors-license-agreement-consent).

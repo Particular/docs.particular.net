@@ -3,7 +3,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 6.4.x     | 2017-08-18     | -                 | -                                 |
-| 6.3.x     | 2017-05-19     | 2018-02-18        | Superseded by 6.4.x               |
+| ~~6.3.x~~ | ~~2017-05-19~~ | ~~2018-02-18~~    | ~~Superseded by 6.4.x~~           |
 | ~~6.2.x~~ | ~~2017-03-28~~ | ~~2017-11-19~~    | ~~Superseded by 6.3.x~~           |
 | ~~6.1.x~~ | ~~2016-12-13~~ | ~~2017-09-28~~    | ~~Superseded by 6.2.x~~           |
 | ~~6.0.x~~ | ~~2016-10-11~~ | ~~2017-06-13~~    | ~~Superseded by 6.1.x~~           |
@@ -177,7 +177,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-11-22     | -                 | -                                 |
 | 2.2.x     | 2017-11-16     | 2018-11-22        | Superseded by 3.0.x               |
-| 2.1.x     | 2017-04-28     | 2018-02-16        | Superseded by 2.2.x               |
+| ~~2.1.x~~ | ~~2017-04-28~~ | ~~2018-02-16~~    | ~~Superseded by 2.2.x~~           |
 | ~~2.0.x~~ | ~~2017-04-14~~ | ~~2017-07-28~~    | ~~Superseded by 2.1.x~~           |
 | 1.0.x     | 2017-02-02     | 2018-04-14        | Superseded by 2.0.x               |
 
@@ -205,7 +205,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.1.x     | 2017-03-21     | -                 | -                                 |
+| 1.2.x     | 2018-02-23     | -                 | -                                 |
+| 1.1.x     | 2017-03-21     | 2018-05-23        | Superseded by 1.2.x               |
 | ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-06-21~~    | ~~Superseded by 1.1.x~~           |
 
 ### DependencyInjection packages
@@ -320,7 +321,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 8.0.x     | 2017-11-17     | -                 | -                                 |
+| 8.1.x     | 2018-01-24     | -                 | -                                 |
+| 8.0.x     | 2017-11-17     | 2018-04-24        | Superseded by 8.1.x               |
 | 7.0.x     | 2016-10-11     | 2018-11-17        | Superseded by 8.0.x               |
 | 6.2.x     | 2015-10-08     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 | ~~6.1.x~~ | ~~2014-10-28~~ | ~~2016-01-08~~    | ~~Superseded by 6.2.x~~           |
@@ -641,14 +643,14 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2017-02-08     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
-| 1.0.x     | 2014-09-30     | 2018-02-08        | Superseded by 2.0.x               |
+| ~~1.0.x~~ | ~~2014-09-30~~ | ~~2018-02-08~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb5.Heartbeat](/nuget/ServiceControl.Plugin.Nsb5.Heartbeat)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-08     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
-| 2.0.x     | 2015-09-14     | 2018-02-08        | Superseded by 3.0.x               |
+| ~~2.0.x~~ | ~~2015-09-14~~ | ~~2018-02-08~~    | ~~Superseded by 3.0.x~~           |
 | ~~1.1.x~~ | ~~2014-12-11~~ | ~~2016-09-14~~    | ~~Superseded by 2.0.x~~           |
 | ~~1.0.x~~ | ~~2014-09-30~~ | ~~2015-03-11~~    | ~~Superseded by 1.1.x~~           |
 
@@ -657,14 +659,14 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2017-02-08     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
-| 1.0.x     | 2014-09-30     | 2018-02-08        | Superseded by 2.0.x               |
+| ~~1.0.x~~ | ~~2014-09-30~~ | ~~2018-02-08~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb6.CustomChecks](/nuget/ServiceControl.Plugin.Nsb6.CustomChecks)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-07     | -                 | -                                 |
-| 2.0.x     | 2016-10-24     | 2018-02-07        | Superseded by 3.0.x               |
+| ~~2.0.x~~ | ~~2016-10-24~~ | ~~2018-02-07~~    | ~~Superseded by 3.0.x~~           |
 | ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-10-24~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb6.Heartbeat](/nuget/ServiceControl.Plugin.Nsb6.Heartbeat)
@@ -672,7 +674,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-07     | -                 | -                                 |
-| 2.0.x     | 2016-10-24     | 2018-02-07        | Superseded by 3.0.x               |
+| ~~2.0.x~~ | ~~2016-10-24~~ | ~~2018-02-07~~    | ~~Superseded by 3.0.x~~           |
 | ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-10-24~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb6.SagaAudit](/nuget/ServiceControl.Plugin.Nsb6.SagaAudit)
@@ -680,7 +682,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-07     | -                 | -                                 |
-| 2.0.x     | 2016-10-24     | 2018-02-07        | Superseded by 3.0.x               |
+| ~~2.0.x~~ | ~~2016-10-24~~ | ~~2018-02-07~~    | ~~Superseded by 3.0.x~~           |
 | ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-10-24~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.TransportAdapter](/nuget/ServiceControl.TransportAdapter)

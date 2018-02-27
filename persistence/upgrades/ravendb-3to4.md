@@ -7,7 +7,7 @@ related:
 redirects:
  - nservicebus/ravendb/upgrades/3to4
  - nservicebus/upgrades/ravendb-3to4
-reviewed: 2017-08-24
+reviewed: 2018-02-20
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5

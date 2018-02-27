@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net461</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <PackageReference Include="AWSSDK.Core" Version="3.*" />
+    <PackageReference Include="AWSSDK.S3" Version="3.*" />
+    <PackageReference Include="AWSSDK.SQS" Version="3.*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Raw" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="4.0.0-*" />
+    <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0-*" />
+    <PackageReference Include="ServiceControl.TransportAdapter" Version="2.0.0-*" />
+  </ItemGroup>
+</Project>

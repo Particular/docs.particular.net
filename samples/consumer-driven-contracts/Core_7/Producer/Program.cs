@@ -12,6 +12,10 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
+        // uncomment below to demonstrate json
+        //endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        //endpointConfiguration.Pipeline.Register(new PublishFullTypeNameOnlyBehavior(), "Replaces the fully qualified assembly name with the full name only.");
+
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 

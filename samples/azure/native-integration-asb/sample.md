@@ -2,7 +2,7 @@
 title: Native Integration with Azure Service Bus Transport
 summary: Consuming messages published by non NServiceBus endpoints.
 component: ASB
-reviewed: 2017-02-10
+reviewed: 2018-02-23
 related:
  - transports/azure-service-bus
 ---
@@ -51,10 +51,11 @@ NOTE: Both the sender (native or NServiceBus) and the receiver must agree on the
 
 ## Required headers
 
-For a native message to be processed, NServiceBus endpoints using  the Azure Service Bus transport require two headers:
+For a native message to be processed, NServiceBus endpoints using the Azure Service Bus transport require the following headers:
 
  1. Message type
  1. BrokeredMessage body type
+ 1. Message intent
 
 These headers need to be stored as `BrokeredMessage` properties.
 

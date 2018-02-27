@@ -15,6 +15,8 @@ Installers ensure that endpoint specific artifacts (e.g. queues, directories, da
 
 ## Running installers
 
+NOTE: Running installers requires the process to run with permissions to create/delete tables, queues, folders and other resources. It is recommended to apply the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) and prevent running an endpoint process with too many permissions. Consider running the installers only during the initial setup using elevated permissions.
+
 partial: default-behavior
 
 Installers can be enabled to always run at startup:
