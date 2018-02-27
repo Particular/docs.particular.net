@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using Subscriber2.Contracts;
 
 class Program
 {
@@ -10,13 +9,10 @@ class Program
         Console.Title = "Samples.ConsumerDrivenContracts.Consumer2";
         var endpointConfiguration = new EndpointConfiguration("Samples.ConsumerDrivenContracts.Consumer2");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
         // uncomment below to demonstrate json
         //endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-
-        var routing = transport.Routing();
-        routing.RegisterPublisher(typeof(Consumer2Contract), "Samples.ConsumerDrivenContracts.Producer");
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

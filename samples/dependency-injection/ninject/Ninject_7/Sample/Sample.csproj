@@ -5,11 +5,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Ninject" Version="3.*" />
-    <PackageReference Include="Ninject.Extensions.ChildKernel" Version="3.*" />
-    <PackageReference Include="Ninject.Extensions.ContextPreservation" Version="3.*" />
-    <PackageReference Include="Ninject.Extensions.NamedScope" Version="3.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Ninject" Version="7.0.0-*" />
   </ItemGroup>
 </Project>

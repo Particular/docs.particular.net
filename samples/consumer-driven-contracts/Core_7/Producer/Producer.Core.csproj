@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\Consumer1\Contracts\Consumer1Contract.cs" />
+    <Compile Include="..\Consumer2\Contracts\Consumer2Contract.cs" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+  </ItemGroup>
+</Project>

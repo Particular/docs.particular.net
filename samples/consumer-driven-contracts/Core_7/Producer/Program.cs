@@ -10,7 +10,7 @@ class Program
         Console.Title = "Samples.ConsumerDrivenContracts.Producer";
         var endpointConfiguration = new EndpointConfiguration("Samples.ConsumerDrivenContracts.Producer");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         // uncomment below to demonstrate json
         //endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
