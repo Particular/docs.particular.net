@@ -52,6 +52,8 @@ As an example two ServiceControl instances are used where one is the master and 
 </configuration>
 ```
 
+WARN: All instances of ServiceControl MUST have a unique name
+
 If the error queue is set to `!disable` then Error forwarding will be ignored even if enabled.
 
 3. Stop the ServiceControl master instance and edit the [`ServiceControl.exe.config` ](/servicecontrol/creating-config-file.md) with the `RemoteInstances` key. The value for the key is a json array.
@@ -101,6 +103,8 @@ As an example two ServiceControl instances are used where one is the master and 
 </configuration>
 ```
 
+WARN: All instances of ServiceControl MUST have a unique name
+
 If the error queue is set to `!disable` then Error forwarding will be ignored even if enabled.
 
 3. Stop the ServiceControl master instance and edit the [`ServiceControl.exe.config` ](/servicecontrol/creating-config-file.md) with the `RemoteInstances` key. The value for the key is a json array.
@@ -123,6 +127,8 @@ This section walks through converting a single existing ServiceControl installat
 1. Add an additional ServiceControl instance (on separate infrastructure) intended to ingest audit messages only. Disable Error queue processing as described above. This will be a slave instance.
 2. Configure production endpoints to send audit messages to the newly added ServiceControl instance.
 3. Make the original endpoint a designated master by adding `ServiceControl/RemoteInstances` setting, pointing to the slave instance of ServiceControl.
+
+WARN: All instances of ServiceControl MUST have a unique name
 
 ### Advanced scenarios
 
