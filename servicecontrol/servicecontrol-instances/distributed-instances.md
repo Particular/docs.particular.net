@@ -120,7 +120,7 @@ If the error queue is set to `!disable` then Error forwarding will be ignored ev
 
 This section walks through converting a single existing ServiceControl installation into a master-slave configuration.
 
-1. Add an additional ServiceControl instance (on separate infrastructure) intended to ingest audit messages only. Disable Error queue processing as described above. This will be a slave instance.
+1. Add an additional ServiceControl instance (on separate infrastructure and with a unique name) intended to ingest audit messages only. Disable Error queue processing as described above. This will be a slave instance.
 2. Configure production endpoints to send audit messages to the newly added ServiceControl instance.
 3. Make the original endpoint a designated master by adding `ServiceControl/RemoteInstances` setting, pointing to the slave instance of ServiceControl.
 
