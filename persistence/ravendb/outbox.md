@@ -32,5 +32,7 @@ snippet: OutboxRavendBTimeToKeep
 
 By specifying a value of -1 (`Timeout.InfiniteTimeSpan`) for `SetFrequencyToRunDeduplicationDataCleanup` the cleanup task is disabled. This can be useful when an endpoint is scaled out and instances are competing to run the cleanup task.
 
+NOTE: It is advised to run the cleanup task on only one NServiceBus endpoint instance per RavenDB database and disable the cleanup task on all other NServiceBus endpoint instances for most efficient cleanup execution.
 
 partial: effect-on-docstore
+
