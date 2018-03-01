@@ -20,7 +20,7 @@ class Program
             });
 
         bridgeConfig.AutoCreateQueues();
-        bridgeConfig.UseSubscriptionPersistence<InMemoryPersistence>((config, persistence) => { });
+        bridgeConfig.UseSubscriptionPersistence(new InMemorySubscriptionStorage());
 
         #endregion
 
