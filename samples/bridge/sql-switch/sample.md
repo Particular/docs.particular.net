@@ -18,7 +18,7 @@ include: switch-vs-backplane
 
 include: sql-prereq
 
-This sample automatically creates three databases: `switch_blue`, `switch_red` and `switch_green`
+This sample automatically creates four databases: `sqlswitch`, `sqlswitch_blue`, `sqlswitch_red` and `sqlswitch_green`
 
 
 ## Running the project
