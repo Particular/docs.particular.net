@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net461</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Raw" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0-*" />
+    <PackageReference Include="NServiceBus.Transports.Http" Version="2.0.0-*" />
+    <PackageReference Include="NServiceBus.Wormhole.Gateway" Version="2.0.0-*" />
+    <PackageReference Include="System.Net.Http" Version="4.*" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+</Project>
