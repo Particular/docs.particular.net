@@ -10,19 +10,19 @@ class Program
         Console.Title = "Bridge.Red";
 
         var bridgeConfig = Bridge
-            .Between<SqlServerTransport>("Red", t =>
+            .Between<SqlServerTransport>("Red-SQL", t =>
             {
                 t.ConnectionString(ConnectionStrings.Red);
                 t.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             })
-            .And<RabbitMQTransport>("Red", t =>
+            .And<RabbitMQTransport>("Red-Rabbit", t =>
             {
                 t.ConnectionString("host=localhost");
                 t.UseConventionalRoutingTopology();
             });
 
         bridgeConfig.AutoCreateQueues();
-        bridgeConfig.UseSubscriptionPersistence<InMemoryPersistence>((config, persistence) => { });
+        bridgeConfig.UseSubscriptionPersistence(new InMemorySubscriptionStorage());
 
         bridgeConfig.InterceptForwarding(FuncUtils.Fold(
             Logger.Log, 

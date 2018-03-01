@@ -10,23 +10,23 @@ class Program
         Console.Title = "Bridge.Green";
 
         var bridgeConfig = Bridge
-            .Between<SqlServerTransport>("Green", t =>
+            .Between<SqlServerTransport>("Green-SQL", t =>
             {
                 t.ConnectionString(ConnectionStrings.Green);
                 t.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             })
-            .And<RabbitMQTransport>("Green", t =>
+            .And<RabbitMQTransport>("Green-Rabbit", t =>
             {
                 t.ConnectionString("host=localhost");
                 t.UseConventionalRoutingTopology();
             });
 
         bridgeConfig.AutoCreateQueues();
-        bridgeConfig.UseSubscriptionPersistence<InMemoryPersistence>((config, persistence) => { });
+        bridgeConfig.UseSubscriptionPersistence(new InMemorySubscriptionStorage());
 
         #region GreenForwarding
 
-        bridgeConfig.Forwarding.RegisterPublisher("OrderAccepted", "Red");
+        bridgeConfig.Forwarding.RegisterPublisher("OrderAccepted", "Red-Rabbit");
 
         #endregion
 

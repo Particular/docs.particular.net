@@ -18,7 +18,7 @@ class Program
         #region BillingBridgeRouting
 
         var routing = transport.Routing();
-        var bridge = routing.ConnectToBridge("Green");
+        var bridge = routing.ConnectToBridge("Green-SQL");
         bridge.RegisterPublisher(typeof(OrderAccepted), "Sales");
 
         #endregion

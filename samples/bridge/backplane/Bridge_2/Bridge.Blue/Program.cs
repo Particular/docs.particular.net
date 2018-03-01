@@ -12,25 +12,25 @@ class Program
         #region BridgeConfig
 
         var bridgeConfig = Bridge
-            .Between<SqlServerTransport>("Blue", t =>
+            .Between<SqlServerTransport>("Blue-SQL", t =>
             {
                 t.ConnectionString(ConnectionStrings.Blue);
                 t.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             })
-            .And<RabbitMQTransport>("Blue", t =>
+            .And<RabbitMQTransport>("Blue-Rabbit", t =>
             {
                 t.ConnectionString("host=localhost");
                 t.UseConventionalRoutingTopology();
             });
 
         bridgeConfig.AutoCreateQueues();
-        bridgeConfig.UseSubscriptionPersistence<InMemoryPersistence>((config, persistence) => { });
+        bridgeConfig.UseSubscriptionPersistence(new InMemorySubscriptionStorage());
 
         #endregion
 
         #region BlueForwarding
 
-        bridgeConfig.Forwarding.ForwardTo("PlaceOrder", "Red");
+        bridgeConfig.Forwarding.ForwardTo("PlaceOrder", "Red-Rabbit");
 
         #endregion
 

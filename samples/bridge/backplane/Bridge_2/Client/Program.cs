@@ -22,7 +22,7 @@ class Program
         #region ClientBridgeRouting
 
         var routing = transport.Routing();
-        var bridge = routing.ConnectToBridge("Blue");
+        var bridge = routing.ConnectToBridge("Blue-SQL");
         bridge.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
         #endregion
