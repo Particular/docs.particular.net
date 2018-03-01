@@ -61,6 +61,7 @@ ServiceControl collects these metrics for all links and estimates the length of 
 
 #### Known limitations
 As noted before, the current implementation might produce estimates which significantly differ from the actual queue length value. This might happen in the following scenarios:
+ * Queue length for [satellite queues](/nservicebus/satellites) like `.timeouts`, `.timeoutdispatcher`, `.retries` and custom satellite queues are not reported.
  * [Sender Side Distribution](/transports/msmq/sender-side-distribution.md) with non-identical receiver instances, e.g. some are fast and some are slow
  * High error rate scenarios in which significant number of messages are scheduled for [delayed retrying](/nservicebus/recoverability/#delayed-retries) or moved to the [error](/nservicebus/recoverability/#fault-handling) queue
  * In [Distributor](/transports/msmq/distributor/)-based deployments there is no queue length metric provided for the distributor node, only for the workers
