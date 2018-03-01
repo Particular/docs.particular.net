@@ -2,6 +2,7 @@
 title: BSON Serializer
 summary: Using the core BSON serializer
 reviewed: 2030-01-01
+obsolete: true
 component: Json
 related:
 - nservicebus/serialization
