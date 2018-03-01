@@ -6,7 +6,7 @@ namespace Bridge
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Bridge;
-    using NServiceBus.Persistence.Sql;
+    using SqlDialect = NServiceBus.Bridge.SqlDialect;
 
     class Program
     {
@@ -27,12 +27,16 @@ namespace Bridge
                         t => t.ConnectionString(ReceiverConnectionString));
 
             bridgeConfig.AutoCreateQueues();
-            bridgeConfig.UseSubscriptionPersistence<SqlPersistence>((e, p) =>
-            {
-                p.ConnectionBuilder(() => new SqlConnection(BridgeConnectionString));
-                p.SqlDialect<SqlDialect.MsSqlServer>();
-                p.SubscriptionSettings().DisableCache();
-            });
+            var storage = new SqlSubscriptionStorage(
+                connectionBuilder: () => new SqlConnection(BridgeConnectionString), 
+                tablePrefix: "", 
+                sqlDialect: new SqlDialect.MsSqlServer(), 
+                cacheFor: null);
+
+            //Ensures all required schema objects are created
+            await storage.Install().ConfigureAwait(false);
+
+            bridgeConfig.UseSubscriptionPersistence(storage);
 
             #endregion
 
