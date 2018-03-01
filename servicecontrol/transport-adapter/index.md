@@ -30,7 +30,7 @@ The following code shows the configuration of the Transport Adapter in a mixed t
 
 snippet: MixedTransports
 
-NOTE: If the adapter is run in conjunction with the NServiceBus endpoint, eventhough the adapter's transport configuration is similar to the endpoint transport (e.g. ConnectionStrings, etc.), it still needs to be done for both.
+NOTE: If the adapter is run in conjunction with the NServiceBus endpoint, even though the adapter's transport configuration is similar to the endpoint transport (e.g. ConnectionStrings, etc.), it still needs to be done for both.
 
 ### Advanced transport features
 
