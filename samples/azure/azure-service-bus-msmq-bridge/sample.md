@@ -72,7 +72,9 @@ Bridge process is connecting between MSMQ and Azure ServiceBus transports and pr
 
 snippet: bridge-general-configuration
 
-A bridge is created, started, and should be executed as long as bridging is required. 
+A bridge is created, started, and should be executed as long as bridging is required.
+
+NOTE: In this sample we use a simple `InMemorySubscriptionStorage`. In production `SqlSubscriptionStorage` (included in the Bridge package) or custom persistent subscription storage should be used to prevent message loss.  
 
 snippet: bridge-execution
 
