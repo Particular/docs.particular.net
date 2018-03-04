@@ -33,6 +33,9 @@ namespace Sales
             {
                 OrderId = message.OrderId
             };
+            
+            log.Info($"Publishing OrderPlaced, OrderId = {message.OrderId}");
+            
             return context.Publish(orderPlaced);
         }
     }
