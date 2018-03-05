@@ -78,7 +78,7 @@ The behavior ignores:
 
 The behavior captures the destination of the message in a header and overrides the original value so that the message is actually sent to the local endpoint (put at the end of the endpoint's incoming queue).
 
-NOTICE: In Version 3 of this sample some properties of a message (such as defer time) are not handled. In order to use similar feature in production, make sure to add code to handle all possible situations or refrain from using deferred messages in endpoints where store-and-forward is used.
+NOTE: In Version 3 of this sample some properties of a message (such as defer time) are not handled. In order to use similar feature in production, make sure to add code to handle all possible situations or refrain from using deferred messages in endpoints where store-and-forward is used.
 
 
 #### Receive pipeline
