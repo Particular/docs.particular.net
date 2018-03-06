@@ -39,14 +39,14 @@
     <Reference Include="System" />
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.*" />
-    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.*" />
-    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.*" />
-    <PackageReference Include="Microsoft.AspNet.SignalR.SystemWeb" Version="2.*" />
-    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.*" />
-    <PackageReference Include="Microsoft.Owin" Version="3.*" />
-    <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.*" />
-    <PackageReference Include="Microsoft.Owin.Security" Version="3.*" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.4" />
+    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.2.4" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.SystemWeb" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.4" />
+    <PackageReference Include="Microsoft.Owin" Version="4.0.0" />
+    <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="4.0.0" />
+    <PackageReference Include="Microsoft.Owin.Security" Version="4.0.0" />
     <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
