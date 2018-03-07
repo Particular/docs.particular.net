@@ -7,5 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <Compile Include="..\ConventionExtensions.cs" />
   </ItemGroup>
 </Project>
