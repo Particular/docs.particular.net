@@ -36,21 +36,22 @@ The solution is configured to have [multiple startup projects](https://msdn.micr
 
 ![3 console applications, one for each endpoint](3-console-windows.png)
 
-In the **ClientUI** application, press `P` to place an order, and watch what happens in other windows. 
+In the **ClientUI** application, press <kbd>P</kbd> to place an order, and watch what happens in other windows. 
 
 It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint. In the **Sales** endpoint window you should see:
 
 ```
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = 9b16a5ce-e6ae-4447-a911-b7d6e265a1f0
+INFO  Sales.PlaceOrderHandler Publishing OrderPlaced, OrderId = 9b16a5ce-e6ae-4447-a911-b7d6e265a1f0
 ```
 
-Then the **Sales** endpoint will publish an **OrderPlaced** event, which will be received by the **Billing** endpoint. In the **Billing** endpoint window you should see:
+As shown in the log, the **Sales** endpoint then publishes an **OrderPlaced** event, which will be received by the **Billing** endpoint. In the **Billing** endpoint window you should see:
 
 ```
 INFO  Billing.OrderPlacedHandler Billing has received OrderPlaced, OrderId = 9b16a5ce-e6ae-4447-a911-b7d6e265a1f0
 ```
 
-Press the `P` key repeatedly in the **ClientUI** window and watch the messages flow between endpoints.
+Press the <kbd>P</kbd> key repeatedly in the **ClientUI** window and watch the messages flow between endpoints.
 
 ![Messages flowing between endpoints](messages-flowing.png)
 
@@ -61,9 +62,9 @@ One of the most powerful advantages of asynchronous messaging is reliability. Fa
 
 See how that is achieved by following these steps:
 
-1. In Visual Studio's **Debug** menu, select **Detach All** so that we can close one console window without Visual Studio closing all the other windows as well. Alternatively, you can run the solution using **Debug** > **Start Without Debugging** or Ctrl+F5.
+1. In Visual Studio's **Debug** menu, select **Detach All** so that we can close one console window without Visual Studio closing all the other windows as well. Alternatively, you can run the solution using **Debug** > **Start Without Debugging** or <kbd>Ctrl</kbd>+<kbd>F5</kbd>.
 1. Close the **Billing** window.
-1. Send several messages by pressing `P` in the **ClientUI** window.
+1. Send several messages by pressing <kbd>P</kbd> in the **ClientUI** window.
 1. Notice how messages are flowing from **ClientUI** to **Sales**. **Sales** is still publishing messages, even though **Billing** can't process them at the moment.
 
 ![ClientUI and Sales processing messages while Billing is shut down](billing-shut-down.png)
@@ -90,8 +91,8 @@ Let's simulate a transient failure in the **Sales** endpoint and see retries in 
 
 snippet: ThrowTransientException
 
-3. Start the solution without debugging (Ctrl+F5), or alternatively, start the solution and then select **Detach All** in the **Debug** menu. This will make it easier to observe exceptions occurring without being interrupted by Visual Studio's Exception Assistant.
-3. In the **ClientUI** window, send one message at a time by pressing `P`, and watch the **Sales** window.
+3. Start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>), or alternatively, start the solution and then select **Detach All** in the **Debug** menu. This will make it easier to observe exceptions occurring without being interrupted by Visual Studio's Exception Assistant.
+3. In the **ClientUI** window, send one message at a time by pressing <kbd>P</kbd>, and watch the **Sales** window.
 
 ![Transient exceptions](transient-exceptions.png)
 
@@ -196,7 +197,7 @@ Now run the solution, and assuming you remembered to [update the startup project
 
 ![Addition of Shipping endpoint](add-shipping-endpoint.png)
 
-As you place orders by pressing `P` in the **ClientUI** window, you will see the **Shipping** endpoint reacting to `OrderPlaced` events:
+As you place orders by pressing <kbd>P</kbd> in the **ClientUI** window, you will see the **Shipping** endpoint reacting to `OrderPlaced` events:
 
 ```
 INFO Shipping.OrderPlacedHandler Shipping has received OrderPlaced, OrderId = 25c5ba63-eed8-4531-9caa-ffe353105ee1
