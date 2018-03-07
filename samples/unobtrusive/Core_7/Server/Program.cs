@@ -11,7 +11,7 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseDataBus<FileShareDataBus>()
-            .BasePath(@"..\..\..\DataBusShare\");
+            .BasePath(@"..\..\..\..\DataBusShare\");
 
         endpointConfiguration.ApplyCustomConventions();
 
