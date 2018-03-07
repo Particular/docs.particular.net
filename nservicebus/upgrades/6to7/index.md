@@ -150,6 +150,11 @@ The `GetMesssageIntent` extension method has been renamed to `GetMessageIntent`.
 AppDomain assemblies are now scanned by default. Use the [ScanAppDomainAssemblies API](/nservicebus/hosting/assembly-scanning.md#appdomain-assemblies) to disable AppDomain scanning.
 
 
+### Unobtrusive mode messages
+
+[Unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md) message types will no longer appear in the list of scanned types. These message types are now loaded dynamically as messages arrive.
+
+
 ## Legacy .Retries message receiver
 
 The [.Retries message receiver](/nservicebus/recoverability/configure-delayed-retries.md?version=core_6#custom-retry-policy-legacy-retries-message-receiver) added to assist in migrating from version 5 to version 6 has been removed. The API to disable it has also been removed.
