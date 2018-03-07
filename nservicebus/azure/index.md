@@ -17,7 +17,7 @@ NServiceBus helps create distributed .NET systems not only on premises but also 
 
 ### Self-hosting
 
- * [Azure App Service](/samples/show-case/cloud-azure/) using WebApps and WebJobs
+ * [Azure App Service](/samples/showcase/cloud-azure/) using WebApps and WebJobs
  * Service Fabric
 
 

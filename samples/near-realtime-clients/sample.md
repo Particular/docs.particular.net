@@ -6,7 +6,7 @@ component: Core
 related: 
  - nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
  - nservicebus/messaging/unobtrusive-mode
- - samples/show-case
+ - samples/showcase
 ---
 
 For near real-time, occasionally connected clients, messages are only relevant for a short period of time. Clients that received near real-time stock ticker updates are a common example of these types of clients.
