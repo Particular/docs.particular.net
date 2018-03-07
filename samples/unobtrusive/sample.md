@@ -19,7 +19,7 @@ Run the solution. Two console applications should start up, `Client` and `Server
 
 ## Configuring the Unobtrusive message
 
-Look at the `ConventionExtensions` in the `SharedConventions` project. The code tells NServiceBus how to determine which types are message definitions by passing in custom conventions, instead of using the `IMessage`, `ICommand`, or `IEvent` interfaces:
+Look at the `ConventionExtensions` class. The code tells NServiceBus how to determine which types are message definitions by passing in custom conventions, instead of using the `IMessage`, `ICommand`, or `IEvent` interfaces:
 
 snippet: CustomConvention
 
@@ -31,4 +31,4 @@ Look at the code. There are a number of projects in the solution:
 
  * **Client**: sends a request and a command to the server and handles a published event
  * **Server**: handles requests and commands, and publishes events
- * **Shared**: Shared code including the message conventions and message definitions.
+ * **Shared**: the shared message definitions
