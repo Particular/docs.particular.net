@@ -7,5 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="5.*" />
+    <Compile Include="..\ConventionExtensions.cs" />
+    <Compile Include="..\ConfigErrorQueue.cs" />
   </ItemGroup>
 </Project>

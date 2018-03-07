@@ -11,7 +11,7 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         var dataBus = busConfiguration.UseDataBus<FileShareDataBus>();
-        dataBus.BasePath(@"..\..\..\DataBusShare\");
+        dataBus.BasePath(@"..\..\..\..\DataBusShare\");
 
         busConfiguration.ApplyCustomConventions();
 
