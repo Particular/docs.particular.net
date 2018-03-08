@@ -1,6 +1,7 @@
 ---
 title: Performance Tuning
-reviewed: 2016-04-21
+summary: Tips on how to get the best performance from the Azure Storage Queues persistence
+reviewed: 2018-03-08
 component: ASP
 related:
  - nservicebus/operations

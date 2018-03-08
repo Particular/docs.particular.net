@@ -1095,8 +1095,13 @@ No personal voice. I.e. no "we", "you", "your", "our" etc.
 
 Avoid ambiguity.
 
- * Range: **Versions X and above** and **Versions Y and below** and **Version X to Version Y**.
- * Singular: **Version X** and NOT **VX** or **version X**.
+ * Range: **Version X and above** and **Version Y and below** and **Version X to version Y**.
+ * Singular: **Version X** and NOT **VX**.
+
+ Don't capitalize "version" unnecessarily.
+
+ * **NServiceBus version 6** and NOT **NServiceBus Version 6**
+ * **NServiceBus version 5 and below** and NOT **NServiceBus version 5 and below**
 
 
 ## Embedding videos
