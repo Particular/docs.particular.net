@@ -10,10 +10,12 @@ The best way to get started with the monitoring features in the Particular Servi
 
 <div id="download-demo-container" class="text-center inline-download hidden-xs"><a id='download-demo' href='https://github.com/particular/monitoringdemo/zipball/master' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the demo now</a>
 </div>
-<script>
+<script type="text/javascript">
   if(window.location.href.match(/start-download=true/)) {
-    document.getElementById('download-demo-container').style.display = 'none';
-    window.location = "https://github.com/particular/monitoringdemo/zipball/master";
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById('download-demo-container').style.display = 'none';
+      window.location = "https://github.com/particular/monitoringdemo/zipball/master";
+    });
   }
 </script>
 
