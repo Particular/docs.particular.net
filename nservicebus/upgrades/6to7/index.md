@@ -1,8 +1,8 @@
 ---
 title: Upgrade Version 6 to 7
-summary: Instructions on how to upgrade NServiceBus Version 6 to 7.
+summary: Instructions on how to upgrade NServiceBus from version 6 to version 7.
 component: Core
-reviewed: 2018-02-19
+reviewed: 2018-03-08
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
@@ -15,7 +15,7 @@ include: upgrade-major
 
 ## Configuration
 
-The configuration APIs `IProvideConfiguration`, `IConfigurationSource` and `CustomConfigurationSource` have been deprecated. The equivalent code-based API are shown here:
+The configuration APIs `IProvideConfiguration`, `IConfigurationSource`, and `CustomConfigurationSource` have been deprecated. The equivalent code-based API are shown in the remainder of this section.
 
 
 ### [Auditing](/nservicebus/operations/auditing.md)
@@ -65,7 +65,7 @@ snippet: 6to7LoggingAppSettings
 snippet: 6to7LoggingReadAppSettings
 
 
-### [Error Queue](/nservicebus/recoverability/configure-error-handling.md)
+### [Error queue](/nservicebus/recoverability/configure-error-handling.md)
 
 Configuring the error queue via the following APIs has been deprecated:
 
@@ -89,7 +89,7 @@ snippet: 6to7ErrorAppSettings
 snippet: 6to7ErrorReadAppSettings
 
 
-### [Endpoint Mappings](/nservicebus/messaging/routing.md)
+### [Endpoint mappings](/nservicebus/messaging/routing.md)
 
 Configuring endpoint mappings via the following APIs has been deprecated:
 
@@ -157,7 +157,7 @@ AppDomain assemblies are now scanned by default. Use the [ScanAppDomainAssemblie
 
 ## Legacy .Retries message receiver
 
-The [.Retries message receiver](/nservicebus/recoverability/configure-delayed-retries.md?version=core_6#custom-retry-policy-legacy-retries-message-receiver) added to assist in migrating from version 5 to version 6 has been removed. The API to disable it has also been removed.
+The [.Retries message receiver](/nservicebus/recoverability/configure-delayed-retries.md?version=core_6#custom-retry-policy-legacy-retries-message-receiver), which was added to assist in migrating from version 5 to version 6, has been removed. The API to disable it has also been removed.
 
 
 ## MSMQ
@@ -166,7 +166,7 @@ The [MSMQ transport](/transports/msmq) is no longer part of the NServiceBus NuGe
 
 ### Provision of PowerShell scripts
 
-Two new scripts called, `CreateQueues.ps1` and `DeleteQueues.ps1` have been added to the NuGet package, to facilitate the creation of queues for endpoints during deployment. These scripts are copied to a subfolder called `NServiceBus.Transport.Msmq` in the output folder of any project referencing it. Browse to the output folder to locate the scripts. For example, `bin\Debug\net461\NServiceBus.Transport.Msmq`.
+Two new scripts, `CreateQueues.ps1` and `DeleteQueues.ps1`, have been added to the NuGet package to facilitate the creation of queues for endpoints during deployment. These scripts are copied to a subfolder called `NServiceBus.Transport.Msmq` in the output folder of any project referencing it. Browse to the output folder to locate the scripts. For example, `bin\Debug\net461\NServiceBus.Transport.Msmq`.
 
 A new API, [DisableInstaller](/transports/msmq/transportconfig.md?version=msmqtransport_1#receiving-algorithm-disableinstaller), can now be used to disable the auto-creation of queues during startup.
 
@@ -175,12 +175,12 @@ A new API, [DisableInstaller](/transports/msmq/transportconfig.md?version=msmqtr
 
 Passing in the [connection string](/transports/msmq/connection-strings.md) when configuring transports is no longer supported. If the connection string is passed, the following exception will be thrown at endpoint start-up:
 
-> System.Exception : Passing in MSMQ settings such as DeadLetterQueue, Journaling etc via a connection string is no longer supported.  Use code level API.
+> System.Exception : Passing in MSMQ settings such as DeadLetterQueue, Journaling etc via a connection string is no longer supported.  Use code-level API.
 
 New APIs have been added for each of the settings, namely, DisableDeadLetterQueueing, DisableConnectionCachingForSends, UseNonTransactionalQueues, EnableJournaling and TimeToReachQueue. See the [transport configuration documentation](/transports/msmq/transportconfig.md) for more details on the usage.
 
 
-### MSMQ Subscription Storage
+### MSMQ subscription storage
 
 The default queue for the subscription storage has been switched from `NServiceBus.Subscriptions` to `[EndpointName].Subscriptions` if the subscription queue has not been explicitly configured.
 
@@ -196,9 +196,9 @@ MSMQ persistence was originally put into the legacy namespace because of its lim
 
 ## Default transport
 
-There is no longer a default transport, so an exception will be thrown if an endpoint is created or started without configuring a transport.
+There is no longer a default transport; an exception will be thrown if an endpoint is created or started without configuring a transport.
 
-In version 6 and below the default transport was [MSMQ](/transports/msmq/). To use MSMQ in version 7 and above, reference [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/) and configure with:
+In NServiceBus version 6 and below, the default transport was [MSMQ](/transports/msmq/). To use MSMQ in version 7 and above, reference [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/) and configure with:
 
 snippet: 6to7-UseMsmqTransport
 
@@ -288,23 +288,23 @@ The `string SelectReceiver(string[] receiverAddresses)` signature has been remov
 
 The `IMessageHandlerContext.HandleCurrentMessageLater()` method has been deprecated.
 
-To handle the current message later and abort the current processing attempt, throw an exception in the message handler and let [recoverability](/nservicebus/recoverability) reschedule the message. Be aware of the following restrictions:
+To handle the current message later and abort the current processing attempt, throw an exception in the message handler and let [recoverability](/nservicebus/recoverability) reschedule the message. Note the following restrictions:
 
- * Retries are only enabled when the transport is configured to use transactions (i.e. anything other than [`TransportTransactionMode.None`](/transports/transactions.md#transactions-unreliable-transactions-disabled).
+ * Retries are enabled only when the transport is configured to use transactions (i.e. anything other than [`TransportTransactionMode.None`](/transports/transactions.md#transactions-unreliable-transactions-disabled).
  * When throwing an exception, the current transaction will be rolled back, causing outgoing messages to be discarded.
  * The retry attempts and delays depend on the specific configuration.
  * Depending on the transport's transaction behavior, the message will reappear at the front or at the back of the queue.
 
-To complete processing of the current message without invoking additional handlers and reprocess it later, send a copy of the current message via `IMessageHandlerContext.SendLocal(...)`. Be aware of the following restrictions:
+To complete processing of the current message without invoking additional handlers and reprocess it later, send a copy of the current message via `IMessageHandlerContext.SendLocal(...)`. Note the following restrictions:
 
- * Reusing the incoming message instance is possible, however it does not copy the headers of the incoming message. Headers need to be manually set on the outgoing message via the [Outgoing Headers API](/nservicebus/messaging/header-manipulation.md#writing-outgoing-headers).
+ * Reusing the incoming message instance is possible, however it does not copy the headers of the incoming message. Headers need to be manually set on the outgoing message via the [outgoing headers API](/nservicebus/messaging/header-manipulation.md#writing-outgoing-headers).
  * A delay can be added using the send options. For more options see the [delayed delivery](/nservicebus/messaging/delayed-delivery.md) section.
  * The sent message will be added at the back of the queue.
 
 
 ## Default critical error behavior
 
-In NServiceBus version 6 and below, the default behavior was to stop the endpoint when critical errors occur. In version 7 and above, the default behavior is to keep the endpoint running to allow infrastructure (i.e. transports, persisters, etc.) to try to recover from the failure condition. One example would be the queuing system being unavailable or not being able to connect to the database.
+In NServiceBus version 6 and below, the default behavior was to stop the endpoint when critical errors occur. In version 7 and above, the default behavior is to keep the endpoint running to allow infrastructure (i.e. transports, persisters, etc.) to try to recover from the failure condition. One example is the queuing system being unavailable or not being able to connect to the database.
 
 See the [critical errors documentation](/nservicebus/hosting/critical-errors.md) for details on how to customize this behavior.
 
