@@ -11,7 +11,7 @@ related:
 - nservicebus/pipeline/features
 ---
 
-This sample illustrates how to build a custom [NServiceBus feature](/nservicebus/pipeline/features). In this feature, some diagnostics are performed:
+This sample illustrates how to build a custom [NServiceBus feature](/nservicebus/pipeline/features.md). In this feature, some diagnostics are performed:
 
  * Logging [Handler](/nservicebus/handlers/) times.
  * Logging [Saga](/nservicebus/sagas/) data state.
