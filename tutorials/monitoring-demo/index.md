@@ -6,17 +6,16 @@ redirects:
 - tutorials/monitoring/demo
 ---
 
+The best way to get started with the monitoring features in the Particular Service Platform is to try them out with a real system. This downloadable sample contains all of the necessary parts of the platform, already configured and ready to run. It also includes 4 sample endpoints that all communicate by exchanging messages over the SQL Transport.
+
+<div id="download-demo-container" class="text-center inline-download hidden-xs"><a id='download-demo' href='https://github.com/particular/monitoringdemo/zipball/master' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the demo now</a>
+</div>
 <script>
   if(window.location.href.match(/start-download=true/)) {
-    document.getElementById('download-demo').style.display = 'none';
+    document.getElementById('download-demo-container').style.display = 'none';
     window.location = "https://github.com/particular/monitoringdemo/zipball/master";
   }
 </script>
-
-The best way to get started with the monitoring features in the Particular Service Platform is to try them out with a real system. This downloadable sample contains all of the necessary parts of the platform, already configured and ready to run. It also includes 4 sample endpoints that all communicate by exchanging messages over the SQL Transport.
-
-<div class="text-center inline-download hidden-xs"><a id='download-demo' href='https://github.com/particular/monitoringdemo/zipball/master' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the demo now</a>
-</div>
 
 
 ## Prerequisites
