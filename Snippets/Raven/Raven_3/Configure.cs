@@ -27,11 +27,11 @@ class Configure
 
         var persistence = busConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseSharedSession(
-            getSessionFunc: () =>
+            getSessionFunc: headers =>
             {
                 var session = myDocumentStore.OpenSession();
                 // customize session here
-                return session;
+                 return session;
             });
 
         #endregion

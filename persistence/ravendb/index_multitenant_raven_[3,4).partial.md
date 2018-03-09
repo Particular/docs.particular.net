@@ -1,0 +1,1 @@
+The `getSessionFunc` function receives the incoming message headers as an argument. Message headers can be used to support multi-tenant environments customizing the shared session based on the currently processed message.
