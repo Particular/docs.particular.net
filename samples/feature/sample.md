@@ -1,6 +1,7 @@
 ---
 title: Building a Custom Feature
-reviewed: 2016-05-31
+summary: How to build a custom feature in NServiceBus
+reviewed: 2018-03-08
 component: Core
 tags:
 - Pipeline
@@ -10,33 +11,31 @@ related:
 - nservicebus/pipeline/features
 ---
 
-## Introduction
-
-This sample illustrates how to build a custom Feature. In this Feature some diagnostics is performed:
+This sample illustrates how to build a custom [NServiceBus feature](/nservicebus/pipeline/features). In this feature, some diagnostics are performed:
 
  * Logging [Handler](/nservicebus/handlers/) times.
  * Logging [Saga](/nservicebus/sagas/) data state.
 
-Both of these are implemented as dependent Features that depend on the Diagnostics Feature.
+Both of these are implemented as dependent features that depend on the diagnostics feature.
 
 
-## Diagnostics Feature
+## Diagnostics feature
 
 snippet: DiagnosticsFeature
 
-The Diagnostics Feature enables all dependent to be easily toggled enabling or disabling it through configuration. In this case it is enabled by default.
+The diagnostics feature allows all dependencies to be easily toggled, enabling or disabling them through configuration. In this case it is enabled by default.
 
 
-### Custom Logger
+### Custom logger
 
-This Feature injects a custom logger into dependency injection that can then be used by below Features.
+This feature injects a custom logger that can be used by other features.
 
 snippet: CustomLogger
 
 
-## Handler Timing Feature
+## Handler timing feature
 
-This feature depends on both the Diagnostics Feature.
+This feature depends on the diagnostics feature.
 
 snippet: HandlerTimerFeature
 
