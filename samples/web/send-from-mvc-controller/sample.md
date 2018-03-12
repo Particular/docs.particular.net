@@ -2,7 +2,7 @@
 title: Sending from an ASP.NET MVC Controller
 summary: Leverages Autofac MVC integration to inject an endpoint instance into MVC Controllers.
 component: Core
-reviewed: 2016-06-01
+reviewed: 2018-03-12
 redirects:
 - nservicebus/injecting-the-bus-into-asp.net-mvc-controller
 - samples/web/asp-mvc-injecting-bus
@@ -12,6 +12,7 @@ related:
 - nservicebus/hosting/publishing-from-web-applications
 ---
 
+The sample demonstrates how to inject an endpoint instance info MVC controllers using Autofac's MVC integration.
 
 ### Wire up Autofac
 

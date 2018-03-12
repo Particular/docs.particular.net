@@ -9,8 +9,6 @@ related:
 ---
 
 
-## Introduction
-
 This sample leverages OWIN (Open Web Interface for .NET) to add light weight HTTP message pass through middleware (general term for an extension to OWIN) that can be re-used in a variety of web technologies. This middleware provides the bridge between an HTTP stream (via JavaScript on a web page) and the queue used by NServiceBus.
 
 The flow of this sample is:

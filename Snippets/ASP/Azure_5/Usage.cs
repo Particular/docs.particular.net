@@ -4,7 +4,7 @@ class Usage
 {
     Usage(Configure configure)
     {
-        #region PersistanceWithAzure
+        #region PersistenceWithAzure
 
         configure.AzureSubscriptionStorage();
         configure.AzureSagaPersister();

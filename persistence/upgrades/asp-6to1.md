@@ -1,7 +1,7 @@
 ---
 title: Upgrade from NServiceBus Azure Version 6
-summary: Instructions on how to migrate from NServiceBus.Azure Storage Persistence Version 6 to NServiceBus.Persistence.AzureStorage Version 1.
-reviewed: 2016-06-23
+summary: Instructions on how to migrate from NServiceBus.Azure Storage Persistence version 6 to NServiceBus.Persistence.AzureStorage version 1.
+reviewed: 2018-03-12
 component: ASP
 related:
  - persistence/azure-storage
@@ -14,29 +14,29 @@ upgradeGuideCoreVersions:
  - 6
 ---
 
-WARNING: Upgrades from NServiceBus.Azure Versions 6.2.3 and below will need to apply the [saga de-duplication patch](/persistence/upgrades/asp-saga-deduplication.md) followed by applying the [saga index patch](/persistence/upgrades/asp-saga-pruning.md) before completing the remainder of these upgrade steps.
+WARNING: Upgrades from NServiceBus.Azure versions 6.2.3 and below will need to apply the [saga de-duplication patch](/persistence/upgrades/asp-saga-deduplication.md) followed by the [saga index patch](/persistence/upgrades/asp-saga-pruning.md) before completing the remainder of these upgrade steps.
 
 
-## Changing Nuget Packages and namespaces
+## Changing Nuget packages and namespaces
 
-One of the most visible changes for this persister was moving it from the NServiceBus.Azure package to the NServiceBus.Persistence.AzureStorage package. This change in packaging has reset the version number to Version 1.
+One of the most visible changes for this persister was moving it from the NServiceBus.Azure package to the NServiceBus.Persistence.AzureStorage package. This change in packaging has reset the version number to version 1.
 
 Upgrading to the new package requires removing the [NServiceBus.Azure NuGet package](https://www.nuget.org/packages/NServiceBus.Azure/) from the project and adding the [NServiceBus.Persistence.AzureStorage NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/).
 
-Once the packages have been changed, any use of the `NServiceBus.Azure` namespace needs to be replaced with `NServiceBus.Persistence.AzureStorage`.
+Once the packages have been changed, any use of the `NServiceBus.Azure` namespace must be replaced with `NServiceBus.Persistence.AzureStorage`.
 
 
-## New Configuration API
+## New configuration API
 
-In Versions 6 and below the Azure Storage Persistence was configured using XML configuration sections called `AzureSubscriptionStorageConfig`, `AzureSagaPersisterConfig`, and `AzureTimeoutPersisterConfig`. These XML configuration sections have been obsoleted in favor of a more granular, code based configuration API.
+In versions 6 and below, the Azure Storage Persistence was configured using XML configuration sections called `AzureSubscriptionStorageConfig`, `AzureSagaPersisterConfig`, and `AzureTimeoutPersisterConfig`. These XML configuration sections have been deprecated in favor of a more granular, code-based configuration API.
 
-For example, the following Xml:
+For example, the following XML:
 
-snippet: AzurePersistenceFromAppConfig
+snippet: AzurePersistenceFromAppConfigUpgrade
 
 changes to this code configuration:
 
-snippet: AzurePersistenceSubscriptionsAllConnectionsCustomization
+snippet: AzurePersistenceAllConnectionsUpgrade
 
 The new configuration APIs are accessible through extension methods on the `UsePersistence<AzureStoragePersistence, StorageType.Sagas>()`, `UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()`, and `UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()` extension points in the endpoint configuration. See [Azure Storage Persistence Code Configuration](/persistence/azure-storage/configuration.md#configuration-with-code) for more details on code configuration API use.
 

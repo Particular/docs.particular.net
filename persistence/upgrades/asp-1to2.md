@@ -1,7 +1,7 @@
 ---
 title: Upgrade from Azure Storage persistence Version 1 to Verersion 2
-summary: Instructions on how to migrate from NServiceBus.Azure Storage Persistence Version 6 to NServiceBus.Persistence.AzureStorage Version 1.
-reviewed: 2017-08-31
+summary: Instructions on how to migrate from Azure Storage Persistence version 1 to version 2
+reviewed: 2018-03-12
 component: ASP
 related:
  - persistence/azure-storage
@@ -16,5 +16,5 @@ upgradeGuideCoreVersions:
 
 ## Connections string should be set from code only
 
-AppSetting `NServiceBus/Persistence` is no longer retrieved from the configuration file. Setting connection string for Timeouts and Subscription persisters should be done via code.
+AppSetting `NServiceBus/Persistence` is no longer retrieved from the configuration file. Setting the connection string for timeouts and subscription persisters should be done via code.
 

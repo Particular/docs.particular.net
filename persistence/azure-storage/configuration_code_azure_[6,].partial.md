@@ -1,13 +1,13 @@
-### Configuration with Code
+### Configuration with code
 
-For Sagas:
+For sagas:
 
 snippet: AzurePersistenceSagasCustomization
 
-For Subscriptions:
+For subscriptions:
 
 snippet: AzurePersistenceSubscriptionsCustomization
 
-For Timeouts:
+For timeouts:
 
 snippet: AzurePersistenceTimeoutsCustomization

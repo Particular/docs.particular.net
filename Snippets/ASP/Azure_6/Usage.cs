@@ -6,7 +6,7 @@ class Usage
 {
     Usage(BusConfiguration busConfiguration)
     {
-        #region PersistanceWithAzure
+        #region PersistenceWithAzure
 
         busConfiguration.UsePersistence<AzureStoragePersistence>();
 
