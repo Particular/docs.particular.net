@@ -11,6 +11,7 @@ redirects:
 - samples/outbox/store-and-forward
 ---
 
+NOTE: This way of implementing store-and-forward behavior is no longer available in Versions 4 and later of the SQL Server transport. In order to achieve similar behavior in Version 4 and later, use [Switch](/samples/bridge/sql-switch) or [Backplane](/samples/bridge/backplane).
 
 ## Prerequisites
 

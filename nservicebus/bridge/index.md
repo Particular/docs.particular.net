@@ -23,7 +23,7 @@ Here's a comparison between the gateway technologies ([Gateway](/nservicebus/gat
 | Supports publishes    | No               | Yes                           |
 | Publisher aware       | N/A              | No                            |
 | Dedicated routing     | Yes, via sites   | Yes, via *connector* configuration |
-| Geo-distribution      | Yes              | No                            |
+| Geo-distribution      | Yes              | Yes, via inter-bridge forwarding |
 | Logically significant | Yes              | No                            |
 |                       |                  |                               |
 
@@ -79,6 +79,6 @@ If the transport on the other side does support multicast operations, the subscr
 
 ## De-duplication
 
-The messages traveling through a Bridge can get duplicated along the way. The Bridge does not come with an integrated message deduplication mechanism.
+The messages travelling through a Bridge can get duplicated along the way. The Bridge does not come with an integrated message de-duplication mechanism but offers an extension point in form of *interceptors* so a custom de-duplication algorithm can be plugged in. The [backplane sample](/samples/bridge/backplane) demonstrates this feature.
 
-The Bridge does, however, preserve the message ID between the source and the ultimate destination. The message ID can be used to deduplicate at the destination. If the destination endpoint uses the [Outbox](/nservicebus/outbox/) the deduplication will be done automatically by means of the Outbox mechanism.
+The Bridge does, however, preserve the message ID between the source and the ultimate destination. The message ID can be used to de-duplicate at the destination. If the destination endpoint uses the [Outbox](/nservicebus/outbox/) the de-duplication will be done automatically by means of the Outbox mechanism.
