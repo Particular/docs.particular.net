@@ -6,6 +6,7 @@ component: MessagePack
 related:
 - nservicebus/serialization
 - nservicebus/serialization/messagepack
+- nservicebus/serializers/message-pack
 ---
 
 
