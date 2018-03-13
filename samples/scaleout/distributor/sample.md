@@ -11,7 +11,7 @@ redirects:
 
 Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. This sample demonstrates how easy it is to use NServiceBus to scale out existing message processing by adding more workers on different machines.
 
-NOTE: The distributor feature expects that workers will be deployed to multiple machines. In this sample, all workers are on a single machine in order to keep it simple, however such an approach should not be applied in a production environment. See [Scaling out in a real environment](#scaling-out-in-a-real-environment) section for more information.
+NOTE: The distributor feature expects that workers will be deployed to multiple machines. In this sample, all workers are on a single machine in order to keep it simple, however such an approach should not be applied in a production environment. See [Scaling out in a production environment](#scaling-out-in-a-production-environment) section for more information.
  
 
 ## Code walk-through
@@ -148,7 +148,7 @@ This sample has two workers which are hard-coded as projects for the sake of kee
  1. Both `Worker1` and `Worker2` have different endpoint names (Versions 4 and 5).
  1. Both `Worker1` and `Worker2` have hard-coded settings in the app.config
 
-In a real solution the following configuration is more appropriate:
+In a production solution the following configuration is more appropriate:
 
  1. One Worker in the project (or have the `Server` double as a worker)
  1. The same `Worker` endpoint would be deployed to multiple machines and only differ by its app.config.
