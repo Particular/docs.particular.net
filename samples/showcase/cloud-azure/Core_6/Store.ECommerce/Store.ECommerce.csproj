@@ -1,4 +1,4 @@
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -42,29 +42,29 @@
     <Reference Include="System" />
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.*" />
-    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.*" />
-    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.*" />
-    <PackageReference Include="Microsoft.AspNet.SignalR.SystemWeb" Version="2.*" />
-    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.*" />
-    <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.*" />
-    <PackageReference Include="Microsoft.Data.Edm" Version="5.*" />
-    <PackageReference Include="Microsoft.Data.OData" Version="5.*" />
-    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.*" />
-    <PackageReference Include="Microsoft.Owin" Version="3.*" />
-    <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.*" />
-    <PackageReference Include="Microsoft.Owin.Security" Version="3.*" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.4" />
+    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.2.4" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.SystemWeb" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.4" />
+    <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.0.4" />
+    <PackageReference Include="Microsoft.Data.Edm" Version="5.8.3" />
+    <PackageReference Include="Microsoft.Data.OData" Version="5.8.3" />
+    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.8.3" />
+    <PackageReference Include="Microsoft.Owin" Version="4.0.0" />
+    <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="4.0.0" />
+    <PackageReference Include="Microsoft.Owin.Security" Version="4.0.0" />
     <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
-    <PackageReference Include="Microsoft.Web.WebJobs.Publish" Version="1.*" />
+    <PackageReference Include="Microsoft.Web.WebJobs.Publish" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.*" />
+    <PackageReference Include="NServiceBus" Version="6.4.3" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.5.3" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />
     <PackageReference Include="Owin" Version="1.*" />
-    <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.*" />
-    <PackageReference Include="System.Dynamic.Runtime" Version="4.*" />
-    <PackageReference Include="System.Linq.Queryable" Version="4.*" />
-    <PackageReference Include="System.Net.Requests" Version="4.*" />
+    <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
+    <PackageReference Include="System.Net.Requests" Version="4.3.0" />
     <PackageReference Include="System.Spatial" Version="5.*" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
     <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
