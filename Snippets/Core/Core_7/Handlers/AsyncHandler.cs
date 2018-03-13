@@ -12,7 +12,6 @@
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             ComputeBoundComponent.BlocksForAShortTime();
-            // or Task.CompletedTask
             return Task.CompletedTask;
         }
     }
