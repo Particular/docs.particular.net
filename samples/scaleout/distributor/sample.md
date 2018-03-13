@@ -1,7 +1,7 @@
 ---
 title: Scale Out with the Distributor
 summary: Scale out existing message processing by adding workers on different machines.
-reviewed: 2016-06-23
+reviewed: 2018-03-13
 component: Distributor
 tags:
  - Scalability
@@ -9,9 +9,9 @@ redirects:
  - nservicebus/scale-out-sample
 ---
 
-Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out existing message processing by adding more workers on different machines.
+Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. This sample demonstrates how easy it is to use NServiceBus to scale out existing message processing by adding more workers on different machines.
 
-NOTE: The Distributor feature expects that workers will be deployed to multiple machines. In this sample all workers are on a single machine in order to keep it simple, however such an approach should not be applied in a production environment. See [Scaling out in a real environment](#scaling-out-in-a-real-environment) section for more information.
+NOTE: The distributor feature expects that workers will be deployed to multiple machines. In this sample, all workers are on a single machine in order to keep it simple, however such an approach should not be applied in a production environment. See [Scaling out in a real environment](#scaling-out-in-a-real-environment) section for more information.
  
 
 ## Code walk-through
@@ -42,9 +42,7 @@ Common message definitions shared between all projects.
 
 ### Worker.Handlers
 
-A library for sharing handlers between workers.
-
-Contains one handler.
+A library for sharing handlers between workers. The project contains a single handler.
 
 snippet: WorkerHandler
 
@@ -77,15 +75,15 @@ The Node in the `MasterNodeConfig` points to the host name where the MasterNode 
 
 ## Running the code
 
-Start the solution with all the console applications (`Server`, `Sender`, `Worker1`, `Worker2`) as startup applications.
+Set all the console applications (`Server`, `Sender`, `Worker1`, `Worker2`) as startup applications and start the solution.
 
-Go to the `Sender` console an press enter a few times. When this occurs the following happens
+Go to the `Sender` console an press Enter a few times. The following happens:
 
- * `Worker`s registers with `Server` that they are work
- * Press enter in `Sender` will trigger it to send a `PlaceOrder` to `Server`
- * `Server` forwards to a random `Worker`
+ * `Worker`s register with `Server` that they are working
+ * `Sender` will send a `PlaceOrder` to `Server`
+ * `Server` forwards the message to a random `Worker`
  * `Worker` handles the message
- * `Worker` responds with a `OrderPlaced` to `Sender`
+ * `Worker` responds with an `OrderPlaced` to `Sender`
  * `Worker` again tells `Server` it is ready for work
 
 ```mermaid
@@ -142,23 +140,23 @@ Sent Order placed event for orderId [1320cfdc-f5cc-42a7-9157-251756694069].
 ```
 
 
-## Scaling out in a real environment
+## Scaling out in a production environment
 
-This sample has two workers which are hard coded as projects for the sake of keeping the sample easy to use. This manifests in several ways
+This sample has two workers which are hard-coded as projects for the sake of keeping the sample easy to use. This manifests in several ways:
 
  1. Both `Worker1` and `Worker2` are different projects so that the solution automatically starts with two workers.
  1. Both `Worker1` and `Worker2` have different endpoint names (Versions 4 and 5).
- 1. Both `Worker1` and `Worker2` have hard coded settings in the app.config
+ 1. Both `Worker1` and `Worker2` have hard-coded settings in the app.config
 
-In a real solution the following is more likely
+In a real solution the following configuration is more appropriate:
 
- 1. Have one Worker in the project (or even have the `Server` double up as a worker)
- 1. In deployment the same `Worker` endpoint would be deployed to multiple machines and only differ by their app.config.
+ 1. One Worker in the project (or have the `Server` double as a worker)
+ 1. The same `Worker` endpoint would be deployed to multiple machines and only differ by its app.config.
 
 
-### Worker Input queue
+### Worker input queue
 
-Normally workers are deployed to different machines. When deployed to the same machine a GUID will be added to the end of the worker input queue name. This allows the distributor to properly route messages and prevents workers from competing on the same queue. Since, in this project, "different machines" are being faked by using different projects, the GUID behavior is overridden to prevent a proliferation of queue names.
+Normally workers are deployed to different machines. When deployed to the same machine a GUID will be added to the end of the worker input queue name. This allows the distributor to properly route messages and prevents workers from competing on the same queue. Since in this project, "different machines" are being faked by using different projects, the GUID behavior is overridden to prevent a proliferation of queue names.
 
 There is a configuration setting that can be used
 

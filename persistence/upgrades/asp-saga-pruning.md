@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Persistence upgrade Version 6.2.4 to 6.2.5
 summary: Instructions on how to patch Azure Storage Persistence when orphan saga index records appear.
-reviewed: 2016-06-30
+reviewed: 2018-03-12
 component: ASP
 related:
  - nservicebus/sagas
@@ -15,29 +15,28 @@ upgradeGuideCoreVersions:
 
 This document explains how to upgrade and patch a system for [Azure Storage Persistence bug #74](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/issues/74) using NServiceBus.Azure hotfix release 6.2.5.
 
-WARNING: When upgrading to NServiceBus.Persistence.AzureStorage Version 1 and above, the following upgrade will need to be performed prior to beginning any other upgrade steps.
+WARNING: When upgrading to NServiceBus.Persistence.AzureStorage version 1 and above, the following upgrade will need to be performed prior to beginning any other upgrade steps.
 
-WARNING: The [saga de-duplication patch](/persistence/upgrades/asp-saga-deduplication.md) process must have been completed at least once prior to proceeding with this update.
-
+WARNING: The [saga de-duplication patch](/persistence/upgrades/asp-saga-deduplication.md) process must be completed at least once prior to proceeding with this update.
 
 ## How to know if a system may be affected
 
-This bug will affect any system that has ever used sagas and NServiceBus.Azure Versions 6.2.4 or below.
+This bug will affect any system that has ever used sagas and NServiceBus.Azure versions 6.2.4 or below.
 
 
-## Patch Requirements
+## Patch requirements
 
-To deploy this fix throughout a system, all endpoints will need to be upgraded and saga data that has been stored by the Azure Storage persister will need to be patched.
+To deploy this fix throughout a system, all endpoints must be upgraded and saga data that has been stored by the Azure Storage persister must be patched.
 
 
 ### Upgrading endpoints
 
-All endpoints using NServiceBus.Azure will need to be upgraded to Version 6.2.5 or above.
+All endpoints using NServiceBus.Azure must be upgraded to version 6.2.5 or above.
 
 
 ### Patching data
 
-Saga data stored in Azure will need to be patched using the `IndexPruner` utility which can be downloaded from [https://github.com/Particular/IssueDetection/releases/tag/nsb.azure.284](https://github.com/Particular/IssueDetection/releases/tag/nsb.azure.284). This utility will remove all orphaned secondary indexes from the Azure Storage Tables.
+Saga data stored in Azure must be patched using the `IndexPruner` utility which can be downloaded from [https://github.com/Particular/IssueDetection/releases/tag/nsb.azure.284](https://github.com/Particular/IssueDetection/releases/tag/nsb.azure.284). This utility will remove all orphaned secondary indexes from the Azure Storage Tables.
 
 
 ## Patch steps
@@ -54,4 +53,4 @@ Saga data stored in Azure will need to be patched using the `IndexPruner` utilit
   ```
  1. Copy the endpoint dll along with the assemblies that contain saga type definitions to the same directory as the index pruning tool. If multiple endpoints require this patch, it is ok to add the assemblies for all the endpoints to the tool. This saves time from having to run the tool for each endpoint. These assemblies will be scanned to find all implementations of `IContainSagaData` which will indicate the sagas that need to be pruned in Azure Storage.
  1. Open a command line and run the following command: `IndexPruner.exe`. If the Azure connection string was not added to the `IndexPruner.exe.config` file in step 2, the command needed to run the `IndexPruner` will be `IndexPruner.exe <connectionstringvalue>`. While running, the `IndexPruner` will output details of the actions that it is taking to the command window.
- 1. Update NServiceBus.Azure dependency to version 6.2.5 or higher in all endpoints that use it and release the updated endpoints.
+ 1. Update the NServiceBus.Azure dependency to version 6.2.5 or higher in all endpoints that use it and release the updated endpoints.
