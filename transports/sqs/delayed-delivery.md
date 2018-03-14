@@ -14,7 +14,7 @@ The unrestricted delayed delivery has to be enabled on the transport configurati
 
 snippet: DelayedDelivery
 
-Unrestricted delayed delivery needs to be enabled both on the sender and receiver in order to be able to process delayed deliveries longer than 15 minutes (900 seconds). Delayed delivery below 15 minutes is always supported. The following table illustrates that.
+Unrestricted delayed delivery needs to be enabled both on the sender and receiver to be able to process delayed deliveries longer than 15 minutes (900 seconds). Delayed delivery below 15 minutes is always supported. The following table illustrates that.
 
 | Scenario                    | Sender   | Receiver | Remarks       |
 |-----------------------------|----------|----------|---------------|
@@ -35,7 +35,7 @@ NOTE Unrestricted delayed delivery works seamlessly with large message bodies.
 
 Each endpoint with unrestricted delayed delivery owns a FIFO queue that is used to offload delayed messages from the main input queue until they are due. The FIFO queue uses a fixed delay interval of 900 seconds on the queue level. The FIFO queue shields the timeout dispatching mechanism in a time window of five minutes from infinitely growing timeouts due to network outages between the timeout requeueing and removing the previous timeout from the queue.
 
-When a sender sends a delayed message to a destination it determines whether the delay is less or equal to 900 seconds. If that is the case the message is directly delayed to the destination queue by setting the `DelaySecond` behavior on the message. When the timeout is greater than 900 seconds the message is sent to the FIFO queue of the destination endpoint with a message attributed called `NServiceBus.AmazonSQS.DelaySeconds`. The delayed message consumer on the destination's FIFO queue receives all timeouts that are due after 900 seconds. When a timeout is due and the remaining delay is less or equal to 900 seconds the message is directly delayed to the destination queue. If the remaining delay is greater than 900 seconds the message is sent back to the FIFO queue containing a `DelaySeconds` attribute with the remaining timeout interval. The following sequence diagram illustrates the process:
+When a sender sends a delayed message to a destination, it determines whether the delay is less or equal to 900 seconds. If that is the case, the message is directly delayed to the destination queue by setting the `DelaySecond` behavior on the message. When the timeout is greater than 900 seconds, the message is sent to the FIFO queue of the destination endpoint with a message attributed called `NServiceBus.AmazonSQS.DelaySeconds`. The delayed message consumer on the destination's FIFO queue receives all timeouts that are due after 900 seconds. When a timeout is due, and the remaining delay is less or equal to 900 seconds the message is directly delayed to the destination queue. If the remaining delay is greater than 900 seconds, the message is sent back to the FIFO queue containing a `DelaySeconds` attribute with the remaining timeout interval. The following sequence diagram illustrates the process:
 
 ```mermaid
 sequenceDiagram
@@ -58,11 +58,11 @@ end
 
 ### Clock drift
 
-In order to avoid clock drift the broker timestamps are used whereever possible to calculate the remaining timeout. The due time calculation uses `SentTimestamp` as well as `ApproximateFirstReceiveTimestamp` set by the broker. Only in cases of redelivery when `ApproximateReceiveCount` is higher than one the clients clock is used and thus subjected to clock drift.
+To avoid clock drift the broker timestamps are used wherever possible to calculate the remaining timeout. The due time calculation uses `SentTimestamp` as well as `ApproximateFirstReceiveTimestamp` set by the broker. Only in cases of redelivery when `ApproximateReceiveCount` is higher than one the client's clock is used and thus subjected to clock drift.
 
 ### Delivery
 
-For unrestricted delayed deliveries the last step is always a handover from the FIFO queue to the endpoint's input queue. SQS does not provide cross queue operation transactions thus the handover is subjected to retries. In cases of retries it might be possible that timeouts are delivered more than once. Message handlers need to be idempotent when used with transports with [transaction](transports/transactions.md) level `Receive Only` or below. The following diagram illustrates that:
+For unrestricted delayed deliveries the last step is always a handover from the FIFO queue to the endpoint's input queue. SQS does not provide cross queue operation transactions thus the handover is subjected to retries. In cases of retries, it might be possible that timeouts are delivered more than once. Message handlers need to be idempotent when used with transports with [transaction](transports/transactions.md) level `Receive Only` or below. The following diagram illustrates that:
 
 ```mermaid
 sequenceDiagram
@@ -81,7 +81,7 @@ sequenceDiagram
 
 ### Example
 
-Below an example with a delayed delivery less or equal of 15 min.
+Below an example of a delayed delivery less or equal of 15 min.
 
 ```mermaid
 graph LR
@@ -97,9 +97,9 @@ destination --> |"T2: fa:fa-hourglass-half 845sec"| destination
 end
 ```
 
-14 min and 4 seconds is in total 845 seconds. This is less than 900 seconds and thus will be directly delayed to the destination with a `DelaySeconds` value of 845 seconds. No message attribute header will be used.
+14 min and 4 seconds are in total 845 seconds. This is less than 900 seconds and thus will be directly delayed to the destination with a `DelaySeconds` value of 845 seconds. No message attribute header will be used.
 
-Below an example with a delayed delivery greater than 15 min.
+Below an example of a delayed delivery greater than 15 min.
 
 ```mermaid
 graph LR
@@ -119,7 +119,7 @@ destination --> |"T4: fa:fa-hourglass-half Delay with 125sec"| destination
 end
 ```
 
-32 min and 5 seconds is in total 1925 seconds. This will lead to two 900 seconds cycles on the FIFO queue and one delayed delivery on the destination queue with the remain timeout of 125 seconds (handover between FIFO queue and input queue).
+32 min and 5 seconds are in total 1925 seconds. This will lead to two 900 seconds cycles on the FIFO queue and one delayed delivery on the destination queue with the remaining timeout of 125 seconds (handover between FIFO queue and input queue).
 
 ## Cost considerations
 
@@ -134,7 +134,7 @@ Price per 1 Million Requests after Free Tier (Monthly)
 
 More up-to-date information on pricing can be found on the [SQS pricing page](https://aws.amazon.com/sqs/pricing/).
 
-Delaying a message for a year, 365 days or 31536000 (365*24*60*60) seconds, and two operations (dequeue and requeue) per delay interval of 900 seconds. The delayed message will need to go through 35040 delay cycles (3153600 sec / 900 sec) whic leads to 65080 queue operations. The end costs would be
+Delaying a message for a year, 365 days or 31536000 (365*24*60*60) seconds, and two operations (dequeue and requeue) per delay interval of 900 seconds. The delayed message will need to go through 35040 delay cycles (3153600 sec / 900 sec) which leads to 65080 queue operations. The end costs would be
 
 65080 * $0.00000050 = $0.03254
 
@@ -142,5 +142,4 @@ It is important to note that the delayed message consumer tries to fetch up to 1
 
 ## Backwards compatibility
 
-SQS Transport Versions from 2 and above can send delayed messages with a timeout lower or equal to 15 minutes. Versions 4 and above of the transport can send delayed messages with a timeout lower or equal to 15 minutes to older versions of the transport as well. Unrestricted delayed delivieres are only supported for Versions 4 and above.
-
+SQS Transport Versions from 2 and above can send delayed messages with a timeout lower or equal to 15 minutes. Versions 4 and above of the transport can send delayed messages with a timeout lower or equal to 15 minutes to older versions of the transport as well. Unrestricted delayed deliveries are only supported for Versions 4 and above.
