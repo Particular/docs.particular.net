@@ -56,17 +56,32 @@ sequenceDiagram
 end
 ```
 
-### What about clock drift?
+### Clock drift
 
-In order to avoid clock drift the broker timestamps are used whereever possible to calculate the remaining timeout. The due time calculation uses `SentTimestamp` as well as `ApproximateFirstReceiveTimestamp` set by the broker. Only in cases of redelivery when `ApproximateReceiveCount` the clients clock is used.
-
-
-### Delay levels
-
+In order to avoid clock drift the broker timestamps are used whereever possible to calculate the remaining timeout. The due time calculation uses `SentTimestamp` as well as `ApproximateFirstReceiveTimestamp` set by the broker. Only in cases of redelivery when `ApproximateReceiveCount` is higher than one the clients clock is used and thus subjected to clock drift.
 
 ### Delivery
 
+For unrestricted delayed deliveries the last step is always a handover from the FIFO queue to the endpoint's input queue. SQS does not provide cross queue operation transactions thus the handover is subjected to retries. In cases of retries it might be possible that timeouts are delivered more than once. Message handlers need to be idempotent when used with transports with [transaction](transports/transactions.md) level `Receive Only` or below. The following diagram illustrates that:
+
+```mermaid
+sequenceDiagram
+    participant D as Destination
+    participant F as Destination-delay.fifo
+    F ->>+ F: Timeout due
+    F ->> D: Send with remaing delay
+    Note left of D: Original
+    F ->>- F: Delete Delayed Message failed
+    Note right of F: i.ex. network outage
+    F ->>+ F: Timeout due
+    F ->> D: Send with remaing delay
+    F ->>- F: Delete Delayed Message
+    Note left of D: Duplicate
+```
+
 ### Example
+
+Below an example with a delayed delivery less or equal of 15 min.
 
 ```mermaid
 graph LR
@@ -81,6 +96,10 @@ destination --> |"T2: fa:fa-hourglass-half 845sec"| destination
 
 end
 ```
+
+14 min and 4 seconds is in total 845 seconds. This is less than 900 seconds and thus will be directly delayed to the destination with a `DelaySeconds` value of 845 seconds. No message attribute header will be used.
+
+Below an example with a delayed delivery greater than 15 min.
 
 ```mermaid
 graph LR
@@ -99,6 +118,8 @@ destination --> |"T4: fa:fa-hourglass-half Delay with 125sec"| destination
 
 end
 ```
+
+32 min and 5 seconds is in total 1925 seconds. This will lead to two 900 seconds cycles on the FIFO queue and one delayed delivery on the destination queue with the remain timeout of 125 seconds (handover between FIFO queue and input queue).
 
 ## Cost considerations
 
