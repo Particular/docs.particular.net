@@ -49,7 +49,7 @@ In this example, two ServiceControl instances are used where one is the master a
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
     <appSettings>
-        <add key="ServiceBus/ErrorQueue" value="!disabled" />
+        <add key="ServiceBus/ErrorQueue" value="!disable" />
     </appSettings>
 </configuration>
 ```
@@ -98,7 +98,7 @@ In this example, two ServiceControl instances are used where one is the master a
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
     <appSettings>
-        <add key="ServiceBus/ErrorQueue" value="!disabled" />
+        <add key="ServiceBus/ErrorQueue" value="!disable" />
     </appSettings>
 </configuration>
 ```
@@ -202,7 +202,7 @@ With multiple instances in place, it is possible to disable the auditing in the 
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
     <appSettings>
-        <add key="ServiceBus/AuditQueue" value="!disabled" />
+        <add key="ServiceBus/AuditQueue" value="!disable" />
     </appSettings>
 </configuration>
 ```
