@@ -18,13 +18,13 @@ class Usage
 
         #endregion
     }
-
-    void NativeDeferral(EndpointConfiguration endpointConfiguration)
+    
+    void DelayedDelivery(EndpointConfiguration endpointConfiguration)
     {
-        #region NativeDeferral
+        #region DelayedDelivery
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        transport.NativeDeferral();
+        transport.UnrestrictedDurationDelayedDelivery();
 
         #endregion
     }

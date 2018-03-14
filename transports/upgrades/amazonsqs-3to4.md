@@ -63,3 +63,11 @@ snippet: 3to4_S3CredentialSourceManual
 Previous versions automatically read the proxy username and password from `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_USERNAME` and `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_PASSWORD` respectively. To achieve the same behavior the client factory has to be overriden like shown below.
 
 snippet: 3to4_S3Proxy
+
+### Native Deferral
+
+The native deferral API has been deprecated. By default it is possible to send delays natively up to 15 min. For longer deferrals the unrestricted delayed delivery mechanism can be used:
+
+snippet: 3to4_DelayedDelivery
+
+Consult the delayed delivery documentation for more information.
