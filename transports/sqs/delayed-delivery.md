@@ -6,7 +6,7 @@ reviewed: 2018-03-02
 versions: '[4,]'
 ---
 
-In Versions 4.0 and above, the SQS transport allows [delayed delivery](/nservicebus/messaging/delayed-delivery) of messages longer than 15 minutes. The transport creates a FIFO queue per endpoint that allows delaying messages for longer periods of time.
+In Versions 4.0 and above, the SQS transport allows [delayed delivery](/nservicebus/messaging/delayed-delivery.md) of messages longer than 15 minutes. The transport creates a FIFO queue per endpoint that allows delaying messages for longer periods of time.
 
 ## Enable unrestricted delayed delivery
 
@@ -27,7 +27,7 @@ Unrestricted delayed delivery needs to be enabled both on the sender and receive
 |                             | enabled  | disabled | Not supported |
 |                             | enabled  | enabled  | Supported     |
 
-Enabling the unrestricted delayed delivery will require a FIFO queue to be created for each endpoint that receives delayed deliveries. The FIFO queue follows a fixed naming convention by appending `-delay.fifo` to the queue name of the endpoint. The creation of the FIFO queue requires the [installers](nservicebus/operations/installers) to be enabled or the queue being created upfront via [scripting](/transports/sqs/operations-scripting).
+Enabling the unrestricted delayed delivery will require a FIFO queue to be created for each endpoint that receives delayed deliveries. The FIFO queue follows a fixed naming convention by appending `-delay.fifo` to the queue name of the endpoint. The creation of the FIFO queue requires the [installers](/nservicebus/operations/installers.md) to be enabled or the queue being created upfront via [scripting](/transports/sqs/operations-scripting.md).
 
 NOTE Unrestricted delayed delivery works seamlessly with large message bodies.
 
@@ -62,7 +62,7 @@ To avoid clock drift the broker timestamps are used wherever possible to calcula
 
 ### Delivery
 
-For unrestricted delayed deliveries the last step is always a handover from the FIFO queue to the endpoint's input queue. SQS does not provide cross queue operation transactions thus the handover is subjected to retries. In cases of retries, it might be possible that timeouts are delivered more than once. Message handlers need to be idempotent when used with transports with [transaction](transports/transactions) level `Receive Only` or below. The following diagram illustrates that:
+For unrestricted delayed deliveries the last step is always a handover from the FIFO queue to the endpoint's input queue. SQS does not provide cross queue operation transactions thus the handover is subjected to retries. In cases of retries, it might be possible that timeouts are delivered more than once. Message handlers need to be idempotent when used with transports with [transaction](/transports/transactions.md) level `Receive Only` or below. The following diagram illustrates that:
 
 ```mermaid
 sequenceDiagram
@@ -123,7 +123,7 @@ end
 
 ## Cost considerations
 
-Each non-sendonly endpoint with the unrestricted delayed delivery enabled operates one delayed message consumer that applies [long-polling](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html) with an interval of 20 seconds. [Satellites](nservicebus/satellites) will increase the number of delayed message consumers. The following example shows a cost calculation for a message timeout for a year, not taking into account the long-polling costs.
+Each non-sendonly endpoint with the unrestricted delayed delivery enabled operates one delayed message consumer that applies [long-polling](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html) with an interval of 20 seconds. [Satellites](/nservicebus/satellites.md) will increase the number of delayed message consumers. The following example shows a cost calculation for a message timeout for a year, not taking into account the long-polling costs.
 
 Assuming the following SQS prices:
 
