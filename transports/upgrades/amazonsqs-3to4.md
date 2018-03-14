@@ -70,4 +70,4 @@ The native deferral API has been deprecated. By default it is possible to send d
 
 snippet: 3to4_DelayedDelivery
 
-Consult the delayed delivery documentation for more information.
+Consult the [delayed delivery documentation](/transports/sqs/delayed-delivery.md) for more information.
