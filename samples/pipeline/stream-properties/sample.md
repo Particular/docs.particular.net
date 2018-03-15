@@ -1,7 +1,7 @@
 ---
-title: Handling Stream properties via the pipeline
-summary: Add support for writing Streams to a file share that can be accessed by multiple endpoints.
-reviewed: 2018-01-26
+title: Handling Stream Properties Via the Pipeline
+summary: Add support for writing streams to a file share that can be accessed by multiple endpoints.
+reviewed: 2018-03-15
 component: Core
 tags:
 - Pipeline
@@ -10,14 +10,12 @@ related:
 ---
 
 
-## Introduction
+This sample leverages the pipeline to provide a pure stream-based approach for sending large amounts of data. It is similar to the file share [DataBus](/nservicebus/messaging/databus/file-share.md) in that it assumes a common network file share accessible by endpoints and uses headers to correlate between a message and its connected files on disk.
 
-This sample leverages the pipeline to provide a pure stream based approach for sending large amounts of data. It is similar to the file share [DataBus](/nservicebus/messaging/databus/file-share.md) in that it assumes a common network file share accessible by endpoints and uses headers to correlate between a message and its connected files on disk.
-
-The main difference is that with streams, the data doesn't all need to be loaded into memory all at once which results in a much more efficient and scalable solution.
+The main difference is that with streams, the data doesn't need to be loaded into memory all at once which results in a more efficient and scalable solution.
 
 
-## Stream Storage helper
+## Stream storage helper
 
 This provides an extension method to simplify passing in settings to the stream storage.
 
@@ -28,7 +26,7 @@ The helper method can then be called at configuration time.
 snippet: configure-stream-storage
 
 
-## Write Stream properties to disk
+## Write stream properties to disk
 
 This happens as part of the outgoing pipeline, see `StreamSendBehavior.cs`.
 
@@ -42,17 +40,17 @@ Copy each stream property to disk
 
 snippet: copy-stream-properties-to-disk
 
-On disk (at the root of the solution for this sample) it will look like this
+The file streams will appear on disk at the root of the solution in a folder called `storage`. Here is a sample file structure:
 
 ```
-> Storage
+> storage
   > 2015-03-06_15
      > 75ab3b84-8b37-4da7-bf07-b173f2f5570d
      > 92f749bc-27a8-4ba4-bc7a-b502dffe9cd9
      > 593a4670-1c09-4bbe-80ef-c22fb5356704
 ```
 
-Where each GUID is a file containing the contents of the emptied stream.
+Each GUID is a file containing the contents of the emptied stream.
 
 
 ## Reading back from the stream
@@ -65,7 +63,7 @@ Copy the contents of the files on disk back into the message properties.
 
 snippet: write-stream-properties-back
 
-Cleanup the opened streams after message processing.
+Clean up the opened streams after message processing.
 
 snippet: cleanup-after-nested-action
 
@@ -80,7 +78,7 @@ snippet: pipeline-config
 snippet: message-with-stream
 
 
-## Sending with a http stream
+## Sending with an HTTP stream
 
 snippet: send-message-with-http-stream
 
@@ -89,7 +87,7 @@ snippet: send-message-with-http-stream
 
 snippet: send-message-with-file-stream
 
-NOTE: When using a `MemoryStream` ensure that the [Position](https://msdn.microsoft.com/en-us/library/system.io.memorystream.position.aspx) is set back to `0` before sending the message. Also note that writing large amounts of data to a `MemoryStream` will result in significant memory usage (perhaps resulting in an `OutOfMemoryException`) and put pressure on Garbage Collection.
+NOTE: When using a `MemoryStream` ensure that the [Position](https://msdn.microsoft.com/en-us/library/system.io.memorystream.position.aspx) is set back to `0` before sending the message. Also note that writing large amounts of data to a `MemoryStream` will result in significant memory usage (perhaps resulting in an `OutOfMemoryException`) and put pressure on the garbage collector.
 
 
 ## Handler
@@ -97,6 +95,6 @@ NOTE: When using a `MemoryStream` ensure that the [Position](https://msdn.micros
 snippet: message-with-stream-handler
 
 
-## Difference to the Databus
+## Difference to the databus
 
-The [built in DataBus](/nservicebus/messaging/databus/) relies on byte arrays and memory streams to operate. As such, there are limitations to the amount of data that it can send.
+The [built-in database](/nservicebus/messaging/databus/) relies on byte arrays and memory streams to operate. As such, there are limits to the amount of data that it can send.

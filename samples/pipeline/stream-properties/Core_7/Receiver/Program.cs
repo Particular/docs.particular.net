@@ -10,7 +10,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineStream.Receiver");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.SetStreamStorageLocation(@"..\..\..\storage");
+        endpointConfiguration.SetStreamStorageLocation(@"..\..\..\..\storage");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

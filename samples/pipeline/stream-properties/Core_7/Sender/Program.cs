@@ -15,7 +15,7 @@ class Program
 
         #region configure-stream-storage
 
-        endpointConfiguration.SetStreamStorageLocation(@"..\..\..\storage");
+        endpointConfiguration.SetStreamStorageLocation(@"..\..\..\..\storage");
 
         #endregion
 
@@ -33,7 +33,7 @@ class Program
     {
         Console.WriteLine("Press 'F' to send a message with a file stream");
         Console.WriteLine("Press 'H' to send a message with a http stream");
-        Console.WriteLine("Press any key to exit");
+        Console.WriteLine("Press any other key to exit");
 
         while (true)
         {
