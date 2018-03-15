@@ -16,16 +16,16 @@ snippet: DelayedDelivery
 
 Unrestricted delayed delivery needs to be enabled both on the sender and receiver to be able to process delayed deliveries longer than 15 minutes (900 seconds). Delayed delivery below 15 minutes is always supported. The following table illustrates that.
 
-| Scenario                    | Sender   | Receiver | Remarks       |
+| Scenario                    | Sender   | Receiver | Supported     |
 |-----------------------------|----------|----------|---------------|
-| Delayed Delivery <= 900 sec | disabled | disabled | Supported     |
-|                             | disabled | enabled  | Supported     |
-|                             | enabled  | disabled | Supported     |
-|                             | enabled  | enabled  | Supported     |
-| Delayed Delivery > 900 sec  | disabled | disabled | Not supported |
-|                             | disabled | enabled  | Not supported |
-|                             | enabled  | disabled | Not supported |
-|                             | enabled  | enabled  | Supported     |
+| Delayed Delivery <= 900 sec | disabled | disabled | Yes           |
+|                             | disabled | enabled  | Yes           |
+|                             | enabled  | disabled | Yes           |
+|                             | enabled  | enabled  | Yes           |
+| Delayed Delivery > 900 sec  | disabled | disabled | No            |
+|                             | disabled | enabled  | No            |
+|                             | enabled  | disabled | No            |
+|                             | enabled  | enabled  | Yes           |
 
 Enabling the unrestricted delayed delivery will require a FIFO queue to be created for each endpoint that receives delayed deliveries. The FIFO queue follows a fixed naming convention by appending `-delay.fifo` to the queue name of the endpoint. The creation of the FIFO queue requires the [installers](/nservicebus/operations/installers.md) to be enabled or the queue being created upfront via [scripting](/transports/sqs/operations-scripting.md).
 
