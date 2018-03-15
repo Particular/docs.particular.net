@@ -72,7 +72,7 @@ sequenceDiagram
     F ->> D: Send with remaing delay
     Note left of D: Original
     F ->>- F: Delete Delayed Message failed
-    Note right of F: i.ex. network outage
+    Note right of F: network outage
     F ->>+ F: Timeout due
     F ->> D: Send with remaing delay
     F ->>- F: Delete Delayed Message
