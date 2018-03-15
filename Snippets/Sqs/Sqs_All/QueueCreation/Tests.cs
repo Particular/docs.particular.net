@@ -70,14 +70,19 @@
         }
 
         [Test]
-        public async Task CreateQueuesForEndpointWithOverridenMaxTTL()
+        [TestCase("TimeoutManager")]
+        [TestCase("Native")]
+        [TestCase("UnrestrictedDelayedDelivery")]
+        public async Task CreateQueuesForEndpointWithOverridenMaxTTL(string delayedDeliveryMethod)
         {
             var maxTimeToLive = TimeSpan.FromDays(1);
-            var endpointName = "mycreateendpoint";
-            var errorQueueName = "mycreateerror";
-            var auditQueueName = "mycreateaudit";
 
-            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName)
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"mycreateendpoint-{randomName}";
+            var errorQueueName = $"mycreateerror-{randomName}";
+            var auditQueueName = $"mycreateaudit-{randomName}";
+
+            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
                 .ConfigureAwait(false);
             await QueueDeletionUtils.DeleteQueue(errorQueueName)
                 .ConfigureAwait(false);
@@ -88,7 +93,8 @@
             {
                 await CreateEndpointQueues.CreateQueuesForEndpoint(
                         endpointName: endpointName,
-                        maxTimeToLive: maxTimeToLive)
+                        maxTimeToLive: maxTimeToLive,
+                        delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
 
                 await QueueCreationUtils.CreateQueue(
@@ -101,12 +107,12 @@
                         maxTimeToLive: maxTimeToLive)
                     .ConfigureAwait(false);
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, maxTimeToLive)
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, maxTimeToLive, delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName)
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
                 await QueueDeletionUtils.DeleteQueue(errorQueueName)
                     .ConfigureAwait(false);
@@ -164,13 +170,17 @@
         }
 
         [Test]
-        public async Task CreateQueuesForEndpointDefaultMaxTTL()
+        [TestCase("TimeoutManager")]
+        [TestCase("Native")]
+        [TestCase("UnrestrictedDelayedDelivery")]
+        public async Task CreateQueuesForEndpointDefaultMaxTTL(string delayedDeliveryMethod)
         {
-            var endpointName = "mycreatedefaultendpoint";
-            var errorQueueName = "mycreatedefaulterror";
-            var auditQueueName = "mycreatedefaultaudit";
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"mycreatedefaultendpoint-{randomName}";
+            var errorQueueName = $"mycreatedefaulterror-{randomName}";
+            var auditQueueName = $"mycreatedefaultaudit-{randomName}";
 
-            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName)
+            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
                 .ConfigureAwait(false);
             await QueueDeletionUtils.DeleteQueue(errorQueueName)
                 .ConfigureAwait(false);
@@ -179,7 +189,7 @@
 
             try
             {
-                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName)
+                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
 
                 await QueueCreationUtils.CreateQueue(
@@ -190,12 +200,12 @@
                         queueName: auditQueueName)
                     .ConfigureAwait(false);
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4))
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName)
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
                 await QueueDeletionUtils.DeleteQueue(errorQueueName)
                     .ConfigureAwait(false);
@@ -494,7 +504,7 @@
             }
         }
 
-        static async Task AssertQueuesExist(string endpointName, string errorQueueName, string auditQueueName, TimeSpan maxTimeToLive, string queueNamePrefix = null, bool includeRetries = false)
+        static async Task AssertQueuesExist(string endpointName, string errorQueueName, string auditQueueName, TimeSpan maxTimeToLive, string queueNamePrefix = null, bool includeRetries = false, string delayedDeliveryMethod = "Native")
         {
             var timeSpanInSeconds = Convert.ToInt32(maxTimeToLive.TotalSeconds);
 
@@ -504,17 +514,38 @@
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts", queueNamePrefix), "Timeouts Queue did not exist");
-            Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
+            if (delayedDeliveryMethod == "TimeoutManager")
             {
-                QueueAttributeName.MessageRetentionPeriod
-            })).MessageRetentionPeriod);
+                Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts", queueNamePrefix), "Timeouts Queue did not exist");
+                Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
+                {
+                    QueueAttributeName.MessageRetentionPeriod
+                })).MessageRetentionPeriod);
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher", queueNamePrefix), "TimeoutsDispatcher Queue did not exist");
-            Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
+                Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher", queueNamePrefix), "TimeoutsDispatcher Queue did not exist");
+                Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
+                {
+                    QueueAttributeName.MessageRetentionPeriod
+                })).MessageRetentionPeriod);
+            }
+
+            if (delayedDeliveryMethod == "UnrestrictedDelayedDelivery")
             {
-                QueueAttributeName.MessageRetentionPeriod
-            })).MessageRetentionPeriod);
+                var endpointFifoQueueName = $"{endpointName}-delay.fifo";
+
+                Assert.IsTrue(await QueueExistenceUtils.Exists(endpointFifoQueueName, queueNamePrefix), "Endpoint FIFO Queue did not exist");
+
+                var queueAttributes = await QueueAccessUtils.Exists(endpointFifoQueueName, queueNamePrefix, new List<string>
+                {
+                    QueueAttributeName.MessageRetentionPeriod,
+                    QueueAttributeName.DelaySeconds,
+                    QueueAttributeName.FifoQueue
+                });
+
+                Assert.AreEqual(timeSpanInSeconds, queueAttributes.MessageRetentionPeriod);
+                Assert.AreEqual(900, queueAttributes.DelaySeconds);
+                Assert.IsTrue(queueAttributes.FifoQueue);
+            }
 
             if (includeRetries)
             {
