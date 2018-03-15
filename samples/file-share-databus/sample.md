@@ -1,6 +1,6 @@
 ---
 title: File Share DataBus Usage
-reviewed: 2016-11-02
+reviewed: 2018-03-15
 component: FileShareDataBus
 tags:
  - DataBus
@@ -11,8 +11,9 @@ related:
 ---
 
  1. Run the solution. Two console applications start.
- 1. Find the Sender application by looking for the one with "Sender" in its path and pressing Enter in the window to send a message. A message has just been sent that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
- 1. Click 'e' and Enter. A message larger than the allowed 4MB is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown at the "Sender" application.
+ 1. Find the Sender application by looking for the one with "Sender" in its path
+ 1. Press `d` in the window to send a large message. A message has just been sent that is larger than the limit allowed by the learning transport. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
+ 1. Click 'n' in the Sender window. A message larger than the allowed limit is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown in the "Sender" application.
 
 WARNING: The FileShareDataBus **does not** remove physical attachments once the message has been processed. Apply a custom [cleanup-strategy](/nservicebus/messaging/databus/file-share.md#cleanup-strategy).
 
@@ -28,7 +29,7 @@ This sample contains three projects:
 
 ### Messages project
 
-Look at the Messages project, at the two messages. Start with the large message that is not utilizing the DataBus mechanism. The message is a simple byte array command:
+Look at the two messages in the Messages project. Start with the large message that is not utilizing the DataBus mechanism. The message is a simple byte array command:
 
 snippet: AnotherMessageWithLargePayload
 
@@ -36,11 +37,11 @@ The other message utilizes the DataBus mechanism:
 
 snippet: MessageWithLargePayload
 
-`DataBusProperty<byte[]>` is an instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is not transported in the normal serialization flow.
+`DataBusProperty<byte[]>` instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is not transported in the normal serialization flow.
 
 When sending a message using the FileShare DataBus, the message's payload resides in the directory. In addition, a 'signaling' message is sent to the Receiving endpoint.
 
-The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is allowed to clean the MSMQ message after one minute if it was not received by the receiver. The message payload remains in the Storage directory after the MSMQ message is cleaned by the NServiceBus framework.
+The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is allowed to clean the message after one minute if it was not received by the receiver. The message payload remains in the storage directory after the message is cleaned by the NServiceBus framework.
 
 Following is an example of the signaling message that is sent to the receiving endpoint:
 
@@ -56,30 +57,28 @@ Following is an example of the signaling message that is sent to the receiving e
 ```
 
 
-### Configuring the Databus location
+### Configuring the databus location
 
-Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by calling `FileShareDataBus`. This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment.
+Both the `Sender` and `Receive` project must share a common location to store large binary objects. This is done by calling `FileShareDataBus`. This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment.
 
 snippet: ConfigureDataBus
 
 
 ### Sender project
 
-The following sender project code sends the `MessageWithLargePayload `message, utilizing the NServiceBus attachment mechanism:
+The following `Sender` project code sends the `MessageWithLargePayload `message, using the NServiceBus attachment mechanism:
 
 snippet: SendMessageLargePayload
 
-The following `Sender` project code sends the `AnotherMessageWithLargePayload` message without utilizing the NServiceBus attachment mechanism:
+The following `Sender` project code sends the `AnotherMessageWithLargePayload` message _without_ using the NServiceBus attachment mechanism:
 
 snippet: SendMessageTooLargePayload
 
-In both cases, a 5MB message is sent, but in the `MessageWithLargePayload `it goes through, while `AnotherMessageWithLargePayload` fails.
-
-Go to the `Receiver` project to see the receiving application.
+In both cases, a 5MB message is sent, but the `MessageWithLargePayload` message is successfully delivered, while `AnotherMessageWithLargePayload` fails.
 
 
 ### Receiver project
 
-Following is the receiving message handler:
+This is the receiving message handler:
 
 snippet: MessageWithLargePayloadHandler
