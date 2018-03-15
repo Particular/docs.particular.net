@@ -134,9 +134,9 @@ Price per 1 Million Requests after Free Tier (Monthly)
 
 More up-to-date information on pricing can be found on the [SQS pricing page](https://aws.amazon.com/sqs/pricing/).
 
-Delaying a message for a year, 365 days or 31536000 (365*24*60*60) seconds, and two operations (dequeue and requeue) per delay interval of 900 seconds. The delayed message will need to go through 35040 delay cycles (3153600 sec / 900 sec) which leads to 65080 queue operations. The end costs would be
+Delaying a message for a year, 365 days or 31536000 (365*24*60*60) seconds, and two operations (dequeue and requeue) per delay interval of 900 seconds. The delayed message will need to go through 35040 delay cycles (3153600 sec / 900 sec) which leads to 70080 queue operations. The end costs would be
 
-65080 * $0.00000050 = $0.03254
+70080 * $0.00000050 = $0.03504
 
 It is important to note that the delayed message consumer tries to fetch up to 10 delayed messages in one batch. Depending on the FIFO queue load (delays expiring) the actual costs might be lower.
 
