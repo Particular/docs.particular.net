@@ -514,37 +514,41 @@
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
 
-            if (delayedDeliveryMethod == "TimeoutManager")
+            switch (delayedDeliveryMethod)
             {
-                Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts", queueNamePrefix), "Timeouts Queue did not exist");
-                Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
-                {
-                    QueueAttributeName.MessageRetentionPeriod
-                })).MessageRetentionPeriod);
+                case "TimeoutManager":
 
-                Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher", queueNamePrefix), "TimeoutsDispatcher Queue did not exist");
-                Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
-                {
-                    QueueAttributeName.MessageRetentionPeriod
-                })).MessageRetentionPeriod);
-            }
+                    Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts", queueNamePrefix), "Timeouts Queue did not exist");
+                    Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
+                    {
+                        QueueAttributeName.MessageRetentionPeriod
+                    })).MessageRetentionPeriod);
 
-            if (delayedDeliveryMethod == "UnrestrictedDelayedDelivery")
-            {
-                var endpointFifoQueueName = $"{endpointName}-delay.fifo";
+                    Assert.IsTrue(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher", queueNamePrefix), "TimeoutsDispatcher Queue did not exist");
+                    Assert.AreEqual(timeSpanInSeconds, (await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
+                    {
+                        QueueAttributeName.MessageRetentionPeriod
+                    })).MessageRetentionPeriod);
 
-                Assert.IsTrue(await QueueExistenceUtils.Exists(endpointFifoQueueName, queueNamePrefix), "Endpoint FIFO Queue did not exist");
+                    break;
+                case "UnrestrictedDelayedDelivery":
 
-                var queueAttributes = await QueueAccessUtils.Exists(endpointFifoQueueName, queueNamePrefix, new List<string>
-                {
-                    QueueAttributeName.MessageRetentionPeriod,
-                    QueueAttributeName.DelaySeconds,
-                    QueueAttributeName.FifoQueue
-                });
+                    var endpointFifoQueueName = $"{endpointName}-delay.fifo";
 
-                Assert.AreEqual(timeSpanInSeconds, queueAttributes.MessageRetentionPeriod);
-                Assert.AreEqual(900, queueAttributes.DelaySeconds);
-                Assert.IsTrue(queueAttributes.FifoQueue);
+                    Assert.IsTrue(await QueueExistenceUtils.Exists(endpointFifoQueueName, queueNamePrefix), "Endpoint FIFO Queue did not exist");
+
+                    var queueAttributes = await QueueAccessUtils.Exists(endpointFifoQueueName, queueNamePrefix, new List<string>
+                    {
+                        QueueAttributeName.MessageRetentionPeriod,
+                        QueueAttributeName.DelaySeconds,
+                        QueueAttributeName.FifoQueue
+                    });
+
+                    Assert.AreEqual(timeSpanInSeconds, queueAttributes.MessageRetentionPeriod);
+                    Assert.AreEqual(900, queueAttributes.DelaySeconds);
+                    Assert.IsTrue(queueAttributes.FifoQueue);
+
+                    break;
             }
 
             if (includeRetries)
