@@ -214,7 +214,7 @@ With multiple instances in place, it is possible to disable the auditing in the 
 ```
 Audit forwarding, if enabled, will be ignored.
 
-# Known limitations
+## Known limitations
 
 - Splitting into multiple ServiceControl instances is supported only for auditing.
 - Only one ServiceControl instance should have error handling / recoverability enabled (usually the master) unless the multi-region scenario is used.
