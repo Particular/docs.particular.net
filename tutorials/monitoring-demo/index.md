@@ -1,6 +1,6 @@
 ---
 title: "Monitoring NServiceBus solutions: Demo"
-reviewed: 2017-10-10
+reviewed: 2018-03-15
 summary: A self-contained demo solution that you can run to explore the monitoring features of the Particular Service Platform.
 redirects:
 - tutorials/monitoring/demo

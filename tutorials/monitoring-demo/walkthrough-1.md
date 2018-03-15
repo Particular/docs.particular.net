@@ -1,6 +1,6 @@
 ---
 title: "Monitoring NServiceBus Demo - Slow handlers"
-reviewed: 2017-11-03
+reviewed: 2018-03-15
 summary: Measuring individual endpoint performance with the throughput and processing time metrics.
 ---
 
