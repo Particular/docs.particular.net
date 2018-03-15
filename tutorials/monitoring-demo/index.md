@@ -8,18 +8,8 @@ redirects:
 
 The best way to get started with the monitoring features in the Particular Service Platform is to try them out with a real system. This downloadable sample contains all of the necessary parts of the platform, already configured and ready to run. It also includes 4 sample endpoints that all communicate by exchanging messages over the SQL Transport.
 
-<div id="download-demo-container" class="text-center inline-download hidden-xs hidden"><a id='download-demo' href='https://github.com/particular/monitoringdemo/zipball/master' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the demo now</a>
+<div class="text-center inline-download hidden-xs"><a id='download-demo' href='https://github.com/particular/monitoringdemo/zipball/master' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the demo now</a>
 </div>
-
-<script type="text/javascript">
-document.addEventListener("DOMContentLoaded", function () {
-  if(window.location.href.match(/start-download=true/)) {
-    window.location = "https://github.com/particular/monitoringdemo/zipball/master";
-  } else {
-    document.getElementById('download-demo-container').classList.remove('hidden');
-  }
-});
-</script>
 
 
 ## System requirements
@@ -32,9 +22,9 @@ In order to run the demo your system needs to meet the following requirements:
 
 ## Running the sample
 
-Once you have downloaded and extracted the zip package, open the `MonitoringDemo` folder and double-click on `run.bat`. 
+Once you have downloaded and extracted the zip package, open the extracted folder and double-click on `run.bat`. 
 
-Choose option 2 (uses a LocalDB instance, removed during demo shutdown). To use an existing SQL Server instance, see the [detailed setup instructions](/walthrough-setup).
+Choose option 2 (uses a LocalDB instance, removed during demo shutdown) to get started quickly. To use an existing SQL Server instance instead, see the [detailed setup instructions](/walthrough-setup).
 
 ![Demo options](options.png "width=680")
 
