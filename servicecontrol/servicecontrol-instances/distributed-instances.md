@@ -150,7 +150,7 @@ Master -. connected to .-> Slave
 
 Each ServiceControl instance can have different settings. For example it is possible to have different [audit retention periods](/servicecontrol/creating-config-file.md#data-retention-servicecontrolauditretentionperiod). With that in mind, high volume endpoints can report audits to a ServiceControl instance with shorter retention periods (thus evicting old messages faster). This allows catering settings as well as resources being used by ServiceControl to the needs of the endpoints configured to audit to a specific ServiceControl instance.
 
-NOTE: If there are conversations that span `HighVolumenEndpoints` and `LowVolumeEndpoints` data available in audit store might be incomplete.
+NOTE: If there are message conversations that span `HighVolumenEndpoints` and `LowVolumeEndpoints` data available in audit store might be incomplete.
 
 ### Migration
 
@@ -170,7 +170,7 @@ Point tools to Slave 1 which is the new master
 
 ### Multi-region deployments
 
-Mutli-region deployments are partially supported (error data sharding is not supported). Such setup consists of ServiceControl slave deployed in each region and a master instance responsible for aggregating audit data. 
+Multi-region deployments are partially supported (error data sharding is not supported). Such setup consists of ServiceControl slave deployed in each region and a master instance responsible for aggregating audit data. 
 
 In this scenario all cross-region audit data can be queried via ServiceInsight connected to the master. However to use the recoverability features a dedicated ServicePulse installation in each region is required. 
 
