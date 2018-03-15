@@ -32,7 +32,7 @@ class Program
     static async Task Run(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press 'F' to send a message with a file stream");
-        Console.WriteLine("Press 'H' to send a message with a http stream");
+        Console.WriteLine("Press 'H' to send a message with an http stream");
         Console.WriteLine("Press any other key to exit");
 
         while (true)
