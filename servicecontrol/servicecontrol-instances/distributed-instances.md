@@ -6,23 +6,25 @@ component: ServiceControl
 
 NOTE: A multi-instance ServiceControl installation can be complex to maintain. Before splitting ServiceControl, it is recommended to follow the capacity planning guides described in the [ServiceControl Capacity Planning](/servicecontrol/capacity-and-planning.md) documentation.
 
-Audit message processing can become a performance challange when running NServiceBus systems at a scale. Multi-instance deployment enables sharding audit data between ServiceControl instances. 
+Audit message processing can become a performance challange due to high message throughput when running NServiceBus systems at a scale. Multi-instance deployment helps mitigate that problem by enabling audit data sharding between group of ServiceControl instances. 
 
-ServiceControl multi-intance deployments should be considered in scenarios when the audit message load in continously high and too big for a single instance to handle.
+ServiceControl multi-instance deployments should be considered in scenarios when the audit message load in continously high and too big for a single instance to handle. In a message-based system, the audit queue, in contrast to the error queue, is the one with the most load as every single message is forwarded there for the auditing purposes. ServiceControl ingests the messages available in the audit queue and aggregates them for querying and analysis within [ServiceInsight](/serviceinsight/). 
+
+Aggregating the data for querying and analysis takes considerable resources in terms of CPU, memory, disk IO, as well as queuing system. Under high load a single instance might not be able to keep up with indexing the data and the audit queue length might start to increase. If the load spikes only occasionally, this may not be a problem since ServiceControl will eventually catch up processing the incoming audit messages. If the load is continuously high however, multiple instances of ServiceControl may be needed to cope with it.
 
 ## Overview
 
 Multi-instance deployments consist of at least two ServiceControl instances. In such a setup there is a single designated instance - a master responsible for processing error messages and optionally audit messages. All other existing ServiceControl instances are slaves responsible **only** for processing audit messages. 
 
-It is only the master instance that handles the external API requests (from ServicePulse or ServiceInstance). Master is the only party communicating with slave instances directly for the purpose of query execution.
+It is only the master instance that handles the external API requests (from [ServicePulse](/servicepulse/) or [ServiceInsight](/serviceinsight/)). Master is the only party communicating with slave instances directly for the purpose of query execution.
 
 The following is a high-level look at the steps needed to deploy ServiceControl in multi-instance mode:
 
-- Install a ServiceControl master instance and configure it to route API queries to its slave instances
 - Install one or more ServiceControl slave instances
-- Audit message sharding can be performend at the queue level (separate audit queue per shard). In such case the production endpoints must forward audit messages to different [audit queues](/nservicebus/operations/auditing.md) consumed by different ServiceControl instances
+- Install a ServiceControl master instance and configure it to route API queries to its slave instances
+- When using audit queue per shard the production endpoints must be reconfigured to forward audit messages to different [audit queues](/nservicebus/operations/auditing.md) consumed by different ServiceControl instances
 
-NOTE: Apart from mulit-region deployments ServicePulse and ServiceInsight should always connect to the ServiceControl master.
+WARNING: Error queue sharding is not supported and all endpoints need to route error messages to a centralized [error queue](/nservicebus/recoverability/configure-error-handling.md) handled by the master.
 
 WARNING: All instances of ServiceControl MUST have a unique name
 
