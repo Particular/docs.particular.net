@@ -20,14 +20,14 @@
                 {
                     QueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix),
                 };
+                sqsRequest.Attributes.Add(QueueAttributeName.MessageRetentionPeriod, Convert.ToInt32((maxTimeToLive ?? DefaultTimeToLive).TotalSeconds).ToString());
 
-                var isFifoQueue = queueName.EndsWith(".fifo");
-
-                if (isFifoQueue)
+                if (queueName.EndsWith(".fifo"))
                 {
                     sqsRequest.Attributes = new Dictionary<string, string>
                     {
                         {QueueAttributeName.FifoQueue, "true"},
+                        {QueueAttributeName.DelaySeconds, "900"}
                     };
                 }
 
@@ -35,20 +35,6 @@
                 {
                     var createQueueResponse = await client.CreateQueueAsync(sqsRequest)
                         .ConfigureAwait(false);
-
-                    var sqsAttributesRequest = new SetQueueAttributesRequest
-                    {
-                        QueueUrl = createQueueResponse.QueueUrl
-                    };
-
-                    sqsAttributesRequest.Attributes.Add(QueueAttributeName.MessageRetentionPeriod, Convert.ToInt32((maxTimeToLive ?? DefaultTimeToLive).TotalSeconds).ToString());
-
-                    if (isFifoQueue)
-                    {
-                        sqsAttributesRequest.Attributes.Add(QueueAttributeName.DelaySeconds, "900");
-                    }
-
-                    await client.SetQueueAttributesAsync(sqsAttributesRequest).ConfigureAwait(false);
                 }
                 catch (QueueNameExistsException)
                 {
