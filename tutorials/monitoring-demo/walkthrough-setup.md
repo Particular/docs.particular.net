@@ -52,4 +52,4 @@ If you do not have your own SQL Server instance, or you would prefer to keep the
 
 ## Explore the demo
 
-Continue walkt
+Once you have the demo up and running, [begin exploring the demo](./#demo-walk-through).
