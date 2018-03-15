@@ -170,13 +170,17 @@
         }
 
         [Test]
-        public async Task DeleteQueuesForEndpoint()
+        [TestCase("TimeoutManager")]
+        [TestCase("Native")]
+        [TestCase("UnrestrictedDelayedDelivery")]
+        public async Task DeleteQueuesForEndpoint(string delayedDeliveryMethod)
         {
-            var endpointName = "mydeleteendpoint";
-            var errorQueueName = "mydeleteerror";
-            var auditQueueName = "mydeleteaudit";
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"mydeleteendpoint-{randomName}";
+            var errorQueueName = $"mydeleteerror-{randomName}";
+            var auditQueueName = $"mydeleteaudit-{randomName}";
 
-            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName)
+            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
                 .ConfigureAwait(false);
             await QueueCreationUtils.CreateQueue(errorQueueName)
                 .ConfigureAwait(false);
@@ -184,7 +188,7 @@
                 .ConfigureAwait(false);
 
 
-            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName)
+            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
                 .ConfigureAwait(false);
             await QueueDeletionUtils.DeleteQueue(errorQueueName)
                 .ConfigureAwait(false);
@@ -338,13 +342,25 @@
                 .ConfigureAwait(false);
         }
 
-        static async Task AssertQueuesDeleted(string endpointName, string errorQueueName, string auditQueueName, string queueNamePrefix = null, bool includeRetries = false)
+        static async Task AssertQueuesDeleted(string endpointName, string errorQueueName, string auditQueueName, string queueNamePrefix = null, bool includeRetries = false, string delayedDeliveryMethod = "native")
         {
             Assert.IsFalse(await QueueExistenceUtils.Exists(endpointName, queueNamePrefix), $"Queue {endpointName} still exists.");
 
-            Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts", queueNamePrefix), $"Queue {endpointName}.timeouts still exists.");
+            switch (delayedDeliveryMethod)
+            {
+                case "TimeoutManager":
 
-            Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher", queueNamePrefix), $"Queue {endpointName}.timeoutsdispatcher still exists.");
+                    Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts", queueNamePrefix), $"Queue {endpointName}.timeouts still exists.");
+
+                    Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher", queueNamePrefix), $"Queue {endpointName}.timeoutsdispatcher still exists.");
+
+                    break;
+                case "UnrestrictedDelayedDelivery":
+
+                    Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}-delay.fifo", queueNamePrefix), $"Queue {endpointName}-delay.fifo still exists.");
+
+                    break;
+            }
 
             if (includeRetries)
             {
