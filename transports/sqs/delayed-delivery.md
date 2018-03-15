@@ -47,10 +47,10 @@ sequenceDiagram
     else delay > 900sec
         S -->> F:  Attribute DelaySecond = delay
         loop every 900sec
-           alt remaining delay <= 900sec
+           alt remaining delay > 900sec
+               F -->> F:  Attribute DelaySecond = remaining delay
+           else remaining delay <= 900sec
               F ->> D: Message DelaySecond = remaining delay
-           else remaining delay> 900sec
-              F -->> F:  Attribute DelaySecond = remaining delay
            end
         end
 end
