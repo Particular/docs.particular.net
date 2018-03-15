@@ -1,6 +1,7 @@
 ﻿namespace SqsAll.QueueCreation
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Amazon.SQS;
     using Amazon.SQS.Model;
@@ -17,14 +18,37 @@
             {
                 var sqsRequest = new CreateQueueRequest
                 {
-                    QueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix)
+                    QueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix),
                 };
-                var value = Convert.ToInt32((maxTimeToLive ?? DefaultTimeToLive).TotalSeconds).ToString();
-                sqsRequest.Attributes.Add(QueueAttributeName.MessageRetentionPeriod, value);
+
+                var isFifoQueue = queueName.EndsWith(".fifo");
+
+                if (isFifoQueue)
+                {
+                    sqsRequest.Attributes = new Dictionary<string, string>
+                    {
+                        {QueueAttributeName.FifoQueue, "true"},
+                    };
+                }
+
                 try
                 {
-                    await client.CreateQueueAsync(sqsRequest)
+                    var createQueueResponse = await client.CreateQueueAsync(sqsRequest)
                         .ConfigureAwait(false);
+
+                    var sqsAttributesRequest = new SetQueueAttributesRequest
+                    {
+                        QueueUrl = createQueueResponse.QueueUrl
+                    };
+
+                    sqsAttributesRequest.Attributes.Add(QueueAttributeName.MessageRetentionPeriod, Convert.ToInt32((maxTimeToLive ?? DefaultTimeToLive).TotalSeconds).ToString());
+
+                    if (isFifoQueue)
+                    {
+                        sqsAttributesRequest.Attributes.Add(QueueAttributeName.DelaySeconds, "900");
+                    }
+
+                    await client.SetQueueAttributesAsync(sqsAttributesRequest).ConfigureAwait(false);
                 }
                 catch (QueueNameExistsException)
                 {
