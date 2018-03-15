@@ -14,8 +14,8 @@ public class MultiSerializerFeature :
     protected override void Setup(FeatureConfigurationContext context)
     {
         var pipeline = context.Pipeline;
-        pipeline.Replace("NServiceBus.DeserializeLogicalMessagesConnector", typeof(DeserializeConnector));
-        pipeline.Replace("NServiceBus.SerializeMessageConnector", typeof(SerializeConnector));
+        pipeline.Replace("DeserializeLogicalMessagesConnector", typeof(DeserializeConnector));
+        pipeline.Replace("SerializeMessageConnector", typeof(SerializeConnector));
         var container = context.Container;
         container.ConfigureComponent<SerializationMapper>(DependencyLifecycle.SingleInstance);
     }
