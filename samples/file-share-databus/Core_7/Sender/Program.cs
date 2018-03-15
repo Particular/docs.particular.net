@@ -12,7 +12,7 @@ class Program
         #region ConfigureDataBus
 
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
-        dataBus.BasePath(@"..\..\..\storage");
+        dataBus.BasePath(@"..\..\..\..\storage");
 
         #endregion
 
