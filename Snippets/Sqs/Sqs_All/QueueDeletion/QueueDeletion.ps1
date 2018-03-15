@@ -30,7 +30,11 @@ param(
 [string] $QueueNamePrefix,
 
 [Parameter(HelpMessage="Only required for NSB Versions 5 and below")]
-[Switch] $IncludeRetries
+[Switch] $IncludeRetries,
+
+[Parameter(HelpMessage="'TimeoutManager' for timeout manager queues (V1), 'Native' for V2-V3, 'UnrestrictedDelayedDelivery' for unrestricted delayed delivery (V4 and higher)", Mandatory=$false)]
+[ValidateNotNullOrEmpty()]
+[string] $DelayedDeliveryMethod = "Native"
 )
 
 # main queue
@@ -82,6 +86,7 @@ Get-SQSQueue $QueueNamePrefix | Remove-SQSQueue -Force
 
 Add-Type @'
     using System;
+    using System.Text;
 
     public static class QueueNameHelper
     {
@@ -94,26 +99,29 @@ Add-Type @'
 
             var s = queueNamePrefix + destination;
 
+            if (s.Length > 80)
+            {
+                throw new ArgumentException(
+                    string.Format("Address {0} with configured prefix {1} is longer than 80 characters and therefore cannot be used to create an SQS queue. Use a shorter endpoint name or a shorter queue name prefix.", destination, queueNamePrefix));
+            }
+
             // SQS queue names can only have alphanumeric characters, hyphens and underscores.
             // Any other characters will be replaced with a hyphen.
-            for (var i = 0; i < s.Length; ++i)
+            var skipCharacters = s.EndsWith(".fifo") ? 5 : 0;
+            var queueNameBuilder = new StringBuilder(s);
+
+            for (var i = 0; i < queueNameBuilder.Length - skipCharacters; ++i)
             {
-                var c = s[i];
+                var c = queueNameBuilder[i];
                 if (!char.IsLetterOrDigit(c)
                     && c != '-'
                     && c != '_')
                 {
-                    s = s.Replace(c, '-');
+                    queueNameBuilder[i] = '-';
                 }
             }
 
-            if (s.Length > 80)
-            {
-                throw new Exception(
-                    string.Format("Address {0} with configured prefix {1} is longer than 80 characters and therefore cannot be used to create an SQS queue. Use a shorter queue name.", destination, queueNamePrefix));
-            }
-
-            return s;
+            return queueNameBuilder.ToString();
         }
     }
 '@
