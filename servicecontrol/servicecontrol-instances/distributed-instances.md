@@ -202,7 +202,7 @@ Multiple slave instances can be configured as follows:
 
 ## Disabling auditing
 
-With multiple instances in place, it is possible to disable the auditing in the master instance and only perform auditing in the slaves. Auditing can be disabled by specifying `!disabled` in the audit queue name field in the ServiceControl Management utility, or by editing the `ServiceControl.exe.config` as follows:
+With multiple instances in place, it is possible to disable the auditing in the master instance and only perform auditing in the slaves. Auditing can be disabled by specifying `!disable` in the audit queue name field in the ServiceControl Management utility, or by editing the `ServiceControl.exe.config` as follows:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
