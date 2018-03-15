@@ -92,9 +92,8 @@ ServiceControl will stage the messages to be retried and then return them to the
 ![ServicePulse failed messages retried](servicepulse-failed-messages-retried.png)
 
 
-## Next steps
+## Keep exploring the demo
 
-Explore the demo
 - [Which message types are taking the longest to process?](./walkthrough-1.md)
 - [Which endpoints have the most work to do?](./walkthrough-2.md)
 

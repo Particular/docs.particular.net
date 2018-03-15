@@ -69,7 +69,7 @@ After you have selected a database instance, you will be asked to provide creden
 If you do not have your own SQL Server instance, or you would prefer to keep the demo pieces separate, select the 2nd option. This requires a SQL Server LocalDB installation (2012 or newer).
 
 
-### Demo walk through
+## Demo walk through
 
 Once everything is running, you will have 4 endpoints which are configured like this:
 
@@ -81,7 +81,9 @@ The endpoints are also configured to send monitoring data to the Particular Soft
 
 ![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png)
 
-Explore the demo further by asking some questions:
+## Explore the demo further
+
+See how monitoring tools in ServicePulse help answer the following questions:
 
 - **[Which message types take the longest to process?](walkthrough-1.md)** - take a look at individual endpoint performance and decide where to optimize.
 

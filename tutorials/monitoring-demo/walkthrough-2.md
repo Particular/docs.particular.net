@@ -97,9 +97,8 @@ You need to do some deeper investigation to resolve this type of issue. First, u
 Critical time is a delayed measurement. It measures the amount of time a message _took_ to get processed after it was sent. When queue length, network latency, and processing time are relatively stable, then critical time can be used to predict how long a new message will take to get processed. If any of those factors are changing significantly then critical time is less useful as a predictive measurement.
 
 
-## Next Steps
+## Keep exploring the demo
 
-Explore the demo:
 - [Which message types take the longest to process?](./walkthrough-1.md)
 - [Are any of the endpoints struggling?](./walkthrough-3.md)
 

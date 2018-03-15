@@ -99,9 +99,8 @@ If an endpoint is affecting the performance of other endpoints you can move an e
 If moving an endpoint to its own dedicated machine isn't sufficient you can also scale-out an endpoint and have it running on multiple machines. 
 
 
-## Next steps
+## Keep exploring the demo
 
-Explore the demo
 - [Which endpoints have the most work to do?](./walkthrough-2.md)
 - [Are any of the endpoints struggling?](./walkthrough-3.md)
 
