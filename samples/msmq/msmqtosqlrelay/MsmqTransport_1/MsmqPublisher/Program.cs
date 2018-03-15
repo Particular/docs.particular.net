@@ -21,12 +21,13 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        Start(endpointInstance);
+        await Start(endpointInstance)
+            .ConfigureAwait(false);
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
 
-    static void Start(IEndpointInstance busSession)
+    static async Task Start(IMessageSession messageSession)
     {
         Console.WriteLine("Press Enter to publish the SomethingHappened Event");
         Console.WriteLine("Press any key to exit");
@@ -41,7 +42,8 @@ class Program
             {
                 return;
             }
-            busSession.Publish(new SomethingHappened());
+            await messageSession.Publish(new SomethingHappened())
+                .ConfigureAwait(false);
             Console.WriteLine("SomethingHappened Event published");
         }
         #endregion
