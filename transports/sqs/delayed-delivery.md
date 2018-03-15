@@ -70,13 +70,13 @@ sequenceDiagram
     participant F as Destination-delay.fifo
     F ->>+ F: Timeout due
     F ->> D: Send with remaing delay
-    Note left of D: Original
+    Note left of D: Original message
     F ->>- F: Delete Delayed Message failed
-    Note right of F: network outage
+    Note right of F: Network outage
     F ->>+ F: Timeout due
     F ->> D: Send with remaing delay
     F ->>- F: Delete Delayed Message
-    Note left of D: Duplicate
+    Note left of D: Duplicate message
 ```
 
 ### Example
