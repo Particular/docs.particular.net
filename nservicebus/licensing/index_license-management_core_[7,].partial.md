@@ -9,6 +9,14 @@ Licenses can be shared across all endpoints and Particular Service Platform appl
 * `{SpecialFolder.LocalApplicationData}\ParticularSoftware\license.xml`
 * `{SpecialFolder.CommonApplicationData}\ParticularSoftware\license.xml`
 
+For Windows, these locations are:
+* `%LOCALAPPDATA%\ParticularSoftware\license.xml`
+* `%PROGRAMDATA%\ParticularSoftware\license.xml`
+
+For Linux/macOS, these locations are:
+* `${XDG_DATA_HOME:-$HOME/.local/share}/ParticularSoftware`
+* `/usr/share/ParticularSoftware/license.xml`
+
 Note: Depending on the operating system, the paths may be case sensitive.
 
 
