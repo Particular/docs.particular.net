@@ -20,18 +20,31 @@
 
         #region sqs-delete-queues-for-endpoint
 
-        public static async Task DeleteQueuesForEndpoint(string endpointName, string queueNamePrefix = null, bool includeRetries = false)
+        public static async Task DeleteQueuesForEndpoint(string endpointName, string queueNamePrefix = null, bool includeRetries = false, string delayedDeliveryMethod = "Native")
         {
+            switch (delayedDeliveryMethod)
+            {
+                case "TimeoutManager":
+
+                    // timeout queue
+                    await QueueDeletionUtils.DeleteQueue($"{endpointName}.Timeouts", queueNamePrefix)
+                        .ConfigureAwait(false);
+
+                    // timeout dispatcher queue
+                    await QueueDeletionUtils.DeleteQueue($"{endpointName}.TimeoutsDispatcher", queueNamePrefix)
+                        .ConfigureAwait(false);
+
+                    break;
+                case "UnrestrictedDelayedDelivery":
+
+                    await QueueDeletionUtils.DeleteQueue($"{endpointName}-delay.fifo", queueNamePrefix)
+                        .ConfigureAwait(false);
+
+                    break;
+            }
+
             // main queue
             await QueueDeletionUtils.DeleteQueue(endpointName, queueNamePrefix)
-                .ConfigureAwait(false);
-
-            // timeout queue
-            await QueueDeletionUtils.DeleteQueue($"{endpointName}.Timeouts", queueNamePrefix)
-                .ConfigureAwait(false);
-
-            // timeout dispatcher queue
-            await QueueDeletionUtils.DeleteQueue($"{endpointName}.TimeoutsDispatcher", queueNamePrefix)
                 .ConfigureAwait(false);
 
             // retries queue
