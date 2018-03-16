@@ -16,6 +16,7 @@ class Program
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(ConnectionString);
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.SubscriptionSettings().DisableCache();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
