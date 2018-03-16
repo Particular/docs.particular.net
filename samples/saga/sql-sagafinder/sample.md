@@ -33,15 +33,14 @@ snippet: sqlServerConfig
 
 snippet: MySqlConfig
 
+partial: postgresconfig
+
 
 include: sagafinder-thesaga
 
 snippet: saga
 
 include: sagafinder-process
-
-
-partial: postgresconfig
 
 
 ## Saga Finders
