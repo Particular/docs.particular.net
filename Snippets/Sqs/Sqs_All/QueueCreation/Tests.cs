@@ -643,7 +643,7 @@
         }
 
         [Test]
-        public async Task CreateQueuesPowershell()
+        public async Task CreateQueues_Powershell()
         {
             var state = new State();
             IEndpointInstance endpoint = null;
