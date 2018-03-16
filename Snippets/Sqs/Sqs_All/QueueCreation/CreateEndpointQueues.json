@@ -13,6 +13,10 @@
     "IncludeRetries": {
       "Type": "String",
       "Description": "Include Retries Queue."
+    },
+    "DelayedDeliveryMethod": {
+      "Type": "String",
+      "Description": "'TimeoutManager' for timeout manager queues (V1), 'Native' for V2-V3, 'UnrestrictedDelayedDelivery' for unrestricted delayed delivery (V4 and higher)"
     }
   },
   "Conditions": {
@@ -20,6 +24,18 @@
       "Fn::Equals": [
         { "Ref": "IncludeRetries" },
         "True"
+      ]
+    },
+    "IncludeTimeoutManagerResources": {
+      "Fn::Equals": [
+        { "Ref": "DelayedDeliveryMethod" },
+        "TimeoutManager"
+      ]
+    },
+    "IncludeUnrestrictedDelayedDeliveryResources": {
+      "Fn::Equals": [
+        { "Ref": "DelayedDeliveryMethod" },
+        "UnrestrictedDelayedDelivery"
       ]
     }
   },
@@ -44,6 +60,7 @@
         },
         "MessageRetentionPeriod": { "Ref": "MaxTimeToLive" }
       },
+      "Condition": "IncludeTimeoutManagerResources",
       "Type": "AWS::SQS::Queue"
     },
     "TimeoutsDispatcherQueue": {
@@ -59,6 +76,7 @@
         },
         "MessageRetentionPeriod": { "Ref": "MaxTimeToLive" }
       },
+      "Condition": "IncludeTimeoutManagerResources",
       "Type": "AWS::SQS::Queue"
     },
     "RetriesQueue": {
@@ -76,6 +94,24 @@
       },
       "Condition": "IncludeRetriesResources",
       "Type": "AWS::SQS::Queue"
+    },
+    "UnrestrictedDelayedDeliveryQueue": {
+      "Properties": {
+        "QueueName": {
+          "Fn::Join": [
+            "-",
+            [
+              { "Ref": "EndpointName" },
+              "delay.fifo"
+            ]
+          ]
+        },
+        "MessageRetentionPeriod": { "Ref": "MaxTimeToLive" },
+        "FifoQueue": "true",
+        "DelaySeconds":  "900"
+      },
+      "Condition": "IncludeUnrestrictedDelayedDeliveryResources",
+      "Type": "AWS::SQS::Queue"
     }
   },
   "Outputs": {
@@ -89,19 +125,29 @@
       "Description": "The URL of the timeouts queue",
       "Value": {
         "Ref": "TimeoutsQueue"
-      }
+      },
+      "Condition": "IncludeTimeoutManagerResources"
     },
     "TimeoutsDispatcherQueueURL": {
       "Description": "The URL of the timeouts dispatcher queue",
       "Value": {
         "Ref": "TimeoutsDispatcherQueue"
-      }
+      },
+      "Condition": "IncludeTimeoutManagerResources"
     },
     "RetriesQueueURL": {
       "Description": "The URL of the rertries queue",
       "Value": {
         "Ref": "RetriesQueue"
-      }
+      },
+      "Condition": "IncludeRetriesResources"
+    },
+    "UnrestrictedDelayedDeliveryQueueURL": {
+      "Description": "The URL of unrestricted delayed delivery queue",
+      "Value": {
+        "Ref": "UnrestrictedDelayedDeliveryQueue"
+      },
+      "Condition": "IncludeUnrestrictedDelayedDeliveryResources"
     }
   }
 }
