@@ -36,19 +36,25 @@ param(
 [ValidateNotNullOrEmpty()]
 [string] $DelayedDeliveryMethod = "Native"
 )
+switch($DelayedDeliveryMethod) {
+	"TimeoutManager" { 
+		# timeout dispatcher queue
+		DeleteQueue -QueueName "$EndpointName.TimeoutsDispatcher" -QueueNamePrefix $QueueNamePrefix
 
+
+		# timeout queue
+		DeleteQueue -QueueName "$EndpointName.Timeouts" -QueueNamePrefix $QueueNamePrefix
+	}
+	"UnrestrictedDelayedDelivery" {
+		DeleteQueue -QueueName "$EndpointName-delay.fifo" -QueueNamePrefix $QueueNamePrefix
+	}
+}
 # main queue
 DeleteQueue -QueueName $EndpointName -QueueNamePrefix $QueueNamePrefix
 
-# timeout queue
-DeleteQueue -QueueName "$EndpointName.Timeouts" -QueueNamePrefix $QueueNamePrefix
-
-# timeout dispatcher queue
-DeleteQueue -QueueName "$EndpointName.TimeoutsDispatcher" -QueueNamePrefix $QueueNamePrefix
-
 # retries queue
 if ($IncludeRetries) {
-DeleteQueue -QueueName "$EndpointName.Retries" -QueueNamePrefix $QueueNamePrefix
+	DeleteQueue -QueueName "$EndpointName.Retries" -QueueNamePrefix $QueueNamePrefix
 }
 }
 # endcode
