@@ -41,22 +41,28 @@ param(
 [ValidateNotNullOrEmpty()]
 [string] $DelayedDeliveryMethod = "Native"
 )
+switch($DelayedDeliveryMethod) {
+	"TimeoutManager" { 
+		# timeout dispatcher queue
+		# This queue is created first because it has the longest name. 
+		# If the endpointName and queueNamePrefix are too long this call will throw and no queues will be created. 
+		# In this event, a shorter value for endpointName or queueNamePrefix should be used.
+		CreateQueue -QueueName "$EndpointName.TimeoutsDispatcher" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
 
-# timeout dispatcher queue
-# This queue is created first because it has the longest name. 
-# If the endpointName and queueNamePrefix are too long this call will throw and no queues will be created. 
-# In this event, a shorter value for endpointName or queueNamePrefix should be used.
-CreateQueue -QueueName "$EndpointName.TimeoutsDispatcher" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
+		
+		# timeout queue
+		CreateQueue -QueueName "$EndpointName.Timeouts" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
+	}
+	"UnrestrictedDelayedDelivery" {
+		CreateQueue -QueueName "$EndpointName-delay.fifo" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
+	}
+}
 
 # main queue
 CreateQueue -QueueName $EndpointName -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
-
-# timeout queue
-CreateQueue -QueueName "$EndpointName.Timeouts" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
-
 # retries queue
 if ($IncludeRetries) {
-CreateQueue -QueueName "$EndpointName.Retries" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
+	CreateQueue -QueueName "$EndpointName.Retries" -QueueNamePrefix $QueueNamePrefix -MaxTimeToLive $MaxTimeToLive
 }
 }
 # endcode
@@ -79,7 +85,12 @@ param(
 )
 $timeToLive = [System.Convert]::ToInt32([System.TimeSpan]::Parse($MaxTimeToLive, [System.Globalization.CultureInfo]::InvariantCulture).TotalSeconds).ToString()
 [string]$name = [QueueNameHelper]::GetSqsQueueName($QueueName, $QueueNamePrefix)
-New-SQSQueue -QueueName $name -Attributes @{"MessageRetentionPeriod" = $timeToLive;} -Force
+$attributes = @{ "MessageRetentionPeriod" = $timeToLive; }
+if($name -like "*.fifo") {
+    $attributes.Add("FifoQueue", "true")
+    $attributes.Add("DelaySeconds", "900")
+}
+New-SQSQueue -QueueName $name -Attributes $attributes -Force
 }
 
 Function ValidateMaxTimeToLive {
