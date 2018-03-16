@@ -4,27 +4,19 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Persistence.Sql;
 
-#region Header
-
 public class TestSaga :
         SqlSaga<TestSaga.TestSagaData>,
         IHandleMessages<ReplyFollowUpMessage>,
         IHandleMessages<CorrelatedMessage>,
         IHandleTimeouts<TestTimeout>,
         IAmStartedByMessages<StartingMessage>
-    #endregion
-
 {
     static ILog log = LogManager.GetLogger<TestSaga>();
 
     protected override void ConfigureMapping(IMessagePropertyMapper mapper)
     {
-        #region Mappings
-
         mapper.ConfigureMapping<StartingMessage>(m => m.SomeId);
         mapper.ConfigureMapping<CorrelatedMessage>(m => m.SomeId);
-
-        #endregion
     }
 
     protected override string CorrelationPropertyName => nameof(TestSagaData.SomeId);
