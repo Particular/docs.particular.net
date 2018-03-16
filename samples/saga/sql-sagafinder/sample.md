@@ -13,7 +13,7 @@ related:
 - persistence/sql/saga-finder
 ---
 
-include: sagafinder-into
+include: sagafinder-intro
 
 
 include: sqlpersistence-prereqs

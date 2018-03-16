@@ -11,7 +11,7 @@ related:
 - persistence/nhibernate
 ---
 
-include: sagafinder-into
+include: sagafinder-intro
 
 
 ## Prerequisites
