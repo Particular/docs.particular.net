@@ -226,11 +226,15 @@
         }
 
         [Test]
-        public async Task CreateQueuesForEndpointDefaultMaxTTL_CloudFormation()
+        [TestCase("TimeoutManager")]
+        [TestCase("Native")]
+        [TestCase("UnrestrictedDelayedDelivery")]
+        public async Task CreateQueuesForEndpointDefaultMaxTTL_CloudFormation(string delayedDeliveryMethod)
         {
-            var endpointName = "mycreatedefaultendpoint-cloudformation";
-            var errorQueueName = "mycreatedefaulterror-cloudformation";
-            var auditQueueName = "mycreatedefaultaudit-cloudformation";
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"mycreatedefaultendpoint-cloudformation-{randomName}";
+            var errorQueueName = $"mycreatedefaulterror-cloudformation-{randomName}";
+            var auditQueueName = $"mycreatedefaultaudit-cloudformation-{randomName}";
             var queueCreationTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/QueueCreation.json");
             var endpointTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/CreateEndpointQueues.json");
 
@@ -256,7 +260,7 @@
                         templatePath: queueCreationTemplatePath)
                     .ConfigureAwait(false);
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4))
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
             }
             finally
@@ -271,13 +275,17 @@
         }
 
         [Test]
-        public async Task CreateQueuesForEndpointWithPrefix_Powershell()
+        [TestCase("TimeoutManager")]
+        [TestCase("Native")]
+        [TestCase("UnrestrictedDelayedDelivery")]
+        public async Task CreateQueuesForEndpointWithPrefix_Powershell(string delayedDeliveryMethod)
         {
-            var endpointName = "mycreateprefixendpoint-powershell";
-            var errorQueueName = "mycreateprefixerror-powershell";
-            var auditQueueName = "mycreateprefixaudit-powershell";
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"mycreateprefixendpoint-powershell-{randomName}";
+            var errorQueueName = $"mycreateprefixerror-powershell-{randomName}";
+            var auditQueueName = $"mycreateprefixaudit-powershell-{randomName}";
 
-            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
+            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
                 .ConfigureAwait(false);
             await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV")
                 .ConfigureAwait(false);
@@ -295,6 +303,7 @@
                     command.AddParameter("EndpointName", endpointName);
                     command.AddParameter("QueueNamePrefix", "DEV");
                     command.AddParameter("IncludeRetries");
+                    command.AddParameter("DelayedDeliveryMethod", delayedDeliveryMethod);
                     command.Invoke();
 
                     command = powerShell.AddCommand("CreateQueue");
@@ -313,7 +322,7 @@
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
                 await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV")
                     .ConfigureAwait(false);
@@ -323,13 +332,17 @@
         }
 
         [Test]
-        public async Task CreateQueuesForEndpointWithPrefix()
+        [TestCase("TimeoutManager")]
+        [TestCase("Native")]
+        [TestCase("UnrestrictedDelayedDelivery")]
+        public async Task CreateQueuesForEndpointWithPrefix(string delayedDeliveryMethod)
         {
-            var endpointName = "mycreateprefixendpoint";
-            var errorQueueName = "mycreateprefixerror";
-            var auditQueueName = "mycreateprefixaudit";
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"mycreateprefixendpoint-{randomName}";
+            var errorQueueName = $"mycreateprefixerror-{randomName}";
+            var auditQueueName = $"mycreateprefixaudit-{randomName}";
 
-            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
+            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
                 .ConfigureAwait(false);
             await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV")
                 .ConfigureAwait(false);
@@ -338,7 +351,7 @@
 
             try
             {
-                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
+                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
 
                 await QueueCreationUtils.CreateQueue(
@@ -351,12 +364,12 @@
                         queueNamePrefix: "DEV")
                     .ConfigureAwait(false);
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), queueNamePrefix: "DEV")
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV")
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
                 await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV")
                     .ConfigureAwait(false);
