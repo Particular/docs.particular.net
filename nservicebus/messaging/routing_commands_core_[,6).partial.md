@@ -1,1 +1,1 @@
-Command routing can be configured via [MessageEndpointMappings](routing-extensibility.md#messageendpointmappings).
+Command routing can be configured via [MessageEndpointMappings](/nservicebus/messaging/routing-extensibility.md#messageendpointmappings).
