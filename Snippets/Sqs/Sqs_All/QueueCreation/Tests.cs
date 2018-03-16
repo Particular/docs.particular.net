@@ -30,13 +30,6 @@
             var errorQueueName = $"mycreateerror-powershell-{randomName}";
             var auditQueueName = $"mycreateaudit-powershell-{randomName}";
 
-            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
-            await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                .ConfigureAwait(false);
-            await QueueDeletionUtils.DeleteQueue(auditQueueName)
-                .ConfigureAwait(false);
-
             try
             {
                 var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/QueueCreation.ps1");
@@ -237,13 +230,6 @@
             var auditQueueName = $"mycreatedefaultaudit-cloudformation-{randomName}";
             var queueCreationTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/QueueCreation.json");
             var endpointTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/CreateEndpointQueues.json");
-
-            await DeleteEndpointQueuesCloudFormation.DeleteQueuesForEndpoint(endpointName)
-                .ConfigureAwait(false);
-            await QueueDeletionUtilsCloudFormation.DeleteQueue(errorQueueName)
-                .ConfigureAwait(false);
-            await QueueDeletionUtilsCloudFormation.DeleteQueue(auditQueueName)
-                .ConfigureAwait(false);
 
             try
             {
@@ -491,13 +477,6 @@
             var auditQueueName = "mycreateretriesendpointaudit-cloudformation";
             var queueCreationTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/QueueCreation.json");
             var endpointTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/CreateEndpointQueues.json");
-
-            await DeleteEndpointQueuesCloudFormation.DeleteQueuesForEndpoint(endpointName)
-                .ConfigureAwait(false);
-            await QueueDeletionUtilsCloudFormation.DeleteQueue(errorQueueName)
-                .ConfigureAwait(false);
-            await QueueDeletionUtilsCloudFormation.DeleteQueue(auditQueueName)
-                .ConfigureAwait(false);
 
             try
             {
