@@ -27,7 +27,7 @@
 
         #region sqs-create-queues-for-endpoint-cloudformation
 
-        public static async Task CreateQueuesForEndpoint(string endpointName, string templatePath, TimeSpan? maxTimeToLive = null, string queueNamePrefix = null, bool includeRetries = false)
+        public static async Task CreateQueuesForEndpoint(string endpointName, string templatePath, TimeSpan? maxTimeToLive = null, string queueNamePrefix = null, bool includeRetries = false, string delayedDeliveryMethod = "Native")
         {
             using (var client = ClientFactory.CreateCloudFormationClient())
             {
@@ -51,6 +51,11 @@
                         {
                             ParameterKey = "IncludeRetries",
                             ParameterValue = includeRetries.ToString()
+                        },
+                        new Parameter
+                        {
+                            ParameterKey = "DelayedDeliveryMethod",
+                            ParameterValue = delayedDeliveryMethod
                         },
                     },
                     TemplateBody = File.ReadAllText(templatePath)

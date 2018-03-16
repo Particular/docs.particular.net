@@ -16,7 +16,6 @@
     [Explicit]
     public class Tests
     {
-
         [Test]
         [TestCase("TimeoutManager")]
         [TestCase("Native")]
@@ -228,12 +227,13 @@
             var endpointName = $"mycreatedefaultendpoint-cloudformation-{randomName}";
             var errorQueueName = $"mycreatedefaulterror-cloudformation-{randomName}";
             var auditQueueName = $"mycreatedefaultaudit-cloudformation-{randomName}";
+
             var queueCreationTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/QueueCreation.json");
             var endpointTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/CreateEndpointQueues.json");
 
             try
             {
-                await CreateEndpointQueuesCloudFormation.CreateQueuesForEndpoint(endpointName, endpointTemplatePath)
+                await CreateEndpointQueuesCloudFormation.CreateQueuesForEndpoint(endpointName, endpointTemplatePath, delayedDeliveryMethod:delayedDeliveryMethod)
                     .ConfigureAwait(false);
 
                 await QueueCreationUtilsCloudFormation.CreateQueue(
@@ -468,9 +468,12 @@
 
             Assert.IsTrue(exception.Message.Contains("is longer than 80 characters and therefore cannot be used to create an SQS queue."));
         }
-        
+
         [Test]
-        public async Task CreateQueuesForEndpointWithRetries_CloudFormation()
+        [TestCase("TimeoutManager")]
+        [TestCase("Native")]
+        [TestCase("UnrestrictedDelayedDelivery")]
+        public async Task CreateQueuesForEndpointWithRetries_CloudFormation(string delayedDeliveryMethod)
         {
             var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
             var endpointName = $"mycreateretriesendpoint-cloudformation-{randomName}";
@@ -481,7 +484,7 @@
 
             try
             {
-                await CreateEndpointQueuesCloudFormation.CreateQueuesForEndpoint(endpointName, endpointTemplatePath, includeRetries: true)
+                await CreateEndpointQueuesCloudFormation.CreateQueuesForEndpoint(endpointName, endpointTemplatePath, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
 
                 await QueueCreationUtilsCloudFormation.CreateQueue(
@@ -494,7 +497,7 @@
                         templatePath: queueCreationTemplatePath)
                     .ConfigureAwait(false);
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), includeRetries: true)
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), includeRetries: true, delayedDeliveryMethod:delayedDeliveryMethod)
                     .ConfigureAwait(false);
             }
             finally
