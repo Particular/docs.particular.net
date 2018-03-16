@@ -34,7 +34,7 @@ As described in [messages, events and commands](/nservicebus/messaging/messages-
 
 partial: commands
 
-Each entry in the collection has to specify the assembly where the messages are defined. In addition to that, a type name or the namespace name can be also specified for additional filtering. The per-namespace routes override assembly-level routes and the per-type routes override both namespace and assembly routes. 
+The per-namespace routes override assembly-level routes and the per-type routes override both namespace and assembly routes. 
 
 
 ### Overriding the destination

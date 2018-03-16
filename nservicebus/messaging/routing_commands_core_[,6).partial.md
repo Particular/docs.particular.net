@@ -1,1 +1,1 @@
-Command routing can be configured in a configuration section.
+Command routing can be configured via [MessageEndpointMappings](routing-extensibility.md/#messageendpointmappings).
