@@ -37,7 +37,7 @@ Some packages cannot currently support .NET Core or running on non-Windows platf
 * Persistence
   * NServiceBus.NHibernate - NHibernate 4.x and 5.0 do not support .NET Core, but support is [slated for NHibernate 5.1](https://github.com/nhibernate/nhibernate-core/issues/954).
   * NServiceBus.Persistence.ServiceFabric - Dependency Microsoft.ServiceFabric.Data does not support .NET Core.
-  * NServiceBus.RavenDB - Supports RavenDB 3.5 `netstandard` client, but RavenDB Server does not support .NET Core, and embeddable database (frequently used for tests) also does not.
+  * NServiceBus.RavenDB - Supports RavenDB 3.5 `netstandard` client, but RavenDB Server 3.5 does not support .NET Core, and the embeddable database (frequently used for tests) also does not.
   * NServiceBus.Persistence.Sql - While Microsoft SQL Server, MySQL, and PostgreSQL are supported, Oracle is not supported due to the lack of a .NET Core version of Oracle.ManagedDataAccess.
 * Containers
   * NServiceBus.Spring - Spring.Core does not support .NET Core.
