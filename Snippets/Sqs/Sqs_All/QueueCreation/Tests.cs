@@ -472,9 +472,10 @@
         [Test]
         public async Task CreateQueuesForEndpointWithRetries_CloudFormation()
         {
-            var endpointName = "mycreateretriesendpoint-cloudformation";
-            var errorQueueName = "mycreateretriesendpointerror-cloudformation";
-            var auditQueueName = "mycreateretriesendpointaudit-cloudformation";
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"mycreateretriesendpoint-cloudformation-{randomName}";
+            var errorQueueName = $"mycreateretriesendpointerror-cloudformation-{randomName}";
+            var auditQueueName = $"mycreateretriesendpointaudit-cloudformation-{randomName}";
             var queueCreationTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/QueueCreation.json");
             var endpointTemplatePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueCreation/CreateEndpointQueues.json");
 
