@@ -32,7 +32,7 @@ Some packages cannot currently support .NET Core or running on non-Windows platf
 
 * Transports
   * NServiceBus.AmazonSQS - Blocked from running on Linux due to a [bug in the AWS SDK](https://github.com/aws/aws-sdk-net/issues/796).
-  * NServiceBus.Azure.Transports.WindowsAzureServiceBus - The new Azure Service Bus library isn't fully-featured and contains breaking changes. See the blog post [A new Azure Service Bus transport—but not just yet](https://particular.net/blog/a-new-azure-service-bus-transport-but-not-just-yet).
+  * NServiceBus.Azure.Transports.WindowsAzureServiceBus - The new Azure Service Bus library is about to reach feature completeness, which will [unblock development of the transport for .NET Core](https://particular.net/blog/a-new-azure-service-bus-transport-but-not-just-yet).
   * NServiceBus.Transport.Msmq - MSMQ only runs on Windows.
 * Persistence
   * NServiceBus.NHibernate - NHibernate 4.x and 5.0 do not support .NET Core, but support is [slated for NHibernate 5.1](https://github.com/nhibernate/nhibernate-core/issues/954).
