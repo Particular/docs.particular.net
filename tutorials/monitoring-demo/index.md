@@ -24,7 +24,7 @@ In order to run the demo your system needs to meet the following requirements:
 
 Once you have downloaded and extracted the zip package, open the extracted folder and double-click on `run.bat`. 
 
-Choose option 2 (uses a LocalDB instance, removed during demo shutdown) to get started quickly. To use an existing SQL Server instance instead, see the [detailed setup instructions](/walthrough-setup).
+Choose option 2 (uses a LocalDB instance, removed during demo shutdown) to get started quickly. To use an existing SQL Server instance instead, see the [detailed setup instructions](walkthrough-setup.md).
 
 ![Demo options](options.png "width=680")
 
