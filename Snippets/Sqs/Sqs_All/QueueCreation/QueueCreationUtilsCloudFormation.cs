@@ -2,7 +2,6 @@ namespace SqsAll.QueueCreation
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Amazon.CloudFormation;
@@ -35,7 +34,7 @@ namespace SqsAll.QueueCreation
                             ParameterValue = Convert.ToInt32((maxTimeToLive ?? DefaultTimeToLive).TotalSeconds).ToString()
                         }
                     },
-                    TemplateBody = File.ReadAllText(templatePath)
+                    TemplateBody = CloudFormationHelper.ConvertToValidJson(templatePath)
                 };
 
                 await client.CreateStackAsync(request)

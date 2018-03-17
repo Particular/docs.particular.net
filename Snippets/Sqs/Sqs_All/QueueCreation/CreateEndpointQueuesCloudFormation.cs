@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Amazon.CloudFormation;
@@ -58,7 +57,7 @@
                             ParameterValue = delayedDeliveryMethod
                         },
                     },
-                    TemplateBody = File.ReadAllText(templatePath)
+                    TemplateBody = CloudFormationHelper.ConvertToValidJson(templatePath)
                 };
 
                 await client.CreateStackAsync(request)
