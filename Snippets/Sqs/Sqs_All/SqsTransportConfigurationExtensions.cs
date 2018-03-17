@@ -14,8 +14,10 @@
 
         public static void ConfigureSqsTransport(this TransportExtensions<SqsTransport> transportConfiguration, string queueNamePrefix = null)
         {
+            var region = EnvironmentHelper.GetEnvironmentVariable(RegionEnvironmentVariableName);
+
             transportConfiguration
-                .ClientFactory(() => new AmazonSQSClient(new AmazonSQSConfig { RegionEndpoint = RegionEndpoint.APSoutheast2 }))
+                .ClientFactory(() => new AmazonSQSClient(new AmazonSQSConfig { RegionEndpoint = RegionEndpoint.GetBySystemName(region) }))
                 .QueueNamePrefix(queueNamePrefix);
 
             var s3BucketName = EnvironmentHelper.GetEnvironmentVariable(S3BucketEnvironmentVariableName);
