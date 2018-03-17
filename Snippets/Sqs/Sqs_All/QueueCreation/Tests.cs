@@ -367,9 +367,6 @@
         [Test]
         public async Task CreateQueuesForEndpointWithRetries_Powershell()
         {
-            var endpointName = "mycreateretriesendpoint-powershell";
-            var errorQueueName = "mycreateretrieserror-powershell";
-            var auditQueueName = "mycreateretriesaudit-powershell";
 
             await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
                 .ConfigureAwait(false);
@@ -377,6 +374,10 @@
                 .ConfigureAwait(false);
             await QueueDeletionUtils.DeleteQueue(auditQueueName)
                 .ConfigureAwait(false);
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"mycreateprefixendpoint-{randomName}";
+            var errorQueueName = $"mycreateprefixerror-{randomName}";
+            var auditQueueName = $"mycreateprefixaudit-{randomName}";
 
             try
             {
@@ -416,9 +417,6 @@
         [Test]
         public async Task CreateQueuesForEndpointWithRetries()
         {
-            var endpointName = "mycreateretriesendpoint";
-            var errorQueueName = "mycreateretrieserror";
-            var auditQueueName = "mycreateretriesaudit";
 
             await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
                 .ConfigureAwait(false);
@@ -426,6 +424,10 @@
                 .ConfigureAwait(false);
             await QueueDeletionUtils.DeleteQueue(auditQueueName)
                 .ConfigureAwait(false);
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"mycreateprefixendpoint-{randomName}";
+            var errorQueueName = $"mycreateprefixerror-{randomName}";
+            var auditQueueName = $"mycreateprefixaudit-{randomName}";
 
             try
             {
