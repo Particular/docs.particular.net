@@ -43,7 +43,7 @@
                     StackName = endpointNameWithPrefix
                 };
                 StackStatus currentStatus = string.Empty;
-                while (currentStatus != StackStatus.DELETE_COMPLETE)
+                while (currentStatus != StackStatus.DELETE_IN_PROGRESS) // in progress is enough, no need to wait for completion
                 {
                     try
                     {
