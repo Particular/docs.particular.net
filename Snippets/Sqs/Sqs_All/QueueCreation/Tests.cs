@@ -504,7 +504,7 @@
                         QueueAttributeName.FifoQueue
                     });
 
-                    Assert.AreEqual(Convert.ToInt32(TimeSpan.FromDays(4).TotalSeconds), queueAttributes.MessageRetentionPeriod);
+                    Assert.AreEqual(timeSpanInSeconds, queueAttributes.MessageRetentionPeriod);
                     Assert.AreEqual(900, queueAttributes.DelaySeconds);
                     Assert.IsTrue(queueAttributes.FifoQueue);
 
@@ -534,7 +534,9 @@
         }
         
         [Test]
-        public async Task CreateQueues()
+        [TestCase("Native")]
+        [TestCase("UnrestrictedDelayedDelivery")]
+        public async Task CreateQueues(string delayedDeliveryMethod)
         {
             var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
             var endpointName = $"createqueues-{randomName}";
@@ -545,7 +547,7 @@
             IEndpointInstance endpoint = null;
             try
             {
-                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true)
+                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
 
                 await QueueCreationUtils.CreateQueue(
@@ -556,7 +558,7 @@
                         queueName: auditQueueName)
                     .ConfigureAwait(false);
 
-                endpoint = await StartEndpoint(state, endpointName, errorQueueName, auditQueueName).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName, auditQueueName, delayedDeliveryMethod).ConfigureAwait(false);
                 var messageToSend = new MessageToSend();
                 await endpoint.SendLocal(messageToSend).ConfigureAwait(false);
 
@@ -569,7 +571,7 @@
                     await endpoint.Stop().ConfigureAwait(false);
                 }
 
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
                 await QueueDeletionUtils.DeleteQueue(errorQueueName)
                     .ConfigureAwait(false);
@@ -579,7 +581,9 @@
         }
 
         [Test]
-        public async Task CreateQueues_Powershell()
+        [TestCase("Native")]
+        [TestCase("UnrestrictedDelayedDelivery")]
+        public async Task CreateQueues_Powershell(string delayedDeliveryMethod)
         {
             var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
             var endpointName = $"createqueues-powershell-{randomName}";
@@ -598,6 +602,7 @@
                     var command = powerShell.AddCommand("CreateQueuesForEndpoint");
                     command.AddParameter("EndpointName", endpointName);
                     command.AddParameter("IncludeRetries");
+                    command.AddParameter("DelayedDeliveryMethod", delayedDeliveryMethod);
                     command.Invoke();
 
                     command = powerShell.AddCommand("CreateQueue");
@@ -609,7 +614,7 @@
                     command.Invoke();
                 }
 
-                endpoint = await StartEndpoint(state, endpointName, errorQueueName, auditQueueName).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName, auditQueueName, delayedDeliveryMethod).ConfigureAwait(false);
                 var messageToSend = new MessageToSend();
                 await endpoint.SendLocal(messageToSend).ConfigureAwait(false);
 
@@ -622,7 +627,7 @@
                     await endpoint.Stop().ConfigureAwait(false);
                 }
 
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
                     .ConfigureAwait(false);
                 await QueueDeletionUtils.DeleteQueue(errorQueueName)
                     .ConfigureAwait(false);
@@ -631,7 +636,7 @@
             }
         }
 
-        Task<IEndpointInstance> StartEndpoint(State state, string endpointName, string errorQueueName, string auditQueueName)
+        Task<IEndpointInstance> StartEndpoint(State state, string endpointName, string errorQueueName, string auditQueueName, string delayedDeliveryMethod)
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.RegisterComponents(
@@ -643,6 +648,12 @@
             endpointConfiguration.AuditProcessedMessagesTo(auditQueueName);
             var transport = endpointConfiguration.UseTransport<SqsTransport>();
             transport.ConfigureSqsTransport();
+
+            if (delayedDeliveryMethod == "UnrestrictedDelayedDelivery")
+            {
+                transport.UnrestrictedDurationDelayedDelivery();
+            }
+            
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             var recoverabilitySettings = endpointConfiguration.Recoverability();
             recoverabilitySettings.Immediate(customizations => customizations.NumberOfRetries(0));
