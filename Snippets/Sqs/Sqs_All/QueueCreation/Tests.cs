@@ -533,21 +533,14 @@
             })).MessageRetentionPeriod);
         }
         
-        string endpointName = "CreateQueuesTests";
-        static string errorQueueName = "CreateQueuesTestsError";
-        static string auditQueueName = "CreateQueuesTestsAudit";
-
-        [SetUp]
-        [TearDown]
-        public void Setup()
-        {
-            DeleteEndpointQueues.DeleteQueuesForEndpoint(QueueNameHelper.GetSqsQueueName(endpointName)).GetAwaiter().GetResult();
-            QueueDeletionUtils.DeleteQueue(QueueNameHelper.GetSqsQueueName(errorQueueName)).GetAwaiter().GetResult();
-        }
-
         [Test]
         public async Task CreateQueues()
         {
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"createqueues-{randomName}";
+            var errorQueueName = $"createqueues-{randomName}-error";
+            var auditQueueName = $"createqueues-{randomName}-audit";
+
             var state = new State();
             IEndpointInstance endpoint = null;
             try
@@ -563,7 +556,7 @@
                         queueName: auditQueueName)
                     .ConfigureAwait(false);
 
-                endpoint = await StartEndpoint(state).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName, auditQueueName).ConfigureAwait(false);
                 var messageToSend = new MessageToSend();
                 await endpoint.SendLocal(messageToSend).ConfigureAwait(false);
 
@@ -575,12 +568,24 @@
                 {
                     await endpoint.Stop().ConfigureAwait(false);
                 }
+
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName)
+                    .ConfigureAwait(false);
             }
         }
 
         [Test]
         public async Task CreateQueues_Powershell()
         {
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"createqueues-powershell-{randomName}";
+            var errorQueueName = $"createqueueserror-powershell-{randomName}";
+            var auditQueueName = $"createqueuesaudit-powershell-{randomName}";
+
             var state = new State();
             IEndpointInstance endpoint = null;
             try
@@ -604,7 +609,7 @@
                     command.Invoke();
                 }
 
-                endpoint = await StartEndpoint(state).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName, auditQueueName).ConfigureAwait(false);
                 var messageToSend = new MessageToSend();
                 await endpoint.SendLocal(messageToSend).ConfigureAwait(false);
 
@@ -616,10 +621,17 @@
                 {
                     await endpoint.Stop().ConfigureAwait(false);
                 }
+
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName)
+                    .ConfigureAwait(false);
             }
         }
 
-        Task<IEndpointInstance> StartEndpoint(State state)
+        Task<IEndpointInstance> StartEndpoint(State state, string endpointName, string errorQueueName, string auditQueueName)
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.RegisterComponents(
