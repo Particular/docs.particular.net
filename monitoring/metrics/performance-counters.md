@@ -1,6 +1,6 @@
 ---
 title: Windows Performance Counters
-summary: Monitoring through the use of windows performance counters.
+summary: Monitoring through the use of Windows performance counters.
 reviewed: 2018-01-26
 component: PerfCounters
 redirects:
