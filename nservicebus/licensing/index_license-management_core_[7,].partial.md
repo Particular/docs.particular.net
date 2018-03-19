@@ -14,7 +14,7 @@ For Windows, these locations are:
 * `%PROGRAMDATA%\ParticularSoftware\license.xml`
 
 For Linux/macOS, these locations are:
-* `${XDG_DATA_HOME:-$HOME/.local/share}/ParticularSoftware`
+* `${XDG_DATA_HOME:-$HOME/.local/share}/ParticularSoftware/license.xml`
 * `/usr/share/ParticularSoftware/license.xml`
 
 Note: Depending on the operating system, the paths may be case sensitive.
