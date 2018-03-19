@@ -1,6 +1,7 @@
 ﻿namespace SqsAll.ErrorQueue
 {
     using System;
+    using System.IO;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -19,28 +20,22 @@
             LogManager.Use<DefaultFactory>().Level(LogLevel.Error);
         }
 
-        string endpointName = "ReturnToSourceQueueTests";
-        static string errorQueueName = "ReturnToSourceQueueTestsError";
-
-        [SetUp]
-        [TearDown]
-        public void Setup()
-        {
-            DeleteEndpointQueues.DeleteQueuesForEndpoint(QueueNameHelper.GetSqsQueueName(endpointName)).GetAwaiter().GetResult();
-            QueueDeletionUtils.DeleteQueue(QueueNameHelper.GetSqsQueueName(errorQueueName)).GetAwaiter().GetResult();
-        }
 
         [Test]
         public async Task ReturnMessageToSourceQueue()
         {
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"returnmessagetosourcequeue-{randomName}";
+            var errorQueueName = $"returnmessagetosourcequeue-{randomName}-error";
+
             var state = new State();
             IEndpointInstance endpoint = null;
             try
             {
-                endpoint = await StartEndpoint(state).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName).ConfigureAwait(false);
                 var messageToSend = new MessageToSend();
                 await endpoint.SendLocal(messageToSend).ConfigureAwait(false);
-                var messageId = await GetMessageId().ConfigureAwait(false);
+                var messageId = await GetMessageId(errorQueueName).ConfigureAwait(false);
 
                 state.ShouldHandlerThrow = false;
 
@@ -57,10 +52,15 @@
                 {
                     await endpoint.Stop().ConfigureAwait(false);
                 }
+
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName)
+                    .ConfigureAwait(false);
             }
         }
 
-        Task<IEndpointInstance> StartEndpoint(State state)
+        Task<IEndpointInstance> StartEndpoint(State state, string endpointName, string errorQueueName)
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.RegisterComponents(
@@ -94,7 +94,7 @@
             public bool ShouldHandlerThrow = true;
         }
 
-        static async Task<string> GetMessageId()
+        static async Task<string> GetMessageId(string errorQueueName)
         {
             var path = QueueNameHelper.GetSqsQueueName($"{errorQueueName}");
             using (var client = ClientFactory.CreateSqsClient())
