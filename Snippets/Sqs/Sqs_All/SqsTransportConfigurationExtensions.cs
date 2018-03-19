@@ -33,7 +33,9 @@
             var validValue = bool.TryParse(nativeDeferralRaw, out var nativeDeferral);
             if (validValue && nativeDeferral)
             {
+#pragma warning disable 618
                 transportConfiguration.NativeDeferral();
+#pragma warning restore 618
             }
         }
     }
