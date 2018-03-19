@@ -20,25 +20,18 @@
             LogManager.Use<DefaultFactory>().Level(LogLevel.Error);
         }
 
-        string endpointName = "NativeSendTests";
-        static string errorQueueName = "NativeSendTestsError";
-
-        [SetUp]
-        [TearDown]
-        public void Setup()
-        {
-            DeleteEndpointQueues.DeleteQueuesForEndpoint(QueueNameHelper.GetSqsQueueName(endpointName)).GetAwaiter().GetResult();
-            QueueDeletionUtils.DeleteQueue(QueueNameHelper.GetSqsQueueName(errorQueueName)).GetAwaiter().GetResult();
-        }
-
         [Test]
         public async Task Send()
         {
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"send-{randomName}";
+            var errorQueueName = $"send-{randomName}-error";
+
             var state = new State();
             IEndpointInstance endpoint = null;
             try
             {
-                endpoint = await StartEndpoint(state).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName).ConfigureAwait(false);
 
                 var message = @"{ Property: 'Value' }";
 
@@ -62,17 +55,26 @@
                 {
                     await endpoint.Stop().ConfigureAwait(false);
                 }
+
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName)
+                    .ConfigureAwait(false);
             }
         }
 
         [Test]
         public async Task SendPowerShell()
         {
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"sendpowershell-{randomName}";
+            var errorQueueName = $"sendpowershell-{randomName}-error";
+
             var state = new State();
             IEndpointInstance endpoint = null;
             try
             {
-                endpoint = await StartEndpoint(state).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName).ConfigureAwait(false);
 
                 var message = @"{ Property: 'Value' }";
 
@@ -102,17 +104,26 @@
                 {
                     await endpoint.Stop().ConfigureAwait(false);
                 }
+
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName)
+                    .ConfigureAwait(false);
             }
         }
 
         [Test]
         public async Task SendLarge()
         {
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"sendlarge-{randomName}";
+            var errorQueueName = $"sendlarge-{randomName}-error";
+            
             var state = new State();
             IEndpointInstance endpoint = null;
             try
             {
-                endpoint = await StartEndpoint(state).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName).ConfigureAwait(false);
 
                 var message = @"{ Property: 'Value' }";
 
@@ -137,17 +148,26 @@
                 {
                     await endpoint.Stop().ConfigureAwait(false);
                 }
+
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName)
+                    .ConfigureAwait(false);
             }
         }
 
         [Test]
         public async Task SendLargePowerShell()
         {
+            var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            var endpointName = $"sendlargepowershell-{randomName}";
+            var errorQueueName = $"sendlargepowershell-{randomName}-error";
+
             var state = new State();
             IEndpointInstance endpoint = null;
             try
             {
-                endpoint = await StartEndpoint(state).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName).ConfigureAwait(false);
 
                 var message = @"{ Property: 'Value' }";
 
@@ -179,10 +199,15 @@
                 {
                     await endpoint.Stop().ConfigureAwait(false);
                 }
+
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
+                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName)
+                    .ConfigureAwait(false);
             }
         }
 
-        Task<IEndpointInstance> StartEndpoint(State state)
+        Task<IEndpointInstance> StartEndpoint(State state, string endpointName, string errorQueueName)
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.RegisterComponents(
