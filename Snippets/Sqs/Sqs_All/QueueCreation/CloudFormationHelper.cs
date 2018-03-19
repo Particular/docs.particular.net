@@ -12,7 +12,10 @@
         public static string ConvertToValidJson(string templatePath)
         {
             var allLines = File.ReadAllLines(templatePath);
-            return string.Join(Environment.NewLine, allLines.Skip(1).Take(allLines.Length - 2));
+            var joined = string.Join(Environment.NewLine, allLines
+                .Where(l => !l.StartsWith("//", StringComparison.InvariantCultureIgnoreCase) || 
+                                !l.StartsWith("//", StringComparison.InvariantCultureIgnoreCase)));
+            return joined;
         }
     }
 }
