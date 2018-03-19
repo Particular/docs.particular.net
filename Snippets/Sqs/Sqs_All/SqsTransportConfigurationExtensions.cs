@@ -6,9 +6,9 @@
 
     public static class SqsTransportConfigurationExtensions
     {
-        internal const string RegionEnvironmentVariableName = "NServiceBus.AmazonSQS.Region";
-        const string S3BucketEnvironmentVariableName = "NServiceBus.AmazonSQS.S3Bucket";
-        const string NativeDeferralEnvironmentVariableName = "NServiceBus.AmazonSQS.NativeDeferral";
+        internal const string RegionEnvironmentVariableName = "NServiceBus_AmazonSQS_Region";
+        const string S3BucketEnvironmentVariableName = "NServiceBus_AmazonSQS_S3Bucket";
+        const string NativeDeferralEnvironmentVariableName = "NServiceBus_AmazonSQS_NativeDeferral";
 
         public static string S3BucketName => EnvironmentHelper.GetEnvironmentVariable(S3BucketEnvironmentVariableName);
 
