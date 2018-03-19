@@ -1,6 +1,5 @@
 ﻿namespace SqsAll
 {
-    using Amazon.SQS;
     using NServiceBus;
 
     public static class SqsTransportConfigurationExtensions
@@ -11,7 +10,7 @@
 
         public static void ConfigureSqsTransport(this TransportExtensions<SqsTransport> transportConfiguration, string queueNamePrefix = null)
         {
-            transportConfiguration.ClientFactory(() => new AmazonSQSClient());
+            transportConfiguration.ClientFactory(ClientFactory.CreateSqsClient);
             if (queueNamePrefix != null)
             {
                 transportConfiguration.QueueNamePrefix(queueNamePrefix);
