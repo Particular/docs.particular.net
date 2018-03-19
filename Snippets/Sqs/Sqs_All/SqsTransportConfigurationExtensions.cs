@@ -16,10 +16,12 @@
         {
             var region = EnvironmentHelper.GetEnvironmentVariable(RegionEnvironmentVariableName);
 
-            transportConfiguration
-                .ClientFactory(() => new AmazonSQSClient(new AmazonSQSConfig { RegionEndpoint = RegionEndpoint.GetBySystemName(region) }))
-                .QueueNamePrefix(queueNamePrefix);
-
+            transportConfiguration.ClientFactory(() => new AmazonSQSClient(new AmazonSQSConfig { RegionEndpoint = RegionEndpoint.GetBySystemName(region) }));
+            if (queueNamePrefix != null)
+            {
+                transportConfiguration.QueueNamePrefix(queueNamePrefix);
+            }
+                
             var s3BucketName = EnvironmentHelper.GetEnvironmentVariable(S3BucketEnvironmentVariableName);
 
             if (!string.IsNullOrEmpty(S3BucketName))
