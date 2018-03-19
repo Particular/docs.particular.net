@@ -504,7 +504,7 @@
                         QueueAttributeName.FifoQueue
                     });
 
-                    Assert.AreEqual(timeSpanInSeconds, queueAttributes.MessageRetentionPeriod);
+                    Assert.AreEqual(Convert.ToInt32(TimeSpan.FromDays(4).TotalSeconds), queueAttributes.MessageRetentionPeriod);
                     Assert.AreEqual(900, queueAttributes.DelaySeconds);
                     Assert.IsTrue(queueAttributes.FifoQueue);
 
