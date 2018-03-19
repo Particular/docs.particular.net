@@ -1,9 +1,9 @@
-### Application specific license location
+### Application-specific license location
 
 A license located at `{AppDomain.CurrentDomain.BaseDirectory}/license.xml` will be automatically detected.
 
 
-### Machine wide license locations
+### Machine-wide license locations
 
 Licenses can be shared across all endpoints and Particular Service Platform applications by placing them into one of the following locations:
 * `{SpecialFolder.LocalApplicationData}\ParticularSoftware\license.xml`
@@ -20,7 +20,7 @@ For Linux/macOS, these locations are:
 Note: Depending on the operating system, the paths may be case sensitive.
 
 
-### Code first configuration
+### Code-first configuration
 
 A license can be configured via code first configuration API:
 
