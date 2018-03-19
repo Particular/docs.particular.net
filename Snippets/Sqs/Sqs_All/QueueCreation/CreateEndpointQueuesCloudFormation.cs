@@ -67,6 +67,7 @@
                 {
                     StackName = endpointNameWithPrefix
                 };
+
                 StackStatus currentStatus = string.Empty;
                 while (currentStatus != StackStatus.CREATE_COMPLETE)
                 {
@@ -74,6 +75,7 @@
                         .ConfigureAwait(false);
                     var stack = response.Stacks.SingleOrDefault();
                     currentStatus = stack?.StackStatus;
+                    await Task.Delay(1000);
                 }
             }
         }

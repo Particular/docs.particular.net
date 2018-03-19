@@ -51,6 +51,7 @@ namespace SqsAll.QueueCreation
                         .ConfigureAwait(false);
                     var stack = response.Stacks.SingleOrDefault();
                     currentStatus = stack?.StackStatus;
+                    await Task.Delay(1000);
                 }
             }
         }

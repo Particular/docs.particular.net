@@ -38,6 +38,7 @@
                             .ConfigureAwait(false);
                         var stack = response.Stacks.SingleOrDefault();
                         currentStatus = stack?.StackStatus;
+                        await Task.Delay(1000);
                     }
                     catch (AmazonCloudFormationException)
                     {
