@@ -13,7 +13,24 @@ reviewed: 2018-01-02
 ---
 
 
-The SQL Persistence uses [Json.NET](http://www.newtonsoft.com/json) to serialize data and store in a SQL database.
+SQL Persistence can store NServiceBus data in multiple different relational database engines, without the need for an intermediate ORM, using only a `DbConnection` supplied in the configuration.
+
+
+## Highlights
+
+* Supports [multiple database engines](#supported-sql-implementations)
+* No ORM dependency - easily use with Entity Framework, Dapper, etc.
+* Independent tables for each endpoint - no "noisy neighbor" problems
+* [Generates DDL scripts at compile time](controlling-script-generation.md) in the build output directory
+* Generated scripts can be [promoted outside the build directory ](controlling-script-generation.md#promotion) and can then be:
+  * Added to source control
+  * Compared using a diff viewer
+  * Inspected by DBAs
+  * Treated as first-class citizens in operations workflows for [installation and deployment](install.md)
+* Sagas are:
+  * Stored using [Json.NET](http://www.newtonsoft.com/json) to serialize complex data structures, with no need to manage complex table structures
+  * Built to be [version-aware](saga.md#json-net-settings-custom-settings-version-type-specific-deserialization-settings) with support for data evolution
+  * Built to [allow changing the `CorrelationId` over time](saga.md#correlation-ids-correlation-and-transitional-ids)
 
 
 ## Supported SQL implementations
