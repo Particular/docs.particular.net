@@ -17,7 +17,7 @@ To install a license for all endpoints and Particular Service Platform applicati
 This location can be expressed using environment variables on Windows, or a bash expression on Linux/macOS:
 
 * Windows: `%LOCALAPPDATA%\ParticularSoftware\license.xml`
-* Linux:macOS: `${XDG_DATA_HOME:-$HOME/.local/share}/ParticularSoftware/license.xml`
+* Linux/macOS: `${XDG_DATA_HOME:-$HOME/.local/share}/ParticularSoftware/license.xml`
 
 
 ### Machine-wide license location
