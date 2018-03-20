@@ -2,6 +2,7 @@
 title: "Monitoring NServiceBus Demo - Struggling endpoints"
 reviewed: 2018-03-15
 summary: How to find hidden problems in your solution.
+suppressRelated: true
 ---
 
 _Are any of the endpoints struggling?_

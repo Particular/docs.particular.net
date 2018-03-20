@@ -2,6 +2,7 @@
 title: "Monitoring NServiceBus Demo - Message backlogs"
 reviewed: 2018-03-15
 summary: How to measure inter-endpoint performance and look for congestion with the queue length and critical time metrics.
+suppressRelated: true
 ---
 
 _Which endpoints have the most work to do?_

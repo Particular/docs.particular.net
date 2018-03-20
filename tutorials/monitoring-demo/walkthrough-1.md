@@ -2,6 +2,7 @@
 title: "Monitoring NServiceBus Demo - Slow handlers"
 reviewed: 2018-03-15
 summary: Measuring individual endpoint performance with the throughput and processing time metrics.
+suppressRelated: true
 ---
 
 _Which message types are taking the longest to process?_
