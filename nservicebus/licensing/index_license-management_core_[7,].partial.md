@@ -1,18 +1,36 @@
-### Application specific license location
+{{NOTE:
+Depending on the operating system, the paths may be case sensitive.
+
+NServiceBus uses the [`Environment.GetFolderPath(SpecialFolder)`](https://docs.microsoft.com/en-us/dotnet/api/system.environment.getfolderpath) method to determine the locations of some paths on each OS.
+}}
+
+
+### Application-specific license location
 
 A license located at `{AppDomain.CurrentDomain.BaseDirectory}/license.xml` will be automatically detected.
 
 
-### Machine wide license locations
+### User-specific license location
 
-Licenses can be shared across all endpoints and Particular Service Platform applications by placing them into one of the following locations:
-* `{SpecialFolder.LocalApplicationData}\ParticularSoftware\license.xml`
-* `{SpecialFolder.CommonApplicationData}\ParticularSoftware\license.xml`
+To install a license for all endpoints and Particular Service Platform applications run by a specific user, install the license file to `{SpecialFolder.LocalApplicationData}\ParticularSoftware\license.xml`.
 
-Note: Depending on the operating system, the paths may be case sensitive.
+This location can be expressed using environment variables on Windows, or a bash expression on Linux/macOS:
+
+* Windows: `%LOCALAPPDATA%\ParticularSoftware\license.xml`
+* Linux/macOS: `${XDG_DATA_HOME:-$HOME/.local/share}/ParticularSoftware/license.xml`
 
 
-### Code first configuration
+### Machine-wide license location
+
+To install a license for all endpoints and Particular Service Platform applications on an entire machine, install the license file to `{SpecialFolder.CommonApplicationData}\ParticularSoftware\license.xml`.
+
+This location can be expressed using environment variables on Windows, or as a literal path on Linux/macOS.
+
+* Windows: `%PROGRAMDATA%\ParticularSoftware\license.xml`
+* Linux/macOS: `/usr/share/ParticularSoftware/license.xml`
+
+
+### Code-first configuration
 
 A license can be configured via code first configuration API:
 
