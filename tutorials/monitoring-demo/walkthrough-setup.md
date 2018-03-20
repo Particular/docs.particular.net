@@ -4,7 +4,7 @@ reviewed: 2018-03-15
 summary: Detailed instructions for setting up the NServiceBus monitoring demo
 ---
 
-This document explains how to set up the [NServiceBus monitoring demo])(./) in detail.
+This document explains how to set up the [NServiceBus monitoring demo](/tutorials/monitoring-demo/) in detail.
 
 ## Prerequisites
 
