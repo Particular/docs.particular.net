@@ -102,7 +102,7 @@ If moving an endpoint to its own dedicated machine isn't sufficient you can also
 
 ## Keep exploring the demo
 
-- [Which endpoints have the most work to do?](./walkthrough-2.md)
-- [Are any of the endpoints struggling?](./walkthrough-3.md)
+- **[Which endpoints have the most work to do?](./walkthrough-2.md):** look for peaks of traffic and decide when to scale out.
+- **[Are any of the endpoints struggling?](./walkthrough-3.md):** find hidden problems and fix them before messages start to fail.
 
 include: next-steps

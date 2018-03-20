@@ -47,11 +47,11 @@ The endpoints are also configured to send monitoring data to the Particular Soft
 
 See how monitoring tools in ServicePulse help answer the following questions:
 
-- **[Which message types take the longest to process?](walkthrough-1.md)** - take a look at individual endpoint performance and decide where to optimize.
+- **[Which message types take the longest to process?](walkthrough-1.md):** take a look at individual endpoint performance and decide where to optimize.
 
-- **[Which endpoints have the most work to do?](walkthrough-2.md)** - look for peaks of traffic and decide when to scale out. 
+- **[Which endpoints have the most work to do?](walkthrough-2.md):** look for peaks of traffic and decide when to scale out. 
 
-- **[Are any of the endpoints struggling?](walkthrough-3.md)** - find hidden problems in them system and fix them before messages start to fail.
+- **[Are any of the endpoints struggling?](walkthrough-3.md):** find hidden problems and fix them before messages start to fail.
 
 
 include: next-steps

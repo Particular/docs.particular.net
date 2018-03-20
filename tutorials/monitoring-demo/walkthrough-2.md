@@ -100,7 +100,7 @@ Critical time is a delayed measurement. It measures the amount of time a message
 
 ## Keep exploring the demo
 
-- [Which message types take the longest to process?](./walkthrough-1.md)
-- [Are any of the endpoints struggling?](./walkthrough-3.md)
+- **[Which message types take the longest to process?](./walkthrough-1.md):** take a look at individual endpoint performance and decide where to optimize.
+- **[Are any of the endpoints struggling?](./walkthrough-3.md):** find hidden problems and fix them before messages start to fail.
 
 include: next-steps
