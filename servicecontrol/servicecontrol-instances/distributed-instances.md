@@ -6,15 +6,15 @@ component: ServiceControl
 
 NOTE: A multi-instance ServiceControl installation can be complex to maintain. Before splitting ServiceControl, it is recommended to follow the capacity planning guides described in the [ServiceControl Capacity Planning](/servicecontrol/capacity-and-planning.md) documentation.
 
-Audit message processing can become a performance challenge due to high message throughput when running NServiceBus systems at a scale. Multi-instance deployment helps mitigate that problem by enabling audit data sharding between a group of ServiceControl instances. 
+Audit message processing can become a performance challenge due to high message throughput when running NServiceBus systems at scale. Multi-instance deployment helps mitigate this problem by enabling audit data sharding between a group of ServiceControl instances. 
 
-ServiceControl multi-instance deployments should be considered in scenarios when the audit message load in continuously high and too big for a single instance to handle. In a message-based system, the audit queue, in contrast to the error queue, is the one with the most load as every single message is forwarded there for the auditing purposes. ServiceControl ingests the messages available in the audit queue and aggregates them for querying and analysis within [ServiceInsight](/serviceinsight/). 
+ServiceControl multi-instance deployments should be considered in scenarios when the audit message load is continuously high and too big for a single instance to handle. In a message-based system, the audit queue, in contrast to the error queue, is the one with the most load as every single message is forwarded to it for auditing purposes. ServiceControl ingests the messages in the audit queue and aggregates them for querying and analysis within [ServiceInsight](/serviceinsight/). 
 
-Aggregating the data for querying and analysis takes considerable resources regarding CPU, memory, disk IO, as well as the queuing system. Under high load, a single instance might not be able to keep up with indexing the data, and the audit queue length might start to increase. If the load spikes only occasionally, this may not be a problem since ServiceControl will eventually catch up processing the incoming audit messages. If the load is continuously high, however, multiple instances of ServiceControl may be needed to cope with it.
+Aggregating the data for querying and analysis takes considerable resources, such as CPU, memory, disk I/O, as well as the queuing system. Under high load, a single instance might not be able to keep up with indexing the data, and the audit queue length might start to increase. If the load spikes only occasionally, this may not be a problem since ServiceControl will eventually catch up processing the incoming audit messages. If the load is continuously high, however, multiple instances of ServiceControl may be needed to cope with it.
 
 ## Overview
 
-Multi-instance deployments consist of at least two ServiceControl instances. In such a setup there is a single designated instance - a master responsible for processing error messages and optionally audit messages. All other existing ServiceControl instances are slaves responsible **only** for processing audit messages. 
+Multi-instance deployments consist of at least two ServiceControl instances. In this scenario, there is a single designated instance, a _master_  instance, responsible for processing error messages and optionally audit messages. All other existing ServiceControl instances are slaves responsible **only** for processing audit messages. 
 
 It is only the master instance that handles the external API requests (from [ServicePulse](/servicepulse/) or [ServiceInsight](/serviceinsight/)). Master is the only party communicating with slave instances directly for query execution.
 
@@ -30,7 +30,7 @@ WARNING: All instances of ServiceControl MUST have a unique name
 
 ### Sharding audit messages with competing consumers
 
-This section walks through a fresh installation of multiple ServiceControl instances where audit messages are sharded with competing consumers approach - two instances of ServiceControl (master and slave) compete for audit messages on a single audit queue. All of the endpoints will forward their audit messages to `audit`. All error messages are forwarded to the `error` queue. ServiceInsight and ServicePulse are connected to the master instance.
+This section walks through a fresh installation of multiple ServiceControl instances where audit messages are sharded with a competing consumers approach. That is, two instances of ServiceControl (master and slave) compete for audit messages on a single audit queue. All of the endpoints will forward their audit messages to `audit`. All error messages are forwarded to the `error` queue. ServiceInsight and ServicePulse are connected to the master instance.
 
 ```mermaid
 graph TD
@@ -170,9 +170,9 @@ Point tools to Slave 1 which is the new master
 
 ### Multi-region deployments
 
-Multi-region deployments are partially supported (error data sharding is not supported). Such setup consists of ServiceControl slave deployed in each region and a master instance responsible for aggregating audit data. 
+Multi-region deployments are partially supported (error data sharding is not supported). This scenario consists of a ServiceControl slave deployed in each region and a master instance responsible for aggregating audit data. 
 
-In this scenario, all cross-region audit data can be queried via ServiceInsight connected to the master. However, to use the recoverability features a dedicated ServicePulse installation in each region is required. 
+In this scenario, all cross-region audit data can be queried via ServiceInsight connected to the master. However, to use the recoverability features, a dedicated ServicePulse installation in each region is required. 
 
 ```mermaid
 graph TD
