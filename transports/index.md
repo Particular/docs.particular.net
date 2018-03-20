@@ -47,7 +47,6 @@ Unicast-only transports include:
  * [Azure Storage Queues](/transports/azure-storage-queues/)
  * [MSMQ](/transports/msmq/)
  * [SQL Server](/transports/sql/)
- * [Learning Transport](/transports/learning/)
  * [Amazon SQS](/transports/sqs/)
 
 ### Multicast-enabled transports
@@ -56,6 +55,7 @@ Multicast-enabled transports have some notion of a topic or a similar concept th
 
 Multicast-enabled transports include:
 
+ * [Learning Transport](/transports/learning/)
  * [Azure Service Bus](/transports/azure-service-bus/)
  * [RabbitMQ](/transports/rabbitmq/)
 
