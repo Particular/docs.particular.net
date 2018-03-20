@@ -28,7 +28,7 @@ NServiceBus is supported for applications targeting .NET Core on a variety of op
 
 ### Packages not supporting .NET Core
 
-Some packages cannot currently support .NET Core or running on non-Windows platforms:
+Some packages do not currently support .NET Core or running on non-Windows platforms:
 
 * Transports
   * NServiceBus.AmazonSQS - Blocked from running on Linux due to a [bug in the AWS SDK](https://github.com/aws/aws-sdk-net/issues/796).
@@ -36,9 +36,8 @@ Some packages cannot currently support .NET Core or running on non-Windows platf
   * NServiceBus.Transport.Msmq - MSMQ only runs on Windows.
 * Persistence
   * NServiceBus.NHibernate - NHibernate 4.x and 5.0 do not support .NET Core, but support is [slated for NHibernate 5.1](https://github.com/nhibernate/nhibernate-core/issues/954).
-  * NServiceBus.Persistence.ServiceFabric - Dependency Microsoft.ServiceFabric.Data does not support .NET Core.
-  * NServiceBus.RavenDB - Supports RavenDB 3.5 `netstandard` client, but RavenDB Server 3.5 does not support .NET Core, and the embeddable database (frequently used for tests) also does not.
-  * NServiceBus.Persistence.Sql - While Microsoft SQL Server, MySQL, and PostgreSQL are supported, Oracle is not supported due to the lack of a .NET Core version of Oracle.ManagedDataAccess.
+  * NServiceBus.Persistence.ServiceFabric - .NET Core support is slated for a future minor release.
+  * NServiceBus.Persistence.Sql - Microsoft SQL Server and PostgreSQL are supported. Oracle is not supported due to the lack of a .NET Core version of Oracle.ManagedDataAccess. The MySQL library does support .NET Core, but it has not yet been validated to work with SQL Persistence.
 * Containers
   * NServiceBus.Spring - Spring.Core does not support .NET Core.
 * Loggers
@@ -49,7 +48,7 @@ Some packages cannot currently support .NET Core or running on non-Windows platf
     * NServiceBus.Host32
     * NServiceBus.Hosting.Azure
     * NServiceBus.Hosting.Azure.HostProcess
-  * ParticularTemplates - Will be able to support .NET Core on Windows once a stable version of the [Windows Compatibility Pack](https://www.nuget.org/packages/Microsoft.Windows.Compatibility) is released.
+  * ParticularTemplates - The Windows Service templates will be able to support .NET Core on Windows once a stable version of the [Windows Compatibility Pack](https://www.nuget.org/packages/Microsoft.Windows.Compatibility) is released.
 * Other
   * NServiceBus.Metrics.PerformanceCounters - Will be able to support .NET Core on Windows once a stable version of the [Windows Compatibility Pack](https://www.nuget.org/packages/Microsoft.Windows.Compatibility) is released.
   * NServiceBus.Wcf - Microsoft does not support the server aspects of WCF on .NET Core.
