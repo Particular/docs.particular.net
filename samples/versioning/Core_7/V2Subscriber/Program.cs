@@ -11,6 +11,7 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
 
