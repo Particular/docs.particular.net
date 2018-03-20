@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Quick Start"
-reviewed: 2017-06-05
+reviewed: 2018-03-20
 summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
 extensions:
 - !!tutorial
@@ -12,9 +12,14 @@ include: quickstart-tutorial-intro-paragraph
 
 This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) tutorial. It will teach you the NServiceBus API and important concepts you need to learn to build successful message-based software systems.
 
-To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file with [Visual Studio 2017](https://www.visualstudio.com/downloads/).
+## Download solution
 
-downloadbutton
+To get started, download the solution appropriate for your Visual Studio version, extract the archive, and then open the **RetailDemo.sln** file.
+
+<div class="text-center inline-download hidden-xs">
+  <a href="https://particular.net/quickstart-tutorial-vs2015.zip" class="btn btn-info btn-lg" onclick="return fireGAEvent('TutorialDownloaded', 'quickstart-tutorial-vs2015.zip')"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for Visual Studio 2015</a>
+  <a href="https://particular.net/quickstart-tutorial-vs2017.zip" class="btn btn-primary btn-lg" onclick="return fireGAEvent('TutorialDownloaded', 'quickstart-tutorial-vs2017.zip')"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for Visual Studio S2017</a>
+</div>
 
 
 ## Project structure
