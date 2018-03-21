@@ -6,7 +6,7 @@ reviewed: 2018-03-02
 versions: '[4,]'
 ---
 
-In Versions 4.0 and above, the SQS transport allows [delayed delivery](/nservicebus/messaging/delayed-delivery.md) of messages longer than 15 minutes. The transport creates a FIFO queue per endpoint that allows delaying messages for longer periods of time.
+In Versions 4.0 and above, the SQS transport allows [delayed delivery](/nservicebus/messaging/delayed-delivery.md) of messages longer than 15 minutes (900 seconds). The transport creates a FIFO queue per endpoint that allows delaying messages for longer periods of time.
 
 ## Enable unrestricted delayed delivery
 
@@ -14,7 +14,7 @@ The unrestricted delayed delivery has to be enabled on the transport configurati
 
 snippet: DelayedDelivery
 
-Unrestricted delayed delivery needs to be enabled both on the sender and receiver to be able to process delayed deliveries longer than 15 minutes (900 seconds). Delayed delivery below 15 minutes is always supported. The following table illustrates that.
+Unrestricted delayed delivery needs to be enabled both on the sender and receiver to be able to process delayed deliveries longer than 900 seconds. Delayed delivery below 900 seconds is always supported. The following table illustrates that.
 
 | Scenario                    | Sender   | Receiver | Supported     |
 |-----------------------------|----------|----------|---------------|
@@ -81,7 +81,7 @@ sequenceDiagram
 
 ### Example
 
-Below an example of a delayed delivery less or equal of 15 min.
+Below an example of a delayed delivery less or equal to 900 seconds.
 
 ```mermaid
 graph LR
@@ -99,7 +99,7 @@ end
 
 14 min and 4 seconds are in total 845 seconds. This is less than 900 seconds and thus will be directly delayed to the destination with a `DelaySeconds` value of 845 seconds. No message attribute header will be used.
 
-Below an example of a delayed delivery greater than 15 min.
+Below an example of a delayed delivery greater than 900 seconds.
 
 ```mermaid
 graph LR
