@@ -1,7 +1,7 @@
 ---
 title: Supported platforms
 summary: Platforms that are supported by NServiceBus
-reviewed: 2018-01-18
+reviewed: 2018-03-20
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy
@@ -31,7 +31,6 @@ NServiceBus is supported for applications targeting .NET Core on a variety of op
 Some packages do not currently support .NET Core or running on non-Windows platforms:
 
 * Transports
-  * NServiceBus.AmazonSQS - Blocked from running on Linux due to a [bug in the AWS SDK](https://github.com/aws/aws-sdk-net/issues/796).
   * NServiceBus.Azure.Transports.WindowsAzureServiceBus - The new Azure Service Bus library is about to reach feature completeness, which will [unblock development of the transport for .NET Core](https://particular.net/blog/a-new-azure-service-bus-transport-but-not-just-yet).
   * NServiceBus.Transport.Msmq - MSMQ only runs on Windows.
 * Persistence
