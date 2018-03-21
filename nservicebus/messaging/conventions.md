@@ -1,17 +1,17 @@
 ---
 title: Conventions
-summary: Custom conventions for defining how certain things are detected.
+summary: Custom conventions for defining how certain things are detected
 tags:
 - Unobtrusive
 - Convention
 component: Core
-reviewed: 2016-07-07
+reviewed: 2018-03-21
 related:
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/unobtrusive-mode
 ---
 
-A *convention* is a way of defining what a certain type is instead of using a marker interface or an attribute.
+A *convention* is a way of defining what a certain type is instead of using a marker interface or an attribute. Using conventions along with avoiding references to NServiceBus assemblies is referred to as *[unobtrusive mode](unobtrusive-mode.md)*. This is ideal for use in cross-platform environments.
 
 Currently conventions exist to identify:
 
@@ -23,7 +23,7 @@ Currently conventions exist to identify:
  * [Express messages](/nservicebus/messaging/non-durable-messaging.md)
  * [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md)
 
-When Conventions are combined with avoiding an reference to any NServiceBus assemblies this is referred to as [Unobtrusive Mode](unobtrusive-mode.md). This makes it also ideal to use in cross platform environments. Messages can be defined in a *Portable Class Library* (PCL) and shared across multiple platform even though not all platforms use NServiceBus for message processing.
+Messages can be defined in a *Portable Class Library* (PCL) and shared across multiple platforms even if the platform does not use NServiceBus for message processing.
 
 
 snippet: MessageConventions
