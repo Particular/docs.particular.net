@@ -9,6 +9,13 @@ related:
 - persistence/nhibernate
 ---
 
+This sample demonstrates how to create a multi-tenant environment, where both user data and NSeriviceBus data for multiple tenants (i.e. clients/customers) are each stored in a dedicated database for that tenant. In this sample, it's not necessary to have complete separation of all NServiceBus endpoints, and adding a new tenant does not necessitate provisioning an entirely new set of NServiceBus endpoints devoted to the new tenant.
+
+Instead, the `TenantId` is propagated by the NServiceBus infrastructure as custom message header. Extensions to the NServiceBus message-processing pipeline ensure that a connection to the correct database is opened based on the incoming `TenantId`, and that the `TenantId` from a message being processed is propagated to any outgoing messages created by the message handler.
+
+downloadbutton
+
+
 ## Prerequisites
 
 include: sql-prereq
