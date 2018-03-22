@@ -4,4 +4,4 @@ snippet: Routing-Logical
 
 Routing engine prevents ambiguous routes so if route information comes from more than one source (e.g. code API and configuration file) user has to make sure the type specifications do not overlap. Otherwise an exception will be thrown preventing an endpoint from starting up.
 
-Command routing can also be configured in a configuration section.
+Command routing can also be configured via [MessageEndpointMappings](routing-extensibility.md#messageendpointmappings).
