@@ -1,7 +1,8 @@
 ---
 title: "Monitoring NServiceBus Demo - Struggling endpoints"
-reviewed: 2017-11-06
+reviewed: 2018-03-15
 summary: How to find hidden problems in your solution.
+suppressRelated: true
 ---
 
 _Are any of the endpoints struggling?_
@@ -10,7 +11,7 @@ NServiceBus endpoints are designed to tolerate some types of failure. There are 
 
 This part of the tutorial guides you through how to use monitoring data to spot hidden problems in your NServiceBus system.
 
-include: walkthrough-solution
+include: monitoring-demo-walkthrough-solution
 
 
 ## Metrics
@@ -92,10 +93,9 @@ ServiceControl will stage the messages to be retried and then return them to the
 ![ServicePulse failed messages retried](servicepulse-failed-messages-retried.png)
 
 
-## Next steps
+## Keep exploring the demo
 
-Explore the demo
-- [Which message types are taking the longest to process?](./walkthrough-1.md)
-- [Which endpoints have the most work to do?](./walkthrough-2.md)
+- **[Which message types are taking the longest to process?](./walkthrough-1.md):** take a look at individual endpoint performance and decide where to optimize.
+- **[Which endpoints have the most work to do?](./walkthrough-2.md):** look for peaks of traffic and decide when to scale out.
 
-include: next-steps
+include: monitoring-demo-next-steps

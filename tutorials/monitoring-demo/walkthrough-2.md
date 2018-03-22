@@ -1,7 +1,8 @@
 ---
 title: "Monitoring NServiceBus Demo - Message backlogs"
-reviewed: 2017-11-03
+reviewed: 2018-03-15
 summary: How to measure inter-endpoint performance and look for congestion with the queue length and critical time metrics.
+suppressRelated: true
 ---
 
 _Which endpoints have the most work to do?_
@@ -10,7 +11,7 @@ Each endpoint has a backlog of messages to process in its input queue. As each e
 
 This part of the tutorial guides you to the endpoints with the greatest backlog of work to do.
 
-include: walkthrough-solution
+include: monitoring-demo-walkthrough-solution
 
 
 ## Metrics
@@ -97,10 +98,9 @@ You need to do some deeper investigation to resolve this type of issue. First, u
 Critical time is a delayed measurement. It measures the amount of time a message _took_ to get processed after it was sent. When queue length, network latency, and processing time are relatively stable, then critical time can be used to predict how long a new message will take to get processed. If any of those factors are changing significantly then critical time is less useful as a predictive measurement.
 
 
-## Next Steps
+## Keep exploring the demo
 
-Explore the demo:
-- [Which message types take the longest to process?](./walkthrough-1.md)
-- [Are any of the endpoints struggling?](./walkthrough-3.md)
+- **[Which message types take the longest to process?](./walkthrough-1.md):** take a look at individual endpoint performance and decide where to optimize.
+- **[Are any of the endpoints struggling?](./walkthrough-3.md):** find hidden problems and fix them before messages start to fail.
 
-include: next-steps
+include: monitoring-demo-next-steps

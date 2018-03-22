@@ -1,7 +1,8 @@
 ---
 title: "Monitoring NServiceBus Demo - Slow handlers"
-reviewed: 2017-11-03
+reviewed: 2018-03-15
 summary: Measuring individual endpoint performance with the throughput and processing time metrics.
+suppressRelated: true
 ---
 
 _Which message types are taking the longest to process?_
@@ -10,7 +11,7 @@ This is the first question that you should be asking when you start monitoring a
 
 This part of the tutorial guides you through finding the message types that take the longest to process.
 
-include: walkthrough-solution
+include: monitoring-demo-walkthrough-solution
 
 
 ## Metrics
@@ -99,10 +100,9 @@ If an endpoint is affecting the performance of other endpoints you can move an e
 If moving an endpoint to its own dedicated machine isn't sufficient you can also scale-out an endpoint and have it running on multiple machines. 
 
 
-## Next steps
+## Keep exploring the demo
 
-Explore the demo
-- [Which endpoints have the most work to do?](./walkthrough-2.md)
-- [Are any of the endpoints struggling?](./walkthrough-3.md)
+- **[Which endpoints have the most work to do?](./walkthrough-2.md):** look for peaks of traffic and decide when to scale out.
+- **[Are any of the endpoints struggling?](./walkthrough-3.md):** find hidden problems and fix them before messages start to fail.
 
-include: next-steps
+include: monitoring-demo-next-steps
