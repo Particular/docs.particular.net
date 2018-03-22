@@ -7,6 +7,7 @@ related:
  - nservicebus/dotnet-templates
  - nservicebus/licensing
  - samples/hosting/docker
+component: Templates
 reviewed: 2018-02-28
 ---
 

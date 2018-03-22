@@ -4,4 +4,7 @@
     <RootNamespace>ServiceTemplate1</RootNamespace>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="7.*" />
+  </ItemGroup>
 </Project>
