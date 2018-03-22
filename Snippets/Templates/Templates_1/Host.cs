@@ -47,7 +47,7 @@ namespace DockerHost
                     endpointConfiguration.EnableInstallers();
                 }
 
-                // TODO: replace the license.xml file with your license file
+                // TODO: replace the license.xml file with a valid license file
 
                 // TODO: perform any futher start up operations before or after starting the endpoint
                 endpoint = await Endpoint.Start(endpointConfiguration);
