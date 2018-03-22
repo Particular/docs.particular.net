@@ -54,4 +54,4 @@ See how monitoring tools in ServicePulse help answer the following questions:
 - **[Are any of the endpoints struggling?](walkthrough-3.md):** find hidden problems and fix them before messages start to fail.
 
 
-include: next-steps
+include: monitoring-demo-next-steps

@@ -11,7 +11,7 @@ This is the first question that you should be asking when you start monitoring a
 
 This part of the tutorial guides you through finding the message types that take the longest to process.
 
-include: walkthrough-solution
+include: monitoring-demo-walkthrough-solution
 
 
 ## Metrics
@@ -105,4 +105,4 @@ If moving an endpoint to its own dedicated machine isn't sufficient you can also
 - **[Which endpoints have the most work to do?](./walkthrough-2.md):** look for peaks of traffic and decide when to scale out.
 - **[Are any of the endpoints struggling?](./walkthrough-3.md):** find hidden problems and fix them before messages start to fail.
 
-include: next-steps
+include: monitoring-demo-next-steps

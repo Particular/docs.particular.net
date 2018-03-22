@@ -11,7 +11,7 @@ Each endpoint has a backlog of messages to process in its input queue. As each e
 
 This part of the tutorial guides you to the endpoints with the greatest backlog of work to do.
 
-include: walkthrough-solution
+include: monitoring-demo-walkthrough-solution
 
 
 ## Metrics
@@ -103,4 +103,4 @@ Critical time is a delayed measurement. It measures the amount of time a message
 - **[Which message types take the longest to process?](./walkthrough-1.md):** take a look at individual endpoint performance and decide where to optimize.
 - **[Are any of the endpoints struggling?](./walkthrough-3.md):** find hidden problems and fix them before messages start to fail.
 
-include: next-steps
+include: monitoring-demo-next-steps
