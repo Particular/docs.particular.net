@@ -19,16 +19,6 @@ class Usage
         #endregion
     }
 
-    void NativeDeferral(EndpointConfiguration endpointConfiguration)
-    {
-        #region NativeDeferral
-
-        var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        transport.NativeDeferral();
-
-        #endregion
-    }
-
     void CredentialSource(EndpointConfiguration endpointConfiguration)
     {
         #region CredentialSource
