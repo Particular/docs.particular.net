@@ -114,37 +114,3 @@ Other libraries are also taking the same approach. For example:
  * [MassTransit](http://masstransit-project.com/)
 
 
-## Verify correct Task usage using a unit test
-
-This scenario uses [Mono Cecil](https://github.com/jbevain/cecil) to interrogate the IL of an assembly to verify correct usage of Task-based method calls. In this case the code verifies that there is at least one usage of the `Task` instance returns from a method.
-
-
-### Missing Task usage detector
-
-Helper that detects and fails for incorrect `Task` usage.
-
-snippet: MissingTaskUsageDetector
-
-
-### Using the detector in a unit test
-
-The above helper can be called from any unit test and passed a path to an assembly to verify.
-
-snippet: MissingTaskUsageDetectorUsage
-
-The resulting error will be:
-
-```
-Type 'ClassName' contains a call to 'ClassWithAsync.MethodWithAsync' near line 21 where no usage of the returned Task is detected.
-```
-
-
-### IgnoreTaskExtensions
-
-In some cases it may be desirable to ignore the returned `Task` value. In this case an extension method can be used to explicitly accept that the `Task` return value should be ignored.
-
-snippet: IgnoreTaskExtensions
-
-Using `IgnoreTask` extension method.
-
-snippet: ExplicitlyIgnoreTask

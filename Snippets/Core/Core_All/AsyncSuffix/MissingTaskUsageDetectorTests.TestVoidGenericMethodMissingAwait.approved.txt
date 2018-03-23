@@ -1,1 +1,0 @@
-﻿Type 'MissingTaskUsageDetectorTests' contains a call to 'TextReader.ReadLineAsync' near line 70 where no usage of the returned Task is detected.

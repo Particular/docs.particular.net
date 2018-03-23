@@ -1,1 +1,0 @@
-﻿Type 'MissingTaskUsageDetectorTests' contains a call to 'TextWriter.WriteLineAsync' near line 55 where no usage of the returned Task is detected.
