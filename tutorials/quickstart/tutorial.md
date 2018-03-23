@@ -17,9 +17,12 @@ This tutorial skips over some concepts and implementation details in order to ge
 To get started, download the solution appropriate for your Visual Studio version, extract the archive, and then open the **RetailDemo.sln** file.
 
 <div class="text-center inline-download hidden-xs">
-  <a href="https://liveparticularwebstr.blob.core.windows.net/media/tutorials-quickstart-vs2015.zip" class="btn btn-info btn-lg" onclick="return fireGAEvent('TutorialDownloaded', 'quickstart-tutorials-quickstart-vs2015.zip')"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for Visual Studio 2015</a>
+  <a href="https://liveparticularwebstr.blob.core.windows.net/media/tutorials-quickstart-vs2015.zip" class="btn btn-primary btn-lg" onclick="return fireGAEvent('TutorialDownloaded', 'quickstart-tutorials-quickstart-vs2015.zip')"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for Visual Studio 2015</a>
   <a href="https://liveparticularwebstr.blob.core.windows.net/media/tutorials-quickstart.zip" class="btn btn-primary btn-lg" onclick="return fireGAEvent('TutorialDownloaded', 'quickstart-tutorials-quickstart.zip')"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for Visual Studio 2017</a>
 </div>
+<style type="text/css">
+.tutorial-actions .btn-default { display: none; }
+</style>
 
 
 ## Project structure
