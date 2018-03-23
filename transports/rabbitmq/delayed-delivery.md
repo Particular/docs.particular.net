@@ -10,6 +10,9 @@ redirects:
 
 In Versions 4.3 and above, the RabbitMQ transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure inside the broker which can delay messages using native RabbitMQ features.
 
+Note: The creation of **nsb.delay-level00** to **nsb.delay-level27** cannot be avoided when using NServiceBus with RabbitMQ.
+
+Note: It is not possible to use the previous timeout manager to store timeouts outside of RabbitMQ.
 
 ## How it works
 
