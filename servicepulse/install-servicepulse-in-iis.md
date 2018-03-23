@@ -116,7 +116,7 @@ There are three roles defined:
 
 ### ServiceControl Monitoring
 
-When using Monitoring capabilities the following steps should be followed to create reverse proxy to access monitoring API from IIS.
+When using Monitoring capabilities the following steps should be followed to create a reverse proxy to access monitoring API from IIS.
 
 Installation Steps:
 
