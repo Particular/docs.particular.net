@@ -114,6 +114,42 @@ There are three roles defined:
  * `SPFailedMessages` members can manage the failed messages (retry, archive, groups etc.)
  * `SPMonitoring` members can manage monitoring (e.g. enabling/disabling heartbeat monitoring for a particular endpoint)
 
+### ServiceControl Monitoring
+
+When using Monitoring capabilities the following steps should be followed to create reverse proxy to access monitoring API from IIS.
+
+Installation Steps:
+
+ 1. Install the IIS [Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing) extension.
+ 1. Go to the root directory for the Web site created in the basic configuration.
+ 1. Create a new subdirectory called `monitoring`.
+ 1. Edit `app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `/monitoring`.
+ 1. Open the IIS management tool.
+ 1. Select the monitoring sub directory from within IIS management tool.
+ 1. Click the `URL Rewrite`.
+ 1. Add a new URL Rewrite Rule.
+ 1. Choose `Reverse Proxy` from the list of rule templates.
+ 1. Enter `localhost:33633/` into the inbound field and leave SSL offload enabled then click OK to add the rule.
+ 1. The website will now answer on `/monitoring` as though it were directly accessing ServiceControl Monitoring. Verify this by opening the reverse proxy url in a browser `http://localhost:9090/monitoring/` (9090 is the port chosen for the ServicePulse web site).
+ 1. Restrict access to website.
+
+The procedure above should result in a `web.config` file in the newly created `/monitoring` directory similar to this:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <system.webServer>
+        <rewrite>
+            <rules>
+                <rule name="ReverseProxyInboundRule1" stopProcessing="true">
+                    <match url="(.*)" />
+                    <action type="Rewrite" url="http://localhost:33633/{R:1}" />
+                </rule>
+            </rules>
+        </rewrite>
+    </system.webServer>
+</configuration>
+```
 
 ### Configuring Reverse Proxy in a non-root directory
 
