@@ -98,7 +98,7 @@ There are some cases that are not detected by the compiler. For example:
 
 snippet: TaskCasesNotDetectedByTheCompiler
 
-In these scenarios, there are two possible solutions: writing a [Roslyn analyzer](https://msdn.microsoft.com/en-us/library/mt162308.aspx) or [writing a unit test using Mono Cecil](#verify-correct-task-usage-using-a-unit-test).
+In these scenarios, there are other possible solutions, such as writing a [Roslyn analyzer](https://msdn.microsoft.com/en-us/library/mt162308.aspx).
 
 
 ### Async not necessary when reading code
