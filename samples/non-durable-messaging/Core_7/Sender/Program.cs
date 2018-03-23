@@ -7,12 +7,15 @@ static class Program
     static async Task Main()
     {
         Console.Title = "Samples.MessageDurability.Sender";
-        #region non-transactional
 
+        #region non-transactional
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageDurability.Sender");
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         transport.Transactions(TransportTransactionMode.None);
+        #endregion
 
+        #region useTransactionalQueues-false
+        transport.UseNonTransactionalQueues();
         #endregion
 
         endpointConfiguration.EnableInstallers();

@@ -11,6 +11,7 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

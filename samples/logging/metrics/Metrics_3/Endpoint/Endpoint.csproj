@@ -6,6 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <PackageReference Include="NServiceBus.Metrics" Version="3.0.0-rc0004" />
+    <PackageReference Include="NServiceBus.Metrics" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
   </ItemGroup>
 </Project>

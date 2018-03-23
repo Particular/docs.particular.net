@@ -9,6 +9,7 @@ static class Program
         Console.Title = "Samples.MessageDurability.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageDurability.Receiver");
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.UseNonTransactionalQueues();
         transport.Transactions(TransportTransactionMode.None);
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

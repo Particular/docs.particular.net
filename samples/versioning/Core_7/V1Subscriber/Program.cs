@@ -11,6 +11,7 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
 
         #region V1SubscriberMapping
 
