@@ -17,6 +17,7 @@ void Main()
     var solutionPath = Path.Combine(solutionDir, "RetailDemo.sln");
     var zipPath = Path.Combine(workingDir, "tutorials-quickstart-vs2015.zip");
     var tmpDirectory = GetTemporaryDirectory();
+    var tmpSolutionPath = Path.Combine(tmpDirectory, "RetailDemo.sln");
     
     var gitClean = new ProcessStartInfo("git", "clean -xfd tutorials/quickstart/VS2015Solution");
     gitClean.WorkingDirectory = docsRoot;
@@ -32,7 +33,7 @@ void Main()
         
         // Startup Projects
         var startProjects = startProjectsFinder.GetStartProjects(solutionPath).ToList();
-        suoCreator.CreateForSolutionFile(solutionPath, startProjects, VisualStudioVersions.Vs2015);
+        suoCreator.CreateForSolutionFile(tmpSolutionPath, startProjects, VisualStudioVersions.Vs2015);
         
         ZipFile.CreateFromDirectory(tmpDirectory, zipPath, CompressionLevel.Fastest, false);
     }
