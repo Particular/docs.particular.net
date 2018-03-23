@@ -12,6 +12,7 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageDurability.Sender");
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         transport.Transactions(TransportTransactionMode.None);
+        transport.UseNonTransactionalQueues();
 
         #endregion
 
