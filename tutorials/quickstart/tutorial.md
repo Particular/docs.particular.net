@@ -18,7 +18,7 @@ To get started, download the solution appropriate for your Visual Studio version
 
 <div class="text-center inline-download hidden-xs">
   <a href="https://liveparticularwebstr.blob.core.windows.net/media/tutorials-quickstart-vs2015.zip" class="btn btn-info btn-lg" onclick="return fireGAEvent('TutorialDownloaded', 'quickstart-tutorials-quickstart-vs2015.zip')"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for Visual Studio 2015</a>
-  <a href="/tutorials/quickstart/tutorials-quickstart.zip" class="btn btn-primary btn-lg" onclick="return fireGAEvent('TutorialDownloaded', 'quickstart-tutorials-quickstart.zip')"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for Visual Studio 2017</a>
+  <a href="https://docs.particular.net/tutorials/quickstart/tutorials-quickstart.zip" class="btn btn-primary btn-lg" onclick="return fireGAEvent('TutorialDownloaded', 'quickstart-tutorials-quickstart.zip')"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for Visual Studio 2017</a>
 </div>
 
 
