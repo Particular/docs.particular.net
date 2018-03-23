@@ -1,7 +1,7 @@
 ---
 title: Transaction support
-summary: The design and implementation details of SQL Server Transport transaction support
-reviewed: 2016-08-03
+summary: The design and implementation details of SQL Server transport transaction support
+reviewed: 2018-03-22
 component: SqlTransport
 tags:
 - Transactions
@@ -12,23 +12,23 @@ redirects:
 ---
 
 
-SQL Server transport supports the following [Transport Transaction Modes](/transports/transactions.md):
+The SQL Server transport supports the following [transport transaction modes](/transports/transactions.md):
 
- * Transaction scope (Distributed transaction)
- * Transport transaction - Sends atomic with Receive
- * Transport transaction - Receive Only
- * Unreliable (Transactions Disabled)
+ * Transaction scope (distributed transaction)
+ * Transport transaction - Send atomic with receive
+ * Transport transaction - receive only
+ * Unreliable (transactions disabled)
 
-`TransactionScope` mode is particularly useful as it enables `exactly once` message processing with usage of distributed transactions. However, when transport, persistence and business data are all stored in a single SQL Server catalog it is possible to achieve `exactly-once` message delivery without distributed transactions. For more details refer to the [SQL Server native integration](/samples/sqltransport/native-integration/) sample.
+`TransactionScope` mode is particularly useful as it enables `exactly once` message processing with distributed transactions. However when transport, persistence, and business data are all stored in a single SQL Server catalog, it is possible to achieve `exactly-once` message delivery without distributed transactions. For more details, refer to the [SQL Server native integration](/samples/sqltransport/native-integration/) sample.
 
-NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport using [Outbox](/nservicebus/outbox/). It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
+NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport using the [Outbox](/nservicebus/outbox/) feature. It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
 
 
-### Transaction scope (Distributed transaction)
+### Transaction scope (distributed transaction)
 
 partial: ambient-core-warning
 
-In this mode the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access. 
+In this mode, the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access. 
 
 If either the configured NServiceBus persistence mechanism or the user data access also support transactions via `TransactionScope`, the ambient transaction is escalated to a distributed one via the Distributed Transaction Coordinator (DTC).
 
@@ -41,11 +41,11 @@ See also a sample covering this mode of operation using either [SQL Persistence]
 
 ### Native transactions
 
-In this mode the message is received inside a native ADO.NET transaction
+In this mode, the message is received inside a native ADO.NET transaction
 
 partial: native
 
 
-### Unreliable (Transactions Disabled)
+### Unreliable (transactions disabled)
 
-In this mode when a message is received it is immediately removed from the input queue. If processing fails the message is lost because the operation cannot be rolled back. Any other operation that is performed when processing the message is executed without a transaction and cannot be rolled back. This can lead to undesired side effects when message processing fails part way through.
+In this mode, when a message is received it is immediately removed from the input queue. If processing fails the message is lost because the operation cannot be rolled back. Any other operation that is performed when processing the message is executed without a transaction and cannot be rolled back. This can lead to undesired side effects when message processing fails part way through.
