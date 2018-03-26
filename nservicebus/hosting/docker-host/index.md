@@ -8,7 +8,7 @@ related:
  - nservicebus/licensing
  - samples/hosting/docker
 component: Templates
-versions: [2,]
+versions: '[2,]'
 reviewed: 2018-02-28
 ---
 
