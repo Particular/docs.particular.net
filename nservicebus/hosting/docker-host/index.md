@@ -53,7 +53,6 @@ By default, the template is designed to create a Docker image using the contents
 
 ### Program.cs
 
-The `Program.cs` file contains the infrastructure required to successfully start an endpoint and gracefully shut it down when the `docker stop` command has been issued. It also contains code to enable startup and shutdown when the endpoint locally with a debugger attached. The only change that may be required here is a modification to the `Main` method if using C# 7.1 is desired.
+The `Program.cs` file contains the infrastructure required to successfully start an endpoint and gracefully shut it down when the `docker stop` command has been issued.
 
-snippet: DockerCSharp71
 

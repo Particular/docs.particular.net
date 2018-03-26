@@ -8,11 +8,11 @@ namespace DockerHost
     class Program
     {
         static SemaphoreSlim semaphore = new SemaphoreSlim(0);
-#region DockerCSharp71
+
         // TODO: consider using C# 7.1 or later, which will allow
         // removal of this method, and renaming of MainAsync to Main
         public static void Main(string[] args) => MainAsync(args).GetAwaiter().GetResult();
-#endregion
+
         static async Task MainAsync(string[] args)
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
