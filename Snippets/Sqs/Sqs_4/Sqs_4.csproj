@@ -4,6 +4,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.AmazonSQS" Version="4.0.0-*" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="4.0.0-beta0007" />
   </ItemGroup>
 </Project>
