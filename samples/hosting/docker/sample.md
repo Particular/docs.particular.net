@@ -6,7 +6,7 @@ component: Core
 tags:
 - Hosting
 related:
-- nservicebus/hosting/docker-host
+- nservicebus/hosting
 ---
 
 This sample demonstrates how to use Docker Linux containers to host NServiceBus endpoints communicating over the [RabbitMQ transport](/transports/rabbitmq/).
