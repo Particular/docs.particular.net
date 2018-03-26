@@ -1,53 +1,71 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using NServiceBus;
 
-class Program
+namespace Sender
 {
-    static async Task Main()
+    class Program
     {
-        Console.CancelKeyPress += OnExit;
+        static SemaphoreSlim semaphore = new SemaphoreSlim(0);
 
-        Console.Title = "Samples.Docker.Sender";
-
-        var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.ConnectionString("host=rabbitmq");
-        transport.UseConventionalRoutingTopology();
-        endpointConfiguration.EnableInstallers();
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                    .ConfigureAwait(false);
-
-        Console.WriteLine("Sending a message...");
-
-        var guid = Guid.NewGuid();
-        Console.WriteLine($"Requesting to get data by id: {guid:N}");
-
-        var message = new RequestMessage
+        static async Task Main(string[] args)
         {
-            Id = guid,
-            Data = "String property value"
-        };
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                SetConsoleCtrlHandler(ConsoleCtrlCheck, true);
+            }
+            else
+            {
+                Console.CancelKeyPress += CancelKeyPress;
+                AppDomain.CurrentDomain.ProcessExit += ProcessExit;
+            }
 
-        await endpointInstance.Send("Samples.Docker.Receiver", message)
-            .ConfigureAwait(false);
+            var host = new Host();
 
-        Console.WriteLine("Message sent.");
-        Console.WriteLine("Use 'docker-compose down' to stop containers.");
+            Console.Title = host.EndpointName;
 
-        // Wait until the message arrives.
-        closingEvent.WaitOne();
+            await host.Start();
+            await Console.Out.WriteLineAsync("Press Ctrl+C to exit...");
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+            // wait until notified that the process should exit
+            await semaphore.WaitAsync();
+
+            await host.Stop();
+        }
+
+        static void CancelKeyPress(object sender, ConsoleCancelEventArgs e)
+        {
+            e.Cancel = true;
+            semaphore.Release();
+        }
+
+        static void ProcessExit(object sender, EventArgs e)
+        {
+            semaphore.Release();
+        }
+
+        static bool ConsoleCtrlCheck(CtrlTypes ctrlType)
+        {
+            semaphore.Release();
+
+            return true;
+        }
+
+        // imports required for a Windows container to successfully notice when a "docker stop" command
+        // has been run and allow for a graceful shutdown of the endpoint
+        [DllImport("Kernel32")]
+        static extern bool SetConsoleCtrlHandler(HandlerRoutine handler, bool add);
+
+        delegate bool HandlerRoutine(CtrlTypes ctrlType);
+
+        enum CtrlTypes
+        {
+            CTRL_C_EVENT = 0,
+            CTRL_BREAK_EVENT = 1,
+            CTRL_CLOSE_EVENT = 2,
+            CTRL_LOGOFF_EVENT = 5,
+            CTRL_SHUTDOWN_EVENT = 6
+        }
     }
-
-    static void OnExit(object sender, ConsoleCancelEventArgs args)
-    {
-        closingEvent.Set();
-    }
-
-    static AutoResetEvent closingEvent = new AutoResetEvent(false);
 }
