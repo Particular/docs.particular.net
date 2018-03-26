@@ -27,7 +27,7 @@ Unrestricted delayed delivery needs to be enabled both on the sender and receive
 |                             | enabled  | disabled | No            |
 |                             | enabled  | enabled  | Yes           |
 
-Enabling the unrestricted delayed delivery will require a FIFO queue to be created for each endpoint that receives delayed deliveries. The FIFO queue follows a fixed naming convention by appending `-delay.fifo` to the queue name of the endpoint. The creation of the FIFO queue requires the [installers](/nservicebus/operations/installers.md) to be enabled or the queue being created upfront via [scripting](/transports/sqs/operations-scripting.md).
+Enabling the unrestricted delayed delivery will require a FIFO queue to be created for each endpoint that receives delayed deliveries. The FIFO queue follows a fixed naming convention by appending `-delay.fifo` to the endpoint queue name. The creation of the FIFO queue requires the [installers](/nservicebus/operations/installers.md) to be enabled or the queue being created upfront via [scripting](/transports/sqs/operations-scripting.md).
 
 NOTE Unrestricted delayed delivery works seamlessly with large message bodies.
 
@@ -35,7 +35,7 @@ NOTE Unrestricted delayed delivery works seamlessly with large message bodies.
 
 Each endpoint with unrestricted delayed delivery owns a FIFO queue that is used to offload delayed messages from the main input queue until they are due. The FIFO queue uses a fixed delay interval of 900 seconds on the queue level. The FIFO queue shields the timeout dispatching mechanism in a time window of five minutes from infinitely growing timeouts due to network outages between the timeout requeueing and removing the previous timeout from the queue.
 
-When a sender sends a delayed message to a destination, it determines whether the delay is less or equal to 900 seconds. If that is the case, the message is directly delayed to the destination queue by setting the `DelaySecond` behavior on the message. When the timeout is greater than 900 seconds, the message is sent to the FIFO queue of the destination endpoint with a message attributed called `NServiceBus.AmazonSQS.DelaySeconds`. The delayed message consumer on the destination's FIFO queue receives all timeouts that are due after 900 seconds. When a timeout is due, and the remaining delay is less or equal to 900 seconds the message is directly delayed to the destination queue. If the remaining delay is greater than 900 seconds, the message is sent back to the FIFO queue containing a `DelaySeconds` attribute with the remaining timeout interval. The following sequence diagram illustrates the process:
+When a sender sends a delayed message to a destination, it determines whether the delay is less or equal to 900 seconds. If that is the case, the message is directly delayed to the destination queue by setting the `DelaySecond` behavior on the message. When the timeout is greater than 900 seconds, the message is sent to the FIFO queue of the destination endpoint with a message attribute named  `NServiceBus.AmazonSQS.DelaySeconds`. The delayed message consumer on the destination's FIFO queue receives all timeouts that are due after 900 seconds. When a timeout is due, and the remaining delay is less than or equal to 900 seconds the message is directly delayed to the destination queue. If the remaining delay is greater than 900 seconds, the message is sent back to the FIFO queue containing a `DelaySeconds` attribute with the remaining timeout interval. The following sequence diagram illustrates the process:
 
 ```mermaid
 sequenceDiagram
@@ -110,7 +110,7 @@ sender
 fifo(destination-delay.fifo)
 destination
 
-sender .-> |T1: Delay with 1925sec| fifo
+sender .-> |T1: Delay with 1,925sec| fifo
 fifo --> |"T2: fa:fa-hourglass-half Delay with 900sec"| fifo
 fifo --> |"T3: fa:fa-hourglass-half Delay 900sec"| fifo
 fifo .-> |"T3: Send to destination"| destination
@@ -119,7 +119,7 @@ destination --> |"T4: fa:fa-hourglass-half Delay with 125sec"| destination
 end
 ```
 
-32 min and 5 seconds are in total 1925 seconds. This will lead to two 900 seconds cycles on the FIFO queue and one delayed delivery on the destination queue with the remaining timeout of 125 seconds (handover between FIFO queue and input queue).
+32 min and 5 seconds are in total 1,925 seconds. This will lead to two 900 seconds cycles on the FIFO queue and one delayed delivery on the destination queue with the remaining timeout of 125 seconds (handover between FIFO queue and input queue).
 
 ## Cost considerations
 
@@ -134,7 +134,7 @@ Price per 1 Million Requests after Free Tier (Monthly)
 
 More up-to-date information on pricing can be found on the [SQS pricing page](https://aws.amazon.com/sqs/pricing/).
 
-Delaying a message for a year, 365 days or 31536000 (365*24*60*60) seconds, and two operations (dequeue and requeue) per delay interval of 900 seconds. The delayed message will need to go through 35040 delay cycles (3153600 sec / 900 sec) which leads to 70080 queue operations. The end costs would be
+Delaying a message for a year, 365 days or 31,536,000 (365*24*60*60) seconds, and two operations (dequeue and requeue) per delay interval of 900 seconds. The delayed message will need to go through 35040 delay cycles (3153600 sec / 900 sec) which leads to 70080 queue operations. The end costs would be
 
 70080 * $0.00000050 = $0.03504
 
