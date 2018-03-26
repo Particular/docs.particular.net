@@ -6,7 +6,7 @@ reviewed: 2018-03-02
 versions: '[4,]'
 ---
 
-In Versions 4.0 and above, the SQS transport allows [delayed delivery](/nservicebus/messaging/delayed-delivery.md) of messages longer than 15 minutes (900 seconds). The transport creates a FIFO queue per endpoint that allows delaying messages for longer periods of time.
+In Versions 4 and above, the SQS transport supports [delayed delivery](/nservicebus/messaging/delayed-delivery.md) of messages longer than 15 minutes (900 seconds).
 
 ## Enable unrestricted delayed delivery
 
@@ -14,22 +14,34 @@ The unrestricted delayed delivery has to be enabled on the transport configurati
 
 snippet: DelayedDelivery
 
-Unrestricted delayed delivery needs to be enabled both on the sender and receiver to be able to process delayed deliveries longer than 900 seconds. Delayed delivery below 900 seconds is always supported. The following table illustrates that.
+Unrestricted delayed delivery needs to be enabled on the sender and receiver to be able to delay messages longer than 900 seconds.
 
 | Scenario                    | Sender   | Receiver | Supported     |
 |-----------------------------|----------|----------|---------------|
-| Delayed Delivery <= 900 sec | disabled | disabled | Yes           |
+| delay duration <= 900 sec   | disabled | disabled | Yes           |
 |                             | disabled | enabled  | Yes           |
 |                             | enabled  | disabled | Yes           |
 |                             | enabled  | enabled  | Yes           |
-| Delayed Delivery > 900 sec  | disabled | disabled | No            |
+| delay duration > 900 sec    | disabled | disabled | No            |
 |                             | disabled | enabled  | No            |
 |                             | enabled  | disabled | No            |
 |                             | enabled  | enabled  | Yes           |
 
-Enabling unrestricted delayed delivery will require a FIFO queue to be created for each endpoint that receives delayed deliveries. The FIFO queue follows a fixed naming convention by appending `-delay.fifo` to the endpoint queue name. The creation of the FIFO queue requires the [installers](/nservicebus/operations/installers.md) to be enabled or the queue being created upfront via [scripting](/transports/sqs/operations-scripting.md).
+Unrestricted delayed delivery requires a FIFO queue for each endpoint that receives delayed messages. The transport handles creation of the FIFO queue automatically when [installers](/nservicebus/operations/installers.md) are enabled.
 
-NOTE Unrestricted delayed delivery works seamlessly with large message bodies.
+### Manual FIFO queue creation
+
+If installers are not used, then the FIFO queue will need to be manually created.
+
+The FIFO queue has the following requirements:
+
+- The name must match the endpoint's input queue suffixed with `-delay.fifo`.
+- The Delivery Delay setting (DelaySeconds) should be set to 900 seconds.
+- The Message Retention Period should be set to at least 4 days.
+- A Redrive Policy must not be configured.
+
+For an example of how to manually create queues, see [scripting](/transports/sqs/operations-scripting.md).
+
 
 ## How it works
 
@@ -123,23 +135,28 @@ end
 
 ## Cost considerations
 
-Each non-sendonly endpoint with unrestricted delayed delivery enabled operates one delayed message consumer that applies [long-polling](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html) with an interval of 20 seconds. [Satellites](/nservicebus/satellites/) will increase the number of delayed message consumers. The following example shows a cost calculation for a message timeout for a year, not taking into account the long-polling costs.
+Enabling unrestricted delayed delivery will have an impact on cost because FIFO queues are required.
 
-Assuming the following SQS prices:
+To estimate the cost of a delayed message, the following formula can be used:
 
-Price per 1 Million Requests after Free Tier (Monthly)
+N = delay in seconds
+P = price per request
+C(ycles) = N / 900
+O(perations) = C * 2 // dequeue and requeue
+T(otal cost) = O * P
 
-| Standard Queue | $0.40 ($0.00000040 per request) | 
+NOTE The cost might be lower due to the transport optimizing dequeue operations by batching requests.
+
+### Example
+
+To calculate the cost of a single message delayed for a year, the following applies:
+
+[Price per 1 Million Requests after Free Tier (Monthly)](https://aws.amazon.com/sqs/pricing/)
+
 | FIFO Queue     | $0.50 ($0.00000050 per request) |
 
-More up-to-date information on pricing can be found on the [SQS pricing page](https://aws.amazon.com/sqs/pricing/).
-
-Delaying a message for a year, 365 days or 31,536,000 (365*24*60*60) seconds, and two operations (dequeue and requeue) per delay interval of 900 seconds. The delayed message will need to go through 35040 delay cycles (3153600 sec / 900 sec) which leads to 70080 queue operations. The end costs would be
-
-70080 * $0.00000050 = $0.03504
-
-It is important to note that the delayed message consumer tries to fetch up to 10 delayed messages in one batch. Depending on the FIFO queue load (delays expiring), the actual costs might be lower.
-
-## Backwards compatibility
-
-SQS Transport Versions 2 and above can send delayed messages with a timeout lower or equal to 15 minutes. Versions 4 and above can send delayed messages with a timeout lower or equal to 15 minutes to older versions of the transport as well. Unrestricted delayed deliveries are only supported for Versions 4 and above.
+N = 31,536,000 seconds
+P = $0.00000050
+C = 31,536,000 / 900 = 35,040
+O = 35,040 * 2 = 70,080
+T = 70,080 * $0.00000050 = $0.03504
