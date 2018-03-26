@@ -1,6 +1,7 @@
 ---
 title: dotnet new Templates
-reviewed: 2017-10-05
+reviewed: 2018-03-25
+versions: '[1,2)'
 component: Templates
 related:
  - servicecontrol/transport-adapter
@@ -85,6 +86,9 @@ The target framework for the project.
 Default: `net462`
 
 Supported: `net47`, `net462`, `net452`
+
+
+partial: dockerendpoint
 
 
 ## dotnet new information

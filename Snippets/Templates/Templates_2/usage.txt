@@ -29,3 +29,13 @@ dotnet new nsbwinservice --help
 dotnet new nsbwinservice --name MyWindowsService
 dotnet sln add "MyWindowsService/MyWindowsService.csproj"
 # endcode
+
+
+# startcode docker-usage
+dotnet new nsbdockerendpoint --name MyEndpoint
+# endcode
+
+# startcode docker-addToSolution
+dotnet new nsbdockerendpoint --name MyEndpoint
+dotnet sln add "MyEndpoint/MyEndpoint.csproj"
+# endcode
