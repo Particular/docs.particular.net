@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Attachments;
+using NServiceBus.Attachments.Sql;
 
 public class Usage
 {

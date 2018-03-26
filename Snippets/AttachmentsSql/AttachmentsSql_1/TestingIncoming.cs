@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
 using NServiceBus;
-using NServiceBus.Attachments;
+using NServiceBus.Attachments.Sql;
+using NServiceBus.Attachments.Sql.Testing;
 using NServiceBus.Testing;
-using NServiceBus.Attachments.Testing;
 using Xunit;
 
 class TestingIncoming
