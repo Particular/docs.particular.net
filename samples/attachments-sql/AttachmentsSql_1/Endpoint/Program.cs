@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Attachments;
+using NServiceBus.Attachments.Sql;
 
 class Program
 {
@@ -12,8 +12,8 @@ class Program
     static async Task Main()
     {
         SqlHelper.EnsureDatabaseExists(connection);
-        Console.Title = "Samples.Attachments";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Attachments");
+        Console.Title = "Samples.Attachments.Sql";
+        var endpointConfiguration = new EndpointConfiguration("Samples.Attachments.Sql");
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
