@@ -15,8 +15,7 @@ NServiceBus offers four levels of consistency guarantees with regards to message
 
 See the [Transports Transactions](/transports/transactions.md) article to learn more about NServiceBus consistency guarantees.
 
-By default, the transaction timeout limit is set to 10 minutes. See the [Override the System.Transactions default timeout of 10 minutes](https://blogs.msdn.microsoft.com/ajit/2008/06/18/override-the-system-transactions-default-timeout-of-10-minutes-in-the-code/) article to learn how to adjust that value.
-
+The default [`TransactionScope`](https://msdn.microsoft.com/en-us/library/system.transactions.transactionscope) timeout limit is set to 1 minutes. This limit can be adjusted up to the machine wide maximum timeout value. [The machine wide maximum is by default 10 minutes but can also be adjusted](https://blogs.msdn.microsoft.com/ajit/2008/06/18/override-the-system-transactions-default-timeout-of-10-minutes-in-the-code/) if needed.
 
 ## Distributed Transaction Coordinator
 
