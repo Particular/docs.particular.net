@@ -141,11 +141,11 @@ Enabling unrestricted delayed delivery will have an impact on cost because FIFO 
 
 To estimate the cost of a delayed message, the following formula can be used:
 
-N = delay in seconds</br>
-P = price per request</br>
-C(ycles) = N / 900</br>
-O(perations) = C * 2 // dequeue and requeue</br>
-T(otal cost) = O * P</br>
+**N** = delay in seconds<br>
+**P** = price per request<br>
+**C**(ycles) = **N** / 900<br>
+**O**(perations) = **C** * 2 // dequeue and requeue<br>
+**T**(otal cost) = **O** * **P**<br>
 
 NOTE: The cost might be lower due to the transport optimizing dequeue operations by batching requests.
 
@@ -157,8 +157,8 @@ To calculate the cost of a single message delayed for a year, the following appl
 
 FIFO Queue: $0.50 ($0.00000050 per request)
 
-N = 31,536,000 seconds</br>
-P = $0.00000050</br>
-C = 31,536,000 / 900 = 35,040</br>
-O = 35,040 * 2 = 70,080</br>
-T = 70,080 * $0.00000050 = $0.03504</br>
+N = 31,536,000 seconds<br>
+P = $0.00000050<br>
+C = 31,536,000 / 900 = 35,040<br>
+O = 35,040 * 2 = 70,080<br>
+T = 70,080 * $0.00000050 = $0.03504<br>
