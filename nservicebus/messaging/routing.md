@@ -34,7 +34,7 @@ As described in [messages, events and commands](/nservicebus/messaging/messages-
 
 partial: commands
 
-The per-namespace routes override assembly-level routes while the per-type routes override both namespace and assembly routes. 
+Per-namespace routes override assembly-level routes while per-type routes override both namespace and assembly routes. 
 
 
 ### Overriding the destination
