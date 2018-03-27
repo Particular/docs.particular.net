@@ -114,7 +114,7 @@
   Category: Serializer
   SupportLevel: Community
   LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Bond/blob/master/LICENSE
-  ProjectUrl:https://github.com/NServiceBusExtensions/NServiceBus.Bond
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Bond
   NugetOrder:
     - NServiceBus.Bond
 
