@@ -33,7 +33,7 @@
   Name: Sql Attachments
   DocoUrl: nservicebus/messaging/attachments-sql
   Category: Other
-  GitHubOwner: SimonCropp, InduAlagarsamy
+  GitHubOwner: NServiceBusExtensions
   SupportLevel: Community
   LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Attachments/blob/master/license.txt
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Attachments
@@ -53,11 +53,11 @@
 - Key: AuditFilter
   Name: Audit Filter
   DocoUrl: nservicebus/audit-filter
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   SupportLevel: Community
   Category: Other
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.AuditFilter
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.AuditFilter/license.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter/blob/master/license.txt
   NugetOrder:
     - NServiceBus.AuditFilter
 
@@ -110,11 +110,11 @@
 - Key: Bond
   Name: Bond Serializer
   DocoUrl: nservicebus/serialization/bond
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Bond/blob/master/LICENSE
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Bond
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Bond/blob/master/LICENSE
+  ProjectUrl:https://github.com/NServiceBusExtensions/NServiceBus.Bond
   NugetOrder:
     - NServiceBus.Bond
 
@@ -305,22 +305,22 @@
 - Key: HandlerOrdering
   Name: Handler ordering by interface
   DocoUrl: nservicebus/handlers/handler-ordering-by-interface
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Other
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/HandlerOrdering/License.txt
-  ProjectUrl: https://github.com/SimonCropp/HandlerOrdering/
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.HandlerOrdering/blob/master/License.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.HandlerOrdering
   NugetOrder:
     - NServiceBus.HandlerOrdering
 
 - Key: Hyperion
   Name: Hyperion Serializer
   DocoUrl: nservicebus/serialization/hyperion
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Hyperion/blob/master/LICENSE.txt
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Hyperion
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Hyperion/blob/master/LICENSE.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Hyperion
   NugetOrder:
     - NServiceBus.Hyperion
 
@@ -336,22 +336,22 @@
 - Key: Utf8Json
   Name: Utf8Json Serializer
   DocoUrl: nservicebus/serialization/utf8json
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Utf8Json/blob/master/LICENSE
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Utf8Json
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Utf8Json/blob/master/LICENSE
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Utf8Json
   NugetOrder:
     - NServiceBus.Utf8Json
 
 - Key: Jil
   Name: Jil Serializer
   DocoUrl: nservicebus/serialization/jil
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Jil/blob/master/LICENSE
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Jil
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Jil/blob/master/LICENSE
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Jil
   NugetOrder:
     - NServiceBus.Jil
 
@@ -426,10 +426,10 @@
   Name: MicrosoftLogging
   DocoUrl: nservicebus/logging/microsoft
   Category: Logger
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   SupportLevel: Community
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.MicrosoftLogging
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.MicrosoftLogging/blob/master/LICENSE
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.MicrosoftLogging
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.MicrosoftLogging/blob/master/LICENSE
   NugetOrder:
     - NServiceBus.MicrosoftLogging
 
@@ -467,22 +467,22 @@
 - Key: MessagePack
   Name: MessagePack Serializer
   DocoUrl: nservicebus/serialization/messagepack
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.MessagePack/blob/master/LICENSE
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.MessagePack
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.MessagePack/blob/master/LICENSE
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.MessagePack
   NugetOrder:
     - NServiceBus.MessagePack
 
 - Key: MsgPack
   Name: MsgPack Serializer
   DocoUrl: nservicebus/serialization/msgpack
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.MsgPack/blob/master/LICENSE
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.MsgPack
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.MsgPack/blob/master/LICENSE
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.MsgPack
   NugetOrder:
     - NServiceBus.MsgPack
 
@@ -643,22 +643,22 @@
 - Key: ProtoBufNet
   Name: ProtoBuf-Net Serializer
   DocoUrl: nservicebus/serialization/protobufnet
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.ProtoBufNet/blob/master/LICENSE
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.ProtoBufNet/
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet/blob/master/LICENSE
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet
   NugetOrder:
     - NServiceBus.ProtoBuf
 
 - Key: ProtoBufGoogle
   Name: ProtoBuf-Google Serializer
   DocoUrl: nservicebus/serialization/protobufgoogle
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.ProtoBufGoogle/blob/master/LICENSE
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.ProtoBufGoogle/
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufGoogle/blob/master/LICENSE
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufGoogle
   NugetOrder:
     - NServiceBus.ProtoBufGoogle
 
@@ -728,22 +728,22 @@
 - Key: Serilog
   Name: Serilog Logger
   DocoUrl: nservicebus/logging/serilog
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Logger
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Serilog/blob/master/license.txt
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Serilog
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Serilog/blob/master/license.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Serilog
   NugetOrder:
     - NServiceBus.Serilog
 
 - Key: SerilogTracing
   Name: Serilog Tracing
   DocoUrl: nservicebus/logging/serilog-tracing
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Logger
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Serilog/blob/master/license.txt
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Serilog
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Serilog/blob/master/license.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Serilog
   NugetOrder:
     - NServiceBus.Serilog.Tracing
 
@@ -891,11 +891,11 @@
 - Key: Wire
   Name: Wire Serializer
   DocoUrl: nservicebus/serialization/wire
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.Wire/blob/master/LICENSE.txt
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.Wire
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Wire/blob/master/LICENSE.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Wire
   NugetOrder:
     - NServiceBus.Wire
 
@@ -921,11 +921,11 @@
 - Key: ZeroFormatter
   Name: ZeroFormatter Serializer
   DocoUrl: nservicebus/serialization/zeroformatter
-  GitHubOwner: SimonCropp
+  GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/SimonCropp/NServiceBus.ZeroFormatter/blob/master/license.txt
-  ProjectUrl: https://github.com/SimonCropp/NServiceBus.ZeroFormatter
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.ZeroFormatter/blob/master/license.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.ZeroFormatter
   NugetOrder:
     - NServiceBus.ZeroFormatter
 
