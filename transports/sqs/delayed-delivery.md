@@ -2,7 +2,7 @@
 title: Delayed Delivery
 summary: Describes the native delayed delivery implementation in the SQS transport
 component: Sqs
-reviewed: 2018-03-02
+reviewed: 2018-03-26
 versions: '[4,]'
 ---
 
@@ -17,7 +17,7 @@ snippet: DelayedDelivery
 Unrestricted delayed delivery needs to be enabled on the sender and receiver to be able to delay messages longer than 900 seconds.
 
 | Scenario                    | Sender   | Receiver | Supported     |
-|-----------------------------|----------|----------|---------------|
+|-----------------------------|----------|----------|:-------------:|
 | delay duration <= 900 sec   | disabled | disabled | Yes           |
 |                             | disabled | enabled  | Yes           |
 |                             | enabled  | disabled | Yes           |
@@ -139,11 +139,11 @@ Enabling unrestricted delayed delivery will have an impact on cost because FIFO 
 
 To estimate the cost of a delayed message, the following formula can be used:
 
-N = delay in seconds
-P = price per request
-C(ycles) = N / 900
-O(perations) = C * 2 // dequeue and requeue
-T(otal cost) = O * P
+N = delay in seconds</br>
+P = price per request</br>
+C(ycles) = N / 900</br>
+O(perations) = C * 2 // dequeue and requeue</br>
+T(otal cost) = O * P</br>
 
 NOTE The cost might be lower due to the transport optimizing dequeue operations by batching requests.
 
@@ -153,10 +153,10 @@ To calculate the cost of a single message delayed for a year, the following appl
 
 [Price per 1 Million Requests after Free Tier (Monthly)](https://aws.amazon.com/sqs/pricing/)
 
-| FIFO Queue     | $0.50 ($0.00000050 per request) |
+FIFO Queue: $0.50 ($0.00000050 per request)
 
-N = 31,536,000 seconds
-P = $0.00000050
-C = 31,536,000 / 900 = 35,040
-O = 35,040 * 2 = 70,080
-T = 70,080 * $0.00000050 = $0.03504
+N = 31,536,000 seconds</br>
+P = $0.00000050</br>
+C = 31,536,000 / 900 = 35,040</br>
+O = 35,040 * 2 = 70,080</br>
+T = 70,080 * $0.00000050 = $0.03504</br>
