@@ -27,6 +27,8 @@ Unrestricted delayed delivery needs to be enabled on the sender and receiver to 
 |                             | enabled  | disabled | No            |
 |                             | enabled  | enabled  | Yes           |
 
+WARNING: As the chart indicates, sending messages with a delay duration longer than 900 seconds to endpoints using Versions 3 and below is not supported.
+
 Unrestricted delayed delivery requires a FIFO queue for each endpoint that receives delayed messages. The transport handles creation of the FIFO queue automatically when [installers](/nservicebus/operations/installers.md) are enabled.
 
 ### Manual FIFO queue creation
@@ -145,7 +147,7 @@ C(ycles) = N / 900</br>
 O(perations) = C * 2 // dequeue and requeue</br>
 T(otal cost) = O * P</br>
 
-NOTE The cost might be lower due to the transport optimizing dequeue operations by batching requests.
+NOTE: The cost might be lower due to the transport optimizing dequeue operations by batching requests.
 
 ### Example
 
