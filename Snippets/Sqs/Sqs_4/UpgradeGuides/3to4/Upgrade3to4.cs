@@ -139,4 +139,14 @@ class Upgrade3to4
 
         #endregion
     }    
+    
+    void DelayedDelivery(EndpointConfiguration endpointConfiguration)
+    {
+        #region 3to4_DelayedDelivery
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        transport.UnrestrictedDurationDelayedDelivery();
+
+        #endregion
+    }
 }

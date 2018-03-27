@@ -4,31 +4,23 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CloudFormation" Version="3.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.AmazonSQS" Version="4.0.0-beta0007" />
-    <PackageReference Include="NUnit" Version="3.*" />
-    <PackageReference Include="System.Management.Automation" Version="6.*" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System.Messaging" />
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="NativeSend\NativeSend.ps1">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="QueueCreation\CreateEndpointQueues.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="QueueCreation\QueueCreation.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="QueueCreation\QueueCreation.ps1">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="QueueDeletion\QueueDeletion.ps1">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <PackageReference Include="AWSSDK.CloudFormation" Version="3.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="4.0.0-*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.0.0-rc0001" />
+    <PackageReference Include="NUnit" Version="3.*" />
+    <PackageReference Include="System.Management.Automation" Version="6.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="**\*.ps1" CopyToOutputDirectory="Always" />
+    <None Update="**\*.json" CopyToOutputDirectory="Always" />
   </ItemGroup>
 </Project>

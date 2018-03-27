@@ -1,35 +1,26 @@
 ﻿namespace SqsAll
 {
-    using Amazon;
-    using Amazon.SQS;
     using NServiceBus;
 
     public static class SqsTransportConfigurationExtensions
     {
-        internal const string RegionEnvironmentVariableName = "NServiceBus.AmazonSQS.Region";
-        const string S3BucketEnvironmentVariableName = "NServiceBus.AmazonSQS.S3Bucket";
-        const string NativeDeferralEnvironmentVariableName = "NServiceBus.AmazonSQS.NativeDeferral";
+        const string S3BucketEnvironmentVariableName = "NServiceBus_AmazonSQS_S3Bucket";
 
         public static string S3BucketName => EnvironmentHelper.GetEnvironmentVariable(S3BucketEnvironmentVariableName);
 
         public static void ConfigureSqsTransport(this TransportExtensions<SqsTransport> transportConfiguration, string queueNamePrefix = null)
         {
-            transportConfiguration
-                .ClientFactory(() => new AmazonSQSClient(new AmazonSQSConfig { RegionEndpoint = RegionEndpoint.APSoutheast2 }))
-                .QueueNamePrefix(queueNamePrefix);
-
+            transportConfiguration.ClientFactory(ClientFactory.CreateSqsClient);
+            if (queueNamePrefix != null)
+            {
+                transportConfiguration.QueueNamePrefix(queueNamePrefix);
+            }
+                
             var s3BucketName = EnvironmentHelper.GetEnvironmentVariable(S3BucketEnvironmentVariableName);
 
             if (!string.IsNullOrEmpty(S3BucketName))
             {
                 transportConfiguration.S3(S3BucketName, "test");
-            }
-
-            var nativeDeferralRaw = EnvironmentHelper.GetEnvironmentVariable(NativeDeferralEnvironmentVariableName);
-            var validValue = bool.TryParse(nativeDeferralRaw, out var nativeDeferral);
-            if (validValue && nativeDeferral)
-            {
-                transportConfiguration.NativeDeferral();
             }
         }
     }

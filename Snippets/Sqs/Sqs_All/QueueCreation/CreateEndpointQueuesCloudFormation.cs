@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Amazon.CloudFormation;
@@ -27,7 +26,7 @@
 
         #region sqs-create-queues-for-endpoint-cloudformation
 
-        public static async Task CreateQueuesForEndpoint(string endpointName, string templatePath, TimeSpan? maxTimeToLive = null, string queueNamePrefix = null, bool includeRetries = false)
+        public static async Task CreateQueuesForEndpoint(string endpointName, string templatePath, TimeSpan? maxTimeToLive = null, string queueNamePrefix = null, bool includeRetries = false, string delayedDeliveryMethod = "Native")
         {
             using (var client = ClientFactory.CreateCloudFormationClient())
             {
@@ -52,8 +51,13 @@
                             ParameterKey = "IncludeRetries",
                             ParameterValue = includeRetries.ToString()
                         },
+                        new Parameter
+                        {
+                            ParameterKey = "DelayedDeliveryMethod",
+                            ParameterValue = delayedDeliveryMethod
+                        },
                     },
-                    TemplateBody = File.ReadAllText(templatePath)
+                    TemplateBody = CloudFormationHelper.ConvertToValidJson(templatePath)
                 };
 
                 await client.CreateStackAsync(request)
@@ -63,6 +67,7 @@
                 {
                     StackName = endpointNameWithPrefix
                 };
+
                 StackStatus currentStatus = string.Empty;
                 while (currentStatus != StackStatus.CREATE_COMPLETE)
                 {
@@ -70,6 +75,7 @@
                         .ConfigureAwait(false);
                     var stack = response.Stacks.SingleOrDefault();
                     currentStatus = stack?.StackStatus;
+                    await Task.Delay(1000);
                 }
             }
         }

@@ -53,7 +53,7 @@
             }
 
             var foundMessage = receivedMessages.Messages
-                .SingleOrDefault(message => message.MessageId != messageId);
+                .SingleOrDefault(message => message.MessageId == messageId);
 
             if (foundMessage != null)
             {
