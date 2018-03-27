@@ -47,27 +47,26 @@ For an example of how to manually create queues, see [scripting](/transports/sqs
 
 ## How it works
 
-Each endpoint with unrestricted delayed delivery owns a FIFO queue that is used to offload delayed messages from the main input queue until they are due. The FIFO queue uses a fixed delay interval of 900 seconds on the queue level. The FIFO queue shields the timeout dispatching mechanism in a time window of five minutes from infinitely growing timeouts due to network outages between the timeout requeueing and removing the previous timeout from the queue.
+When a delayed message is sent, the delay duration is calculated. If it's less than or equal to 900 seconds, the message is sent directly to the destination input queue with the `DelaySeconds` message attribute set to the delay duration.
 
-When a sender sends a delayed message to a destination, it determines whether the delay is less or equal to 900 seconds. If that is the case, the message is directly delayed to the destination queue by setting the `DelaySeconds` attribute on the message. When the timeout is greater than 900 seconds, the message is sent to the FIFO queue of the destination endpoint with a message attribute named `NServiceBus.AmazonSQS.DelaySeconds`. The delayed message consumer on the destination's FIFO queue receives all timeouts that are due after 900 seconds. When a timeout is due, and the remaining delay is less than or equal to 900 seconds the message is directly delayed to the destination queue. If the remaining delay is greater than 900 seconds, the message is sent back to the FIFO queue containing a `DelaySeconds` attribute with the remaining timeout interval. The following sequence diagram illustrates the process:
+If the delay duration is greater than 900 seconds, then the message is sent to the destination's FIFO queue with the `NServiceBus.AmazonSQS.DelaySeconds` custom message attribute set to the delay duration. When the message is received from the FIFO queue after 900 seconds, the remaining delay duration is calculated. If it's less or equal to 900 seconds, the message is forwarded to the destination input queue with the `DelaySeconds` message attribute set to the remaining delay duration. Otherwise, the message is sent back to the FIFO queue with an updated custom message attribute set to the remaining delay duration.
+
+The following sequence diagram illustrates a message sent with a delay duration greater than 900 seconds:
 
 ```mermaid
 sequenceDiagram
     participant S as Sender
-    participant D as Destination
     participant F as Destination-delay.fifo
-    alt delay <= 900sec
-        S ->> D: Message DelaySeconds = delay
-    else delay > 900sec
-        S -->> F:  Attribute DelaySeconds = delay
-        loop every 900sec
-           alt remaining delay > 900sec
-               F -->> F:  Attribute DelaySeconds = remaining delay
-           else remaining delay <= 900sec
-              F ->> D: Message DelaySeconds = remaining delay
-           end
+    participant D as Destination
+    
+    S ->> F:  NServiceBus.AmazonSQS.DelaySeconds = delay
+    loop every 900sec
+        alt remaining delay > 900sec
+            F -->> F:  NServiceBus.AmazonSQS.DelaySeconds = remaining delay
+        else remaining delay <= 900sec
+            F ->> D: DelaySeconds = remaining delay
         end
-end
+    end
 ```
 
 ### Clock drift
