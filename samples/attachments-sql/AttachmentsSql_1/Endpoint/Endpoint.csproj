@@ -7,7 +7,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="NServiceBus" Version="7.0.0-rc0001" />
-    <PackageReference Include="NServiceBus.Attachments.Sql" Version="1.0.0-beta.19" />
+    <PackageReference Include="NServiceBus.Attachments.Sql" Version="1.0.0-beta.22" />
   </ItemGroup>
   <ItemGroup>
     <None Update="fileToStream.txt">

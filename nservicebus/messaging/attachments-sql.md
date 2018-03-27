@@ -26,7 +26,7 @@ Extract out the connection factory to a helper method
 
 snippet: OpenConnection
 
-Also uses the `NServiceBus.Attachments.TimeToKeep.Default` method for attachment cleanup.
+Also uses the `NServiceBus.Attachments.Sql.TimeToKeep.Default` method for attachment cleanup.
 
 This usage results in the following:
 
