@@ -18,9 +18,9 @@ snippet: XmlSerialization
 
 ## Inferring message type from root node name
 
-In integration scenarios where the sender is unable add headers to the message, the serializer can infer the CLR message type based on the root node of the XML payload. To take advantage of this, the name of the payload's root node must match the [`Type.FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname) of a message type known to the receiving endpoint.
+In integration scenarios where the sender is unable to add headers to the message, the serializer can infer the CLR message type based on the root node of the XML payload. To take advantage of this, the name of the payload's root node must match the [`Type.FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname) of a message type known to the receiving endpoint.
 
-This technique enables messages without any headers, including the `NServiceBus.EnclosedMessageTypes` header, to be processed. This is demonstrated by the [native integration with RabbitMQ sample](/samples/rabbitmq/native-integration/).
+This technique allows messages without any headers, including the `NServiceBus.EnclosedMessageTypes` header, to be processed. This is demonstrated by the [native integration with RabbitMQ sample](/samples/rabbitmq/native-integration/).
 
 partial: raw
 
