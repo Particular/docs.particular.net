@@ -27,6 +27,8 @@ Unrestricted delayed delivery needs to be enabled on the sender and receiver to 
 |                             | enabled  | disabled | No            |
 |                             | enabled  | enabled  | Yes           |
 
+WARNING: As the chart indicates, sending messages with a delay duration longer than 900 seconds to endpoints using Versions 3 and below is not supported.
+
 Unrestricted delayed delivery requires a FIFO queue for each endpoint that receives delayed messages. The transport handles creation of the FIFO queue automatically when [installers](/nservicebus/operations/installers.md) are enabled.
 
 ### Manual FIFO queue creation
@@ -45,93 +47,113 @@ For an example of how to manually create queues, see [scripting](/transports/sqs
 
 ## How it works
 
-Each endpoint with unrestricted delayed delivery owns a FIFO queue that is used to offload delayed messages from the main input queue until they are due. The FIFO queue uses a fixed delay interval of 900 seconds on the queue level. The FIFO queue shields the timeout dispatching mechanism in a time window of five minutes from infinitely growing timeouts due to network outages between the timeout requeueing and removing the previous timeout from the queue.
+When a delayed message is sent, the delay duration is calculated. If it's less than or equal to 900 seconds, the message is sent directly to the destination input queue with the `DelaySeconds` message attribute set to the delay duration.
 
-When a sender sends a delayed message to a destination, it determines whether the delay is less or equal to 900 seconds. If that is the case, the message is directly delayed to the destination queue by setting the `DelaySeconds` attribute on the message. When the timeout is greater than 900 seconds, the message is sent to the FIFO queue of the destination endpoint with a message attribute named `NServiceBus.AmazonSQS.DelaySeconds`. The delayed message consumer on the destination's FIFO queue receives all timeouts that are due after 900 seconds. When a timeout is due, and the remaining delay is less than or equal to 900 seconds the message is directly delayed to the destination queue. If the remaining delay is greater than 900 seconds, the message is sent back to the FIFO queue containing a `DelaySeconds` attribute with the remaining timeout interval. The following sequence diagram illustrates the process:
+If the delay duration is greater than 900 seconds, then the message is sent to the destination's FIFO queue with the `NServiceBus.AmazonSQS.DelaySeconds` custom message attribute set to the delay duration. When the message is received from the FIFO queue after 900 seconds, the remaining delay duration is calculated. If it's less or equal to 900 seconds, the message is forwarded to the destination input queue with the `DelaySeconds` message attribute set to the remaining delay duration. Otherwise, the message is sent back to the FIFO queue with an updated custom message attribute set to the remaining delay duration.
+
+The following sequence diagram illustrates a message sent with a delay duration greater than 900 seconds:
 
 ```mermaid
 sequenceDiagram
     participant S as Sender
-    participant D as Destination
     participant F as Destination-delay.fifo
-    alt delay <= 900sec
-        S ->> D: Message DelaySeconds = delay
-    else delay > 900sec
-        S -->> F:  Attribute DelaySeconds = delay
-        loop every 900sec
-           alt remaining delay > 900sec
-               F -->> F:  Attribute DelaySeconds = remaining delay
-           else remaining delay <= 900sec
-              F ->> D: Message DelaySeconds = remaining delay
-           end
+    participant D as Destination
+    
+    S ->> F:  NServiceBus.AmazonSQS.DelaySeconds = delay
+    loop every 900sec
+        alt remaining delay > 900sec
+            F -->> F:  NServiceBus.AmazonSQS.DelaySeconds = remaining delay
+        else remaining delay <= 900sec
+            F ->> D: DelaySeconds = remaining delay
         end
-end
+    end
 ```
 
-### Clock drift
+NOTE: FIFO queues are used to implement this feature because of their native support for de-duplication.
 
-To avoid clock drift, the broker timestamps are used wherever possible to calculate the remaining timeout. The due time calculation uses `SentTimestamp` as well as `ApproximateFirstReceiveTimestamp` set by the broker. Only in cases of re-delivery when `ApproximateReceiveCount` is higher than one the client's clock is used and thus subjected to clock drift.
+WARNING: The transport uses timestamps from the broker to avoid clock skew, but a discrepancy between broker and endpoint clocks still has a potential to cause inaccurate delay calculation.
 
-### Delivery
+### Potential duplicate messages
 
-For unrestricted delayed deliveries, the last step is always a handover from the FIFO queue to the endpoint's input queue. SQS does not provide cross queue operation transactions, so the handover is subjected to retries. In cases of retries, it might be possible that timeouts are delivered more than once. Message handlers need to be idempotent when used with transports with [transaction](/transports/transactions.md) level `Receive Only` or below. The following diagram illustrates that:
+While FIFO queues protect from message duplication, there are still scenarios where messages could be duplicated. To address the possibility of duplicate messages, handlers should be idempotent or the [Outbox](/nservicebus/outbox/) feature should be enabled.
+
+#### Scenario 1
+
+As the final step, the message has to be delivered to a regular queue.
 
 ```mermaid
 sequenceDiagram
     participant D as Destination
     participant F as Destination-delay.fifo
-    F ->>+ F: Timeout due
+    F ->>+ F: Receive message
     F ->> D: Send with remaining delay
     Note left of D: Original message
-    F ->>- F: Delete Delayed Message failed
-    Note right of F: Network outage
-    F ->>+ F: Timeout due
+    F ->>- F: Attempt to delete message
+    Note left of F: Network outage
+    Note right of F: Delete attempt failed
+    Note left of F: Network restored
+    F ->>+ F: Receive message again
     F ->> D: Send with remaining delay
-    F ->>- F: Delete Delayed Message
     Note left of D: Duplicate message
+    F ->>- F: Delete Message
 ```
 
-### Example
+#### Scenario 2
 
-Below is an example of a delayed delivery less or equal to 900 seconds:
+While processing a message, if a failure prevents the message from being deleted, and the next processing attempt occurs later than 5 minutes after the first attempt, then the FIFO queue will **not** be able to protect from message duplication.
+
+```mermaid
+sequenceDiagram
+    participant F as Destination-delay.fifo
+
+    activate F
+    F ->> F: Receive message
+    F ->> F: Send with remaining delay
+    Note right of F: Original message with remaining delay
+    F ->> F: Attempt to delete message
+    deactivate F
+    Note left of F: Network outage more than 5 mins
+    Note right of F: Delete attempt failed
+    Note left of F: Network restored
+    activate F
+    F ->> F: Receive message again
+    F ->> F: Send with remaining delay
+    Note right of F: Duplicate message with remaining delay
+    F ->> F: Delete Message
+    deactivate F
+```
+
+### Examples
+
+#### Delay of 14 minutes and 5 seconds
 
 ```mermaid
 graph LR
 
-subgraph Example: delay of 14 min and 5 seconds
+subgraph 
 
-sender
-destination
-
-sender .-> |T1: Delay with 845sec| destination
-destination --> |"T2: fa:fa-hourglass-half 845sec"| destination
+Sender .-> |DelaySeconds = 845sec| Destination
 
 end
 ```
 
-14 min and 4 seconds are in total 845 seconds. This is less than 900 seconds, so the message will be directly sent to the destination with a `DelaySeconds` value of 845 seconds. No message attribute header will be used.
-
-Below is an example of a delayed delivery greater than 900 seconds:
+#### Delay of 32 minutes and 5 seconds
 
 ```mermaid
 graph LR
 
-subgraph Example: delay of 32 min and 5 seconds
+subgraph 
 
-sender
-fifo(destination-delay.fifo)
-destination
+Sender
+fifo(Destination-delay.fifo)
+Destination
 
-sender .-> |T1: Delay with 1,925sec| fifo
-fifo --> |"T2: fa:fa-hourglass-half Delay with 900sec"| fifo
-fifo --> |"T3: fa:fa-hourglass-half Delay 900sec"| fifo
-fifo .-> |"T3: Send to destination"| destination
-destination --> |"T4: fa:fa-hourglass-half Delay with 125sec"| destination
+Sender .-> |T1: NServiceBus.AmazonSQS.DelaySeconds = 1,925sec| fifo
+fifo --> |"T2: NServiceBus.AmazonSQS.DelaySeconds = 1,025sec"| fifo
+fifo .-> |"T3: DelaySeconds = 125sec"| Destination
 
 end
 ```
-
-32 min and 5 seconds are in total 1,925 seconds. This will lead to two 900 seconds cycles on the FIFO queue and one delayed delivery on the destination queue with the remaining timeout of 125 seconds (handover between FIFO queue and input queue).
 
 ## Cost considerations
 
@@ -139,13 +161,13 @@ Enabling unrestricted delayed delivery will have an impact on cost because FIFO 
 
 To estimate the cost of a delayed message, the following formula can be used:
 
-N = delay in seconds</br>
-P = price per request</br>
-C(ycles) = N / 900</br>
-O(perations) = C * 2 // dequeue and requeue</br>
-T(otal cost) = O * P</br>
+**N** = delay in seconds<br>
+**P** = price per request<br>
+**C**(ycles) = **N** / 900<br>
+**O**(perations) = **C** * 2 // dequeue and requeue<br>
+**T**(otal cost) = **O** * **P**<br>
 
-NOTE The cost might be lower due to the transport optimizing dequeue operations by batching requests.
+NOTE: The cost might be lower due to the transport optimizing dequeue operations by batching requests.
 
 ### Example
 
@@ -155,8 +177,8 @@ To calculate the cost of a single message delayed for a year, the following appl
 
 FIFO Queue: $0.50 ($0.00000050 per request)
 
-N = 31,536,000 seconds</br>
-P = $0.00000050</br>
-C = 31,536,000 / 900 = 35,040</br>
-O = 35,040 * 2 = 70,080</br>
-T = 70,080 * $0.00000050 = $0.03504</br>
+N = 31,536,000 seconds<br>
+P = $0.00000050<br>
+C = 31,536,000 / 900 = 35,040<br>
+O = 35,040 * 2 = 70,080<br>
+T = 70,080 * $0.00000050 = $0.03504<br>
