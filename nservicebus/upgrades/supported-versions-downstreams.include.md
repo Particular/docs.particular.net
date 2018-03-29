@@ -76,7 +76,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 3.0.x     | 2017-11-22     | -                 | -                                 |
+| 3.1.x     | 2018-03-26     | -                 | -                                 |
+| 3.0.x     | 2017-11-22     | 2018-06-26        | Superseded by 3.1.x               |
 | 2.2.x     | 2017-11-16     | 2018-11-22        | Superseded by 3.0.x               |
 | ~~2.1.x~~ | ~~2017-04-28~~ | ~~2018-02-16~~    | ~~Superseded by 2.2.x~~           |
 | 1.0.x     | 2017-02-02     | 2018-04-14        | Superseded by 2.0.x               |
@@ -86,7 +87,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 4.2.x     | 2017-06-28     | -                 | -                                 |
-| ~~4.1.x~~ | ~~2016-12-14~~ | ~~2017-09-28~~    | ~~Superseded by 4.2.x~~           |
 | 3.2.x     | 2017-04-10     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 ### Serializer packages
