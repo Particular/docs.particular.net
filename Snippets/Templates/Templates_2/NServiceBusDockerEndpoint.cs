@@ -4,19 +4,16 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-namespace DockerHost
+namespace Templates_2
 {
-    class Host
+    class NServiceBusDockerEndpoint
     {
-        // TODO: optionally choose a custom logging library
-        // https://docs.particular.net/nservicebus/logging/#custom-logging
-        // LogManager.Use<TheLoggingFactory>();
-        static readonly ILog log = LogManager.GetLogger<Host>();
+        static readonly ILog log = LogManager.GetLogger<NServiceBusDockerEndpoint>();
 
         IEndpointInstance endpoint;
 
-        // TODO: give the endpoint an appropriate name
         public string EndpointName => "EndpointName";
+
 #region DockerStartEndpoint
         public async Task Start()
         {
@@ -58,6 +55,7 @@ namespace DockerHost
             }
         }
 #endregion
+
 #region DockerStopEndpoint
         public async Task Stop()
         {
@@ -72,6 +70,7 @@ namespace DockerHost
             }
         }
 #endregion
+
 #region DockerErrorHandling
         async Task OnCriticalError(ICriticalErrorContext context)
         {
