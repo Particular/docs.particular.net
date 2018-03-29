@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
@@ -8,14 +7,10 @@ namespace Receiver
 {
     class Host
     {
-        // TODO: optionally choose a custom logging library
-        // https://docs.particular.net/nservicebus/logging/#custom-logging
-        // LogManager.Use<TheLoggingFactory>();
         static readonly ILog log = LogManager.GetLogger<Host>();
 
         IEndpointInstance endpoint;
 
-        // TODO: give the endpoint an appropriate name
         public string EndpointName => "Receiver";
 
         public async Task Start()
@@ -49,7 +44,6 @@ namespace Receiver
         {
             try
             {
-                // TODO: perform any futher shutdown operations before or after stopping the endpoint
                 await endpoint?.Stop();
             }
             catch (Exception ex)
@@ -60,10 +54,6 @@ namespace Receiver
 
         async Task OnCriticalError(ICriticalErrorContext context)
         {
-            // TODO: decide if stopping the endpoint and exiting the process is the best response to a critical error
-            // https://docs.particular.net/nservicebus/hosting/critical-errors
-            // and consider setting up service recovery
-            // https://docs.particular.net/nservicebus/hosting/windows-service#installation-restart-recovery
             try
             {
                 await context.Stop();
@@ -79,9 +69,6 @@ namespace Receiver
             try
             {
                 log.Fatal(message, exception);
-
-                // TODO: when using an external logging framework it is important to flush any pending entries prior to calling FailFast
-                // https://docs.particular.net/nservicebus/hosting/critical-errors#when-to-override-the-default-critical-error-action
             }
             finally
             {
