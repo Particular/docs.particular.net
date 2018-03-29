@@ -1,7 +1,7 @@
 ---
 title: Publish-Subscribe
 summary: Subscribers tell the publisher they are interested. Publishers store addresses for sending messages.
-reviewed: 2016-08-17
+reviewed: 2018-03-29
 tags:
 - Publish Subscribe
 - Messaging Patterns
@@ -48,7 +48,7 @@ Available subscription persistences include
  * [InMemory](/persistence/in-memory.md)
  * [Azure Storage](/persistence/azure-storage)
 
-The message-driven publish-subscribe is used by the [unicast transports](/transports/#types-of-transports-unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
+The message-driven publish-subscribe implementation is used by the [unicast transports](/transports/#types-of-transports-unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
 
 
 #### Subscribe
