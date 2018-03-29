@@ -7,7 +7,7 @@ versions: '[6.0,)'
 ---
 
 
-WARNING: It is difficult to give generic advice on how asynchronous code should be structured. It is important to understand compute-bound vs. I/O-bound operations and avoid copying aand pasting snippets without further analysis if they provide benefit for the involved business scenarios. Don't assume; measure it.
+WARNING: It is difficult to give generic advice on how asynchronous code should be structured. It is important to understand compute-bound vs. I/O-bound operations and avoid copying and pasting snippets without further analysis if they provide benefit for the involved business scenarios. Don't assume; measure it.
 
 [Handlers](/nservicebus/handlers/) and [sagas](/nservicebus/sagas/) will be invoked from a thread in the thread pool. Depending on the transport implementation a worker thread pool thread or an I/O thread pool thread might be used. Typically message handlers and sagas issue I/O-bound work, such as sending or publishing messages, storing information into databases, and calling web services. In other cases, message handlers are used to schedule compute-bound work. To be able to write efficient message handlers and sagas, it is crucial to understand the difference between compute-bound and I/O-bound work.
 
