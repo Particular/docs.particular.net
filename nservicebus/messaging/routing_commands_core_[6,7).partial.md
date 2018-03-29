@@ -1,4 +1,4 @@
-Command routing can be configured in code. The routing API root is attached to the transport configuration object because some routing APIs are transport-specific. The routes can be specified on assembly, namespace or specific type level.
+Command routing can be configured in code. The routing API is attached to the transport configuration object because some routing APIs are transport-specific. The routes can be specified at assembly, namespace or specific type levels.
 
 snippet: Routing-Logical
 
