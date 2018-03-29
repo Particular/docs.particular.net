@@ -73,7 +73,7 @@ NOTE: New APIs were made available starting in version 6.2. The examples below s
 
 Sometimes only part of the default Recoverability Policy needs to be customized. In these situations, the `DefaultRecoverabilityPolicy` needs to be called in the customized Recoverability Policy delegate. 
 
-For example, the followihng custom policy will move the message directly to an error queue without retries when a `MyBusinessException` triggers the policy:
+For example, the following custom policy will move the message directly to an error queue without retries when a `MyBusinessException` triggers the policy:
 
 snippet: CustomExceptionPolicyHandler
 
