@@ -66,6 +66,8 @@ NOTE: In cases when Immediate and/or Delayed Retry capabilities have been turned
 
 ## Implement a custom policy
 
+NOTE: New APIs were made available starting in version 6.2. The examples below show how to implement recovery customizations both prior to and after version 6.2. It is not necessary to implement both snippets in for a given example.
+
 
 ### Partial customization
 
