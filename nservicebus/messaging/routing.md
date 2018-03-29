@@ -1,7 +1,7 @@
 ---
 title: Message routing
 summary: How NServiceBus routes messages between endpoints.
-reviewed: 2017-03-25
+reviewed: 2018-03-29
 component: Core
 tags:
 - routing
@@ -44,7 +44,7 @@ In specific cases, like sending to the same endpoint or to a specific queue (e.g
 
 ## Event routing
 
-When events are published, they can be received by multiple logical endpoints however, even in cases where those logical endpoints are scaled out, each event will be received only by one physical instance of a specific logical subscriber. It is important to note that before the event is published and delivered, the subscriber has to express its interest in that event by having a message handler for it.
+When events are published, they can be received by multiple logical endpoints however, even in cases where those logical endpoints are scaled out, each event will be received by only one physical instance of a specific logical subscriber. It is important to note that before the event is published and delivered, the subscriber has to express its interest in that event by having a message handler for it.
 
 
 ### Native
