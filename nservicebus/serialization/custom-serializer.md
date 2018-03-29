@@ -3,7 +3,7 @@ title: Custom serializers
 summary: How to create and register custom serializer for NServiceBus.
 component: Core
 versions: '[5,)'
-reviewed: 2016-08-17
+reviewed: 2018-03-29
 tags:
 - serialization
 redirects:
@@ -22,7 +22,7 @@ In order to see sample implementations, refer to the [community run serializers]
 
 ### Register the serializer
 
-Register the serializer:
+To use the customer serializer it must be registered as part of the endpoint configuration:
 
 snippet: RegisterCustomSerializer
 
