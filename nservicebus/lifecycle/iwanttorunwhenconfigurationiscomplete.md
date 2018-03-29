@@ -1,7 +1,7 @@
 ---
 title: When Configuration Ends
 summary: An interface that supports hooking into the configuration sequence of NServiceBus.
-reviewed: 2016-08-23
+reviewed: 2018-03-29
 component: Core
 versions: '[,6.0)'
 tags:
