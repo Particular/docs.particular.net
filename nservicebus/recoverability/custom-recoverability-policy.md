@@ -2,7 +2,7 @@
 title: Custom Recoverability Policy
 summary: Shows how to take full control over Recoverability by implementing a Recoverability Policy
 component: Core
-reviewed: 2016-08-23
+reviewed: 2018-03-29
 versions: '[6.0,)'
 tags:
  - Error Handling
@@ -33,14 +33,14 @@ NOTE: According to the default policy, only exceptions of type `MessageDeseriali
 
 ## Fallback
 
-As outlined in the [Recoverability introduction](/nservicebus/recoverability/) Immediate and Delayed Retries can only be performed under certain conditions. If a custom Recoverability Policy returns a recoverability action which cannot be fulfilled by the infrastructure, the decision will be overridden with the `MoveToError` action with the default error queue. 
+As outlined in the [Recoverability introduction](/nservicebus/recoverability/), Immediate and Delayed Retries can only be performed under certain conditions. If a custom Recoverability Policy returns a recoverability action which cannot be fulfilled by the infrastructure, the decision will be overridden with the `MoveToError` action with the default error queue. 
 
 This behavior guarantees safety in edge cases and cannot be overridden.
 
 
 ## Recoverability Configuration
 
-`RecoverabilityConfig` contains all required information to take into account when a recoverability policy is implemented. It provides the following information provided via configuration:
+`RecoverabilityConfig` contains all the information required when a recoverability policy is implemented. This includes:
 
  * Maximum number of retries for Immediate Retries
  * Maximum number of retries for Delayed Retries
@@ -55,7 +55,7 @@ NOTE: In cases when Immediate and/or Delayed Retry capabilities have been turned
 
 ## Error Context
 
-`ErrorContext` contains all required information to take into account regarding the currently failing message. It provides the following information:
+`ErrorContext` provides all the information about the currently failing message. It contains the following information:
 
  * Exception which caused the message to fail
  * Transport transaction on which the message failed
@@ -69,9 +69,9 @@ NOTE: In cases when Immediate and/or Delayed Retry capabilities have been turned
 
 ### Partial customization
 
-Sometimes only a part of the default Recoverability Policy needs to be customized. In such situation, the `DefaultRecoverabilityPolicy` needs to be called in the customized Recoverability Policy delegate. 
+Sometimes only part of the default Recoverability Policy needs to be customized. In these situations, the `DefaultRecoverabilityPolicy` needs to be called in the customized Recoverability Policy delegate. 
 
-For example, this custom policy will directly move the message to an error queue without retries when certain exceptions like `MyBusinessException` triggered the policy:
+For example, the followihng custom policy will move the message directly to an error queue without retries when a `MyBusinessException` triggers the policy:
 
 snippet: CustomExceptionPolicyHandler
 
@@ -88,7 +88,7 @@ If more control over Recoverability is needed, the Recoverability delegate can b
 
 ### Full customization
 
-If the Recoverability Policy is fully customized, then the `DefaultRecoverabilityPolicy` won't be called. In such cases it is still possible to use the recoverability high level APIs, for example:
+If the Recoverability Policy is fully customized, then the `DefaultRecoverabilityPolicy` won't be called. In this case it is still possible to use the recoverability high level APIs, for example:
 
 snippet: FullyCustomizedPolicyRecoverabilityConfiguration
 
