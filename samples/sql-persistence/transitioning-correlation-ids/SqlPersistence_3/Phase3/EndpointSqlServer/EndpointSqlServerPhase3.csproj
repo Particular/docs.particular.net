@@ -5,20 +5,10 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\Phase1\EndpointSqlServer\Program.cs">
-      <Link>Program.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Phase1\EndpointSqlServer\SqlHelper.cs">
-      <Link>SqlHelper.cs</Link>
-    </Compile>
+    <ProjectReference Include="..\Shared\SharedPhase3.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Transactions" />
-    <ProjectReference Include="..\Shared\SharedPhase3.csproj" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
-    <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.*" />
+    <Compile Include="..\..\Phase1\EndpointSqlServer\Program.cs" />
+    <Compile Include="..\..\Phase1\EndpointSqlServer\SqlHelper.cs" />
   </ItemGroup>
 </Project>
