@@ -44,11 +44,21 @@ An endpoint running in Docker will look for the `license.xml` file in [the same 
 
 ### Dockerfile
 
-This file contains the instructions for creating the Docker image. An endpoint will be hosted in a container that is based on the `microsoft/dotnet:2.0-runtime` image. The container image will contain the compiled artifacts of the endpoint project and will launch that endpoint when the container is run.
+This file contains the instructions for compiling the endpoint and creating the Docker image.
 
-Before the Docker image can be built, the endpoint project must be compiled and published first. Then, the Docker image is built by running `docker build` in the project's directory.
+An endpoint will be hosted in a container that is based on the `microsoft/dotnet:2.0-runtime` image. The container image will contain the compiled artifacts of the endpoint project and will launch that endpoint when the container is run.
 
-By default, the template is designed to create a Docker image using the contents of the `bin/Release/netcoreapp2.0/publish` folder. To build the image, the endpoint project needs to be compiled in Release mode. If a Docker image containing Debug artifacts is desired, the endpoint project can be compiled in Debug mode, and the Dockerfile can be modified to change the `COPY` command to use `bin/Debug/netcoreapp2.0/publish`.
+To create the Docker image run the following
+
+snippet: docker-build
+
+This command will both compile the endpoint and create the Docker image. Compilation is trigged by the `dotnet publish` command which will restore the endpoint's dependencies (`dotnet restore`), compile the endpoint (`dotnet build`), and finally perform the publish.
+
+snippet: docker-publish
+
+The files generated from these steps are then put in the docker image, the endpoint is configured to start when the container is run, and the container is built.
+
+snippet: docker-entry
 
 
 ### Program.cs

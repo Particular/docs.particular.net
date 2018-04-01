@@ -11,3 +11,7 @@ This will create a new directory named `MyEndpoint` containing a `.csproj` also 
 To add to an existing solution:
 
 snippet: docker-addToSolution
+
+To build the Docker image open the command line, change to the directory containing the endpoint's `.csproj`, and run the following.
+
+snippet: docker-build
