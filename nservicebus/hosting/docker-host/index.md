@@ -54,11 +54,16 @@ snippet: docker-build
 
 This command will both compile the endpoint and create the Docker image. Compilation is trigged by the `dotnet publish` command which will restore the endpoint's dependencies (`dotnet restore`), compile the endpoint (`dotnet build`), and finally perform the publish.
 
-snippet: docker-publish
+```
+RUN dotnet publish -c Release -o /app
+```
 
 The files generated from these steps are then put in the docker image, the endpoint is configured to start when the container is run, and the container is built.
 
-snippet: docker-entry
+```
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "MyEndpoint.dll"]
+```
 
 
 ### Program.cs
