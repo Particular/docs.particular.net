@@ -3,8 +3,8 @@ services:
     sender:
         image: sender
         build:
-            context: ./Sender/
-            dockerfile: Dockerfile
+            context: .
+            dockerfile: ./Sender/Dockerfile
         networks:
             - new
         depends_on:
@@ -13,8 +13,8 @@ services:
     receiver:
         image: receiver
         build:
-            context: ./Receiver/
-            dockerfile: Dockerfile
+            context: .
+            dockerfile: ./Receiver/Dockerfile
         networks:
             - new
         depends_on:

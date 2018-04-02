@@ -27,25 +27,9 @@ This sample requires that the following tools are installed:
 
 Running the sample involves building the code, preparing it for deployment, building container images and finally starting the multi-container application.
 
-
-### Building and publishing binaries
-
-The first step is to build the binaries using the .NET Core command line tools:
-
-```bash
-$ dotnet build
-```
-
-The compiled binaries need to be prepared for deployment into the container:
-
-```bash
-$ dotnet publish
-```
-
-
 ### Building container images
 
-The prepared binaries and container image definitions (Dockerfiles) are enough to build container images for both the `Sender` and the `Receiver`:
+Building the container images using the following command will `dotnet publish` (which includes `dotnet restore` and `dotnet build`) the endpoints in addition to building the container images for both the `Sender` and the `Receiver`:
 
 ```bash
 $ docker-compose build
