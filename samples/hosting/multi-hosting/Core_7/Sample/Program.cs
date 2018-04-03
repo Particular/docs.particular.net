@@ -66,7 +66,13 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.Instance1");
         // Exclude Instance2.dll and, by inference, include all other assemblies
         var scanner = endpointConfiguration.AssemblyScanner();
+
+#if NETCOREAPP2_0
+        scanner.ExcludeAssemblies("Instance2.Core");
+#else
         scanner.ExcludeAssemblies("Instance2");
+#endif
+
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
@@ -79,7 +85,11 @@ class Program
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.Instance2");
         var scanner = endpointConfiguration.AssemblyScanner();
+#if NETCOREAPP2_0
+        scanner.ExcludeAssemblies("Instance1.Core");
+#else
         scanner.ExcludeAssemblies("Instance1");
+#endif
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
