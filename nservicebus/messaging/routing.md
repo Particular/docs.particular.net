@@ -17,8 +17,6 @@ related:
 ---
 
 
-## Routing concepts
-
 The routing subsystem is responsible for finding destinations for messages. In most cases, the code which sends messages should not specify the destination of the message being sent:
 
 snippet: BasicSend
@@ -44,19 +42,19 @@ In specific cases, like sending to the same endpoint or to a specific queue (e.g
 
 ## Event routing
 
-When events are published, they can be received by multiple logical endpoints however, even in cases where those logical endpoints are scaled out, each event will be received by only one physical instance of a specific logical subscriber. It is important to note that before the event is published and delivered, the subscriber has to express its interest in that event by having a message handler for it.
+When events are published, they can be received by multiple logical endpoints. However, even in cases where those logical endpoints are scaled out, each event will be received by only one physical instance of a specific logical subscriber. It is important to note that before the event is published and delivered, the subscriber has to express its interest in that event by having a message handler for it.
 
 
 ### Native
 
 [Multicast transports](/transports/#types-of-transports-multicast-enabled-transports) support the Publish-Subscribe pattern natively. In this case the subscriber uses the APIs of the transport to create a route for a given subscribed message type.
 
-Note: The Azure Service Bus `EndpointOrientedTopology` requires [publishers names](/transports/azure-service-bus/publisher-names-configuration.md) to be configured.
+Note: The Azure Service Bus `EndpointOrientedTopology` requires [publisher names](/transports/azure-service-bus/publisher-names-configuration.md) to be configured.
 
 
 ### Message-driven
 
-[Other transports](/transports/#types-of-transports-unicast-only-transports) do not support Publish-Subscribe natively. These transports emulate the publish behavior by sending message to each subscriber directly. To do this, the publisher endpoint has to know its subscribers and subscribers have to notify the publisher about their interest in a given event type. The notification message (known as *subscribe* message) has to be routed to the publisher.
+[Other transports](/transports/#types-of-transports-unicast-only-transports) do not support Publish-Subscribe natively. These transports emulate the publish behavior by sending message to each subscriber directly. To do this, the publisher endpoint has to know its subscribers and subscribers have to notify the publisher about their interest in a given event type. The notification message (known as the *subscribe* message) has to be routed to the publisher.
 
 partial: events
 

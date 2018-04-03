@@ -6,15 +6,15 @@ reviewed: 2018-03-26
 versions: '[4,]'
 ---
 
-In Versions 4 and above, the SQS transport supports [delayed delivery](/nservicebus/messaging/delayed-delivery.md) of messages longer than 15 minutes (900 seconds).
+The SQS transport supports [delayed delivery](/nservicebus/messaging/delayed-delivery.md) of messages for longer than 15 minutes (900 seconds) in versions 4 and above.
 
 ## Enable unrestricted delayed delivery
 
-The unrestricted delayed delivery has to be enabled on the transport configuration:
+The unrestricted delayed delivery feature must be enabled on the transport configuration:
 
 snippet: DelayedDelivery
 
-Unrestricted delayed delivery needs to be enabled on the sender and receiver to be able to delay messages longer than 900 seconds.
+Unrestricted delayed delivery must be enabled on the sender and receiver to be able to delay messages longer than 900 seconds.
 
 | Scenario                    | Sender   | Receiver | Supported     |
 |-----------------------------|----------|----------|:-------------:|
@@ -27,7 +27,7 @@ Unrestricted delayed delivery needs to be enabled on the sender and receiver to 
 |                             | enabled  | disabled | No            |
 |                             | enabled  | enabled  | Yes           |
 
-WARNING: As the chart indicates, sending messages with a delay duration longer than 900 seconds to endpoints using Versions 3 and below is not supported.
+WARNING: As the chart indicates, sending messages with a delay duration longer than 900 seconds to endpoints using versions 3 and below is not supported.
 
 Unrestricted delayed delivery requires a FIFO queue for each endpoint that receives delayed messages. The transport handles creation of the FIFO queue automatically when [installers](/nservicebus/operations/installers.md) are enabled.
 
@@ -49,7 +49,7 @@ For an example of how to manually create queues, see [scripting](/transports/sqs
 
 When a delayed message is sent, the delay duration is calculated. If it's less than or equal to 900 seconds, the message is sent directly to the destination input queue with the `DelaySeconds` message attribute set to the delay duration.
 
-If the delay duration is greater than 900 seconds, then the message is sent to the destination's FIFO queue with the `NServiceBus.AmazonSQS.DelaySeconds` custom message attribute set to the delay duration. When the message is received from the FIFO queue after 900 seconds, the remaining delay duration is calculated. If it's less or equal to 900 seconds, the message is forwarded to the destination input queue with the `DelaySeconds` message attribute set to the remaining delay duration. Otherwise, the message is sent back to the FIFO queue with an updated custom message attribute set to the remaining delay duration.
+If the delay duration is greater than 900 seconds, then the message is sent to the destination's FIFO queue with the `NServiceBus.AmazonSQS.DelaySeconds` custom message attribute set to the delay duration. When the message is received from the FIFO queue after 900 seconds, the remaining delay duration is calculated. If it's less than or equal to 900 seconds, the message is forwarded to the destination input queue with the `DelaySeconds` message attribute set to the remaining delay duration. Otherwise, the message is sent back to the FIFO queue with an updated custom message attribute set to the remaining delay duration.
 
 The following sequence diagram illustrates a message sent with a delay duration greater than 900 seconds:
 
@@ -71,11 +71,11 @@ sequenceDiagram
 
 NOTE: FIFO queues are used to implement this feature because of their native support for de-duplication.
 
-WARNING: The transport uses timestamps from the broker to avoid clock skew, but a discrepancy between broker and endpoint clocks still has a potential to cause inaccurate delay calculation.
+WARNING: The transport uses timestamps from the broker to avoid clock skew, but a discrepancy between broker and endpoint clocks still has potential to cause inaccurate delay calculation.
 
 ### Potential duplicate messages
 
-While FIFO queues protect from message duplication, there are still scenarios where messages could be duplicated. To address the possibility of duplicate messages, handlers should be idempotent or the [Outbox](/nservicebus/outbox/) feature should be enabled.
+While FIFO queues protect from message duplication, there are still scenarios where messages could be duplicated. To address the possibility of duplicate messages, handlers should be idempotent or the [outbox](/nservicebus/outbox/) feature should be enabled.
 
 #### Scenario 1
 
