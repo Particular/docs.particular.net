@@ -9,6 +9,7 @@ class Program
         Console.Title = "Samples.CustomRouting.Shipping";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Shipping");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
