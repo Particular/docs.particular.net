@@ -13,6 +13,7 @@ class Program
         endpointConfiguration.OverrideLocalAddress("Samples.CustomRouting.Sales-2");
         endpointConfiguration.UseTransport<LearningTransport>();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
