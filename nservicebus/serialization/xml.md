@@ -1,16 +1,13 @@
 ---
-title: Xml Serializer
-summary: A custom written XML serializer.
-reviewed: 2016-08-23
+title: XML Serializer
+summary: A custom XML serializer
+reviewed: 2018-04-04
 component: Xml
 redirects:
  - nservicebus/serialization/xml-serializer
 related:
  - samples/serializers/xml
 ---
-
-A custom written XML serializer.
-
 
 ## Usage
 
@@ -28,12 +25,12 @@ partial: raw
 ## Caveats
 
 
-### XML Attributes
+### XML attributes
 
-The XML serializer in NServiceBus is a custom implementation. As such it does not support the [standard .NET XML Attributes](https://docs.microsoft.com/en-us/dotnet/framework/serialization/controlling-xml-serialization-using-attributes).
+The XML serializer in NServiceBus is a custom implementation. As such it does not support the [standard .NET XML attributes](https://docs.microsoft.com/en-us/dotnet/framework/serialization/controlling-xml-serialization-using-attributes).
 
 
-### Unsupported Types
+### Unsupported types
 
  * [HashTable](https://msdn.microsoft.com/en-us/library/system.collections.hashtable.aspx)
  * Types with non-default constructors. So types must have a public constructor with no parameters.
