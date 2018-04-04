@@ -13,6 +13,7 @@ class Program
         endpointConfiguration.OverrideLocalAddress("Samples.CustomRouting.Sales-1");
         endpointConfiguration.UseTransport<MsmqTransport>();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.SubscriptionSettings().DisableCache();
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
