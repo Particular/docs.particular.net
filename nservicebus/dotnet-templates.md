@@ -87,7 +87,7 @@ Default: `net462`
 Supported: `net47`, `net462`, `net452`
 
 
-partial: dockerendpoint
+partial: dockercontainer
 
 
 ## dotnet new information

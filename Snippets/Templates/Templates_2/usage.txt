@@ -32,11 +32,11 @@ dotnet sln add "MyWindowsService/MyWindowsService.csproj"
 
 
 # startcode docker-usage
-dotnet new nsbdockerendpoint --name MyEndpoint
+dotnet new nsbdockercontainer --name MyEndpoint
 # endcode
 
 # startcode docker-addToSolution
-dotnet new nsbdockerendpoint --name MyEndpoint
+dotnet new nsbdockercontainer --name MyEndpoint
 dotnet sln add "MyEndpoint/MyEndpoint.csproj"
 # endcode
 
