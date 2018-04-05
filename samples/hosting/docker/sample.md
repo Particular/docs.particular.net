@@ -1,7 +1,7 @@
 ---
 title: Hosting endpoints in Docker Linux containers
 summary: Hosting multiple endpoints in several Docker Linux containers managed by Docker Compose
-reviewed: 2017-09-25
+reviewed: 2018-04-05
 component: Core
 tags:
 - Hosting
@@ -25,27 +25,11 @@ This sample requires that the following tools are installed:
 
 ## Running the sample
 
-Running the sample involves building the code, preparing it for deployment, building container images and finally starting the multi-container application.
-
-
-### Building and publishing binaries
-
-The first step is to build the binaries using the .NET Core command line tools:
-
-```bash
-$ dotnet build
-```
-
-The compiled binaries need to be prepared for deployment into the container:
-
-```bash
-$ dotnet publish
-```
-
+Running the sample involves building the container images and starting the multi-container application.
 
 ### Building container images
 
-The prepared binaries and container image definitions (Dockerfiles) are enough to build container images for both the `Sender` and the `Receiver`:
+Building the container images using the following command will `dotnet publish` (which includes `dotnet restore` and `dotnet build`) the endpoints in addition to building the container images for both the `Sender` and the `Receiver`:
 
 ```bash
 $ docker-compose build
@@ -81,21 +65,27 @@ $ docker-compose down
 
 ## Code walk-through
 
-This sample consists of `Sender` and `Publisher` endpoints exchanging messages using the [RabbitMQ transport](/transports/rabbitmq/). Each of these three components runs in a separate Docker Linux container.
+This sample consists of `Sender` and `Receiver` endpoints exchanging messages using the [RabbitMQ transport](/transports/rabbitmq/). Each of these three components runs in a separate Docker Linux container.
 
 
 ### Endpoint Docker image
 
-Each endpoint is a container built on top of the official `microsoft/dotnet:2.0-runtime` image from [Docker Hub](https://hub.docker.com/). The container image is built using endpoint binaries from the `bin/Debug/netcoreapp2.0/publish` folder:
+Each endpoint is a container built on top of the official `microsoft/dotnet:2.0-runtime` image from [Docker Hub](https://hub.docker.com/). The container image builds and publishes the endpoint binaries and then uses those artifacts to build the final container image:
 
 ```dockerfile
-FROM microsoft/dotnet:2.0-runtime
-WORKDIR /Receiver
-COPY ./bin/Debug/netcoreapp2.0/publish .
+FROM microsoft/dotnet:2.0-runtime AS base
+
+FROM microsoft/dotnet:2.0-sdk AS build
+WORKDIR /src
+COPY . .
+WORKDIR /src/Receiver
+RUN dotnet publish -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "Receiver.dll"]
 ```
-
-NOTE: Run `dotnet build` and `dotnet publish` commands to generate endpoint binaries before creating the image.
 
 
 ### Multi-container application
@@ -108,8 +98,8 @@ services:
     sender:
         image: sender
         build:
-            context: ./Sender/
-            dockerfile: Dockerfile
+            context: .
+            dockerfile: ./Sender/Dockerfile
         networks:
             - new
         depends_on:
@@ -118,8 +108,8 @@ services:
     receiver:
         image: receiver
         build:
-            context: ./Receiver/
-            dockerfile: Dockerfile
+            context: .
+            dockerfile: ./Receiver/Dockerfile
         networks:
             - new
         depends_on:

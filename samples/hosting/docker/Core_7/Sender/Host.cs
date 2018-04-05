@@ -11,15 +11,13 @@ namespace Sender
 
         IEndpointInstance endpoint;
 
-        public string EndpointName => "Sender";
+        public string EndpointName => "Samples.Docker.Sender";
 
         public async Task Start()
         {
             try
             {
-                Console.Title = "Samples.Docker.Sender";
-
-                var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
+                var endpointConfiguration = new EndpointConfiguration(EndpointName);
                 var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
                 transport.ConnectionString("host=rabbitmq");
                 transport.UseConventionalRoutingTopology();

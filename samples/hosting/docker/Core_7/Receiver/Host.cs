@@ -11,15 +11,13 @@ namespace Receiver
 
         IEndpointInstance endpoint;
 
-        public string EndpointName => "Receiver";
+        public string EndpointName => "Samples.Docker.Receiver";
 
         public async Task Start()
         {
             try
             {
-                Console.Title = "Samples.Docker.Receiver";
-
-                var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver");
+                var endpointConfiguration = new EndpointConfiguration(EndpointName);
                 #region TransportConfiguration
 
                 var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
