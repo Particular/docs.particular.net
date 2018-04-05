@@ -29,7 +29,7 @@ This template makes it easier to create a [Windows Service](https://docs.microso
 
 ![](dotnet-templates-winservice.gif "width=300")
 
-The template can be used via the following.
+The template can be used via the following command:
 
 snippet: nsbservice-usage
 
@@ -60,7 +60,7 @@ Supported: `net47`, `net462`, `net452`
 
 This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for the [ServiceControl Transport Adapter](/servicecontrol/transport-adapter/).
 
-The template can be used via the following.
+The template can be used via the following command:
 
 snippet: scadapterservice-usage
 

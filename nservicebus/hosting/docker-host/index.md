@@ -48,7 +48,7 @@ This file contains the instructions for compiling the endpoint and creating the 
 
 The endpoint will be hosted in a container that is based on the `microsoft/dotnet:2.0-runtime` image. Once built, the container image will contain the compiled artifacts of the endpoint project, and will launch that endpoint when the container is run.
 
-To compile the endpoint and create the Docker image, run the following:
+To compile the endpoint and create the Docker image, run the following command:
 
 snippet: docker-build
 
