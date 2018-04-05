@@ -1,6 +1,6 @@
-## Docker Container Host
+## NServiceBus Docker Container
 
-This template makes it easier to create an endpoint that is hosted in [Docker](https://www.docker.com/). The template follows the approach outlined in [Docker Container Host](/nservicebus/hosting/docker-host/).
+This template makes it easier to create a [Docker](https://www.docker.com/) container host for an NServiceBus endpoint. The template follows the approach outlined in [Docker Container Host](/nservicebus/hosting/docker-host/).
 
 The template can be used via the following command:
 
