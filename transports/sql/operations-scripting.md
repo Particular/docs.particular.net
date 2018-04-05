@@ -13,6 +13,17 @@ redirects:
 The following are example code and scripts to facilitate deployment and operations against the SQL Server Transport.
 
 
+## Inspecting messages in the queue
+
+The following script returns messages waiting in a given queue
+
+snippet: inspect-queue
+
+NOTE: Some columns have been removed for clarity as they are only required for wire-level compatibility with previous versions of SQL Server transport.
+
+The `BodyString` column is a computed value that allows inspecting of the message body when a text-based serializer is used (e.g. Json or XML).
+
+
 ## Native Send
 
 
