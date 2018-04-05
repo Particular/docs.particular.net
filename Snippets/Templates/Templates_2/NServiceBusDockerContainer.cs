@@ -6,9 +6,9 @@ using NServiceBus.Logging;
 
 namespace Templates_2
 {
-    class NServiceBusDockerEndpoint
+    class NServiceBusDockerContainer
     {
-        static readonly ILog log = LogManager.GetLogger<NServiceBusDockerEndpoint>();
+        static readonly ILog log = LogManager.GetLogger<NServiceBusDockerContainer>();
 
         IEndpointInstance endpoint;
 
