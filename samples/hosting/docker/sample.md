@@ -1,7 +1,7 @@
 ---
 title: Hosting endpoints in Docker Linux containers
 summary: Hosting multiple endpoints in several Docker Linux containers managed by Docker Compose
-reviewed: 2017-09-25
+reviewed: 2018-04-05
 component: Core
 tags:
 - Hosting
@@ -70,16 +70,22 @@ This sample consists of `Sender` and `Publisher` endpoints exchanging messages u
 
 ### Endpoint Docker image
 
-Each endpoint is a container built on top of the official `microsoft/dotnet:2.0-runtime` image from [Docker Hub](https://hub.docker.com/). The container image is built using endpoint binaries from the `bin/Debug/netcoreapp2.0/publish` folder:
+Each endpoint is a container built on top of the official `microsoft/dotnet:2.0-runtime` image from [Docker Hub](https://hub.docker.com/). The container image builds and publishes the endpoint binaries and then uses those artefacts to build the final container image:
 
 ```dockerfile
-FROM microsoft/dotnet:2.0-runtime
-WORKDIR /Receiver
-COPY ./bin/Debug/netcoreapp2.0/publish .
+FROM microsoft/dotnet:2.0-runtime AS base
+
+FROM microsoft/dotnet:2.0-sdk AS build
+WORKDIR /src
+COPY . .
+WORKDIR /src/Receiver
+RUN dotnet publish -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "Receiver.dll"]
 ```
-
-NOTE: Run `dotnet build` and `dotnet publish` commands to generate endpoint binaries before creating the image.
 
 
 ### Multi-container application
