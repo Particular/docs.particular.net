@@ -12,7 +12,7 @@ versions: '[2,]'
 reviewed: 2018-02-28
 ---
 
-Docker containers provide the ability to deploy endpoints in a self-contained manner. To create and host an endpoint in a Docker container, install the [Docker container template](/nservicebus/dotnet-templates.md) and create a new project using `dotnet new nsbdockercontainer`. The project that is created will have the required endpoint setup infrastructure in addition to the needed `Dockerfile` to create and deploy a container hosting one endpoint.
+Docker containers provide the ability to deploy endpoints in a self-contained manner. To create and host an endpoint in a Docker container, install the [Docker container template](/nservicebus/dotnet-templates.md#docker-container-host) and create a new project using `dotnet new nsbdockercontainer`. The project that is created will have the required endpoint setup infrastructure in addition to the needed `Dockerfile` to create and deploy a container hosting one endpoint.
 
 
 ## Template overview
