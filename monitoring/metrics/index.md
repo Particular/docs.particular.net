@@ -39,6 +39,23 @@ To enable collecting metrics in an environment:
 NOTE: [Monitoring NServiceBus solutions: Getting started](/tutorials/monitoring-setup/) is an in-depth, step-by-step tutorial about installing and configuring everything to get the most out of performance monitoring.
 
 
+## Performance impact on system resources
+
+A ServiceControl monitoring instance is very lightweight compares a regular ServiceControl instance. We would still advice not to host a monitoring instance on the same machine that is hosting any production endpoint instances.
+
+### Wire usage
+
+Each endpoint instance collects performance metrics which are buffered and then send. A single metrics message contains a batch of metrics values in a compact binary format. This makes the sending of performance metrics very lightweight.
+
+### Storage usage
+
+Metrics are processed by a Service Control Monitoring instance. A monitoring instance only requires RAM, it does not store any metrics on disk except the creation of a log file. Metrics data is stored in RAM in aggregated form for a maximum duration of one hour. A 100mb process can easily hold metric state for atleast 100 endpoint instances.
+
+### CPU Usage
+
+The metrics service is only performing simple summing aggregation logic. The CPU resources 
+
+
 ## Reporting metric data to other places
 
 - Metrics can be reported to [Windows Performance Counters](performance-counters.md).
