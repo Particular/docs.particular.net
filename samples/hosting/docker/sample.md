@@ -25,7 +25,7 @@ This sample requires that the following tools are installed:
 
 ## Running the sample
 
-Running the sample involves building the code, preparing it for deployment, building container images and finally starting the multi-container application.
+Running the sample involves building the container images and starting the multi-container application.
 
 ### Building container images
 
@@ -65,12 +65,12 @@ $ docker-compose down
 
 ## Code walk-through
 
-This sample consists of `Sender` and `Publisher` endpoints exchanging messages using the [RabbitMQ transport](/transports/rabbitmq/). Each of these three components runs in a separate Docker Linux container.
+This sample consists of `Sender` and `Receiver` endpoints exchanging messages using the [RabbitMQ transport](/transports/rabbitmq/). Each of these three components runs in a separate Docker Linux container.
 
 
 ### Endpoint Docker image
 
-Each endpoint is a container built on top of the official `microsoft/dotnet:2.0-runtime` image from [Docker Hub](https://hub.docker.com/). The container image builds and publishes the endpoint binaries and then uses those artefacts to build the final container image:
+Each endpoint is a container built on top of the official `microsoft/dotnet:2.0-runtime` image from [Docker Hub](https://hub.docker.com/). The container image builds and publishes the endpoint binaries and then uses those artifacts to build the final container image:
 
 ```dockerfile
 FROM microsoft/dotnet:2.0-runtime AS base
@@ -98,8 +98,8 @@ services:
     sender:
         image: sender
         build:
-            context: ./Sender/
-            dockerfile: Dockerfile
+            context: .
+            dockerfile: ./Sender/Dockerfile
         networks:
             - new
         depends_on:
@@ -108,8 +108,8 @@ services:
     receiver:
         image: receiver
         build:
-            context: ./Receiver/
-            dockerfile: Dockerfile
+            context: .
+            dockerfile: ./Receiver/Dockerfile
         networks:
             - new
         depends_on:
