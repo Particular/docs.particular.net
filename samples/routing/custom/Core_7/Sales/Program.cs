@@ -11,8 +11,10 @@ class Program
         Console.Title = "Samples.CustomRouting.Sales.1";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRouting.Sales");
         endpointConfiguration.OverrideLocalAddress("Samples.CustomRouting.Sales-1");
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport<MsmqTransport>();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.SubscriptionSettings().DisableCache();
+        persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
