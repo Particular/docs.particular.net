@@ -6,6 +6,7 @@ versions: '[3,)'
 redirects:
 - nservicebus/sqlserver/runtime-sql
 - transports/sqlserver/runtime-sql
+- transports/sql/runtime-sql
 ---
 
 ## Installation
