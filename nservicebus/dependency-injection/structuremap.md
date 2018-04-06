@@ -32,6 +32,6 @@ The [DependencyLifecycle](/nservicebus/dependency-injection/#dependency-lifecycl
 
 | DependencyLifecycle                                                                                             | StructureMap Lifecycle                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/#dependency-lifecycle-instancepercall) | [AlwaysUnique](http://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec1)     |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#dependency-lifecycle-instanceperunitofwork)                    | [ContainerScoped](http://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec3) |
-| [SingleInstance](/nservicebus/dependency-injection/#dependency-lifecycle-singleinstance)                                  | [Singleton](http://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec2)        |
+| [InstancePerCall](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-call) | [AlwaysUnique](http://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec1)     |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work)                    | [ContainerScoped](http://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec3) |
+| [SingleInstance](/nservicebus/dependency-injection/#dependency-lifecycle-single-instance)                                  | [Singleton](http://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec2)        |

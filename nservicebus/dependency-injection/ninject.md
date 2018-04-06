@@ -34,6 +34,6 @@ The [DependencyLifecycle](/nservicebus/dependency-injection/#dependency-lifecycl
 
 | DependencyLifecycle                                                                                             | Ninject Equivalent                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/#dependency-lifecycle-instancepercall) | [Transient](https://github.com/ninject/ninject/wiki/Object-Scopes)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#dependency-lifecycle-instanceperunitofwork)                    | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes) within a [Named Scope](https://github.com/ninject/ninject.extensions.namedscope/wiki) per Unit of Work |
-| [SingleInstance](/nservicebus/dependency-injection/#dependency-lifecycle-singleinstance)                                  | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes)                          |
+| [InstancePerCall](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-call) | [Transient](https://github.com/ninject/ninject/wiki/Object-Scopes)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work)                    | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes) within a [Named Scope](https://github.com/ninject/ninject.extensions.namedscope/wiki) per Unit of Work |
+| [SingleInstance](/nservicebus/dependency-injection/#dependency-lifecycle-single-instance)                                  | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes)                          |
