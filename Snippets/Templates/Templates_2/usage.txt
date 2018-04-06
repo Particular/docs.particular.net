@@ -1,0 +1,45 @@
+﻿# startcode install
+dotnet new --install ParticularTemplates::*
+# endcode
+
+
+# startcode scadapterservice-usage
+dotnet new scadapterwinservice --name MyAdapter
+# endcode
+
+# startcode scadapterservice-options
+dotnet new scadapterwinservice --help
+# endcode
+
+# startcode scadapterservice-addToSolution
+dotnet new scadapterwinservice --name MyAdapter
+dotnet sln add "MyAdapter/MyAdapter.csproj"
+# endcode
+
+
+# startcode nsbservice-usage
+dotnet new nsbwinservice --name MyWindowsService
+# endcode
+
+# startcode nsbservice-options
+dotnet new nsbwinservice --help
+# endcode
+
+# startcode nsbservice-addToSolution
+dotnet new nsbwinservice --name MyWindowsService
+dotnet sln add "MyWindowsService/MyWindowsService.csproj"
+# endcode
+
+
+# startcode docker-usage
+dotnet new nsbdockercontainer --name MyEndpoint
+# endcode
+
+# startcode docker-addToSolution
+dotnet new nsbdockercontainer --name MyEndpoint
+dotnet sln add "MyEndpoint/MyEndpoint.csproj"
+# endcode
+
+# startcode docker-build
+docker build -f Dockerfile -t MyEndpoint ./..
+#endcode
