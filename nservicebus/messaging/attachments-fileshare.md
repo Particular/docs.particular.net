@@ -1,21 +1,21 @@
 ---
-title: SQL Attachments
-summary: Use SQL Server varbinary to store attachments for messages.
+title: FileShare Attachments
+summary: Use a file share to store attachments for messages.
 reviewed: 2018-04-06
-component: AttachmentsSql
+component: AttachmentsFileShare
 related:
- - samples/attachments-sql
  - samples/attachments-fileshare
+ - samples/attachments-sql
 ---
 
-Uses a SQL Server [varbinary](https://docs.microsoft.com/en-us/sql/t-sql/data-types/binary-and-varbinary-transact-sql) to store attachments for messages.
+Uses a file share to store attachments for messages.
 
 
 ## Usage
 
 Two settings are required as part of the default usage:
 
- * A connection factory that returns an open instance of a [SqlConnection](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlconnection.aspx). Note that any Exception that occurs during opening the connection should be handled by the factory.
+ * A file share or directory location.
  * A default time to keep for attachments.
 
 snippet: EnableAttachments
