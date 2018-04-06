@@ -1,13 +1,13 @@
 ## Timeouts persistence
 
-`MsmqPersistence` provides persistence only for storing event subscriptions. By default NServiceBus also requires a timeout persistence, which is used by [Delayed Retries](/nservicebus/recoverability/#delayed-retries), [Saga timeouts](/nservicebus/sagas/timeouts.md) and for [Delayed Delivery](/nservicebus/messaging/delayed-delivery.md).
+`MsmqPersistence` provides persistence only for storing event subscriptions. By default, NServiceBus also requires a timeout persistence, which is used by [delayed retries](/nservicebus/recoverability/#delayed-retries), [saga timeouts](/nservicebus/sagas/timeouts.md) and for [delayed delivery](/nservicebus/messaging/delayed-delivery.md).
 
-If none of these features are used then timeouts can be disabled:
+If none of these features are used, timeouts can be disabled:
 
 snippet: DisablingTimeoutManagerForMsmqPersistence
 
-NOTE: If timeouts are disabled then features such as Delayed Retries and Saga timeouts cannot be used.
+NOTE: If timeouts are disabled, features such as delayed retries and saga timeouts cannot be used.
 
-Another approach is to use a different persistence for features different than event subscriptions:
+Another approach is to use a different persistence for features other than event subscriptions:
 
 snippet: MsmqPersistenceWithOtherPersisters

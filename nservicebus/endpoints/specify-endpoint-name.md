@@ -1,7 +1,7 @@
 ---
 title: Specify Endpoint Name
-summary: There are many ways to specify the endpoint name.
-reviewed: 2016-08-24
+summary: Describes the ways in which to specify an endpoint name
+reviewed: 2018-04-06
 component: Core
 tags:
 - Convention
@@ -13,7 +13,7 @@ redirects:
 ---
 
 
-Define the endpoint name at initialization time using:
+Define the endpoint name at initialization time:
 
 snippet: EndpointNameCode
 
@@ -25,6 +25,6 @@ See also:
 
 ## Input queue
 
-By default the endpoint's input queue name is the same as endpoint's name.
+By default, the endpoint's input queue name is the same as endpoint's name.
 
 partial: inputqueuename

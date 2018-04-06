@@ -1,1 +1,1 @@
-It is safe for multiple endpoints can share the same AppDomain or, alternatively use a multiple AppDomains approach.
+It is safe for multiple endpoints to share the same AppDomain or use multiple AppDomains.
