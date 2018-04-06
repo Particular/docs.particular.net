@@ -6,7 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
-    <PackageReference Include="NServiceBus.ProtoBuf" Version="1.0.*" />
-    <PackageReference Include="protobuf-net" Version="2.*" />
+    <PackageReference Include="NServiceBus.ProtoBuf" Version="1.*" />
   </ItemGroup>
 </Project>
