@@ -39,51 +39,19 @@ To receive messages from the publisher, the subscribers [must subscribe to the m
 
  * The `Subscriber` process handles and subscribes to the `OrderReceived` type.
  * The handlers in each project are in files that end in with the word `Handler` for example `OrderReceivedHandler.cs`. 
- * `Subscriber` process uses the default auto-subscription feature of the bus where the the bus automatically sends subscription messages to the configured publisher. [The auto-subscribe feature can be explicitly disabled](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) as part of the endpoint configuration.
+ * `Subscriber` process uses the default auto-subscription feature of the bus where the the bus automatically subscribes to the configured publisher. [The auto-subscribe feature can be explicitly disabled](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) as part of the endpoint configuration.
   
 
 ## Run the sample
 
-When running the sample, notice the three open console applications and many log messages on each. Almost none of these logs represent messages sent between the processes.
-
-Bring the `Publisher` process to the foreground.
+When running the sample, notice the two open console applications. Bring the `Publisher` process to the foreground.
 
 Click the `1` key repeatedly in the `Publisher` process console window, and see how the messages appear in the `Subscriber` console window. 
 
 
 ## Message Flow
 
-Note: The below [persistence-based publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven) is the behavior for [unicast transports](/transports/#types-of-transports-unicast-only-transports).  [Broker transports](/transports/#types-of-transports-broker-transports) have [native publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-native) features.
-  
-
-### Subscribe
-
-`Subscriber` sends a subscription message to `Publisher` which is stored in the [persistence](/persistence/) of `Publisher`. 
-
-```mermaid
-sequenceDiagram
-Participant Subscriber As Subscriber
-Participant Publisher As Publisher
-Participant Persistence As Persistence
-Subscriber ->> Publisher: Subscribe to OrderReceived
-Publisher ->> Persistence: Store "Subscriber wants OrderReceived"
-```
-
-### Publish
-
-When a publish occur on `Publisher` it queries the persistence for subscribers.
-
-```mermaid
-sequenceDiagram
-
-Participant Subscriber As Subscriber
-Participant Publisher As Publisher
-Participant Persistence As Persistence 
-Note over Publisher: Publish OrderReceived occurs
-Publisher ->> Persistence: Requests "who wants OrderReceived"
-Persistence ->> Publisher: Subscriber
-Publisher ->> Subscriber: Send OrderReceived
-```
+The exact message flow may differ between [unicast transports](/transports/#types-of-transports-unicast-only-transports) and [broker transports](/transports/#types-of-transports-broker-transports). See the [publish-subscribe documentation](/nservicebus/messaging/publish-subscribe/) for further details.
 
 
 ## Fault-tolerant messaging
