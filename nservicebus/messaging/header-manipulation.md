@@ -1,7 +1,7 @@
 ---
 title: Manipulating message headers
-summary: Access and manipulate the built in NServiceBus headers or add custom headers.
-reviewed: 2016-08-29
+summary: Access and manipulate the built-in NServiceBus headers or add custom headers
+reviewed: 2018-04-06
 component: Core
 tags:
 - Header
@@ -19,7 +19,7 @@ related:
 The mechanism for [header communication](/nservicebus/messaging/headers.md) is either native headers, if the transport supports that feature, or via a serialized collection of key value pairs. This article covers the various ways of manipulating the message headers.
 
 
-## Reading incoming Headers
+## Reading incoming headers
 
 Headers can be read for an incoming message.
 
@@ -27,22 +27,22 @@ Headers can be read for an incoming message.
 partial: incomingbehavior
 
 
-### From a Mutator
+### From a mutator
 
 snippet: header-incoming-mutator
 
 
-### From a Handler
+### From a handler
 
 snippet: header-incoming-handler
 
 
-### From a Saga
+### From a saga
 
 snippet: header-incoming-saga
 
 
-## Writing outgoing Headers
+## Writing outgoing headers
 
 Headers can be written for an outgoing message.
 
@@ -50,17 +50,17 @@ Headers can be written for an outgoing message.
 partial: outgoingbehavior
 
 
-### From a Mutator
+### From a mutator
 
 snippet: header-outgoing-mutator
 
 
-### From a Handler
+### From a handler
 
 snippet: header-outgoing-handler
 
 
-### From a Saga
+### From a saga
 
 snippet: header-outgoing-saga
 
