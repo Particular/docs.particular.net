@@ -34,29 +34,4 @@ public class Usage
 
         #endregion
     }
-
-    void ExecuteAtStartup(EndpointConfiguration endpointConfiguration)
-    {
-        #region ExecuteAtStartup
-
-        endpointConfiguration.EnableInstallers();
-        var attachments = endpointConfiguration.EnableAttachments(
-            fileShare: "networkSharePath",
-            timeToKeep: TimeToKeep.Default);
-
-        #endregion
-    }
-
-    void DisableInstaller(EndpointConfiguration endpointConfiguration)
-    {
-        #region DisableInstaller
-
-        endpointConfiguration.EnableInstallers();
-        var attachments = endpointConfiguration.EnableAttachments(
-            fileShare: "networkSharePath",
-            timeToKeep: TimeToKeep.Default);
-        attachments.DisableInstaller();
-
-        #endregion
-    }
 }
