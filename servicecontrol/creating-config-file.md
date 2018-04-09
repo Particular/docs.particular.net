@@ -332,3 +332,25 @@ Default: `00:00:40` (40 secs)
 When configuring heartbeat grace period, make sure it is greater than [heartbeat interval defined by plugin](/monitoring/heartbeats/install-plugin.md).
 
 Note: When monitoring multiple endpoints, ensure that heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
+
+## Troubleshooting
+
+#### ServiceControl/ExposeRavenDB
+
+ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If, during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio. 
+
+NOTE: [Maintenance mode](use-ravendb-studio.md) is the recommended way to review documents in the embedded RavenDB instance.
+
+WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
+
+Type: bool
+
+Default: `false`
+
+After restarting the ServiceControl service, access the RavenDB studio locally at the following endpoint:
+
+```no-highlight
+http://localhost:33333/storage
+```
+
+NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).
