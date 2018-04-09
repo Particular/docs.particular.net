@@ -37,14 +37,14 @@ snippet: PublishLoop
 
 To receive messages from the publisher, the subscribers [must subscribe to the message types](/nservicebus/messaging/publish-subscribe/) they are designed to handle. A subscriber must have a handler for the type of message and a [configuration](/nservicebus/messaging/publish-subscribe/) that tells the endpoint where to send subscriptions for messages:
 
- * The `Subscriber` process handles and subscribes to the `OrderReceived` type.
+ * The `Subscriber` handles and subscribes to the `OrderReceived` type.
  * The handlers in each project are in files that end in with the word `Handler` for example `OrderReceivedHandler.cs`. 
- * `Subscriber` process uses the default auto-subscription feature of the bus where the the bus automatically subscribes to the configured publisher. [The auto-subscribe feature can be explicitly disabled](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) as part of the endpoint configuration.
+ * `Subscriber` uses the default auto-subscription feature of the bus where the the bus automatically subscribes to the configured publisher. [The auto-subscribe feature can be explicitly disabled](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) as part of the endpoint configuration.
   
 
 ## Run the sample
 
-When running the sample, notice the two open console applications. Bring the `Publisher` process to the foreground.
+When running the sample, notice the two open console applications. Bring the `Publisher` endpoint to the foreground.
 
 Click the `1` key repeatedly in the `Publisher` process console window, and see how the messages appear in the `Subscriber` console window. 
 
