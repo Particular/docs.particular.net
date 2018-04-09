@@ -818,7 +818,7 @@ Note that this should be a temporary state and in the next major default back to
 Also this generally only applies to snippets. It is usually not necessary to go to that level of version granularity for samples.
 
 
-### Sample always pull in one extra level
+### Samples always pull in one extra level
 
 All samples pull in one extra level of package dependency. So, for example, in the Rabbit samples it would be sufficient to have:
 
@@ -826,11 +826,11 @@ All samples pull in one extra level of package dependency. So, for example, in t
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
 ```
 
-The reference to `NServiceBus` and `RabbitMQ.Client` would then be inferred. However since the dependencies in `NServiceBus.RabbitMQ` are:
+The reference to `NServiceBus` and `RabbitMQ.Client` would then be inferred. However, since the dependencies in `NServiceBus.RabbitMQ` are:
 
 ```
 NServiceBus (>= 6.0.0 && < 7.0.0)
-RabbitMQ.Client (>= 4.1.0 && < 5.1.0)
+RabbitMQ.Client (>= 5.0.1 && < 5.1.0)
 ```
 
 NuGet will then resolve the lowest within those ranges. This make it more difficult to smoke test new versions of those dependencies using samples. As such, for all dependencies that are important to use the latest, the extra dependencies are explicitly included with wildcards.
@@ -838,7 +838,7 @@ NuGet will then resolve the lowest within those ranges. This make it more diffic
 ```
 <PackageReference Include="NServiceBus" Version="6.*" />
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
-<PackageReference Include="RabbitMQ.Client" Version="5.*" />
+<PackageReference Include="RabbitMQ.Client" Version="5.0.*" />
 ```
 
 
