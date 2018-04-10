@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase3.Core.csproj" />
-    <PackageReference Include="Npgsql" Version="*" />
+    <PackageReference Include="Npgsql" Version="3.*" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointPostgreSql\Program.cs" />
