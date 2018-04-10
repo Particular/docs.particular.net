@@ -39,6 +39,19 @@
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Attachments
   NugetOrder:
     - NServiceBus.Attachments.Sql
+    - NServiceBus.Attachments.Sql.Raw
+
+- Key: AttachmentsFileShare
+  Name: FileShare Attachments
+  DocoUrl: nservicebus/messaging/attachments-fileshare
+  Category: Other
+  GitHubOwner: NServiceBusExtensions
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Attachments/blob/master/license.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Attachments
+  NugetOrder:
+    - NServiceBus.Attachments.FileShare
+    - NServiceBus.Attachments.FileShare.Raw
 
 - Key: ABSDataBus
   Name: Azure Blob Storage Databus

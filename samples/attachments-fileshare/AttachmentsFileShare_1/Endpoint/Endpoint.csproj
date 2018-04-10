@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="NServiceBus" Version="7.0.0-rc0001" />
-    <PackageReference Include="NServiceBus.Attachments.Sql" Version="1.0.0-beta.24" />
+    <PackageReference Include="NServiceBus.Attachments.FileShare" Version="1.0.0-beta.24" />
   </ItemGroup>
   <ItemGroup>
     <None Update="fileToStream.txt">

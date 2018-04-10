@@ -269,6 +269,8 @@
       Title: Mailer
     - Url: nservicebus/outbox
       Title: Outbox
+    - Url: nservicebus/messaging/attachments-fileshare
+      Title: FileShare Attachments
     - Url: nservicebus/messaging/attachments-sql
       Title: Sql Attachments
     - Url: nservicebus/messaging/databus

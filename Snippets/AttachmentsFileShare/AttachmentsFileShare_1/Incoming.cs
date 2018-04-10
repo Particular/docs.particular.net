@@ -118,7 +118,7 @@ public class Incoming
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var incomingAttachments = context.Attachments();
-            using (var attachmentStream = await incomingAttachments.GetStream("attachment1").ConfigureAwait(false))
+            using (var attachmentStream = incomingAttachments.GetStream("attachment1"))
             {
                 // Use the attachment stream. in this example copy to a file
                 using (var fileToCopyTo = File.Create("FilePath.txt"))
