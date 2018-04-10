@@ -16,6 +16,7 @@ public class Incoming
                 name: "attachment1",
                 action: async stream =>
                 {
+                    // Use the attachment stream. in this example copy to a file
                     using (var fileToCopyTo = File.Create("FilePath.txt"))
                     {
                         await stream.CopyToAsync(fileToCopyTo).ConfigureAwait(false);
@@ -35,18 +36,21 @@ public class Incoming
         {
             var incomingAttachments = context.Attachments();
             await incomingAttachments.ProcessStreams(
-                action: async (name, stream) =>
-                {
-                    using (var fileToCopyTo = File.Create($"{name}.txt"))
+                    action: async (name, stream) =>
                     {
-                        await stream.CopyToAsync(fileToCopyTo)
-                            .ConfigureAwait(false);
-                    }
-                });
+                        // Use the attachment stream. in this example copy to a file
+                        using (var fileToCopyTo = File.Create($"{name}.txt"))
+                        {
+                            await stream.CopyToAsync(fileToCopyTo)
+                                .ConfigureAwait(false);
+                        }
+                    })
+                .ConfigureAwait(false);
         }
     }
 
     #endregion
+
     #region ProcessStreamsForMessage
 
     class HandlerProcessStreamsForMessage :
@@ -56,15 +60,17 @@ public class Incoming
         {
             var incomingAttachments = context.Attachments();
             await incomingAttachments.ProcessStreamsForMessage(
-                messageId: "theMessageId",
-                action: async (name, stream) =>
-                {
-                    using (var fileToCopyTo = File.Create($"{name}.txt"))
+                    messageId: "theMessageId",
+                    action: async (name, stream) =>
                     {
-                        await stream.CopyToAsync(fileToCopyTo)
-                            .ConfigureAwait(false);
-                    }
-                });
+                        // Use the attachment stream. in this example copy to a file
+                        using (var fileToCopyTo = File.Create($"{name}.txt"))
+                        {
+                            await stream.CopyToAsync(fileToCopyTo)
+                                .ConfigureAwait(false);
+                        }
+                    })
+                .ConfigureAwait(false);
         }
     }
 
@@ -98,6 +104,7 @@ public class Incoming
             var incomingAttachments = context.Attachments();
             var bytes = await incomingAttachments.GetBytes("attachment1")
                 .ConfigureAwait(false);
+            // use the byte array
         }
     }
 
@@ -112,10 +119,13 @@ public class Incoming
         {
             var incomingAttachments = context.Attachments();
             using (var attachmentStream = await incomingAttachments.GetStream("attachment1").ConfigureAwait(false))
-            using (var fileToCopyTo = File.Create("FilePath.txt"))
             {
-                await attachmentStream.CopyToAsync(fileToCopyTo)
-                    .ConfigureAwait(false);
+                // Use the attachment stream. in this example copy to a file
+                using (var fileToCopyTo = File.Create("FilePath.txt"))
+                {
+                    await attachmentStream.CopyToAsync(fileToCopyTo)
+                        .ConfigureAwait(false);
+                }
             }
         }
     }
