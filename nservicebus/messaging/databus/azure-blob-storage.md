@@ -1,6 +1,7 @@
 ---
 title: Azure Blob Storage DataBus
-reviewed: 2016-08-29
+summary: The Azure Blob Storage implementation of databus
+reviewed: 2018-04-10
 component: ABSDataBus
 tags:
  - DataBus
@@ -16,9 +17,9 @@ Azure Blob Storage DataBus will **remove** the [Azure storage blobs](https://doc
 snippet: AzureDataBus
 
 
-## Cleanup Strategy
+## Cleanup strategy
 
-Specify a proper value for the `TimeToBeReceived` property. For more details on how to specify this, read this article on [discarding old messages](/nservicebus/messaging/discard-old-messages.md).
+Specify a value for the `TimeToBeReceived` property. For more details on how to specify this, see the article on [discarding old messages](/nservicebus/messaging/discard-old-messages.md).
 
 
 ## Configuration
