@@ -218,7 +218,7 @@ Audit forwarding, if enabled, will be ignored.
 
 - Splitting into multiple ServiceControl instances is supported only for auditing.
 - Only one ServiceControl instance, usually master, should have error handling / recoverability enabled unless the multi-region scenario is used.
-- Only one ServiceControl instance, usually master, should be the targets for [plugins](/servicecontrol/plugins/) unless the multi-region scenario is used.
+- Only one ServiceControl instance, usually master, should be the target for [plugins](/servicecontrol/plugins/) unless the multi-region scenario is used.
 - Pagination with ServiceInsight may not work as traditional pagination would. For example, some pages might be filled unevenly depending on how the load is scattered between the different ServiceControl instances.
 - Data from remote instances that cannot be reached by the master instance will not be included in the results.
 - Multi-instance configuration is a manual setup process and cannot be done via the ServiceControl Management application.
