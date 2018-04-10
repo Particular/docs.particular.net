@@ -1,5 +1,5 @@
 ---
-title: Scripting
+title: SQS Transport Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against the SQS Transport.
 component: SQS
 reviewed: 2017-06-28

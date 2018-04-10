@@ -1,5 +1,5 @@
 ---
-title: Scripting
+title: RavenDB Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against RavenDB.
 reviewed: 2017-10-16
 related:

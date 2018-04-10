@@ -1,5 +1,5 @@
 ---
-title: Operational Scripting
+title: Azure Service Bus Transport Scripting
 summary: Examples and scripts that facilitate deployment and operational actions against Azure Service Bus
 component: ASB
 reviewed: 2017-05-05
