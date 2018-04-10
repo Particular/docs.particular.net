@@ -23,7 +23,7 @@ snippet: EnableAttachments
 
 ### Recommended Usage
 
-Uses the `NServiceBus.Attachments.Sql.TimeToKeep.Default` method for attachment cleanup.
+Uses the `NServiceBus.Attachments.FileShare.TimeToKeep.Default` method for attachment cleanup.
 
 This usage results in the following:
 
