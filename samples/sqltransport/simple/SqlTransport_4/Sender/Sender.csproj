@@ -7,6 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-beta*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-rc*" />
   </ItemGroup>
 </Project>
