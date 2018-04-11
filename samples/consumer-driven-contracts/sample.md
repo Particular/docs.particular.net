@@ -36,4 +36,4 @@ snippet: replace-fullnames
 
 Run the sample and notice how each consumer receives its contract when the producer publishes `MyEvent`.
 
-NOTE: Sharing contract types between endpoints is a larger topic, and this sample is using linked files for simplicity. See the [message contacts documentation](/nservicebus/messaging/evolving-contracts.md) for more details.
+NOTE: Sharing contract types between endpoints is a larger topic, and this sample is using linked files for simplicity. See the [message contracts documentation](/nservicebus/messaging/evolving-contracts.md) for more details.
