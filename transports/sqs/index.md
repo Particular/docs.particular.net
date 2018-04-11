@@ -46,6 +46,7 @@ The IAM account requires the following:
  * SendMessage
  * SendMessageBatch
  * SetQueueAttributes
+ * GetQueueAttributes
  * ChangeMessageVisibility
  * ChangeMessageVisibilityBatch
  * PurgeQueue
