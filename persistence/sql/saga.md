@@ -32,7 +32,7 @@ partial: attribute-required
 
 ## Compile time detection of correlation property
 
-The divergence from the standard standard NServiceBus saga API is required since the SQL Persistence need to be able to determine certain meta data about a saga at compile time.
+The divergence from the standard NServiceBus saga API is required since the SQL Persistence need to be able to determine certain meta data about a saga at compile time.
 
 In a standard Saga, the Correlation Id is configured in the `ConfigureHowToFindSaga` method. On the surface it would seem to be possible to infer the correlation property from that method.
 
