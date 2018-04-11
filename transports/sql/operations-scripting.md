@@ -1,5 +1,5 @@
 ---
-title: Scripting
+title: SQLServer Transport Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against the SQLServer Transport.
 component: SqlTransport
 reviewed: 2017-06-28
