@@ -1,5 +1,5 @@
 ---
-title: Delayed Delivery
+title: RabbitMQ Delayed Delivery
 summary: Describes the native delayed delivery implementation in the RabbitMQ transport
 component: Rabbit
 reviewed: 2017-03-02
