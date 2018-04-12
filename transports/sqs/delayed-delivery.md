@@ -1,5 +1,5 @@
 ---
-title: Delayed Delivery
+title: Amazon SQS Delayed Delivery
 summary: Describes the native delayed delivery implementation in the SQS transport
 component: Sqs
 reviewed: 2018-03-26
