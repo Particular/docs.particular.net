@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
@@ -15,6 +15,7 @@ class Program
         #region EndpointConfiguration
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.NativeIntegration");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
         transport.ConnectionString(connectionString);
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         #endregion
@@ -50,7 +51,7 @@ class Program
         #region MessagePayload
 
         var message = @"{
-                           $type: 'PlaceOrder',
+                           $type: 'PlaceOrder, Receiver',
                            OrderId: 'Order from ADO.net sender'
                         }";
 
