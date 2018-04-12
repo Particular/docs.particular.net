@@ -28,6 +28,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         var routing = transport.Routing();
         routing.RegisterPublisher(

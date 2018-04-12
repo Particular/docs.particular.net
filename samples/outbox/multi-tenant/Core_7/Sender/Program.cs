@@ -19,6 +19,7 @@ class Program
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(connection);
         endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.EnableInstallers();
         endpointConfiguration.EnableOutbox();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
