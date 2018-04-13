@@ -5,9 +5,8 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="3.*" />
-    <PackageReference Include="ServiceControl.Plugin.Nsb6.Heartbeat" Version="3.*" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="2.*" />
   </ItemGroup>
 </Project>
