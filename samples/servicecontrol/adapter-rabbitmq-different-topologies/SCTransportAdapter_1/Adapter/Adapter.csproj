@@ -5,9 +5,10 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
+    <PackageReference Include="NServiceBus.Raw" Version="2.*" />
+    <PackageReference Include="RabbitMQ.Client" Version="5.0.*" />
     <PackageReference Include="ServiceControl.TransportAdapter" Version="1.*" />
   </ItemGroup>
 </Project>

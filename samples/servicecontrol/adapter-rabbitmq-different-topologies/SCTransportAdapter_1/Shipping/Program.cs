@@ -20,7 +20,7 @@ class Program
 
         endpointConfiguration.SendFailedMessagesTo("adapter_error");
         endpointConfiguration.AuditProcessedMessagesTo("adapter_audit");
-        endpointConfiguration.HeartbeatPlugin("adapter_Particular.ServiceControl");
+        endpointConfiguration.SendHeartbeatTo("adapter_Particular.ServiceControl");
 
         #endregion
 
