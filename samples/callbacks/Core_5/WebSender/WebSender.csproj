@@ -40,7 +40,6 @@
     <PackageReference Include="Microsoft.AspNet.Razor" Version="3.*" />
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.*" />
     <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
-    <PackageReference Include="NServiceBus" Version="5.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
