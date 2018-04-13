@@ -2,8 +2,6 @@
 
 The routing system can be extended by accessing the APIs via the settings bag.
 
-To learn more about implementing a routing extension see the [custom routing sample](/samples/routing/custom/).
-
 
 ### Command routing
 
