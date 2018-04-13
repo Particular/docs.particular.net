@@ -34,6 +34,8 @@ An ASP.NET MVC application responsible for sending messages and handling the web
 
 partial: static
 
+partial: dotnetcore
+
 ### Send and callback for an enum
 
 snippet: Web_SendEnumMessage
