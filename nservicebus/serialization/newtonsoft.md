@@ -94,7 +94,7 @@ At configuration time the JsonConverter can then be used with the following.
 
 snippet: UseConverter
 
-## Use of $type requires an assembly qualified name
+### Use of $type requires an assembly qualified name
 
 The [core serializer](json.md) is registering a custom serialization binder to not require the assembly name to be present when inferring message type from the special [`$type` property supported by json.net](https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm). Not having to specify the assembly name can be useful to reduce coupling when using the serializer for native integration scenarios like [demonstrated in this sample](/samples/sqltransport/native-integration).
 
