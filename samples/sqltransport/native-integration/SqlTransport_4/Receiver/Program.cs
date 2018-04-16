@@ -1,8 +1,11 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using NServiceBus;
 
 class Program
@@ -18,6 +21,12 @@ class Program
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
         transport.ConnectionString(connectionString);
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
+            .Settings(new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto,
+                SerializationBinder = new SkipAssemblyNameForMessageTypesBinder(new[] { typeof(PlaceOrder) })
+            });
         #endregion
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
@@ -43,7 +52,7 @@ class Program
                 .ConfigureAwait(false);
         }
         await endpointInstance.Stop()
-            .ConfigureAwait(false);
+                    .ConfigureAwait(false);
     }
 
     static async Task PlaceOrder()
@@ -82,5 +91,26 @@ class Program
         }
 
         #endregion
+    }
+}
+
+class SkipAssemblyNameForMessageTypesBinder : ISerializationBinder
+{
+    Type[] messageTypes;
+
+    public SkipAssemblyNameForMessageTypesBinder(Type[] messageTypes)
+    {
+        this.messageTypes = messageTypes;
+    }
+
+    public Type BindToType(string assemblyName, string typeName)
+    {
+        return messageTypes.FirstOrDefault(messageType => messageType.FullName == typeName);
+    }
+
+    public void BindToName(Type serializedType, out string assemblyName, out string typeName)
+    {
+        assemblyName = serializedType.Assembly.FullName;
+        typeName = serializedType.FullName;
     }
 }

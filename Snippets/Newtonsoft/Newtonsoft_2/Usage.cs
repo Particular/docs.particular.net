@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using NServiceBus;
 
 class Usage
@@ -115,4 +117,48 @@ class Usage
     }
 
     #endregion
+
+    void KnownTypesBinderConfig(EndpointConfiguration endpointConfiguration)
+    {
+        #region KnownTypesBinderConfig
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
+            .Settings(new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto,
+                SerializationBinder = new SkipAssemblyNameForMessageTypesBinder(new[]
+                {
+                    typeof(MyNativeIntegrationMessage)
+                })
+            });
+
+        #endregion
+    }
+
+    #region KnownTypesBinderConfig
+    class SkipAssemblyNameForMessageTypesBinder : ISerializationBinder
+    {
+        Type[] messageTypes;
+
+        public SkipAssemblyNameForMessageTypesBinder(Type[] messageTypes)
+        {
+            this.messageTypes = messageTypes;
+        }
+
+        public Type BindToType(string assemblyName, string typeName)
+        {
+            return messageTypes.FirstOrDefault(messageType => messageType.FullName == typeName);
+        }
+
+        public void BindToName(Type serializedType, out string assemblyName, out string typeName)
+        {
+            assemblyName = serializedType.Assembly.FullName;
+            typeName = serializedType.FullName;
+        }
+    }
+    #endregion
+
+    class MyNativeIntegrationMessage
+    {
+
+    }
 }
