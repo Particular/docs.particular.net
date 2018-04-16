@@ -12,7 +12,7 @@ versions: '[2,]'
 reviewed: 2018-02-28
 ---
 
-Docker containers provide the ability to deploy endpoints in a self-contained manner. To create and host an endpoint in a Docker container, install the [Docker container template](/nservicebus/dotnet-templates.md#nservicebus-docker-container) and create a new project using `dotnet new nsbdockercontainer`. The project that is created will have the required endpoint setup infrastructure in addition to the needed `Dockerfile` to create and deploy a container hosting one endpoint.
+Docker containers provide the ability to deploy endpoints in a self-contained manner. To create and host an endpoint in a Docker container, install the [Docker container template](/nservicebus/dotnet-templates.md#nservicebus-docker-container) and create a new project using `dotnet new nsbdockercontainer`. The project that is created will have the required endpoint setup infrastructure in addition to the `Dockerfile` needed to create and deploy a container hosting one endpoint.
 
 
 ## Template overview
@@ -22,11 +22,11 @@ The `nsbdockercontainer` template creates a project that contains all of the fil
 
 ### Host.cs
 
-The endpoint's configuration will need to be added to the `Start()` method. 
+The endpoint's configuration must be added to the `Start()` method. 
 
 snippet: DockerStartEndpoint
 
-It is also has a `Stop()` method that can hold any operations that are required to gracefully shutdown the endpoint.
+There is also a `Stop()` method that can hold any operations required to gracefully shutdown the endpoint.
 
 snippet: DockerStopEndpoint
 
@@ -37,7 +37,7 @@ snippet: DockerErrorHandling
 
 ### license.xml
 
-Each Docker container needs to have a `license.xml` file included in it. A placeholder of this file is created when the template is used to create a new endpoint. This file will need to be replaced with a valid `license.xml` file prior to building the Docker container.
+Each Docker container must have a `license.xml` file included in it. A placeholder for this file is created when the template is used to create a new endpoint. This file must be replaced with a valid `license.xml` file prior to building the Docker container.
 
 An endpoint running in Docker will look for the `license.xml` file in [the same locations](/nservicebus/licensing/#license-management) as it would in any other hosting situation. By default, a project created using the `nsbdockercontainer` template will put the `license.xml` file in the correct location in a Docker image.
 
@@ -46,7 +46,7 @@ An endpoint running in Docker will look for the `license.xml` file in [the same 
 
 This file contains the instructions for compiling the endpoint and creating the Docker image.
 
-The endpoint will be hosted in a container that is based on the `microsoft/dotnet:2.0-runtime` image. Once built, the container image will contain the compiled artifacts of the endpoint project, and will launch that endpoint when the container is run.
+The endpoint will be hosted in a container that is based on the `microsoft/dotnet:2.0-runtime` image. Once built, the container image contains the compiled artifacts of the endpoint project, and will launch that endpoint when the container is run.
 
 To compile the endpoint and create the Docker image, run the following command:
 
