@@ -38,7 +38,7 @@ Add the `NServiceBus/LicensePath` application setting to the `ServiceControl.exe
 Note: The easiest way to find the configuration file is by launching the Service Control Management Utility (SCMU), navigate to the relavant instance and open its deployment paths.
 
 ```xml
-<add key="NServiceBus/LicensePath" value="\\alwaysonserver\superhidden$\NServiceBus\License\License.xml" />
+<add key="NServiceBus/LicensePath" value="d:\NServiceBus\License\License.xml" />
 ```
 
 Note: [This is the same setting to configure a license path for any NServiceBus 5 endpoint](https://docs.particular.net/nservicebus/licensing/?version=core_5#license-management-using-app-config-appsettings).
