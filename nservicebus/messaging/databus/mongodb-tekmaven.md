@@ -1,6 +1,7 @@
 ---
 title: MongoDB DataBus
-reviewed: 2016-08-29
+summary: An implementation of databus that uses MongoDB
+reviewed: 2018-04-16
 component: MongoDatabusTekmaven
 tags:
  - DataBus
@@ -16,4 +17,4 @@ Uses [MongoDB](https://www.mongodb.com/) for DataBus storage.
 snippet: MongoDataBusUsage
 
 
-Note that the connection string used for the databus is shared by the [MongoDB Persistence](/persistence/mongodb-tekmaven).
+Note that the connection string used for the databus is shared by the [MongoDB persistence](/persistence/mongodb-tekmaven).
