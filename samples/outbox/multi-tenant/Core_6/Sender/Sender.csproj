@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NHibernate" Version="4.*" />
     <PackageReference Include="Iesi.Collections" Version="4.*" />
+    <PackageReference Include="NHibernate" Version="4.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="7.*" />
   </ItemGroup>
 </Project>
