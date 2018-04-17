@@ -20,7 +20,7 @@ class Program
         SqlHelper.CreateSchema(connectionString, "shipping");
         SqlHelper.CreateSchema(connectionString, "adapter");
 
-        #region SchemaV5
+        #region ShippingSchema
 
         //Use custom schema shipping for this endpoint
         transport.DefaultSchema("shipping");
@@ -50,6 +50,7 @@ class Program
         var conventions = endpointConfiguration.Conventions();
         conventions.DefiningEventsAs(t => t == typeof(OrderAccepted) || t == typeof(OrderShipped));
 
+        endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
         endpointConfiguration.EnableInstallers();
 
         using (var endpointInstance = Bus.Create(endpointConfiguration).Start())

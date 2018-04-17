@@ -3,7 +3,4 @@
     <TargetFramework>net461</TargetFramework>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
 </Project>

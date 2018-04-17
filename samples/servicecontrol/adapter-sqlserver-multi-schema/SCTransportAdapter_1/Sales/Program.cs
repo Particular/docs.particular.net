@@ -25,7 +25,7 @@ class Program
         SqlHelper.CreateSchema(connectionString, "sales");
         SqlHelper.CreateSchema(connectionString, "adapter");
 
-        #region SchemaV6
+        #region SalesSchema
 
         //Use custom schema shipping for this endpoint
         transport.DefaultSchema("sales");

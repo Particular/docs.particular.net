@@ -25,7 +25,7 @@ class Program
         SqlHelper.CreateSchema(connectionString, "sales");
         SqlHelper.CreateSchema(connectionString, "adapter");
 
-        #region SchemaV6
+        #region SalesSchema
 
         //Use custom schema shipping for this endpoint
         transport.DefaultSchema("sales");
@@ -58,7 +58,6 @@ class Program
                 immediate.NumberOfRetries(0);
             });
         recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
-        recoverability.DisableLegacyRetriesSatellite();
 
         var conventions = endpointConfiguration.Conventions();
         conventions.DefiningEventsAs(t => t == typeof(OrderAccepted) || t == typeof(OrderShipped));
