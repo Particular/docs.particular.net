@@ -13,6 +13,7 @@ class Program
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         endpointConfiguration.ReportCustomChecksTo("Particular.ServiceControl");
 
