@@ -12,6 +12,8 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
+        busConfiguration.ReportCustomChecksTo("Particular.ServiceControl");
+
         using (var bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");

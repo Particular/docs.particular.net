@@ -5,9 +5,9 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="2.*" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
-    <PackageReference Include="ServiceControl.Plugin.Nsb6.Heartbeat" Version="3.*" />
+    <PackageReference Include="RabbitMQ.Client" Version="5.0.*" />
   </ItemGroup>
 </Project>
