@@ -5,13 +5,12 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <ProjectReference Include="..\Messages\Messages.csproj" />
-    <PackageReference Include="EntityFramework" Version="6.*" />
+    <PackageReference Include="Iesi.Collections" Version="4.*" />
     <PackageReference Include="NHibernate" Version="4.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.0.0-*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-beta0004" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-rc*" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.*" />
   </ItemGroup>
 </Project>
