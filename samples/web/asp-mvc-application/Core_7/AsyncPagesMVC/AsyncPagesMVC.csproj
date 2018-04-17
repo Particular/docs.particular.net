@@ -60,8 +60,6 @@
     <Content Include="Web.config" />
     <Content Include="Views\Shared\Index.cshtml" />
     <Content Include="Views\Home\SendLinks.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -77,12 +75,10 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49214</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl/>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl/>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
