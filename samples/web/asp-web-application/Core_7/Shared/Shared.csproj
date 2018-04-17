@@ -5,6 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Callbacks" Version="2.*" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="3.0-*" />
   </ItemGroup>
 </Project>
