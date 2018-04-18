@@ -17,7 +17,7 @@ class EntityFrameworkUnitOfWork
         {
             context = contextFactory(storageSession);
 
-            
+
         }
         return context;
     }

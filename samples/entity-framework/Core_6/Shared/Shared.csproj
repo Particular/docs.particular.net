@@ -4,11 +4,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <PackageReference Include="EntityFramework" Version="6.*" />
-    <PackageReference Include="NServiceBus" Version="6.*" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj" />
+    <PackageReference Include="EntityFramework" Version="6.*" />
   </ItemGroup>
 </Project>

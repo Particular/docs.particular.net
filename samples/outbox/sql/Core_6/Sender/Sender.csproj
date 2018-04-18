@@ -5,11 +5,10 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="6.*" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="3.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="3.*" />
-    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>
