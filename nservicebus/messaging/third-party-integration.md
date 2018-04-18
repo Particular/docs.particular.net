@@ -22,7 +22,7 @@ Embedding type info in the message body is currently supported by the following 
  * [Json](/nservicebus/serialization/json.md)
  * [Newtonsoft](/nservicebus/serialization/newtonsoft.md)
 
-The [RabbitMQ](/samples/rabbitmq/native-integration/) and [SQL](/samples/sqltransport/native-integration/) native integration samples demonstrates this.
+The [RabbitMQ](/samples/rabbitmq/native-integration/), [SQL](/samples/sqltransport/native-integration/), and [Azure Service Bus](/samples/azure/native-integration-asb/) native integration samples demonstrates this.
 
 
 ## Additional information
