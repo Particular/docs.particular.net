@@ -52,7 +52,7 @@ class Program
                 .ConfigureAwait(false);
         }
         await endpointInstance.Stop()
-                    .ConfigureAwait(false);
+            .ConfigureAwait(false);
     }
 
     static async Task PlaceOrder()
