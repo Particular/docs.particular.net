@@ -10,6 +10,8 @@ related:
 - samples/scaleout/distributor
 ---
 
+Note: This solution should be seen as a temporary solution. When all endpoints have been upgraded to version 6 the distributor should be migrated to [Sender Side Distribution](/transports/msmq/sender-side-distribution).
+
 ## Initial state
 
 This sample uses the same solution as the Version 5 [distributor sample](/samples/scaleout/distributor):
@@ -20,6 +22,17 @@ This sample uses the same solution as the Version 5 [distributor sample](/sample
 
 
 ## Upgrade
+
+NServiceBus 6 does not have a distributor role. The distributor remains on NServiceBus 5.x, the workers can upgrade to 6.x.
+
+
+Warning: It is not recommended to use Outbox on the workers. Enabling Outbox can result in increasing the enlisted capacity of a worker when errors occur. The distributor model is originally designed to work with distributed transactions (MSDTC). Consider using [Sender Side Distribution](/transports/msmq/sender-side-distribution) instead. When enabling Outbox on a worker, explicitly set transaction mode to "Sends atomic with receive" as the Outbox sets the default transaction mode to "Receive Only".
+```
+var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+transport.Transactions(TransportTransactionMode.None);
+```
+
+Note: This sample solution contains 2 worker projects which is only done for demo purposes. A regular project would have a single project which would be deployed to several machines.
 
 
 ### Adding standalone distributor
@@ -45,17 +58,18 @@ In the original sample the sender was sending messages to the master (Worker1). 
 snippet: SenderRouting
 
 
-### Upgrading the workers
+### Upgrading a worker
 
-As both the workers are now only processing messages, they no longer need the `NServiceBus.Distributor.MSMQ` package. The `NServiceBus` package needs to be upgraded to 6.x.
+The `NServiceBus` package needs to be upgraded to 6.x. Workers do no longer need the `NServiceBus.Distributor.MSMQ` package as the worker logic is embedded in the NServiceBus v6 package.
 
-There are minor changes required to make the workers compile against the Version 6:
-
- * Changing `BusConfiguration` to `EndpointConfiguration`.
- * Using the new `async` endpoint create/start APIs.
+Note: Endpoints need to be upgraded to version 6 like any other endpoint. Please read our [Upgrade Guides](/nservicebus/upgrades/) for additional information.
 
 
-### Giving workers new identity
+## Sample specific changes
+
+### Emulating multiple workers
+
+Note: The sample solution contains 2 workers for demo purposes. The second worker is carefully crafted so that the distributor sends messages to both workers where each worker has its own queue but on the same machine instead of multiple machines.
 
 In Versions 6 and above each endpoint instance is identified by name of the endpoint and an ID of the instance. Both workers are going to be named `Samples.Scaleout.Worker` and the instance ID is going to be loaded from the app.config file. If the workers are deployed to separate machines the instance ID can be omitted.
 
