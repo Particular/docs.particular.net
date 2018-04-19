@@ -12,14 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.0.0-*" />
-    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="2.0.0-*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.AzureStorage" Version="2.0.0-*" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.4.0" />
-    <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.*" />
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="2.*" />
   </ItemGroup>
 
