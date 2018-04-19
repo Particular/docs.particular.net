@@ -41,33 +41,15 @@
     <Reference Include="System" />
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.*" />
-    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.*" />
-    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.*" />
     <PackageReference Include="Microsoft.AspNet.SignalR.SystemWeb" Version="2.*" />
-    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.*" />
-    <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.*" />
-    <PackageReference Include="Microsoft.Data.Edm" Version="5.*" />
-    <PackageReference Include="Microsoft.Data.OData" Version="5.*" />
-    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.*" />
-    <PackageReference Include="Microsoft.Owin" Version="3.*" />
-    <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.*" />
-    <PackageReference Include="Microsoft.Owin.Security" Version="3.*" />
-    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
-    <PackageReference Include="Microsoft.Web.WebJobs.Publish" Version="1.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.0.0-*" />
-    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="2.0.0-*" />
-    <PackageReference Include="Owin" Version="1.*" />
-    <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.*" />
-    <PackageReference Include="System.Dynamic.Runtime" Version="4.*" />
-    <PackageReference Include="System.Linq.Queryable" Version="4.*" />
-    <PackageReference Include="System.Net.Requests" Version="4.*" />
-    <PackageReference Include="System.Spatial" Version="5.*" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.4.0" />
+	<PackageReference Include="Microsoft.Web.WebJobs.Publish" Version="1.*" />
     <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
     <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- explicitly locked versions -->
+    <PackageReference Include="WindowsAzure.Storage" Version="8.7.0" />
+	<PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.cs" />
