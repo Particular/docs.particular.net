@@ -44,7 +44,7 @@ Notice that `Sales` and `Shipping` are in two different namespaces. This is done
 
 The adapter also deals with other advanced features of the Azure Service Bus transport like [secure connection strings](/transports/azure-service-bus/securing-connection-strings.md) and [customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md).
 
-## Prerequisistes
+## Prerequisites
 
 include: asb-connectionstring
 

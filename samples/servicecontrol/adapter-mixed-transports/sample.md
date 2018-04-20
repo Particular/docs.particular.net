@@ -13,7 +13,7 @@ related:
 This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using mixed transports. The main transport for the solution is MSMQ and this is the transport used by the ServiceControl. Some endpoints, however, use SQL Server transport.
 
 
-## Prerequisistes
+## Prerequisites
 
  1. [Install ServiceControl](/servicecontrol/installation.md). 
  2. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using MSMQ transport:

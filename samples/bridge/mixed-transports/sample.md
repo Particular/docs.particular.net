@@ -8,7 +8,7 @@ related:
 
 The sample demonstrates how NServiceBus.Bridge can be used to connect endpoints that use different transports, in this case MSMQ and RabbitMQ.
 
-## Prerequisistes
+## Prerequisites
 
  1. Ensure an instance of RabbitMQ is running and accessible.
  1. Ensure that MSMQ has been installed.

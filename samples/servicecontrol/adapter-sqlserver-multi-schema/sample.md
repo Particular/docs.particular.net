@@ -15,7 +15,7 @@ This sample shows how to configure ServiceControl to monitor endpoints and retry
 The purpose of the adapter is to isolate ServiceControl from the specifics of the physical deployment topology of the business endpoints (such as [SQL Server multi-schema](/transports/sql/deployment-options.md#multi-schema) mode) which are not supported out-of-the-box by ServiceControl.
 
 
-## Prerequisistes
+## Prerequisites
 
  1. [Install ServiceControl](/servicecontrol/installation.md).
  2. Create `ServiceControl` database on the local SQL Server instance.

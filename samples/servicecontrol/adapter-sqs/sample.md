@@ -13,7 +13,7 @@ related:
 This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using SQS transport. The user endpoint in this solution uses the SQS transport while ServiceControl runs on MSMQ.
 
 
-## Prerequisistes
+## Prerequisites
 
  1. [Install ServiceControl](/servicecontrol/installation.md). 
  2. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using MSMQ transport:

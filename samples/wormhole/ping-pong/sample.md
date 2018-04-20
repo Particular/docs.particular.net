@@ -6,7 +6,7 @@ related:
  - nservicebus/wormhole
 ---
 
-## Prerequisistes
+## Prerequisites
 
 Open the solution in Visual Studio running as Administrator because the gateways need to register the listening URL, or add the registrations manually:
 

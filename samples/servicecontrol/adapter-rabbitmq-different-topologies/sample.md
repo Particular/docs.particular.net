@@ -13,7 +13,7 @@ related:
 This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using the RabbitMQ direct routing topology. ServiceControl by default supports only the default RabbitMQ routing topology, therefore a kind of "transport adapter" is required to monitor systems using other routing topologies. 
 
 
-## Prerequisistes
+## Prerequisites
 
  1. [Install ServiceControl](/servicecontrol/installation.md).
  2. Install RabbitMQ broker on localhost.
