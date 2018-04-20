@@ -1,5 +1,7 @@
 ## Unrecoverable exceptions
 
+Note: This is added to NServiceBus 6.2
+
 If a message processing fails due to an unrecoverable exception being thrown, then the retry process is skipped. The failed message is then immediately moved to the error queue after the first failure. 
 
 According to the default policy, only exceptions of type `MessageDeserializationException` are considered unrecoverable. However, it's possible to customize the policy and declare additional types as unrecoverable exceptions. That allows to skip retries for certain exceptions, when it's known in advance that retries won't resolve the issue.
