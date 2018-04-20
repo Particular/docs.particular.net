@@ -1,8 +1,8 @@
 ---
 title: Message Correlation
-summary: Correlation is needed in order to find existing saga instances based on data on the incoming message
+summary: Correlation is needed in order to find existing saga instances based on data in the incoming message
 component: Core
-reviewed: 2016-08-30
+reviewed: 2018-04-20
 tags:
  - Saga
 related:
@@ -10,9 +10,9 @@ related:
 ---
 
 
-Correlation is needed in order to find existing saga instances based on data on the incoming message. In the example the `OrderId ` property of the `CompleteOrder` message is used to find the existing saga instance for that order.
+Correlation is needed in order to find existing saga instances based on data in the incoming message. For example, an `OrderId ` property of a `CompleteOrder` message can be used to find the existing saga instance for that order.
 
-To declare this use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to.
+To declare this, use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify which saga property each message maps to.
 
 NOTE: Message properties must correlate to a single saga property and have the same type.
 
@@ -20,10 +20,10 @@ partial: note
 
 snippet: saga-find-by-property
 
-When `MyMessage` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `MySagaData` that has a property `SomeId` whose value is the same as the `SomeId` property of the message. If found the saga instance will be loaded and the `Handle` method for the `MyMessage` message will be invoked. Should the saga instance not be found and the message not be allowed to start a saga, the [saga not found](saga-not-found.md) handlers will be invoked.
+When an instance of `MyMessage` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `MySagaData` that has a property `SomeId` whose value is the same as the `SomeId` property of the message. If found, the saga instance will be loaded and the `Handle` method for the `MyMessage` message will be invoked. Should the saga instance not be found, the saga is not started and the [saga not found](saga-not-found.md) handlers will be invoked.
 
 
-## Message Property Expression
+## Message property expression
 
 If correlating on more than one saga property is necessary, or matched properties are of different types, use a [custom saga finder](saga-finding.md).
 
@@ -31,18 +31,18 @@ If correlating on more than one saga property is necessary, or matched propertie
 partial: expression
 
 
-## Auto correlation
+## Auto-correlation
 
 A common usage of sagas is to have them send out a request message to get some work done and receive a response message back when the work is complete. To make this easier NServiceBus will automatically correlate those response messages back to the correct saga instance.
 
-NOTE: If it's not clear if the message can be auto correlated, it's better to provide the mappings. In case the message will be auto correlated, the mappings will be ignored.
+NOTE: If it's not clear if the message can be auto-correlated, it's better to provide the mappings. In cases where the message will be auto-correlated, the mappings will be ignored.
 
-NOTE: A caveat of this feature is that it currently doesn't support auto correlation between sagas. If the request is handled by a another saga relevant message properties must be added and mapped to the requesting saga using the syntax described above.
+NOTE: A caveat of this feature is that it currently doesn't support auto-correlation between sagas. If the request is handled by a another saga, relevant message properties must be added and mapped to the requesting saga using the syntax described above.
 
 
 ## Custom saga finder
 
-Full control over how a message is correlated can be achieved by create a custom [saga finder](/nservicebus/sagas/saga-finding.md).
+Full control over how a message is correlated can be achieved by creating a custom [saga finder](/nservicebus/sagas/saga-finding.md).
 
 
 ## Uniqueness
