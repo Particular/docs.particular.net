@@ -90,7 +90,7 @@ Correlation is needed in order to find existing saga instances based on data on 
 
 ## Discarding messages when saga is not found
 
-If a message a saga handles a message, but no related saga instance is found, then that message is discarded by default. Typically that happens when the saga has been already completed when the messages arrives and discarding the message is correct. If a different behavior is expected for specific scenarios, the default behavior [can be modified](saga-not-found.md).
+If a saga handles a message, but no related saga instance is found, then that message is discarded by default. Typically that happens when the saga has been already completed when the messages arrives and discarding the message is correct. If a different behavior is expected for specific scenarios, the default behavior [can be modified](saga-not-found.md).
 
 
 ## Ending a long-running process
