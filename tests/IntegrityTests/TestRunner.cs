@@ -9,13 +9,15 @@ namespace IntegrityTests
     public class TestRunner
     {
         private string glob;
+        private string errorMessage;
 
-        public TestRunner(string glob)
+        public TestRunner(string glob, string errorMessage)
         {
             this.glob = glob;
+            this.errorMessage = errorMessage;
         }
-        
-        public void Run(string message, Func<XDocument, bool> testDelegate)
+
+        public void Run(Func<string, bool> testDelegate)
         {
             var badProjects = new List<string>();
 
@@ -25,9 +27,7 @@ namespace IntegrityTests
 
                 foreach (var projectFilePath in projectFiles)
                 {
-                    var xdoc = XDocument.Load(projectFilePath);
-
-                    bool success = testDelegate(xdoc);
+                    bool success = testDelegate(projectFilePath);
 
                     if (!success)
                     {
@@ -38,12 +38,8 @@ namespace IntegrityTests
 
             if (badProjects.Count > 0)
             {
-                Assert.Fail($"{message}:\r\n  > {string.Join("\r\n  > ", badProjects)}");
+                Assert.Fail($"{errorMessage}:\r\n  > {string.Join("\r\n  > ", badProjects)}");
             }
         }
-
-
-
-
     }
 }
