@@ -42,14 +42,14 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
     <PackageReference Include="Microsoft.AspNet.SignalR.SystemWeb" Version="2.*" />
-	<PackageReference Include="Microsoft.Web.WebJobs.Publish" Version="1.*" />
+    <PackageReference Include="Microsoft.Web.WebJobs.Publish" Version="1.*" />
     <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
     <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <!-- explicitly locked versions -->
     <PackageReference Include="WindowsAzure.Storage" Version="8.7.0" />
-	<PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.4" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.cs" />
