@@ -182,7 +182,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 2.2.x     | 2017-11-16     | 2018-11-22        | Superseded by 3.0.x               |
 | ~~2.1.x~~ | ~~2017-04-28~~ | ~~2018-02-16~~    | ~~Superseded by 2.2.x~~           |
 | ~~2.0.x~~ | ~~2017-04-14~~ | ~~2017-07-28~~    | ~~Superseded by 2.1.x~~           |
-| 1.0.x     | 2017-02-02     | 2018-04-14        | Superseded by 2.0.x               |
+| ~~1.0.x~~ | ~~2017-02-02~~ | ~~2018-04-14~~    | ~~Superseded by 2.0.x~~           |
 
 #### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
 
@@ -325,7 +325,7 @@ No versions released.
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 8.1.x     | 2018-01-24     | -                 | -                                 |
-| 8.0.x     | 2017-11-17     | 2018-04-24        | Superseded by 8.1.x               |
+| ~~8.0.x~~ | ~~2017-11-17~~ | ~~2018-04-24~~    | ~~Superseded by 8.1.x~~           |
 | 7.0.x     | 2016-10-11     | 2018-11-17        | Superseded by 8.0.x               |
 | 6.2.x     | 2015-10-08     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 | ~~6.1.x~~ | ~~2014-10-28~~ | ~~2016-01-08~~    | ~~Superseded by 6.2.x~~           |
