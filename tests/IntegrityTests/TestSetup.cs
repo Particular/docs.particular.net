@@ -11,6 +11,9 @@ namespace IntegrityTests
         [OneTimeSetUp]
         public void SetupRootDirectories()
         {
+            // ENHANCEMENT: Execute git commands when TeamCity environment variables are present
+            // to filter the set of files we run against based on changes in a given PR
+
             var currentDirectory = TestContext.CurrentContext.TestDirectory;
             var docsDirectory = Path.GetFullPath(Path.Combine(currentDirectory, @"..\..\..\..\.."));
 

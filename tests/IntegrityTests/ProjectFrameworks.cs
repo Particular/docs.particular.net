@@ -10,7 +10,7 @@ namespace IntegrityTests
        [Test]
         public void DoNotUseTargetFrameworksPlural()
         {
-            new TestRunner("*.csproj", "Project files should not be multi-targeted with <TargetFraemworks> element")
+            new TestRunner("*.csproj", "Project files should not be multi-targeted with <TargetFrameworks> element")
                 .Run(projectFilePath =>
                 {
                     var xdoc = XDocument.Load(projectFilePath);
@@ -25,17 +25,23 @@ namespace IntegrityTests
         }
 
         [Test]
-        public void WillPass()
+        public void EnsureSingleTargetFramework()
         {
-            new TestRunner("*.csproj", "Should pass")
-                .Run(path => true);
-        }
+            new TestRunner("*.csproj", "Project files should only contain a single <TargetFramework> element")
+                .Run(projectFilePath =>
+                {
+                    var xdoc = XDocument.Load(projectFilePath);
+                    if (xdoc.Root.Attribute("xmlns") != null)
+                    {
+                        return true;
+                    }
 
-        [Test]
-        public void WillFail()
-        {
-            new TestRunner("*.csproj", "Should pass")
-                .Run(path => false);
+                    var targetFrameworkElements = xdoc.XPathSelectElements("/Project/PropertyGroup/TargetFramework");
+
+                    // Project may have zero of these if it has TargetFrameworks, but then it fails DoNotUseTargetFrameworksPlural
+                    // Projects with no target framework will not build at all
+                    return targetFrameworkElements.Count() <= 1;
+                });
         }
     }
 }
