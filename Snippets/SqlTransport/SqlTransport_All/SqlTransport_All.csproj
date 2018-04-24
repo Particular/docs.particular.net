@@ -4,20 +4,15 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj" />
+    <Reference Include="System.Transactions" />
     <PackageReference Include="EntityFramework" Version="6.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="2.*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="System.Management.Automation" Version="6.*" />
-    <ProjectReference Include="..\..\Common\Common.csproj" />
-    <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Operations\NativeSend\NativeSend.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Operations\QueueCreation\QueueCreation.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Update="Operations\**\*.ps1" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

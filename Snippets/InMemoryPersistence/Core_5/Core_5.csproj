@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <RootNamespace>Core5</RootNamespace>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
