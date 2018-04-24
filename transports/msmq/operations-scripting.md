@@ -1,7 +1,7 @@
 ---
 title: MSMQ Transport Scripting
-summary: Example code and scripts to facilitate deployment and operational actions against MSMQ.
-reviewed: 2016-08-31
+summary: Sample code and scripts to facilitate deployment and operational actions against MSMQ.
+reviewed: 2018-04-24
 component: MsmqTransport
 redirects:
  - nservicebus/msmq/operations-scripting
@@ -9,22 +9,22 @@ related:
  - nservicebus/operations
 ---
 
-Example code and scripts to facilitate deployment and operational actions against MSMQ.
+This article contains same code and scripts to facilitate deployment and operational actions against MSMQ.
 
-These examples use the [System.Messaging.dll](https://msdn.microsoft.com/en-us/library/System.Messaging.aspx) and [System.Transactions.dll](https://msdn.microsoft.com/en-us/library/system.transactions.aspx) assemblies.
+These examples use the [System.Messaging](https://msdn.microsoft.com/en-us/library/System.Messaging.aspx) and [System.Transactions](https://msdn.microsoft.com/en-us/library/system.transactions.aspx) assemblies.
 
-INFO: When using the C# code samples, make sure to add the proper includes for both `System.Messaging` and `System.Transactions` assemblies in the program that's using these functions. When using the PowerShell scripts, include these assemblies by calling `Add-Type` in the script. 
+INFO: When using the C# code samples, be sure to add the proper includes for both the `System.Messaging` and `System.Transactions` assemblies in the program that's using these functions. When using the PowerShell scripts, include these assemblies by calling `Add-Type` in the script. 
 
 
-## Native Send
+## Native send
 
 
 ### The native send helper methods
 
 A send involves the following actions:
 
- * Create and serialize headers.
- * Write a message body directly to MSMQ.
+ * Creating and serializing headers.
+ * Writing a message body directly to MSMQ.
 
 
 #### In C&#35;
@@ -57,9 +57,9 @@ snippet: msmq-nativesend-powershell-usage
 
 A retry involves the following actions:
 
- * Read a message from the error queue.
- * Extract the failed queue from the headers.
- * Forward that message to the failed queue name so it can be retried.
+ * Reading a message from the error queue.
+ * Extracting the failed queue from the headers.
+ * Forwarding that message to the failed queue name so it can be retried.
 
 
 #### In C&#35;
