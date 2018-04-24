@@ -36,7 +36,7 @@ partial: enable-conventional-routing-topology
 
 ## Direct Routing Topology
 
-Note: We recommend using the Conventional Routing Topology
+Note: It is recommended to use the Conventional Routing Topology
 
 The `DirectRoutingTopology` routes all events through a single exchange, `amq.topic` by default. Events are published using a routing key based on the event type, and subscribers will use that key to filter their subscriptions.
 
