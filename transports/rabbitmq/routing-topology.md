@@ -61,7 +61,9 @@ To enable the direct routing topology, use the following configuration:
 
 snippet: rabbitmq-config-usedirectroutingtopology
 
-Adjust the conventions for exchange name and routing key by using the overload:
+### Override default conventions
+
+The conventions for exchange names and routing keys can be overriden by using the overload:
 
 snippet: rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
