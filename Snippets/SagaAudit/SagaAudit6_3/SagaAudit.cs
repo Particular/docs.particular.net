@@ -9,7 +9,7 @@ class MyClass
 
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
         endpointConfiguration.SagaPlugin(
-            serviceControlQueue: "ServiceControl_Queue");
+            serviceControlQueue: "particular.servicecontrol@machine");
 
         #endregion
     }
