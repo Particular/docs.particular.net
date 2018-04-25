@@ -9,7 +9,7 @@ class MyClass
 
         var endpointConfiguration = new EndpointConfiguration("myendpoint");
         endpointConfiguration.SagaPlugin(
-            serviceControlUrl: "ServiceControl_Queue");
+            serviceControlUrl: "particular.servicecontrol@machine");
 
         #endregion
     }
@@ -34,7 +34,7 @@ class MyClass
         if (isSagaPluginEnabled)
         {
             endpointConfiguration.SagaPlugin(
-            serviceControlUrl: "ServiceControl_Queue");
+            serviceControlUrl: "particular.servicecontrol@machine");
         }
 
         #endregion
