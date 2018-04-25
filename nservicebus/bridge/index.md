@@ -29,7 +29,7 @@ As stated above, the main difference is that the Bridge can handle publishes. Th
  * The endpoint that *replies* to a message does not have to know if the initiating message came through a bridge. The reply will be automatically routed to the correct bridge and then forwarded to the initiator endpoint.
  * The endpoint that *publishes* events does not have to know if the subscribers are on the other side of the bridge.
 
-Both Bridge and Gateway require a dedicated routing configuration that replaces the standard [NServiceBus routing](/nservicebus/routing.md).
+Both Bridge and Gateway require a dedicated routing configuration that replaces the standard [NServiceBus routing](/nservicebus/messaging/routing.md).
 
 Both technologies can be applied to build a geographically distributed system. By virtue of being a more general-purpose solution the Bridge can emulate the Gateway routing behovior in a geo-distributed deployment.
 
