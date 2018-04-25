@@ -9,7 +9,7 @@ class API
 
         var endpointConfiguration = new BusConfiguration();
         endpointConfiguration.AuditSagaStateChanges(
-            serviceControlQueue: "ServiceControl_Queue");
+            serviceControlQueue: "particular.servicecontrol@machine");
 
         #endregion
     }
@@ -20,7 +20,7 @@ class API
 
         var endpointConfiguration = new BusConfiguration();
         endpointConfiguration.AuditSagaStateChanges(
-            serviceControlQueue: "ServiceControl_Queue",
+            serviceControlQueue: "particular.servicecontrol@machine",
             customSagaEntitySerialization: saga =>
             {
                 var data = (MySagaData) saga;
