@@ -76,7 +76,7 @@ The Switch is a generalization of a Bridge. It consists of `n` NServiceBus endpo
 
 ![Backplane](backplane.svg)
 
-Two or more Bridges can be connected together to form a backplane topology. In the example above the Blue transport is used as a backplane for passing messages between the Green and Red parts of the system. This topology is useful when the system consists of multiple geographically distributed parts. The local transports (Green and Red) can be optimized for throughput and/or consistency while the backplane transport can be optimized for geo-distribution capabilities e.g. MSMQ can be used locally while Azure Storage Queues can be used to connect the sites.
+Two or more Bridges can be connected together to form a backplane topology. In the example above the Green transport is used as a backplane for passing messages between the Blue and Red parts of the system. This topology is useful when the system consists of multiple geographically distributed parts. The local transports (Green and Red) can be optimized for throughput and/or consistency while the backplane transport can be optimized for geo-distribution capabilities e.g. MSMQ can be used locally while Azure Storage Queues can be used to connect the sites.
 
 In this topology the routing can be configured in two ways.
 
