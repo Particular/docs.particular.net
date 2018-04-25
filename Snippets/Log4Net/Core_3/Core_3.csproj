@@ -4,7 +4,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="log4net" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="3.*" />
   </ItemGroup>
 </Project>

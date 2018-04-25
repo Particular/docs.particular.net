@@ -25,6 +25,8 @@ Global
 		{53CD1A1D-13E0-4F54-BA73-0F10CAED467A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5CA3A33-27D0-455F-8BCA-EEDCE2FB9DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5CA3A33-27D0-455F-8BCA-EEDCE2FB9DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA17F1A-015A-4177-883D-B83C759C8DF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA17F1A-015A-4177-883D-B83C759C8DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
