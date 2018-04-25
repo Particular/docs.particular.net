@@ -86,7 +86,7 @@ In this mode the routing is similar to the simple case with one Bridge. The endp
 
 #### Gateway-stle
 
-In this mode the routing is similar to the [Gateway](/nservicebus/gateway/) routing i.e. when sending a message the sender specifies the site(s) to route messages to. Multiple sites can contain the same logical endpoint or even be exact copies. An example of a system which would benefit from this topology is a mall chain management system which has one site for the HQ and multiple warehouse sites which are identical to each other. When an endpoint in HQ sends a message to an endpoint in one of the warehouses it needs to specify the ID of the destination site explicitly.
+In this mode the routing is similar to the [Gateway](/nservicebus/gateway/) routing i.e. when sending a message the sender specifies the site(s) to route messages to. Multiple sites can contain the same logical endpoint or even be exact copies. This type of topology would be useful for a warehouse company. The software system for that company could have one site for the HQ and multiple identical warehouse sites. When an endpoint in HQ sends a message to an endpoint in one of the warehouses it needs to specify the ID of the destination site explicitly.
   
 
 ## Publish/Subscribe
