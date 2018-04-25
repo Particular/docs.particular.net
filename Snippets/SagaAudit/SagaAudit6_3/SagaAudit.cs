@@ -34,7 +34,7 @@ class MyClass
         if (isSagaPluginEnabled)
         {
             endpointConfiguration.SagaPlugin(
-            serviceControlQueue: "ServiceControl_Queue");
+            serviceControlQueue: "particular.servicecontrol@machine");
         }
 
         #endregion
