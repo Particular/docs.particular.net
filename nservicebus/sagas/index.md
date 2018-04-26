@@ -101,15 +101,11 @@ NOTE: Instance cleanup is implemented differently by the various saga persisters
 
 ### Outstanding timeouts
 
-Outstanding timeouts requested by the instance will be discarded when they expire without triggering the [`IHandleSagaNotFound` API](saga-not-found.md) 
-
-NOTE: If the hosting endpoint is configured to use the Timeout Manager(/nservicebus/messaging/timeout-manager/) it will be asked to discard any outstanding timeouts set by the saga instance. This is a best effort operation and inflight timeouts will still trigger and be discarded like described above.
+Outstanding timeouts requested by the saga instance will be discarded when they expire without triggering the [`IHandleSagaNotFound` API](saga-not-found.md) 
 
 ### Messages arriving after saga has been completed
 
 Messages that [are allowed to start a new saga instance](#starting-a-saga) will cause a new instance with the same correlation id to be created.
-
-NOTE: If the infrastructure haven't been able to remove the instance yet the existing instance will be used. TODO: Wonder what will happen here, will this be a race condition? Is this even an issue worth mentioning?
 
 Messages handled by the saga(`IHandleMessages<T>`) arriving after the saga has completed will be passed to the [`IHandleSagaNotFound` API](saga-not-found.md).
 
