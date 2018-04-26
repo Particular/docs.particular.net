@@ -27,8 +27,6 @@ snippet: install
 
 This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for an NServiceBus endpoint. The template follows the approach outlined in [Windows Service Hosting](/nservicebus/hosting/windows-service.md).
 
-![](dotnet-templates-winservice.gif "width=300")
-
 The template can be used via the following command:
 
 snippet: nsbservice-usage
