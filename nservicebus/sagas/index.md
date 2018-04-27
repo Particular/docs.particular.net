@@ -93,18 +93,23 @@ Correlation is needed in order to find existing saga instances based on data on 
 If a saga handles a message, but no related saga instance is found, then that message is discarded by default. Typically that happens when the saga has been already completed when the messages arrives and discarding the message is correct. If a different behavior is expected for specific scenarios, the default behavior [can be modified](saga-not-found.md).
 
 
-## Ending a long-running process
+## Ending a saga
 
-After receiving all the messages needed in a long-running process, or possibly after a timeout (or two or more), the stored state of the saga needs to be cleaned up. This is done by calling the `MarkAsComplete()` method.
+When a saga instance is no longer needed it can be completed using the `MarkAsComplete()` API. This tells the saga infrastructure that the instance is no longer needed and can be cleaned up.
 
-The infrastructure contacts the Timeout Manager (if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages that are handled by the saga(`IHandleMessages<T>`) arrive after the saga has completed, they are discarded. Note that a new saga will be started if a message that is configured to start a saga arrives(`IAmStartedByMessages<T>`).
+NOTE: Instance cleanup is implemented differently by the various saga persisters and are not guaranteed to be immediate.
 
-For more information about setting (requesting) timeouts and handling them, see [Saga Timeouts](timeouts.md).
+### Outstanding timeouts
 
-When a message is received that could possibly be handled by a saga, and no existing saga can be found then that is handed by the [Saga Not Found](saga-not-found.md) feature.
+Outstanding timeouts requested by the saga instance will be discarded when they expire without triggering the [`IHandleSagaNotFound` API](saga-not-found.md) 
 
+### Messages arriving after saga has been completed
 
-### Transactional behavior
+Messages that [are allowed to start a new saga instance](#starting-a-saga) will cause a new instance with the same correlation id to be created.
+
+Messages handled by the saga(`IHandleMessages<T>`) arriving after the saga has completed will be passed to the [`IHandleSagaNotFound` API](saga-not-found.md).
+
+### Consistency considerations
 
 Completing a saga is a destructive operation so transaction support of the selected transport and persistence must be considered to ensure correctness. If the persistence is able to participate in the same transaction as the incoming receive operation, either using DTC or by sharing the transport's storage transaction (e.g. SQL Server transport), no further action is needed.
 
