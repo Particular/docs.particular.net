@@ -18,6 +18,18 @@ Provides low level access to the [SQL Server Transport](/transports/sql/) with n
  * **Message pass through**: In message pass through scenarios (such as used in the [HTTP Message Pass Through Sample](/samples/web/owin-pass-through/) where no pipeline or mutators are required.
 
 
+{{NOTE:
+
+Some notes on the below snippets:
+
+ * All methods that return a [Task](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) also accept an optional [CancellationToken](https://msdn.microsoft.com/en-us/library/system.threading.cancellationtoken.aspx).
+ * While a string `connectionString` is used in all snippets for simplicity, an overload that takes a `SqlConnection` also exists.
+ * For all APIs that modify data there is an overload that takes a `SqlTransaction`.
+ * All snippets show variants that target and use byte arrays. There are also overloads that target and use a Stream. Depending on the message size and performance requirements using the Stream based overload may result in less memory pressure on the system and better overall throughput.
+
+}}
+
+
 ## Queue management
 
 
