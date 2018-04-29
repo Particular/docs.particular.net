@@ -2,7 +2,7 @@
 title: Installing ServicePulse
 summary: Describes how ServicePulse is installed - independently or via the PlatformInstaller - and its basic requirements
 component: ServicePulse
-reviewed: 2016-09-02
+reviewed: 2018-04-24
 tags:
 - Installation
 related:
@@ -25,8 +25,8 @@ Install ServicePulse using the [Particular Service Platform Installer](/platform
 
  1. Download and install [ServiceControl](https://github.com/Particular/ServiceControl/releases)
  1. Download and install [ServicePulse](https://github.com/Particular/ServicePulse/releases)
- 1. After accepting the license terms and conditions, click "Install" (installer will require elevated privileges)
- 1. The installation process installs the Windows Service "Particular ServicePulse" and then opens the ServicePulse web application using the default browser.
+ 1. After accepting the license terms and conditions, click "Install" (the installer will require elevated privileges)
+ 1. The installation process installs the "Particular ServicePulse" Windows service and opens the ServicePulse web application using the default browser.
  1. After installing ServicePulse, see the following sections to configure the existing endpoints to be monitored via ServicePulse.
 
 ### Available installation parameters

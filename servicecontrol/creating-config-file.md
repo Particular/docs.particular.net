@@ -1,16 +1,14 @@
 ---
 title: Configuration Settings
 summary: Categorized list of ServiceControl configuration settings.
-reviewed: 2017-03-01
+reviewed: 2018-04-20
 ---
 
 
-## Configuration Settings
-
-The configuration of a ServiceControl instance can be adjusted via ServiceControl Management or by directly modifying the `ServiceControl.exe.config` file. The settings listed are applicable to the app settings section of the configuration file unless otherwise specified.
+The configuration of a ServiceControl instance can be adjusted via the ServiceControl Management utility or by directly modifying the `ServiceControl.exe.config` file. The settings listed are applicable to the `appSettings` section of the configuration file unless otherwise specified.
 
 
-## Host Settings
+## Host settings
 
 The following documents should be reviewed prior to modifying configuration settings:
 
@@ -20,13 +18,13 @@ The following documents should be reviewed prior to modifying configuration sett
 
 #### ServiceControl/Hostname
 
-The hostname to bind the embedded HTTP server to, modify to bind to a specific hostname, eg. `sc.mydomain.com`.
+The hostname to bind the embedded HTTP server to; modify this setting to bind to a specific hostname, eg. `sc.mydomain.com`.
 
 Type: string
 
 Default: `localhost`
 
-Warning: If the `ServiceControl/Hostname` setting is changed and the `ServiceControl/DbPath` setting is not set then the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
+Warning: If the `ServiceControl/Hostname` setting is changed and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
 
 
 #### ServiceControl/Port
@@ -37,12 +35,12 @@ Type: int
 
 Default: `33333`.
 
-Warning: If the `ServiceControl/Port` setting is changed and the `ServiceControl/DbPath` setting is not set then the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
+Warning: If the `ServiceControl/Port` setting is changed and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
 
 
 #### ServiceControl/VirtualDirectory
 
-The virtual directory to bind the embedded HTTP server to, modify to bind to a specific virtual directory.
+The virtual directory to bind the embedded HTTP server to; modify this setting to bind to a specific virtual directory.
 
 Type: string
 
@@ -85,7 +83,7 @@ Type: string
 
 Default: `%LOCALAPPDATA%\Particular\ServiceControl\logs`
 
-Note: %LOCALAPPDATA% is a user specific environment variable.
+Note: %LOCALAPPDATA% is a user-specific environment variable.
 
 
 #### ServiceControl/LogLevel
@@ -96,17 +94,17 @@ Type: string
 
 Default: `Warn`
 
-In Versions 1.9 and above Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
+In ServiceControl version 1.9 and above, valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
 This setting will default to `Warn` if an invalid value is assigned.
 
-In Versions 1.8 and below the log level was `Info` and could not be changed.
+In version 1.8 and below, the log level is `Info` and can not be changed.
 
 
 #### ServiceControl/RavenDBLogLevel
 
 Controls the LogLevel of the RavenDB logs.
-This setting was introduced in Version 1.10. See [Logging](logging.md)
+This setting was introduced in ServiceControl version 1.10. See [Logging](logging.md)
 
 Type: string
 
@@ -117,7 +115,7 @@ Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 This setting will default to `Warn` if an invalid value is assigned.
 
 
-## Data Retention
+## Data retention
 
 
 #### ServiceControl/ExpirationProcessTimerInSeconds
@@ -126,12 +124,12 @@ The number of seconds to wait between checking for expired messages.
 
 Type: int
 
-Default: `600` (10 minutes). The default for Versions below 1.4 is `60` (1 minute), In Version 1.4 and above the default is `600` (10 minutes). Settings the value to `0` will disable the expiration process, this is not recommended and it is only provided for fault finding. Valid Range is `0` through to `10800` (3 Hours).
+Default: `600` (10 minutes). The default for ServiceControl version 1.3 and below is `60` (1 minute), Starting in version 1.4, the default is `600` (10 minutes). Setting the value to `0` will disable the expiration process. This is not recommended and it is only provided for fault finding. Valid range is `0` to `10800` (3 Hours).
 
 
 #### ServiceControl/ExpirationProcessBatchSize
 
-This setting was introduced in Version 1.4. The minimum allowed value for this setting is `10240`, there is no hard coded maximum as this is heavily dependent on system performance.
+This setting was introduced in version 1.4. The minimum allowed value for this setting is `10240`; there is no hard-coded maximum as this is dependent on system performance.
 
 Type: int
 
@@ -140,37 +138,37 @@ Default: `65512`.
 
 #### ServiceControl/HoursToKeepMessagesBeforeExpiring
 
-This setting is only applicable in Version 1.11.1 and below.
+This setting is only applicable in version 1.11.1 and below.
 
-In higher versions this setting can now be set via `ServiceControl/AuditRetentionPeriod`.
+In higher versions, this setting can be set via `ServiceControl/AuditRetentionPeriod`.
 
-The number of hours to keep a message for before it is deleted.
+The number of hours to keep a message before it is deleted.
 
 Type: int
 
 Default: `720` (30 days).
 
-In Versions 1.8.2 and below the valid range for this setting was `24` (1 day) through to `1440` (60 days).
+In ServiceControl versions 1.8.2 and below, the valid range for this setting is `24` (1 day) to `1440` (60 days).
 
-In Versions 1.8.3 and above the upper limit has been removed to allow for longer retention. This was done to allow customers with low volumes of messages to retain them longer. Setting this value too high can cause the embedded RavenDB to become large and unresponsive when indexing. See [Capacity and Planning](capacity-and-planning.md).
+Starting in versions 1.8.3, the upper limit has been removed to allow for longer retention. This was done to allow scenarios with low volumes of messages to retain them longer. Setting this value too high can cause the embedded RavenDB to become large and unresponsive when indexing. See [Capacity and Planning](capacity-and-planning.md).
 
 
 #### ServiceControl/AuditRetentionPeriod
 
-This setting is only applicable from Versions 1.12 and above.
+This setting is only applicable starting from versions 1.12.
 
-The period to keep an audit message for before it is deleted.
+The period to keep an audit message before it is deleted.
 
 Type: timespan
 
-Default: There is no default. This setting needs to be specified.
+Default: There is no default; this setting is required.
 
-Valid range for this setting is minimum 1 hour and maximum 364 days.
+Valid range for this setting is from 1 hour to 364 days.
 
 
 #### ServiceControl/ErrorRetentionPeriod
 
-This setting is only applicable from Version 1.12 and above.
+This setting is only applicable starting from version 1.12.
 
 The grace period that faulted messages are kept before they are deleted.
 
@@ -178,30 +176,30 @@ For a message to be considered for deletion, it needs to have a status of either
 
 Type: timespan
 
-Default: There is no default. This setting needs to be specified.
+Default: There is no default; this setting is required.
 
-Valid range for this setting is minimum 10 days and maximum 45 days.
+Valid range for this setting is between 10 days and 45 days.
 
 
 #### ServiceControl/EventRetentionPeriod
 
-This setting is only applicable from Versions 1.25 and above.
+This setting is only applicable starting from version 1.25.
 
-The period to keep event logs for before they are deleted.
+The period to keep event logs before they are deleted.
 
 Type: timespan
 
 Default: `14` (14 days).
 
-Valid range for this setting is minimum 1 hour and maximum 200 days.
+Valid range for this setting is from 1 hour to 200 days.
 
 
-## Performance Tuning
+## Performance tuning
 
 
 #### ServiceControl/MaximumMessageThroughputPerSecond
 
-This setting was introduced in Version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An appropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to conduct thorough performance tests on the hardware before increasing this value.
+This setting was introduced in version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An appropriate limit ensures that the database can cope with the number of insert operations. Otherwise the query performance will drop significantly and the message expiration process will stop working under heavy insert load. Make sure to conduct thorough performance tests on the hardware before increasing this value.
 
 Type: int
 
@@ -210,9 +208,9 @@ Default: `350`.
 
 #### ServiceControl/MaxBodySizeToStore
 
-This setting exists in Version 1.6 and above. It allows the upper limit on body size to be configured.
+This setting was introduced in version 1.6. It allows the upper limit on body size to be configured.
 
-In Version 1.5.x and below ServiceControl only stores bodies of audit messages that are smaller than 100Kb.
+In version 1.5.* and below, ServiceControl stores only the bodies of audit messages that are smaller than 100Kb.
 
 Type: int
 
@@ -221,7 +219,7 @@ Default: `102400` (100Kb)
 
 #### ServiceControl/HttpDefaultConnectionLimit
 
-This setting exists in Version 1.6.2 and above. The maximum number of concurrent connections allowed by ServiceControl. When working with transports that operate over HTTP, number of concurrent connections can be increased to meet transport concurrency settings.
+This setting was introduced in version 1.6.2. The maximum number of concurrent connections allowed by ServiceControl. When working with transports that operate over HTTP, the number of concurrent connections can be increased to meet transport concurrency settings.
 
 Type: string
 
@@ -229,7 +227,6 @@ Default: `100`
 
 
 ## Transport
-
 
 #### ServiceControl/TransportType
 
@@ -242,7 +239,7 @@ Default: `NServiceBus.MsmqTransport, NServiceBus.Core`
 
 #### NServiceBus/Transport
 
-The connection string for the transport. This setting should be placed in `connectionStrings` section of configuration file.
+The connection string for the transport. This setting should be placed in the `connectionStrings` section of the configuration file.
 
 Type: string
 
@@ -272,19 +269,20 @@ Type: string
 
 Default: `<ErrorQueue>.log`
 
-Versions 1.28 and below created the queue specified by this setting when the service instance is installed regardless of the value of `ServiceControl/ForwardErrorMessages`.  Versions 1.29 and above only create the queue if `ServiceControl/ForwardErrorMessages` is enabled. 
+Starting in version 1.29, ServiceControl creates the queue specified by this setting only if `ServiceControl/ForwardErrorMessages` is enabled. In previous versions, the queue specified by this setting is created when the service instance is installed regardless of the value of `ServiceControl/ForwardErrorMessages`.
 
 NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
 
 #### ServiceBus/AuditLogQueue
 
-The audit queue name to use for forwarding audit messages. This only works if `ServiceControl/ForwardAuditMessages` is true.
+The audit queue name to use for forwarding audit messages. This works only if `ServiceControl/ForwardAuditMessages` is true.
 
 Type: string
 
 Default: `<AuditQueue>.log`
 
-Versions 1.28 and below created the queue specified by this setting when the service instance is installed regardless of the value of  `ServiceControl/ForwardAuditMessages`.  Versions 1.29 and above only create the queue if `ServiceControl/ForwardAuditMessages` is enabled.
+Starting in version 1.29, ServiceControl creates the queue specified by this setting only if `ServiceControl/ForwardAuditMessages` is enabled. In previous versions, the queue specified by this setting is created when the service instance is installed regardless of the value of `ServiceControl/ForwardAuditMessages`.
+
 
 NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue. 
 
@@ -296,16 +294,16 @@ Type: bool `true` or `false`
 
 Default: `false`.
 
-In Versions 1.5 and above if this setting is not explicitly set to true or false a warning is shown in the logs at start up.
+In version 1.5 and above, if this setting is not explicitly set to true or false, a warning is shown in the logs at start up.
 
-In Versions 1.12.0 and above there is no default for this setting. This setting needs to be specified.
+In version 1.12.0 and above, there is no default for this setting. This setting needs to be specified.
 
 See [Installation](installation.md) for details on how to set this at install time.
 
 
 #### ServiceControl/ForwardErrorMessages
 
-This setting is only applicable from Versions 1.12.0 and above.
+This setting is only applicable from version 1.12.0 and above.
 
 Use this setting to configure whether processed error messages are forwarded to another queue or not.
 
@@ -318,7 +316,7 @@ This entry should be set to `false` if there is no external process reading mess
 See [Installation](installation.md) for details on how to set this at install time.
 
 
-## Plugin Specific
+## Plugin-specific
 
 
 #### ServiceControl/HeartbeatGracePeriod
@@ -329,9 +327,9 @@ Type: timespan
 
 Default: `00:00:40` (40 secs)
 
-When configuring heartbeat grace period, make sure it is greater than [heartbeat interval defined by plugin](/monitoring/heartbeats/install-plugin.md).
+When configuring heartbeat grace period, make sure it is greater than the [heartbeat interval defined by the plugin](/monitoring/heartbeats/install-plugin.md).
 
-Note: When monitoring multiple endpoints, ensure that heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
+Note: When monitoring multiple endpoints, ensure that the heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
 
 ## Troubleshooting
 
@@ -353,4 +351,4 @@ After restarting the ServiceControl service, access the RavenDB studio locally a
 http://localhost:33333/storage
 ```
 
-NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).
+NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).

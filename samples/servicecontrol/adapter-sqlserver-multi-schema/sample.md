@@ -67,7 +67,7 @@ The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has
 
 snippet: AdapterTransport
 
-The following code configures the adapter to use a custom schema (`adapter`) within the shared database. It also maps the schema for the Shipping endpoint. This is because NServiceBus Version 5 and below did not include the schema name in the address. Notice there is no need to map the schema for the Sales endpoint. Starting from Version 6, the schema name [is included in the address](/transports/sql/addressing.md?version=sqlserver_3). 
+The following code configures the adapter to use a custom schema (`adapter`) within the shared database. It also maps the schema for the `Shipping` endpoint. This is because NServiceBus version 5 and below did not include the schema name in the address. Notice there is no need to map the schema for the `Sales` endpoint. Starting from NServiceBus version 6, the schema name [is included in the address](/transports/sql/addressing.md?version=sqlserver_3). 
 
 snippet: EndpointSideConfig
 

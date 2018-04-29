@@ -4,9 +4,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="3.*" />
-    <PackageReference Include="NServiceBus" Version="4.*" />
     <PackageReference Include="NServiceBus.Autofac" Version="4.*" />
-    <PackageReference Include="NServiceBus.Interfaces" Version="4.*" />
   </ItemGroup>
 </Project>

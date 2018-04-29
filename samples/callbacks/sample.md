@@ -5,6 +5,7 @@ component: Callbacks
 reviewed: 2017-10-19
 ---
 
+
  1. Run the solution. Two console applications and a web application will start.
  1. In the WebSender application, click links from the landing page to trigger each scenario.
  1. In the Sender console application, press various keys to trigger each scenario when prompted.
@@ -27,6 +28,7 @@ public enum Status
 }
 ```
 
+include: callbacks-disclaimer
 
 ## WebSender project
 

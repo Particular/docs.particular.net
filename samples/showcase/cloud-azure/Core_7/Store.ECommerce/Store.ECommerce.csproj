@@ -1,4 +1,4 @@
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -20,7 +20,6 @@
     <TargetFrameworkProfile />
     <UseGlobalApplicationHostFile />
     <Use64BitIISExpress />
-    <ApplicationManifest>app.manifest</ApplicationManifest>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
@@ -42,33 +41,15 @@
     <Reference Include="System" />
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.*" />
-    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.*" />
-    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.*" />
     <PackageReference Include="Microsoft.AspNet.SignalR.SystemWeb" Version="2.*" />
-    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.*" />
-    <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.*" />
-    <PackageReference Include="Microsoft.Data.Edm" Version="5.*" />
-    <PackageReference Include="Microsoft.Data.OData" Version="5.*" />
-    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.*" />
-    <PackageReference Include="Microsoft.Owin" Version="3.*" />
-    <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.*" />
-    <PackageReference Include="Microsoft.Owin.Security" Version="3.*" />
-    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
     <PackageReference Include="Microsoft.Web.WebJobs.Publish" Version="1.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-beta0012" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.0.0-beta0008" />
-    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="2.0.0-beta0012" />
-    <PackageReference Include="Owin" Version="1.*" />
-    <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.*" />
-    <PackageReference Include="System.Dynamic.Runtime" Version="4.*" />
-    <PackageReference Include="System.Linq.Queryable" Version="4.*" />
-    <PackageReference Include="System.Net.Requests" Version="4.*" />
-    <PackageReference Include="System.Spatial" Version="5.*" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.4.0" />
     <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
     <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- explicitly locked versions -->
+    <PackageReference Include="WindowsAzure.Storage" Version="8.7.0" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.cs" />
@@ -91,7 +72,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="app.manifest" />
     <Content Include="Properties\webjobs-list.json" />
     <None Include="Properties\PublishProfiles\WebJobs-DemoStore - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\WebJobs-DemoStore - Web Deploy.pubxml" />
@@ -115,7 +95,8 @@
           <IISUrl>http://localhost:50485/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl />
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

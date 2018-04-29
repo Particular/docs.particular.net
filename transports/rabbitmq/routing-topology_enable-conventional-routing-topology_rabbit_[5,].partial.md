@@ -1,4 +1,4 @@
-### Enabling Conventional Routing Topology
+### Enabling the Conventional Routing Topology
 
 To enable the conventional routing topology, use the following configuration:
 

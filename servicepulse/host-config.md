@@ -1,13 +1,13 @@
 ---
 title: Configuring Hosting
-summary: Describes how to configure the ServicePulse Host
-reviewed: 2016-09-02
+summary: Describes how to configure the ServicePulse host
+reviewed: 2018-04-24
 component: ServicePulse
 redirects:
  - servicepulse/servicepulse-host-config
 ---
 
-To modify the port used by ServicePulse the command line specified in the registry must be updated.
+To modify the port used by ServicePulse, the command line specified in the registry must be updated.
 
 To change it:
 
@@ -28,9 +28,9 @@ Change the value after `--url=` and restart the service.
 
 ServicePulse is configured to connect to the ServiceControl REST API. To specify the URL to connect do  the following
 
-Note: Ensure Version 1.3 or above is being used.
+Note: Ensure version 1.3 or above is being used.
 
  * Go to the installation directory for ServicePulse. Typically this is `C:\Program Files (x86)\Particular Software\ServicePulse\`
  * Go to the `app\js` directory and edit `app.constants.js`
- * If there are any `*.js` in the `app` directory delete them
+ * Delete any `*.js` files in the `app` directory
  * Change the value of the url after `service_control_url`

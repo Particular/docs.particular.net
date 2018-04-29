@@ -1,4 +1,4 @@
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,7 +12,6 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <StartupObject />
-    <ApplicationManifest>app.manifest</ApplicationManifest>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
@@ -59,7 +58,6 @@
     <Compile Include="SendLimitedTimeOffer.cs" />
     <Compile Include="SendWelcomePacket.cs" />
     <None Include="App.config" />
-    <None Include="app.manifest" />
     <None Include="Properties\webjob-publish-settings.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

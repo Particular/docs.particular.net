@@ -1,6 +1,7 @@
 ---
 title: Callback support
-reviewed: 2016-08-31
+summary: Information on how to manage callbacks
+reviewed: 2018-04-24
 component: SqlTransport
 related:
  - nservicebus/messaging/callbacks

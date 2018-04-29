@@ -23,7 +23,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 7.5.x     | 2017-12-04     | -                 | -                                 |
 | ~~7.4.x~~ | ~~2017-07-17~~ | ~~2018-03-04~~    | ~~Superseded by 7.5.x~~           |
-| ~~7.3.x~~ | ~~2017-06-02~~ | ~~2017-10-17~~    | ~~Superseded by 7.4.x~~           |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 #### [NServiceBus.RabbitMQ](/nuget/NServiceBus.RabbitMQ)
@@ -39,7 +38,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.1.x     | 2017-07-14     | -                 | -                                 |
-| ~~3.0.x~~ | ~~2016-10-11~~ | ~~2017-10-14~~    | ~~Superseded by 3.1.x~~           |
 | 2.2.x     | 2015-09-25     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 ### Persistence packages
@@ -80,7 +78,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 3.0.x     | 2017-11-22     | 2018-06-26        | Superseded by 3.1.x               |
 | 2.2.x     | 2017-11-16     | 2018-11-22        | Superseded by 3.0.x               |
 | ~~2.1.x~~ | ~~2017-04-28~~ | ~~2018-02-16~~    | ~~Superseded by 2.2.x~~           |
-| 1.0.x     | 2017-02-02     | 2018-04-14        | Superseded by 2.0.x               |
+| ~~1.0.x~~ | ~~2017-02-02~~ | ~~2018-04-14~~    | ~~Superseded by 2.0.x~~           |
 
 #### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
 
@@ -141,7 +139,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 8.1.x     | 2018-01-24     | -                 | -                                 |
-| 8.0.x     | 2017-11-17     | 2018-04-24        | Superseded by 8.1.x               |
+| ~~8.0.x~~ | ~~2017-11-17~~ | ~~2018-04-24~~    | ~~Superseded by 8.1.x~~           |
 | 7.0.x     | 2016-10-11     | 2018-11-17        | Superseded by 8.0.x               |
 | 6.2.x     | 2015-10-08     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
@@ -376,6 +374,5 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.2.x     | 2017-07-20     | -                 | -                                 |
-| ~~1.0.x~~ | ~~2017-05-22~~ | ~~2017-10-20~~    | ~~Superseded by 1.2.x~~           |
 | 0.2.x     | 2017-01-25     | 2018-05-22        | Superseded by 1.0.x               |
 

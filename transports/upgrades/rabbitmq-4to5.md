@@ -13,14 +13,14 @@ upgradeGuideCoreVersions:
 
 ## Mandatory routing topology selection
 
-Specifying a routing topology is now mandatory. For backwards compatibility, the recommendation is to use the `ConventionalRoutingTopology`, which was the previous default. 
+Specifying a routing topology is now mandatory. For backwards compatibility, the recommendation is to use the conventional routing topology, which was the previous default. 
 
 See [routing topology](/transports/rabbitmq/routing-topology.md) for further details.
 
 
 ## Direct routing topology changes
 
-The convention for overriding the name of the exchange used when publishing events has changed. The address and the event type are no longer passed to the `exchangeNameConvention` parameter of the [UseDirectRoutingTopology](/transports/rabbitmq/routing-topology.md#direct-routing-topology-enabling-direct-routing-topology) method.
+The convention for overriding the name of the exchange used when publishing events has changed. The address and the event type are no longer passed to the `exchangeNameConvention` parameter of the [UseDirectRoutingTopology](/transports/rabbitmq/routing-topology.md#direct-routing-topology-enabling-the-direct-routing-topology) method.
 
 snippet: 4to5usedirectroutingtopology
 
@@ -46,7 +46,7 @@ The [ISupportDelayedDelivery](/transports/rabbitmq/routing-topology.md?version=r
 
 snippet: rabbitmq-disable-durable-exchanges
 
-If DisableDurableMessages has been called, the transport will throw an exception unless `UseDurableExchangesAndQueues` is also called:
+If `DisableDurableMessages` has been called, the transport will throw an exception unless `UseDurableExchangesAndQueues` is also called:
 
 snippet: rabbitmq-disable-durable-messages
 

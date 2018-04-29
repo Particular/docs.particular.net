@@ -4,6 +4,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.ZeroFormatter" Version="1.0.*" />
+    <PackageReference Include="NServiceBus.ZeroFormatter" Version="1.*" />
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@ snippet: sqlserver-config-disable-secondaries
 Secondary queues use the same adaptive concurrency model as the primary queue. Secondary queues (and hence callbacks) are disabled for satellite receivers.
 
 
-## Callback Receiver Max Concurrency
+## Callback receiver max concurrency
 
 Changes the number of threads used for the callback receiver. The default is 1 thread.
 
