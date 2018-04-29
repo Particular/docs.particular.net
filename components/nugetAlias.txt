@@ -83,11 +83,12 @@ ServiceFabricPersistence: NServiceBus.Persistence.ServiceFabric
 ServicePulse: ServicePulse
 ServiceInsight: ServiceInsight
 SqlPersistence: NServiceBus.Persistence.Sql
+SqlTransport: NServiceBus.SqlServer
+SqlTransportNative: NServiceBus.SqlServer.Native
 SignalR: SignalR.NServiceBus
 RabbitOperations: RabbitOperations
 SimpleInjector: NServiceBus.SimpleInjector
 Spring: NServiceBus.Spring
-SqlTransport: NServiceBus.SqlServer
 Sqs: NServiceBus.AmazonSQS
 StructureMap: NServiceBus.StructureMap
 SystemXml: NServiceBus.Serializers.SystemXml
