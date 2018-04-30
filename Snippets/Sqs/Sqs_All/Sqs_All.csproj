@@ -11,7 +11,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.AmazonSQS" Version="4.0.0-*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.0.0-rc0001" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.0.0-*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="System.Management.Automation" Version="6.*" />
   </ItemGroup>
