@@ -5,13 +5,10 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Attachments.Sql" Version="1.0.0-beta.*" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="fileToStream.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Update="fileToStream.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
