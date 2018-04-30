@@ -5,7 +5,8 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Anotar.NServiceBus.Fody" Version="4.1.0" />
-    <PackageReference Include="Fody" Version="2.*" />
+    <PackageReference Include="Anotar.NServiceBus.Fody" Version="4.*" />
+    <PackageReference Include="Fody" Version="3.*" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
   </ItemGroup>
 </Project>

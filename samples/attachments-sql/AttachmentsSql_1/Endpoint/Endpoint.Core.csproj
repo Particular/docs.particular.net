@@ -9,8 +9,6 @@
     <PackageReference Include="NServiceBus.Attachments.Sql" Version="1.0.0-beta.*" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="fileToStream.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Update="fileToStream.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

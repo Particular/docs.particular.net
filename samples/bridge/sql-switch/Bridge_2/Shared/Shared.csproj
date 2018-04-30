@@ -4,7 +4,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.*" />
   </ItemGroup>
 </Project>
