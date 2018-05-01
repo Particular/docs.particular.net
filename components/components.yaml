@@ -92,6 +92,15 @@
   NugetOrder:
     - NServiceBus.Azure.Transports.WindowsAzureServiceBus
 
+- Key: ASBS
+  Name: Azure Service Bus Transport for .NET Standard
+  DocoUrl: transports/azure-service-bus-netstandard
+  GitHubOwner: Particular/azure-maintainers
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus.Transport.AzureServiceBus
+  NugetOrder:
+    - NServiceBus.Transport.AzureServiceBus
+
 - Key: ASP
   Name: Azure Storage Persistence 
   DocoUrl: persistence/azure-storage
