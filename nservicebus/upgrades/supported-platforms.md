@@ -39,8 +39,6 @@ Some packages do not currently support .NET Core or running on non-Windows platf
   * NServiceBus.Persistence.Sql - Microsoft SQL Server and PostgreSQL are supported. Oracle is not supported due to the lack of a .NET Core version of Oracle.ManagedDataAccess. The MySQL library does support .NET Core, but it has not yet been validated to work with SQL Persistence.
 * Containers
   * NServiceBus.Spring - Spring.Core does not support .NET Core.
-* Loggers
-  * NServiceBus.NLog - Waiting for stable release of NLog 4.5.0, which introduces .NET Core support
 * Hosts
   * These hosts are being deprecated and will not receive .NET Core support. They are replaced by the [ParticularTemplates package](https://www.nuget.org/packages/ParticularTemplates) containing [templates for use with `dotnet new`](/nservicebus/dotnet-templates.md).
     * NServiceBus.Host
