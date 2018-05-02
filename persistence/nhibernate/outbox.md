@@ -28,6 +28,6 @@ These default settings can be changed by specifying new defaults in the config f
 
 snippet: OutboxNHibernateTimeToKeep
 
-By specifying a value of -1 (`Timeout.InfiniteTimeSpan`) for `SetFrequencyToRunDeduplicationDataCleanup` the cleanup task is disabled. This can be useful when an endpoint is scaled out and instances are competing to run the cleanup task.
+By specifying a value of -1 (`Timeout.InfiniteTimeSpan`) for `SetFrequencyToRunDeduplicationDataCleanup`, the cleanup task is disabled. This can be useful when an endpoint is scaled out and instances are competing to run the cleanup task.
 
-NOTE: It is advised to run the cleanup task on only one NServiceBus endpoint instance per database and disable the cleanup task on all other NServiceBus endpoint instances for the most efficient cleanup execution.
+NOTE: It is advised to run the cleanup task on only one NServiceBus endpoint instance per database. Disable the cleanup task on all other NServiceBus endpoint instances for the most efficient cleanup execution.
