@@ -197,7 +197,7 @@ It contains several [header](/nservicebus/messaging/headers.md) related utilitie
 
 #### Serialization
 
-Searialize a `Dictionary<string, string>` to a JSON string.
+Serialize a `Dictionary<string, string>` to a JSON string.
 
 snippet: Serialize
 
