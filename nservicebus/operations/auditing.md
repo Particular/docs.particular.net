@@ -35,6 +35,11 @@ The audited message is enriched with additional headers, which contain informati
 Audit messages can be handled in a variety of ways: Save them in a database, do custom logging, etc. It is important not to leave the messages in the audit queue however, as most queuing technologies have upper-bound limits on their queue sizes and depth. By not processing these messages, the limits of the underlying queue technology may be reached.
 
 
+## Configuring auditing
+
+partial: configuration
+
+
 ## Audit configuration options
 
 There two settings that control auditing:
@@ -68,10 +73,6 @@ If no OverrideTimeToBeReceived is defined then:
 **Versions 6 and above**: No TimeToBeReceived will be set.
 
 
-## Configuring auditing
-
-partial: configuration
-
 ## Filtering audit messages
 
 When auditing is enabled, all messages are audited by default. To control which message types are audited, see the [audit filter sample](/samples/pipeline/audit-filtering/).
@@ -81,3 +82,6 @@ When auditing is enabled, all messages are audited by default. To control which 
 Auditing works by sending an exact copy of the received message to the audit queue, so filtering out individual properties is not supported.
 
 For sensitive properties, e.g. credit card numbers or passwords, use [message property encryption](/nservicebus/security/property-encryption.md). For large properties, consider [streaming](/samples/pipeline/stream-properties/) them instead to avoid including the actual payload in the audited message.
+
+
+partial: additional-data
