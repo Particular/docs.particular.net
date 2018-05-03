@@ -155,7 +155,7 @@ This establishes that commands of type `PlaceOrder` should be sent to the **Sale
 
 ### Running the solution
 
-Now when we run the solution, we get two console windows, one for ClientUI and one for Sales. After moving them around so that we can see both, we can try to place an order by pressing `P` in the **ClientUI** window.
+Now when we run the solution, we get two console windows, one for ClientUI and one for Sales. After moving them around so that we can see both, we can try to place an order by pressing <kbd>P</kbd> in the **ClientUI** window.
 
 INFO: You can also keep console windows from showing up in random screen locations each time by right-clicking the console window's title bar, and in the **Layout** tab, unchecking the **Let system position window** checkbox.
 
@@ -185,7 +185,7 @@ At this point, we've managed to create two processes and achieve inter-process c
 
 1. In Visual Studio's **Debug** menu, select **Detach All** so that we can close one console window without Visual Studio closing all the other windows as well. Alternatively, you can run the solution using **Debug** > **Start Without Debugging** or Ctrl+F5.
 1. Close the Sales endpoint window so that only ClientUI is running.
-1. Press `P` several times to send several messages to the Sales endpoint. Note that it works just fine; messages are sent, and nothing fails because the Sales endpoint happens to be offline.
+1. Press <kbd>P</kbd> several times to send several messages to the Sales endpoint. Note that it works just fine; messages are sent, and nothing fails because the Sales endpoint happens to be offline.
 1. Restart the Sales endpoint by right-clicking the **Sales** project and selecting **Debug** > **Start new instance**.
 
 After Sales starts up, it receives and processes all the messages that were waiting for it in the queue.

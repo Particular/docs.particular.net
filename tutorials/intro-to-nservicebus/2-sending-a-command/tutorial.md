@@ -163,7 +163,7 @@ snippet: AddRunLoopToAsyncMain
 
 ### Running the solution
 
-Now we can run the solution. Whenever we press `P` on the console, a command message is sent and then processed by a handler class in the same project.
+Now we can run the solution. Whenever we press <kbd>P</kbd> on the console, a command message is sent and then processed by a handler class in the same project.
 
 ```
 INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.

@@ -112,7 +112,7 @@ Later in the exercise, we will be using ServicePulse to replay a failed message,
 
 The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when you run the solution it should open four console applications, one for each messaging endpoint.
 
-In the **ClientUI** application, press `P` to place an order, and watch what happens in other windows.
+In the **ClientUI** application, press <kbd>P</kbd> to place an order, and watch what happens in other windows.
 
 It may happen too quickly to see, but the `PlaceOrder` command will be sent to the **Sales** endpoint, which will publish events to **Billing** and **Shipping**. The **Billing** endpoint will then publish an event to **Shipping**. The entire process concludes with these two log messages displayed by the **Shipping** endpoint, hinting at the need for a [Saga](/nservicebus/sagas/):
 
@@ -132,7 +132,7 @@ Now, let's throw an exception that will make its way to the error queue. For the
 Now, run the solution.
 
  1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running, but does not break into the debugger when we throw our exception.
- 1. In the **ClientUI** window, place an order by pressing `P`.
+ 1. In the **ClientUI** window, place an order by pressing <kbd>P</kbd>.
 
 In the **Sales** window, you will see a wall of text culminating in a red error trace. This is where NServiceBus gives up on the message and sends it to the error queue.
 

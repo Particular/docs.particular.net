@@ -99,7 +99,7 @@ snippet: ThrowSystemic
 Now, run the solution.
 
  1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running, but does not break into the debugger when we throw our exception.
- 1. In the **ClientUI** window, place an order by pressing `P`.
+ 1. In the **ClientUI** window, place an order by pressing <kbd>P</kbd>.
 
 When we do these steps, we'll see a wall of exception messages in white text, which is log level INFO, followed by one in yellow text, which is log level WARN. The exception traces in white are the failures during immediate retries, and the last trace in yellow is the failure that hands the message over to delayed retries.
 
@@ -147,7 +147,7 @@ snippet: Random
 snippet: ThrowTransient
 
 4. Start the solution, and either select **Detach All** in the **Debug** menu, or just start the solution without debugging (Ctrl+F5).
-4. In the **ClientUI** window, send one message at a time by pressing `P`, and watch the **Sales** window.
+4. In the **ClientUI** window, send one message at a time by pressing <kbd>P</kbd>, and watch the **Sales** window.
 
 As you will see in the **Sales** window, 80% of the messages will go through as normal. When an exception occurs, the exception trace will be displayed once in white, and then generally succeed on the next try. After the successful retry, the other windows will continue to react as normal to complete the process.
 
