@@ -35,6 +35,11 @@ The audited message is enriched with additional headers, which contain informati
 Audit messages can be handled in a variety of ways: Save them in a database, do custom logging, etc. It is important not to leave the messages in the audit queue however, as most queuing technologies have upper-bound limits on their queue sizes and depth. By not processing these messages, the limits of the underlying queue technology may be reached.
 
 
+## Configuring auditing
+
+partial: configuration
+
+
 ## Audit configuration options
 
 There two settings that control auditing:
@@ -67,10 +72,6 @@ If no OverrideTimeToBeReceived is defined then:
 
 **Versions 6 and above**: No TimeToBeReceived will be set.
 
-
-## Configuring auditing
-
-partial: configuration
 
 ## Filtering audit messages
 
