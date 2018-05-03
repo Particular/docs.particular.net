@@ -855,6 +855,17 @@
   NugetOrder:
     - NServiceBus.SqlServer
 
+- Key: SqlTransportNative
+  Name: SQL Server Transport - Native
+  DocoUrl: transports/sql/sql-native
+  Category: Transport
+  GitHubOwner: NServiceBusExtensions
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Native/blob/master/license.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Native
+  NugetOrder:
+    - NServiceBus.SqlServer.Native
+
 - Key: StructureMap
   Name: StructureMap Dependency Injection
   DocoUrl: nservicebus/dependency-injection/structuremap
