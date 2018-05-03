@@ -31,7 +31,7 @@ On NativeEndpoint press:
  * `s` to send a message that will succeed or
  * `f` to send a message that will fail 
 
-The successful message will be received by NsbEndpoint and AuditConsumer. The failure message will be be received by NsbEndpoint and ErrorProcessor.
+The successful message will be received by NsbEndpoint and AuditConsumer. The failure message will be received by NsbEndpoint and ErrorProcessor.
 
 
 ## Code walk-through
