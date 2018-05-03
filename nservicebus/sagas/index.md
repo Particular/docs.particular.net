@@ -97,7 +97,7 @@ If a saga handles a message, but no related saga instance is found, then that me
 
 When a saga instance is no longer needed it can be completed using the `MarkAsComplete()` API. This tells the saga infrastructure that the instance is no longer needed and can be cleaned up.
 
-NOTE: Instance cleanup is implemented differently by the various saga persisters and are not guaranteed to be immediate.
+NOTE: Instance cleanup is implemented differently by the various saga persisters and is not guaranteed to be immediate.
 
 ### Outstanding timeouts
 
