@@ -5,7 +5,7 @@ reviewed: 2018-04-23
 component: SqlTransportNative
 ---
 
-Provides low level access to the [SQL Server Transport](/transports/sql/) with no NServiceBus or SQL Transport reference required.
+Provides low-level access to the [SQL Server Transport](/transports/sql/) with no NServiceBus or SQL Transport reference required.
 
 
 ## Usage scenarios
@@ -25,7 +25,7 @@ Some notes on the below snippets:
  * All methods that return a [Task](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) also accept an optional [CancellationToken](https://msdn.microsoft.com/en-us/library/system.threading.cancellationtoken.aspx).
  * While a string `connectionString` is used in all snippets for simplicity, an overload that takes a `SqlConnection` also exists.
  * For all APIs that modify data there is an overload that takes a `SqlTransaction`.
- * All snippets show variants that target and use byte arrays. There are also overloads that target and use a Stream. Depending on the message size and performance requirements using the Stream based overload may result in less memory pressure on the system and better overall throughput.
+ * All snippets show variants that target and use byte arrays. There are also overloads that target and use a Stream. Depending on the message size and performance requirements using the Stream-based overload may result in less memory pressure on the system and better overall throughput.
 
 }}
 
@@ -139,7 +139,7 @@ snippet: ReadBatch
 
 ### RowVersion tracking
 
-For many scenarios it is likely to be necessary to keep track of the last message `RowVersion` that was read. A lightweight implementation of the functionality is provided by `RowVersionTracker`. `RowVersionTracker` stored the current `RowVersion` in a table containing a single column and row.
+For many scenarios, it is likely to be necessary to keep track of the last message `RowVersion` that was read. A lightweight implementation of the functionality is provided by `RowVersionTracker`. `RowVersionTracker` stored the current `RowVersion` in a table containing a single column and row.
 
 snippet: RowVersionTracker
 
