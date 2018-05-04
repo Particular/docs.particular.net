@@ -13,19 +13,19 @@ redirects:
 The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the exchanges it creates to send and publish messages.
 
 
-## Conventional Routing Topology
+## Conventional routing topology
 
 The conventional routing topology relies on [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) to route messages. 
 
 partial: mandatory
 
 
-### Sending using the Conventional Routing Topology
+### Sending using the conventional routing topology
 
 Each endpoint creates its own fanout exchange and queue, using its own name as the name of the exchange and queue. It also creates a binding between the exchange and queue. Messages are sent to the endpoint by sending them to the endpoint's exchange. The binding then routes the message to the endpoint's queue.
 
 
-### Publishing using the Conventional Routing Topology
+### Publishing using the conventional routing topology
 
 For each type being published, a series of fanout exchanges are created to model the inheritance hierarchy of the type. For each type involved, an exchange is created, named in the following format: `Namespace:TypeName`. Bindings are created between the types, going from child to parent, until the entire hierarchy has been modeled. Exchanges are also created for each interface the type implements.
 
@@ -37,19 +37,19 @@ When an endpoint publishes an event, it first ensures that the above infrastruct
 partial: enable-conventional-routing-topology
 
 
-## Direct Routing Topology
+## Direct routing topology
 
 The direct routing topology routes all events through a single exchange, `amq.topic` by default. Events are published using a routing key based on the event type, and subscribers will use that key to filter their subscriptions.
 
 Note: Unless needed for compatibility with existing deployments, it is recommended to use the conventional routing topology instead.
 
 
-### Sending using the Direct Routing Topology
+### Sending using the direct routing topology
 
 Every endpoint creates a queue with a name that is equal to the endpoint name. When an endpoint sends a message it sends it to a default exchange with a routing key equal to the destination endpoint name. This makes use of RabbitMQ [default exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html) to move the message to a queue with the same name.
 
 
-### Publishing using the Direct Routing Topology
+### Publishing using the direct routing topology
 
 Every endpoint publishes an event using the `amq.topic` exchange with a routing key of the form `Namespace.TypeName`, corresponding to the type of the event. The event is moved to all queues that have a binding for that event type.
 
@@ -58,7 +58,7 @@ An endpoint that subscribes to a given event creates a binding to the default ex
 WARNING: In accordance with the [AMQP 0.9.1 standard](https://www.rabbitmq.com/amqp-0-9-1-reference.html#basic.publish.routing-key) the routing key has a length limit of 255 characters.
 
 
-### Enabling the Direct Routing Topology
+### Enabling the direct routing topology
 
 To enable the direct routing topology, use the following configuration:
 
@@ -66,7 +66,7 @@ snippet: rabbitmq-config-usedirectroutingtopology
 
 ### Overriding the default conventions
 
-The default conventions for exchange names and routing keys can be overridden by using the following overload instead:
+The default conventions for exchange names and routing keys can be overridden by using the following overload:
 
 snippet: rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
@@ -76,7 +76,7 @@ WARNING: In some cases, the direct routing topology may not deliver message type
 partial: exchange-queue-durability
 
 
-## Custom Routing Topology
+## Custom routing topology
 
 If the built-in routing topologies do not satisfy the requirements of the system, a custom routing topology may be used. To do this:
 
