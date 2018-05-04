@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using NUnit.Framework;
@@ -14,13 +15,18 @@ namespace IntegrityTests
                 .Run(projectFilePath =>
                 {
                     var xdoc = XDocument.Load(projectFilePath);
-                    if (xdoc.Root.Attribute("xmlns") != null)
+                    var nsMgr = new XmlNamespaceManager(new NameTable());
+                    var query = "/Project/ItemGroup/PackageReference[@Version='*']";
+                    var xmlnsAtt = xdoc.Root.Attribute("xmlns");
+
+                    if (xmlnsAtt != null)
                     {
-                        // Ignore pre-VS2017 projects
-                        return true;
+                        query = "/x:Project/x:ItemGroup/x:PackageReference[@Version='*']";
+                        var xmlns = xmlnsAtt.Value;
+                        nsMgr.AddNamespace("x", xmlns);
                     }
 
-                    var badPackageRefs = xdoc.XPathSelectElements("/Project/ItemGroup/PackageReference[@Version='*']");
+                    var badPackageRefs = xdoc.XPathSelectElements(query, nsMgr);
                     return !badPackageRefs.Any();
                 });
         }
