@@ -27,3 +27,7 @@ The NHibernate implementation by default keeps deduplication records for 7 days 
 These default settings can be changed by specifying new defaults in the config file using [TimeStamp strings](https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings):
 
 snippet: OutboxNHibernateTimeToKeep
+
+By specifying a value of `-00:00:001` (value of `Timeout.InfiniteTimeSpan`) for appsetting `NServiceBus/Outbox/NHibernate/FrequencyToRunDeduplicationDataCleanup`, the cleanup task is disabled. This can be useful when an endpoint is scaled out and instances are competing to run the cleanup task.
+
+NOTE: It is advised to run the cleanup task on only one NServiceBus endpoint instance per database. Disable the cleanup task on all other NServiceBus endpoint instances for the most efficient cleanup execution.
