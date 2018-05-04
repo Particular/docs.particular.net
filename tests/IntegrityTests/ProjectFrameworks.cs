@@ -11,6 +11,7 @@ namespace IntegrityTests
         public void DoNotUseTargetFrameworksPlural()
         {
             new TestRunner("*.csproj", "Project files should not be multi-targeted with <TargetFrameworks> element")
+                .IgnoreSnippets()
                 .Run(projectFilePath =>
                 {
                     var xdoc = XDocument.Load(projectFilePath);

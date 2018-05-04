@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using NUnit.Framework;
 
@@ -10,6 +12,7 @@ namespace IntegrityTests
     {
         private string glob;
         private string errorMessage;
+        private List<Regex> ignoreRegexes = new List<Regex>();
 
         public TestRunner(string glob, string errorMessage)
         {
@@ -27,6 +30,11 @@ namespace IntegrityTests
 
                 foreach (var projectFilePath in projectFiles)
                 {
+                    if (ignoreRegexes.Any(r => r.IsMatch(projectFilePath)))
+                    {
+                        continue;
+                    }
+
                     bool success = testDelegate(projectFilePath);
 
                     if (!success)
@@ -40,6 +48,33 @@ namespace IntegrityTests
             {
                 Assert.Fail($"{errorMessage}:\r\n  > {string.Join("\r\n  > ", badProjects)}");
             }
+        }
+
+        public TestRunner IgnoreRegex(string pattern, RegexOptions regexOptions = RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
+        {
+            ignoreRegexes.Add(new Regex(pattern, regexOptions));
+            return this;
+        }
+
+        public TestRunner IgnoreWildcard(string wildcardExpression)
+        {
+            string pattern = Regex.Escape(wildcardExpression).Replace(@"\*", ".*").Replace(@"\?", ".");
+            return IgnoreRegex(pattern);
+        }
+
+        public TestRunner IgnoreSamples()
+        {
+            return IgnoreRegex(@"\\samples\\");
+        }
+
+        public TestRunner IgnoreSnippets()
+        {
+            return IgnoreRegex(@"\\snippets\\");
+        }
+
+        public TestRunner IgnoreTutorials()
+        {
+            return IgnoreRegex(@"\\tutorials\\");
         }
     }
 }
