@@ -23,9 +23,8 @@ Provides low-level access to the [SQL Server Transport](/transports/sql/) with n
 Some notes on the below snippets:
 
  * All methods that return a [Task](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) also accept an optional [CancellationToken](https://msdn.microsoft.com/en-us/library/system.threading.cancellationtoken.aspx).
- * While a string `connectionString` is used in all snippets for simplicity, an overload that takes a `SqlConnection` also exists.
- * For all APIs that modify data there is an overload that takes a `SqlTransaction`.
- * All snippets show variants that target and use byte arrays. There are also overloads that target and use a Stream. Depending on the message size and performance requirements using the Stream-based overload may result in less memory pressure on the system and better overall throughput.
+ * While a string `SqlConnection` is used in all snippets for simplicity, an overload that takes a `SqlTransaction` also exists.
+ * All snippets show variants that target and use byte arrays. There are also overloads that target and use a [Stream](https://msdn.microsoft.com/en-us/library/system.io.stream.aspx). Depending on the message size and performance requirements using the Stream-based overload may result in less memory pressure on the system and better overall throughput.
 
 }}
 
@@ -217,3 +216,10 @@ Contains all the string constants copied from `NServiceBus.Headers`.
 ### Duplicated timestamp functionality
 
 A copy of the [timestamp format methods](/nservicebus/messaging/headers.md#timestamp-format) `ToWireFormattedString` and `ToUtcDateTime`. 
+
+
+## ConnectionHelpers
+
+The APIs of this extension target either a SQLConnection and SQLTransaction. Given that in configuration those values are often expressed as a connection string, `ConnectionHelpers` supports converting that string to a SQLConnection or SQLTransaction. It provides two methods `OpenConnection` and `BeginTransaction` with the effective implementation of those methods being:
+
+snippet: ConnectionHelpers

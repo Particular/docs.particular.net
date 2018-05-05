@@ -1,4 +1,5 @@
 using System;
+using System.Data.SqlClient;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,18 +12,23 @@ class Program
         Console.Title = "Samples.SqlServer.Native.ErrorProcessor";
         Console.WriteLine("Press any key to exit");
 
-        await QueueCreator.Create(SqlHelper.ConnectionString, "error")
-            .ConfigureAwait(false);
+        await CreateErrorQueue().ConfigureAwait(false);
 
         #region MessageProcessingLoop
 
-        var rowVersionTracker = new RowVersionTracker();
-        await rowVersionTracker.CreateTable(SqlHelper.ConnectionString).ConfigureAwait(false);
-        var startingRow = await rowVersionTracker.Get(SqlHelper.ConnectionString).ConfigureAwait(false);
+        long startingRow;
 
-        Task Callback(IncomingBytesMessage incomingMessage, CancellationToken cancellation)
+        var rowVersionTracker = new RowVersionTracker();
+        using (var connection = await ConnectionHelpers.OpenConnection(SqlHelper.ConnectionString)
+            .ConfigureAwait(false))
         {
-            var bodyText = Encoding.UTF8.GetString(incomingMessage.Body);
+            await rowVersionTracker.CreateTable(connection).ConfigureAwait(false);
+            startingRow = await rowVersionTracker.Get(connection).ConfigureAwait(false);
+        }
+
+        Task Callback(SqlTransaction sqlTransaction, IncomingBytesMessage message, CancellationToken cancellation)
+        {
+            var bodyText = Encoding.UTF8.GetString(message.Body);
             Console.WriteLine($"Message received in error queue:\r\n{bodyText}");
             return Task.CompletedTask;
         }
@@ -32,15 +38,20 @@ class Program
             Environment.FailFast("Message processing loop failed", exception);
         }
 
-        Task PersistRowVersion(long rowVersion, CancellationToken token)
+        Task PersistRowVersion(SqlTransaction transaction, long rowVersion, CancellationToken cancellation)
         {
-            return rowVersionTracker.Save(SqlHelper.ConnectionString, rowVersion, token);
+            return rowVersionTracker.Save(transaction, rowVersion, cancellation);
+        }
+
+        Task<SqlTransaction> TransactionBuilder(CancellationToken cancellation)
+        {
+            return ConnectionHelpers.BeginTransaction(SqlHelper.ConnectionString, cancellation);
         }
 
         var processingLoop = new MessageProcessingLoop(
             table: "error",
             delay: TimeSpan.FromSeconds(1),
-            connection: SqlHelper.ConnectionString,
+            transactionBuilder: TransactionBuilder,
             callback: Callback,
             errorCallback: ErrorCallback,
             startingRow: startingRow,
@@ -53,5 +64,16 @@ class Program
             .ConfigureAwait(false);
 
         #endregion
+    }
+
+    static async Task CreateErrorQueue()
+    {
+        using (var connection = await ConnectionHelpers.OpenConnection(SqlHelper.ConnectionString)
+            .ConfigureAwait(false))
+        {
+            var queueManager = new QueueManager("error", connection);
+            await queueManager.Create()
+                .ConfigureAwait(false);
+        }
     }
 }
