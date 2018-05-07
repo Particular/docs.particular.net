@@ -24,8 +24,11 @@ Message lock renewal is only applied on messages actively processed by endpoints
 
 Message lock renewal should be greater than `LockDuration`. When `LockDuration` period is due to expire, Azure Service Bus transport will issue lock renewal request to the broker, keeping message locked and invisible to other consumers. Lock renewal will automatically take place while the total time of the message processing stays less than auto renewal time set by Azure Service Bus transport. The default lock renewal time is 5 minutes. Auto lock renewal will **not** increase `DeliveryCount` of the processed message.
 
+NOTE: message lock renewal is only applied to the currently processed message. Any prefetched messages that are pending processing longer than `LockDuration` time will lose their lock, resulting in `LockLostException` exception when these messages are attempted for completion. To prevent exception when lock renewal is used, it's advised to disable prefetching by setting `PrefetchCount` to zero.
+
 include: autorenewtimeout-warning
 
+When `PrefetchCount` is used, prefetched messages 
 
 ## Configuring message lock renewal
 
