@@ -71,7 +71,7 @@ Up to Version 6 of NServiceBus a [JSON serializer based on Json.net](json.md) wa
 
 ### No support for `XContainer` and `XDocument` properties
 
-In contrast to the bundled serializer `XContainer` and `XDocument` properties are no longer supported. If `XContainer` and `XDocument` properties are required [use a JsonConverter](newtonsoft.md#compatibility-with-the-core-json-serializer-use-a-jsonconverter-for-xcontainer-and-xdocument) as shown below:
+In contrast to the bundled serializer `XContainer` and `XDocument` properties are no longer supported. If `XContainer` and `XDocument` properties are required [use a JsonConverter](https://www.newtonsoft.com/json/help/html/CustomJsonConverter.htm) as shown below:
 
 snippet: XContainerJsonConverter
 
