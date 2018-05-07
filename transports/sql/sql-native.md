@@ -93,7 +93,7 @@ snippet: Send
 
 #### Batch
 
-Sending a batch of message.
+Sending a batch of messages.
 
 snippet: SendBatch
 
@@ -112,7 +112,7 @@ snippet: SendDelayed
 
 #### Batch
 
-Sending a batch of message.
+Sending a batch of messages.
 
 snippet: SendDelayedBatch
 
