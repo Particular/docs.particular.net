@@ -134,7 +134,7 @@ class Usage
         #endregion
     }
 
-    #region KnownTypesBinderConfig
+    #region KnownTypesBinder
     class SkipAssemblyNameForMessageTypesBinder : ISerializationBinder
     {
         Type[] messageTypes;
