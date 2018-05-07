@@ -52,6 +52,11 @@ include: custom-contenttype-key
 
 snippet: NewtonsoftContentTypeKey
 
+## Inferring message type from $type
+
+For integration scenarios where the sender is unable to add message headers the serializer is able to infer the message type from the [`$type` property supported by json.net](https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm). 
+
+See [native integration with SqlTransport sample](/samples/sqltransport/native-integration) for more details.
 
 ## BSON
 
@@ -62,9 +67,20 @@ snippet: NewtonsoftBson
 
 ## Compatibility with the core JSON serializer
 
-The only incompatibility with the [core serializer](json.md) is that this serializer does not support the serialization of `XContainer` and `XDocument` properties. If XML properties are required on messages strings should be used instead. If `XContainer` and `XDocument` properties are required [use a JsonConverter](newtonsoft.md#compatibility-with-the-core-json-serializer-use-a-jsonconverter-for-xcontainer-and-xdocument).
+Up to Version 6 of NServiceBus a [JSON serializer based on Json.net](json.md) was bundled inside the core package. This section outlines the compatibility considerations when switching to this serializer.
 
-{{WARNING:
+### No support for `XContainer` and `XDocument` properties
+
+In contrast to the bundled serializer `XContainer` and `XDocument` properties are no longer supported. If `XContainer` and `XDocument` properties are required [use a JsonConverter](https://www.newtonsoft.com/json/help/html/CustomJsonConverter.htm) as shown below:
+
+snippet: XContainerJsonConverter
+
+Configure the converter like shown below:
+
+snippet: UseConverter
+
+###  No support for bundled logical messages
+
 This serializer is not compatible with multiple bundled messages (when using the `Send(object[] messages)` APIs) sent from Versions 3 and below of NServiceBus. If this scenario is detected then an exception with the following message will be thrown:
 
 ```
@@ -73,21 +89,15 @@ Multiple messages in the same stream are not supported.
 
 The `AddDeserializer` API can help transition between serializers. See the [Multiple Deserializers Sample](/samples/serializers/multiple-deserializers/) for more information.
 
-}}
 
+### Use of $type requires an assembly qualified name
 
-### Use a JsonConverter for XContainer and XDocument
+The bundled serializer registers a custom serialization binder in order to not require the assembly name to be present when inferring message type from the [`$type` property supported by json.net](https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm). Not having to specify the assembly name can be useful to reduce coupling when using the serializer for native integration scenarios like [demonstrated in this sample](/samples/sqltransport/native-integration).
 
+To make the serializer compatible with this behavior use the following serialization binder:
 
-#### The JsonConverter
+snippet: KnownTypesBinder
 
-This is a custom [JsonConverter](http://www.newtonsoft.com/json/help/html/CustomJsonConverter.htm) that replicates the approach used by the [core serializer](json.md).
+and configured as follows:
 
-snippet: XContainerJsonConverter
-
-
-#### Use the JsonConverter
-
-At configuration time the JsonConverter can then be used with the following.
-
-snippet: UseConverter
+snippet: KnownTypesBinderConfig
