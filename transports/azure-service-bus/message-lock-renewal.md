@@ -28,7 +28,6 @@ NOTE: message lock renewal is only applied to the currently processed message. A
 
 include: autorenewtimeout-warning
 
-When `PrefetchCount` is used, prefetched messages 
 
 ## Configuring message lock renewal
 
