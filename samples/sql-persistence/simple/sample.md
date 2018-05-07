@@ -12,6 +12,7 @@ related:
 
 This sample shows a Client + Server scenario.
 
+WARNING: By default all endpoints are started when the solution is run, which means that the sample requires all databases (i.e. SQL Server, MySQL, Oracle, PostreSQL) to be configured to run correctly. In order to run the sample with just one database, disable unnecessary endpoints.
 
 include: sqlpersistence-prereqs
 
