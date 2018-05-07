@@ -10,12 +10,12 @@ SQL Server Transport Native is a shim providing low-level access to the [SQL Ser
 
 ## Usage scenarios
 
- * **Error or Audit queue handling**: Allows to easily consume messages from error and audit queues, for example to move them to a long-term archive. Since NServiceBus expects to have a queue per message type it is not suitable for use when processing an error or audit queues, which contain messages of various types. SQL Native allows manipulation or consumption of queues with multiple types of messages.
+ * **Error or Audit queue handling**: Allows to consume messages from error and audit queues, for example to move them to a long-term archive. NServiceBus expects to have a queue per message type, so NServiceBus endpoints are not suitable for processing error or audit queues. SQL Native allows manipulation or consumption of queues containing multiple types of messages.
  * **Corrupted or malformed messages**: Allows to process poison messages which can't be deserialized by NServiceBus. In SQL Native message headers and body are treated as a raw string and byte array, so corrupted or malformed messages can be read and manipulated in code to correct any problems.
  * **Deployment or decommission**: Allows to perform common operatorial activities, similar to [operations scripts](/transports/sql/operations-scripting.md#native-send-the-native-send-helper-methods-in-c). Running [installers](/nservicebus/operations/installers.md) requires starting a full endpoint. This is not always ideal during the execution of a deployment or decommission. SQL Native allows creating or deleting of queues with no running endpoint, and with significantly less code. This also makes it a better candidate for usage in deployment scripting languages like PowerShell.
  * **Bulk operations**: SQL Native supports sending and receiving of multiple messages within a single SQLConnection and SQLTransaction.
  * **Explicit connection and transaction management**: NServiceBus abstracts the SQLConnection and SQLTransaction creation and management. SQL Native allows any consuming code to manage the scope and settings of both the SQLConnection and SQLTransaction.
- * **Message pass through**: In Web applications typically every new message type requires adding a new Web API method. SQL Native reduces the amount of boilerplate code and simplifies development, for example by allowing to directly generate message definitions in  TypeScript without changes in the API layer, and no custom pipeline or mutators required. See [HTTP Message Pass Through Sample](/samples/web/owin-pass-through/) to learn more.
+ * **Message pass through**: SQL Native reduces the amount of boilerplate code and simplifies development, it provides functionality similar to shown in [HTTP Message Pass Through Sample](/samples/web/owin-pass-through/) with no custom pipeline or mutators required.
 
 
 {{NOTE:
