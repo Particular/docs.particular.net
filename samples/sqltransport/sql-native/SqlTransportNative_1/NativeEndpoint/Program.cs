@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,14 +15,13 @@ class Program
         Console.WriteLine("Press f to send a message that will fail");
         Console.WriteLine("Press any key to exit");
 
-        await QueueCreator.Create(SqlHelper.ConnectionString, "NativeEndpoint")
-            .ConfigureAwait(false);
+        await CreateQueue().ConfigureAwait(false);
 
         #region receive
 
-        Task Callback(IncomingBytesMessage incomingMessage, CancellationToken cancellation)
+        Task Callback(SqlTransaction sqlTransaction, IncomingBytesMessage message, CancellationToken cancellation)
         {
-            var bodyText = Encoding.UTF8.GetString(incomingMessage.Body);
+            var bodyText = Encoding.UTF8.GetString(message.Body);
             Console.WriteLine($"Reply received:\r\n{bodyText}");
             return Task.CompletedTask;
         }
@@ -31,10 +31,15 @@ class Program
             Environment.FailFast("Message consuming loop failed", exception);
         }
 
+        Task<SqlTransaction> TransactionBuilder(CancellationToken cancellation)
+        {
+            return ConnectionHelpers.BeginTransaction(SqlHelper.ConnectionString, cancellation);
+        }
+
         var messageConsumingLoop = new MessageConsumingLoop(
             table: "NativeEndpoint",
             delay: TimeSpan.FromSeconds(1),
-            connection: SqlHelper.ConnectionString,
+            transactionBuilder: TransactionBuilder,
             callback: Callback,
             errorCallback: ErrorCallback);
         messageConsumingLoop.Start();
@@ -93,21 +98,36 @@ class Program
 
     static async Task SendMessage(string messageBody)
     {
-        var sender = new Sender("NsbEndpoint");
         var headers = new Dictionary<string, string>
         {
-            { Headers.EnclosedMessageTypes, "SendMessage"}
+            {Headers.EnclosedMessageTypes, "SendMessage"}
         };
-        var outgoingMessage = new OutgoingMessage(
+        var message = new OutgoingMessage(
             id: Guid.NewGuid(),
             correlationId: null,
             replyToAddress: "NativeEndpoint",
             expires: null,
             headers: Headers.Serialize(headers),
             bodyBytes: Encoding.UTF8.GetBytes(messageBody));
-        await sender.Send(SqlHelper.ConnectionString, outgoingMessage)
-            .ConfigureAwait(false);
+        using (var connection = await ConnectionHelpers.OpenConnection(SqlHelper.ConnectionString)
+            .ConfigureAwait(false))
+        {
+            var queueManager = new QueueManager("NsbEndpoint", connection);
+            await queueManager.Send(message)
+                .ConfigureAwait(false);
+        }
     }
 
     #endregion
+
+    static async Task CreateQueue()
+    {
+        using (var connection = await ConnectionHelpers.OpenConnection(SqlHelper.ConnectionString)
+            .ConfigureAwait(false))
+        {
+            var queueManager = new QueueManager("NativeEndpoint", connection);
+            await queueManager.Create()
+                .ConfigureAwait(false);
+        }
+    }
 }
