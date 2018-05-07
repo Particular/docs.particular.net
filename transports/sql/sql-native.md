@@ -5,17 +5,17 @@ reviewed: 2018-04-23
 component: SqlTransportNative
 ---
 
-Provides low-level access to the [SQL Server Transport](/transports/sql/) with no NServiceBus or SQL Transport reference required.
+SQL Server Transport Native is a shim providing low-level access to the [SQL Server Transport](/transports/sql/) with no NServiceBus or SQL Server Transport reference required. 
 
 
 ## Usage scenarios
 
- * **Error or Audit queue handling**: Since NServiceBus requires the message type it is not suitable for use when processing an error or audit queue. SQL Native allows manipulation or consumption of messages without the need of message types.
- * **Corrupted or malformed messages**: This project operates as close to the SQL database as possible. As such message headers and body are treated as a raw string and byte array. This means corrupted or malformed messages can be read and manipulated so as to correct any problems.
- * **Deployment or decommission**: Running [installers](/nservicebus/operations/installers.md) requires starting a full endpoint. This is not always ideal during the execution of a deployment or decommission. SQL Native allows creating or deleting of queues with no running endpoint, and with significantly less code. This also makes it a better candidate for usage in deployment scripting languages like PowerShell.
+ * **Error or Audit queue handling**: Allows to easily consume messages from error and audit queues, for example to move them to a long-term archive. Since NServiceBus expects to have a queue per message type it is not suitable for use when processing an error or audit queues, which contain messages of various types. SQL Native allows manipulation or consumption of queues with multiple types of messages.
+ * **Corrupted or malformed messages**: Allows to process poison messages which can't be deserialized by NServiceBus. In SQL Native message headers and body are treated as a raw string and byte array, so corrupted or malformed messages can be read and manipulated in code to correct any problems.
+ * **Deployment or decommission**: Allows to perform common operatorial activities, similar to [operations scripts](/transports/sql/operations-scripting.md#native-send-the-native-send-helper-methods-in-c). Running [installers](/nservicebus/operations/installers.md) requires starting a full endpoint. This is not always ideal during the execution of a deployment or decommission. SQL Native allows creating or deleting of queues with no running endpoint, and with significantly less code. This also makes it a better candidate for usage in deployment scripting languages like PowerShell.
  * **Bulk operations**: SQL Native supports sending and receiving of multiple messages within a single SQLConnection and SQLTransaction.
  * **Explicit connection and transaction management**: NServiceBus abstracts the SQLConnection and SQLTransaction creation and management. SQL Native allows any consuming code to manage the scope and settings of both the SQLConnection and SQLTransaction.
- * **Message pass through**: In message pass through scenarios (such as used in the [HTTP Message Pass Through Sample](/samples/web/owin-pass-through/) where no pipeline or mutators are required.
+ * **Message pass through**: In Web applications typically every new message type requires adding a new Web API method. SQL Native reduces the amount of boilerplate code and simplifies development, for example by allowing to directly generate message definitions in  TypeScript without changes in the API layer, and no custom pipeline or mutators required. See [HTTP Message Pass Through Sample](/samples/web/owin-pass-through/) to learn more.
 
 
 {{NOTE:
