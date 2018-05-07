@@ -56,7 +56,7 @@ snippet: NewtonsoftContentTypeKey
 
 For integration scenarios where the sender is unable to add message headers the serializer is able to infer the message type from the [`$type` property supported by json.net](https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm). 
 
-See our [native integration with SqlTransport sample](/samples/sqltransport/native-integration) for more details.
+See [native integration with SqlTransport sample](/samples/sqltransport/native-integration) for more details.
 
 ## BSON
 
