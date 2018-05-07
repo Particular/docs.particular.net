@@ -107,7 +107,7 @@ Outstanding timeouts requested by the saga instance will be discarded when they 
 
 Messages that [are allowed to start a new saga instance](#starting-a-saga) will cause a new instance with the same correlation id to be created.
 
-Messages handled by the saga(`IHandleMessages<T>`) arriving after the saga has completed will be passed to the [`IHandleSagaNotFound` API](saga-not-found.md).
+Messages handled by the saga(`IHandleMessages<T>`), arriving after the saga has completed, will be passed to the [`IHandleSagaNotFound` API](saga-not-found.md).
 
 ### Consistency considerations
 
