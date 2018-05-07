@@ -66,7 +66,7 @@ partial: encoding
 
 For integration scenarios where the sender is unable to add message headers the serializer is able to infer the message type from the [`$type` property supported by json.net](https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm). By default json.net requires the property to contain the assembly qualified name of the message type but to make integration easier the serializer also registers a custom binder that allows only the full type name to be passed.  
 
-See our [native integration with SqlTransport sample](/samples/sqltransport/native-integration) for more details.
+See [native integration with SqlTransport sample](/samples/sqltransport/native-integration) for more details.
 
 ## Bson
 
