@@ -147,7 +147,7 @@ DANGER: This mutator must remain in place until all messages and timeouts that t
 
 For reply messages starting the saga a safe period of time to leave the mutator in place is the [configured discard time](/nservicebus/messaging/discard-old-messages.md) for those messages. Note that this period may be superseded by [messages in the error queue](/nservicebus/recoverability/configure-error-handling.md) being retried.
 
-For timeouts targeting the saga, a safe period of time to leave the mutator in place is dependent on the lifetime of the given saga. That is, depending on the business rules of a given saga, how long it is expected to exist before it is [marked as complete](/nservicebus/sagas/#ending-a-saga). Alternatively the TimeoutData table can be queried, using [json_value](https://docs.microsoft.com/en-us/sql/t-sql/functions/json-value-transact-sql), to check if there are any pending timeouts that target the old saga:
+For timeouts targeting the saga, the safe period of time to leave the mutator in place is dependent on the lifetime of the given saga. In other words, it is dependent on the business rules of a given saga - how long it is expected to exist before it is [marked as complete](/nservicebus/sagas/#ending-a-saga). Alternatively, the TimeoutData table can be queried, using [json_value](https://docs.microsoft.com/en-us/sql/t-sql/functions/json-value-transact-sql), to check if there are any pending timeouts that target the old saga:
 
 ```sql
 select Id
