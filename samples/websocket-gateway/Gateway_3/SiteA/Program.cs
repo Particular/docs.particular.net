@@ -23,6 +23,16 @@ class Program
 
         #endregion
 
+        gatewaySettings.AddReceiveChannel(
+            address: "ws://localhost:33334/SiteA",
+            type: "WebSocket",
+            isDefault: true);
+
+        gatewaySettings.AddSite(
+            siteKey: "SiteB",
+            address: "ws://localhost:33335/SiteB",
+            type: "WebSocket");
+
         var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
 
         await endpoint.SendToSites(new[] { "SiteB" }, new SomeMessage { Contents = "Hello, World!" }).ConfigureAwait(false);
