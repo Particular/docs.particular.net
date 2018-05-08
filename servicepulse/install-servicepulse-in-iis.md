@@ -56,7 +56,7 @@ NOTE: If SSL is to be applied to ServicePulse then ServiceControl also must be c
 
 ## Advanced configuration
 
-ServicePulse relies on the ServiceControl REST API. It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the ServiceControl website using the Microsoft [Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing) IIS extension.
+ServicePulse relies on the ServiceControl REST API. It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the ServiceControl website using the Microsoft [URL Rewrite extenstion](https://www.iis.net/downloads/microsoft/url-rewrite) IIS extension.
 
 This is useful to lock down access to ServicePulse or to expose the website over a single port.
 
@@ -64,7 +64,7 @@ NOTE: If ServiceControl is configured with a host other than `localhost` then ch
 
 Installation Steps:
 
- 1. Install the IIS [Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing) extension
+ 1. Install the IIS [URL Rewrite extension](https://www.iis.net/downloads/microsoft/url-rewrite) extension
  1. Go to the root directory for the website created in the basic configuration
  1. Create a new subdirectory called `api`
  1. Edit `app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `/api`
