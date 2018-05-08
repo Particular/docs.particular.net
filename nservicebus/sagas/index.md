@@ -160,7 +160,11 @@ The usual way is to correlate on some kind of ID and let the user control how to
 
 WARNING: Other than interacting with its own internal state, a saga should **not** access a database, call out to web services, or access other resources - neither directly nor indirectly by having such dependencies injected into it.
 
-Instead, if a saga needs data as a part of its message processing logic, the best way to address that is to have the saga be started by an earlier message and then collect all the data it needs by handling all the messages over time that provide that data. This may result in sagas that "live forever", i.e. don't have a message that would cause them to `MarkAsComplete()`.
+The main reason for avoiding accessing data from external resources is possible contention and inconsistency of saga state. Depending on persister, the saga state is retrieved and persisted with either pessimistic or optimistic locking. If the transaction takes too long, it's possible another message will come in that correlates to the same saga instance. It might be processed on a different (concurrent) thread (or perhaps a scaled out endpoint) and it will either fail immediately (pessimistic locking) or while trying to persist the state (optimistic locking). In both cases the message will be retried.
+
+This is the expected behavior and cannot be completely avoided, however, the longer the lock is open the more likely it is such situation will occur. In order to minimize chances of such problems use sagas only as a mechanism of business process orchestration.
+
+If a saga needs additional data from external sources to process the message, then the best approach is to have the saga collect all the data it needs by handling messages that provide that data. This may result in sagas that "live forever", i.e. don't have a message that would cause them to `MarkAsComplete()`.
 
 Since sagas, when they're not processing messages, are effectively a record in a database, leaving a saga running "forever" is equivalent to not deleting a record from a database. This is similar to how regular business entities in a system are not deleted.
 
