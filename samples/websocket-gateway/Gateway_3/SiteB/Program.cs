@@ -23,8 +23,6 @@ class Program
             s => new WebSocketChannelReceiver()
         );
 
-        #endregion
-
         gatewaySettings.AddReceiveChannel(
             address: "ws://localhost:33335/SiteB",
             type: "WebSocket",
@@ -34,6 +32,8 @@ class Program
             siteKey: "SiteA",
             address: "ws://localhost:33334/SiteA",
             type: "WebSocket");
+
+        #endregion
 
         var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
 
