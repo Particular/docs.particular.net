@@ -67,7 +67,7 @@ Installation Steps:
  1. Install the IIS [URL Rewrite extension](https://www.iis.net/downloads/microsoft/url-rewrite) extension
  1. Go to the root directory for the website created in the basic configuration
  1. Create a new subdirectory called `api`
- 1. Edit `app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `/api`
+ 1. Edit `app\js\app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `/api`
  1. Open the IIS management tool
  1. Select the api subdirectory from within the IIS management tool
  1. Click `URL Rewrite`
@@ -122,7 +122,7 @@ Installation steps:
  1. Install the IIS [Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing) extension.
  1. Go to the root directory for the website created in the basic configuration.
  1. Create a new subdirectory called `monitoring`.
- 1. Edit `app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `/monitoring`.
+ 1. Edit `app\js\app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `/monitoring`.
  1. Open the IIS management tool.
  1. Select the monitoring subdirectory from within IIS management tool.
  1. Click the `URL Rewrite`.
@@ -195,7 +195,7 @@ When ServicePulse is hosted in IIS the upgrade process is as follows:
  1. View and record the current ServicePulse configuration, specifically the value of `serviceControlUrl`. Prior to version 1.3 this was set in `config.js`. For version 1.3 and above the `app\js\app.constants.js` contains this configuration.
  1. In the advanced config above, the api directory is configured to be created. In the upgrade remove everything except that api directory or manually create it again.
  1. Install the new version of ServicePulse using the standard instructions.
- 1. Extract the files from the `ServicePulse.Host.exe` using the following command, replacing the recorded values from step 2 with the values from the `app.constants.js` and `<webroot>` with the path to the root directory of the IIS website.
+ 1. Extract the files from the `ServicePulse.Host.exe` using the following command, replacing the recorded values from step 2 with the values from the `app\js\app.constants.js` and `<webroot>` with the path to the root directory of the IIS website.
 ```dos
 ServicePulse.Host.exe --extract --serviceControlUrl="<recordedvalue>" --outPath="<webroot>"
 ```
