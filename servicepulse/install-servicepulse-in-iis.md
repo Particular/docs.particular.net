@@ -31,7 +31,7 @@ By default, ServicePulse is [installed](installation.md) as a Windows Service th
 
 It is possible to manually install ServicePulse using IIS following these steps:
 
-* Extract the ServicePulse files using the following command at a command prompt:
+Extract the ServicePulse files using the following command at a command prompt:
 
 ```dos
 ServicePulse.Host.exe --extract --outPath="C:\inetpub\websites\ServicePulse"
