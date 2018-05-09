@@ -14,7 +14,7 @@ class Program
         var transport = config.UseTransport<LearningTransport>();
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(SomeMessage), "Custom Gateway - SiteB");
-        // NOTE: The LearningPersistence does not support the gateway
+        // NOTE: Using InMemoryPersistence since the LearningPersistence does not support the gateway
         config.UsePersistence<InMemoryPersistence>();
 
         var gatewaySettings = config.Gateway();

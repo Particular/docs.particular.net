@@ -12,7 +12,7 @@ class Program
 
         var config = new EndpointConfiguration("Custom Gateway - SiteA");
         config.UseTransport<LearningTransport>();
-        // NOTE: The LearningPersistence does not support the gateway
+        // NOTE: Using InMemoryPersistence since the LearningPersistence does not support the gateway
         config.UsePersistence<InMemoryPersistence>();
 
         var gatewaySettings = config.Gateway();
