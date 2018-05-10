@@ -1,7 +1,7 @@
 ---
 title: Routing Samples
-summary: All Routing relates Samples
-reviewed: 2016-09-06
+summary: Sample code related to routing
+reviewed: 2018-05-09
 related:
  - nservicebus/messaging/routing
 ---
