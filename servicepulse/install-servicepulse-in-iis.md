@@ -26,6 +26,7 @@ Steps
  1. Remove the `netsh` url restriction
  1. Create a ServicePulse website in IIS referring to the ServicePulse directory
 
+### Detailed steps
 
 By default, ServicePulse is [installed](installation.md) as a Windows Service that will self-host the ServicePulse web application.
 
