@@ -1,6 +1,6 @@
 ---
 title: ServiceControl
-reviewed: 2016-10-06
+reviewed: 2018-05-09
 component: ServiceControl
 ---
 
