@@ -31,7 +31,7 @@ By default, ServicePulse is [installed](installation.md) as a Windows Service th
 
 It is possible to manually install ServicePulse using IIS following these steps:
 
-Extract the ServicePulse files using the following command at a command prompt:
+1. Extract the ServicePulse files using the following command at a command prompt:
 
 ```dos
 ServicePulse.Host.exe --extract --outPath="C:\inetpub\websites\ServicePulse"
@@ -39,11 +39,11 @@ ServicePulse.Host.exe --extract --outPath="C:\inetpub\websites\ServicePulse"
 
 Note: `ServicePulse.Host.exe` can be found in the ServicePulse installation directory. The default location for this directory is `%programfiles(x86)%\Particular Software\ServicePulse`
 
-Once the ServicePulse files are successfully extracted, configure a new IIS website whose physical path points to the location where the files have been extracted. Configure it to use port `9090`.
+2. Once the ServicePulse files are successfully extracted, configure a new IIS website whose physical path points to the location where the files have been extracted. Configure it to use port `9090`.
 
-When using IIS to host ServicePulse, the ServicePulse.Host service is not used. To remove the service, uninstall ServicePulse using Add/Remove Programs.
+3. When using IIS to host ServicePulse, the ServicePulse.Host service is not used. To remove the service, uninstall ServicePulse using Add/Remove Programs.
 
-Use the following command on an elevated command prompt to remove the URLACL that was created by the ServicePulse installer to use port 9090 without any restrictions.
+4. Use the following command on an elevated command prompt to remove the URLACL that was created by the ServicePulse installer to use port 9090 without any restrictions.
 
 ```dos
 netsh http delete urlacl http://+:9090/
