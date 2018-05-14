@@ -77,4 +77,14 @@ class Usage
 
         #endregion
     }
+
+    void V1BackwardsCompatibility(EndpointConfiguration endpointConfiguration)
+    {
+        #region V1BackwardsCompatibility
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        transport.EnableV1CompatibilityMode();
+
+        #endregion
+    }
 }

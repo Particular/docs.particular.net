@@ -78,4 +78,6 @@ This is the path within the specified S3 Bucket to store large message bodies. I
 
 partial: s3clientfactory
 
+partial: v1compatibilitymode
+
 partial: delayeddelivery
