@@ -206,7 +206,7 @@ snippet: SetupMonitoring-ConfigureMetrics
 
 NOTE: If you are using the MSMQ transport then you also need to specify the machine where the monitoring queue is located. i.e. `Particular.Monitoring@MACHINENAME`. This should be the same machine where your monitoring instance is installed.
 
-NOTE: When using the MSMQ transport it is also necessary to install queue length metrics [reporter](/monitoring/metrics/msmq-queue-length.md) package.
+NOTE: When using the MSMQ transport it is also necessary to install queue length metrics [reporter](/monitoring/metrics/msmq-queue-length.md) package. In case of problems specific to queue length please refer to queue length metrics troubleshooting [guide](/monitoring/metrics/queue-length-troubleshooting.md).
 
 ## Smoke Test
 
