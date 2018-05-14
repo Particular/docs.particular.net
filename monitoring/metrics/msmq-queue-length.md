@@ -10,4 +10,4 @@ The component `NServiceBus.Metrics.ServiceControl.Msmq` monitors endpoints' queu
 
 ## Configuration
 
-No configuration is required. The reporting will be configurted automatically.
+No configuration is required. The reporting will be configured automatically.
