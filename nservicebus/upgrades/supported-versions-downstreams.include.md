@@ -4,7 +4,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 3.2.x     | 2018-03-23     | -                 | -                                 |
+| 3.3.x     | 2018-05-14     | -                 | -                                 |
+| 3.2.x     | 2018-03-23     | 2018-08-14        | Superseded by 3.3.x               |
 | 3.1.x     | 2017-12-15     | 2018-06-23        | Superseded by 3.2.x               |
 | ~~3.0.x~~ | ~~2017-09-01~~ | ~~2018-03-15~~    | ~~Superseded by 3.1.x~~           |
 | 2.0.x     | 2017-05-28     | 2018-09-01        | Superseded by 3.0.x               |
@@ -219,14 +220,14 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2017-05-08     | -                 | -                                 |
-| 1.1.x     | 2017-01-16     | 2018-05-08        | Superseded by 2.0.x               |
+| ~~1.1.x~~ | ~~2017-01-16~~ | ~~2018-05-08~~    | ~~Superseded by 2.0.x~~           |
 
 #### [NServiceBus.Callbacks.Testing](/nuget/NServiceBus.Callbacks.Testing)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2017-05-08     | -                 | -                                 |
-| 1.1.x     | 2017-01-16     | 2018-05-08        | Superseded by 2.0.x               |
+| ~~1.1.x~~ | ~~2017-01-16~~ | ~~2018-05-08~~    | ~~Superseded by 2.0.x~~           |
 
 #### [NServiceBus.CustomChecks](/nuget/NServiceBus.CustomChecks)
 
@@ -274,7 +275,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2017-10-27     | -                 | -                                 |
 | 1.1.x     | 2017-07-25     | 2018-10-27        | Superseded by 2.0.x               |
-| ~~1.0.x~~ | ~~2017-04-25~~ | ~~2017-10-25~~    | ~~Superseded by 1.1.x~~           |
 
 #### [NServiceBus.Metrics.PerformanceCounters](/nuget/NServiceBus.Metrics.PerformanceCounters)
 
@@ -351,7 +351,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-07     | -                 | -                                 |
 | ~~2.0.x~~ | ~~2016-10-24~~ | ~~2018-02-07~~    | ~~Superseded by 3.0.x~~           |
-| ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-10-24~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb6.Heartbeat](/nuget/ServiceControl.Plugin.Nsb6.Heartbeat)
 
@@ -359,7 +358,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-07     | -                 | -                                 |
 | ~~2.0.x~~ | ~~2016-10-24~~ | ~~2018-02-07~~    | ~~Superseded by 3.0.x~~           |
-| ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-10-24~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb6.SagaAudit](/nuget/ServiceControl.Plugin.Nsb6.SagaAudit)
 
@@ -367,7 +365,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-07     | -                 | -                                 |
 | ~~2.0.x~~ | ~~2016-10-24~~ | ~~2018-02-07~~    | ~~Superseded by 3.0.x~~           |
-| ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-10-24~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.TransportAdapter](/nuget/ServiceControl.TransportAdapter)
 
