@@ -8,7 +8,7 @@ related:
 
 If queue length metric is not being reported in `Service Pulse` the following validation checks might help finding the root cause of the problem:
 
-* Check that the other metrics e.g. Processing Time, are being reported. Otherwise please follow setup steps described in performance monitoring setup [tutorial](/tutorials/monitoring-setup/).
+* Check that the other metrics e.g. Processing Time, are being reported. Otherwise follow setup steps described in performance monitoring setup [tutorial](/tutorials/monitoring-setup/).
 * When running the MSMQ transport check if endpoints being monitored have the MSMQ queue length [reporter](/monitoring/metrics/msmq-queue-length.md) installed.
 * Check that endpoints being monitored are using service control monitoring [plugin](/monitoring/metrics/install-plugin.md) compatible with the monitoring instance. 
 
