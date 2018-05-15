@@ -13,7 +13,7 @@ upgradeGuideCoreVersions:
 
 ServiceControl Version 1 uses RavenDB 2.5 while ServiceControl Version 2 uses RavenDB 3.5. Data file formats of RavenDB 2.5 and 3.5 are different and require migration process. The migration is conducted automatically by RavenDB server (embedded in the ServiceControl process) when the database engine detects that the data files are in the old format.
 
-WARN: The migration is managed by the ServiceControl Management Utility instance upgrade process and does not require manual intervention. It is recommended, however, to back up the RavenDB data folder prior to attempting the upgrade.
+WARN: The migration is managed by the ServiceControl Management Utility instance upgrade process and does not require manual intervention. It is recommended, however, to [back up the RavenDB](/servicecontrol/backup-sc-database.md) database prior to attempting the upgrade.
 
 
 ## Database maintenance port
