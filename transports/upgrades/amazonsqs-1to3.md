@@ -8,6 +8,7 @@ upgradeGuideCoreVersions:
  - 6
 ---
 
+For customers on version 1 of the transport it is recommended they update directly to version 3 of the transport instead of updating to version 2.
 
 include: amazonsqs-xto3
 
