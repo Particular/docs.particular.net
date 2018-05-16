@@ -7,6 +7,6 @@
   <ItemGroup>
     <PackageReference Include="System.Composition" Version="1.*" />
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
   </ItemGroup>
 </Project>

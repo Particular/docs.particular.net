@@ -4,7 +4,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.MicrosoftLogging" Version="1.0.0-*" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.*" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.*" />

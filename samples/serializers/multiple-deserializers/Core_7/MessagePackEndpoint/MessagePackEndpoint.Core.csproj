@@ -9,7 +9,7 @@
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />
     <PackageReference Include="MsgPack.Cli" Version="0.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.MessagePack" Version="2.0.0-*" />
   </ItemGroup>
 </Project>

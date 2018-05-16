@@ -13,7 +13,7 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NHibernate" Version="4.*" />
     <PackageReference Include="IEsi.Collections" Version="4.0.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.0.0-*" />
   </ItemGroup>
 </Project>

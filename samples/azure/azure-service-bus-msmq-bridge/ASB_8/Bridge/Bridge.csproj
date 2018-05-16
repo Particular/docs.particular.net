@@ -5,7 +5,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="8.0.0-*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0-*" />
     <PackageReference Include="NServiceBus.Bridge" Version="2.0.0-*" />

@@ -8,6 +8,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="3.0.0-*" />
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters.MsBuild" Version="3.0.0-*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
   </ItemGroup>
 </Project>

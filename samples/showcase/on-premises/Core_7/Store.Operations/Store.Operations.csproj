@@ -11,7 +11,7 @@
     <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
     <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="2.0.0-*" />
   </ItemGroup>
 </Project>

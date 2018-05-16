@@ -7,6 +7,6 @@
   <ItemGroup>
     <PackageReference Include="Anotar.NServiceBus.Fody" Version="4.*" />
     <PackageReference Include="Fody" Version="3.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
   </ItemGroup>
 </Project>

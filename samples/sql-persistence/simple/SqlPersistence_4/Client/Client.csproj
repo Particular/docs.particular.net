@@ -9,6 +9,6 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
   </ItemGroup>
 </Project>

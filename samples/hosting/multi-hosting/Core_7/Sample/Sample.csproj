@@ -8,6 +8,6 @@
     <ProjectReference Include="..\Instance1\Instance1.csproj" />
     <ProjectReference Include="..\Instance2\Instance2.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
   </ItemGroup>
 </Project>

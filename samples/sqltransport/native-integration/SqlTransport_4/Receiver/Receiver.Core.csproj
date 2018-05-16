@@ -7,7 +7,7 @@
     <RootNamespace>Receiver</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-rc*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.0.0-*" />
   </ItemGroup>
