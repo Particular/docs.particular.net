@@ -10,6 +10,6 @@
     <Reference Include="System.Windows" />
     <PackageReference Include="NewRelic.Agent.Api" Version="6.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Metrics" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.Metrics" Version="3.*" />
   </ItemGroup>
 </Project>
