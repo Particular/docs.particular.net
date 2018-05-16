@@ -8,7 +8,7 @@
     <Reference Include="Microsoft.CSharp" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.FileBasedRouting" Version="2.0.0-*" />
+    <PackageReference Include="NServiceBus.FileBasedRouting" Version="2.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
   </ItemGroup>
 </Project>
