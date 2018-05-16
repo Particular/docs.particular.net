@@ -30,7 +30,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Host" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.Host" Version="8.*" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EndpointConfig.cs" />
