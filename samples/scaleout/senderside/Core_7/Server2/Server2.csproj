@@ -7,6 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0-*" />
+    <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
   </ItemGroup>
 </Project>
