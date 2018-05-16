@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.1.0-*" />
     <PackageReference Include="WindowsAzure.ServiceBus" Version="4.*" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="8.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <ProjectReference Include="..\Contracts\Contracts.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />

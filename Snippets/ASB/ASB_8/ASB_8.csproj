@@ -4,7 +4,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="8.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
