@@ -7,6 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="Octokit" Version="0.24.1-*" />
+    <PackageReference Include="Octokit" Version="0.*" />
   </ItemGroup>
 </Project>
