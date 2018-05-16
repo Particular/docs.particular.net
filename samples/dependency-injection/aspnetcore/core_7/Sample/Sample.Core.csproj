@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Autofac" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Autofac" Version="7.*" />
     <PackageReference Include="Autofac" Version="4.*" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.*" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.*" />
