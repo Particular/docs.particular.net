@@ -9,6 +9,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NHibernate" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.NHibernate" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.NHibernate" Version="8.*" />
   </ItemGroup>
 </Project>

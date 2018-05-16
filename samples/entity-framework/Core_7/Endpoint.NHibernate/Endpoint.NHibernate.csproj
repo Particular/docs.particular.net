@@ -9,7 +9,7 @@
     <ProjectReference Include="..\Messages\Messages.csproj" />
     <PackageReference Include="Iesi.Collections" Version="4.*" />
     <PackageReference Include="NHibernate" Version="4.*" />
-    <PackageReference Include="NServiceBus.NHibernate" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.NHibernate" Version="8.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-rc*" />
     <PackageReference Include="System.Data.SqlClient" Version="4.*" />
   </ItemGroup>
