@@ -40,7 +40,7 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Configuration" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Callbacks" Version="3.0-*" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="3.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
