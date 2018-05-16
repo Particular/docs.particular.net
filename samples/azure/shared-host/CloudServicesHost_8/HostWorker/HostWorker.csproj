@@ -39,7 +39,7 @@
     <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Hosting.Azure" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.Hosting.Azure" Version="8.*" />
     <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.*" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.*" />
     <PackageReference Include="System.Linq.Queryable" Version="4.*" />
