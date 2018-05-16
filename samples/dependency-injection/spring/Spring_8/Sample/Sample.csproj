@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Spring" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.Spring" Version="8.*" />
     <PackageReference Include="Spring.Core" Version="2.*" />
   </ItemGroup>
 </Project>
