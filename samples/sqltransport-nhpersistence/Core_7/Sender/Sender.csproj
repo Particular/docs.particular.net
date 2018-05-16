@@ -10,6 +10,6 @@
     <PackageReference Include="NHibernate" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-rc*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="4.*" />
   </ItemGroup>
 </Project>

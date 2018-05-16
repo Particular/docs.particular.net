@@ -12,6 +12,6 @@
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-rc*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="4.*" />
   </ItemGroup>
 </Project>
