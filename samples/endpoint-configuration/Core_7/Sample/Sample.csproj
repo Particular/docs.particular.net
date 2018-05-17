@@ -8,8 +8,8 @@
     <Reference Include="System.ServiceProcess" />
     <PackageReference Include="Autofac" Version="4.*" />
     <PackageReference Include="log4net" Version="2.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Autofac" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Log4Net" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.Autofac" Version="7.*" />
+    <PackageReference Include="NServiceBus.Log4Net" Version="3.*" />
   </ItemGroup>
 </Project>

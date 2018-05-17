@@ -41,7 +41,7 @@
     <Reference Include="System.Web" />
     <PackageReference Include="Nancy" Version="1.*" />
     <PackageReference Include="Nancy.Hosting.Aspnet" Version="1.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstraper.cs" />

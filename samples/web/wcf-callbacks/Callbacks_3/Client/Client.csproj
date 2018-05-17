@@ -8,6 +8,6 @@
     <Reference Include="System.ServiceModel" />
     <ProjectReference Include="..\Messages\Messages.csproj" />
     <ProjectReference Include="..\WcfCallbacks\WcfCallbacks.csproj" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
   </ItemGroup>
 </Project>
