@@ -661,8 +661,6 @@
   - Url: transports/azure-storage-queues
     Title: Azure Storage Queues
     Articles:
-    - Url: transports/azure-storage-queues/faq
-      Title: FAQ
     - Url: transports/azure-storage-queues/transaction-support
       Title: Transaction Support
     - Url: nservicebus/azure/understanding-transactionality-in-azure
