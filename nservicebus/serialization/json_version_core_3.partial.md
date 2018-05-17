@@ -1,4 +1,4 @@
 
-## Json.net versions
+## Json.NET versions
 
-Version 4.0.8 of Json.Net is ILMerged.
+Version 4.0.8 of Json.NET is ILMerged.

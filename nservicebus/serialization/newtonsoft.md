@@ -2,13 +2,13 @@
 title: Json.NET Serializer
 summary: A JSON serializer that uses Newtonsoft Json.NET.
 component: Newtonsoft
-reviewed: 2017-10-13
+reviewed: 2018-05-15
 related:
  - samples/serializers/newtonsoft
  - samples/serializers/newtonsoft-bson
 ---
 
-Using [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet dependency on [Json.NET](http://www.newtonsoft.com/json).
+This serialiser uses [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet dependency on [Json.NET](http://www.newtonsoft.com/json).
 
 partial: howcoreusesjson
 
@@ -18,30 +18,30 @@ partial: howcoreusesjson
 snippet: NewtonsoftSerialization
 
 
-### Json.net attributes
+### Json.NET attributes
 
-Json.net attributes are supported.
+Json.NET attributes are supported.
 
 For example
 
 snippet: NewtonsoftAttributes
 
 
-### Custom Settings
+### Custom settings
 
 Customizes the instance of [JsonSerializerSettings](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
 
 snippet: NewtonsoftCustomSettings
 
 
-### Custom Reader
+### Custom reader
 
 Customize the creation of the [JsonReader](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
 
 snippet: NewtonsoftCustomReader
 
 
-### Custom Writer
+### Custom writer
 
 Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
 
@@ -54,7 +54,7 @@ snippet: NewtonsoftContentTypeKey
 
 ## Inferring message type from $type
 
-For integration scenarios where the sender is unable to add message headers the serializer is able to infer the message type from the [`$type` property supported by json.net](https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm). 
+For integration scenarios where the sender is unable to add message headers, the serializer is able to infer the message type from the [`$type` property supported by Json.NET](https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm). 
 
 See [native integration with SqlTransport sample](/samples/sqltransport/native-integration) for more details.
 
@@ -67,7 +67,7 @@ snippet: NewtonsoftBson
 
 ## Compatibility with the core JSON serializer
 
-Up to Version 6 of NServiceBus a [JSON serializer based on Json.net](json.md) was bundled inside the core package. This section outlines the compatibility considerations when switching to this serializer.
+Up to NServiceBus version 6, a [JSON serializer based on Json.NET](json.md) was bundled with the core package. This section outlines the compatibility considerations when switching to this serializer.
 
 ### No support for `XContainer` and `XDocument` properties
 
@@ -75,13 +75,13 @@ In contrast to the bundled serializer `XContainer` and `XDocument` properties ar
 
 snippet: XContainerJsonConverter
 
-Configure the converter like shown below:
+Configure the converter as follows:
 
 snippet: UseConverter
 
 ###  No support for bundled logical messages
 
-This serializer is not compatible with multiple bundled messages (when using the `Send(object[] messages)` APIs) sent from Versions 3 and below of NServiceBus. If this scenario is detected then an exception with the following message will be thrown:
+This serializer is not compatible with multiple bundled messages (when using the `Send(object[] messages)` APIs) sent from NServiceBus version 3 and below. If this scenario is detected then an exception with the following message will be thrown:
 
 ```
 Multiple messages in the same stream are not supported.
@@ -92,7 +92,7 @@ The `AddDeserializer` API can help transition between serializers. See the [Mult
 
 ### Use of $type requires an assembly qualified name
 
-The bundled serializer registers a custom serialization binder in order to not require the assembly name to be present when inferring message type from the [`$type` property supported by json.net](https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm). Not having to specify the assembly name can be useful to reduce coupling when using the serializer for native integration scenarios like [demonstrated in this sample](/samples/sqltransport/native-integration).
+The bundled serializer registers a custom serialization binder in order to not require the assembly name to be present when inferring message type from the [`$type` property supported by json.net](https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm). Not having to specify the assembly name can be useful to reduce coupling when using the serializer for native integration scenarios as [demonstrated in this sample](/samples/sqltransport/native-integration).
 
 To make the serializer compatible with this behavior use the following serialization binder:
 

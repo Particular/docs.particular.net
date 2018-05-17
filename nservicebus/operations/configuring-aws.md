@@ -1,7 +1,7 @@
 ---
-title: Configuring Amazon EC2 instances For NServiceBus
-summary: Endpoint naming issues that occur when restarting the server from the AWS Mangement Console can be prevented using a special tool.
-reviewed: 2016-10-09
+title: Configuring Amazon EC2 Instances for NServiceBus
+summary: Endpoint naming issues that occur when restarting the server from the AWS Mangement Console can be prevented using a special tool
+reviewed: 2018-05-15
 related:
  - nservicebus/operations
 redirects:

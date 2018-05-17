@@ -1,6 +1,6 @@
-## Customizing Outbox record persistence
+## Customizing outbox record persistence
 
-By default the Outbox records are persisted in the following way:
+By default the outbox records are persisted in the following way:
 
  * The table has an auto-incremented integer primary key.
  * The `MessageId` column has a unique index.
