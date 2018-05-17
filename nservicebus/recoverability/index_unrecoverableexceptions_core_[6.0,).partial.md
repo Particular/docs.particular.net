@@ -1,6 +1,6 @@
 ## Unrecoverable exceptions
 
-Note: This is added to NServiceBus 6.2
+Note: This feature was added in NServiceBus 6.2
 
 If a message processing fails due to an unrecoverable exception being thrown, then the retry process is skipped. The failed message is then immediately moved to the error queue after the first failure. 
 
