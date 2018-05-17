@@ -91,7 +91,7 @@ At the end of the `AsyncMain` method, after the configuration code, add the foll
 
 snippet: Startup
 
-NOTE: In this tutorial we will always use `.ConfigureAwait(false)` when awaiting tasks, in order to [avoid capturing and restoring the SynchronizationContext](/nservicebus/handlers/async-handlers.md#usage-of-configureawait).
+NOTE: In this tutorial we will always use `.ConfigureAwait(false)` when awaiting tasks, in order to avoid capturing and restoring the SynchronizationContext.
 
 The endpoint is initialized according to the settings defined by the `EndpointConfiguration` class. Once the endpoint starts, changes to the configuration information are no longer applied.
 
