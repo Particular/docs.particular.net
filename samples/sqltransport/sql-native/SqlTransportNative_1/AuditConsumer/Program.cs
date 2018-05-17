@@ -1,6 +1,6 @@
 using System;
 using System.Data.SqlClient;
-using System.Text;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus.Transport.SqlServerNative;
@@ -16,11 +16,13 @@ class Program
 
         #region MessageConsumingLoop
 
-        Task Callback(SqlTransaction transaction, IncomingBytesMessage message, CancellationToken cancellation)
+        async Task Callback(SqlTransaction transaction, IncomingMessage message, CancellationToken cancellation)
         {
-            var bodyText = Encoding.UTF8.GetString(message.Body);
-            Console.WriteLine($"Message received in audit queue:\r\n{bodyText}");
-            return Task.CompletedTask;
+            using (var reader = new StreamReader(message.Body))
+            {
+                var bodyText = await reader.ReadToEndAsync().ConfigureAwait(false);
+                Console.WriteLine($"Message received in audit queue:\r\n{bodyText}");
+            }
         }
 
         void ErrorCallback(Exception exception)
