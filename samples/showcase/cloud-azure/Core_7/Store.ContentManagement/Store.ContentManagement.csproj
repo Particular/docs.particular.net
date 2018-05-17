@@ -1,18 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <LangVersion>7.1</LangVersion>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
     <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="2.*" />
   </ItemGroup>
-
 </Project>
