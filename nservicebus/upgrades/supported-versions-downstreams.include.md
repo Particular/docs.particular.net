@@ -62,7 +62,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.4.x     | 2017-06-16     | -                 | -                                 |
+| 1.5.x     | 2018-05-17     | -                 | -                                 |
+| 1.4.x     | 2017-06-16     | 2018-08-17        | Superseded by 1.5.x               |
 
 #### [NServiceBus.Persistence.ServiceFabric](/nuget/NServiceBus.Persistence.ServiceFabric)
 
@@ -151,7 +152,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 4.0.x     | 2016-11-16     | -                 | -                                 |
-| ~~3.0.x~~ | ~~2016-10-11~~ | ~~2017-11-16~~    | ~~Superseded by 4.0.x~~           |
 | 2.1.x     | 2015-02-18     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
 #### [NServiceBus.Log4Net](/nuget/NServiceBus.Log4Net)
