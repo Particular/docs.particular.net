@@ -1,11 +1,12 @@
 ---
 title: Transaction Support
+summary: A description of the transaction modes supported by the Azure Storage Queues transport
 component: ASQ
 versions: '[6,]'
 tags:
 - Azure
 - Transactions
-reviewed: 2016-09-06
+reviewed: 2018-05-17
 redirects:
  - nservicebus/azure-storage-queues/transaction-support
  ---
@@ -16,11 +17,11 @@ The following [`TransportTransactionMode` levels](/transports/transactions.md) a
  * `Unreliable`
 
 
-## Transport transaction - Receive Only
+## Transport transaction - receive only
 
-The message is not removed from the queue directly after receive, but it is hidden for 30 seconds. That prevents other instances from picking it up. If the receiver fails to process the message withing that timeframe or explicitly abandons the message, then the message will become visible again. Other instances will be able to pick it up.
+The message is not removed from the queue directly after it is received, but it is hidden for 30 seconds. This prevents other instances from picking it up. If the receiver fails to process the message within that timeframe or if it explicitly abandons the message, the message will become visible again and other instances will be able to pick it up.
 
 
-## Unreliable (Transactions Disabled)
+## Unreliable (transactions disabled)
 
-The message is deleted from the queue directly after receive operation completes, before it is processed.
+The message is deleted from the queue directly after the receive operation completes and before it is processed.

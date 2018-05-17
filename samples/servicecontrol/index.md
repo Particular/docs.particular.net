@@ -1,5 +1,5 @@
 ---
 title: ServiceControl Samples
-reviewed: 2016-09-06
+reviewed: 2018-05-17
 component: ServiceControl
 ---
