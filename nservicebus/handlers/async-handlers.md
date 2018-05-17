@@ -96,20 +96,6 @@ snippet: HandlerReturnsATask
 
 snippet: HandlerReturnsTwoTasks
 
-
-## Usage of ConfigureAwait
-
-By default, when a task is awaited, a mechanism called context-capturing is enabled. The current context is captured and restored for the continuation that is scheduled after the precedent task was completed.
-
-snippet: HandlerConfigureAwaitNotSpecified
-
-In the snippet above, `SomeAsyncMethod` and `AnotherAsyncMethod` are awaited. When entering `SomeAsyncMethod`, the context is captured and restored before `AnotherAsyncMethod` is executed. The context-capturing mechanism is almost never needed in code that is executed inside handlers or sagas. NServiceBus makes sure the context is not captured in the framework at all. So the following approach is preferred:
-
-snippet: HandlerConfigureAwaitSpecified
-
-Specify [`ConfigureAwait(false)`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.configureawait.aspx) on each awaited statement. Apply this principle to all asynchronous code that is called from handlers and sagas.
-
-
 ## Concurrency
 
 Task-based APIs enable better composition of asynchronous code and allow conscious decisions on whether to execute the asynchronous code sequentially or concurrently.
