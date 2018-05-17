@@ -4,7 +4,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="2.0.0-*" />
+    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="2.*" />
     <PackageReference Include="NUnit" Version="3.*" />
   </ItemGroup>
 </Project>

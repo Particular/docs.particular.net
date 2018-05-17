@@ -9,8 +9,8 @@
     <Compile Include="..\Consumer1\Contracts\Consumer1Contract.cs" />
     <Compile Include="..\Consumer2\Contracts\Consumer2Contract.cs" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0-*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
   </ItemGroup>
 </Project>

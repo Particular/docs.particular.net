@@ -7,9 +7,9 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.*" />
     <PackageReference Include="log4net" Version="2.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Autofac" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Log4Net" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.Autofac" Version="7.*" />
+    <PackageReference Include="NServiceBus.Log4Net" Version="3.*" />
     <PackageReference Include="System.ServiceProcess.ServiceController" Version="4.5.0-*" />
   </ItemGroup>
 </Project>

@@ -9,9 +9,9 @@
     <Reference Include="System.Data" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="4.0.0-*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="4.0.0-rc*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="4.*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="4.*" />
   </ItemGroup>
 </Project>

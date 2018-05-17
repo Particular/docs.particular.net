@@ -11,8 +11,8 @@
     <ProjectReference Include="..\ServerShared\ServerShared.csproj" />
     <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
     <PackageReference Include="Oracle.ManagedDataAccess" Version="12.*" />
   </ItemGroup>
 </Project>
