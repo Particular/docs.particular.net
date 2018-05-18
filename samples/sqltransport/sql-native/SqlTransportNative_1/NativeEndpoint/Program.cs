@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,11 +20,13 @@ class Program
 
         #region receive
 
-        Task Callback(SqlTransaction sqlTransaction, IncomingBytesMessage message, CancellationToken cancellation)
+        async Task Callback(SqlTransaction sqlTransaction, IncomingMessage message, CancellationToken cancellation)
         {
-            var bodyText = Encoding.UTF8.GetString(message.Body);
-            Console.WriteLine($"Reply received:\r\n{bodyText}");
-            return Task.CompletedTask;
+            using (var reader = new StreamReader(message.Body))
+            {
+                var bodyText = await reader.ReadToEndAsync().ConfigureAwait(false);
+                Console.WriteLine($"Reply received:\r\n{bodyText}");
+            }
         }
 
         void ErrorCallback(Exception exception)
@@ -100,12 +103,11 @@ class Program
     {
         var headers = new Dictionary<string, string>
         {
-            {Headers.EnclosedMessageTypes, "SendMessage"}
+            {Headers.EnclosedMessageTypes, "SendMessage"},
+            {Headers.ReplyToAddress, "NativeEndpoint"},
         };
         var message = new OutgoingMessage(
             id: Guid.NewGuid(),
-            correlationId: null,
-            replyToAddress: "NativeEndpoint",
             expires: null,
             headers: Headers.Serialize(headers),
             bodyBytes: Encoding.UTF8.GetBytes(messageBody));

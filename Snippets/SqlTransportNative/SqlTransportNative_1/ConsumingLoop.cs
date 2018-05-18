@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Text;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus.Transport.SqlServerNative;
@@ -13,11 +13,14 @@ public class ConsumingLoop
     {
         #region ConsumeLoop
 
-        Task Callback(SqlTransaction transaction, IncomingBytesMessage message, CancellationToken cancellation)
+        async Task Callback(SqlTransaction transaction, IncomingMessage message, CancellationToken cancellation)
         {
-            var bodyText = Encoding.UTF8.GetString(message.Body);
-            Console.WriteLine($"Reply received:\r\n{bodyText}");
-            return Task.CompletedTask;
+            using (var reader = new StreamReader(message.Body))
+            {
+                var bodyText = await reader.ReadToEndAsync()
+                    .ConfigureAwait(false);
+                Console.WriteLine($"Reply received:\r\n{bodyText}");
+            }
         }
 
         Task<SqlTransaction> TransactionBuilder(CancellationToken cancellation)
@@ -40,7 +43,8 @@ public class ConsumingLoop
         consumingLoop.Start();
 
         // stop consuming
-        await consumingLoop.Stop().ConfigureAwait(false);
+        await consumingLoop.Stop()
+            .ConfigureAwait(false);
 
         #endregion
     }

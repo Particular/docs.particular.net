@@ -1,6 +1,6 @@
 using System;
 using System.Data.SqlClient;
-using System.Text;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus.Transport.SqlServerNative;
@@ -26,11 +26,13 @@ class Program
             startingRow = await rowVersionTracker.Get(connection).ConfigureAwait(false);
         }
 
-        Task Callback(SqlTransaction sqlTransaction, IncomingBytesMessage message, CancellationToken cancellation)
+        async Task Callback(SqlTransaction sqlTransaction, IncomingMessage message, CancellationToken cancellation)
         {
-            var bodyText = Encoding.UTF8.GetString(message.Body);
-            Console.WriteLine($"Message received in error queue:\r\n{bodyText}");
-            return Task.CompletedTask;
+            using (var reader = new StreamReader(message.Body))
+            {
+                var bodyText = await reader.ReadToEndAsync().ConfigureAwait(false);
+                Console.WriteLine($"Message received in error queue:\r\n{bodyText}");
+            }
         }
 
         void ErrorCallback(Exception exception)

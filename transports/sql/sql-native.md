@@ -24,7 +24,6 @@ Some notes on the below snippets:
 
  * All methods that return a [Task](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) also accept an optional [CancellationToken](https://msdn.microsoft.com/en-us/library/system.threading.cancellationtoken.aspx).
  * While a string `SqlConnection` is used in all snippets for simplicity, an overload that takes a `SqlTransaction` also exists.
- * All snippets show variants that target and use byte arrays. There are also overloads that target and use a [Stream](https://msdn.microsoft.com/en-us/library/system.io.stream.aspx). Depending on the message size and performance requirements using the Stream-based overload may result in less memory pressure on the system and better overall throughput.
 
 }}
 

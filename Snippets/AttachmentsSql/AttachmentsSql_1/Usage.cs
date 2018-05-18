@@ -84,10 +84,7 @@ public class Usage
         var attachments = endpointConfiguration.EnableAttachments(
             connectionFactory: OpenConnection,
             timeToKeep: TimeToKeep.Default);
-        attachments.UseTableName(
-            tableName: "CustomAttachmentsTableName",
-            schema: "dbo");
-
+        attachments.UseTable(new Table("CustomAttachmentsTableName","dbo"));
         #endregion
     }
 

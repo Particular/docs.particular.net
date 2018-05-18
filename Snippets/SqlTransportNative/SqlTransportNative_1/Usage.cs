@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Threading.Tasks;
 using NServiceBus.Transport.SqlServerNative;
 
@@ -43,7 +44,8 @@ public class Usage
         #region DeleteDelayedQueue
 
         var queueManager = new DelayedQueueManager("endpointTable.Delayed", sqlConnection);
-        await queueManager.Drop().ConfigureAwait(false);
+        await queueManager.Drop()
+            .ConfigureAwait(false);
 
         #endregion
     }
@@ -144,11 +146,16 @@ public class Usage
         #region Read
 
         var queueManager = new QueueManager("endpointTable", sqlConnection);
-        var incomingBytesMessage = await queueManager.ReadBytes(rowVersion: 10)
+        var message = await queueManager.Read(rowVersion: 10)
             .ConfigureAwait(false);
 
-        Console.WriteLine(incomingBytesMessage.Headers);
-        Console.WriteLine(incomingBytesMessage.Body);
+        Console.WriteLine(message.Headers);
+        using (var reader = new StreamReader(message.Body))
+        {
+            var bodyText = await reader.ReadToEndAsync()
+                .ConfigureAwait(false);
+            Console.WriteLine(bodyText);
+        }
 
         #endregion
     }
@@ -158,13 +165,18 @@ public class Usage
         #region ReadBatch
 
         var queueManager = new QueueManager("endpointTable", sqlConnection);
-        var result = await queueManager.ReadBytes(
+        var result = await queueManager.Read(
                 size: 5,
                 startRowVersion: 10,
-                action: message =>
+                action: async message =>
                 {
                     Console.WriteLine(message.Headers);
-                    Console.WriteLine(message.Body);
+                    using (var reader = new StreamReader(message.Body))
+                    {
+                        var bodyText = await reader.ReadToEndAsync()
+                            .ConfigureAwait(false);
+                        Console.WriteLine(bodyText);
+                    }
                 })
             .ConfigureAwait(false);
 
@@ -179,11 +191,16 @@ public class Usage
         #region Consume
 
         var queueManager = new QueueManager("endpointTable", sqlConnection);
-        var incomingBytesMessage = await queueManager.ConsumeBytes()
+        var message = await queueManager.Consume()
             .ConfigureAwait(false);
 
-        Console.WriteLine(incomingBytesMessage.Headers);
-        Console.WriteLine(incomingBytesMessage.Body);
+        Console.WriteLine(message.Headers);
+        using (var reader = new StreamReader(message.Body))
+        {
+            var bodyText = await reader.ReadToEndAsync()
+                .ConfigureAwait(false);
+            Console.WriteLine(bodyText);
+        }
 
         #endregion
     }
@@ -193,12 +210,17 @@ public class Usage
         #region ConsumeBatch
 
         var queueManager = new QueueManager("endpointTable", sqlConnection);
-        var result = await queueManager.ConsumeBytes(
+        var result = await queueManager.Consume(
                 size: 5,
-                action: message =>
+                action: async message =>
                 {
                     Console.WriteLine(message.Headers);
-                    Console.WriteLine(message.Body);
+                    using (var reader = new StreamReader(message.Body))
+                    {
+                        var bodyText = await reader.ReadToEndAsync()
+                            .ConfigureAwait(false);
+                        Console.WriteLine(bodyText);
+                    }
                 })
             .ConfigureAwait(false);
 
