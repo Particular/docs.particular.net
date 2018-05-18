@@ -1,4 +1,4 @@
-﻿namespace Testing_6.ServiceLayer
+﻿namespace Testing_7.ServiceLayer
 {
     using NServiceBus;
 

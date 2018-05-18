@@ -1,7 +1,7 @@
 ﻿namespace Testing_7.UpgradeGuides._6to7
 {
     using NServiceBus.Testing;
-    using Testing_6.Saga;
+    using Testing_7.Saga;
 
     class WhenHandling
     {

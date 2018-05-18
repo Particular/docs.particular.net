@@ -1,4 +1,4 @@
-﻿namespace Testing_6.AdditionalServices
+﻿namespace Testing_7.AdditionalServices
 {
     using System.Threading.Tasks;
     using NServiceBus;
