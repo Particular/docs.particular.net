@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="6.*" />
-    <PackageReference Include="WindowsAzure.ServiceBus" Version="3.*" />
+    <PackageReference Include="WindowsAzure.ServiceBus" Version="2.*" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>

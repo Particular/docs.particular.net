@@ -1,4 +1,4 @@
-﻿namespace Testing_6.HeaderManipulation
+﻿namespace Testing_7.HeaderManipulation
 {
     using NServiceBus;
 

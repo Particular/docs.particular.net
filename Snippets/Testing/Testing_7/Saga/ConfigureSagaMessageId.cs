@@ -1,4 +1,4 @@
-﻿namespace Testing_6.Saga
+﻿namespace Testing_7.Saga
 {
     using NServiceBus.Testing;
 

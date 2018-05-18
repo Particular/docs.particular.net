@@ -2,7 +2,7 @@
 {
     using NServiceBus.Testing;
     using NUnit.Framework;
-    using Testing_6.Saga;
+    using Testing_7.Saga;
 
     [Explicit]
     [TestFixture]

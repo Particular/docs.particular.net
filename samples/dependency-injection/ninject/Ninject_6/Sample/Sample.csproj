@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
@@ -6,7 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Ninject" Version="3.*" />
-    <PackageReference Include="Ninject.Extensions.ChildKernel" Version="3.*" />
     <PackageReference Include="Ninject.Extensions.ContextPreservation" Version="3.*" />
     <PackageReference Include="Ninject.Extensions.NamedScope" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />

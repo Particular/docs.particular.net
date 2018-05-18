@@ -92,3 +92,8 @@ class Usage
         #endregion
     }
 }
+
+// to avoid host reference
+interface IConfigureThisEndpoint
+{
+}

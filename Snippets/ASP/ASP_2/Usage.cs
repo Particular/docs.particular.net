@@ -81,7 +81,7 @@ class Usage
     }
 }
 
-// to avoid host referrence
-internal interface IConfigureThisEndpoint
+// to avoid host reference
+interface IConfigureThisEndpoint
 {
 }
