@@ -85,6 +85,7 @@ ServiceInsight: ServiceInsight
 SqlPersistence: NServiceBus.Persistence.Sql
 SqlTransport: NServiceBus.SqlServer
 SqlTransportNative: NServiceBus.SqlServer.Native
+SqlHttpPassthrough: NServiceBus.SqlServer.HttpPassthrough
 SignalR: SignalR.NServiceBus
 RabbitOperations: RabbitOperations
 SimpleInjector: NServiceBus.SimpleInjector
