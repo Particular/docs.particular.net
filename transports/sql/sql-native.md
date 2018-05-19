@@ -224,6 +224,60 @@ There is a headers helpers class `NServiceBus.Transport.SqlServerNative.Headers`
 It contains several [header](/nservicebus/messaging/headers.md) related utilities:
 
 
+## Deduplication
+
+Some scenarios, such as HTTP message pass through, require message deduplication.
+
+
+### Table management
+
+
+#### Create
+
+The table can be created using the following:
+
+snippet: CreateDeduplicationTable
+
+
+#### Delete
+
+The table can be deleted using the following:
+
+snippet: DeleteDeduplicationTable
+
+
+### Sending messages
+
+Sending to the main transport queue with deduplication.
+
+
+#### Single
+
+Sending a single message with deduplication.
+
+snippet: SendWithDeduplication
+
+
+#### Batch
+
+Sending a batch of messages with deduplication.
+
+snippet: SendBatchWithDeduplication
+
+
+### Deduplication Cleanup
+
+Deduplication records need to live for a period of time after the initial corresponding message has been send. In this way an subsequent message, with the same message id, can be ignored. This necessitates a period cleanup process of deduplication records. This is achieved by using `DeduplicationCleanerJob`:
+
+At application startup, start an instance of `DeduplicationCleanerJob`.
+
+snippet: DeduplicationCleanerJobStart
+
+Then at application shutdown stop the instance.
+
+snippet: DeduplicationCleanerJobStop
+
+
 ### JSON headers
 
 
