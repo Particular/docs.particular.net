@@ -23,15 +23,15 @@ SQL Server Transport Native is a shim providing low-level access to the [SQL Ser
 Some notes on the below snippets:
 
  * All methods that return a [Task](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) also accept an optional [CancellationToken](https://msdn.microsoft.com/en-us/library/system.threading.cancellationtoken.aspx).
- * While a string `SqlConnection` is used in all snippets for simplicity, an overload that takes a `SqlTransaction` also exists.
+ * While a string `SqlConnection` is used in all APIs for simplicity, an overload that takes a `SqlTransaction` also exists for each.
 
 }}
 
 
-## Queue management
+## Main Queue
 
 
-### Main queue
+### Queue management
 
 Queue management for the [native delayed delivery](/transports/sql/native-delayed-delivery.md) functionality.
 
@@ -52,7 +52,96 @@ The queue can be deleted using the following:
 snippet: DeleteQueue
 
 
-### Delayed queue
+### Sending messages
+
+Sending to the main transport queue.
+
+
+#### Single
+
+Sending a single message.
+
+snippet: Send
+
+
+#### Batch
+
+Sending a batch of messages.
+
+snippet: SendBatch
+
+
+### Reading messages
+
+"Reading" a message returns the data from the database without deleting it.
+
+
+#### Single
+
+Reading a single message.
+
+snippet: Read
+
+
+#### Batch
+
+Reading a batch of messages.
+
+snippet: ReadBatch
+
+
+#### RowVersion tracking
+
+For many scenarios, it is likely to be necessary to keep track of the last message `RowVersion` that was read. A lightweight implementation of the functionality is provided by `RowVersionTracker`. `RowVersionTracker` stored the current `RowVersion` in a table containing a single column and row.
+
+snippet: RowVersionTracker
+
+Note that is is only one possible implementation of storing the current `RowVersion`.
+
+
+#### Processing loop
+
+For scenarios where continual processing (reading and executing some code with the result) of incoming messages is required, `MessageProcessingLoop` can be used. 
+
+An example use case is monitoring an [error queue](/nservicebus/recoverability/configure-error-handling.md). Some action should be taken when a message appears in the error queue, but it should remain in that queue in case it needs to be retried. 
+
+Note that in the below snippet, the above `RowVersionTracker` is used for tracking the current `RowVersion`.
+
+snippet: ProcessingLoop
+
+
+### Consuming messages
+
+"Consuming" a message returns the data from the database and also deletes that message.
+
+
+#### Single
+
+Consume a single message.
+
+snippet: Consume
+
+
+#### Batch
+
+Consuming a batch of messages.
+
+snippet: ConsumeBatch
+
+
+#### Consuming loop
+
+For scenarios where continual consumption (consuming and executing some code with the result) of incoming messages is required, `MessageConsumingLoop` can be used.
+
+An example use case is monitoring an [audit queue](/nservicebus/operations/auditing.md). Some action should be taken when a message appears in the audit queue, and it should be purged from the queue so as to free up the storage space. 
+
+snippet: ConsumeLoop
+
+
+## Delayed Queue
+
+
+### Queue management
 
 Queue management for the [native delayed delivery](/transports/sql/native-delayed-delivery.md) functionality.
 
@@ -73,33 +162,7 @@ The queue can be deleted using the following:
 snippet: DeleteDelayedQueue
 
 
-## Sending a message
-
-A variety of [message sending](/nservicebus/messaging/send-a-message.md) functionality is provided.
- 
-
-### Main queue
-
-Sending from the main transport queue.
-
-
-#### Single
-
-Sending a single message.
-
-snippet: Send
-
-
-#### Batch
-
-Sending a batch of messages.
-
-snippet: SendBatch
-
-
-### Delayed queue
-
-Sending from the [native delayed delivery](/transports/sql/native-delayed-delivery.md) queue.
+### Sending messages
 
 
 #### Single
@@ -116,7 +179,7 @@ Sending a batch of messages.
 snippet: SendDelayedBatch
 
 
-## Reading messages
+### Reading messages
 
 "Reading" a message returns the data from the database without deleting it.
 
@@ -125,37 +188,17 @@ snippet: SendDelayedBatch
 
 Reading a single message.
 
-snippet: Read
+snippet: ReadDelayed
 
 
 #### Batch
 
 Reading a batch of messages.
 
-snippet: ReadBatch
+snippet: ReadDelayedBatch
 
 
-### RowVersion tracking
-
-For many scenarios, it is likely to be necessary to keep track of the last message `RowVersion` that was read. A lightweight implementation of the functionality is provided by `RowVersionTracker`. `RowVersionTracker` stored the current `RowVersion` in a table containing a single column and row.
-
-snippet: RowVersionTracker
-
-Note that is is only one possible implementation of storing the current `RowVersion`.
-
-
-### Processing loop
-
-For scenarios where continual processing (reading and executing some code with the result) of incoming messages is required, `MessageProcessingLoop` can be used. 
-
-An example use case is monitoring an [error queue](/nservicebus/recoverability/configure-error-handling.md). Some action should be taken when a message appears in the error queue, but it should remain in that queue in case it needs to be retried. 
-
-Note that in the below snippet, the above `RowVersionTracker` is used for tracking the current `RowVersion`.
-
-snippet: ProcessingLoop
-
-
-## Consuming messages
+### Consuming messages
 
 "Consuming" a message returns the data from the database and also deletes that message.
 
@@ -164,23 +207,14 @@ snippet: ProcessingLoop
 
 Consume a single message.
 
-snippet: Consume
+snippet: ConsumeDelayed
 
 
 #### Batch
 
 Consuming a batch of messages.
 
-snippet: ConsumeBatch
-
-
-### Consuming loop
-
-For scenarios where continual consumption (consuming and executing some code with the result) of incoming messages is required, `MessageConsumingLoop` can be used.
-
-An example use case is monitoring an [audit queue](/nservicebus/operations/auditing.md). Some action should be taken when a message appears in the audit queue, and it should be purged from the queue so as to free up the storage space. 
-
-snippet: ConsumeLoop
+snippet: ConsumeDelayedBatch
 
 
 ## Headers

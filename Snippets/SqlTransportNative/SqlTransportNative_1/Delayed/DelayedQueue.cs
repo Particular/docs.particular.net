@@ -5,31 +5,11 @@ using System.IO;
 using System.Threading.Tasks;
 using NServiceBus.Transport.SqlServerNative;
 
-public class Usage
+public class DelayedQueue
 {
     SqlConnection sqlConnection = null;
 
     async Task CreateQueue()
-    {
-        #region CreateQueue
-
-        var queueManager = new QueueManager("endpointTable", sqlConnection);
-        await queueManager.Create().ConfigureAwait(false);
-
-        #endregion
-    }
-
-    async Task DeleteQueue()
-    {
-        #region DeleteQueue
-
-        var queueManager = new QueueManager("endpointTable", sqlConnection);
-        await queueManager.Drop().ConfigureAwait(false);
-
-        #endregion
-    }
-
-    async Task CreateDelayedQueue()
     {
         #region CreateDelayedQueue
 
@@ -39,7 +19,7 @@ public class Usage
         #endregion
     }
 
-    async Task DeleteDelayedQueue()
+    async Task DeleteQueue()
     {
         #region DeleteDelayedQueue
 
@@ -51,52 +31,6 @@ public class Usage
     }
 
     async Task Send()
-    {
-        string headers = null;
-        byte[] body = null;
-
-        #region Send
-
-        var queueManager = new QueueManager("endpointTable", sqlConnection);
-        var message = new OutgoingMessage(
-            id: Guid.NewGuid(),
-            headers: headers,
-            bodyBytes: body);
-        await queueManager.Send(message)
-            .ConfigureAwait(false);
-
-        #endregion
-
-    }
-
-    async Task SendBatch()
-    {
-        string headers1 = null;
-        byte[] body1 = null;
-        string headers2 = null;
-        byte[] body2 = null;
-
-        #region SendBatch
-
-        var queueManager = new QueueManager("endpointTable", sqlConnection);
-        var messages = new List<OutgoingMessage>
-        {
-            new OutgoingMessage(
-                id: Guid.NewGuid(),
-                headers: headers1,
-                bodyBytes: body1),
-            new OutgoingMessage(
-                id: Guid.NewGuid(),
-                headers: headers2,
-                bodyBytes: body2),
-        };
-        await queueManager.Send(messages)
-            .ConfigureAwait(false);
-
-        #endregion
-    }
-
-    async Task SendDelayed()
     {
         string headers = null;
         byte[] body = null;
@@ -114,7 +48,7 @@ public class Usage
         #endregion
     }
 
-    async Task SendDelayedBatch()
+    async Task SendBatch()
     {
         string headers1 = null;
         byte[] body1 = null;
@@ -143,9 +77,9 @@ public class Usage
 
     async Task Read()
     {
-        #region Read
+        #region ReadDelayed
 
-        var queueManager = new QueueManager("endpointTable", sqlConnection);
+        var queueManager = new DelayedQueueManager("endpointTable", sqlConnection);
         var message = await queueManager.Read(rowVersion: 10)
             .ConfigureAwait(false);
 
@@ -162,9 +96,9 @@ public class Usage
 
     async Task ReadBatch()
     {
-        #region ReadBatch
+        #region ReadDelayedBatch
 
-        var queueManager = new QueueManager("endpointTable", sqlConnection);
+        var queueManager = new DelayedQueueManager("endpointTable", sqlConnection);
         var result = await queueManager.Read(
                 size: 5,
                 startRowVersion: 10,
@@ -188,9 +122,9 @@ public class Usage
 
     async Task Consume()
     {
-        #region Consume
+        #region ConsumeDelayed
 
-        var queueManager = new QueueManager("endpointTable", sqlConnection);
+        var queueManager = new DelayedQueueManager("endpointTable", sqlConnection);
         var message = await queueManager.Consume()
             .ConfigureAwait(false);
 
@@ -207,9 +141,9 @@ public class Usage
 
     async Task ConsumeBatch()
     {
-        #region ConsumeBatch
+        #region ConsumeDelayedBatch
 
-        var queueManager = new QueueManager("endpointTable", sqlConnection);
+        var queueManager = new DelayedQueueManager("endpointTable", sqlConnection);
         var result = await queueManager.Consume(
                 size: 5,
                 action: async message =>
