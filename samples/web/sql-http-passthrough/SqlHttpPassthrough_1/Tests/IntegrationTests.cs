@@ -5,37 +5,34 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using MyNamespace;
 using NServiceBus;
 using NServiceBus.Attachments.Sql;
-using NServiceBus.Features;
 using NServiceBus.SqlServer.HttpPassthrough;
 using NServiceBus.Transport.SqlServerNative;
 using NUnit.Framework;
+using SampleEndpoint;
+using SampleNamespace;
 
 [TestFixture]
 public class IntegrationTests
 {
     static ManualResetEvent resetEvent = new ManualResetEvent(false);
 
-    static string connectionString = @"Data Source=.\SQLExpress;Database=SqlHttpPassThroughSample; Integrated Security=True;Max Pool Size=100;MultipleActiveResultSets=True";
-
     [Test]
     public async Task Integration()
     {
-        SqlHelper.EnsureDatabaseExists(connectionString);
-        using (var connection = await ConnectionHelpers.OpenConnection(connectionString))
+        using (var connection = await ConnectionHelpers.OpenConnection(SqlHelper.ConnectionString))
         {
             var manager = new DeduplicationManager(connection, "Deduplication");
             await manager.Create();
             await Installer.CreateTable(connection, "MessageAttachments");
         }
 
-        var endpoint = await StartEndpoint();
+        var endpoint = await Program.StartEndpoint();
 
         await SubmitMultipartForm();
 
-        if (!resetEvent.WaitOne(TimeSpan.FromSeconds(2)))
+        if (!resetEvent.WaitOne(TimeSpan.FromSeconds(5)))
         {
             throw new Exception("OutgoingMessage not received");
         }
@@ -56,9 +53,9 @@ public class IntegrationTests
                 client,
                 route: "/SendMessage",
                 message: message,
-                typeName: "MyMessage",
-                typeNamespace: "MyNamespace",
-                destination: "Endpoint",
+                typeName: "SampleMessage",
+                typeNamespace: "SampleNamespace",
+                destination: "SampleEndpoint",
                 attachments: new Dictionary<string, byte[]>
                 {
                     {"fileName", Encoding.UTF8.GetBytes("fileContents")}
@@ -66,29 +63,12 @@ public class IntegrationTests
         }
     }
 
-    static Task<IEndpointInstance> StartEndpoint()
+    class Handler : IHandleMessages<SampleMessage>
     {
-        var endpointConfiguration = new EndpointConfiguration("Endpoint");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.PurgeOnStartup(true);
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-        endpointConfiguration.DisableFeature<TimeoutManager>();
-        endpointConfiguration.DisableFeature<MessageDrivenSubscriptions>();
-        endpointConfiguration.EnableAttachments(connectionString, TimeToKeep.Default);
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(connectionString);
-        return Endpoint.Start(endpointConfiguration);
-    }
-
-    class Handler : IHandleMessages<MyMessage>
-    {
-        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        public Task Handle(SampleMessage message, IMessageHandlerContext context)
         {
-            var incomingAttachment = context.Attachments();
-            await incomingAttachment.GetBytes("fileName");
-            Assert.AreEqual("Value", message.Property);
             resetEvent.Set();
+            return Task.CompletedTask;
         }
     }
 }

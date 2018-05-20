@@ -16,10 +16,9 @@ public class PassThroughController : ControllerBase
     }
 
     [HttpPost]
-    public async Task Post(CancellationToken cancellation)
+    public Task Post(CancellationToken cancellation)
     {
-        await sender.Send(HttpContext, cancellation)
-            .ConfigureAwait(false);
+        return sender.Send(HttpContext, cancellation);
     }
 }
 
