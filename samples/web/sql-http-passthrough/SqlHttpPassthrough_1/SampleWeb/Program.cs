@@ -6,7 +6,7 @@ using NServiceBus.Transport.SqlServerNative;
 
 namespace SampleWeb
 {
-   public  class Program
+    class Program
     {
         public static async Task Main()
         {
