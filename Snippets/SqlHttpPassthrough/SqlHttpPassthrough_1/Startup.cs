@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus.SqlServer.HttpPassthrough;
-using NServiceBus.Transport.SqlServerNative;
 
 #region Startup
 public class Startup
@@ -22,14 +21,14 @@ public class Startup
         var configuration = new PassThroughConfiguration(OpenConnection);
         services.AddSqlHttpPassThrough(configuration);
         services.AddMvcCore();
-        // other APS.MVC config
+        // other ASP.MVC config
     }
 
     public void Configure(IApplicationBuilder builder)
     {
         builder.AddSqlHttpPassThroughBadRequestMiddleware();
         builder.UseMvc();
-        // other APS.MVC config
+        // other ASP.MVC config
     }
 
     Task<SqlConnection> OpenConnection(CancellationToken cancellation)

@@ -63,7 +63,7 @@ If `ISqlPassThrough` fails to send a `SendFailureException` will be thrown conta
 If a the incoming HTTP request fails to be parsed a `BadRequestException` will be thrown with the message containing the reason for the failure.
 
 
-### JavaScript - Client 
+### Client - JavaScript 
 
 
 #### Form submission
@@ -78,3 +78,15 @@ snippet: PostToBus
 For deduplication to operate, the client must generate a [MessageId](/nservicebus/messaging/message-identity.md), so that any retries can be ignore. JavaScript does not contain native functionality to generate a GUID, so a helper method is used. 
 
 snippet: Guid
+
+
+### Client .NET
+
+Creating and posting a multipart form can be done using a combination of [MultipartFormDataContent](https://msdn.microsoft.com/en-us/library/system.net.http.multipartformdatacontent.aspx) and [HttpClient.PostAsync](https://msdn.microsoft.com/en-us/library/system.net.http.httpclient.postasync.aspx). To simplify this action the `ClientFormSender` class can be used:
+
+
+snippet: ClientFormSender
+
+This can be useful when performing [Integration testing in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/testing/integration-testing).
+
+snippet: asptesthost
