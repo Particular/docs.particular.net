@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using NServiceBus.Transport.SqlServerNative;
 
 namespace SampleWeb
 {
@@ -10,13 +9,7 @@ namespace SampleWeb
     {
         public static async Task Main()
         {
-            using (var connection = await ConnectionHelpers.OpenConnection(SqlHelper.ConnectionString)
-                .ConfigureAwait(false))
-            {
-                var deduplicationManager = new DeduplicationManager(connection, "Deduplication");
-                await deduplicationManager.Create().ConfigureAwait(false);
-            }
-
+            await Installation.Run().ConfigureAwait(false);
             var builder = WebHost.CreateDefaultBuilder();
             builder.UseContentRoot(Directory.GetCurrentDirectory());
             builder.UseStartup<Startup>();

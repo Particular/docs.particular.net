@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using NServiceBus;
-using NServiceBus.Attachments.Sql;
 using NServiceBus.SqlServer.HttpPassthrough;
-using NServiceBus.Transport.SqlServerNative;
 using NUnit.Framework;
 using SampleEndpoint;
 using SampleNamespace;
+
+#region IntegrationTests
 
 [TestFixture]
 public class IntegrationTests
@@ -21,13 +21,7 @@ public class IntegrationTests
     [Test]
     public async Task Integration()
     {
-        using (var connection = await ConnectionHelpers.OpenConnection(SqlHelper.ConnectionString))
-        {
-            var manager = new DeduplicationManager(connection, "Deduplication");
-            await manager.Create();
-            await Installer.CreateTable(connection, "MessageAttachments");
-        }
-
+        await Installation.Run();
         var endpoint = await Program.StartEndpoint();
 
         await SubmitMultipartForm();
@@ -72,3 +66,5 @@ public class IntegrationTests
         }
     }
 }
+
+#endregion

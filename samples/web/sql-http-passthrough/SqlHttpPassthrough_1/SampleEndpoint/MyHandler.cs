@@ -12,8 +12,7 @@ class MyHandler : IHandleMessages<SampleMessage>
     public Task Handle(SampleMessage message, IMessageHandlerContext context)
     {
         log.Info("SampleMessage received");
-        log.Info($"Property1={message.Property1}");
-        log.Info($"Property2={message.Property2}");
+        log.Info($"Property={message.Property}");
         foreach (var header in context.MessageHeaders)
         {
             var headerSuffix = header.Key.Replace("NServiceBus.", "");

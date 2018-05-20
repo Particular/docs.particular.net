@@ -61,7 +61,7 @@ snippet: Handler
 
 #### Message contract
 
-There is a single message with two properties to illustrate the data being passed through 
+There is a single message with a property to illustrate the data being passed through 
 
 snippet: MessageContract
 
@@ -119,3 +119,10 @@ snippet: PostToBus
 For deduplication to operate, the client must generate a [MessageId](/nservicebus/messaging/message-identity.md), so that any retries can be ignore. JavaScript does not contain native functionality to generate a GUID, so a helper method is used. 
 
 snippet: Guid
+
+
+## Testing
+
+The solution includes a integration test that verifies that a submitted HTTP request is intercepted by the SampleEndpoint.
+
+snippet: IntegrationTests

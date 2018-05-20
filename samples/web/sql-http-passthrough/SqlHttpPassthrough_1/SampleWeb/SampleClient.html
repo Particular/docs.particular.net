@@ -8,15 +8,14 @@
                 (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4)
                     .toString(16)
                     .toUpperCase()
-            )
+            );
         }
         // endcode
 
         // startcode PostToBus
         function PostToBus() {
             var message = new Object();
-            message.Property1 = document.getElementById("property1").value;
-            message.Property2 = document.getElementById("property2").value;
+            message.Property = document.getElementById("property").value;
             var jsonString = JSON.stringify(message);
 
             var data = new FormData();
@@ -47,8 +46,7 @@
 <!-- startcode form -->
 <body>
     Select files: <input type="file" id="files" multiple /><br />
-    Property1: <input type="text" id="property1" /><br />
-    Property2: <input type="text" id="property2" /><br />
+    Property: <input type="text" id="property" /><br />
     <button onclick="PostToBus()">PostToBus</button>
 </body>
 <!-- endcode -->
