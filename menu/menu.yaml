@@ -700,6 +700,8 @@
       Title: Troubleshooting and scripting
     - Url: transports/sql/sql-native
       Title: SQL Transport - Native
+    - Url: transports/sql/sql-http-passthrough
+      Title: SQL HTTP Passthrough
     - Url: transports/sql/sql-statements
       Title: SQL statements
     - Url: transports/sql/entity-framework

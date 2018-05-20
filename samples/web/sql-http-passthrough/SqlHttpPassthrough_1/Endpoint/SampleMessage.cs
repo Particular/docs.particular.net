@@ -1,5 +1,6 @@
 ﻿using NServiceBus;
 
+#region MessageContract
 namespace SampleNamespace
 {
     class SampleMessage : IMessage
@@ -8,3 +9,4 @@ namespace SampleNamespace
         public string Property2 { get; set; }
     }
 }
+#endregion

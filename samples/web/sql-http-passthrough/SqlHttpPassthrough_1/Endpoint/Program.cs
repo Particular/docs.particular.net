@@ -9,6 +9,7 @@ class Program
     static async Task Main()
     {
         SqlHelper.EnsureDatabaseExists(SqlHelper.ConnectionString);
+        #region EndpointConfiguration
         var endpointConfiguration = new EndpointConfiguration("Endpoint");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.EnableAttachments(SqlHelper.ConnectionString, TimeToKeep.Default);
@@ -18,6 +19,7 @@ class Program
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(SqlHelper.ConnectionString);
         endpointConfiguration.EnableInstallers();
+        #endregion
         Console.Title = "SampleEndpoint Press Ctrl-C to Exit.";
         Console.TreatControlCAsInput = true;
         var endpoint = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);

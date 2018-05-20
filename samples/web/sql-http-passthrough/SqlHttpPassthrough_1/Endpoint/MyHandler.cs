@@ -1,18 +1,25 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 using SampleNamespace;
+#region Handler
 
 class MyHandler : IHandleMessages<SampleMessage>
 {
+    static ILog log = LogManager.GetLogger<MyHandler>();
+
     public Task Handle(SampleMessage message, IMessageHandlerContext context)
     {
-        Console.WriteLine("MyHandler");
+        log.Info("SampleMessage received");
+        log.Info($"Property1={message.Property1}");
+        log.Info($"Property2={message.Property2}");
         foreach (var header in context.MessageHeaders)
         {
-            Console.WriteLine($"{header.Key.Replace("NServiceBus.","")}={header.Value}");
+            var headerSuffix = header.Key.Replace("NServiceBus.", "");
+            log.Info($"{headerSuffix}={header.Value}");
         }
+
         return context.Attachments().ProcessStreams(WriteAttachment);
     }
 
@@ -22,7 +29,9 @@ class MyHandler : IHandleMessages<SampleMessage>
         {
             var contents = await reader.ReadToEndAsync()
                 .ConfigureAwait(false);
-            Console.WriteLine("Attachment: {0}. Contents:{1}", name, contents);
+            log.Info($"Attachment: {name}. Contents:{contents}");
         }
     }
 }
+
+#endregion

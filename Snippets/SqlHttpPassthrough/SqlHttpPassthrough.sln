@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlHttpPassthrough", "SqlHttpPassthrough_1\SqlHttpPassthrough.csproj", "{179C2C21-E799-41F2-9154-EDCCE165B1DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlHttpPassthrough_1", "SqlHttpPassthrough_1\SqlHttpPassthrough_1.csproj", "{179C2C21-E799-41F2-9154-EDCCE165B1DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

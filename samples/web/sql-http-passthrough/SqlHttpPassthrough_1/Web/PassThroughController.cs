@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NServiceBus.SqlServer.HttpPassthrough;
 
+#region PassThroughController
+
 [Route("SendMessage")]
 public class PassThroughController : ControllerBase
 {
@@ -16,15 +18,9 @@ public class PassThroughController : ControllerBase
     [HttpPost]
     public async Task Post(CancellationToken cancellation)
     {
-        try
-        {
-            await sender.Send(HttpContext, cancellation)
-                .ConfigureAwait(false);
-        }
-        catch (SendFailureException exception)
-        {
-            exception.Data.Add("message", exception.PassThroughMessage.ToDictionary());
-            exception.CaptureAndThrow();
-        }
+        await sender.Send(HttpContext, cancellation)
+            .ConfigureAwait(false);
     }
 }
+
+#endregion

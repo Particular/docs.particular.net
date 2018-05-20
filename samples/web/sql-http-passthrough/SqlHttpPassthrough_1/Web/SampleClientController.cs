@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Mvc;
 
+#region SampleClientController
 public class SampleClientController : ControllerBase
 {
     [HttpGet]
@@ -11,3 +12,5 @@ public class SampleClientController : ControllerBase
         return PhysicalFile(file, "text/html");
     }
 }
+
+#endregion
