@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
@@ -7,6 +7,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Wcf" Version="1.*" />
-    <PackageReference Include="NServiceBus.Callbacks" Version="2.*" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="1.*" />
   </ItemGroup>
 </Project>

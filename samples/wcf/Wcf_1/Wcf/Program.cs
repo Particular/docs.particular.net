@@ -16,7 +16,6 @@ class Program
         #region enable-wcf
 
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
-        endpointConfiguration.EnableCallbacks();
 
         var wcf = endpointConfiguration.Wcf();
         wcf.Binding(
