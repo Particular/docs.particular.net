@@ -4,7 +4,6 @@ using Newtonsoft.Json.Bson;
 using NServiceBus;
 using NServiceBus.Jil;
 using NServiceBus.MessageMutator;
-using NServiceBus.MessagePack;
 using NServiceBus.Wire;
 
 static class Program
@@ -33,9 +32,6 @@ static class Program
         // Jil
         var jil = endpointConfiguration.AddDeserializer<JilSerializer>();
         jil.ContentTypeKey("Jil");
-
-        // Message Pack
-        endpointConfiguration.AddDeserializer<MessagePackSerializer>();
 
         // Wire
         endpointConfiguration.AddDeserializer<WireSerializer>();

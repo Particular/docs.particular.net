@@ -38,13 +38,6 @@ Sends messages using the [Jil serializer](/samples/serializers/jil/).
 snippet: configJil
 
 
-### MessagePackEndpoint
-
-Sends messages using the [MessagePack serializer](/samples/serializers/messagepack/).
-
-snippet: configMessagePack
-
-
 ### WireEndpoint
 
 Sends messages using the [Wire serializer](/samples/serializers/wire/).
