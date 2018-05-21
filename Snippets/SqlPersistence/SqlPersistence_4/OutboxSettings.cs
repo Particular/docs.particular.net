@@ -7,7 +7,7 @@
         void OutboxSettingsEx1(EndpointConfiguration endpointConfiguration)
         {
             //#region SqlPersistenceOutboxSettings 4.1
-            #region SqlPersistenceOutboxSettings 4.1
+            #region SqlPersistenceOutboxSettings
 
             var outboxSettings = endpointConfiguration.EnableOutbox();
             //TODO: uncomment after updating dependency to 4.1
