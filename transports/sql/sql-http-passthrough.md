@@ -7,7 +7,7 @@ related:
  - samples/web/sql-http-passthrough
 ---
 
-SQL HTTP Passthrough provide a bridge between an HTTP stream (via JavaScript on a web page) and the SQL Transport queue used by NServiceBus. It leverages [SQL Transport - Native](/transports/sql/sql-native.md) and [SQL Attachments](/nservicebus/messaging/attachments-sql.md).
+SQL HTTP Passthrough provide a bridge between an HTTP stream (via JavaScript on a web page) and the [SQL Server Transport](/transports/sql/). It leverages [SQL Transport - Native](/transports/sql/sql-native.md) and [SQL Attachments](/nservicebus/messaging/attachments-sql.md).
 
 
 ## Design
@@ -58,9 +58,9 @@ WARNING: In a production application the Controller would be performing any auth
 
 #### Exception behavior
 
-If `ISqlPassThrough` fails to send a `SendFailureException` will be thrown containing all context in a `PassThroughMessage` property.
+If `ISqlPassThrough` fails to send, a `SendFailureException` will be thrown containing all context in a `PassThroughMessage` property.
 
-If a the incoming HTTP request fails to be parsed a `BadRequestException` will be thrown with the message containing the reason for the failure.
+If the incoming HTTP request fails to be parsed, a `BadRequestException` will be thrown with the message containing the reason for the failure.
 
 
 ### Client - JavaScript 
@@ -83,7 +83,6 @@ snippet: Guid
 ### Client .NET
 
 Creating and posting a multipart form can be done using a combination of [MultipartFormDataContent](https://msdn.microsoft.com/en-us/library/system.net.http.multipartformdatacontent.aspx) and [HttpClient.PostAsync](https://msdn.microsoft.com/en-us/library/system.net.http.httpclient.postasync.aspx). To simplify this action the `ClientFormSender` class can be used:
-
 
 snippet: ClientFormSender
 
