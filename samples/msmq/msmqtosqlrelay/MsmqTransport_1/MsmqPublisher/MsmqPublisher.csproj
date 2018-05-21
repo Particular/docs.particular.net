@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
@@ -6,19 +6,12 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Iesi.Collections" Version="4.*" />
     <PackageReference Include="NHibernate" Version="4.*" />
-    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
-    <PackageReference Include="Iesi.Collections" Version="4.0.4" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="AddSubscriber.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="CreateDatabase.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Update="*.sql" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
