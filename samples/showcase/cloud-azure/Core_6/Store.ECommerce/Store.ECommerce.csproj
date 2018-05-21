@@ -20,8 +20,6 @@
     <TargetFrameworkProfile />
     <UseGlobalApplicationHostFile />
     <Use64BitIISExpress />
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,7 +53,7 @@
     <PackageReference Include="Microsoft.Owin.Security" Version="4.0.0" />
     <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.*" />
     <PackageReference Include="Microsoft.Web.WebJobs.Publish" Version="1.1.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus" Version="6.4.3" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.5.3" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />
