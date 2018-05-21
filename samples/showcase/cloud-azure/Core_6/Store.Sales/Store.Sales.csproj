@@ -40,7 +40,7 @@
     <PackageReference Include="Microsoft.Data.Services.Client" Version="5.*" />
     <PackageReference Include="Microsoft.Web.WebJobs.Publish" Version="1.*" />
     <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="7.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="1.*" />
