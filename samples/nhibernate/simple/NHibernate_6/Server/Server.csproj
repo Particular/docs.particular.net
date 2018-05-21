@@ -1,14 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
+    <PackageReference Include="Iesi.Collections" Version="4.*" />
     <PackageReference Include="NHibernate" Version="4.*" />
-    <PackageReference Include="NServiceBus" Version="5.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="6.*" />
   </ItemGroup>
 </Project>
