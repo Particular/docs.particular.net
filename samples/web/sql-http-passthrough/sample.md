@@ -7,13 +7,14 @@ related:
  - samples/web/owin-pass-through
 ---
 
-This sample leverages the [SQL Server - HTTP Passthrough](/transports/sql/sql-http-passthrough.md) to provide a bridge between an HTTP stream (via JavaScript on a web page) and the SQL Transport queue used by NServiceBus.
+This sample leverages the [SQL Server - HTTP Passthrough](/transports/sql/sql-http-passthrough.md) to provide a bridge between an HTTP stream (via JavaScript on a web page) and the [SQL Server Transport](/transports/sql/).
 
 The flow of this sample is:
 
- * User performs some action on a webpage that triggers some JavaScript
- * JavaScript posts the message body to a specific URL
- * Controller takes the HTTP request and places it in a queue
+ * User performs an action on a web page that triggers JavaScript.
+ * JavaScript posts the message body to a specific URL.
+ * Controller takes the HTTP request and places it in a queue.
+ * An endpoint receives the message and logs all contextual information.
 
 
 ## Prerequisites
@@ -36,7 +37,7 @@ In the browser press the button and a message will be received by the Endpoint.
 ## Code walk-through
 
 
-### Endpoint
+### SampleEndpoint
 
 This is a standard NServiceBus endpoint that will receive the message.
 
@@ -61,14 +62,14 @@ snippet: Handler
 
 #### Message contract
 
-There is a single message with a property to illustrate the data being passed through 
+There is a single message with a property to illustrate the data being passed through:
 
 snippet: MessageContract
 
 Note that the messages exist only in this endpoint and do not need to be used, via a reference, in the Web project.
 
 
-### Web
+### SampleWeb
 
 
 #### Startup
@@ -90,7 +91,7 @@ The `PassThroughController` consists of several parts.
 
 snippet: PassThroughController
 
-WARNING: The controller that, in a production application, would be performing any authorization and authentication on the incoming request. 
+WARNING: The controller that, in a production application, would be performing any authorization and authentication on the incoming request.
 
 
 #### SampleClientController
@@ -102,7 +103,7 @@ snippet: SampleClientController
 
 #### HTML form
 
-The HTML captures that data that will be submitted to the Passthrough controller.
+The HTML captures that data that will be submitted to the `PassthroughController`.
 
 snippet: form
 
@@ -116,7 +117,7 @@ snippet: PostToBus
 
 #### MessageId generation
 
-For deduplication to operate, the client must generate a [MessageId](/nservicebus/messaging/message-identity.md), so that any retries can be ignore. JavaScript does not contain native functionality to generate a GUID, so a helper method is used. 
+For deduplication to operate, the client must generate a [MessageId](/nservicebus/messaging/message-identity.md), so that any retries can be ignore. JavaScript does not contain native functionality to generate a GUID, so a helper method is used.
 
 snippet: Guid
 
