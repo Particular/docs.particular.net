@@ -6,6 +6,7 @@
     {
         void OutboxSettingsEx1(EndpointConfiguration endpointConfiguration)
         {
+            //#region SqlPersistenceOutboxSettings 4.1
             #region SqlPersistenceOutboxSettings 4.1
 
             var outboxSettings = endpointConfiguration.EnableOutbox();
@@ -18,7 +19,8 @@
 
         void OutboxSettingsEx2(EndpointConfiguration endpointConfiguration)
         {
-            #region SqlPersistenceOutboxDisableCleanup 4.1
+           // #region SqlPersistenceOutboxDisableCleanup 4.1
+            #region SqlPersistenceOutboxDisableCleanup
 
             var outboxSettings = endpointConfiguration.EnableOutbox();
             //TODO: uncomment after updating dependency to 4.1
