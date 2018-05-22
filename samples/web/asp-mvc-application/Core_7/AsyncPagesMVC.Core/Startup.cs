@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -68,7 +65,7 @@ namespace AsyncPagesMVC.Core
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=SendLinks}/{id?}");
-            });            
+            });
         }
     }
 }
