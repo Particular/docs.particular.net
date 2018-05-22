@@ -17,6 +17,8 @@ The persister uses unique key constraints that will result in an exception being
 
 ## Concurrent access to existing saga instances
 
-The persister provides [optimistic concurrency](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) using an Incrementing counter.
+To ensure correctness the persister uses [optimistic concurrency](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) using an incrementing counter.
 
 include: saga-concurrency
+
+In addition to that, starting from Version 4.1, the persister also uses pessimistic concurrency to avoid excessive optimistic concurrency conflict for highly congested sagas. The pessimistic concurrency is implemented using `SELECT ... FOR UPDATE` or equivalent construct.
