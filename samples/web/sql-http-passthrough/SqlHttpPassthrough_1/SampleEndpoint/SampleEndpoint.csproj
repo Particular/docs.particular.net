@@ -1,14 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
+    <TargetFramework>net461</TargetFramework>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.*" />
-    <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="4.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.1.0-*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="4.*" />
+    <PackageReference Include="NServiceBus.Attachments.Sql" Version="1.0.0-beta.31" />
+    <PackageReference Include="NServiceBus.SqlServer.HttpPassthrough" Version="1.0.0-beta.38" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

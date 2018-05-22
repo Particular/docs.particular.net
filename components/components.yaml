@@ -866,6 +866,17 @@
   NugetOrder:
     - NServiceBus.SqlServer.Native
 
+- Key: SqlHttpPassthrough
+  Name: SQL Server - HTTP Passthrough
+  DocoUrl: transports/sql/sql-http-passthrough
+  Category: Other
+  GitHubOwner: NServiceBusExtensions
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Native/blob/master/license.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Native
+  NugetOrder:
+    - NServiceBus.SqlServer.HttpPassthrough
+
 - Key: StructureMap
   Name: StructureMap Dependency Injection
   DocoUrl: nservicebus/dependency-injection/structuremap
