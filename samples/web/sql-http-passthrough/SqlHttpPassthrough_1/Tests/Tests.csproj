@@ -3,20 +3,14 @@
     <TargetFramework>net461</TargetFramework>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.0.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.*" />
     <PackageReference Include="NUnit" Version="3.*" />
-    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.0.3" />
-    <PackageReference Include="NServiceBus.SqlServer.HttpPassthrough" Version="1.0.0-beta.38" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SampleEndpoint\SampleEndpoint.csproj" />
     <ProjectReference Include="..\SampleWeb\SampleWeb.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
-  </ItemGroup>
- </Project>
+</Project>
