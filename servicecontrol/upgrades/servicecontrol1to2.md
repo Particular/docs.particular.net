@@ -27,7 +27,7 @@ Due to the intrusive nature of this upgrade, there are two main ways to upgrade 
 
 ### In-place upgrade to version 2
 
-WARN: This upgrade process is intrusive and may take a long time to progress. Our tests on a 4000 IOPs server indicate that upgrading a 300Gb database can take upwards of nearly 5 hours if the server is doing nothing other than processing the upgrade.
+WARN: This upgrade process is intrusive and may take a long time to progress. An Azure virtual machine with 4000 IOPs server indicate that upgrading a 300Gb database can take upwards of nearly 5 hours if the server is doing nothing other than processing the upgrade.
 
 The upgrade is triggered through the ServiceControl Management application. ServiceControl Management will display the instances of the ServiceControl service installed. If the version of the binaries used by an instance are older that those shipped with ServiceControl Management an upgrade link will be shown against the version label.
 
