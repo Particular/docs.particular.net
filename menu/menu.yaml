@@ -879,6 +879,8 @@
       Title: Saga concurrency
     - Url: persistence/sql/subscriptions
       Title: Subscriptions
+    - Url: persistence/sql/timeouts
+      Title: Timeouts
     - Url: persistence/sql/outbox
       Title: Outbox
     - Url: persistence/sql/install
