@@ -11,7 +11,7 @@ The experimental Queue Length metrics based on the estimation algorithm has been
 
 ### Upgrading Monitoring instance
 
-Service Control should be upgraded to version 1.48.0+. Starting the upgrade process with monitoring instance (and the endpoints) prevents old version of monitoring instance from receiving new, unsupported metric reports. In addition new monitoring instance produces `WARN` log entries of the form 
+Service Control should be upgraded to version 1.48.0+. Starting the upgrade process with monitoring instance (and not the endpoints) prevents old version of monitoring instance from receiving new, unsupported metric reports. In addition new monitoring instance produces `WARN` log entries of the form 
 
 > Legacy queue length report received from {InstanceName} instance of {EndpointName}.
 
