@@ -53,37 +53,4 @@ This metric measures the number of [retries](/nservicebus/recoverability) schedu
 
 ### Queue length
 
-Warning: the queue length metric is experimental and  the calculated value for the metric can substantially differ from the actual value under [certain scenarios](#metrics-captured-queue-length-known-limitations).
-
-This metric tracks the **estimated** number of messages in the input queue of an endpoint. The reason why this value needs to be estimated is that when scaling out certain queuing environments, under high load, the number of messages actually in a given input queue would not reflect all the messages *in transit* to that queue, thus reporting much lower values. For this reason, a different approach is used - one based on *links* rather than queues.
-
-A _link_ is a communication channel between a sender of the message and its receiver. Each link is uniquely identified by some combination of destination address, message assembly, and the [host identifier](/nservicebus/hosting/override-hostid.md#host-identifier) of the sender. The exact composition of link identifiers depends on the transport properties and type of message being sent.
-
-Each sender maintains a monotonic counter of messages sent over each of its outgoing links and transmits the value of this counter to the receiver in a message header. The receiver tracks the counter value for the last message received over each link. This allows both communicating endpoints to track how many messages were sent and received over each link.
-
-ServiceControl collects these metrics for all links and estimates the length of the input queue for each receiver based on how many messages were sent in total over all incoming links and how many of those messages have already been received.
-
-#### Known limitations
-As noted before, the current implementation might produce estimates which significantly differ from the actual queue length value. This might happen in the following scenarios:
- * Queue length for [satellite queues](/nservicebus/satellites) like `.timeouts`, `.timeoutdispatcher`, `.retries` and custom satellite queues are not reported.
- * [Sender Side Distribution](/transports/msmq/sender-side-distribution.md) with non-identical receiver instances, e.g. some are fast and some are slow
- * High error rate scenarios in which significant number of messages are scheduled for [delayed retrying](/nservicebus/recoverability/#delayed-retries) or moved to the [error](/nservicebus/recoverability/#fault-handling) queue
- * In [Distributor](/transports/msmq/distributor/)-based deployments there is no queue length metric provided for the distributor node, only for the workers
- * After restarting any component the estimated queue length value can be off until all messages sent before restart are consumed
- *  In [Service Fabric Stateful Services with Partition Affine Routing](/samples/azure/azure-service-fabric-routing/) the queue length cannot be determined. Individual partitions can have a different backlog of messages e.g. one partition has more messages to be processed then another or is faster than another.
-
-#### Example
-
-The system consists of two endpoints, Sales and Shipping. Sales send messages to Shipping to notify it about some business events. The Sales endpoint is scaled out and deployed to two machines, `1` and `2`. Consider the following values reported to ServiceControl:
-
-| Link ID                        | Max sent counter | Max received counter | Messages in queue from this link |
-|--------------------------------|:----------------:|:--------------------:|:--------------------------------:|
-| `Sales@1->Shipping`            | 20               | 17                   | 3                                |
-| `Sales@2->Shipping`            | 33               | 31                   | 2                                |
-
-
-Based on the data above, ServiceControl can estimate the following values of queue length for `Shipping` endpoints:
-
-| Endpoint | Queue length terms  | Calculated queue length |
-|----------|:-------------------:|:-----------------------:|
-| Shipping | 3 + 2               | 5                       |
+This metric tracks the number of messages in the input queue of an endpoint. 
