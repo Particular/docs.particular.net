@@ -36,7 +36,7 @@ This tutorial uses the [MSMQ Transport](/transports/msmq/) that moves messages a
 
 If you completed the [Introduction to NServiceBus tutorial](/tutorials/intro-to-nservicebus/), you may want to note a few things in the code that have changed.
 
-In the **Program.cs** file of every endpoint, the `LearningTransport` has been replaced by the `MsmqTransport`, including additional configuration that is required by MSMQ:
+In the **Program.cs** file of every endpoint, the `LearningTransport` has been replaced by the `MsmqTransport` (from the [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq) NuGet package), including additional configuration that is required by MSMQ:
 
 snippet: MsmqConfig
 
