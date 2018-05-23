@@ -10,7 +10,7 @@ related:
 
 ## Code walk-through
 
-This sample demonstrates replacing the channel that is used for the NServiceBus [gateway](https://docs.particular.net/nservicebus/gateway/) with a [WebSockets](https://tools.ietf.org/html/rfc6455) channel based on the [websocket-sharp](http://sta.github.io/websocket-sharp/) library.
+This sample demonstrates replacing the channel that is used for the NServiceBus [gateway](/nservicebus/gateway/) with a [WebSockets](https://tools.ietf.org/html/rfc6455) channel based on the [websocket-sharp](http://sta.github.io/websocket-sharp/) library.
 
 
 ## Messages
