@@ -24,8 +24,6 @@ namespace Sales
             recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
             #endregion
 
-            endpointConfiguration.UseSerialization<JsonSerializer>();
-
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
