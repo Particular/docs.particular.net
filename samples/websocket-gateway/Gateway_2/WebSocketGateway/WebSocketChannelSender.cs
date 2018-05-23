@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using NServiceBus.Gateway;
 using WebSocketSharp;
 
-#region WebScoketGateway-ChannelSender
+#region WebSocketGateway-ChannelSender
 public class WebSocketChannelSender :
     IChannelSender
 {

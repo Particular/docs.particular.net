@@ -1,11 +1,11 @@
-## Destination Queue creation
+## Destination queue creation
 
-Previous versions of the transport automatically created destination queues on send if not available. The automatic creation of destination queues has been removed. Setting up a topology with queues is an operations concern and should happen during the [installation phase](/nservicebus/operations/installers.md) of the endpoint or via scripting when provisioning the environment.
+Previous versions of the transport automatically created destination queues on send if they weren't available. The automatic creation of destination queues has been removed. Setting up a topology with queues is an operations concern and should happen during the [installation phase](/nservicebus/operations/installers.md) of the endpoint or via scripting when provisioning the environment.
 
 
 ## Permissions
 
-A new set of permissions is required to run SQS transport. The following permissions must be granted to run SQS transport.
+A new set of permissions is required to run SQS transport. The following permissions must be granted to run the SQS transport.
 
 
 ### [SQS permissions](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html)
