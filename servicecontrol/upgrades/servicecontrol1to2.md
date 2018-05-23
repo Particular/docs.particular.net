@@ -35,6 +35,8 @@ The upgrade is triggered through the ServiceControl Management application. Serv
 
 To upgrade the service to version 2, click the upgrade link next to the Service name.
 
+WARN: This upgrade process can potentially take a very long time. Please ensure that the instance of ServiceControl being upgraded is not needed for the duration required.
+
 Clicking the upgrade link will
 
  * Prompt for any additional information that is required such as values for new mandatory settings introduced in the newer version.
@@ -47,6 +49,8 @@ Clicking the upgrade link will
 A new parameter was introduced between version 1 and version 2 which is the maintenance port for RavenDB maintenance. If this setting is not in the configuration file, a prompt will appear asking for it.
 
 ![](maintenance-port-request.png)
+
+Once ServiceControl has been upgraded, RavenDB will begin the process up re-creating all of the indexes used by ServiceControl. This process could take even longer than the initial data migration. ServiceControl will be accessible during this process, but the data displayed in ServiceInsight and ServicePulse may not be consistent yet.
 
 ### Side-by-side upgrade process
 
