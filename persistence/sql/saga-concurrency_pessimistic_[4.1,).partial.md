@@ -1,0 +1,1 @@
+In addition to that the persister also uses pessimistic concurrency to avoid excessive optimistic concurrency conflict for highly congested sagas. The pessimistic concurrency is implemented using `SELECT ... FOR UPDATE` or equivalent construct.
