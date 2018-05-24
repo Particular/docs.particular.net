@@ -71,7 +71,7 @@ namespace WebApplication.Core
 
         void OnShutdown()
         {
-            endpoint.Stop().GetAwaiter().GetResult();
+            endpoint?.Stop().GetAwaiter().GetResult();
         }
 
         IEndpointInstance endpoint;
