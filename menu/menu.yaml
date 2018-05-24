@@ -23,6 +23,8 @@
       Title: More tutorials
     - Url: get-started/high-level-content
       Title: High-level content
+    - Url: samples/netcore
+      Title: .NET Core Samples
 - Name: NServiceBus
   Topics:
   - Url: nservicebus
