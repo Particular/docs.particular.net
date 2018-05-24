@@ -4,7 +4,7 @@ summary: Samples using NServiceBus and the Particular Service Platform
 reviewed: 2018-04-25
 ---
 
-For a guided introduction to essential NServiceBus concepts start with the [step by step sample](/samples/step-by-step/)
+For a guided introduction to essential NServiceBus concepts start with the [step by step sample](/samples/step-by-step/).
 
 [Skip to the list of samples](#related-samples)
 

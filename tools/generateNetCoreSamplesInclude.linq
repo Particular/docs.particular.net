@@ -9,7 +9,7 @@ void Main()
 {
     CreateYamlDeserializer();
     
-    var includePath = Path.Combine(Util.CurrentQuery.Location, @"..\samples\samples-supporting-netcore.include.md");
+    var includePath = Path.Combine(Util.CurrentQuery.Location, @"..\samples\generated-samples-supporting-netcore.include.md");
     var rootPath = Path.GetFullPath(Path.Combine(Util.CurrentQuery.Location, ".."));
     var samplesPath = Path.GetFullPath(Path.Combine(Util.CurrentQuery.Location, @"..\samples"));
     
@@ -55,11 +55,11 @@ void Main()
     {
         foreach(var sample in netCoreSamples)
         {
-            w.WriteLine($"* [{sample.Title}]({sample.Url}");   
+            var line = $"* [{sample.Title}]({sample.Url})";
+            w.WriteLine(line);
+            Console.WriteLine(line);
         }
     }
-    
-    
 }
 
 private void CreateYamlDeserializer()

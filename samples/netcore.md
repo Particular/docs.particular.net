@@ -16,10 +16,13 @@ For example, the [Full Duplex sample](/samples/fullduplex/) download will contai
     * **Server.csproj** - Project for .NET Framework
     * **Server.Core.csproj** - Project for .NET Core
 
+NOTE: Be sure to review the [general information about running samples](/samples/).
+
 
 ## Recommended samples
 
 To get started with .NET Core and NServiceBus, the following samples are recommended:
+
 
 ### General samples
 
@@ -29,6 +32,7 @@ To get started with .NET Core and NServiceBus, the following samples are recomme
 * [Using NServiceBus in an ASP.NET Core WebAPI Application](/samples/web/send-from-aspnetcore-webapi/?version=core_7)
 * [Hosting in a Windows Service](/samples/hosting/windows-service/?version=core_7)
 
+
 ### Message transport samples
 
 * [Simple RabbitMQ Transport usage](/samples/rabbitmq/simple/?version=rabbit_5)
@@ -36,11 +40,13 @@ To get started with .NET Core and NServiceBus, the following samples are recomme
 * [Azure Storage Queues Transport](/samples/azure/storage-queues/?version=asq_8)
 * [Simple AmazonSQS Transport usage](/samples/sqs/simple/?version=sqs_4)
 
+
 ### Persistence samples
 
 * [Simple SQL Persistence Usage](/samples/sql-persistence/simple/?version=sqlpersistence_4)
 * [SQL Server Transport and SQL Persistence](/samples/sqltransport-sqlpersistence/?version=core_7)
 * [Azure Storage Persistence](/samples/azure/storage-persistence/?version=asp_2)
+
 
 ## All .NET Core Samples
 
