@@ -1,6 +1,6 @@
 ---
 title: Samples
-summary: Guidelines and 
+summary: Samples using NServiceBus and the Particular Service Platform 
 reviewed: 2018-04-25
 ---
 
