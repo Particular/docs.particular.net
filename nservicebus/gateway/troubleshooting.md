@@ -9,7 +9,7 @@ redirects:
 
 ## Persistence support
 
-The Gateways requires NServiceBus persistence to operate, however, not all persistences support it. Currently, the Gateway is supported only by InMemory, RavenDB and NHibernate persistences. If the configured persistence doesn't support Gateway, then the `The selected persistence doesn't have support for gateway deduplication storage. Please configure one that supports gateway deduplication storage.` exception will be thrown at endpoint startup.
+The Gateways requires NServiceBus persistence to operate, however, not all persistences support it. Currently, the Gateway is supported only by InMemory, RavenDB and NHibernate persistences. If the configured persistence doesn't support Gateway, then the `The selected persistence doesn't have support for gateway deduplication storage.` exception will be thrown at endpoint startup.
 
 
 ## Corrupted urlacls
