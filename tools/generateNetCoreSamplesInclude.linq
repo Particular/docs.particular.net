@@ -13,10 +13,20 @@ void Main()
     var rootPath = Path.GetFullPath(Path.Combine(Util.CurrentQuery.Location, ".."));
     var samplesPath = Path.GetFullPath(Path.Combine(Util.CurrentQuery.Location, @"..\samples"));
     
-    var netCoreSamples = Directory.GetFiles(samplesPath, "*.Core.sln", SearchOption.AllDirectories)
-        .Select(path => 
+    var netCoreSamples = Directory.GetFiles(samplesPath, "*.sln", SearchOption.AllDirectories)
+        .Select(path => Path.GetDirectoryName(path))
+        .Distinct()
+        .Where(versionDir =>
         {
-            var versionPath = Path.GetDirectoryName(path);
+            return Directory.GetFiles(versionDir, "*.csproj", SearchOption.AllDirectories)
+                .Any(proj =>
+                {
+                    var projContents = File.ReadAllText(proj);
+                    return projContents.Contains("netcoreapp2.0");
+                });
+        })
+        .Select(versionPath => 
+        {
             var version = Path.GetFileName(versionPath).ToLowerInvariant();
             var sampleDirPath = Path.GetDirectoryName(versionPath);
             var mdPath = Path.Combine(sampleDirPath, "sample.md");
