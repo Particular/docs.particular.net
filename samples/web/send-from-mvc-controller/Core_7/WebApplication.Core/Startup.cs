@@ -18,6 +18,7 @@ namespace WebApplication.Core
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
@@ -26,15 +27,14 @@ namespace WebApplication.Core
 
             builder.Populate(services);
 
-            IEndpointInstance endpoint = null;
             builder.Register(c => endpoint)
-                .As<IEndpointInstance>()
-                .SingleInstance();
+               .As<IEndpointInstance>()
+               .SingleInstance();
 
             var container = builder.Build();
 
             var endpointConfiguration = new EndpointConfiguration("Samples.MvcInjection.WebApplication");
-            
+
             endpointConfiguration.UseContainer<AutofacBuilder>(
                 customizations: customizations =>
                 {
@@ -49,8 +49,10 @@ namespace WebApplication.Core
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IApplicationLifetime applicationLifetime, IHostingEnvironment env)
         {
+            applicationLifetime.ApplicationStopping.Register(OnShutdown);
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -66,5 +68,12 @@ namespace WebApplication.Core
                     template: "{controller=Default}/{action=Index}/{id?}");
             });
         }
+
+        void OnShutdown()
+        {
+            endpoint.Stop().GetAwaiter().GetResult();
+        }
+
+        IEndpointInstance endpoint;
     }
 }
