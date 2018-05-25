@@ -1,1 +1,2 @@
-In addition to that the persister also uses pessimistic concurrency to avoid excessive optimistic concurrency conflict for highly congested sagas. The pessimistic concurrency is implemented using `SELECT ... FOR UPDATE` or equivalent construct.
+
+However, to avoid excessive conflicts for highly congested sagas the persister uses pessimistic concurrency for querying and updating saga information. The pessimistic concurrency is implemented using `SELECT ... FOR UPDATE` construct or its dialect-specific equivalent.
