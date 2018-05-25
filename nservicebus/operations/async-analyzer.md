@@ -30,7 +30,7 @@ The analyzer is part of the NServiceBus NuGet package and will be automatically 
 
 ## Requirements
 
-The analyzer requires VisualStudio 2015 or newer.
+The analyzer requires Visual Studio 2015 or newer.
 
 The analyzer also works when building a .NET Core application using `dotnet build` commands, allowing the analyzer highlighting missing awaits in other development environments.
 
