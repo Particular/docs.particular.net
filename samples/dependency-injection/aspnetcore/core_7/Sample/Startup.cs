@@ -20,7 +20,6 @@ public class Startup
         builder.Populate(services);
         builder.RegisterInstance(new MyService());
 
-        IEndpointInstance endpoint = null;
         builder.Register(c => endpoint)
             .As<IEndpointInstance>()
             .SingleInstance();
@@ -42,9 +41,11 @@ public class Startup
 
     #endregion
 
-    public void Configure(IApplicationBuilder applicationBuilder, IHostingEnvironment environment, ILoggerFactory loggerFactory)
+    public void Configure(IApplicationBuilder applicationBuilder, IApplicationLifetime applicationLifetime, IHostingEnvironment environment, ILoggerFactory loggerFactory)
     {
         loggerFactory.AddConsole();
+        applicationLifetime.ApplicationStopping.Register(OnShutdown);
+
 
         if (environment.IsDevelopment())
         {
@@ -72,4 +73,12 @@ public class Startup
 
         #endregion
     }
+
+    void OnShutdown()
+    {
+        endpoint?.Stop().GetAwaiter().GetResult();
+    }
+
+    IEndpointInstance endpoint;
+
 }

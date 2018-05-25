@@ -13,7 +13,6 @@ static class Program
         var webHostBuilder = new WebHostBuilder();
         webHostBuilder.UseKestrel();
         webHostBuilder.UseContentRoot(Directory.GetCurrentDirectory());
-        webHostBuilder.UseIISIntegration();
         webHostBuilder.UseStartup<Startup>();
         var host = webHostBuilder.Build();
         await host.StartAsync()
