@@ -56,4 +56,4 @@ context.Send(message);
 
 ### Treat warnings as errors
 
-The C# compiler already contains a set of inspections which can warn about incorrect usage of `async` and task based APIs. We recommend to treat these warnings as errors to ensure they are not missed accidentally. This feature can be enabled by the project settings or by adding `<TreatWarningsAsErrors>true</TreatWarningsAsErrors>` to the `csproj` file directly.
+The C# compiler already contains a set of inspections which can warn about incorrect usage of `async` and task based APIs. It is recommend to treat these warnings as errors to ensure they are not missed accidentally. This feature can be enabled by the project settings or by adding `<TreatWarningsAsErrors>true</TreatWarningsAsErrors>` to the `csproj` file directly.
