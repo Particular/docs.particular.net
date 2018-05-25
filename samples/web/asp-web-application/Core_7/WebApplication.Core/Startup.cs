@@ -27,7 +27,6 @@ namespace WebApplication.Core
 
             builder.Populate(services);
 
-            IEndpointInstance endpoint = null;
             builder.Register(c => endpoint)
                 .As<IEndpointInstance>()
                 .SingleInstance();
@@ -51,8 +50,10 @@ namespace WebApplication.Core
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IApplicationLifetime applicationLifetime, IHostingEnvironment env)
         {
+            applicationLifetime.ApplicationStopping.Register(OnShutdown);
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -63,5 +64,12 @@ namespace WebApplication.Core
 
             app.UseMvc();
         }
+
+        void OnShutdown()
+        {
+            endpoint?.Stop().GetAwaiter().GetResult();
+        }
+
+        IEndpointInstance endpoint;
     }
 }
