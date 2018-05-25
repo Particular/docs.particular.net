@@ -18,11 +18,10 @@ The analyzer will point out missing `await` statements when using asynchronous m
 
 ## Limitations
 
-This analyzer does only inspect the APIs contained on the classes and interfaces as described in the previous chapter. Other asynchronous operations on NServiceBus APIs are not analyzed.
+This analyzer does only inspect the APIs contained on the classes and interfaces as described in the previous section. Other asynchronous operations on NServiceBus APIs are not analyzed.
 
 The analyzer only checks for ignored tasks returned from the scanned methods. If the task is assigned to a variable or passed to another method, the analyzer will not analyze this task's usage any further.
 
-Cases which are already handled by existing compiler warnings (e.g. [CS4014](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs4014)) are ignored by the NServiceBus analyzer.
 
 ## Enabling the analyzer
 
@@ -31,13 +30,14 @@ The analyzer is part of the NServiceBus NuGet package and will be automatically 
 
 ## Requirements
 
-The analyzer requires VisualStudio 2015 version 15.3 or newer.
+The analyzer requires VisualStudio 2015 or newer.
 
 The analyzer also works when building a .NET Core application using `dotnet build` commands, allowing the analyzer highlighting missing awaits in other development environments.
 
 ## Disabling the analyzer
 
-The analyzer warning can be disabled in several ways:
+The analyzer errors can be disabled in several ways. However, disabling the analyzer errors is not recommended as they highlight missing awaits which can cause duplicate messages, message loss, transaction issues and more.
+
 
 ### Disable analyzer warning project wide
 
@@ -50,4 +50,3 @@ Add a `<NoWarn>NSB0001</NoWarn>` element to the csproj file.
 context.Send(message);
 #pragma warning restore NSB0001
 ```
-
