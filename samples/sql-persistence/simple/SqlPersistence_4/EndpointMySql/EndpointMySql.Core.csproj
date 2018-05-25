@@ -11,9 +11,9 @@
     <ProjectReference Include="..\ServerShared\ServerShared.Core.csproj" />
     <ProjectReference Include="..\SharedMessages\SharedMessages.Core.csproj" />
     <PackageReference Include="MySql.Data" Version="6.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.1.0-pullrequest0183*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.1.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
   </ItemGroup>
 </Project>
