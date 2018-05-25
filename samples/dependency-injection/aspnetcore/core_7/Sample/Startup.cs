@@ -44,6 +44,7 @@ public class Startup
     public void Configure(IApplicationBuilder applicationBuilder, IApplicationLifetime applicationLifetime, IHostingEnvironment environment, ILoggerFactory loggerFactory)
     {
         loggerFactory.AddConsole();
+
         applicationLifetime.ApplicationStopping.Register(OnShutdown);
 
 
