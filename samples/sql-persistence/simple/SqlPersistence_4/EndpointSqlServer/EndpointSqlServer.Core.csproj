@@ -12,6 +12,6 @@
     <ProjectReference Include="..\SharedMessages\SharedMessages.Core.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.1.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
   </ItemGroup>
 </Project>
