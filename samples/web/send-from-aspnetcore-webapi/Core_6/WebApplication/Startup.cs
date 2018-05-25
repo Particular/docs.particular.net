@@ -17,14 +17,12 @@ public class Startup
 
     public IConfigurationRoot Configuration { get; }
 
-
     public void ConfigureServices(IServiceCollection services)
     {
         #region EndpointConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.SendOnly();
 
         #endregion
@@ -40,13 +38,13 @@ public class Startup
 
         #region EndpointStart
 
-        var endpointInstance = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
+        endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 
         #endregion
 
         #region ServiceRegistration
 
-        services.AddSingleton<IMessageSession>(endpointInstance);
+        services.AddSingleton<IMessageSession>(endpoint);
 
         #endregion
 
@@ -54,9 +52,18 @@ public class Startup
     }
 
 
-    public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+    public void Configure(IApplicationBuilder app, IApplicationLifetime applicationLifetime, ILoggerFactory loggerFactory)
     {
         loggerFactory.AddDebug();
+
+        applicationLifetime.ApplicationStopping.Register(OnShutdown);
+
         app.UseMvc();
     }
+    void OnShutdown()
+    {
+        endpoint?.Stop().GetAwaiter().GetResult();
+    }
+
+    IEndpointInstance endpoint;
 }
