@@ -60,6 +60,7 @@ public class Startup
 
         app.UseMvc();
     }
+
     void OnShutdown()
     {
         endpoint?.Stop().GetAwaiter().GetResult();
