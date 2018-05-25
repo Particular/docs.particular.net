@@ -1,6 +1,8 @@
 ﻿namespace SqlPersistence_4
 {
+    using System;
     using NServiceBus;
+    using NServiceBus.InMemory.Outbox;
 
     class OutboxSettings
     {
@@ -9,9 +11,9 @@
             #region SqlPersistenceOutboxSettings
 
             var outboxSettings = endpointConfiguration.EnableOutbox();
-            //TODO: uncomment after updating dependency to 4.1
-            //outboxSettings.SetTimeToKeepDeduplicationData(TimeSpan.FromDays(6));
-            //outboxSettings.SetFrequencyToRunDeduplicationDataCleanup(TimeSpan.FromMinutes(15));
+
+            outboxSettings.KeepDeduplicationDataFor(TimeSpan.FromDays(6));
+            outboxSettings.TimeToKeepDeduplicationData(TimeSpan.FromMinutes(15));
 
             #endregion
         }
@@ -21,8 +23,8 @@
             #region SqlPersistenceOutboxDisableCleanup
 
             var outboxSettings = endpointConfiguration.EnableOutbox();
-            //TODO: uncomment after updating dependency to 4.1
-            //outboxSettings.DisableCleanup();
+
+            outboxSettings.DisableCleanup();
 
             #endregion
         }
