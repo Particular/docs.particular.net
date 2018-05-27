@@ -21,23 +21,25 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        var configuration = new PassThroughConfiguration(OpenConnection);
-        configuration.SendingCallback(AmendMessage);
-        services.AddSqlHttpPassThrough(configuration);
+        var configuration = new PassthroughConfiguration(OpenConnection, AmendMessage);
+        services.AddSqlHttpPassthrough(configuration);
         services.AddMvcCore();
     }
 
-    void AmendMessage(HttpContext context, PassThroughMessage message)
+    Task<Table> AmendMessage(HttpContext context, PassthroughMessage message)
     {
         message.ExtraHeaders = new Dictionary<string, string>
         {
             {"CustomHeader", "CustomHeaderValue"}
         };
+        //TODO: validate that the destination allowed
+        var destinationTable = new Table(message.Destination);
+        return Task.FromResult(destinationTable);
     }
 
     public void Configure(IApplicationBuilder builder)
     {
-        builder.AddSqlHttpPassThroughBadRequestMiddleware();
+        builder.AddSqlHttpPassthroughBadRequestMiddleware();
         builder.UseMvc();
     }
 

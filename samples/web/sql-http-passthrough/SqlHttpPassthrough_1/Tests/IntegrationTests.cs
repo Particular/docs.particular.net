@@ -42,11 +42,9 @@ public class IntegrationTests
         using (var client = server.CreateClient())
         {
             client.DefaultRequestHeaders.Referrer = new Uri("http://TheReferrer");
-            var message = "{\"Property\": \"Value\"}";
-            await ClientFormSender.Send(
-                client,
+            await new ClientFormSender(client).Send(
                 route: "/SendMessage",
-                message: message,
+                message: "{\"Property\": \"Value\"}",
                 typeName: "SampleMessage",
                 typeNamespace: "SampleNamespace",
                 destination: "SampleEndpoint",

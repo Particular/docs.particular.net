@@ -21,7 +21,7 @@ The flow of this sample is:
 
 include: sql-prereq
 
-The database created by this sample is `SqlHttpPassThroughSample`.
+The database created by this sample is `SqlHttpPassthroughSample`.
 
 
 ## Running the sample
@@ -76,20 +76,20 @@ Note that the messages exist only in this endpoint and do not need to be used, v
 
 At [ASP.NET Core Startup](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup) several actions are taken.
 
- * `AddSqlHttpPassThrough` is called on [IServiceCollection](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection) which makes the `ISqlPassThrough` interface available via [dependency injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection).
- * `AddSqlHttpPassThroughBadRequestMiddleware` is called on [IApplicationBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder), which adds [Middleware](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/) to the pipeline. This means that if the request parsing code of the SQL HTTP Passthrough throws a `BadRequestException`, that exception can be gracefully handled and a [HTTP BadRequest (400)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400) can be sent as a response. This is optional, and a Controller can choose to explicitly catch and handle `BadRequestException` in a different way.
+ * `AddSqlHttpPassthrough` is called on [IServiceCollection](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection) which makes the `ISqlPassthrough` interface available via [dependency injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection).
+ * `AddSqlHttpPassthroughBadRequestMiddleware` is called on [IApplicationBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder), which adds [Middleware](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/) to the pipeline. This means that if the request parsing code of the SQL HTTP Passthrough throws a `BadRequestException`, that exception can be gracefully handled and a [HTTP BadRequest (400)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400) can be sent as a response. This is optional, and a Controller can choose to explicitly catch and handle `BadRequestException` in a different way.
 
 snippet: Startup
 
 
-#### PassThroughController
+#### PassthroughController
 
-The `PassThroughController` consists of several parts.
+The `PassthroughController` consists of several parts.
 
- * `ISqlPassThrough` injected through [dependency injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection).
- * The controller handling the HTTP Post and passing that information to `ISqlPassThrough.Send`.
+ * `ISqlPassthrough` injected through [dependency injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection).
+ * The controller handling the HTTP Post and passing that information to `ISqlPassthrough.Send`.
 
-snippet: PassThroughController
+snippet: PassthroughController
 
 WARNING: The controller that, in a production application, would be performing any authorization and authentication on the incoming request.
 

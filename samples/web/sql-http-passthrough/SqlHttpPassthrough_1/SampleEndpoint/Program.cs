@@ -14,24 +14,18 @@ namespace SampleEndpoint
             Console.Title = "SampleEndpoint Press Ctrl-C to Exit.";
             Console.TreatControlCAsInput = true;
             Console.ReadKey(true);
-            await StopEndpoint(endpoint).ConfigureAwait(false);
-        }
-
-        public static Task StopEndpoint(IEndpointInstance endpoint)
-        {
-            return endpoint.Stop();
+            await endpoint.Stop().ConfigureAwait(false);
         }
 
         public static Task<IEndpointInstance> StartEndpoint()
         {
-            #region EndpointConfiguration
-
             var endpointConfiguration = new EndpointConfiguration("SampleEndpoint");
             endpointConfiguration.UsePersistence<LearningPersistence>();
-            endpointConfiguration.EnableAttachments(SqlHelper.ConnectionString, TimeToKeep.Default);
-            endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
             endpointConfiguration.DisableFeature<MessageDrivenSubscriptions>();
             endpointConfiguration.DisableFeature<TimeoutManager>();
+            #region EndpointConfiguration
+            endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+            endpointConfiguration.EnableAttachments(SqlHelper.ConnectionString, TimeToKeep.Default);
             var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
             transport.ConnectionString(SqlHelper.ConnectionString);
             #if NETCOREAPP2_0
@@ -41,7 +35,7 @@ namespace SampleEndpoint
             #endif
             endpointConfiguration.EnableInstallers();
 
-#endregion
+            #endregion
 
             return Endpoint.Start(endpointConfiguration);
         }
