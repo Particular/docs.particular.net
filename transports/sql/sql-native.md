@@ -3,6 +3,8 @@ title: SQL Server Transport - Native
 summary: Provides low level access to the SQL Server Transport with no NServiceBus reference required.
 reviewed: 2018-04-23
 component: SqlTransportNative
+related:
+ - samples/sqltransport/sql-native
 ---
 
 SQL Server Transport Native is a shim providing low-level access to the [SQL Server Transport](/transports/sql/) with no NServiceBus or SQL Server Transport reference required. 
