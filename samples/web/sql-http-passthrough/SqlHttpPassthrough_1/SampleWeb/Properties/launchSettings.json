@@ -7,7 +7,7 @@
     }
   },
   "profiles": {
-    "MessageHttpPassThrough": {
+    "MessageHttpPassthrough": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "http://localhost:5000/SampleClient",

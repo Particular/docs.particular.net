@@ -6,11 +6,11 @@ using NServiceBus.SqlServer.HttpPassthrough;
 #region Controller
 
 [Route("SendMessage")]
-public class PassThroughController : ControllerBase
+public class PassthroughController : ControllerBase
 {
-    ISqlPassThrough sender;
+    ISqlPassthrough sender;
 
-    public PassThroughController(ISqlPassThrough sender)
+    public PassthroughController(ISqlPassthrough sender)
     {
         this.sender = sender;
     }

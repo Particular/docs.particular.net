@@ -3,14 +3,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NServiceBus.SqlServer.HttpPassthrough;
 
-#region PassThroughController
+#region PassthroughController
 
 [Route("SendMessage")]
-public class PassThroughController : ControllerBase
+public class PassthroughController : ControllerBase
 {
-    ISqlPassThrough sender;
+    ISqlPassthrough sender;
 
-    public PassThroughController(ISqlPassThrough sender)
+    public PassthroughController(ISqlPassthrough sender)
     {
         this.sender = sender;
     }

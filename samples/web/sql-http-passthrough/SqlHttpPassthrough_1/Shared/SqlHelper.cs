@@ -7,7 +7,7 @@ public static class SqlHelper
         EnsureDatabaseExists(ConnectionString);
     }
 
-    public static string ConnectionString = @"Data Source=.\SQLExpress;Database=SqlHttpPassThroughSample; Integrated Security=True;Max Pool Size=100;MultipleActiveResultSets=True";
+    public static string ConnectionString = @"Data Source=.\SQLExpress;Database=SqlHttpPassthroughSample; Integrated Security=True;Max Pool Size=100;MultipleActiveResultSets=True";
 
     static void EnsureDatabaseExists(string connectionString)
     {

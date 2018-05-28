@@ -12,11 +12,10 @@ public class Usage
     {
         #region ClientFormSender
 
-        var message = "{\"Property\": \"Value\"}";
-        await ClientFormSender.Send(
-            httpClient,
+        var clientFormSender = new ClientFormSender(httpClient);
+        await clientFormSender.Send(
             route: "/SendMessage",
-            message: message,
+            message: "{\"Property\": \"Value\"}",
             typeName: "TheMessageType",
             typeNamespace: "TheMessageNamespace",
             destination: "TheDestination",
@@ -37,11 +36,10 @@ public class Usage
         using (var testServer = new TestServer(hostBuilder))
         using (var httpClient = testServer.CreateClient())
         {
-            var message = "{\"Property\": \"Value\"}";
-            await ClientFormSender.Send(
-                httpClient,
+            var clientFormSender = new ClientFormSender(httpClient);
+            await clientFormSender.Send(
                 route: "/SendMessage",
-                message: message,
+                message: "{\"Property\": \"Value\"}",
                 typeName: "TheMessageType",
                 typeNamespace: "TheMessageNamespace",
                 destination: "TheDestination",
