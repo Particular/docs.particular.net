@@ -33,19 +33,21 @@ namespace SqlServer_All.Operations.QueueCreation
             // callback queue
             QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.{Environment.MachineName}");
 
+            // delayed messages queue
+            // Only required in Version 3.1 and above when native delayed delivery is enabled
+            QueueCreationUtils.CreateDelayedQueue(connection, schema, $"{endpointName}.Delayed");
+
             // timeout queue
+            // only required in Versions 3.0 and below or when native delayed delivery is disabled or timeout manager compatibility mode is enabled
             QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Timeouts");
 
             // timeout dispatcher queue
+            // only required in Versions 3.0 and below or when native delayed delivery is disabled or timeout manager compatibility mode is enabled
             QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.TimeoutsDispatcher");
 
             // retries queue
             // TODO: Only required in Versions 2 and below
-            QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Retries");
-
-            // delayed messages queue
-            // TODO: Only required in Version 3.1 and above when native delayed delivery is enabled
-            QueueCreationUtils.CreateDelayedQueue(connection, schema, $"{endpointName}.Delayed");
+            QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Retries");            
         }
 
         #endregion
