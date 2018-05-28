@@ -1,7 +1,7 @@
 ---
 title: Logging in ServiceInsight
-reviewed: 2016-09-28
-summary: How logging works and how to access the log files if necessary.
+reviewed: 2018-05-23
+summary: How logging works and how to access the log files
 component: ServiceInsight
 tags:
  - Logging
@@ -9,15 +9,15 @@ redirects:
  - serviceinsight/how-logging-works
 ---
 
-ServiceInsight has a Log Window that contains details of the HTTP communication between ServiceInsight and ServiceControl.
+ServiceInsight has a log window that contains details of the HTTP communication between ServiceInsight and ServiceControl.
 
-To keep the number of logs minimal and relevant, the Log Window relates mostly to HTTP operations and calls to ServiceControl, as due to the nature of the HTTP operations (timeouts, network issues, etc.) they can cause the most confusion.
+To keep the number of logs minimal and relevant, the log window relates mostly to HTTP operations and calls to ServiceControl, since they can cause the most confusion due to the nature of the HTTP operations (timeouts, network issues, etc.).
 
-Note that all the HTTP communications with ServiceControl are logged; the request being sent, the parameters, and the request/response headers. Also if a request to ServiceControl fails, in is shown in red in the Logs window.
+Note that all HTTP communications with ServiceControl are logged: the request being sent, the parameters, and the request/response headers. If a request to ServiceControl fails, it is also shown in red in the log window.
 
 ![Log Window](images/008-log-window.png 'width=500')
 
-If access to more detailed log entries is required, the complete log entries can be found at the following location and file format, stored on the machine:
+If more detailed log entries are required, they can be found at the following location and file format, stored on the machine:
 
 ```
 %LocalAppData%/Particular/ServiceInsight/log-{date}.txt

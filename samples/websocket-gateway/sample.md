@@ -1,6 +1,7 @@
 ---
 title: WebSocket Gateway
-reviewed: 2017-08-22
+summary: Demonstrates how to replace an NServiceBus gateway with a WebSockets channel
+reviewed: 2018-05-22
 component: Gateway
 related:
 - nservicebus/gateway
@@ -9,7 +10,7 @@ related:
 
 ## Code walk-through
 
-This sample demonstrates replacing the channel that is used for the NServiceBus Gateway with a [WebSockets](https://tools.ietf.org/html/rfc6455) channel based on the [websocket-sharp](http://sta.github.io/websocket-sharp/) library.
+This sample demonstrates replacing the channel that is used for the NServiceBus [gateway](/nservicebus/gateway/) with a [WebSockets](https://tools.ietf.org/html/rfc6455) channel based on the [websocket-sharp](http://sta.github.io/websocket-sharp/) library.
 
 
 ## Messages
@@ -25,7 +26,7 @@ An endpoint that sends a message to SiteB via the WebSocket gateway.
 partial: config
 
 
-## WebScoketGateway
+## WebSocketGateway
 
 A shared library that contains the implementations for the WebSocket gateway channels
 
@@ -35,7 +36,7 @@ A shared library that contains the implementations for the WebSocket gateway cha
 * Connects to a remote WebSocket server
 * Serializes outgoing messages
 
-snippet: WebScoketGateway-ChannelSender
+snippet: WebSocketGateway-ChannelSender
 
 
 ### WebSocketGatewayChannelReceiver

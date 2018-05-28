@@ -23,6 +23,8 @@
       Title: More tutorials
     - Url: get-started/high-level-content
       Title: High-level content
+    - Url: samples/netcore
+      Title: .NET Core Samples
 - Name: NServiceBus
   Topics:
   - Url: nservicebus
@@ -1116,3 +1118,8 @@
       Url: monitoring/metrics/performance-counters
     - Title: Accessing raw metric data
       Url: monitoring/metrics/raw
+  - Title: Upgrade guides
+    Url: monitoring/upgrade-guides
+    Articles:
+    - Title: Upgrading to native queue length metric
+      Url: monitoring/upgrade-guides/native-queue-length

@@ -8,7 +8,7 @@ Once the endpoint is registered no send options need to be specified.
 
 snippet: storage_account_routing_send_registered_endpoint
 
-### publishers
+### Publishers
 
 Similar to sending to an endpoint, the transport can also be configured to subscribe to events published by endpoints in another storage account, using:
 

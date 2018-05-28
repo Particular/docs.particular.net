@@ -33,7 +33,8 @@ To enable collecting metrics in an environment:
 
 1. [Install a ServiceControl monitoring instance](/servicecontrol/monitoring-instances/)
 2. [Install and configure the ServiceControl Metrics plugin in each endpoint](install-plugin.md)
-3. [View the performance data collected for endpoints in ServicePulse](in-servicepulse.md)
+3. (**MSMQ Transport only**) [Install the MSMQ queue length reporter in each endpoint](msmq-queue-length.md)
+4. [View the performance data collected for endpoints in ServicePulse](in-servicepulse.md)
 
 NOTE: [Monitoring NServiceBus solutions: Getting started](/tutorials/monitoring-setup/) is an in-depth, step-by-step tutorial about installing and configuring everything to get the most out of performance monitoring.
 

@@ -75,12 +75,16 @@ Retrieves a message from the queue.
 
 snippet: ReceiveTextSql
 
+NOTE: The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with Version 1 of the transport. When receiving messages sent by endpoints that use later versions, the values of correlation ID and reply-to address should be read from the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`) instead. The value `Recoverable` can be ignored as it always is `true`/`1`.
+
 
 ### Send message
 
 Places a message on the queue.
 
 snippet: SendTextSql
+
+NOTE: The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with Version 1 of the transport. When sending messages to endpoints that use later versions, the values of correlation ID and reply-to address columns could be set to `NULL` and the actual values be provided in the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`). The value `Recoverable` should always be `true`/`1`.
 
 
 ### Missing index warning
