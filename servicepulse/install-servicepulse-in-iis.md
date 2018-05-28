@@ -26,28 +26,29 @@ Steps
  1. Remove the `netsh` url restriction
  1. Create a ServicePulse website in IIS referring to the ServicePulse directory
 
+### Detailed steps
 
 By default, ServicePulse is [installed](installation.md) as a Windows Service that will self-host the ServicePulse web application.
 
 It is possible to manually install ServicePulse using IIS following these steps:
 
-* Extract the ServicePulse files using the following command at a command prompt:
+1. Extract the ServicePulse files using the following command at a command prompt:
 
 ```dos
 ServicePulse.Host.exe --extract --outPath="C:\inetpub\websites\ServicePulse"
 ```
 
-When using IIS to host ServicePulse, the ServicePulse.Host service is not used. To remove the service, uninstall ServicePulse using Add/Remove Programs.
+Note: `ServicePulse.Host.exe` can be found in the ServicePulse installation directory. The default location for this directory is `%programfiles(x86)%\Particular Software\ServicePulse`
 
-Use the following command on an elevated command prompt to remove the URLACL that was created by the ServicePulse installer to use port 9090 without any restrictions.
+2. Once the ServicePulse files are successfully extracted, configure a new IIS website whose physical path points to the location where the files have been extracted. Configure it to use port `9090`.
+
+3. When using IIS to host ServicePulse, the ServicePulse.Host service is not used. To remove the service, uninstall ServicePulse using Add/Remove Programs.
+
+4. Use the following command on an elevated command prompt to remove the URLACL that was created by the ServicePulse installer to use port 9090 without any restrictions.
 
 ```dos
 netsh http delete urlacl http://+:9090/
 ```
-
-Note: `ServicePulse.Host.exe` can be found in the ServicePulse installation directory. The default location for this directory is `%programfiles(x86)%\Particular Software\ServicePulse`
-
-Once the ServicePulse files are successfully extracted, configure a new IIS website whose physical path points to the location where the files have been extracted. Configure it to use port `9090`.
 
 NOTE: Make sure that the ServicePulse Windows Service is not running and that the URLACL has been removed or else IIS will not be able to use port 9090.
 
@@ -56,7 +57,7 @@ NOTE: If SSL is to be applied to ServicePulse then ServiceControl also must be c
 
 ## Advanced configuration
 
-ServicePulse relies on the ServiceControl REST API. It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the ServiceControl website using the Microsoft [Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing) IIS extension.
+ServicePulse relies on the ServiceControl REST API. It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the ServiceControl website using the Microsoft [URL Rewrite extenstion](https://www.iis.net/downloads/microsoft/url-rewrite) IIS extension.
 
 This is useful to lock down access to ServicePulse or to expose the website over a single port.
 
@@ -64,10 +65,10 @@ NOTE: If ServiceControl is configured with a host other than `localhost` then ch
 
 Installation Steps:
 
- 1. Install the IIS [Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing) extension
+ 1. Install the IIS [URL Rewrite extension](https://www.iis.net/downloads/microsoft/url-rewrite) extension
  1. Go to the root directory for the website created in the basic configuration
  1. Create a new subdirectory called `api`
- 1. Edit `app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `/api`
+ 1. Edit `app\js\app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `/api`
  1. Open the IIS management tool
  1. Select the api subdirectory from within the IIS management tool
  1. Click `URL Rewrite`
@@ -122,7 +123,7 @@ Installation steps:
  1. Install the IIS [Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing) extension.
  1. Go to the root directory for the website created in the basic configuration.
  1. Create a new subdirectory called `monitoring`.
- 1. Edit `app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `/monitoring`.
+ 1. Edit `app\js\app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `/monitoring`.
  1. Open the IIS management tool.
  1. Select the monitoring subdirectory from within IIS management tool.
  1. Click the `URL Rewrite`.
@@ -195,7 +196,7 @@ When ServicePulse is hosted in IIS the upgrade process is as follows:
  1. View and record the current ServicePulse configuration, specifically the value of `serviceControlUrl`. Prior to version 1.3 this was set in `config.js`. For version 1.3 and above the `app\js\app.constants.js` contains this configuration.
  1. In the advanced config above, the api directory is configured to be created. In the upgrade remove everything except that api directory or manually create it again.
  1. Install the new version of ServicePulse using the standard instructions.
- 1. Extract the files from the `ServicePulse.Host.exe` using the following command, replacing the recorded values from step 2 with the values from the `app.constants.js` and `<webroot>` with the path to the root directory of the IIS website.
+ 1. Extract the files from the `ServicePulse.Host.exe` using the following command, replacing the recorded values from step 2 with the values from the `app\js\app.constants.js` and `<webroot>` with the path to the root directory of the IIS website.
 ```dos
 ServicePulse.Host.exe --extract --serviceControlUrl="<recordedvalue>" --outPath="<webroot>"
 ```
