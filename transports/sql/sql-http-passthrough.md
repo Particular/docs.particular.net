@@ -46,9 +46,9 @@ snippet: Startup
 
 ##### Message Callback
 
-`AddSqlHttpPassthrough` takes a required parameter `callback` with the signature `Func<HttpContext, PassthroughMessage, Task<Table>>`. This delegate will be called during each request-to-message execution. This occurs after the HTTP request has been parsed, and before the outgoing message is placed on the SQL table. The return value is 	a `Table` that dictates the SQL table and schema that the message will be written to.
+`AddSqlHttpPassthrough` takes a required parameter `callback` with the signature `Func<HttpContext, PassthroughMessage, Task<Table>>`. This delegate will be called during each request-to-message execution. This occurs after the HTTP request has been parsed, and before the outgoing message is placed on the SQL table. The return value is a `Table` that dictates the SQL table and schema that the message will be written to.
 
-While callback supports async, via returning a `Task<Table>`, any required async action should have its result cached so as to not slow down subsequent request. For example it may be necessary to perform some kind of authorization in a callback. The result of this authorization should be cached for some period of time, or the cached should be purged when permissions are changed.
+While callback supports async, via returning a `Task<Table>`, any required async action should have its result cached so as to not slow down subsequent requests. For example, it may be necessary to perform some kind of authorization in a callback. The result of this authorization should be cached for some period of time, and the cached result should be purged when permissions are changed.
 
 The message callback can be used for several purposes:
 
