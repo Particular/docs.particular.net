@@ -1,13 +1,15 @@
 ---
-title: SQL Persistence Saga concurrency
-reviewed: 2017-05-17
+title: SQL Persistence saga concurrency
+reviewed: 2018-05-28
 related:
  - nservicebus/sagas/concurrency
 redirects:
  - nservicebus/sql-persistence/saga-concurrency
 ---
 
-SQL Persistence honors [concurrency semantics](/nservicebus/sagas/concurrency.md) in the following way.
+SQL persistence honors [concurrency semantics](/nservicebus/sagas/concurrency.md) in the following way.
+
+* Concurrent access to non-existing saga instances
 
 
 ## Concurrent access to non-existing saga instances
@@ -17,6 +19,6 @@ The persister uses unique key constraints that will result in an exception being
 
 ## Concurrent access to existing saga instances
 
-The persister provides [optimistic concurrency](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) using an Incrementing counter.
+The persister provides [optimistic concurrency](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) using an incrementing counter.
 
 include: saga-concurrency
