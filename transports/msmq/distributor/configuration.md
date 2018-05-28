@@ -81,6 +81,11 @@ Similar to self-hosting, when running NServiceBus prior to version 6, ensure the
 
 Enabling Outbox can result in increasing the enlisted capacity of a worker when errors occur. The distributor model is originally designed to work with distributed transactions (MSDTC). Consider using [Sender Side Distribution](/transports/msmq/sender-side-distribution) instead. When enabling Outbox on a worker or master, explicitly set transaction mode to "Sends atomic with receive" as the Outbox sets the default transaction mode to "Receive Only".
 
+```c#
+var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+```
+
 Outbox is not required on the distributor; the forwarding of messages to workers is purely a transport operation and outbox will not participate in the forwarding logic.
 
 ## Advanced
