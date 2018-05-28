@@ -10,7 +10,7 @@ related:
 - samples/scaleout/distributor
 ---
 
-Note: This solution should be seen as a temporary solution. When all endpoints have been upgraded to version 6 the distributor should be migrated to [Sender Side Distribution](/transports/msmq/sender-side-distribution).
+Note: This solution should be seen as a temporary solution. Support for the distributor is only available in Core version 6 and removed in core version 7 / msmq version 1. When all endpoints have been upgraded to version 6 it is adviced to transition to [Sender Side Distribution](/transports/msmq/sender-side-distribution) to be prepared for a future migration to core version 7 / msmq version 1.
 
 ## Initial state
 
