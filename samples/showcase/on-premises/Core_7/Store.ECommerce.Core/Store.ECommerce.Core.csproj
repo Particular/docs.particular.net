@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\product.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Alexinea.Autofac.Extensions.DependencyInjection" Version="4.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0-rc1-final" />
+	<PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.Autofac" Version="7.0.0-rc0001" />
+    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="2.*" />
+	<ProjectReference Include="..\Store.Messages\Store.Messages.Core.csproj" />
+    <ProjectReference Include="..\Store.Shared\Store.Shared.Core.csproj" />
+  </ItemGroup>
+
+</Project>
