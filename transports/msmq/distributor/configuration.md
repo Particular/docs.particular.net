@@ -12,6 +12,8 @@ redirects:
 
 partial: versions
 
+Warning: It is not recommended to use Outbox on the workers. Outbox is designed to work with distributed transactions (MSDTC).
+
 ## Distributor configuration
 
 The distributor requires an additional queue where workers can send their status updates. This is the **control** queue. The default address is `endpoint_name.distributor.control`.
@@ -77,8 +79,9 @@ Similar to self-hosting, when running NServiceBus prior to version 6, ensure the
 
 ## Outbox
 
-The distributor can be used in combination with the [outbox](/nservicebus/outbox/) feature. Outbox must be enabled on the workers. It must also be enabled if a worker is configured as distributor master (distributor/worker combination). Outbox is required only for persistence operations; the forwarding of messages to workers is purely a transport operation and outbox will not participate in the forwarding logic.
+Enabling Outbox can result in increasing the enlisted capacity of a worker when errors occur. The distributor model is originally designed to work with distributed transactions (MSDTC). Consider using [Sender Side Distribution](/transports/msmq/sender-side-distribution) instead. When enabling Outbox on a worker or master, explicitly set transaction mode to "Sends atomic with receive" as the Outbox sets the default transaction mode to "Receive Only".
 
+Outbox is not required on the distributor; the forwarding of messages to workers is purely a transport operation and outbox will not participate in the forwarding logic.
 
 ## Advanced
 
