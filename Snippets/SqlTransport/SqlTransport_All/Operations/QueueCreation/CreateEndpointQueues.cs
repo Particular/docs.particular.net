@@ -38,10 +38,11 @@ namespace SqlServer_All.Operations.QueueCreation
             QueueCreationUtils.CreateDelayedQueue(connection, schema, $"{endpointName}.Delayed");
 
             // timeout queue
-            // Only required in Versions 3.0 and below or when native delayed delivery is disabled or timeout manager compatibility mode is enabled
+            // only required in Versions 3.0 and below or when native delayed delivery is disabled or timeout manager compatibility mode is enabled
             QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Timeouts");
 
             // timeout dispatcher queue
+            // only required in Versions 3.0 and below or when native delayed delivery is disabled or timeout manager compatibility mode is enabled
             QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.TimeoutsDispatcher");
 
             // retries queue
