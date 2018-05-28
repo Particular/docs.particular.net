@@ -57,7 +57,8 @@ public class Startup
         applicationLifetime.ApplicationStopping.Register(OnShutdown);
 
         loggerFactory.AddDebug();
-        app.UseMvc();
+        app.UseMvc(routeBuilder => routeBuilder.MapRoute(name: "default",
+            template: "{controller=SendMessage}/{action=Get}"));
     }
 
     void OnShutdown()
