@@ -60,7 +60,7 @@ snippet: SenderRouting
 
 ### Upgrading a worker
 
-The `NServiceBus` package needs to be upgraded to 6.x. Workers do no longer need the `NServiceBus.Distributor.MSMQ` package as the worker logic is embedded in the NServiceBus v6 package.
+The `NServiceBus` package needs to be upgraded to 6.x. Workers no longer need the `NServiceBus.Distributor.MSMQ` package as the worker logic is embedded in the Version 6 package.
 
 Note: Endpoints need to be upgraded to version 6 like any other endpoint. Please read our [Upgrade Guides](/nservicebus/upgrades/) for additional information.
 
