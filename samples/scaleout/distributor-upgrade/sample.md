@@ -25,13 +25,6 @@ This sample uses the same solution as the Version 5 [distributor sample](/sample
 
 NServiceBus 6 does not have a distributor role. The distributor remains on NServiceBus 5.x, the workers can upgrade to 6.x.
 
-
-Warning: It is not recommended to use Outbox on the workers. Enabling Outbox can result in increasing the enlisted capacity of a worker when errors occur. The distributor model is originally designed to work with distributed transactions (MSDTC). Consider using [Sender Side Distribution](/transports/msmq/sender-side-distribution) instead. When enabling Outbox on a worker, explicitly set transaction mode to "Sends atomic with receive" as the Outbox sets the default transaction mode to "Receive Only".
-```
-var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
-```
-
 Note: This sample solution contains 2 worker projects which is only done for demo purposes. A regular project would have a single project which would be deployed to several machines.
 
 
