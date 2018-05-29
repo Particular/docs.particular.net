@@ -13,7 +13,7 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0-rc1-final" />
 	<PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Autofac" Version="7.0.0-rc0001" />
+    <PackageReference Include="NServiceBus.Autofac" Version="7.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="2.*" />
 	<ProjectReference Include="..\Store.Messages\Store.Messages.Core.csproj" />
     <ProjectReference Include="..\Store.Shared\Store.Shared.Core.csproj" />
