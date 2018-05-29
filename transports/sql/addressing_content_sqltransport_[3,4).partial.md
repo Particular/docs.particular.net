@@ -27,7 +27,7 @@ include: addressing_schema_3
 
 ### Catalog
 
-The catalog is only supported by Version 3.1.x and higher. In order to use multiple catalogs in Version 3.0.x use [multiple connection strings](/transports/sql/connection-settings.md#multiple-connection-strings) in the multi-instance mode.
+The catalog is only supported by Version 3.1.x and higher. In order to use multiple catalogs in Version 3.0.x use [multiple connection strings](/transports/sql/connection-settings.md?version=SqlTransport_3#multiple-connection-strings) in the multi-instance mode.
 
 include: addressing_catalog_3
 

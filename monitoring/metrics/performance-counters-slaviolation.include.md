@@ -13,4 +13,4 @@ This counter can be enabled using the the following code:
 
 snippet: enable-sla
 
-See also [Performance Counters in the NServiceBus Host](/nservicebus/hosting/nservicebus-host/#performance-counters).
+See also [Performance Counters in the NServiceBus Host](/nservicebus/hosting/nservicebus-host/?version=host_7#performance-counters).

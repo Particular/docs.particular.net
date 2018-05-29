@@ -23,7 +23,7 @@ Here are some important considerations when installing and deploying ServiceCont
 
 ## Message Throughput Considerations
 
-Depending on the number of endpoints and message volume, audit messages can have a large impact on performance. Turn off [Message Auditing](/nservicebus/operations/auditing.md#turning-off-auditing) if it is not needed. The primary reason for the audit ingestion capability of ServiceControl is to support system analysis with ServiceInsight. If ServiceInsight is not in use then turn off messaging auditing for each endpoint. Message auditing may be important for some endpoints but not others.
+Depending on the number of endpoints and message volume, audit messages can have a large impact on performance. Turn off [Message Auditing](/nservicebus/operations/auditing.md) if it is not needed. The primary reason for the audit ingestion capability of ServiceControl is to support system analysis with ServiceInsight. If ServiceInsight is not in use then turn off messaging auditing for each endpoint. Message auditing may be important for some endpoints but not others.
 
 NOTE: If message auditing is required without the use of ServiceInsight, configure endpoints and ServiceControl to use different audit queues. Audit messages going to an audit queue that is not managed by ServiceControl will need to be cleaned up manually.
 

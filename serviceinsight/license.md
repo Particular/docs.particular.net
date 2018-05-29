@@ -30,7 +30,7 @@ The license can be loaded by clicking the "Browse..." button and selecting the l
 
 ## Using other platform tools
 
-See the [ServiceControl licensing page](/servicecontrol/license.md) or the [instructions for licensing manually using the registry](/nservicebus/licensing/#license-management-using-the-registry) for more information.
+See the [ServiceControl licensing page](/servicecontrol/license.md) or the [instructions for licensing manually using the registry](/nservicebus/licensing/?version=core_6#license-management-using-the-registry) for more information.
 
 
 ## Verifying a license is applied
