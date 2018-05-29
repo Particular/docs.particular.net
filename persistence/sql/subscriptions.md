@@ -1,7 +1,7 @@
 ---
 title: Subscription Persister
 component: SqlPersistence
-reviewed: 2017-03-28
+reviewed: 2018-05-23
 redirects:
  - nservicebus/sql-persistence/subscriptions
 versions: '[2,)'
@@ -21,3 +21,5 @@ snippet: subscriptions_CacheFor
 In systems where events are subscribed and unsubscribed regularly (e.g. desktop applications unsubscribe when shutting down) it makes sense to keep the caching period short or to disable the caching altogether:
 
 snippet: subscriptions_Disable
+
+partial: connection

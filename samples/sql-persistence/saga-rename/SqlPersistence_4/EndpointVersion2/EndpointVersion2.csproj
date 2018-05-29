@@ -10,7 +10,7 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="4.*" />

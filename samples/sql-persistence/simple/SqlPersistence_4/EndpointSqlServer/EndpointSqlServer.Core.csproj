@@ -10,7 +10,7 @@
     <Reference Include="System.Transactions" />
     <ProjectReference Include="..\ServerShared\ServerShared.Core.csproj" />
     <ProjectReference Include="..\SharedMessages\SharedMessages.Core.csproj" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
   </ItemGroup>

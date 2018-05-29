@@ -21,3 +21,5 @@ See scripts used for table creation to learn more: [MS SQL Server](/persistence/
 ## Deduplication record lifespan
 
 By default, the SQL persistence implementation keeps deduplication records for 7 days and runs the purge every minute.
+
+partial: settings
