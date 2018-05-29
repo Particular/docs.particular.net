@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Diagnostics;
+using System.Threading;
 using Microsoft.AspNetCore.SignalR;
 using NServiceBus;
 using Store.Messages.Commands;
@@ -13,27 +14,25 @@ public class OrdersHub :
     {
         this.endpoint = endpoint;
     }
-    public void CancelOrder(int orderNumber)
+    public void CancelOrder(int orderNumber, bool isDebug)
     {
         var command = new CancelOrder
         {
             ClientId = Context.ConnectionId,
             OrderNumber = orderNumber
         };
-
-        //var isDebug = (bool)Clients.Caller.debug;
+        
         var sendOptions = new SendOptions();
-        //sendOptions.SetHeader("Debug", isDebug.ToString());
+        sendOptions.SetHeader("Debug", isDebug.ToString());
         endpoint.Send(command, sendOptions);
     }
 
-    public void PlaceOrder(string[] productIds)
+    public void PlaceOrder(string[] productIds, bool isDebug)
     {
-        //var isDebug = (bool)Clients.Caller.debug;
-        //if (isDebug)
-        //{
-        //    Debugger.Break();
-        //}
+        if (isDebug)
+        {
+            Debugger.Break();
+        }
 
         var command = new SubmitOrder
         {
@@ -47,7 +46,7 @@ public class OrdersHub :
         };
 
         var sendOptions = new SendOptions();
-        //sendOptions.SetHeader("Debug", isDebug.ToString());
+        sendOptions.SetHeader("Debug", isDebug.ToString());
         endpoint.Send(command, sendOptions);
     }
 }

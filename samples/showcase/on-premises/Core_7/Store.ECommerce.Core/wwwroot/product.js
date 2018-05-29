@@ -88,7 +88,7 @@
                     $scope.orders[idx].status = 'Cancelling';
                 }
 
-                connection.invoke("cancelOrder", number).catch(function() {
+                connection.invoke("cancelOrder", number, $scope.debug).catch(function() {
                     $scope.errorMessage =
                         "We couldn't cancel you order, ensure all endpoints are running and try again!";
                 });
@@ -111,7 +111,7 @@
                     return;
                 }
 
-                connection.invoke("placeOrder", selectedProducts).then(function() {
+                connection.invoke("placeOrder", selectedProducts, $scope.debug).then(function() {
                         angular.forEach($scope.products,
                             function(product) {
                                 product.selected = false;
