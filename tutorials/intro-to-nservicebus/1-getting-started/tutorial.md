@@ -22,15 +22,17 @@ Let's build something simple to give NServiceBus a try.
 
 Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operations/dotnet-framework-version-requirements.md), this tutorial assumes at least [Visual Studio 2017](https://www.visualstudio.com/downloads/) and .NET Framework 4.6.1.
 
+NOTE: You can also build the solution in .NET Core by selecting the **Console App (.NET Core)** project type whenever you create a new project.
+
 
 ### Create a solution
 
 First, let's create a basic solution and include the dependencies we need.
 
- 1. In Visual Studio, create a new project and select the **Console Application** project type.
- 1. Be sure to select the correct .NET Framework version from the dropdown at the top of the dialog. You'll want at least .NET Framework 4.6.1 for access to the convenient [Task.CompletedTask](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.completedtask.aspx) API.
- 1. Set the project name to **ClientUI**.
- 1. Set the solution name to **RetailDemo**.
+ 1. In Visual Studio, create a new project and select the **Console App** project type.
+ 2. Be sure to select the correct .NET Framework version from the dropdown at the top or bottom of the dialog, depending on your Visual Studio version. You'll want at least .NET Framework 4.6.1 for access to the convenient [Task.CompletedTask](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.completedtask.aspx) API. (This option doesn't appear if you've chosen a .NET Core project type.)
+ 3. Set the project name to **ClientUI**.
+ 4. Set the solution name to **RetailDemo**.
 
 Next, we need to add the NServiceBus NuGet package as a dependency. From the [NuGet Package Manager Console](https://docs.microsoft.com/en-us/nuget/tools/package-manager-console), type the following:
 

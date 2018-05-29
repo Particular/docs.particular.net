@@ -22,8 +22,6 @@ namespace ClientUI
             var routing = transport.Routing();
             routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
-            endpointConfiguration.UseSerialization<JsonSerializer>();
-
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 

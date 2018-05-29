@@ -24,8 +24,6 @@ namespace Shipping
             routing.RegisterPublisher(typeof(OrderBilled), "Billing");
             #endregion
 
-            endpointConfiguration.UseSerialization<JsonSerializer>();
-
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
