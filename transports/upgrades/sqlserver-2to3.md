@@ -69,9 +69,9 @@ snippet: 2to3-sqlserver-multischema-config
 
 ### Multi-instance support
 
-The configuration API for [multi-instance support](/transports/sql/deployment-options.md#multi-instance) has changed. Multiple connection strings must be provided by a connection factory method passed to `EnableLegacyMultiInstanceMode` method.
+The configuration API for [multi-instance support](/transports/sql/deployment-options.md?version=sqltransport_3#multi-instance) has changed. Multiple connection strings must be provided by a connection factory method passed to `EnableLegacyMultiInstanceMode` method.
 
-Note that `EnableLegacyMultiInstanceMode` method replaces both [pull and push modes](/transports/sql/connection-settings.md#multiple-connection-strings) from version 2.x.
+Note that `EnableLegacyMultiInstanceMode` method replaces both [pull and push modes](/transports/sql/connection-settings.md?version=SqlTransport_3#multiple-connection-strings) from version 2.x.
 
 snippet: 2to3-sqlserver-multiinstance-upgrade
 
