@@ -43,7 +43,7 @@ class Program
         #region UnitOfWork_NHibernate
 
         var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register(new UnitOfWorkSetupBehaviorBehavior(storageSession =>
+        pipeline.Register(new UnitOfWorkSetupBehavior(storageSession =>
         {
             var dbConnection = storageSession.Session().Connection;
             var context = new ReceiverDataContext(dbConnection);

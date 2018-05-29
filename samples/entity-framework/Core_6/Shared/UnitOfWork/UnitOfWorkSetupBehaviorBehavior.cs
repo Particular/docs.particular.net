@@ -5,12 +5,12 @@ using NServiceBus.Pipeline;
 
 #region SetupBehavior
 
-public class UnitOfWorkSetupBehaviorBehavior
+public class UnitOfWorkSetupBehavior
     : Behavior<IIncomingLogicalMessageContext>
 {
     Func<SynchronizedStorageSession, ReceiverDataContext> contextFactory;
 
-    public UnitOfWorkSetupBehaviorBehavior(Func<SynchronizedStorageSession, ReceiverDataContext> contextFactory)
+    public UnitOfWorkSetupBehavior(Func<SynchronizedStorageSession, ReceiverDataContext> contextFactory)
     {
         this.contextFactory = contextFactory;
     }

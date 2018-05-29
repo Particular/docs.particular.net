@@ -35,7 +35,7 @@ class Program
         #region UnitOfWork_SQL
 
         var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register(new UnitOfWorkSetupBehaviorBehavior(storageSession =>
+        pipeline.Register(new UnitOfWorkSetupBehavior(storageSession =>
         {
             var dbConnection = storageSession.SqlPersistenceSession().Connection;
             var context = new ReceiverDataContext(dbConnection);

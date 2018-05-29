@@ -1,7 +1,7 @@
 ---
 title: Entity Framework integration
 summary: Integrating Entity Framework with NHibernate and SQL persistence.
-reviewed: 2017-11-27
+reviewed: 2018-05-29
 component: Core
 related:
 - persistence/nhibernate
@@ -18,11 +18,11 @@ The databases created by this sample are `NsbSamplesEfUowNh` and `NsbSamplesEfUo
 
 ## Running the project
 
- 1. Start the Solution
- 1. The text `Press <enter> to send a message` should be displayed in both console windows.
- 1. Hit `<enter>` in both console windows.
+ 1. Start the solution
+ 1. The text `Press <enter> to send a message` will appear in both console windows
+ 1. Press <kbd>enter</kbd> in both console windows
 
-NOTE: In case of exceptions when running the sample, delete tables from the database used by the code. Entity Framework by default can't update table schemas. If tables use the old schema, the code won't execute properly.
+NOTE: In case of exceptions when running the sample, delete the tables from the database used by the code. Entity Framework by default can't update table schemas. If tables use an old schema, the code won't execute properly.
 
 
 ## Verifying that the sample works
@@ -41,20 +41,20 @@ Open SQL Server Management Studio and go to the database. Verify that there is a
 
 This sample contains four projects:
 
- * Messages - A class library containing the message definitions.
- * Shared - A class library containing the common logic code including data context and handler definitions.
- * Endpoint.NHibernate - A console application running the endpoint with NHibernate persistence.
- * Endpoint.SqlPersistence - A console application running the endpoint with SQL persistence.
+ * **Messages**: A class library containing the message definitions.
+ * **Shared**: A class library containing the common logic code including data context and handler definitions.
+ * **Endpoint.NHibernate**: A console application running the endpoint with NHibernate persistence.
+ * **Endpoint.SqlPersistence**: A console application running the endpoint with SQL persistence.
 
 
 ### Endpoint projects
 
-The endpoint mimics a back-end system. It is configured to use SQL Server transport. It uses EntityFramework to store business data (orders and shipments).
+The endpoint mimics a back-end system. It is configured to use the SQL Server transport. It uses EntityFramework to store business data (orders and shipments).
 
-When the message arrives at the receiver, a single transactional data access context is created to ensure consistency of the whole message handling process
+When the message arrives at the receiver, a single transactional data access context is created to ensure consistency of the whole message handling process.
 
  * message is removed from the input queue by the SQL Server transport
- * a new saga instance is created and stored by NHibernate persistence
+ * a new saga instance is created and stored by the NHibernate persistence
  * a new `Order` entity is created
 
 snippet: StoreOrder
@@ -70,11 +70,11 @@ Notice how storing the shipment retrieves the `Order` from the session cache of 
 
 ### Unit of work
 
-The integration with Entity Framework allows users to take advantage of *Unit of Work* semantics of Entity Framework's `DataContext`. A single instance of the context is shared between all the handlers and the `SaveChanges` method is called after all handlers do their work.
+The integration with Entity Framework allows users to take advantage of *Unit of Work* semantics of Entity Framework's `DataContext`. A single instance of the context is shared among all handlers and the `SaveChanges` method is called after all handlers do their work.
 
 #### Setting up
 
-The setup behavior makes sure that there is an instance of unit of work wrapper class before the handlers are called.
+The setup behavior makes sure that there is an instance of the unit of work wrapper class before the handlers are called.
 
 snippet: SetupBehavior
 
@@ -84,7 +84,7 @@ The data context is created only once, before it is first accessed from a handle
 
 snippet: UnitOfWork_NHibernate
 
-With SQL persistence the same goal is achieved by using the same ADO.NET connection and transaction objects in both NServiceBus and Entity Framework.
+With SQL persistence, the same goal is achieved by using the same ADO.NET connection and transaction objects in both NServiceBus and Entity Framework.
 
 snippet: UnitOfWork_SQL
 
