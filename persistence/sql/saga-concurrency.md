@@ -1,5 +1,6 @@
 ---
 title: SQL Persistence saga concurrency
+component: SqlPersistence
 reviewed: 2018-05-28
 related:
  - nservicebus/sagas/concurrency
