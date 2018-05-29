@@ -93,8 +93,8 @@ The ServiceControl queue name is required for configuring the endpoint plugins. 
 
 To perform a clean uninstallation of ServiceControl from a machine:
 
-- Remove each ServiceControl instance using ServiceControl Management (or Powershell)
-- Uninstall ServiceControl
+1. Remove each ServiceControl instance using ServiceControl Management (or Powershell)
+2. Uninstall ServiceControl Management using Add or Remove programs
 
 ### Remove ServiceControl instance
 
@@ -102,7 +102,7 @@ To remove a ServiceControl instance, click the Advanced Options button and then 
 
 #### Remaining artifacts
 
-Even after a ServiceControl instance has been removed, it can leave behind some artifacts. The ServiceControl instance can leave queues in the configured transport. The queue names will depend on the configuration of the ServiceControl instance.
+Even after a ServiceControl instance has been removed there are some artifacts left behind. Each ServiceControl instance leaves queues in the configured transport. The queue names will depend on the configuration of the ServiceControl instance.
 
 - _instance name_ - contains control messages for the ServiceControl instance.
 - _instance name_.errors - contains any control messages that the ServiceControl instance was not able to process.
