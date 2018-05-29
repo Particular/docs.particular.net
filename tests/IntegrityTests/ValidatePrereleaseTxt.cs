@@ -12,10 +12,10 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace IntegrityTests
 {
-    public partial class ValidatePrereleaseTxt
+    public class ValidatePrereleaseTxt
     {
         [Test]
-        public void PrereleaseTxtHasPrereleasePackages()
+        public void VerifyPrereleaseTxtHasPrereleaseComponent()
         {
             new TestRunner("prerelease.txt", "Found prerelease.txt used on a versioned component directory containing no projects using a prerelease version of that component.")
                 .Run(path =>
@@ -37,10 +37,11 @@ namespace IntegrityTests
         }
 
         [Test]
-        public void ProjectUsingPrereleasePackageMarkedWithPrereleaseTxt()
+        public void VerifyProjectUsingPrereleaseComponentMarkedWithPrereleaseTxt()
         {
-            new TestRunner("*.csproj", "Found project with prerelease package(s) not marked by a prerelease.txt file.")
+            new TestRunner("*.csproj", "Found project with prerelease component not marked by a prerelease.txt file.")
                 .IgnoreTutorials()
+                .IgnoreRegex(@"\\Snippets\\Common\\")
                 .Run(projPath =>
                 {
                     var (versionedPath, componentName) = GetVersionedComponentPath(projPath);
@@ -59,7 +60,6 @@ namespace IntegrityTests
                     if (HasPrereleasePackages(projPath, component.NugetOrder))
                     {
                         var prereleasePath = Path.Combine(versionedPath, "prerelease.txt");
-                        
                         return File.Exists(prereleasePath);
                     }
 
