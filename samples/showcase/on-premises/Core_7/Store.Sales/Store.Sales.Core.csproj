@@ -10,6 +10,6 @@
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="2.*" />
 	<ProjectReference Include="..\Store.Messages\Store.Messages.Core.csproj" />
-    <ProjectReference Include="..\Store.Shared\Store.Shared.Core.csproj" />
+	<ProjectReference Include="..\Store.Shared\Store.Shared.Core.csproj" />
   </ItemGroup>
 </Project>
