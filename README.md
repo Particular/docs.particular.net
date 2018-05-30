@@ -462,6 +462,7 @@ Do not write a sample when:
  * A Sample Root may not contain a sample.md in subdirectories.
  * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
  * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.
+ * A sample must obey rules that are verified by [Integrity Tests](#integrity-tests).
 
 ### References
 
@@ -870,6 +871,18 @@ This is a temporary state and once a stable is released it is changed back to th
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
 ```
 
+
+## Integrity Tests
+
+A [number of integrity tests](tests/IntegrityTests) validate that samples and snippets conform to conventions that make the documentation easier to maintain. PRs that fail these tests will not be mergeable.
+
+The integrity tests include:
+
+* [Samples should not be multi-targted](tests/IntegrityTests/ProjectFrameworks.cs) using the `<TargetFrameworks>` (plural) element, and instead have separate solutions and projects to support .NET Framework and .NET Core, all using the same underlying code, i.e.:
+    * `SampleName.sln` references `ProjectName.csproj` targeting `net462`
+    * `SampleName.Core.sln` references `ProjectName.Core.csproj` targeting `netcoreapp2.0`
+* [Package references cannot use a wildcard-only version](tests/IntegrityTests/ReferenceVersions.cs`) using `Version="*"` as this can cause a package restore operation to sometimes fail and yield old, incorrect, or mismatched versions.
+* Versioned sample/snippet directories (i.e. `Core_7) must contain a `prerelease.txt` file **only** when the contained projects use a prerelease version of that component's NuGet package.
 
 ## Alerts
 
