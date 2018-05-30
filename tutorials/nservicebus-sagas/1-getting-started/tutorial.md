@@ -179,7 +179,9 @@ Next, let's add a `ProcessOrder` method to the saga to handle the order delivery
 
 snippet: ShippingPolicyProcessOrder
 
-NOTE: Here we're using `SendLocal()` to send the `ShipOrder` command to the same endpoint that is processing the saga message. This means we don't have to specify any routing rules for the `ShipOrder` command. We could also use `Send()`, but then we would need to define routing rules just as we did in the [introductory tutorial on multiple endpoints](/tutorials/intro-to-nservicebus/3-multiple-endpoints/#exercise-sending-to-another-endpoint), where we defined a route in the **ClientUI** endpoint to send `PlaceOrder` commands to the **Sales** endpoint.
+NOTE: Here we're using `SendLocal()` to send the `ShipOrder` command to the same endpoint that is processing the saga message. This means we don't have to specify any routing rules for the `ShipOrder` command. We could also use `Send()`, but then we would need to define routing rules just as we did in the [introductory tutorial on multiple endpoints](/tutorials/intro-to-nservicebus/3-multiple-endpoints/), where we defined a route in the **ClientUI** endpoint to send `PlaceOrder` commands to the **Sales** endpoint.
+
+/TODO: Previous paragraph should link to hash #exercise-sending-to-another-endpoint but appears to be a DocsEngine bug preventing that
 
 In the `ProcessOrder` method we check if both messages have been received. In such case the saga will send a message to deliver the order. For this specific `OrderId` the shipment process is now completed. We don't need that saga instance anymore, so it can be safely deleted by invoking the `MarkAsComplete` method.
 
