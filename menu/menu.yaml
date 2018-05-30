@@ -133,12 +133,12 @@
         Title: Version 1 to 1.1
     - Title: NServiceBus Host
       Articles:
-      - Url: nservicebus/upgrades/host-4to5
-        Title: Version 4 to 5
       - Url: nservicebus/upgrades/host-7to8
         Title: Version 7 to 8
       - Url: nservicebus/upgrades/host-6to7
         Title: Version 6 to 7
+      - Url: nservicebus/upgrades/host-4to5
+        Title: Version 4 to 5
     - Title: NServiceBus.Azure deprecated
       Url: nservicebus/upgrades/azure-deprecation
     - Title: MessagePack changes
@@ -161,10 +161,10 @@
         Title: Version 1 to 2
     - Title: NServiceBus Testing
       Articles:
-      - Url: nservicebus/upgrades/testing-5to6
-        Title: Version 5 to 6
       - Url: nservicebus/upgrades/testing-6to7
         Title: Version 6 to 7
+      - Url: nservicebus/upgrades/testing-5to6
+        Title: Version 5 to 6
     - Title: Message Property Encryption
       Articles:
       - Url: nservicebus/upgrades/externalize-encryption
