@@ -882,7 +882,7 @@ The integrity tests include:
     * `SampleName.sln` references `ProjectName.csproj` targeting `net462`
     * `SampleName.Core.sln` references `ProjectName.Core.csproj` targeting `netcoreapp2.0`
 * [Package references cannot use a wildcard-only version](tests/IntegrityTests/ReferenceVersions.cs`) using `Version="*"` as this can cause a package restore operation to sometimes fail and yield old, incorrect, or mismatched versions.
-* Versioned sample/snippet directories (i.e. `Core_7) must contain a `prerelease.txt` file **only** when the contained projects use a prerelease version of that component's NuGet package.
+* Versioned sample/snippet directories (i.e. `Core_7`) must contain a `prerelease.txt` file **only** when the contained projects use a prerelease version of that component's NuGet package.
 
 ## Alerts
 
