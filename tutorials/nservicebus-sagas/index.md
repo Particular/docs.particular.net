@@ -29,4 +29,4 @@ When you've completed all the exercises, your solution will look like this:
 
 //TODO: decide which image to include, and if we should include one till we only have lesson 1
 
-**Let's get started with [Lesson 1](01-getting-started).**
+**Let's get started with [Lesson 1](1-getting-started/).**
