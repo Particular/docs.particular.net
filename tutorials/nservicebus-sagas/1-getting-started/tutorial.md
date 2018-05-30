@@ -120,7 +120,7 @@ snippet: ShippingPolicyStartedBy2Messages
 
 The `IAmStartedByMessages<T>` interface implements the `IHandleMessages<T>` interface already, so we don't need to make any other code changes to make the swap. Now the NServiceBus infrastructure knows that a message of *either* type can create a new saga instance if one doesn't already exist. The `IHandleMessages<T>` interface requires a saga instance to exist *already*. If no matching saga instance is found, then the incoming message will be ignored.
 
-NOTE: See [Sagas Not Found](/nservicebus/sagas/.md) for more details about what happens when NServiceBus can't find a saga instance for a message.
+NOTE: See [Sagas Not Found](/nservicebus/sagas/saga-not-found.md) for more details about what happens when NServiceBus can't find a saga instance for a message.
 
 #### Matching messages to sagas
 
