@@ -5,7 +5,7 @@ summary: to-be-defined.
 hidden: true
 ---
 
-# NServiceBus sagas: Getting started
+## NServiceBus sagas: Getting started
 
 In the [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) we explored how different services can communicate using messages, including how to publish events that can be processed by multiple subscribing services. This is a great start, but there are some cases where simple message handling is not sufficient.
 
@@ -15,7 +15,7 @@ In NServiceBus we use a [saga](/nservicebus/sagas/), which is essentially a mess
 
 Let's get started building a saga right now.
 
-## Exercise
+### Exercise
 
 In this exercise we'll continue with the project from the [previous lesson](/tutorials/intro-to-nservicebus/5-retrying-errors/) and extend it with your first NServiceBus Saga to handle the shipping process.
 
@@ -37,7 +37,7 @@ We will create a saga in the **Shipping** endpoint that will handle the `OrderPl
 
 //TODO -> Image to https://github.com/Particular/SagaTutorial/blob/master/docs/shipping-saga.jpg
 
-### Sagas as policies
+#### Sagas as policies
 
 It's useful to think of sagas as **policies**. After all, the main use for a saga is to decide what to do next when additional incoming messages arrive. Therefore it's useful to use the word **Policy** in a saga's name.
 
@@ -54,7 +54,7 @@ snippet: EmptyShippingPolicy
 
 We haven't done anything substantial yet, just reorganized two message handlers into one file. But unlike message handlers, sagas require state. Let's build that next.
 
-### Saga state
+#### Saga state
 
 Sagas store their state in a class that inherits from `ContainSagaData` which automatically gives it a few properties (including an `Id`) required by NServiceBus. All the saga's data is represented as properties on the saga data class.
 
@@ -94,7 +94,7 @@ NOTE: NServiceBus sagas are templates representing a process. At runtime, there 
 
 Now, how do we determine how to start a saga?
 
-### How sagas start
+#### How sagas start
 
 //TODO: Consider doing mappings before IAmStartedBy
 
@@ -122,7 +122,7 @@ The `IAmStartedByMessages<T>` interface implements the `IHandleMessages<T>` inte
 
 NOTE: See [Sagas Not Found](/nservicebus/sagas/saga-not-found) for more details about what happens when NServiceBus can't find a saga instance for a message.
 
-### Matching messages to sagas
+#### Matching messages to sagas
 
 But, wait a minute! How can NServiceBus know that a saga instance already exists for a specific incoming message?
 
@@ -157,7 +157,7 @@ Unlike the example here, the same property name doesn't have to be used on the m
 
 Our mappings specify that whenever a message of type `OrderPlaced` is received, the infrastructure needs to use the incoming message `OrderId` property value to look up the saga instance with id that matches the given `OrderId`. If the saga instance doesn't exist and the message is configured to create a new one, NServiceBus will use the value of the order it property from the incoming message as a correlation id for the new saga.
 
-#### Auto-population
+##### Auto-population
 
 One thing we **do not** have to worry about is filling in `OrderId` in the saga data. We've already told NServiceBus that `OrderPlaced` and `OrderBilled` can start the saga. We've told it that it should look up data based on the `OrderId` of the incoming message. Because it knows these things, when it creates a new `ShippingPolicyData` it knows what the value of the `OrderId` property should be, and fills it in for us.
 
@@ -167,7 +167,7 @@ snippet: ShippingPolicyCorrelationAutoPopulation
 
 Less boilerplate is a good thing. Let's concern ourselves with more important things, like what to do after both `OrderPlaced` and `OrderBilled` have been received.
 
-### Orders processing and saga completion
+#### Orders processing and saga completion
 
 Right now the `ShippingPolicy` saga does nothing else other than handling messages and keeping track of which messages have been handled. Once both messages are received we now need to deliver the order.
 
@@ -191,7 +191,7 @@ We also want to be able to handle the `ShipOrder` command we're sending from the
 
 snippet: EmptyShipOrderHandler
 
-### Saga persistence
+#### Saga persistence
 
 Before being able to fully run the solution and test if the `ShippingPolicy` saga is working as expected you need to configure 1 more things: *Saga persistence*.
 
@@ -202,7 +202,7 @@ snippet: ShippingEndpointConfigLearningPersistence
 The snippet above is configuring the endpoint to use `LearningPersistence` designed for testing and development. It stores data on the disk in a folder in the executable path. In production use one of [our production-level persistences](/persistence/#available-persistences).
 
 
-### Running the solution
+#### Running the solution
 
 // TODO: Needs to show some output
 
@@ -214,10 +214,10 @@ You can now press <kbd>F5</kbd> and test the `ShippingPolicy` saga. By sending a
 * Shipping handles `OrderPlaced` and `OrderBilled` using the `ShippingPolicy` saga
 * When both are handled by the saga, the `ShipOrder` command is sent
 
-## Summary
+### Summary
 
 //TODO: Needs a proper summary
 
-## TODO: Notes
+### TODO: Notes
 
 * Consider changing all return Tasks to awaits
