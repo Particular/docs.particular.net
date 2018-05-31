@@ -4,6 +4,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Wire" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.Wire" Version="3.*" />
   </ItemGroup>
 </Project>

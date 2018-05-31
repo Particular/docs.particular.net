@@ -4,6 +4,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.HandlerOrdering" Version="1.*" />
+    <PackageReference Include="Hyperion" Version="0.*" />
+    <PackageReference Include="NServiceBus.Hyperion" Version="1.*" />
   </ItemGroup>
 </Project>

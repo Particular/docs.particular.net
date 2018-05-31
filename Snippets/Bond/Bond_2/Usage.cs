@@ -1,5 +1,4 @@
-﻿using Bond;
-using Bond.IO.Unsafe;
+﻿using Bond.IO.Unsafe;
 using Bond.Protocols;
 using NServiceBus;
 using NServiceBus.Bond;
@@ -21,7 +20,7 @@ class Usage
 
         var serialization = endpointConfiguration.UseSerialization<BondSerializer>();
         serialization.SerializationDelegates(
-            sertializationDelegatesBuilder: messageType =>
+            serializationDelegatesBuilder: messageType =>
             {
                 var item = SerializerCache.GetSerializer(messageType);
                 return new SerializationDelegates(
@@ -49,5 +48,4 @@ class Usage
 
         #endregion
     }
-
 }

@@ -4,7 +4,6 @@ using Bond;
 using Bond.IO.Unsafe;
 using Bond.Protocols;
 
-
 #region SerializerCache
 static class SerializerCache
 {
