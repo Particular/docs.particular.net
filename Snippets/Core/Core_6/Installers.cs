@@ -14,7 +14,7 @@
             endpointConfiguration.EnableInstallers();
 
             // this will run the installers
-            await Endpoint.Start(endpointConfiguration)
+            await Endpoint.Create(endpointConfiguration)
                 .ConfigureAwait(false);
 
             #endregion
@@ -34,6 +34,10 @@
             if (runInstallers)
             {
                 endpointConfiguration.EnableInstallers();
+                // this will run the installers
+                await Endpoint.Create(endpointConfiguration)
+                    .ConfigureAwait(false);
+                return; // Exit application
             }
         }
 
