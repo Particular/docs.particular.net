@@ -465,7 +465,7 @@ Do not write a sample when:
 
 ### References
 
-Since users often use our samples to kick start their own projects we want them to always use the latest versions of their dependencies. This is also important since we internally use our samples for smoke testing.
+Since users often use our samples to kick start their own projects, we want them to always use the latest versions of their dependencies. This is also important since we internally use our samples for smoke testing.
 
 See the [NuGet package reference guidelines](#nuget-package-references) for more details on how to achieve this.
 
