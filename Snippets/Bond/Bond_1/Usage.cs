@@ -1,5 +1,4 @@
-﻿using Bond;
-using Bond.IO.Unsafe;
+﻿using Bond.IO.Unsafe;
 using Bond.Protocols;
 using NServiceBus;
 using NServiceBus.Bond;

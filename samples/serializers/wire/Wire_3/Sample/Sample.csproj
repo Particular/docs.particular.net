@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Wire" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.Wire" Version="3.*" />
     <PackageReference Include="Wire" Version="0.*" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MsgPack.Cli" Version="0.*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.MsgPack" Version="2.*" />
+  </ItemGroup>
+</Project>

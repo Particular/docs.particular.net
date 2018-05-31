@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Utf8Json" Version="2.*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.Utf8Json" Version="1.*" />
+  </ItemGroup>
+</Project>

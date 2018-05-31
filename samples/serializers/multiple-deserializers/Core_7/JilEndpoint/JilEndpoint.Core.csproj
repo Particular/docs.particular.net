@@ -7,6 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />
     <PackageReference Include="Jil" Version="2.*" />
-    <PackageReference Include="NServiceBus.Jil" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.Jil" Version="3.*" />
   </ItemGroup>
 </Project>
