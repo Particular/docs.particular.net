@@ -463,6 +463,11 @@ Do not write a sample when:
  * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
  * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.
 
+### References
+
+Since users often use our samples to kick start their own projects, we want them to always use the latest versions of their dependencies. This is also important since we internally use our samples for smoke testing.
+
+See the [NuGet package reference guidelines](#nuget-package-references) for more details on how to achieve this.
 
 ### Startup projects
 

@@ -5,7 +5,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.1.0-*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
     <PackageReference Include="WindowsAzure.ServiceBus" Version="4.*" />
     <PackageReference Include="Microsoft.ServiceFabric.Data" Version="3.*" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="3.*" />
