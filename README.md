@@ -463,6 +463,26 @@ Do not write a sample when:
  * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
  * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.
 
+### References
+
+Since users often use our samples to kick start their own projects we want them to always use the latest versions of their dependencies. This is also important since we internally use our samples for smoke testing. 
+
+To achieve this we use the following conventions:
+
+* Always have explicit references for top level dependencies
+* Always have explicit references dependencies of the top level dependencies
+* Use wildcards where possible
+
+Example:
+
+Our json serializer sample is referencing `NServiceBus.Newtonsoft.Json`and `NServiceBus`. `NServiceBus.Newtonsoft.Json` depends on `Newtonsoft.Json`, this results in the following references:
+
+```
+
+
+```
+
+this makes sure that we're always using the latest version of those dependencies.
 
 ### Startup projects
 

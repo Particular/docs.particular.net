@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.Owin.Cors" Version="3.*" />
     <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="3.*" />
     <PackageReference Include="Microsoft.Owin.SelfHost" Version="3.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
