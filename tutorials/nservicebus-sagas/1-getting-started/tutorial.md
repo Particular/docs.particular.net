@@ -5,8 +5,6 @@ summary: to-be-defined.
 hidden: true
 ---
 
-## NServiceBus sagas: Getting started
-
 In the [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) we explored how different services can communicate using messages, including how to publish events that can be processed by multiple subscribing services. This is a great start, but there are some cases where simple message handling is not sufficient.
 
 The [lesson on publishing events](/tutorials/intro-to-nservicebus/4-publishing-events/) hinted at this type of scenario: the **Shipping** service can't ship an order until it has successfully received `OrderPlaced` from the **Sales** service *and* `OrderBilled` from the **Billing** service. Normal message handlers don't store any state, so we need a way to keep track of which events have already been received.
@@ -22,9 +20,8 @@ In this exercise we'll continue with the project from the [previous lesson](/tut
 {{NOTE:
 **What if I didn't do the previous tutorial?**
 
-No problem. If you're already familiar with sending messages and publish/subscribe with NServiceBus, you can start learning sagas with this tutorial. At the [end of the previous lesson page](/tutorials/intro-to-nservicebus/5-retrying-errors/), click the **Download Completed Solution** button to get started.
+No problem. If you're already familiar with sending messages and publish/subscribe with NServiceBus, you can start learning sagas with this tutorial. At the [end of the previous lesson page](/tutorials/intro-to-nservicebus/5-retrying-errors/#summary), click the **Download Completed Solution** button to get started.
 
-//TODO: Link above should be to hash #summary but there's a DocsEngine but preventing deep-linking into tutorials
 //TODO: make sure DocsEngine can link stuff from other tutorials instead of forcing users to leave this page and come back.
 
 The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes defining messages exchanged in our system.
@@ -180,9 +177,7 @@ Next, let's add a `ProcessOrder` method to the saga to handle the order delivery
 
 snippet: ShippingPolicyProcessOrder
 
-NOTE: Here we're using `SendLocal()` to send the `ShipOrder` command to the same endpoint that is processing the saga message. This means we don't have to specify any routing rules for the `ShipOrder` command. We could also use `Send()`, but then we would need to define routing rules just as we did in the [introductory tutorial on multiple endpoints](/tutorials/intro-to-nservicebus/3-multiple-endpoints/), where we defined a route in the **ClientUI** endpoint to send `PlaceOrder` commands to the **Sales** endpoint.
-
-/TODO: Previous paragraph should link to hash #exercise-sending-to-another-endpoint but appears to be a DocsEngine bug preventing that
+NOTE: Here we're using `SendLocal()` to send the `ShipOrder` command to the same endpoint that is processing the saga message. This means we don't have to specify any routing rules for the `ShipOrder` command. We could also use `Send()`, but then we would need to define routing rules just as we did in the [introductory tutorial on multiple endpoints](/tutorials/intro-to-nservicebus/3-multiple-endpoints/#exercise-sending-to-another-endpoint), where we defined a route in the **ClientUI** endpoint to send `PlaceOrder` commands to the **Sales** endpoint.
 
 In the `ProcessOrder` method we check if both messages have been received. In such case the saga will send a message to deliver the order. For this specific `OrderId` the shipment process is now completed. We don't need that saga instance anymore, so it can be safely deleted by invoking the `MarkAsComplete` method.
 

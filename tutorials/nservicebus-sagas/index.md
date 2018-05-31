@@ -6,8 +6,6 @@ summary: to-be-defined.
 hidden: true
 ---
 
-## NServiceBus sagas
-
 In the [messaging basics tutorial](/tutorials/intro-to-nservicebus/) we created a functioning demo of a retail system that separates different concerns (like accepting an order, charging the credit card, and shipping the order) into different physical processes called endpoints that communicate by exchanging messages. We saw how the ability to publish events and create multiple subscribers lets us decouple our code so that each endpoint can focus on a single responsibility. Even in the face of errors and endpoint failures, we can fail gracefully and in some cases, even recover to the point where our users don't even know an error occurred.
 
 However, message handlers are stateless and many business processes are not. For example, how do we ship an order when we have to wait for *both* `OrderPlaced` and `OrderBilled` to be processed first? How do we create a delay so that we can trigger an action at some point in the future? How do we make decisions based on what happened minutes, hours, or even years ago?
