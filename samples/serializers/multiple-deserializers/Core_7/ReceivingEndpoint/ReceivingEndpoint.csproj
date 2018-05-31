@@ -8,9 +8,9 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="Jil" Version="2.*" />
     <PackageReference Include="Newtonsoft.Json.Bson" Version="1.*" />
-    <PackageReference Include="NServiceBus.Jil" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.Jil" Version="3.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
-    <PackageReference Include="NServiceBus.Wire" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.Wire" Version="3.*" />
     <PackageReference Include="Wire" Version="0.*" />
   </ItemGroup>
 </Project>
