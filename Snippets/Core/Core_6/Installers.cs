@@ -34,7 +34,7 @@
             if (runInstallers)
             {
                 endpointConfiguration.EnableInstallers();
-                // this will run the installers
+                // this will run the installers but not start the instance!
                 await Endpoint.Create(endpointConfiguration)
                     .ConfigureAwait(false);
                 return; // Exit application
