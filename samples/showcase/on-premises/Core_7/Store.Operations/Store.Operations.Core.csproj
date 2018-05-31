@@ -5,7 +5,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
 	<LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <ItemGroup>        
+  <ItemGroup>    
+	<PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="2.*" />
 	<ProjectReference Include="..\Store.Messages\Store.Messages.Core.csproj" />
