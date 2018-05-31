@@ -37,6 +37,6 @@ snippet: sc-multi-instance-connection-strings
 
 ## Endpoint configuration
 
-Each endpoint can use queues stored in any SQL Server instance except for shared `error` and `audit` queues, which need to be stored in an instance used by ServiceControl. This cannot be expressed in the configuration file but can be implemented using the [pull mode API](/transports/sql/connection-settings.md#multiple-connection-strings):
+Each endpoint can use queues stored in any SQL Server instance except for shared `error` and `audit` queues, which need to be stored in an instance used by ServiceControl. This cannot be expressed in the configuration file but can be implemented using the [pull mode API](/transports/sql/connection-settings.md?version=sqltransport_3#multiple-connection-strings):
 
 snippet: sc-multi-instance-endpoint-connection-strings
