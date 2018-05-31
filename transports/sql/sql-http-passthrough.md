@@ -7,7 +7,7 @@ related:
  - samples/web/sql-http-passthrough
 ---
 
-SQL HTTP Passthrough provide a bridge between an HTTP stream (via JavaScript on a web page) and the [SQL Server Transport](/transports/sql/). It leverages [SQL Transport - Native](/transports/sql/sql-native.md) and [SQL Attachments](/nservicebus/messaging/attachments-sql.md).
+SQL HTTP Passthrough provides a bridge between an HTTP stream (via JavaScript on a web page) and the [SQL Server Transport](/transports/sql/). It leverages [SQL Transport - Native](/transports/sql/sql-native.md) and [SQL Attachments](/nservicebus/messaging/attachments-sql.md).
 
 
 ## Design
