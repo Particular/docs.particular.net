@@ -1,6 +1,7 @@
 ---
 title: Troubleshooting
-reviewed: 2016-11-05
+summary: How to solve common issues that arise with the gateway
+reviewed: 2018-05-30
 redirects:
  - nservicebus/gateway-trouble-shooting
  - nservicebus/gateway-service-point-manager
@@ -9,12 +10,12 @@ redirects:
 
 ## Persistence support
 
-The Gateway requires NServiceBus persistence to operate, however, not all persistences support it. Currently, the Gateway is supported only by InMemory, RavenDB and NHibernate persistences. If the configured persistence doesn't support Gateway, then the `The selected persistence doesn't have support for gateway deduplication storage.` exception will be thrown at endpoint startup.
+The qateway requires NServiceBus persistence to operate though not all persistences support it. Currently, the gateway is supported only by InMemory, RavenDB and NHibernate persistences. If the configured persistence doesn't support gateway, the `The selected persistence doesn't have support for gateway deduplication storage.` exception will be thrown at endpoint startup.
 
 
 ## Corrupted urlacls
 
-At startup the Gateway will attempt to recreate the urlacls so that the process can listen on a specific port. If it already exists warning is logged. In this case the following will appear in the configured log.
+At startup the gateway will attempt to recreate the urlacls so that the process can listen on a specific port. If they already exist, a warning is logged:
 
 ```
 WARN NServiceBus.Installation.GatewayHttpListenerInstaller
