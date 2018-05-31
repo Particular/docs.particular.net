@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Alexinea.Autofac.Extensions.DependencyInjection" Version="4.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0-rc1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0" />
 	<PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Autofac" Version="7.*" />
