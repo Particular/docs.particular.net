@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.MessageRouting" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.MessageRouting" Version="3.*" />
   </ItemGroup>
 </Project>
