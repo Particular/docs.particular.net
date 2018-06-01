@@ -1,14 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.*" />
-    <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Persistence.AzureStorage" Version="2.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Persistence.AzureStorage" Version="2.*" />
+    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
+  </ItemGroup>
+  
+  <ItemGroup Label="Transitive dependencies">
+    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
+  </ItemGroup>
+  
 </Project>
