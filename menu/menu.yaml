@@ -658,6 +658,11 @@
       Title: Operational Scripting
     - Url: transports/azure-service-bus/faq
       Title: FAQ
+  - Url: transports/azure-service-bus-netstandard
+    Title: Azure Service Bus Net Standard
+    Articles:
+    - Url: transports/azure-service-bus-netstandard/sending
+      Title: Sending Messages
   - Url: transports/azure-storage-queues
     Title: Azure Storage Queues
     Articles:
