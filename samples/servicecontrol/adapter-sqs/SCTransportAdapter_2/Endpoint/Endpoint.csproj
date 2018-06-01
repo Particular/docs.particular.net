@@ -8,6 +8,7 @@
     <PackageReference Include="AWSSDK.S3" Version="3.*" />
     <PackageReference Include="AWSSDK.SQS" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus.AmazonSQS" Version="4.*" />
     <PackageReference Include="NServiceBus.Heartbeat" Version="3.*" />
   </ItemGroup>
