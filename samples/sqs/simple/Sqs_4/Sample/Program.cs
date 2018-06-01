@@ -11,7 +11,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.Simple");
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        transport.S3("bucketname", "my/key/prefix");
+        transport.S3("andreas-sqs", "large");
 
         #endregion
         endpointConfiguration.SendFailedMessagesTo("error");
