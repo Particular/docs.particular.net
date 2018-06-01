@@ -29,9 +29,9 @@ The database created by this sample is `SqlHttpPassthroughSample`.
 When the solution is started two projects will start:
 
  * Endpoint
- * Web (As a console and browser)
+ * Web (as a console and browser)
 
-In the browser press the button and a message will be received by the Endpoint.
+In the browser, press the button and a message will be received by the endpoint.
 
 
 ## Code walk-through
@@ -46,7 +46,7 @@ This is a standard NServiceBus endpoint that will receive the message.
 
 The endpoint is configured as follows:
 
- * Use the [SQL Server Transport](/transports/sql).
+ * Use the [SQL Server transport](/transports/sql).
  * Use the [Newtonsoft JSON serializer](/nservicebus/serialization/newtonsoft.md). The choice of serializer is important since that format will need to be consistent when sending in the web context.
  * Use [SQL Attachments](/nservicebus/messaging/attachments-sql.md) for processing the binaries sent through HTTP.
 
@@ -74,10 +74,10 @@ Note that the messages exist only in this endpoint and do not need to be used, v
 
 #### Startup
 
-At [ASP.NET Core Startup](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup) several actions are taken.
+At [ASP.NET Core Startup](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup) several actions are taken:
 
  * `AddSqlHttpPassthrough` is called on [IServiceCollection](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection) which makes the `ISqlPassthrough` interface available via [dependency injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection).
- * `AddSqlHttpPassthroughBadRequestMiddleware` is called on [IApplicationBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder), which adds [Middleware](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/) to the pipeline. This means that if the request parsing code of the SQL HTTP Passthrough throws a `BadRequestException`, that exception can be gracefully handled and a [HTTP BadRequest (400)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400) can be sent as a response. This is optional, and a Controller can choose to explicitly catch and handle `BadRequestException` in a different way.
+ * `AddSqlHttpPassthroughBadRequestMiddleware` is called on [IApplicationBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder), which adds [Middleware](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/) to the pipeline. This means that if the request parsing code of the SQL HTTP Passthrough throws a `BadRequestException`, that exception can be gracefully handled and an [HTTP BadRequest (400)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400) can be sent as a response. This is optional, and a controller can choose to explicitly catch and handle `BadRequestException` in a different way.
 
 snippet: Startup
 
@@ -91,7 +91,7 @@ The `PassthroughController` consists of several parts.
 
 snippet: PassthroughController
 
-WARNING: The controller that, in a production application, would be performing any authorization and authentication on the incoming request.
+WARNING: In a production application, the controller would perform authorization and authentication on the incoming request.
 
 
 #### SampleClientController
@@ -103,27 +103,27 @@ snippet: SampleClientController
 
 #### HTML form
 
-The HTML captures that data that will be submitted to the `PassthroughController`.
+The HTML captures the data that will be submitted to the `PassthroughController`.
 
 snippet: form
 
 
 #### Form submission
 
-The JavaScript that submits the data does so through by building up a [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) and [Posting](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data#The_POST_method) that via the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+The JavaScript that submits the data does so through by building up a [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object and [POSTing](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data#The_POST_method) that via the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
 snippet: PostToBus
 
 
 #### MessageId generation
 
-For deduplication to operate, the client must generate a [MessageId](/nservicebus/messaging/message-identity.md), so that any retries can be ignore. JavaScript does not contain native functionality to generate a GUID, so a helper method is used.
+For deduplication to operate, the client must generate a [MessageId](/nservicebus/messaging/message-identity.md), so that any retries can be ignored. JavaScript does not contain native functionality to generate a GUID, so a helper method is used.
 
 snippet: Guid
 
 
 ## Testing
 
-The solution includes a integration test that verifies that a submitted HTTP request is intercepted by the SampleEndpoint.
+The solution includes an integration test that verifies that a submitted HTTP request is intercepted by the SampleEndpoint.
 
 snippet: IntegrationTests

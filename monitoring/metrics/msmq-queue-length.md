@@ -6,7 +6,7 @@ related:
   - samples/logging/metrics  
 ---
 
-The component `NServiceBus.Metrics.ServiceControl.Msmq` monitors endpoints' queue length and passes that data to `NServiceBus.Metrics.ServiceControl` which in turn sends it to an instance of `ServiceControl.Monitoring` service.
+The component `NServiceBus.Metrics.ServiceControl.Msmq` monitors endpoints' queue length and passes that data to `NServiceBus.Metrics.ServiceControl` which in turn sends it to an instance of the `ServiceControl.Monitoring` service.
 
 ```mermaid
 graph LR

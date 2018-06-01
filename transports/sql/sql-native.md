@@ -94,11 +94,11 @@ snippet: ReadBatch
 
 #### RowVersion tracking
 
-For many scenarios, it is likely to be necessary to keep track of the last message `RowVersion` that was read. A lightweight implementation of the functionality is provided by `RowVersionTracker`. `RowVersionTracker` stored the current `RowVersion` in a table containing a single column and row.
+For many scenarios, it is likely to be necessary to keep track of the last message `RowVersion` that was read. A lightweight implementation of the functionality is provided by `RowVersionTracker`. `RowVersionTracker` stores the current `RowVersion` in a table containing a single column and row.
 
 snippet: RowVersionTracker
 
-Note that is is only one possible implementation of storing the current `RowVersion`.
+Note that this is only one possible implementation of storing the current `RowVersion`.
 
 
 #### Processing loop
@@ -135,7 +135,7 @@ snippet: ConsumeBatch
 
 For scenarios where continual consumption (consuming and executing some code with the result) of incoming messages is required, `MessageConsumingLoop` can be used.
 
-An example use case is monitoring an [audit queue](/nservicebus/operations/auditing.md). Some action should be taken when a message appears in the audit queue, and it should be purged from the queue so as to free up the storage space. 
+An example use case is monitoring an [audit queue](/nservicebus/operations/auditing.md). Some action should be taken when a message appears in the audit queue, and it should be purged from the queue to free up the storage space. 
 
 snippet: ConsumeLoop
 
@@ -267,9 +267,9 @@ Sending a batch of messages with deduplication.
 snippet: SendBatchWithDeduplication
 
 
-### Deduplication Cleanup
+### Deduplication cleanup
 
-Deduplication records need to live for a period of time after the initial corresponding message has been send. In this way an subsequent message, with the same message id, can be ignored. This necessitates a period cleanup process of deduplication records. This is achieved by using `DeduplicationCleanerJob`:
+Deduplication records need to live for a period of time after the initial corresponding message has been send. In this way an subsequent message, with the same message id, can be ignored. This necessitates a periodic cleanup process of deduplication records. This is achieved by using `DeduplicationCleanerJob`:
 
 At application startup, start an instance of `DeduplicationCleanerJob`.
 
