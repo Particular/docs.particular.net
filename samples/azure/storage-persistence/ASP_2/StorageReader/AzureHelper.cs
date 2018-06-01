@@ -17,9 +17,6 @@ public class AzureHelper
 
         await WriteOutTable("OrderSagaData", false).ConfigureAwait(false);
         await WriteOutTable("Subscription", true).ConfigureAwait(false);
-        await WriteOutTable("TimeoutDataTableName", false).ConfigureAwait(false);
-        await WriteOutTable("TimeoutManagerDataTable", false).ConfigureAwait(false);
-        await WriteOutBlobContainer("timeoutstate").ConfigureAwait(false);
 
         #endregion
     }
@@ -95,15 +92,9 @@ public class AzureHelper
     [Explicit]
     public async Task DeleteData()
     {
-        await DeleteBlobContainer("timeoutstate")
-            .ConfigureAwait(false);
         await DeleteTable("OrderSagaData")
             .ConfigureAwait(false);
         await DeleteTable("Subscription")
-            .ConfigureAwait(false);
-        await DeleteTable("TimeoutDataTableName")
-            .ConfigureAwait(false);
-        await DeleteTable("TimeoutManagerDataTable")
             .ConfigureAwait(false);
     }
 
