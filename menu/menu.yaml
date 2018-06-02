@@ -286,6 +286,10 @@
         Title: MongoDB DataBus
       - Url: nservicebus/messaging/databus/custom
         Title: Custom
+    - Url: nservicebus/messaging/validation-fluentvalidation
+      Title: FluentValidation
+    - Url: nservicebus/messaging/validation-dataannotations
+      Title: DataAnnotations Validation
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:
