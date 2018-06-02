@@ -20,7 +20,7 @@ snippet: FluentValidation_outgoing
 
 include: validationoutgoing
 
-Messages can then be decorated with DataAnnotations attributes. For example to make a property required use  the [RequiredAttribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx):
+Messages can then have an associated [validator](https://github.com/JeremySkinner/FluentValidation/wiki/b.-Creating-a-Validator):
 
 snippet: FluentValidation_message
 
