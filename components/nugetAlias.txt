@@ -105,3 +105,5 @@ Wormhole: NServiceBus.Wormhole
 WormholeGateway: NServiceBus.Wormhole.Gateway
 Utf8Json: NServiceBus.Utf8Json
 UniformSession: NServiceBus.UniformSession
+FluentValidation: NServiceBus.FluentValidation
+DataAnnotations: NServiceBus.DataAnnotations
