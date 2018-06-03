@@ -24,10 +24,9 @@ Messages can then have an associated [validator](https://github.com/JeremySkinne
 
 snippet: FluentValidation_message
 
-
 ## Validator scanning
 
-Validators are registered and resolved using [dependency injection](/nservicebus/dependency-injection/). Assemblies can be added for validator scanning using either a generic Type, a Type instance, or an assembly instance. 
+Validators are registered and resolved using [dependency injection](/nservicebus/dependency-injection/). Assemblies can be added for validator scanning using either a generic Type, a Type instance, or an assembly instance.
 
 snippet: FluentValidation_AddValidators
 
