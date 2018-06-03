@@ -116,7 +116,7 @@ If the option to delete the database/log folders was not selected when removing 
 
 NOTE: If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.
 
-### Uninstall ServiceControl
+### Uninstall ServiceControl Management
 
 To uninstall ServiceControl Management, use the Apps & features settings in Windows. 
 
