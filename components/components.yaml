@@ -1007,3 +1007,25 @@
   ProjectUrl: https://github.com/welshdave/NServiceBus.Gateway.Channels.HttpVNext
   NugetOrder:
     - NServiceBus.Gateway.Channels.HttpVNext
+
+- Key: FluentValidation
+  Name: FluentValidation Message Validator
+  DocoUrl: nservicebus/messaging/validation-fluentvalidation
+  GitHubOwner: NServiceBusExtensions
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Validation/blob/master/license.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Validation
+  NugetOrder:
+    - NServiceBus.FluentValidation
+
+- Key: DataAnnotations
+  Name: DataAnnotations Message Validator
+  DocoUrl: nservicebus/messaging/validation-dataannotations
+  GitHubOwner: NServiceBusExtensions
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Validation/blob/master/license.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Validation
+  NugetOrder:
+    - NServiceBus.DataAnnotations
