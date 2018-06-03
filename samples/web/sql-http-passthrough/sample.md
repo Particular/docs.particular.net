@@ -1,5 +1,5 @@
 ---
-title: SqlHttpPassthrough
+title: SQL HTTP Passthrough
 summary: Place a raw HTTP request directly onto the SQL Server transport.
 reviewed: 2018-05-20
 component: SqlHttpPassthrough
