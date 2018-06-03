@@ -87,3 +87,38 @@ If this is a new installation of ServiceControl click on the `Add New Instance` 
 When adding the first instance of the ServiceControl service the default service name is "Particular.ServiceControl". It is possible choose to change this name to a custom service name. In doing so this is also changing the queue name associated with this instance of ServiceControl.
 
 The ServiceControl queue name is required for configuring the endpoint plugins. See [Install Heartbeats plugin](/monitoring/heartbeats/install-plugin.md) and [Install Custom Checks plugin](/monitoring/custom-checks/install-plugin.md) for more information.
+
+
+## Removing ServiceControl
+
+To perform a clean uninstallation of ServiceControl from a machine:
+
+1. Remove each ServiceControl instance using ServiceControl Management (or Powershell)
+2. Uninstall ServiceControl Management using Add or Remove programs
+
+### Remove ServiceControl instance
+
+To remove a ServiceControl instance, click the Advanced Options button and then select Remove. Optionally select to remove the database and logs directories and then confirm. This will stop the running instance (if it is running) and remove all files related to the instance from the local file system.
+
+#### Remaining artifacts
+
+Even after a ServiceControl instance has been removed there are some artifacts left behind. Each ServiceControl instance leaves queues in the configured transport. The queue names will depend on the configuration of the ServiceControl instance.
+
+- _instance name_ - contains control messages for the ServiceControl instance.
+- _instance name_.errors - contains any control messages that the ServiceControl instance was not able to process.
+- _instance name_.staging - temporarily contains failed messages while they are being retried.
+- _audit queue name_ - contains messages that have been processed by endpoints and then forwarded to the audit queue. These messages have not been ingested by the ServiceControl instance yet.
+- _error queue name_ - contains messages that failed processed in endpoints and have passed immediate and delayed retries. These messages have not been ingested by the ServiceControl instance yet.
+- _audit log queue name_ if audit log forwarding was ever configured - contains messages that have been ingested from the audit queue, processed by this ServiceControl instance, and then forwarded to the audit log queue.
+- _error log queue name_ if error log forwarding was ever configured - contains messages that have been ingested from the error queue, processed by this ServiceControl instance, and then forwarded to the error log queue.
+
+If the option to delete the database/log folders was not selected when removing the instance, then these folders, and their contents, are left on disk.
+
+NOTE: If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.
+
+### Uninstall ServiceControl Management
+
+To uninstall ServiceControl Management, use the Apps & features settings in Windows. 
+
+NOTE: Uninstalling ServiceControl Management will not remove any existing instances. Remove all ServiceControl instances using ServiceControl Management, before uninstalling it.
+
