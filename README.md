@@ -878,11 +878,13 @@ A [number of integrity tests](tests/IntegrityTests) validate that samples and sn
 
 The integrity tests include:
 
-* [Samples should not be multi-targted](tests/IntegrityTests/ProjectFrameworks.cs) using the `<TargetFrameworks>` (plural) element, and instead have separate solutions and projects to support .NET Framework and .NET Core, all using the same underlying code, i.e.:
+* [Samples should not be multi-targeted](tests/IntegrityTests/ProjectFrameworks.cs) using the `<TargetFrameworks>` (plural) element. This is because a visitor who downloads the solution without .NET Core installed will not be able to run a multi-targeted project even on the .NET Framework. Instead a sample should have separate solutions and projects to support .NET Framework and .NET Core, all using the same underlying code, i.e.:
     * `SampleName.sln` references `ProjectName.csproj` targeting `net462`
     * `SampleName.Core.sln` references `ProjectName.Core.csproj` targeting `netcoreapp2.0`
 * [Package references cannot use a wildcard-only version](tests/IntegrityTests/ReferenceVersions.cs`) using `Version="*"` as this can cause a package restore operation to sometimes fail and yield old, incorrect, or mismatched versions.
-* Versioned sample/snippet directories (i.e. `Core_7`) must contain a `prerelease.txt` file **only** when the contained projects use a prerelease version of that component's NuGet package.
+* Versioned sample/snippet directories (i.e. `Core_7`) must contain a `prerelease.txt` file **only** when the contained projects use a prerelease version of that component's NuGet package. This is verified in two ways:
+    1. Tests find all `prerelease.txt` files, parse the component name out of the parent directory name, find the related NuGet packages from component metadata, and then scan all child project files for prerelease package references of those NuGet packages, flagging `prerelease.txt` files with no associated prerelease package reference.
+    2. Tests examine all project files, finding a parent versioned directory, parse out the component name, look up the NuGet packages from component metadata, scan the project path for any prerelease package references of those NuGet packages, and then flag any missing a `prerelease.txt` file.
 
 ## Alerts
 
