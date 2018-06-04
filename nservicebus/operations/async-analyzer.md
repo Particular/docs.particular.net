@@ -15,7 +15,7 @@ The analyzer will point out missing `await` statements when using asynchronous m
 * `Saga`
 * `IEndpointInstance`
 * `Endpoint`
-* `IUniformSession` (from the [UniformSession package](https://docs.particular.net/nservicebus/messaging/uniformsession))
+* `IUniformSession` (from the [UniformSession package](/nservicebus/messaging/uniformsession.md))
 
 ## Limitations
 
