@@ -208,7 +208,7 @@ Valid range for this setting is from 1 hour to 200 days.
 
 #### ServiceControl/MaximumMessageThroughputPerSecond
 
-NOTE: This setting is not applicable in Version 2 and above.
+This setting is only applicable in version 1.48.0 and below.
 
 This setting was introduced in Version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An appropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to conduct thorough performance tests on the hardware before increasing this value.
 
