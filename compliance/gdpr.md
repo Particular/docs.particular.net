@@ -8,28 +8,48 @@ tags:
 reviewed: 2018-05-17
 ---
 
-NServiceBus as a platform collects various information that are necessary for fulfilling it's options. The purpose of this information is to inform customers what where and what kind of information are stored that could be perceived as personal identifiable information.
+When operating an NServiceBus based application, the platform will collect various pieces of information that are necessary to fulfill its operations. It is possible that some of this information will need to be considered when evaluating the application for GDPR compliance.
 
 
 ## Headers
 
-
 partial:headers
+
+These system headers are not configurable and should be considered present on all messages that originate from within the application. 
+
+If the application makes use of [custom headers](/samples/header-manipulation/#adding-headers-when-sending-a-message) the custom code implementing them will need to be evaluated on an individual basis.
+
 
 ## Logs
 
-Logging may collect the following information that could be PII:
+NServiceBus has built in logging that can collect PII information. It is possible to [configure application logging](/nservicebus/logging/) to reduce or eliminate this data from the application's log files.
 
-| Sample Entries that could be PII | Description |
-| :------------------ |
-| May contain subscription entries | Contains information about which endpoint subscribe to given message type | 
-| May contain information about priviledges of a current windows user | Contains the name of the windows user under which the process is running |
+#### Subscription entries
+If the application is using the [publish-subscribe capabilities of NServiceBus](/nservicebus/messaging/publish-subscribe/), endpoint names will be captured in the log files if the logging infrastructure is set to XXXX level.
 
-More information on where to find log files and how to configure NSB on the level of logs can be found in the [logging documentation](/nservicebus/logging/).
+#### Current Windows user name
+When the application is running NServiceBus can log the user account name that its process is currently running under. This data will be captured when logging infrastructure is set to the XXXX level.
+
+#### Message bodies
+Although not standard, it is possible that an application's [message bodies will be logged](/logging/message-contents/) along with the PII that they contain. This will occur only if the application's logging level is set to `DEBUG` and if the message types have had the `.ToString()` method overridden to write out the PII data.
+
 
 ## Startup diagnostics
 
+During endpoint startup, NServiceBus will write a diagnostics file for debugging and support purposes. This file will include the following data that could contain PII.
+| Name | Description |
+| :---------------| :-: |
+| Hosting - Machine Name | `RuntimeEnvironment.MachineName` |
+| Hosting - HostName | `Dns.GetHostUserName()` |
+| Hosting - UserName | `Environment.UserName` |
+| Receiving - LocalAddress | Endpoint Name |
+| Receiving - LogicalAddress | Endpoint Name |
+| Receiving - Sattelites - Name| Sattelite Name |
+| Receiving - Sattelites - ReceivingAddress | Sattelite Address |
 
+The diagnostics file will also include a listing of all message type names, endpoint names and queue names.
+
+More information on where to find the diagnostics file, and how to customize it, can be found in the [Hosting documentation](/nservicebus/hosting/#startup-diagnostics).
 
 ## ServiceControl
 
@@ -46,4 +66,4 @@ ServiceControl using audits and error consumption saves set of information relat
 | MessageMetadata/RecievingEndpoint | ProcessedMessages | Endpoint Name, HostId, HostName |
 | Headers | ProcessedMessages | All of the headers like in the Headers section |
 
-When in need of deleting this information contact [Particular Support](https://particular.net/support). 
+When this data needs to be deleted, please contact [Particular Support](https://particular.net/support) for assistance. 
