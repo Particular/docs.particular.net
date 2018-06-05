@@ -1009,8 +1009,8 @@
   - Title: Upgrade Guides
     Url: servicecontrol/upgrades
     Articles:  
-      - Title: Version 1 to 2
-        Url: servicecontrol/upgrades/1to2
+    - Title: Version 1 to 2
+      Url: servicecontrol/upgrades/1to2
   - Title: Licensing
     Url: servicecontrol/license
   - Title: Powershell
