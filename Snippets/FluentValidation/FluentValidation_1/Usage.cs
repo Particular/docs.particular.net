@@ -12,10 +12,17 @@ public class Usage
 
         #endregion
 
-        #region FluentValidation_outgoing
+        #region FluentValidation_disableincoming
 
         endpointConfiguration.UseFluentValidation(
-            validateOutgoingMessages: true);
+            incoming: false);
+
+        #endregion
+
+        #region FluentValidation_disableoutgoing
+
+        endpointConfiguration.UseFluentValidation(
+            outgoing: false);
 
         #endregion
 

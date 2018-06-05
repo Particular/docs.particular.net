@@ -14,9 +14,15 @@ snippet: DataAnnotations
 
 include: validationexception
 
-By default only incoming messages are validated. To also validate outgoing messages use the following:
+By default incoming and outgoing messages are validated.
 
-snippet: DataAnnotations_outgoing
+To disable for incoming messages use the following:
+
+snippet: DataAnnotations_disableincoming
+
+To disable for outgoing messages use the following:
+
+snippet: DataAnnotations_disableoutgoing
 
 include: validationoutgoing
 
