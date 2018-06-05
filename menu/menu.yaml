@@ -1006,6 +1006,11 @@
 
 - Name: ServiceControl
   Topics:
+  - Title: Upgrade Guides
+    Url: servicecontrol/upgrade
+    Articles:  
+      - Title: Version 1 to 2
+        Url: servicecontrol/upgrade/1to2
   - Title: Licensing
     Url: servicecontrol/license
   - Title: Powershell
