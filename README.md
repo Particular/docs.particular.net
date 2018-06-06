@@ -894,12 +894,12 @@ This is achieved through bootstrap alerts https://getbootstrap.com/components/#a
 
 There are several keys each of which map to a different colored alert
 
-| Key              | Color  |
-|------------------|--------|
-| `SUCCESS`        | green  |
-| `NOTE` or `INFO` | blue   |
-| `WARNING`        | yellow |
-| `DANGER`         | red    |
+| Key                 | Color  |
+|---------------------|--------|
+| `SUCCESS`           | green  |
+| `NOTE` or `INFO`    | blue   |
+| `WARNING` or `WARN` | yellow |
+| `DANGER`            | red    |
 
 Keys can be used in two manners
 
