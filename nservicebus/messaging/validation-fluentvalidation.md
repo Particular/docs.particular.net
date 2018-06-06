@@ -14,15 +14,22 @@ snippet: FluentValidation
 
 include: validationexception
 
-By default only incoming messages are validated. To also validate outgoing messages use the following:
+By default incoming and outgoing messages are validated.
 
-snippet: FluentValidation_outgoing
+To disable for incoming messages use the following:
+
+snippet: FluentValidation_disableincoming
+
+To disable for outgoing messages use the following:
+
+snippet: FluentValidation_disableoutgoing
 
 include: validationoutgoing
 
 Messages can then have an associated [validator](https://github.com/JeremySkinner/FluentValidation/wiki/b.-Creating-a-Validator):
 
 snippet: FluentValidation_message
+
 
 ## Validator scanning
 
