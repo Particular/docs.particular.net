@@ -29,6 +29,8 @@ class Program
             .Between<MsmqTransport>("Bridge-MSMQ")
             .And<AzureServiceBusTransport>("Bridge-ASB", transport =>
             {
+                //Prevents ASB from using TransactionScope
+                transport.Transactions(TransportTransactionMode.ReceiveOnly);
                 transport.ConnectionString(connectionString);
                 transport.UseForwardingTopology();
                 var settings = transport.GetSettings();
@@ -38,18 +40,6 @@ class Program
 
         bridgeConfiguration.AutoCreateQueues();
         bridgeConfiguration.UseSubscriptionPersistence(new InMemorySubscriptionStorage());
-
-        #endregion
-
-        #region suppress-transaction-scope-for-asb
-
-        bridgeConfiguration.InterceptForwarding(async (queue, message, dispatch, forward) =>
-        {
-            using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
-            {
-                await forward(dispatch).ConfigureAwait(false);
-            }
-        });
 
         #endregion
 
