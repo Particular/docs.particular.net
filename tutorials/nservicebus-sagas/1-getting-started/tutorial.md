@@ -20,9 +20,9 @@ In this exercise we'll continue with the project from the [previous lesson](/tut
 {{NOTE:
 **What if I didn't do the previous tutorial?**
 
-No problem. If you're already familiar with sending messages and publish/subscribe with NServiceBus, you can start learning sagas with this tutorial. At the [end of the previous lesson page](/tutorials/intro-to-nservicebus/5-retrying-errors/#summary), click the **Download Completed Solution** button to get started.
+No problem. If you're already familiar with sending messages and publish/subscribe with NServiceBus, you can start learning sagas with this tutorial:
 
-//TODO: make sure DocsEngine can link stuff from other tutorials instead of forcing users to leave this page and come back.
+downloadbutton(Download Previous Solution, /tutorials/intro-to-nservicebus/5-retrying-errors)
 
 The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes defining messages exchanged in our system.
 
