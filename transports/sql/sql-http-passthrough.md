@@ -44,6 +44,19 @@ At [ASP.NET Core startup](https://docs.microsoft.com/en-us/aspnet/core/fundament
 snippet: Startup
 
 
+##### Append Claims
+
+Append the [Claims](https://msdn.microsoft.com/en-us/library/system.security.claims.claim.aspx) of the [ClaimsPrincipal](https://msdn.microsoft.com/en-us/library/system.security.claims.claimsprincipal.aspx) from [HttpContext.User](https://msdn.microsoft.com/en-us/library/system.web.httpcontext.user.aspx) to the headers of the outgoing message. 
+
+By default each header will get a prefix of `SqlHttpPassthrough.Claim.`
+
+snippet: AppendClaimsToMessageHeaders
+
+A custom prefix can also be defined.
+
+snippet: AppendClaimsToMessageHeaders_WithPrefix
+
+
 ##### Message Callback
 
 `AddSqlHttpPassthrough` takes a required parameter `callback` with the signature `Func<HttpContext, PassthroughMessage, Task<Table>>`. This delegate will be called during each request-to-message execution. This occurs after the HTTP request has been parsed, and before the outgoing message is placed on the SQL table. The return value is a `Table` that dictates the SQL table and schema that the message will be written to.
