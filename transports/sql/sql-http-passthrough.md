@@ -130,3 +130,6 @@ snippet: ClientFormSender
 This can be useful when performing [Integration testing in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/testing/integration-testing).
 
 snippet: asptesthost
+
+
+include: mars
