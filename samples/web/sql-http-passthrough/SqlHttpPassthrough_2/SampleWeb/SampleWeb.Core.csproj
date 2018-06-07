@@ -16,7 +16,7 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.*" />
     <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus.Attachments.Sql.Raw" Version="1.*" />
-    <PackageReference Include="NServiceBus.SqlServer.HttpPassthrough" Version="1.*" />
+    <PackageReference Include="NServiceBus.SqlServer.HttpPassthrough" Version="2.*" />
   </ItemGroup>
 
   <ItemGroup>

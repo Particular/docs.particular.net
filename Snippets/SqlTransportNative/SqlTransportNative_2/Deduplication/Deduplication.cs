@@ -59,15 +59,17 @@ public class Deduplication
             {
                 return ConnectionHelpers.OpenConnection(connectionString, cancellation);
             },
-            criticalError: (message, exception) => { },
+            criticalError: exception => { },
             expireWindow: TimeSpan.FromHours(1),
             frequencyToRunCleanup: TimeSpan.FromMinutes(10));
         cleaner.Start();
+
         #endregion
 
         #region DeduplicationCleanerJobStop
 
         await cleaner.Stop().ConfigureAwait(false);
+
         #endregion
     }
 

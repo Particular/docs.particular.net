@@ -6,7 +6,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.*" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.*" />
-    <PackageReference Include="NServiceBus.SqlServer.HttpPassthrough" Version="1.*" />
+    <PackageReference Include="NServiceBus.SqlServer.HttpPassthrough" Version="2.*" />
     <PackageReference Include="NServiceBus.Testing" Version="7.*" />
   </ItemGroup>
 </Project>
