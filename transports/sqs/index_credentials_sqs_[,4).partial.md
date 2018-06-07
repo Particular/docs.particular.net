@@ -4,3 +4,5 @@ By default, [AWS Access Key ID and AWS Secret Access Key](http://docs.aws.amazon
  * Secret Access Key goes in `AWS_SECRET_ACCESS_KEY`
 
 snippet: SqsTransport
+
+For more configuration otpions consult the [configuration options](/transports/sqs/configuration-options.md) page.
