@@ -1,8 +1,8 @@
 ---
-title: "NServiceBus sagas"
+title: "NServiceBus Sagas"
 suppressRelated: true
 reviewed: 2018-05-29
-summary: to-be-defined.
+summary: An introduction to sagas and how to use them
 hidden: true
 ---
 

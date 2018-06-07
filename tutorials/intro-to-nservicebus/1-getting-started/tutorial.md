@@ -30,7 +30,7 @@ NOTE: You can also build the solution in .NET Core by selecting the **Console Ap
 First, let's create a basic solution and include the dependencies we need.
 
  1. In Visual Studio, create a new project and select the **Console App** project type.
- 2. Be sure to select the correct .NET Framework version from the dropdown at the top or bottom of the dialog, depending on your Visual Studio version. You'll want at least .NET Framework 4.6.1 for access to the convenient [Task.CompletedTask](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.completedtask.aspx) API. (This option doesn't appear if you've chosen a .NET Core project type.)
+ 2. Be sure to select the correct .NET Framework version from the dropdown at the top or bottom of the dialog, depending on your Visual Studio version. .NET Framework 4.6.1 or higher is recommended for access to the [Task.CompletedTask](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.completedtask.aspx) API. (This option doesn't appear if you've chosen a .NET Core project type.)
  3. Set the project name to **ClientUI**.
  4. Set the solution name to **RetailDemo**.
 
