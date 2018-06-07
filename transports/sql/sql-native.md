@@ -312,3 +312,6 @@ A copy of the [timestamp format methods](/nservicebus/messaging/headers.md#times
 The APIs of this extension target either a `SQLConnection` and `SQLTransaction`. Given that in configuration those values are often expressed as a connection string, `ConnectionHelpers` supports converting that string to a `SQLConnection` or `SQLTransaction`. It provides two methods `OpenConnection` and `BeginTransaction` with the effective implementation of those methods being:
 
 snippet: ConnectionHelpers
+
+
+include: mars
