@@ -10,7 +10,7 @@ related:
  - samples/logging/mslogging-custom
 ---
 
-Support for writing all NServiceBus log entries to [Microsoft.Extensions.Logging](https://github.com/aspnet/Logging).
+Support for writing all NServiceBus log entries to [Microsoft.Extensions.Logging.Abstractions](https://github.com/aspnet/Logging).
 
 
 ## Usage
