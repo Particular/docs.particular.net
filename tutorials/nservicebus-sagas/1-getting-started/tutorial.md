@@ -33,7 +33,7 @@ Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes a
 
 We will create a saga in the **Shipping** endpoint that will handle the `OrderPlaced` and `OrderBilled` events. When it receives both, it'll send the `ShipOrder` command to initiate the delivery.
 
-<div id="saga-diagram-animation" style="margin:40px auto;position:relative;width:100%;height:100%;overflow:hidden;">
+<div id="saga-diagram-animation" style="margin:40px auto;position:relative;width:100%;height:100%;overflow:hidden;"></div>
 <script type="text/javascript" src="saga-diagram-animation/index.js"></script>
 
 #### Sagas as policies
