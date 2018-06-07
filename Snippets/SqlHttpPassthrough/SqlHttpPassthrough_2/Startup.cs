@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -15,7 +16,11 @@ public class Startup
     {
         var configuration = new PassthroughConfiguration(
             connectionFunc: OpenConnection,
-            callback: Callback);
+            callback: Callback,
+            dedupCriticalError: exception =>
+            {
+                Environment.FailFast("Dedup cleanup failure", exception);
+            });
         services.AddSqlHttpPassthrough(configuration);
         services.AddMvcCore();
         // other ASP.MVC config

@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -15,7 +16,11 @@ public class AppendClaimsToMessageHeaders
 
         var configuration = new PassthroughConfiguration(
             connectionFunc: OpenConnection,
-            callback: Callback);
+            callback: Callback,
+            dedupCriticalError: exception =>
+            {
+                Environment.FailFast("Dedup cleanup failure", exception);
+            });
         configuration.AppendClaimsToMessageHeaders(headerPrefix: "Claim.");
         services.AddSqlHttpPassthrough(configuration);
 
@@ -28,7 +33,11 @@ public class AppendClaimsToMessageHeaders
 
         var configuration = new PassthroughConfiguration(
             connectionFunc: OpenConnection,
-            callback: Callback);
+            callback: Callback,
+            dedupCriticalError: exception =>
+            {
+                Environment.FailFast("Dedup cleanup failure", exception);
+            });
         configuration.AppendClaimsToMessageHeaders();
         services.AddSqlHttpPassthrough(configuration);
 
