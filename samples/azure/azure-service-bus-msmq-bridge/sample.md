@@ -78,11 +78,5 @@ NOTE: This sample use a simple `InMemorySubscriptionStorage`. In production `Sql
 
 snippet: bridge-execution
 
-#### Forwarding interception
-
-In scenarios where forwarding operation requires customization, Bridge provides an option to intercept forwarding operation. For example, Azure Service Bus transport requires any non Azure Service Bus [transactional scope to be suppressed](/transports/azure-service-bus/understanding-transactions-and-delivery-guarantees.md). 
-
-snippet: suppress-transaction-scope-for-asb
-
 [asb-topology]: asb-topology.png "Azure Service Bus topology"
 [msmq-topology]: msmq-topology.png "MSMQ topology"
