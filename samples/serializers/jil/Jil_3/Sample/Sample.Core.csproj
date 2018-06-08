@@ -5,7 +5,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Jil" Version="2.*" />
+    <PackageReference Include="Jil" Version="2.15.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Jil" Version="3.*" />
   </ItemGroup>
