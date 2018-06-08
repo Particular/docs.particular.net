@@ -30,33 +30,6 @@ All sagas need to inherit from `SqlSaga<T>`. This is a custom base class that ha
 partial: attribute-required
 
 
-## Compile time detection of correlation property
-
-The divergence from the standard NServiceBus saga API is required since the SQL Persistence need to be able to determine certain meta data about a saga at compile time.
-
-In a standard Saga, the Correlation Id is configured in the `ConfigureHowToFindSaga` method. On the surface it would seem to be possible to infer the correlation property from that method.
-
-Take this code:
-
-snippet: IlRequirement
-
-At build time the [IL](https://en.wikipedia.org/wiki/Common_Intermediate_Language) of the target assembly is interrogated to generate the SQL installation scripts. The IL will contain enough information to determine that `ToSaga` is called on the property `SagaData.OrderId`. However there are several reasons that an explicit property definition was chosen for defining the Correlation Id over inferring it from the `ConfigureHowToFindSaga`.
-
-
-### Discovering Sagas
-
-At the IL level it is not possible to discover the base hierarchy of a type given the IL for that type alone. So, in IL, to detect if a given type inherits from `Saga<T>` the full hierarchy of the type needs to be interrogated. This includes loading and interrogating referenced assemblies, where any types hierarchy extends into those assemblies. This adds significant complexity and performance overheads to the build time operation of generating SQL installation scripts.
-
-
-### Inferring edge cases
-
-While inferring the Correlation Id from the IL of `ConfigureHowToFindSaga` is possible, there are many edge cases that make this approach problematic. Some of these include:
-
- * It is possible to [map a message to a complex expression](/nservicebus/sagas/message-correlation.md#message-property-expression). This greatly increases the complexity of accurately determining the Correlation Id due to the higher complexity of the resultant IL.
- * The implementation of `ConfigureHowToFindSaga` means it is evaluated at run time. So it supports branching logic, performing mapping in helper methods, and mapping in various combinations of base classes and child classes. Use of any of these would prevent determining the Correlation Id from the IL.
- * Mapping performed in another assembly. If the mapping is performed in a helper method or base class, and that implementation exists in another assembly, then this would negatively effect build times due to the necessity of loading and parsing the IL for those assemblies.
-
-
 ## Table Structure
 
 
