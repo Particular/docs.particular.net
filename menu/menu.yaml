@@ -517,6 +517,9 @@
       Title: Auditing Messages
   - Url: nservicebus/security
     Title: Security
+    Articles:
+    - Url: compliance/gdpr
+      Title: GDPR Compliance
   - Url: nservicebus/operations
     Title: Operations
     Articles:
