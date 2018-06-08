@@ -21,7 +21,7 @@ In cases where business reuqirements dictate that the correlation property for a
 
 If an incoming message cannot be mapped to a saga data instance using the correlation property, a saga that has a defined _transitional_ correlation property will also query against the additional column for a match. Once all sagas have been updated to contain the transitional id, the old correlation property can be retired and the transitional property can become the new standard correlation property.
 
-To define a transitional correlation property on a saga, you can use the `[SqlSaga]` attribute:
+To define a transitional correlation property on a saga, use the `[SqlSaga]` attribute:
 
 // TODO: Snippetify
 ```
