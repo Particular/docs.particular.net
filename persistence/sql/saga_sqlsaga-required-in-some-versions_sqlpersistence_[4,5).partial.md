@@ -1,0 +1,1 @@
+INFO: In order to use the normal `Saga<T>` class for sagas, upgrade to at least SQL Persistence 4.2.

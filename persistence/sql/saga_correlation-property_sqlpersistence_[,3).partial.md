@@ -1,0 +1,1 @@
+In this version of SQL Persistence, a [SqlSaga base class](sqlsaga.md) must be used to specify the correlation property.

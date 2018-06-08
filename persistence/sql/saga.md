@@ -7,28 +7,14 @@ related:
  - samples/saga/sql-sagafinder
  - samples/saga/migration
  - persistence/sql/saga-concurrency
+ - persistence/sql/sqlsaga
 redirects:
  - nservicebus/sql-persistence/saga
 reviewed: 2016-11-29
 ---
 
-
-## Saga Definition
-
-A saga can be implemented as follows:
-
-snippet: SqlPersistenceSaga
-
-Note that there are some differences to how a standard NServiceBus saga is implemented.
-
-
-### SqlSaga Base Class
-
-All sagas need to inherit from `SqlSaga<T>`. This is a custom base class that has a less verbose mapping API.
-
-
-partial: attribute-required
-
+partial: intro
+partial: sqlsaga-required-in-some-versions
 
 ## Table Structure
 
@@ -84,26 +70,7 @@ For each Correlation Id there will be a corresponding index named `Index_Correla
 
 [Saga Message Correlation](/nservicebus/sagas/message-correlation.md) is implemented by promoting the correlation property to the level of a column on the saga table. So when a saga data is persisted the correlation property is copied from the instance and duplicated in a column named by convention (`Correlation_[PROPERTYNAME]`) on the table.
 
-
-### No Correlation Id
-
-When implementing a [Custom Saga Finder](/nservicebus/sagas/saga-finding.md) it is possible to have a message that does not map to a   correlation id and instead interrogate the Json serialized data stored in the database.
-
-snippet: SqlPersistenceSagaWithNoMessageMapping
-
-
-### Single Correlation Id
-
-In most cases there will be a single correlation Id per Saga Type.
-
-snippet: SqlPersistenceSagaWithCorrelation
-
-
-### Correlation and Transitional Ids
-
-During the migration from one correlation id to another correlation id there may be two correlation is that coexist. See also [Transitioning Correlation ids Sample](/samples/sql-persistence/transitioning-correlation-ids).
-
-snippet: SqlPersistenceSagaWithCorrelationAndTransitional
+partial: correlation-property
 
 
 ### Correlation Types
