@@ -318,3 +318,9 @@ When endpoints start, a diagnostics file is written to disk in a subfolder calle
 Routing messages to the local endpoint or local instance is no longer allowed for send-only endpoints, since they are not able to receive messages. When detected, the following exception is thrown:
 
 `System.InvalidOperationException: Cannot route to instances of this endpoint since it's configured to be in send-only mode.`
+
+## SourceLink
+
+As of NServiceBus 7, all packages support [SourceLink](https://github.com/ctaggart/SourceLink) enabling debugging into NServiceBus code by downloading the source directly from GitHub.
+
+Be sure to check [SourceLink's known issues](https://github.com/ctaggart/SourceLink#known-issues) for some limitations and workarounds, especially if you are targeting the .NET Framework when using the Visual Studio 2017 project system.
