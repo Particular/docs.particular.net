@@ -49,5 +49,6 @@ partial: saga-property-types
 ### Saga Correlation property restrictions
 
 Saga correlation property values are subject to the underlying Azure Storage table `PartitionKey` and `RowKey` restrictions:
+
 * Up to 1KB in size
 * Cannot contain [invalid characters](https://docs.microsoft.com/en-us/rest/api/storageservices/Understanding-the-Table-Service-Data-Model#tables-entities-and-properties)

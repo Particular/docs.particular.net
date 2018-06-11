@@ -14,8 +14,9 @@ redirects:
  - nservicebus/azure-storage-queues/performance-tuning
 ---
 
-include: azure-storage-performance-tuning
+## General guidelines
 
+Microsoft's [Azure Storage Performance Checklist](https://docs.microsoft.com/en-us/azure/storage/storage-performance-checklist) should be considered for performance tips and design guidelines.
 
 ## Parallel message retrieval
 
