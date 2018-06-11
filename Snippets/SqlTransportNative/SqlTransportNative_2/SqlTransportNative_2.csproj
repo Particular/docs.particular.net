@@ -4,7 +4,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.SqlServer.Native" Version="1.*" />
+    <PackageReference Include="NServiceBus.SqlServer.Native" Version="2.*" />
     <PackageReference Include="NServiceBus.Testing" Version="7.*" />
   </ItemGroup>
 </Project>

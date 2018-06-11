@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,7 +22,13 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        var configuration = new PassthroughConfiguration(OpenConnection, AmendMessage);
+        var configuration = new PassthroughConfiguration(
+            connectionFunc: OpenConnection,
+            callback: AmendMessage,
+            dedupCriticalError: exception =>
+            {
+                Environment.FailFast("Dedup failure",exception);
+            });
         services.AddSqlHttpPassthrough(configuration);
         services.AddMvcCore();
     }

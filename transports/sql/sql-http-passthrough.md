@@ -9,6 +9,7 @@ related:
 
 SQL HTTP Passthrough provides a bridge between an HTTP stream (via JavaScript on a web page) and the [SQL Server transport](/transports/sql/). It leverages [SQL Transport - Native](/transports/sql/sql-native.md) and [SQL Attachments](/nservicebus/messaging/attachments-sql.md).
 
+include: sqlnative-not-node
 
 ## Design
 
@@ -42,6 +43,19 @@ At [ASP.NET Core startup](https://docs.microsoft.com/en-us/aspnet/core/fundament
  * `AddSqlHttpPassthroughBadRequestMiddleware` is called on [IApplicationBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder), which adds [Middleware](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/) to the pipeline. This means that if the request parsing code of the SQL HTTP Passthrough throws a `BadRequestException`, that exception can be gracefully handled and an [HTTP BadRequest (400)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400) can be sent as a response. This is optional, and a Controller can choose to explicitly catch and handle `BadRequestException` in a different way.
 
 snippet: Startup
+
+
+##### Append Claims
+
+Append the [Claims](https://msdn.microsoft.com/en-us/library/system.security.claims.claim.aspx) of the [ClaimsPrincipal](https://msdn.microsoft.com/en-us/library/system.security.claims.claimsprincipal.aspx) from [HttpContext.User](https://msdn.microsoft.com/en-us/library/system.web.httpcontext.user.aspx) to the headers of the outgoing message. 
+
+By default each header will get a prefix of `SqlHttpPassthrough.Claim.`
+
+snippet: AppendClaimsToMessageHeaders
+
+A custom prefix can also be defined.
+
+snippet: AppendClaimsToMessageHeaders_WithPrefix
 
 
 ##### Message Callback
@@ -117,3 +131,6 @@ snippet: ClientFormSender
 This can be useful when performing [Integration testing in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/testing/integration-testing).
 
 snippet: asptesthost
+
+
+include: mars
