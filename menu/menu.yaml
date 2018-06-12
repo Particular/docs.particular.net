@@ -185,10 +185,6 @@
         Title: ServiceControl.Plugin.X.CustomChecks to NServiceBus.CustomChecks
       - Url: nservicebus/upgrades/nservicebus.heartbeat
         Title: ServiceControl.Plugin.X.Hartbeat to NServiceBus.Hartbeat
-    - Url: nservicebus/upgrades/bridge-router
-      Title: Upgrade NServiceBus.Bridge to NServiceBus.Router
-    - Url: nservicebus/upgrades/wormhole-router
-      Title: Upgrade NServiceBus.Wormhole to NServiceBus.Router
   - Url: nservicebus/messaging
     Title: Messaging
     Articles:
@@ -265,10 +261,16 @@
         Title: Scale-Out
     - Url: nservicebus/bridge
       Title: Transport Bridge
+      Articles:
+      - Url: nservicebus/bridge/bridge-router
+        Title: Upgrade NServiceBus.Bridge to NServiceBus.Router
     - Url: nservicebus/rawmessaging
       Title: Raw messaging
     - Url: nservicebus/wormhole
       Title: Wormhole Gateway
+      Articles:
+      - Url: nservicebus/wormhole/wormhole-router
+        Title: Upgrade NServiceBus.Wormhole to NServiceBus.Router
     - Url: nservicebus/audit-filter
       Title: AuditFilter
     - Url: nservicebus/mailer
