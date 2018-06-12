@@ -73,7 +73,7 @@ snippet: BasicShippingPolicyData
 {{NOTE:
 **Where do I put the `ShippingPolicyData` class?**
 
-// TODO: Note on internal vs public, depends upon serializer, etc.
+Saga data are private to a saga definition, since they serve the purpose of storing state of a specific saga and cannot be used by any other component in the system. When designing a system, it is convinient to define saga data classes as nested to the saga definition itself. This approach helps in strengthening the close relationship between the two artifacts. It is however important to verify that the chosen persistence and its serialization mechanisms support nested classes.
 }}
 
 To tell the saga what class to use for its data, we inherit from `Saga<TData>` where `TData` is the saga data type. So for the `ShippingPolicy`, we'll inherit from `Saga<ShippingPolicyData>` like this:
@@ -88,7 +88,8 @@ With the base class in place, NServiceBus makes the current saga data available 
 
 1. In the `Handle` method for `OrderPlaced`, add the statement `Data.IsOrderPlaced = true;`.
 1. In the `Handle` method for `OrderBilled`, add the statement `Data.IsOrderBilled = true;`.
-1. These two methods should now look like this:
+
+These two methods should now look like this:
 
 snippet: HandleBasicImplementation
 
@@ -99,8 +100,6 @@ NOTE: NServiceBus sagas are templates representing a process. At runtime, there 
 Now, how do we determine how to start a saga?
 
 #### How sagas start
-
-//TODO: Consider doing mappings before IAmStartedBy
 
 When NServiceBus receives a message, it first looks for an existing saga that matches the message. If it can't find any related data, it needs to know whether it has permission to create a new instance of the saga. After all, the incoming message may be an out-of-date message for a saga that has already completed its work.
 
@@ -197,7 +196,7 @@ snippet: EmptyShipOrderHandler
 
 #### Saga persistence
 
-Before being able to fully run the solution and test if the `ShippingPolicy` saga is working as expected you need to configure 1 more things: *Saga persistence*.
+Before being able to fully run the solution and test if the `ShippingPolicy` saga is working as expected you need to configure 1 more thing: *Saga persistence*.
 
 Saga state needs to be persisted, so we need to configure the **Shipping** endpoint with a chosen persistence. In the `Program` class where there is the endpoint configuration code add the following line after the transport configuration:
 
@@ -208,7 +207,7 @@ The snippet above is configuring the endpoint to use `LearningPersistence` desig
 
 #### Running the solution
 
-// TODO: Needs to show some output
+// TODO: Needs to show some output.
 
 You can now press <kbd>F5</kbd> and test the `ShippingPolicy` saga. By sending a new order from the ClientUI endpoint you should see the following message flow:
 
@@ -220,8 +219,8 @@ You can now press <kbd>F5</kbd> and test the `ShippingPolicy` saga. By sending a
 
 ### Summary
 
-//TODO: Needs a proper summary
+Using NServiceBus Sagas we designed a state machine to satisfy the business requirement that a delivery can be triggered only whne an order is both _accepted_ and _billed_. Sagas are a perfect way to implement business policies, as they describe conditions that needs to be satisfied in order to make a decision. It's generally better to think to sagas as policies then orchestrators or process managers. We want sagas to react to events and, evaluating business rules, make decisions that allow the system to move forward.
 
 ### TODO: Notes
 
-* Consider changing all return Tasks to awaits
+* Consider changing all return Tasks to awaits.
