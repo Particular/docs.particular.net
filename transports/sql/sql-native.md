@@ -19,7 +19,6 @@ SQL Server Transport Native is a shim providing low-level access to the [SQL Ser
  * **Explicit connection and transaction management**: NServiceBus abstracts the `SQLConnection` and `SQLTransaction` creation and management. SQL Native allows any consuming code to manage the scope and settings of both the `SQLConnection` and `SQLTransaction`.
  * **Message pass through**: SQL Native reduces the amount of boilerplate code and simplifies development, it provides functionality similar to shown in [HTTP Message Pass Through Sample](/samples/web/owin-pass-through/) with no custom pipeline or mutators required.
 
-
 {{NOTE:
 
 Some notes on the below snippets:
@@ -28,6 +27,7 @@ Some notes on the below snippets:
  * While a string `SqlConnection` is used in all APIs for simplicity, an overload that takes a `SqlTransaction` also exists for each.
 
 }}
+
 
 
 ## Main Queue
@@ -312,3 +312,6 @@ A copy of the [timestamp format methods](/nservicebus/messaging/headers.md#times
 The APIs of this extension target either a `SQLConnection` and `SQLTransaction`. Given that in configuration those values are often expressed as a connection string, `ConnectionHelpers` supports converting that string to a `SQLConnection` or `SQLTransaction`. It provides two methods `OpenConnection` and `BeginTransaction` with the effective implementation of those methods being:
 
 snippet: ConnectionHelpers
+
+
+include: mars
