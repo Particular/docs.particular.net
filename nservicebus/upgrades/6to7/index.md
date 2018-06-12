@@ -319,8 +319,8 @@ Routing messages to the local endpoint or local instance is no longer allowed fo
 
 `System.InvalidOperationException: Cannot route to instances of this endpoint since it's configured to be in send-only mode.`
 
-## SourceLink
+## Source Link
 
-As of NServiceBus 7, all packages support [SourceLink](https://github.com/dotnet/designs/blob/master/accepted/diagnostics/source-link.md), a developer productivity feature that allows debugging into NServiceBus code by downloading the source directly from GitHub.
+As of NServiceBus 7, all packages support [Source Link](https://github.com/dotnet/designs/blob/master/accepted/diagnostics/source-link.md), a developer productivity feature that allows debugging into NServiceBus code by downloading the source directly from GitHub.
 
-There is currently a [bug with SourceLink](https://github.com/dotnet/sdk/issues/1458) affecting projects using Visual Studio 2017 style project files while targeting .NET Framework. In this case, a [workaround](https://github.com/dotnet/sdk/issues/1458#issuecomment-362685678) is to add the [SourceLink.Copy.PdbFiles NuGet package](https://www.nuget.org/packages/SourceLink.Copy.PdbFiles) to the project.
+There is currently a bug with Visual Studio 2017 [SDK-style projects]((https://github.com/dotnet/sdk/issues/1458)) that prevents Source Link from working when the project targets the .NET Framework. A [workaround](https://github.com/dotnet/sdk/issues/1458#issuecomment-362685678) for the bug is to add the [SourceLink.Copy.PdbFiles NuGet package](https://www.nuget.org/packages/SourceLink.Copy.PdbFiles) to the project.
