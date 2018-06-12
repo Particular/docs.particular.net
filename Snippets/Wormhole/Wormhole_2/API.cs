@@ -4,7 +4,7 @@ using NServiceBus.Routing;
 using NServiceBus.Wormhole;
 using NServiceBus.Wormhole.Gateway;
 
-public class EndpointSide
+public class API
 {
     public void Configure(EndpointConfiguration endpointConfiguration)
     {

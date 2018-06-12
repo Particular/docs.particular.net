@@ -6,5 +6,8 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Bridge" Version="2.*" />
     <PackageReference Include="NServiceBus.Bridge.Connector" Version="2.*" />
+    <!--For the upgrade guide-->
+    <PackageReference Include="NServiceBus.Router" Version="2.*" />
+    <PackageReference Include="NServiceBus.Router.Connector" Version="2.*" />
   </ItemGroup>
 </Project>
