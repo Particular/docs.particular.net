@@ -321,6 +321,6 @@ Routing messages to the local endpoint or local instance is no longer allowed fo
 
 ## SourceLink
 
-As of NServiceBus 7, all packages support [SourceLink](https://github.com/ctaggart/SourceLink) enabling debugging into NServiceBus code by downloading the source directly from GitHub.
+As of NServiceBus 7, all packages support [SourceLink](https://github.com/dotnet/designs/blob/master/accepted/diagnostics/source-link.md), a developer productivity feature that allows debugging into NServiceBus code by downloading the source directly from GitHub.
 
-Be sure to check [SourceLink's known issues](https://github.com/ctaggart/SourceLink#known-issues) for some limitations and workarounds, especially if you are targeting the .NET Framework when using the Visual Studio 2017 project system.
+There is currently a [bug with SourceLink](https://github.com/dotnet/sdk/issues/1458) affecting projects using Visual Studio 2017 style project files while targeting .NET Framework. In this case, a [workaround](https://github.com/dotnet/sdk/issues/1458#issuecomment-362685678) is to add the [SourceLink.Copy.PdbFiles NuGet package](https://www.nuget.org/packages/SourceLink.Copy.PdbFiles) to the project.
