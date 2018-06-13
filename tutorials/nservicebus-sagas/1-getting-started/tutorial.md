@@ -209,19 +209,21 @@ The snippet above is configuring the endpoint to use `LearningPersistence` which
 
 You can now press <kbd>F5</kbd> and test the `ShippingPolicy` saga. By sending a new order from the ClientUI endpoint you should see the following message flow:
 
-* The `PlaceOrder`command is sent from ClientUI to Sales
-* Sales publishes the `OrderPlaced` event that is handled by Billing and Shipping
-* Billing processes the payment and publishes the `OrderBilled` event
-* Shipping handles `OrderPlaced` and `OrderBilled` using the `ShippingPolicy` saga
-* When both are handled by the saga, the `ShipOrder` command is sent
+* The `PlaceOrder`command is sent from ClientUI to Sales.
+* Sales publishes the `OrderPlaced` event that is handled by Billing and Shipping.
+* Billing processes the payment and publishes the `OrderBilled` event.
+* Shipping handles `OrderPlaced` and `OrderBilled` using the `ShippingPolicy` saga.
+* When both are handled by the saga, the `ShipOrder` command is sent.
 
 The **Shipping** endpoint console should show the following output:
 
 ```
-2018-06-13 07:29:44.270 INFO  Shipping.ShippingPolicy OrderPlaced message received.
-2018-06-13 07:29:44.547 INFO  Shipping.ShippingPolicy OrderBilled message received.
-2018-06-13 07:29:44.902 INFO  Shipping.ShipOrderHandler Order [0b0dd421-4661-46e7-abc5-c92c43b8fd18] - Succesfully shipped.
+INFO  Shipping.ShippingPolicy OrderPlaced message received.
+INFO  Shipping.ShippingPolicy OrderBilled message received.
+INFO  Shipping.ShipOrderHandler Order [0b0dd421-4661-46e7-abc5-c92c43b8fd18] - Succesfully shipped.
 ```
+
+Remember that it's possible that `OrderBilled` may be handled before `OrderPlaced`, which is why it was so critical to indicate the saga can be started by both messages with `IAmStartedByMessages<T>`, so that the saga will work correctly no matter the arrival order of the events.
 
 ### Summary
 
@@ -230,7 +232,3 @@ In this lesson, we learned to think of sagas as a tool to implement a business p
 Using an NServiceBus saga, we designed a state machine to satisfy these business requirement. As a message-driven state machine, a saga is a perfect way to implement a business policy, as it describes the conditions that must be satisfied in order to make a decision.
 
 In the next lesson (*Coming Soon*) we'll see how using timeouts enables us to add the dimension of time to our business policies, allowing us to send messages into the future to wake up our saga and take action, even if nothing else is happening. Until then, check out the documentation for [saga timeouts](/nservicebus/sagas/timeouts.md).
-
-### TODO: Notes
-
-* Consider changing all return Tasks to awaits.
