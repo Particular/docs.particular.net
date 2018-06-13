@@ -207,8 +207,6 @@ The snippet above is configuring the endpoint to use `LearningPersistence` which
 
 #### Running the solution
 
-// TODO: Needs to show some output.
-
 You can now press <kbd>F5</kbd> and test the `ShippingPolicy` saga. By sending a new order from the ClientUI endpoint you should see the following message flow:
 
 * The `PlaceOrder`command is sent from ClientUI to Sales
@@ -216,6 +214,14 @@ You can now press <kbd>F5</kbd> and test the `ShippingPolicy` saga. By sending a
 * Billing processes the payment and publishes the `OrderBilled` event
 * Shipping handles `OrderPlaced` and `OrderBilled` using the `ShippingPolicy` saga
 * When both are handled by the saga, the `ShipOrder` command is sent
+
+The **Shipping** endpoint console should show the following output:
+
+```
+2018-06-13 07:29:44.270 INFO  Shipping.ShippingPolicy OrderPlaced message received.
+2018-06-13 07:29:44.547 INFO  Shipping.ShippingPolicy OrderBilled message received.
+2018-06-13 07:29:44.902 INFO  Shipping.ShipOrderHandler Order [0b0dd421-4661-46e7-abc5-c92c43b8fd18] - Succesfully shipped.
+```
 
 ### Summary
 
