@@ -886,16 +886,6 @@
   NugetOrder:
     - NServiceBus.StructureMap
 
-- Key: SystemXml
-  Name: System.Xml Serializer
-  DocoUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
-  Category: Serializer
-  SupportLevel: Community
-  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
-  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.Serializers.SystemXml
-  NugetOrder:
-    - NServiceBus.Serializers.SystemXml
-
 - Key: ServiceFabricPersistence
   Name: Service Fabric Persistence 
   DocoUrl: persistence/service-fabric
