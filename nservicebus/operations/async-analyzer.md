@@ -1,15 +1,15 @@
 ---
-title: Async Analyzer
-summary: How to use the async analyzer to avoid missing await operators
+title: NServiceBus Analyzer
+summary: How to use the NServiceBus analyzer to avoid missing awaits
 component: Core
 versions: '[7,]'
 ---
 
-Asynchronous APIs bring great performance improvements. However, they introduce new risks for bugs due to missed `await` operators. NServiceBus comes with a built-in Roslyn analyzer to detect those missing operators.
+Asynchronous APIs bring great performance improvements. However, they introduce new risks for bugs due to missed `await` operators. NServiceBus comes with a built-in Roslyn analyzer to detect missing awaits on NServiceBus APIs.
 
 ## Functionality
 
-The analyzer will point out missing `await` operators when using asynchronous methods on the following classes and interfaces:
+The analyzer points out missing `await` operators when using asynchronous methods on the following classes and interfaces:
 * `IMessageHandlerContext`
 * `IMessageSession`
 * `Saga`
@@ -19,9 +19,9 @@ The analyzer will point out missing `await` operators when using asynchronous me
 
 ## Limitations
 
-This analyzer inspects only the APIs contained on the classes and interfaces as described in the previous section. Other asynchronous operations on NServiceBus APIs are not analyzed.
+This analyzer inspects only the APIs contained on the classes and interfaces as described in the previous section. Other asynchronous methods on NServiceBus APIs are not analyzed.
 
-The analyzer checks for ignored `Task`s returned from the scanned methods. If the `Task` is assigned to a variable or passed to another method, the analyzer will not analyze this `Task`'s usage any further.
+The analyzer checks for ignored `Task`s returned from the scanned methods. If the `Task` is assigned to a variable, passed to another method or one if its members are accessed, the analyzer will not analyze this `Task`'s usage any further.
 
 
 ## Enabling the analyzer
@@ -34,6 +34,7 @@ The analyzer is part of the NServiceBus NuGet package and will be automatically 
 The analyzer requires Visual Studio 2015 Update 2 or newer.
 
 The analyzer also works when building a .NET Core application using `dotnet build` commands, allowing the analyzer to highlight missing `await` operators in other development environments.
+
 
 ## Disabling the analyzer
 
