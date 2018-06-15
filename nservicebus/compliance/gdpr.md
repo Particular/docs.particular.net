@@ -2,6 +2,7 @@
 title: GDPR compliance document
 summary: Information about potential PII stored by NServiceBus
 versions: "[5,)"
+component: core
 tags:
  - GDPR
  - Compliance
