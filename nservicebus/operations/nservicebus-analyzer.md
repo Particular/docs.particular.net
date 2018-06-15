@@ -5,7 +5,7 @@ component: Core
 versions: '[7,]'
 ---
 
-Asynchronous APIs bring great performance improvements. However, they introduce new risks for bugs due to missed `await` operators. NServiceBus comes with a built-in Roslyn analyzer to detect missing awaits on NServiceBus APIs.
+Asynchronous APIs bring great performance improvements. However, they introduce new risks for bugs due to missing `await` operators. NServiceBus comes with a built-in Roslyn analyzer to detect missing awaits on NServiceBus APIs.
 
 ## Functionality
 
@@ -19,9 +19,9 @@ The analyzer points out missing `await` operators when using asynchronous method
 
 ## Limitations
 
-This analyzer inspects only the APIs contained on the classes and interfaces as described in the previous section. Other asynchronous methods on NServiceBus APIs are not analyzed.
+This analyzer inspects only the APIs contained on the classes and interfaces as described in the previous section. Other asynchronous NServiceBus APIs are not analyzed.
 
-The analyzer checks for ignored `Task`s returned from the scanned methods. If the `Task` is assigned to a variable, passed to another method or one if its members are accessed, the analyzer will not analyze this `Task`'s usage any further.
+The analyzer checks for ignored `Task`s returned from the scanned methods. If the `Task` is assigned to a variable, passed to another method, or has one of its members accessed, the analyzer will not evaluate this `Task`'s usage any further.
 
 
 ## Enabling the analyzer
