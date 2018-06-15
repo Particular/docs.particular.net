@@ -4,8 +4,8 @@ summary: Information about potential PII stored by NServiceBus
 versions: "[5,)"
 component: core
 tags:
- - GDPR
  - Compliance
+ - GDPR
 reviewed: 2018-05-17
 ---
 
