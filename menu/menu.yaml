@@ -299,6 +299,8 @@
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:
+    - Url: nservicebus/hosting/startup-diagnostics
+      Title: Startup diagnostics
     - Url: nservicebus/endpoints
       Title: Endpoints
       Articles:
@@ -526,6 +528,8 @@
   - Url: nservicebus/operations
     Title: Operations
     Articles:
+    - Url: nservicebus/hosting/startup-diagnostics
+      Title: Startup diagnostics
     - Url: nservicebus/operations/transactions-message-processing
       Title: Transactions and Message Processing
     - Url: nservicebus/operations/auditing
