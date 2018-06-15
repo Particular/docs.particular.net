@@ -872,9 +872,9 @@ This is a temporary state and once a stable is released it is changed back to th
 ```
 
 
-## Integrity Tests
+## Integrity tests
 
-A [number of integrity tests](tests/IntegrityTests) validate that samples and snippets conform to conventions that make the documentation easier to maintain. PRs that fail these tests will not be mergeable.
+A [number of integrity tests](tests/IntegrityTests) validate that samples and snippets conform to conventions that make the documentation easier to maintain. Pull requests that fail these tests can not be merged.
 
 The integrity tests include:
 
