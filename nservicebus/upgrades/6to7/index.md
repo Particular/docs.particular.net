@@ -311,7 +311,7 @@ See the [critical errors documentation](/nservicebus/hosting/critical-errors.md)
 
 ## Startup diagnostics written to disk
 
-When endpoints start, a diagnostics file is written to disk in a subfolder called `.diagnostics`. See the [startup diagnostics documentation](/nservicebus/hosting/?version=core_7#startup-diagnostics) for more details.
+When endpoints start, a diagnostics file is written to disk in a subfolder called `.diagnostics`. See the [startup diagnostics documentation](/nservicebus/hosting/startup-diagnostics.md) for more details.
 
 ## Routing for send-only endpoints
 
