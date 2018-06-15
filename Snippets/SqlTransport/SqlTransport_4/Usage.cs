@@ -10,5 +10,12 @@ class Usage
         transport.ConnectionString("connectionString");
 
         #endregion
+
+        #region MessageBodyString-config
+
+        var transportConfig = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transportConfig.CreateMessageBodyComputedColumn();
+
+        #endregion
     }
 }
