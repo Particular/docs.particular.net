@@ -32,7 +32,7 @@ The method `TimeToKeep.Default` provides a recommended default for for attachmen
 
 Approaches to using attachments for an outgoing message.
 
-Note: [Stream.Dispose](https://msdn.microsoft.com/en-us/library/ms227422.aspx) is call after the data has been persisted. As such it is not necessary for any code using attachments to perform this cleanup.
+Note: [Stream.Dispose](https://msdn.microsoft.com/en-us/library/ms227422.aspx) is called after the data has been persisted. As such it is not necessary for any code using attachments to perform this cleanup.
 
 While the below examples illustrate adding an attachment to `SendOptions`, equivalent operations can be performed on `PublishOptions` and `ReplyOptions`
 
