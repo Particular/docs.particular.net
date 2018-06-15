@@ -15,19 +15,19 @@ redirects:
 NServiceBus can be configured to use [Unity](https://github.com/unitycontainer/unity) for dependency injection.
 
 
-### Default Usage
+### Default usage
 
 snippet: Unity
 
 
-### Existing Instance
+### Existing instance
 
 snippet: Unity_Existing
 
 
-### DependencyLifecycle Mapping
+### DependencyLifecycle mapping
 
-The [DependencyLifecycle](/nservicebus/dependency-injection/#dependency-lifecycle) map to Unity in the following way.
+The [DependencyLifecycle](/nservicebus/dependency-injection/#dependency-lifecycle) maps to Unity in the following way.
 
 | DependencyLifecycle                                                                                             | Unity Equivalent                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
@@ -35,7 +35,7 @@ The [DependencyLifecycle](/nservicebus/dependency-injection/#dependency-lifecycl
 | [InstancePerUnitOfWork](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work)                    | [Hierarchical Lifetime Manager](https://msdn.microsoft.com/en-us/library/microsoft.practices.unity.hierarchicallifetimemanager.aspx) |
 | [SingleInstance](/nservicebus/dependency-injection/#dependency-lifecycle-single-instance)                                  | [Container Controlled Lifetime Manager](https://msdn.microsoft.com/en-us/library/ff660872.aspx#Anchor_0)                          |
 
-### Unity Dependency Breaking Changes
+### Unity dependency breaking changes
 
 Breaking changes in Unity will be handled as follows:
 

@@ -1,7 +1,7 @@
 ---
 title: FluentValidation message validation
 summary: Validate message using FluentValidation.
-reviewed: 2018-06-02
+reviewed: 2018-06-14
 component: FluentValidation
 related:
 ---
@@ -14,7 +14,7 @@ snippet: FluentValidation
 
 include: validationexception
 
-By default incoming and outgoing messages are validated.
+By default, incoming and outgoing messages are validated.
 
 To disable for incoming messages use the following:
 
@@ -41,6 +41,6 @@ Validator lifecycle can either be per endpoint ([Single instance](/nservicebus/d
 
 snippet: FluentValidation_EndpointLifecycle
 
-Or [Instance per unit of work](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work):
+Or [instance per unit of work](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work):
 
 snippet: FluentValidation_UnitOfWorkLifecycle
