@@ -540,6 +540,8 @@
       Title: Running on Windows
     - Url: nservicebus/endpoints/decommissioning-endpoints
       Title: Decommissioning Endpoints
+    - Url: nservicebus/operations/nservicebus-analyzer
+      Title: NServiceBus Analyzer
 
 - Name: Transports
   Url: transports
