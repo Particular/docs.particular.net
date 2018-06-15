@@ -92,7 +92,6 @@ SimpleInjector: NServiceBus.SimpleInjector
 Spring: NServiceBus.Spring
 Sqs: NServiceBus.AmazonSQS
 StructureMap: NServiceBus.StructureMap
-SystemXml: NServiceBus.Serializers.SystemXml
 Testing: NServiceBus.Testing
 Templates: ParticularTemplates
 Unity: NServiceBus.Unity
