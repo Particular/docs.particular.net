@@ -20,6 +20,9 @@ Messages matching the following criteria will be auto subscribed at startup.
  Note: If the selected transport [does not support publish-subscribe natively](/transports/#types-of-transports-unicast-only-transports), the publisher for that message needs to be specified via the [routing](/nservicebus/messaging/routing.md) API.
 
 
+partial: exclude-event-types
+
+
 ### Exclude sagas from auto subscribe
 
 partial: exclude
