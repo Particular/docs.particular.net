@@ -14,7 +14,7 @@ When operating an NServiceBus based application, the platform will collect vario
 
 ## Headers
 
-partial:headers
+partial: headers
 
 These system headers are not configurable and should be considered present on all messages that originate from within the application. 
 
