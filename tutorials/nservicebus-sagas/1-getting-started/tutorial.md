@@ -227,7 +227,7 @@ Remember that it's possible that `OrderBilled` may be handled before `OrderPlace
 
 ### Summary
 
-In this lesson, we learned to think of sagas as a tool to implement a business policy. _An order cannot be shipped until it is both **accepted** and **billed**._ We want sagas to react to messages, evaluate business rules, and make decisions that allow the system to move forward. It's generally better to think to sagas as policies then orchestrators or process managers.
+In this lesson, we learned to think of sagas as a tool to implement a business policy. _An order cannot be shipped until it is both **accepted** and **billed**._ We want sagas to react to messages, evaluate business rules, and make decisions that allow the system to move forward. It's generally better to think to sagas as policies than as orchestrators or process managers.
 
 Using an NServiceBus saga, we designed a state machine to satisfy these business requirement. As a message-driven state machine, a saga is a perfect way to implement a business policy, as it describes the conditions that must be satisfied in order to make a decision.
 
