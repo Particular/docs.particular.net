@@ -55,7 +55,7 @@ snippet: DisableInstaller
 
 ## Table Name
 
-The default table name and schema is `dbo.Attachments`. It can be changed with the following:
+The default table name and schema is `dbo.MessageAttachments`. It can be changed with the following:
 
 snippet: UseTableName
 
