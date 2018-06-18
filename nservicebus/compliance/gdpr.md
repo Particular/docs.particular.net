@@ -26,12 +26,12 @@ If the application makes use of [custom headers](/samples/header-manipulation/#a
 NServiceBus has built in logging that can collect PII information. It is possible to [configure application logging](/nservicebus/logging/) to reduce or eliminate this data from the application's log files.
 
 #### Subscription entries
-If the application is using the [publish-subscribe capabilities of NServiceBus](/nservicebus/messaging/publish-subscribe/), endpoint names will be captured in the log files if the logging infrastructure is set to XXXX level.
+If the application is using the [publish-subscribe capabilities of NServiceBus](/nservicebus/messaging/publish-subscribe/), and the [MSMQ transport](/transports/msmq) is being used, endpoint names will be captured in the log files if the logging infrastructure is set to DEBUG level.
 
 #### Current Windows user name
-When the application is running NServiceBus can log the user account name that its process is currently running under. This data will be captured when logging infrastructure is set to the XXXX level.
+When the application is running NServiceBus can log the user account name that its process is currently running under. This data can be captured when logging infrastructure is set to the INFO level and the [MSMQ transport](/transports/msmq) is being used.
 
-#### Message bodies/tr
+#### Message bodies
 Although not standard, it is possible that an application's [message bodies will be logged](/nservicebus/logging/message-contents.md) along with the PII that they contain. This will occur only if the application's logging level is set to `DEBUG` and if the message types have had the `.ToString()` method overridden to write out the PII data.
 
 
