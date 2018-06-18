@@ -32,7 +32,7 @@ If the application is using the [publish-subscribe capabilities of NServiceBus](
 #### Current Windows user name
 When the application is running NServiceBus can log the user account name that its process is currently running under. This data will be captured when logging infrastructure is set to the XXXX level.
 
-#### Message bodies
+#### Message bodies/tr
 Although not standard, it is possible that an application's [message bodies will be logged](/nservicebus/logging/message-contents.md) along with the PII that they contain. This will occur only if the application's logging level is set to `DEBUG` and if the message types have had the `.ToString()` method overridden to write out the PII data.
 
 
@@ -75,4 +75,4 @@ When this data needs to be deleted, contact [Particular Support](https://particu
 
 Data points such as "Endpoint Name" have been mentioned multiple times here. It's important to note that in many situations these pieces of data will not need to be considered with regards to GDPR. However, if that data has been configured to include PII they will. It is best to avoid naming things in a manner that includes PII.
 
-There are situations where this is not possible. For example, when using MSMQ as a transport the [computer's name will be included in the name of the queues](/transports/msmq/full-qualified-domain-name). This is a requirement of MSMQ and, as a result, means that queue names should receive the same vetting as machine names.
+There are situations where this is not possible. For example, when using MSMQ as a transport the [computer's name will be included in the name of the queues](/transports/msmq/full-qualified-domain-name.md). This is a requirement of MSMQ and, as a result, means that queue names should receive the same vetting as machine names.
