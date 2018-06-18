@@ -2,7 +2,7 @@
 title: NServiceBus Analyzer
 summary: How to use the NServiceBus analyzer to avoid missing awaits
 component: Core
-versions: '[7,]'
+versions: '[6,]'
 ---
 
 Asynchronous APIs bring great performance improvements. However, they introduce new risks for bugs due to missing `await` operators. NServiceBus comes with a built-in Roslyn analyzer to detect missing awaits on NServiceBus APIs.
