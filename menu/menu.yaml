@@ -550,6 +550,11 @@
       Title: Running on Windows
     - Url: nservicebus/endpoints/decommissioning-endpoints
       Title: Decommissioning Endpoints
+  - Url: nservicebus/compliance
+    Title: Compliance
+    Articles:
+    - Url: nservicebus/compliance/gdpr
+      Title: GDPR
 
 - Name: Transports
   Url: transports
