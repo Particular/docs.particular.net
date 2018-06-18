@@ -28,8 +28,8 @@ public class Startup
 
     Task<Table> Callback(HttpContext httpContext, PassthroughMessage passthroughMessage)
     {
-        //TODO: validate that the message type allowed
-        //TODO: validate that the destination allowed
+        //TODO: validate that the message type is allowed
+        //TODO: validate that the destination is allowed
         var destinationTable = new Table(passthroughMessage.Destination);
         return Task.FromResult(destinationTable);
     }

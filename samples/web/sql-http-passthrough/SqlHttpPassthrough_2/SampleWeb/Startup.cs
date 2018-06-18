@@ -27,7 +27,7 @@ public class Startup
             callback: AmendMessage,
             dedupCriticalError: exception =>
             {
-                Environment.FailFast("Dedup failure",exception);
+                Environment.FailFast("Dedup failure", exception);
             });
         services.AddSqlHttpPassthrough(configuration);
         services.AddMvcCore();

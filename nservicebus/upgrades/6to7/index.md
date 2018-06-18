@@ -2,7 +2,7 @@
 title: Upgrade Version 6 to 7
 summary: Instructions on how to upgrade NServiceBus from version 6 to version 7.
 component: Core
-reviewed: 2018-03-08
+reviewed: 2018-06-18
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6

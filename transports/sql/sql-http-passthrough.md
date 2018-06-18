@@ -22,7 +22,7 @@ SQL HTTP Passthrough is designed to be consumed by any web application built on 
 To handle intermittent connectivity issues it is desirable to have a web client leverage a retry mechanism so if a request fails, the same request can be immediately re-sent. To prevent this resulting in duplicate message being placed on the queue, message deduplication has to occur. SQL HTTP Passthrough leverages the [deduplication feature](/transports/sql/sql-native.md#Deduplication) of SQL Transport - Native.
 
 
-### Data and Attachments
+### Data and attachments
 
 To send both message content and associated binary data (attachments) a [multipart form](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition) is used.
 
@@ -30,10 +30,10 @@ To send both message content and associated binary data (attachments) a [multipa
 ## Usage
 
 
-### Server Side
+### Server-side
 
 
-#### ASP.NET Core Startup
+#### ASP.NET Core startup
 
 At [ASP.NET Core startup](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup) several actions are taken:
 
@@ -56,7 +56,7 @@ A custom prefix can also be defined.
 snippet: AppendClaimsToMessageHeaders_WithPrefix
 
 
-##### Message Callback
+##### Message callback
 
 `AddSqlHttpPassthrough` takes a required parameter `callback` with the signature `Func<HttpContext, PassthroughMessage, Task<Table>>`. This delegate will be called during each request-to-message execution. This occurs after the HTTP request has been parsed, and before the outgoing message is placed on the SQL table. The return value is a `Table` that dictates the SQL table and schema that the message will be written to.
 
@@ -84,16 +84,16 @@ WARNING: Note that a "trust but verify" approach should be taken in regards to t
  * ExtraHeaders: Any extra headers to add to the outgoing NServiceBus message.
 
 
-#### Usage in a Controller
+#### Usage in a controller
 
-Usage in a [Controller](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/actions) consists of several parts.
+Usage in a [controller](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/actions) consists of several parts.
 
  * `ISqlPassthrough` injected through [dependency injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection).
  * The Controller handling the HTTP Post and passing that information to `ISqlPassthrough.Send`.
 
 snippet: Controller
 
-WARNING: In a production application the Controller would be performing any authorization and authentication on the incoming request. 
+WARNING: In a production application the controller would be performing any authorization and authentication on the incoming request. 
 
 
 #### Exception behavior

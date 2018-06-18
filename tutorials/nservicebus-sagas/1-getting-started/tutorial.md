@@ -73,7 +73,7 @@ snippet: BasicShippingPolicyData
 {{NOTE:
 **Where do I put the `ShippingPolicyData` class?**
 
-Saga data is private to the saga, since it stores state for a specific saga and cannot be used by any other component in the system. When designing a system, it is convenient to define saga data as a nested class inside the saga definition. This approach helps in strengthening the close relationship between the two artifacts. It is however important to verify that your persistence and serialization choices support the use of nested classes.
+Saga data is private to the saga, since it stores state for a specific saga and cannot be used by any other component in the system. When designing a system, it is convenient to define saga data as a nested class inside the saga definition. This approach helps in strengthening the close relationship between the two artifacts. However, it is important to verify that your persistence and serialization choices support the use of nested classes.
 }}
 
 To tell the saga what class to use for its data, we inherit from `Saga<TData>` where `TData` is the saga data type. So for the `ShippingPolicy`, we'll inherit from `Saga<ShippingPolicyData>` like this:
@@ -227,8 +227,8 @@ Remember that it's possible that `OrderBilled` may be handled before `OrderPlace
 
 ### Summary
 
-In this lesson, we learned to think of sagas as a tool to implement a business policy. _An order cannot be shipped until it is both **accepted** and **billed**._ We want sagas to react to messages, evaluate business rules, and make decisions that allow the system to move forward. It's generally better to think to sagas as policies than as orchestrators or process managers.
+In this lesson, we learned to think of sagas as a tool to implement a business policy. _An order cannot be shipped until it is both **accepted** and **billed**._ We want sagas to react to messages, evaluate business rules, and make decisions that allow the system to move forward. It's generally better to think of sagas as policies rather than as orchestrators or process managers.
 
-Using an NServiceBus saga, we designed a state machine to satisfy these business requirement. As a message-driven state machine, a saga is a perfect way to implement a business policy, as it describes the conditions that must be satisfied in order to make a decision.
+Using an NServiceBus saga, we designed a state machine to satisfy these business requirements. As a message-driven state machine, a saga is a perfect way to implement a business policy as it describes the conditions that must be satisfied in order to make a decision.
 
 In the next lesson (*Coming Soon*) we'll see how using timeouts enables us to add the dimension of time to our business policies, allowing us to send messages into the future to wake up our saga and take action, even if nothing else is happening. Until then, check out the documentation for [saga timeouts](/nservicebus/sagas/timeouts.md).
