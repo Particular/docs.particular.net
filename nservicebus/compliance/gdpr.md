@@ -5,7 +5,6 @@ versions: "[5,)"
 component: core
 tags:
  - Compliance
- - GDPR
 reviewed: 2018-05-17
 ---
 
