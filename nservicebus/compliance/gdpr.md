@@ -38,6 +38,7 @@ Although not standard, it is possible that an application's [message bodies will
 ## Startup diagnostics
 
 During endpoint startup, NServiceBus will write a diagnostics file for debugging and support purposes. This file will include the following data that could contain PII.
+
 | Name | Description |
 | :---------------| :-: |
 | Hosting - Machine Name | `RuntimeEnvironment.MachineName` |
