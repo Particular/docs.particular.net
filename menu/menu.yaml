@@ -7,7 +7,7 @@
     - Url: tutorials/quickstart
       Title: Quick Start Tutorial
     - Url: tutorials/intro-to-nservicebus
-      Title: Messaging Basics Tutorial
+      Title: Introduction to NServiceBus
       Articles:
       - Url: tutorials/intro-to-nservicebus/1-getting-started
         Title: Getting Started
