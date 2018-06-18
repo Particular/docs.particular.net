@@ -2,9 +2,10 @@
 title: GDPR compliance document
 summary: Information about PII stored by NServiceBus
 versions: "[5,)"
+component: core
 tags:
- - GDPR
  - Compliance
+ - GDPR
 reviewed: 2018-05-17
 ---
 
@@ -14,7 +15,7 @@ PII stands for personally identifiable information (also know as personal data) 
 
 ## Headers
 
-partial:headers
+partial: headers
 
 These system headers are not configurable and should be considered present on all messages that originate from within the application. 
 
@@ -68,3 +69,10 @@ ServiceControl using audits and error consumption saves set of information relat
 | Headers | ProcessedMessages | All of the headers like in the Headers section |
 
 When this data needs to be deleted, contact [Particular Support](https://particular.net/support) for assistance. 
+
+
+## General
+
+Data points such as "Endpoint Name" have been mentioned multiple times here. It's important to note that in many situations these pieces of data will not need to be considered with regards to GDPR. However, if that data has been configured to include PII they will. It is best to avoid naming things in a manner that includes PII.
+
+There are situations where this is not possible. For example, when using MSMQ as a transport the [computer's name will be included in the name of the queues](/transports/msmq/full-qualified-domain-name). This is a requirement of MSMQ and, as a result, means that queue names should receive the same vetting as machine names.
