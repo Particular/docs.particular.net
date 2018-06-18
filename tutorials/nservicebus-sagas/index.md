@@ -12,8 +12,6 @@ However, message handlers are stateless and many business processes are not. For
 
 For these types of scenarios, you need a *stateful* message handler. Other ways to describe what is needed might include a message-driven state machine or an orchestration engine. In NServiceBus, we call these [**sagas**](/nservicebus/sagas/). In this tutorial, we'll build on the solution from the [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) and learn to master NServiceBus sagas.
 
-NOTE: Being stateful, sagas need to store their data somewhere. In this tutorial, we'll use the [Learning Persistence](/persistence/learning/) that stores data in the file system, but in a live system you should use a production-quality persistence option such as [SQL persistence](/persistence/sql/).
-
 The tutorial is divided into four lessons, each of which can be accomplished in an hour or less — perfect for your lunch break.
 
 * [**Lesson 1: Getting Started**](1-getting-started/) - learn how to introduce sagas to complete the order shipping process.
