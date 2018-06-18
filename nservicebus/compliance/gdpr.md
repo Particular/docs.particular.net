@@ -50,7 +50,7 @@ During endpoint startup, NServiceBus will write a diagnostics file for debugging
 
 The diagnostics file will also include a listing of all message type names, endpoint names and queue names.
 
-More information on where to find the diagnostics file, and how to customize it, can be found in the [Hosting documentation](/nservicebus/hosting/#startup-diagnostics).
+More information on where to find the diagnostics file, and how to customize it, can be found in the [Hosting documentation](/nservicebus/hosting/startup-diagnostics.md).
 
 ## ServiceControl
 
