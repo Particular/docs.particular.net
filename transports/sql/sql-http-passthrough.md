@@ -55,7 +55,7 @@ A custom prefix can also be defined.
 
 snippet: AppendClaimsToMessageHeaders_WithPrefix
 
-For unit testing and integration purposes it may e useful to manipulate a raw `Dictionary<string, string>`. This can be done using `ClaimsAppender`.
+For unit testing and integration purposes it may be useful to manipulate a raw `Dictionary<string, string>`. This can be done using `ClaimsAppender`.
 
 To append claims:
 
