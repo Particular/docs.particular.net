@@ -8,5 +8,6 @@
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.*" />
     <PackageReference Include="NServiceBus.SqlServer.HttpPassthrough" Version="2.*" />
     <PackageReference Include="NServiceBus.Testing" Version="7.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 </Project>

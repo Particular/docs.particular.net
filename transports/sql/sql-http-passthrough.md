@@ -55,6 +55,20 @@ A custom prefix can also be defined.
 
 snippet: AppendClaimsToMessageHeaders_WithPrefix
 
+For unit testing and integration purposes it may be useful to manipulate a raw `Dictionary<string, string>`. This can be done using `ClaimsAppender`.
+
+To append claims:
+
+snippet: AppendClaimsToDictionary
+
+To extract claims:
+
+snippet: ExtractClaimsFromDictionary
+
+It may also be necessary to process claims with no reference to `NServiceBus.SqlServer.HttpPassthrough`. This can be done using the following utility methods. Note that these methods use `JsonConvert` from [Json.NET](https://www.newtonsoft.com/json).
+
+snippet: ClaimsRaw
+
 
 ##### Message callback
 
