@@ -49,3 +49,5 @@ partial: native
 ### Unreliable (transactions disabled)
 
 In this mode, when a message is received it is immediately removed from the input queue. If processing fails the message is lost because the operation cannot be rolled back. Any other operation that is performed when processing the message is executed without a transaction and cannot be rolled back. This can lead to undesired side effects when message processing fails part way through.
+
+partial: custom-connection-and-transaction
