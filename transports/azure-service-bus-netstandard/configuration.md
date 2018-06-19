@@ -1,5 +1,6 @@
 ---
-title: Azure Service Bus Net Standard Transport
+title: Configuration
+summary: Explains the configuration options
 component: ASBS
 tags:
  - Azure

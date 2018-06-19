@@ -684,8 +684,12 @@
   - Url: transports/azure-service-bus-netstandard
     Title: Azure Service Bus Net Standard
     Articles:
-    - Url: transports/azure-service-bus-netstandard/sending
-      Title: Sending Messages
+    - Url: transports/azure-service-bus-netstandard/configuration
+      Title: Configuration
+    - Url: transports/azure-service-bus-netstandard/compatibility
+      Title: Backward Compatibility
+    - Url: transports/azure-service-bus-netstandard/operational-scripting
+      Title: Operational Scripting
   - Url: transports/azure-storage-queues
     Title: Azure Storage Queues
     Articles:

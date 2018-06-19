@@ -1,5 +1,6 @@
 ---
-title: Azure Service Bus Net Standard Transport
+title: Compatibility
+summary: Describes the requirements for backward compatibility with ASB transport
 component: ASBS
 tags:
  - Azure

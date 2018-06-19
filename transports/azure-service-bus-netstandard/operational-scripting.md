@@ -1,5 +1,6 @@
 ---
-title: Azure Service Bus Net Standard Transport
+title: Operational scripting
+summary: Explains how to create queues and topics using scripting
 component: ASBS
 tags:
  - Azure
