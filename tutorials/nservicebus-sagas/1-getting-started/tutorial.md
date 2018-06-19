@@ -20,9 +20,9 @@ In this exercise we'll continue with the project from the [previous lesson](/tut
 {{NOTE:
 **What if I didn't do the previous tutorial?**
 
-No problem. If you're already familiar with sending messages and publish/subscribe with NServiceBus, you can start learning sagas with this tutorial. At the [end of the previous lesson page](/tutorials/intro-to-nservicebus/5-retrying-errors/#summary), click the **Download Completed Solution** button to get started.
+No problem. If you're already familiar with sending messages and publish/subscribe with NServiceBus, you can start learning sagas with this tutorial:
 
-//TODO: make sure DocsEngine can link stuff from other tutorials instead of forcing users to leave this page and come back.
+downloadbutton(Download Previous Solution, /tutorials/intro-to-nservicebus/5-retrying-errors)
 
 The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes defining messages exchanged in our system.
 
@@ -33,7 +33,13 @@ Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes a
 
 We will create a saga in the **Shipping** endpoint that will handle the `OrderPlaced` and `OrderBilled` events. When it receives both, it'll send the `ShipOrder` command to initiate the delivery.
 
-//TODO -> Image to https://github.com/Particular/SagaTutorial/blob/master/docs/shipping-saga.jpg
+<div class="hype-resizer" hype-width="685" hype-height="500" style="margin:40px 0;">
+    <div class="hype-inner" style="margin:0 auto;">
+        <div id="saga-diagram-animation" style="position:relative;width:100%;height:100%;overflow:hidden;"></div>
+    </div>
+</div>
+<script type="text/javascript" src="saga-diagram-animation/index.js"></script>
+
 
 #### Sagas as policies
 
@@ -67,7 +73,7 @@ snippet: BasicShippingPolicyData
 {{NOTE:
 **Where do I put the `ShippingPolicyData` class?**
 
-// TODO: Note on internal vs public, depends upon serializer, etc.
+Saga data is private to the saga, since it stores state for a specific saga and cannot be used by any other component in the system. When designing a system, it is convenient to define saga data as a nested class inside the saga definition. This approach helps in strengthening the close relationship between the two artifacts. However, it is important to verify that your persistence and serialization choices support the use of nested classes.
 }}
 
 To tell the saga what class to use for its data, we inherit from `Saga<TData>` where `TData` is the saga data type. So for the `ShippingPolicy`, we'll inherit from `Saga<ShippingPolicyData>` like this:
@@ -82,7 +88,8 @@ With the base class in place, NServiceBus makes the current saga data available 
 
 1. In the `Handle` method for `OrderPlaced`, add the statement `Data.IsOrderPlaced = true;`.
 1. In the `Handle` method for `OrderBilled`, add the statement `Data.IsOrderBilled = true;`.
-1. These two methods should now look like this:
+
+These two methods should now look like this:
 
 snippet: HandleBasicImplementation
 
@@ -93,8 +100,6 @@ NOTE: NServiceBus sagas are templates representing a process. At runtime, there 
 Now, how do we determine how to start a saga?
 
 #### How sagas start
-
-//TODO: Consider doing mappings before IAmStartedBy
 
 When NServiceBus receives a message, it first looks for an existing saga that matches the message. If it can't find any related data, it needs to know whether it has permission to create a new instance of the saga. After all, the incoming message may be an out-of-date message for a saga that has already completed its work.
 
@@ -191,31 +196,39 @@ snippet: EmptyShipOrderHandler
 
 #### Saga persistence
 
-Before being able to fully run the solution and test if the `ShippingPolicy` saga is working as expected you need to configure 1 more things: *Saga persistence*.
+Before being able to fully run the solution and test if the `ShippingPolicy` saga is working as expected you need to configure one last thing: *Saga persistence*.
 
 Saga state needs to be persisted, so we need to configure the **Shipping** endpoint with a chosen persistence. In the `Program` class where there is the endpoint configuration code add the following line after the transport configuration:
 
 snippet: ShippingEndpointConfigLearningPersistence
 
-The snippet above is configuring the endpoint to use `LearningPersistence` designed for testing and development. It stores data on the disk in a folder in the executable path. In production use one of [our production-level persistences](/persistence/#available-persistences).
+The snippet above is configuring the endpoint to use `LearningPersistence` which is designed for testing and development. It stores data on the disk in a folder in the executable path. In production use one of [our production-level persistence options](/persistence/#available-persistences).
 
 
 #### Running the solution
 
-// TODO: Needs to show some output
-
 You can now press <kbd>F5</kbd> and test the `ShippingPolicy` saga. By sending a new order from the ClientUI endpoint you should see the following message flow:
 
-* The `PlaceOrder`command is sent from ClientUI to Sales
-* Sales publishes the `OrderPlaced` event that is handled by Billing and Shipping
-* Billing processes the payment and publishes the `OrderBilled` event
-* Shipping handles `OrderPlaced` and `OrderBilled` using the `ShippingPolicy` saga
-* When both are handled by the saga, the `ShipOrder` command is sent
+* The `PlaceOrder`command is sent from ClientUI to Sales.
+* Sales publishes the `OrderPlaced` event that is handled by Billing and Shipping.
+* Billing processes the payment and publishes the `OrderBilled` event.
+* Shipping handles `OrderPlaced` and `OrderBilled` using the `ShippingPolicy` saga.
+* When both are handled by the saga, the `ShipOrder` command is sent.
+
+The **Shipping** endpoint console should show the following output:
+
+```
+INFO  Shipping.ShippingPolicy OrderPlaced message received.
+INFO  Shipping.ShippingPolicy OrderBilled message received.
+INFO  Shipping.ShipOrderHandler Order [0b0dd421-4661-46e7-abc5-c92c43b8fd18] - Succesfully shipped.
+```
+
+Remember that it's possible that `OrderBilled` may be handled before `OrderPlaced`, which is why it was so critical to indicate the saga can be started by both messages with `IAmStartedByMessages<T>`, so that the saga will work correctly no matter the arrival order of the events.
 
 ### Summary
 
-//TODO: Needs a proper summary
+In this lesson, we learned to think of sagas as a tool to implement a business policy. _An order cannot be shipped until it is both **accepted** and **billed**._ We want sagas to react to messages, evaluate business rules, and make decisions that allow the system to move forward. It's generally better to think of sagas as policies rather than as orchestrators or process managers.
 
-### TODO: Notes
+Using an NServiceBus saga, we designed a state machine to satisfy these business requirements. As a message-driven state machine, a saga is a perfect way to implement a business policy as it describes the conditions that must be satisfied in order to make a decision.
 
-* Consider changing all return Tasks to awaits
+In the next lesson (*Coming Soon*) we'll see how using timeouts enables us to add the dimension of time to our business policies, allowing us to send messages into the future to wake up our saga and take action, even if nothing else is happening. Until then, you can check out the documentation for [saga timeouts](/nservicebus/sagas/timeouts.md), sign up for a [free proof of concept with one of our Solution Architects](https://particular.net/proof-of-concept), or chat with us using the chat widget in the corner of this page.

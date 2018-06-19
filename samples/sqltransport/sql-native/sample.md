@@ -117,3 +117,6 @@ The `error` queue is processed using `NServiceBus.Transport.SqlServerNative.Mess
 snippet: MessageProcessingLoop
 
 Since in this scenario, messages are not deleted as they are being processed, it is necessary to keep track of the last processed `RowVersion`. This is done using `NServiceBus.Transport.SqlServerNative.RowVersionTracker`, which stores the `RowVersion` in a single row table named `RowVersionTracker`.
+
+
+include: mars

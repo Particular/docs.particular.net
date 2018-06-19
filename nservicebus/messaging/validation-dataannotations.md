@@ -1,7 +1,7 @@
 ---
 title: DataAnnotations message validation
 summary: Validate message using DataAnnotations.
-reviewed: 2018-06-02
+reviewed: 2018-06-14
 component: DataAnnotations
 related:
 ---
@@ -14,12 +14,18 @@ snippet: DataAnnotations
 
 include: validationexception
 
-By default only incoming messages are validated. To also validate outgoing messages use the following:
+By default, incoming and outgoing messages are validated.
 
-snippet: DataAnnotations_outgoing
+To disable for incoming messages use the following:
+
+snippet: DataAnnotations_disableincoming
+
+To disable for outgoing messages use the following:
+
+snippet: DataAnnotations_disableoutgoing
 
 include: validationoutgoing
 
-Messages can then be decorated with DataAnnotations attributes. For example to make a property required use  the [RequiredAttribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx):
+Messages can then be decorated with DataAnnotations attributes. For example, to make a property required use the [RequiredAttribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx):
 
 snippet: DataAnnotations_message

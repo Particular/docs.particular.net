@@ -1,7 +1,7 @@
 ---
 title: Decommissioning Endpoints
-summary: Describe the process of decommissioning endpoints.
-reviewed: 2016-10-04
+summary: Describes the process of permanently shutting down endpoints
+reviewed: 2018-06-18
 tags:
  - Endpoint
  - Endpoint Instance
@@ -12,13 +12,13 @@ related:
 
 Endpoint decommission is a process of permanent endpoint instance shut down. It can happen for various reasons, such as:
 
- * Dividing endpoint responsibility into a few other endpoints
+ * Dividing endpoint responsibility among other endpoints
  * Scaling down endpoint instances
  * Other (like removing certain functionality from the system)
 
-When performing endpoint decommission the following aspects should be considered:
+When decommissioning endpoints, several aspects should be considered:
 
- 1. Routing should be adjusted to make sure that no new messages will be delivered to that endpoint
- 1. Make sure that endpoint processed all messages from it's queue
- 1. [Timeouts are rerouted to other endpoint instances](/persistence/ravendb/reroute-existing-timeouts.md)
- 1. If any errors are discovered in the ServicePulse/ServiceControl tools a [redirect functionality](/servicepulse/redirect.md) can be used to reroute messages to another endpoint instance.
+ 1. Routing should be adjusted to make sure that no new messages will be delivered to that endpoint.
+ 1. All messages should be processed from the endpoint's queue.
+ 1. [Timeouts should be rerouted to other endpoint instances](/persistence/ravendb/reroute-existing-timeouts.md).
+ 1. If any errors are discovered in the ServicePulse/ServiceControl tools, [redirect functionality](/servicepulse/redirect.md) can be used to reroute messages to another endpoint instance.

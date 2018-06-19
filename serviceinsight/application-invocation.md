@@ -1,31 +1,31 @@
 ---
 title: ServiceInsight Application Invocation
-reviewed: 2016-09-28
+reviewed: 2018-06-07
 component: ServiceInsight
 summary: How the integration between ServicePulse and ServiceInsight works and how to use the parameterized invocation of ServiceInsight.
 tags:
 ---
 
-When using ServicePulse it is possible to load any given message in ServiceInsight easiy by clicking the "Open in ServiceInsight" link to load the message in ServiceInsight.
+It is possible to load any given message in ServiceInsight from ServicePulse by clicking the "Open in ServiceInsight" link.
 
 ![ServicePulse Error Messages](images/007-servicepulse-error-messages.png 'width=500')
 
 The benefits of this feature can be leveraged without installing ServicePulse.
 
-Click the link in ServicePulse, it opens a link in the browser, like this:
+Click the link in ServicePulse, it opens a link in the browser:
 
 ```
 si://localhost:33333/api?search=487b5055-11bb-4a70-a4fd-a2c00125aa43
 ```
 
-This is the URI to which ServiceInsight listens. It launches ServiceInsight to do the following:
+This is the URI to which ServiceInsight listens. It launches ServiceInsight and does the following:
 
- * Automatically connect to localhost on port 33333
- * Perform a search on a specific Message ID
+ * Automatically connects to localhost on port 33333
+ * Performs a search on a specific Message ID
 
 This means that a specific message that was in the error queue will be displayed as soon ServiceInsight opens, allowing the cause to be seen.
 
-There is no magic here, the URL can generated as long as the convention is followed. Construct the URI and send it via email to development team, who can then paste it into the Run window (Win + R) or browser.
+The URI can be generated manually as long as the convention is followed. Construct the URI and send it to the development team, who can then paste it into the Run window or a browser.
 
 A list of the supported parameters and a description of their effects:
 

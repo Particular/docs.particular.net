@@ -7,7 +7,7 @@
     - Url: tutorials/quickstart
       Title: Quick Start Tutorial
     - Url: tutorials/intro-to-nservicebus
-      Title: Messaging Basics Tutorial
+      Title: Introduction to NServiceBus
       Articles:
       - Url: tutorials/intro-to-nservicebus/1-getting-started
         Title: Getting Started
@@ -261,10 +261,16 @@
         Title: Scale-Out
     - Url: nservicebus/bridge
       Title: Transport Bridge
+      Articles:
+      - Url: nservicebus/bridge/bridge-router
+        Title: Upgrade NServiceBus.Bridge to NServiceBus.Router
     - Url: nservicebus/rawmessaging
       Title: Raw messaging
     - Url: nservicebus/wormhole
       Title: Wormhole Gateway
+      Articles:
+      - Url: nservicebus/wormhole/wormhole-router
+        Title: Upgrade NServiceBus.Wormhole to NServiceBus.Router
     - Url: nservicebus/audit-filter
       Title: AuditFilter
     - Url: nservicebus/mailer
@@ -293,6 +299,8 @@
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:
+    - Url: nservicebus/hosting/startup-diagnostics
+      Title: Startup diagnostics
     - Url: nservicebus/endpoints
       Title: Endpoints
       Articles:
@@ -389,7 +397,7 @@
         Title: Not Found
       - Url: nservicebus/sagas/concurrency
         Title: Concurrency
-      - Url: nservicebus/sagas/reply-replaytooriginator-differences
+      - Url: nservicebus/sagas/reply-replytooriginator-differences
         Title: Reply and ReplyToOriginator differences
       - Url: nservicebus/sagas/saga-audit
         Title: Debugging sagas in ServiceInsight
@@ -520,6 +528,8 @@
   - Url: nservicebus/operations
     Title: Operations
     Articles:
+    - Url: nservicebus/hosting/startup-diagnostics
+      Title: Startup diagnostics
     - Url: nservicebus/operations/transactions-message-processing
       Title: Transactions and Message Processing
     - Url: nservicebus/operations/auditing
@@ -542,6 +552,11 @@
       Title: Decommissioning Endpoints
     - Url: nservicebus/operations/nservicebus-analyzer
       Title: NServiceBus Analyzer
+  - Url: nservicebus/compliance
+    Title: Compliance
+    Articles:
+    - Url: nservicebus/compliance/gdpr
+      Title: GDPR
 
 - Name: Transports
   Url: transports
@@ -1008,6 +1023,11 @@
 
 - Name: ServiceControl
   Topics:
+  - Title: Upgrade Guides
+    Url: servicecontrol/upgrades
+    Articles:  
+    - Title: Version 1 to 2
+      Url: servicecontrol/upgrades/1to2
   - Title: Licensing
     Url: servicecontrol/license
   - Title: Powershell

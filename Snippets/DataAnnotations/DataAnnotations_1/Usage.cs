@@ -10,10 +10,17 @@ public class Usage
 
         #endregion
 
-        #region DataAnnotations_outgoing
+        #region DataAnnotations_disableincoming
 
         endpointConfiguration.UseDataAnnotationsValidation(
-            validateOutgoingMessages:true);
+            incoming: false);
+
+        #endregion
+
+        #region DataAnnotations_disableoutgoing
+
+        endpointConfiguration.UseDataAnnotationsValidation(
+            outgoing: false);
 
         #endregion
     }

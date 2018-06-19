@@ -462,6 +462,7 @@ Do not write a sample when:
  * A Sample Root may not contain a sample.md in subdirectories.
  * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
  * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.
+ * A sample must obey rules that are verified by [Integrity Tests](#integrity-tests).
 
 ### References
 
@@ -871,6 +872,20 @@ This is a temporary state and once a stable is released it is changed back to th
 ```
 
 
+## Integrity tests
+
+A [number of integrity tests](tests/IntegrityTests) validate that samples and snippets conform to conventions that make the documentation easier to maintain. Pull requests that fail these tests can not be merged.
+
+The integrity tests include:
+
+* [Samples should not be multi-targeted](tests/IntegrityTests/ProjectFrameworks.cs) using the `<TargetFrameworks>` (plural) element. This is because a visitor who downloads the solution without .NET Core installed will not be able to run a multi-targeted project even on the .NET Framework. Instead a sample should have separate solutions and projects to support .NET Framework and .NET Core, all using the same underlying code, i.e.:
+    * `SampleName.sln` references `ProjectName.csproj` targeting `net462`
+    * `SampleName.Core.sln` references `ProjectName.Core.csproj` targeting `netcoreapp2.0`
+* [Package references cannot use a wildcard-only version](tests/IntegrityTests/ReferenceVersions.cs) using `Version="*"` as this can cause a package restore operation to sometimes fail and yield old, incorrect, or mismatched versions.
+* [Versioned sample/snippet directories (i.e. `Core_7`) must contain a `prerelease.txt` file](tests/IntegrityTests/ValidatePrereleaseTxt.cs) **only** when the contained projects use a prerelease version of that component's NuGet package. This is verified in two ways:
+    1. Tests find all `prerelease.txt` files, parse the component name out of the parent directory name, find the related NuGet packages from component metadata, and then scan all child project files for prerelease package references of those NuGet packages, flagging `prerelease.txt` files with no associated prerelease package reference.
+    2. Tests examine all project files, finding a parent versioned directory, parse out the component name, look up the NuGet packages from component metadata, scan the project path for any prerelease package references of those NuGet packages, and then flag any missing a `prerelease.txt` file.
+
 ## Alerts
 
 Sometimes it is necessary to draw attention to items you want to call out in a document.
@@ -879,12 +894,12 @@ This is achieved through bootstrap alerts https://getbootstrap.com/components/#a
 
 There are several keys each of which map to a different colored alert
 
-| Key              | Color  |
-|------------------|--------|
-| `SUCCESS`        | green  |
-| `NOTE` or `INFO` | blue   |
-| `WARNING`        | yellow |
-| `DANGER`         | red    |
+| Key                 | Color  |
+|---------------------|--------|
+| `SUCCESS`           | green  |
+| `NOTE` or `INFO`    | blue   |
+| `WARNING` or `WARN` | yellow |
+| `DANGER`            | red    |
 
 Keys can be used in two manners
 

@@ -52,7 +52,7 @@ This packages installs into the [MSBuild](https://docs.microsoft.com/en-us/visua
 
 This package contains several parts
 
- * APIs for manipulating `EndPointConfiguration` at configuration time.
+ * APIs for manipulating `EndpointConfiguration` at configuration time.
  * Runtime implementations of Saga, Timeouts, Subscriptions and Outbox persisters.
  * Attribute definitions used to define certain compile time configuration settings. These attributes are then interrogated by the NServiceBus.Persistence.Sql.MsBuild NuGet Package when generating SQL installation scripts
  * Optionally runs SQL installation scripts at endpoint startup for development purposes. See [Installer Workflow](installer-workflow.md).
@@ -62,7 +62,7 @@ This package contains several parts
 
 This package contains all APIs that enable the generation of SQL installation scripts using code, i.e. without using the NServiceBus.Persistence.Sql.MsBuild NuGet package.
 
-DANGER: NServiceBus.Persistence.Sql.ScriptBuilder is currently not ready for general usage. It has been made public, and deployed to NuGet, primarily to enable the generation of documentation in a repeatable way. For example it is used to generate the SQL scripts in the [MS SQL Server Scripts](/persistence/sql/sqlserver-scripts.md), [MySql Scripts](/persistence/sql/mysql-scripts.md), and [Oracle Scripts](/persistence/sql/oracle-scripts.md) pages. In future releases, the API may evolve in ways that do not follow the standard of [Release Policy - Semantic Versioning](/nservicebus/upgrades/release-policy.md#semantic-versioning). Raise an issue in the [NServiceBus.Persistence.Sql Repository](https://github.com/Particular/NServiceBus.Persistence.Sql/issues) to discuss this in more detail.
+DANGER: NServiceBus.Persistence.Sql.ScriptBuilder is currently not ready for general usage. It has been made public, and deployed to NuGet, primarily to enable the generation of documentation in a repeatable way. For example it is used to generate the SQL scripts in the [MS SQL Server Scripts](/persistence/sql/sqlserver-scripts.md), [MySql Scripts](/persistence/sql/mysql-scripts.md), [Oracle Scripts](/persistence/sql/oracle-scripts.md), and [PostgreSQL Scripts](/persistence/sql/postgresql-scripts.md) pages. In future releases, the API may evolve in ways that do not follow the standard of [Release Policy - Semantic Versioning](/nservicebus/upgrades/release-policy.md#semantic-versioning). Raise an issue in the [NServiceBus.Persistence.Sql repository](https://github.com/Particular/NServiceBus.Persistence.Sql/issues) to discuss this in more detail.
 
 
 ## Script creation

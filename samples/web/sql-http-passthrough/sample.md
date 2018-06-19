@@ -127,3 +127,6 @@ snippet: Guid
 The solution includes an integration test that verifies that a submitted HTTP request is intercepted by the SampleEndpoint.
 
 snippet: IntegrationTests
+
+
+include: mars

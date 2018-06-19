@@ -2,7 +2,7 @@
 title: Upgrade Version 6 to 7
 summary: Instructions on how to upgrade NServiceBus from version 6 to version 7.
 component: Core
-reviewed: 2018-03-08
+reviewed: 2018-06-18
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
@@ -311,10 +311,16 @@ See the [critical errors documentation](/nservicebus/hosting/critical-errors.md)
 
 ## Startup diagnostics written to disk
 
-When endpoints start, a diagnostics file is written to disk in a subfolder called `.diagnostics`. See the [startup diagnostics documentation](/nservicebus/hosting/?version=core_7#startup-diagnostics) for more details.
+When endpoints start, a diagnostics file is written to disk in a subfolder called `.diagnostics`. See the [startup diagnostics documentation](/nservicebus/hosting/startup-diagnostics.md) for more details.
 
 ## Routing for send-only endpoints
 
 Routing messages to the local endpoint or local instance is no longer allowed for send-only endpoints, since they are not able to receive messages. When detected, the following exception is thrown:
 
 `System.InvalidOperationException: Cannot route to instances of this endpoint since it's configured to be in send-only mode.`
+
+## Source Link
+
+As of NServiceBus 7, all packages support [Source Link](https://github.com/dotnet/designs/blob/master/accepted/diagnostics/source-link.md), a developer productivity feature that allows debugging into NServiceBus code by downloading the source directly from GitHub.
+
+There is currently a bug with Visual Studio 2017 [SDK-style projects](https://github.com/dotnet/sdk/issues/1458) that prevents Source Link from working when the project targets the .NET Framework. A [workaround](https://github.com/dotnet/sdk/issues/1458#issuecomment-362685678) for the bug is to add the [SourceLink.Copy.PdbFiles NuGet package](https://www.nuget.org/packages/SourceLink.Copy.PdbFiles) to the project.

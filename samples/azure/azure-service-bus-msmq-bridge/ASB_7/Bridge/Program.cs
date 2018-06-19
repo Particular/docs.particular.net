@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Transactions;
 using NServiceBus;
 using NServiceBus.Bridge;
 
@@ -22,24 +21,14 @@ class Program
             .Between<MsmqTransport>("Bridge-MSMQ")
             .And<AzureServiceBusTransport>("Bridge-ASB", transport =>
             {
+                //Prevents ASB from using TransactionScope
+                transport.Transactions(TransportTransactionMode.ReceiveOnly);
                 transport.ConnectionString(connectionString);
                 transport.UseForwardingTopology();
             });
 
         bridgeConfiguration.AutoCreateQueues();
         bridgeConfiguration.UseSubscriptionPersistece<InMemoryPersistence>((configuration, persistence) => { });
-
-        #endregion
-
-        #region suppress-transaction-scope-for-asb
-
-        bridgeConfiguration.InterceptForawrding(async (queue, message, forward) =>
-        {
-            using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
-            {
-                await forward().ConfigureAwait(false);
-            }
-        });
 
         #endregion
 

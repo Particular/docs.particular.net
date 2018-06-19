@@ -1,5 +1,5 @@
 ---
-title: Setup Queue Length Metrics Reproting for the MSMQ Transport
+title: Setup Queue Length Metrics Reporting for the MSMQ Transport
 reviewed: 2018-05-11
 component: MetricsServiceControl
 related:

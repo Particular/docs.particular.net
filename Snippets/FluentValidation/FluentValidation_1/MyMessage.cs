@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using FluentValidation;
+﻿using FluentValidation;
 using NServiceBus;
 
 #region FluentValidation_message
 public class MyMessage :
     IMessage
 {
-    [Required]
     public string Content { get; set; }
 }
 

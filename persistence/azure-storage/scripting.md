@@ -2,7 +2,7 @@
 title: Azure Storage Persistence Scripts
 summary: Collection of scripts for managing Azure Storage Persistence
 component: ASP
-reviewed: 2016-09-29
+reviewed: 2018-06-15
 related:
  - nservicebus/operations
 redirects:
@@ -12,9 +12,9 @@ tags:
 - Persistence
 ---
 
-## Removing Subscriptions
+## Removing subscriptions
 
-The following PowerShell script removes all subscriptions of a specific subscriber from the configured Azure storage account. Copy and paste the script to a PowerShell and hit Enter:
+The following PowerShell script removes all subscriptions of a specific subscriber from the configured Azure storage account. Copy and paste the script to a PowerShell and press <kbd>enter</kbd>:
 
 ```ps
 function Remove-Subscriptions(

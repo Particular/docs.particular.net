@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransportNative_1", "SqlTransportNative_1\SqlTransportNative_1.csproj", "{0759EFB5-B776-4D2D-BC3A-930CDE677229}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransportNative_2", "SqlTransportNative_2\SqlTransportNative_2.csproj", "{0759EFB5-B776-4D2D-BC3A-930CDE677229}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
