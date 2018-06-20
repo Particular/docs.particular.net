@@ -5,7 +5,7 @@ component: Core
 versions: '[6,]'
 ---
 
-Asynchronous APIs bring great performance improvements. However, they introduce new risks for bugs due to missing `await` operators. NServiceBus comes with a built-in Roslyn analyzer to detect missing awaits on NServiceBus APIs.
+Asynchronous APIs bring great performance improvements. However, they introduce new risks for bugs due to missing `await` operators. Starting with Versions 6.5 and 7.1, NServiceBus comes with a built-in Roslyn analyzer to detect missing awaits on NServiceBus APIs.
 
 ## Functionality
 
