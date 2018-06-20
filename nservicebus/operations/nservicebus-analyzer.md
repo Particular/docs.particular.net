@@ -17,6 +17,10 @@ The analyzer points out missing `await` operators when using asynchronous method
 * `Endpoint`
 * `IUniformSession` (from the [UniformSession package](/nservicebus/messaging/uniformsession.md))
 
+Failing to `await` or assign the tasks returned by these methods results in the following compile-time error:
+
+WARNING: **NSB0001**: A Task returned by an NServiceBus method is not awaited or assigned to a variable.
+
 ## Limitations
 
 This analyzer inspects only the APIs contained on the classes and interfaces as described in the previous section. Other asynchronous NServiceBus APIs are not analyzed.
