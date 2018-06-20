@@ -18,16 +18,22 @@ In order to provision or deprovision the resources required by an endpoint, the 
 - `endpoint`
 - `queue`
 
-### options
+#### options
 
 `-c` | `--connection-string`:  Connection string to the Azure Service Bus namespace (defaults to value from environment variable 'x')
 
-#### asb-transport endpoint create
+### asb-transport endpoint create
 
 Create a new endpoint using
-- `create`
 
-##### options
+```
+asb-transport endpoint create [--size]
+                              [--partitioned]
+                              [--topic]
+                              [--subscription]
+```
+
+#### options
  
 `-s` | `--size` : Queue size in GB (defaults to 5)
 
@@ -37,22 +43,26 @@ Create a new endpoint using
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
-#### asb-transport queue create
+### asb-transport queue create
  
 Create a queue using
 
-- `create`
+```
+asb-transport queue create [--size]
+                           [--partitioned]
+```
 
-
-##### options
+#### options
 
 `-s` | `--size`: Queue size in GB (defaults to 5)
 
 `-p` | `--partitioned`: Enable partitioning
 
-#### asb-transport queue delete
+### asb-transport queue delete
  
- Delete a queue using
+Delete a queue using
 
-- `delete`
+```
+asb-transport queue delete
+```
  
