@@ -15,10 +15,11 @@ In order to provision or deprovision the resources required by an endpoint, the 
 
 ### Available commands
 
-- `endpoint`
-- `queue`
+- `endpoint create`
+- `queue create`
+- `queue delete`
 
-#### options
+#### generic options
 
 `-c` | `--connection-string`:  Connection string to the Azure Service Bus namespace (defaults to value from environment variable 'x')
 
