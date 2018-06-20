@@ -1,7 +1,7 @@
 ---
 title: Simple SQL Persistence Usage
-summary: Using SQL Persistence to store Sagas and Timeouts.
-reviewed: 2016-10-05
+summary: Using SQL Persistence to store sagas and timeouts.
+reviewed: 2018-06-20
 component: SqlPersistence
 tags:
  - Saga
@@ -10,9 +10,9 @@ related:
  - nservicebus/sagas
 ---
 
-This sample shows a Client + Server scenario.
+This sample shows a client/server scenario.
 
-WARNING: By default all endpoints are started when the solution is run, which means that the sample requires all databases (i.e. SQL Server, MySQL, Oracle, PostreSQL) to be configured to run correctly. In order to run the sample with just one database, disable unnecessary endpoints.
+WARNING: By default all endpoints are started when the solution is run, which means that the sample requires all databases (i.e. SQL Server, MySQL, Oracle, PostreSQL) to be configured to run correctly. In order to run the sample with just one database, disable the relevant endpoints.
 
 include: sqlpersistence-prereqs
 
@@ -36,21 +36,21 @@ Contains the `OrderSaga` functionality and is referenced by the Server endpoints
  * Receives and handles the `OrderCompleted` event.
 
 
-### Servers
+### Server projects
  
  * `EndpointMySql`, `EndpointSqlServer`, and `EndpointOracle` projects act as "servers" to run the saga instance.
- * Receive the `StartOrder` message and initiate a `OrderSaga`.
- * `OrderSaga` requests a timeout with a `CompleteOrder` data.
- * When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
+ * Receive the `StartOrder` message and initiate an `OrderSaga`.
+ * `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
+ * `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout fires.
 
 
-## SQL Scripts
+## SQL scripts
 
 Note that only `ServerShared` has the [NServiceBus.Persistence.Sql.MsBuild NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) installed. This will cause the script director `ServerShared\bin\Debug\NServiceBus.Persistence.Sql\[Variant]` to be populated at build time.
 
-These scripts will then be copied to the output of each endpoint and executed at startup.
+These scripts will be copied to the output of each endpoint and executed at startup.
 
-The endpoints know which scripts to execute via the use of the `persistence.SqlVariant();` API usage at configuration time.
+The endpoints know which scripts to execute via the `persistence.SqlVariant();` API at configuration time.
 
 
 The scripts produced in this sample are promoted to `$(SolutionDir)PromotedSqlScripts`.
@@ -58,7 +58,7 @@ The scripts produced in this sample are promoted to `$(SolutionDir)PromotedSqlSc
 snippet: SqlPersistenceSettings
 
 
-### Persistence Config
+### Persistence config
 
 Configure the endpoint to use SQL Persistence.
 
