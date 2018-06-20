@@ -7,6 +7,6 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Mailer" Version="4.0.0-*" />
+    <PackageReference Include="NServiceBus.Mailer" Version="4.*" />
   </ItemGroup>
 </Project>
