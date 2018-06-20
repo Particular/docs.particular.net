@@ -15,16 +15,16 @@ The Azure Service Bus .Net Standard transport is backward compatible with the Az
 
 #### Forwarding topology
 
-The Azure Service Bus .Net Standard transport only supports the forwarding topology, an entity layout where a shared set of topics is used for publishing between the endpoints.
+The Azure Service Bus .Net Standard transport only supports the forwarding topology, an entity layout where a topic is used for publishing between the endpoints.
 
 #### Single namespace
 
-The Azure Service Bus .Net Standard transport only supports a single namespace at the moment.
+The Azure Service Bus .Net Standard transport only supports a single namespace.
 
-#### Topic prefix must be matching
+#### Topic path must match
 
-Both transports must be configured using the same topic prefix for publishing to work properly.
+Both transports must be configured using the same topic path for publishing to work properly. This implies that the [bundle prefix](https://docs.particular.net/transports/azure-service-bus/configuration/full#configuring-the-topology-forwarding-topology) on the ASB transport side must match the topic path (TODO: add link once config is there) configured on the ASBS side.
 
 #### Namespace alias not used
 
-The Azure Service Bus .Net Standard transport currently doesn't support namespace aliases.
+The Azure Service Bus .Net Standard transport doesn't support namespace aliases.
