@@ -37,6 +37,9 @@ See the [NServiceBus Packages Supported Versions](/nservicebus/upgrades/supporte
 
 There are a variety of options for configuring the connection to a RavenDB Server. See [RavenDB Connection Options](connection.md) for more details.
 
+## Supported clustering configurations
+
+NServiceBus does not support multi-master RavenDB cluster configurations. Only fail-over clustering modes are supported. Consistency cannot be guaranteerd in multi-master configurations. NServiceBus cannot do automated conflict resolution for conflicts in multi-master   configurations.
 
 ## Shared session
 
