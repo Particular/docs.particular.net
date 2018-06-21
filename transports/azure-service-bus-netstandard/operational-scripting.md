@@ -1,15 +1,23 @@
 ---
-title: Operational scripting
+title: Operational Scripting
 summary: Explains how to create queues and topics using scripting
 component: ASBS
 tags:
  - Azure
-reviewed: 2018-06-20
+reviewed: 2018-06-21
 ---
 
 ## Operational Scripting
 
-In order to provision or deprovision the resources required by an endpoint, the `asb-transport` command line (cli) tool can be used.
+In order to provision or de-provision the resources required by an endpoint, the `asb-transport` command line (CLI) tool can be used.
+
+The tool can be obtained from NuGet and installed using the following command:
+
+```
+dotnet tool install -g NServiceBus.Transport.AzureServiceBus.CommandLine
+```
+
+Once installed, `asb-transport` command command line tool will be available for use.
 
 `asb-transport <command> [options]`
 
@@ -18,10 +26,6 @@ In order to provision or deprovision the resources required by an endpoint, the 
 - `endpoint create`
 - `queue create`
 - `queue delete`
-
-#### generic options
-
-`-c` | `--connection-string`:  Connection string to the Azure Service Bus namespace (defaults to value from environment variable 'x')
 
 ### asb-transport endpoint create
 
@@ -36,6 +40,8 @@ asb-transport endpoint create [--size]
 
 #### options
  
+`-c` | `--connection-string` : Overrides environment variable 'AzureServiceBus_ConnectionString'
+
 `-s` | `--size` : Queue size in GB (defaults to 5)
 
 `-p` | `--partitioned`: Enable partitioning
@@ -43,6 +49,7 @@ asb-transport endpoint create [--size]
 `-t` | `--topic`: Topic name (defaults to 'bundle-1')
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
+
 
 ### asb-transport queue create
  
@@ -55,9 +62,12 @@ asb-transport queue create [--size]
 
 #### options
 
+`-c` | `--connection-string` : Overrides environment variable 'AzureServiceBus_ConnectionString'
+
 `-s` | `--size`: Queue size in GB (defaults to 5)
 
 `-p` | `--partitioned`: Enable partitioning
+
 
 ### asb-transport queue delete
  
@@ -66,4 +76,8 @@ Delete a queue using
 ```
 asb-transport queue delete
 ```
+
+#### options
+
+`-c` | `--connection-string` : Overrides environment variable 'AzureServiceBus_ConnectionString'
  

@@ -4,7 +4,7 @@ summary: Explains the configuration options
 component: ASBS
 tags:
  - Azure
-reviewed: 2018-06-01
+reviewed: 2018-06-21
 ---
 
-some markdown content required for docsengine to work
+Configuration options will be added soon.
