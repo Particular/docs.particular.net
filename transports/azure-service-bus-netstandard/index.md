@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus .Net Standard Transport
+title: Azure Service Bus .NET Standard Transport
 component: ASBS
 tags:
  - Azure
@@ -14,7 +14,7 @@ The Azure Service Bus .NET Standard transport (ASBS) leverages the .NET Standard
 
 ## Configuring an endpoint
 
-To use Azure Service Bus .Net Standard transport as the underlying transport:
+To use Azure Service Bus .NET Standard transport as the underlying transport:
 
 snippet: azure-service-bus-for-dotnet-standard
 
