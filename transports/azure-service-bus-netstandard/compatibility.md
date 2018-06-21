@@ -15,7 +15,7 @@ The Azure Service Bus .NET Standard transport is backward compatible with the Az
 
 #### Forwarding topology
 
-The Azure Service Bus .NET Standard transport only supports the [Forwarding topology](/transports/azure-service-bus/topologies#versions-7-and-above-forwarding-topology), an entity layout where a topic is used for publishing between the endpoints.
+The Azure Service Bus .NET Standard transport only supports the [Forwarding topology](/transports/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology), an entity layout where a topic is used for publishing between the endpoints.
 
 #### Single namespace
 
