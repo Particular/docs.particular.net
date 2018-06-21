@@ -1,0 +1,1 @@
+An environment variable named `AzureServiceBus_ConnectionString` with the connection string for the Azure Service Bus namespace.
