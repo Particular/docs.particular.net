@@ -103,7 +103,7 @@ Now, how do we determine how to start a saga?
 
 When NServiceBus receives a message, it first looks for an existing saga that matches the message. If it can't find any related data, it needs to know whether it has permission to create a new instance of the saga. After all, the incoming message may be an out-of-date message for a saga that has already completed its work.
 
-For that reason, we need to tell the saga which message types can start new saga instances. We do that by swapping the `IHandleMessages<T>` interface for `IAmStartedByMessages<T>` instead.
+For this reason, we need to tell the saga which message types can start new saga instances. We do that by swapping the `IHandleMessages<T>` interface for `IAmStartedByMessages<T>` instead.
 
 So clearly, because `OrderBilled` is not published until after Billing processes `OrderPlaced`, that means `OrderPlaced` must come first, and therefore, `OrderPlaced` is the only message type that can start our ShippingPolicy, right?
 
@@ -111,9 +111,9 @@ snippet: ShippingPolicyStartedBy1Message
 
 _**Not so fast!**_
 
-In message-driven systems, there's generally no way to guarantee message ordering. This is a lot different than when using HTTP-based method invocation. In traditional synchronous systems we'd expect that messages are received in the same order as they are sent, i.e. `OrderPlaced` should be received by Shipping before `OrderBilled`. 
+In message-driven systems, there's generally no way to guarantee message ordering. This is very different than when using the HTTP-based method invocation. In traditional synchronous systems we'd expect that messages are received in the same order as they are sent, i.e. `OrderPlaced` should be received by Shipping before `OrderBilled`. 
 
-But what if we're processing multiple messages in parallel? By sheer dumb luck, it's possible that `OrderBilled` may arrive first! If that happened and `OrderBilled` arrived first, it would be discarded, assumed to belong to an already-finished saga. Then `OrderPlaced` would arrive, start a new saga instance, but its partner message would never arrive.
+What happens if we're processing multiple messages in parallel? By sheer dumb luck, it's possible that `OrderBilled` may arrive first! If it happens that `OrderBilled` arrives first, it would be discarded, assumed to belong to an already-finished saga. Then, `OrderPlaced` would arrive and start a new saga instance, but its partner message would never arrive.
 
 To ensure we are not making assumptions about which message comes first, we need to tell NServicebus that **both** messages can start a new saga instance.
 
@@ -127,7 +127,7 @@ NOTE: See [Sagas Not Found](/nservicebus/sagas/saga-not-found.md) for more detai
 
 #### Matching messages to sagas
 
-But, wait a minute! How can NServiceBus know that a saga instance already exists for a specific incoming message?
+Wait a minute! How can NServiceBus know that a saga instance already exists for a specific incoming message?
 
 We need to tell our saga how to recognize which messages are related to the same saga instance. When you made the `ShippingPolicy` saga inherit from the `Saga<T>` base class you were required to implement an abstract method provided by the base class: `ConfigureHowToFindSaga`. Now it's time to fill that in.
 
@@ -162,7 +162,7 @@ Our mappings specify that whenever a message of type `OrderPlaced` is received, 
 
 ##### Auto-population
 
-One thing we **do not** have to worry about is filling in `OrderId` in the saga data. We've already told NServiceBus that `OrderPlaced` and `OrderBilled` can start the saga. We've told it that it should look up data based on the `OrderId` of the incoming message. Because it knows these things, when it creates a new `ShippingPolicyData` it knows what the value of the `OrderId` property should be, and fills it in for us.
+One thing we **do not** have to worry about is filling in `OrderId` in the saga data. We've already told NServiceBus that `OrderPlaced` and `OrderBilled` can start the saga. We've instructed it to look up data based on the `OrderId` of the incoming message. Because it knows these things, when it creates a new `ShippingPolicyData` it knows what the value of the `OrderId` property should be, and fills it in for us.
 
 So code like this is **not required**:
 
@@ -172,9 +172,9 @@ Less boilerplate is a good thing. Let's concern ourselves with more important th
 
 #### Orders processing and saga completion
 
-Right now the `ShippingPolicy` saga does nothing else other than handling messages and keeping track of which messages have been handled. Once both messages are received we now need to deliver the order.
+Right now the `ShippingPolicy` saga does nothing else other than handling messages and keeping track of which messages have been handled. Once both messages are received, we need to deliver the order.
 
-So first, in the **Messages** project, create a `ShipOrder` command:
+First, in the **Messages** project, create a `ShipOrder` command:
 
 snippet: ShippingPolicyShipOrder
 
@@ -184,21 +184,21 @@ snippet: ShippingPolicyProcessOrder
 
 NOTE: Here we're using `SendLocal()` to send the `ShipOrder` command to the same endpoint that is processing the saga message. This means we don't have to specify any routing rules for the `ShipOrder` command. We could also use `Send()`, but then we would need to define routing rules just as we did in the [introductory tutorial on multiple endpoints](/tutorials/intro-to-nservicebus/3-multiple-endpoints/#exercise-sending-to-another-endpoint), where we defined a route in the **ClientUI** endpoint to send `PlaceOrder` commands to the **Sales** endpoint.
 
-In the `ProcessOrder` method we check if both messages have been received. In such case the saga will send a message to deliver the order. For this specific `OrderId` the shipment process is now completed. We don't need that saga instance anymore, so it can be safely deleted by invoking the `MarkAsComplete` method.
+In the `ProcessOrder` method we check if both messages have been received. In such a case the saga will send a message to deliver the order. For this specific `OrderId` the shipment process is now complete. We don't need that saga instance anymore, so it can be safely deleted by invoking the `MarkAsComplete` method.
 
 Now, let's modify each of our `Handle` methods so that they call `ProcessOrder` instead of returning `Task.CompletedTask`:
 
 snippet: ShippingPolicyFinalHandleWithProcessOrder
 
-We also want to be able to handle the `ShipOrder` command we're sending from the saga. In the **Shipping** endpoint, create a new handler class named `ShipOrderHandler` to do that:
+We also want to be able to handle the `ShipOrder` command we're sending from the saga. In the **Shipping** endpoint create a new handler class named `ShipOrderHandler`. Here's how:
 
 snippet: EmptyShipOrderHandler
 
 #### Saga persistence
 
-Before being able to fully run the solution and test if the `ShippingPolicy` saga is working as expected you need to configure one last thing: *Saga persistence*.
+Before being able to fully run the solutio,n and test if the `ShippingPolicy` saga is working as expected, you need to configure one last thing: *Saga persistence*.
 
-Saga state needs to be persisted, so we need to configure the **Shipping** endpoint with a chosen persistence. In the `Program` class where there is the endpoint configuration code add the following line after the transport configuration:
+Saga state needs to be persisted, so we need to configure the **Shipping** endpoint with a chosen persistence. In the `Program` class where there is the endpoint configuration code, add the following line after the transport configuration:
 
 snippet: ShippingEndpointConfigLearningPersistence
 
@@ -223,7 +223,7 @@ INFO  Shipping.ShippingPolicy OrderBilled message received.
 INFO  Shipping.ShipOrderHandler Order [0b0dd421-4661-46e7-abc5-c92c43b8fd18] - Succesfully shipped.
 ```
 
-Remember that it's possible that `OrderBilled` may be handled before `OrderPlaced`, which is why it was so critical to indicate the saga can be started by both messages with `IAmStartedByMessages<T>`, so that the saga will work correctly no matter the arrival order of the events.
+Remember that it's possible that `OrderBilled` may be handled before `OrderPlaced`, which is why it was so critical to indicate that the saga can be started by both messages with `IAmStartedByMessages<T>`. This ensures that the saga will work correctly no matter the arrival order of the events.
 
 ### Summary
 
