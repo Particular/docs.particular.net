@@ -57,6 +57,9 @@ The `Headers` column contains a JSON representation of message headers.
 The `Body` column contains the serialized message body.
 
 
+partial: messageBodyString-column
+
+
 ### RowVersion
 
 The `RowVersion` column is used to define the FIFO order of the queue. It is auto-incremented by SQL Server (`identity(1,1)`). The receive message T-SQL query returns a message with the lowest value of `RowVersion` that is not locked by any other concurrent receive operation.

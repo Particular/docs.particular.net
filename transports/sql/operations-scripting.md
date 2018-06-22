@@ -23,6 +23,8 @@ NOTE: Some columns have been removed for clarity as they are only required for w
 
 The `BodyString` column is a computed value that allows inspecting of the message body when a text-based serializer is used (e.g. Json or XML).
 
+partial: sqlstring-column
+
 
 ## Native Send
 
@@ -97,6 +99,8 @@ snippet: create-queues-endpoint-usage
 
 snippet: create-queues-endpoint-usage-powershell
 
+
+partial: add-sqlstring-column
 
 ### To create shared queues
 

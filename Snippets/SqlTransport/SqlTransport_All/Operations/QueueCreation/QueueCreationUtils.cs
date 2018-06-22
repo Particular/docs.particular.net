@@ -67,4 +67,25 @@ namespace SqlServer_All.Operations.QueueCreation
 
     }
     #endregion
+
+    public static class MessageBodyString
+    {
+        #region add-messageBodyString-column
+
+        public static void AddMessageBodyStringColumn(SqlConnection connection, string schema, string queueName)
+        {
+            var sql = $@"if not exists (select * from sys.objects where object_id = object_id(N'[{schema}].[{queueName}]') and type in (N'U')) return
+                         if NOT exists (select * from sys.columns where object_id = object_id(N'[{schema}].[{queueName}]') and name = 'BodyString')
+
+                         alter table [{schema}].[{queueName}]
+                         add BodyString as cast(Body as nvarchar(max));";
+
+            using (var command = new SqlCommand(sql, connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+
+        #endregion
+    }
 }
