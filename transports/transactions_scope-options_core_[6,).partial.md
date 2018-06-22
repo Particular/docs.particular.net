@@ -12,6 +12,9 @@ NServiceBus will by default use the `ReadCommitted` [isolation level](https://ms
 snippet: CustomTransactionIsolationLevel
 
 
+The only recommended isolation levels used with TransactionScope guarantee are `ReadCommited` and `RepeatableRead`. Using lower isolation levels may lead to subtle errors in certain configurations that are hard to troubleshoot.
+
+
 ### Transaction timeout
 
 NServiceBus will use the [default transaction timeout](https://msdn.microsoft.com/en-us/library/system.transactions.transactionmanager.defaulttimeout) of the machine the endpoint is running on.

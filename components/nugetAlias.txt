@@ -49,6 +49,7 @@ MessagePack: NServiceBus.MessagePack
 MsgPack: NServiceBus.MsgPack
 Metrics: NServiceBus.Metrics
 MetricsServiceControl: NServiceBus.Metrics.ServiceControl
+MetricsServiceControlMsmq: NServiceBus.Metrics.ServiceControl.Msmq
 MessageRouting: NServiceBus.MessageRouting
 MongoSbmako: NServiceBus.MongoDB
 MongoTekmaven: NServiceBus.Persistence.MongoDb

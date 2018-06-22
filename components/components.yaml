@@ -443,7 +443,16 @@
   NugetOrder:
     - NServiceBus.Metrics.ServiceControl
     - NServiceBus.Metrics
-    
+
+- Key: MetricsServiceControlMsmq
+  Name: Metrics.ServiceControl.Msmq
+  DocoUrl: monitoring/metrics
+  GitHubOwner: Particular/metrics-maintainers
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.ServiceControl.Msmq
+  NugetOrder:
+    - NServiceBus.Metrics.ServiceControl.Msmq
+
 - Key: MsLogging
   Name: MicrosoftLogging
   DocoUrl: nservicebus/logging/microsoft
