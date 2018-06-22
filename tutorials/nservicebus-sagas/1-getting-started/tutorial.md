@@ -5,28 +5,31 @@ summary: to-be-defined.
 hidden: true
 ---
 
-In the [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) we explored how different services can communicate using messages, including how to publish events that can be processed by multiple subscribing services. This is a great start, but there are some cases where simple message handling is not sufficient.
+When you build a system with asynchronous messages, you divide up each process into discrete message handlers that are executed when an incoming message arrives. Your system naturally becomes more reliable because each of these message handlers can be retried until they're successful, and it also becomes easier to understand because each of those message handlers handles just that one specific task, so there's less code to keep in your head at any one time.
 
-The [lesson on publishing events](/tutorials/intro-to-nservicebus/4-publishing-events/) hinted at this type of scenario: the **Shipping** service can't ship an order until it has successfully received `OrderPlaced` from the **Sales** service *and* `OrderBilled` from the **Billing** service. Normal message handlers don't store any state, so we need a way to keep track of which events have already been received.
+But what happens when some process is dependent upon *more than one message?*
 
-In NServiceBus we use a [saga](/nservicebus/sagas/), which is essentially a message-driven state machine, or a collection of message handlers that persist shared state. Sagas represent a business process where multiple related messages can trigger state changes.
+Let's say a **Shipping** service can't ship an order (that is, send a `ShipOrder` command) until it has successfully received `OrderPlaced` from the **Sales** service *and* `OrderBilled` from the **Billing** service. Normal message handlers don't store any state, so we need a way to keep track of which events have already been received.
+
+In this tutorial, we'll solve this problem by building a simple [**saga**](/nservicebus/sagas/), which is essentially a message-driven state machine, or a collection of message handlers that persist shared state. Sagas represent a business process where multiple related messages can trigger state changes. Other lessons in this series will focus on other problems you can solve with sagas, like integrating with external services, or replacing nightly batch jobs with a system that processes changes in real time.
 
 Let's get started building a saga right now.
 
+
 ### Exercise
 
-In this exercise we'll continue with the project from the [previous lesson](/tutorials/intro-to-nservicebus/5-retrying-errors/) and extend it with your first NServiceBus Saga to handle the shipping process.
+In this exercise we'll build a saga to handle the situation outlined above, where `OrderPlaced` and `OrderBilled` must both arrive before we can ship an order. We'll continue with the project from the [previous lesson](/tutorials/intro-to-nservicebus/5-retrying-errors/) and extend it with an NServiceBus saga to handle the shipping process.
 
 {{NOTE:
 **What if I didn't do the previous tutorial?**
 
-No problem. If you're already familiar with sending messages and publish/subscribe with NServiceBus, you can start learning sagas with this tutorial:
+No problem! You can get started learning sagas with the completed solution from the previous lesson:
 
 downloadbutton(Download Previous Solution, /tutorials/intro-to-nservicebus/5-retrying-errors)
 
 The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes defining messages exchanged in our system.
 
-Check out the [Introduction to NServiceBus Overview](/tutorials/intro-to-nservicebus/) for a diagram of how the existing code works.
+Check out the [Introduction to NServiceBus Overview](/tutorials/intro-to-nservicebus/) for a diagram of how the existing code works. Or if you like, you can complete those lessons first to learn the basics of sending messages and publishing events with NServiceBus and return to this lesson afterward.
 
 Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
 }}
