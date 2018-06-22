@@ -10,8 +10,8 @@
     public class ShippingPolicy : Saga<ShippingPolicyData>,
         IHandleMessages<OrderPlaced>,
         IHandleMessages<OrderBilled>
+    #endregion
     {
-        #endregion
         static ILog log = LogManager.GetLogger<ShippingPolicy>();
 
         #region EmptyConfigureHowToFindSaga
