@@ -196,7 +196,7 @@ snippet: EmptyShipOrderHandler
 
 #### Saga persistence
 
-Before being able to fully run the solutio,n and test if the `ShippingPolicy` saga is working as expected, you need to configure one last thing: *Saga persistence*.
+Before being able to fully run the solutio, and test if the `ShippingPolicy` saga is working as expected, you need to configure one last thing: *Saga persistence*.
 
 Saga state needs to be persisted, so we need to configure the **Shipping** endpoint with a chosen persistence. In the `Program` class where there is the endpoint configuration code, add the following line after the transport configuration:
 
