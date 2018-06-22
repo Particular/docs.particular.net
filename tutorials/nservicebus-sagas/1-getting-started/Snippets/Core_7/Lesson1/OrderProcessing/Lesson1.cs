@@ -6,7 +6,7 @@
     using NServiceBus.Logging;
     using System.Threading.Tasks;
     #region ShippingPolicyShipOrder
-    class ShipOrder : ICommand
+    public class ShipOrder : ICommand
     {
         public string OrderId { get; set; }
     }
