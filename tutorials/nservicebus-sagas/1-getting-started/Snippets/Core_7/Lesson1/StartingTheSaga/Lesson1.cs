@@ -12,8 +12,8 @@
         public class ShippingPolicy : Saga<ShippingPolicyData>,
             IAmStartedByMessages<OrderPlaced>, // This can start the saga
             IHandleMessages<OrderBilled>       // But surely, not this one!?
+        #endregion
         {
-            #endregion
             static ILog log = LogManager.GetLogger<ShippingPolicy>();
 
 
