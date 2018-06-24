@@ -11,7 +11,7 @@ redirects:
 - nservicebus/sqs/index
 ---
 
-WARNING: Due to a [bug in the AWS SDK](https://github.com/aws/aws-sdk-net/issues/796), messages might indicate that they are in flight for a longer period of time than expect. Messages will not be lost, instead possibly being delivered up to 30 seconds later than expected.
+WARNING: Due to a [bug in the AWS SDK](https://github.com/aws/aws-sdk-net/issues/796), messages might indicate that they are in-flight for a longer time than expected. Messages will not be lost but may end up being delivered up to 30 seconds later.
 
 [Simple Queue Service (SQS)](https://aws.amazon.com/sqs/) is a message queue service provided by [Amazon Web Services](https://aws.amazon.com/).
 
