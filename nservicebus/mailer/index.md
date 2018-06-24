@@ -21,11 +21,6 @@ snippet: MailerEnabling
 snippet: MailerHandlerUsage
 
 
-### In a Saga
-
-snippet: MailerSagaUsage
-
-
 ## SmtpClient construction
 
 By default the following [`SmtpClient`](https://msdn.microsoft.com/en-us/library/system.net.mail.smtpclient.aspx) construction is used the code
