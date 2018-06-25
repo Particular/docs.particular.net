@@ -10,13 +10,6 @@ related:
 
 This sample shows how to send messages to an NServiceBus endpoint from an ASP.NET Core WebAPI application. 
 
-WARNING: This sample runs on the full .NET Framework 4.6.1 but utilizes both .NET Standard and .NET Framework dependencies, i.e. ASP.NET Core and NServiceBus. So while .NET Standard dependencies can be consumed by the .NET Framework runtime, the .NET Core runtime is not currently supported.
-
-
-## Using the full .NET Framework runtime
-
-The default *ASP.NET Core Web Application (.NET Framework)* Visual Studio 2017 project template is used.
-
 
 ## Running the solution
 
