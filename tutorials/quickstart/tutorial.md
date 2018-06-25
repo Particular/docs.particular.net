@@ -94,7 +94,7 @@ Let's consider more carefully what happened. First, we had two processes communi
 
 Have you ever had business processes get interrupted by transient errors like database deadlocks? Transient errors often leave a system in an inconsistent state. For example, the order could be persisted in the database but not yet submitted to the payment processor. In such a situation you might have to investigate the database like a forensic analyst, trying to figure out where the process went wrong, and how to manually jump-start it so that the process can complete.
 
-With NServiceBus you don't need manual interventions. If an exception is thrown, then the message handler will automatically retry processing it. That addresses transient failures like database deadlocks, connection issues across machines, conflicts when accessing file to write, etc.
+With NServiceBus you don't need manual interventions. If an exception is thrown, then the message handler will automatically retry processing it. That addresses transient failures like database deadlocks, connection issues across machines, file write access conflicts, etc.
 
 Let's simulate a transient failure in the **Sales** endpoint and see retries in action:
 
@@ -111,13 +111,13 @@ snippet: ThrowTransientException
 As you can see in the **Sales** window, 80% of the messages will go through as normal, but when an exception occurs, the output will be different. The first attempt of `PlaceOrderHandler` will throw and log an exception, but then in the very next log entry, processing will be retried and likely succeed.
 
 ```
-INFO  NServiceBus.RecoverabilityExecutor Immediate Retry is going to retry message '43400b29-c235-471f-ab4f-a7760145ea88' because of an exception:
+INFO  NServiceBus.RecoverabilityExecutor Immediate Retry is going to retry message '5154b012-4180-4b56-9952-a90a01325bfc' because of an exception:
 System.Exception: Oops
     at <long stack trace>
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e1d86cb9
 ```
 
-NOTE: If you forgot to detach the debugger, you'll need to click the **Continue** button before the message will be printed in the **Sales** window.
+NOTE: If you forgot to detach the debugger, you'll need to click the **Continue** button in the Exception Assitant dialog before the message will be printed in the **Sales** window.
 
 5. Comment the code inside the **ThrowTransientException** region, so no exceptions are thrown in the future.
 
@@ -228,4 +228,4 @@ We saw how automatic retries provide protection from transient failures like dat
 
 We also implemented an additional event subscriber, showing how to decouple independent bits of business logic from each other. The ability to publish one event and then implement resulting steps in separate message handlers makes the system much easier to maintain and evolve.
 
-SUCCESS: Now that you've seen what NServiceBus can do, take the next step and learn how to build a system like this one from the ground up. In the next tutorial, find out how to build the same solution starting from File > New Project.
+SUCCESS: Now that you've seen what NServiceBus can do, take the next step and learn how to build a system like this one from the ground up. In the next tutorial, find out how to build the same solution starting from **File** > **New Project**.
