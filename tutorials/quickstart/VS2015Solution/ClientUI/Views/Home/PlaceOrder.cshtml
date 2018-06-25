@@ -1,0 +1,15 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Order placed";
+}
+
+<div class="jumbotron">
+    <h1>OrderId <code>@Model.OrderId</code> sent</h1>
+    <p class="lead">Your order has been placed successfully. You have sent <b>@Model.MessagesSent total messages</b>.</p>
+    <p>Go look in the <b>Sales</b> and <b>Billing</b> console windows to see the <code>PlaceOrder</code> command and <code>OrderPlaced</code> event getting processed.</p>
+    <form action="/home/placeorder" method="POST">
+        <p>
+            <input type="submit" class="btn btn-primary btn-lg" onclick="sentMessage()" value="Place another order &raquo;" />
+        </p>
+    </form>
+</div>
