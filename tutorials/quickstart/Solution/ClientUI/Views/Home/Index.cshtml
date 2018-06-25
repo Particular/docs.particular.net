@@ -7,7 +7,13 @@
     <p class="lead">Click the button to place an order.</p>
     <form action="/home/placeorder" method="POST">
         <p>
-            <input type="submit" class="btn btn-primary btn-lg" onclick="sentMessage()" value="Place order &raquo;"/>
+            <input type="submit" class="btn btn-primary btn-lg" onclick="sentMessage()" value="Place order &raquo;" />
         </p>
     </form>
 </div>
+<p>When you click the button:</p>
+<ol>
+    <li>The <b>ClientUI</b> website will send a <code>PlaceOrder</code> command to the <b>Sales</b> service.</li>
+    <li>The <b>Sales</b> service will publish an <code>OrderPlaced</code> event.</li>
+    <li>The <b>Billing</b> service, which subscribes to <code>OrderPlaced</code>, will receive and process <code>OrderPlaced</code>.</li>
+</ol>
