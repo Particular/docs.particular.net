@@ -19,11 +19,7 @@ Messages matching the following criteria will be auto subscribed at startup.
 
 Note: If the selected transport [does not support publish-subscribe natively](/transports/#types-of-transports-unicast-only-transports), the publisher for that message needs to be specified via the [routing](/nservicebus/messaging/routing.md) API.
 
-When using a transport that doesn't support publish-subscribe natvely, if a message handler is defined for an event but no publishers information can be found the endpoint will log an error, as the following one, at startup:
-
-```
-AutoSubscribe was unable to subscribe to event '<event-type-full-name>': No publisher address could be found for message type '<event-type-full-name>'.
-```
+partial: missing-publisher-info-error
 
 partial: exclude-event-types
 
