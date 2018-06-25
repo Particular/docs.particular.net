@@ -21,7 +21,10 @@ To get started, download the solution appropriate for your Visual Studio version
   <a href="https://liveparticularwebstr.blob.core.windows.net/media/tutorials-quickstart.zip" class="btn btn-primary btn-lg" onclick="return fireGAEvent('TutorialDownloaded', 'quickstart-tutorials-quickstart.zip')"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for Visual Studio 2017</a>
 </div>
 <style type="text/css">
-.tutorial-actions .btn-default { display: none; }
+  /* Hide native tutorial download button for VS2015/2017 test */
+  .tutorial-actions .btn-default { display: none; }
+  /* Remove borders on images as they all have appropriate borders */
+  img.center { border-style: none !important; }
 </style>
 
 
