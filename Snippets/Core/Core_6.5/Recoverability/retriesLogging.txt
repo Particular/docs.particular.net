@@ -1,0 +1,51 @@
+startcode RetryLogging
+
+Handler - Attempt 1
+Info  NServiceBus.RecoverabilityExecutor.
+  Text: Immediate Retry is going to retry message 'messageId' because of an exception:
+
+Handler - Attempt 2
+Info  NServiceBus.RecoverabilityExecutor.
+  Text: Immediate Retry is going to retry message 'messageId' because of an exception:
+
+Handler - Attempt 3
+Info  NServiceBus.RecoverabilityExecutor.
+  Text: Immediate Retry is going to retry message 'messageId' because of an exception:
+
+Handler - Attempt 4
+Warn  NServiceBus.RecoverabilityExecutor.
+  Text: Delayed Retry will reschedule message 'messageId' after a delay of 00:00:10 because of an exception:
+
+Handler - Attempt 5
+Info  NServiceBus.RecoverabilityExecutor.
+  Text: Immediate Retry is going to retry message 'messageId' because of an exception:
+
+Handler - Attempt 6
+Info  NServiceBus.RecoverabilityExecutor.
+  Text: Immediate Retry is going to retry message 'messageId' because of an exception:
+
+Handler - Attempt 7
+Info  NServiceBus.RecoverabilityExecutor.
+  Text: Immediate Retry is going to retry message 'messageId' because of an exception:
+
+Handler - attempt 8
+Warn  NServiceBus.RecoverabilityExecutor.
+  Text: Delayed Retry will reschedule message 'messageId' after a delay of 00:00:20 because of an exception:
+
+Handler - Attempt 9
+Info  NServiceBus.RecoverabilityExecutor.
+  Text: Immediate Retry is going to retry message 'messageId' because of an exception:
+
+Handler - Attempt 10
+Info  NServiceBus.RecoverabilityExecutor.
+  Text: Immediate Retry is going to retry message 'messageId' because of an exception:
+
+Handler - Attempt 11
+Info  NServiceBus.RecoverabilityExecutor.
+  Text: Immediate Retry is going to retry message 'messageId' because of an exception:
+
+Handler - Attempt 12
+Error NServiceBus.RecoverabilityExecutor.
+  Text: Moving message 'messageId' to the error queue 'error' because processing failed due to an exception:
+
+endcode

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!--startcode 6to7LoggingAppSettings-->
+  <appSettings>
+    <add key="LoggingThreshold"
+         value="Debug" />
+  </appSettings>
+  <!--endcode -->
+</configuration>
