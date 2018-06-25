@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Dynamic;
+using System.Threading;
+using System.Web.Mvc;
 
 namespace ClientUI.Controllers
 {
@@ -10,6 +12,7 @@ namespace ClientUI.Controllers
     public class HomeController : Controller
     {
         IEndpointInstance _endpointInstance;
+        static int messagesSent;
 
         public HomeController(IEndpointInstance endpointInstance)
         {
@@ -25,16 +28,19 @@ namespace ClientUI.Controllers
         [HttpPost]
         public async Task<ActionResult> PlaceOrder()
         {
-            var command = new PlaceOrder
-            {
-                OrderId = Guid.NewGuid().ToString()
-            };
+            var orderId = Guid.NewGuid().ToString().Substring(0, 8);
+
+            var command = new PlaceOrder { OrderId = orderId };
 
             // Send the command
             await _endpointInstance.Send(command)
                 .ConfigureAwait(false);
 
-            return View();
+            dynamic model = new ExpandoObject();
+            model.OrderId = orderId;
+            model.MessagesSent = Interlocked.Increment(ref messagesSent);
+
+            return View(model);
         }
     }
 }
