@@ -48,3 +48,9 @@ When using this setting, RavenDB Persistence will log a warning at each endpoint
 > RavenDB Persistence is using legacy versioned subscription storage. This capability will be removed in NServiceBus.RavenDB 6.0.0. Subscription documents need to be converted to the new unversioned format, after which `persistence.DisableSubscriptionVersioning()` should be used.
 
 For more details, see [Subscription versioning](/persistence/ravendb/subscription-versioning.md?version=raven_5).
+
+## Multi-tenant support
+
+Starting with version 5 it's possible to select the database used to store NServiceBus related data, such as Saga data and Outbox records, based on information stored in the incoming messages headers:
+
+snippet: multi-tenant-support
