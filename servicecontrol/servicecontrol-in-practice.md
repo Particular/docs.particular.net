@@ -30,7 +30,7 @@ NOTE: If message auditing is required without the use of ServiceInsight, configu
 
 Turn off [audit forwarding](/servicecontrol/errorlog-auditlog-behavior.md) if it is not needed. ServiceControl sends a copy of each audited message to a configured audit forwarding queue. If these messages are not being used, turn this feature off.
 
-The [Audit Filter](https://docs.particular.net/nservicebus/audit-filter/) community project can be used to filter which messages are sent to the audit queue. This can be used to reduce the number of messages being audited, which in turn can help increase throughput of the messages that are still being audited/
+The [Audit Filter](/nservicebus/audit-filter/) community project can be used to filter which messages are sent to the audit queue. This can be used to reduce the number of messages being audited, which in turn can help increase throughput of the messages that are still being audited/
 
 ## Plugin considerations
 
