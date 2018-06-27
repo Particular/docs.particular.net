@@ -30,4 +30,8 @@ snippet: AzureDataBusSetup
 
 partial: settings
 
+### Disabling Blob Cleanup
+
+Setting the `CleanupInterval` to `0` will disable blob cleanup.
+
 snippet: AzureDataBusDisableCleanup
