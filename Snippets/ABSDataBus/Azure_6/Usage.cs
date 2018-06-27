@@ -41,4 +41,14 @@ class Usage
         #endregion
 
     }
+
+    void Disable(BusConfiguration busConfiguration)
+    {
+        #region AzureDataBusDisableCleanup
+
+        var dataBus = busConfiguration.UseDataBus<AzureDataBus>();
+        dataBus.CleanupInterval(0);
+
+        #endregion
+    }
 }

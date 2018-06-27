@@ -39,6 +39,15 @@ class Usage
         dataBus.CleanupInterval(cleanupIntervalInMilSecs);
 
         #endregion
+    }
 
+    void Disable(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzureDataBusDisableCleanup
+
+        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>();
+        dataBus.CleanupInterval(0);
+
+        #endregion
     }
 }

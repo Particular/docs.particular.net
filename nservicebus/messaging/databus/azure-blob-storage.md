@@ -29,3 +29,5 @@ The following extension methods are available for changing the behavior of `Azur
 snippet: AzureDataBusSetup
 
 partial: settings
+
+snippet: AzureDataBusDisableCleanup
