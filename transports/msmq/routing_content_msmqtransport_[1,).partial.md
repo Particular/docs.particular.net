@@ -53,13 +53,3 @@ snippet: RoutingExtensibility-Instances
 The `sourceKey` parameter has the same meaning and effect as in the routes collection. Refer to [Features documentation](/nservicebus/pipeline/features.md) for more details about building a custom Feature.
 
 The instances collection is thread-safe. It allows registering multiple instance of a given endpoint. In case there is more than one, message distribution is involved.
-
-
-
-## Using message-endpoint mappings
-
-For compatibility reasons it can also be configured in the same way as in Version 5 and older by `UnicastBusConfig/MessageEndpointMappings` configuration section:
-
-snippet: endpoint-mapping-msmq
-
-NOTE: The downside of this approach is that it mixes logical and physical concerns. It also does not allow to configure more than one endpoint instance as a destination which prevents scaling out via [sender-side distribution](/transports/msmq/sender-side-distribution.md).
