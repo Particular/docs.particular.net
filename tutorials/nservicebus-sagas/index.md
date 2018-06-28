@@ -14,7 +14,7 @@ For these types of scenarios, you need a *stateful* message handler. Other ways 
 
 The tutorial is divided into four lessons, each of which can be accomplished in an hour or less — perfect for your lunch break.
 
-* [**Lesson 1: Getting Started**](1-getting-started/) - learn how to introduce sagas to complete the order shipping process.
+* [**Lesson 1: Getting Started**](1-getting-started/) (20-25 minutes) - learn how to introduce sagas to complete the order shipping process.
 * _Coming Soon - Lesson 2: Timeouts_ - learn how to delay processing of an order to implement the *buyer's remorse* pattern.
 * _Coming Soon - Lesson 3: Third-party integration_ - learn how to integrate with external services.
 * _Coming Soon - Lesson 4: Putting it all together_ - learn to master the effects of time by implementing a saga that never ends.
