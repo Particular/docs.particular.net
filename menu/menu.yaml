@@ -19,6 +19,8 @@
         Title: Publishing events
       - Url: tutorials/intro-to-nservicebus/5-retrying-errors
         Title: Retrying errors
+    - Url: tutorials/nservicebus-sagas/1-getting-started
+      Title: "NServiceBus sagas: Getting started"
     - Url: tutorials
       Title: More tutorials
     - Url: get-started/high-level-content
