@@ -1,8 +1,7 @@
 ---
 title: "NServiceBus sagas: Getting started"
-reviewed: 2018-05-29
-summary: to-be-defined.
-hidden: true
+reviewed: 2018-06-28
+summary: A step-by-step guide to building an NServiceBus saga to handle a common business case of taking action once multiple messages have been successfully received.
 ---
 
 When you build a system with asynchronous messages, you divide up each process into discrete message handlers that are executed when an incoming message arrives. Your system naturally becomes more reliable because each of these message handlers can be retried until they're successful, and it also becomes easier to understand because each of those message handlers handles just that one specific task, so there's less code to keep in your head at any one time.
