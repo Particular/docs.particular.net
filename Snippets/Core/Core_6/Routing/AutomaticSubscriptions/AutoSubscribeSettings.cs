@@ -23,5 +23,7 @@
 
             #endregion
         }
+
+        class EventType { }
     }
 }
