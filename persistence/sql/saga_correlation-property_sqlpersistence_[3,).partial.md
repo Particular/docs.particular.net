@@ -4,16 +4,15 @@ For NServiceBus sagas, in most cases the correlation property can be inferred at
 * Branching or looping logic inside the `ConfigureHowToFindSaga` method
 * Non-matching correlation properties for multiple message types
 
-In these cases, either redesign the saga to avoid these patterns, specify the correlation property with a [`[SqlSaga]` attribute](#correlation-ids-specifying-correlation-id-using-attribute, or use the [`SqlSaga` base class](sqlsaga.md).
+In these cases, either redesign the saga to avoid these patterns, specify the correlation property with a [`[SqlSaga]` attribute](#correlation-ids-specifying-correlation-id-using-attribute), or use the [`SqlSaga` base class](sqlsaga.md).
+
 
 ### Specifying correlation id using attribute
 
 In rare cases where the correlation property cannot be inferred from the `ConfigureHowToFindSaga`, it can be specified with the `[SqlSaga]` attribute:
 
-// TODO: Snippetify
-```
-[SqlSaga(correlationProperty: "OrderId")]
-```
+snippet: correlation-with-attribute
+
 
 ### Transitional Correlation Id
 
@@ -23,9 +22,6 @@ If an incoming message cannot be mapped to a saga data instance using the correl
 
 To define a transitional correlation property on a saga, use the `[SqlSaga]` attribute:
 
-// TODO: Snippetify
-```
-[SqlSaga(transitionalCorrelationProperty: "SomeOtherId")]
-```
+snippet: transitional-correlation-with-attribute
 
 A transitional correlation property can also be expressed as a class property when using the [SqlSaga base class](sqlsaga.md#correlation-ids-correlation-and-transitional-ids).

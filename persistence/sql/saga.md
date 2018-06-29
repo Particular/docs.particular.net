@@ -26,7 +26,7 @@ The name used for a saga table consist of two parts.
  * The prefix of the table name is the [Table Prefix](/persistence/sql/install.md#table-prefix) defined at the endpoint level.
  * The suffix of the table name is **either** the saga [Type.Name](https://msdn.microsoft.com/en-us/library/system.type.name.aspx) **or**, if defined, the Table Suffix defined at the saga level.
 
-snippet: tableSuffix
+partial: tablesuffix-snippets
 
 NOTE: Using [Delimited Identifiers](https://technet.microsoft.com/en-us/library/ms176027.aspx) in the TableSuffix is currently **not** supported.
 
