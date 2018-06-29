@@ -7,5 +7,7 @@ select
     "Metadata",
     "Data"
 from EndpointName_SagaName
+where 1 = 1
+for update
 
 endcode

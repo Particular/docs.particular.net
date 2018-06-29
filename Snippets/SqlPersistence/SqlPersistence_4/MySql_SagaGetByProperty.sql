@@ -8,5 +8,6 @@ select
     Data
 from EndpointName_SagaName
 where Correlation_PropertyName = @propertyValue
+for update
 
 endcode

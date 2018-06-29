@@ -8,5 +8,6 @@ select
     "Data"
 from EndpointName_SagaName
 where "Id" = @Id
+for update
 
 endcode

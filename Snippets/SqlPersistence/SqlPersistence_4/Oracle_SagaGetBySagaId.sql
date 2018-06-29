@@ -6,7 +6,8 @@ select
     Concurrency,
     Metadata,
     Data
-from "ENDPOINTNAME_SAGANAME"
+from EndpointName_SagaName
 where Id = :Id
+for update
 
 endcode

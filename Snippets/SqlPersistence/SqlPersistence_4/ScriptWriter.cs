@@ -87,7 +87,8 @@ public class ScriptWriter
             // since we don't have doco on oracle saga finders
             if (!(dialect is SqlDialect.Oracle))
             {
-                Write(directory, dialect, "SagaSelect", dialect.BuildSelectFromCommand("EndpointName_SagaName"));
+                var createSelectWithWhereClause = dialect.BuildSelectFromCommand("EndpointName_SagaName");
+                Write(directory, dialect, "SagaSelect", createSelectWithWhereClause("1 = 1"));
             }
         }
     }

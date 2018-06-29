@@ -7,5 +7,7 @@ select
     Metadata,
     Data
 from EndpointName_SagaName
+with (updlock)
+where 1 = 1
 
 endcode
