@@ -6,7 +6,7 @@ related:
 reviewed: 2018-06-08
 ---
 
-`SqlSaga<T>` is an alternate, experimental saga base class for use with SQL Persistence that offers a less verbose mapping API than `NServiceBus.Saga<T>`. It is possible (but not guaranteed) that in the future, the NServiceBus saga class will evolve to look more like `SqlSaga`. Which API to use is largely a matter of personal preference.
+`SqlSaga<T>` is an alternate saga base class for use with SQL Persistence that offers a less verbose mapping API than `NServiceBus.Saga<T>`. It's generally advisable to use `NServiceBus.Saga<T>` by default for most new projects, switching to `SqlSaga<T>` when advantageous to cut down on the need for repetitive `.ToSaga(...)` expressions in sagas that handle several message types.
 
 partial: required-in-some-versions
 

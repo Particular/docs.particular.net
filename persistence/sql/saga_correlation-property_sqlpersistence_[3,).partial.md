@@ -9,14 +9,14 @@ In these cases, either redesign the saga to avoid these patterns, specify the co
 
 ### Specifying correlation id using attribute
 
-In rare cases where the correlation property cannot be inferred from the `ConfigureHowToFindSaga`, it can be specified with the `[SqlSaga]` attribute:
+In rare cases where the correlation property cannot be inferred from the `ConfigureHowToFindSaga` method, it can be specified with the `[SqlSaga]` attribute:
 
 snippet: correlation-with-attribute
 
 
 ### Transitional Correlation Id
 
-In cases where business reuqirements dictate that the correlation property for a saga needs to change, a transitional correlation property can be used to gradually make that change over time, taking into account that there may be in-flight messages and already-running sagas that are not updated with the new data.
+In cases where business requirements dictate that the correlation property for a saga needs to change, a transitional correlation property can be used to gradually make that change over time, taking into account that there may be in-flight messages and already-running sagas that are not updated with the new data.
 
 If an incoming message cannot be mapped to a saga data instance using the correlation property, a saga that has a defined _transitional_ correlation property will also query against the additional column for a match. Once all sagas have been updated to contain the transitional id, the old correlation property can be retired and the transitional property can become the new standard correlation property.
 
