@@ -21,14 +21,14 @@ WARNING: Entity creation settings are only applied at creation time of the corre
  
 ## Receiving
 
-Settings to control the speed at which the transport receives messages. 
+These settings control the speed at which the transport receives messages. 
 
  * `PrefetchMultiplier(int)`: Specifies the multiplier to apply to the maximum concurrency value to calculate the prefetch count. Defaults to 10.
  * `PrefetchCount(int)`: Overrides the default prefetch count calculation with the specified value.
  
 ## Connectivity
 
-Settings to control how the transport connects to the broker
+These settings control how the transport connects to the broker.
 
  * `UseWebSockets()`: Configures the transport to use AMQP over websockets.
  * `TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan)`: The time to wait before triggering the circuit breaker after a critical error occurred. Defaults to 2 minutes.
