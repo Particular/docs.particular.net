@@ -1,1 +1,1 @@
-INFO: In order to use the normal `Saga<T>` class for sagas, upgrade to at least SQL Persistence 4.2.
+INFO: In order to use the NServiceBus Core `Saga<T>` base class for sagas, use SQL Persistence Version 4.2 or above.
