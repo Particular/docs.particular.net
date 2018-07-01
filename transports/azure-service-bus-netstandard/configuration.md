@@ -9,7 +9,7 @@ reviewed: 2018-06-27
 
 ## Entity Creation
 
-Settings to control how the transport creates entities in the Azure Service Bus namespace.
+These settings control how the transport creates entities in the Azure Service Bus namespace.
 
 WARNING: Entity creation settings are only applied at creation time of the corresponding entities, they are not updated on subsequent startups.
 
