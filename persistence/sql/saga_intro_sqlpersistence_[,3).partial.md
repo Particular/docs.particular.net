@@ -1,1 +1,0 @@
-SQL Persistence supports sagas using the normal [NServiceBus.Saga](/nservicebus/sagas/) API or an [experimental API unique to SQL Persistence](sqlsaga.md) that provides a simpler mapping API. Which API to use is largely a matter of personal preference.

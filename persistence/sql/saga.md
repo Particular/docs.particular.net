@@ -13,8 +13,10 @@ redirects:
 reviewed: 2016-11-29
 ---
 
-partial: intro
+SQL Persistence supports sagas using the Core [NServiceBus.Saga](/nservicebus/sagas/) API or an [experimental API unique to SQL Persistence](sqlsaga.md) that provides a simpler mapping API.
+
 partial: sqlsaga-required-in-some-versions
+
 
 ## Table Structure
 

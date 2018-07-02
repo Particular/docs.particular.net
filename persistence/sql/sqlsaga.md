@@ -42,7 +42,7 @@ snippet: SqlPersistenceSagaWithCorrelationAndTransitional
 
 ### No Correlation Id
 
-When implementing a [Custom Saga Finder](/nservicebus/sagas/saga-finding.md) it is possible to have a message that does not map to a   correlation id and instead interrogate the Json serialized data stored in the database.
+When implementing a [Custom Saga Finder](/nservicebus/sagas/saga-finding.md) it is possible to have a message that does not map to a correlation id and instead interrogate the JSON-serialized data stored in the database.
 
 snippet: SqlPersistenceSagaWithNoMessageMapping
 
