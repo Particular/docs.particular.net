@@ -30,5 +30,5 @@ snippet: config
 The following queues for the two endpoints can be seen in the Azure Portal or a 3rd party tool:
 
  * `samples.asbs.sendreply.endpoint1`
- * `samples.asbs.sendreply.endpoint1`
+ * `samples.asbs.sendreply.endpoint2`
  * `error`
