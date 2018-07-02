@@ -22,7 +22,7 @@ public class OrderSaga :
 
     public async Task Handle(StartOrder message, IMessageHandlerContext context)
     {
-        Data.OrderId = message.OrderId;
+        // Correlation property Data.OrderId is automatically assinged with the value from message.OrderId;
         log.Info($"StartOrder received with OrderId {message.OrderId}");
 
         log.Info($@"Sending a CompleteOrder that will be delayed by 10 seconds
