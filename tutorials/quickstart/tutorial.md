@@ -173,7 +173,7 @@ Now, we need to add references to the NServiceBus package and Messages project.
     ```
 1. In the **Shipping** project, add a reference to the **Messages** project, so that we have access to the `OrderPlaced` event.
 
-Now that we have a project for the Shipping endpoint, we need to add some code to configure and start an `NServiceBus` endpoint. In the **Shipping** project, find the auto-generated **Program.cs** file and replace its contents with this:
+Now that we have a project for the Shipping endpoint, we need to add some code to configure and start an `NServiceBus` endpoint. In the **Shipping** project, find the auto-generated **Program.cs** file and replace its contents with:
 
 snippet: ShippingProgram
 

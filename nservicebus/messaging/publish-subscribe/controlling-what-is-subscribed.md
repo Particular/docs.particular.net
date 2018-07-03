@@ -4,41 +4,41 @@ summary: When applying the publish-subscribe pattern, there are several ways to 
 component: Core
 tags:
 - Publish Subscribe
-reviewed: 2016-11-07
+reviewed: 2018-07-03
 ---
 
 
 ## Automatic subscriptions
 
-The default mode for managing subscriptions is *auto subscribe*.  Every time a subscriber endpoint is started, it determines which events it needs to subscribe to and automatically subscribes to them. For more information on how publish and subscribe works, refer to [Publish-Suscribe](/nservicebus/messaging/publish-subscribe).
+The default mode for managing subscriptions is *auto-subscribe*.  Every time a subscriber endpoint is started, it determines which events it needs to subscribe to and automatically subscribes to them. For more information on how publish and subscribe works, refer to [Publish-Suscribe](/nservicebus/messaging/publish-subscribe).
 
-Messages matching the following criteria will be auto subscribed at startup.
+Messages matching the following criteria will be auto-subscribed at startup.
 
  1. Defined as an event either using `IEvent` or by the `.DefiningEventsAs` convention.
  1. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given event.
 
-Note: If the selected transport [does not support publish-subscribe natively](/transports/#types-of-transports-unicast-only-transports), the publisher for that message needs to be specified via the [routing](/nservicebus/messaging/routing.md) API.
+Note: If the selected transport [does not support publish-subscribe natively](/transports/#types-of-transports-unicast-only-transports), the publisher for that message must be specified via the [routing](/nservicebus/messaging/routing.md) API.
 
 partial: missing-publisher-info-error
 
 partial: exclude-event-types
 
 
-### Exclude sagas from auto subscribe
+### Exclude sagas from auto-subscribe
 
 partial: exclude
 
 
-### Auto subscribe to plain messages
+### Auto-subscribe to plain messages
 
-WARNING: This is a bad practice. Subscriptions should always be based on events.
+WARNING: This is a bad practice. Subscriptions should be based on events.
 
 partial: plainmessage
 
 
 ### When a subscriber stops or uninstalls
 
-A Subscriber will not unsubscribe when it stops, it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started it will consume the messages from its queue. The subscriber will never lose an event.
+A subscriber will not unsubscribe when it stops, it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started, it will consume the messages from its queue. The subscriber will never lose an event.
 
 
 partial: disableautosubscribe

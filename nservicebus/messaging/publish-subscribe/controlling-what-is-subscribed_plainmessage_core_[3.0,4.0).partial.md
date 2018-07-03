@@ -1,1 +1,1 @@
-In Version 3 all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention are automatically subscribed.
+In NServiceBus version 3, all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention are automatically subscribed.
