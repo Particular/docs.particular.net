@@ -1,6 +1,6 @@
 ---
 title: Operational Scripting
-summary: Explains how to create queues and topics using scripting
+summary: Explains how to create queues and topics with the Azure Service Bus .NET Standard transport using scripting
 component: ASBS
 tags:
  - Azure
@@ -17,7 +17,7 @@ The tool can be obtained from NuGet and installed using the following command:
 dotnet tool install -g NServiceBus.Transport.AzureServiceBus.CommandLine
 ```
 
-Once installed, `asb-transport` command command line tool will be available for use.
+Once installed, the `asb-transport` command line tool will be available for use.
 
 `asb-transport <command> [options]`
 
@@ -29,7 +29,7 @@ Once installed, `asb-transport` command command line tool will be available for 
 
 ### asb-transport endpoint create
 
-Create a new endpoint using
+Create a new endpoint using:
 
 ```
 asb-transport endpoint create [--size]
@@ -40,7 +40,7 @@ asb-transport endpoint create [--size]
 
 #### options
  
-`-c` | `--connection-string` : Overrides environment variable 'AzureServiceBus_ConnectionString'
+`-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
 `-s` | `--size` : Queue size in GB (defaults to 5)
 
@@ -53,7 +53,7 @@ asb-transport endpoint create [--size]
 
 ### asb-transport queue create
  
-Create a queue using
+Create a queue using:
 
 ```
 asb-transport queue create [--size]
@@ -62,7 +62,7 @@ asb-transport queue create [--size]
 
 #### options
 
-`-c` | `--connection-string` : Overrides environment variable 'AzureServiceBus_ConnectionString'
+`-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
 `-s` | `--size`: Queue size in GB (defaults to 5)
 
@@ -71,7 +71,7 @@ asb-transport queue create [--size]
 
 ### asb-transport queue delete
  
-Delete a queue using
+Delete a queue using:
 
 ```
 asb-transport queue delete
@@ -79,5 +79,5 @@ asb-transport queue delete
 
 #### options
 
-`-c` | `--connection-string` : Overrides environment variable 'AzureServiceBus_ConnectionString'
+`-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
  

@@ -14,10 +14,10 @@ include: asb-connectionstring-xplat
 
 ## Code walk-through
 
-This sample shows a simple two endpoint scenario.
+This sample shows a simple two-endpoint scenario.
 
  * `Endpoint1` sends a `Message1` message to `Endpoint2`.
- * `Endpoint2` replies to `Endpoint1` with a `Message2`.
+ * `Endpoint2` replies to `Endpoint1` with a `Message2` instance.
 
 
 ### Transport configuration
@@ -27,7 +27,7 @@ snippet: config
 
 ## Viewing message in-flight
 
-The following queues for the two endpoints can be seen in the Azure Portal or a 3rd party tool:
+The following queues for the two endpoints can be seen in the Azure Portal or a third-party tool:
 
  * `samples.asbs.sendreply.endpoint1`
  * `samples.asbs.sendreply.endpoint1`
