@@ -87,7 +87,7 @@ A manually triggered function is included to trigger orchestration for every exi
 
 snippet: DataBusOrchestrateExistingBlobsFunction
 
-The function is very similar to the `DataBusBlobCreated` function, but instead of working on a single blob at a time it will iterate over every existing blob in the container.
+The function is very similar to the [`DataBusBlobCreated`](#code-walk-through-databusblobcleanupfunctions-databusblobcreatedfun#code-walk-through-databusblobcleanupfunctions-databusblobcreated) function, but instead of working on a single blob at a time it will iterate over every existing blob in the container.
 
 This function does not require downtime as the implemented [singleton orchestration](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-singletons) pattern will prevent existing timeouts from being duplicated.
 
