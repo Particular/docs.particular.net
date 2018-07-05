@@ -17,6 +17,13 @@ class Program
         endpointConfiguration.RegisterMessageMutator(new MutateOutgoingMessages());
         endpointConfiguration.RegisterMessageMutator(new MutateOutgoingTransportMessages());
 
+        #region pipeline-config
+
+        endpointConfiguration.Pipeline.Register(typeof(IncomingHeaderBehavior), "Manipulates incoming headers");
+        endpointConfiguration.Pipeline.Register(typeof(OutgoingHeaderBehavior), "Manipulates outgoing headers");
+
+        #endregion
+
         #region global-all-outgoing
 
         endpointConfiguration.AddHeaderToAllOutgoingMessages("AllOutgoing", "ValueAllOutgoing");
