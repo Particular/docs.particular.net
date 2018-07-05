@@ -13,7 +13,7 @@ class Program
 
         #region RegisterBehavior
 
-        busConfiguration.Pipeline.Register<ThrottlingRegistration>();
+        busConfiguration.Pipeline.Register<ThrottlingBehavior.Registration>();
 
         #endregion
 
