@@ -10,13 +10,18 @@ class Program
     {
         Console.Title = "Samples.PipelineStream.Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineStream.Sender");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
+
         endpointConfiguration.UseTransport<LearningTransport>();
 
         #region configure-stream-storage
 
         endpointConfiguration.SetStreamStorageLocation(@"..\..\..\..\storage");
 
+        #endregion
+
+        #region pipeline-config
+        endpointConfiguration.Pipeline.Register<StreamSendBehavior.Registration>();
+        endpointConfiguration.Pipeline.Register(typeof(StreamReceiveBehavior), "Copies the shared data back to the logical messages");
         #endregion
 
         endpointConfiguration.EnableInstallers();
