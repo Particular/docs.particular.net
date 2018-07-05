@@ -2,7 +2,7 @@
 title: MSMQ Transport connection strings
 summary: Detailed connection string information for MSMQ.
 component: MsmqTransport
-reviewed: 2016-10-17
+reviewed: 2018-07-05
 tags:
  - Transport
 redirects:

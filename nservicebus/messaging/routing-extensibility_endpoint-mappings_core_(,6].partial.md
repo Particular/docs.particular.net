@@ -1,7 +1,7 @@
 
 ## MessageEndpointMappings
 
-The routing system can be extended in a static manner (once at startup) by providing custom sources of routing information to enrich or replace the standard routing configuration (`UnicastBusConfig/MessageEndpointMappings` configuration section in `app.config` file).
+The routing system can be extended in a static manner (once at startup) by providing custom sources of routing information to enrich or replace the standard routing configuration (`UnicastBusConfig/MessageEndpointMappings` configuration section in the `app.config` file).
 
 It can be done either by using a configuration source:
 
@@ -19,6 +19,6 @@ snippet: endpoint-mapping-appconfig
 
 The `MessageEndpointMappings` collection can be populated based on any external source. It is read during the endpoint start-up, before any messages are sent.
 
-NOTE: The route table is not updated during run-time, even if the contents of the mappings collection change. In case the routing data changes frequently, consider implementing a mechanism that would restart the endpoint when the change is detected.
+NOTE: The route table is not updated during run-time, even if the contents of the mappings collection change. If the routing data changes frequently, consider implementing a mechanism that would restart the endpoint when a change is detected.
 
-NOTE: For backwards compatibility a `Messages` attribute can be used instead of `Type` and `Namespace` attributes. 
+NOTE: For backward compatibility, a `Messages` attribute can be used instead of `Type` and `Namespace` attributes. 

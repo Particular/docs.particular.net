@@ -1,12 +1,13 @@
 ---
 title: Scheduler
-reviewed: 2016-10-17
+summary: A simple example of the NServiceBus scheduler API
+reviewed: 2018-07-05
 component: Core
 related:
  - nservicebus/scheduling
 ---
 
-This sample illustrates a simple use of the [Scheduler](/nservicebus/scheduling/) API. Two common use cases are shown
+This sample illustrates a simple example of the [scheduler](/nservicebus/scheduling/) API. Two common use cases are:
 
  1. Sending a message.
  1. Executing some custom code.
