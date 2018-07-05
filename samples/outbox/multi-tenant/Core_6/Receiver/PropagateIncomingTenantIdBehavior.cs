@@ -17,16 +17,4 @@ class PropagateIncomingTenantIdBehavior :
 
         #endregion
     }
-
-    public class Registration :
-        RegisterStep
-    {
-        public Registration()
-            : base(
-                stepId: "PropagateIncomingTenantId",
-                behavior: typeof(PropagateIncomingTenantIdBehavior),
-                description: "Sets the tenant header on outgoing messages's context bag.")
-        {
-        }
-    }
 }
