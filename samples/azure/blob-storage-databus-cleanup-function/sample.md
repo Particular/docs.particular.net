@@ -14,7 +14,7 @@ related:
 
 `NServiceBus.DataBus.AzureBlobStorage` has a built-in cleanup mechanism to remove blobs after a configured timeout. By default this runs on every endpoint, and can become slow under systems with higher volumes of messages with databus properties.
 
-This sample shows how to use [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) to automatically trigger blob cleanup as an alternative to using the `NServiceBus.DataBus.AzureBlobStorage` built-in cleanup mechanism. This has the advantage of reducing processing load on your endpoints and 
+This sample shows how to use [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) to automatically trigger blob cleanup as an alternative to using the `NServiceBus.DataBus.AzureBlobStorage` built-in cleanup mechanism. This has the advantage of reducing processing load on the endpoints instead using the on-demand scaling of Azure Functions. 
 
 downloadbutton
 
