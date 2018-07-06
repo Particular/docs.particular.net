@@ -1,1 +1,1 @@
-Provides support for sending messages over [MSMQ](https://docs.particular.net/transports/msmq/).
+Provides support for sending messages over [MSMQ](/transports/msmq/).
