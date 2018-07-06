@@ -59,7 +59,7 @@ static class DataBusBlobTimeoutCalculator
         //since this is the old version that could be written in any culture we cannot be certain it will parse so need to handle failure
         return DateTime.TryParse(validUntilString, null, style, out var validUntil)
             ? validUntil.ToUniversalTime()
-            //If we cant parse the datetime then assume data corruption and return max time
+            //If we can't parse the datetime then assume data corruption and return max time
             : DateTime.MaxValue;
     }
     #endregion
@@ -73,7 +73,7 @@ static class DataBusBlobTimeoutCalculator
     }
 
     /// <summary>
-    /// Converts a wire formatted <see cref="string" /> from <see cref="ToWireFormattedString" /> to a UTC
+    /// Converts a wire-formatted <see cref="string" /> from <see cref="ToWireFormattedString" /> to a UTC
     /// <see cref="DateTime" />.
     /// </summary>
     public static DateTime ToUtcDateTime(string wireFormattedString)
