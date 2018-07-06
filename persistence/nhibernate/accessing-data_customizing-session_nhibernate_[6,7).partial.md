@@ -4,4 +4,4 @@ Version 6 supports customizing the instantiation of the `ISession`. This is done
 
 snippet: CustomSessionCreation
 
-NOTE: Customizing the way session is opened works only for the 'shared' session that is used to access business/user, [Saga](/nservicebus/sagas/) and [Outbox](/nservicebus/outbox/) data. It does not work for other persistence concerns such as [Timeouts](/nservicebus/sagas/timeouts.md) or [Subscriptions](/nservicebus/messaging/publish-subscribe/). Also note that this is no longer possible in Version 7.
+NOTE: Customizing the way a session is opened works only for the 'shared' session that is used to access business, [saga](/nservicebus/sagas/), and [outbox](/nservicebus/outbox/) data. It does not work for other persistence concerns such as [timeouts](/nservicebus/sagas/timeouts.md) or [subscriptions](/nservicebus/messaging/publish-subscribe/). Also note that this is no longer possible in version 7.

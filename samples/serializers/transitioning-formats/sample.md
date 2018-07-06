@@ -1,26 +1,27 @@
 ---
 title: Transition serialization formats
-reviewed: 2016-10-18
+summary: An approach for introducing a breaking change to message serialization with no downtime
+reviewed: 2018-07-06
 component: Core
 related:
 - nservicebus/serialization
 ---
 
-This sample illustrates an approach for introducing a breaking change to the [message serialization](/nservicebus/serialization/) format in way that requires no endpoint downtime and no manipulation of message bodies.
+This sample illustrates an approach for introducing a breaking change to the [message serialization](/nservicebus/serialization/) format in a way that requires no endpoint downtime and no manipulation of message bodies.
 
-NOTE: This sample uses 4 "Phase" Endpoint Projects to illustrate the iterations of a single endpoint in one solution.
+NOTE: This sample uses four "Phase" endpoint projects to illustrate the iterations of a single endpoint in one solution.
 
-The [External Json.NET Serializer](/nservicebus/serialization/newtonsoft.md) is used in this sample, but the Phased upgrade approach is applicable to changing the format any serializer or even moving between different serializers.
+The [external Json.NET serializer](/nservicebus/serialization/newtonsoft.md) is used in this sample, but the phased upgrade approach is applicable to changing the format any serializer or even moving between different serializers.
 
 
-## Message Contracts
+## Message contracts
 
 snippet: messages
 
 
-## Message Compatibility
+## Message compatibility
 
-To highlight compatibility between iterations of the endpoint, each Phase sends a message to itself, the upper phase, and the lower phase.
+To highlight compatibility between iterations of the endpoint, each phase sends a message to itself, the upper phase, and the lower phase.
 
 For example Phase3 sends to itself, Phase2, and Phase4.
 
@@ -29,10 +30,10 @@ snippet: send-to-both
 
 ## Serialization format change
 
-For demonstration purposes this sample uses a hypothetical scenario where the Json serialization format need to change the approach for serializing dictionaries. From using contents for the key and value to using an explicitly named key and value approach.
+For demonstration purposes this sample uses a hypothetical scenario where the JSON serialization format needs to change the approach for serializing dictionaries. From using contents for the key and value to using an explicitly named key and value approach.
 
 
-### Json using standard approach
+### JSON using a standard approach
 
 ```json
 {
@@ -49,7 +50,7 @@ For demonstration purposes this sample uses a hypothetical scenario where the Js
 ```
 
 
-### JSON using key-value approach
+### JSON using a key-value approach
 
 ```json
 {
@@ -74,20 +75,20 @@ For demonstration purposes this sample uses a hypothetical scenario where the Js
 
 ### Implementing the change
 
-This is implemented using [NewtonSoft ContractResolver](http://www.newtonsoft.com/json/help/html/contractresolver.htm) and changing the using an array contract for the dictionary instead of the default.
+This is implemented using the [NewtonSoft ContractResolver](http://www.newtonsoft.com/json/help/html/contractresolver.htm) and changing the array contract for the dictionary instead of the default.
 
 snippet: ExtendedResolver
 
 
 ## Diagnostic helpers
 
-To help visualize the serialization changes there are two [Behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) that write the contents of each incoming and outgoing message.
+To help visualize the serialization changes there are two [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) that write the contents of each incoming and outgoing message.
 
 snippet: IncomingWriter
 
 snippet: OutgoingWriter
 
-Both Behaviors are registered at configuration time:
+Both behaviors are registered at configuration time:
 
 snippet: AddMessageBodyWriter
 
@@ -96,7 +97,7 @@ snippet: writer-registration
 
 ## Phases
 
-Note that in production system each of the phases would need to be applied to every endpoint that needs communicate with the new serialization format. So each endpoint can be at-most one phase out of sync with any other endpoint it needs to communicate with.
+Note that in production, each of the phases must be applied to every endpoint that need to communicate with the new serialization format. So each endpoint can be, at most, one phase out of sync with any other endpoint it needs to communicate with.
 
 
 ### Phase 1
@@ -147,17 +148,17 @@ snippet: Phase4
 
 ## Messages in transit
 
-It is important to consider both [Discard Old Messages](/nservicebus/messaging/discard-old-messages.md) and how the [Error Queue](/nservicebus/recoverability/configure-error-handling.md) is handled. For example the following time-line could be problematic 
+It is important to consider both [discarding of old messages](/nservicebus/messaging/discard-old-messages.md) and how the [error queue](/nservicebus/recoverability/configure-error-handling.md) is handled. For example the following time-line could be problematic:
 
  * A message makes use of the old serialization format.
- * The message a long Time-To-Be-Received (TTBR).
+ * The message has a long Time-To-Be-Received (TTBR).
  * The message fails processing and is forwarded to the error queue.
  * The above change in serialization format is performed.
  * A retry of the message is attempted.
 
-Given the type of serialization change that has occurred, the structure of the message contract, and the serializer being used the resulting behavior is non-deterministic. The serializer may throw and exception for the old format or it may swallow the error and proceed with missing data.
+Given the type of serialization change that has occurred, the structure of the message contract, and the serializer being used, the resulting behavior is non-deterministic. The serializer may throw an exception for the old format or it may swallow the error and proceed with missing data.
 
-So either
+So either:
 
- * Delay the upgrading of each Phase so the overlapping time is greater than the maximum TTBR of message contracts. Or;
- * During the deployment of each Phase verify that messages in the error queue will not exhibit the above problem.
+ * Delay the upgrading of each phase so the overlapping time is greater than the maximum TTBR of message contracts, or
+ * During the deployment of each phase verify that messages in the error queue will not exhibit the above problem.

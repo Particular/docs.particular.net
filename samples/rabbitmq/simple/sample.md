@@ -1,6 +1,6 @@
 ---
-title: Simple RabbitMQ Transport usage
-reviewed: 2016-10-18
+title: Simple RabbitMQ Transport Usage
+reviewed: 2018-07-06
 component: Rabbit
 related:
 - transports/rabbitmq
@@ -22,4 +22,4 @@ This sample shows basic usage of RabbitMQ as a transport for NServiceBus. The ap
 
 snippet: ConfigureRabbit
 
-The username and password can also be configured via the connection string. If these are not present, the connection string effectively defaults to `host=localhost;username=guest;password=guest`.
+The username and password can be configured via the connection string. If these are not present, the connection string defaults to `host=localhost;username=guest;password=guest`.

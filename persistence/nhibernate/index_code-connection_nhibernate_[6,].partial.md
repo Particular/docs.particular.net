@@ -1,4 +1,4 @@
-### With Code 
+### With code 
 
 NHibernate persistence requires specifying a connection string.
 

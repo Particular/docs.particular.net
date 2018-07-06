@@ -1,7 +1,7 @@
 ---
 title: MSMQ Transport Configuration
-summary: Explains the mechanics of MSMQ transport, its configuration options and various other configuration settings that were at some point coupled to this transport
-reviewed: 2016-10-17
+summary: Explains the mechanics of MSMQ transport, its configuration options, and other configuration settings that were coupled to this transport
+reviewed: 2018-07-06
 component: MsmqTransport
 tags:
  - Transport
@@ -38,9 +38,9 @@ partial: label
 MSMQ Transport supports the following [Transport Transaction Modes](/transports/transactions.md):
 
  * Transaction scope (Distributed transaction)
- * Transport transaction - Sends atomic with Receive
- * Transport transaction - Receive Only
- * Unreliable (Transactions Disabled)
+ * Transport transaction - Send atomic with receive
+ * Transport transaction - Receive only
+ * Unreliable (Transactions disabled)
 
 See also [Controlling Transaction Scope Options](/transports/transactions.md#controlling-transaction-scope-options).
 

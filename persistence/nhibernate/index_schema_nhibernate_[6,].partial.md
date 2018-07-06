@@ -9,17 +9,17 @@ In some cases it may be necessary to take full control over creating the SQL str
 snippet: DisableSchemaUpdate
 
 
-**For Gateway schema update:**
+**For gateway schema update:**
 
 snippet: DisableGatewaySchemaUpdate
 
 
-**For Subscription schema update:**
+**For subscription schema update:**
 
 snippet: DisableSubscriptionSchemaUpdate
 
 
-**For Timeout schema update:**
+**For timeout schema update:**
 
 snippet: DisableTimeoutSchemaUpdate
 

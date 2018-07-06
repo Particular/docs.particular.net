@@ -1,15 +1,15 @@
 ---
 title: NServiceBus 32-bit (x86) Host Process
-summary: 'If 32-bit code must be invoked and loaded, use NServiceBus.Host32.exe instead.'
+summary: If 32-bit code must be invoked and loaded, use NServiceBus.Host32.exe
 component: Host
 redirects:
  - nservicebus/nservicebus-32-bit-x86-host-process
-reviewed: 2016-10-19
+reviewed: 2018-07-06
 ---
 
-NServiceBus is an "Any CPU" framework. It doesn't have 32-bit or 64-bit specific code. This enables transitioning between 32- and 64-bit operating systems. Unfortunately, not all assemblies can be compiled using the default Any CPU architecture. In many, if not most cases, this is related to legacy systems that have 32-bit specific code for platform interoperability with native C libraries, etc.
+NServiceBus is an "Any CPU" framework. It doesn't have 32-bit or 64-bit specific code. This enables transitioning between 32- and 64-bit operating systems. Unfortunately, not all assemblies can be compiled using the default Any CPU architecture. In many, this is related to legacy systems that have 32-bit specific code for platform interoperability with native C libraries, etc.
 
-With the default NServiceBus.Host, the application always loads in 64-bit (x64) mode if running it on a 64-bit OS, or in 32-bit (x86) mode for a 32-bit OS. Again, this is typically not a problem.
+With the default NServiceBus.Host, the application always loads in 64-bit (x64) mode if running on a 64-bit OS, or in 32-bit (x86) mode for a 32-bit OS. Again, this is typically not a problem.
 
 If assemblies or other libraries containing 32-bit code must be invoked and loaded into a 64-bit process a `BadImageFormatException` will be thrown.
 
