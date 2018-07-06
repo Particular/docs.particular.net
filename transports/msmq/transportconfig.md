@@ -45,7 +45,7 @@ MSMQ Transport supports the following [Transport Transaction Modes](/transports/
 See also [Controlling Transaction Scope Options](/transports/transactions.md#controlling-transaction-scope-options).
 
 
-### Transaction scope (Distributed transaction)
+### Transaction scope (distributed transaction)
 
 In this mode the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access.
 
@@ -53,6 +53,6 @@ In this mode the ambient transaction is started before receiving the message. Th
 partial: native-transactions
 
 
-### Unreliable (Transactions Disabled)
+### Unreliable (transactions disabled)
 
 In this mode, when a message is received, it is immediately removed from the input queue. If processing fails the message is lost because the operation cannot be rolled back. Any other operation that is performed, when processing the message, is executed without a transaction and cannot be rolled back. This can lead to undesired side effects when message processing fails part way through.
