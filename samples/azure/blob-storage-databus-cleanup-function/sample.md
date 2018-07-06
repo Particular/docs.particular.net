@@ -10,11 +10,20 @@ related:
 - nservicebus/messaging/databus
 ---
 
+## Introduction
+
+`NServiceBus.DataBus.AzureBlobStorage` has a built-in cleanup mechanism to remove blobs after a configured timeout. By default this runs on every endpoint, and can become slow under systems with higher volumes of messages with databus properties.
+
+This sample shows how to use [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) to automatically trigger blob cleanup as an alternative to using the `NServiceBus.DataBus.AzureBlobStorage` built-in cleanup mechanism. This has the advantage of reducing processing load on your endpoints and 
+
+downloadbutton
+
+## Prerequisites
+
  1. Make sure [Azure Functions Tools for Visual Studio 2017](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs#prerequisites) are setup correctly.
  1. Start [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator). Ensure [latest version](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409) is installed.
  1. Run the solution. Two console applications start.
  1. Find the `SenderAndReceiver` application by looking for the one with `SenderAndReceiver` in its path and press Enter in the window to send a message. A message has been sent is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment via Azure storage. The `DataBusBlobCreated` Azure Function runs in the Function window, followed by the `DataBusCleanupOrchestrator`, deleting the blob when the time to live for the message is reached.
-
 
 ## Code walk-through
 
