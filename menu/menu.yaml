@@ -907,7 +907,7 @@
       Title: Sagas
       Articles:
       - Url: persistence/sql/sqlsaga
-        Title: SqlSaga Base Class
+        Title: SqlSaga base class
       - Url: persistence/sql/saga-finder
         Title: Saga finders
       - Url: persistence/sql/saga-concurrency
