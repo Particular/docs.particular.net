@@ -7,54 +7,15 @@ related:
  - samples/saga/sql-sagafinder
  - samples/saga/migration
  - persistence/sql/saga-concurrency
+ - persistence/sql/sqlsaga
 redirects:
  - nservicebus/sql-persistence/saga
 reviewed: 2016-11-29
 ---
 
+SQL Persistence supports sagas using the Core [NServiceBus.Saga](/nservicebus/sagas/) API or an [experimental API unique to SQL Persistence](sqlsaga.md) that provides a simpler mapping API.
 
-## Saga Definition
-
-A saga can be implemented as follows:
-
-snippet: SqlPersistenceSaga
-
-Note that there are some differences to how a standard NServiceBus saga is implemented.
-
-
-### SqlSaga Base Class
-
-All sagas need to inherit from `SqlSaga<T>`. This is a custom base class that has a less verbose mapping API.
-
-
-partial: attribute-required
-
-
-## Compile time detection of correlation property
-
-The divergence from the standard NServiceBus saga API is required since the SQL Persistence need to be able to determine certain meta data about a saga at compile time.
-
-In a standard Saga, the Correlation Id is configured in the `ConfigureHowToFindSaga` method. On the surface it would seem to be possible to infer the correlation property from that method.
-
-Take this code:
-
-snippet: IlRequirement
-
-At build time the [IL](https://en.wikipedia.org/wiki/Common_Intermediate_Language) of the target assembly is interrogated to generate the SQL installation scripts. The IL will contain enough information to determine that `ToSaga` is called on the property `SagaData.OrderId`. However there are several reasons that an explicit property definition was chosen for defining the Correlation Id over inferring it from the `ConfigureHowToFindSaga`.
-
-
-### Discovering Sagas
-
-At the IL level it is not possible to discover the base hierarchy of a type given the IL for that type alone. So, in IL, to detect if a given type inherits from `Saga<T>` the full hierarchy of the type needs to be interrogated. This includes loading and interrogating referenced assemblies, where any types hierarchy extends into those assemblies. This adds significant complexity and performance overheads to the build time operation of generating SQL installation scripts.
-
-
-### Inferring edge cases
-
-While inferring the Correlation Id from the IL of `ConfigureHowToFindSaga` is possible, there are many edge cases that make this approach problematic. Some of these include:
-
- * It is possible to [map a message to a complex expression](/nservicebus/sagas/message-correlation.md#message-property-expression). This greatly increases the complexity of accurately determining the Correlation Id due to the higher complexity of the resultant IL.
- * The implementation of `ConfigureHowToFindSaga` means it is evaluated at run time. So it supports branching logic, performing mapping in helper methods, and mapping in various combinations of base classes and child classes. Use of any of these would prevent determining the Correlation Id from the IL.
- * Mapping performed in another assembly. If the mapping is performed in a helper method or base class, and that implementation exists in another assembly, then this would negatively effect build times due to the necessity of loading and parsing the IL for those assemblies.
+partial: sqlsaga-required-in-some-versions
 
 
 ## Table Structure
@@ -67,7 +28,7 @@ The name used for a saga table consist of two parts.
  * The prefix of the table name is the [Table Prefix](/persistence/sql/install.md#table-prefix) defined at the endpoint level.
  * The suffix of the table name is **either** the saga [Type.Name](https://msdn.microsoft.com/en-us/library/system.type.name.aspx) **or**, if defined, the Table Suffix defined at the saga level.
 
-snippet: tableSuffix
+partial: tablesuffix-snippets
 
 NOTE: Using [Delimited Identifiers](https://technet.microsoft.com/en-us/library/ms176027.aspx) in the TableSuffix is currently **not** supported.
 
@@ -111,26 +72,7 @@ For each Correlation Id there will be a corresponding index named `Index_Correla
 
 [Saga Message Correlation](/nservicebus/sagas/message-correlation.md) is implemented by promoting the correlation property to the level of a column on the saga table. So when a saga data is persisted the correlation property is copied from the instance and duplicated in a column named by convention (`Correlation_[PROPERTYNAME]`) on the table.
 
-
-### No Correlation Id
-
-When implementing a [Custom Saga Finder](/nservicebus/sagas/saga-finding.md) it is possible to have a message that does not map to a   correlation id and instead interrogate the Json serialized data stored in the database.
-
-snippet: SqlPersistenceSagaWithNoMessageMapping
-
-
-### Single Correlation Id
-
-In most cases there will be a single correlation Id per Saga Type.
-
-snippet: SqlPersistenceSagaWithCorrelation
-
-
-### Correlation and Transitional Ids
-
-During the migration from one correlation id to another correlation id there may be two correlation is that coexist. See also [Transitioning Correlation ids Sample](/samples/sql-persistence/transitioning-correlation-ids).
-
-snippet: SqlPersistenceSagaWithCorrelationAndTransitional
+partial: correlation-property
 
 
 ### Correlation Types

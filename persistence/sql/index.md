@@ -30,7 +30,7 @@ SQL Persistence can store NServiceBus data in multiple different relational data
 * Sagas are:
   * Stored using [Json.NET](http://www.newtonsoft.com/json) to serialize complex data structures, with no need to manage complex table structures
   * Built to be [version-aware](saga.md#json-net-settings-custom-settings-version-type-specific-deserialization-settings) with support for data evolution
-  * Built to [allow changing the `CorrelationId` over time](saga.md#correlation-ids-correlation-and-transitional-ids)
+  * Built to [allow changing the `CorrelationId` over time](saga.md#correlation-ids)
 
 
 ## Supported SQL implementations
