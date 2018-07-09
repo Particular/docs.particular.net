@@ -36,11 +36,6 @@ snippet: attachmentfinder
 snippet: handler
 
 
-### The Saga
-
-snippet: saga
-
-
 ## Running the Sample
 
 When the solution is run 'enter' can be presses to send an initiating message. This message will be received by both the handler and the saga. Both handler and saga will send an email message which will be written to `/bin/debug/emails/[GUID].eml`.
