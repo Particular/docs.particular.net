@@ -116,6 +116,10 @@
 | ~~1.1.x~~ | ~~2013-11-18~~ | ~~2014-06-21~~    | ~~Superseded by 1.2.x~~           |
 | ~~1.0.x~~ | ~~2013-07-11~~ | ~~2014-02-18~~    | ~~Superseded by 1.1.x~~           |
 
+#### [NServiceBus.Transport.AzureServiceBus](/nuget/NServiceBus.Transport.AzureServiceBus)
+
+No versions released.
+
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
 
 | Version   | Released       | Supported until   | Notes                             |
@@ -193,10 +197,12 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 4.1.x     | 2018-05-29     | -                 | -                                 |
+| 4.2.x     | 2018-07-09     | -                 | -                                 |
+| 4.1.x     | 2018-05-29     | 2018-10-09        | Superseded by 4.2.x               |
 | 4.0.x     | 2018-05-29     | 2018-08-29        | Superseded by 4.1.x               |
-| 3.1.x     | 2018-03-26     | 2020-05-29        | Extended by NServiceBus 6.4.x     |
-| 3.0.x     | 2017-11-22     | 2018-06-26        | Superseded by 3.1.x               |
+| 3.2.x     | 2018-07-09     | 2020-05-29        | Extended by NServiceBus 6.4.x     |
+| 3.1.x     | 2018-03-26     | 2018-10-09        | Superseded by 3.2.x               |
+| ~~3.0.x~~ | ~~2017-11-22~~ | ~~2018-06-26~~    | ~~Superseded by 3.1.x~~           |
 | 2.2.x     | 2017-11-16     | 2018-11-22        | Superseded by 3.0.x               |
 | ~~2.1.x~~ | ~~2017-04-28~~ | ~~2018-02-16~~    | ~~Superseded by 2.2.x~~           |
 | ~~2.0.x~~ | ~~2017-04-14~~ | ~~2017-07-28~~    | ~~Superseded by 2.1.x~~           |
@@ -607,6 +613,14 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 1.2.x     | 2017-12-13     | 2018-08-23        | Superseded by 1.3.x               |
 | ~~1.1.x~~ | ~~2017-11-29~~ | ~~2018-03-13~~    | ~~Superseded by 1.2.x~~           |
 | ~~1.0.x~~ | ~~2017-10-27~~ | ~~2018-02-28~~    | ~~Superseded by 1.1.x~~           |
+
+#### [NServiceBus.Metrics.ServiceControl.Msmq](/nuget/NServiceBus.Metrics.ServiceControl.Msmq)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 3.0.x     | 2018-06-15     | -                 | -                                 |
+| 2.0.x     | 2018-05-23     | 2020-05-29        | Extended by NServiceBus 6.4.x     |
+| 1.0.x     | 2018-05-23     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
 
 #### [NServiceBus.SagaAudit](/nuget/NServiceBus.SagaAudit)
 

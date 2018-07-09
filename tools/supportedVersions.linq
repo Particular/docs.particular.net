@@ -200,10 +200,19 @@ public static class TextWriterExtensions
 
 public static class PackageMetadataResourceExtensions
 {
+    static SourceCacheContext sourceCacheContext;
+    
+    static PackageMetadataResourceExtensions()
+    {
+        sourceCacheContext = new SourceCacheContext();
+        sourceCacheContext.MaxAge = DateTimeOffset.UtcNow;
+        sourceCacheContext.NoCache = true;
+    }
+    
 	public static async Task<List<Version>> GetVersions(
 		this PackageMetadataResource resource, string packageId, ILogger logger, int majorOverlapYears, int minorOverlapMonths, List<Version> upstreamVersions, Dictionary<string, string> endOfLifePackages)
 	{
-		var minors = (await resource.GetMetadataAsync(packageId, false, false, new SourceCacheContext(), logger, CancellationToken.None))
+		var minors = (await resource.GetMetadataAsync(packageId, false, false, sourceCacheContext, logger, CancellationToken.None))
 			.OrderBy(package => package.Identity.Version)
 			.GroupBy(package => new { package.Identity.Version.Major, package.Identity.Version.Minor })
 			.Select(group => new { First = group.First(), Last = group.Last(), })
