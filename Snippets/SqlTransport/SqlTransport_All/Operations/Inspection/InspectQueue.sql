@@ -5,7 +5,7 @@ SELECT TOP (1000)
     [Expires],
     [Headers],
     [Body],
-    cast([Body] as nvarchar(max)) as [BodyString]
+    cast([Body] as varchar(max)) as [BodyString]
 FROM {0} WITH (READPAST)
 
 endcode
