@@ -1,5 +1,5 @@
 ---
-title: SqlSaga Base Class
+title: SqlSaga base class
 component: SqlPersistence
 related:
  - persistence/sql/saga
