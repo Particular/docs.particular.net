@@ -55,7 +55,7 @@ More information on where to find the diagnostics file, and how to customize it,
 
 ## ServiceControl
 
-ServiceControl, using audits and error consumption, saves a set of information related to consumed messages in its database (RavenDB):
+ServiceControl, using audits and error consumption, saves a set of information related to consumed messages in its database:
 
 | Property | Document | Description |
 | :------------------ | :-: | :-: |
