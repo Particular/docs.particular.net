@@ -65,7 +65,7 @@ This means that when the code for the credit card processing changes, we don't e
 
 ## Defining events
 
-Creating an event message is just similar to creating an event. We just create a class and mark it with the `IEvent` (rather than `ICommand`) marker interface.
+Creating an event message is just similar to creating a command. We just create a class and mark it with the `IEvent` (rather than `ICommand`) marker interface.
 
 snippet: Event
 
