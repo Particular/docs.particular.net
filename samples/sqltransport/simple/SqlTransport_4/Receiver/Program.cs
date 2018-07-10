@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Transport.SQLServer;
 
 class Program
 {
@@ -13,6 +14,7 @@ class Program
         var connection = @"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True;Max Pool Size=100";
         transport.ConnectionString(connection);
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

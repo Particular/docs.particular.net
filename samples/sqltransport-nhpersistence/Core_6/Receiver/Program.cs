@@ -47,8 +47,8 @@ class Program
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
         transport.UseSchemaForQueue("Samples.SqlNHibernate.Sender", "sender");
-
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlNHibernate.Sender");

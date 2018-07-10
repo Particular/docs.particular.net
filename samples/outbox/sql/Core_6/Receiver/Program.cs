@@ -26,6 +26,7 @@ class Program
         transport.UseSchemaForEndpoint("Samples.SqlOutbox.Sender", "sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(OrderAccepted).Assembly, "Samples.SqlOutbox.Sender");
@@ -47,6 +48,7 @@ class Program
         endpointConfiguration.EnableOutbox();
 
         #endregion
+
         SqlHelper.CreateSchema(connection, "receiver");
         SqlHelper.ExecuteSql(connection, File.ReadAllText("Startup.sql"));
 

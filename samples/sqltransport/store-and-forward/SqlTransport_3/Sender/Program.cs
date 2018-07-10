@@ -56,6 +56,8 @@ class Program
 
         #endregion
 
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press enter to publish a message");

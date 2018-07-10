@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence;
+using NServiceBus.Transport.SQLServer;
 
 class Program
 {
@@ -14,6 +15,8 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(ConnectionString);
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
+
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(ConnectionString);
         endpointConfiguration.EnableInstallers();

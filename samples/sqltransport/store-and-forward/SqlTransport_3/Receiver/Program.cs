@@ -44,6 +44,7 @@ class Program
 
         #endregion
 
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Delayed(
