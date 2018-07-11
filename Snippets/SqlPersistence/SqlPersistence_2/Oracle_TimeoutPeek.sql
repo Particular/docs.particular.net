@@ -6,6 +6,6 @@ select
     State,
     ExpireTime,
     Headers
-from "ENDPOINTNAMETO"
+from "dbo"."ENDPOINTNAMETO"
 where Id = :Id
 endcode

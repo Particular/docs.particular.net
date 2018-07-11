@@ -1,7 +1,7 @@
 startcode Oracle_SubscriptionSubscribeSql
 
 begin
-    insert into "ENDPOINTNAMESS"
+    insert into "dbo"."ENDPOINTNAMESS"
     (
         MessageType,
         Subscriber,

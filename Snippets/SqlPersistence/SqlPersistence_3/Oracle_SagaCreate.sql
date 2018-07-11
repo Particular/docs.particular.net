@@ -8,7 +8,10 @@ declare
   sqlStatement varchar2(500);
   dataType varchar2(30);
   n number(10);
+  currentSchema varchar2(500);
 begin
+select sys_context('USERENV','CURRENT_SCHEMA') into currentSchema from dual;
+
 
 /* CreateTable */
 
@@ -38,7 +41,7 @@ begin
 
 /* AddProperty OrderNumber */
 
-select count(*) into n from all_tab_columns where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERNUMBER';
+select count(*) into n from all_tab_columns where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERNUMBER' and owner = currentSchema;
 if(n = 0)
 then
   sqlStatement := 'alter table "ORDERSAGA" add ( CORR_ORDERNUMBER NUMBER(19) )';
@@ -60,7 +63,7 @@ select data_type ||
     end
   end into dataType
 from all_tab_columns
-where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERNUMBER';
+where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERNUMBER' and owner = currentSchema;
 
 if(dataType <> 'NUMBER(19)')
 then
@@ -79,7 +82,7 @@ end if;
 
 /* AddProperty OrderId */
 
-select count(*) into n from all_tab_columns where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERID';
+select count(*) into n from all_tab_columns where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERID' and owner = currentSchema;
 if(n = 0)
 then
   sqlStatement := 'alter table "ORDERSAGA" add ( CORR_ORDERID VARCHAR2(38) )';
@@ -101,7 +104,7 @@ select data_type ||
     end
   end into dataType
 from all_tab_columns
-where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERID';
+where table_name = 'ORDERSAGA' and column_name = 'CORR_ORDERID' and owner = currentSchema;
 
 if(dataType <> 'VARCHAR2(38)')
 then
@@ -126,7 +129,7 @@ select count(*) into n
 from all_tab_columns
 where table_name = 'ORDERSAGA' and column_name like 'CORR_%' and
         column_name <> 'CORR_ORDERNUMBER' and
-        column_name <> 'CORR_ORDERID';
+        column_name <> 'CORR_ORDERID' and owner = currentSchema;
 
 if(n > 0)
 then
@@ -135,7 +138,7 @@ then
   from all_tab_columns
   where table_name = 'ORDERSAGA' and column_name like 'CORR_%' and
         column_name <> 'CORR_ORDERNUMBER' and
-        column_name <> 'CORR_ORDERID';
+        column_name <> 'CORR_ORDERID' and owner = currentSchema;
 
   execute immediate sqlStatement;
 

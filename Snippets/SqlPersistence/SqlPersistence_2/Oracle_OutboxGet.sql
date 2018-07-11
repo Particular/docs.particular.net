@@ -3,6 +3,6 @@ startcode Oracle_OutboxGetSql
 select
     Dispatched,
     Operations
-from "ENDPOINTNAMEOD"
+from "dbo"."ENDPOINTNAMEOD"
 where MessageId = :MessageId
 endcode
