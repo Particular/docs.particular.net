@@ -64,14 +64,6 @@ When the message arrives at the Receiver, a `TransactionScope` is created that e
  * Persisting saga data of `OrderLifecycleSaga`.
  * Sending the reply message and the timeout request.
 
-snippet: Reply
-
-snippet: Timeout
-
-With SQL persistence, the `OrderLifecycleSaga` inherits from `SqlSaga`.
-
-snippet: Saga
-
 
 ### Script Output
 
