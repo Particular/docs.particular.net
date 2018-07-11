@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
 using NServiceBus.Persistence.Sql.ScriptBuilder;
@@ -94,9 +95,15 @@ public class ScriptWriter
 
     #region CreationScriptSaga
 
-    public class OrderSaga :
-        SqlSaga<OrderSaga.OrderSagaData>
+    [SqlSaga(transitionalCorrelationProperty: nameof(OrderSagaData.OrderId))]
+    public class OrderSaga : Saga<OrderSaga.OrderSagaData>,
+        IAmStartedByMessages<StartSaga>
     {
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
+        {
+            mapper.ConfigureMapping<StartSaga>(msg => msg.OrderNumber).ToSaga(saga => saga.OrderNumber);
+        }
+
         public class OrderSagaData :
             ContainSagaData
         {
@@ -104,16 +111,18 @@ public class ScriptWriter
             public Guid OrderId { get; set; }
         }
 
-        protected override string CorrelationPropertyName => nameof(OrderSagaData.OrderNumber);
-
-        protected override string TransitionalCorrelationPropertyName => nameof(OrderSagaData.OrderId);
-
         #endregion
 
-        protected override void ConfigureMapping(IMessagePropertyMapper mapper)
+        public Task Handle(StartSaga message, IMessageHandlerContext context)
         {
+            throw new NotImplementedException();
         }
+    }
 
+    public class StartSaga : ICommand
+    {
+        public int OrderNumber { get; set; }
+        public Guid OrderId { get; set; }
     }
 
     static void Write(string testDirectory, BuildSqlDialect variant, string suffix, string script)
