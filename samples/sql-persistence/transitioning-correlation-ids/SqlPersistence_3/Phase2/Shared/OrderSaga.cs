@@ -5,19 +5,17 @@ using NServiceBus.Persistence.Sql;
 
 #region sagaPhase2
 
+[SqlSaga(transitionalCorrelationProperty: nameof(OrderSagaData.OrderId))]
 public class OrderSaga :
-    SqlSaga<OrderSagaData>,
+    Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>
 {
     static ILog log = LogManager.GetLogger<OrderSaga>();
 
-    protected override void ConfigureMapping(IMessagePropertyMapper mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
-        mapper.ConfigureMapping<StartOrder>(_ => _.OrderNumber);
+        mapper.ConfigureMapping<StartOrder>(msg => msg.OrderNumber).ToSaga(saga => saga.OrderNumber);
     }
-
-    protected override string CorrelationPropertyName => nameof(OrderSagaData.OrderNumber);
-    protected override string TransitionalCorrelationPropertyName => nameof(OrderSagaData.OrderId);
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)
     {

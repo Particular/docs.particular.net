@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
-using NServiceBus.Persistence.Sql;
 
 public class TestSaga :
-        SqlSaga<TestSaga.TestSagaData>,
+        Saga<TestSaga.TestSagaData>,
         IHandleMessages<ReplyFollowUpMessage>,
         IHandleMessages<CorrelatedMessage>,
         IHandleTimeouts<TestTimeout>,
@@ -13,13 +12,11 @@ public class TestSaga :
 {
     static ILog log = LogManager.GetLogger<TestSaga>();
 
-    protected override void ConfigureMapping(IMessagePropertyMapper mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<TestSagaData> mapper)
     {
-        mapper.ConfigureMapping<StartingMessage>(m => m.SomeId);
-        mapper.ConfigureMapping<CorrelatedMessage>(m => m.SomeId);
+        mapper.ConfigureMapping<StartingMessage>(m => m.SomeId).ToSaga(s => s.SomeId);
+        mapper.ConfigureMapping<CorrelatedMessage>(m => m.SomeId).ToSaga(s => s.SomeId);
     }
-
-    protected override string CorrelationPropertyName => nameof(TestSagaData.SomeId);
 
     #region Handlers
 

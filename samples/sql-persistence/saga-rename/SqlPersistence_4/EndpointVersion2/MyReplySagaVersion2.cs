@@ -2,25 +2,22 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
-using NServiceBus.Persistence.Sql;
 
 #region replySaga2
 namespace MyNamespace2
 {
     public class MyReplySagaVersion2 :
-        SqlSaga<MyReplySagaVersion2.SagaData>,
+        Saga<MyReplySagaVersion2.SagaData>,
         IAmStartedByMessages<StartReplySaga>,
         IHandleMessages<Reply>
     {
         static ILog log = LogManager.GetLogger<MyReplySagaVersion2>();
 
-        protected override void ConfigureMapping(IMessagePropertyMapper mapper)
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
         {
-            mapper.ConfigureMapping<StartReplySaga>(_ => _.TheId);
-            mapper.ConfigureMapping<Reply>(_ => _.TheId);
+            mapper.ConfigureMapping<StartReplySaga>(msg => msg.TheId).ToSaga(saga => saga.TheId);
+            mapper.ConfigureMapping<Reply>(msg => msg.TheId).ToSaga(saga => saga.TheId);
         }
-
-        protected override string CorrelationPropertyName => nameof(SagaData.TheId);
 
         public Task Handle(StartReplySaga message, IMessageHandlerContext context)
         {

@@ -17,7 +17,7 @@ values
     @PersistenceVersion
 )
 on conflict ("Id") do update
-    set "Endpoint" = @Endpoint,
+    set "Endpoint" = coalesce(@Endpoint, "public"."EndpointNameSubscriptionData"."Endpoint"),
         "PersistenceVersion" = @PersistenceVersion
 
 endcode

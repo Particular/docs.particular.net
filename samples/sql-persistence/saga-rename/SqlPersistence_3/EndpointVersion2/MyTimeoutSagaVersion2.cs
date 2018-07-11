@@ -2,24 +2,21 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
-using NServiceBus.Persistence.Sql;
 
 #region timeoutSaga2
 namespace MyNamespace2
 {
     public class MyTimeoutSagaVersion2 :
-        SqlSaga<MyTimeoutSagaVersion2.SagaData>,
+        Saga<MyTimeoutSagaVersion2.SagaData>,
         IAmStartedByMessages<StartTimeoutSaga>,
         IHandleTimeouts<SagaTimeout>
     {
         static ILog log = LogManager.GetLogger<MyTimeoutSagaVersion2>();
 
-        protected override void ConfigureMapping(IMessagePropertyMapper mapper)
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
         {
-            mapper.ConfigureMapping<StartTimeoutSaga>(_ => _.TheId);
+            mapper.ConfigureMapping<StartTimeoutSaga>(msg => msg.TheId).ToSaga(saga => saga.TheId);
         }
-
-        protected override string CorrelationPropertyName => nameof(SagaData.TheId);
 
         public Task Handle(StartTimeoutSaga message, IMessageHandlerContext context)
         {

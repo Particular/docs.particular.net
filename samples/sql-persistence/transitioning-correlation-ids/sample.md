@@ -27,7 +27,7 @@ To move between phases, after running each phase adjust startup projects list in
 
 ### Phase 1
 
-In the initial phase an int `OrderNumber` is used. The saga maps to `StartOrder.OrderNumber` in the `ConfigureMapping` and correlates to `OrderSagaData.OrderNumber` via a `SqlSagaAttribute` with `correlationProperty` of `OrderNumber`.
+In the initial phase an int `OrderNumber` is used. In the `ConfigureHowToFindSaga` method, the saga maps `StartOrder.OrderNumber` from the incoming message to `OrderSagaData.OrderNumber` in the saga data.
 
 
 #### Message
@@ -47,7 +47,7 @@ snippet: sagadataPhase1
 
 ### Phase 2
 
-In the second phase a guid `OrderId` is added. The saga still maps to `StartOrder.OrderNumber` in the `ConfigureMapping` and correlates on to `OrderSagaData.OrderNumber`. However it also correlates to `OrderSagaData.OrderId` via a `transitionalCorrelationProperty`.
+In the second phase a guid `OrderId` is added. The saga still maps to `StartOrder.OrderNumber` to `OrderSagaData.OrderNumber` in the `ConfigureHowToFindSaga` method. However it also introduces a correlation to `OrderSagaData.OrderId` via a `transitionalCorrelationProperty` in the `[SqlSaga]` attribute.
 
 
 #### Message
@@ -66,12 +66,12 @@ snippet: sagaPhase2
 snippet: sagadataPhase2
 
 
-WARNING: Prior to moving to Phase 3 it is necessary to verify that all existing sagas have the `Correlation_OrderId` column populated. This can either be inferred by the business knowledge (i.e. certain saga may have a know and constrained lifetime) or by querying the database.
+WARNING: Prior to moving to Phase 3 it is necessary to verify that all existing sagas have the `Correlation_OrderId` column populated. This can either be inferred by the business knowledge (i.e. certain saga may have a known and constrained lifetime) or by querying the database.
 
 
 ### Phase 3
 
-In the third phase the int `OrderNumber` is removed leaving only the `OrderId`. The saga now maps to `StartOrder.OrderId` in the `ConfigureMapping` and correlates to `OrderSagaData.OrderId` via a `SqlSagaAttribute` with `correlationProperty` of `OrderNumber`.
+In the third phase the int `OrderNumber` is removed leaving only the `OrderId`. The saga now maps `StartOrder.OrderId` to `OrderSagaData.OrderId` in the `ConfigureHowToFindSaga` method.
 
 
 #### Message
