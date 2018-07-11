@@ -2,29 +2,23 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
-using NServiceBus.Persistence.Sql;
 
-#region Saga
 public class OrderLifecycleSaga :
-    SqlSaga<OrderLifecycleSaga.SagaData>,
+    Saga<OrderLifecycleSaga.SagaData>,
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
     static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
 
-    protected override void ConfigureMapping(IMessagePropertyMapper mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
-        mapper.ConfigureMapping<OrderSubmitted>(_ => _.OrderId);
+        mapper.ConfigureMapping<OrderSubmitted>(msg => msg.OrderId).ToSaga(saga => saga.OrderId);
     }
-
-    protected override string CorrelationPropertyName => nameof(SagaData.OrderId);
 
     public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
-        #region Timeout
         return RequestTimeout<OrderTimeout>(context, TimeSpan.FromSeconds(5));
-        #endregion
     }
 
     public Task Timeout(OrderTimeout state, IMessageHandlerContext context)
@@ -39,4 +33,3 @@ public class OrderLifecycleSaga :
         public Guid OrderId { get; set; }
     }
 }
-#endregion
