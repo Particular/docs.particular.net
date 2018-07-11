@@ -1,22 +1,19 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
-using NServiceBus.Persistence.Sql;
 
 #region sagaPhase3
 
 public class OrderSaga :
-    SqlSaga<OrderSagaData>,
+    Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>
 {
     static ILog log = LogManager.GetLogger<OrderSaga>();
 
-    protected override void ConfigureMapping(IMessagePropertyMapper mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
-        mapper.ConfigureMapping<StartOrder>(_ => _.OrderId);
+        mapper.ConfigureMapping<StartOrder>(msg =>msg.OrderId).ToSaga(saga => saga.OrderId);
     }
-
-    protected override string CorrelationPropertyName => nameof(OrderSagaData.OrderId);
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)
     {
