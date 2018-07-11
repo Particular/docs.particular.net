@@ -1066,6 +1066,8 @@
         Url: servicecontrol/installation-powershell
       - Title: Cluster Deployment
         Url: servicecontrol/deploying-servicecontrol-in-a-cluster
+      - Title: Multiple Instances
+        Url: servicecontrol/servicecontrol-instances/distributed-instances  
       - Title: Settings
         Url: servicecontrol/creating-config-file
       - Title: Overriding the host identifier
