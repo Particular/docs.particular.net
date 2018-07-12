@@ -1,6 +1,6 @@
 startcode Oracle_SagaCompleteSql
 
-delete from "ENDPOINTNAME_SAGANAME"
+delete from "EndpointName_SagaName"
 where Id = :Id and Concurrency = :Concurrency
 
 endcode

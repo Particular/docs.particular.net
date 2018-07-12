@@ -1,6 +1,6 @@
 startcode Oracle_SubscriptionUnsubscribeSql
 
-delete from "ENDPOINTNAMESS"
+delete from "dbo"."ENDPOINTNAMESS"
 where
     Subscriber = :Subscriber and
     MessageType = :MessageType

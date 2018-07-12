@@ -1,6 +1,6 @@
 startcode Oracle_OutboxStoreSql
 
-insert into "ENDPOINTNAMEOD"
+insert into "dbo"."ENDPOINTNAMEOD"
 (
     MessageId,
     Operations,
