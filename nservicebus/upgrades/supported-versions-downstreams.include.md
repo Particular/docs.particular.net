@@ -67,7 +67,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 8.0.x     | 2018-05-29     | -                 | -                                 |
+| 8.1.x     | 2018-07-12     | -                 | -                                 |
+| 8.0.x     | 2018-05-29     | 2018-10-12        | Superseded by 8.1.x               |
 | 7.2.x     | 2017-04-19     | 2020-05-29        | Extended by NServiceBus 6.4.x     |
 | 6.2.x     | 2015-05-27     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
 
