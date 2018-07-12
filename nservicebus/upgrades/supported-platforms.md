@@ -34,7 +34,6 @@ Some packages do not currently support .NET Core or running on non-Windows platf
   * NServiceBus.Azure.Transports.WindowsAzureServiceBus - The new transport is currently under development and available as a preview release.
   * NServiceBus.Transport.Msmq - MSMQ only runs on Windows.
 * Persistence
-  * NServiceBus.NHibernate - NHibernate 4.x and 5.0 do not support .NET Core, but support is [slated for NHibernate 5.1](https://github.com/nhibernate/nhibernate-core/issues/954).
   * NServiceBus.Persistence.ServiceFabric - .NET Core support is slated for a future minor release.
   * NServiceBus.Persistence.Sql - Microsoft SQL Server, MySQL, and PostgreSQL are supported. Oracle is not supported due to the lack of a .NET Core version of Oracle.ManagedDataAccess.
 * Containers
