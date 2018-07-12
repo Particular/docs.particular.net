@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Iesi.Collections" Version="4.*" />
-    <PackageReference Include="NHibernate" Version="4.*" />
+    <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.*" />
   </ItemGroup>

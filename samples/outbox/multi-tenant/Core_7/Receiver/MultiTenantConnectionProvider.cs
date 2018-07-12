@@ -1,10 +1,10 @@
-﻿using System.Data;
+﻿using System.Data.Common;
 using NHibernate.Connection;
 
 class MultiTenantConnectionProvider :
     DriverConnectionProvider
 {
-    public override IDbConnection GetConnection()
+    public override DbConnection GetConnection()
     {
         #region GetConnectionFromContext
 
