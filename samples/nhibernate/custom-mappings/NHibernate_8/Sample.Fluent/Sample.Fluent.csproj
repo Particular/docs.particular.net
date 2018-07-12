@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="FluentNHibernate" Version="2.0.*" />
-    <PackageReference Include="NHibernate" Version="4.*" />
+    <PackageReference Include="FluentNHibernate" Version="2.1.*" />
+    <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="IEsi.Collections" Version="4.0.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.*" />

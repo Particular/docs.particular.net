@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.Core.csproj" />
     <PackageReference Include="Iesi.Collections" Version="4.*" />
     <PackageReference Include="NHibernate" Version="5.*" />
-    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.*" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
   </ItemGroup>
 </Project>
