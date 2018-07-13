@@ -4,7 +4,6 @@ summary: Shows the standard configuration options for hosting an endpoint.
 reviewed: 2017-10-19
 component: Core
 related:
-- samples/step-by-step
 - nservicebus/hosting/assembly-scanning
 - nservicebus/hosting
 ---
