@@ -3,6 +3,7 @@ title: "NServiceBus Step-by-step: Publishing events"
 reviewed: 2017-01-26
 summary: In this 25-30 minute tutorial, you'll learn how to use the Publish/Subscribe pattern in NServiceBus to define, publish, and subscribe to an event.
 redirects:
+- tutorials/intro-to-nservicebus/4-publishing-events
 - tutorials/nservicebus-101/lesson-4
 extensions:
 - !!tutorial

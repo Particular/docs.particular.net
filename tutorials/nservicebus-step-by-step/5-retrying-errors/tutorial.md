@@ -3,6 +3,7 @@ title: "NServiceBus Step-by-step: Retrying errors"
 reviewed: 2017-01-26
 summary: In this 25-30 minute tutorial, you'll learn the different causes of errors and how to manage them with NServiceBus.
 redirects:
+- tutorials/intro-to-nservicebus/5-retrying-errors
 - tutorials/nservicebus-101/lesson-5
 extensions:
 - !!tutorial
