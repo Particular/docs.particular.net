@@ -5,12 +5,12 @@ summary: See why software systems built on asynchronous messaging using NService
 extensions:
 - !!tutorial
   nextText: "Next: NServiceBus from the ground up"
-  nextUrl: tutorials/intro-to-nservicebus/1-getting-started
+  nextUrl: tutorials/nservicebus-step-by-step/1-getting-started
 ---
 
 include: quickstart-tutorial-intro-paragraph
 
-This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) tutorial. It will teach you the NServiceBus API and important concepts you need to learn to build successful message-based software systems.
+This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/). It will teach you the NServiceBus API and important concepts you need to learn to build successful message-based software systems.
 
 ## Download solution
 
