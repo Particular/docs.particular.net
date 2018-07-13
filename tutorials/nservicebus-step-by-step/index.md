@@ -7,6 +7,8 @@ redirects:
 - tutorials/intro-to-nservicebus
 - tutorials/nservicebus-101
 - samples/step-by-step
+- nservicebus/nservicebus-step-by-step-guide
+- nservicebus/nservicebus-step-by-step-publish-subscribe-communication-code-first
 ---
 
 include: nsb101-intro-paragraph
