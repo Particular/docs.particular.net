@@ -6,18 +6,18 @@
     Articles:
     - Url: tutorials/quickstart
       Title: Quick Start Tutorial
-    - Url: tutorials/intro-to-nservicebus
+    - Url: tutorials/nservicebus-step-by-step
       Title: Introduction to NServiceBus
       Articles:
-      - Url: tutorials/intro-to-nservicebus/1-getting-started
+      - Url: tutorials/nservicebus-step-by-step/1-getting-started
         Title: Getting Started
-      - Url: tutorials/intro-to-nservicebus/2-sending-a-command
+      - Url: tutorials/nservicebus-step-by-step/2-sending-a-command
         Title: Sending a command
-      - Url: tutorials/intro-to-nservicebus/3-multiple-endpoints
+      - Url: tutorials/nservicebus-step-by-step/3-multiple-endpoints
         Title: Multiple endpoints
-      - Url: tutorials/intro-to-nservicebus/4-publishing-events
+      - Url: tutorials/nservicebus-step-by-step/4-publishing-events
         Title: Publishing events
-      - Url: tutorials/intro-to-nservicebus/5-retrying-errors
+      - Url: tutorials/nservicebus-step-by-step/5-retrying-errors
         Title: Retrying errors
     - Url: tutorials/nservicebus-sagas/1-getting-started
       Title: "NServiceBus sagas: Getting started"
