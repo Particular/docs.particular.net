@@ -7,7 +7,7 @@ redirects:
  - nservicebus/eventstoretransport
 ---
 
-The Event Store transport implements a message queuing mechanism on top of the [Event Store](https://geteventstore.com/) stream database.
+The Event Store transport implements a message queuing mechanism on top of the [Event Store](https://eventstore.org/) stream database.
 
 
 ## How it works
