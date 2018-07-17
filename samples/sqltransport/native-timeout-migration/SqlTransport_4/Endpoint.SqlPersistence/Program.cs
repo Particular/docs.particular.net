@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
+using NServiceBus.Transport.SQLServer;
 
 class Program
 {
@@ -15,6 +16,7 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(ConnectionString);
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.SubscriptionSettings().DisableCache();

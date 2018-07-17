@@ -24,6 +24,7 @@ class Program
 
         SqlHelper.EnsureDatabaseExists(ConnectionProvider.DefaultConnectionString);
 
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
         endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Assembly == typeof(ClientOrder).Assembly && t.Namespace == "Messages");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

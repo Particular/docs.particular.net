@@ -14,8 +14,7 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(ConnectionString);
-
-        var delayedDelivery = transport.UseNativeDelayedDelivery();
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

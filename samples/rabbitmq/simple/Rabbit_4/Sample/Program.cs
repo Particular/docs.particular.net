@@ -12,6 +12,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Simple");
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=localhost");
+        transport.DelayedDelivery().DisableTimeoutManager();
 
         #endregion
         endpointConfiguration.SendFailedMessagesTo("error");

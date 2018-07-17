@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Transport.SQLServer;
 
 class Program
 {
@@ -20,6 +21,7 @@ class Program
         #endregion
 
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         SqlHelper.EnsureDatabaseExists(connection);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

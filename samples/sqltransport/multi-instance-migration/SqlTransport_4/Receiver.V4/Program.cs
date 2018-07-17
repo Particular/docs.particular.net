@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
+using NServiceBus.Transport.SQLServer;
+
 #pragma warning disable 618
 
 class Program
@@ -23,6 +25,7 @@ class Program
 
         #endregion
 
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
         endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Assembly == typeof(ClientOrder).Assembly && t.Namespace == "Messages");
 
         SqlHelper.EnsureDatabaseExists(ConnectionString);

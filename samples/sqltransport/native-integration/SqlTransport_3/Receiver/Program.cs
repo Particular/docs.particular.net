@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Transport.SQLServer;
 
 class Program
 {
@@ -12,6 +13,7 @@ class Program
     static async Task Main()
     {
         Console.Title = "Samples.SqlServer.NativeIntegration";
+
         #region EndpointConfiguration
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.NativeIntegration");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
@@ -19,6 +21,7 @@ class Program
         endpointConfiguration.UseSerialization<JsonSerializer>();
         #endregion
 
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

@@ -21,6 +21,9 @@ public class Program
         endpointConfiguration.EnableInstallers();
 
         #endregion
+
+        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
+
         SqlHelper.EnsureDatabaseExists(ConnectionProvider.DefaultConnectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
