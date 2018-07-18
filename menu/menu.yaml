@@ -24,9 +24,9 @@
     - Url: tutorials
       Title: More tutorials
       Articles:
-      - Url: tutorials/monitoring-setup/
+      - Url: tutorials/monitoring-setup
         Title: Monitoring NServiceBus solutions
-      - Url: tutorials/monitoring-demo/
+      - Url: tutorials/monitoring-demo
         Title: Monitoring NServiceBus solutions:demo
     - Url: get-started/high-level-content
       Title: High-level content
