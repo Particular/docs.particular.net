@@ -24,7 +24,6 @@
 * [SQL Attachments](/samples/attachments-sql/?version=attachmentssql_1)
 * [SQL Server Transport and SQL Persistence](/samples/sqltransport-sqlpersistence/?version=core_7)
 * [Startup and Shutdown Sequence](/samples/startup-shutdown-sequence/?version=core_7)
-* [Step by Step Sample](/samples/step-by-step/?version=core_7)
 * [Unit of Work Usage](/samples/unit-of-work/?version=core_7)
 * [Unit Testing NServiceBus](/samples/unit-testing/?version=testing_7)
 * [Unobtrusive](/samples/unobtrusive/?version=core_7)

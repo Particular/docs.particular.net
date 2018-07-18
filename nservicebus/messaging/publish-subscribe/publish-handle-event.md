@@ -7,7 +7,7 @@ tags:
 - Publish Subscribe
 related:
 - samples/pubsub
-- samples/step-by-step
+- tutorials/nservicebus-step-by-step
 - nservicebus/messaging/messages-events-commands
 ---
 

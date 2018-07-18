@@ -17,24 +17,24 @@ downloadbutton
 
 ## Project Structure
 
-The solution is similar to the one built in the [Introduction to NServiceBus tutorial](/tutorials/intro-to-nservicebus/), containing five projects. The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages.
+The solution is similar to the one built in [NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/), containing five projects. The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages.
 
 The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales**, **Billing**, and **Shipping** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as [POCO classes](https://en.wikipedia.org/wiki/Plain_old_CLR_object).
 
 As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an `OrderPlaced` event using the publish/subscribe pattern, which will be received by the **Billing** and **Shipping** endpoints. Additionally, the **Billing** endpoint endpoint will publish an `OrderBilled` endpoint that will also be received by the **Shipping** endpoint.
 
-![Project Diagram](/tutorials/intro-to-nservicebus/4-publishing-events/diagram.svg)
+![Project Diagram](/tutorials/nservicebus-step-by-step/4-publishing-events/diagram.svg)
 
 INFO: In a real system, the **Shipping** endpoint should be able to take some action once it receives both an `OrderPlaced` and `OrderBilled` event for the same order. That is a use case for a [Saga](/nservicebus/sagas/) and is outside of the scope of this tutorial.
 
 
 ## Production-ready message transport
 
-The [Introduction to NServiceBus tutorial](/tutorials/intro-to-nservicebus/) on which the code is based uses the [Learning Transport](/transports/learning/) as its underlying [message transport](/transports/) to move messages around. It's great for learning the NServiceBus API and for demos, but since it does not support the tools in the [Particular Service Platform](/platform/), we need to upgrade to a production-ready transport.
+The [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/) on which the code is based uses the [Learning Transport](/transports/learning/) as its underlying [message transport](/transports/) to move messages around. It's great for learning the NServiceBus API and for demos, but since it does not support the tools in the [Particular Service Platform](/platform/), we need to upgrade to a production-ready transport.
 
 This tutorial uses the [MSMQ Transport](/transports/msmq/) that moves messages around using Microsoft Message Queuing.
 
-If you completed the [Introduction to NServiceBus tutorial](/tutorials/intro-to-nservicebus/), you may want to note a few things in the code that have changed.
+If you completed the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/), you may want to note a few things in the code that have changed.
 
 In the **Program.cs** file of every endpoint, the `LearningTransport` has been replaced by the `MsmqTransport` (from the [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq) NuGet package), including additional configuration that is required by MSMQ:
 
@@ -74,7 +74,7 @@ To complete this tutorial and run the solution, we will be using the [Particular
 To install the Service Platform:
 
  1. Download the [Platform Installer](https://particular.net/start-platform-download).
- 1. Launch the **ParticularPlatform.exe** you downloaded, and use it to install the Particular Service Platform [according to the instructions](/platform/installer/).
+ 2. Launch the **ParticularPlatform.exe** you downloaded, and use it to install the Particular Service Platform [according to the instructions](/platform/installer/).
 
 Once that completes, we need to install an instance of ServiceControl. It's possible to install multiple instances of ServiceControl for different transports, so we need to configure a ServiceControl instance specifically for MSMQ.
 
@@ -173,6 +173,6 @@ In this tutorial, we saw how to set up the Particular Service Platform tools Ser
 
 Perhaps the message had a previously unexpected input value which caused the bug to go undetected until the code entered production. With this knowledge in hand, we can go fix the code to validate these inputs or take some other sort of corrective action. Once the new code is deployed with the fix, we can replay the message and everything will flow through the system as if the error had never happened.
 
-If you haven't yet, you should check out the [Introduction to NServiceBus](/tutorials/intro-to-nservicebus/) tutorial, where you'll learn how to build the solution this tutorial is based on from scratch, while learning the messaging concepts you'll need to know to build even more complex software systems with NServiceBus.
+If you haven't yet, you should check out the [NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/) tutorial, where you'll learn how to build the solution this tutorial is based on from scratch, while learning the messaging concepts you'll need to know to build even more complex software systems with NServiceBus.
 
 SUCCESS: Now that you understand how powerful the ability to replay messages can be, take the next step and chat with one of our developers about how you can benefit from using NServiceBus in your next project. Just use the live chat in the bottom-right corner of the window.

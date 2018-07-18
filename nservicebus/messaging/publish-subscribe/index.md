@@ -13,7 +13,7 @@ redirects:
  - nservicebus/messaging/publish-subscribe/configuration
 related:
  - samples/pubsub
- - samples/step-by-step
+ - tutorials/nservicebus-step-by-step
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/headers
  - transports/msmq/distributor/publish-subscribe

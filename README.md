@@ -540,7 +540,7 @@ For tutorials chained together to form multiple lessons, navigation can be creat
 ```
 - !!tutorial
   nextText: "Next Lesson: Sending a command"
-  nextUrl: tutorials/intro-to-nservicebus/2-sending-a-command
+  nextUrl: tutorials/nservicebus-step-by-step/2-sending-a-command
 ```
 
 The `nextText` parameter is optional, and will default to the title of the linked page if omitted.
