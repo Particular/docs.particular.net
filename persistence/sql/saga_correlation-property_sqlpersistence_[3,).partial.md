@@ -4,7 +4,7 @@ For NServiceBus sagas, in most cases the correlation property can be inferred at
 * Branching or looping logic inside the `ConfigureHowToFindSaga` method
 * Non-matching correlation properties for multiple message types
 
-In these cases, either redesign the saga to avoid these patterns, specify the correlation property with a [`[SqlSaga]` attribute](#correlation-ids-specifying-correlation-id-using-attribute), or use the [`SqlSaga<T>` base class](sqlsaga.md).
+In these cases, either redesign the saga to avoid these patterns, specify the correlation property with a [`[SqlSaga]` attribute](#correlation-ids-specifying-correlation-id-using-an-attribute), or use the [`SqlSaga<T>` base class](sqlsaga.md).
 
 
 ### Specifying correlation ID using an attribute
