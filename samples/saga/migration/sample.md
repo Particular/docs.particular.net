@@ -11,11 +11,11 @@ related:
 - persistence/sql
 ---
 
-When saga data is involved, migrating from one type of persistence to another can seem like an insurmountable task, since each persister stores NServiceBus saga data in very different ways that would make creating a migration script next to impossible. Even if the script could be written, executing it would require a lengthy downtime with no ability to revert if something went wrong.
+When saga data is involved, migrating from one type of persistence to another can seem like an insurmountable task, since each persister stores NServiceBus saga data in different ways that would make creating a migration script difficult. Even if the script could be written, executing it may require lengthy downtime, possible with no ability to revert if something went wrong.
 
 This sample takes a different approach, by showing how to migrate from one saga persister to another in a gradual fashion, without requiring an offline migration script. This is accomplished by running two versions of the endpoint in parallel and forwarding messages where the saga data cannot be found to the new endpoint.
 
-This sample shows how to migrate from [NHibernate](/persistence/nhibernate/) to [SQL Persistence](/persistence/sql/), but the same concept could be used to migrate between any two persistence options.
+This sample shows how to migrate from [NHibernate](/persistence/nhibernate/) to [SQL Persistence](/persistence/sql/), but the same concept can be used to migrate between any two persistence options.
 
 downloadbutton
 
@@ -81,7 +81,7 @@ To summarize, sagas can be looked up by either their correlation property value 
 
 The migration procedure require that the new version of a given endpoint is deployed alongside the old one. In this sample "Server.New" represents the new version that uses SQL persistence. Before the migration is complete the new version is not visible to the outside world because it uses a different queue name.
 
-The new version has to be deployed and started before the migration process can begin. Only then the old version has to be modified to enable the migration. This requires a couple of code changes. In this sample both versions share the same source code (though copied to different files) for the saga definition and the changes are done via pre-processor instructions. Enabling the migration happens by un-commenting this statement:
+The new version must be deployed and started before the migration process can begin. Only then can the old version be modified to enable the migration. This requires a couple of code changes. In this sample both versions share the same source code (though copied to different files) for the saga definition and the changes are done via pre-processor instructions. Enabling the migration happens by un-commenting this statement:
 
 ```
 //#define MIGRATION
