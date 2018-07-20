@@ -1,7 +1,7 @@
 ---
 title: Sequence Diagram
-summary: ServiceInsight Sequence Diagram view
-reviewed: 2016-10-20
+summary: The ServiceInsight sequence diagram view
+reviewed: 2018-07-20
 component: ServiceInsight
 ---
 
@@ -11,11 +11,11 @@ The sequence diagram shows when messages in the same conversation as the selecte
 
 ## How the diagram is generated
 
-When NServiceBus sends or publishes a message it adds specific headers such as `NServiceBus.MessageId`, which is a unique ID for that message. The first message to be sent in a conversation will also get a unique `ConversationId` header.
+When sending or publishing a message, NServiceBus adds identifying headers such as `NServiceBus.MessageId`, which is a unique ID for that message. The first message to be sent in a conversation will also get a unique `ConversationId` header.
 
-If the handling of an incoming message results in outgoing messages, those messages are given an `NServiceBus.RelatedTo` header equal to the `MessageId` of the incoming message and are given the same `ConversationId` as the incoming message.
+If handling an incoming message results in outgoing messages, those messages are given an `NServiceBus.RelatedTo` header equal to the `MessageId` of the incoming message. They are also given the same `ConversationId` as the incoming message.
 
-Additional headers are used to determine endpoint names, message intent and other factors. [Read more about headers](/nservicebus/messaging/headers.md).
+Additional headers are used to determine endpoint names, message intent, and other factors. [Read more about headers](/nservicebus/messaging/headers.md).
 
 Note: The order of operations is critical to the correctness of the sequence diagram. When endpoints are running on more than one machine, it is crucial that those machines have synchronised clocks. This can be done using an NTP server.
 
@@ -25,16 +25,16 @@ Note: The order of operations is critical to the correctness of the sequence dia
 
 ![Endpoint](endpoint.png)
 
-Each endpoint involved in the conversation is represented by a gray box along the top of the diagram. Hover on the endpoint to get more information such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a (life)line that shows time flowing from top to bottom.
+Each endpoint involved in the conversation is represented by a gray box along the top of the diagram. Hover on the endpoint to get more information such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a lifeline that shows time flowing from top to bottom.
 
 
 ### Start of conversation
 
 ![Start of conversation marker](start-of-conversation.png)
 
-Each conversation starts with a single command or event. This message is often triggered by some action external to the system such as a user clicking a Submit Order button on a website. The metadata used to generate the diagram does not include the trigger such cases but it does include the endpoint that sent or published the message, represented by a Start of Conversation marker on the endpoint lifeline.
+Each conversation starts with a single command or event. This message is often triggered by some action external to the system (such as a user clicking a Submit Order button on a website). The metadata used to generate the diagram does not include the trigger in these cases but it does include the endpoint that sent or published the message, represented by a Start of Conversation marker on the endpoint lifeline.
 
-NOTE: The Start of Conversation marker may not always be visible. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. The diagram will only show get the last 50 messages from the conversation and this may not include the initiating message.
+NOTE: The Start of Conversation marker may not always be visible. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. The diagram will show only the last 50 messages from the conversation and this may not include the initiating message.
 
 
 ### Messages
@@ -45,12 +45,11 @@ When a message is sent, a solid arrow is drawn from the lifeline of the sending 
 
 ![Message context menu](context-menu.png)
 
-Right-clicking on a message label gives access to actions related to that message.
+Right-clicking on a message label shows actions related to that message.
 
 ![Message processing box](handler.png)
 
-Some time after a message is received, it is processed by the receiving endpoint. This is represented by a box on the endpoint lifeline
-labelled with the message type. If the endpoint received more than one message of that type, the specific message being processed may be seen by hovering over or selecting the processing box.
+Some time after a message is received, it is processed by the receiving endpoint. This is represented by a box on the endpoint lifeline labelled with the message type. If the endpoint received more than one message of that type, the specific message being processed may be seen by hovering over or selecting the processing box.
 
 A message arrow shown leaving a processing box represents an outgoing message that was sent or published while processing the incoming message. These arrows are shown in the order in which those messages were sent or published.
 
@@ -67,14 +66,14 @@ If the processing of a message failed, the processing box is displayed in red wi
 
 Events are represented similarly to other messages but with dashed lines and a different icon.
 
-NOTE: Each event published will appear once for each subscriber, as if individual messages were sent to each subscriber by the sender, regardless of whether Unicast or Multicast routing is used. [Learn more about Message Routing](/nservicebus/messaging/routing.md).
+NOTE: Each event published will appear once for each subscriber, as if individual messages were sent to each subscriber by the sender, regardless of whether unicast or multicast routing is used. [Learn more about message routing](/nservicebus/messaging/routing.md).
 
 
-### Loopback Messages
+### Loopback messages
 
 ![Loopback message](loopback.png)
 
-A loopback message is a message that an endpoint sends to itself and is represented by a short arrow with a special icon, that does not connect to another endpoint lifeline. As with any other message, hovering over or selecting the message will highlight the processing for that message in the lifeline.
+A loopback message is a message that an endpoint sends to itself and is represented by a short arrow with a special icon that does not connect to another endpoint lifeline. As with any other message, hovering over or selecting the message will highlight the processing for that message in the lifeline.
 
 
 ### Timeout messages
@@ -86,7 +85,7 @@ A timeout message is a special type of loopback message where handling is deferr
 NOTE: The time of processing may not correspond to the time at which a timeout message was sent back for processing by the timeout message scheduler. The sequence diagram does not currently support visualization of the time at which the timeout message was sent back and will only indicate when it was processed.
 
 
-### Differences with UML sequence diagrams
+### Differences from UML sequence diagrams
 
 The language used in the sequence diagram is largely modeled after the standard defined by UML sequence diagrams. However, due to technical limitations and specifics related to messaging systems, the sequence diagram in ServiceInsight has some notable differences:
 
@@ -103,10 +102,10 @@ The language used in the sequence diagram is largely modeled after the standard 
 | **Open arrow style** | - | ![UML open arrow](uml-open-arrow.png) |
 | | N/A | Used for response messages and asynchronous messages. |
 | **Asynchronous messages** | - | ![UML asynchronous messages](uml-asynchronous.png) |
-| | N/A - all NServiceBus messages are asynchronous so the ServiceInsight Sequence Diagram has no special representation for asynchronous messages and no representation for synchronous messages, even though messages may exhibit synchronous behavior by (system) design. | Represented by a sloping dashed or solid line with an open arrow. |
+| | N/A - all NServiceBus messages are asynchronous so the ServiceInsight sequence diagram has no special representation for asynchronous messages and no representation for synchronous messages, even though messages may exhibit synchronous behavior by design. | Represented by a sloping dashed or solid line with an open arrow. |
 | **Send to self / loopback messages** | ![Loopback message](loopback-si.png) | ![UML loopback message](uml-loopback.png)
 | | Represented by a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon. | Represented by an arrow that connects back to the sending object's lifeline. It is immediately followed by its handler, which usually overlaps the handler that sent the loopback message. |
 | **Handlers** | - | ![UML handler](uml-handler.png) |
 | | N/A - currently it's not possible to collect telemetry data to visualize message handlers. | Represented by rectangles directly attached to arrow heads. |
 | **Message Processing** | ![Message processing](processing.png) | - |
-| | Represented by a labeled rectangle not connected with the arrows of its parent messages. This representation was chosen to reflect that the execution/processing of incoming messages may only occur after several other messages were sent and also to reflect the default asynchronous nature of any associated response messages. | N/A |
+| | Represented by a labeled rectangle not connected with the arrows of its parent messages. This representation was chosen to reflect that the execution/processing of incoming messages may occur only after several other messages were sent and also to reflect the default asynchronous nature of any associated response messages. | N/A |
