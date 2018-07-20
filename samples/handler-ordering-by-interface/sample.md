@@ -1,10 +1,11 @@
 ---
 title: Handler ordering by interface
 summary: Using interfaces to express dependency between handlers.
-reviewed: 2016-10-15
+reviewed: 2018-07-19
 component: HandlerOrdering
 ---
 
+This sample demonstrates how to use interfaces to express dependencies between handlers.
 
 ## Configuring to use HandlerOrdering
 
