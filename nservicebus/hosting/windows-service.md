@@ -44,7 +44,7 @@ sc.exe delete SalesEndpoint
 For completeness, here are some other common usages of the Service Control tool:
 
 
-### Service name
+### Setting the Windows Service name
 
 The Windows Service name can be configured at creation time, as follows:
 
@@ -54,7 +54,7 @@ sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
 ```
 
 
-### Display name
+### Setting the Display name
 
 The display name can be configured, at creation time, using the `displayname` argument:
 
@@ -64,7 +64,7 @@ sc.exe create SalesEndpoint displayname= "Sales Endpoint" binpath= "c:\SalesEndp
 ```
 
 
-### Description
+### Setting the Description
 
 The description can be changed, after the Windows Service has been created, using the [sc description](https://technet.microsoft.com/en-us/library/cc742069.aspx) command.
 
@@ -74,7 +74,7 @@ sc.exe description SalesEndpoint "Service for hosting the Sales Endpoint"
 ```
 
 
-### Service dependencies
+### Specifying Service dependencies
 
 The dependencies of a Windows Service can be configured after it has been created using the [sc config](https://technet.microsoft.com/en-us/library/cc990290.aspx) command.
 
@@ -84,7 +84,7 @@ sc.exe config SalesEndpoint depend= MSMQ/MSDTC/RavenDB
 ```
 
 
-### Restart recovery
+### Setting the Restart Recovery Options
 
 Windows has a Windows Service recovery mechanism that makes sure a crashed process will be restarted.
 
