@@ -14,7 +14,7 @@ related:
  - samples/endpoint-configuration
 ---
 
-Running inside a [Windows service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common approach to hosting NServiceBus.
+Running an NServiceBus endpoint inside a [Windows service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common approach to hosting.
 
 
 ## Example Windows service hosting
