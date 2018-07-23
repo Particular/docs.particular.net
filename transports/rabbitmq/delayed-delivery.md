@@ -56,32 +56,34 @@ end
 
 The delay levels are connected in this manner, from highest (27) to lowest (0). Each delay level's routing key's add wildcards as needed so that they are looking at the portion of the message's routing key that corresponds to its delay level.
 
-The following table illustrates dead letter exchange and bindings for the delay queues. It's important to note the wildcard rules for RabbitMQ binding expressions:
+The following table illustrates dead letter exchange and bindings for the delay queues. It's important to note the wildcard rules for RabbitMQ binding expressions, where *word* describes a dot-delimited segment:
 
-* `*` substitutes for exactly one segment
-* `#` substitutes for 0 or more segments.
+* `*` substitutes for exactly one word
+* `#` substitutes for 0 or more words
 
-| Exchange/Queue     | x-dead-letter-exchange | Binding                                                     |
-|--------------------|------------------------|-------------------------------------------------------------|
-| nsb.delay-level-27 | nsb.delay-level-26     | `1.#`                                                       |
-| nsb.delay-level-26 | nsb.delay-level-25     | `*.1.#`                                                     |
-| nsb.delay-level-25 | nsb.delay-level-24     | `*.*.1.#`                                                   |
-|         ...        |           ...          | ...                                                         |
-| nsb.delay-level-03 | nsb.delay-level-02     | `*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#`       |
-| nsb.delay-level-02 | nsb.delay-level-01     | `*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#`     |
-| nsb.delay-level-01 | nsb.delay-level-00     | `*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#`   |
-| nsb.delay-level-00 | nsb.delay-delivery     | `*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#` |
+| Exchange & Queue Name | x-dead-letter-exchange | Queue Binding                                               |
+|-----------------------|------------------------|-------------------------------------------------------------|
+| nsb.delay-level-27    | nsb.delay-level-26     | `1.#`                                                       |
+| nsb.delay-level-26    | nsb.delay-level-25     | `*.1.#`                                                     |
+| nsb.delay-level-25    | nsb.delay-level-24     | `*.*.1.#`                                                   |
+| ...                   | ...                    | ...                                                         |
+| nsb.delay-level-03    | nsb.delay-level-02     | `*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#`       |
+| nsb.delay-level-02    | nsb.delay-level-01     | `*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#`     |
+| nsb.delay-level-01    | nsb.delay-level-00     | `*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#`   |
+| nsb.delay-level-00    | nsb.delay-delivery     | `*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#` |
 
-With this system of queues, the message is first delivered to `nsb.delay-level-27` where the routing key will only match the binding if it begins with `1.`. In that case the queue will "accept" the message and wait for something to process it up until the TTL (2^27 seconds) before forwarding to `nsb.delay-level-27`. If the binding does not match the message will be rejected from `nsb.delay-level-27` and forwarded to the dead letter exchange immediately.
+With this system of exchanges and queues, the message is first delivered to the first applicable queue based on the binary value. In the 10-second example (binary `1010`) the message would first be delivered to the `nsb.delay-level-03` exchange, where the matching queue's binding will only match if a `1` exists in the 4th-to-last digit. In that case the queue will "accept" the message into the `nsb.delay-level-03` queue and wait for something to process it up until the TTL (2^3 seconds) before forwarding to the `nsb.delay-level-02` exchange.
 
-In the second delay queue (`nsb.delay-level-26`) the binding will match any value for the first segment (either `0` or `1`) but only match if the second segment is a `1`. In this way, the process continues all the way through `nsb.delay-level-00`.
+When the bindings for exchanges and queues don't match up, i.e. when the bit value is zero, wildcard bindings with 0 values instead of 1 ensure that messages that shouldn't be delayed for that delay level are immediately forwarded to the next delay level. In other words, for each exchange, the bit value in a message's routing key will either match `1` and be forwarded to the queue to be delayed by the TTL, or will match `0` and be forwarded to the next delay level.
+
+This process continues all the way through `nsb.delay-level-00`, where the x-dead-letter-exchange value (for matching routing keys) or the exchange-to-exchange binding (for non-matching routing keys) forward the message to the `nsb.delay-delivery` exchange.
 
 
 ### Delivery
 
 It is at the final step, in the `nsb.delay-delivery` exchange, where the real message destination is evaluated to determine which queue (based on endpoint name) the message should be delivered to.
 
-Each endpoint creates bindings in the `nsb.delay-delivery` exchange, similar to the following:
+Each endpoint creates a binding to the `nsb.delay-delivery` exchange, similar to the following:
 
 | Destination Queue | Routing Key        |
 |-------------------|--------------------|
