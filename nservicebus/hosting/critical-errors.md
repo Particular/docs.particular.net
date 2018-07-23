@@ -52,7 +52,7 @@ When implementing a custom critical error callback:
 Whenever possible rely on the environment hosting the endpoint process to automatically restart it:
 
  * IIS: The IIS host will automatically spawn a new instance.
- * Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-restart-recovery) is enabled.
+ * Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) is enabled.
 
 WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if co-hosting NServiceBus with a web-service or website.
 
