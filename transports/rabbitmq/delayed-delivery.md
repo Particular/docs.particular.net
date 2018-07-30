@@ -34,79 +34,93 @@ Each exchange/queue pair that makes up a level represents one bit of the total d
 
 A delay level is created by declaring a topic exchange that is bound to a queue with a routing key of `1`, and to the exchange corresponding to `level - 1` with a routing key of `0`. The queue for the delay level is declared with an [`x-message-ttl`](https://www.rabbitmq.com/ttl.html) value corresponding to `2^level` seconds. The queue is also declared with an [`x-dead-letter-exchange`](https://www.rabbitmq.com/dlx.html) value corresponding to the `level - 1` exchange, so that when a message in the queue expires, it will be routed to the `level - 1` exchange.
 
-```mermaid
-
-graph TD
-
-subgraph Delay Level
-
-exchangeN(Level N)
-queueN[TTL 2^N]
-exchangeN-1(Level N-1)
-
-exchangeN -->|bit=1| queueN
-exchangeN -->|bit=0| exchangeN-1
-queueN -->|expired<br>message| exchangeN-1
-
-classDef exchangeClass stroke:#000000,stroke-width:2px;
-class exchangeN,exchangeN-1 exchangeClass
-
-end
-```
-
 The delay levels are connected in this manner, from highest (27) to lowest (0). Each delay level's routing key's add wildcards as needed so that they are looking at the portion of the message's routing key that corresponds to its delay level.
 
-The following table illustrates dead letter exchange and bindings for the delay queues. It's important to note the wildcard rules for RabbitMQ binding expressions, where *word* describes a dot-delimited segment:
+The following diagram illustrates the relationships between exchanges and queues, which are connected by bindings and `x-message-ttl` delay values. It's important to note the wildcard rules for RabbitMQ binding expressions, where *word* describes a dot-delimited segment:
 
 * `*` substitutes for exactly one word
 * `#` substitutes for 0 or more words
 
-| Exchange & Queue Name | x-dead-letter-exchange | Queue Binding                                               |
-|-----------------------|------------------------|-------------------------------------------------------------|
-| nsb.delay-level-27    | nsb.delay-level-26     | `1.#`                                                       |
-| nsb.delay-level-26    | nsb.delay-level-25     | `*.1.#`                                                     |
-| nsb.delay-level-25    | nsb.delay-level-24     | `*.*.1.#`                                                   |
-| ...                   | ...                    | ...                                                         |
-| nsb.delay-level-03    | nsb.delay-level-02     | `*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#`       |
-| nsb.delay-level-02    | nsb.delay-level-01     | `*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#`     |
-| nsb.delay-level-01    | nsb.delay-level-00     | `*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#`   |
-| nsb.delay-level-00    | nsb.delay-delivery     | `*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#` |
+<style>
+.edgeLabel {
+    font-family: Consolas, Courier New, monospace;
+}
+</style>
 
-With this system of exchanges and queues, the message is first delivered to the first applicable queue based on the binary value. In the 10-second example (binary `1010`) the message would first be delivered to the `nsb.delay-level-03` exchange, where the matching queue's binding will only match if a `1` exists in the 4th-to-last digit. In that case the queue will "accept" the message into the `nsb.delay-level-03` queue and wait for something to process it up until the TTL (2^3 seconds) before forwarding to the `nsb.delay-level-02` exchange.
+```mermaid
 
-When the bindings for exchanges and queues don't match up, i.e. when the bit value is zero, wildcard bindings with 0 values instead of 1 ensure that messages that shouldn't be delayed for that delay level are immediately forwarded to the next delay level. In other words, for each exchange, the bit value in a message's routing key will either match `1` and be forwarded to the queue to be delayed by the TTL, or will match `0` and be forwarded to the next delay level.
+graph TD
 
-This process continues all the way through `nsb.delay-level-00`, where the x-dead-letter-exchange value (for matching routing keys) or the exchange-to-exchange binding (for non-matching routing keys) forward the message to the `nsb.delay-delivery` exchange.
+subgraph Delay Level Exchanges, Queues, Bindings, and TTLs
+
+exchange27(Exchange: nsb.delay-level-27)
+queue27[Queue: nsb.delay-level-27]
+exchange26(Exchange: nsb.delay-level-26)
+queue26[Queue: nsb.delay-level-26]
+exchange25(Exchange: nsb.delay-level-25)
+
+hiddenExchanges(Not Shown: nsb.delay-level-24 through nsb.delay-level-2)
+
+exchange1(Exchange: nsb.delay-level-01)
+queue1(Queue: nsb.delay-level-01)
+exchange0(Exchange: nsb.delay-level-00)
+queue0(Queue: nsb.delay-level-00)
+delivery(Exchange: nsb.delay-delivery)
+
+exchange27 -->|"Binding: 1.#<br/>(No * wildcards)"| queue27
+exchange27 -->|"Binding: 0.#<br/>(No * wildcards)"| exchange26
+queue27 -->|"TTL: 2^27s ≈ 4.25 years"| exchange26
+
+exchange26 -->|"Binding: *.1.#<br/>(1 * wildcard)"| queue26
+exchange26 -->|"Binding: *.0.#<br/>(1 * wildcard)"| exchange25
+queue26 -->|"TTL: 2^26s ≈ 2.13 years"| exchange25
+
+exchange25 -.-> hiddenExchanges
+hiddenExchanges -.-> exchange1
+
+exchange1 -->|"Binding:<br/>*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#<br/>(26 * wildcards)"| queue1
+exchange1 -->|"Binding:<br/>*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.0.#<br/>(26 * wildcards)"| exchange0
+queue1 -->|TTL: 2^1s = 2 seconds| exchange0
+
+exchange0 -->|"Binding:<br/>*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.1.#<br/>(27 * wildcards)"| queue0
+exchange0 -->|"Binding:<br/>*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.0.#<br/>(27 * wildcards)"| delivery
+queue0 -->|TTL: 2^0s = 1 second| delivery
+
+classDef exchangeClass stroke:#000000,stroke-width:2px,font-weight:bold;
+class exchange27,exchange26,exchange25,exchange1,exchange0,delivery exchangeClass
+
+classDef hiddenExchanges font-style:italic,fill:transparent,stroke:transparent;
+class hiddenExchanges hiddenExchanges
+
+end
+```
+
+With this system of exchanges and queues, the message is first delivered to the first applicable exchange based on the binary value. In the 10-second example (binary `1010`) the message would first be delivered to the `nsb.delay-level-03` exchange, and all of that exchange's bindings are evaluated. All matching bindings will receive a copy of the message, but the bindings are arranged so that there are only two possibilities based on the value of the 4th-to-last digit:
+
+* If the value is a `1` the exchange will deliver the message to the `nsb.delay-level-03` queue and wait for something to process it up until the TTL (2^3 seconds) before forwarding to the `nsb-delay-level-02` exchange.
+* If the value is a `0` the exchange will immediately deliver the message immediate to the `nsb.delay-level-02` exchange.
 
 
 ### Delivery
 
-It is at the final step, in the `nsb.delay-delivery` exchange, where the real message destination is evaluated to determine which queue (based on endpoint name) the message should be delivered to.
+At the end of this conditional delay process, the message is delivered to the `nsb.delay-delivery` exchange. It is at this final step where the real message destination is evaluated to determine where the message should be delivered to.
 
-Each endpoint creates a binding to the `nsb.delay-delivery` exchange, similar to the following:
-
-| Destination Queue | Routing Key        |
-|-------------------|--------------------|
-| Sales             | `#.Sales`          |
-| Billing           | `#.Billing`        |
-| Shipping          | `#.Shipping`       |
-| Other.Endpoint    | `#.Other.Endpoint` |
-
-These bindings match any combination of delay values, but only the binding for the correct destination queue will match, resulting in the message being delivered to only the correct destination queue.
+Every endpoint that can receive delayed messages will create bindings like `#.EndpointName` to this exchange similar to `#.EndpointName`. The exact process depends upon the [routing topology](routing-topology.md) in use. These bindings match any combination of delay values, but only the binding for the correct destination endpoint will match, resulting in the message being delivered to only the correct endpoint.
 
 
 ### Example
 
-Using a simplified version of the delay infrastructure that has 4 delay levels (0-3), this is an example of sending a message with a delay of 5 seconds to an endpoint called `destination`:
+This example illustrates the delay mentioned above, showing a message sent with a delay of 10 seconds to an endpoint called `destination`. For brevity, the number of delay levels has been reduced to 4, so the routing key for this message is `1.0.1.0.destination`.
 
- 1. The message is published to the level 3 exchange with the following routing key: (0.1.0.1.destination)
- 1. The level 3 bit of the routing key is `0`, so the message is routed to the level 2 exchange. (**0**.1.0.1.destination)
- 1. The level 2 bit of the routing key is `1`, so the message is delivered to the level 2 queue. (0.**1**.0.1.destination)
- 1. After 4 seconds, the message expires and is routed to the level 1 exchange.
- 1. The level 1 bit of the routing key is `0`, so the message is routed to the level 0 exchange. (0.1.**0**.1.destination)
- 1. The level 0 bit of the routing key is `1`, so the message is delivered to the level 0 queue. (0.1.0.**1**.destination)
- 1. After 1 second, the message expires and is routed to the delivery exchange.
- 1. The last part of the routing key is `destination`, so the message is delivered to the endpoint. (0.1.0.1.**destination**)
+|Exchange|Routing Key Focus|Routing Value|Routed To|Delay|Dead-letter To|
+|-----------------|-----------------------|:-----------:|-----------------|:-------:|:---------------:|
+|Level 03         |**1**.0.1.0.destination|     `1`     |Level 03 Queue   |8 seconds|Level 02 Exchange|
+|Level 02         |1.**0**.1.0.destination|     `0`     |Level 01 Exchange|    -    |        -        |
+|Level 01         |1.0.**1**.0.destination|     `1`     |Level 01 Queue   |2 seconds|Level 00 Exchange|
+|Level 00         |1.0.1.**0**.destination|     `0`     |Delivery Exchange|    -    |        -        |
+|Delivery Exchange|1.0.1.0.**destination**|`destination`|`destination`    |    -    |        -        |
+
+This example can be visualized using the following
 
 ```mermaid
 graph LR
@@ -123,21 +137,21 @@ q2[fa:fa-hourglass-half 4sec]
 q1[fa:fa-hourglass-half 2sec]
 q0[fa:fa-hourglass-half 1sec]
 
-exchange3 .-> q3
-exchange3 ==>exchange2
-q3 .-> exchange2
+exchange3 ==> q3
+exchange3 .->exchange2
+q3 ==> exchange2
 
-exchange2 ==> q2
-exchange2 .->exchange1
-q2 ==> exchange1
+exchange2 .-> q2
+exchange2 ==>exchange1
+q2 .-> exchange1
 
-exchange1 .-> q1
-exchange1 ==>exchange0
-q1 .-> exchange0
+exchange1 ==> q1
+exchange1 .->exchange0
+q1 ==> exchange0
 
-exchange0 ==> q0
-exchange0 .->exchange-delivery
-q0 ==> exchange-delivery
+exchange0 .-> q0
+exchange0 ==>exchange-delivery
+q0 .-> exchange-delivery
 
 exchange-delivery ==> dest[destination]
 
@@ -145,7 +159,7 @@ classDef exchangeClass stroke:#000000,stroke-width:2px;
 class exchange3,exchange2,exchange1,exchange0,exchange-delivery exchangeClass
 
 classDef usedQueue fill:#11ff00;
-class q0,q2 usedQueue
+class q1,q3 usedQueue
 
 end
 ```
