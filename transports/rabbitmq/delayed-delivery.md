@@ -110,9 +110,9 @@ Every endpoint that can receive delayed messages will create bindings like `#.En
 
 ### Example
 
-This example illustrates the delay mentioned above, showing a message sent with a delay of 10 seconds to an endpoint called `destination`. For brevity, the number of delay levels has been reduced to 4, so the routing key for this message is `1.0.1.0.destination`.
+This example illustrates the delay mentioned above, showing a message sent with a delay of 10 seconds to an endpoint called `destination`. For brevity, the number of delay levels has been reduced to 4, so the routing key for this message is `1.0.1.0.destination` and it is published first to the Level 3 exchange:
 
-|Exchange|Routing Key Focus|Routing Value|Routed To|Delay|Dead-letter To|
+|Exchange         |Routing Key Segment    |Routing Value|Routed To        |Delay in Queue|Dead-letter To|
 |-----------------|-----------------------|:-----------:|-----------------|:-------:|:---------------:|
 |Level 03         |**1**.0.1.0.destination|     `1`     |Level 03 Queue   |8 seconds|Level 02 Exchange|
 |Level 02         |1.**0**.1.0.destination|     `0`     |Level 01 Exchange|    -    |        -        |
