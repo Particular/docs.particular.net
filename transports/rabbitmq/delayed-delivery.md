@@ -125,7 +125,7 @@ This example can be visualized using the following
 ```mermaid
 graph LR
 
-subgraph Example: delay of 5 seconds
+subgraph Example: delay of 10 seconds
 
 exchange3(Level 3)
 exchange2(Level 2)
