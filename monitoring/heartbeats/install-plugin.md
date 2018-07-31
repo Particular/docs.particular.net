@@ -10,7 +10,7 @@ To install the Heartbeats plugin into an endpoint, reference the [NServiceBus.He
 
 snippet: HeartbeatsNew_Enable
 
-NOTE: `ServiceControl_Queue` is a placeholder for the actual ServiceControl input queue. The ServiceControl input queue is equal to the ServiceControl instance name as configured in the ServiceControl Management tool.
+NOTE: `ServiceControl_Queue` is a placeholder for the actual ServiceControl input queue. The ServiceControl input queue is equal to the [ServiceControl service name](/servicecontrol/installation.md#service-name-and-plugins) as configured in the ServiceControl Management tool.
 
 
 ### Heartbeat interval
