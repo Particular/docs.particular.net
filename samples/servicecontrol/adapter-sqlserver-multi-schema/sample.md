@@ -9,8 +9,9 @@ related:
  - servicecontrol/plugins
 ---
 
-
 This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using SQL Server transport with endpoints using separate schemas for queues.
+
+NOTE: Since Version 3 ServiceControl supports the multi-schema and multi-catalog modes provided that the endpoints themselves support them (which requires that the endpoints run SQL Server transport at lest in Versions 3 and 3.1 respecively).
 
 The purpose of the adapter is to isolate ServiceControl from the specifics of the physical deployment topology of the business endpoints (such as [SQL Server multi-schema](/transports/sql/deployment-options.md#multi-schema) mode) which are not supported out-of-the-box by ServiceControl.
 
