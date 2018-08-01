@@ -9,6 +9,8 @@ related:
 reviewed: 2018-02-19
 redirects:
  - nservicebus/ravendb
+ - persistence/ravendb/licensing
+ - nservicebus/ravendb/licensing
 ---
 
 include: dtc-warning
