@@ -1,6 +1,7 @@
 ---
 title: Installing RavenDB
 summary: How to install RavenDB when using RavenDB persistence for various versions of NServiceBus.
+component: raven
 tags:
  - Persistence
 reviewed: 2017-10-16
