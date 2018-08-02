@@ -57,7 +57,7 @@ snippet: MultiInstance
 
 Notice that both adapter configurations use the same connection string for ServiceControl and a different connection string for the endpoint-side transport.
 
-NOTE: Some transports, such as [SQL Server transport](/transports/sql/), offer a native multi-instance mode. This mode is considered an advanced routing feature and allows use of a single instance of the transport adapter even though there are multiple instances of the broker.
+NOTE: In Version 6 of NServiceBus [SQL Server transport](/transports/sql/) could be configured to route messages between multiple instances of SQL Server in a single adapter as shown in [this sample](/samples/servicecontrol/adapter-sqlserver-multi-instance/). This is no longer the case in Version 7 and the approach with multiple adapters described above has to be used. In that case an instance of the transport adapter is required for each instance of SQL Server used by the endpoints. For upgrading the endpints themselves consult the [upgrade guide](/transports/upgrades/sqlserver-31to4.md#multi-instance-mode)
 
 
 ## How it works
