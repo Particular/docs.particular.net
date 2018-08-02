@@ -961,8 +961,6 @@
       Title: Reroute Existing Timeouts
     - Url: persistence/ravendb/subscription-versioning
       Title: Subscription versioning
-    - Url: persistence/ravendb/licensing
-      Title: Licensing
     - Url: persistence/ravendb/dtc
       Title: DTC not supported
   - Url: persistence/service-fabric

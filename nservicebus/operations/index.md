@@ -72,7 +72,6 @@ Operational documentation is best reviewed from the perceptive of the selected t
  * [Scripting](/persistence/ravendb/operations-scripting.md)
  * [Configuring RavenDB DTC](/persistence/ravendb/manual-dtc-settings.md)
  * [Installing RavenDB](/persistence/ravendb/installation.md)
- * [Licensing](/persistence/ravendb/licensing.md)
 
 
 ### [NHibernate Persistence](/persistence/nhibernate/)
