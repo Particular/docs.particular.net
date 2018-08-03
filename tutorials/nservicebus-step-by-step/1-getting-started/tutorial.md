@@ -55,7 +55,7 @@ In the **Program.cs** file, modify the code to look like the following:
 snippet: EmptyProgram
 
 {{NOTE:
-In this tutorial, code snippets will not contain the `using` statements needed to import namespaces for reasons of brevity. If you're using Visual Studio, unknown references such as `Task` or NServiceBus types will generate a "red squiggly" underline effect. If you hover or click on the red squiggly, you can click on the "light bulb" icon or press <kbd>Ctrl</kbd>&nbsp;+&nbsp;<kbd>.</kbd></nobr> to see the available fixes and insert the appropriate `using` statements for the missing namespaces.
+In this tutorial, code snippets will not contain the `using` statements needed to import namespaces for reasons of brevity. If you're using Visual Studio, unknown references such as `Task` or NServiceBus types will generate a "red squiggly" underline effect. If you hover or click on the red squiggly, you can click on the "light bulb" icon or press <span style="white-space: nowrap"><kbd>Ctrl</kbd> + <kbd>.</kbd></span> to see the available fixes and insert the appropriate `using` statements for the missing namespaces.
 
 Alternatively, in the code snippet's **Copy/Edit** menu you will find a **Copy usings** item that will copy the namespaces used by the snippet to your clipboard.
 }}
