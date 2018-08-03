@@ -76,9 +76,9 @@ A single class can implement multiple `IHandleMessages<T>` for multiple message 
 
 snippet: MultiHandler
 
-When NServiceBus starts up, it will find all of these message handler classes and automatically wire them up, so that they will be invoked when messages arrive. There's no special setup or configuration needed.
+When NServiceBus starts up, it scans the types in all available assemblies, and will find all of these message handler classes and automatically wire them up, so that they will be invoked when messages arrive. There's no special setup, configuration, or "wiring up" required—it just works.
 
-It makes no difference whether handlers are implemented inside one or multiple classes. When NServiceBus starts up, it will find all of these message handlers and automatically wire them up without any special configuration. Use it to group related handlers in order to make your code easier to understand.
+It makes no difference whether handlers are implemented inside one or multiple classes. You can group related message handlers together in the same class in order to make your code easier to understand. Just remember that each time a message is processed, a new instance of that class is instantiated by the framework. You can't set a private member variable in one message handler and then expect to still have that value around when the next message (regardless of type) is processed.
 
 
 ## Exercise
