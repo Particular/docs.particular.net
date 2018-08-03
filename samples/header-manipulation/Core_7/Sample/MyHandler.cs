@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
+using NServiceBus.Settings;
 
 #region handler
 
@@ -9,9 +10,17 @@ public class MyHandler :
     IHandleMessages<MyMessage>
 {
     static ILog log = LogManager.GetLogger<MyHandler>();
+    ReadOnlySettings _settings;
+
+    public MyHandler(ReadOnlySettings settings)
+    {
+        _settings = settings;
+    }
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
+        
+
         log.Info("Hello from MyHandler");
         var headers = context.MessageHeaders;
         foreach (var line in headers.OrderBy(x => x.Key)

@@ -15,10 +15,10 @@ The `ServiceBase` functionality is provided by the [System.ServiceProcess.Servic
 To use the installation approach described above, a self contained exe is required. [dotnet-publish](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish) can be used to produce an exe from a .NET Core console project. This can be done by using the following command from the [Package Manager Console](https://docs.microsoft.com/en-us/nuget/tools/package-manager-console):
 
 ```
-dotnet publish WindowsServiceHosting.Core.sln --framework netcoreapp2.0 --runtime win10-x64
+dotnet publish WindowsServiceHosting.Core.sln --framework netcoreapp2.1 --runtime win10-x64
 ```
 
-`Sample.Core.exe` will then exist in `Sample\bin\Debug\netcoreapp2.0\win10-x64\publish`.
+`Sample.Core.exe` will then exist in `Sample\bin\Debug\netcoreapp2.1\win10-x64\publish`.
 
 
 ### Via dotnet.exe
