@@ -1,7 +1,7 @@
 ---
 title: Sequence Diagram
 summary: The ServiceInsight sequence diagram view
-reviewed: 2018-07-20
+reviewed: 2018-08-03
 component: ServiceInsight
 ---
 
@@ -32,7 +32,7 @@ Each endpoint involved in the conversation is represented by a gray box along th
 
 ![Start of conversation marker](start-of-conversation.png)
 
-Each conversation starts with a single command or event. This message is often triggered by some action external to the system (such as a user clicking a Submit Order button on a website). The metadata used to generate the diagram does not include the trigger in these cases but it does include the endpoint that sent or published the message, represented by a Start of Conversation marker on the endpoint lifeline.
+Each conversation starts with a single command or event. This message is often triggered by some action external to the system (for example, a user clicking a Submit Order button on a website). The metadata used to generate the diagram does not include the trigger in these cases but it does include the endpoint that sent or published the message, represented by a Start of Conversation marker on the endpoint lifeline.
 
 NOTE: The Start of Conversation marker may not always be visible. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. The diagram will show only the last 50 messages from the conversation and this may not include the initiating message.
 
@@ -53,7 +53,7 @@ Some time after a message is received, it is processed by the receiving endpoint
 
 A message arrow shown leaving a processing box represents an outgoing message that was sent or published while processing the incoming message. These arrows are shown in the order in which those messages were sent or published.
 
-NOTE: A processing box appearing further down the diagram indicates that the processing occured later. This means other messages sent by other endpoints may have been processed in the meantime. The size of a processing box and the distance between them is not important.
+NOTE: A processing box appearing further down the diagram indicates that the processing occurred later. This means other messages sent by other endpoints may have been processed in the meantime. The size of a processing box and the distance between them is not important.
 
 ![Failed processing](failing-handler.png)
 
