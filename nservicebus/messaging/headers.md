@@ -190,7 +190,7 @@ snippet: HeaderWriterReturnReturning
 
 ### NServiceBus.ClearTimeouts
 
-A marker header to indicate that the contained control message is requesting that timeouts be cleared for a given saga.
+A header to indicate that the contained control message is requesting that timeouts be cleared for a given saga.
 
 
 ### NServiceBus.Timeout.Expire
@@ -205,7 +205,7 @@ The queue name a timeout should be routed back to when it fires.
 
 ### NServiceBus.IsDeferredMessage
 
-A marker header to indicate that this message resulted from a Defer.
+A header to indicate that this message resulted from a Defer.
 
 
 ## Saga-related headers

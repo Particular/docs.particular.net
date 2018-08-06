@@ -14,12 +14,12 @@ related:
 
 ## Defining events
 
-The messages need to be declared as an event before they can be published. That can be done with marker interfaces or using message conventions.
+The messages need to be declared as an event before they can be published. That can be done with interfaces or using message conventions.
 
 
-### Via a Marker interface
+### Via an interface
 
-Add `IEvent` marker interface to the message definition:
+Add the `IEvent` interface to the message definition:
 
 snippet: EventWithInterface
 

@@ -22,7 +22,7 @@ A [**message**](/nservicebus/messaging/messages-events-commands.md) is a collect
 
 In this lesson, we'll focus on [commands](/nservicebus/messaging/messages-events-commands.md#command). In [Lesson 4: Publishing events](../4-publishing-events/) we'll expand to look at events as well.
 
-To define a command, create a class and mark it with the `ICommand` marker interface.
+To define a command, create a class and mark it with the `ICommand` interface.
 
 snippet: Command
 

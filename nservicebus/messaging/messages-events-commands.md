@@ -55,12 +55,12 @@ partial: errors
 
 ## Defining Messages
 
-Messages can be defined via *marker interfaces* or via *conventions*.
+Messages can be defined via *interfaces* or via *conventions*.
 
 
-### Marker interfaces
+### Interfaces
 
-The simplest way to define a message is to use marker interfaces.
+The simplest way to define a message is to use interfaces.
 
  * `NServiceBus.IMessage` for defining a Message.
  * `NServiceBus.ICommand` for defining a Command.
