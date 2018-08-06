@@ -1071,11 +1071,6 @@
         Url: servicecontrol/installation-powershell
       - Title: Cluster Deployment
         Url: servicecontrol/deploying-servicecontrol-in-a-cluster
-      - Title: Multiple Instances
-        Url: servicecontrol/servicecontrol-instances/distributed-instances  
-        Articles:
-          - Title: Communication
-            Url: servicecontrol/servicecontrol-instances/cluster-communication 
       - Title: Settings
         Url: servicecontrol/creating-config-file
       - Title: Overriding the host identifier
@@ -1090,6 +1085,11 @@
         Url: servicecontrol/errorlog-auditlog-behavior
       - Title: Configuring MSMQ
         Url: servicecontrol/configuring-msmq
+    - Title: Scale Out
+      - Title: Multiple Instances
+        Url: servicecontrol/servicecontrol-instances/distributed-instances  
+      - Title: Instance Communication
+        Url: servicecontrol/servicecontrol-instances/instance-communication 
     - Title: Management
       Articles:
       - Title: Data Expiration
