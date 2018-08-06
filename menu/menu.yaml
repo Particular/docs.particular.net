@@ -1073,6 +1073,9 @@
         Url: servicecontrol/deploying-servicecontrol-in-a-cluster
       - Title: Multiple Instances
         Url: servicecontrol/servicecontrol-instances/distributed-instances  
+        Articles:
+          - Title: Communication
+            Url: servicecontrol/servicecontrol-instances/cluster-communication 
       - Title: Settings
         Url: servicecontrol/creating-config-file
       - Title: Overriding the host identifier
