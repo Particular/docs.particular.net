@@ -1085,9 +1085,9 @@
         Url: servicecontrol/errorlog-auditlog-behavior
       - Title: Configuring MSMQ
         Url: servicecontrol/configuring-msmq
-    - Title: Scale Out
-      - Title: Multiple Instances
-        Url: servicecontrol/servicecontrol-instances/distributed-instances  
+    - Title: Scaling Out
+      Url: servicecontrol/servicecontrol-instances/distributed-instances  
+      Articles:
       - Title: Instance Communication
         Url: servicecontrol/servicecontrol-instances/instance-communication 
     - Title: Management
