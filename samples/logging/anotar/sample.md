@@ -1,6 +1,6 @@
 ---
 title: Anotar Logging
-summary: Illustrates using the community run project Anotar to simplify logging.
+summary: Illustrates using the community maintained project Anotar to simplify logging.
 reviewed: 2017-10-07
 component: Anotar
 tags:
