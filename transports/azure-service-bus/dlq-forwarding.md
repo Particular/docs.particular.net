@@ -26,3 +26,5 @@ To set up dead letter queue forwarding, use the  `ForwardDeadLetteredMessagesTo(
 When dead letter forwarding is enabled, it will be enabled for all dead letter queues associated with the queues created by the transport. The API allows making exceptions by using an overload on the configuration API. It is advised to set up forwarding for all entities except for the error queue, audit queue and centralized dead letter queue.
 
 snippet: asb-configure-dead-letter-queue-forwarding
+
+NOTE: centralized dead-letter queue is not created automatically and should be created up-front.
