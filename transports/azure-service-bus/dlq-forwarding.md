@@ -27,4 +27,4 @@ When dead letter forwarding is enabled, it will be enabled for all dead letter q
 
 snippet: asb-configure-dead-letter-queue-forwarding
 
-NOTE: centralized dead-letter queue is not created automatically and should be created up-front.
+NOTE: Centralized dead-letter queue is not created automatically and should be created up-front.
