@@ -20,7 +20,7 @@ In the next 25-30 minutes, you will learn the different causes of errors and see
 
 ## Causes of errors
 
-In systems programming, where connectivity is a major concern, there are generally three broad categories of exceptions:
+Where connectivity is a major concern, there are generally three broad categories of exceptions:
 
 
 ### Transient exceptions
