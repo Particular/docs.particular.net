@@ -2,7 +2,7 @@
 title: Dead Letter Queue Forwarding
 component: ASB
 versions: '[7,)'
-reviewed: 2017-05-05
+reviewed: 2018-08-07
 tags:
 - Azure
 - Error Handling
@@ -27,4 +27,4 @@ When dead letter forwarding is enabled, it will be enabled for all dead letter q
 
 snippet: asb-configure-dead-letter-queue-forwarding
 
-NOTE: Centralized dead-letter queue is not created automatically and should be created up-front.
+NOTE: The centralized dead-letter queue is not created when the EnableInstaller call is invoked and therefore should be created up-front.
