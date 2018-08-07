@@ -64,6 +64,6 @@ Uses custom [NHibernate](http://nhibernate.info/) to persist data to an ADO.net 
 A subscription only storage on top of MSMQ.
 
 
-### Community run Persistences
+### Community Maintained Persistences
 
-There are several community run Persistences that can be seen on the full list of [Extensions](/components#persisters).
+There are several community maintained persistences that can be seen in the full list of [extensions](/components#persisters).
