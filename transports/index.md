@@ -63,7 +63,7 @@ Multicast-enabled transports include:
 
 ## Community run transports
 
-There are several community run transports that can be seen on the full list of [Extensions](/components#transports).
+There are several community run transports that can be seen in the full list of [extensions](/components#transports).
 
 
 ## WebSphereMQ
