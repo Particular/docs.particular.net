@@ -16,7 +16,7 @@ Sending and receiving messages is a central characteristic of any NServiceBus sy
 In the next 15-20 minutes, you will learn how to define messages and message handlers, send and receive a message locally, and use the built-in logging capabilities.
 
 
-## What is a message?
+## What is a message
 
 A [**message**](/nservicebus/messaging/messages-events-commands.md) is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we define message via simple classes.
 
