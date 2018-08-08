@@ -200,15 +200,12 @@ public static class TextWriterExtensions
 
 public static class PackageMetadataResourceExtensions
 {
-    static SourceCacheContext sourceCacheContext;
-    
-    static PackageMetadataResourceExtensions()
-    {
-        sourceCacheContext = new SourceCacheContext();
-        sourceCacheContext.MaxAge = DateTimeOffset.UtcNow;
-        sourceCacheContext.NoCache = true;
-    }
-    
+	private static SourceCacheContext sourceCacheContext = new SourceCacheContext
+	{
+		MaxAge = DateTimeOffset.UtcNow,
+		NoCache = true,
+	};
+
 	public static async Task<List<Version>> GetVersions(
 		this PackageMetadataResource resource, string packageId, ILogger logger, int majorOverlapYears, int minorOverlapMonths, List<Version> upstreamVersions, Dictionary<string, string> endOfLifePackages)
 	{
