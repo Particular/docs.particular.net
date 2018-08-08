@@ -16,7 +16,7 @@ The subscribe messages are sent by the workers but contain the distributor addre
 
 ## Subscribe workflow
 
-Compared to regular [subscribe workflow](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-subscribe-persistence-based) the distributor variant contains an extra step -- forwarding the subscribe message from the distributor to the worker.
+Compared to regular [subscribe workflow](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based-subscribe) the distributor variant contains an extra step -- forwarding the subscribe message from the distributor to the worker.
 
  1. Subscribers request to a publisher the intent to subscribe to certain message types.
  1. Distributor forwards the subscribe message to one of the workers
@@ -45,7 +45,7 @@ NOTE: It is very important that all workers share the same subscription persiste
 
 ## Publish workflow
 
-Compared to regular [publish workflow](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-publish-persistence-based) the distributor variant contains an extra step -- forwarding the message from the distributor to the worker.
+Compared to regular [publish workflow](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based-publish) the distributor variant contains an extra step -- forwarding the message from the distributor to the worker.
 
  1. Some code (e.g. a saga or a handler) request a message to be published.
  1. Publisher queries the storage for a list of subscribers.
