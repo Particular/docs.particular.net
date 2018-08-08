@@ -105,7 +105,7 @@ Publishing an event that is subscribed to by an endpoint on the other side of a 
 
 ### Matching publishers and subscribers
 
-The bridge uses a [persistence-based message-driven](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based-message-driven) approach. Each bridge has a subscription storage. When a subscribe message comes via a *connector*, a new entry in the subscription store is created matching the subscriber and the event type. Next, the subscribe request if forwarded to the other side of the bridge where the execution depends on the type of the transport:
+The bridge uses a [message-driven](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) approach. Each bridge has a subscription storage. When a subscribe message comes via a *connector*, a new entry in the subscription store is created matching the subscriber and the event type. Next, the subscribe request if forwarded to the other side of the bridge where the execution depends on the type of the transport:
 
 
 #### Unicast transports

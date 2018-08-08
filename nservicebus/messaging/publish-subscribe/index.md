@@ -31,14 +31,14 @@ Or in simpler terms
 
 ## Mechanics
 
-Depending on the features provided by a given transport there are two possible implementations of Publish-Subscribe mechanics: persistence-based message-driven and native.
+Depending on the features provided by a given transport there are two possible implementations of Publish-Subscribe mechanics: message-driven (persistence-based) and native.
 
 Note: For simplicity these explanations refer to specific endpoints as "Subscribers" and "Publishers". However in reality any endpoint can be both a publisher and/or and a subscriber.
 
 
-### Persistence-based message-driven
+### Message-driven (persistence-based)
 
-Persistence-based message-driven publish-subscribe is controlled by *subscribe* and *unsubscribe* system messages sent by the subscriber to the publisher and relies on the publisher having access to a persistent store for maintaining the mapping between message types and their subscribers.
+Message-driven publish-subscribe is controlled by *subscribe* and *unsubscribe* system messages sent by the subscriber to the publisher and relies on the publisher having access to a persistent store for maintaining the mapping between message types and their subscribers.
 
 Available subscription persistences include
 
