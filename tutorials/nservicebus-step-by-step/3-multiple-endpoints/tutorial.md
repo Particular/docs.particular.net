@@ -91,7 +91,7 @@ First, let's create the project for our new endpoint.
       ```
  1. In the **Sales** project, add a reference to the **Messages** project, so that we have access to the `PlaceOrder` message.
 
-NOTE: To take advantage of the `Async Main` feature, and avoid some boilerplate code, [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/3-ways-to-enable-c-7-1-features).
+NOTE: To take advantage of the `Async Main` feature, and to avoid some boilerplate code, [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/3-ways-to-enable-c-7-1-features).
 
 Now that we have a project for our Sales endpoint, we need to add similar code to configure and start an NServiceBus endpoint:
 
