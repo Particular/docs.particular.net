@@ -134,7 +134,7 @@ public static class TextWriterExtensions
 					{
 						if (!packageHeadingWritten)
 						{
-							output.WriteLine($"#### [{package.Id}](/nuget/{package.Id})");							
+							output.WriteLine($"#### [{package.Id}](/nuget/{package.Id})");
 							output.WriteLine();
 
 							if (endOfLifePackages.TryGetValue(package.Id, out var reason))
@@ -314,19 +314,19 @@ public static class PackageExtensions
 		package.Id.Dump("Package");
 
 		package.Versions
-		   .OrderByDescending(version => version.First.Identity.Version.Major)
-		   .ThenByDescending(version => version.First.Identity.Version.Minor)
-		   .Select(version => new
-		   {
-			   Package = version.ToString(),
-			   Published = version.First.Published?.UtcDateTime.Date.ToString("yyyy-MM-dd"),
-			   BoundedBy = version.BoundedBy?.ToString(),
-			   ExtendedBy = version.ExtendedBy?.ToString(),
-			   PatchingEnd = version.PatchingEnd?.ToString("yyyy-MM-dd"),
-			   PatchingEndReason = version.PatchingEndReason,
-			   CurrentlyPatched = !version.PatchingEnd.HasValue || version.PatchingEnd.Value > utcTomorrow
-		   })
-		   .Dump("Versions");
+			.OrderByDescending(version => version.First.Identity.Version.Major)
+			.ThenByDescending(version => version.First.Identity.Version.Minor)
+			.Select(version => new
+			{
+				Package = version.ToString(),
+				Published = version.First.Published?.UtcDateTime.Date.ToString("yyyy-MM-dd"),
+				BoundedBy = version.BoundedBy?.ToString(),
+				ExtendedBy = version.ExtendedBy?.ToString(),
+				PatchingEnd = version.PatchingEnd?.ToString("yyyy-MM-dd"),
+				PatchingEndReason = version.PatchingEndReason,
+				CurrentlyPatched = !version.PatchingEnd.HasValue || version.PatchingEnd.Value > utcTomorrow
+			})
+			.Dump("Versions");
 	}
 }
 
