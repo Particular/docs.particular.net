@@ -339,7 +339,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2018-06-07     | -                 | -                                 |
-| 2.1.x     | 2018-05-23     | 2019-06-07        | Superseded by 3.0.x               |
+| 2.1.x     | 2018-05-23     | 2020-05-29        | Extended by NServiceBus 6.4.x     |
 | 2.0.x     | 2017-12-12     | 2018-08-23        | Superseded by 2.1.x               |
 | 1.3.x     | 2018-05-23     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
 | 1.2.x     | 2017-12-13     | 2018-08-23        | Superseded by 1.3.x               |
@@ -395,42 +395,36 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2017-02-08     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
-| ~~1.0.x~~ | ~~2014-09-30~~ | ~~2018-02-08~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb5.Heartbeat](/nuget/ServiceControl.Plugin.Nsb5.Heartbeat)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-08     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
-| ~~2.0.x~~ | ~~2015-09-14~~ | ~~2018-02-08~~    | ~~Superseded by 3.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb5.SagaAudit](/nuget/ServiceControl.Plugin.Nsb5.SagaAudit)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2017-02-08     | 2018-10-11        | Bounded by NServiceBus 5.2.x      |
-| ~~1.0.x~~ | ~~2014-09-30~~ | ~~2018-02-08~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb6.CustomChecks](/nuget/ServiceControl.Plugin.Nsb6.CustomChecks)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-07     | 2020-05-29        | Bounded by NServiceBus 6.4.x      |
-| ~~2.0.x~~ | ~~2016-10-24~~ | ~~2018-02-07~~    | ~~Superseded by 3.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb6.Heartbeat](/nuget/ServiceControl.Plugin.Nsb6.Heartbeat)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-07     | 2020-05-29        | Bounded by NServiceBus 6.4.x      |
-| ~~2.0.x~~ | ~~2016-10-24~~ | ~~2018-02-07~~    | ~~Superseded by 3.0.x~~           |
 
 #### [ServiceControl.Plugin.Nsb6.SagaAudit](/nuget/ServiceControl.Plugin.Nsb6.SagaAudit)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2017-02-07     | 2020-05-29        | Bounded by NServiceBus 6.4.x      |
-| ~~2.0.x~~ | ~~2016-10-24~~ | ~~2018-02-07~~    | ~~Superseded by 3.0.x~~           |
 
 #### [ServiceControl.TransportAdapter](/nuget/ServiceControl.TransportAdapter)
 
