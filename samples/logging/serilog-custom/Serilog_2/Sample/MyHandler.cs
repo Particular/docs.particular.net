@@ -1,13 +1,13 @@
 ﻿using NServiceBus;
-using NServiceBus.Logging;
+using Serilog;
 
 public class MyHandler :
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger<MyHandler>();
+    static ILogger log = Log.ForContext<MyHandler>();
 
     public void Handle(MyMessage message)
     {
-        log.InfoFormat("Hello from {@Handler}", nameof(MyHandler));
+        log.Information("Hello from {@Handler}", nameof(MyHandler));
     }
 }

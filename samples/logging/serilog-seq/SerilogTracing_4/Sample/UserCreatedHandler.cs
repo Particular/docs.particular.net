@@ -1,15 +1,15 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Serilog;
 
 public class UserCreatedHandler :
     IHandleMessages<UserCreated>
 {
-    static ILog log = LogManager.GetLogger(typeof(UserCreatedHandler));
+    static ILogger log = Log.ForContext<UserCreatedHandler>();
 
     public Task Handle(UserCreated message, IMessageHandlerContext context)
     {
-        log.InfoFormat("Hello from {@Handler}", nameof(UserCreatedHandler));
+        log.Information("Hello from {@Handler}", nameof(UserCreatedHandler));
         return Task.CompletedTask;
     }
 }

@@ -1,13 +1,13 @@
 ﻿using NServiceBus;
-using NServiceBus.Logging;
+using Serilog;
 
 public class CreateUserHandler :
     IHandleMessages<CreateUser>
 {
-    static ILog log = LogManager.GetLogger(typeof(CreateUserHandler));
+    static ILogger log = Log.ForContext<CreateUserHandler>();
 
     public void Handle(CreateUser message)
     {
-        log.Info("Hello from CreateUserHandler");
+        log.Information("Hello from CreateUserHandler");
     }
 }
