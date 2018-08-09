@@ -47,6 +47,7 @@ Available subscription persistences include
  * [NHibernate](/persistence/nhibernate)
  * [InMemory](/persistence/in-memory.md)
  * [Azure Storage](/persistence/azure-storage)
+ * [SQL Server](/persistence/sql)
 
 The message-driven publish-subscribe implementation is used by the [unicast transports](/transports/#types-of-transports-unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
 
