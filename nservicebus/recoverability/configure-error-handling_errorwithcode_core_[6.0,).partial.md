@@ -1,3 +1,3 @@
-### Using Code
+### Using code
 
 snippet: ErrorWithCode

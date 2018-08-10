@@ -3,12 +3,12 @@ title: Installation
 summary: How to install the NServiceBus.Host as a Windows service
 tags:
 - Hosting
-reviewed: 2016-10-20
+reviewed: 2018-08-09
 ---
 
 include: host-deprecated-warning
 
-When running an endpoint within the context of the Visual Studio debugger, the required queues are created automatically on startup to facilitate development. However, when deploying this endpoint to a server, starting the endpoint from the command prompt will not create the needed queues. Creation of queues is a one-time cost that should happen during installation.
+When running an endpoint within the context of the Visual Studio debugger, the required queues are created automatically on startup to facilitate development. However, when deploying this endpoint to a server, starting the endpoint from the command prompt will not create the necessary queues. Creation of queues is a one-time cost that should happen during installation.
 
 To retrieve the list of available options for the host, run the following at the command line:
 
@@ -53,7 +53,7 @@ NServiceBus.Host.exe /install
 
 ### ServiceName
 
-To set the name of the Windows services in the registry, specify `/serviceName:ServiceName`. By default, the name of the service is the name of the endpoint and the endpoint name is the namespace of the endpoint configuration class.
+To set the name of the Windows service in the registry, specify `/serviceName:ServiceName`. By default, the name of the service is the name of the endpoint and the endpoint name is the namespace of the endpoint configuration class.
 
 Note: The Windows service name is different from what is displayed in the Windows Service Manager. The Windows Service Manager shows the *DisplayName*.
 
@@ -73,7 +73,7 @@ To set the description shown in the Windows Service Manager, specify
 
 ### EndpointConfigurationType
 
-Specify the type implementing `IConfigureThisEndpoint` that should be used by using the `/endpointConfigurationType` parameter. The provided value needs to be the [assembly qualified type name](https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname.aspx).
+Specify the type implementing `IConfigureThisEndpoint` that should be used by using the `/endpointConfigurationType` parameter. The provided value must be the [assembly qualified type name](https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname.aspx).
 
 
 ### EndpointName
@@ -92,14 +92,14 @@ NServiceBus.Host.exe /install
 /scannedAssemblies:"My.Endpoint.Assembly"
 ```
 
-The host loads the assemblies by invoking [`Assembly.Load`](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) method. This approach ensures that the specified assembly and all its dependent assemblies will also be loaded.
+The host loads the assemblies by invoking the [`Assembly.Load`](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) method. This approach ensures that the specified assembly and its dependent assemblies will also be loaded.
 
-Note: When using the `/scannedAssemblies` parameter, be sure to include at least `NServiceBus.Host` as well as any other referenced NServiceBus plugin. As `NServiceBus.Host` references `NServiceBus.Core`, the latter can be omitted from the list.
+Note: When using the `/scannedAssemblies` parameter, be sure to include at least `NServiceBus.Host` as well as any other referenced NServiceBus plugins. There is no need to include `NServiceBus.Core`in the list since it is referenced by `NServiceBus.Host`.
 
 
 ### DependsOn
 
-Specifies the names of services or groups which must start before this service, e.g. `/dependsOn:"MSMQ"`. Multiple services/groups are separated by a comma.
+Specifies the names of services or groups which must start before this service, e.g. `/dependsOn:"MSMQ"`. Multiple services or groups are separated by a comma.
 
 
 ### SideBySide
@@ -117,7 +117,7 @@ By default, Windows services start automatically when the operating system start
 
 To specify the account the service runs under, pass in the username of that account.
 
-NOTE: When installing the Host using a custom user account, the user account is added to the `Performance Monitor Users` and is granted `run as a service` privileges. If the user needs to be changed at a later time, uninstall the Host and re-install it in order to guarantee that the new user is correctly setup. The created privileges and `Performance Monitor Users` are not removed by the host when uninstalling and must be managed by the administrator.
+NOTE: When installing the host using a custom user account, the user account is added to the `Performance Monitor Users` and is granted `run as a service` privileges. If the user needs to be changed at a later time, uninstall the host and re-install it in order to guarantee that the new user is correctly setup. The created privileges and `Performance Monitor Users` are not removed by the host when uninstalling and must be managed by the administrator.
 
 NServiceBus version 7 and above supports [Group Managed Service Accounts (GMSA)](http://blog.windowsserversecurity.com/2015/01/27/step-by-step-guide-to-configure-group-managed-service-accounts/).  When specifying a GMSA,  the `/username` command line switch should include the trailing dollar sign e.g. `/username:"corp\gmsaaccount$"` and the `/password` command line switch should be omitted.
 
@@ -125,6 +125,8 @@ NServiceBus version 7 and above supports [Group Managed Service Accounts (GMSA)]
 ### Password
 
 If the specified account which runs the Windows service requires a password, set it using the `/password:"<password>"` parameter.
+
+This parameter should be omitted when specifying a [Group Managed Service Account (GMSA)](http://blog.windowsserversecurity.com/2015/01/27/step-by-step-guide-to-configure-group-managed-service-accounts/) for the `/username`.
 
 
 ### Profile

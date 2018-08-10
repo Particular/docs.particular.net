@@ -1,10 +1,10 @@
 
-### Using a IConfigurationProvider
+### Using an IConfigurationProvider
 
 snippet: ErrorQueueConfigurationProvider
 
 
-### Using a ConfigurationSource
+### Using an ConfigurationSource
 
 snippet: ErrorQueueConfigurationSource
 
