@@ -1,11 +1,11 @@
-﻿using NServiceBus.Logging;
-using NServiceBus.Saga;
+﻿using NServiceBus.Saga;
+using Serilog;
 
 public class CreateUserSaga :
     Saga<MySagaData>,
     IAmStartedByMessages<CreateUser>
 {
-    static ILog log = LogManager.GetLogger(typeof(CreateUserSaga));
+    static ILogger log = Log.ForContext<CreateUserSaga>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
     {
@@ -16,7 +16,7 @@ public class CreateUserSaga :
     public void Handle(CreateUser message)
     {
         Data.UserName = message.UserName;
-        log.Info($"User Created {message.UserName}");
+        log.Information($"User Created {message.UserName}");
         var userCreated = new UserCreated
         {
             UserName = message.UserName

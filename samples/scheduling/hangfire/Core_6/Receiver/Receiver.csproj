@@ -8,4 +8,9 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Serilog">
+      <HintPath>..\..\..\..\..\..\..\Users\ascropp\.nuget\packages\serilog\2.7.1\lib\net46\Serilog.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
