@@ -33,16 +33,4 @@ class ExtractTenantConnectionStringBehavior :
 
         #endregion
     }
-
-    public class Registration :
-        RegisterStep
-    {
-        public Registration()
-            : base(
-                stepId: "ExtractTenantConnectionString",
-                behavior: typeof(ExtractTenantConnectionStringBehavior),
-                description: "Extracts tenant connection string based on tenant ID header.")
-        {
-        }
-    }
 }

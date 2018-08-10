@@ -8,8 +8,12 @@ class Program
     {
         Console.Title = "Samples.PipelineHandlerTimer";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineHandlerTimer");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
+
         endpointConfiguration.UseTransport<LearningTransport>();
+
+        #region pipeline-config
+        endpointConfiguration.Pipeline.Register(typeof(HandlerTimerBehavior), "Logs a warning if a handler take more than a specified time");
+        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

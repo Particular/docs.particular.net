@@ -82,8 +82,8 @@ class Program
         #region RegisterPropagateTenantIdBehavior
 
         var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register<PropagateOutgoingTenantIdBehavior.Registration>();
-        pipeline.Register<PropagateIncomingTenantIdBehavior.Registration>();
+        pipeline.Register(typeof(PropagateOutgoingTenantIdBehavior), "Sets the tenant header from the context bag into the messages header.");
+        pipeline.Register(typeof(PropagateIncomingTenantIdBehavior), "Sets the tenant header on outgoing messages's context bag.");
 
         #endregion
     }
@@ -93,7 +93,7 @@ class Program
         #region ReplaceOpenSqlConnection
 
         var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register<ExtractTenantConnectionStringBehavior.Registration>();
+        pipeline.Register(typeof(ExtractTenantConnectionStringBehavior), "Extracts tenant connection string based on tenant ID header.");
 
         #endregion
     }

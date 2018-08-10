@@ -15,12 +15,11 @@ class Program
 
         #endregion
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         #region RegisterBehavior
 
-        endpointConfiguration.Pipeline.Register<ThrottlingRegistration>();
+        endpointConfiguration.Pipeline.Register(typeof(ThrottlingBehavior), "API throttling for GitHub");
 
         #endregion
 

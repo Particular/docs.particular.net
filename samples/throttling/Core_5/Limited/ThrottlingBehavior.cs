@@ -54,5 +54,15 @@ public class ThrottlingBehavior :
         // delay the message to the specified delivery date
         bus.Defer(deliverAt, message);
     }
+
+    public class Registration :
+        RegisterStep
+    {
+        public Registration()
+            : base("GitHubApiThrottling", typeof(ThrottlingBehavior), "API throttling for GitHub")
+        {
+            InsertBefore(WellKnownStep.InvokeHandlers);
+        }
+    }
 }
 #endregion

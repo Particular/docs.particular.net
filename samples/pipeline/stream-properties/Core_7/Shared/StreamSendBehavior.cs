@@ -5,7 +5,7 @@ using NServiceBus.DeliveryConstraints;
 using NServiceBus.Performance.TimeToBeReceived;
 using NServiceBus.Pipeline;
 #region SendBehaviorDefinition
-class StreamSendBehavior :
+public class StreamSendBehavior :
     Behavior<IOutgoingLogicalMessageContext>
 {
     TimeSpan maxMessageTimeToLive = TimeSpan.FromDays(14);
@@ -17,7 +17,7 @@ class StreamSendBehavior :
     }
     public override async Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
     {
-#endregion
+        #endregion
         #region copy-stream-properties-to-disk
         var timeToBeReceived = TimeSpan.MaxValue;
 
@@ -83,4 +83,18 @@ class StreamSendBehavior :
         return Path.Combine(keepMessageUntil.ToString("yyyy-MM-dd_HH"), Guid.NewGuid().ToString());
     }
     #endregion
+
+    public class Registration :
+        RegisterStep
+    {
+        public Registration()
+            : base(
+                stepId: "StreamSend",
+                behavior: typeof(StreamSendBehavior),
+                description: "Saves the payload into the shared location")
+        {
+            InsertAfter("MutateOutgoingMessages");
+            InsertBefore("ApplyTimeToBeReceived");
+        }
+    }
 }

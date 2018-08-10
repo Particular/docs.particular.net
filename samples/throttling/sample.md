@@ -56,9 +56,6 @@ snippet: SearchHandler
 
 snippet: RegisterBehavior
 
-snippet: RegisterStep
-
-
 ### The Behavior
 
 Handles detection of `Octokit.RateLimitExceededException` and defers the message.
