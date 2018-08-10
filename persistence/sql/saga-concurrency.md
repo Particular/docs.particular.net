@@ -20,5 +20,4 @@ The persister uses unique key constraints that will result in an exception being
 
 partial: implementation
 
-include: saga-concurrency
 
