@@ -7,12 +7,12 @@ related:
 - nservicebus/serialization
 ---
 
-## Configuring to use ProtoBuf
+## Configuring an endpoint to use ProtoBuf
 
 snippet: config
 
 
-## The message send
+## Sending a message
 
 snippet: messagesend
 
@@ -31,7 +31,7 @@ protoc.exe -I=C:\Code\Sample --csharp_out=C:\Code\Sample C:\Code\Sample\CreateOr
 
 With the resultant class definitions residing in `CreateOrder.cs`
 
-To mark the generated class as an NServiceBus `IMessage` a partial class is used.
+Here, a partial class is used to identify the generated class as an NServiceBus message by inheriting from the `IMessage` interface.
 
 snippet: partial
 
