@@ -22,8 +22,8 @@ NServiceBus is supported for applications targeting the .NET Framework on Window
 
 NServiceBus is supported for applications targeting .NET Core on a variety of operating systems:
 
-* **Windows**: All Windows versions according to [.NET Core 2.0 - Supported OS versions](https://github.com/dotnet/core/blob/master/release-notes/2.0/2.0-supported-os.md) are fully supported.
-* **Linux**: All Linux versions according to [.NET Core 2.0 - Supported OS versions](https://github.com/dotnet/core/blob/master/release-notes/2.0/2.0-supported-os.md) are fully supported.
+* **Windows**: All Windows versions according to [.NET Core 2.1 - Supported OS versions](https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1-supported-os.md) are fully supported.
+* **Linux**: All Linux versions according to [.NET Core 2.1 - Supported OS versions](https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1-supported-os.md) are fully supported.
 * **macOS**: macOS is supported only for development purposes.
 
 ### Packages not supporting .NET Core
