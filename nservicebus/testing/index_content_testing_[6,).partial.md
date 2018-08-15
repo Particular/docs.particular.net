@@ -1,5 +1,4 @@
-
-### Testing a handler
+## Testing a handler
 
 Given the following handler:
 
@@ -9,8 +8,7 @@ The test that verifies a `Reply` happened:
 
 snippet: HandlerTest
 
-
-### Testing a Saga
+## Testing a Saga
 
 Here's an example of a Saga, that processes an order, and gives a 10% discount for orders above the amount of 1000:
 
@@ -19,7 +17,6 @@ snippet: SampleSaga
 The following unit tests checks that the total amount has the discount applied:
 
 snippet: SagaTest
-
 
 ### Testing a behavior
 
@@ -30,3 +27,5 @@ snippet: SampleBehavior
 The behavior can be tested similar to a message handler or a Saga by using a testable representation of the context:
 
 snippet: BehaviorTest
+
+Testable representations is provided for all pipeline behaviour contexts, see [the pipeline documentation](/nservicebus/pipeline/) for further details.
