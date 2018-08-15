@@ -45,6 +45,8 @@
       Title: Concepts
     - Url: nservicebus/dotnet-templates
       Title: dotnet new Templates
+    - Url: nservicebus/vscode
+      Title: Debugging in VS Code
     - Url: platform/installer
       Title: Platform Installer
     - Url: nservicebus/licensing
