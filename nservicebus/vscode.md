@@ -5,16 +5,16 @@ component: Core
 reviewed: 2018-08-01
 ---
 
-This article describes how to configure VSCode to build an NServiceBus solution with multiple projects and debug multiple endpoints simulateously.
+This article describes how to configure [Visual Studio Code](https://code.visualstudio.com/) (or "VSCode") to build an NServiceBus solution with multiple projects and debug multiple endpoints simultaneously.
 
-NServiceBus 7 and above is designed to run on .NET Core, which means instead of using Visual Studio as an IDE, users can use the cross-platform [Visual Studio Code](https://code.visualstudio.com/) application (or "VSCode") to build systems with NServiceBus.
+NServiceBus 7 and above is designed to run on .NET Core, which means instead of using Visual Studio as an IDE, users can use the cross-platform VSCode application to build systems with NServiceBus.
 
-While Visual Studio is designed only to run .NET projects, VSCode is a more general-purpose IDE for any language, so some configuration is necessary for VSCode to know how to build and debug .NET projects. Because NServiceBus projects typically involve running multiple startup projects to test multiple endpoints simultaneously, a little extra configuration is needed.
+While Visual Studio contains specific support for .NET projects, VSCode is a more lightweight editor for any language, so some configuration is necessary for VSCode to know how to build and debug .NET projects. Because NServiceBus projects typically involve running multiple startup projects to test multiple endpoints simultaneously, a little extra configuration is needed.
 
 ## Prerequisities
 
 * This article assumes knowledge of NServiceBus solutions.
-* VSCode must have the [C# for Visual Studio (powered by OmniSharp)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) extension installed.
+* VSCode must have the [C# for Visual Studio Code (powered by OmniSharp)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) extension installed.
 
 ## VSCode configuration files
 
@@ -25,13 +25,13 @@ The build and debug system in VSCode is controlled by two files located in a `.v
         * `launch.json`
         * `tasks.json`
 
-The **launch.json** file describes different projects within the solution, and describes how to launch each one.
+The **launch.json** file describes different projects within the solution and describes how to launch each one.
 
-The **tasks.json** file describes actions to take, the most common of which is to build the code, which can be executed as a prerequisite of executing a configuration in **launch.json**.
+The **tasks.json** file describes actions to take, the most common of which is to build the code. These tasks can be executed as a prerequisite of executing a configuration in **launch.json**.
 
 ## tasks.json
 
-The simplest **tasks.json** file will describe how to build the solution using `dotnet build`:
+The simplest **tasks.json** describes how to build the solution using `dotnet build`:
 
 ```json
 {
@@ -51,13 +51,13 @@ The simplest **tasks.json** file will describe how to build the solution using `
 }
 ```
 
-For an NServiceBus solution, use the content above and adjust the path of the `sln` file.
+For an NServiceBus solution, use the content above, and adjust the path of the `sln` file.
 
-For more information on **tasks.json** see [Visual Studio Code: Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/editor/tasks).
+For more information on **tasks.json**, see [Visual Studio Code: Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/editor/tasks).
 
 ## launch.json
 
-The high-level structure of the launch.json file contains a collection of individual project objects in `configurations`, and then (optionally) a `compounds` collection that group up multiple configurations that will be launched together.
+The high-level structure of the launch.json file contains a collection of individual project objects in `configurations` and an optional [`compounds` collection](#launch-json-compounds) that lists multiple configurations that should be launched at the same time.
 
 ```json
 {
@@ -93,17 +93,17 @@ Most of the values can be considered boilerplate except for the `program` and `c
 
 * `name`: Provides a name that appears for the project in VSCode's Debug dropdown.
 * `type`: The value `coreclr` identifies the plugin that should handle debugging responsibilities.
-* `request`: The value `launch` launches the process, rather than attaching to an existing process.
+* `request`: The value `launch` means a new process will be started, rather than attaching to an existing process.
 * `preLaunchTask`: Indicates a task label from the **tasks.json** file. In this case, it ensures the solution is compiled before trying to launch it.
 * `program`: Identifies the DLL to use as the entry point.
 * `args`: Specifies any command-line arguments that are needed.
 * `cwd`: Specifies the current working directory for the launched `dotnet` process.
-* `stopAtEntry`: If set to true, the debugger will break at the entry point even without a breakpoint set.
+* `stopAtEntry`: If set to true, the debugger will break at the entry point even when a breakpoint has not been set.
 * `console`: Set to `externalTerminal` to use external console windows rather than VSCode's built-in terminal. This is useful when running multiple NServiceBus endpoints.
 
 ### Web application
 
-For web application projects that need to launch a browser window the configuration is a little more involved:
+For web application projects that need to launch a browser window, the configuration is a little more involved:
 
 ```json
 {
@@ -139,14 +139,16 @@ For web application projects that need to launch a browser window the configurat
 }
 ```
 
-* `internalConsoleOptions`: Assuming a single website project in a solution can use VSCode's integrated console, this option controls how it behaves. It's also possible to use the `console` property to use an external console.
+Like the console example, most of the values are boilerplate except for the `program`, `cwd`, and `sourceFileMap` values which should be adjusted for each project
+
+* `internalConsoleOptions`: Most solutions will only contain a single website project. If so, VSCode's integrated console can be used, as in this example. The `internalConsoleOptions` then control whether the drawer for the internal console will become visible when debugging begins. The values `neverOpen` or `openOnFirstSessionStart` can also be used. It's also possible to use the `console` property to use an external console.
 * `launchBrowser`: Contains instructions for launching a browser window on a platform-specific basis.
 * `env`: Additional environment variables to pass to the application, including the common `ASPNETCORE_ENVIRONMENT` variable that affects how an ASP.NET Core web application will read configuration values.
 * `sourceFileMap`: Additional source file mappings passed to the debugger, useful in this case to let the debugger know the path to MVC views.
 
 ### Attaching to a process
 
-it's also possible to start debugging from a terminal and then attach to the process with this configuration:
+It's also possible to start a process from a terminal and then attach the debugger to the process with this configuration:
 
 ```json
 {
@@ -159,7 +161,7 @@ it's also possible to start debugging from a terminal and then attach to the pro
 
 ### Compounds
 
-Running multiple NServiceBus endpoints together requires the `compounds` element, which is simply a `name` to appear in VSCode's Debug menu, and a list of configuration names specified elsewhere in the file:
+Running multiple NServiceBus endpoints together requires the `compounds` element, which identifies a `name` to appear in VSCode's Debug menu and a list of configuration names specified elsewhere in the file:
 
 ```json
 "compounds": [
@@ -176,7 +178,7 @@ Running multiple NServiceBus endpoints together requires the `compounds` element
 
 ### Complete example
 
-This snippet shows an entire launch.json file with **Sales** and **Billing** endpoints plus a **Website** project all in a directory named `src` beneath the project root:
+This example shows an entire **launch.json** file with **Sales** and **Billing** endpoints plus a **Website** project, all in a directory named `src` beneath the project root:
 
 ```json
 {
