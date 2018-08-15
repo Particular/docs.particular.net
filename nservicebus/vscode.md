@@ -40,7 +40,7 @@ To create the initial file:
  3. Select **Create tasks.json from template**.
  4. Select **.NET Core**.
  
- The template created by VS Code may work as-is if the project contains only one solution file in the project's root directory.
+The file created by VS Code may work as-is if the project contains only one solution file in the project's root directory.
 
 The following **tasks.json** describes how to build the solution using `dotnet build`, only revealing the terminal if a problem is detected:
 
