@@ -74,7 +74,7 @@ To create the initial file:
  1. Select **Add Configuration**.
  1. Select **.NET Core**.
 
-The high-level structure of the launch.json file contains a collection of individual project objects in `configurations` and an optional [`compounds` collection](#launch-json-compounds)—which is not included by default—that lists multiple configurations that should be launched at the same time.
+The high-level structure of the launch.json file contains a collection of individual project objects in `configurations` and an optional [`compounds` collection](#launch-json-compounds) that lists multiple configurations that should be launched at the same time.
 
 ```json
 {
