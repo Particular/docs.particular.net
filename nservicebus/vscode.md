@@ -29,9 +29,20 @@ The **launch.json** file describes different projects within the solution and de
 
 The **tasks.json** file describes actions to take, the most common of which is to build the code. These tasks can be executed as a prerequisite of executing a configuration in **launch.json**.
 
+Both of these files can be generated from within VSCode using templates, and these are good starting points, but the templates will need tweaking for NServiceBus solutions.
+
 ## tasks.json
 
-The simplest **tasks.json** describes how to build the solution using `dotnet build`:
+To create a starter template for this file:
+
+ 1. Attempt to start debugging.
+ 1. Click **Configure Task** in the error dialog that appears.
+ 1. Select **Create tasks.json from template**.
+ 1. Select **.NET Core**.
+ 
+ The template created by VSCode may work as-is if the project contains only one solution file in the project's root directory.
+
+The simplest **tasks.json** describes how to build the solution using `dotnet build`, only revealing the terminal if a problem is detected:
 
 ```json
 {
@@ -39,12 +50,12 @@ The simplest **tasks.json** describes how to build the solution using `dotnet bu
     "tasks": [
         {
             "label": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/path/to/SolutionName.sln"
-            ],
+            "command": "dotnet build ${workspaceFolder}/path/to/SolutionName.sln",
+            "type": "shell",
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            }
             "problemMatcher": "$msCompile"
         }
     ]
@@ -57,7 +68,13 @@ For more information on **tasks.json**, see [Visual Studio Code: Integrate with 
 
 ## launch.json
 
-The high-level structure of the launch.json file contains a collection of individual project objects in `configurations` and an optional [`compounds` collection](#launch-json-compounds) that lists multiple configurations that should be launched at the same time.
+To create a starter template for this file:
+
+ 1. In the Debug toolbar, click the **No Configurations** dropdown.
+ 1. Select **Add Configuration**.
+ 1. Select **.NET Core**.
+
+The high-level structure of the launch.json file contains a collection of individual project objects in `configurations` and an optional [`compounds` collection](#launch-json-compounds) (not included in the template) that lists multiple configurations that should be launched at the same time.
 
 ```json
 {
