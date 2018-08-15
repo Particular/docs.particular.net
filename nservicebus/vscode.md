@@ -5,20 +5,20 @@ component: Core
 reviewed: 2018-08-01
 ---
 
-This article describes how to configure [Visual Studio Code](https://code.visualstudio.com/) (or "VSCode") to build an NServiceBus solution with multiple projects and debug multiple endpoints simultaneously.
+This article describes how to configure [Visual Studio Code](https://code.visualstudio.com/) (or "VS Code") to build an NServiceBus solution with multiple projects and debug multiple endpoints simultaneously.
 
-NServiceBus 7 and above is designed to run on .NET Core, which means instead of using Visual Studio as an IDE, users can use the cross-platform VSCode application to build systems with NServiceBus.
+NServiceBus 7 and above is designed to run on .NET Core, which means instead of using Visual Studio as an IDE, users can also use the cross-platform VS Code application to build systems with NServiceBus.
 
-While Visual Studio contains specific support for .NET projects, VSCode is a more lightweight editor for any language, so some configuration is necessary for VSCode to know how to build and debug .NET projects. Because NServiceBus projects typically involve running multiple startup projects to test multiple endpoints simultaneously, a little extra configuration is needed.
+While Visual Studio contains specific support for .NET projects, VS Code is a more lightweight editor for any language, so some configuration is necessary for VS Code to know how to build and debug .NET projects. Because NServiceBus projects typically involve running multiple startup projects to test multiple endpoints simultaneously, a little extra configuration is needed.
 
 ## Prerequisities
 
 * This article assumes knowledge of NServiceBus solutions.
-* VSCode must have the [C# for Visual Studio Code (powered by OmniSharp)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) extension installed.
+* VS Code must have the [C# for Visual Studio Code (powered by OmniSharp)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) extension installed.
 
-## VSCode configuration files
+## Configuration files
 
-The build and debug system in VSCode is controlled by two files located in a `.vscode` directory at the project root:
+The build and debug system in VS Code is controlled by two files located in a `.vscode` directory at the project root:
 
 * _{Project Root}_
     * `.vscode/`
@@ -29,7 +29,7 @@ The **launch.json** file describes different projects within the solution and de
 
 The **tasks.json** file describes actions to take, the most common of which is to build the code. These tasks can be executed as a prerequisite of executing a configuration in **launch.json**.
 
-Both of these files can be generated from within VSCode using templates, and these are good starting points, but the templates will need tweaking for NServiceBus solutions.
+Both of these files can be generated from within VS Code using templates, and these are good starting points, but the templates will need tweaking for NServiceBus solutions.
 
 ## tasks.json
 
@@ -40,7 +40,7 @@ To create a starter template for this file:
  1. Select **Create tasks.json from template**.
  1. Select **.NET Core**.
  
- The template created by VSCode may work as-is if the project contains only one solution file in the project's root directory.
+ The template created by VS Code may work as-is if the project contains only one solution file in the project's root directory.
 
 The simplest **tasks.json** describes how to build the solution using `dotnet build`, only revealing the terminal if a problem is detected:
 
@@ -108,7 +108,7 @@ Here is an example configuration for an NServiceBus endpoint hosted as a console
 
 Most of the values can be considered boilerplate except for the `program` and `cwd` values which should be adjusted for each project:
 
-* `name`: Provides a name that appears for the project in VSCode's Debug dropdown.
+* `name`: Provides a name that appears for the project in VS Code's Debug dropdown.
 * `type`: The value `coreclr` identifies the plugin that should handle debugging responsibilities.
 * `request`: The value `launch` means a new process will be started, rather than attaching to an existing process.
 * `preLaunchTask`: Indicates a task label from the **tasks.json** file. In this case, it ensures the solution is compiled before trying to launch it.
@@ -116,7 +116,7 @@ Most of the values can be considered boilerplate except for the `program` and `c
 * `args`: Specifies any command-line arguments that are needed.
 * `cwd`: Specifies the current working directory for the launched `dotnet` process.
 * `stopAtEntry`: If set to true, the debugger will break at the entry point even when a breakpoint has not been set.
-* `console`: Set to `externalTerminal` to use external console windows rather than VSCode's built-in terminal. This is useful when running multiple NServiceBus endpoints.
+* `console`: Set to `externalTerminal` to use external console windows rather than VS Code's built-in terminal. This is useful when running multiple NServiceBus endpoints.
 
 ### Web application
 
@@ -158,7 +158,7 @@ For web application projects that need to launch a browser window, the configura
 
 Like the console example, most of the values are boilerplate except for the `program`, `cwd`, and `sourceFileMap` values which should be adjusted for each project
 
-* `internalConsoleOptions`: Most solutions will only contain a single website project. If so, VSCode's integrated console can be used, as in this example. The `internalConsoleOptions` then control whether the drawer for the internal console will become visible when debugging begins. The values `neverOpen` or `openOnFirstSessionStart` can also be used. It's also possible to use the `console` property to use an external console.
+* `internalConsoleOptions`: Most solutions will only contain a single website project. If so, VS Code's integrated console can be used, as in this example. The `internalConsoleOptions` then control whether the drawer for the internal console will become visible when debugging begins. The values `neverOpen` or `openOnFirstSessionStart` can also be used. It's also possible to use the `console` property to use an external console.
 * `launchBrowser`: Contains instructions for launching a browser window on a platform-specific basis.
 * `env`: Additional environment variables to pass to the application, including the common `ASPNETCORE_ENVIRONMENT` variable that affects how an ASP.NET Core web application will read configuration values.
 * `sourceFileMap`: Additional source file mappings passed to the debugger, useful in this case to let the debugger know the path to MVC views.
@@ -178,7 +178,7 @@ It's also possible to start a process from a terminal and then attach the debugg
 
 ### Compounds
 
-Running multiple NServiceBus endpoints together requires the `compounds` element, which identifies a `name` to appear in VSCode's Debug menu and a list of configuration names specified elsewhere in the file:
+Running multiple NServiceBus endpoints together requires the `compounds` element, which identifies a `name` to appear in VS Code's Debug menu and a list of configuration names specified elsewhere in the file:
 
 ```json
 "compounds": [
@@ -276,7 +276,7 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
 
 ## More information
 
-See the following articles for more information on debugging with VSCode:
+See the following articles for more information on debugging with VS Code:
 
 * [OmniSharp: Configuring launch.json for C# debugging](https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md)
 * [Visual Studio Code: Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/editor/tasks)
