@@ -28,4 +28,4 @@ The behavior can be tested similar to a message handler or a Saga by using a tes
 
 snippet: BehaviorTest
 
-Testable representations is provided for all pipeline behaviour contexts, see [the pipeline documentation](/nservicebus/pipeline/) for further details.
+Testable representations are provided for all pipeline behaviour contexts, see [the pipeline documentation](/nservicebus/pipeline/) for further details.
