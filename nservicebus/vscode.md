@@ -1,6 +1,6 @@
 ---
 title: Debugging NServiceBus in Visual Studio Code
-summary: How to configure Visual Studio Code to build and debug multiple NServiceBus endoints simultaneously
+summary: How to configure Visual Studio Code to build and debug multiple NServiceBus endpoints simultaneously
 component: Core
 reviewed: 2018-08-01
 ---
@@ -25,24 +25,24 @@ The build and debug system in VS Code is controlled by two files located in a `.
         * `launch.json`
         * `tasks.json`
 
-The **launch.json** file describes different projects within the solution and describes how to launch each one.
+The **launch.json** file describes different projects within the solution and how to launch each one.
 
-The **tasks.json** file describes actions to take, the most common of which is to build the code. These tasks can be executed as a prerequisite of executing a configuration in **launch.json**.
+The **tasks.json** file describes actions to take, the most common of which is to build the code. These tasks can be configured to run before launching a configuration in **launch.json**.
 
-Both of these files can be generated from within VS Code using templates, and these are good starting points, but the templates will need tweaking for NServiceBus solutions.
+Both of these files can be generated from within VS Code, but the default values will need some tweaking for NServiceBus solutions.
 
 ## tasks.json
 
-To create a starter template for this file:
+To create the initial file:
 
  1. Attempt to start debugging.
- 1. Click **Configure Task** in the error dialog that appears.
- 1. Select **Create tasks.json from template**.
- 1. Select **.NET Core**.
+ 2. Click **Configure Task** in the error dialog that appears.
+ 3. Select **Create tasks.json from template**.
+ 4. Select **.NET Core**.
  
  The template created by VS Code may work as-is if the project contains only one solution file in the project's root directory.
 
-The simplest **tasks.json** describes how to build the solution using `dotnet build`, only revealing the terminal if a problem is detected:
+The following **tasks.json** describes how to build the solution using `dotnet build`, only revealing the terminal if a problem is detected:
 
 ```json
 {
@@ -68,13 +68,13 @@ For more information on **tasks.json**, see [Visual Studio Code: Integrate with 
 
 ## launch.json
 
-To create a starter template for this file:
+To create the initial file:
 
  1. In the Debug toolbar, click the **No Configurations** dropdown.
  1. Select **Add Configuration**.
  1. Select **.NET Core**.
 
-The high-level structure of the launch.json file contains a collection of individual project objects in `configurations` and an optional [`compounds` collection](#launch-json-compounds) (not included in the template) that lists multiple configurations that should be launched at the same time.
+The high-level structure of the launch.json file contains a collection of individual project objects in `configurations` and an optional [`compounds` collection](#launch-json-compounds)—which is not included by default—that lists multiple configurations that should be launched at the same time.
 
 ```json
 {
@@ -106,7 +106,7 @@ Here is an example configuration for an NServiceBus endpoint hosted as a console
 }
 ```
 
-Most of the values can be considered boilerplate except for the `program` and `cwd` values which should be adjusted for each project:
+Most of the values can be considered boilerplate, except for the `program` and `cwd` values, which should be adjusted for each project:
 
 * `name`: Provides a name that appears for the project in VS Code's Debug dropdown.
 * `type`: The value `coreclr` identifies the plugin that should handle debugging responsibilities.
@@ -156,7 +156,7 @@ For web application projects that need to launch a browser window, the configura
 }
 ```
 
-Like the console example, most of the values are boilerplate except for the `program`, `cwd`, and `sourceFileMap` values which should be adjusted for each project
+Like the console example, most of the values are boilerplate, except for the `program`, `cwd`, and `sourceFileMap` values, which should be adjusted for each project:
 
 * `internalConsoleOptions`: Most solutions will only contain a single website project. If so, VS Code's integrated console can be used, as in this example. The `internalConsoleOptions` then control whether the drawer for the internal console will become visible when debugging begins. The values `neverOpen` or `openOnFirstSessionStart` can also be used. It's also possible to use the `console` property to use an external console.
 * `launchBrowser`: Contains instructions for launching a browser window on a platform-specific basis.
