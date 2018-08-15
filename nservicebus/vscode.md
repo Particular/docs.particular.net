@@ -5,11 +5,11 @@ component: Core
 reviewed: 2018-08-01
 ---
 
+This article describes how to configure VSCode to build an NServiceBus solution with multiple projects and debug multiple endpoints simulateously.
+
 NServiceBus 7 and above is designed to run on .NET Core, which means instead of using Visual Studio as an IDE, users can use the cross-platform [Visual Studio Code](https://code.visualstudio.com/) application (or "VSCode") to build systems with NServiceBus.
 
-While Visual Studio is designed only to run .NET projects, VSCode is a more general-purpose IDE for any language, so there is a little bit of configuration to know how to build and debug .NET projects. Because NServiceBus projects typically involve running multiple startup projects to test multiple endpoints simultaneously, a little extra configuration is needed.
-
-This article describes how to configure VSCode to build an NServiceBus solution with multiple projects and debug multiple endpoints simulateously.
+While Visual Studio is designed only to run .NET projects, VSCode is a more general-purpose IDE for any language, so some configuration is necessary for VSCode to know how to build and debug .NET projects. Because NServiceBus projects typically involve running multiple startup projects to test multiple endpoints simultaneously, a little extra configuration is needed.
 
 ## Prerequisities
 
