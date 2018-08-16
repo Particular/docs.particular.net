@@ -52,7 +52,7 @@ Unicast-only transports include:
 
 ### Multicast-enabled transports
 
-Multicast-enabled transports have some notion of a topic or a similar concept that allows to send a message once and have it received by multiple clients. These transports do not require a subscription storage.
+Multicast-enabled transports have some notion of a topic or a similar concept that allows sending a message once and having it received by multiple clients. These transports do not require a subscription storage to be configured.
 
 Multicast-enabled transports include:
 
