@@ -34,9 +34,9 @@ Each exchange/queue pair that makes up a level represents one bit of the total d
 
 A delay level is created by declaring a topic exchange that is bound to a queue with a routing key of `1`, and to the exchange corresponding to `level - 1` with a routing key of `0`. The queue for the delay level is declared with an [`x-message-ttl`](https://www.rabbitmq.com/ttl.html) value corresponding to `2^level` seconds. The queue is also declared with an [`x-dead-letter-exchange`](https://www.rabbitmq.com/dlx.html) value corresponding to the `level - 1` exchange, so that when a message in the queue expires, it will be routed to the `level - 1` exchange.
 
-The delay levels are connected in this manner, from highest (27) to lowest (0). Each delay level's routing key's add wildcards as needed so that they are looking at the portion of the message's routing key that corresponds to its delay level.
+The delay levels are connected in this manner, from highest (27) to lowest (0). Each delay level's routing key adds wildcards as needed so that each routing key is looking at the portion of the message's routing key that corresponds to its delay level.
 
-The following diagram illustrates the relationships between exchanges and queues, which are connected by bindings and `x-message-ttl` delay values. It's important to note the wildcard rules for RabbitMQ binding expressions, where *word* describes a dot-delimited segment:
+The following diagram illustrates the relationships between the exchanges and queues in the delay infrastructure, which are connected by bindings and `x-dead-letter-exchange` values. It's important to note the wildcard rules for RabbitMQ binding expressions, where *word* describes a dot-delimited segment:
 
 * `*` substitutes for exactly one word
 * `#` substitutes for 0 or more words
@@ -51,7 +51,7 @@ The following diagram illustrates the relationships between exchanges and queues
 
 graph TD
 
-subgraph Delay Level Exchanges, Queues, Bindings, and TTLs
+subgraph Delay-Level Exchanges, Queues, Bindings, and TTLs
 
 exchange27(Exchange: nsb.delay-level-27)
 queue27[Queue: nsb.delay-level-27]
@@ -95,17 +95,17 @@ class hiddenExchanges hiddenExchanges
 end
 ```
 
-With this system of exchanges and queues, the message is first delivered to the first applicable exchange based on the binary value. In the 10-second example (binary `1010`) the message would first be delivered to the `nsb.delay-level-03` exchange, and all of that exchange's bindings are evaluated. All matching bindings will receive a copy of the message, but the bindings are arranged so that there are only two possibilities based on the value of the 4th-to-last digit:
+To avoid unnecessary traversal through the delay infrastructure, the message is published to the first applicable exchange by identifying the first level that will route to a queue, or in other words, the first `1` in the routing key. In the 10-second example (binary `1010`), the message would first be published to the `nsb.delay-level-03` exchange, and all of that exchange's bindings are evaluated. Only two bindings exist for the exchange, so either:
 
-* If the value is a `1` the exchange will deliver the message to the `nsb.delay-level-03` queue and wait for something to process it up until the TTL (2^3 seconds) before forwarding to the `nsb-delay-level-02` exchange.
-* If the value is a `0` the exchange will immediately deliver the message immediate to the `nsb.delay-level-02` exchange.
+* If the value is a `1`, the exchange will route the message to the `nsb.delay-level-03` queue, where it will wait until the TTL expires (2^3 seconds) before being forwarded to the `nsb-delay-level-02` exchange.
+* If the value is a `0`, the exchange will route the message to the `nsb.delay-level-02` exchange.
 
 
 ### Delivery
 
-At the end of this conditional delay process, the message is delivered to the `nsb.delay-delivery` exchange. It is at this final step where the real message destination is evaluated to determine where the message should be delivered to.
+At the end of this process, the message is delivered to the `nsb.delay-delivery` exchange. It is at this final step where the message destination is evaluated to determine where the message should be routed to.
 
-Every endpoint that can receive delayed messages will create bindings like `#.EndpointName` to this exchange similar to `#.EndpointName`. The exact process depends upon the [routing topology](routing-topology.md) in use. These bindings match any combination of delay values, but only the binding for the correct destination endpoint will match, resulting in the message being delivered to only the correct endpoint.
+Every endpoint that can receive delayed messages will create bindings like `#.EndpointName` to this exchange to control final routing. The exact process depends upon the [routing topology](routing-topology.md) in use. These bindings match any combination of delay values, but only the binding for the correct destination endpoint will match, resulting in the message being delivered only to the correct endpoint.
 
 
 ### Example
