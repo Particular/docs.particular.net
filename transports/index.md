@@ -61,9 +61,9 @@ Multicast-enabled transports include:
  * [RabbitMQ](/transports/rabbitmq/)
 
 
-## Community maintained transports
+## Community-maintained transports
 
-There are several community maintained transports that can be seen in the full list of [extensions](/components#transports).
+There are several community-maintained transports that can be seen in the full list of [extensions](/components#transports).
 
 
 ## WebSphereMQ

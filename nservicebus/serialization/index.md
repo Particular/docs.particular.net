@@ -44,7 +44,7 @@ The pages dedicated to particular Serializers show how to configure the endpoint
 
 NOTE: The same Serializer must be used by the sending endpoint to serialize messages and by receiving endpoint to deserialize them, unless additional deserializers are specified.
 
-In order to register a community maintained serializer or custom serializer, refer to the [Custom serializers - Register the serializer](/nservicebus/serialization/custom-serializer.md#register-the-serializer) section.
+In order to register a community-maintained serializer or custom serializer, refer to the [Custom serializers - Register the serializer](/nservicebus/serialization/custom-serializer.md#register-the-serializer) section.
 
 
 partial: additionaldeserializers

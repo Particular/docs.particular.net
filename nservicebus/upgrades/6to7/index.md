@@ -321,7 +321,7 @@ Routing messages to the local endpoint or local instance is no longer allowed fo
 
 ## Source Link
 
-As of NServiceBus 7, all packages support [Source Link](https://github.com/dotnet/designs/blob/master/accepted/diagnostics/source-link.md), a developer productivity feature that allows debugging into NServiceBus code by downloading the source directly from GitHub.
+As of NServiceBus version 7, all packages support [Source Link](https://github.com/dotnet/designs/blob/master/accepted/diagnostics/source-link.md), a developer productivity feature that allows debugging into NServiceBus code by downloading the source directly from GitHub.
 
 There is currently a bug with Visual Studio 2017 [SDK-style projects](https://github.com/dotnet/sdk/issues/1458) that prevents Source Link from working when the project targets the .NET Framework. A [workaround](https://github.com/dotnet/sdk/issues/1458#issuecomment-362685678) for the bug is to add the [SourceLink.Copy.PdbFiles NuGet package](https://www.nuget.org/packages/SourceLink.Copy.PdbFiles) to the project.
 
@@ -336,7 +336,7 @@ This article so far covers the changes between NServiceBus 6 and NServiceBus 7. 
 
 #### Transports
 
- * MSMQ - The MSMQ transport is moved to a new package and is [mentioned above](#msmq).
+ * MSMQ - The MSMQ transport has moved to a new package and is [mentioned above](#msmq).
  * [Azure Service Bus](/transports/upgrades/asb-7to8.md)
  * [Azure Storage Queues](/transports/upgrades/asq-7to8.md)
  * [RabbitMQ](/transports/upgrades/rabbitmq-4to5.md)
