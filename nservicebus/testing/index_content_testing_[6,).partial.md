@@ -18,7 +18,7 @@ The following unit tests checks that the total amount has the discount applied:
 
 snippet: SagaTest
 
-### Testing a behavior
+## Testing a behavior
 
 The following custom behavior adds a header to an outgoing message in case the message is of the type `MyResponse`:
 
@@ -28,4 +28,4 @@ The behavior can be tested similar to a message handler or a Saga by using a tes
 
 snippet: BehaviorTest
 
-Testable representations are provided for all pipeline behaviour contexts, see [the pipeline documentation](/nservicebus/pipeline/) for further details.
+Testable representations are provided for all pipeline behavior contexts. See [the pipeline documentation](/nservicebus/pipeline/) for further details.
