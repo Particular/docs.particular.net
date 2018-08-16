@@ -24,7 +24,7 @@ There are several ways to customize this pipeline with varying levels of complex
 
  Unit testing of custom extensions is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-a-behavior).
 
-## Features build on the pipeline
+## Features built on the pipeline
 
 * [DataBus](/nservicebus/messaging/databus/)
 * [Message Property Encryption](/nservicebus/security/property-encryption.md)
