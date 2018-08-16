@@ -12,18 +12,20 @@ related:
 
 NServiceBus has the concept of a "pipeline" which refers to the series of actions taken when an incoming message is processed and an outgoing message is sent.
 
-### Customizing the pipeline
+## Customizing the pipeline
 
 There are several ways to customize this pipeline with varying levels of complexity.
 
- * [Manipulate the Pipeline with Behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md)
- * [Steps, Stages and Connectors](/nservicebus/pipeline/steps-stages-connectors.md)
- * [Message Mutators](/nservicebus/pipeline/message-mutators.md)
- * [Aborting the Pipeline](/nservicebus/pipeline/aborting.md)
- * [Reacting to pipeline events](/nservicebus/pipeline/events.md)
+* [Manipulate the Pipeline with Behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md)
+* [Steps, Stages and Connectors](/nservicebus/pipeline/steps-stages-connectors.md)
+* [Message Mutators](/nservicebus/pipeline/message-mutators.md)
+* [Aborting the Pipeline](/nservicebus/pipeline/aborting.md)
+* [Reacting to pipeline events](/nservicebus/pipeline/events.md)
 
-### Features build on the pipeline
+ Unit testing of custom extensions is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-a-behavior).
 
- * [DataBus](/nservicebus/messaging/databus/)
- * [Message Property Encryption](/nservicebus/security/property-encryption.md)
- * [Recoverability](/nservicebus/recoverability/)
+## Features built on the pipeline
+
+* [DataBus](/nservicebus/messaging/databus/)
+* [Message Property Encryption](/nservicebus/security/property-encryption.md)
+* [Recoverability](/nservicebus/recoverability/)
