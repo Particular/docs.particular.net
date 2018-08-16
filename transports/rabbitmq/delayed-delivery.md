@@ -95,7 +95,7 @@ class hiddenExchanges hiddenExchanges
 end
 ```
 
-To avoid unnecessary traversal through the delay infrastructure, the message is published to the first applicable exchange by identifying the first level that will route to a queue, or in other words, the first `1` in the routing key. In the 10-second example (binary `1010`), the message would first be published to the `nsb.delay-level-03` exchange, and all of that exchange's bindings are evaluated. Only two bindings exist for the exchange, so either:
+To avoid unnecessary traversal through the delay infrastructure, the message is published to the first applicable exchange by identifying the first level that will route to a queue, or in other words, the first `1` in the routing key. In the 10-second example (binary `1010`), the message would first be published to the `nsb.delay-level-03` exchange, and all of that exchange's bindings are evaluated. Only two bindings exist for the exchange, so:
 
 * If the value is a `1`, the exchange will route the message to the `nsb.delay-level-03` queue, where it will wait until the TTL expires (2^3 seconds) before being forwarded to the `nsb-delay-level-02` exchange.
 * If the value is a `0`, the exchange will route the message to the `nsb.delay-level-02` exchange.
@@ -103,14 +103,14 @@ To avoid unnecessary traversal through the delay infrastructure, the message is 
 
 ### Delivery
 
-At the end of this process, the message is delivered to the `nsb.delay-delivery` exchange. It is at this final step where the message destination is evaluated to determine where the message should be routed to.
+At the end of this process, the message is routed to the `nsb.delay-delivery` exchange. It is at this final step where the message destination is evaluated to determine where the message should be routed to.
 
 Every endpoint that can receive delayed messages will create bindings like `#.EndpointName` to this exchange to control final routing. The exact process depends upon the [routing topology](routing-topology.md) in use. These bindings match any combination of delay values, but only the binding for the correct destination endpoint will match, resulting in the message being delivered only to the correct endpoint.
 
 
 ### Example
 
-This example illustrates the delay mentioned above, showing a message sent with a delay of 10 seconds to an endpoint called `destination`. For brevity, the number of delay levels has been reduced to 4, so the routing key for this message is `1.0.1.0.destination` and it is published first to the Level 3 exchange:
+This example illustrates the delay mentioned above, showing a message sent with a delay of 10 seconds to an endpoint called `destination`. For brevity, the number of delay levels has been reduced to 4, so the routing key for this message is `1.0.1.0.destination`, and it is published to the Level 3 exchange:
 
 |Exchange         |Routing Key Segment    |Routing Value|Routed To        |Delay in Queue|Dead-letter To|
 |-----------------|-----------------------|:-----------:|-----------------|:-------:|:---------------:|
