@@ -7,7 +7,7 @@ reviewed: 2018-08-01
 
 This article describes how to configure [Visual Studio Code](https://code.visualstudio.com/) (or "VS Code") to build an NServiceBus solution with multiple projects and debug multiple endpoints simultaneously.
 
-NServiceBus 7 and above is designed to run on .NET Core, which means instead of using the full Visual Studio IDE, users can also use the cross-platform (and free) VS Code application to build systems with NServiceBus.
+NServiceBus versions 7 and above are designed to run on .NET Core, which means instead of using the full Visual Studio IDE, users can also use the cross-platform (and free) VS Code application to build systems with NServiceBus.
 
 While Visual Studio contains specific support for .NET projects, VS Code is a more lightweight editor for any language, so some configuration is necessary for VS Code to know how to build and debug .NET projects. Because NServiceBus projects typically involve running multiple startup projects to test multiple endpoints simultaneously, a little extra configuration is needed.
 
@@ -29,7 +29,7 @@ The **launch.json** file describes different projects within the solution and ho
 
 The **tasks.json** file describes actions to take, the most common of which is to build the code. These tasks can be configured to run before launching a configuration in **launch.json**.
 
-Both of these files can be generated from within VS Code, but the default values will need some tweaking for NServiceBus solutions.
+Both of these files can be generated from within VS Code, but the default values will need some tweaks for NServiceBus solutions.
 
 ## tasks.json
 
@@ -74,7 +74,7 @@ To create the initial file:
  1. Select **Add Configuration**.
  1. Select **.NET Core**.
 
-The high-level structure of the launch.json file contains a collection of individual project objects in `configurations` and an optional [`compounds` collection](#launch-json-compounds) that lists multiple configurations that should be launched at the same time.
+The high-level structure of the **launch.json** file contains a collection of individual project objects in `configurations` and an optional [`compounds` collection](#launch-json-compounds) that lists multiple configurations that should be launched at the same time.
 
 ```json
 {
@@ -158,7 +158,7 @@ For web application projects that need to launch a browser window, the configura
 
 Like the console example, most of the values are boilerplate, except for the `program`, `cwd`, and `sourceFileMap` values, which should be adjusted for each project:
 
-* `internalConsoleOptions`: Most solutions will only contain a single website project. If so, VS Code's integrated console can be used, as in this example. The `internalConsoleOptions` then control whether the drawer for the internal console will become visible when debugging begins. The values `neverOpen` or `openOnFirstSessionStart` can also be used. It's also possible to use the `console` property to use an external console.
+* `internalConsoleOptions`: Most solutions will only contain a single website project. If so, VS Code's integrated console can be used, as in this example. The `internalConsoleOptions` values then control whether the drawer for the internal console will become visible when debugging begins. The values `neverOpen` or `openOnFirstSessionStart` can also be used. In addition, it's possible to use the `console` property to launch an external console.
 * `launchBrowser`: Contains instructions for launching a browser window on a platform-specific basis.
 * `env`: Additional environment variables to pass to the application, including the common `ASPNETCORE_ENVIRONMENT` variable that affects how an ASP.NET Core web application will read configuration values.
 * `sourceFileMap`: Additional source file mappings passed to the debugger, useful in this case to let the debugger know the path to MVC views.

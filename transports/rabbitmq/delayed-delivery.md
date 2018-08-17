@@ -2,13 +2,13 @@
 title: RabbitMQ Delayed Delivery
 summary: Describes the native delayed delivery implementation in the RabbitMQ transport
 component: Rabbit
-reviewed: 2017-03-02
+reviewed: 2018-08-17
 versions: '[4,]'
 redirects:
  - nservicebus/rabbitmq/delayed-delivery
 ---
 
-In Versions 4.3 and above, the RabbitMQ transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure inside the broker which can delay messages using native RabbitMQ features.
+In versions 4.3 and above, the RabbitMQ transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure inside the broker which can delay messages using native RabbitMQ features.
 
 
 ## How it works
@@ -21,7 +21,7 @@ N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.destination
 
 Where `N` is either `0` or `1`, representing the delay value in binary, and `destination` is the name of endpoint the delayed message will be sent to.
 
-As an example, a delay of 10 seconds (`1010` in binary) on a message bound for the `destination` queue would be encoded with a routing key of:
+As an example, a delay of 10 seconds (`1010` in binary) on a message bound for the `destination` queue is encoded with a routing key of:
 
 ```
 0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.1.0.destination

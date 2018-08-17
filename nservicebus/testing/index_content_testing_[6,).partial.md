@@ -4,17 +4,17 @@ Given the following handler:
 
 snippet: SimpleHandler
 
-The test that verifies a `Reply` happened:
+here is a test that verifies a `Reply` happened:
 
 snippet: HandlerTest
 
-## Testing a Saga
+## Testing a saga
 
-Here's an example of a Saga, that processes an order, and gives a 10% discount for orders above the amount of 1000:
+Here's an example of a saga, that processes an order and gives a 10% discount for orders above an amount of 1000:
 
 snippet: SampleSaga
 
-The following unit tests checks that the total amount has the discount applied:
+The following unit test checks that the total amount has the discount applied:
 
 snippet: SagaTest
 
@@ -24,7 +24,7 @@ The following custom behavior adds a header to an outgoing message in case the m
 
 snippet: SampleBehavior
 
-The behavior can be tested similar to a message handler or a Saga by using a testable representation of the context:
+The behavior can be tested similar to a message handler or a saga by using a testable representation of the context:
 
 snippet: BehaviorTest
 

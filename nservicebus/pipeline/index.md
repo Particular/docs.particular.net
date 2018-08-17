@@ -1,7 +1,7 @@
 ---
 title: Message Handling Pipeline
 summary: Overview of the message handling pipeline
-reviewed: 2016-11-05
+reviewed: 2018-08-17
 tags:
 - Pipeline
 redirects:
@@ -10,21 +10,21 @@ related:
 - samples/header-manipulation
 ---
 
-NServiceBus has the concept of a "pipeline" which refers to the series of actions taken when an incoming message is processed and an outgoing message is sent.
+NServiceBus has the concept of a _pipeline_ which refers to the series of actions taken when an incoming message is processed and an outgoing message is sent.
 
 ## Customizing the pipeline
 
 There are several ways to customize this pipeline with varying levels of complexity.
 
-* [Manipulate the Pipeline with Behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md)
-* [Steps, Stages and Connectors](/nservicebus/pipeline/steps-stages-connectors.md)
-* [Message Mutators](/nservicebus/pipeline/message-mutators.md)
-* [Aborting the Pipeline](/nservicebus/pipeline/aborting.md)
-* [Reacting to pipeline events](/nservicebus/pipeline/events.md)
+* [Manipulate the pipeline with behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md)
+* [Steps, stages and connectors](/nservicebus/pipeline/steps-stages-connectors.md)
+* [Message mutators](/nservicebus/pipeline/message-mutators.md)
+* [Abort the pipeline](/nservicebus/pipeline/aborting.md)
+* [React to pipeline events](/nservicebus/pipeline/events.md)
 
  Unit testing of custom extensions is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-a-behavior).
 
-## Features built on the pipeline
+## Features built using the pipeline
 
 * [DataBus](/nservicebus/messaging/databus/)
 * [Message Property Encryption](/nservicebus/security/property-encryption.md)
