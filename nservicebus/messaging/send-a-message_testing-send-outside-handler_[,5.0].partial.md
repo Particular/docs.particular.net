@@ -1,0 +1,1 @@
+Use a fake implementation or a mocking framework to unit test `IBus` operations like `Send`.
