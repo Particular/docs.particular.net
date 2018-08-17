@@ -15,7 +15,7 @@ Installers ensure that endpoint-specific artifacts (e.g. queues, directories, da
 
 ## Running installers
 
-NOTE: Running installers requires the process to run with permissions to create/delete tables, queues, folders and other resources. It is recommended to apply the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) and prevent running an endpoint process with too many permissions. Consider running the installers only during the initial setup, using elevated permissions.
+NOTE: Running installers requires the endpoint process to run with permissions to create/delete tables, queues, folders and other resources. It is recommended to apply the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) and avoid running a process with redundant permissions. Consider running installers only during initial deployment, using elevated permissions. For example: start an endpoint process manually, as an administrator or elevated user, before installing it as a service. The alternative to using installers is to create the required resources before the endpoint is run. The method varies for each transport or persistence package. For more information, see [operations](nservicebus/operations).
 
 partial: default-behavior
 
