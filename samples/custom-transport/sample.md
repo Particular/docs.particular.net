@@ -71,7 +71,7 @@ snippet: TransportDefinition
 
 ### Storage location
 
-This transport is hard coded to persist messages to `%TEMP%FileTransport/ADDRESS/`.
+This transport is hard-coded to persist messages to `%TEMP%FileTransport/ADDRESS/`.
 
 snippet: BaseDirectoryBuilder
 

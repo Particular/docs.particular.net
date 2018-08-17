@@ -8,7 +8,7 @@ redirects:
  - nservicebus/rabbitmq/cluster
 ---
 
-The [RabbitMQ Clustering Guide](https://www.rabbitmq.com/clustering.html) recommends that client applications should not hard code the hostnames or IP addresses of the machines hosting nodes in a RabbitMQ cluster. An approach such as DNS or load balancing should be used instead. This approach is recommended when using the NServiceBus RabbitMQ transport.
+The [RabbitMQ Clustering Guide](https://www.rabbitmq.com/clustering.html) recommends that client applications should not hard-code the hostnames or IP addresses of the machines hosting nodes in a RabbitMQ cluster. An approach such as DNS or load balancing should be used instead. This approach is recommended when using the NServiceBus RabbitMQ transport.
 
 If each client is deployed to a machine which is running at least one RabbitMQ node in the cluster, another approach is to configure the client to only connect to the local node, e.g. using `localhost` as the hostname. Note that the RabbitMQ nodes must still be clustered, otherwise clients on each machine will only have access to the messages which originated locally.
 

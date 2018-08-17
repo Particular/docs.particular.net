@@ -19,7 +19,7 @@ snippet: EnableMailer
 
 ### Configure the SmtpBuilder
 
-This sample is hard coded to write all outgoing email to the filesystem at `Path.Combine(Environment.CurrentDirectory, "Emails")`.
+This sample is hard-coded to write all outgoing email to the filesystem at `Path.Combine(Environment.CurrentDirectory, "Emails")`.
 
 snippet: smtpBuilder
 

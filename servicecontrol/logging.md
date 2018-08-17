@@ -95,7 +95,7 @@ Log Level Options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
 #### Versions 1.9 and below
 
-RavenDB logging is included in the ServiceControl logs. This logging is hard coded to `ERROR` and above and is not affected by the `ServiceControl/LogLevel` configuration setting.
+RavenDB logging is included in the ServiceControl logs. This logging is hard-coded to `ERROR` and above and is not affected by the `ServiceControl/LogLevel` configuration setting.
 
 
 #### Versions 1.10 and above
