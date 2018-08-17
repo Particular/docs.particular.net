@@ -22,7 +22,7 @@ void Main()
                 .Any(proj =>
                 {
                     var projContents = File.ReadAllText(proj);
-                    return projContents.Contains("netcoreapp2.0");
+                    return projContents.Contains("netcoreapp2");
                 });
         })
         .Select(versionPath => 
