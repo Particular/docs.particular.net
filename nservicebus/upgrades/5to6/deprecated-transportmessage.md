@@ -1,7 +1,7 @@
 ---
 title: Deprecated TransportMessage in NServiceBus Version 6
 summary: How to migrate away from TransportMessage in NServiceBus 6
-reviewed: 2016-10-26
+reviewed: 2018-08-17
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:

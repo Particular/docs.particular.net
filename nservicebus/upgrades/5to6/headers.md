@@ -1,6 +1,6 @@
 ---
 title: Header API changes in NServiceBus Version 6
-reviewed: 2016-10-26
+reviewed: 2018-08-17
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
