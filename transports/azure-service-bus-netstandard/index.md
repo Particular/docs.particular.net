@@ -3,7 +3,10 @@ title: Azure Service Bus .NET Standard Transport
 component: ASBS
 tags:
  - Azure
-reviewed: 2018-06-21
+ - Transport
+related:
+ - samples/azure-service-bus-netstandard/send-reply/
+reviewed: 2018-08-20
 ---
 
 ## Azure Service Bus .NET Standard transport
