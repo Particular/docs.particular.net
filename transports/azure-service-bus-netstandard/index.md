@@ -5,7 +5,7 @@ tags:
  - Azure
  - Transport
 related:
- - samples/azure-service-bus-netstandard/send-reply/
+ - samples/azure-service-bus-netstandard/send-reply
 reviewed: 2018-08-20
 ---
 
