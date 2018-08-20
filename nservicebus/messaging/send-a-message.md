@@ -41,11 +41,11 @@ The message can also be an interface rather than a concrete class:
 
 snippet: BasicSendInterface
 
+partial: imessagessession-warning
+
 ### Unit testing
 
 Unit testing handler actions is covered by our [message handler documentation](/nservicebus/testing/#testing-a-handler).
-
-partial: imessagessession-warning
 
 partial: override-default-routing
 
