@@ -39,19 +39,19 @@ public class API
 
         #endregion
 
-        #region bridge-routing
+        #region simple-routing
 
         var staticRouting = routerConfig.UseStaticRoutingProtocol();
-        staticRouting.AddRoute(
-            destinationFilter: (iface, destination) => iface == "Msmq", 
-            destinationFilterDescription: "From MSMQ", 
-            gateway: null, 
-            iface: "Rabbit");
-        staticRouting.AddRoute(
-            destinationFilter: (iface, destination) => iface == "Rabbit", 
-            destinationFilterDescription: "From Rabbit", 
-            gateway: null, 
-            iface: "Msmq");
+
+        //Forward all messages from MSMQ to RabbitMQ
+        staticRouting.AddForwardRoute(
+            incomingInterface: "Msmq",
+            outgoingInterface: "Rabbit");
+
+        //Forward all messages from RabbitMQ to MSMQ
+        staticRouting.AddForwardRoute(
+            incomingInterface: "Rabbit",
+            outgoingInterface: "Msmq");
 
         #endregion
 
@@ -106,6 +106,11 @@ public class API
 
         var staticRouting = routerConfig.UseStaticRoutingProtocol();
 
+        //Send all messages from the Backplane interface directly to the destination endpoints
+        staticRouting.AddRoute(
+            (iface, destination) => iface == "Backplane",
+            "From outside", null, "Endpoints");
+
         //Send all messages to site WestUS through the Backplane interface via Router.WestUS
         staticRouting.AddRoute(
             destinationFilter: (iface, destination) => destination.Site == "WestUS",
@@ -117,11 +122,6 @@ public class API
         staticRouting.AddRoute(
             (iface, destination) => destination.Site == "EastUS",
             "To East US", "Router.EastUS", "Backplane");
-
-        //Send all messages from the Backplane interface directly to the destination endpoints
-        staticRouting.AddRoute(
-            (iface, destination) => iface == "Backplane",
-            "From outside", null, "Endpoints");
 
         #endregion
     }
