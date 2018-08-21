@@ -5,6 +5,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />
   </ItemGroup>
 </Project>

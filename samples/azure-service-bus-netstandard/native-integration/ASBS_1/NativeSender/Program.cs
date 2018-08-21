@@ -2,6 +2,7 @@
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
+using Newtonsoft.Json;
 
 class Program
 {
@@ -18,13 +19,19 @@ class Program
 
         #region SerializedMessage
 
-        var nativeMessage = @"{""Content"":""Hello from native sender"",""SendOnUtc"":""2018-08-21T20:55:52.6448469Z""}";
+        var nativeMessage = new NativeMessage
+        {
+            Content = "Hello from native sender",
+            SendOnUtc = DateTime.UtcNow
+        };
+
+        var json = JsonConvert.SerializeObject(nativeMessage);
 
         #endregion
 
-        var nativeMessageAsBytes = Encoding.UTF8.GetBytes(nativeMessage);
+        var bytes = Encoding.UTF8.GetBytes(json);
 
-        var message = new Message(nativeMessageAsBytes)
+        var message = new Message(bytes)
         {
             MessageId = Guid.NewGuid().ToString(),
 
