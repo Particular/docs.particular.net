@@ -1,6 +1,6 @@
 ---
-title: Serialization changes in Version 6
-reviewed: 2016-10-26
+title: Serialization Changes in NServiceBus Version 6
+reviewed: 2018-08-21
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -12,7 +12,7 @@ upgradeGuideCoreVersions:
 
 ## BinarySerializer deprecated
 
-The BinarySerializer is deprecated. Use one of the supported serializers, or an external serializer.
+The BinarySerializer is deprecated. Use one of the supported serializers or an external serializer.
 
 
 ## No dependency injection for IMessageSerializer
@@ -22,12 +22,12 @@ The `IMessageSerializer` instances are now produced by a factory (as described i
 
 ## Built-in serializers are internal
 
-Built-in JSON and XML serializers are internal starting with Version 6. If a custom serializer depends on them in any way the code will need to be copied.
+Built-in JSON and XML serializers are internal starting with NServiceBus version 6. If a custom serializer depends on one of these serializers, the code will need to be copied.
 
 
 ## Standardized XML Serialization
 
-Null types within the XML serializer now conforms to the [W3C Specification](https://www.w3.org/TR/xmlschema-1/#xsi_nil) by using the `xsi:nil="true"` attribute.
+Handling of null types within the XML serializer now conforms to the [W3C Specification](https://www.w3.org/TR/xmlschema-1/#xsi_nil) by using the `xsi:nil="true"` attribute.
 
 This change is backward compatible and will have no impact on communication between older versions of endpoints and newer versions. Older versions will be able to communicate with newer versions and vice versa.
 
@@ -50,4 +50,4 @@ WARNING: External integration systems need to ensure compatibility when receivin
 
 ## BSON serializer deprecated
 
-The BSON serializer build into the core has been removed. Use the [Newtonsoft serializer](/nservicebus/serialization/newtonsoft.md) as a replacement. Also see the [Newtonsoft BSON sample](/samples/serializers/newtonsoft-bson/).
+The BSON serializer built into the core has been removed. Use the [Newtonsoft serializer](/nservicebus/serialization/newtonsoft.md) as a replacement. Also see the [Newtonsoft BSON sample](/samples/serializers/newtonsoft-bson/).
