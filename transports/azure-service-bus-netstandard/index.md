@@ -6,7 +6,8 @@ tags:
  - Transport
 related:
  - samples/azure-service-bus-netstandard/send-reply
-reviewed: 2018-08-20
+ - samples/azure-service-bus-netstandard/native-integration
+reviewed: 2018-08-21
 ---
 
 ## Azure Service Bus .NET Standard transport
