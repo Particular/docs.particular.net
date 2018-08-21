@@ -1,6 +1,7 @@
 ---
 title: Azure Service Bus .NET Standard Transport
-reviewed: 2018-06-21
+summary: Send/Reply pattern
+reviewed: 2018-08-21
 component: ASBS
 related:
 - transports/azure-service-bus-netstandard
