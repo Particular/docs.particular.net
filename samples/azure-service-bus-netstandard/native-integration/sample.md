@@ -1,6 +1,6 @@
 ---
 title: Native Integration with Azure Service Bus .NET Standard Transport
-summary: Consuming messages published by non NServiceBus endpoints.
+summary: Consuming messages published by non-NServiceBus endpoints.
 component: ASBS
 reviewed: 2018-08-21
 related:
@@ -18,22 +18,22 @@ This sample shows how to send a message from non-NServiceBus code using the Azur
 
 The sample contains two executable projects:
 
- * `NativeSender` - sends a native `BrokeredMessage` messages to a queue.
+ * `NativeSender` - sends native messages to the `Receiver`'s queue.
  * `Receiver` - NServiceBus endpoint that processes messages sent by `NativeSender`.
 
 
-## Sending messages with native Azure Service Bus API
+## Sending messages with the Azure Service Bus API
 
 Configuring the native sender to send messages to the queue used by the receiving endpoint is required when integrating the Azure Service Bus sender with NServiceBus endpoints. By default, the input queue for an NServiceBus endpoint is its endpoint name.
 
 snippet: EndpointName
 
-The native sender is using queue client to send a `BrokeredMessage`.
+The native sender is using `QueueClient` to send a single `Message`.
 
 
 ## Message serialization
 
-The Azure Service Bus .NET Standard transport is using the JSON serializer by default. Therefore, the message sent by a native sender needs to be valid JSON.
+NServiceBus endpoint is using JSON serialization (NServiceBus.Newtonsoft.Json serializer). Therefore, the message sent by a native sender needs to be a valid JSON.
 
 snippet: SerializedMessage
 
@@ -42,7 +42,7 @@ To generate a serialized message, the `MessageGenerator` project can be used wit
 
 ## Required headers
 
-For a native message to be processed, NServiceBus endpoints using the Azure Service Bus transport require the following headers:
+For a native message to be processed, NServiceBus endpoints using the Azure Service Bus .NET Standard transport require the following headers:
 
  1. Message type
  1. Message intent
@@ -55,12 +55,12 @@ NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the message t
 
 The message itself is defined as an `IMessage` in the `Shared` project.
 
-NOTE: To specify a message ID different from the underlying transport message ID (`BrokeredMessage.MessageId`), set the `NServiceBus.MessageId` header on the native message with the desired message ID.
+NOTE: To specify a message ID different from the underlying transport message ID (`Message.MessageId`), set the `NServiceBus.MessageId` header on the native message with the desired message ID.
 
 snippet: NativeMessage
 
 
-## Handling messages from native sender in an NServiceBus endpoint
+## Handling messages from a native sender in an NServiceBus endpoint
 
 Once the message is received by the NServiceBus endpoint, its contents will be presented.
 
