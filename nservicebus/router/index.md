@@ -40,7 +40,7 @@ snippet: lifecycle
 
 ## Topologies
 
-A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging.md) endpoints, called *interfaces* and a *routing protocol* that controls how messages should be forwarded between them.
+A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endpoints, called *interfaces* and a *routing protocol* that controls how messages should be forwarded between them.
 
 
 ### Bridge
