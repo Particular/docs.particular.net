@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.1</LangVersion>
@@ -7,4 +8,5 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
   </ItemGroup>
+
 </Project>

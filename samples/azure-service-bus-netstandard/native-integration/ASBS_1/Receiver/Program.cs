@@ -18,7 +18,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-        var recoverability = endpointConfiguration.Recoverability();
+        endpointConfiguration.Conventions().DefiningMessagesAs(type => type.Name == "NativeMessage");
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 

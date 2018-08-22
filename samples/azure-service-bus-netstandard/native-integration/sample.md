@@ -42,16 +42,11 @@ To generate a serialized message, the `MessageGenerator` project can be used wit
 
 ## Required headers
 
-For a native message to be processed, NServiceBus endpoints using the Azure Service Bus .NET Standard transport require the following headers:
-
- 1. Message type
- 1. Message intent
-
-These headers need to be stored as Azure Service Bus `Message` user properties.
+For a native message to be processed, NServiceBus endpoints using the Azure Service Bus .NET Standard transport needs the message type to be included as a header. This header needs to be stored as an Azure Service Bus `Message` user property.
 
 snippet: NecessaryHeaders
 
-NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the message type expected by the NServiceBus endpoint. Message type should include namespace it's contained in.
+NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the the fully qualified name of the type expected by the NServiceBus endpoint.
 
 The message itself is defined as an `IMessage` in the `Shared` project.
 
