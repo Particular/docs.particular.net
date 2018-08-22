@@ -43,14 +43,29 @@ snippet: SagaTest
 
 ## Testing a behavior
 
-Behaviors also can be tested, but using a different testable context objects:
+[Message pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) also can be tested, but using a different testable context objects, one for each of the [various pipeline stages](/nservicebus/pipeline/steps-stages-connectors.md) that can be extended with a behavior.
 
 | Behavior Context | Testable Implementation |
 |-|-|
-| `IncomingLogicalMessageContext` | `TestableIncomingLogicalMessageContext` |
-| `IncomingPhysicalMessageContext` | `TestableIncomingPhysicalMessageContext` |
-| `OutgoingLogicalMessageContext` | `TestableOutgoingLogicalMessageContext` |
-| `OutgoingPhysicalMessageContext` | `TestableOutgoingPhysicalMessageContext` |
+| `ITransportReceiveContext` | `TestableTransportReceiveContext` |
+| `IIncomingLogicalMessageContext` | `TestableIncomingLogicalMessageContext` |
+| `IIncomingPhysicalMessageContext` | `TestableIncomingPhysicalMessageContext` |
+| `IOutgoingLogicalMessageContext` | `TestableOutgoingLogicalMessageContext` |
+| `IOutgoingPhysicalMessageContext` | `TestableOutgoingPhysicalMessageContext` |
+| `IInvokeHandlerContext` | `TestableInvokeHandlerContext` |
+| `IOutgoingContext` | `TestableOutgoingContext` |
+| `IOutgoingPublishContext` | `TestableOutgoingPublishContext` |
+| `IOutgoingReplyContext` | `TestableOutgoingReplyContext` |
+| `IOutgoingSendContext` | `TestableOutgoingSendContext` |
+| `IAuditContext` | `TestableAuditContext` |
+| `IBatchDispatchContext` | `TestableBatchDispatchContext` |
+| `IDispatchContext` | `TestableDispatchContext` |
+| `IForwardingContext` | `TestableForwardingContext` |
+| `IRoutingContext` | `TestableRoutingContext` |
+| `ISubscribeContext` | `TestableSubscribeContext` |
+| `IUnsubscribeContext` | `TestableUnsubscribeContext` |
+
+Each of these testable types contains properties similar to `TestableMessageHandlerContext` that can be used to assert that a behavior is working as designed.
 
 ### Example
 
@@ -61,5 +76,3 @@ snippet: SampleBehavior
 The behavior can be tested similar to a message handler or a saga by using a testable representation of the context:
 
 snippet: BehaviorTest
-
-Testable representations are provided for all pipeline behavior contexts. See [the pipeline documentation](/nservicebus/pipeline/) for further details.
