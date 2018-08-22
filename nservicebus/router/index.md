@@ -67,7 +67,7 @@ NOTE: All three interfaces use the same transport type (SQL Server Transport) bu
 
 ![Backplane](backplane.svg)
 
-Two or more routers can be connected together to form a _backplane_ topology. This setup usually makes most sens for the geo-distributed systems. The following snippet configures the router hosted in the Europen part of the globally distributed system to route messages coming from outsize via the Azure Storage Queues interface directly to the local endpoints and to route messages sent by local endpoints to either East or West US through *designated gateway* routers.
+Two or more routers can be connected together to form a _backplane_ topology. This setup usually makes most sens for the geo-distributed systems. The following snippet configures the router hosted in the Europen part of the globally distributed system to route messages coming from outsize via the Azure Storage Queues interface directly to the local endpoints and to route messages sent by local endpoints to either East or West United States through *designated gateway* routers.
 
 NOTE: The *designated gateway* concept is not related to the NServiceBus.Gateway package. When the *designated gateway* is specified in the route, the message is forawrded to it instead of the actual destination.
 
