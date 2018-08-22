@@ -39,8 +39,6 @@ class Program
             {
                 #region NecessaryHeaders
                 ["NServiceBus.EnclosedMessageTypes"] = "NativeMessage",
-                // Required to support ServiceControl that is using ASB v6.x
-                ["NServiceBus.MessageIntent"] = "Send"
                 #endregion
             }
         };
