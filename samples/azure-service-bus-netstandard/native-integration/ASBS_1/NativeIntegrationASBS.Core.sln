@@ -4,7 +4,7 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receiver.Core", "Receiver\Receiver.Core.csproj", "{90F5C54A-58EF-4E25-9854-9D1A6F81FE54}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Core", "Shared\Shared.Core.csproj", "{0D0EF536-3C89-4191-A0EF-C0742236FC46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{0D0EF536-3C89-4191-A0EF-C0742236FC46}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NativeSender.Core", "NativeSender\NativeSender.Core.csproj", "{C37B5F17-19D8-4A6D-9BD8-E13627AB9B7B}"
 EndProject
