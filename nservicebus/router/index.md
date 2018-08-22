@@ -37,6 +37,18 @@ The router has a simple life cycle:
 
 snippet: lifecycle
 
+The router can be configured to create all required queues on startup:
+
+snippet: queue-creation
+
+
+## Error handling
+
+The router has built-in retry strategy for error handling. It re-tries forwarding each message a number of times (*immediate retries*) and then moves it to the back of the input queue incrementing a *delayed retries* counter. If that counter reaches the maximum configured value, the message is moved to the poison message queue. The following snippet shows how it can be configured:
+
+snippet: recoverability
+
+In addition to immediate and delayed retries, the router has built-in outage detection through a *circuit breaker*. After a number of consecutive failures the circuit breaker is triggered which causes the interface to enter the *throttled mode*. In this mode the interface processes a single message at a time and pauses after each processing attempt. The interface goes back to the normal mode after the first successful processing attempt. When in the throttled mode the router does not increment the delayed retries counter to prevent messages being sent to the poison message queue due to infrastructure outages.
 
 ## Topologies
 
