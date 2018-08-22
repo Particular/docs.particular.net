@@ -101,8 +101,9 @@ Wire: NServiceBus.Wire
 Wcf: NServiceBus.Wcf
 ZeroFormatter: NServiceBus.ZeroFormatter
 Bridge: NServiceBus.Bridge
-Router: NServiceBus.Router
 BridgeConnector: NServiceBus.Bridge.Connector
+Router: NServiceBus.Router
+RouterConnector: NServiceBus.Router.Connector
 Wormhole: NServiceBus.Wormhole
 WormholeGateway: NServiceBus.Wormhole.Gateway
 Utf8Json: NServiceBus.Utf8Json
