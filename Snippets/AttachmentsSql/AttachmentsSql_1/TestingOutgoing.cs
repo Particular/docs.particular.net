@@ -5,7 +5,7 @@ using NServiceBus;
 using NServiceBus.Testing;
 using Xunit;
 
-class TestingOutgoing
+public class TestingOutgoing
 {
     #region TestOutgoingHandler
 

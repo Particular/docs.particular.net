@@ -8,9 +8,9 @@ using NServiceBus.Attachments.Sql.Testing;
 using NServiceBus.Testing;
 using Xunit;
 
-class TestingIncoming
+class IncomingAttachment
 {
-    public void IncomingAttachment()
+    public void InjectAttachmentsInstance()
     {
         #region InjectAttachmentsInstance
 
@@ -20,7 +20,10 @@ class TestingIncoming
 
         #endregion
     }
+}
 
+public class TestingIncoming
+{
     #region CustomMockMessageAttachments
 
     public class CustomMockMessageAttachments : MockMessageAttachments
