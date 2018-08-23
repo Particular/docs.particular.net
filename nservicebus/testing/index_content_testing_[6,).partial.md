@@ -43,27 +43,17 @@ snippet: SagaTest
 
 ## Testing a behavior
 
-[Message pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) also can be tested, but using a different testable context objects, one for each of the [various pipeline stages](/nservicebus/pipeline/steps-stages-connectors.md) that can be extended with a behavior.
+[Message pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) also can be tested, but using a different testable context objects. Each of the [various pipeline stages](/nservicebus/pipeline/steps-stages-connectors.md) uses a specific interface for its context, and each context interface has a testable implementation following a name convention.
 
-| Behavior Context | Testable Implementation |
-|-|-|
-| `ITransportReceiveContext` | `TestableTransportReceiveContext` |
-| `IIncomingLogicalMessageContext` | `TestableIncomingLogicalMessageContext` |
-| `IIncomingPhysicalMessageContext` | `TestableIncomingPhysicalMessageContext` |
-| `IOutgoingLogicalMessageContext` | `TestableOutgoingLogicalMessageContext` |
-| `IOutgoingPhysicalMessageContext` | `TestableOutgoingPhysicalMessageContext` |
-| `IInvokeHandlerContext` | `TestableInvokeHandlerContext` |
-| `IOutgoingContext` | `TestableOutgoingContext` |
-| `IOutgoingPublishContext` | `TestableOutgoingPublishContext` |
-| `IOutgoingReplyContext` | `TestableOutgoingReplyContext` |
-| `IOutgoingSendContext` | `TestableOutgoingSendContext` |
-| `IAuditContext` | `TestableAuditContext` |
-| `IBatchDispatchContext` | `TestableBatchDispatchContext` |
-| `IDispatchContext` | `TestableDispatchContext` |
-| `IForwardingContext` | `TestableForwardingContext` |
-| `IRoutingContext` | `TestableRoutingContext` |
-| `ISubscribeContext` | `TestableSubscribeContext` |
-| `IUnsubscribeContext` | `TestableUnsubscribeContext` |
+To determine the testable context for a behavior context, replace the `I` at the beginning of the interface name with `Testable`.
+
+For example: 
+
+* A behavior using `IIncomingLogicalMessageContext` can be tested using `TestableIncomingLogicalMessageContext`.
+* A behavior using `IInvokeHandlerContext` can be tested using `TestableInvokeHandlerContext`.
+* etc.
+
+Refer to the [pipeline stages document](/nservicebus/pipeline/steps-stages-connectors.md) for a complete list of the available behavior contexts.
 
 Each of these testable types contains properties similar to `TestableMessageHandlerContext` that can be used to assert that a behavior is working as designed.
 
