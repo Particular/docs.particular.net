@@ -1,0 +1,1 @@
+Use the `TestableMessageSession` provided by the [NServiceBus.Testing library](/nservicebus/testing) to unit test `IMessageSession` operations.
