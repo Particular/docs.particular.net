@@ -1,13 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Project>
   <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors>IDE0018</WarningsAsErrors>
   </PropertyGroup>
-
-  <Target Name="DisableAnalyzers" BeforeTargets="CoreCompile">
-    <ItemGroup>
-      <Analyzer Remove="@(Analyzer)"/>
-    </ItemGroup>
-  </Target>
 </Project>
