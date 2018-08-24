@@ -7,7 +7,7 @@ Testing a message handler is done using the `TestableMessageHandlerContext` clas
 | `SentMessages` | A list of all messages sent by `context.Send()`. |
 | `PublishedMessages` | A list of all messages published by `context.Publish()`. |
 | `RepliedMessages` | A list of all messages sent using `context.Reply()`. |
-| `TimeoutMessages` | A list of all messages sent with a saga timeout header. |
+| `TimeoutMessages` | A list of all messages resulting from use of `Saga.RequestTimeout()`. |
 | `ForwardedMessages` | A list of all forwarding destinations set by `context.ForwardCurrentMessageTo()`. |
 | `MessageHeaders` | Gets the list of key/value pairs found in the header of the message. |
 | `HandlerInvocationAborted` | Indicates if `DoNotContinueDispatchingCurrentMessageToHandlers()` was called. |
@@ -43,7 +43,7 @@ snippet: SagaTest
 
 ## Testing a behavior
 
-[Message pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) also can be tested, but using a different testable context objects. Each of the [various pipeline stages](/nservicebus/pipeline/steps-stages-connectors.md) uses a specific interface for its context, and each context interface has a testable implementation following a name convention.
+[Message pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) also can be tested, but using a different testable context objects. Each of the [various pipeline stages](/nservicebus/pipeline/steps-stages-connectors.md) uses a specific interface for its context, and each context interface has a testable implementation.
 
 To determine the testable context for a behavior context, replace the `I` at the beginning of the interface name with `Testable`.
 
@@ -51,11 +51,10 @@ For example:
 
 * A behavior using `IIncomingLogicalMessageContext` can be tested using `TestableIncomingLogicalMessageContext`.
 * A behavior using `IInvokeHandlerContext` can be tested using `TestableInvokeHandlerContext`.
-* etc.
 
 Refer to the [pipeline stages document](/nservicebus/pipeline/steps-stages-connectors.md) for a complete list of the available behavior contexts.
 
-Each of these testable types contains properties similar to `TestableMessageHandlerContext` that can be used to assert that a behavior is working as designed.
+Each of these testable types contains properties similar to those found in `TestableMessageHandlerContext` that can be used to assert that a behavior is working as designed.
 
 ### Example
 
