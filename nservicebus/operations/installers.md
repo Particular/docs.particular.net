@@ -11,11 +11,17 @@ redirects:
  - nservicebus/nservicebus-installers
 ---
 
-Installers ensure that endpoint-specific artifacts (e.g. queues, directories, databases etc) are installed and configured when the endpoint is started.
+Installers ensure that endpoint-specific artifacts (e.g. database tables, queues, directories, etc.) are created and configured when the endpoint is started.
+
+## When to run installers
+
+Installers require permissions to administer resources such as database tables, queues, or directories. Following the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege), it is recommended to run an endpoint with these elevated permissions only during initial deployment.
+
+For example, an endpoint can be started manually as an administrator or elevated user to allow installers to run. The required resources will be ready as soon as the endpoint has successfully started. The endpoint can then be shut down and installed as a service, which can run as a regular user that does not have permission to modify resources.
+
+The alternative to using installers is to create the required resources before the endpoint is run. The method of doing this varies for each transport or persistence package. For more information, see [operations](/nservicebus/operations).
 
 ## Running installers
-
-NOTE: Running installers requires the process to run with permissions to create/delete tables, queues, folders and other resources. It is recommended to apply the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) and prevent running an endpoint process with too many permissions. Consider running the installers only during the initial setup, using elevated permissions.
 
 partial: default-behavior
 
