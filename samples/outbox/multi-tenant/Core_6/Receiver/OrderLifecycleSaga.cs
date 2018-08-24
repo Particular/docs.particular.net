@@ -16,13 +16,11 @@ public class OrderLifecycleSaga :
             .ToSaga(saga => saga.OrderId);
     }
 
-    public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
+    public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
 
-        RequestTimeout<OrderTimeout>(context, TimeSpan.FromSeconds(5));
-
-        return Task.CompletedTask;
+        await RequestTimeout<OrderTimeout>(context, TimeSpan.FromSeconds(5));
     }
 
     public Task Timeout(OrderTimeout state, IMessageHandlerContext context)
