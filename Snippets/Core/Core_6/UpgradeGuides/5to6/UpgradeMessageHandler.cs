@@ -107,6 +107,7 @@ namespace Core6.UpgradeGuides._5to6
     #endregion
 
 #pragma warning disable 4014
+#pragma warning disable NSB0001
 
     #region 5to6-handler-migration-step3
 
@@ -124,6 +125,7 @@ namespace Core6.UpgradeGuides._5to6
     #endregion
 
 #pragma warning restore 4014
+#pragma warning restore NSB0001
 
     #region 5to6-handler-migration-step4
 
