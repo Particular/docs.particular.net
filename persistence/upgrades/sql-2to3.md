@@ -11,7 +11,7 @@ upgradeGuideCoreVersions:
 
 ## Accessing business data
 
-When [accessing business data](/persistence/sql/accessing-data.md) in Versions 2 and below, the SQL persistence session information was injected into the storage session state irrespective of the selected [storage type](/persistence/#storage-types). In Versions 3 and above, the SQL persistence session information will only be injected if the SQL persistence is used for either [Sagas](/nservicebus/sagas/) or the [Outbox](/nservicebus/outbox/). If the SQL persistence is for one of those and another persistence is used for the other, then an exception will be thrown. For example, it is not possible to mix SQL persistence for Sagas with any other persistence for Outbox. The same applies for the inverse.
+When [accessing business data](/persistence/sql/accessing-data.md) in Versions 2 and below, the SQL persistence session information was injected into the storage session state irrespective of the selected [storage type](/persistence/#features-that-require-persistence). In Versions 3 and above, the SQL persistence session information will only be injected if the SQL persistence is used for either [Sagas](/nservicebus/sagas/) or the [Outbox](/nservicebus/outbox/). If the SQL persistence is for one of those and another persistence is used for the other, then an exception will be thrown. For example, it is not possible to mix SQL persistence for Sagas with any other persistence for Outbox. The same applies for the inverse.
 
 
 ## Variant renamed to Dialect

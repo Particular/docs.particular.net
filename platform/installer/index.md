@@ -1,17 +1,17 @@
 ---
 title: Platform Installer
 summary: Guidance on how to use the Platform Installer and its underlying components
-reviewed: 2016-10-26
+reviewed: 2018-08-23
 ---
 
-## Overview
+The Platform Installer is recommended for use on development machines only. This is because:
 
-The Platform Installer is recommended for use on development machines only.
+ * The Platform Installer requires internet access which may not be available in a production environment.
+ * The Platform Installer `setup.exe` will fail on Windows servers that have IE Enhanced Security Configuration enabled.
 
-This is primarily because:
+<div class="text-center inline-download hidden-xs"><a id='download-demo' href='https://particular.net/start-platform-download' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the Platform Installer</a>
+</div>
 
- * The Platform Installer requires Internet access which may not be available in a production environment.
- * The Platform Installer `setup.exe` will fail on Windows servers where [IE Enhanced Security Configuration](https://support.microsoft.com/en-au/kb/815141) is enabled.
 
 [Download the Platform Installer](https://particular.net/start-platform-download).
 
