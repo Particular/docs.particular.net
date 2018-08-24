@@ -43,7 +43,7 @@ snippet: SagaTest
 
 ## Testing a behavior
 
-[Message pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) also can be tested, but using a different testable context objects. Each of the [various pipeline stages](/nservicebus/pipeline/steps-stages-connectors.md) uses a specific interface for its context, and each context interface has a testable implementation.
+[Message pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) also can be tested, but using different testable context objects. Each of the [various pipeline stages](/nservicebus/pipeline/steps-stages-connectors.md) uses a specific interface for its context, and each context interface has a testable implementation.
 
 To determine the testable context for a behavior context, replace the `I` at the beginning of the interface name with `Testable`.
 
