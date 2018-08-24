@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <LangVersion>7.1</LangVersion>
-	<NoWarn>$(NoWarn);IDE1002</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
