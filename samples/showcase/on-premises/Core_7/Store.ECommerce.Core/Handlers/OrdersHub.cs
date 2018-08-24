@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using NServiceBus;
 using Store.Messages.Commands;
@@ -14,7 +15,7 @@ public class OrdersHub :
     {
         this.endpoint = endpoint;
     }
-    public void CancelOrder(int orderNumber, bool isDebug)
+    public async Task CancelOrder(int orderNumber, bool isDebug)
     {
         var command = new CancelOrder
         {
@@ -24,10 +25,10 @@ public class OrdersHub :
         
         var sendOptions = new SendOptions();
         sendOptions.SetHeader("Debug", isDebug.ToString());
-        endpoint.Send(command, sendOptions);
+        await endpoint.Send(command, sendOptions);
     }
 
-    public void PlaceOrder(string[] productIds, bool isDebug)
+    public async Task PlaceOrder(string[] productIds, bool isDebug)
     {
         if (isDebug)
         {
@@ -47,6 +48,6 @@ public class OrdersHub :
 
         var sendOptions = new SendOptions();
         sendOptions.SetHeader("Debug", isDebug.ToString());
-        endpoint.Send(command, sendOptions);
+        await endpoint.Send(command, sendOptions);
     }
 }
