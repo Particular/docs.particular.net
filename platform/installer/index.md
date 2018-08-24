@@ -23,22 +23,22 @@ For testing and production environments it is recommended to:
 
 ## What to expect
 
-The Platform Installer is a [Microsoft Click-Once](https://msdn.microsoft.com/en-us/library/t71a733d.aspx) application, which means it has a built in self-updating mechanism. Click-Once applications are sometimes blocked by corporate firewalls or software restriction policies. If the Platform Installer fails, review the [Offline Install](offline.md) page for installation instructions.
+The Platform Installer is a [Microsoft Click-Once](https://msdn.microsoft.com/en-us/library/t71a733d.aspx) application, which means it has a built-in self-updating mechanism. Click-Once applications are sometimes blocked by corporate firewalls or software restriction policies. If the Platform Installer fails, review the [Offline Install](offline.md) page for installation instructions.
 
 
 ### Dependencies
 
-The Click-Once `setup.exe` will install [.NET 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42643) if required and will then bootstrap the Platform Installer Application.
+The Click-Once `setup.exe` will install [.NET 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42643) if required and will then bootstrap the Platform Installer application.
 
 
-### License Acceptance
+### License acceptance
 
-Before proceeding with product selection, the Platform Installer will prompt to accept the NServiceBus License Agreement.
+Before proceeding with product selection, the Platform Installer will prompt to accept the NServiceBus license agreement.
 
 
-### Proxy Credentials
+### Proxy credentials
 
-The Platform Installer requires Internet access to download individual packages. If non-Windows integrated proxy authentication is required, then a credentials dialog will be shown.
+The Platform Installer requires internet access to download individual packages. If non-Windows integrated proxy authentication is required, a credentials dialog will be shown.
 
 ![](save-credentials.png)
 
@@ -47,14 +47,14 @@ This dialog offers to save credentials for future use. If the Save Credentials o
 
 ## Select items to install
 
-The Platform Installer will prompt for which items to install. Individual components can be selected  for installation or upgrade. If the latest version of a product is installed, no checkbox will be displayed for that item as there is no installation or upgrade action required. Similarly if the Platform Installer cannot communicate with the version information feed, it will also disable product selection.
+The Platform Installer will prompt for the items to install. Individual components can be selected for installation or upgrade. If the latest version of a product is installed, no checkbox will be displayed for that item as there is no installation or upgrade action required. Similarly if the Platform Installer cannot communicate with the version information feed, it will also disable product selection.
 
 ![](select-items.png)
 
 
 #### Configure Microsoft Message Queuing
 
-This installation runs the appropriate [Deployment Image Servicing and Management (DISM.exe)](https://technet.microsoft.com/en-au/library/hh825236.aspx) command line to install the required Windows Features for [Message Queuing (MSMQ)](https://msdn.microsoft.com/en-us/library/ms711472.aspx). The installation will also check to ensure that any unsupported MSMQ Windows Features are not installed. This installation is only required if MSMQ is going to be used as the message transport. The other supported message transports are detailed in the [Transports](/transports/) documentation.
+This installation runs the appropriate [Deployment Image Servicing and Management (DISM.exe)](https://technet.microsoft.com/en-au/library/hh825236.aspx) command line to install the required Windows Features for [Message Queuing (MSMQ)](https://msdn.microsoft.com/en-us/library/ms711472.aspx). The installation will also check to ensure that any unsupported MSMQ Windows Features are not installed. This installation is required only if MSMQ is going to be used as the message transport. The other supported message transports are detailed in the [transports](/transports/) documentation.
 
 
 #### Configure MSDTC for NServiceBus
@@ -72,17 +72,17 @@ This installation configures [Microsoft Distributed Transaction Coordinator (DTC
 
 #### ServiceInsight
 
-Installs the ServiceInsight Package. This MSI can be downloaded directly from [ServiceInsight Releases](https://github.com/Particular/ServiceInsight/releases/latest).
+Installs the ServiceInsight application. This MSI can be downloaded directly from the [ServiceInsight releases](https://github.com/Particular/ServiceInsight/releases/latest) page.
 
 
 #### ServicePulse
 
-Installs the ServicePulse Package. This MSI can be downloaded directly from [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases/latest).
+Installs the ServicePulse application. This MSI can be downloaded directly from the [ServicePulse releases](https://github.com/Particular/ServicePulse/releases/latest) page.
 
 
 #### ServiceControl
 
-Installs the ServiceControl Package. This MSI can be downloaded directly from [ServiceControl Releases](https://github.com/Particular/ServiceControl/releases/latest).
+Installs the ServiceControl application. This MSI can be downloaded directly from the [ServiceControl releases](https://github.com/Particular/ServiceControl/releases/latest) page.
 
 
 ## Troubleshooting
@@ -95,16 +95,16 @@ The Platform Installer caches the downloaded MSI files in `%temp%\Particular\Pla
 
 ### Logs
 
-The Platform Installer logs activity in `%appdata%\PlatformInstaller`. The current log file will be named according to the current date. For example a log created on the 25 January 2016 would result in the filename `log-20160125.txt`.
+The Platform Installer logs activity in `%appdata%\PlatformInstaller`. The current log file will be named according to the current date. For example a log created on January 25, 2018 would result in the filename `log-20180125.txt`.
 
 
-### MSI Logs
+### MSI logs
 
-The command line options used for the MSI installations ensure that a detailed log file is produced for each installation. These files are co-located with the Platform Installer logs in `%appdata%\PlatformInstaller`.
+The command line options used for the MSI installations ensure that a detailed log file is produced for each installation. These files are located alongside the Platform Installer logs in `%appdata%\PlatformInstaller`.
 
 An installation or upgrade of a product will overwrite any existing MSI log for that product.
 
-MSI installers provide detailed error information via error codes. [MSI error messages](https://msdn.microsoft.com/en-us/library/aa376931.aspx) can assist in fault finding installation issues.
+MSI installers provide detailed error information via error codes. [MSI error messages](https://msdn.microsoft.com/en-us/library/aa376931.aspx) can assist in troubleshooting installation issues.
 
 
 ### Click-Once
