@@ -1,4 +1,5 @@
 <Project>
+  <Import Project="..\Directory.Build.props" />
   <PropertyGroup>
 	<NoWarn>$(NoWarn);IDE1002</NoWarn>
   </PropertyGroup>
