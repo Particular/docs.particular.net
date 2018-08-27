@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,21 +11,32 @@ using System.Threading.Tasks;
 
 public class Startup
 {
-    #region ContainerConfiguration
+    #region ContainerConfigurationAutofac
 
-    public void ConfigureServices(IServiceCollection services)
+    public IServiceProvider ConfigureServices(IServiceCollection services)
     {
-        services.AddSingleton<IEndpointInstance>(sp => endpoint);
+        var builder = new ContainerBuilder();
+
+        builder.Populate(services);
+        builder.RegisterInstance(new MyService());
+
+        builder.Register(c => endpoint)
+            .As<IEndpointInstance>()
+            .SingleInstance();
+
+        var container = builder.Build();
 
         var endpointConfiguration = new EndpointConfiguration("Sample.Core");
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseContainer<ServicesBuilder>(
+        endpointConfiguration.UseContainer<AutofacBuilder>(
             customizations: customizations =>
             {
-                customizations.ExistingServices(services);
+                customizations.ExistingLifetimeScope(container);
             });
 
         endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
+
+        return new AutofacServiceProvider(container);
     }
 
     #endregion
@@ -40,7 +53,7 @@ public class Startup
             applicationBuilder.UseDeveloperExceptionPage();
         }
 
-        #region RequestHandling
+        #region RequestHandlingAutofac
 
         applicationBuilder.Run(
             handler: context =>
