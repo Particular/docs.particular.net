@@ -32,7 +32,7 @@ To get started with .NET Core and NServiceBus, the following samples are recomme
 * [Using NServiceBus in an ASP.NET Core WebAPI Application](/samples/web/send-from-aspnetcore-webapi/?version=core_7)
 * [Hosting in a Windows Service](/samples/hosting/windows-service/?version=core_7)
 * [Hosting endpoints in Docker Linux containers](/samples/hosting/docker/?version=core_7)
-* [Asp.NET Core Dependency Injection Integration](/samples/dependency-injection/aspnetcore/?version=core_7)
+* [ASP.NET Core Dependency Injection Integration](/samples/dependency-injection/aspnetcore/?version=core_7)
 
 
 ### Message transport samples
