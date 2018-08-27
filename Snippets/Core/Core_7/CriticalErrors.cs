@@ -25,7 +25,7 @@ namespace Core7
             try
             {
                 // To leave the process active, stop the endpoint.
-                // When stopped attempts to send messages will cause an ObjectDisposedException.
+                // When it is stopped, attempts to send messages will cause an ObjectDisposedException.
                 await context.Stop().ConfigureAwait(false);
                 // Perform custom actions here, e.g.
                 // NLog.LogManager.Shutdown();
