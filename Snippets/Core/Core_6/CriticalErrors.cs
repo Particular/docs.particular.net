@@ -24,8 +24,8 @@ namespace Core6
         {
             try
             {
-                // To leave the process active, dispose the bus.
-                // When the bus is disposed, the attempt to send message will cause an ObjectDisposedException.
+                // To leave the process active, stop the endpoint.
+                // When stopped attempts to send messages will cause an ObjectDisposedException.
                 await context.Stop().ConfigureAwait(false);
                 // Perform custom actions here, e.g.
                 // NLog.LogManager.Shutdown();
