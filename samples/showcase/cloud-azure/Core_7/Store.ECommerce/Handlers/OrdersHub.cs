@@ -2,6 +2,7 @@
 using Microsoft.AspNet.SignalR;
 using NServiceBus;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Store.Messages.Commands;
 
 public class OrdersHub :
@@ -9,7 +10,7 @@ public class OrdersHub :
 {
     static int orderNumber;
 
-    public void CancelOrder(int orderNumber)
+    public async Task CancelOrder(int orderNumber)
     {
         var command = new CancelOrder
         {
@@ -20,10 +21,10 @@ public class OrdersHub :
         var isDebug = (bool)Clients.Caller.debug;
         var sendOptions = new SendOptions();
         sendOptions.SetHeader("Debug", isDebug.ToString());
-        MvcApplication.EndpointInstance.Send(command,sendOptions);
+        await MvcApplication.EndpointInstance.Send(command,sendOptions);
     }
 
-    public void PlaceOrder(string[] productIds)
+    public async Task PlaceOrder(string[] productIds)
     {
         var isDebug = (bool)Clients.Caller.debug;
         if (isDebug)
@@ -44,6 +45,6 @@ public class OrdersHub :
 
         var sendOptions = new SendOptions();
         sendOptions.SetHeader("Debug", isDebug.ToString());
-        MvcApplication.EndpointInstance.Send(command, sendOptions);
+        await MvcApplication.EndpointInstance.Send(command, sendOptions);
     }
 }
