@@ -66,4 +66,4 @@ snippet: InvokeCriticalError
 
 ## Heartbeat functionality
 
-The [Heartbeat functionality](/monitoring/heartbeats/) is configured to start pinging ServiceControl immediately after the bus starts. It only stops when the process exits. The only way for a critical error to result in a heartbeat failure in ServicePulse/ServiceControl is for the critical error to kill the process.
+The [Heartbeat functionality](/monitoring/heartbeats/) is configured to start pinging ServiceControl immediately after the endpoint starts. It only stops when the process exits. The only way for a critical error to result in a heartbeat failure in ServicePulse/ServiceControl is for the critical error to kill the process.
