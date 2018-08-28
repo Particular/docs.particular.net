@@ -97,7 +97,7 @@ public class API
 
     public void SiteBasedRouting()
     {
-        #region three-way-router
+        #region backplane
 
         var routerConfig = new RouterConfiguration("Router.WestEurope");
 

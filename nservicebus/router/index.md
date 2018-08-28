@@ -8,7 +8,7 @@ related:
 reviewed: 2018-05-04
 ---
 
-`NServiceBus.Router` is a universal component that connects parts of an NServiceBus-based solution that otherwise cannot talk to each other (e.g. because they use different transport or transport settings or because of physical barriers). 
+`NServiceBus.Router` is a universal component that connects parts of an NServiceBus-based solution that otherwise could not talk to each other (e.g. because they use different transports or transport settings).
 
 Unlike the [Gateway](/nservicebus/gateway/) or the [Wormhole](/nservicebus/wormhole/), the Router handles both sending and publishing. Unlike the [Bridge](/nservicebus/bridge/) the Router can use site-based addressing to route message between logically significant sites (just like the Gateway does).
 
@@ -28,6 +28,8 @@ The snippet above tells the endpoint that a designated router listens on queue `
 
 
 ## Router configuration
+
+The Router is packaged as a host-agnostic library. It can be hosted e.g. inside a console application or a Windows service. It can also be co-hosted with regular NServiceBus endpoints in the same process.
 
 The following snippet shows a simple MSMQ-to-RabbitMQ router configuration
 
@@ -59,7 +61,7 @@ A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endp
 
 ![Bridge](bridge.svg)
 
-The arrows show the path of messages sent from `Endpoint A` to `Endpoint C` and from `Endpoint D` to `Endpoint B`. The messages cross the router in the opposite direction. Each message is initially sent to the router queue (based on the routing configuration of the connector) and then forwarded to the destination queue. There is one additional *hop* compared to a direct communication of endpoints. The following snippet configures the built-in *static routing protocol* to forward messages between the router's interfaces.
+The arrows show the path of messages sent from `Endpoint A` to `Endpoint C` and from `Endpoint D` to `Endpoint B`. Each message is initially sent to the router queue and then forwarded to the destination queue. There is one additional *hop* compared to a direct communication between endpoints. The following snippet configures the built-in *static routing protocol* to forward messages between the router's interfaces.
 
 snippet: simple-routing
 
@@ -79,10 +81,10 @@ NOTE: All three interfaces use the same transport type (SQL Server Transport) bu
 
 ![Backplane](backplane.svg)
 
-Two or more routers can be connected together to form a _backplane_ topology. This setup usually makes most sens for the geo-distributed systems. The following snippet configures the router hosted in the Europen part of the globally distributed system to route messages coming from outsize via the Azure Storage Queues interface directly to the local endpoints and to route messages sent by local endpoints to either East or West United States through *designated gateway* routers.
+Two or more routers can be connected together to form a _backplane_ topology. This setup usually makes most sense for the geo-distributed systems. The following snippet configures the router hosted in the Europen part of the globally distributed system to route messages coming from outside via the Azure Storage Queues interface directly to the local endpoints and to route messages sent by local endpoints to either East or West United States through *designated gateway* routers.
 
-NOTE: The *designated gateway* concept is not related to the NServiceBus.Gateway package. When the *designated gateway* is specified in the route, the message is forawrded to it instead of the actual destination.
+NOTE: The *designated gateway* concept is not related to the NServiceBus.Gateway package. When the *designated gateway* is specified in the route, the message is forwarded to it instead of the actual destination.
 
-snippet: three-way-router
+snippet: backplane
 
 NOTE: As an example the routing rules here use the `Site` property that can be set through the `SendOptions` object when sending messages. The backplane topology does not require site-based routing and can be configured e.g. using endpoint-based convention like in the multi-way routing example.
