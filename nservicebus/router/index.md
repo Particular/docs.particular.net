@@ -10,7 +10,7 @@ reviewed: 2018-05-04
 
 `NServiceBus.Router` is a universal component that connects parts of an NServiceBus-based solution that otherwise could not talk to each other (e.g. because they use different transports or transport settings).
 
-Unlike the [Gateway](/nservicebus/gateway/) or the [Wormhole](/nservicebus/wormhole/), the Router handles both sending and publishing. Unlike the [Bridge](/nservicebus/bridge/) the Router can use site-based addressing to route message between logically significant sites (just like the Gateway does).
+Unlike the [Gateway](/nservicebus/gateway/) or the [Wormhole](/nservicebus/wormhole/), the Router handles both sending and publishing. Unlike the [Bridge](/nservicebus/bridge/) the Router can use site-based addressing to route messages between logically significant sites (just like the Gateway does).
 
 The Router is transparent to the publishing and replying endpoint. That is:
 
@@ -46,7 +46,7 @@ snippet: queue-creation
 
 ## Error handling
 
-The router has built-in retry strategy for error handling. It re-tries forwarding each message a number of times (*immediate retries*) and then moves it to the back of the input queue incrementing a *delayed retries* counter. If that counter reaches the maximum configured value, the message is moved to the poison message queue. The following snippet shows how it can be configured:
+The router has a built-in retry strategy for error handling. It re-tries forwarding each message a number of times (*immediate retries*) and then moves it to the back of the input queue incrementing a *delayed retries* counter. If that counter reaches the maximum configured value, the message is moved to the poison message queue. The following snippet shows how it can be configured:
 
 snippet: recoverability
 
@@ -70,7 +70,7 @@ snippet: simple-routing
 
 ![Multi-way](multi-way.svg)
 
-The router is not limited to only two interfaces but in case there is more than two interfaces, the routing protocol rules need to be more complex and specific. The following snippet configures the built-in *static routing protocol* to forward messages to interfaces based on the prefix of the destination endpoint's name.
+The router is not limited to only two interfaces but in case there are more than two interfaces, the routing protocol rules need to be more complex and specific. The following snippet configures the built-in *static routing protocol* to forward messages to interfaces based on the prefix of the destination endpoint's name.
 
 snippet: three-way-router
 
