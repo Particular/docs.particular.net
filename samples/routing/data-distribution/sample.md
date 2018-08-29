@@ -26,8 +26,8 @@ Make sure MSMQ is installed and configured as described in the [MSMQ Transport -
 
 ### Verifying that the sample works correctly
 
- 1. Notice that for each order message sent from any client there is a single confirmation `Order ABCD accepted` displayed in either Client.1 or Client.2 window. The `OrderAccepted` event is always processed by a single instance of the Client endpoint.
- 1. Notice that for each order message there is `Invalidating cache` message displayed in both client consoles (data is being distributed to all instances).
+ 1. Notice that for each order message sent from any client there is a single confirmation `Order ABCD accepted` displayed in either the  Client.1 or Client.2 window. The `OrderAccepted` event is always processed by a single instance of the Client endpoint.
+ 1. Notice that for each order message there is an `Invalidating cache` message displayed in both client consoles (data is being distributed to all instances).
 
 
 ## Code walk-through
@@ -43,7 +43,7 @@ The client application consists of two endpoints. The main endpoint is used to s
 
 snippet: MainConfig
 
-The auxiliary endpoint is used for data distribution purposes. It reacts on `OrderAccepted` events and invalidates the cache. In order to ensure each scaled out instance of Client receives its own copy of the event the logical name of the data distribution endpoint consists of the name of the main endpoint and a suffix which is specific to a given instance. Such suffix can be set in the configuration for each deployment or can be obtained from an environment (e.g. Azure role instance ID).
+The auxiliary endpoint is used for data distribution purposes. It reacts on `OrderAccepted` events and invalidates the cache. In order to ensure each scaled out instance of Client receives its own copy of the event, the logical name of the data distribution endpoint consists of the name of the main endpoint and a suffix which is specific to a given instance. Such suffix can be set in the configuration for each deployment or can be obtained from an environment (e.g. Azure role instance ID).
 
 snippet: DistributionEndpointName
 
