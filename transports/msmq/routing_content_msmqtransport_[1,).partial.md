@@ -40,16 +40,3 @@ Specifies the path and file name of the instance mapping file. This can be a rel
 Default: `instance-mapping.xml`
 
 snippet: InstanceMappingFile-FilePath
-
-
-## Custom instance mapping
-
-Physical routing is responsible for mapping the destination logical endpoint to the transport address (queue name).
-
-The instance mapping aspect of routing, as well as all other aspects, can be customized if the standard built-in file-based mapping is not feasible (e.g. in elastically scaled-out environments). 
-
-snippet: RoutingExtensibility-Instances
-
-The `sourceKey` parameter has the same meaning and effect as in the routes collection. Refer to the [features documentation](/nservicebus/pipeline/features.md) for more details about building a custom feature.
-
-The instances collection is thread-safe. It allows registering multiple instance of a given endpoint. In case there is more than one, message distribution is involved.
