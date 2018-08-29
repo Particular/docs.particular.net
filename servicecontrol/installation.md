@@ -35,8 +35,12 @@ In ServiceControl version 1.7 and above, the transport DLLs are managed by the i
  * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
  * [Azure Storage Queues](/transports/azure-storage-queues/)
  * [Azure Service Bus](/transports/azure-service-bus/)
+ * [Azure Service Bus .NET Standard](/transports/azure-service-bus-netstandard)
  * [SQL Server](/transports/sql/)
  * [RabbitMQ](/transports/rabbitmq/)
+ * [Amazon SQS](/transports/sqs/)
+
+ Certain features of the transports are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter).
 
 Adding third party transports via the Management Utility is not supported. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
