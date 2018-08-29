@@ -3,11 +3,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
-    <ApplicationIcon />
-    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.FluentValidation" Version="1.1.1" />
+    <PackageReference Include="NServiceBus.FluentValidation" Version="1.*" />
   </ItemGroup>
 </Project>

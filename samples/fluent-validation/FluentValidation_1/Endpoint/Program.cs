@@ -15,13 +15,13 @@ class Program
         validation.AddValidatorsFromAssemblyContaining<MyMessage>();
         #endregion
 
-        var endpoint = await Endpoint.Start(configuration);
+        var endpoint = await Endpoint.Start(configuration).ConfigureAwait(false);
 
-        await endpoint.SendLocal(new MyMessage {Content = "sd"});
-        await endpoint.SendLocal(new MyMessage());
+        await endpoint.SendLocal(new MyMessage {Content = "sd"}).ConfigureAwait(false);
+        await endpoint.SendLocal(new MyMessage()).ConfigureAwait(false);
 
         Console.WriteLine("Press any key to stop program");
         Console.Read();
-        await endpoint.Stop();
+        await endpoint.Stop().ConfigureAwait(false);
     }
 }
