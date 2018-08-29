@@ -68,4 +68,4 @@ The shared project contains definitions for messages.
 
 ## Real-world scenario
 
-For the sake of simplicity, in this sample all the endpoints run on a single machine. In real world is is usually best to run each instance on a separate virtual machine. In such case the instance mapping file would contain `machine` attributes mapping instances to their machines' host names instead of `queue` attributes used to run more than one instance on a single box.
+For the sake of simplicity, in this sample all the endpoints run on a single machine. In the real world it is usually best to run each instance on a separate virtual machine. In such a case the instance mapping file would contain `machine` attributes mapping instances to their machines' host names instead of `queue` attributes used to run more than one instance on a single box.
