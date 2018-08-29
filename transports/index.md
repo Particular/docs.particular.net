@@ -18,7 +18,7 @@ NServiceBus transports can be divided into several categories.
 
 ### Bus transports
 
-Bus transports are inherently distributed. Each endpoint instance might potentially connect to a different node of the bus. Messages are routed transparently between the nodes but physical routing layer needs to contain information to which bus node particular endpoint is connected to.
+Bus transports are inherently distributed. Each endpoint instance might potentially connect to a different node of the bus. Messages are routed transparently between the nodes but the physical routing layer needs to contain information as to which bus node a particular endpoint is connected to.
 
 Bus transports include:
 
@@ -41,7 +41,7 @@ Broker transports include:
 
 ### Unicast-only transports
 
-Unicast-only transports do not have a notion of topic; only queues. Because of that they allow only point-to-point communication. Sending message to multiple receivers (e.g. publishing an event) is composed of multiple transport-level  sends. Unicast-only transports require a subscription storage to be configured.
+Unicast-only transports do not have a notion of topic; only queues. Because of this, they allow only point-to-point communication. Sending message to multiple receivers (e.g. publishing an event) is composed of multiple transport-level  sends. Unicast-only transports require a subscription storage be configured.
 
 Unicast-only transports include:
 
@@ -52,7 +52,7 @@ Unicast-only transports include:
 
 ### Multicast-enabled transports
 
-Multicast-enabled transports have some notion of a topic or a similar concept that allows sending a message once and having it received by multiple clients. These transports do not require a subscription storage to be configured.
+Multicast-enabled transports have some notion of a topic, or a similar concept, which allows sending a message once and having it received by multiple clients. These transports do not require a subscription storage to be configured.
 
 Multicast-enabled transports include:
 
@@ -63,7 +63,7 @@ Multicast-enabled transports include:
 
 ## Community-maintained transports
 
-There are several community-maintained transports that can be seen in the full list of [extensions](/components#transports).
+There are several community-maintained transports which can be found in the full list of [extensions](/components#transports).
 
 
 ## WebSphereMQ
