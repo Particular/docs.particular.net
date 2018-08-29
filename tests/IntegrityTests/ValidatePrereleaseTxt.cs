@@ -103,7 +103,7 @@ namespace IntegrityTests
 
             return packageRefs
                 .Where(pkgRef => packageNames.Contains(pkgRef.Attribute("Include").Value, StringComparer.OrdinalIgnoreCase))
-                .Any(pkgRef => pkgRef.Attribute("Version").Value.Contains("-"));
+                .Any(pkgRef => pkgRef.Attribute("Version").Value.Contains("-") || pkgRef.Attribute("Version").Value.StartsWith("0."));
         }
     }
 }
