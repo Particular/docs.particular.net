@@ -6,7 +6,7 @@ component: FluentValidation
 
 ## Introduction
 
-Uses the [NServiceBus.FluentValidation](/nservicebus/messaging/validation-fluentvalidation.md) component to validate various attributes of the incoming message and outgoing messages.
+Uses the [NServiceBus.FluentValidation](/nservicebus/messaging/validation-fluentvalidation.md) component to validate various properties of the incoming message and outgoing messages.
 
 
 ## Code Walk-through
@@ -14,7 +14,7 @@ Uses the [NServiceBus.FluentValidation](/nservicebus/messaging/validation-fluent
 
 ### Adding the fluent message validator
 
-In the snippet below, a fluent `AbstractValidator` for the type `MyMessage` is created with a rule to check that the `Content` attribute of the message is not empty. 
+In the snippet below, a fluent `AbstractValidator` for the type `MyMessage` is created with a rule to check that the `Content` property of the message is not empty. 
 
 snippet: Fluent-Validator
 
@@ -29,8 +29,8 @@ snippet: Enable
 ## Running the project
 
  1. Start the solution.
- 1. Two messages of type, `MyMessage` are automatically sent  to the endpoint on start up. The first message has a valid content for its attribute and the second message's `Content` attribute is empty.
- 1. The handler for the message whose `Content` attribute has a value will be handled correctly while a validation exception will be thrown for the message whose `Content` attribute is empty.
+ 1. Two messages of type, `MyMessage` are automatically sent  to the endpoint on start up. The first message has a value  for the `Content` property and the second message has an empty value.
+ 1. The handler for the message whose `Content` property has been set will be handled correctly while a validation exception will be thrown for the message whose `Content` property is empty.
 
 
 
