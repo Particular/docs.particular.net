@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 
 class Program
 {
+    static ILog log = LogManager.GetLogger<Program>();
     static async Task Main()
     {
         var configuration = new EndpointConfiguration("FluentValidationSample");
@@ -17,10 +19,10 @@ class Program
 
         var endpoint = await Endpoint.Start(configuration).ConfigureAwait(false);
 
-        await endpoint.SendLocal(new MyMessage {Content = "sd"}).ConfigureAwait(false);
+        await endpoint.SendLocal(new MyMessage {Content = "This property is expected to have a value."}).ConfigureAwait(false);
         await endpoint.SendLocal(new MyMessage()).ConfigureAwait(false);
 
-        Console.WriteLine("Press any key to stop program");
+        log.Info("Press any key to stop program");
         Console.Read();
         await endpoint.Stop().ConfigureAwait(false);
     }
