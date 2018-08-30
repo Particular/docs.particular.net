@@ -4,7 +4,7 @@ To customize how logical endpoints are mapped to physical instance when routing 
 
 snippet: RoutingExtensibility-Instances
 
-The `sourceKey` uniquely identifies this specific mapping source and must be unique.
+`sourceKey` uniquely identifies the mapping source so that it can be modified and must be unique.
 
 Note: The entire source will be replaced by the code above so all known instance mappings must be added.
 
