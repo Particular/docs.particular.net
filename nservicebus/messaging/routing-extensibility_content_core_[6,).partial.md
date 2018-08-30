@@ -44,4 +44,4 @@ When using a [bus transport](/transports/#types-of-transports-bus-transports), t
 
 Routing extensions can influence the physical routing by modifying the endpoint instances collection. This is especially important for [bus transports](/transports/#types-of-transports-bus-transports) in a dynamically changing environment such as the cloud. Endpoints can be elastically scaled out and scaled in and the routing, in order to stay in sync, needs to derive the physical information from the current state of the environment, not from a static file.
 
-See the article dedicated to the [MSMQ transport](/transports/msmq/routing-extensibility) for details.
+See the article dedicated to the [MSMQ transport](/transports/msmq/routing-extensibility/) for details.
