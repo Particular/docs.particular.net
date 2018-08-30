@@ -1,4 +1,4 @@
-## Custom instance mapping
+## Instance mapping extensibility
 
 To customize how logical endpoints are mapped to physical instance when routing messages use the following code in a [Feature](/nservicebus/pipeline/features.md):
 
