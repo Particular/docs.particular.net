@@ -20,6 +20,7 @@ This sample shows how to monitor heartbeat and failed message events in ServiceC
  1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using MSMQ transport.
  1. Ensure the `ServiceControl` process is running before running the sample. 
 
+NOTE: When using the [AzureServiceBus Transport](/transports/azure-service-bus/) it is necessary to configure [ValidateAndHashIfNeeded](/transports/azure-service-bus/sanitization.md#automated-sanitization) sanitization strategy for both endpoints in this project. This ensures consistent entity name shortening between the endpoints and ServiceControl. Same applies when using [Azure Service Bus .NET Standard Transport](/transports/azure-service-bus-netstandard/) in which case name shortening rules can be specified via configuration [settings](/transports/azure-service-bus-netstandard/configuration.md#entity-creation).
 
 ## Running the project
 
