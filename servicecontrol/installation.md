@@ -41,6 +41,8 @@ In ServiceControl version 1.7 and above, the transport DLLs are managed by the i
  * [Amazon SQS](/transports/sqs/)
 
  Certain features of the transports are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter).
+ 
+For preliminary Azure Service Bus .NET Standard support select Azure Service Bus Forwarding Topology.
 
 Adding third party transports via the Management Utility is not supported. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
