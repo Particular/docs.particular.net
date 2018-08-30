@@ -11,7 +11,7 @@ related:
 ---
 
 
-This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using the advanced features of the Azure Storage Queues transport [not natively supported by ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md#azure-storage-queues).
+This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using the advanced features of the Azure Storage Queues transport [not natively supported by ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md#azure-storage-queues-transport).
 
 The following diagram shows the topology of the solution:
 
