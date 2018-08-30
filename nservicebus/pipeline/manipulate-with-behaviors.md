@@ -1,9 +1,9 @@
 ---
 title: Manipulate Pipeline with Behaviors
-summary: Manipulating the message handling pipeline with Behaviors
+summary: Manipulating the message handling pipeline with behaviors
 component: Core
 versions: '[4.0,)'
-reviewed: 2017-04-17
+reviewed: 2018-08-30
 tags:
 - Pipeline
 related:
@@ -35,18 +35,18 @@ partial: registernew
 
 ## Replace an existing step
 
-To replace the implementation of an existing step replace it with a custom behavior:
+To replace the implementation of an existing step, substitute it with a custom behavior:
 
 snippet: ReplacePipelineStep
 
-In order to replace the existing step it is necessary to provide a step id. The most reliable way of determining the step id, is to find the step definition in the NServiceBus source code. 
+In order to replace the existing step, it is necessary to provide a step ID. The most reliable way of determining the step ID, is to find the step definition in the NServiceBus source code. 
 
-Note, however, that step ids are hard-coded strings and may change in the future resulting in an unexpected behavior change. In case of replacing built-in steps, create automatic tests that will detect potential id change or step removal.
+Note, however, that step IDs are hard-coded strings and may change in the future resulting in an unexpected behavior change. When replacing built-in steps, create automatic tests that will detect potential ID changes or step removal.
 
-Note: Steps can also be registered from a [Feature](features.md).
+Note: Steps can also be registered from a [feature](features.md).
 
 
-## Exception Handling
+## Exception handling
 
 Exceptions thrown from a behavior's `Invoke` method bubble up the chain. If the exception is not handled by a behavior, the message is considered as faulted which results in putting the message back in the queue (and rolling back the transaction) or moving it to the error queue (depending on the endpoint configuration).
 

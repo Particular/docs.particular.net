@@ -33,7 +33,7 @@ The native sender is using `QueueClient` to send a single `Message`.
 
 ## Message serialization
 
-NServiceBus endpoint is using JSON serialization (NServiceBus.Newtonsoft.Json serializer). Therefore, the message sent by a native sender needs to be a valid JSON.
+The NServiceBus endpoint is using [JSON serialization](/nservicebus/serializerion/newtonsoft). Therefore, the message sent by a native sender must be valid JSON.
 
 snippet: SerializedMessage
 
@@ -42,11 +42,11 @@ To generate a serialized message, the `MessageGenerator` project can be used wit
 
 ## Required headers
 
-For a native message to be processed, NServiceBus endpoints using the Azure Service Bus .NET Standard transport needs the message type to be included as a header. This header needs to be stored as an Azure Service Bus `Message` user property.
+For a native message to be processed, NServiceBus endpoints using the Azure Service Bus .NET Standard transport need the message type to be included as a header. This header must be stored as an Azure Service Bus `Message` user property.
 
 snippet: NecessaryHeaders
 
-NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the the fully qualified name of the type expected by the NServiceBus endpoint.
+NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the the fully-qualified name of the type expected by the NServiceBus endpoint.
 
 The message itself is defined as an `IMessage` in the `Shared` project.
 
@@ -65,4 +65,4 @@ snippet: NativeMessageHandler
 ## Things to note
 
  * The use of the `AzureServiceBus_ConnectionString` environment variable mentioned above.
- * Execute `Receiver` first to create destination queue `NativeSender` will need to send native messages.
+ * Execute `Receiver` first to create the destination queue that `NativeSender` will need to send native messages.
