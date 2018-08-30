@@ -2,7 +2,6 @@
 
 The routing system can be extended by accessing the APIs via the settings bag.
 
-
 ### Command routing
 
 To extend [command routing](/nservicebus/messaging/routing.md#command-routing), routing extensions can access the route table from `EndpointConfiguration` level or from the feature level:
@@ -23,7 +22,6 @@ The routing system prevents route ambiguity. If new or replaced routes conflict 
 
 snippet: RoutingExtensibility-TriggerEndpointShutdown
 
-
 ### Event routing
 
 [Event routing](/nservicebus/messaging/routing.md#event-routing) differs depending on the transport capabilities. [Multicast transports](/transports/#types-of-transports-multicast-enabled-transports) which support the [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) pattern natively implement the event routing themselves. Refer to specific transport documentation for details on extensibility points.
@@ -36,7 +34,6 @@ The source parameter has the same meaning and effect as in the routes collection
 
 The publishers collection is thread-safe and all operations on that collection are atomic.
 
-
 ### Physical routing
 
 Physical routing is responsible for mapping the destination logical endpoint to the transport address (queue name).
@@ -47,4 +44,4 @@ When using a [bus transport](/transports/#types-of-transports-bus-transports), t
 
 Routing extensions can influence the physical routing by modifying the endpoint instances collection. This is especially important for [bus transports](/transports/#types-of-transports-bus-transports) in a dynamically changing environment such as the cloud. Endpoints can be elastically scaled out and scaled in and the routing, in order to stay in sync, needs to derive the physical information from the current state of the environment, not from a static file.
 
-See the article dedicated to the [MSMQ transport](/transports/msmq/routing.md#custom-instance-mapping) for details. 
+See the article dedicated to the [MSMQ transport](/transports/msmq/routing-extensibility) for details.
