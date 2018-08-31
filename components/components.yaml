@@ -996,6 +996,18 @@
     - NServiceBus.Wormhole
     - NServiceBus.Wormhole.Gateway
 
+- Key: Router
+  Name: NServiceBus.Router
+  DocoUrl: nservicebus/router
+  GitHubOwner: SzymonPobiega
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.Router/blob/master/LICENSE
+  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Router
+  NugetOrder:
+    - NServiceBus.Router
+    - NServiceBus.Router.Connector
+
 - Key: UniformSession
   Name: UniformSession Support
   DocoUrl: nservicebus/messaging/uniformsession
