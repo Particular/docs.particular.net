@@ -16,6 +16,7 @@ public class API
         var routing = transport.Routing();
         var bridge = routing.ConnectToRouter("MyRouter");
 
+        //routing.RouteToEndpoint(ty);
         bridge.RouteToEndpoint(typeof(MyMessage), "Receiver");
         bridge.RegisterPublisher(typeof(MyEvent), "Publisher");
 

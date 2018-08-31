@@ -266,6 +266,8 @@
         Title: Troubleshooting
       - Url: nservicebus/gateway/scale-out
         Title: Scale-Out
+    - Url: nservicebus/router
+      Title: Router
     - Url: nservicebus/bridge
       Title: Transport Bridge
       Articles:
