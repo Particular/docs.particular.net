@@ -15,7 +15,7 @@ upgradeGuideCoreVersions:
 ---
 
 
-## [Forwarding Topology](/transports/azure-service-bus/topologies/) number of entities in bundle removed
+## [Forwarding topology](/transports/azure-service-bus/topologies/) number of entities in bundle removed
 
 In Versions 8 and above the API to configure bundle prefix and number of entities in a bundle has been removed:
 
