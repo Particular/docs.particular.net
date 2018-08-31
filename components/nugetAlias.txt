@@ -108,3 +108,4 @@ Utf8Json: NServiceBus.Utf8Json
 UniformSession: NServiceBus.UniformSession
 FluentValidation: NServiceBus.FluentValidation
 DataAnnotations: NServiceBus.DataAnnotations
+MSDependencyInjection: NServiceBus.MSDependencyInjection

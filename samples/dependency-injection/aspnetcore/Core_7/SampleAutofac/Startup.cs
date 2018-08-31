@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 public class Startup
 {
-    #region ContainerConfiguration
+    #region ContainerConfigurationAutofac
 
     public IServiceProvider ConfigureServices(IServiceCollection services)
     {
@@ -53,8 +53,6 @@ public class Startup
             applicationBuilder.UseDeveloperExceptionPage();
         }
 
-        #region RequestHandling
-
         applicationBuilder.Run(
             handler: context =>
             {
@@ -71,8 +69,6 @@ public class Startup
                     endpointInstance.SendLocal(myMessage),
                     context.Response.WriteAsync("Message sent"));
             });
-
-        #endregion
     }
 
     void OnShutdown()
