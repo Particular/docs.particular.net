@@ -41,20 +41,6 @@ Default: `instance-mapping.xml`
 
 snippet: InstanceMappingFile-FilePath
 
-
-## Custom instance mapping
-
-Physical routing is responsible for mapping the destination logical endpoint to the transport address (queue name).
-
-The instance mapping aspect of routing, as well as all other aspects, can be customized if the standard built-in file-based mapping is not feasible (e.g. in elastically scaled-out environments). 
-
-snippet: RoutingExtensibility-Instances
-
-The source parameter has the same meaning and effect as in the routes collection.
-
-The instances collection is thread-safe. It allows registering multiple instance of a given endpoint. In case there is more than one, message distribution is involved.
-
-
 ## Using message-endpoint mappings
 
 For compatibility reasons it can also be configured in the same way as in Version 5 and older by `UnicastBusConfig/MessageEndpointMappings` configuration section:
