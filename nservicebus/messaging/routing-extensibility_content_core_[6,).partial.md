@@ -43,5 +43,3 @@ When using a [broker transport](/transports/#types-of-transports-broker-transpor
 When using a [bus transport](/transports/#types-of-transports-bus-transports), the physical routing is important because the transport address has to contain the information about the node of the bus that the endpoint is using. In MSMQ each machine runs a single node of the MSMQ system.
 
 Routing extensions can influence the physical routing by modifying the endpoint instances collection. This is especially important for [bus transports](/transports/#types-of-transports-bus-transports) in a dynamically changing environment such as the cloud. Endpoints can be elastically scaled out and scaled in and the routing, in order to stay in sync, needs to derive the physical information from the current state of the environment, not from a static file.
-
-See the article dedicated to the [MSMQ transport](/transports/msmq/routing-extensibility/) for details.
