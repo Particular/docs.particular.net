@@ -33,7 +33,7 @@ The native sender is using `QueueClient` to send a single `Message`.
 
 ## Message serialization
 
-The NServiceBus endpoint is using [JSON serialization](/nservicebus/serialization/newtonsoft). Therefore, the message sent by a native sender must be valid JSON.
+The NServiceBus endpoint is using [JSON serialization](/nservicebus/serialization/newtonsoft.md). Therefore, the message sent by a native sender must be valid JSON.
 
 snippet: SerializedMessage
 
