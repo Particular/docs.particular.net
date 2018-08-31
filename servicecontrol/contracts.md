@@ -69,7 +69,7 @@ ServiceControl will also publish events based on collected monitoring data.
 See [Heartbeat Notification Events](/monitoring/heartbeats/notification-events.md) and [Custom Check Notification Events](/monitoring/custom-checks/notification-events.md) for a description of these events.
 
 
-## Decommissioning alert subscribers
+## Decommissioning subscribers to ServiceControl events
 
 ServiceControl uses [event publishing](/nservicebus/messaging/publish-subscribe/) to expose information to subscribers. When using a [persistence-based transport](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) an internal reference will be kept to each subscriber. If a subscriber for an event cannot be contacted then a [log entry](logging.md) will be written with the following error:
 
