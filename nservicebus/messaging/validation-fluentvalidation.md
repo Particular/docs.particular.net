@@ -4,6 +4,7 @@ summary: Validate message using FluentValidation.
 reviewed: 2018-06-14
 component: FluentValidation
 related:
+ - samples/fluent-validation
 ---
 
 Uses [FluentValidation](https://github.com/JeremySkinner/FluentValidation) to validate incoming and outgoing messages.
