@@ -509,6 +509,8 @@
       Title: StructureMap
     - Url: nservicebus/dependency-injection/unity
       Title: Unity
+    - Url: nservicebus/dependency-injection/msdependencyinjection
+      Title: Microsoft.Extensions.DependencyInjection      
   - Url: nservicebus/logging
     Title: Logging
     Articles:
