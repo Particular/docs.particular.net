@@ -20,18 +20,17 @@ This sample shows how to monitor heartbeat and failed message events in ServiceC
  1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using MSMQ transport.
  1. Ensure the `ServiceControl` process is running before running the sample. 
 
-NOTE: When using the [AzureServiceBus Transport](/transports/azure-service-bus/) it is necessary to configure the [ValidateAndHashIfNeeded](/transports/azure-service-bus/sanitization.md#automated-sanitization) sanitization strategy for both endpoints in this project. This ensures consistent entity name shortening between the endpoints and ServiceControl. The same applies when using the [Azure Service Bus .NET Standard Transport](/transports/azure-service-bus-netstandard/), in which case the name-shortening rules can be specified via [configuration settings](/transports/azure-service-bus-netstandard/configuration.md#entity-creation).
+NOTE: When using the [AzureServiceBus transport](/transports/azure-service-bus/), it is necessary to configure the [ValidateAndHashIfNeeded](/transports/azure-service-bus/sanitization.md#automated-sanitization) sanitization strategy for both endpoints in this project. This ensures that a consistent entity name-shortening strategy is used between the endpoints and ServiceControl. The same applies when using the [Azure Service Bus .NET Standard transport](/transports/azure-service-bus-netstandard/), in which case the name-shortening rules can be specified via [configuration settings](/transports/azure-service-bus-netstandard/configuration.md#entity-creation).
 
 ## Running the project
 
-The project presents how to handle two kinds of events:
-
+The project handles two kinds of events:
 
 ### MessageFailed event
 
-A `MessageFailed` event is emitted whenever processing a message fails and the message is moved to the error queue.
+A `MessageFailed` event is emitted when processing a message fails and the message is moved to the error queue.
 
-In order to observe this, press <kbd>Enter</kbd> in the `NServiceBusEndpoint` console window. That will send a new `SimpleMessage`. Processing of the message fails every time.
+To observe this in action, press <kbd>Enter</kbd> in the `NServiceBusEndpoint` console window to send a new `SimpleMessage` event. Processing of the message fails every time.
 
 When a `MessageFailed` event is received, the `EndpointsMonitor` prints the following message in its console window: 
 
@@ -42,9 +41,9 @@ When a `MessageFailed` event is received, the `EndpointsMonitor` prints the foll
 
 The `HeartbeatStopped` event is emitted whenever an endpoint fails to send a control message at an expected interval. The `HeartbeatRestored` event is emitted whenever the endpoint successfully sends a control message again. 
 
-Note: The monitor needs to receive at least one control message before it can observe that the endpoint stopped responding.
+Note: The monitor must receive at least one control message before it can observe that the endpoint stopped responding.
 
-In order to observe this, stop the `NServiceBusEndpoint` application and wait up to 30 seconds. When a `HeartbeatStopped` event is received, the `EndpointsMonitor` prints the following message in its console window:
+To observe this in action, stop the `NServiceBusEndpoint` application and wait up to 30 seconds. When a `HeartbeatStopped` event is received, the `EndpointsMonitor` prints the following message in its console window:
 
 > `Heartbeat from NServiceBusEndpoint stopped.`
 
@@ -55,18 +54,18 @@ Next, restart the `NServiceBusEndpoint` application and wait up to 30 seconds. W
 
 ## Code walk-through 
 
-The solution consists of two projects. `NServiceBusEndpoint` is a simple endpoint which is monitored by the `EndpointsMonitor`.
+The solution consists of two projects: `NServicebusEndpoint` and `EndpointsMonitor`. `NServiceBusEndpoint` is a simple endpoint which is monitored by the `EndpointsMonitor`.
 
 
 ### NServiceBusEndpoint
 
-Retries are disabled in the sample for simplicity; therefore the message is immediately moved to the error queue after a processing failure:
+Retries are disabled in the sample for simplicity; messages are immediately moved to the error queue after a processing failure:
 
 snippet: DisableRetries
 
 The `MessageFailed` event is published for any standard NServiceBus endpoint that is monitored by ServiceControl.
 
-In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint needs to use the [heartbeats plugin](/monitoring/heartbeats).
+In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint must use the [heartbeats plugin](/monitoring/heartbeats).
 
 NOTE: Heartbeat control messages are sent [every 30 seconds by default](/monitoring/heartbeats/legacy#configuration-time-to-live-ttl) so there will be up to a 30 second delay before ServiceControl realizes that it lost or restored connection with the endpoint.
 

@@ -1,8 +1,8 @@
 ---
 title: Microsoft.Extensions.DependencyInjection
-summary: Shows how to Configure NServiceBus to use Microsoft.Extensions.DependencyInjection for dependency injection.
+summary: How to configure NServiceBus to use Microsoft.Extensions.DependencyInjection for dependency injection.
 component: MSDependencyInjection
-reviewed: 2017-08-29
+reviewed: 2018-09-05
 tags:
  - Dependency Injection
 related:
@@ -11,13 +11,13 @@ related:
 
 NServiceBus can be configured to use [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/) for dependency injection.
 
-### Default Usage
+### Default usage
 
 snippet: msdependencyinjection
 
-### DependencyLifecycle Mapping
+### Dependency Lifecycle mapping
 
-The [DependencyLifecycle](/nservicebus/dependency-injection/#dependency-lifecycle) map to Autofac in the following way.
+The [dependency lifecycle](/nservicebus/dependency-injection/#dependency-lifecycle) maps to Autofac in the following way.
 
 | DependencyLifecycle                                                                                             | Microsoft.Extensions.DependencyInjection Equivalent                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|

@@ -1,7 +1,7 @@
 ---
 title: Routing system extensibility points for MSMQ
-summary: How MSMQ physical routing can be extended
-reviewed: 2018-07-05
+summary: Extending MSMQ's physical routing 
+reviewed: 2018-09-05
 component: MsmqTransport
 tags:
  - routing
