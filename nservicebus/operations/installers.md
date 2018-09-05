@@ -1,7 +1,7 @@
 ---
 title: Installers
 summary: Installers ensure endpoint-specific artifacts are installed and configured during endpoint startup.
-reviewed: 2018-03-01
+reviewed: 2018-09-05
 component: core
 related:
  - nservicebus/operations
@@ -31,11 +31,11 @@ snippet: Installers
 
 Installers may need to be run depending on the arguments that are provided to the host or aspects the environment the endpoint is hosted in.
 
-For example installers can be enabled based on command line arguments:
+For example, installers can be enabled based on command line arguments:
 
 snippet: InstallersRunWhenNecessaryCommandLine
 
-They can also be enabled by a machine name convention like:
+They can also be enabled by a machine name convention:
 
 snippet: InstallersRunWhenNecessaryMachineNameConvention
 
@@ -44,7 +44,7 @@ partial: disable
 
 ## Custom installers
 
-To create a custom installer implement the `INeedToInstallSomething` interface.
+Implement the `INeedToInstallSomething` interface to create a custom installer:
 
 snippet: InstallSomething
 
