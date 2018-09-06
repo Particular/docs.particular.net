@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport Upgrade Version 4.0 to 4.1
-summary: Routing topology Changes in Version 4.0 to 4.1.
-reviewed: 2016-10-26
+summary: Routing topology changes from RabbitMQ version 4.0 to 4.1.
+reviewed: 2018-09-05
 component: Rabbit
 related:
  - transports/rabbitmq/routing-topology
