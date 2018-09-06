@@ -1,32 +1,32 @@
 ---
-title: Fair load distribution
+title: Fair Load Distribution
 summary: Implementing fair load distribution for heterogeneous scaled-out endpoints
 component: Core
-reviewed: 2016-10-26
+reviewed: 2018-09-05
 tags:
 - Routing
 ---
 
-The sample demonstrates how NServiceBus routing model can be extended with a custom distribution strategy. Distribution strategies replace the Distributor feature as a scale out mechanism for MSMQ. The default built-in distribution strategy uses a simple round-robin approach. This sample shows a more sophisticated distribution strategy that keeps the queue length of all load-balanced instances equal, allowing for effective usage of non-heterogeneous worker clusters.
+This sample demonstrates how to extend the NServiceBus routing model with a custom distribution strategy. Distribution strategies replace the distributor feature as a scale-out mechanism for MSMQ. The default built-in distribution strategy uses a simple round-robin approach. This sample shows a more sophisticated distribution strategy that keeps the queue length of all load-balanced instances equal, allowing for effective use of non-heterogeneous worker clusters.
 
 
 ## Prerequisites
 
-Make sure MSMQ is installed and configured as described in the [MSMQ Transport - MSMQ Configuration](/transports/msmq/#msmq-configuration) section.
+Make sure MSMQ is installed and configured as described in the [MSMQ transport - MSMQ configuration](/transports/msmq/#msmq-configuration) section.
 
 
 ## Running the project
 
- 1. Start all the projects by hitting F5.
+ 1. Start all the projects by pressing <kbd>F5</kbd>.
  1. The text `Press <enter> to send a message` should be displayed in the Client's console window.
- 1. Hold down enter for a few seconds to send many messages.
+ 1. Hold down <kbd>enter</kbd> for a few seconds to send many messages.
 
 
 ### Verifying that the sample works correctly
 
  1. Notice more messages are being sent to Server.1 than to Server.2
- 1. Use a [MSMQ viewing tool](/transports/msmq/viewing-message-content-in-msmq.md) to inspect queue contents.
- 1. Keep hitting enter and observe the number of messages in the Server.1 and Server.2 queues.
+ 1. Use an [MSMQ viewing tool](/transports/msmq/viewing-message-content-in-msmq.md) to inspect the queue contents.
+ 1. Keep pressing <kbd>enter</kbd> and observe the number of messages in the Server.1 and Server.2 queues.
  1. Notice that although Server.2 processes messages 50% slower than Server.1, the number of messages in both queues are almost equal.
 
 
@@ -37,7 +37,7 @@ This sample contains four projects.
 
 ### Client
 
-The Client application submits the orders for processing by the server. Client routing is configured to send `PlaceOrder` commands to two instances of `Server` endpoint:
+The Client application submits the orders for processing by the server. Client routing is configured to send `PlaceOrder` commands to two instances of the `Server` endpoint:
 
 snippet: Routing
 
@@ -52,7 +52,7 @@ The Server application processes the `PlaceOrder` commands. On the server side, 
 
 snippet: FairDistributionServer
 
-NOTE: In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, in this sample the scale out is simulated by having two separate projects, Server and Server2.
+NOTE: In real-world scenarios, NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, the scale out in this sample is simulated by having two separate projects, Server and Server2.
 
 
 ### Shared project
@@ -83,13 +83,13 @@ snippet: ProcessACKs
 
 ### Smart routing
 
-The calculated number of in-flight messages is then used to distribute messages in such a way that all instances of the downstream endpoint have roughly the same number of messages in their input queues. That way the load is adjusted to the capacity of the given instance (e.g. instances running on weaker machines process less messages). As a result no instance is getting overwhelmed and no instance is underutilized when work is available.
+The calculated number of in-flight messages is then used to distribute messages in such a way that all instances of the downstream endpoint have roughly the same number of messages in their input queues. That way the load is adjusted to the capacity of the given instance (e.g. instances running on weaker machines process fewer messages). As a result, no instance gets overwhelmed and no instance is underutilized when work is available.
 
-The bigger the `N` value (number of messages between every ACK), the bigger may be the difference between input queues lengths. On the other hand, lower `N` values cause more traffic as more ACKs are being sent upstream.    
+Determining an optimal value for `N` (i.e. the number of messages between ACKs) may involve some trial and error. The bigger the `N` value, the bigger the difference between input queue lengths. On the other hand, lower `N` values cause more traffic as more ACKs are being sent upstream.    
 
 snippet: GetLeastBusy
 
 
 ## Real-world deployment
 
-For the sake of simplicity, in this sample all the endpoints run on a single machine. In the real world it is usually best to run each instance on a separate virtual machine. In such a case the instance mapping file would contain `machine` attributes mapping instances to their machines' host names instead of `queue` attributes used to run more than one instance on a single box.
+For the sake of simplicity, all the endpoints in this sample run on a single machine. In real-world scenarios, it is usually best to run each instance on a separate virtual machine. In this case, the instance mapping file would contain `machine` attributes mapping instances to their machines' host names instead of `queue` attributes used to run more than one instance on a single box.

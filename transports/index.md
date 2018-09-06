@@ -1,5 +1,6 @@
 ---
 title: Transports
+summary: An overview of the transports available in NServiceBus
 reviewed: 2016-10-26
 redirects:
  - nservicebus/nservicebus-and-websphere-sonic
@@ -8,7 +9,7 @@ related:
  - samples/custom-transport
 ---
 
-NServiceBus is built on top of existing queuing technologies. In NServiceBus the choice of queuing technology is referred to as a "Transport".
+NServiceBus is built on top of existing queuing technologies. In NServiceBus, the choice of queuing technology is referred to as a "Transport".
 
 
 ## Types of transports

@@ -1,5 +1,5 @@
 ---
-title: Mapping endpoint instances with a shared file
+title: Mapping Endpoint Instances With a Shared File
 summary: Mapping logical endpoints to physical instances with a shared file
 reviewed: 2016-10-26
 component: Core
@@ -8,19 +8,19 @@ tags:
  - MSMQ
 ---
 
-The sample demonstrates how to use a file to describe the mapping between logical endpoints and their physical instances (deployments of given logical endpoint to a concrete VM).
+The sample demonstrates how to use a file to describe the mapping between logical endpoints and their physical instances (deployments of given logical endpoint to a concrete virtual machine).
 
 
 ## Prerequisites
 
-Make sure MSMQ is installed and configured as described in the [MSMQ Transport - MSMQ Configuration](/transports/msmq/#msmq-configuration) section.
+Make sure MSMQ is installed and configured as described in the [MSMQ transport - MSMQ configuration](/transports/msmq/#msmq-configuration) section.
 
 
 ## Running the project
 
  1. Start the solution
  1. The text `Press <enter> to send a message` should be displayed in the Client's console window.
- 1. Hit enter several times to send some messages.
+ 1. Press <kbd>enter</kbd> several times to send some messages.
 
 
 ### Verifying that the sample works correctly
@@ -53,12 +53,12 @@ snippet: FileInstanceMapping
 
 The Sales application accepts clients' orders and publishes the `OrderAccepted` event.
 
-NOTE: In real-world scenarios NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, in this sample the scale out is simulated by having two separate projects, Sales and Sales2.
+NOTE: In real-world scenarios, NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, the scale out in this sample is simulated by having two separate projects, Sales and Sales2.
 
 
 ### Shipping and Billing
 
-Shipping and Billing applications subscribe to `OrderAccepted` event in order to execute their business logic.
+The Shipping and Billing applications subscribe to `OrderAccepted` events in order to execute their business logic.
 
 
 ### Shared project
@@ -68,4 +68,4 @@ The shared project contains definitions for messages.
 
 ## Real-world scenario
 
-For the sake of simplicity, in this sample all the endpoints run on a single machine. In the real world it is usually best to run each instance on a separate virtual machine. In such a case the instance mapping file would contain `machine` attributes mapping instances to their machines' host names instead of `queue` attributes used to run more than one instance on a single box.
+For the sake of simplicity, all the endpoints in this sample run on a single machine. In production, it is usually best to run each instance on a separate virtual machine. In this case, the instance mapping file would contain `machine` attributes mapping instances to their machines' host names instead of `queue` attributes used to run more than one instance on a single box.
