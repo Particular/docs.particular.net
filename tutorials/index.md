@@ -26,7 +26,7 @@ In this tutorial, see how roll back to an old version of an endpoint, and then r
 
 ### [Monitoring NServiceBus demo walkthrough](monitoring-demo/)
 
-This stand-alone demo contains all of the platform components, preconfigured to work together. The package also contains a sample solution that you can run in conjunction with the metrics walkthrough to explore each of the metrics being reported and how they are related.
+This standalone demo contains all of the platform components, preconfigured to work together. The package also contains a sample solution that you can run in conjunction with the metrics walkthrough to explore each of the metrics being reported and how they are related.
 
 ### [Monitoring NServiceBus tutorial](monitoring-setup/)
 

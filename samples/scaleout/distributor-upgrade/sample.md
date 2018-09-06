@@ -22,7 +22,7 @@ This sample uses the same solution as the Version 5 [distributor sample](/sample
 ## Upgrade
 
 
-### Adding stand-alone distributor
+### Adding standalone distributor
 
 Versions 6 and above no longer support running an embedded distributor so a separate project has to be added to the solution.
 
@@ -40,7 +40,7 @@ Notice that `false` is passed as a value for `withWorker` argument of the `RunMS
 
 ### Reconfiguring sender's routing
 
-In the original sample the sender was sending messages to the master (Worker1). Now it needs to send messages to the new stand-alone distributor
+In the original sample the sender was sending messages to the master (Worker1). Now it needs to send messages to the new standalone distributor
 
 snippet: SenderRouting
 

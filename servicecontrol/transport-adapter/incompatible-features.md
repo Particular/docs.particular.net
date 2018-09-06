@@ -4,7 +4,7 @@ summary: What features of NServiceBus require a transport adapter when connectin
 reviewed: 2018-08-29
 ---
 
-Some features of NServiceBus, particularly related to physical routing of messages, cannot be supported by ServiceControl. The reason for not supporting them is the fact that these features require extensive code-based configuration and ServiceControl is a stand-alone service. Transport adapters are designed to bridge the gap. [ServiceControl.TransportAdapter](https://www.nuget.org/packages/ServiceControl.TransportAdapter/) is provided as a library package (rather than stand-alone service) so users can customize the transport the same way as for regular business endpoints.
+Some features of NServiceBus, particularly related to physical routing of messages, cannot be supported by ServiceControl. The reason for not supporting them is the fact that these features require extensive code-based configuration and ServiceControl is a standalone service. Transport adapters are designed to bridge the gap. [ServiceControl.TransportAdapter](https://www.nuget.org/packages/ServiceControl.TransportAdapter/) is provided as a library package (rather than standalone service) so users can customize the transport the same way as for regular business endpoints.
 
 
 ## SQL Server transport
