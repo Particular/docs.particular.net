@@ -18,10 +18,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsmqTransport_All", "..\Msm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_7", "Core_7\Core_7.csproj", "{54784406-19E1-4211-B394-AC5CFC8C313B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_6.5", "Core_6.5\Core_6.5.csproj", "{0321399E-9ABB-4F3E-A910-11B286BA2794}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_7.1", "Core_7.1\Core_7.1.csproj", "{EBE5DF8F-5B8A-4278-9DD8-D73694FB7652}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,12 +39,11 @@ Global
 		{9C3223BA-E6AB-4A5B-BACB-28D3E1724A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54784406-19E1-4211-B394-AC5CFC8C313B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54784406-19E1-4211-B394-AC5CFC8C313B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0321399E-9ABB-4F3E-A910-11B286BA2794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0321399E-9ABB-4F3E-A910-11B286BA2794}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBE5DF8F-5B8A-4278-9DD8-D73694FB7652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBE5DF8F-5B8A-4278-9DD8-D73694FB7652}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B5B580D-6C24-43BE-AEAC-F310FBBF0D77}
 	EndGlobalSection
 EndGlobal
