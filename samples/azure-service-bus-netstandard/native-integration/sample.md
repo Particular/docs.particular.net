@@ -48,7 +48,7 @@ snippet: NecessaryHeaders
 
 NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the the fully-qualified name of the type expected by the NServiceBus endpoint.
 
-The message itself is defined as message using [conventions](../../../nservicebus/messaging/conventions.md) in the `Receiver` project.
+The message itself is defined as message using [conventions](/nservicebus/messaging/conventions.md) in the `Receiver` project.
 
 NOTE: To specify a message ID different from the underlying transport message ID (`Message.MessageId`), set the `NServiceBus.MessageId` header on the native message with the desired message ID.
 
