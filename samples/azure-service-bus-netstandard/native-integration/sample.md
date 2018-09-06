@@ -1,5 +1,5 @@
 ---
-title: Native Integration with Azure Service Bus .NET Standard Transport sample
+title: Native Integration Azure Service Bus .NET Standard Transport sample
 summary: Consuming messages published by non-NServiceBus endpoints.
 component: ASBS
 reviewed: 2018-08-21
