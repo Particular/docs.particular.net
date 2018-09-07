@@ -1,5 +1,5 @@
 ---
-title: Native Integration with Azure Service Bus .NET Standard Transport
+title: Native Integration Azure Service Bus .NET Standard Transport sample
 summary: Consuming messages published by non-NServiceBus endpoints.
 component: ASBS
 reviewed: 2018-08-21
@@ -48,7 +48,7 @@ snippet: NecessaryHeaders
 
 NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the the fully-qualified name of the type expected by the NServiceBus endpoint.
 
-The message itself is defined as an `IMessage` in the `Shared` project.
+The message itself is defined as message using [conventions](/nservicebus/messaging/conventions.md) in the `Receiver` project.
 
 NOTE: To specify a message ID different from the underlying transport message ID (`Message.MessageId`), set the `NServiceBus.MessageId` header on the native message with the desired message ID.
 
@@ -57,7 +57,7 @@ snippet: NativeMessage
 
 ## Handling messages from a native sender in an NServiceBus endpoint
 
-Once the message is received by the NServiceBus endpoint, its contents will be presented.
+Once the message is received by the NServiceBus endpoint, its content will be presented.
 
 snippet: NativeMessageHandler
 

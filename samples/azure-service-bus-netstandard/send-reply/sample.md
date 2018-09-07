@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus .NET Standard Transport
+title: Azure Service Bus .NET Standard Transport Send/Reply sample
 summary: Send/Reply pattern
 reviewed: 2018-08-21
 component: ASBS
@@ -15,7 +15,7 @@ include: asb-connectionstring-xplat
 
 ## Code walk-through
 
-This sample shows a simple two-endpoint scenario.
+This sample shows a simple two-endpoints scenario exchanging messages with each other so that:
 
  * `Endpoint1` sends a `Message1` message to `Endpoint2`.
  * `Endpoint2` replies to `Endpoint1` with a `Message2` instance.
@@ -26,7 +26,7 @@ This sample shows a simple two-endpoint scenario.
 snippet: config
 
 
-## Viewing message in-flight
+## Viewing messages in-flight
 
 The following queues for the two endpoints can be seen in the Azure Portal or a third-party tool:
 
