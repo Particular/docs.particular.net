@@ -8,7 +8,7 @@ Audit messages can fail to be imported into ServiceControl database due to one o
  * Messages themselves are malformed (e.g. missing headers). This happens e.g. when an outdated version of NServiceBus that contained a bug was used to process the messages.
  * Messages are well-formed but there was an intermittent infrastructure problem (e.g. disk drive) lasting long enough that the processing retries did not resolve the problem
 
-Audit messages that fail import are stored in the ServiceControl database in the `FailedAuditImports` collection. In addition a log with the failure reason is written for the message in the [`%ServiceControl/LogPath%`](/servicecontrol/creating-config-file.md#host-settings-servicecontrollogpath)`\FailedImports\Audit\%failureid%.txt`. These message will not be available in ServiceInsight.
+Audit messages that fail import are stored in the ServiceControl database in the `FailedAuditImports` collection. In addition a log with the failure reason is written for the message in the [`%ServiceControl/LogPath%`](/servicecontrol/creating-config-file.md#host-settings-servicecontrollogpath)`\FailedImports\Audit\%failureid%.txt`. These messages will not be available in ServiceInsight.
 
 When an audit message that has failed import is detected in the ServiceControl database the **Audit Message Ingestion** custom check is marked as failed to bring the failed audit import(s) to the administrator's attention.
 
