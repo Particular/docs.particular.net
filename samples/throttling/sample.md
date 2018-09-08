@@ -9,9 +9,11 @@ related:
 - nservicebus/operations/tuning
 ---
 
-This sample demonstrates performing a search query against the [GitHub API](https://developer.github.com/v3/) using the [Octokit library](https://github.com/octokit/octokit.net). It runs in unauthenticated mode, which is limited to a fixed number of requests per minute. Upon hitting this limit, the endpoint will delay processing additional messages, until the limit resets.
+Systems often need to integrate with 3rd party services, some of which may limit the number of concurrent requests they process.
 
-The solution consists of two endpoints; Sender and Limited. The reason two multiple are required in this scenario is are that NServiceBus does not support limiting messages by message type. So to limit **only** a specific message type then an endpoint is required to handle that message type.
+This sample demonstrates an integration with the [GitHub API](https://developer.github.com/v3/) using the [Octokit library](https://github.com/octokit/octokit.net). It runs in unauthenticated mode, which is limited to a fixed number of requests per minute. Upon hitting this limit, the endpoint will delay processing additional messages, until the limit resets.
+
+The solution consists of two endpoints; Sender and Limited. The reason two endpoints are required in this scenario is that NServiceBus does not support limiting messages by message type. So, to limit **only** a specific message type, a separate endpoint is used for it.
 
 
 ## Sender
@@ -26,19 +28,19 @@ The message sending occurs at startup.
 snippet: Sending
 
 
-### Search Response
+### Handling the response
 
-Handling the reply.
+Handling the GitHubSearchResponse message.
 
 snippet: GitHubSearchResponseHandler
 
 
 ## Limited
 
-This endpoint is limited to 1 concurrent message processing and uses a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) to handle when the processing limit of Octokit has been exceeded.
+This endpoint is limited to processing one message at a time and uses a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) to handle when the processing limit of Octokit has been exceeded.
 
 
-### Configure to use 1 concurrent process
+### Configure to process only one concurrent message
 
 [Limits the endpoint concurrency](/nservicebus/operations/tuning.md).
 
@@ -56,8 +58,8 @@ snippet: SearchHandler
 
 snippet: RegisterBehavior
 
-### The Behavior
+### The pipeline behavior
 
-Handles detection of `Octokit.RateLimitExceededException` and defers the message.
+Handles the detection of `Octokit.RateLimitExceededException` and defers the message.
 
 snippet: ThrottlingBehavior
