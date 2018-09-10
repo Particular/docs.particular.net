@@ -58,6 +58,8 @@ For example, an endpoint sending out one message per message received, with unre
 - 10 Receive connections
 - 1 Unrestricted delayed delivery connection
 
+Due to connection pooling implemented in the http client and the SDK fewer connections might be used effectively during runtime. 
+
 By default a single SQS client has a connection limit of 50 connections. When more than 50 connections are used the endpoint connections will get queued up and performance might decrease. 
 
 It is possible to set the `ConnectionLimit` property on the client programatically by overriding the [client factory](/transports/sqs/configuration-options.md#client-factory) or set the `ServicePointManager.DefaultConnectionLimit` (recommended).
