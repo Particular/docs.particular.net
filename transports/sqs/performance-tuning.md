@@ -46,21 +46,7 @@ NOTE: Changing the maximum concurrency will influence the total number of operat
 
 ## Number of connections
 
-A single endpoint requires the following number of connections per client:
-
-- One Connection per send request
-- One Connection per `DegreeOfReceiveParallelism`
-- One connection if [unrestricted delayed delivery](/transports/sqs/delayed-delivery.md) is enabled
-
-For example, an endpoint sending out one message per message received, with unrestricted delayed delivery enabled and an endpoint concurrency set to 100 would during peak load require at least 111 connections.
-
-- 100 Send connections
-- 10 Receive connections
-- 1 Unrestricted delayed delivery connection
-
-Due to connection pooling implemented in the http client and the SDK fewer connections might be used effectively during runtime. 
-
-By default a single SQS client has a connection limit of 50 connections. When more than 50 connections are used the endpoint connections will get queued up and performance might decrease. 
+A single endpoint requires the multiple connections. Connections might be established or reused due to connection pooling of the http client infrastructure. By default a single SQS client has a connection limit of 50 connections. When more than 50 connections are used the endpoint connections will get queued up and performance might decrease. 
 
 It is possible to set the `ConnectionLimit` property on the client programatically by overriding the [client factory](/transports/sqs/configuration-options.md#client-factory) or set the `ServicePointManager.DefaultConnectionLimit` (recommended).
 
