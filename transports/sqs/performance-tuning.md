@@ -54,7 +54,7 @@ include: servicepoint-manager-connection-limit
 
 ## Sending small messages
 
-If the endpoint is sending a lot of small messages (http message size < 1460 bytes) it might be beneficial to turn of the [NagleAlgorithm](https://en.wikipedia.org/wiki/Nagle's_algorithm). 
+If the endpoint is sending a lot of small messages (http message size < 1460 bytes) it might be beneficial to turn off the [NagleAlgorithm](https://en.wikipedia.org/wiki/Nagle's_algorithm). 
 
 To disable Nagle for a specific endpoint URI use
 
