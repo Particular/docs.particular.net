@@ -88,6 +88,7 @@ Support for other containers is provided via custom integrations.
  * [Spring](spring.md)
  * [StructureMap](structuremap.md)
  * [Unity](unity.md)
+ * [Microsoft.Extensions.DependencyInjection](msdependencyinjection.md)
 
 
 ## Using an existing instance
