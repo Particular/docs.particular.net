@@ -68,7 +68,7 @@ snippet: BehaviorTest
 
 ## Testing logging behavior
 
-To test that logging is performed correctly use the `TestingLoggerFactory` to record log statements. The factory writes to a `StringWriter` to allow unit tests to assert on log statements.
+To test that logging is performed correctly use the `TestingLoggerFactory`. The factory writes to a `StringWriter` to allow unit tests to assert on log statements.
 
 ### Example
 
