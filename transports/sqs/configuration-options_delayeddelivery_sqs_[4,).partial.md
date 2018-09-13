@@ -10,4 +10,4 @@ SQS supports delaying message delivery by up to 15 minutes natively. To delay me
 
 snippet: DelayedDelivery
 
-For a detailed overview about the unrestricted delayed delivery feature, refer to the [delayed delivery documentation](/transports/sqs/delayed-delivery.md)/.
+For a detailed overview about the unrestricted delayed delivery feature, refer to the [delayed delivery documentation](/transports/sqs/delayed-delivery.md).
