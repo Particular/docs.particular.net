@@ -50,11 +50,5 @@ This sample has been designed to run in a development environment under the Azur
     * Application setting with the key `AzureWebJobsStorage` must be set to a value other than `Development`.
  1. An [Azure Storage account must be created](https://docs.microsoft.com/en-us/azure/storage/storage-create-storage-account#create-a-storage-account).
  1. By default, each endpoint is using the development storage. Application setting with the key `NServiceBus.ConnectionString` must be defined and its value set to the Storage Account connection string configured in step 1.
- 1. Remove the following form app.config of each endpoint:
-   ```
-      <connectionStrings>
-       <add name="AzureWebJobsDashboard" connectionString="UseDevelopmentStorage=true;" />
-       <add name="AzureWebJobsStorage" connectionString="UseDevelopmentStorage=true;" />
-      </connectionStrings> 
-   ```
+
  * In order to support the elastic scale capabilities of the Azure platform, a [SignalR backplane](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-in-signalr) must be added to the `ECommerce` endpoint.
