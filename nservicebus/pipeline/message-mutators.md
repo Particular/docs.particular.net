@@ -62,8 +62,6 @@ Mutators are registered using:
 
 snippet: MutatorRegistration
 
-NOTE: Mutators are **NOT** automatically registered using [dependency injection](/nservicebus/dependency-injection/) container. If DI is needed then use a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md).
-
 NOTE: Mutators are non-deterministic in terms of order of execution. If more fine-grained control is required over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/manipulate-with-behaviors.md).
 
 
