@@ -65,3 +65,13 @@ snippet: SampleBehavior
 The behavior can be tested similar to a message handler or a saga by using a testable representation of the context:
 
 snippet: BehaviorTest
+
+## Testing logging behavior
+
+To test that logging is performed correctly use the `TestingLoggerFactory` to record log statements. The factory writes to a `StringWriter` to allow unit tests to assert on log statements.
+
+### Example
+
+The following code show how to verify that logging is performed by the message handler.
+
+snippet: LoggerTesting
