@@ -1,7 +1,8 @@
 ---
 title: MongoDB Persistence (Ryan Hoffman)
+summary: A community persistence that uses MongoDB as the data store
 component: MongoPersistenceTekmaven
-reviewed: 2016-09-23
+reviewed: 2018-09-14
 versions: '[2,)'
 tags:
  - Persistence
@@ -29,32 +30,32 @@ To use MongoDB for persistence
 snippet: MongoUsage
 
 
-## Connection Settings
+## Connection settings
 
 There are several ways to set the MongoDB Connection
 
 
-### Via Code
+### Via code
 
-This enables resolving configuration setting at run-time.
+This allows resolution of configuration setting at run-time.
 
 snippet: MongoConnectionString
 
 
-### Via an app.config Connection String
+### Via an app.config connection string
 
 snippet: MongoConnectionStringAppConfig
 
-The default connection string name can be override as follows:
+Override the default connection string name as follows:
 
 snippet: MongoConnectionStringName
 
 
 ## Saga definition guideline
 
-For Sagas to work correctly the following needs to be enforced:
+For sagas to work correctly, the following must be enforced:
 
- * Saga Data should implement `IContainSagaData`.
+ * Saga data should implement `IContainSagaData`.
  * Requires a property `Version` decorated with attribute `[DocumentVersion]`.
 
 For example:
@@ -69,9 +70,9 @@ The key concurrency safeguards that sagas guarantee depend heavily on the underl
 
 ### Concurrent access to non-existing saga instances
 
-The persister uses [Unique Indexes](https://docs.mongodb.com/manual/core/index-unique/) to ensure only one document can contain the unique data.
+The persister uses [unique indexes](https://docs.mongodb.com/manual/core/index-unique/) to ensure only one document can contain the unique data.
 
 
 ### Concurrent access to existing saga instances
 
-The persister uses a document versioning scheme built on top of [findAndModify](https://docs.mongodb.com/manual/reference/command/findAndModify/) command to atomically update the existing persisted data only if it has not been changed since it was retrieved. Since the update is atomic, it will ensure that if there are multiple simultaneous updates to a saga, only one will succeed.
+The persister uses a document versioning scheme built on the [findAndModify](https://docs.mongodb.com/manual/reference/command/findAndModify/) command to atomically update the existing persisted data only if it has not been changed since it was retrieved. Since the update is atomic, it will ensure that only one update to a saga will succeed if there are multiple simultaneous updates made to it.

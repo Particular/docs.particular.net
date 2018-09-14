@@ -1,8 +1,8 @@
 ---
 title: Wire Serializer Usage
-summary: Using the Wire serializer in an endpoint.
+summary: Demonstrates the use of the Wire serializer in an endpoint.
 component: Wire
-reviewed: 2016-10-31
+reviewed: 2018-09-14
 related:
  - nservicebus/serialization
  - nservicebus/serialization/wire
@@ -14,13 +14,13 @@ related:
 snippet: config
 
 
-## The message send
+## Sending a message
 
 snippet: message
 
 
-## The Output
+## The output
 
-Since Wire is a binary format there is not much human readable in the message body.
+Since Wire is a binary format, the message body is not human-readable.
 
 ![](wirebinary.png)

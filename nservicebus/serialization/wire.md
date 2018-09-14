@@ -1,7 +1,8 @@
 ---
 title: Wire Serializer
+summary: How to serialize messages with the Wire binary format
 component: Wire
-reviewed: 2016-10-31
+reviewed: 2018-09-14
 related:
  - samples/serializers/wire
 ---
@@ -16,7 +17,7 @@ snippet: WireSerialization
 include: interface-not-supported
 
 
-### Custom Settings
+### Custom settings
 
 Customizes the instance of `SerializerOptions` used for serialization.
 

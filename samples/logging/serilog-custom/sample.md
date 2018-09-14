@@ -1,7 +1,7 @@
 ---
 title: Custom Serilog configuration
 summary: Customizing Serilog usage by configuring Serilog targets and rules.
-reviewed: 2016-11-02
+reviewed: 2018-09-14
 component: Serilog
 tags:
  - Logging
@@ -11,9 +11,7 @@ related:
 ---
 
 
-## Introduction
-
-Illustrates customizing logging by configuring Serilog targets and rules.
+This sample illustrates how to customize logging by configuring Serilog targets and rules.
 
 
 ### Configure Serilog
@@ -21,7 +19,7 @@ Illustrates customizing logging by configuring Serilog targets and rules.
 snippet: ConfigureSerilog
 
 
-### Pass that configuration to NServiceBus
+### Pass the configuration to NServiceBus
 
 snippet: UseConfig
 

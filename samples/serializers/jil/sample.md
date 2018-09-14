@@ -1,8 +1,8 @@
 ---
 title: Jil Serializer Usage
-summary: Using the Jil serializer in an endpoint.
+summary: Demonstrates the use of the Jil serializer in an endpoint.
 component: Jil
-reviewed: 2016-10-31
+reviewed: 2018-09-14
 related:
  - nservicebus/serialization
  - nservicebus/serialization/jil
@@ -14,19 +14,19 @@ related:
 snippet: config
 
 
-## Diagnostic Mutator
+## Diagnostic mutator
 
-A helper that will Write out the contents of any incoming message.
+This sample uses a mutator to write out the contents of all incoming messages:
 
 snippet: mutator
 
 
-## The message send
+## Sending a message
 
 snippet: message
  
 
-## The Output
+## The output
 
 ```json
 {
