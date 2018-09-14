@@ -40,7 +40,6 @@ The following unit test checks that the total amount has the discount applied:
 
 snippet: SagaTest
 
-
 ## Testing a behavior
 
 [Message pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) also can be tested, but using different testable context objects. Each of the [pipeline stages](/nservicebus/pipeline/steps-stages-connectors.md) uses a specific interface for its context, and each context interface has a testable implementation.
