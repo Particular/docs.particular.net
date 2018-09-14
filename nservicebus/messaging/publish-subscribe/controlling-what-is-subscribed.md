@@ -1,18 +1,18 @@
 ---
-title: Controlling what is subscribed
+title: Controlling What Is Subscribed
 summary: When applying the publish-subscribe pattern, there are several ways to control what messages are subscribed to
 component: Core
 tags:
 - Publish Subscribe
-reviewed: 2018-07-03
+reviewed: 2018-09-14
 ---
 
 
 ## Automatic subscriptions
 
-The default mode for managing subscriptions is *auto-subscribe*.  Every time a subscriber endpoint is started, it determines which events it needs to subscribe to and automatically subscribes to them. For more information on how publish and subscribe works, refer to [Publish-Suscribe](/nservicebus/messaging/publish-subscribe).
+The default mode for managing subscriptions is *auto-subscribe*.  Every time a subscriber endpoint starts, it determines which events it needs to subscribe to and automatically subscribes to them. For more information on how publish and subscribe works, refer to [Publish-Suscribe](/nservicebus/messaging/publish-subscribe).
 
-Messages matching the following criteria will be auto-subscribed at startup.
+Messages matching both of the following criteria will be auto-subscribed at startup.
 
  1. Defined as an event either using `IEvent` or by the `.DefiningEventsAs` convention.
  1. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given event.
@@ -38,7 +38,7 @@ partial: plainmessage
 
 ### When a subscriber stops or uninstalls
 
-A subscriber will not unsubscribe when it stops, it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started, it will consume the messages from its queue. The subscriber will never lose an event.
+A subscriber will not unsubscribe when it stops; it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started, it will consume the messages from its queue. The subscriber will never lose an event.
 
 
 partial: disableautosubscribe
@@ -46,7 +46,7 @@ partial: disableautosubscribe
 
 ## Manually subscribing to a message
 
-Events can manually be subscribed and unsubscribed:
+Events can manually be subscribed and unsubscribed to:
 
 snippet: ExplicitSubscribe
 
