@@ -14,9 +14,9 @@ The Amazon SQS transport uses HTTP/S connections to send and receive messages fr
 
 ## Parallel message retrieval
 
-To increase throughput on a single endpoint it is possible to increase the maximum concurrency. For more information about how to tune the endpoint message processing consult the [tuning guidance](/nservicebus/operations/tuning.md).
+To increase throughput on a single endpoint it is possible to increase the maximum concurrency. For more information about how to tune the endpoint message processing consult the [tuning guide](/nservicebus/operations/tuning.md).
 
-In Version 4 and higher the transport will automatically increase the degree of parallelism by applying the following formula
+In Version 4 and higher, the transport will automatically increase the degree of parallelism by applying the following formula
 
 ```
 Degree of parallelism = Math.Ceiling(MaxConcurrency / NumberOfMessagesToFetch)
@@ -46,7 +46,7 @@ NOTE: Changing the maximum concurrency will influence the total number of operat
 
 ## Number of connections
 
-A single endpoint requires the multiple connections. Connections might be established or reused due to connection pooling of the http client infrastructure. By default a single SQS client has a connection limit of 50 connections. When more than 50 connections are used the endpoint connections will get queued up and performance might decrease. 
+A single endpoint requires the multiple connections. Connections might be established or reused due to connection pooling of the http client infrastructure. By default a single SQS client has a connection limit of 50 connections. When more than 50 connections are used, the endpoint connections will get queued up and performance might decrease. 
 
 It is possible to set the `ConnectionLimit` property on the client programatically by overriding the [client factory](/transports/sqs/configuration-options.md#client-factory) or set the `ServicePointManager.DefaultConnectionLimit` (recommended).
 
