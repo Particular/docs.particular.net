@@ -40,7 +40,6 @@ The following unit test checks that the total amount has the discount applied:
 
 snippet: SagaTest
 
-
 ## Testing a behavior
 
 [Message pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) also can be tested, but using different testable context objects. Each of the [pipeline stages](/nservicebus/pipeline/steps-stages-connectors.md) uses a specific interface for its context, and each context interface has a testable implementation.
@@ -65,3 +64,13 @@ snippet: SampleBehavior
 The behavior can be tested similar to a message handler or a saga by using a testable representation of the context:
 
 snippet: BehaviorTest
+
+## Testing logging behavior
+
+To test that logging is performed correctly use the `TestingLoggerFactory`. The factory writes to a `StringWriter` to allow unit tests to assert on log statements.
+
+### Example
+
+The following code show how to verify that logging is performed by the message handler.
+
+snippet: LoggerTesting
