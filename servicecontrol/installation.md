@@ -20,14 +20,6 @@ If ServiceControl is installed via the Platform Installer then the installation 
 
 NOTE: ServiceControl should be installed on a separate dedicated machine with dedicated storage in a production environment to isolate the audit and error queue message ingestion. These operations have a big impact on other processes. ServiceControl must be given sufficient CPU, RAM (6GB minimum) and storage suitable for low latency write operations, similar to how a database server would be provisioned. See [ServiceControl Capacity Planning](capacity-and-planning.md) for more guidance.
 
-
-### RavenDB prerequisites
-
-* [Silverlight 5](https://www.microsoft.com/silverlight/) 
-
-ServiceControl makes use of an embedded version of RavenDB. To carry out [maintenance activities](/servicecontrol/use-ravendb-studio.md) on this database the Microsoft Silverlight plugin must be installed within a browser on the server. Without the plugin the RavenDB Management Studio will not load.
-
-
 ## Transport support
 
 In ServiceControl version 1.7 and above, the transport DLLs are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
