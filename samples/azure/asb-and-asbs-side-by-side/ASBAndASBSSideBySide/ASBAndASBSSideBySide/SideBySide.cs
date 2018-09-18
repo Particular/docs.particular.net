@@ -15,7 +15,7 @@
             var configurationASBS = new EndpointConfiguration("ASBS");
             var transportASBS = configurationASBS.UseTransport<TransportASBS::NServiceBus.AzureServiceBusTransport>();
 
-            transportASBS.PrefetchMultiplier(1);
+            // transportASBS.PrefetchMultiplier(1);
         }
     }
 }
