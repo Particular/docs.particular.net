@@ -32,10 +32,13 @@ class Program
                 //Prevents ASB from using TransactionScope
                 transport.Transactions(TransportTransactionMode.ReceiveOnly);
                 transport.ConnectionString(connectionString);
-                transport.UseForwardingTopology();
+                
                 var settings = transport.GetSettings();
                 var serializer = Tuple.Create(new NewtonsoftSerializer() as SerializationDefinition, new SettingsHolder());
                 settings.Set("MainSerializer", serializer);
+
+                var topology = transport.UseEndpointOrientedTopology();
+                topology.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
             });
 
         bridgeConfiguration.AutoCreateQueues();

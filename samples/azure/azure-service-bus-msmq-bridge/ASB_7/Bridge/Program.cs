@@ -24,12 +24,19 @@ class Program
                 //Prevents ASB from using TransactionScope
                 transport.Transactions(TransportTransactionMode.ReceiveOnly);
                 transport.ConnectionString(connectionString);
-                transport.UseForwardingTopology();
+                var topology = transport.UseEndpointOrientedTopology();
+                topology.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
             });
 
         bridgeConfiguration.AutoCreateQueues();
         bridgeConfiguration.UseSubscriptionPersistece<InMemoryPersistence>((configuration, persistence) => { });
+        bridgeConfiguration.TypeGenerator.RegisterKnownType(typeof(OtherEvent));
 
+        #endregion
+
+        #region resubscriber
+        var resubscriber = await Resubscriber<MsmqTransport>.Create("Bridge-MSMQ", TimeSpan.FromSeconds(10), t => { });
+        bridgeConfiguration.InterceptForawrding(resubscriber.InterceptMessageForwarding);
         #endregion
 
         #region bridge-execution
@@ -37,10 +44,12 @@ class Program
         var bridge = bridgeConfiguration.Create();
 
         await bridge.Start().ConfigureAwait(false);
+        await resubscriber.Start().ConfigureAwait(false);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
 
+        await resubscriber.Stop().ConfigureAwait(false);
         await bridge.Stop().ConfigureAwait(false);
 
 
