@@ -46,15 +46,22 @@ class Program
 
         #endregion
 
+        #region resubscriber
+        var resubscriber = await Resubscriber<MsmqTransport>.Create("Bridge-MSMQ", TimeSpan.FromSeconds(10), t => { });
+        bridgeConfiguration.InterceptForwarding(resubscriber.InterceptMessageForwarding);
+        #endregion
+
         #region bridge-execution
 
         var bridge = bridgeConfiguration.Create();
 
         await bridge.Start().ConfigureAwait(false);
+        await resubscriber.Start().ConfigureAwait(false);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
 
+        await resubscriber.Stop().ConfigureAwait(false);
         await bridge.Stop().ConfigureAwait(false);
 
 
