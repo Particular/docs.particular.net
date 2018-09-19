@@ -8,7 +8,7 @@ tags:
 - Performance
 ---
 
-NOTE: It is difficult to give general performance tuning guidelines. The result might vary greatly depending on many factors such as bandwith, latency, client version and much more. As always with performance tuning: Measure, don't assume.
+NOTE: It is difficult to give performance tuning guidelines that will be generally applicable. Results may vary greatly depending on many factors such as bandwith, latency, client version, and much more. As always with performance tuning: Measure, don't assume.
 
 The Amazon SQS transport uses HTTP/S connections to send and receive messages from the AWS webservices. The performance of the operations performed by the transport are subjected to the latency of the connection between the endpoint and SQS.
 
