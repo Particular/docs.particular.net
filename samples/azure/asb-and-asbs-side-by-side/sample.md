@@ -1,7 +1,7 @@
 ---
 title: ASBS to ASB Side By Side
 reviewed: 2017-10-17
-component: ASB, ASBS
+component: ASBS
 related:
 - transports/azure-service-bus
 - nservicebus/bridge
