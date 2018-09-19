@@ -12,13 +12,12 @@ related:
 
 NServiceBus supports sending different types of messages (see [Messages, Events, and Commands](messages-events-commands.md)) to any endpoint. Messages can be sent either directly from the endpoint or as part of handling an incoming message. When a message arrives at an endpoint, it goes through a [pipeline of processing steps](/nservicebus/pipeline/).
 
-
 ## Outside a message handler
 
 In some cases, messages that need to be sent may not be related to an incoming message. Some examples are:
 
- * Sending a command when a HTML form is submitted in an ASP.NET application.
- * Publishing an event when the user clicks a button on a GUI application (see [Publish and Handle an Event](publish-subscribe/publish-handle-event.md)).
+* Sending a command when a HTML form is submitted in an ASP.NET application.
+* Publishing an event when the user clicks a button on a GUI application (see [Publish and Handle an Event](publish-subscribe/publish-handle-event.md)).
 
 To send a message directly from the endpoint:
 
@@ -26,6 +25,7 @@ snippet: BasicSend
 
 partial: batch-sends-performance
 
+Unit testing sends outside of handlers is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-logging-behavior).
 
 ## Inside the incoming message processing pipeline
 
