@@ -5,7 +5,7 @@ component: CloudServicesHost
 tags:
  - Hosting
  - Azure
-reviewed: 2016-11-04
+reviewed: 2018-09-19
 ---
 
 include: cloudserviceshost-deprecated-warning
