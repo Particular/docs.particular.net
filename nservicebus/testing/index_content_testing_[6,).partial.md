@@ -22,7 +22,22 @@ This test verifies that a `Reply` occurred:
 
 snippet: HandlerTest
 
+## Testing message session operations
 
+Use `TestableMessageSession` to test message operations outside of handlers. The following properties are available:
+
+| Property | Description |
+|---------------------|----------------------------------------------------------------------------------|
+| `SentMessages` | A list of all messages sent by `session.Send()`. |
+| `PublishedMessages` | A list of all messages published by `session.Publish()`. |
+| `Subscriptions` | A list of all message types explicitly subscribed to using `session.Subscribe()`. |
+| `Unsubscriptions` | A list of all message types explicitly unsubscribed to using `session.Unsubscribe()`. |
+
+### Example
+
+The following code shows how to verify that a message was `Sent` using `IMessageSession`.
+
+snippet: TestMessageSessionSend
 
 ## Testing a saga
 
