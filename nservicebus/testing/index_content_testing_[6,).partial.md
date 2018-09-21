@@ -35,7 +35,7 @@ Use `TestableMessageSession` to test message operations outside of handlers. The
 
 ### Example
 
-The following code shows how to verify that a message was `Sent` using the `IMessageSession`.
+The following code shows how to verify that a message was `Sent` using `IMessageSession`.
 
 snippet: TestMessageSessionSend
 
