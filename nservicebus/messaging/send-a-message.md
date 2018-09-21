@@ -25,7 +25,7 @@ snippet: BasicSend
 
 partial: batch-sends-performance
 
-Unit testing sends is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-logging-behavior).
+Unit testing sends is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-message-session-operations).
 
 ## Inside the incoming message processing pipeline
 
