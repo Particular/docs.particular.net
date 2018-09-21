@@ -12,20 +12,20 @@ public class MessageSessionTests
     {
         var testableSession = new TestableMessageSession();
 
-        var somethingThatUseTheMessageSession = new SomethingThatUseTheMessageSession(testableSession);
+        var somethingThatUsesTheMessageSession = new SomethingThatUsesTheMessageSession(testableSession);
 
-        await somethingThatUseTheMessageSession.DoSomething();
+        await somethingThatUsesTheMessageSession.DoSomething();
 
         Assert.AreEqual(1, testableSession.SentMessages.Length);
         Assert.IsInstanceOf<MyResponse>(testableSession.SentMessages[0].Message);
     }
     #endregion
 
-    class SomethingThatUseTheMessageSession
+    class SomethingThatUsesTheMessageSession
     {
         IMessageSession session;
 
-        public SomethingThatUseTheMessageSession(IMessageSession session)
+        public SomethingThatUsesTheMessageSession(IMessageSession session)
         {
             this.session = session;
         }
