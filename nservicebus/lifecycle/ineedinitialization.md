@@ -4,12 +4,12 @@ summary: An interface that supports hooking into the very beginning of the bus c
 component: Core
 reviewed: 2017-10-06
 tags:
- - life-cycle
+ - lifecycle
 related:
  - samples/startup-shutdown-sequence
 ---
 
-Classes that implement `NServiceBus.INeedInitialization` are created and called as one of the first steps in the bus creation life-cycle. Use `INeedInitialization` to register components that will be used later in the bus creation life-cycle.
+Classes that implement `NServiceBus.INeedInitialization` are created and called as one of the first steps in the bus creation lifecycle. Use `INeedInitialization` to register components that will be used later in the bus creation lifecycle.
 
 partial: namespace
 

@@ -1,6 +1,7 @@
 ---
-title: Moving to the DataBus AzureBlobStorage package
-reviewed: 2016-11-05
+title: Moving to the DataBus AzureBlobStorage Package
+summary: Instructions on how to move from the NServiceBus.Azure package to NServiceBus.DataBus.AzureBlobStorage
+reviewed: 2018-09-21
 component: ABSDataBus
 related:
  - nservicebus/upgrades/azure-deprecation
@@ -10,7 +11,7 @@ upgradeGuideCoreVersions:
  - 6
 ---
 
-Instructions on how to move from the [NServiceBus.Azure NuGet package](https://www.nuget.org/packages/NServiceBus.Azure/) to the [NServiceBus.DataBus.AzureBlobStorage NuGet package](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/).
+This page provides instructions on how to move from the [NServiceBus.Azure NuGet package](https://www.nuget.org/packages/NServiceBus.Azure/) to the [NServiceBus.DataBus.AzureBlobStorage NuGet package](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/).
 
 
 ### AzureDataBusPersistence feature no longer used
@@ -20,7 +21,7 @@ Instead of `.EnableFeature<AzureDataBusPersistence>()` use `.UseDataBus<AzureDat
 
 ### Custom configuration section no longer provided
 
-Configuration options are now only available via the code API. See [Azure Blob Storage DataBus](/nservicebus/messaging/databus/azure-blob-storage.md) and [Azure DataBus sample](/samples/azure/blob-storage-databus) for more details.
+Configuration options are now available only via the code API. See [Azure Blob Storage DataBus](/nservicebus/messaging/databus/azure-blob-storage.md) and the [Azure DataBus sample](/samples/azure/blob-storage-databus) for more details.
 
 
 ### AzureDataBusDefaults no longer provided

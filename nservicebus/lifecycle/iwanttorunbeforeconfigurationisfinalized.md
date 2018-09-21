@@ -4,7 +4,7 @@ summary: An interface that allows hooking into the configuration sequence of NSe
 component: Core
 reviewed: 2017-10-06
 tags:
- - life-cycle
+ - lifecycle
 related:
  - samples/startup-shutdown-sequence
 ---

@@ -1,8 +1,8 @@
 ---
 title: MSMQ Subscription Authorization
-summary: Managing authorization of subscribers in the MSMQ Transport.
+summary: Managing authorization of subscribers in the MSMQ Transport
 component: MsmqTransport
-reviewed: 2016-11-05
+reviewed: 2018-09-21
 tags:
 - Security
 redirects:
@@ -12,6 +12,6 @@ redirects:
  - nservicebus/msmq/subscription-authorisation
 ---
 
-Subscription Authorization allows the programmatic control over what subscribers can subscribe of unsubscribe.
+Subscription authorization allows the programmatic control over what subscribers can subscribe or unsubscribe to.
 
 snippet: SubscriptionAuthorizer

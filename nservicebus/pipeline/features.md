@@ -16,7 +16,7 @@ related:
  - samples/startup-shutdown-sequence
 ---
 
-While NServiceBus provides interfaces to plug in code at certain steps in the life-cycle, Features offer a more complete approach to write and distribute custom extensions.
+While NServiceBus provides interfaces to plug in code at certain steps in the lifecycle, Features offer a more complete approach to write and distribute custom extensions.
 
 Features allow:
 

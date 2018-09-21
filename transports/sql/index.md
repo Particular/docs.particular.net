@@ -84,7 +84,7 @@ All deployment options for SQL Server transport described in this section are su
 
 The SQL Server transport is an ideal choice for extending an existing web application with asynchronous processing capabilities as an alternative for batch jobs that tend to quickly get out of sync with the main codebase. Assuming the application already uses SQL Server as a data store, this scenario does not require any additional infrastructure.
 
-The queue tables can be hosted in the same SQL Server catalog as business and persistence data. NServiceBus endpoints can be hosted in an ASP.NET worker process. In some cases there might be a need for a separate process for hosting the NServiceBus endpoint (due to security considerations or IIS worker process life-cycle management). Because the system consists of a single logical service or bounded context, there is usually no need to create a separate schema for the queues.
+The queue tables can be hosted in the same SQL Server catalog as business and persistence data. NServiceBus endpoints can be hosted in an ASP.NET worker process. In some cases there might be a need for a separate process for hosting the NServiceBus endpoint (due to security considerations or IIS worker process lifecycle management). Because the system consists of a single logical service or bounded context, there is usually no need to create a separate schema for the queues.
 
 
 ### Pilot project

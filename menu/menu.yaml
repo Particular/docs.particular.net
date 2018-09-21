@@ -369,7 +369,7 @@
       - Url: nservicebus/hosting/cloud-services-host/faq
         Title: FAQ
     - Url: nservicebus/lifecycle
-      Title: Interface life-cycles
+      Title: Interface lifecycles
       Articles:
       - Url: nservicebus/lifecycle/ineedinitialization
         Title: Initialization

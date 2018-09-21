@@ -1,8 +1,8 @@
 ---
 title: Enforcement of best practices
-summary: How to enable/disable the enforcement of messaging best practices based on Events and Commands
+summary: How to enable/disable the enforcement of messaging best practices based on events and commands
 component: Core
-reviewed: 2016-11-05
+reviewed: 2018-09-21
 versions: '[6.0,)'
 tags:
  - Convention
@@ -10,9 +10,9 @@ tags:
  - Event
 ---
 
-By default [messaging best practices](messages-events-commands.md) are enforced for messages defined as either Commands or Events.
+By default, [messaging best practices](messages-events-commands.md) are enforced for messages defined as either commands or events.
 
-NOTE: In Versions 6 and above the default behavior can be overridden.
+NOTE: In NServiceBus versions 6 and above, the default behavior can be overridden.
 
 To disable this feature at the endpoint level using:
 

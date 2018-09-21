@@ -1,8 +1,8 @@
 ---
 title: Exception Caveats
-summary: Certain types of exceptions cannot be handled nativity by NServiceBus.
+summary: Certain types of exceptions cannot be handled natively by NServiceBus.
 component: core
-reviewed: 2016-11-05
+reviewed: 2018-09-21
 tags:
  - Exceptions
  - Error Handling
@@ -10,14 +10,14 @@ redirects:
  - nservicebus/errors/exception-caveats
 ---
 
-Certain types of exceptions are special in their behavior and may require custom handling.
+Certain types of exceptions are behave differently and may require custom handling.
 
 
 ## AccessViolationException
 
-If an [AccessViolationException](https://msdn.microsoft.com/en-us/library/system.accessviolationexception.aspx) is thrown then the endpoint will terminate. The reason is that a standard `try catch`, which NServiceBus uses does not catch an  `AccessViolationException` as such it will bubble out of he handler and terminate the endpoint.
+If an [AccessViolationException](https://msdn.microsoft.com/en-us/library/system.accessviolationexception.aspx) is thrown, the endpoint will terminate. The reason is that a standard try-catch block, which NServiceBus uses, does not catch an `AccessViolationException`. As such it will bubble out of the handler and terminate the endpoint.
 
-While these exceptions can be explicitly handled (using a [HandleProcessCorruptedStateExceptionsAttribute](https://msdn.microsoft.com/en-us/library/system.runtime.exceptionservices.handleprocesscorruptedstateexceptionsattribute.aspx)) it is explicitly recommended MS not to do it.
+While these exceptions can be explicitly handled (using a [HandleProcessCorruptedStateExceptionsAttribute](https://msdn.microsoft.com/en-us/library/system.runtime.exceptionservices.handleprocesscorruptedstateexceptionsattribute.aspx)), Microsoft explicitly recommends not to do this.
 
 > Corrupted process state exceptions are exceptions that indicate that the state of a process has been corrupted.
 
@@ -33,4 +33,4 @@ For more information see [Handling Corrupted State Exceptions](https://msdn.micr
 
 ## OutOfMemoryException
 
-[OutOfMemoryException](https://msdn.microsoft.com/en-us/library/system.outofmemoryexception.aspx) will be handled in a similar manner as other exceptions. A message will be retried according to the endpoint configuration. However, if there isn't sufficient memory, then the process might crash.
+An [OutOfMemoryException](https://msdn.microsoft.com/en-us/library/system.outofmemoryexception.aspx) will be handled in a similar manner as other exceptions. A message will be retried according to the endpoint configuration. However, if there isn't sufficient memory, the process may crash.

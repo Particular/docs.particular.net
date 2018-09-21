@@ -5,14 +5,14 @@ reviewed: 2018-03-29
 component: Core
 versions: '[,6.0)'
 tags:
- - life-cycle
+ - lifecycle
 related:
  - samples/startup-shutdown-sequence
 ---
 
 NOTE: This interface is deprecated in Version 6 and has been replaced with [Features](/nservicebus/pipeline/features.md).
 
-Classes that implement `IWantToRunWhenConfigurationIsComplete` are executed when configuration is completed, right before the bus is created. Use `IWantToRunWhenConfigurationIsComplete` for any tasks that need to be run at the end of bus creation life-cycle. This might include logging diagnostic information about configuration or initialization logic that downstream components depend on.
+Classes that implement `IWantToRunWhenConfigurationIsComplete` are executed when configuration is completed, right before the bus is created. Use `IWantToRunWhenConfigurationIsComplete` for any tasks that need to be run at the end of bus creation lifecycle. This might include logging diagnostic information about configuration or initialization logic that downstream components depend on.
 
 
 Instances are:

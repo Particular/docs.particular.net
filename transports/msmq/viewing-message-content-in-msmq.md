@@ -1,13 +1,14 @@
 ---
 title: Viewing MSMQ content
-summary: See queues and message contents.
-reviewed: 2016-11-04
+summary: Provides options for visualizing messages and queues in MSMQ
+reviewed: 2018-09-21
 redirects:
  - nservicebus/how-can-i-see-the-queues-and-messages-on-a-machine
  - nservicebus/viewing-message-content-in-msmq
  - nservicebus/msmq/viewing-message-content-in-msmq
 ---
 
+There are several ways to view content in MSMQ, both free and paid.
 
 ### Visual Studio
 
@@ -19,7 +20,7 @@ If there is a message in one of the queues, select it and view the properties of
 
 ![Visual Studio properties](visual-studio-properties.png "Visual Studio properties")
 
-The most interesting property is the BodyStream as it allows the contents of the message to be seen:
+The most interesting property is the BodyStream as it shows the contents of the message:
 
 ![Message contents](body-stream.png "Message contents")
 
@@ -28,37 +29,37 @@ The most interesting property is the BodyStream as it allows the contents of the
 
 The MSMQ MMC snap-in can be used to manage queues.
 
-Use one of the following based on the OS
+Use one of the following based in Windows:
 
 ```
-Start > Run > compmgmt.msc (Computer Management) > Features > Message Queuing
+Start > Run > compmgmt.msc > Features > Message Queuing
 ```
 
 or
 
 ```
-Start > Run > compmgmt.msc (Computer Management) > Services and Applications > Message Queuing
+Start > Run > compmgmt.msc > Services and Applications > Message Queuing
 ```
 
 
-### Queue Explorer
+### QueueExplorer
 
-Queue Explorer is a commercial 3rd party product for managing MSMQ.
+QueueExplorer is a commercial third-party product for managing MSMQ.
 
 http://www.cogin.com/mq/
 
-> QueueExplorer can do much more than with built-in management console - copy, move or delete messages, save and load, stress test, view and edit full message bodies (with special support for .NET serialized objects), and much more.
+> QueueExplorer can do much more than the built-in management console, such as copy, move or delete messages, save and load, stress test, and view and edit full message bodies (with special support for .NET serialized objects).
 
 ![](queue-explorer.png 'width=500')
 
 
 ### Mqueue Viewer
 
-Fast and free tool to manage MSMQ messages and queues.
+Mqueue Viewer is a fast and free tool to manage MSMQ messages and queues. More advanced features are available in its paid version.
 
 https://www.mqueue.net/
 
-> Mqueue Viewer - is a fast and simple tool to manage MSMQ queues, view, edit, add, delete messages. Works with multiple machines/servers.
+> Mqueue Viewer is a fast and simple tool to manage MSMQ queues, view, edit, add, delete messages. It works with multiple machines/servers.
 
 ![](mqueue.png 'width=500')
 
