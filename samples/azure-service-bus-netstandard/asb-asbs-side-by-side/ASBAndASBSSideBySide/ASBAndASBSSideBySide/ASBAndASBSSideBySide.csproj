@@ -11,8 +11,8 @@
 
   <Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
     <ItemGroup>
-      <ReferencePath Condition="'%(FileName)' == 'NServiceBus.Transport.AzureServiceBus'">
-        <Aliases>TransportASBS</Aliases>
+      <ReferencePath Condition="'%(FileName)' == 'NServiceBus.Azure.Transports.WindowsAzureServiceBus'">
+        <Aliases>TransportASB</Aliases>
       </ReferencePath>
     </ItemGroup>
   </Target>
