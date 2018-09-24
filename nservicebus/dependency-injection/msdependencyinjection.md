@@ -17,7 +17,7 @@ snippet: msdependencyinjection
 
 ### Dependency Lifecycle mapping
 
-The [dependency lifecycle](/nservicebus/dependency-injection/#dependency-lifecycle) maps to Autofac in the following way.
+The [dependency lifecycle](/nservicebus/dependency-injection/#dependency-lifecycle) maps in the following way.
 
 | DependencyLifecycle                                                                                             | Microsoft.Extensions.DependencyInjection Equivalent                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
