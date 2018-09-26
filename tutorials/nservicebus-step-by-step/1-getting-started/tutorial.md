@@ -48,7 +48,7 @@ This adds a reference to the NServiceBus.Core assembly to ClientUI. Now we're re
 
 Now we're ready to create a [**messaging endpoint**](/nservicebus/endpoints/). A messaging endpoint (or just **endpoint**) is a logical component that's capable of sending and receiving messages. An endpoint is hosted within a process, which in this case is a simple console application, but could be a web application or other .NET process.
 
-If you [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/3-ways-to-enable-c-7-1-features), you can take advantage of the [Async Main](https://blogs.msdn.microsoft.com/mazhou/2017/05/30/c-7-series-part-2-async-main/) feature and avoid some boilerplate code.
+If you [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/4-ways-to-enable-the-latest-c-features), you can take advantage of the [Async Main](https://blogs.msdn.microsoft.com/mazhou/2017/05/30/c-7-series-part-2-async-main/) feature and avoid some boilerplate code.
 
 In the **Program.cs** file, modify the code to look like the following:
 
