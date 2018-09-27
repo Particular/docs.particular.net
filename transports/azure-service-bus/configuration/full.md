@@ -118,8 +118,8 @@ The following settings allow to control the messaging factories:
 
  * `NumberOfMessagingFactoriesPerNamespace(int)`: NServiceBus maintains a pool of messaging factories per namespace, this setting determines the size of the pool. Defaults to `max(Number of logical processors, 2)`.
  * `RetryPolicy(RetryPolicy)`: Determines how entities should respond on transient connectivity failures. Defaults to `RetryPolicy.Default`, which is an exponential retry.
- * `BatchFlushInterval(TimeSpan)`: This setting controls the batching behavior for message senders. They will buffer send operations during this time frame and send all messages at once. Defaults to 0.5 seconds. Specify `TimeSpan.Zero` to turn batching off.
  * `MessagingFactorySettingsFactory(Func<string, MessagingFactorySettings>)`: This factory method allows to override creation of messaging factories.
+partial: batchflushinterval
 
 
 ### Message Receivers
