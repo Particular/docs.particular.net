@@ -14,6 +14,7 @@ include: upgrade-major
 
 ## Highlights
 
+### Key decisions
 * All packages that support .NET Core are multi-targeted. They support .NET Standard 2.0 (`netstandard2.0`) and NET Framework 4.5.2 (`net452`).
   * We do not target .NET Core 2.0 (`netcoreapp2.0`). We believe assemblies should target .NET Standard if possible.
   * We do not target *only* .NET Standard 2.0. We continue to target .NET Framework 4.5.2. Targeting .NET Standard 2.0 only would raise the minimum .NET Framework version to 4.6.1. For now, we need to keep supporting users of .NET Framework 4.5.2. (We may consider raising the requirement to .NET 4.6.1 in NServiceBus 8.)
@@ -24,6 +25,20 @@ include: upgrade-major
 * The [SQL client in .NET Core 2.0 does not support `TransactionScope`](https://github.com/dotnet/corefx/issues/12534), so that transaction mode will not be available when running on .NET Core. This will affect attempts to use the SQL Transport in conjunction with SQL Persistence.
 * We're starting the process of deprecating the `NServiceBus.Host` package. This version will be the last, and we've marked all APIs as obsolete with warnings. The [new `ParticularTemplates` package](https://docs.particular.net/nservicebus/dotnet-templates) makes it easy to create a Windows Service host for NServiceBus using `dotnet new`.
 * [As we explained in our blog](https://particular.net/blog/a-new-azure-service-bus-transport-but-not-just-yet), we are not yet releasing a .NET Standard version of the Azure Service Bus transport. We are waiting for Microsoft's new Service Bus client to [support transaction semantics](https://github.com/Azure/azure-service-bus-dotnet/issues/6) required by our "sends atomic with receive" transaction mode
+
+### Functionality
+
+* In NServiceBus 6, we deprecated several components in the core NServiceBus package that would not work with .NET Core. In NServiceBus 7, we've moved them to separate packages. The components include:
+  * The MSMQ Transport is now available in the `NServiceBus.Transport.Msmq` package.
+  * Message property encryption is now available in the `NServiceBus.Encryption.MessageProperty` package.
+  * Performance counters are now available in the `NServiceBus.Metrics.PerformanceCounters` package.
+* Neither ILMerge nor ILRepack work very well with .NET Standard. That means we had to strip out a couple of other components:
+  * We no longer ILMerge `Newtonsoft.Json`. To use the JSON serializer, reference the `NServiceBus.Newtonsoft.Json` package.
+  * We no longer ILMerge `Autofac`. The default container is now `LightInject`, which is a tiny source package.
+* `MessageEndpointMappings` is gone. You must configure routing with the [code-based routing API introduced in NServiceBus 6](https://docs.particular.net/nservicebus/messaging/routing?version=core_7).
+* We created .NET Core versions of all relevant samples in our documentation.
+* We took the opportunity of a major release to support `SourceLink` for all our packages. You can now step through NServiceBus source code, retrieved from GitHub.
+* .NET Core does not support `ConfigurationManager` without referencing an external package, so we've ensured code APIs exist for all configuration instead. When using the .NET Framework, some components still read `app`/`web.config` files, but output warnings guiding users toward the code-based APIs. `ConfigurationManager` use will be completely removed in the next major version.
 
 ## Configuration
 
