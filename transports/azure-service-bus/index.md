@@ -9,7 +9,7 @@ redirects:
  - nservicebus/azure-service-bus
 related:
  - samples/azure/azure-service-bus
- - samples/azure-service-bus-netstandard/asbs-asb-side-by-side/
+ - samples/azure-service-bus-netstandard/asbs-asb-side-by-side
 reviewed: 2018-10-27
 ---
 
