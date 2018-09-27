@@ -9,7 +9,8 @@ redirects:
  - nservicebus/azure-service-bus
 related:
  - samples/azure/azure-service-bus
-reviewed: 2017-05-05
+ - samples/azure-service-bus-netstandard/asbs-asb-side-by-side/
+reviewed: 2018-10-27
 ---
 
 [Azure Service Bus (ASB)](https://azure.microsoft.com/en-us/services/service-bus/) is a messaging service hosted on the Azure platform, that allows for exchanging messages between various applications in a loosely coupled fashion. ASB Queues offer <a href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">"First In, First Out" (FIFO)</a> guaranteed message delivery, and support a range of standard protocols (REST, AMQP, WS*) and APIs (to put messages on and pull messages off the queue). ASB Topics deliver messages to multiple subscribers and facilitate use of the fan-out pattern to deliver messages to downstream systems.
