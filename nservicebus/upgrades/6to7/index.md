@@ -12,6 +12,18 @@ upgradeGuideCoreVersions:
 
 include: upgrade-major
 
+## Highlights
+
+* All packages that support .NET Core are multi-targeted. They support .NET Standard 2.0 (`netstandard2.0`) and NET Framework 4.5.2 (`net452`).
+  * We do not target .NET Core 2.0 (`netcoreapp2.0`). We believe assemblies should target .NET Standard if possible.
+  * We do not target *only* .NET Standard 2.0. We continue to target .NET Framework 4.5.2. Targeting .NET Standard 2.0 only would raise the minimum .NET Framework version to 4.6.1. For now, we need to keep supporting users of .NET Framework 4.5.2. (We may consider raising the requirement to .NET 4.6.1 in NServiceBus 8.)
+* Some of our packages don't yet support .NET Core. They're [listed in our docs](https://docs.particular.net/nservicebus/upgrades/supported-platforms#net-core-packages-not-supporting-net-core), including the reasons why they do not yet support .NET Core.
+* You can't store a license in the registry in .NET Core. We now also look for a license in some [well-known file locations](https://docs.particular.net/nservicebus/licensing/?version=core_7#license-management). After you submit the "extend your trial" form, we send instructions for where to put the license file on each platform.
+* For dependencies on Microsoft System packages, we do not limit the upper version. For example, when referencing `System.Data.SqlClient`, we reference >= 4.4.2 but not < 5.0.0. These packages were part of the .NET Framework, so we expect them to be stable and not contain breaking changes, even in a major version.
+* Packages that reference a Microsoft System package (e.g. SQL Transport referencing `System.Data.SqlClient`) do so for both .NET Standard *and the .NET Framework*. This is to allow building a .NET Standard library depending on SQL Transport and consuming it in a .NET Framework app. Without this reference, the transitive dependency is not recognized and `System.Data.SqlClient.dll` is not copied to the app output folder.
+* The [SQL client in .NET Core 2.0 does not support `TransactionScope`](https://github.com/dotnet/corefx/issues/12534), so that transaction mode will not be available when running on .NET Core. This will affect attempts to use the SQL Transport in conjunction with SQL Persistence.
+* We're starting the process of deprecating the `NServiceBus.Host` package. This version will be the last, and we've marked all APIs as obsolete with warnings. The [new `ParticularTemplates` package](https://docs.particular.net/nservicebus/dotnet-templates) makes it easy to create a Windows Service host for NServiceBus using `dotnet new`.
+* [As we explained in our blog](https://particular.net/blog/a-new-azure-service-bus-transport-but-not-just-yet), we are not yet releasing a .NET Standard version of the Azure Service Bus transport. We are waiting for Microsoft's new Service Bus client to [support transaction semantics](https://github.com/Azure/azure-service-bus-dotnet/issues/6) required by our "sends atomic with receive" transaction mode
 
 ## Configuration
 
