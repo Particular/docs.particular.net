@@ -1,8 +1,8 @@
 ---
-title: Scaling out with sender-side distribution
-summary: How to scale out with sender-side distribution when using the MSMQ transport.
+title: Scaling Out With Sender-side Distribution
+summary: How to scale out with sender-side distribution when using the MSMQ transport
 component: MsmqTransport
-reviewed: 2016-11-07
+reviewed: 2018-09-28
 versions: '[6,)'
 tags:
  - scalability
@@ -16,13 +16,13 @@ related:
  - transports/msmq/sender-side-distribution
 ---
 
-Endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an endpoint using the MSMQ transport, without relying on a centralized [distributor](/transports/msmq/distributor/) assigning messages to available workers.
+Endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an endpoint using the MSMQ transport without relying on a centralized [distributor](/transports/msmq/distributor/) assigning messages to available workers.
 
 When using sender-side distribution:
 
  * Multiple endpoint instances (deployed to different servers) are capable of processing a message that requires scaled-out processing.
  * A client sending a message is aware of all the endpoint instances that can process the message.
- * The client sends the message to a worker endpoint instance based on round-robin distribution, or a custom distribution strategy.
+ * The client sends a message to a worker endpoint instance based on round-robin distribution, or a custom distribution strategy.
 
 Using sender-side distribution requires two parts. The first part maps message types to logical endpoints, and occurs in code. The second part maps logical endpoints to physical endpoint instances running on a specific machine.
 
@@ -37,7 +37,7 @@ This creates mappings specifying that the `AcceptOrder` command is handled by th
 
 Meanwhile, the logical-to-physical mappings will be configured in the `instance-mapping.xml` file, as this information is an operational concern that must be changed for deployment to multiple machines.
 
-WARNING: If a message is mapped in an App.config file via the `UnicastBusConfig/MessageEndpointMappings` configuration section, then that message cannot participate in sender-side distribution. The endpoint address specified by a message endpoint mapping is a physical address (`QueueName@MachineName`, where machine name is assumed to be `localhost` if omitted) which combines the message-to-owner-endpoint and endpoint-to-physical-address concerns in a way that can't be separated.
+WARNING: If a message is mapped in an App.config file via the `UnicastBusConfig/MessageEndpointMappings` configuration section, that message cannot participate in sender-side distribution. The endpoint address specified by a message endpoint mapping is a physical address (`QueueName@MachineName`, where `MachineName` is assumed to be `localhost` if omitted) which combines the message-to-owner-endpoint and endpoint-to-physical-address concerns in a way that can't be separated.
 
 
 ## Mapping physical endpoint instances
@@ -46,12 +46,12 @@ The routing configuration file specifies how logical endpoint names are mapped t
 
 snippet: InstanceMappingFile-ScaleOut
 
-To read more about the instance mapping, refer to the [MSMQ routing page](/transports/msmq/routing.md).
+To read more about the instance mapping, refer to [MSMQ Routing](/transports/msmq/routing.md).
 
 
 ### Message distribution
 
-Every message is always delivered to a single physical instance of the logical endpoint. When scaling out there are multiple instances of a single logical endpoint registered in the routing system. Each outgoing message has to undergo the distribution process to determine which instance is going to receive this particular message. By default a round-robin algorithm is used to determine the destination. Routing extensions can override this behavior by registering a custom `DistributionStrategy` for a given destination endpoint.
+Every message is always delivered to a single physical instance of the logical endpoint. When scaling out, there are multiple instances of a single logical endpoint registered in the routing system. Each outgoing message must undergo the distribution process to determine which instance is going to receive this particular message. By default, a round-robin algorithm is used to determine the destination. Routing extensions can override this behavior by registering a custom `DistributionStrategy` for a given destination endpoint.
 
 snippet: RoutingExtensibility-Distribution
 
@@ -59,12 +59,12 @@ snippet: RoutingExtensibility-DistributionStrategy
 
 partial: select-destination
 
-To learn more about creating custom distribution strategies see the [fair distribution sample](/samples/routing/fair-distribution/).
+To learn more about creating custom distribution strategies, see the [fair distribution sample](/samples/routing/fair-distribution/).
 
 
 ## Limitations
 
-Sender-side distribution does not use message processing confirmations (the Distributor approach). Therefore the sender has no feedback on the availability of workers and, by default, sends the messages in a round-robin behavior. Should one of the nodes stop processing, the messages will start piling up in its input queue. As such nodes running in sender-side distribution mode require more careful monitoring compared to distributor workers.
+Sender-side distribution does not use message processing confirmations (the distributor approach). Therefore the sender has no feedback on the availability of workers and, by default, sends the messages in a round-robin behavior. Should one of the nodes stop processing, the messages will pile up in its input queue. As such, nodes running in sender-side distribution mode require more careful monitoring compared to distributor workers.
 
 include: sender-side-distribution-with-distributor
 

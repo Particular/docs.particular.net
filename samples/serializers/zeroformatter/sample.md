@@ -1,26 +1,26 @@
 ---
 title: ZeroFormatter Serializer Usage
-summary: Using the ZeroFormatter serializer in an endpoint.
+summary: Using the ZeroFormatter serializer in an endpoint
 component: ZeroFormatter
-reviewed: 2016-11-07
+reviewed: 2018-09-28
 related:
  - nservicebus/serialization
  - nservicebus/serialization/zeroformatter
 ---
 
 
-## Configuring to use ZeroFormatter
+## Configuring NServiceBus to use ZeroFormatter
 
 snippet: config
 
 
-## The message
+## The message class
 
 snippet: message
 
 
-## The message send
+## Sending a message
 
-The message is decorated with  [ZeroFormatter Attributes](https://github.com/neuecc/ZeroFormatter/#define-object-rules).
+The message is decorated with [ZeroFormatter attributes](https://github.com/neuecc/ZeroFormatter/#define-object-rules).
 
 snippet: messagesend

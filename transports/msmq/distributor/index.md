@@ -1,5 +1,5 @@
 ---
-title: Scaling out with the Distributor
+title: Scaling Out With the Distributor
 summary: The distributor maintains all the characteristics of NServiceBus but is designed never to overwhelm any of the worker nodes.
 reviewed: 2017-06-30
 tags:
