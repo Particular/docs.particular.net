@@ -35,4 +35,6 @@ snippet: configure-custom-checks
 
 ### Check Dead Letter Queue Length
 
+INFO: Performance counter categories, names and instance names might be localized. Consider using the language specific names on a localized version of Windows.
+
 snippet: check-dead-letter-queue
