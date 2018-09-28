@@ -1,4 +1,4 @@
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -49,7 +49,7 @@
       <Private>True</Private>
     </Reference>
     <PackageReference Include="Unofficial.Microsoft.WindowsAzure.ServiceRuntime" Version="2.*" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.5" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.*" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EndpointConfig.cs" />
