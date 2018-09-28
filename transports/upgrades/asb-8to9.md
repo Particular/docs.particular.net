@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 8 to 9
 summary: Instructions on how to upgrade Azure Service Bus Transport Version 8 to 9.
-reviewed: 2018-10-27
+reviewed: 2018-09-27
 component: ASB
 related:
  - transports/azure-service-bus
