@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <!-- explicitly locked versions -->
-    <PackageReference Include="WindowsAzure.Storage" Version="8.7.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.4" />
   </ItemGroup>
   <ItemGroup>
