@@ -1,19 +1,19 @@
 ---
 title: Platform Releases
-summary: Links to the current and previous releases, release notes for the Particular Service Platform applications
-reviewed: 2016-11-07
+summary: Links to current and previous releases as well as release notes for the Particular Service Platform applications
+reviewed: 2018-09-28
 ---
 
 
 ### Platform Installer
 
- * [Download and Launch the Platform Installer](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
+ * [Download and launch the Platform Installer](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
  * [Release notes](installer)
 
 
-### Applications and Tools
+### Applications and tools
 
-The Particular Service Platform source code, current and previous releases and their release notes are available as public repositories in [GitHub](https://github.com/particular).
+The Particular Service Platform source code, current and previous releases, and release notes are available as public repositories in [GitHub](https://github.com/particular).
 
 
 | | | |
@@ -24,26 +24,30 @@ The Particular Service Platform source code, current and previous releases and t
 | **ServiceControl** | [Releases](https://github.com/Particular/ServiceControl/tags)|[Release Notes](https://github.com/Particular/ServiceControl/releases)|
 
 
-### NServiceBus Transports
+### NServiceBus transports
 
 | | | |
 |:--- |:--- |:--- |
-|**SQL Server**|[Releases](https://github.com/Particular/NServiceBus.SqlServer/tags)| [Release Notes](https://github.com/Particular/NServiceBus.SqlServer/releases)
 |**RabbitMQ**|[Releases](https://github.com/Particular/NServiceBus.RabbitMQ/tags)| [Release Notes](https://github.com/Particular/NServiceBus.RabbitMQ/releases)
+|**SQL Server**|[Releases](https://github.com/Particular/NServiceBus.SqlServer/tags)| [Release Notes](https://github.com/Particular/NServiceBus.SqlServer/releases)
 |**Azure Service Bus** | [Releases](https://github.com/Particular/NServiceBus.AzureServiceBus/tags)| [Release Notes](https://github.com/Particular/NServiceBus.AzureServiceBus/releases)
+|**Azure Service Bus .NET Standard** | [Releases](https://github.com/Particular/NServiceBus.Transport.AzureServiceBus/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Transport.AzureServiceBus/releases)
 |**Azure Storage Queues** | [Releases](https://github.com/Particular/NServiceBus.AzureStorageQueues/tags)| [Release Notes](https://github.com/Particular/NServiceBus.AzureStorageQueues/releases)
+|**MSMQ**|[Releases](https://github.com/Particular/NServiceBus.Transport.Msmq/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Transport.Msmq/releases)
 
 
-### NServiceBus Persistence
+### NServiceBus persistences
 
 
 | | | |
 |:--- |:--- |:--- |
+|**SQL Persistence** | [Releases](https://github.com/Particular/NServiceBus.Persistence.Sql/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Persistence.Sql/releases)
 |**RavenDB** | [Releases](https://github.com/Particular/NServiceBus.RavenDB/tags)| [Release Notes](https://github.com/Particular/NServiceBus.RavenDB/releases)
 |**NHibernate** | [Releases](https://github.com/Particular/NServiceBus.NHibernate/tags)| [Release Notes](https://github.com/Particular/NServiceBus.NHibernate/releases)
 |**Azure Storage** | [Releases](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/releases)
+|**Service Fabric** | [Releases](https://github.com/Particular/NServiceBus.Persistence.ServiceFabric/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Persistence.ServiceFabric/releases)
 
 
-### ServiceControl Plugins
+### ServiceControl plugins
 
 * See [ServiceControl Endpoints Plugins](/servicecontrol/plugins/)

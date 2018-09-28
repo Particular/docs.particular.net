@@ -9,7 +9,6 @@ tags:
 related:
  - samples/mongodb
  - nservicebus/messaging/databus/mongodb-tekmaven
-reviewed: 2016-11-01
 redirects:
  - nservicebus/mongodb-persistence-tekmaven
 ---
