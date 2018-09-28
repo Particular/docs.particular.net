@@ -11,7 +11,7 @@
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.*" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.*" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>
