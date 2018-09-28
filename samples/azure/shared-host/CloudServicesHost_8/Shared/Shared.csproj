@@ -34,11 +34,6 @@
     <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.*" />
     <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.*" />
-    <PackageReference Include="NServiceBus.Hosting.Azure" Version="8.*" />
-    <PackageReference Include="NServiceBus.Hosting.Azure.HostProcess" Version="8.*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
-    <PackageReference Include="NServiceBus.Persistence.AzureStorage" Version="2.*" />
     <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.*" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.*" />
     <PackageReference Include="System.Linq.Queryable" Version="4.*" />
