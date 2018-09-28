@@ -1,4 +1,4 @@
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -38,8 +38,8 @@
     <PackageReference Include="Microsoft.Data.Services.Client" Version="5.*" />
     <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Hosting.Azure" Version="8.*" />
+    <PackageReference Include="NServiceBus" Version="7.1.4" />
+    <PackageReference Include="NServiceBus.Hosting.Azure" Version="8.1.0" />
     <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.*" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.*" />
     <PackageReference Include="System.Linq.Queryable" Version="4.*" />
@@ -49,7 +49,7 @@
       <Private>True</Private>
     </Reference>
     <PackageReference Include="Unofficial.Microsoft.WindowsAzure.ServiceRuntime" Version="2.*" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.5" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EndpointConfig.cs" />
