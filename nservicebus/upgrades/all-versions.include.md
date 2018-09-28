@@ -50,7 +50,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 8.0.x     | 2018-05-29     | -                 | -                                 |
+| 9.0.x     | 2018-09-27     | -                 | -                                 |
+| 8.0.x     | 2018-05-29     | 2019-09-27        | Superseded by 9.0.x               |
 | 7.2.x     | 2017-03-21     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | ~~7.1.x~~ | ~~2016-12-05~~ | ~~2017-06-21~~    | ~~Superseded by 7.2.x~~           |
 | ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-03-05~~    | ~~Superseded by 7.1.x~~           |
@@ -68,7 +69,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 8.0.x     | 2018-05-29     | -                 | -                                 |
+| 8.1.x     | 2018-09-27     | -                 | -                                 |
+| 8.0.x     | 2018-05-29     | 2018-12-27        | Superseded by 8.1.x               |
 | 7.5.x     | 2017-12-04     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | ~~7.4.x~~ | ~~2017-07-17~~ | ~~2018-03-04~~    | ~~Superseded by 7.5.x~~           |
 | ~~7.3.x~~ | ~~2017-06-02~~ | ~~2017-10-17~~    | ~~Superseded by 7.4.x~~           |
@@ -108,7 +110,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 4.1.x     | 2018-06-21     | -                 | -                                 |
-| 4.0.x     | 2018-05-29     | 2018-09-21        | Superseded by 4.1.x               |
+| ~~4.0.x~~ | ~~2018-05-29~~ | ~~2018-09-21~~    | ~~Superseded by 4.1.x~~           |
 | 3.1.x     | 2017-07-14     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | ~~3.0.x~~ | ~~2016-10-11~~ | ~~2017-10-14~~    | ~~Superseded by 3.1.x~~           |
 | 2.2.x     | 2015-09-25     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
@@ -180,7 +182,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 2.1.x     | 2018-05-31     | -                 | -                                 |
+| 2.2.x     | 2018-09-28     | -                 | -                                 |
+| 2.1.x     | 2018-05-31     | 2018-12-28        | Superseded by 2.2.x               |
 | ~~2.0.x~~ | ~~2018-05-29~~ | ~~2018-08-31~~    | ~~Superseded by 2.1.x~~           |
 | 1.5.x     | 2018-05-17     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | ~~1.4.x~~ | ~~2017-06-16~~ | ~~2018-08-17~~    | ~~Superseded by 1.5.x~~           |
@@ -440,7 +443,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 2.0.x     | 2018-05-29     | -                 | -                                 |
+| 2.1.x     | 2018-09-28     | -                 | -                                 |
+| 2.0.x     | 2018-05-29     | 2018-12-28        | Superseded by 2.1.x               |
 | 1.1.x     | 2017-03-24     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | ~~1.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 1.1.x~~           |
 
@@ -481,7 +485,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 8.0.x     | 2018-05-29     | -                 | -                                 |
+| 8.1.x     | 2018-09-28     | -                 | -                                 |
+| 8.0.x     | 2018-05-29     | 2018-12-28        | Superseded by 8.1.x               |
 | 7.1.x     | 2017-03-24     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 7.1.x~~           |
 | 6.2.x     | 2015-02-13     | 2018-10-11        | Extended by NServiceBus 5.2.x     |
