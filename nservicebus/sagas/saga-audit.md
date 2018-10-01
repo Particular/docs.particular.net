@@ -8,7 +8,11 @@ reviewed: 2017-11-08
 
 DANGER: **For Development only**. This plugin will result in a significant increase in the load placed on ServiceControl. As such it should not be used in production.
 
-The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/serviceinsight/#the-saga-view). It is built specifically to help developers verify Saga logic during development. It does this by capturing Saga message behavior and changes in Saga data/state as the Saga is being processed. It then sends this information to a ServiceControl endpoint setup in the development environment. The information is available in the *Saga* view in ServiceInsight.
+The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/serviceinsight/#the-saga-view). 
+
+![SagaAudit View in ServiceInsight](saga-audit-screenshot.png)
+
+It is built specifically to help developers verify Saga logic during development. It does this by capturing Saga message behavior and changes in Saga data/state as the Saga is being processed. It then sends this information to a ServiceControl endpoint setup in the development environment. The information is available in the *Saga* view in ServiceInsight.
 
 
 NOTE: Saga audit messages will not be sent to ServiceControl if an Exception is thrown during Saga processing.
