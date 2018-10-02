@@ -18,8 +18,8 @@ class Usage
         #region SerilogTracingPassLoggerToFeature
 
         var endpointConfiguration = new EndpointConfiguration("EndpointName");
-        endpointConfiguration.EnableFeature<TracingLog>();
-        endpointConfiguration.SerilogTracingTarget(tracingLog);
+        var serilogTracing = endpointConfiguration.EnableSerilogTracing(tracingLog);
+        serilogTracing.EnableSagaTracing();
 
         #endregion
     }
