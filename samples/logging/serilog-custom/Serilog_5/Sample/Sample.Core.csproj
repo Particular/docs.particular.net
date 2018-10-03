@@ -5,11 +5,10 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.Core.csproj" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="Quartz" Version="3.*" />
     <PackageReference Include="NServiceBus.Serilog" Version="5.*" />
-    <PackageReference Include="Serilog.Sinks.ColoredConsole" Version="3.*" />
     <PackageReference Include="Serilog" Version="2.*" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.*" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.*" />
   </ItemGroup>
 </Project>

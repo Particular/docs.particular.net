@@ -17,9 +17,9 @@ class Usage
 
         #region SerilogTracingPassLoggerToFeature
 
-        var busConfiguration = new EndpointConfiguration("EndpointName");
-        busConfiguration.EnableFeature<TracingLog>();
-        busConfiguration.SerilogTracingTarget(tracingLog);
+        var endpointConfiguration = new EndpointConfiguration("EndpointName");
+        endpointConfiguration.EnableFeature<TracingLog>();
+        endpointConfiguration.SerilogTracingTarget(tracingLog);
 
         #endregion
     }
