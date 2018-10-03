@@ -25,6 +25,7 @@ Monitoring instances can be configured to use one of the supported [transports](
 
  * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
  * [Azure Storage Queues](/transports/azure-storage-queues/)
+ * [Azure Service Bus .NET Standard](https://docs.particular.net/transports/azure-service-bus-netstandard/)
  * [Azure Service Bus](/transports/azure-service-bus/)
  * [SQL Server](/transports/sql/)
  * [RabbitMQ](/transports/rabbitmq/)
