@@ -4,13 +4,13 @@ Testing a message handler is done using the `TestableMessageHandlerContext` clas
 
 | Property | Description |
 |---------------------|----------------------------------------------------------------------------------|
-| `SentMessages` | A list of all messages sent by `context.Send()`. |
-| `PublishedMessages` | A list of all messages published by `context.Publish()`. |
-| `RepliedMessages` | A list of all messages sent using `context.Reply()`. |
-| `TimeoutMessages` | A list of all messages resulting from use of `Saga.RequestTimeout()`. |
-| `ForwardedMessages` | A list of all forwarding destinations set by `context.ForwardCurrentMessageTo()`. |
-| `MessageHeaders` | Gets the list of key/value pairs found in the header of the message. |
-| `HandlerInvocationAborted` | Indicates if `DoNotContinueDispatchingCurrentMessageToHandlers()` was called. |
+| `SentMessages` | A list of all messages sent by `context.Send()` |
+| `PublishedMessages` | A list of all messages published by `context.Publish()` |
+| `RepliedMessages` | A list of all messages sent using `context.Reply()` |
+| `TimeoutMessages` | A list of all messages resulting from use of `Saga.RequestTimeout()` |
+| `ForwardedMessages` | A list of all forwarding destinations set by `context.ForwardCurrentMessageTo()` |
+| `MessageHeaders` | Gets the list of key/value pairs found in the header of the message |
+| `HandlerInvocationAborted` | Indicates if `DoNotContinueDispatchingCurrentMessageToHandlers()` was called |
 
 ### Example
 
@@ -28,10 +28,10 @@ Use `TestableMessageSession` to test message operations outside of handlers. The
 
 | Property | Description |
 |---------------------|----------------------------------------------------------------------------------|
-| `SentMessages` | A list of all messages sent by `session.Send()`. |
-| `PublishedMessages` | A list of all messages published by `session.Publish()`. |
-| `Subscriptions` | A list of all message types explicitly subscribed to using `session.Subscribe()`. |
-| `Unsubscriptions` | A list of all message types explicitly unsubscribed to using `session.Unsubscribe()`. |
+| `SentMessages` | A list of all messages sent by `session.Send()` |
+| `PublishedMessages` | A list of all messages published by `session.Publish()` |
+| `Subscriptions` | A list of all message types explicitly subscribed to using `session.Subscribe()` |
+| `Unsubscriptions` | A list of all message types explicitly unsubscribed to using `session.Unsubscribe()` |
 
 ### Example
 
@@ -82,7 +82,7 @@ snippet: BehaviorTest
 
 ## Testing logging behavior
 
-To test that logging is performed correctly use the `TestingLoggerFactory`. The factory writes to a `StringWriter` to allow unit tests to assert on log statements.
+To test that logging is performed correctly, use the `TestingLoggerFactory`. The factory writes to a `StringWriter` to allow unit tests to assert on log statements.
 
 ### Example
 
