@@ -1,15 +1,15 @@
 ---
 title: Azure Service Bus .NET Standard and Azure Service Bus side by side
-reviewed: 2017-10-27
+reviewed: 2018-10-04
 component: ASBS
 related:
 - transports/azure-service-bus
 - nservicebus/bridge
 ---
 
-If it's needed to run, in the same process and `AppDomain`, an endpoint instance using the Azure Service Bus Standard transport and an endpoint instance using the Azure Service Bus one there is the risk of name collision between classes coming from the 2 different transports.
+If it's necessary to run an endpoint instance using the Azure Service Bus Standard transport and an endpoint instance using the Azure Service Bus transport in the same process and `AppDomain`, there is the risk of name collision between classes coming from the two transports.
 
-To avoid any name clash use aliases to reference types of one of the transports. For example, to define an alias for the Azure service Bus transport edit the project file, adding the following snippet:
+To avoid name clashes, use aliases to reference types of one of the transports. For example, to define an alias for the Azure Service Bus transport, add the following snippet to the project file:
 
 ```xml
 <Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
@@ -21,7 +21,7 @@ To avoid any name clash use aliases to reference types of one of the transports.
 </Target>
 ```
 
-Once the alias is defined reference the alias in the C# source files where it is needed by adding it to the usings list:
+Once the alias is defined, reference the alias in the C# source files where it is needed by adding it to the `using`s list:
 
 snippet: transport-asb-alias-definition
 
