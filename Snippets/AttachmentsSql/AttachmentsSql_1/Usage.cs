@@ -52,6 +52,26 @@ public class Usage
         #endregion
     }
 
+    void UseTransportConnectivity(EndpointConfiguration endpointConfiguration)
+    {
+        #region UseTransportConnectivity
+
+        var attachments = endpointConfiguration.EnableAttachments(OpenConnection, TimeToKeep.Default);
+        attachments.UseTransportConnectivity();
+
+        #endregion
+    }
+
+    void UseSynchronizedStorageSessionConnectivity(EndpointConfiguration endpointConfiguration)
+    {
+        #region UseSynchronizedStorageSessionConnectivity
+
+        var attachments = endpointConfiguration.EnableAttachments(OpenConnection, TimeToKeep.Default);
+        attachments.UseSynchronizedStorageSessionConnectivity();
+
+        #endregion
+    }
+
     void ExecuteAtStartup(EndpointConfiguration endpointConfiguration)
     {
         #region ExecuteAtStartup
