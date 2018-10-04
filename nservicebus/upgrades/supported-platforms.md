@@ -15,7 +15,7 @@ Note: If possible, packages will target [.NET Standard](https://docs.microsoft.c
 
 ## .NET Framework
 
-NServiceBus is supported for applications targeting the .NET Framework on Windows. For the list of supported Windows versions, refer to [.NET Framework Versions and Dependencies](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies).
+NServiceBus is supported for applications targeting the .NET Framework 4.5.2 or later on Windows (note that some packages may require a later version). For the list of supported Windows versions, refer to [.NET Framework Versions and Dependencies](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies).
 
 
 ## .NET Core
