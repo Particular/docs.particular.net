@@ -1,11 +1,11 @@
 ---
 title: Compacting RavenDB
-summary: How to compact (release disk space to OS) the RavenDB database backing the ServiceControl
-reviewed: 2016-11-09
+summary: How to compact the RavenDB database backing ServiceControl
+reviewed: 2018-10-05
 ---
 
 
-ServiceControl's embedded RavenDB database can be compacted in one of two ways. Using the  [Extensible Storage Engine Utility (esentutl)](https://technet.microsoft.com/en-us/library/hh875546.aspx) or by using ServiceControl in maintenance mode and using the RavenDB management portal.
+ServiceControl's embedded RavenDB database can be compacted in one of two ways: with the  [Extensible Storage Engine Utility (esentutl)](https://technet.microsoft.com/en-us/library/hh875546.aspx), or by using the RavenDB management portal.
 
 
 ## Using EsentUtl (Preferred approach)
@@ -13,16 +13,16 @@ ServiceControl's embedded RavenDB database can be compacted in one of two ways. 
 
 ### Step 1: Stop ServiceControl
 
-* Open ServiceControl Management.
-* Stop the Service from the actions icons.
-* Note down the "DATA PATH" for the service.   ![](managementutil-instance-datapath.png 'width=500')
+* Open ServiceControl Management
+* Stop the service from the action icons
+* Note the "DATA PATH" for the service   ![](managementutil-instance-datapath.png 'width=500')
 
-WARNING: For the `esentutl` command line utility to work properly, ServiceControl service needs to be shutdown properly without any errors.
+WARNING: For the `esentutl` command line utility to work, the ServiceControl service must stop without any errors.
 
 
-### Step 2: Backup ServiceControl instance
+### Step 2: Back up the ServiceControl instance
 
-* Follow the [backup instructions](backup-sc-database.md#backup) to backup the embedded RavenDB database.
+* Follow the [backup instructions](backup-sc-database.md#backup) to back up the embedded RavenDB database.
 
 
 ### Step 3: Administrator command prompt
@@ -68,28 +68,28 @@ Initiating DEFRAGMENTATION mode...
  * Start the ServiceControl Windows Service.
 
 
-## Using ServiceControl in Maintenance Mode
+## Using the RavenDB management portal
 
 Use the following approach if problems are encountered while running the `EsentUtl` utility.
 
-ServiceControl 1.4 introduced a database maintenance feature which allows ServiceControl to be run with all features except for RavenDB Studio disabled. While in this mode no messages are ingested from the queuing system.
+ServiceControl version 1.4 introduced a database maintenance feature which allows ServiceControl to be run with all features disabled except for RavenDB Studio. While in this mode no messages are ingested from the queuing system.
 
-Once ServiceControl is running in this mode the following procedure can be used to compact the embedded RavenDB database.
+Once ServiceControl is running in this mode, the following procedure can be used to compact the embedded RavenDB database.
 
 
-### Step 1: Start ServiceControl in the maintenance mode
+### Step 1: Start ServiceControl in maintenance mode
 
 * Open ServiceControl Management.
-* Click on the "ADVANCED OPTIONS" icon of the instance that needs to be run in maintenance mode.
+* Click on the "ADVANCED OPTIONS" icon of the instance to be run in maintenance mode.
   ![](managementutil-advancedoptions.png)
 * Click on the "Start Maintenance Mode" button.
   ![](managementutil-maintenancemode.png)
-* ServiceControl will re-start in maintenance mode with RavenDB studio exposed on `http://localhost:{selected port}/storage`.
+* ServiceControl will restart in maintenance mode with RavenDB studio exposed on `http://localhost:{selected port}/storage`.
 
 
 ### Step 2: Export the current database
 
-* Open a browser and navigate to `http://localhost:{selected port}/storage`.
+* Open a browser and navigate to `http://localhost:{selected RavenDB port}/storage`.
 * Export the existing ServiceControl database.
   ![](export-database-step1.png 'width=500')
 * Click Ok.
@@ -102,7 +102,7 @@ Once ServiceControl is running in this mode the following procedure can be used 
 
 ### Step 3: Delete the existing database
 
-NOTE: At this point it is advisable to take a backup copy of the existing database directory as re-importing can fail. To do this ensure that ServiceControl is not running and the copy the contents of the database directory.
+NOTE: At this point, it is advisable to take a backup copy of the existing database directory as re-importing can sometimes fail. To do this, ensure that ServiceControl is not running, then copy the contents of the database directory.
 
  * Delete the database directory contents.
  * Start ServiceControl, again in the maintenance mode. This will populate the database directory with a blank database.
@@ -110,19 +110,19 @@ NOTE: At this point it is advisable to take a backup copy of the existing databa
 
 ### Step 4: Import the exported data
 
-* Go to the RavenDB studio `http://localhost:{selected port}/storage` and perform Import steps.
-* Select the `Tasks` tab and select all the checkboxes.
+* Go to RavenDB studio `http://localhost:{selected RavenDB port}/storage` and perform steps to import a database.
+* Select the `Tasks` tab and select all checkboxes.
   ![](import-database-step1.png 'width=500')
 * Click OK to proceed.  
   ![](import-database-step2.png 'width=500')
 * Select the file where the exported data was stored.
   ![](import-database-step3.png 'width=500')
 * Wait for the operation to complete.
-* After the operation has completed wait for the stale index count in the footer to indicate there are no stale indexes.
+* After the operation has completed, wait for the stale index count in the footer to indicate there are no stale indexes.
   ![](import-database-step4.png 'width=500')
 * Stop ServiceControl (from ServiceControl Management).
 
-NOTE: If an `System.OutOfMemoryException` occurs during import work around this error by reducing the batch size in advanced settings.
+NOTE: If an `System.OutOfMemoryException` occurs during import, reducing the batch size in advanced settings.
 
 ![](import-database-note.png 'width=500')
 
