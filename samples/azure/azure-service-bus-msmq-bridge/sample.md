@@ -80,7 +80,7 @@ In addition the general configuration of the transport, the `EndpointOrientedTop
 
 snippet: resubscriber
 
-The resubscriber replays periodically the subscription messages coming from the MSMQ side of the bridge to ensure that the Azure Service Bus topoc notifiers have been started.
+The resubscriber replays periodically the subscription messages coming from the MSMQ side of the bridge to ensure that the Azure Service Bus topic notifiers have been started.
 
 A bridge is created, started, and should be executed as long as bridging is required.
 

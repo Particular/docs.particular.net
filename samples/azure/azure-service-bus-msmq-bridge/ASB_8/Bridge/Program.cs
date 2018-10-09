@@ -47,7 +47,11 @@ class Program
         #endregion
 
         #region resubscriber
-        var resubscriber = await Resubscriber<MsmqTransport>.Create("Bridge-MSMQ", TimeSpan.FromSeconds(10), t => { });
+        var resubscriber = await Resubscriber<MsmqTransport>.Create(
+            inputQueueName: "Bridge-MSMQ", 
+            delay: TimeSpan.FromSeconds(10), 
+            configureTransport: t => { });
+
         bridgeConfiguration.InterceptForwarding(resubscriber.InterceptMessageForwarding);
         #endregion
 

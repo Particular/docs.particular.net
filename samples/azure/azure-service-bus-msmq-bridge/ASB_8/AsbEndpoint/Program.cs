@@ -67,7 +67,7 @@ class Program
 
             var prop = new string(Enumerable.Range(0, 3).Select(i => letters[random.Next(letters.Length)]).ToArray());
             await endpointInstance.Send(new MyCommand { Property = prop }).ConfigureAwait(false);
-            Console.WriteLine($"\nCommand {prop} sent");
+            Console.WriteLine($"\nCommand with value '{prop}' sent");
         }
 
         await endpointInstance.Stop()
