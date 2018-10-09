@@ -9,6 +9,6 @@ public class MyEventHandler : IHandleMessages<MyEvent>
     public Task Handle(MyEvent message, IMessageHandlerContext context)
     {
         log.Info($"Received MyEvent: {message.Property}");
-        return Task.CompletedTask;
+        return context.Publish<OtherEvent>(@event => { @event.Property = message.Property; });
     }
 }

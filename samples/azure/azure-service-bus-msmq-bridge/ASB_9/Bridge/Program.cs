@@ -32,10 +32,13 @@ class Program
                 //Prevents ASB from using TransactionScope
                 transport.Transactions(TransportTransactionMode.ReceiveOnly);
                 transport.ConnectionString(connectionString);
-                transport.UseForwardingTopology();
+
                 var settings = transport.GetSettings();
                 var serializer = Tuple.Create(new NewtonsoftSerializer() as SerializationDefinition, new SettingsHolder());
                 settings.Set("MainSerializer", serializer);
+
+                var topology = transport.UseEndpointOrientedTopology();
+                topology.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
             });
 
         bridgeConfiguration.AutoCreateQueues();
@@ -43,15 +46,26 @@ class Program
 
         #endregion
 
+        #region resubscriber
+        var resubscriber = await Resubscriber<MsmqTransport>.Create(
+            inputQueueName: "Bridge-MSMQ",
+            delay: TimeSpan.FromSeconds(10),
+            configureTransport: t => { });
+
+        bridgeConfiguration.InterceptForwarding(resubscriber.InterceptMessageForwarding);
+        #endregion
+
         #region bridge-execution
 
         var bridge = bridgeConfiguration.Create();
 
         await bridge.Start().ConfigureAwait(false);
+        await resubscriber.Start().ConfigureAwait(false);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
 
+        await resubscriber.Stop().ConfigureAwait(false);
         await bridge.Stop().ConfigureAwait(false);
 
 
