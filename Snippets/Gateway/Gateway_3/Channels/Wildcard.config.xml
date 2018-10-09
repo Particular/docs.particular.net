@@ -9,7 +9,7 @@
     <Channels>
       <Channel Address="http://+:25899/RemoteSite/"
                ChannelType="Http"/>               
-      <Channel Address="http://gateway.mycorp.com:25899/RemoteSite/"
+      <Channel Address="http://gateway.mycorp.com:25900/RemoteSite/"
                ChannelType="Http"
                Default="true"/> 
     </Channels>
