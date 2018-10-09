@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -6,6 +7,9 @@ class Program
 {
     static async Task Main()
     {
+        const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var random = new Random();
+
         Console.Title = "Samples.Azure.ServiceBus.AsbEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.AsbEndpoint");
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -20,7 +24,14 @@ class Program
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
         transport.ConnectionString(connectionString);
-        transport.UseForwardingTopology();
+        var topology = transport.UseEndpointOrientedTopology();
+
+        #region topology-setup-subscriber
+
+        topology.RegisterPublisher(typeof(MyEvent), "Bridge-ASB");
+
+        #endregion
+
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.DisableLegacyRetriesSatellite();
 
@@ -57,8 +68,9 @@ class Program
                 break;
             }
 
-            await endpointInstance.Send(new MyCommand { Property = "command from ASB endpoint" }).ConfigureAwait(false);
-            Console.WriteLine("\nCommand sent");
+            var prop = new string(Enumerable.Range(0, 3).Select(i => letters[random.Next(letters.Length)]).ToArray());
+            await endpointInstance.Send(new MyCommand { Property = prop }).ConfigureAwait(false);
+            Console.WriteLine($"\nCommand with value '{prop}' sent");
         }
 
         await endpointInstance.Stop()

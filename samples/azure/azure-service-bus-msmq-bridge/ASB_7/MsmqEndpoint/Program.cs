@@ -16,8 +16,11 @@ class Program
         endpointConfiguration.AddDeserializer<JsonSerializer>();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.DisableLegacyRetriesSatellite();
-        endpointConfiguration.UseTransport<MsmqTransport>();
-       
+        var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+
+        var bridge = routing.ConnectToBridge("Bridge-MSMQ");
+        bridge.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
