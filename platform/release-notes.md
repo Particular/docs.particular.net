@@ -36,12 +36,12 @@ The Particular Service Platform source code, current and previous releases, and 
 |**MSMQ**|[Releases](https://github.com/Particular/NServiceBus.Transport.Msmq/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Transport.Msmq/releases)
 
 
-### NServiceBus persistences
+### NServiceBus persisters
 
 
 | | | |
 |:--- |:--- |:--- |
-|**SQL Persistence** | [Releases](https://github.com/Particular/NServiceBus.Persistence.Sql/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Persistence.Sql/releases)
+|**SQL** | [Releases](https://github.com/Particular/NServiceBus.Persistence.Sql/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Persistence.Sql/releases)
 |**RavenDB** | [Releases](https://github.com/Particular/NServiceBus.RavenDB/tags)| [Release Notes](https://github.com/Particular/NServiceBus.RavenDB/releases)
 |**NHibernate** | [Releases](https://github.com/Particular/NServiceBus.NHibernate/tags)| [Release Notes](https://github.com/Particular/NServiceBus.NHibernate/releases)
 |**Azure Storage** | [Releases](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/releases)

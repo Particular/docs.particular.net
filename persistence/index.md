@@ -21,30 +21,30 @@ Several NServiceBus features require data to be persisted to storage.
  * [Outbox](/nservicebus/outbox/)
 
 
-## Available persistences
+## Available persisters
 
 
-### [Learning persistence](/persistence/learning/)
+### [Learning](/persistence/learning/)
 
 include: learning-persistence-description
 
 
-### [In-Memory persistence](in-memory.md)
+### [In-Memory](in-memory.md)
 
-A volatile RAM-based storage intended for development purposes only. In-memory persistence can also be used where the storage is not required to persist between process restarts.
+A volatile RAM-based storage intended for development purposes only. The in-memory persister can also be used where the storage is not required to persist between process restarts.
 
 
-### [SQL persistence](/persistence/sql/)
+### [SQL](/persistence/sql/)
 
 Uses [Json.NET](http://www.newtonsoft.com/json) to serialize data and store in a SQL database, such as SQL Server or MySQL.
 
 
-### [Azure Storage persistence](/persistence/azure-storage/)
+### [Azure Storage](/persistence/azure-storage/)
 
 Persists data to Azure Table storage.
 
 
-### [RavenDB persistence](/persistence/ravendb/)
+### [RavenDB](/persistence/ravendb/)
 
 Uses the [RavenDB document database](https://ravendb.net/) for storage.
 
@@ -54,7 +54,7 @@ Uses the [RavenDB document database](https://ravendb.net/) for storage.
 A persister built on [Azure Service Fabric Reliable Collections](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
 
 
-### [NHibernate persistence](/persistence/nhibernate/)
+### [NHibernate](/persistence/nhibernate/)
 
 Uses [NHibernate](http://nhibernate.info/) to persist data to an ADO.NET data store, such as SQL Server.
 
@@ -64,6 +64,6 @@ Uses [NHibernate](http://nhibernate.info/) to persist data to an ADO.NET data st
 A subscription-only storage build on MSMQ.
 
 
-### Community-maintained persistences
+### Community-maintained persisters
 
-There are several community-maintained persistences that can be seen in the full list of [extensions](/components#persisters).
+There are several community-maintained persisters that can be seen in the full list of [extensions](/components#persisters).
