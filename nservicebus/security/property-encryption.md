@@ -1,5 +1,6 @@
 ---
 title: Message Property Encryption
+description: Encrypt message fragments using property encryption
 component: PropertyEncryption
 reviewed: 2018-10-11
 tags:
