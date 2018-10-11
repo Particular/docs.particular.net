@@ -1,7 +1,7 @@
 ---
 title: Message Property Encryption
 component: PropertyEncryption
-reviewed: 2016-11-16
+reviewed: 2018-10-11
 tags:
 - Encryption
 - Security
