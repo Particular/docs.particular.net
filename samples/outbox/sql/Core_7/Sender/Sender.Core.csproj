@@ -8,7 +8,6 @@
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql.MsBuild" Version="4.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="4.*" />
   </ItemGroup>
 </Project>
