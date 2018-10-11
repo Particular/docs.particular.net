@@ -12,7 +12,9 @@ The ServiceControl installation file consists of an embedded MSI bootstrapper EX
 
 The ServiceControl Installation has the following prerequisites:
 
- * [Microsoft .NET 4.5.2 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=42643)
+ * [Microsoft .NET 4.5.2 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=42643) for Version 1 and 2
+ * [Microsoft .NET 4.6.1 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=49982) for Version 3 and higher
+
 
 If ServiceControl is installed via the Platform Installer then the installation and configuration of these prerequisites are managed by the installer.
 
@@ -26,10 +28,13 @@ Monitoring instances can be configured to use one of the supported [transports](
  * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
  * [Azure Storage Queues](/transports/azure-storage-queues/)
  * [Azure Service Bus](/transports/azure-service-bus/)
+ * [Azure Service Bus .NET Standard](/transports/azure-service-bus-netstandard)
  * [SQL Server](/transports/sql/)
  * [RabbitMQ](/transports/rabbitmq/)
  * [AmazonSQS](/transports/sqs/)
 
+Certain features of the transports are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter).
+ 
 Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
 Installing MSMQ is optional in the Platform Installer. See [Platform Installer - MSMQ](/platform/installer/#select-items-to-install-configure-microsoft-message-queuing).
