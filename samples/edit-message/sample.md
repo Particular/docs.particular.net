@@ -6,10 +6,10 @@ reviewed: 2018-10-09
 ---
 
 
- 1. Run the solution. Three console applications will start: Publisher, Subscriber and EndpointThatModifyTheMessage.
+ 1. Run the solution. Three console applications will start: Publisher, Subscriber and EndpointThatModifiesTheMessage.
  1. In the Publisher console window click 1 to send a command.
  1. Subscriber will receive the message and fail while trying to process it.
- 1. Now in ServicePulse navigate towards Configuration screen and add Redirect from: Samples.EditMessage.Subscriber@machine-name to Samples.EditMessage.EndpointThatModifyTheMessage@machine-name . [More information about creating Redirects](/servicepulse/redirect.md)
+ 1. Now in ServicePulse navigate towards Configuration screen and add Redirect from: Samples.EditMessage.Subscriber@machine-name to Samples.EditMessage.EndpointThatModifiesTheMessage@machine-name . [More information about creating Redirects](/servicepulse/redirect.md)
  1. From Service Pulse retry failed messages that were send to Subscriber. Those messages will be processed and modified by EndpointThatModifyTheMessage and send to Subscriber endpoint.
 
 
@@ -22,7 +22,7 @@ A console application that send a PlaceOrder command that contains id of a user 
 
 A console application that subscribes to a PlaceOrder command and throws exception when UserId is anything different than 1.
 
-## EndpointThatModifyTheMessage project
+## EndpointThatModifiesTheMessage project
 
 A console application that subscribes to a PlaceOrder command and modify the value of UserId to 1 and sends that modified command to Subscriber endpoint.
 
