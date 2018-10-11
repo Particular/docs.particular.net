@@ -10,7 +10,7 @@ redirects:
 
 ## Persistence support
 
-The qateway requires NServiceBus persistence to operate though not all persistences support it. Currently, the gateway is supported only by InMemory, RavenDB and NHibernate persistences. If the configured persistence doesn't support gateway, the `The selected persistence doesn't have support for gateway deduplication storage.` exception will be thrown at endpoint startup.
+The gateway requires NServiceBus persistence to operate though not all persistences support it. Currently, the gateway is supported only by InMemory, RavenDB and NHibernate persistences. If the configured persistence doesn't support gateway, the `The selected persistence doesn't have support for gateway deduplication storage.` exception will be thrown at endpoint startup.
 
 
 ## Corrupted urlacls
