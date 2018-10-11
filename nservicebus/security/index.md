@@ -1,7 +1,7 @@
 ---
 title: Security
 summary: Security features for messages, transports, and persisters
-reviewed: 2017-03-14
+reviewed: 2018-10-11
 tags:
  - Encryption
  - Security
