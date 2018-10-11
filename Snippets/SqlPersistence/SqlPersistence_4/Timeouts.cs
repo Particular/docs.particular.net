@@ -10,7 +10,7 @@ class Timeouts
 
         var connection = @"Data Source=.\SqlExpress;Initial Catalog=timeouts;Integrated Security=True";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        
+
         var timeouts = persistence.TimeoutSettings();
         timeouts.ConnectionBuilder(
             connectionBuilder: () =>

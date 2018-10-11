@@ -2,7 +2,7 @@
 title: Timeouts Persister
 component: SqlPersistence
 reviewed: 2018-05-23
-versions: '[4.1,)'
+versions: '[4,)'
 ---
 
 ## Connection
