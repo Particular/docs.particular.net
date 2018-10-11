@@ -15,7 +15,7 @@ partial: obsolete
 
 Property encryption operates on specific properties of a message. The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible.
 
-The encryption algorithm used is [Rijndael](https://msdn.microsoft.com/en-us/library/system.security.cryptography.rijndael.aspx).
+The encryption algorithm used is [Rijndael](https://msdn.microsoft.com/en-us/library/system.security.cryptography.rijndael.aspx) and is based on a shared key between sender and receiver which is known as synchronous encryption.
 
 Keep in mind that the security is only as strong as the keys; if the key is exposed, then an attacker can decrypt the information. Encryption keys should not be stored on the client (if deployed remotely) or even on a web server in the DMZ.
 
