@@ -1,5 +1,6 @@
 ---
 title: Message Body Encryption
+summary: Storing message bodies fully encrypted in the queueing infrastructure
 component: Core
 reviewed: 2016-11-16
 tags:
