@@ -1,6 +1,6 @@
 ---
 title: Security
-summary: Security Table of Contents
+summary: Security features for messages, transports, and persisters
 reviewed: 2017-03-14
 tags:
  - Encryption
