@@ -15,5 +15,6 @@ Only use a reply when implementing the Request-Response pattern (also called the
 
 When using the Publish-Subscribe pattern, an endpoint handling an event shouldn't use `Reply`. This is because the publisher might not expect a reply and has no message handler for the replied message.
 
+The reply address is controlled by the sender of the message replying to. See [how to influence the reply behavior when sending messages](send-a-message.md#influencing-the-reply-behavior).
 
 partial: influence
