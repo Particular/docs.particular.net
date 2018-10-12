@@ -20,12 +20,12 @@ include: showcase-walkthrough
 In implementing the above workflow various aspects are highlighted:
 
 
-### Azure Storage Queues Transport
+### Azure Storage Queues transport
 
 All endpoints in the solution communicate using the [Azure Storage Queues transport](/transports/azure-storage-queues/). The sample has been configured to use the Azure Storage Emulator.
 
 
-### Azure Storage Persistence
+### Azure Storage persistence
 
 The endpoints in the solution persist data using the [Azure Storage persistence](/persistence/azure-storage/). This persistence is used to store subscription, timeout, and saga data.
 
@@ -40,14 +40,14 @@ The `Ecommerce` project is configured to deploy as an [Azure Web Site](https://a
 include: showcase-featureusage
 
 
-## Deployment Notes
+## Deployment notes
 
 This sample has been designed to run in a development environment under the Azure Storage Emulator. In order to deploy the sample to the cloud the following should be considered:
 
- 1. Application settings need to be created:
-    * Application setting with the key `AzureWebJobsEnv` must be set to a value other than `Development`.
-    * Application setting with the key `AzureWebJobsDashboard` must be set to a value other than `Development`.
-    * Application setting with the key `AzureWebJobsStorage` must be set to a value other than `Development`.
+ 1. Application settings to be created:
+    * Application setting with the key `AzureWebJobsEnv`; must be set to a value other than `Development`.
+    * Application setting with the key `AzureWebJobsDashboard`; must be set to a value other than `Development`.
+    * Application setting with the key `AzureWebJobsStorage`; must be set to a value other than `Development`.
  1. An [Azure Storage account must be created](https://docs.microsoft.com/en-us/azure/storage/storage-create-storage-account#create-a-storage-account).
  1. By default, each endpoint is using the development storage. Application setting with the key `NServiceBus.ConnectionString` must be defined and its value set to the Storage Account connection string configured in step 1.
 
