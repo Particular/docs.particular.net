@@ -63,7 +63,7 @@ This package contains several parts:
 
 This package contains the APIs that enable the generation of SQL installation scripts using code, i.e. without using the `NServiceBus.Persistence.Sql.MsBuild` NuGet package.
 
-DANGER: `NServiceBus.Persistence.Sql.ScriptBuilder` is not ready for general usage. It was made public and deployed to NuGet primarily to enable the generation of documentation in a repeatable way. For example, it is used to generate the SQL scripts in the [MS SQL Server Scripts](/persistence/sql/sqlserver-scripts.md), [MySql Scripts](/persistence/sql/mysql-scripts.md), [Oracle Scripts](/persistence/sql/oracle-scripts.md), and [PostgreSQL Scripts](/persistence/sql/postgresql-scripts.md) pages. In future releases, the API may evolve in ways that do not follow [semantic versioning](/nservicebus/upgrades/release-policy.md#semantic-versioning). This can be discussed in more detail in our [discussion forum](https://discuss.particular.net/).
+DANGER: `NServiceBus.Persistence.Sql.ScriptBuilder` is not ready for general usage. It was made public and deployed to NuGet primarily to enable the generation of documentation in a repeatable way. For example, it is used to generate the SQL scripts in the [MS SQL Server Scripts](/persistence/sql/sqlserver-scripts.md), [MySql Scripts](/persistence/sql/mysql-scripts.md), [Oracle Scripts](/persistence/sql/oracle-scripts.md), and [PostgreSQL Scripts](/persistence/sql/postgresql-scripts.md) pages. In future releases, the API may evolve in ways that do not follow [semantic versioning](/nservicebus/upgrades/release-policy.md#semantic-versioning). This can be discussed in more detail in the [Particular Software discussion forum](https://discuss.particular.net/).
 
 
 ## Script creation
