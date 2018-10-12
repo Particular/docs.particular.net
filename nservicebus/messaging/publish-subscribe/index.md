@@ -40,7 +40,7 @@ Note: For simplicity these explanations refer to specific endpoints as "Subscrib
 
 Message-driven publish-subscribe is controlled by *subscribe* and *unsubscribe* system messages sent by the subscriber to the publisher and relies on the publisher having access to a persistent store for maintaining the mapping between message types and their subscribers.
 
-Available subscription persistences include
+Available subscription persisters include
 
  * [MSMQ](/persistence/msmq)
  * [RavenDB](/persistence/ravendb)

@@ -26,7 +26,7 @@ If SQL Server was used as a backing store for the Timeout Manager, either via [N
 
 If another database was used, use DB-specific tools to extract the `Headers`, `State`, and `Destination` values from the timeout records and export the result to a file.
 
-NOTE: Some persistences, e.g. NHibernate, store all the delayed messages for all the endpoints in a single table. Exporting just the ones for the endpoint that is migrated requires filtering on the `Endpoint` property of the timeout record.
+NOTE: Some persisters, e.g. NHibernate, store all the delayed messages for all the endpoints in a single table. Exporting just the ones for the endpoint that is migrated requires filtering on the `Endpoint` property of the timeout record.
 
 Once exported, use the following script to insert the data into SQL Server transport's table.
 

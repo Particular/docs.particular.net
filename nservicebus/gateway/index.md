@@ -61,7 +61,7 @@ snippet: SendToSites
 
 In NServiceBus version 5 and above, the gateway is provided by the `NServiceBus.Gateway` NuGet package. In version 4 and below the gateway is part of the `NServiceBus` NuGet package.
 
-NOTE: The gateway requires NServiceBus persistence to operate though not all persistences support it. Currently, the gateway is supported only by InMemory, RavenDB and NHibernate persistences. If the configured persistence doesn't support gateway, an exception will be thrown at endpoint startup.
+NOTE: The gateway requires NServiceBus persistence to operate though not all persisters support it. Currently, the gateway is supported only by InMemory, RavenDB and NHibernate persisters. If the configured persister doesn't support gateway, an exception will be thrown at endpoint startup.
 
 The gateway feature must be explicitly enabled using the configuration API:
 
