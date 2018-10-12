@@ -1,13 +1,20 @@
 ﻿using NServiceBus.Persistence.Sql;
 
-#region AllSqlScripts
+[assembly: SqlPersistenceSettings(
+    MsSqlServerScripts = false,
+    MySqlScripts = true,
+    OracleScripts = false,
+    PostgreSqlScripts = false)]
+
+/**
+
+    #region AllSqlScripts
 [assembly: SqlPersistenceSettings(
     MsSqlServerScripts = true,
     MySqlScripts = true,
     OracleScripts = true,
     PostgreSqlScripts = true)]
 #endregion
-/**
 
 #region SqlServerScripts
 [assembly: SqlPersistenceSettings(MsSqlServerScripts = true)]
