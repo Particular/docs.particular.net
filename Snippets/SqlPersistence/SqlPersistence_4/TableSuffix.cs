@@ -11,6 +11,7 @@ class MySaga:SqlSaga<MySaga.SagaData>
 
     internal class SagaData : ContainSagaData
     {
+        public string NotUsedInTheSnippet { get; set; }
     }
 
     protected override void ConfigureMapping(IMessagePropertyMapper mapper)
@@ -18,5 +19,5 @@ class MySaga:SqlSaga<MySaga.SagaData>
         throw new System.NotImplementedException();
     }
 
-    protected override string CorrelationPropertyName { get; }
+    protected override string CorrelationPropertyName => "NotUsedInTheSnippet";
 }
