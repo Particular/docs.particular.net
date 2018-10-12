@@ -24,20 +24,15 @@ partial: connectionstring
 #### PeekInterval
 
 The amount of time that the transport waits before polling the input queue, in milliseconds.
-Defaults: 
 
- * 50 ms in Version 6 and below
- * 125 ms in Version 7 and above
+partial: peekinterval
 
 
 #### MaximumWaitTimeWhenIdle
 
 In order to save money on the transaction operations, the transport optimizes wait times according to the expected load. The transport will back off when no messages can be found on the queue. The wait time will be increased linearly, but it will never exceed the value specified here, in milliseconds.
 
-Defaults: 
-
-* 1000 ms (1 second) in Version 6 and below
-* 30000 ms (30 seconds) in Version 7 and above
+partial: maximumwaittimewhenidle
 
 
 #### PurgeOnStartup
@@ -58,10 +53,7 @@ Defaults: 30000 ms (i.e. 30 seconds)
 
 The number of messages that the transport tries to pull at once from the storage queue. Depending on the expected load, the value should vary between 1 and 32 (the maximum).
 
-Defaults:
-
- * 10 in Version 6 and below
- * 32 in Version 7
+partial: batchsize
 
 
 partial: serialization
