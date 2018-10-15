@@ -40,7 +40,7 @@ snippet: perfcounter-script-powershell
 
 ### Promotion
 
-As stated above, scripts are created in the target project output directory. Generally this directory will be excluded from source control. To add created scripts to source control they can be "promoted".
+As stated above, scripts are created in the target project output directory. Generally this directory will be excluded from source control. To add created scripts to source control they can be promoted outside the build directory.
 
 WARNING: The target directory will be deleted and recreated as part of each build. Be sure to choose a path that is for script promotion only.
 

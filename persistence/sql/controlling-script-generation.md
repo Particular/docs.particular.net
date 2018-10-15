@@ -5,7 +5,7 @@ reviewed: 2018-01-02
 ---
 
 
-SQL Persistence creates its schema generation scripts as an output at compile time alongside a project's binary outputs. Additionally, these scripts can be "promoted" to a directory under source control so that differences can be easily tracked and analyzed.
+SQL Persistence creates its schema generation scripts as an output at compile time alongside a project's binary outputs. Additionally, these scripts can be promoted to a directory under source control so that differences can be easily tracked and analyzed.
 
 partial: scriptlocation
 
