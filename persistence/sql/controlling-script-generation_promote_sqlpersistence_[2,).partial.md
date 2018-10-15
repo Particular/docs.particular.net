@@ -1,5 +1,5 @@
 
-### Promotion
+## Promotion
 
 As stated above, scripts are created in the target project output directory. Generally this directory will be excluded from source control. To add created scripts to source control they can be "promoted".
 
