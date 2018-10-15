@@ -1,5 +1,5 @@
 ---
-title: SQL Persistence Upgrade Version 42 to 4.3
+title: SQL Persistence Upgrade Version 4.2 to 4.3
 summary: Instructions on how to upgrade to SQL Persistence version 4.3
 reviewed: 2018-10-15
 component: SqlPersistence
@@ -19,3 +19,5 @@ In all projects where the NServiceBus.Persistence.Sql.MsBuild package was in use
 For projects where NServiceBus.Persistence.Sql was used without NServiceBus.Persistence.Sql.MsBuild, and where generation of scripts is not desired, script generation can be disabled by including the following in the project file:
 
 snippet: DisableScriptGeneration
+
+For more ways to control script generation, see [Controlling script generation](/persistence/sql/controlling-script-generation.md).
