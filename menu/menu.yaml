@@ -334,8 +334,6 @@
       Articles:
       - Url: nservicebus/hosting/service-fabric-hosting/hosting-gateway
         Title: Hosting Gateway
-    - Url: nservicebus/hosting/publishing-from-web-applications
-      Title: Publishing from Web Applications
     - Url: nservicebus/wcf
       Title: Exposing endpoints via WCF
     - Url: nservicebus/hosting/nservicebus-host
@@ -801,6 +799,8 @@
         Title: Error handling
       - Url: transports/msmq/distributor/troubleshooting
         Title: Troubleshooting
+    - Url: transports/msmq/scaling-out-web-apps
+      Title: Scaling out Web Applications
   - Url: transports/rabbitmq
     Title: RabbitMQ
     Articles:
