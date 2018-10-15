@@ -20,8 +20,6 @@ SQL persistence supports [Oracle 11g Release 2](https://docs.oracle.com/cd/E1188
 
 ## Usage
 
-include: usage
-
 Using the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/packages/Oracle.ManagedDataAccess).
 
 snippet: SqlPersistenceUsageOracle

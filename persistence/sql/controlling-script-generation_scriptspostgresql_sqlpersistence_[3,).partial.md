@@ -1,4 +1,4 @@
 
-### To produce only PostgresSql scripts
+### To produce only PostgreSql scripts
 
 snippet: PostgresSqlScripts

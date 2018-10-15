@@ -15,8 +15,6 @@ SQL persistence supports [MySQL 5.7](https://dev.mysql.com/doc/relnotes/mysql/5.
 
 ## Usage
 
-include: usage
-
 Using the [MySql.Data NuGet Package](https://www.nuget.org/packages/MySql.Data/).
 
 snippet: SqlPersistenceUsageMySql
