@@ -19,8 +19,6 @@ SQL persistence supports [PostgreSQL 10](https://www.postgresql.org/docs/10/stat
 
 ## Usage
 
-include: usage
-
 Using the [Npgsql NuGet Package](https://www.nuget.org/packages/Npgsql/).
 
 snippet: sqlpersistenceusagepostgresql

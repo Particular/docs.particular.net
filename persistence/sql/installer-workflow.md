@@ -41,12 +41,12 @@ The main purpose in this type of environment is having the "Just hit F5" experie
 
 A typical workflow on developers machine consists of the following steps:
 
- 1. In the project add references to both [NServiceBus.Persistence.Sql](/persistence/sql/#nuget-packages-nservicebus-persistence-sql) and [NServiceBus.Persistence.Sql.MsBuild](/persistence/sql/#nuget-packages-nservicebus-persistence-sql-msbuild) packages.
- 1. Build the project.
- 1. During build [NServiceBus.Persistence.Sql.MsBuild](/persistence/sql/#nuget-packages-nservicebus-persistence-sql-msbuild) automatically creates scripts in the location appropriate for the Visual Studio project type, e.g. `bin\Debug\NServiceBus.Persistence.Sql` or `bin\Debug\{target}\NServiceBus.Persistence.Sql`.
- 1. Start solution in Visual Studio.
- 1. NServiceBus endpoint starts and executes its configuration code, including checking for toggle enabling installer execution.
- 1. If enabled, SQL installer scripts are executed and the required persistence tables are created.
+ 1. In the project, add references to the [necessary NuGet package(s)](/persistence/sql/#nuget-packages).
+ 2. Build the project.
+ 3. During build, schema creation scripts are automatically created in the location appropriate for the Visual Studio project type, e.g. `bin\Debug\NServiceBus.Persistence.Sql` or `bin\Debug\{target}\NServiceBus.Persistence.Sql`.
+ 4. Start solution in Visual Studio.
+ 5. The NServiceBus endpoint starts and executes its configuration code, including checking for the toggle enabling installer execution.
+ 6. If enabled, SQL installer scripts are executed and the required tables are created.
 
 
 
@@ -67,9 +67,9 @@ Additionally, scripts assume the required databases and schemas already exist. E
 
 A sample workflow in that kind of environment can consist of the following steps:
 
- 1. In the project add references to both `NServiceBus.Persistence.Sql` and `NServiceBus.Persistence.Sql.MsBuild` packages.
+ 1. In the project, add references to the [necessary NuGet package(s)](/persistence/sql/#nuget-packages).
  1. Build Project.
- 1. `NServiceBus.Persistence.Sql.MsBuild` creates scripts in `bin\Debug\NServiceBus.Persistence.Sql`.
+ 1. SQL Persistence creates scripts in `bin\Debug\NServiceBus.Persistence.Sql`.
  1. Scripts are copied to a deployment package along with the output assemblies.
  1. Scripts are reviewed by a DBA or QA team and approved.
  1. Scripts are executed in higher environment as part of the existing deployment pipeline. Required settings, such as schemas or table prefixes, have different values in each environment. They are passed to scripts together with other configuration settings, such as connection string.

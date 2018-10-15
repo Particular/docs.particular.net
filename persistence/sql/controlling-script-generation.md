@@ -5,7 +5,7 @@ reviewed: 2018-01-02
 ---
 
 
-SQL installation scripts are created at compile time by the `NServiceBus.Persistence.Sql.MsBuild` NuGet package.
+SQL Persistence creates its schema generation scripts as an output at compile time alongside a project's binary outputs. Additionally, these scripts can be "promoted" to a directory under source control so that differences can be easily tracked and analyzed.
 
 partial: scriptlocation
 
@@ -14,6 +14,7 @@ For example for a project named `ClassLibrary` built in Debug mode the following
  * `ClassLibrary\bin\Debug\NServiceBus.Persistence.Sql\MsSqlServer`
  * `ClassLibrary\bin\Debug\NServiceBus.Persistence.Sql\MySql`
  * `ClassLibrary\bin\Debug\NServiceBus.Persistence.Sql\Oracle`
+ * `ClassLibrary\bin\Debug\NServiceBus.Persistence.Sql\PostgreSql`
 
 Scripts will also be included in the list of project output files. This means those files produced will be copied to the output directory of any project that references it.
 
