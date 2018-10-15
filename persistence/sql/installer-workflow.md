@@ -43,10 +43,10 @@ A typical workflow on developers machine consists of the following steps:
 
  1. In the project, add references to the [necessary NuGet package(s)](/persistence/sql/#nuget-packages).
  2. Build the project.
- 3. During build, schema creation scripts are automatically created in the location appropriate for the Visual Studio project type, e.g. `bin\Debug\NServiceBus.Persistence.Sql` or `bin\Debug\{target}\NServiceBus.Persistence.Sql`.
+ 3. During build, SQL installation scripts are automatically created in the location appropriate for the Visual Studio project type, e.g. `bin\Debug\NServiceBus.Persistence.Sql` or `bin\Debug\{target}\NServiceBus.Persistence.Sql`.
  4. Start solution in Visual Studio.
  5. The NServiceBus endpoint starts and executes its configuration code, including checking for the toggle enabling installer execution.
- 6. If enabled, SQL installer scripts are executed and the required tables are created.
+ 6. If enabled, SQL installation scripts are executed and the required tables are created.
 
 
 
@@ -69,7 +69,7 @@ A sample workflow in that kind of environment can consist of the following steps
 
  1. In the project, add references to the [necessary NuGet package(s)](/persistence/sql/#nuget-packages).
  1. Build Project.
- 1. SQL Persistence creates scripts in `bin\Debug\NServiceBus.Persistence.Sql`.
+ 1. Scripts are created in the output directory.
  1. Scripts are copied to a deployment package along with the output assemblies.
  1. Scripts are reviewed by a DBA or QA team and approved.
  1. Scripts are executed in higher environment as part of the existing deployment pipeline. Required settings, such as schemas or table prefixes, have different values in each environment. They are passed to scripts together with other configuration settings, such as connection string.
