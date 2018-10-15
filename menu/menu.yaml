@@ -879,6 +879,8 @@
         Title: Version 3 to 4
     - Title: SQL
       Articles:
+      - Url: persistence/upgrades/sql-4.2to4.3
+        Title: Version 4.2 to 4.3
       - Url: persistence/upgrades/sql-2to3
         Title: Version 2 to 3
       - Url: persistence/upgrades/sql-1to2
