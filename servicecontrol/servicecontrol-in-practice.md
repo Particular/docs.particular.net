@@ -2,7 +2,7 @@
 title: Optimizing ServiceControl for use in different environments
 summary: Tips for running ServiceControl efficiently
 reviewed: 2018-06-20
----
+---https://github.com/Particular/docs.particular.net/tree/sc-hardware/servicecontrol
 
 
 ServiceControl provides many capabilities such as endpoint monitoring, advanced debugging, and failed message management. These capabilities can be extended by adding optional [plugins](/servicecontrol/plugins/) into the endpoints being monitored. Each capability and plugin provides valuable information, but they have certain resource and performance costs.
@@ -16,11 +16,13 @@ Here are some considerations when installing and deploying ServiceControl for be
 
 ## Hardware & installation considerations:
 
- * Read the [capacity planning](/servicecontrol/capacity-and-planning.md) and [troubleshooting](/servicecontrol/troubleshooting.md) guides for ServiceControl.
- * Each environment should have a dedicated ServiceControl instance.
- * Other applications or NServiceBus endpoints running on the same machine as ServiceControl can compete for hardware resources and therefore negatively impact ServiceControl's performance. For optimal performance, run ServiceControl on a dedicated machine.
- * If ServiceControl is installed on a virtual machine, ensure the machine is capable of high levels of network and disk I/O traffic. The amount of I/O required depends on the system being monitored, the number of messages being processed, and the transport being used. Run performance tests with realistic message loads to baseline hardware requirements.
+Read our [general hardware recommendations](/servicecontrol/servicecontrol-instances/hardware.md) for more details.
 
+In addition:
+
+* Read the [capacity planning](/servicecontrol/capacity-and-planning.md) and [troubleshooting](/servicecontrol/troubleshooting.md) guides for ServiceControl.
+* Each environment should have a dedicated ServiceControl instance.
+* Other applications or NServiceBus endpoints running on the same machine as ServiceControl can compete for hardware resources and therefore negatively impact ServiceControl's performance. For optimal performance, run ServiceControl on a dedicated machine.
 
 ## Message throughput considerations
 
