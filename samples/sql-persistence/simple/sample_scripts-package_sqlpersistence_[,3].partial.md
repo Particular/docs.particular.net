@@ -1,0 +1,1 @@
+Note that only `ServerShared` has the [NServiceBus.Persistence.Sql.MsBuild NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) installed. This will cause the script directory `ServerShared\bin\Debug\net461\NServiceBus.Persistence.Sql\[Variant]` to be populated at build time.

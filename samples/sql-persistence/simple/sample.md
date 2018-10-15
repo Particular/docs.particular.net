@@ -46,12 +46,11 @@ Contains the `OrderSaga` functionality and is referenced by the Server endpoints
 
 ## SQL scripts
 
-Note that only `ServerShared` has the [NServiceBus.Persistence.Sql.MsBuild NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) installed. This will cause the script director `ServerShared\bin\Debug\NServiceBus.Persistence.Sql\[Variant]` to be populated at build time.
+partial: scripts-package
 
 These scripts will be copied to the output of each endpoint and executed at startup.
 
 The endpoints know which scripts to execute via the `persistence.SqlVariant();` API at configuration time.
-
 
 The scripts produced in this sample are promoted to `$(SolutionDir)PromotedSqlScripts`.
 

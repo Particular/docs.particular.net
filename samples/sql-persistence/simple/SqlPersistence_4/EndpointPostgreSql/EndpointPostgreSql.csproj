@@ -5,14 +5,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Transactions" />
     <ProjectReference Include="..\ServerShared\ServerShared.csproj" />
-    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
-    <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
     <PackageReference Include="npgsql" Version="4.*" />
   </ItemGroup>
 </Project>

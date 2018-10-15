@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <LangVersion>7.1</LangVersion>
+    <SqlPersistenceGenerateScripts>false</SqlPersistenceGenerateScripts>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
