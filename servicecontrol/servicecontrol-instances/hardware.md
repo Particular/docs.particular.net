@@ -4,7 +4,7 @@ summary: Describes performance benchmarks performed for ServiceControl
 reviewed: 2018-10-15
 ---
 
-If ServiceControl is installed on a virtual machine, ensure the machine is capable of high levels of network and disk I/O traffic. The amount of I/O required depends on the system being monitored, the number of messages being processed, and the transport being used. 
+ServiceControl as an application can be used to process the entire message load of a system. This articles provides general guidelines, recommendations, and performance benchmarks to help determine the resources to provide for a production environment. To identify the hardware specifications for any system environment a combination of testing with the system and the information provided below will need to be used.
 
 ## General Recommendations
 
@@ -13,15 +13,15 @@ If ServiceControl is installed on a virtual machine, ensure the machine is capab
 * 2Ghz quad core CPU or better
 * [Database Path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) is located on disks suitable for low latency write operations (fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
 
-### Monitoring
+### Server Performance Monitoring
 
-CPU, RAM, disk IO, and Network IO for the server running ServiceControl should be monitored.
+Due to changes in the system it supports the requirements for a server hosting ServiceControl can change over time. It is highly recommended that monitoring of the CPU, RAM, disk IO, and network IO for the server running ServiceControl be included.
 
 ## Benchmark Data
 
-Version 3.x of ServiceControl was tested using a test harness to validate performance improvements made between v2 and v3. 
+Version 3.0.0 of ServiceControl was tested to validate performance improvements made between version 2 and version 3. 
 
-NOTE: The test harness is a highly simplified test, it is highly recommended to run performance tests with realistic message loads to validate baseline hardware requirements. This data is only meant as a point of reference to help size a dedicated ServiceControl server.
+NOTE: The test harness used is a highly simplified test. It is highly recommended to run performance tests with realistic message loads to validate baseline hardware requirements. This benchmark data is only meant as a point of reference to assist with determining dedicated ServiceControl server requirements.
 
 ### Hardware Used
 
@@ -33,12 +33,12 @@ NOTE: The test harness is a highly simplified test, it is highly recommended to 
 
 Message Size | Messages Per Second
 ---- | ----
-13 Kb | 140 msgs/s
-66 Kb | 80 msgs/s
+13 KB | 140 msgs/s
+66 KB | 80 msgs/s
 
 ### Disk Usage
 
-66 KB , 4 GB database, 450K messages
+While we did not capture disk usage across all tests, for a scenario using a 66 KB message size and storing 450,000 messages the total database size was 4 GB.
 
 ## Suggestions to improve performance
 
@@ -48,14 +48,14 @@ The embedded RavenDB will utilize additional RAM to improve indexing performance
 
 ### Message Size / MaxBodySizeToStore
 
-In general, the smaller the message the quicker ServiceControl will be able to process audit records. Consider [putting your events on a diet](https://particular.net/blog/putting-your-events-on-a-diet).
+In general, the smaller the message the quicker ServiceControl will be able to process audit records. Consider [putting your events on a diet](https://particular.net/blog/putting-your-events-on-a-diet). For larger message payloads consider using the [DataBus feature](/nservicebus/messaging/databus/).
 
-In addition, for audit messages, lower the `[ServiceControl/MaxBodySizeToStore](/servicecontrol/creating-config-file.md#performance-tuning-servicecontrolmaxbodysizetostore)` setting to skip storage of larger audit messages. This setting will only help if the [serialization](/nservicebus/serialization/) being used is non-binary.
+In addition, for audit messages, lower the `[ServiceControl/MaxBodySizeToStore](/servicecontrol/creating-config-file.md#performance-tuning-servicecontrolmaxbodysizetostore)` setting to skip storage of larger audit messages. This setting will only reduce load if the [serialization](/nservicebus/serialization/) used is non-binary.
 
-NOTE: When using ServiceInsight the message body will not be viewable for messages that exceed the `ServiceControl/MaxBodySizeToStore` limit.
+WARNING: When using ServiceInsight the message body will not be viewable for messages that exceed the `ServiceControl/MaxBodySizeToStore` limit.
 
 ### Use a dedicated disk for the database
 
 Use a dedicated disk for the ServiceControl [database path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath).
 
-Additionally it is possible to store the embedded database index files on a separate disk. Use the `[Raven/IndexStoragePath](/servicecontrol/creating-config-file.md#host-settings-ravenindexstoragepath)` to place the RavenDB indexes on a different disk.
+Additionally, it is possible to store the embedded database index files on a separate disk. Use the `[Raven/IndexStoragePath](/servicecontrol/creating-config-file.md#host-settings-ravenindexstoragepath)` setting change the index storage location.
