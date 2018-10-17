@@ -4,13 +4,13 @@ summary: Hardware recommendations for running ServiceControl
 reviewed: 2018-10-17
 ---
 
-ServiceControl as an application can be used to process the entire message load of a system. This articles provides general guidelines, recommendations, and performance benchmarks to help determine the resources to provide for a production environment. To identify the hardware specifications for any system environment a combination of testing with the system and the information provided below will need to be used.
+ServiceControl as an application can be used to process the entire message load of a system. This article provides general guidelines, recommendations, and performance benchmarks to help determine the resources to provide for a production environment. To identify the hardware specifications for any system environment a combination of testing with the system and the information provided below will need to be used.
 
 ## General Recommendations
 
-* Use dedicated hardware for ServiceControl in production.
+* Install ServiceControl on a dedicated server in production.
 * 6GB of RAM minimum
-* 2Ghz quad core CPU or better
+* 2 GHz quad core CPU or better
 * [Database Path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) is located on disks suitable for low latency write operations (fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
 
 NOTE: To ensure disk performance use a benchmark tool, for example [CrystalDiskMark](http://crystalmark.info/software/CrystalDiskMark/index-e.html).
@@ -33,7 +33,7 @@ NOTE: The test harness used is a highly simplified test. It is highly recommende
 * 64 GB RAM
 * 2x7500 IOPS striped disk dedicated for the database
 
-### Performance by message size
+### Audit message processing throughput
 
 Message Size | Messages Per Second
 ---- | ----
@@ -63,3 +63,11 @@ WARNING: When using ServiceInsight the message body will not be viewable for mes
 Use a dedicated disk for the ServiceControl [database path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath).
 
 Additionally, it is possible to store the embedded database index files on a separate disk. Use the `[Raven/IndexStoragePath](/servicecontrol/creating-config-file.md#host-settings-ravenindexstoragepath)` setting change the index storage location.
+
+### Azure disk limitations
+
+Using multiple 7500 IOPS disks in Azure may not improve performance due to increased latency. Instead consider [scaling out ServiceControl to multiple instances](#suggestions-to-improve-performance-scale-out).
+
+### Scale Out
+
+If it is not possible to scale up ServiceControl to handle system volume it is recommended to partition audit processing between multiple instances of ServiceControl. See [Multiple ServiceControl Instances](distributed-instances.md) for more details.
