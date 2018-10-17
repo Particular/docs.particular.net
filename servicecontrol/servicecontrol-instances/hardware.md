@@ -13,9 +13,13 @@ ServiceControl as an application can be used to process the entire message load 
 * 2Ghz quad core CPU or better
 * [Database Path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) is located on disks suitable for low latency write operations (fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
 
+NOTE: To ensure disk performance use a benchmark tool, for example [CrystalDiskMark](http://crystalmark.info/software/CrystalDiskMark/index-e.html).
+
 ### Server Performance Monitoring
 
 Due to changes in the system it supports the requirements for a server hosting ServiceControl can change over time. It is highly recommended that monitoring of the CPU, RAM, disk IO, and network IO for the server running ServiceControl be included.
+
+Real disk, CPU, RAM, and network performance can be monitored with the Windows Resource Monitor and/or Windows Performance counters.
 
 ## Benchmark Data
 
