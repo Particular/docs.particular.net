@@ -66,7 +66,7 @@ Additionally, it is possible to store the embedded database index files on a sep
 
 ### Azure disk limitations
 
-Using multiple 7500 IOPS disks in Azure may not improve performance due to increased latency. Instead consider [scaling out ServiceControl to multiple instances](#suggestions-to-improve-performance-scale-out).
+Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency. Instead consider [scaling out ServiceControl to multiple instances](#suggestions-to-improve-performance-scale-out).
 
 ### Scale Out
 
