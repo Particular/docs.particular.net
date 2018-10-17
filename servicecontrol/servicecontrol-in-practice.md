@@ -21,7 +21,7 @@ In addition:
 
 * Read the [capacity planning](/servicecontrol/capacity-and-planning.md) and [troubleshooting](/servicecontrol/troubleshooting.md) guides for ServiceControl.
 * Each environment should have a dedicated ServiceControl instance.
-* Other applications or NServiceBus endpoints running on the same machine as ServiceControl can compete for hardware resources and therefore negatively impact ServiceControl's performance. For optimal performance, run ServiceControl on a dedicated machine.
+* Other applications or NServiceBus endpoints running on the same server as ServiceControl can compete for hardware resources and therefore negatively impact ServiceControl's performance. For optimal performance, run ServiceControl on a dedicated server.
 
 ## Message throughput considerations
 
