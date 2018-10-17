@@ -9,7 +9,7 @@ ServiceControl as an application can be used to process the entire message load 
 ## General Recommendations
 
 * Install ServiceControl on a dedicated server in production.
-* 6GB of RAM minimum
+* 6 GB of RAM minimum
 * 2 GHz quad core CPU or better
 * [Database Path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) is located on disks suitable for low latency write operations (fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
 
