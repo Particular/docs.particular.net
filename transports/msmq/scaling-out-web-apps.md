@@ -13,7 +13,7 @@ In general, web applications using NServiceBus can be scaled out the same way as
 
 [Send-only endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting) allow to send and publish messages but without the message processing capabilities. As the web application itself does not handle business processes, they rarely need to consume messages themselves. This makes the web application process consuming less resources than using a regular endpoint and other endpoints don't need to be aware of the active instances.
 
-NOTE: Send-only endpoint also are not capable of receicing event subscription messages when using MSMQ. This means that send-only endpoints with MSMQ transport cannot publish messages except when using the [Storage-driven transport topology](#storage-driven-transport-topology).
+NOTE: Send-only endpoint also are not capable of receiving event subscription messages when using MSMQ. This means that send-only endpoints with MSMQ transport cannot publish messages except when using the [Storage-driven transport topology](#storage-driven-transport-topology).
 
 
 ## Storage-driven Transport topology
