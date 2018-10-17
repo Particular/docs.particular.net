@@ -2,8 +2,7 @@
 title: Optimizing ServiceControl for use in different environments
 summary: Tips for running ServiceControl efficiently
 reviewed: 2018-06-20
----https://github.com/Particular/docs.particular.net/tree/sc-hardware/servicecontrol
-
+---
 
 ServiceControl provides many capabilities such as endpoint monitoring, advanced debugging, and failed message management. These capabilities can be extended by adding optional [plugins](/servicecontrol/plugins/) into the endpoints being monitored. Each capability and plugin provides valuable information, but they have certain resource and performance costs.
 
