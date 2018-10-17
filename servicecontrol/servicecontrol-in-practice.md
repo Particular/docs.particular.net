@@ -15,7 +15,7 @@ Here are some considerations when installing and deploying ServiceControl for be
 
 ## Hardware & installation considerations:
 
-Read our [general hardware recommendations](/servicecontrol/servicecontrol-instances/hardware.md) for more details.
+Read the [general hardware recommendations](/servicecontrol/servicecontrol-instances/hardware.md) for more details.
 
 In addition:
 
