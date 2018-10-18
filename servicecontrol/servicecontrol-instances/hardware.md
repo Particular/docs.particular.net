@@ -42,7 +42,7 @@ Message Size | Messages Per Second
 
 ### Disk Usage
 
-While we did not capture disk usage across all tests, for a scenario using a 66 KB message size and storing 450,000 messages the total database size was 4 GB.
+While disk usage was not captured across all tests, for a scenario using a 66 KB message size and storing 450,000 messages the total database size was 4 GB.
 
 ## Suggestions to improve performance
 
