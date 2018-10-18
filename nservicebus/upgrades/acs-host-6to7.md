@@ -1,7 +1,7 @@
 ---
 title: Azure Cloud Services Host Upgrade Version 6 to 7
-summary: Instructions on how to upgrade Azure Cloud Service Host from Version 6 to 7.
-reviewed: 2016-11-16
+summary: Instructions on how to upgrade Azure Cloud Service Host from version 6 to 7.
+reviewed: 2018-10-18
 component: CloudServicesHost
 related:
  - nservicebus/upgrades/5to6
@@ -33,9 +33,9 @@ snippet: AsAHost
 
 ### Removal of DynamicHostControllerConfig
 
-The `DynamicHostControllerConfig`configuration section has been removed, instead the `IConfigureThisHost.Customize` implementation requires to return an instance of `HostSettings` which contains all the configuration values.
+The `DynamicHostControllerConfig`configuration section has been removed; instead the `IConfigureThisHost.Customize` implementation must return an instance of `HostSettings` which contains the configuration values.
 
-`RoleEnvironment.GetConfigurationSettingValue` can be used to read any existing configuration setting from the `.cscfg` file.
+`RoleEnvironment.GetConfigurationSettingValue` can be used to read an existing configuration setting from the `.cscfg` file.
 
 
 ## Removal of dependencies
@@ -59,14 +59,14 @@ Any code in custom profile handlers should be moved into the `IConfigureThisEndp
 
 ## IWantToRunWhenEndpointStartsAndStops
 
-An interface `IWantToRunWhenEndpointStartsAndStops` has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in the NServiceBus core.
+A new interface `IWantToRunWhenEndpointStartsAndStops` has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in the NServiceBus core.
 
 
-### Interface in Version 5 of NServiceBus
+### Interface in NServiceBus version 5 
 
 snippet: 5to6-EndpointStartAndStopCore
 
 
-### Interface in Version 7 of NServiceBus.Hosting.Azure
+### Interface in NServiceBus.Hosting.Azure version 7
 
 snippet: 5to6-EndpointStartAndStopCloudHost

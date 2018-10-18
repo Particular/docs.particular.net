@@ -1,16 +1,16 @@
 ---
 title: Generating secure random strong encryption keys
-summary: Describes options in generating secure random strong encryption keys
+summary: Options for generating secure random strong encryption keys
 tags:
  - Encryption
  - Security
-reviewed: 2016-11-16
+reviewed: 2018-10-18
 related:
  - nservicebus/security
  - nservicebus/security/property-encryption
 ---
 
-There are multiple ways of generating a key. Most implementations rely on a *random* object. All examples mentioned here use a secure cryptographic randomizer.
+There are multiple ways of generating an encryption key. Most implementations rely on a *random* object. All examples mentioned here use a secure cryptographic randomizer.
 
 
 ### PowerShell
@@ -28,7 +28,7 @@ snippet: Hex-Powershell
 
 ### C&#35;
 
-The code snippets below can be run from [LINKPad](https://www.linqpad.net/) or by copy and pasting the code in a new project and referencing `System.Security`.
+The code snippets below can be run from [LINQPad](https://www.linqpad.net/) or by copying the following code into a new project and referencing `System.Security`.
 
 
 #### Base64
@@ -63,17 +63,17 @@ Generates 32 random characters (256bits):
 openssl rand 32
 ```
 
-NOTE: Be aware that the string parsed by NServiceBus do not use extended ASCII which limits the key range to 7 bits per character.
+NOTE: Be aware that strings parsed by NServiceBus do not use extended ASCII which limits the key range to 7 bits per character.
 
 
 ### CryptoKeyGenerator
 
 A key generator exists in ParticularLabs that uses the .NET framework crypto provider to generate a key.
 
-Download the [CryptoKeyGenerator](https://github.com/ParticularLabs/CryptoKeyGenerator) labs project, build it and run it and copy paste the random key in its correct format.
+Download the [CryptoKeyGenerator](https://github.com/ParticularLabs/CryptoKeyGenerator) labs project, run it, and copy the random key in its correct format.
 
 
-After running the tool it generates one key and outputs this key in multiple formats.
+The tool generates one key and outputs this key in multiple formats.
 
 Output
 

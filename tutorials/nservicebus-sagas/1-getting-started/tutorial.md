@@ -117,7 +117,7 @@ In message-driven systems, there's generally no way to guarantee message orderin
 
 What happens if we're processing multiple messages in parallel? By sheer dumb luck, it's possible that `OrderBilled` may arrive first! If it happens that `OrderBilled` arrives first, it would be discarded, assumed to belong to an already-finished saga. Then, `OrderPlaced` would arrive and start a new saga instance, but its partner message would never arrive.
 
-To ensure we are not making assumptions about which message comes first, we need to tell NServicebus that **both** messages can start a new saga instance.
+To ensure we are not making assumptions about which message comes first, we need to tell NServiceBus that **both** messages can start a new saga instance.
 
 So, let's change our `ShippingPolicy` class so that instead of implementing `IHandleMessages<T>` we implement `IAmStartedByMessages<T>` for **both** messages instead:
 

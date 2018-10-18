@@ -10,7 +10,7 @@ related:
 
 ## Introduction
 
-This sample shows how to perform a WCF request response by leveraging an NServicebus [Callback](/nservicebus/messaging/callbacks.md).
+This sample shows how to perform a WCF request response by leveraging an NServiceBus [Callback](/nservicebus/messaging/callbacks.md).
 
 include: callbacks-disclaimer
 
