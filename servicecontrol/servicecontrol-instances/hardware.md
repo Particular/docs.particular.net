@@ -54,7 +54,7 @@ The embedded RavenDB will utilize additional RAM to improve indexing performance
 
 In general, the smaller the message the quicker ServiceControl will be able to process audit records. Consider [using smaller messages](https://particular.net/blog/putting-your-events-on-a-diet). For larger message payloads consider using the [DataBus feature](/nservicebus/messaging/databus/).
 
-In addition, for audit messages, lower the `[ServiceControl/MaxBodySizeToStore](/servicecontrol/creating-config-file.md#performance-tuning-servicecontrolmaxbodysizetostore)` setting to skip storage of larger audit messages. This setting will only reduce load if the [serialization](/nservicebus/serialization/) used is non-binary.
+In addition, for audit messages, lower the [`ServiceControl/MaxBodySizeToStore`](/servicecontrol/creating-config-file.md#performance-tuning-servicecontrolmaxbodysizetostore) setting to skip storage of larger audit messages. This setting will only reduce load if the [serialization](/nservicebus/serialization/) used is non-binary.
 
 WARNING: When using ServiceInsight the message body will not be viewable for messages that exceed the `ServiceControl/MaxBodySizeToStore` limit.
 
@@ -62,7 +62,7 @@ WARNING: When using ServiceInsight the message body will not be viewable for mes
 
 Use a dedicated disk for the ServiceControl [database path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath).
 
-Additionally, it is possible to store the embedded database index files on a separate disk. Use the `[Raven/IndexStoragePath](/servicecontrol/creating-config-file.md#host-settings-ravenindexstoragepath)` setting change the index storage location.
+Additionally, it is possible to store the embedded database index files on a separate disk. Use the [`Raven/IndexStoragePath`](/servicecontrol/creating-config-file.md#host-settings-ravenindexstoragepath) setting change the index storage location.
 
 ### Azure disk limitations
 
