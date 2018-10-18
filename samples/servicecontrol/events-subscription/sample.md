@@ -22,6 +22,8 @@ This sample shows how to monitor heartbeat and failed message events in ServiceC
 
 NOTE: When using the [AzureServiceBus transport](/transports/azure-service-bus/), it is necessary to configure the [ValidateAndHashIfNeeded](/transports/azure-service-bus/sanitization.md#automated-sanitization) sanitization strategy for both endpoints in this project. This ensures that a consistent entity name-shortening strategy is used between the endpoints and ServiceControl. The same applies when using the [Azure Service Bus .NET Standard transport](/transports/azure-service-bus-netstandard/), in which case the name-shortening rules can be specified via [configuration settings](/transports/azure-service-bus-netstandard/configuration.md#entity-creation).
 
+NOTE: ServiceControl endpoint queue name configured in `EndpointsMonitor` needs to match the name of the ServiceControl instance with the underlying transport naming rules.
+
 ## Running the project
 
 The project handles two kinds of events:
