@@ -41,17 +41,7 @@ From a performance perspective, ServiceControl is similar to a database installa
 
 For this reason, it is necessary to store ServiceControl data on a disk with the lowest possible latency for I/O operations. Indexes require continuous updating and will require significant RAM to allow those indexes to be kept in memory. Processing of indexes that cannot be stored fully in RAM will result in a higher likelihood of those indexes being stale. Since messages are added to a full-text search, it is also necessary to make sure the CPU will not become a bottleneck in updating indexes.
 
-Ensure that:
-
- * enough RAM is used, 6GB minimum;
- * data is stored on disks suitable for low latency write operations (fiber, solid state drives, raid 10)
- * multiple CPU cores are available
- * infrastructure is monitored (CPU, RAM, disks, network)
- * data is not stored on the same physical system drive
- * the storage drive is reserved for ServiceControl
-
-NOTE: To ensure disk performance use a benchmark tool, for example [CrystalDiskMark](http://crystalmark.info/software/CrystalDiskMark/index-e.html). Real disk, CPU, RAM, and network performance can be monitored with the Windows Resource Monitor and/or Windows Performance counters.
-
+For more details see [Hardware Considerations](servicecontrol-instances/hardware.md).
 
 ### Accessing data and audited messages
 
