@@ -1069,7 +1069,7 @@
       Url: servicecontrol/servicecontrol-in-practice
       Articles:
       - Title: Hardware Considerations
-      - Url: servicecontrol/servicecontrol-instances/hardware
+        Url: servicecontrol/servicecontrol-instances/hardware
       - Title: Capacity Planning
         Url: servicecontrol/capacity-and-planning
       - Title: Security
