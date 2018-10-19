@@ -20,25 +20,34 @@ If ServiceControl is installed via the Platform Installer then the installation 
 
 NOTE: Each environment should contain a single [ServiceControl instance](/servicecontrol/servicecontrol-instances/) and a single [Monitoring instance](/servicecontrol/monitoring-instances/). In high-throughput scenarios it is recommended that these instances each run on a separate dedicated machine.
 
-
 ## Transport Support
 
 Monitoring instances can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
 
  * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
+ * [Azure Service Bus](/transports/azure-service-bus-netstandard)
  * [Azure Storage Queues](/transports/azure-storage-queues/)
- * [Azure Service Bus](/transports/azure-service-bus/)
- * [Azure Service Bus .NET Standard](/transports/azure-service-bus-netstandard)
  * [SQL Server](/transports/sql/)
  * [RabbitMQ](/transports/rabbitmq/)
  * [AmazonSQS](/transports/sqs/)
 
+ ### Legacy options
+
+ * [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus) - Please refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.
+ * [Azure Service Bus - Forwarding topology](/transports/azure-service-bus) - Please refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.
+ * [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology#direct-routing-topology.md)
+
+ ### Transport specific features
+
 Certain features of the transports are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter).
  
-Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
+Adding third party transports via the Management Utility is not supported at this stage. 
+
+### MSMQ Specifics
+
+If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
 Installing MSMQ is optional in the Platform Installer. See [Platform Installer - MSMQ](/platform/installer/#select-items-to-install-configure-microsoft-message-queuing).
-
 
 ## Using ServiceControl Management to upgrade Monitoring instances
 
