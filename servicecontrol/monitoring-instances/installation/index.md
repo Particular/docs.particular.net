@@ -7,14 +7,12 @@ tags:
 
 The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI. This installation can be executed standalone or via the [Platform Installer](/platform/installer/). The installation package include a utility to manage the installation, upgrade and remove of ServiceControl services, including Monitoring instances. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
 
-
 ## Prerequisites
 
 The ServiceControl Installation has the following prerequisites:
 
- * [Microsoft .NET 4.5.2 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=42643) for Version 1 and 2
- * [Microsoft .NET 4.6.1 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=49982) for Version 3 and higher
-
+* [Microsoft .NET 4.5.2 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=42643) for Version 1 and 2
+* [Microsoft .NET 4.6.1 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=49982) for Version 3 and higher
 
 If ServiceControl is installed via the Platform Installer then the installation and configuration of these prerequisites are managed by the installer.
 
@@ -24,23 +22,23 @@ NOTE: Each environment should contain a single [ServiceControl instance](/servic
 
 Monitoring instances can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
 
- * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
- * [Azure Service Bus](/transports/azure-service-bus-netstandard)
- * [Azure Storage Queues](/transports/azure-storage-queues/)
- * [SQL Server](/transports/sql/)
- * [RabbitMQ](/transports/rabbitmq/)
- * [AmazonSQS](/transports/sqs/)
+* [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
+* [Azure Service Bus](/transports/azure-service-bus-netstandard)
+* [Azure Storage Queues](/transports/azure-storage-queues/)
+* [SQL Server](/transports/sql/)
+* [RabbitMQ](/transports/rabbitmq/)
+* [AmazonSQS](/transports/sqs/)
 
  ### Legacy options
 
- * [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus) - Please refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.
- * [Azure Service Bus - Forwarding topology](/transports/azure-service-bus) - Please refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.
- * [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology#direct-routing-topology.md)
+* [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus) - Please refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.
+* [Azure Service Bus - Forwarding topology](/transports/azure-service-bus) - Please refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.
+* [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology#direct-routing-topology.md)
 
- ### Transport specific features
+### Transport specific features
 
 Certain features of the transports are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter).
- 
+
 Adding third party transports via the Management Utility is not supported at this stage. 
 
 ### MSMQ Specifics
@@ -65,17 +63,15 @@ To upgrade the service just click the upgrade link next to the Service name
 
 Clicking the upgrade link will
 
- * Prompt for any additional information that is required such as values for new mandatory settings introduced in the newer version.
- * Stop the Service.
- * Remove the old binaries.
- * Run the new binaries to create any required queues.
- * Start the Service.
-
+* Prompt for any additional information that is required such as values for new mandatory settings introduced in the newer version.
+* Stop the Service.
+* Remove the old binaries.
+* Run the new binaries to create any required queues.
+* Start the Service.
 
 ## Using ServiceControl Management to add Monitoring instances
 
 Click on the `+ NEW` link at the top of the screen and select "Monitoring instance" to launch the "New instance form". Complete the form to register a new Monitoring instance service.
-
 
 ## Service Name and Plugins
 
