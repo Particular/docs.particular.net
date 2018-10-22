@@ -31,13 +31,13 @@ Monitoring instances can be configured to use one of the supported [transports](
 
 ### Legacy options
 
-* [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus) - No migration option is currently available, please contact support@particular.net.
+* [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus) - No migration option is currently available, contact support@particular.net for further guidance.
 * [Azure Service Bus - Forwarding topology](/transports/azure-service-bus) - Please refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.
 * [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology#direct-routing-topology.md)
 
 ### Transport specific features
 
-Certain features of the transports are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Please contact support@particular.net for further guidance.
+Certain features of the transports are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact support@particular.net for further guidance.
 
 Adding third party transports via the Management Utility is not supported at this stage.
 
