@@ -37,9 +37,9 @@ Monitoring instances can be configured to use one of the supported [transports](
 
 ### Transport specific features
 
-Certain features of the transports are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter).
+Certain features of the transports are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Please contact support@particular.net for further guidance.
 
-Adding third party transports via the Management Utility is not supported at this stage. 
+Adding third party transports via the Management Utility is not supported at this stage.
 
 ### MSMQ Specifics
 

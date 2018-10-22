@@ -40,9 +40,9 @@ In ServiceControl version 1.7 and above, the transport DLLs are managed by the i
 
 ### Transport specific features
 
-Certain features of the transports are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter).
+Certain features of the transports are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Please contact support@particular.net for further guidance.
 
-Adding third party transports via the Management Utility is not supported at this stage. 
+Adding third party transports via the Management Utility is not supported at this stage.
 
 ### MSMQ Specifics
 
