@@ -29,9 +29,9 @@ Monitoring instances can be configured to use one of the supported [transports](
 * [RabbitMQ](/transports/rabbitmq/)
 * [AmazonSQS](/transports/sqs/)
 
- ### Legacy options
+### Legacy options
 
-* [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus) - Please refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.
+* [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus) - No migration option is currently available, please contact support@particular.net.
 * [Azure Service Bus - Forwarding topology](/transports/azure-service-bus) - Please refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.
 * [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology#direct-routing-topology.md)
 
