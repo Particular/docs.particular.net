@@ -11,25 +11,25 @@ redirects:
 - nservicebus/persistence/order
 ---
 
-When configuring persistence, order is important. The last-configured persistence option will be the one used by the endpoint.
+When using different persistence options for storage types, the configuration order is important. When specifying multiple persistence options for the same storage type, the last-configured option will be used. Using the generic `UsePersistence<TPersistenceOption>` (without specifying a storage type) applies the persistence to all its supported storage types.
 
 
 ### Example 1
 
-In this example, the last configuration option will override all previous options.
+In this example, RavenDB persistence will be used for all storage types as it overwrites the configuration for the Outbox and GatewayDeduplication storage types.
 
 snippet: PersistenceOrder_Incorrect
 
 
 ### Example 2
 
-In this example, all configuration options are explicit.
+To avoid overwriting, all storage types can be explicitly configured using the `UsePersistence<TPersistenceOption, TStorageType>` API.
 
 snippet: PersistenceOrder_Explicit
 
 
 ### Example 3
 
-This example sets the default persistence initially, then overrides more explicit options.
+Instead of explicitly defining all storage types, the generic persistence option can specified before the explicit overwrites. In this example, RavenDB persistence will be used for all storage types except for the Outbox and GatewayDeduplication.
 
 snippet: PersistenceOrder_Correct
