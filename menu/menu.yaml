@@ -434,6 +434,8 @@
       Title: Custom Policy
     - Url: nservicebus/recoverability/subscribing-to-error-notifications
       Title: Error notifications
+	- Url: nservicebus/recoverability/edit-message
+      Title: Editing error message
   - Url: nservicebus/pipeline
     Title: Pipeline
     Articles:
