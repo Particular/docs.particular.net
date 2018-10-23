@@ -66,7 +66,7 @@ Clicking the upgrade link will
 * Prompt for any additional information that is required to run properly on the transport of choice; such as for example values for new mandatory settings introduced in the newer version.
 * Stop the Monitoring instance Windows Service.
 * Remove the old binaries.
-* Run the new binaries to create any required queues.
+* Run the new binaries to upgrade the Monitoring instance by applying new settings and/or creating any required additional queues.
 * Start the Monitoring instance Windows Service.
 
 ## Using ServiceControl Management to add Monitoring instances
