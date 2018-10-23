@@ -67,7 +67,7 @@ Clicking the upgrade link will
 * Stop the Monitoring instance Windows Service.
 * Remove the old binaries.
 * Run the new binaries to create any required queues.
-* Start the Service.
+* Start the Monitoring instance Windows Service.
 
 ## Using ServiceControl Management to add Monitoring instances
 
