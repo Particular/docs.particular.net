@@ -23,7 +23,7 @@ NOTE: ServiceControl should be installed on a separate dedicated machine with de
 
 ## Transport support
 
-In ServiceControl version 1.7 and above, the transport DLLs are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
+In ServiceControl version 1.7 and above, the transport packages are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
 
 * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
 * [Azure Service Bus](/transports/azure-service-bus-netstandard)
