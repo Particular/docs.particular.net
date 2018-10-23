@@ -33,7 +33,7 @@ Monitoring instances can be configured to use one of the supported [transports](
 
 * [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus) - No migration option is currently available, contact support@particular.net for further guidance.
 * [Azure Service Bus - Forwarding topology](/transports/azure-service-bus) - Refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.
-* [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology#direct-routing-topology.md)
+* [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)
 
 ### Transport specific features
 
