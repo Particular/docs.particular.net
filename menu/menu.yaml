@@ -704,7 +704,7 @@
     - Url: transports/azure-service-bus-netstandard/configuration
       Title: Configuration
     - Url: transports/azure-service-bus-netstandard/compatibility
-      Title: Backward Compatibility
+      Title: Backwards Compatibility
     - Url: transports/azure-service-bus-netstandard/operational-scripting
       Title: Operational Scripting
   - Url: transports/azure-storage-queues
