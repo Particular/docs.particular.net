@@ -61,7 +61,7 @@ ServiceControl Management will display the list of installed ServiceControl and 
 
 To upgrade the service just click the upgrade link next to the Service name
 
-Clicking the upgrade link will
+ Clicking the upgrade link will:
 
 * Prompt for any new information that is required to run properly on the transport of choice.
 * Stop the Monitoring instance Windows Service.
