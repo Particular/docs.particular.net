@@ -24,8 +24,6 @@ snippet: SubscribeToErrorsNotifications
 
 include: notificationThread
 
-The notification instance is also injected into [dependency injection](/nservicebus/dependency-injection/).
-
 
 partial: reactive
 
