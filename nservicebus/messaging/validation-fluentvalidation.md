@@ -32,6 +32,18 @@ Messages can then have an associated [validator](https://github.com/JeremySkinne
 snippet: FluentValidation_message
 
 
+## Accessing the current pipeline context
+
+In some cases a validator may need to use data from the current message context.
+
+The current message context can be accessed via two extension methods:
+
+ * The current [message headers](/nservicebus/messaging/headers.md) can be accessed via `FluentValidationExtensions.Headers(this CustomContext customContext)`
+ * The current `ContextBag` can be access via `FluentValidationExtensions.ContextBag(this CustomContext customContext)`.
+
+snippet: FluentValidation_ContextValidator
+
+
 ## Validator scanning
 
 Validators are registered and resolved using [dependency injection](/nservicebus/dependency-injection/). Assemblies can be added for validator scanning using either a generic Type, a Type instance, or an assembly instance.

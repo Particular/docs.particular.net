@@ -51,6 +51,7 @@ public class Usage
 
         #endregion
     }
+
     void IgnoreValidatorConventions(EndpointConfiguration endpointConfiguration, Assembly assembly)
     {
         #region FluentValidation_IgnoreValidatorConventions
