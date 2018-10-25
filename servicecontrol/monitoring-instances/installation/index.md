@@ -63,7 +63,7 @@ To upgrade the service just click the upgrade link next to the Service name
 
 Clicking the upgrade link will
 
-* Prompt for any additional information that is required to run properly on the transport of choice; such as for example values for new mandatory settings introduced in the newer version.
+* Prompt for any new information that is required to run properly on the transport of choice.
 * Stop the Monitoring instance Windows Service.
 * Remove the old binaries.
 * Run the new binaries to upgrade the Monitoring instance by applying new settings and/or creating any required additional queues.
