@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using NServiceBus;
+using NServiceBus.FluentValidation;
 
 public class Usage
 {
@@ -47,6 +48,17 @@ public class Usage
         validationConfig.AddValidatorsFromAssemblyContaining<MyMessage>();
         validationConfig.AddValidatorsFromAssemblyContaining(typeof(SomeOtherMessage));
         validationConfig.AddValidatorsFromAssembly(assembly);
+
+        #endregion
+    }
+    void IgnoreValidatorConventions(EndpointConfiguration endpointConfiguration, Assembly assembly)
+    {
+        #region FluentValidation_IgnoreValidatorConventions
+
+        var validationConfig = endpointConfiguration.UseFluentValidation();
+        validationConfig.AddValidatorsFromAssembly(assembly,
+            throwForNonPublicValidators: false,
+            throwForNoValidatorsFound: false);
 
         #endregion
     }

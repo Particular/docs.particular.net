@@ -1,7 +1,7 @@
 ---
 title: FluentValidation message validation
 summary: Validate message using FluentValidation.
-reviewed: 2018-06-14
+reviewed: 2018-10-25
 component: FluentValidation
 related:
  - samples/fluent-validation
@@ -45,3 +45,12 @@ snippet: FluentValidation_EndpointLifecycle
 Or [instance per unit of work](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work):
 
 snippet: FluentValidation_UnitOfWorkLifecycle
+
+By default there are two exception scenarios when adding validators. So an exception will be thrown if:
+
+ * No validators are found in an assembly that is scanned.
+ * Any non public validators are found in an assembly that is scanned.
+
+These exception scenarios can be excluded using the following:
+
+snippet: FluentValidation_IgnoreValidatorConventions
