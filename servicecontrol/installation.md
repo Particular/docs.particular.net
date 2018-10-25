@@ -38,7 +38,7 @@ In ServiceControl version 1.7 and above, the transport packages are managed by t
 * [Azure Service Bus - Forwarding topology](/transports/azure-service-bus) - Refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.
 * [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)
 
-### Transport specific features
+### Transport-specific features
 
 Certain transport features are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact support@particular.net for further guidance.
 
