@@ -11,8 +11,7 @@ The ServiceControl installation file consists of an embedded MSI bootstrapper EX
 
 The ServiceControl Installation has the following prerequisites:
 
-* [Microsoft .NET 4.5.2 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=42643) for Version 1 and 2
-* [Microsoft .NET 4.6.1 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=49982) for Version 3 and higher
+* [Microsoft .NET 4.6.1 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=49982)
 
 If ServiceControl is installed via the Platform Installer, then the installer will manage installation and configuration of the prerequisites.
 
@@ -30,6 +29,8 @@ Monitoring instances can be configured to use one of the supported [transports](
 * [Amazon Simple Queue Service (SQS)](/transports/sqs/)
 
 ### Legacy options
+
+The following options are considered legacy and migration to a non-legacy option should be considered before used.
 
 * [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus) - No migration option is currently available, contact support@particular.net for further guidance.
 * [Azure Service Bus - Forwarding topology](/transports/azure-service-bus) - Refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.

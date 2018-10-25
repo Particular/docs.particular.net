@@ -33,6 +33,8 @@ In ServiceControl version 1.7 and above, the transport packages are managed by t
 
 ### Legacy options
 
+The following options are considered legacy and migration to a non-legacy option should be considered before used.
+
 * [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus) - No migration option is currently available, contact support@particular.net for further guidance.
 * [Azure Service Bus - Forwarding topology](/transports/azure-service-bus) - Refer to the [Azure Service Bus backwards compatibility documentation](/transports/azure-service-bus-netstandard/compatibility.md) for migration instructions.
 * [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)
