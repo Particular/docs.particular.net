@@ -3,7 +3,7 @@ The SQL Persister consists of several [NuGet packages](https://www.nuget.org/pac
 
 ### [NServiceBus.Persistence.Sql.MsBuild](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild/)
 
-This packages adds to the [MSBuild](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild) pipeline and generates the required SQL installation scripts at compile time. It does this by interrogating types (in the target assembly) and attributes (from the `NServiceBus.Persistence.Sql` NuGet package) to infer what scripts to create. It is required for any project where those SQL installation scripts are required. For saga scripts this is any project that contains saga classes. For timeouts, subscriptions and outbox scripts, it is the endpoint hosting project. This package has a dependency on the `NServiceBus.Persistence.Sql` NuGet package.
+This packages adds to the [MSBuild](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild) pipeline and generates the required SQL installation scripts at compile time. It does this by interrogating types (in the target assembly) and attributes (from the `NServiceBus.Persistence.Sql` NuGet package) to infer what scripts to create. It is required for any project where those SQL installation scripts are required. For saga scripts, this is any project that contains saga classes. For timeouts, subscriptions, and outbox scripts, it is the endpoint hosting project. This package has a dependency on the `NServiceBus.Persistence.Sql` NuGet package.
 
 
 ### [NServiceBus.Persistence.Sql](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/)
@@ -11,8 +11,8 @@ This packages adds to the [MSBuild](https://docs.microsoft.com/en-us/visualstudi
 This package contains several parts:
 
  * APIs for manipulating `EndpointConfiguration`.
- * Runtime implementations of saga, timeouts, subscriptions and outbox persisters.
- * Attributes used to define compile time configuration settings. These attributes are interrogated by the `NServiceBus.Persistence.Sql.MsBuild` NuGet Package when generating SQL installation scripts.
+ * Runtime implementations of saga, timeouts, subscriptions, and outbox persisters.
+ * Attributes used to define compile-time configuration settings. These attributes are interrogated by the `NServiceBus.Persistence.Sql.MsBuild` NuGet Package when generating SQL installation scripts.
  * Optionally runs SQL installation scripts at endpoint startup for development purposes. See [Installer Workflow](installer-workflow.md).
 
 

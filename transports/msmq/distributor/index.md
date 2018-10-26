@@ -62,9 +62,9 @@ Increasing the concurrency on the workers might not lead to increased performanc
 If the distributor process goes down, the worker nodes do not receive any messages, even though they remain running. That is why it is important to [ensure that the distributor is running in a high availability configuration](deploying-to-a-cluster.md).
 
 
-## Risk on resource IO congestion
+## Risk on resource I/O congestion
 
-The distributor process is constrained by hardware parameters such as disk and network IO bandwidth. If a single endpoint does not fully utilize either of these resources, then it is possible to host multiple distributor processes on a single server.
+The distributor process is constrained by hardware parameters such as disk and network I/O bandwidth. If a single endpoint does not fully utilize either of these resources, then it is possible to host multiple distributor processes on a single server.
 
 Monitor servers using standard infrastructure monitoring tools to verify if hardware isn't becoming a bottleneck.
 

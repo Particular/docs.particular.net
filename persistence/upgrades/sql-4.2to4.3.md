@@ -8,15 +8,15 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-In SQL Persistence 4.3, the [NServiceBus.Persistence.Sql.MsBuild](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) NuGet package is deprecated, and the generation of SQL installation scripts is merged into the [NServiceBus.Persistence.Sql](https://www.nuget.org/packages/NServiceBus.Persistence.Sql) package.
+In SQL Persistence version 4.3, the [NServiceBus.Persistence.Sql.MsBuild](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) NuGet package is deprecated, and the generation of SQL installation scripts is merged into the [NServiceBus.Persistence.Sql](https://www.nuget.org/packages/NServiceBus.Persistence.Sql) package.
 
 Version 4.3.0 of NServiceBus.Persistence.Sql.MsBuild will be the last release of this package. When included in a project, it will produce this warning at compile time:
 
 > The NServiceBus.Persistence.Sql.MsBuild package is deprecated and should be removed from the project. The functionality was merged into the NServiceBus.Persistence.Sql package.
 
-In all projects where the NServiceBus.Persistence.Sql.MsBuild package was in use, it can be removed when upgrading to SQL Persistence 4.3, and scripts will continue to be generated.
+In all projects where the NServiceBus.Persistence.Sql.MsBuild package is in use, it can be removed when upgrading to SQL Persistence 4.3, and scripts will continue to be generated.
 
-For projects where NServiceBus.Persistence.Sql was used without NServiceBus.Persistence.Sql.MsBuild, and where generation of scripts is not desired, script generation can be disabled by including the following in the project file:
+For projects where NServiceBus.Persistence.Sql is used without NServiceBus.Persistence.Sql.MsBuild, and where generation of scripts is not desired, script generation can be disabled by including the following in the project file:
 
 snippet: DisableScriptGeneration
 

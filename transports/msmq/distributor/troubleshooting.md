@@ -47,7 +47,7 @@ Avoid running all distributor nodes on a single machine, evaluate other [distrib
 
 If a distributor node cannot forward messages fast enough to the workers even though the workers are not fully utilizing available resources, then possible causes are that either the network bandwidth isn't sufficient or the disk used by MSMQ is too slow. 
 
-Another alternative is using [sender side distribution](/transports/msmq/sender-side-distribution.md), which is recommended for scenarios where IO is the bottleneck.
+Another alternative is using [sender side distribution](/transports/msmq/sender-side-distribution.md), which is recommended for scenarios where I/O is the bottleneck.
 
 
 ### SendLocal sends messages via the distributor

@@ -44,7 +44,7 @@ A typical workflow on developers machine consists of the following steps:
  1. In the project, add references to the [necessary NuGet package(s)](/persistence/sql/#nuget-packages).
  2. Build the project.
  3. During build, SQL installation scripts are automatically created in the location appropriate for the Visual Studio project type, e.g. `bin\Debug\NServiceBus.Persistence.Sql` or `bin\Debug\{target}\NServiceBus.Persistence.Sql`.
- 4. Start solution in Visual Studio.
+ 4. Start the solution in Visual Studio.
  5. The NServiceBus endpoint starts and executes its configuration code, including checking for the toggle enabling installer execution.
  6. If enabled, SQL installation scripts are executed and the required tables are created.
 
