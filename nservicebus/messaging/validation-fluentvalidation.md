@@ -39,7 +39,7 @@ In some cases a validator may need to use data from the current message context.
 The current message context can be accessed via two extension methods:
 
  * The current [message headers](/nservicebus/messaging/headers.md) can be accessed via `FluentValidationExtensions.Headers(this CustomContext customContext)`
- * The current `ContextBag` can be access via `FluentValidationExtensions.ContextBag(this CustomContext customContext)`.
+ * The current `ContextBag` can be accessed via `FluentValidationExtensions.ContextBag(this CustomContext customContext)`.
 
 snippet: FluentValidation_ContextValidator
 
@@ -58,10 +58,10 @@ Or [instance per unit of work](/nservicebus/dependency-injection/#dependency-lif
 
 snippet: FluentValidation_UnitOfWorkLifecycle
 
-By default there are two exception scenarios when adding validators. So an exception will be thrown if:
+By default, there are two exception scenarios when adding validators. So an exception will be thrown if:
 
  * No validators are found in an assembly that is scanned.
- * Any non public validators are found in an assembly that is scanned.
+ * Any non-public validators are found in an assembly that is scanned.
 
 These exception scenarios can be excluded using the following:
 
