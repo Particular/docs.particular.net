@@ -1,5 +1,5 @@
 {{WARNING:
-This serializer does not support [messages defined as interfaces](/nservicebus/messaging/messages-as-interfaces.md. If an explicit interface is sent, an exception will be thrown with the following message:
+This serializer does not support [messages defined as interfaces](/nservicebus/messaging/messages-as-interfaces.md). If an explicit interface is sent, an exception will be thrown with the following message:
 
 ```
 Interface based message are not supported.
