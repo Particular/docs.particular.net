@@ -1,7 +1,7 @@
 ---
 title: Unit of work using the pipeline
 summary: Shows how to use IoC and the pipeline to create a unit of work implementation.
-reviewed: 2016-11-23
+reviewed: 2018-10-26
 component: Core
 tags:
  - Pipeline
@@ -13,9 +13,9 @@ related:
 
 ## Introduction
 
-This sample leverages the pipeline provide unit of work management for message handlers. Using the pipeline instead of the [`IManageUnitsOfWork`](/nservicebus/pipeline/unit-of-work.md#implementing-custom-unit-of-work-imanageunitsofwork) abstraction is necessary when access to the incoming message and/or headers is required.
+This sample leverages the pipeline provided unit of work management for message handlers. Using the pipeline instead of the [`IManageUnitsOfWork`](/nservicebus/pipeline/unit-of-work.md#implementing-custom-unit-of-work-imanageunitsofwork) abstraction is necessary when access to the incoming message and/or headers is required.
 
-This sample simulates a multi-tenant solution where the session provide to handlers is connects to individual tenant databases based on the value of a `tenant` header on the incoming message.
+This sample simulates a multi-tenant solution where the session provided to handlers is connected to individual tenant databases based on the value of a `tenant` header on the incoming message.
 
 
 ## Code Walk Through
@@ -32,7 +32,7 @@ The behavior will wrap handler invocations and:
 
 snippet: unit-of-work-behavior
 
-Note the injected session factory is responsible for creating the session and that the session is registered the pipeline context using `context.Extensions.Set<IMySession>(session);`. This will be used later to provide the session to the handlers.
+Note that the injected session factory is responsible for creating the session and that the session is registered in the pipeline context using `context.Extensions.Set<IMySession>(session);`. This will be used later to provide the session to the handlers.
 
 
 ### Registering the behavior
