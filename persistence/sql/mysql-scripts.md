@@ -14,7 +14,7 @@ Scripts and SQL used when interacting with a [MySql](https://www.mysql.com/) dat
 
 ## Build Time
 
-Scripts created at build time and executed as part of a deployment or decommissioning of an endpoint.
+Scripts are created at build time and are executed as part of a deployment or decommissioning of an endpoint.
  
 
 ### Outbox
