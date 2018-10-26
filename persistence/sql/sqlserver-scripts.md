@@ -1,7 +1,7 @@
 ---
 title: MS SQL Server Scripts
 component: SqlPersistence
-reviewed: 2016-11-29
+reviewed: 2018-10-26
 related:
  - nservicebus/operations
 redirects:
@@ -14,7 +14,7 @@ Scripts and SQL used when interacting with a [SQL Server](https://www.microsoft.
 
 ## Build Time
 
-Scripts created at build time and executed as part of a deployment or decommissioning of an endpoint.
+Scripts are created at build time and are executed as part of a deployment or decommissioning of an endpoint.
 
 
 ### Outbox
