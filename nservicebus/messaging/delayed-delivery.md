@@ -2,7 +2,7 @@
 title: Delayed Delivery
 summary: Delay delivery of messages until a later time.
 component: core
-reviewed: 2016-12-05
+reviewed: 2018-10-29
 tags:
  - Defer
 related:
@@ -19,8 +19,6 @@ partial: handlecurrentmessagelater
 ## Delaying message dispatching
 
 partial: intro
-
-Note: Similar to `SendLocal`, `Defer` will also change the message's reply-to address to the endpoint deferring the message. Calling `Reply` on a deferred message will send the reply to itself.
 
 
 ## Using a TimeSpan
@@ -50,9 +48,9 @@ partial: caveatsnote
 
 NOTE: When relying on Timeout Manager, the sending endpoint must be running when the timeout is reached in order for the message to be sent. If the endpoint is not running when the timeout is reached then the message will be sent when the endpoint is next started.
 
-NOTE: If specifying a negative timeout or a time that is in the past then the message will still be slightly delayed. The message will not be sent until the Timeout Manager has processed the request.
+NOTE: If specifying a time that is in the past then the message will still be slightly delayed. The message will not be sent until the Timeout Manager has processed the request.
 
 
 ## How it works
 
-NServiceBus provides delayed deliver feature for transports that don't have native support for delayed message delivery, i.e. for MSMQ and SQL Server transports. Transports that support delayed message delivery natively don't require persistence. To learn more about NServiceBus delayed message store refer to the [Timeout Manager](/nservicebus/messaging/timeout-manager.md) article.
+NServiceBus provides delayed delivery feature for transports that don't have native support for delayed message delivery, i.e. for MSMQ and SQL Server transports. Transports that support delayed message delivery natively don't require persistence to store timeouts. To learn more about NServiceBus delayed message store refer to the [Timeout Manager](/nservicebus/messaging/timeout-manager.md) article.
