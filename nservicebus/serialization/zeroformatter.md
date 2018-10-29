@@ -1,7 +1,7 @@
 ---
 title: ZeroFormatter Serializer
 component: ZeroFormatter
-reviewed: 2016-11-18
+reviewed: 2018-10-29
 related:
  - samples/serializers/zeroformatter
 ---
