@@ -1,10 +1,9 @@
 ﻿using NServiceBus;
-using NServiceBus.Serilog.Tracing;
 using Serilog;
 
-class Usage
+class TracingUsage
 {
-    Usage()
+    TracingUsage()
     {
         #region SerilogTracingLogger
 
@@ -17,10 +16,10 @@ class Usage
 
         #region SerilogTracingPassLoggerToFeature
 
-        var busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("EndpointName");
-        busConfiguration.EnableFeature<TracingLog>();
-        busConfiguration.SerilogTracingTarget(tracingLog);
+        var endpointConfiguration = new EndpointConfiguration("EndpointName");
+        var serilogTracing = endpointConfiguration.EnableSerilogTracing(tracingLog);
+        serilogTracing.EnableSagaTracing();
+        serilogTracing.EnableMessageTracing();
 
         #endregion
     }

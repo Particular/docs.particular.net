@@ -24,6 +24,7 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Logging.SerilogTracing");
         var serilogTracing = endpointConfiguration.EnableSerilogTracing(tracingLog);
         serilogTracing.EnableSagaTracing();
+        serilogTracing.EnableMessageTracing();
 
         #endregion
 

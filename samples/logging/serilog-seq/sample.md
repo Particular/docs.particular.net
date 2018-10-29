@@ -1,13 +1,13 @@
 ---
 title: Serilog Seq Logging
 summary: Customizing Serilog usage to log to Seq.
-reviewed: 2017-10-07
-component: SerilogTracing
+reviewed: 2018-10-29
+component: Serilog
 tags:
  - Logging
 related:
  - nservicebus/logging
- - nservicebus/logging/serilog-tracing
+ - nservicebus/logging/serilog
 ---
 
 ## Introduction
