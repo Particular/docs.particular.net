@@ -2,7 +2,7 @@
 title: Configuration order for persistence
 summary: When configuring persistence, order is important
 component: Core
-reviewed: 2018-04-06
+reviewed: 2018-10-26
 versions: '[5.0,)'
 tags:
 - Persistence
