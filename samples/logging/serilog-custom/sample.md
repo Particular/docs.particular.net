@@ -1,13 +1,13 @@
 ---
 title: Custom Serilog configuration
 summary: Customizing Serilog usage by configuring Serilog targets and rules.
-reviewed: 2018-09-14
+reviewed: 2018-10-29
 component: Serilog
 tags:
  - Logging
 related:
  - nservicebus/logging
- - nservicebus/logging/serilog-tracing
+ - nservicebus/logging/serilog
 ---
 
 

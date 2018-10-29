@@ -767,17 +767,6 @@
   NugetOrder:
     - NServiceBus.Serilog
 
-- Key: SerilogTracing
-  Name: Serilog Tracing
-  DocoUrl: nservicebus/logging/serilog-tracing
-  GitHubOwner: NServiceBusExtensions
-  Category: Logger
-  SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Serilog/blob/master/license.txt
-  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Serilog
-  NugetOrder:
-    - NServiceBus.Serilog.Tracing
-
 - Key: ServiceBootstrap
   Name: Windows Service Bootstrap
   DocoUrl: nservicebus/hosting/windows-service

@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Serilog;
-using NServiceBus.Serilog.Tracing;
 using Serilog;
 
 static class Program
@@ -23,8 +22,9 @@ static class Program
         #region UseConfig
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Logging.SerilogTracing");
-        endpointConfiguration.EnableFeature<TracingLog>();
-        endpointConfiguration.SerilogTracingTarget(tracingLog);
+        var serilogTracing = endpointConfiguration.EnableSerilogTracing(tracingLog);
+        serilogTracing.EnableSagaTracing();
+        serilogTracing.EnableMessageTracing();
 
         #endregion
 
