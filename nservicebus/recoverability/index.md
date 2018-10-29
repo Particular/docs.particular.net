@@ -7,7 +7,7 @@ tags:
  - Error Handling
  - Retry
  - Recoverability
-reviewed: 2016-12-02
+reviewed: 2018-10-29
 redirects:
  - nservicebus/how-do-i-handle-exceptions
  - nservicebus/errors
@@ -19,7 +19,7 @@ related:
 
 Sometimes processing of a message fails. This could be due to a transient problem like a deadlock in the database, in which case retrying the message a few times should solve the issue. If the problem is more protracted, like a third party web service going down or a database being unavailable, solving the issue would take longer. It is therefore useful to wait longer before retrying the message again.
 
-Recoverability is the built-in error handling capability. Recoverability enables to recover automatically or in exceptional scenarios manually from message failures. Recoverability wraps the message handling logic, including the user code with various layers of retrying logic. NServiceBus differentiates two types of retrying behaviors:
+Recoverability is the built-in error handling capability. Recoverability enables to recover automatically, or in exceptional scenarios manually, from message failures. Recoverability wraps the message handling logic, including the user code with various layers of retrying logic. NServiceBus differentiates two types of retrying behaviors:
 
  * Immediate Retries (previously known as First-Level-Retries)
  * Delayed Retries (previously known as Second-Level-Retries)
@@ -44,7 +44,7 @@ Note: Depending on the concurrency and transactionality settings of the endpoint
 
 ### Transport transaction requirements
 
-The Immediate Retry mechanism is implemented by making the message available for consumption again at the top of the queue, so that the endpoint can process it again without any delay. Immediate Retries cannot be used when [transport transaction](/transports/transactions.md) are disabled.
+The Immediate Retry mechanism is implemented by making the message available for consumption again at the top of the queue, so that the endpoint can process it again without any delay. Immediate Retries cannot be used when [transport transactions](/transports/transactions.md) are disabled.
 
 
 ## Delayed Retries
@@ -67,7 +67,7 @@ The Delayed Retries mechanism is implemented by rolling back the [transport tran
 
 ## Fault handling
 
-When messages failed during the immediate retries and delayed retries mechanism they will be moved to the error queue. Fault handling requires a [configured error queue](/nservicebus/recoverability/configure-error-handling.md).
+When messages continuously failed during the immediate and delayed retries mechanisms they will be moved to the [error queue](/nservicebus/recoverability/configure-error-handling.md).
 
 
 ### Transport transaction requirements
