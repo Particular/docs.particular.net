@@ -4,6 +4,7 @@ summary: Validate message using DataAnnotations.
 reviewed: 2018-06-14
 component: DataAnnotations
 related:
+ - samples/data-annotations-validation
 ---
 
 Uses [System.ComponentModel.DataAnnotations](https://msdn.microsoft.com/en-us/library/cc490428) to validate incoming and outgoing messages.
