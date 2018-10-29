@@ -8,6 +8,7 @@ tags:
 related:
  - nservicebus/logging
  - samples/logging/serilog-custom
+ - samples/logging/serilog-seq
 ---
 
 Support for writing all NServiceBus log entries to [Serilog](https://serilog.net/).
