@@ -51,7 +51,7 @@ snippet: ServiceControlPublisherConfig
 
 snippet: ServiceControlEventsXmlConfig
 
- * Transports that natively support publish and subscribe, see [multicast-enabled transports](/transports/#types-of-transports-multicast-enabled-transports), do not require to map the contracts.
+ * Transports that natively support publish and subscribe, see [multicast-enabled transports](/transports/#types-of-transports-multicast-enabled-transports), do not require any additional configuration.
  * Customize the endpoint configuration to use `JsonSerializer` as the message published by ServiceControl uses JSON serialization.
  * Customize the endpoint configuration so that the following conventions are used, as the `MessageFailed` event that is published by ServiceControl does not derive from `IEvent`.
 
