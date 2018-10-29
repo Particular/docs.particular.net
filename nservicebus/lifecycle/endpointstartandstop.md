@@ -1,7 +1,7 @@
 ---
 title: When Endpoint Instance Starts and Stops
-summary: An interface that allows hooking into into the startup and shutdown sequence of an endpoint instance.
-reviewed: 2016-12-02
+summary: How to hook into into the startup and shutdown sequence of an endpoint instance.
+reviewed: 2018-10-29
 component: core
 tags:
  - lifecycle
@@ -10,9 +10,5 @@ related:
 redirects:
  - nservicebus/lifecycle/iwanttorunwhenbusstartsandstops
 ---
-
-
-Classes that plug into the startup/shutdown sequence are invoked just after the endpoint instance has been started and just before it is stopped. Use this approach for any tasks that need to execute with the same lifecycle as the endpoint instance.
-
 
 partial: content
