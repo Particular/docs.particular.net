@@ -1,4 +1,4 @@
-﻿namespace Core5.Monitoring
+﻿namespace Core6.Monitoring
 {
     using System;
     using System.Threading.Tasks;
