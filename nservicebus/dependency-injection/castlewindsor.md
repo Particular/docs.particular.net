@@ -2,7 +2,7 @@
 title: Castle Windsor
 summary: Details on how to Configure NServiceBus to use Castle Windsor for dependency injection. Includes usage examples as well as lifecycle mappings.
 component: Castle
-reviewed: 2016-11-28
+reviewed: 2018-10-29
 tags:
  - Dependency Injection
 related:
