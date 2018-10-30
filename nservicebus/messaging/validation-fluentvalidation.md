@@ -58,6 +58,8 @@ Or [instance per unit of work](/nservicebus/dependency-injection/#dependency-lif
 
 snippet: FluentValidation_UnitOfWorkLifecycle
 
+The default lifecycle is per endpoint.
+
 By default, there are two exception scenarios when adding validators. So an exception will be thrown if:
 
  * No validators are found in an assembly that is scanned.
