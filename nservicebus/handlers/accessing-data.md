@@ -48,7 +48,7 @@ Instead of managing connections and transactions themselves, users can delegate 
 
 The downside to this approach is that in order to share the same data access context across business data transactions and NServiceBus internal database actions, the database technology used must be one of the NServiceBus supported persistence options. NServiceBus supports SQL Server, MySQL, PostgreSQL, Oracle, and RavenDB.
 
-NOTE: There is support for accessing business data via NServiceBus Azure Storage persistence because Azure data stores support only single-entity operations.
+NOTE: There is no support for accessing business data via NServiceBus Azure Storage persistence because Azure data stores support only single-entity operations.
 
 partial: api
 
