@@ -11,6 +11,8 @@ redirects:
  - nservicebus/azure-service-bus/native-integration
 ---
 
+include: legacy-asb-warning
+
 This document provides guidance on how to integrate NServiceBus endpoints with non-NServiceBus endpoints by sharing an Azure Service Bus (ASB) namespace as mutual communication channel.
 
 

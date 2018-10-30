@@ -9,6 +9,8 @@ redirects:
  - nservicebus/azure-service-bus/error-handling
 ---
 
+include: legacy-asb-warning
+
 Next to [Recoverability](/nservicebus/recoverability/), the Azure Service Bus also provides error handling capabilities of its own. This document describes the native error handling capabilities and compensating actions should there be a need.
 
 

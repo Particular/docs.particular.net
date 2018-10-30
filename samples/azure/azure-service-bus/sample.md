@@ -6,6 +6,8 @@ related:
 - transports/azure-service-bus
 ---
 
+include: legacy-asb-warning
+
 
 ## Prerequisites
 

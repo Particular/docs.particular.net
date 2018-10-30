@@ -31,7 +31,6 @@ NServiceBus is supported for applications targeting .NET Core on a variety of op
 Some packages do not currently support .NET Core or running on non-Windows platforms:
 
 * Transports
-  * NServiceBus.Azure.Transports.WindowsAzureServiceBus - The new transport is currently under development and available as a preview release.
   * NServiceBus.Transport.Msmq - MSMQ only runs on Windows.
 * Persistence
   * NServiceBus.Persistence.ServiceFabric - .NET Core support is slated for a future minor release.

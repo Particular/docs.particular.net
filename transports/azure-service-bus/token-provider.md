@@ -12,6 +12,8 @@ redirects:
  - nservicebus/azure-service-bus/token-provider
 ---
 
+include: legacy-asb-warning
+
 By default the Azure Service Bus transport authenticates to the service using the information embedded in the connection string. But it's also possible to let it authenticate using any of the authentication mechanisms supported by [Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-authentication-and-authorization).
 
 This is useful when, for example, delegating authentication and authorization to a Federated Identity infrastructure such as Active Directory Access Control Service or [Active Directory Federation Services](https://technet.microsoft.com/en-us/windows).

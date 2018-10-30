@@ -11,6 +11,8 @@ redirects:
  - samples/azure/polyorphic-events-asb
 ---
 
+include: legacy-asb-warning
+
 Note: For true polymorphic events support, use the `ForwardingTopology`. This sample should be used only if `EndpointOrientedTopology` is required.
 
 

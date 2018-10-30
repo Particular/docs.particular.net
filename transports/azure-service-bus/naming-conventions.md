@@ -10,6 +10,8 @@ redirects:
  - nservicebus/azure-service-bus/naming-conventions
 ---
 
+include: legacy-asb-warning
+
 
 ## Versions 6 and below
 

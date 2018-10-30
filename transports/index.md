@@ -33,8 +33,8 @@ Broker transports are inherently centralized. Even if there are multiple servers
 
 Broker transports include:
 
- * [Azure Service Bus](/transports/azure-service-bus/)
- * [Azure Service Bus .NET Standard](/transports/azure-service-bus-netstandard/)
+ * [Azure Service Bus](/transports/azure-service-bus-netstandard/)
+ * [Azure Service Bus (Legacy)](/transports/azure-service-bus/)
  * [Azure Storage Queues](/transports/azure-storage-queues/)
  * [SQL Server](/transports/sql/)
  * [RabbitMQ](/transports/rabbitmq/)

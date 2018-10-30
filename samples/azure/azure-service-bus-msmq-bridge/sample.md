@@ -7,6 +7,8 @@ related:
 - nservicebus/bridge
 ---
 
+include: legacy-asb-warning
+
 
 Endpoints running on different transports cannot exchange messages and require additional integration work.
 

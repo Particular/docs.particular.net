@@ -11,6 +11,8 @@ redirects:
  - nservicebus/azure-service-bus/retries
 ---
 
+include: legacy-asb-warning
+
 This article describes the relationship between [recoverability behavior](/nservicebus/recoverability/) and the Azure Service Bus native retry behavior.
 
 Azure Service Bus supports a `MaxDeliveryCount` at the entity level, which defines how many times Azure Service Bus attempts to deliver a message before sending it to the dead letter queue. Refer to [the full configuration API](/transports/azure-service-bus/configuration/full.md#controlling-entities-queues) article to learn how to adjust this setting.

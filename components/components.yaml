@@ -84,7 +84,7 @@
     - NServiceBus.AmazonSQS
 
 - Key: ASB
-  Name: Azure Service Bus Transport
+  Name: Azure Service Bus Transport (Legacy)
   DocoUrl: transports/azure-service-bus
   GitHubOwner: Particular/azure-maintainers
   Category: Transport
@@ -93,7 +93,7 @@
     - NServiceBus.Azure.Transports.WindowsAzureServiceBus
 
 - Key: ASBS
-  Name: Azure Service Bus Transport for .NET Standard
+  Name: Azure Service Bus Transport
   DocoUrl: transports/azure-service-bus-netstandard
   GitHubOwner: Particular/azure-maintainers
   Category: Transport

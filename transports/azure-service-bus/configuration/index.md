@@ -9,6 +9,8 @@ redirects:
  - nservicebus/azure-service-bus/configuration
 ---
 
+include: legacy-asb-warning
+
 ## Getting Started
 
 In order to setup a basic endpoint using the Azure Service Bus transport the following configuration settings need to be provided.

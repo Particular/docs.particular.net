@@ -10,6 +10,8 @@ redirects:
  - nservicebus/azure-service-bus/transaction-support
 ---
 
+include: legacy-asb-warning
+
 
 The following [`TransportTransactionMode` levels](/transports/transactions.md) are supported
 

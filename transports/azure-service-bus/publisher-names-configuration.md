@@ -11,6 +11,8 @@ redirects:
  - nservicebus/azure-service-bus/publisher-names-configuration
 ---
 
+include: legacy-asb-warning
+
 When the [`EndpointOrientedTopology`](/transports/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology) is selected, a mapping between publisher names and event types has to be properly configured, in order to ensure that subscriber can receive event messages. 
 
 The mapping can be configured for a specific event type:
