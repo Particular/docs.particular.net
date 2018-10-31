@@ -6,6 +6,7 @@ component: Core
 tags:
 - Hosting
 related:
+- nservicebus/hosting/docker-host
 - nservicebus/hosting
 ---
 
