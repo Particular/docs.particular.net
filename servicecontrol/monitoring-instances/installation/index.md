@@ -28,7 +28,7 @@ Monitoring instances can be configured to use one of the supported [transports](
 * [Azure Storage Queues](/transports/azure-storage-queues/)
 * [SQL Server](/transports/sql/)
 * [Amazon Simple Queue Service (SQS)](/transports/sqs/)
-* [RabbitMQ](/transports/rabbitmq/)
+* [RabbitMQ - Conventional routing topology](/transports/rabbitmq/routing-topology.md#conventional-routing-topology)
 * [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)>
 
 ### Transport-specific features
