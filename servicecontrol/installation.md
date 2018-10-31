@@ -20,6 +20,7 @@ If ServiceControl is installed via the Platform Installer, then the installer wi
 
 NOTE: ServiceControl should be installed on a separate dedicated machine with dedicated storage in a production environment to isolate the audit and error queue message ingestion. These operations have a big impact on other processes. ServiceControl must be given sufficient CPU, RAM (6GB minimum) and storage suitable for low latency write operations, similar to how a database server would be provisioned. See [ServiceControl Capacity Planning](capacity-and-planning.md) for more guidance.
 
+
 ## Transport support
 
 In ServiceControl version 1.7 and above, the transport packages are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
@@ -34,17 +35,20 @@ In ServiceControl version 1.7 and above, the transport packages are managed by t
 * [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)
 * [SQL Server](/transports/sql/)
 
+
 ### Transport-specific features
 
 Certain transport features are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact support@particular.net for further guidance.
 
 Adding third-party transports via the Management Utility is not supported.
 
+
 ### MSMQ Specifics
 
 If MSMQ is the selected transport, then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
 Installing MSMQ is optional in the Platform Installer. See [Platform Installer - MSMQ](/platform/installer/#select-items-to-install-configure-microsoft-message-queuing).
+
 
 ## Performance counter
 
@@ -99,9 +103,11 @@ To perform a clean uninstallation of ServiceControl from a machine:
 1. Remove each ServiceControl instance using ServiceControl Management (or Powershell)
 2. Uninstall ServiceControl Management using Add or Remove programs
 
+
 ### Remove ServiceControl instances
 
 To remove a ServiceControl instance, click the Advanced Options button and then select Remove. If applicable, select the option to remove the database and logs directories and then confirm. This will stop the running instance (if it is running) and remove all files related to the instance from the local file system.
+
 
 #### Remaining artifacts
 
@@ -119,9 +125,9 @@ If the option to delete the database/log folders was not selected when removing 
 
 NOTE: If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.
 
+
 ### Uninstall ServiceControl Management
 
 To uninstall ServiceControl Management, use the Apps & features settings in Windows. 
 
 NOTE: Uninstalling ServiceControl Management will not remove any existing instances. Remove all ServiceControl instances using ServiceControl Management before uninstalling it.
-

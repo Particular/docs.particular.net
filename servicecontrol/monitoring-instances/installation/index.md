@@ -7,6 +7,7 @@ tags:
 
 The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI. This installation can be executed standalone or via the [Platform Installer](/platform/installer/). The installation package include a utility to manage the installation, upgrade and remove of ServiceControl services, including Monitoring instances. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
 
+
 ## Prerequisites
 
 The ServiceControl Installation has the following prerequisites:
@@ -16,6 +17,7 @@ The ServiceControl Installation has the following prerequisites:
 If ServiceControl is installed via the Platform Installer, then the installer will manage installation and configuration of the prerequisites.
 
 NOTE: Each environment should contain a single [ServiceControl instance](/servicecontrol/servicecontrol-instances/) and a single [Monitoring instance](/servicecontrol/monitoring-instances/). In high-throughput scenarios it is recommended that these instances each run on a separate dedicated machine.
+
 
 ## Transport Support
 
@@ -43,6 +45,7 @@ If MSMQ is the selected transport then ensure the service has been installed and
 
 Installing MSMQ is optional in the Platform Installer. See [Platform Installer - MSMQ](/platform/installer/#select-items-to-install-configure-microsoft-message-queuing).
 
+
 ## Using ServiceControl Management to upgrade Monitoring instances
 
 ServiceControl Management provides a simple means of setting up one or more Monitoring instances.
@@ -65,9 +68,11 @@ To upgrade the service just click the upgrade link next to the Service name
 * Run the new binaries to upgrade the Monitoring instance by applying new settings and/or creating any required additional queues.
 * Start the Monitoring instance Windows Service.
 
+
 ## Using ServiceControl Management to add Monitoring instances
 
 Click on the `+ NEW` link at the top of the screen and select "Monitoring instance" to launch the "New instance form". Complete the form to register a new Monitoring instance service.
+
 
 ## Service Name and Plugins
 
