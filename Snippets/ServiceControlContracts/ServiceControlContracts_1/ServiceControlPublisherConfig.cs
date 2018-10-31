@@ -1,4 +1,4 @@
-namespace Core6.Monitoring
+namespace Contracts
 {
     using NServiceBus;
 
