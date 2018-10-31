@@ -27,7 +27,7 @@ In ServiceControl version 1.7 and above, the transport packages are managed by t
 
 * [Azure Service Bus](/transports/azure-service-bus-netstandard)
 * [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus/topologies.md#versions-7-and-above-endpoint-oriented-topology)
-* [Azure Service Bus - Forwarding topology](https://docs.particular.net/transports/azure-service-bus/topologies.md#versions-7-and-above-forwarding-topology)
+* [Azure Service Bus - Forwarding topology](/transports/azure-service-bus/topologies.md#versions-7-and-above-forwarding-topology)
 * [Azure Storage Queues](/transports/azure-storage-queues/)
 * [Amazon Simple Queue Service (SQS)](/transports/sqs/)
 * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
@@ -73,11 +73,11 @@ ServiceControl Management will display the instances of the ServiceControl servi
 
 ![](managementutil-upgradelink.png 'width=500')
 
-To upgrade the service, click the upgrade link next to the service name
+To upgrade the service, click the upgrade link next to the service name.
 
-Clicking the upgrade link will
+Clicking the upgrade link will:
 
- * Prompt for additional information that is required such as values for new mandatory settings introduced in the newer version.
+ * Prompt for additional information that is required, such as values for new mandatory settings introduced in the newer version.
  * Stop the service.
  * Remove the old binaries for ServiceControl and the configured transport.
  * Run the new binaries to create required queues.
