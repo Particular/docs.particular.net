@@ -29,7 +29,7 @@ Monitoring instances can be configured to use one of the supported [transports](
 * [SQL Server](/transports/sql/)
 * [Amazon Simple Queue Service (SQS)](/transports/sqs/)
 * [RabbitMQ - Conventional routing topology](/transports/rabbitmq/routing-topology.md#conventional-routing-topology)
-* [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)>
+* [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)
 
 ### Transport-specific features
 
