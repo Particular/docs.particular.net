@@ -42,16 +42,6 @@ To subscribe to the `MessageFailed` event:
 
  * Create an [NServiceBus endpoint](/nservicebus/hosting/nservicebus-host/).
  * Install the [ServiceControl.Contracts NuGet package](https://www.nuget.org/packages/ServiceControl.Contracts/).
- * For transports using the [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/) mechanism, either
-   * For NServiceBus Version 6 and higher, register the publisher by using the [routing config] code API(/nservicebus/messaging/routing.md#event-routing-message-driven).
-
-snippet: ServiceControlPublisherConfig
-
-   * or for NServiceBus Version 5 and below, add the message mapping in the `UnicastBusConfig` section of the endpoint's app.config so that this endpoint will subscribe to the events from ServiceControl as shown:
-
-snippet: ServiceControlEventsXmlConfig
-
- * Transports that natively support publish and subscribe, see [multicast-enabled transports](/transports/#types-of-transports-multicast-enabled-transports), do not require any additional configuration.
  * Customize the endpoint configuration to use `JsonSerializer` as the message published by ServiceControl uses JSON serialization.
  * Customize the endpoint configuration so that the following conventions are used, as the `MessageFailed` event that is published by ServiceControl does not derive from `IEvent`.
 
@@ -67,6 +57,17 @@ snippet: ServiceControlEventsConfig
 
 snippet: MessageFailedHandler
 
+#### Registering the publisher for message-driven publish/subscribe
+
+NOTE: Transports that natively support publish and subscribe, see [multicast-enabled transports](/transports/#types-of-transports-multicast-enabled-transports), do not require any additional configuration.
+
+For transports using the [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/) mechanism, either, register the publisher by using the [routing config] code API(/nservicebus/messaging/routing.md#event-routing-message-driven) for NServiceBus Version 6 and higher as shown below:
+
+snippet: ServiceControlPublisherConfig
+
+or add the message mapping in the `UnicastBusConfig` section of the endpoint's app.config for NServiceBus Version 5 and below:
+
+snippet: ServiceControlEventsXmlConfig
 
 ### Monitoring events
 
