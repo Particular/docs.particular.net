@@ -31,7 +31,7 @@ In ServiceControl version 1.7 and above, the transport packages are managed by t
 * [Azure Storage Queues](/transports/azure-storage-queues/)
 * [SQL Server](/transports/sql/)
 * [Amazon Simple Queue Service (SQS)](/transports/sqs/)
-* [RabbitMQ](/transports/rabbitmq/)
+* [RabbitMQ - Conventional routing topology](/transports/rabbitmq/routing-topology.md#conventional-routing-topology)
 * [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)
 
 ### Transport-specific features
