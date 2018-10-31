@@ -57,17 +57,21 @@ snippet: ServiceControlEventsConfig
 
 snippet: MessageFailedHandler
 
+
 #### Registering the publisher for message-driven publish/subscribe
 
-NOTE: Transports that natively support publish and subscribe, see [multicast-enabled transports](/transports/#types-of-transports-multicast-enabled-transports), do not require any additional configuration.
+Transports that use [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/) must have the ServiceControl instance registered as the publisher of the `MessageFailed` event.
 
-For transports using the [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/) mechanism, either, register the publisher by using the [routing config] code API(/nservicebus/messaging/routing.md#event-routing-message-driven) for NServiceBus Version 6 and higher as shown below:
+For NServiceBus version 6 and higher, the [routing config code API](/nservicebus/messaging/routing.md#event-routing-message-driven) can be used:
 
 snippet: ServiceControlPublisherConfig
 
-or add the message mapping in the `UnicastBusConfig` section of the endpoint's app.config for NServiceBus Version 5 and below:
+For NServiceBus version 5 and below, add the message mapping in the `UnicastBusConfig` section of the endpoint's app.config :
 
 snippet: ServiceControlEventsXmlConfig
+
+NOTE: Transports that [natively support publish and subscribe](/transports/#types-of-transports-multicast-enabled-transports) do not require any additional configuration.
+
 
 ### Monitoring events
 
