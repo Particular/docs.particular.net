@@ -32,7 +32,7 @@ In ServiceControl version 1.7 and above, the transport packages are managed by t
 * [SQL Server](/transports/sql/)
 * [Amazon Simple Queue Service (SQS)](/transports/sqs/)
 * [RabbitMQ](/transports/rabbitmq/)
-* [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)>
+* [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)
 
 ### Transport-specific features
 
