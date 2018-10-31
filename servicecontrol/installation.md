@@ -38,7 +38,7 @@ In ServiceControl version 1.7 and above, the transport packages are managed by t
 
 Certain transport features are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact support@particular.net for further guidance.
 
-Adding third-party transports via the Management Utility is not supported..
+Adding third-party transports via the Management Utility is not supported.
 
 ### MSMQ Specifics
 
