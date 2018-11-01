@@ -45,8 +45,6 @@ To subscribe to the `MessageFailed` event:
  * Customize the endpoint configuration to use `JsonSerializer` as the message published by ServiceControl uses JSON serialization.
  * Customize the endpoint configuration so that the following conventions are used, as the `MessageFailed` event that is published by ServiceControl does not derive from `IEvent`.
 
-NOTE: Integration endpoints should _not_ use the same `error` and `audit` queue as business endpoints since this risks failures in the integration endpoint, causing an infinite feedback loop. Using the same `audit` queue will cause the integration messages to be included in search results in ServiceInsight. This will confuse users searching for given failure since both the failure and the failure notification will be shown. See also: [Recoverability](/nservicebus/recoverability/) and [Audit Queue Settings](/nservicebus/operations/auditing.md).
-
 WARNING: The ServiceControl event publishing mechanism is not compatible with the Azure Service Bus [forwarding topology](/transports/azure-service-bus/topologies/) and RabbitMQ [direct and custom topologies](/transports/rabbitmq/routing-topology.md). With these transports, the endpoint subscribing to ServiceControl events has to use the _endpoint-oriented_ and _conventional_ topologies respectively.
 
 This code sample illustrates how to do this customization:
@@ -56,6 +54,8 @@ snippet: ServiceControlEventsConfig
  * The endpoint will also need a message handler that handles the `MessageFailed` event. In the following example, there is a simple HTTP call to HipChat's API to show how to integrate with a third-party system to provide notification of the error.
 
 snippet: MessageFailedHandler
+
+NOTE: Endpoints that subscribe to ServiceControl events should _not_ use the same `error` and `audit` queues as other endpoints. Using the same `error` queue could cause an infinite feedback loop if processing a `MessageFailed` message failed. Using the same `audit` queue will cause the processing of the `MessageFailed` messages to be included in the ServiceInsight search results. This could confuse users searching for a given failure since both the failure and the failure notification will be shown. See also: [Recoverability](/nservicebus/recoverability/) and [Audit Queue Settings](/nservicebus/operations/auditing.md).
 
 
 #### Registering the publisher for message-driven publish/subscribe
