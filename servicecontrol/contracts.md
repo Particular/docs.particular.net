@@ -45,8 +45,6 @@ To subscribe to the `MessageFailed` event:
  * Customize the endpoint configuration to use `JsonSerializer` as the message published by ServiceControl uses JSON serialization.
  * Customize the endpoint configuration so that the following conventions are used, as the `MessageFailed` event that is published by ServiceControl does not derive from `IEvent`.
 
-WARNING: The ServiceControl event publishing mechanism is not compatible with the Azure Service Bus [forwarding topology](/transports/azure-service-bus/topologies/) and RabbitMQ [direct and custom topologies](/transports/rabbitmq/routing-topology.md). With these transports, the endpoint subscribing to ServiceControl events has to use the _endpoint-oriented_ and _conventional_ topologies respectively.
-
 This code sample illustrates how to do this customization:
 
 snippet: ServiceControlEventsConfig
