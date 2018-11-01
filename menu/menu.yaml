@@ -577,6 +577,10 @@
   - Url: transports
     Title: General
     Articles:
+    - Url: transports/transports-deciding
+      Title: Selecting a transport
+    - Url: transports/transports-types
+      Title: Transport types
     - Url: transports/transactions
       Title: Transactions
     - Url: transports/scale-out
