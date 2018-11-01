@@ -26,8 +26,8 @@ NOTE: ServiceControl should be installed on a separate dedicated machine with de
 In ServiceControl version 1.7 and above, the transport packages are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
 
 * [Azure Service Bus](/transports/azure-service-bus-netstandard)
-* [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus/topologies/index.md#versions-7-and-above-endpoint-oriented-topology)
-* [Azure Service Bus - Forwarding topology](/transports/azure-service-bus/topologies/index.md#versions-7-and-above-forwarding-topology)
+* [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology)
+* [Azure Service Bus - Forwarding topology](/transports/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology)
 * [Azure Storage Queues](/transports/azure-storage-queues/)
 * [Amazon Simple Queue Service (SQS)](/transports/sqs/)
 * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
