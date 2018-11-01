@@ -44,7 +44,7 @@ Each environment should have a single audit queue and a single error queue that 
 
 ### Self Monitoring via Custom Checks
 
-Service Control includes some basic self monitoring implemented as a [custom checks](/monitoring/custom-checks/). These checks will be reported in ServicePulse along side any custom checks being reported from endpoints.
+Service Control includes some basic self-monitoring implemented as a [custom checks](/monitoring/custom-checks/). These checks will be reported in ServicePulse alongside any custom checks being reported from endpoints.
 
 #### MSMQ Transactional Dead Letter Queue
 
