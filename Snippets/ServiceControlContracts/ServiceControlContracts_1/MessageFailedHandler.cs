@@ -1,4 +1,4 @@
-﻿namespace Core5.Monitoring
+﻿namespace Contracts
 {
     using System;
     using System.Threading.Tasks;
