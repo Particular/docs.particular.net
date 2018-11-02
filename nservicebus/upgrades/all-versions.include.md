@@ -599,7 +599,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 3.0.x     | 2018-05-29     | -                 | -                                 |
 | 2.0.x     | 2017-10-27     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
-| 1.1.x     | 2017-07-25     | 2018-10-27        | Superseded by 2.0.x               |
+| ~~1.1.x~~ | ~~2017-07-25~~ | ~~2018-10-27~~    | ~~Superseded by 2.0.x~~           |
 | ~~1.0.x~~ | ~~2017-04-25~~ | ~~2017-10-25~~    | ~~Superseded by 1.1.x~~           |
 
 #### [NServiceBus.Metrics.PerformanceCounters](/nuget/NServiceBus.Metrics.PerformanceCounters)
@@ -682,7 +682,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.1.x     | 2015-02-05     | -                 | -                                 |
+| 1.2.x     | 2018-11-01     | -                 | -                                 |
+| 1.1.x     | 2015-02-05     | 2019-02-01        | Superseded by 1.2.x               |
 | ~~1.0.x~~ | ~~2014-10-13~~ | ~~2015-05-05~~    | ~~Superseded by 1.1.x~~           |
 
 #### [ServiceControl.Plugin.Nsb3.CustomChecks](/nuget/ServiceControl.Plugin.Nsb3.CustomChecks)
