@@ -36,7 +36,7 @@ When messages concurrently tries to update the same saga instance the storage wi
 
 Another option is to use a [transaction isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](https://docs.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql) with considerable performance degradation.
 
-NOTE: While `Serializable` is the default isolation level for TransactionScopes NServiceBus Version 4 and higher will default the default isolation level to `ReadCommitted`.
+NOTE: While `Serializable` is the default isolation level for TransactionScopes, in NServiceBus Version 4 and higher the isolation level will default to `ReadCommitted`.
 
 
 ### High load scenarios
