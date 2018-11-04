@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
@@ -12,12 +10,9 @@ static class Program
     static async Task Main()
     {
         Console.Title = "Samples.Logging.SerilogCustom";
-        var directoryName = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-        var logFilePath = Path.Combine(directoryName, "logFile.txt");
         #region ConfigureSerilog
         Log.Logger = new LoggerConfiguration()
             .WriteTo.Console()
-            .WriteTo.File(logFilePath)
             .CreateLogger();
         #endregion
 

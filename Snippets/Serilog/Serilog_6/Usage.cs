@@ -9,7 +9,7 @@ class Usage
         #region SerilogInCode
 
         Log.Logger = new LoggerConfiguration()
-            .WriteTo.ColoredConsole()
+            .WriteTo.File("log.txt")
             .CreateLogger();
 
         LogManager.Use<SerilogFactory>();
