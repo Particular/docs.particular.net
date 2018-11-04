@@ -48,11 +48,11 @@ Service Control includes some basic self-monitoring implemented as [custom check
 
 #### MSMQ Transactional Dead Letter Queue
 
-MSMQ servers have a single Transactional Dead Letter Queue. Messages that cannot be delivered to queues located on remote servers will eventually be moved to the Transactional Dead Letter queue when the MSMQ service is unable to deliver the message. ServiceControl will monitor the Transactional Dead Letter Queue on the server it is installed on as the presense of messages in this queue may indicate a problem with delivering message retries.
+MSMQ servers have a single Transactional Dead Letter Queue. Messages that cannot be delivered to queues located on remote servers will eventually be moved to the Transactional Dead Letter queue when the MSMQ service is unable to deliver the message. ServiceControl will monitor the Transactional Dead Letter Queue on the server it is installed on as the presence of messages in this queue may indicate a problem with delivering message retries.
 
 #### Azure Service Bus Staging Dead Letter Queue
 
-Azure Service Bus queues each come with an associated dead letter queue. When ServiceControl sends a message for retry it utilizes a staging queue to do so. ServiceControl will monitor the dead letter queue of the ServiceControl staging queue as the presense of messages in this queue indicates a problem with delivering message retries.
+Azure Service Bus queues each come with an associated dead letter queue. When ServiceControl sends a message for retry it utilizes a staging queue to do so. ServiceControl will monitor the dead letter queue of the ServiceControl staging queue as the presence of messages in this queue indicates a problem with delivering message retries.
 
 #### Failed Imports
 
