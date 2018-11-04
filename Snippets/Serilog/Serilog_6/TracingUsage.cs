@@ -1,7 +1,5 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 using Serilog;
-using Serilog.Core;
 
 class TracingUsage
 {
@@ -16,14 +14,16 @@ class TracingUsage
 
         #endregion
 
+        var endpointConfiguration = new EndpointConfiguration("EndpointName");
+
         #region SerilogTracingPassLoggerToFeature
 
-        var endpointConfiguration = new EndpointConfiguration("EndpointName");
         var serilogTracing = endpointConfiguration.EnableSerilogTracing(tracingLog);
         serilogTracing.EnableMessageTracing();
 
         #endregion
     }
+
     void EnableSagaTracing(EndpointConfiguration endpointConfiguration, ILogger logger)
     {
         #region EnableSagaTracing
@@ -33,6 +33,7 @@ class TracingUsage
 
         #endregion
     }
+
     void EnableMessageTracing(EndpointConfiguration endpointConfiguration, ILogger logger)
     {
         #region EnableMessageTracing
