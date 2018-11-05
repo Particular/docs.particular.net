@@ -109,7 +109,7 @@ The type added to the exception data is `ExceptionLogState`. It contains the fol
 
 The instance of `ExceptionLogState` can be access using the following.
 
-snippet:ExceptionLogState
+snippet: ExceptionLogState
 
 If routing NServiceBus log event suing `LogManager.Use<SerilogFactory>();` then the above properties will be promoted to the log event.
 
@@ -123,7 +123,7 @@ snippet: EnableSagaTracing
 
 Both incoming and outgoing messages will be logged at the [Information level](https://github.com/serilog/serilog/wiki/Writing-Log-Events#the-role-of-the-information-level). The current message will be included in a property named `Message`. For outgoing messages any unicast routes will be included in a property named `UnicastRoutes`.
 
-snippet:EnableMessageTracing
+snippet: EnableMessageTracing
 
 
 ## Seq
