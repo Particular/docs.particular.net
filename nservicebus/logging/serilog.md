@@ -107,7 +107,7 @@ The type added to the exception data is `ExceptionLogState`. It contains the fol
  * `CorrelationId` will be the value of the [CorrelationId header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-correlationid) if it exists.
  * `ConversationId` will be the value of the [ConversationId header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-conversationid) if it exists.
 
-The instance of `ExceptionLogState` can be access using the following.
+The instance of `ExceptionLogState` can be accessed using the following.
 
 snippet: ExceptionLogState
 
