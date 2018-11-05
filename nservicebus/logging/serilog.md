@@ -90,7 +90,7 @@ When a send the same properties as described in "Incoming message enrichment" wi
 
 #### Accessing the logger
 
-The contextual logger instance can be access from anywhere in the pipeline via `SerilogTracingExtensions.Logger(this IPipelineContext context)`.
+The contextual logger instance can be accessed from anywhere in the pipeline via `SerilogTracingExtensions.Logger(this IPipelineContext context)`.
 
 snippet: ContextualLoggerUsage
 
