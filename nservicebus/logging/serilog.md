@@ -111,7 +111,7 @@ The instance of `ExceptionLogState` can be accessed using the following.
 
 snippet: ExceptionLogState
 
-If routing NServiceBus log event suing `LogManager.Use<SerilogFactory>();` then the above properties will be promoted to the log event.
+If routing NServiceBus log event using `LogManager.Use<SerilogFactory>();` then the above properties will be promoted to the log event.
 
 
 ### Saga Tracing
