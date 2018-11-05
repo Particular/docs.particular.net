@@ -56,11 +56,11 @@ snippet: SerilogTracingPassLoggerToFeature
 
 ### Contextual Logger
 
-Serilog Tracing injects a contextual `Serilog.Ilogger` into the NServiceB pipeline. This logger is [enriched](https://github.com/serilog/serilog/wiki/Enrichment) with the following values:
-
-There are several layers of enrichment based on the pipeline phase.
+Serilog Tracing injects a contextual `Serilog.Ilogger` into the NServiceB pipeline.
 
 NOTE: Saga and message tracing will use the current contextual logger.
+
+There are several layers of enrichment based on the pipeline phase.
 
 
 #### Endpoint enrichment
