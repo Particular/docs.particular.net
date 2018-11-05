@@ -85,7 +85,7 @@ When a handler is invoked the a new logger is forked from the above enriched phy
 
 #### Outgoing message enrichment
 
-When a send the same properties as described in "Incoming message enrichment" will be added to the outgoing pipeline. Note that if a handler sends a message, the logger injected into the outgoing pipeline will be forked from the logger instance as described in "Handler enrichment". As such it will contain a property `Handler` for the handler that sent the message.
+When a message is sent, same properties as described in "Incoming message enrichment" will be added to the outgoing pipeline. Note that if a handler sends a message, the logger injected into the outgoing pipeline will be forked from the logger instance as described in "Handler enrichment". As such it will contain a property `Handler` for the handler that sent the message.
 
 
 #### Accessing the logger
