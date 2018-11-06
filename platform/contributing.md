@@ -11,7 +11,7 @@ reviewed: 2016-12-09
  1. Find the relevant repository by browsing the [list of extensions](/components/).
 
 
-## Raising Bugs/Feature Rerquests
+## Raising Bugs/Feature Requests
 
 This is done using GitHub Issues.
 
