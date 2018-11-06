@@ -28,7 +28,7 @@ The Messages window is a detailed grid view indicating message status, type, tim
 
 ServicePulse also supports opening ServiceInsight to a specific message to allow drill down for more detail.
 
-NOTE: A messages body is only searchable if the body size is under 85Kb, under the [ServiceControl/MaxBodySizeToStore](https://docs.particular.net/servicecontrol/creating-config-file#performance-tuning-servicecontrolmaxbodysizetostore) value, and is a non-binary content type.
+NOTE: A messages body is only searchable if the body size is under 85Kb, under the [ServiceControl/MaxBodySizeToStore](https://docs.particular.net/servicecontrol/creating-config-file#performance-tuning-servicecontrolmaxbodysizetostore) size limit, and is a non-binary content type.
 
 ### Refresh and Auto-refresh
 
