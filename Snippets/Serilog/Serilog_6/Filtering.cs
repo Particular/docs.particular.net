@@ -11,7 +11,8 @@ public class Filtering
         #region SerilogFiltering
 
         Log.Logger = new LoggerConfiguration()
-            .WriteTo.ColoredConsole(
+            .WriteTo.File(
+                path:"log.txt",
                 restrictedToMinimumLevel: LogEventLevel.Debug
             )
             .Filter.ByIncludingOnly(

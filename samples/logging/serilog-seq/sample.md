@@ -1,7 +1,7 @@
 ---
 title: Serilog Seq Logging
 summary: Customizing Serilog usage to log to Seq.
-reviewed: 2018-10-29
+reviewed: 2018-11-04
 component: Serilog
 tags:
  - Logging
