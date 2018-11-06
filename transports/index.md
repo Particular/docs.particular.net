@@ -6,6 +6,8 @@ redirects:
  - nservicebus/nservicebus-and-websphere-sonic
  - nservicebus/transports
 related:
+ - transports/transports-deciding
+ - transports/transports-types
  - samples/custom-transport
 ---
 
@@ -34,3 +36,7 @@ There are several community-maintained transports which can be found in the full
 #### WebSphereMQ
 
 WebSphereMQ Transport for NServiceBus is not supported by Particular Software at this time. The code is available [on GitHub](https://github.com/ParticularLabs/NServiceBus.WebSphereMQ) as-is, for legacy, community use and reference. [Contact support](https://particular.net/contactus) for licensing and support details.
+
+## How to select a transport
+
+When new to message queuing, it can be a challenge to decide which technology is the right one for a specific scenario. For this reason we've written [comprehensive documentation](/transports/transports-deciding) to make an educated decision.
