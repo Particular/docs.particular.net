@@ -12,6 +12,8 @@ snippet: EnableNativeDelayedDelivery
 
 NOTE: In this mode the timeout manager will still be running in order to process all outstanding delayed messages. Refer to the [Disabling the timeout manager](/transports/sql/native-delayed-delivery.md#backwards-compatibility-disabling-the-timeout-manager) section for details on how to disable the timeout manager entirely.
 
+NOTE: The native delayed delivery of SQL Server transport, similarly to the timeout manager, is only available in endpoints that are not configured as [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting).
+
 
 ## Configuration
 
