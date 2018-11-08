@@ -19,7 +19,7 @@ Centralized file-based routing is an alternative approach to configure message r
 
 ## Configuration
 
-Enable the feature in via the routing configuration:
+Enable the feature via the routing configuration:
 
 snippet: Enable
 
@@ -33,7 +33,7 @@ It is also possible to provide an Uri to the routing file (supporting `http[s]` 
 
 snippet: EnableCustomUri
 
-The routing file provides routing information like shown in the following example:
+The routing file provides routing information as is shown in the following example:
     
 Create a new XML file named `endpoints.xml` and include it on every endpoint using file based routing. 
 
