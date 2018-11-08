@@ -68,7 +68,7 @@ The following actions can be performed on a failed message group:
 
 ### Listing messages
 
-Individual failed messages can viewed using one of the following two ways:
+Individual failed messages can be viewed in one of the following two ways:
 
 - **Inside a failed message group** - in the "Failed Messages Group" tab, click the "View messages" link from a failed message group entry
 - **All messages without any grouping** - via the "All messages" tab
@@ -79,7 +79,7 @@ Both of these message list views allow for taking actions on an individual messa
 
 NOTE: Retrying one or a few individual messages can be useful for testing system fixes before deciding to retry several messages in a group. This is because retrying several messages take a long time and queue other ServiceControl operations for longer than desired.
 
-The following actions can also be taken on each individual message or selection of messages:
+The following actions can also be taken on each individual message or a selection of messages:
 
 * **Retry** - Sends message(s) to be reprocessed by the corresponding endpoint.
 * **Archive** - Archives message(s).
@@ -87,7 +87,7 @@ The following actions can also be taken on each individual message or selection 
 
 ### Message details page
 
-As of versions 1.8.0 and above, each individual message can be browsed in order to see in-depth details about a given failed message, archive or retry that message.
+As of version 1.8.0 and above, each individual message can be browsed in order to see in-depth details about a given failed message, archive or to retry that message.
 
 ![Failed Messages Page](images/failed-message-page.png 'width=500')
 
@@ -108,7 +108,7 @@ The following actions can also be taken on any given message:
 
 #### Sharing message data from ServicePulse
 
-The URL from that message's page be copied to share the details of a specific message from ServicePulse.
+The URL from that message's page can be copied to share the details of a specific message from ServicePulse.
 
 
 ## Archived Messages tab
