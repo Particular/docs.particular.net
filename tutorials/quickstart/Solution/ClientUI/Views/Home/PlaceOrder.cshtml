@@ -3,13 +3,55 @@
     ViewBag.Title = "Order placed";
 }
 
-<div class="jumbotron">
-    <h1>OrderId <code>@Model.OrderId</code> sent</h1>
-    <p class="lead">Your order has been placed successfully. You have sent <b>@Model.MessagesSent total messages</b>.</p>
-    <p>Go look in the <b>Sales</b> and <b>Billing</b> console windows to see the <code>PlaceOrder</code> command and <code>OrderPlaced</code> event getting processed.</p>
-    <form action="/home/placeorder" method="POST">
-        <p>
-            <input type="submit" class="btn btn-primary btn-lg" onclick="sentMessage()" value="Place another order &raquo;" />
-        </p>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">Order sent</div>
+                <div class="panel-body">
+                    <h1>OrderId <code>@Model.OrderId</code> sent</h1>
+                    <p class="lead">Your order has been placed successfully. You have sent <b>@Model.MessagesSent total messages</b>.</p>
+                    <p>Go look in the <b>Sales</b> and <b>Billing</b> console windows to see the <code>PlaceOrder</code> command and <code>OrderPlaced</code> event getting processed.</p>
+                    <form action="/home/placeorder" method="POST">
+                        <p>
+                            <input type="submit" class="btn btn-primary btn-lg" onclick="sentMessage()" value="Place another order &raquo;" />
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">Get a license</div>
+                <div class="panel-body">
+                    <p>You've placed a lot of orders. Great work! Leave your contact info below and you'll get:</p>
+                    <ul>
+                        <li>A <b>free extended 30-day license</b>. Doesn't sound like long enough? Don't sweat. <i>We know projects can take some time to get off the ground.</i> At the end of your trial, just let us know and we'll be happy to extend your trial again if you need it.</li>
+                        <li><b>Free tech support</b> during your trial period.</li>
+                    </ul>
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="request-firstname">First name</label>
+                            <input id="request-firstname" name="FirstName" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="request-lastname">Last name</label>
+                            <input id="request-lastname" name="LastName" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="request-email">Email</label>
+                            <input id="request-email" name="Email" type="text" class="form-control" />
+                        </div>
+                        <p class="text-center">
+                            <button type="submit" class="btn btn-lg btn-primary">Get Extended Trial License</button>
+                        </p>
+                        <p class="text-center" style="margin-top:2em; color: #999; font-size: 0.75em;">
+                            We collect and use this information in accordance with our <a href="https://particular.net/gdpr-privacy">privacy policy</a>.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+

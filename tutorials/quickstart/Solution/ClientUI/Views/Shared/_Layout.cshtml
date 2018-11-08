@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>@ViewBag.Title</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-<style type="text/css">body { padding-top: 50px; }</style>
+<style type="text/css">body { padding-top: 70px; }</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -18,7 +18,7 @@ ga('set', 'transport', 'beacon');
 ga('send', 'event', 'QuickStart', 'Running', 'VS2017');
 window.sentMessage = function() {
     ga('send', 'event', 'QuickStart', 'SentMessage', 'VS2017');
-}
+};
 </script>
 </head>
 <body>
@@ -27,6 +27,15 @@ window.sentMessage = function() {
             <div class="navbar-header">
                 @Html.ActionLink("NServiceBus Quick Start", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other resources <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://docs.particular.net/tutorials/step-by-step/" title="The step-by-step tutorial will teach you how to build NServiceBus systems using asynchronous messaging and Publish/Subscribe from the ground up.">Step-by-Step Tutorial</a></li>
+                        <li><a href="https://particular.net/chat" title="Our developers are available to answer your questions and help you be successful.">Chat with a developer</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
     <div class="container body-content">
