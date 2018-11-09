@@ -1,6 +1,6 @@
 ---
 title: Routing Slips
-reviewed: 2016-12-09
+reviewed: 2018-11-09
 component: MessageRouting
 ---
 
@@ -14,9 +14,9 @@ Uses the [Routing Slip pattern](http://www.enterpriseintegrationpatterns.com/pat
 The solution consists of 6 Projects
 
  * Messages: The shared message definitions.
- * Sender: initiate the message sends.
+ * Sender: Initiates the message sends.
  * StepA, StepB, StepC: The handling endpoints to to show how the message flows between endpoints.
- * ResultHost: Final destination endpoint for messages that logs all the endpoints the message was routed through.
+ * ResultHost: The final destination endpoint for messages that logs all the endpoints the message was routed through.
 
 
 ### Enabling Routing Slips Feature
