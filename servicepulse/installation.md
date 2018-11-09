@@ -39,8 +39,11 @@ Provides the location on disk for the logfile to be generated.
 Provides the port number that ServicePulse web application will run on.
 Default : 9090
 - `INST_URI [uri]`
-Provides location of the ServiceControl API
+Provides location of the ServiceControl Instance API
 Default : `http://localhost:33333/api/`
+- `INST_SC_MONITORING_URI [uri]` 
+Provides location of the Monitoring Instance API
+Default : `http://localhost:33633/`
 
 Example
 ```
