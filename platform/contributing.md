@@ -1,7 +1,7 @@
 ---
 title: How to contribute
 summary: The Particular Platform is open source and takes contributions from the community.
-reviewed: 2016-12-09
+reviewed: 2018-11-09
 ---
 
 ## Getting Started
@@ -41,9 +41,7 @@ For more information on Pull Requests see:
 
 ## Branching Strategy
 
-All projects that produce [NuGet packages](https://www.nuget.org/) follow [GitFlow](https://github.com/nvie/gitflow).
-
-All projects that produce installable applications ([ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/)) follow [GitHub Flow](https://guides.github.com/introduction/flow/).
+Most projects follow [GitFlow](https://github.com/nvie/gitflow), except for [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/) which follow [GitHub Flow](https://guides.github.com/introduction/flow/).
 
 
 ## Additional Resources
