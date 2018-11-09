@@ -2,7 +2,7 @@
 title: Timeout Manager
 summary: NServiceBus persistent delayed message store
 component: core
-reviewed: 2016-12-05
+reviewed: 2018-11-09
 tags:
  - Defer
 related:
