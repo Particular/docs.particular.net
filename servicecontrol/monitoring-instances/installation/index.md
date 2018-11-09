@@ -10,27 +10,38 @@ The ServiceControl installation file consists of an embedded MSI bootstrapper EX
 
 ## Prerequisites
 
-The ServiceControl Installation has the following prerequisites:
+The ServiceControl installation has the following prerequisites:
 
- * [Microsoft .NET 4.5.2 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=42643)
+* [Microsoft .NET 4.6.1 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=49982)
 
-If ServiceControl is installed via the Platform Installer then the installation and configuration of these prerequisites are managed by the installer.
+If ServiceControl is installed via the Platform Installer, then the installer will manage installation and configuration of the prerequisites.
 
-NOTE: Each environment should contain a single [ServiceControl instance](/servicecontrol/servicecontrol-instances/) and a single [Monitoring instance](/servicecontrol/monitoring-instances/). In high-throughput scenarios it is recommended that these instances each run on a separate dedicated machine.
+NOTE: Each environment should contain a single [ServiceControl instance](/servicecontrol/servicecontrol-instances/) and a single [Monitoring instance](/servicecontrol/monitoring-instances/). In high-throughput scenarios, it is recommended that these instances each run on a separate dedicated machine.
 
 
 ## Transport Support
 
 Monitoring instances can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
 
- * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
- * [Azure Storage Queues](/transports/azure-storage-queues/)
- * [Azure Service Bus](/transports/azure-service-bus/)
- * [SQL Server](/transports/sql/)
- * [RabbitMQ](/transports/rabbitmq/)
- * [AmazonSQS](/transports/sqs/)
+* [Azure Service Bus](/transports/azure-service-bus-netstandard)
+* [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology)
+* [Azure Service Bus - Forwarding topology](/transports/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology)
+* [Azure Storage Queues](/transports/azure-storage-queues/)
+* [Amazon Simple Queue Service (SQS)](/transports/sqs/)
+* [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
+* [RabbitMQ - Conventional routing topology](/transports/rabbitmq/routing-topology.md#conventional-routing-topology)
+* [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)
+* [SQL Server](/transports/sql/)
 
-Adding third party transports via the Management Utility is not supported at this stage. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
+### Transport-specific features
+
+Certain transport features are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact support@particular.net for further guidance.
+
+Adding third-party transports via the Management Utility is not supported.
+
+### MSMQ Specifics
+
+If MSMQ is the selected transport, then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
 Installing MSMQ is optional in the Platform Installer. See [Platform Installer - MSMQ](/platform/installer/#select-items-to-install-configure-microsoft-message-queuing).
 
@@ -43,19 +54,19 @@ WARNING: The ability to add multiple instances is primarily intended to assist d
 
 ServiceControl Management can be launched automatically at the end of the installation process to enable adding or upgrading ServiceControl or Monitoring instances.
 
-ServiceControl Management will display the list of installed ServiceControl and Monitoring instances. If the version of the binaries used by an instance are older that those shipped with ServiceControl Management an upgrade link will be shown against the version label.
+ServiceControl Management will display the list of installed ServiceControl and Monitoring instances. If the version of the binaries used by an instance are older that those shipped with ServiceControl Management, an upgrade link will be shown against the version label.
 
 ![](/servicecontrol/managementutil-upgradelink.png 'width=500')
 
-To upgrade the service just click the upgrade link next to the Service name
+To upgrade the service, click the upgrade link next to the service name.
 
-Clicking the upgrade link will
+Clicking the upgrade link will:
 
- * Prompt for any additional information that is required such as values for new mandatory settings introduced in the newer version.
- * Stop the Service.
- * Remove the old binaries.
- * Run the new binaries to create any required queues.
- * Start the Service.
+* Prompt for any new information that is required to run properly on the transport of choice.
+* Stop the Monitoring instance Windows Service.
+* Remove the old binaries.
+* Run the new binaries to upgrade the Monitoring instance by applying new settings and/or creating any required additional queues.
+* Start the Monitoring instance Windows Service.
 
 
 ## Using ServiceControl Management to add Monitoring instances

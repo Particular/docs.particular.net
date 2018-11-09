@@ -14,30 +14,38 @@ The ServiceControl installation file consists of an embedded MSI bootstrapper EX
 
 The ServiceControl installation has the following prerequisites:
 
- * [Microsoft .NET 4.5.2 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=42643) for Version 1 and 2
- * [Microsoft .NET 4.6.1 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=49982) for Version 3 and higher
+* [Microsoft .NET 4.6.1 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=49982)
 
-If ServiceControl is installed via the Platform Installer then the installation and configuration of these prerequisites are managed by the installer.
+If ServiceControl is installed via the Platform Installer, then the installer will manage installation and configuration of the prerequisites.
 
 NOTE: ServiceControl should be installed on a separate dedicated machine with dedicated storage in a production environment to isolate the audit and error queue message ingestion. These operations have a big impact on other processes. ServiceControl must be given sufficient CPU, RAM (6GB minimum) and storage suitable for low latency write operations, similar to how a database server would be provisioned. See [ServiceControl Capacity Planning](capacity-and-planning.md) for more guidance.
 
+
 ## Transport support
 
-In ServiceControl version 1.7 and above, the transport DLLs are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
+In ServiceControl version 1.7 and above, the transport packages are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
 
- * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
- * [Azure Storage Queues](/transports/azure-storage-queues/)
- * [Azure Service Bus](/transports/azure-service-bus/)
- * [Azure Service Bus .NET Standard](/transports/azure-service-bus-netstandard)
- * [SQL Server](/transports/sql/)
- * [RabbitMQ](/transports/rabbitmq/)
- * [Amazon SQS](/transports/sqs/)
+* [Azure Service Bus](/transports/azure-service-bus-netstandard)
+* [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology)
+* [Azure Service Bus - Forwarding topology](/transports/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology)
+* [Azure Storage Queues](/transports/azure-storage-queues/)
+* [Amazon Simple Queue Service (SQS)](/transports/sqs/)
+* [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
+* [RabbitMQ - Conventional routing topology](/transports/rabbitmq/routing-topology.md#conventional-routing-topology)
+* [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)
+* [SQL Server](/transports/sql/)
 
- Certain features of the transports are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter).
- 
-For preliminary Azure Service Bus .NET Standard support, select the Azure Service Bus forwarding topology.
 
-Adding third party transports via the Management Utility is not supported. If MSMQ is the selected transport then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
+### Transport-specific features
+
+Certain transport features are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact support@particular.net for further guidance.
+
+Adding third-party transports via the Management Utility is not supported.
+
+
+### MSMQ Specifics
+
+If MSMQ is the selected transport, then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
 Installing MSMQ is optional in the Platform Installer. See [Platform Installer - MSMQ](/platform/installer/#select-items-to-install-configure-microsoft-message-queuing).
 
@@ -65,11 +73,11 @@ ServiceControl Management will display the instances of the ServiceControl servi
 
 ![](managementutil-upgradelink.png 'width=500')
 
-To upgrade the service, click the upgrade link next to the service name
+To upgrade the service, click the upgrade link next to the service name.
 
-Clicking the upgrade link will
+Clicking the upgrade link will:
 
- * Prompt for additional information that is required such as values for new mandatory settings introduced in the newer version.
+ * Prompt for additional information that is required, such as values for new mandatory settings introduced in the newer version.
  * Stop the service.
  * Remove the old binaries for ServiceControl and the configured transport.
  * Run the new binaries to create required queues.
@@ -95,9 +103,11 @@ To perform a clean uninstallation of ServiceControl from a machine:
 1. Remove each ServiceControl instance using ServiceControl Management (or Powershell)
 2. Uninstall ServiceControl Management using Add or Remove programs
 
+
 ### Remove ServiceControl instances
 
 To remove a ServiceControl instance, click the Advanced Options button and then select Remove. If applicable, select the option to remove the database and logs directories and then confirm. This will stop the running instance (if it is running) and remove all files related to the instance from the local file system.
+
 
 #### Remaining artifacts
 
@@ -115,9 +125,9 @@ If the option to delete the database/log folders was not selected when removing 
 
 NOTE: If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.
 
+
 ### Uninstall ServiceControl Management
 
 To uninstall ServiceControl Management, use the Apps & features settings in Windows. 
 
 NOTE: Uninstalling ServiceControl Management will not remove any existing instances. Remove all ServiceControl instances using ServiceControl Management before uninstalling it.
-
