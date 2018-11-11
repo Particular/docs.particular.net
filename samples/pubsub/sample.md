@@ -18,7 +18,7 @@ This sample shows how to publish an event message from a messaging endpoint in o
 
 downloadbutton
 
-Before running the sample, look over the solution structure, the projects, and the classes. The projects `Publisher`,and `Subscriber` are console applications that each host an instance of an NServiceBus messaging endpoint.
+Before running the sample, look over the solution structure, the projects and the classes. The projects `Publisher` and `Subscriber` are console applications that each host an instance of an NServiceBus messaging endpoint.
 
 
 ## Defining messages
@@ -38,7 +38,7 @@ snippet: PublishLoop
 To receive messages from the publisher, the subscribers [must subscribe to the message types](/nservicebus/messaging/publish-subscribe/) they are designed to handle. A subscriber must have a handler for the type of message and a [configuration](/nservicebus/messaging/publish-subscribe/) that tells the endpoint where to send subscriptions for messages:
 
  * The `Subscriber` handles and subscribes to the `OrderReceived` type.
- * The handlers in each project are in files that end in with the word `Handler` for example `OrderReceivedHandler.cs`. 
+ * The handlers in each project are in files that end with the word `Handler` for example `OrderReceivedHandler.cs`. 
  * `Subscriber` uses the default auto-subscription feature of the bus where the the bus automatically subscribes to the configured publisher. [The auto-subscribe feature can be explicitly disabled](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) as part of the endpoint configuration.
   
 
@@ -46,7 +46,7 @@ To receive messages from the publisher, the subscribers [must subscribe to the m
 
 When running the sample, notice the two open console applications. Bring the `Publisher` endpoint to the foreground.
 
-Click the `1` key repeatedly in the `Publisher` process console window, and see how the messages appear in the `Subscriber` console window. 
+Click the `1` key repeatedly in the `Publisher` process console window and notice how the messages appear in the `Subscriber` console window. 
 
 
 ## Message Flow
@@ -58,6 +58,6 @@ The exact message flow may differ between [unicast transports](/transports/#type
 
 Shut down `Subscriber` by closing its console window. Return to the `Publisher` process and publish a few more messages by pressing the `1` key several more times. Notice how the publishing process does not change and there are no errors even though the subscriber process is no longer running.
 
-In Visual Studio, right click the project of the closed subscriber, and restart it by right clicking the `Subscriber` project and selecting `Debug` and then `Start new instance`.
+In Visual Studio, right click the project of the closed subscriber. Restart it by right clicking the `Subscriber` project and selecting `Debug` followed by `Start new instance`.
 
 partial: faulttolerance
