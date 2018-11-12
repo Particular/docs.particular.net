@@ -1,5 +1,5 @@
 ---
-title: Side-by-side with Legacy Azure Service Bus
+title: Side-by-side with legacy Azure Service Bus
 reviewed: 2018-10-04
 component: ASBS
 related:
