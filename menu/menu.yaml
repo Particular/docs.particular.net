@@ -635,6 +635,15 @@
     Articles:
     - Url: transports/learning/viewing-messages
       Title: Viewing content
+  - Url: transports/azure-service-bus-netstandard
+    Title: Azure Service Bus
+    Articles:
+    - Url: transports/azure-service-bus-netstandard/configuration
+      Title: Configuration
+    - Url: transports/azure-service-bus-netstandard/compatibility
+      Title: Backwards Compatibility
+    - Url: transports/azure-service-bus-netstandard/operational-scripting
+      Title: Operational Scripting
   - Url: transports/azure-service-bus
     Title: Azure Service Bus [Legacy]
     Articles:
@@ -696,15 +705,6 @@
       Title: Operational Scripting
     - Url: transports/azure-service-bus/faq
       Title: FAQ
-  - Url: transports/azure-service-bus-netstandard
-    Title: Azure Service Bus
-    Articles:
-    - Url: transports/azure-service-bus-netstandard/configuration
-      Title: Configuration
-    - Url: transports/azure-service-bus-netstandard/compatibility
-      Title: Backwards Compatibility
-    - Url: transports/azure-service-bus-netstandard/operational-scripting
-      Title: Operational Scripting
   - Url: transports/azure-storage-queues
     Title: Azure Storage Queues
     Articles:
