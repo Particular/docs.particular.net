@@ -10,6 +10,8 @@ redirects:
 - nservicebus/azure-service-bus/batching
 ---
 
+include: legacy-asb-warning
+
 
 ## Batching store access
 

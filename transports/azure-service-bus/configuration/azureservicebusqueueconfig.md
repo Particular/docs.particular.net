@@ -10,6 +10,8 @@ redirects:
  - transports/azure-service-bus/configuration/azureservicebusqueueconfig
 ---
 
+include: legacy-asb-warning
+
 ## AzureServiceBusQueueConfig (Version 6 and below)
 
 The default settings can be overridden by adding a configuration section called `AzureServiceBusQueueConfig` to the web.config or app.config files:

@@ -1,10 +1,10 @@
 ﻿//  Edit The Project And See The Alias Definition
 #region transport-asb-alias-definition
-extern alias TransportASB;
+extern alias LegacyASB;
 #endregion
 
 using NServiceBus;
-using TransportASB::NServiceBus;
+using LegacyASB::NServiceBus;
 
 public class SideBySide
 {
@@ -14,15 +14,15 @@ public class SideBySide
 
         #region transport-asb-alias-usage
 
-        var transportASB = configurationASB.UseTransport<TransportASB::NServiceBus.AzureServiceBusTransport>();
+        var legacyASB = configurationASB.UseTransport<LegacyASB::NServiceBus.AzureServiceBusTransport>();
 
         #endregion
 
-        transportASB.Queues().EnableBatchedOperations(true);
+        legacyASB.Queues().EnableBatchedOperations(true);
 
         var configurationASBS = new EndpointConfiguration("ASBS");
-        var transportASBS = configurationASBS.UseTransport<NServiceBus.AzureServiceBusTransport>();
+        var transportASB = configurationASBS.UseTransport<NServiceBus.AzureServiceBusTransport>();
 
-        transportASBS.PrefetchMultiplier(1);
+        transportASB.PrefetchMultiplier(1);
     }
 }

@@ -1,6 +1,6 @@
 ---
 title: Operational Scripting
-summary: Explains how to create queues and topics with the Azure Service Bus .NET Standard transport using scripting
+summary: Explains how to create queues and topics with the Azure Service Bus transport using scripting
 component: ASBS
 tags:
  - Azure

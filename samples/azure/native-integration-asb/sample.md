@@ -7,6 +7,8 @@ related:
  - transports/azure-service-bus
 ---
 
+include: legacy-asb-warning
+
 ## Prerequisites
 
 include: asb-connectionstring

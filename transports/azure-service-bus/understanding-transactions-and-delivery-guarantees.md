@@ -9,4 +9,6 @@ redirects:
  - nservicebus/azure-service-bus/understanding-transactions-and-delivery-guarantees
 ---
 
+include: legacy-asb-warning
+
 partial: desc

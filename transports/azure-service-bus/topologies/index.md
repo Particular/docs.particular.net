@@ -12,6 +12,8 @@ redirects:
  - nservicebus/azure-service-bus/topologies
 ---
 
+include: legacy-asb-warning
+
 Messaging topology is a specific arrangement of the messaging entities, such as queues, topics, subscriptions, and rules.
 
 Azure Service Bus transport operates on a topology created on the broker. Topology handles exchanging messages between endpoints, by creating and configuring Azure Service Bus entities.

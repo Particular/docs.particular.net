@@ -11,6 +11,8 @@ redirects:
  - nservicebus/azure-service-bus/operational-scripting
 ---
 
+include: legacy-asb-warning
+
 This document refers to example code and scripts that facilitate deployment and operational actions against an Azure Service Bus namespace.
 
 This SDK is also available many other languages:

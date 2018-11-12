@@ -1,5 +1,5 @@
 ---
-title: Native Integration Azure Service Bus .NET Standard Transport Sample
+title: Azure Service Bus native integration
 summary: Consuming messages published by non-NServiceBus endpoints.
 component: ASBS
 reviewed: 2018-08-21
@@ -7,14 +7,14 @@ related:
  - transports/azure-service-bus-netstandard
 ---
 
+This sample shows how to send a message from non-NServiceBus code using the Azure Service Bus API and process it with an NServiceBus endpoint using the Azure Service Bus transport.
+
 ## Prerequisites
 
 include: asb-connectionstring-xplat
 
 
 ## Code walk-through
-
-This sample shows how to send a message from non-NServiceBus code using the Azure Service Bus API and process it with an NServiceBus endpoint using the Azure Service Bus transport.
 
 The sample contains two executable projects:
 
@@ -42,7 +42,7 @@ To generate a serialized message, the `MessageGenerator` project can be used wit
 
 ## Required headers
 
-For a native message to be processed, NServiceBus endpoints using the Azure Service Bus .NET Standard transport need the message type to be included as a header. This header must be stored as an Azure Service Bus `Message` user property.
+For a native message to be processed, NServiceBus endpoints using the Azure Service Bus transport need the message type to be included as a header. This header must be stored as an Azure Service Bus `Message` user property.
 
 snippet: NecessaryHeaders
 

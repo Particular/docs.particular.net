@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus .NET Standard Transport Send/Reply sample
+title: Azure Service Bus send/reply sample
 summary: Demonstrates the send/reply pattern
 reviewed: 2018-09-14
 component: ASBS

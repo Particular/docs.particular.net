@@ -11,6 +11,8 @@ redirects:
 reviewed: 2018-01-10
 ---
 
+include: legacy-asb-warning
+
 
 INFO: This document is intended for Versions 7 and above.
 

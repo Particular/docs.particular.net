@@ -11,6 +11,8 @@ related:
  - samples/azure/azure-service-bus
 ---
 
+include: legacy-asb-warning
+
 
 ## Prerequisites
 

@@ -9,6 +9,8 @@ redirects:
  - nservicebus/azure-service-bus/faq
 ---
 
+include: legacy-asb-warning
+
 
 ### Consistency model compared to MSMQ
 

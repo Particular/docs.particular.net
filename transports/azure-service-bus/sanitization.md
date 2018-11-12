@@ -11,6 +11,8 @@ redirects:
  - nservicebus/azure-service-bus/sanitization
 ---
 
+include: legacy-asb-warning
+
 
 ## Azure Service Bus entity naming rules
 

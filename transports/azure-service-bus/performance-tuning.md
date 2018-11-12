@@ -10,5 +10,7 @@ redirects:
 - nservicebus/azure-service-bus/performance-tuning
 ---
 
+include: legacy-asb-warning
+
 partial: body
 

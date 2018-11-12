@@ -15,6 +15,8 @@ redirects:
  - nservicebus/azure-service-bus/securing-connection-strings
 ---
 
+include: legacy-asb-warning
+
 
 ## Namespace Aliases
 

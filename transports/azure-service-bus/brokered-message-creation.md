@@ -13,6 +13,8 @@ redirects:
 - nservicebus/azure-service-bus/brokered-message-creation
 ---
 
+include: legacy-asb-warning
+
 This document describes how to modify brokered message creation logic in order to set up a native integration between NServiceBus and non-NServiceBus endpoints.
 
 

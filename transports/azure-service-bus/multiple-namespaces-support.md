@@ -13,6 +13,8 @@ redirects:
  - nservicebus/azure-service-bus/multiple-namespaces-support
 ---
 
+include: legacy-asb-warning
+
 
 Azure Service Bus transport supports configuring multiple Azure Service Bus namespaces, in order to:
 
