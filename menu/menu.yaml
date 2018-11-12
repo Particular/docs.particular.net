@@ -636,7 +636,7 @@
     - Url: transports/learning/viewing-messages
       Title: Viewing content
   - Url: transports/azure-service-bus
-    Title: Azure Service Bus (Legacy)
+    Title: Azure Service Bus [Legacy]
     Articles:
     - Url: transports/azure-service-bus/topologies
       Title: Topologies
