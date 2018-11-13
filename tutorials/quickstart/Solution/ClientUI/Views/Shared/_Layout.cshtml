@@ -1,39 +1,40 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>@ViewBag.Title</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-<style type="text/css">body { padding-top: 70px; }</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-20451773-2');
-ga('set', 'allowAdFeatures', false);
-ga('set', 'transport', 'beacon');
-ga('send', 'event', 'QuickStart', 'Running', 'VS2017');
-window.sentMessage = function() {
-    ga('send', 'event', 'QuickStart', 'SentMessage', 'VS2017');
-};
-</script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-20451773-2');
+        ga('set', 'allowAdFeatures', false);
+        ga('set', 'transport', 'beacon');
+        ga('send', 'event', 'QuickStart', 'Running', 'VS2017');
+        window.sentMessage = function () {
+            ga('send', 'event', 'QuickStart', 'SentMessage', 'VS2017');
+        };
+    </script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                @Html.ActionLink("NServiceBus Quick Start", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other resources <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="https://docs.particular.net/tutorials/step-by-step/" title="The step-by-step tutorial will teach you how to build NServiceBus systems using asynchronous messaging and Publish/Subscribe from the ground up.">Step-by-Step Tutorial</a></li>
-                        <li><a href="https://particular.net/chat" title="Our developers are available to answer your questions and help you be successful.">Chat with a developer</a></li>
-                    </ul>
+    <div class="navbar navbar-expand-md navbar-dark" style="background-color: #006791;">
+        @Html.ActionLink("NServiceBus Quick Start", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">Other resources <span class="caret"></span></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="https://docs.particular.net/tutorials/step-by-step/" title="The step-by-step tutorial will teach you how to build NServiceBus systems using asynchronous messaging and Publish/Subscribe from the ground up.">Step-by-Step Tutorial</a>
+                        <a class="dropdown-item" href="https://particular.net/chat" title="Our developers are available to answer your questions and help you be successful.">Chat with a developer</a>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -42,8 +43,9 @@ window.sentMessage = function() {
         @RenderBody()
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
