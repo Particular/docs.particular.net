@@ -66,7 +66,6 @@ Azure provides multiple messaging technologies. One of the most advanced and rel
 
 - Ease of scaling.
 - Ease of feature selection.
-- AMQP based implementation.
 - Supports message transactions. Other Azure queueing technologies do not.
 - Up to 1MB message size.
 - Levering native capabilities of the transport instead of taxing an endpoint.
