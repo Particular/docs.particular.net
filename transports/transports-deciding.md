@@ -64,6 +64,7 @@ Azure provides multiple messaging technologies. One of the most advanced and rel
 
 ### Advantages
 
+- A fully managed, turn-key infrastructure.
 - Ease of scaling.
 - Ease of feature selection.
 - Supports message transactions. Other Azure queueing technologies do not.
@@ -92,6 +93,7 @@ Azure Storage Queues has less features than Azure Service Bus but can be more co
 
 ### Advantages
 
+- A fully managed, turn-key infrastructure.
 - Can store very large numbers of messages (up to the 200 TB limit of the related Azure Storage account) although this should not be required in most scenarios.
 - A very low price per message.
 - A very high level of availability.
@@ -127,7 +129,6 @@ The SQL Server transport implements queues using relational database tables. Eac
 #### Disadvantages
 
 - Does not offer a native publish-subscribe mechanism. A database is required for storing event subscriptions (via [NServiceBus persistence](/persistence)). [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
-- Maximum throughput is for the entire system, instead of a single endpoint.
 - The transport polls the queue table even if there are no messages to process.
 - Depending on throughput, can add significant load to an existing SQL Server installation.
 
