@@ -70,6 +70,7 @@
     <Compile Include="InjectEndpointInstanceIntoController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\app.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
