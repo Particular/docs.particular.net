@@ -68,7 +68,7 @@ Azure provides multiple messaging technologies. One of the most advanced and rel
 - Ease of feature selection.
 - Supports message transactions. Other Azure queueing technologies do not.
 - Up to 1MB message size.
-- Levering native capabilities of the transport instead of taxing an endpoint.
+- More native capabilities, such as delayed message delivery, which requires an [outbox](/outbox) when using some other transports.
 
 ### Disadvantages
 
