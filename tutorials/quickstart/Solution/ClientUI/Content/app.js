@@ -10,3 +10,9 @@ window.sentMessage = function() {
     ga('send', 'event', 'QuickStart', 'SentMessage', 'VS2017');
 };
 
+(function ($, window) {
+    'use strict';
+
+
+
+}(jQuery, window));
