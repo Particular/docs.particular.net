@@ -12,9 +12,8 @@ public class MySaga :
 {
     static ILog log = LogManager.GetLogger<MySaga>();
 
-    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        log.Info($"Mail sent and written to {Program.DirectoryLocation}");
         MarkAsComplete();
         var mail = new Mail
         {
@@ -27,7 +26,9 @@ public class MySaga :
                 {"Id", "fakeEmail"}
             }
         };
-        return context.SendMail(mail);
+        await context.SendMail(mail)
+            .ConfigureAwait(false);
+        log.Info($"Mail sent and written to {Program.DirectoryLocation} from saga");
     }
 
     #endregion

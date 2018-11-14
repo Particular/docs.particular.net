@@ -26,7 +26,7 @@ public class MyHandler :
         };
         await context.SendMail(mail)
             .ConfigureAwait(false);
-        log.Info($"Mail sent and written to {Program.DirectoryLocation}");
+        log.Info($"Mail sent and written to {Program.DirectoryLocation} from handler");
     }
 }
 
