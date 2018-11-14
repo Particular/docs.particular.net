@@ -2,7 +2,7 @@
 title: Archived Message Management
 summary: Describes how ServicePulse monitors archived failed messages, and allows unarchiving archived failed messages.
 component: ServicePulse
-reviewed: 2016-12-15
+reviewed: 2018-11-14
 ---
 
 ## About message archival
@@ -15,7 +15,6 @@ Archiving in ServicePulse means that the failed messages are marked as `Archived
 
 NOTE: Archived failed messages are still included in [ServiceInsight](/serviceinsight/) diagrams and search results.
 
-
 ## Archiving messages
 
 Archived messages can be found in ServicePulse in a tab in the Failed Messages page. From the Failed Messages page, messages can also be archived from:
@@ -24,7 +23,6 @@ Archived messages can be found in ServicePulse in a tab in the Failed Messages p
 * Any failed group's contents view
 * All Messages tab
 * The message details page
-
 
 ## Managing archived messages
 
@@ -36,12 +34,11 @@ To limit the set of displayed messages, select an option from the available pred
 
 ![Archive Filters](images/archive-filters.png 'width=500')
 
-Each message on screen contains information about when it's scheduled for deletion. "Immediate deletion" means that the message has expired, and will be deleted the next time the deletion task runs. 
+Each message on screen contains information about when it's scheduled for deletion. "Immediate deletion" means that the message has expired, and will be deleted the next time the deletion task runs.
 
 ![Retention Countdown](images/archive-schedule.png 'width=500')
 
 See [Service Control Error Retention Period](/servicecontrol/creating-config-file.md) to learn more about scheduling automatic disposal of archived messages.
-
 
 ## Unarchiving failed messages
 
