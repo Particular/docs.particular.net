@@ -1,7 +1,7 @@
 ---
 title: Centralized file-based routing
 summary: How NServiceBus message routing can be configured via a file that can be shared between all endpoints
-reviewed: 2016-12-16
+reviewed: 2018-11-14
 component: FileBasedRouting
 tags:
 - routing
@@ -19,7 +19,7 @@ Centralized file-based routing is an alternative approach to configure message r
 
 ## Configuration
 
-Enable the feature via the routing configuration:
+After installing the `NServiceBus.FileBasedRouting` package, enable the feature via the routing configuration:
 
 snippet: Enable
 
