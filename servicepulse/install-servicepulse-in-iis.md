@@ -24,6 +24,7 @@ Steps
  1. Extract the ServicePulse files
  1. Disable/Remove ServicePulse
  1. Remove the `netsh` url restriction
+ 1. Make sure that [WebSocket support is enabled for IIS](https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/iis-80-websocket-protocol-support)
  1. Create a ServicePulse website in IIS referring to the ServicePulse directory
 
 ### Detailed steps
