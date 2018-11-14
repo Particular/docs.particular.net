@@ -5,111 +5,108 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-20451773-2');
 ga('set', 'allowAdFeatures', false);
 ga('set', 'transport', 'beacon');
-window.SOLUTION_VERSION = 'VS2017';
-ga('send', 'event', 'QuickStart', 'Running', SOLUTION_VERSION);
-window.sentMessage = function() {
-    ga('send', 'event', 'QuickStart', 'SentMessage', SOLUTION_VERSION);
-};
 
 (function ($, window) {
     'use strict';
+    window.SOLUTION_VERSION = 'VS2017';
 
-    var form = $('#license-form'),
-        firstname = $('#firstname'),
-        lastname = $('#lastname'),
-        email = $('#email');
+    $(function () {
 
-    if (!form.length) {
-        console.log('not yet');
-        return;
-    }
-
-    var d = new Date();
-    var trueDate = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-    var noop = function () { };
-    var version = window.NSB_VERSION;
-    var versionOK = version && !!version.match(/^\d+\.\d+\.\d+$/);
-    var gaSendEvent = function (category, action, label, callback) {
-        console.log(category, action, label);
-        var cb = callback || noop;
-        if (window.ga) {
+        var gaEvt = function (category, action, label, callback) {
+            var cb = callback || $.noop;
             window.ga('send', 'event', category, action, label, { hitCallback: cb });
-        } else {
-            cb();
-        }
-    };
-
-    var isEmail = function (email) {
-        var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        return regex.test(email);
-    };
-
-    ga('send', 'event', 'QuickStart', 'DisplayedLicenseForm', SOLUTION_VERSION);
-
-    $("#submit-license").click(function (e) {
-
-        e.preventDefault();
-        var formOK = true;
-
-        var check = function (sel, additionalFn) {
-            if (sel.val() === "") {
-                sel.attr('placeholder', 'Field is missing');
-                formOK = false;
-            } else {
-                sel.removeAttr('placeholder');
-                additionalFn && additionalFn(sel);
+            if (!ga.create) {
+                cb();
             }
         };
 
-        check(firstname);
-        check(lastname);
-        check(email, function (sel) {
-            if (!isEmail(sel.val())) {
-                sel.val("");
-                sel.attr("placeholder", "Email isn't valid");
-                formOK = false;
-            } else {
-                sel.removeAttr("placeholder");
-            }
-        });
+        gaEvt('QuickStart', 'Running', SOLUTION_VERSION);
+        window.sentMessage = function () {
+            gaEvt('QuickStart', 'SentMessage', SOLUTION_VERSION);
+        };
 
-        if (!formOK) {
+        var form = $('#license-form'),
+            firstname = $('#firstname'),
+            lastname = $('#lastname'),
+            email = $('#email');
+
+        if (!form.length) {
             return;
         }
 
-        var postData = {
-            FirstName: firstname.val(),
-            LastName: lastname.val(),
-            Email: email.val(),
-            templateid: "FreeLicense"
+        var isEmail = function (email) {
+            var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return regex.test(email);
         };
 
-        if (versionOK) {
-            postData.NServiceBusVersion = version;
-        }
+        gaEvt('QuickStart', 'DisplayedLicenseForm', SOLUTION_VERSION);
 
-        ga('send', 'event', 'QuickStart', 'SubmitLicenseForm', SOLUTION_VERSION);
+        $("#submit-license").click(function (e) {
 
-        $.ajax({
-            url: "https://api.particular.net/platform/licensetool/requestextension",
-            type: "POST",
-            data: postData,
-            complete: function (xhr, textStatus) {
-                if (textStatus === "success") {
+            e.preventDefault();
+            var formOK = true;
 
-                    form.append($('<input/>', { type: 'hidden', id: 'LeadCategory', name: 'LeadCategory', value: 'Download' }))
-                        .append($('<input/>', { type: 'hidden', id: 'LeadSource', name: 'LeadSource', value: 'QuickStartTutorial' }))
-                        .append($('<input/>', { type: 'hidden', name: 'version', value: 'V7' }));
-
-                    gaSendEvent('Action Performed', 'Trial Extension', 'Day 45', function () {
-                        form.submit();
-                    });
+            var check = function (sel, additionalFn) {
+                if (sel.val() === "") {
+                    sel.attr('placeholder', 'Field is missing');
+                    formOK = false;
+                } else {
+                    sel.removeAttr('placeholder');
+                    additionalFn && additionalFn(sel);
                 }
-                else {
-                    alert("Unable to send request due to exception. Please contact Particular at support@particular.net");
+            };
+
+            check(firstname);
+            check(lastname);
+            check(email, function (sel) {
+                if (!isEmail(sel.val())) {
+                    sel.val("");
+                    sel.attr("placeholder", "Email isn't valid");
+                    formOK = false;
+                } else {
+                    sel.removeAttr("placeholder");
                 }
+            });
+
+            if (!formOK) {
+                return;
             }
+
+            var postData = {
+                FirstName: firstname.val(),
+                LastName: lastname.val(),
+                Email: email.val(),
+                templateid: "FreeLicense"
+            };
+
+            if (window.NSB_VERSION && !!window.NSB_VERSION.match(/^\d+\.\d+\.\d+$/)) {
+                postData.NServiceBusVersion = window.NSB_VERSION;
+            }
+
+            gaEvt('QuickStart', 'SubmitLicenseForm', SOLUTION_VERSION);
+
+            $.ajax({
+                url: "https://api.particular.net/platform/licensetool/requestextension",
+                type: "POST",
+                data: postData,
+                complete: function (xhr, textStatus) {
+                    if (textStatus === "success") {
+
+                        form.append($('<input/>', { type: 'hidden', id: 'LeadCategory', name: 'LeadCategory', value: 'Download' }))
+                            .append($('<input/>', { type: 'hidden', id: 'LeadSource', name: 'LeadSource', value: 'QuickStartTutorial' }))
+                            .append($('<input/>', { type: 'hidden', name: 'version', value: 'V7' }));
+
+                        gaEvt('Action Performed', 'Trial Extension', 'Day 14', function () {
+                            form.submit();
+                        });
+                    }
+                    else {
+                        alert("Unable to send request due to exception. Please contact Particular at support@particular.net");
+                    }
+                }
+            });
         });
+
     });
 
 }(jQuery, window));
