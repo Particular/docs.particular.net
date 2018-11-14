@@ -1,7 +1,7 @@
 ---
 title: Automatic Retries
-summary: With Delayed Retries, the message causing the exception is instantly retried via a retries queue instead of an error queue.
-reviewed: 2016-12-15
+summary: Shows immediate and delayed retries when a handler throws an exception.
+reviewed: 2018-11-14
 component: Core
 tags:
 - Delayed Retries
@@ -26,15 +26,13 @@ The "Disable Delayed Retries" endpoint disables Delayed Retries with the followi
 
 snippet: Disable
 
-
 ## The output
 
 WARNING: This sample uses `Console.Writeline` instead of standard logging only for brevity and should not be used in production code.
 
-
 ### Without Delayed Retries
 
-In this endpoint, the message is retried successively without any delay and then, after the final failure, it is forwarded to the configured error queue. 
+In this endpoint, the message is retried successively without any delay and then, after the final failure, it is forwarded to the configured error queue.
 
 ```
 Handling MyMessage with MessageId:b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8
@@ -47,10 +45,9 @@ Handling MyMessage with MessageId:b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8
 System.Exception: An exception occurred in the handler.
 ```
 
-
 ### With Delayed Retries
 
-In this endpoint, the message is tried successively first and then delayed for the configured amount of time and then retried again. After the final configured retry, the message is moved to the error queue. The sample displays the retry number for clarity. 
+In this endpoint, the message is tried successively first and then delayed for the configured amount of time and then retried again. After the final configured retry, the message is moved to the error queue. The sample displays the retry number for clarity.
 
 ```
 This is retry number 1
