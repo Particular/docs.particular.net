@@ -1,7 +1,7 @@
 ---
 title: Multi-Site Deployments
-reviewed: 2017-01-04
-summary: How multi-site communication is handled.
+reviewed: 2018-11-14
+summary: How to handle multi-site communication.
 component: Gateway
 redirects:
  - nservicebus/the-gateway-and-multi-site-distribution
@@ -9,9 +9,9 @@ related:
  - samples/gateway
 ---
 
-The number of multi-site deployments of enterprise .NET systems are increasing due to the challenges of high availability and the requirement for faster response times for users, as the servers and data they access is closer.
+The number of multi-site deployments of enterprise .NET systems is increasing due to requirements of high availability and low-latency response times for users by moving servers and data closer to them.
 
-RPC technologies quickly run into trouble in these environments as they make machines in the same site and those in remote sites look the same.
+RPC technologies quickly run into trouble in these environments as they treat local and remote sites the same way, disregarding the challenges of a potentially unstable network in-between.
 
 In these cases, messaging is better than RPC, but many developers mistakenly represent physical site boundaries as logical boundaries, resulting in problems. NServiceBus prevents developers from going down the wrong path but may leave them wondering how NServiceBus handles multi-site communication.
 
@@ -39,7 +39,7 @@ For example, expect the Sales service in a store to talk to the pricing service 
 
 ![Store to headquarters pricing and sales interaction](store-to-headquarters-pricing-and-sales.png)
 
-This approach is not only common but is recommended for use in situations where physical sites have logical significance, keeping all inter-site communication within logical service boundaries.
+This approach is not only common but recommended for use in situations where physical sites have logical significance, keeping all inter-site communication within logical service boundaries.
 
 
 ## Intra-service cross-site messaging
@@ -55,7 +55,7 @@ partial: direct
 
 This model is recommended as it provides all the benefits of durable messaging between unreliably connected machines; at several sites, the same as within a single site. It is possible to read a great deal of information on [setting up and managing a Windows VPN](https://technet.microsoft.com/en-us/library/hh831539.aspx).
 
-In cases with only access to HTTP(S) for connections between sites, it is possible to enable the NServiceBus Gateway on each site so it transmits messages from a queue in one site to a queue in another site, including the hash of the messages to ensure that the message is transmitted correctly. The following diagram shows how it works:
+In cases with only access to HTTP(S) for connections between sites, it is possible to enable the NServiceBus Gateway on each site so it transmits messages from a queue in one site to a queue in another site, including the hash of the messages to ensure that the message was transmitted correctly. The following diagram shows how it works:
 
 ![Gateway Headquarter to Site A](gateway-headquarter-to-site-a.png)
 
@@ -108,7 +108,7 @@ Follow the steps for [configuring SSL](https://docs.microsoft.com/en-us/dotnet/f
 
 ## Automatic de-duplication
 
-Going through alternate channels like HTTP(S) means that the MSMQ safety guarantees of exactly-once message delivery are lost. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid being burdened with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/persistence/) so duplicates can be detected and discarded.
+Going through alternate channels like HTTP(S) means that the MSMQ safety guarantees of exactly-once message delivery are not available. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid being burdened with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/persistence/) so duplicates can be detected and discarded.
 
 
 partial: dedup
@@ -122,7 +122,7 @@ When the gateway is enabled it automatically sets up an HTTP channel to listen t
 
 snippet: GatewayChannelsAppConfig
 
-The `Default = true` on the first channel config entry tells the gateway which address to attach to outgoing messages if the sender does not specify it explicitly. Any number of channels can be added.
+The `Default = true` on the first channel config entry tells the gateway which address to attach to an outgoing message if the sender does not specify it explicitly. Any number of channels can be added.
 
 Or specify the physical routing in code:
 
