@@ -1,7 +1,7 @@
 ---
 title: Using centralized routing configuration
 summary: Using file to control message routing in entire NServiceBus system
-reviewed: 2016-12-16
+reviewed: 2018-11-15
 component: FileBasedRouting
 tags:
  - Routing
