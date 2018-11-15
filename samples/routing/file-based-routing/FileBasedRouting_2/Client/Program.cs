@@ -15,6 +15,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.FileBasedRouting.Client");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("Samples.FileBasedRouting.Error");
+        endpointConfiguration.EnableInstallers();
 
         #region FileBasedRouting
 

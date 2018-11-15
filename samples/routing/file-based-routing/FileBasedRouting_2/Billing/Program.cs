@@ -11,6 +11,8 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.FileBasedRouting.Billing");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("Samples.FileBasedRouting.Error");
+        endpointConfiguration.EnableInstallers();
+
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         var routing = transport.Routing();
         routing.UseFileBasedRouting(@"..\..\..\..\endpoints.xml");
