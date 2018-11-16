@@ -368,7 +368,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 9.0.x     | 2018-05-31     | -                 | -                                 |
 | 8.1.x     | 2018-01-24     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | ~~8.0.x~~ | ~~2017-11-17~~ | ~~2018-04-24~~    | ~~Superseded by 8.1.x~~           |
-| 7.0.x     | 2016-10-11     | 2018-11-17        | Superseded by 8.0.x               |
+| ~~7.0.x~~ | ~~2016-10-11~~ | ~~2018-11-17~~    | ~~Superseded by 8.0.x~~           |
 | ~~6.2.x~~ | ~~2015-10-08~~ | ~~2018-10-11~~    | ~~Extended by NServiceBus 5.2.x~~ |
 | ~~6.1.x~~ | ~~2014-10-28~~ | ~~2016-01-08~~    | ~~Superseded by 6.2.x~~           |
 | ~~6.0.x~~ | ~~2014-09-29~~ | ~~2015-01-28~~    | ~~Superseded by 6.1.x~~           |
@@ -668,7 +668,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.1.x     | 2018-08-10     | -                 | -                                 |
-| 2.0.x     | 2018-05-29     | 2018-11-10        | Superseded by 2.1.x               |
+| ~~2.0.x~~ | ~~2018-05-29~~ | ~~2018-11-10~~    | ~~Superseded by 2.1.x~~           |
 | 1.0.x     | 2017-11-10     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 
 #### [NServiceBus.Wcf](/nuget/NServiceBus.Wcf)
