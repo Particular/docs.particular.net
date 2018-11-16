@@ -27,8 +27,5 @@ snippet: Enable
 ## Running the project
 
  1. Start the solution.
- 1. Two messages of type, `MyMessage` are automatically sent to the endpoint on start up. The first message has a value  for the `Content` property and the second message has an empty value.
+ 1. Two messages of type, `MyMessage` are automatically sent to the endpoint on start up. The first message has a value for the `Content` property and the second message has an empty value.
  1. The handler for the message whose `Content` property has been set will be handled correctly while a validation exception will be thrown for the message whose `Content` property is empty.
-
-
-

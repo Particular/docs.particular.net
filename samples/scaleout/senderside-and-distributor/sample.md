@@ -10,7 +10,7 @@ related:
  - samples/scaleout/senderside
 ---
 
-The sample demonstrates differences in behavior of some of the NServiceBus APIs that depend on the scaling out method.
+The sample demonstrates differences in behavior of some of the NServiceBus APIs that depend on the scale-out method.
 
 
 ## Prerequisites

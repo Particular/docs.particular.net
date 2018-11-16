@@ -42,18 +42,18 @@ Each ServiceControl instance stores data in an embedded database. Audit data is 
 
 Each environment should have a single audit queue and a single error queue that all endpoints are configured to use. Each environment should have a single ServiceControl instance that is connected to it's audit and error queues. Consider the advice given in the [Planning](/servicecontrol/servicecontrol-in-practice.md) section of the documentation before creating a new ServiceControl instance.
 
-### Self Monitoring via Custom Checks
+### Self-monitoring via custom checks
 
-Service Control includes some basic self-monitoring implemented as [custom checks](/monitoring/custom-checks/). These checks will be reported in ServicePulse alongside any custom checks being reported from endpoints.
+ServiceControl includes some basic self-monitoring implemented as [custom checks](/monitoring/custom-checks/). These checks will be reported in ServicePulse alongside any custom checks being reported from endpoints.
 
-#### MSMQ Transactional Dead Letter Queue
+#### MSMQ transactional dead letter queue
 
-MSMQ servers have a single Transactional Dead Letter Queue. Messages that cannot be delivered to queues located on remote servers will eventually be moved to the Transactional Dead Letter queue when the MSMQ service is unable to deliver the message. ServiceControl will monitor the Transactional Dead Letter Queue on the server it is installed on as the presence of messages in this queue may indicate a problem with delivering message retries.
+MSMQ servers have a single transactional dead letter queue. Messages that cannot be delivered to queues located on remote servers will eventually be moved to the transactional dead letter queue when the MSMQ service is unable to deliver the message. ServiceControl will monitor the transactional dead letter queue on the server it is installed on as the presence of messages in this queue may indicate a problem with delivering message retries.
 
-#### Azure Service Bus Staging Dead Letter Queue
+#### Azure Service Bus staging dead letter queue
 
 Azure Service Bus queues each come with an associated dead letter queue. When ServiceControl sends a message for retry it utilizes a staging queue to do so. ServiceControl will monitor the dead letter queue of the ServiceControl staging queue as the presence of messages in this queue indicates a problem with delivering message retries.
 
-#### Failed Imports
+#### Failed imports
 
 When ServiceControl is unable to properly import an audit or error message, the error is logged and the message is stored separately in ServiceControl. ServiceControl will monitor these failed import stores and notify when any are found.

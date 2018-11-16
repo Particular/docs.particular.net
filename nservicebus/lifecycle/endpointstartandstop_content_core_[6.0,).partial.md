@@ -7,7 +7,7 @@ There are several options available to execute custom code as part of the endpoi
 WARNING: The `IWantToRunWhenBusStartsAndStops` interface is no longer available as part of the `NServiceBus` package.
 
 
-## Hooking into endpoint lifecycle when using the Hosts
+## Hooking into endpoint lifecycle when using the hosts
 
 Some of the described approaches are not available when hosting an endpoint via the `NServiceBus.Host` or `NServiceBus.Hosting.Azure` packages. Visit their respective documentation pages for more information on how to hook into the startup/shutdown sequence:
 

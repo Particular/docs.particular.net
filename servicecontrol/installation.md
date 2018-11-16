@@ -43,9 +43,9 @@ Certain transport features are not supported natively by ServiceControl and will
 Adding third-party transports via the Management Utility is not supported.
 
 
-### MSMQ Specifics
+### MSMQ
 
-If MSMQ is the selected transport, then ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
+If MSMQ is the selected transport, ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
 Installing MSMQ is optional in the Platform Installer. See [Platform Installer - MSMQ](/platform/installer/#select-items-to-install-configure-microsoft-message-queuing).
 

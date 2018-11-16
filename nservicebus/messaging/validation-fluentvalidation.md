@@ -60,7 +60,7 @@ snippet: FluentValidation_UnitOfWorkLifecycle
 
 The default lifecycle is per endpoint.
 
-By default, there are two exception scenarios when adding validators. So an exception will be thrown if:
+By default, there are two exception scenarios when adding validators. An exception will be thrown if:
 
  * No validators are found in an assembly that is scanned.
  * Any non-public validators are found in an assembly that is scanned.

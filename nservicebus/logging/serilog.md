@@ -41,22 +41,22 @@ snippet: SerilogFiltering
 
 Writing diagnostic log entries to [Serilog](https://serilog.net/). Plugs into the low level [pipeline](/nservicebus/pipeline) to give more detailed diagnostics.
 
-When using Serilog for tracing it is optional to use Serilog as the main NServiceBus logger. i.e. no need to include `LogManager.Use<SerilogFactory>();`.
+When using Serilog for tracing, it is optional to use Serilog as the main NServiceBus logger. i.e. there is no need to include `LogManager.Use<SerilogFactory>();`.
 
 
-### Create an instance of a Serilog Logger
+### Create an instance of a Serilog logger
 
 snippet: SerilogTracingLogger
 
 
-### Configure the Tracing feature to use that logger
+### Configure the tracing feature to use that logger
 
 snippet: SerilogTracingPassLoggerToFeature
 
 
-### Contextual Logger
+### Contextual logger
 
-Serilog Tracing injects a contextual `Serilog.Ilogger` into the NServiceB pipeline.
+Serilog tracing injects a contextual `Serilog.Ilogger` into the NServiceBus pipeline.
 
 NOTE: Saga and message tracing will use the current contextual logger.
 
@@ -70,9 +70,9 @@ All loggers for an endpoint will have the the property `ProcessingEndpoint` adde
 
 #### Incoming message enrichment
 
-When a message is received the following enrichment properties are added:
+When a message is received, the following enrichment properties are added:
 
- * [SourceContext](https://github.com/serilog/serilog/wiki/Writing-Log-Events#source-contexts) will be the the message type [FullName](https://docs.microsoft.com/de-de/dotnet/api/system.type.fullname) extracted from the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes). `UnknownMessageType` will be used if no header exists. The same value will be added to a property named `MessageType`.
+ * [SourceContext](https://github.com/serilog/serilog/wiki/Writing-Log-Events#source-contexts) will be the message type [FullName](https://docs.microsoft.com/de-de/dotnet/api/system.type.fullname) extracted from the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes). `UnknownMessageType` will be used if no header exists. The same value will be added to a property named `MessageType`.
  * `MessageId` will be the value of the [MessageId header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-messageid).
  * `CorrelationId` will be the value of the [CorrelationId header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-correlationid) if it exists.
  * `ConversationId` will be the value of the [ConversationId header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-conversationid) if it exists.
@@ -80,7 +80,7 @@ When a message is received the following enrichment properties are added:
 
 #### Handler enrichment
 
-When a handler is invoked a new logger is forked from the above enriched physical logger with a new enriched property named `Handler` that contains the the [FullName](https://docs.microsoft.com/de-de/dotnet/api/system.type.fullname) of the current handler.
+When a handler is invoked, a new logger is forked from the above enriched physical logger with a new enriched property named `Handler` that contains the the [FullName](https://docs.microsoft.com/de-de/dotnet/api/system.type.fullname) of the current handler.
 
 
 #### Outgoing message enrichment
@@ -103,7 +103,7 @@ The type added to the exception data is `ExceptionLogState`. It contains the fol
 
  * `ProcessingEndpoint` will be the current [endpoint name](/nservicebus/endpoints/specify-endpoint-name.md).
  * `MessageId` will be the value of the [MessageId header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-messageid).
- * `MessageType` will be the the message type [FullName](https://docs.microsoft.com/de-de/dotnet/api/system.type.fullname) extracted from the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes). `UnknownMessageType` will be used if no header exists.
+ * `MessageType` will be the message type [FullName](https://docs.microsoft.com/de-de/dotnet/api/system.type.fullname) extracted from the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes). `UnknownMessageType` will be used if no header exists.
  * `CorrelationId` will be the value of the [CorrelationId header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-correlationid) if it exists.
  * `ConversationId` will be the value of the [ConversationId header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-conversationid) if it exists.
 
@@ -111,15 +111,15 @@ The instance of `ExceptionLogState` can be accessed using the following.
 
 snippet: ExceptionLogState
 
-If routing NServiceBus log event using `LogManager.Use<SerilogFactory>();` then the above properties will be promoted to the log event.
+When routing the NServiceBus log event with `LogManager.Use<SerilogFactory>();`, the above properties will be promoted to the log event.
 
 
-### Saga Tracing
+### Saga tracing
 
 snippet: EnableSagaTracing
 
 
-### Message Tracing
+### Message tracing
 
 Both incoming and outgoing messages will be logged at the [Information level](https://github.com/serilog/serilog/wiki/Writing-Log-Events#the-role-of-the-information-level). The current message will be included in a property named `Message`. For outgoing messages any unicast routes will be included in a property named `UnicastRoutes`.
 
