@@ -3,6 +3,9 @@ Mapping the logical destination to the physical address containing the queue and
 The preferred way of configuring the physical routing is via the instance mapping file.
 
 
+NOTE: When using instance mapping, the settings will have no effect on **audit/error** queue and **publish/subscribe** (except for subscription messages, subscription messages will be sent to all listed instances)
+
+
 ## Instance mapping file
 
 The instance mapping file is a simple XML file that has to be located either on a local hard drive or a network drive. When using MSMQ as the transport, NServiceBus will automatically look for an `instance-mapping.xml` file in `AppDomain.BaseDirectory`.
