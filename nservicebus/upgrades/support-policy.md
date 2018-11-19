@@ -39,12 +39,12 @@ include: supported-versions-nservicebus
 For other NServiceBus packages, refer to [the list of supported versions of all packages](supported-versions.md).
 
 
-## Extended Support Policy
+## Extended Support
 
-Extended support is helpful when more time is needed to upgrade an existing system on an unsupported version of NServiceBus to a supported version of NServiceBus. In order to be entitled to extended support, a valid support agreement with Particular is needed. Extended support provides an extra two years at the end of the mainstream support. During this period:
+Extended support is helpful when more time is required to upgrade an existing system from an unsupported version of NServiceBus to a supported version. In order to be entitled to extended support, a valid support agreement with Particular Software is required. Extended support provides an extra two years at the end of the mainstream support. During this period:
 
-   - Older samples are still provided to customers.
-   - If a bug is detected and reported, Particular will triage it and provide a patch if it is deemed critical.
+   - Samples for unsupported versions are still provided for all customers.
+   - If a critical bug in an unsupported version is detected and reported, Particular Software will provide a patch release.
 
 ## Compatibility guarantees
 
