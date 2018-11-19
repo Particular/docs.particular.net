@@ -1,5 +1,9 @@
 Mapping the logical destination to the physical address containing the queue and host names is the responsibility of physical routing. 
 
+
+NOTE: When using instance mapping, the settings will have no effect on **audit/error** queue and **publish/subscribe** (except for subscription messages, subscription messages will be sent to all listed instances)
+
+
 The preferred way of configuring the physical routing is via the instance mapping file.
 
 
