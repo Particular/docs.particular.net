@@ -21,6 +21,7 @@ WARNING: Due to a [bug in the AWS SDK](https://github.com/aws/aws-sdk-net/issues
  * Fully managed turn-key messaging infrastructure. SQS queues requires very little effort to set up, maintain and manage over time.
  * Integrates seamlessly with other services provided by AWS, for example, [IAM](https://aws.amazon.com/documentation/iam/), [CloudWatch](https://aws.amazon.com/cloudwatch/), [Lambda](https://aws.amazon.com/lambda/), etc. For organizations already committed to AWS, SQS is a natural choice.
  * Can be used as a gateway between endpoints that may not have direct connectivity to each-other.
+ * Can send and receive large messages, that exceed the queues limitations, by storing large payloads in S3. For more information take a look at the transport [configuration options](configuration-options.md).
 
 
 ## Disadvantages
