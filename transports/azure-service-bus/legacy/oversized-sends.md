@@ -8,6 +8,7 @@ tags:
 - Error Handling
 redirects:
  - nservicebus/azure-service-bus/oversized-sends
+ - transports/azure-service-bus/oversized-sends
 ---
 
 include: legacy-asb-warning

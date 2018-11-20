@@ -1,29 +1,83 @@
 ---
-title: Azure Service Bus Transport Scripting
-summary: Examples and scripts that facilitate deployment and operational actions against Azure Service Bus
-component: ASB
-reviewed: 2017-05-05
+title: Operational Scripting
+summary: Explains how to create queues and topics with the Azure Service Bus transport using scripting
+component: ASBS
 tags:
  - Azure
-related: 
- - samples/azure/native-integration-asb
-redirects:
- - nservicebus/azure-service-bus/operational-scripting
+reviewed: 2018-06-21
 ---
 
-include: legacy-asb-warning
+## Operational Scripting
 
-This document refers to example code and scripts that facilitate deployment and operational actions against an Azure Service Bus namespace.
+In order to provision or de-provision the resources required by an endpoint, the `asb-transport` command line (CLI) tool can be used.
 
-This SDK is also available many other languages:
+The tool can be obtained from NuGet and installed using the following command:
 
- * [.NET](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues)
- * [Java](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-java-how-to-use-queues)
- * [Node.js](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-nodejs-how-to-use-queues)
- * [PHP](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-php-how-to-use-queues)
- * [Python](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-python-how-to-use-queues)
- * [Ruby](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-ruby-how-to-use-queues)
+```
+dotnet tool install -g NServiceBus.Transport.AzureServiceBus.CommandLine
+```
 
-For other language it is possible to perform these actions using the [REST API](https://docs.microsoft.com/en-us/rest/api/servicebus/).
+Once installed, the `asb-transport` command line tool will be available for use.
 
-If operations need to be executed at the command line, refer to the [PowerShell Samples](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-manage-with-ps) or the cross platform [Azure Xplat CLI](https://www.npmjs.com/package/azure-cli) for more information.
+`asb-transport <command> [options]`
+
+### Available commands
+
+- `endpoint create`
+- `queue create`
+- `queue delete`
+
+### asb-transport endpoint create
+
+Create a new endpoint using:
+
+```
+asb-transport endpoint create [--size]
+                              [--partitioned]
+                              [--topic]
+                              [--subscription]
+```
+
+#### options
+ 
+`-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
+
+`-s` | `--size` : Queue size in GB (defaults to 5)
+
+`-p` | `--partitioned`: Enable partitioning
+
+`-t` | `--topic`: Topic name (defaults to 'bundle-1')
+
+`-b` | `--subscription`: Subscription name (defaults to endpoint name)
+
+
+### asb-transport queue create
+ 
+Create a queue using:
+
+```
+asb-transport queue create [--size]
+                           [--partitioned]
+```
+
+#### options
+
+`-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
+
+`-s` | `--size`: Queue size in GB (defaults to 5)
+
+`-p` | `--partitioned`: Enable partitioning
+
+
+### asb-transport queue delete
+ 
+Delete a queue using:
+
+```
+asb-transport queue delete
+```
+
+#### options
+
+`-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
+ 

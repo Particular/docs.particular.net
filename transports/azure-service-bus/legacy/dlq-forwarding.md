@@ -8,6 +8,7 @@ tags:
 - Error Handling
 redirects:
  - nservicebus/azure-service-bus/dlq-forwarding
+ - transports/azure-service-bus/dlq-forwarding
 ---
 
 include: legacy-asb-warning

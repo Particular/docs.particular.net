@@ -9,6 +9,7 @@ related:
 reviewed: 2018-01-10
 redirects:
  - nservicebus/azure-service-bus/sanitization
+ - transports/azure-service-bus/sanitization
 ---
 
 include: legacy-asb-warning

@@ -10,6 +10,7 @@ related:
  - samples/azure/azure-service-bus
 redirects:
  - nservicebus/azure-service-bus/topologies
+ - transports/azure-service-bus/topologies
 ---
 
 include: legacy-asb-warning

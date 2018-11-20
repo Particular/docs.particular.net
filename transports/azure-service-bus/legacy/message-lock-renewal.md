@@ -8,9 +8,10 @@ tags:
 - Transport
 reviewed: 2017-06-16
 related:
-- samples/azure/azure-service-bus-long-running
+ - samples/azure/azure-service-bus-long-running
 redirects:
  - nservicebus/azure-service-bus/message-lock-renewal
+ - transports/azure-service-bus/message-lock-renewal
 ---
 
 include: legacy-asb-warning

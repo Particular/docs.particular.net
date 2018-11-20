@@ -6,7 +6,8 @@ tags:
  - Azure
 reviewed: 2018-05-17
 redirects:
-- nservicebus/azure-service-bus/addressing-logic
+ - nservicebus/azure-service-bus/addressing-logic
+ - transports/azure-service-bus/addressing-logic
 ---
 
 include: legacy-asb-warning

@@ -8,6 +8,7 @@ tags:
 redirects:
  - nservicebus/azure-service-bus/configuration/configuration
  - nservicebus/azure-service-bus/configuration/full
+ - transports/azure-service-bus/configuration/full
 reviewed: 2018-01-10
 ---
 

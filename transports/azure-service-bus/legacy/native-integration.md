@@ -9,6 +9,7 @@ related:
  - nservicebus/operations
 redirects:
  - nservicebus/azure-service-bus/native-integration
+ - transports/azure-service-bus/native-integration
 ---
 
 include: legacy-asb-warning

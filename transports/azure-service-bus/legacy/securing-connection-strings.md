@@ -13,6 +13,7 @@ related:
 redirects:
  - nservicebus/azure-service-bus/secure-credentials
  - nservicebus/azure-service-bus/securing-connection-strings
+ - transports/azure-service-bus/securing-connection-strings
 ---
 
 include: legacy-asb-warning

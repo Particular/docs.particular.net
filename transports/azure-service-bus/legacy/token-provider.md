@@ -10,6 +10,7 @@ tags:
 reviewed: 2017-05-05
 redirects:
  - nservicebus/azure-service-bus/token-provider
+ - transports/azure-service-bus/token-provider
 ---
 
 include: legacy-asb-warning

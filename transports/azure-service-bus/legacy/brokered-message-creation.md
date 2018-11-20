@@ -10,7 +10,8 @@ related:
  - nservicebus/messaging/third-party-integration
  - nservicebus/messaging/headers
 redirects:
-- nservicebus/azure-service-bus/brokered-message-creation
+ - nservicebus/azure-service-bus/brokered-message-creation
+ - transports/azure-service-bus/brokered-message-creation
 ---
 
 include: legacy-asb-warning

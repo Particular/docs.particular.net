@@ -11,6 +11,7 @@ related:
 - samples/azure/custom-partitioning-asb
 redirects:
  - nservicebus/azure-service-bus/multiple-namespaces-support
+ - transports/azure-service-bus/multiple-namespaces-support
 ---
 
 include: legacy-asb-warning

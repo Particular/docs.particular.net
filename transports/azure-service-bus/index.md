@@ -1,51 +1,23 @@
 ---
 title: Azure Service Bus Transport
-component: ASB
+component: ASBS
 tags:
  - Azure
-redirects:
- - nservicebus/using-azure-servicebus-as-transport-in-nservicebus
- - nservicebus/azure/azure-servicebus-transport
- - nservicebus/azure-service-bus
+ - Transport
 related:
- - samples/azure/azure-service-bus
- - samples/azure-service-bus-netstandard/asbs-asb-side-by-side
-reviewed: 2018-09-27
+ - samples/azure-service-bus-netstandard/send-reply
+ - samples/azure-service-bus-netstandard/native-integration
+reviewed: 2018-08-21
 ---
 
-include: legacy-asb-warning
+The Azure Service Bus transport leverages the .NET Standard [Microsoft.Azure.ServiceBus](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus/) client SDK.
 
-[Azure Service Bus (ASB)](https://azure.microsoft.com/en-us/services/service-bus/) is a messaging service hosted on the Azure platform, that allows for exchanging messages between various applications in a loosely coupled fashion. ASB Queues offer <a href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">"First In, First Out" (FIFO)</a> guaranteed message delivery, and support a range of standard protocols (REST, AMQP, WS*) and APIs (to put messages on and pull messages off the queue). ASB Topics deliver messages to multiple subscribers and facilitate use of the fan-out pattern to deliver messages to downstream systems.
+[Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) is a messaging service hosted on the Azure platform that allows for exchanging messages between various applications in a loosely coupled fashion. The service offers guaranteed message delivery and supports a range of standard protocols (e.g. REST, AMQP, WS*) and APIs such as native pub/sub, delayed delivery, and more.
 
-NServiceBus is an abstraction over ASB. It takes advantage of ASB's built-in features, such as message batching and deferred messages. It also provides a higher-level, convenient API for programmers on top of ASB.
+## Configuring an endpoint
 
-Note: Publish/Subscribe and Timeouts (including message deferral) are supported natively by the ASB transport and do not require NServiceBus persistence.
+To use Azure Service Bus as the underlying transport:
 
- * The main advantage of ASB is that it offers a highly reliable and low latency remote messaging infrastructure. A single message can be up to 256 KB in size (1 MB for Premium), and a queue can store many messages at once, up to 5 GB size in total. Furthermore, it is capable of emulating local transactions using its queue [peek-lock mechanism](https://docs.microsoft.com/en-us/rest/api/servicebus/peek-lock-message-non-destructive-read).
- * The main disadvantage of ASB is its dependency on TCP (for low latency), which may require opening outbound ports on the firewall. Additionally, in some systems the price for the service (at the per message level) may be significant.
+snippet: azure-service-bus-for-dotnet-standard
 
-
-include: azure-transports
-
-
-## Enabling the Transport
-
-When creating the namespace at the Azure portal, choose Standard or Premium Messaging Tier for Azure Service Bus.
-
-Then at configuration time set ASB as the transport:
-
-snippet: AzureServiceBusTransportWithAzure
-
-
-## Setting the Connection String
-
-For more details on setting up connection strings and securing them, refer to the [Configuration Connection Strings](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-how-to-use-topics-subscriptions) and the [Securing Credentials](/transports/azure-service-bus/securing-connection-strings.md) articles.
-
-To set the connection string use the following:
-
-partial: code-connection
-
-
-### Via App.Config
-
-snippet: AzureServiceBusConnectionStringFromAppConfig
+NOTE: The Azure Service Bus transport requires a connection string to connect to a namespace.

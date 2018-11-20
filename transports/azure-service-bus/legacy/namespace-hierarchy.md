@@ -9,6 +9,7 @@ tags:
 reviewed: 2017-08-03
 redirects:
  - nservicebus/azure-service-bus/namespace-hierarchy
+ - transports/azure-service-bus/namespace-hierarchy
 ---
 
 include: legacy-asb-warning

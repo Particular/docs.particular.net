@@ -7,6 +7,7 @@ tags:
 - Error Handling
 redirects:
  - nservicebus/azure-service-bus/error-handling
+ - transports/azure-service-bus/error-handling
 ---
 
 include: legacy-asb-warning

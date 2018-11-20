@@ -9,6 +9,7 @@ tags:
 reviewed: 2017-05-05
 redirects:
  - nservicebus/azure-service-bus/retries
+ - transports/azure-service-bus/retries
 ---
 
 include: legacy-asb-warning

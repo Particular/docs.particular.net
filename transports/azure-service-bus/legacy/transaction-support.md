@@ -8,6 +8,7 @@ tags:
  - Transactions
 redirects:
  - nservicebus/azure-service-bus/transaction-support
+ - transports/azure-service-bus/transaction-support
 ---
 
 include: legacy-asb-warning

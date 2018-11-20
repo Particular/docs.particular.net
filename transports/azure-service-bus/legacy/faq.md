@@ -7,6 +7,7 @@ tags:
  - Transport
 redirects:
  - nservicebus/azure-service-bus/faq
+ = transports/azure-service-bus/faq
 ---
 
 include: legacy-asb-warning

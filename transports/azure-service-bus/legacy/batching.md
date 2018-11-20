@@ -7,7 +7,8 @@ tags:
 - Transport
 reviewed: 2017-05-05
 redirects:
-- nservicebus/azure-service-bus/batching
+ - nservicebus/azure-service-bus/batching
+ - transports/azure-service-bus/batching
 ---
 
 include: legacy-asb-warning

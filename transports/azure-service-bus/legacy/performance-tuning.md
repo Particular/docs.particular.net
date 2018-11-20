@@ -7,7 +7,8 @@ reviewed: 2017-07-12
 related:
  - nservicebus/operations
 redirects:
-- nservicebus/azure-service-bus/performance-tuning
+ - nservicebus/azure-service-bus/performance-tuning
+ - transports/azure-service-bus/performance-tuning
 ---
 
 include: legacy-asb-warning

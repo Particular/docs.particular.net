@@ -7,6 +7,7 @@ tags:
  - Transactions
 redirects:
  - nservicebus/azure-service-bus/understanding-transactions-and-delivery-guarantees
+ - transports/azure-service-bus/understanding-transactions-and-delivery-guarantees
 ---
 
 include: legacy-asb-warning
