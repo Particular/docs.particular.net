@@ -15,28 +15,35 @@ Supported versions of NServiceBus and its associated packages are determined by 
 
 ### NServiceBus package
 
-* Major versions are supported for a period of 2 years after the release of the next major version.
-* Minor versions of a supported major version are supported for a period of 6 months after the release of the next minor version.
-* Only the latest patch release of each supported minor version is supported.
+- Major versions are supported for a period of 2 years after the release of the next major version.
+- Minor versions of a supported major version are supported for a period of 6 months after the release of the next minor version.
+- Only the latest patch release of each supported minor version is supported.
 
 ### Component packages that depend upon NServiceBus
 
-* Major versions are supported for a period of 1 year after the release of the next major version.
-* Minor versions of a supported major version are supported for a period of 3 months after the release of the next minor version.
-* Only the latest patch release of each supported minor version is supported.
-* A version can only be supported if the NServiceBus package on which it depends is also currently supported.
-* If the version is the most recent version which works with a given version of NServiceBus, the version will be supported for as long as that version of NServiceBus is supported.
+- Major versions are supported for a period of 1 year after the release of the next major version.
+- Minor versions of a supported major version are supported for a period of 3 months after the release of the next minor version.
+- Only the latest patch release of each supported minor version is supported.
+- A version can only be supported if the NServiceBus package on which it depends is also currently supported.
+- If the version is the most recent version which works with a given version of NServiceBus, the version will be supported for as long as that version of NServiceBus is supported.
 
-WARNING: If support is required for a version that is not listed or has expired, contact [Particular Software Support](https://particular.net/support).
+WARNING: If support is required for a version that is not listed or has expired, contact [Particular Software Support](https://particular.net/contactus).
 
 Particular will apply critical bug fixes to all supported versions. If the bug also impacts a non supported version, the recommended approach is to upgrade to a supported version which contains the fix.
 
 For more information refer to [the release policy](/nservicebus/upgrades/release-policy.md).
 
-
 include: supported-versions-nservicebus
 
 For other NServiceBus packages, refer to [the list of supported versions of all packages](supported-versions.md).
+
+
+## Extended Support
+
+Extended support is helpful when more time is required to upgrade an existing system from an unsupported version of NServiceBus to a supported version. In order to be entitled to extended support, a valid support agreement with Particular Software is required. Extended support provides an extra two years at the end of the mainstream support. During this period:
+
+- Samples for unsupported versions are still provided for all customers.
+- If a critical bug in an unsupported version is detected and reported, Particular Software will provide a patch release.
 
 
 ## Compatibility guarantees
