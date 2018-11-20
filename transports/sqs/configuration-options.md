@@ -31,6 +31,7 @@ The maximum value is 14 days.
 
 snippet: MaxTTL
 
+NOTE: [Large messages payload stored in S3](topology.md#s3) are never deleted by the receiving endpoint, regardless of the successful handling or not. The deletion of the payload is controlled by the S3 aging policy, that will respect the configured TTL. Since message payloads, stored in S3, are important for audited and failed messages stored in ServiceControl it is crucial that [ServiceControl message retention period](/servicecontrol/how-purge-expired-data.md) is aligned with the configured SQS and S3 TTL.
 
 ## QueueNamePrefix
 
