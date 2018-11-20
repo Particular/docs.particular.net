@@ -635,14 +635,14 @@
     Articles:
     - Url: transports/learning/viewing-messages
       Title: Viewing content
-  - Url: transports/azure-service-bus-netstandard
+  - Url: transports/azure-service-bus
     Title: Azure Service Bus
     Articles:
-    - Url: transports/azure-service-bus-netstandard/configuration
+    - Url: transports/azure-service-bus/configuration
       Title: Configuration
-    - Url: transports/azure-service-bus-netstandard/compatibility
+    - Url: transports/azure-service-bus/compatibility
       Title: Backwards Compatibility
-    - Url: transports/azure-service-bus-netstandard/operational-scripting
+    - Url: transports/azure-service-bus/operational-scripting
       Title: Operational Scripting
   - Url: transports/azure-service-bus
     Title: Azure Service Bus [Legacy]
