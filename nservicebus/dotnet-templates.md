@@ -43,15 +43,7 @@ snippet: nsbservice-addToSolution
 snippet: nsbservice-options
 
 
-#### Target Framework
-
-The target framework for the project.
-
-`-f|--framework`
-
-Default: `net462`
-
-Supported: `net47`, `net462`, `net452`
+partial: target-framework
 
 
 ## ServiceControl Transport Adapter Windows Service
@@ -74,15 +66,7 @@ snippet: scadapterservice-addToSolution
 snippet: scadapterservice-options
 
 
-#### Target Framework
-
-The target framework for the project.
-
-`-f|--framework`
-
-Default: `net462`
-
-Supported: `net47`, `net462`, `net452`
+partial: target-framework
 
 
 partial: dockercontainer
