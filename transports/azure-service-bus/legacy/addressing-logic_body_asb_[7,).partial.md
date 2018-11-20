@@ -1,4 +1,4 @@
-In Azure Service Bus transport version 7 and above, the configuration API allows modification of all behaviors and assumptions related to the addressing logic. This article will mainly focus on describing the different aspects of the addressing logic and will demonstrate how to replace parts if further changes should occur. For a full list of out of the box options, refer to [Full Configuration API](/transports/azure-service-bus/configuration/full.md).
+In Azure Service Bus transport version 7 and above, the configuration API allows modification of all behaviors and assumptions related to the addressing logic. This article will mainly focus on describing the different aspects of the addressing logic and will demonstrate how to replace parts if further changes should occur. For a full list of out of the box options, refer to [Full Configuration API](/transports/azure-service-bus/legacy/configuration/full.md).
 
 
 ## Addressing aspects
@@ -18,7 +18,7 @@ The sanitization aspect is represented by an implementation of `ISanitizationStr
 Out of the box there are two sanitization strategies:
 
  * `ThrowOnFailingSanitization` (default): throws an exception if the name is invalid.
- * `ValidateAndHashIfNeeded`: removes invalid characters and hashes to reduce the length of an entity name if the maximum length is exceeded. By default, sanitization and hashing do nothing and [must be configured](/transports/azure-service-bus/sanitization.md#automated-sanitization).
+ * `ValidateAndHashIfNeeded`: removes invalid characters and hashes to reduce the length of an entity name if the maximum length is exceeded. By default, sanitization and hashing do nothing and [must be configured](/transports/azure-service-bus/legacy/sanitization.md#automated-sanitization).
 
 The default implementation of this strategy can be replaced by using the configuration API:
 

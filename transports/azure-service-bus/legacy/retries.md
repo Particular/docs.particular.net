@@ -16,7 +16,7 @@ include: legacy-asb-warning
 
 This article describes the relationship between [recoverability behavior](/nservicebus/recoverability/) and the Azure Service Bus native retry behavior.
 
-Azure Service Bus supports a `MaxDeliveryCount` at the entity level, which defines how many times Azure Service Bus attempts to deliver a message before sending it to the dead letter queue. Refer to [the full configuration API](/transports/azure-service-bus/configuration/full.md#controlling-entities-queues) article to learn how to adjust this setting.
+Azure Service Bus supports a `MaxDeliveryCount` at the entity level, which defines how many times Azure Service Bus attempts to deliver a message before sending it to the dead letter queue. Refer to [the full configuration API](/transports/azure-service-bus/legacy/configuration/full.md#controlling-entities-queues) article to learn how to adjust this setting.
 
 
 ## Immediate Retries and MaxDeliveryCount
@@ -38,11 +38,11 @@ For system queues, such as audit and error queues, if a custom value was configu
 
 ### Excessive prefetching and MaxDeliveryCount 
 
-When a message is received for processing, the transport will also [prefetch](/transports/azure-service-bus/configuration/full.md#controlling-connectivity-message-receivers) additional messages. If processing a message takes too long time, then the broker will consider that a failed processing attempt and increase `DeliveryCount` counter on the messages w/o processing attempt taking place.  
+When a message is received for processing, the transport will also [prefetch](/transports/azure-service-bus/legacy/configuration/full.md#controlling-connectivity-message-receivers) additional messages. If processing a message takes too long time, then the broker will consider that a failed processing attempt and increase `DeliveryCount` counter on the messages w/o processing attempt taking place.  
 
 Endpoints with high `PrefetchCount` that take long time to process an incoming message can cause prefetched message to be sent to the `Delayed Retries` or the error queue without being retried the desired number of times. To prevent this issue, lower the `PrefetchCount`.
 
-See [Message Receivers configuration](/transports/azure-service-bus/configuration/full.md#controlling-connectivity-message-receivers) for more details.
+See [Message Receivers configuration](/transports/azure-service-bus/legacy/configuration/full.md#controlling-connectivity-message-receivers) for more details.
 
 
 ## Retries and dead letter queues

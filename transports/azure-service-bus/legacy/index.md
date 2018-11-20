@@ -39,7 +39,7 @@ snippet: AzureServiceBusTransportWithAzure
 
 ## Setting the Connection String
 
-For more details on setting up connection strings and securing them, refer to the [Configuration Connection Strings](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-how-to-use-topics-subscriptions) and the [Securing Credentials](/transports/azure-service-bus/securing-connection-strings.md) articles.
+For more details on setting up connection strings and securing them, refer to the [Configuration Connection Strings](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-how-to-use-topics-subscriptions) and the [Securing Credentials](/transports/azure-service-bus/legacy/securing-connection-strings.md) articles.
 
 To set the connection string use the following:
 

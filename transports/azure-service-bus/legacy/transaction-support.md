@@ -29,7 +29,7 @@ The `SendsAtomicWithReceive` guarantee is achieved by setting the `ViaEntityPath
 
 If the `ViaEntityPath` is not empty, then messages will be added to the receive queue. The messages will be forwarded to their destinations (inside the broker) only when the complete operation is called on the received brokered message. The message won't be forwarded if the lock duration limit is exceeded (30 seconds by default) or if the message is explicitly abandoned.
 
-DANGER: The messages will not be delivered to the destination queue that exceeds its maximum size and transaction will **NOT** fail. Instead, transaction will be reported as successful and messages for the destination queue will be dead-lettered by the broker. To avoid this, plan entities [maximum size](/transports/azure-service-bus/configuration/full.md) to accomodate production throughputs and possible scenarios.
+DANGER: The messages will not be delivered to the destination queue that exceeds its maximum size and transaction will **NOT** fail. Instead, transaction will be reported as successful and messages for the destination queue will be dead-lettered by the broker. To avoid this, plan entities [maximum size](/transports/azure-service-bus/legacy/configuration/full.md) to accomodate production throughputs and possible scenarios.
 
 
 ## Receive Only

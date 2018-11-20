@@ -22,20 +22,20 @@ The full configuration API can be accessed from the `UseTransport<AzureServiceBu
 
 ## Configuring the topology
 
-A topology defines what the underlying layout of Azure Service Bus messaging entities looks like, specifically what entities are used and how they relate to each other. There are 2 built-in topologies: `EndpointOrientedTopology` and `ForwardingTopology`. For more information, refer to the [Topologies](/transports/azure-service-bus/topologies) article.
+A topology defines what the underlying layout of Azure Service Bus messaging entities looks like, specifically what entities are used and how they relate to each other. There are 2 built-in topologies: `EndpointOrientedTopology` and `ForwardingTopology`. For more information, refer to the [Topologies](/transports/azure-service-bus/legacy/topologies) article.
 
  * `UseForwardingTopology()`: Selects `ForwardingTopology` as the topology to be used by the transport.
  * `UseEndpointOrientedTopology()`: Selects `UseEndpointOrientedTopology` as the topology to be used by the transport.
 
 ### Forwarding topology
 
-The [forwarding topology](/transports/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology) defines a queue per endpoint and a shared topic to do the publishing. Topic prefix can be configured using the following setting:
+The [forwarding topology](/transports/azure-service-bus/legacy/topologies/#versions-7-and-above-forwarding-topology) defines a queue per endpoint and a shared topic to do the publishing. Topic prefix can be configured using the following setting:
 
  * `BundlePrefix(string)`: The prefix used in the entity name to differentiate shared topic (bundle) from other topics.
 
 ### Endpoint oriented topology
 
-The [endpoint oriented topology](/transports/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology) defines a queue and a topic per endpoint. It can be configured using the following settings:
+The [endpoint oriented topology](/transports/azure-service-bus/legacy/topologies/#versions-7-and-above-endpoint-oriented-topology) defines a queue and a topic per endpoint. It can be configured using the following settings:
 
  * `RegisterPublisherForType(string, Type)`: Registers the publishing endpoint for a given type.
  * `RegisterPublisherForAssembly(string, Assembly)`: Registers the publishing endpoint for all types in an assembly.
@@ -129,7 +129,7 @@ partial: batchflushinterval
 
 The following settings determine how NServiceBus will receive messages from Azure Service Bus entities:
 
- * `ReceiveMode(ReceiveMode)`: Determines *"transactional behavior"*. Choosing `ReceiveMode.PeekLock` ensures that messages will be removed from the queue only after the processing has completed. If processing fails, or takes too long, the message will reappear on the queue for reprocessing. This behavior emulates transactional rollback. `ReceiveMode.ReceiveAndDelete` will delete the message immediately after receive, meaning there is no rollback when an exception occurs. Defaults to `ReceiveMode.PeekLock`. To learn more about the supported transactional behaviors in the Azure Service Bus transport, refer to the [Transaction Support in Azure](/transports/azure-service-bus/transaction-support.md) article.
+ * `ReceiveMode(ReceiveMode)`: Determines *"transactional behavior"*. Choosing `ReceiveMode.PeekLock` ensures that messages will be removed from the queue only after the processing has completed. If processing fails, or takes too long, the message will reappear on the queue for reprocessing. This behavior emulates transactional rollback. `ReceiveMode.ReceiveAndDelete` will delete the message immediately after receive, meaning there is no rollback when an exception occurs. Defaults to `ReceiveMode.PeekLock`. To learn more about the supported transactional behaviors in the Azure Service Bus transport, refer to the [Transaction Support in Azure](/transports/azure-service-bus/legacy/transaction-support.md) article.
  * `AutoRenewTimeout(TimeSpan)`: When using `ReceiveMode.PeekLock`, the broker will lock a received message for a period specified as `LockDuration(TimeSpan)` on the entity. If processing doesn't end within this time period, a message will reappear on the entity and will be reprocessed. For long running operations this might imply that the operation will be executed multiple times in parallel, which is usually undesirable. This setting allows to extend the lock automatically when processing hasn't finished yet. The `TimeSpan` specified here refers to the maximum period that the lock can be extended for, so it should be bigger than the expected processing time. Note that it is not recommended to extend the lock duration, message processing should be fast by default.
  * `PrefetchCount(int)`: This setting will make the receiver prefetch messages on receive operations, acting like a client side batching mechanism. Defaults to 20 in `PeekLock` mode, meaning that each receive operation will pull in 20 messages at once. In `ReceiveAndDelete` mode prefetching is disabled by default and has to be enabled explicitly.
  * `RetryPolicy(RetryPolicy)`: Determines how the receiver should respond on transient connectivity failures. Defaults to `RetryPolicy.Default`, which is an exponential retry.
@@ -160,7 +160,7 @@ Enable the latter using the following configuration setting:
 
  * `SendViaReceiveQueue(bool)`: Uses the receive queue to dispatch outgoing messages when possible. Defaults to `true`.
 
-To learn more about the supported transactional behaviors in the Azure Service Bus transport, refer to the [Transaction Support in Azure](/transports/azure-service-bus/transaction-support.md) article.
+To learn more about the supported transactional behaviors in the Azure Service Bus transport, refer to the [Transaction Support in Azure](/transports/azure-service-bus/legacy/transaction-support.md) article.
 
 
 ## Physical Addressing Logic
@@ -186,7 +186,7 @@ Sanitization refers to the cleanup logic that converts invalid entity names into
    * `ThrowOnFailedValidation`: (default) throws an exception if the name is invalid.
    * `ValidateAndHashIfNeeded`: allows customization of sanitization without creating a new strategy.
 
-`UseStrategy<T>()` can be used to customize the selected [sanitization](/transports/azure-service-bus/sanitization.md) strategy or completely replace it.
+`UseStrategy<T>()` can be used to customize the selected [sanitization](/transports/azure-service-bus/legacy/sanitization.md) strategy or completely replace it.
 
 
 ### Individualization
