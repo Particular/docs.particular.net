@@ -1,5 +1,5 @@
 ﻿# startcode install
-dotnet new --install ParticularTemplates::*
+dotnet new --install ParticularTemplates
 # endcode
 
 
