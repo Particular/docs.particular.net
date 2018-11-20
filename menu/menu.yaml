@@ -647,63 +647,63 @@
   - Url: transports/azure-service-bus
     Title: Azure Service Bus [Legacy]
     Articles:
-    - Url: transports/azure-service-bus/topologies
+    - Url: transports/azure-service-bus/legacy/topologies
       Title: Topologies
-    - Url: transports/azure-service-bus/configuration
+    - Url: transports/azure-service-bus/legacy/configuration
       Title: Configuration
       Articles:
-      - Url: transports/azure-service-bus/configuration/full
+      - Url: transports/azure-service-bus/legacy/configuration/full
         Title: Full API
-      - Url: transports/azure-service-bus/retries
+      - Url: transports/azure-service-bus/legacy/retries
         Title: Retry behavior
-      - Url: transports/azure-service-bus/sanitization
+      - Url: transports/azure-service-bus/legacy/sanitization
         Title: Sanitization
-      - Url: transports/azure-service-bus/addressing-logic
+      - Url: transports/azure-service-bus/legacy/addressing-logic
         Title: Addressing Logic
-      - Url: transports/azure-service-bus/securing-connection-strings
+      - Url: transports/azure-service-bus/legacy/securing-connection-strings
         Title: Securing Namespace Connections
-      - Url: transports/azure-service-bus/namespace-hierarchy
+      - Url: transports/azure-service-bus/legacy/namespace-hierarchy
         Title: Namespace hierarchy
-      - Url: transports/azure-service-bus/token-provider
+      - Url: transports/azure-service-bus/legacy/token-provider
         Title: Token Provider
     - Title: Routing
       Articles:
-      - Url: transports/azure-service-bus/publisher-names-configuration
+      - Url: transports/azure-service-bus/legacy/publisher-names-configuration
         Title: Publishers name configuration
-      - Url: transports/azure-service-bus/multiple-namespaces-support
+      - Url: transports/azure-service-bus/legacy/multiple-namespaces-support
         Title: Multiple namespaces
       - Url: nservicebus/azure/data-distribution
         Title: Data distribution
-    - Url: transports/azure-service-bus/performance-tuning
+    - Url: transports/azure-service-bus/legacy/performance-tuning
       Title: Performance Tuning
       Articles:
-      - Url: transports/azure-service-bus/batching
+      - Url: transports/azure-service-bus/legacy/batching
         Title: Batching
-      - Url: transports/azure-service-bus/message-lock-renewal
+      - Url: transports/azure-service-bus/legacy/message-lock-renewal
         Title: Message lock renewal
-    - Url: transports/azure-service-bus/transaction-support
+    - Url: transports/azure-service-bus/legacy/transaction-support
       Title: Transaction Support
       Articles:
       - Url: nservicebus/azure/understanding-transactionality-in-azure
         Title: Transactions in Azure
       - Url: nservicebus/azure/ways-to-live-without-transactions
         Title: Avoiding Transactions
-      - Url: transports/azure-service-bus/understanding-transactions-and-delivery-guarantees
+      - Url: transports/azure-service-bus/legacy/understanding-transactions-and-delivery-guarantees
         Title: Internal transaction and delivery guarantees
-    - Url: transports/azure-service-bus/error-handling
+    - Url: transports/azure-service-bus/legacy/error-handling
       Title: Error Handling
       Articles:
-      - Url: transports/azure-service-bus/dlq-forwarding
+      - Url: transports/azure-service-bus/legacy/dlq-forwarding
         Title: Forwarding
-      - Url: transports/azure-service-bus/oversized-sends
+      - Url: transports/azure-service-bus/legacy/oversized-sends
         Title: Oversized Sends
-    - Url: transports/azure-service-bus/native-integration
+    - Url: transports/azure-service-bus/legacy/native-integration
       Title: Native Integration
-    - Url: transports/azure-service-bus/brokered-message-creation
+    - Url: transports/azure-service-bus/legacy/brokered-message-creation
       Title: Brokered Message Creation
-    - Url: transports/azure-service-bus/operational-scripting
+    - Url: transports/azure-service-bus/legacy/operational-scripting
       Title: Operational Scripting
-    - Url: transports/azure-service-bus/faq
+    - Url: transports/azure-service-bus/legacy/faq
       Title: FAQ
   - Url: transports/azure-storage-queues
     Title: Azure Storage Queues
