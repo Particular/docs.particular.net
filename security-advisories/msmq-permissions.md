@@ -1,7 +1,7 @@
 ---
 title: Security Advisory 2017-01-10
 summary: MSMQ permissions vulnerability
-reviewed: 2017-01-09
+reviewed: 2018-11-20
 tags:
  - MSMQ
  - Transport
