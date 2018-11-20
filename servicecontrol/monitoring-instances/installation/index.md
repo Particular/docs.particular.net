@@ -23,9 +23,9 @@ NOTE: Each environment should contain a single [ServiceControl instance](/servic
 
 Monitoring instances can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
 
-* [Azure Service Bus](/transports/azure-service-bus-netstandard)
-* [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus/topologies/#versions-7-and-above-endpoint-oriented-topology)
-* [Azure Service Bus - Forwarding topology](/transports/azure-service-bus/topologies/#versions-7-and-above-forwarding-topology)
+* [Azure Service Bus](/transports/azure-service-bus)
+* [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus/legacy/topologies/#versions-7-and-above-endpoint-oriented-topology)
+* [Azure Service Bus - Forwarding topology](/transports/azure-service-bus/legacy/topologies/#versions-7-and-above-forwarding-topology)
 * [Azure Storage Queues](/transports/azure-storage-queues/)
 * [Amazon Simple Queue Service (SQS)](/transports/sqs/)
 * [Microsoft Message Queuing (MSMQ)](/transports/msmq/)

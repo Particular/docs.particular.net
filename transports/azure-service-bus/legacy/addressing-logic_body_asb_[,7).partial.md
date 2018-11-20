@@ -2,4 +2,4 @@ In Azure Service Bus transport version 6 and below, the *Physical Addressing Log
 
 For example, `Mixed` namespaces allowed paths and names to have up to 290 characters, while `Messaging` namespaces are capped at 260 characters. Moreover, users are sometimes forced to game the system for valid reasons; for example to figure out how to embed slashes (`'/'`) in endpoint names to create sub-directories in the Azure Service Bus namespace registration system.
 
-To mitigate these changes, the transport exposes certain checks as lambda expressions, known as the [naming conventions](/transports/azure-service-bus/naming-conventions.md).
+To mitigate these changes, the transport exposes certain checks as lambda expressions, known as the [naming conventions](/transports/azure-service-bus/legacy/naming-conventions.md).

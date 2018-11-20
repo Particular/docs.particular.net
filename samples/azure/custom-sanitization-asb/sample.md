@@ -5,8 +5,8 @@ component: ASB
 reviewed: 2017-05-05
 related:
  - transports/azure-service-bus
- - transports/azure-service-bus/sanitization
- - transports/azure-service-bus/topologies
+ - transports/azure-service-bus/legacy/sanitization
+ - transports/azure-service-bus/legacy/topologies
  - nservicebus/messaging/publish-subscribe
  - samples/azure/azure-service-bus
 ---

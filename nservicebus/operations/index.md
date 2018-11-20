@@ -18,12 +18,17 @@ Operational documentation is best reviewed from the perceptive of the selected t
 ## Transports
 
 
-### [Azure Service Bus Transport](/transports/azure-service-bus/)
+### [Azure Service Bus Transport](/transports/azure-service-bus)
 
- * [Messaging topology](/transports/azure-service-bus/topologies/)
- * [Securing Connection Strings To Namespaces](/transports/azure-service-bus/securing-connection-strings.md)
- * [Performance Tuning](/transports/azure-service-bus/performance-tuning.md)
- * [Native Integration](/transports/azure-service-bus/native-integration.md)
+ * [Scripting](/transports/azure-service-bus/operational-scripting.md)
+
+
+### [Azure Service Bus Transport (Legacy)](/transports/azure-service-bus/legacy)
+
+ * [Messaging topology](/transports/azure-service-bus/legacy/topologies/)
+ * [Securing Connection Strings To Namespaces](/transports/azure-service-bus/legacy/securing-connection-strings.md)
+ * [Performance Tuning](/transports/azure-service-bus/legacy/performance-tuning.md)
+ * [Native Integration](/transports/azure-service-bus/legacy/native-integration.md)
 
 
 ### [Azure Storage Queues Transport](/transports/azure-storage-queues/)
