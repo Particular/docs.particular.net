@@ -25,7 +25,7 @@ Operational documentation is best reviewed from the perceptive of the selected t
 
 ### [Azure Service Bus Transport (Legacy)](/transports/azure-service-bus/legacy)
 
- * [Messaging topology](/transports/azure-service-bus/legacy/topologies/)
+ * [Messaging topology](/transports/azure-service-bus/legacy/topologies.md)
  * [Securing Connection Strings To Namespaces](/transports/azure-service-bus/legacy/securing-connection-strings.md)
  * [Performance Tuning](/transports/azure-service-bus/legacy/performance-tuning.md)
  * [Native Integration](/transports/azure-service-bus/legacy/native-integration.md)

@@ -15,19 +15,19 @@ upgradeGuideCoreVersions:
 ---
 
 
-## [Topology](/transports/azure-service-bus/legacy/topologies/) is mandatory
+## [Topology](/transports/azure-service-bus/legacy/topologies.md) is mandatory
 
 In Versions 7 and above the topology selection is mandatory:
 
 snippet: topology-selection-upgrade-guide
 
-The [`EndpointOrientedTopology`](/transports/azure-service-bus/legacy/topologies/#versions-7-and-above-endpoint-oriented-topology)  is backward compatible with versions 6 and below of the transport. The [`ForwardingTopology`](/transports/azure-service-bus/legacy/topologies/#versions-7-and-above-forwarding-topology) is the recommended option for new projects.
+The [`EndpointOrientedTopology`](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-endpoint-oriented-topology)  is backward compatible with versions 6 and below of the transport. The [`ForwardingTopology`](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-forwarding-topology) is the recommended option for new projects.
 
 When selecting `EndpointOrientedTopology`, it is also necessary to configure [publisher names](/transports/azure-service-bus/legacy/publisher-names-configuration.md), in order to ensure that subscribers are subscribed to the correct publisher:
 
 snippet: publisher_names_mapping_upgrade_guide
 
-For more details on topologies refer to the [Azure Service Bus Transport Topologies](/transports/azure-service-bus/legacy/topologies/) article.
+For more details on topologies refer to the [Azure Service Bus Transport Topologies](/transports/azure-service-bus/legacy/topologies.md) article.
 
 
 ## Sanitization

@@ -29,13 +29,13 @@ A topology defines what the underlying layout of Azure Service Bus messaging ent
 
 ### Forwarding topology
 
-The [forwarding topology](/transports/azure-service-bus/legacy/topologies/#versions-7-and-above-forwarding-topology) defines a queue per endpoint and a shared topic to do the publishing. Topic prefix can be configured using the following setting:
+The [forwarding topology](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-forwarding-topology) defines a queue per endpoint and a shared topic to do the publishing. Topic prefix can be configured using the following setting:
 
  * `BundlePrefix(string)`: The prefix used in the entity name to differentiate shared topic (bundle) from other topics.
 
 ### Endpoint oriented topology
 
-The [endpoint oriented topology](/transports/azure-service-bus/legacy/topologies/#versions-7-and-above-endpoint-oriented-topology) defines a queue and a topic per endpoint. It can be configured using the following settings:
+The [endpoint oriented topology](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-endpoint-oriented-topology) defines a queue and a topic per endpoint. It can be configured using the following settings:
 
  * `RegisterPublisherForType(string, Type)`: Registers the publishing endpoint for a given type.
  * `RegisterPublisherForAssembly(string, Assembly)`: Registers the publishing endpoint for all types in an assembly.

@@ -13,7 +13,7 @@ The Azure Service Bus transport is backward compatible with the legacy Azure Ser
 
 ### Forwarding topology
 
-The Azure Service Bus transport only supports the [forwarding topology](/transports/azure-service-bus/legacy/topologies/#versions-7-and-above-forwarding-topology), an entity layout where a topic is used for publishing between the endpoints.
+The Azure Service Bus transport only supports the [forwarding topology](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-forwarding-topology), an entity layout where a topic is used for publishing between the endpoints.
 
 ### Single namespace
 

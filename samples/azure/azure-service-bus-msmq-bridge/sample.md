@@ -44,7 +44,7 @@ Endpoints are bridged using [Transport Bridge](/nservicebus/bridge/). `Bridge` p
 
 #### Azure Service Bus endpoint configuration
 
-In this example Azure Service Bus transport is configured to use the `EndpointOrientedTopology` (to learn more check the [topologies](/transports/azure-service-bus/legacy/topologies/) documentation). This topology requires some additional steps to be properly bridged.
+In this example Azure Service Bus transport is configured to use the `EndpointOrientedTopology` (to learn more check the [topologies](/transports/azure-service-bus/legacy/topologies.md) documentation). This topology requires some additional steps to be properly bridged.
 
 snippet: topology-setup-subscriber
 
