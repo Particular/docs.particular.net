@@ -13,7 +13,7 @@ related:
 
 NServiceBus is an abstraction built on top of existing queuing technologies. These queuing technologies are referred to as a "Transport" with NServiceBus.
 
-The documentation related to transports will help you understand what the differences are between the transports and decide which one best suits a specific scenario. And after a transport has been decided, how to make optimal usage of NServiceBus in combination with that transport. Including how to deal with concurrency, transactions, scaling, etc.
+The documentation related to transports will help with a better understanding of what the differences are between the transports and decide which one best suits a specific scenario. And after a transport has been decided, how to make optimal usage of NServiceBus in combination with that transport. Including how to deal with concurrency, transactions, scaling, etc.
 
 ## Different Transports
 
@@ -39,4 +39,4 @@ WebSphereMQ Transport for NServiceBus is not supported by Particular Software at
 
 ## How to select a transport
 
-When new to message queuing, it can be a challenge to decide which technology is the right one for a specific scenario. For this reason we've written [comprehensive documentation](/transports/transports-deciding) to make an educated decision.
+When new to message queuing, it can be a challenge to decide which technology is the right one for a specific scenario. For this reason there is [comprehensive documentation](/transports/transports-selecting) to make an educated decision.
