@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-namespace Templates_2
+namespace Templates_3
 {
     class NServiceBusDockerContainer
     {
