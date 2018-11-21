@@ -22,7 +22,7 @@ The full configuration API can be accessed from the `UseTransport<AzureServiceBu
 
 ## Configuring the topology
 
-A topology defines what the underlying layout of Azure Service Bus messaging entities looks like, specifically what entities are used and how they relate to each other. There are 2 built-in topologies: `EndpointOrientedTopology` and `ForwardingTopology`. For more information, refer to the [Topologies](/transports/azure-service-bus/legacy/topologies) article.
+A topology defines what the underlying layout of Azure Service Bus messaging entities looks like, specifically what entities are used and how they relate to each other. There are 2 built-in topologies: `EndpointOrientedTopology` and `ForwardingTopology`. For more information, refer to the [Topologies](/transports/azure-service-bus/legacy/topologies.md) article.
 
  * `UseForwardingTopology()`: Selects `ForwardingTopology` as the topology to be used by the transport.
  * `UseEndpointOrientedTopology()`: Selects `UseEndpointOrientedTopology` as the topology to be used by the transport.
