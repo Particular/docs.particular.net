@@ -6,7 +6,7 @@ NOTE: As part of the Azure support for NServiceBus, one can choose between two t
 When considering an Azure Transport it is important to consider the transaction guarantees that that service provides.
 
  * [Azure Storage Queues - Transaction Support](/transports/azure-storage-queues/transaction-support.md)
- * [Azure Service Bus - Transaction Support](/transports/azure-service-bus/transaction-support.md)
+ * [Azure Service Bus - Transaction Support](/transports/azure-service-bus/legacy/transaction-support.md)
  * [Understanding Transactionality in Azure](/nservicebus/azure/understanding-transactionality-in-azure.md)
 
 }}
