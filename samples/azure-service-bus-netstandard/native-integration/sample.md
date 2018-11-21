@@ -4,7 +4,7 @@ summary: Consuming messages published by non-NServiceBus endpoints.
 component: ASBS
 reviewed: 2018-08-21
 related:
- - transports/azure-service-bus-netstandard
+ - transports/azure-service-bus
 ---
 
 This sample shows how to send a message from non-NServiceBus code using the Azure Service Bus API and process it with an NServiceBus endpoint using the Azure Service Bus transport.
