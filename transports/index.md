@@ -6,7 +6,7 @@ redirects:
  - nservicebus/nservicebus-and-websphere-sonic
  - nservicebus/transports
 related:
- - transports/transports-deciding
+ - transports/transports-selecting
  - transports/transports-types
  - samples/custom-transport
 ---

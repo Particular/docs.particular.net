@@ -577,7 +577,7 @@
   - Url: transports
     Title: General
     Articles:
-    - Url: transports/transports-deciding
+    - Url: transports/transports-selecting
       Title: Selecting a transport
     - Url: transports/transports-types
       Title: Transport types
