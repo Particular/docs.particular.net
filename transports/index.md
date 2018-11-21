@@ -19,14 +19,14 @@ The documentation related to transports will help with a better understanding of
 
 The different transports that NServiceBus supports are
 
-- [Learning Transport](/transports/learning/)
-- [MSMQ](/transports/msmq)
- * [Azure Service Bus](/transports/azure-service-bus-netstandard/)
- * [Azure Service Bus [Legacy]](/transports/azure-service-bus/)
-- [Azure Storage Queues](/transports/azure-storage-queues/)
-- [SQL Server](/transports/sql/)
-- [RabbitMQ](/transports/rabbitmq/)
-- [Amazon SQS](/transports/sqs/)
+* [Learning Transport](/transports/learning/)
+* [MSMQ](/transports/msmq)
+* [Azure Service Bus](/transports/azure-service-bus-netstandard/)
+* [Azure Service Bus [Legacy]](/transports/azure-service-bus/)
+* [Azure Storage Queues](/transports/azure-storage-queues/)
+* [SQL Server](/transports/sql/)
+* [RabbitMQ](/transports/rabbitmq/)
+* [Amazon SQS](/transports/sqs/)
 
 ### Community-maintained transports
 
