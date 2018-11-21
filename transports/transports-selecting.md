@@ -73,21 +73,21 @@ The MSMQ transport uses native Windows queuing mechanism, MSMQ, to deliver messa
 
 Azure provides multiple messaging technologies and one of the most advanced and reliable ones is Azure Service Bus.
 
-Advantages
+## Advantages
 
-- No need to maintain infrastructure or have deep knowledge of Azure Service Bus as Microsoft and NServiceBus take care of almost everything.
+- Fully managed turn-key infrastructure
 - Ability to scale in both features and price range.
 - AMQP based implementation
 - Supports messaging transactions unlike other messaging services on Azure
 - Up to 1MB message size
-- Levering native capabilities of the transport instead of taxing an endpoint
+- Levering native capabilities of the transport instead of taxing an endpoint, like publish/subscribe and message deferral
 
 ## Disadvantages
 
 - Requires monitoring of costs, although NServiceBus supports tweaking number of transactions to Azure.
 - No on-premise option for development or testing
 - Processing a message has to complete within 5 minutes
-- Depends on TCP and might require opening additional ports in the firewall
+- Relies on TCP and might require opening additional ports in the firewall
 
 #### When would you select this transport
 
@@ -104,14 +104,14 @@ Azure Storage Queues is a service hosted on the Azure platform. Compared to Azur
 
 #### Advantages
 
+- Fully managed turn-key infrastructure
 - Can store very large numbers of messages (up to 200 TB limit of the Azure Storage account). Even though you should not store that many messages, it is a feature we wanted to add.
 - Very low price per message
 - Very high availability
 
 #### Disadvantages
 
-- The size of a single message is limited to 64 KB including headers and body. NServiceBus adds a stack-trace to the message before sending it to the error queue.
-- Atomic message receive and data manipulation requires Outbox
+- The size of a single message is limited to 64 KB including headers and body. NServiceBus uses headers for metadata, which could consume a lot of the message overall size.
 - Does not offer a native publish-subscribe mechanism, therefore it requires NServiceBus persistence to be configured for storing event subscriptions. [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified
 - Significant latency when receiving messages due to HTTP-based polling communication protocol
 
@@ -138,9 +138,8 @@ The SQL Server Transport implements queues on top of relational tables. Each row
 #### Disadvantages
 
 - Does not offer a native publish-subscribe mechanism, therefore it requires NServiceBus persistence to be configured for storing event subscriptions. [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
-- Maximum throughput is for the entire system, instead of a single endpoint.
+- Combined messages throughput of all endpoints adds additional load on your SQL Server installation.
 - The transport polls the queue table even if there are no messages to process.
-- Depending on throughput it adds additional load on your SQL Server installation.
 
 #### When would you select this transport
 
@@ -183,7 +182,6 @@ This is a popular transport if your system is hosted inside AWS, Amazon its clou
 
 - Fully managed turn-key infrastructure
 - Automatically scales up and down
-- Can be used as a gateway between endpoints that cannot communicate directly with each other
 
 #### Disadvantages
 
