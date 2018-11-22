@@ -2,7 +2,7 @@
 title: Callback support
 reviewed: 2016-08-30
 component: Rabbit
-reviewed: 2017-01-13
+reviewed: 2018-11-22
 versions: '[2,]'
 related:
  - nservicebus/messaging/callbacks
