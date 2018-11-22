@@ -11,7 +11,10 @@ This document provides guidance for deciding which [transport](/transports) may 
 
 This guide does not provide definitive answers for all scenarios. Every decision has trade-offs, some of which are described in the documentation for each transport. If it is unclear what the best choice is, or there are very specific constraints, contact [Particular Software](https://particular.net/contactus).
 
-![decision-chart](/transports/decision-chart.png)
+## Decision chart
+
+![decision-chart](/transports/decision-chart.svg)
+
 
 ## Broker versus federated
 
