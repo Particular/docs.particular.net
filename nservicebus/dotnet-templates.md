@@ -25,7 +25,7 @@ snippet: install
 
 ## NServiceBus Windows Service
 
-This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for an NServiceBus endpoint. The template follows the approach outlined in [Windows Service Hosting](/nservicebus/hosting/windows-service.md).
+This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for an NServiceBus endpoint. The template follows the self hosting approach; details on how to install the endpoint as a service are outlined in [Windows Service Installation](/nservicebus/hosting/windows-service.md).
 
 The template can be used via the following command:
 
