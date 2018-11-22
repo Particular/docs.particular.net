@@ -2,4 +2,4 @@ For debugging purposes, it can be helpful to increase the `RequestedHeartbeat` s
 
 snippet: rabbitmq-connectionstring-debug
 
-Increasing this setting can help prevent the connection to the broker from timing out while the code is paused from hitting a breakpoint.
+Increasing this setting can help avoiding the connection timeout while the debugging.
