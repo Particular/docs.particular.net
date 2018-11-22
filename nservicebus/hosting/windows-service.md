@@ -1,36 +1,17 @@
 ---
-title: Windows Service Hosting
-summary: How to host NServiceBus in a Windows service
-reviewed: 2018-03-22
+title: Windows Service Installation
+summary: How to install an NServiceBus endpoint as a Windows service
+reviewed: 2018-11-22
 component: Core
 tags:
  - Hosting
  - Windows Service
 related:
  - nservicebus/dotnet-templates
- - samples/hosting/windows-service
  - nservicebus/lifecycle
  - samples/startup-shutdown-sequence
  - samples/endpoint-configuration
 ---
-
-Running an NServiceBus endpoint inside a [Windows service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common approach to hosting.
-
-
-## Example Windows Service hosting
-
- * Create a new Console Application.
- * Reference `System.ServiceProcess.dll`.
- * Change the program to inherit from [ServiceBase](https://msdn.microsoft.com/en-us/library/system.serviceprocess.servicebase.aspx)
-
-snippet: windowsservicehosting
-
-include: servicehelper
-
-snippet: ServiceHelper
-
-partial: bootstrapper
-
 
 ## Installation
 
