@@ -13,9 +13,7 @@ This document provides guidance on selecting the right transport for generic sce
 
 Through documentation, it is impossible to provide a clear path for every single possible scenario. Every decision has multiple trade-offs, some of which we added to the documentation in each transport. The result is that this guide is not a definitive answer for everyone. If you’re still unclear of what the best choice is, or you have very specific requests, don’t hesitate to contact us via support or chat.
 
-## Transport selection decision chart
-
-![transport-decision-chart](/transports/transport-decision-chart.svg)
+![transport-decision-chart](/transports/transport-decision-chart.png)
 
 ## Broker versus Store & Forward
 
