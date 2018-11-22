@@ -5,7 +5,6 @@ component: Templates
 related:
  - servicecontrol/transport-adapter
  - nservicebus/hosting/windows-service
- - samples/hosting/windows-service
  - samples/servicecontrol/adapter-mixed-transports
 redirects:
  - nservicebus/hosting/windows-service-template
