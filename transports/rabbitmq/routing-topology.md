@@ -10,7 +10,7 @@ redirects:
 ---
 
 
-The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the exchanges it creates to send and publish messages. In most cases the [conventional routing topology](routing-topology.md#conventional-routing-topology) should be used.
+The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the exchanges it creates to send and publish messages. All endpoints in a system must use the same topology to be able to communicate with each other. For the new systems the [conventional routing topology](routing-topology.md#conventional-routing-topology) should be used. The [direct routing topology](routing-topology.md#direct-routing-topology) is only recommended when adding an endpoint to an existing system that already uses that topology. Custom topology might be useful when integrating with a legacy system.
 
 
 ## Conventional routing topology
@@ -40,8 +40,6 @@ partial: enable-conventional-routing-topology
 ## Direct routing topology
 
 The direct routing topology routes all events through a single exchange, `amq.topic` by default. Events are published using a *routing key* based on the event type, and subscribers will use that key to filter their subscriptions.
-
-Note: Unless needed for compatibility with existing deployments, it is recommended to use the conventional routing topology instead.
 
 
 ### Sending using the direct routing topology
