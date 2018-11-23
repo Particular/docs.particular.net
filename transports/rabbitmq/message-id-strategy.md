@@ -17,4 +17,4 @@ For integration scenarios where the sender is not controlled, the receiver might
 
 snippet: rabbitmq-config-custom-id-strategy
 
-WARNING: It is extremely important to ensure that the custom strategy is deterministic i.e. that it returns the same value when invoked multiple times for the same message, and that no two messages are associated the same value. 
+WARNING: It is extremely important that the custom strategy is deterministic (it returns the same value when invoked multiple times for the same message), and that no two messages are assigned the same value. 
