@@ -7,7 +7,7 @@ versions: '[2,]'
 related:
  - nservicebus/messaging/callbacks
 redirects:
- - nservicebus//rabbitmq/callbacks
+ - nservicebus/rabbitmq/callbacks
 ---
 
 partial: queue
