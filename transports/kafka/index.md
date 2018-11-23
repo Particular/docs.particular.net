@@ -1,12 +1,12 @@
 ---
 title: Kafka Transport
-reviewed: 2017-01-10
+reviewed: 2018-11-23
 component: Kafka
 redirects:
  - nservicebus/kafka
 ---
 
-A transport built on top of [Apache Kafka](https://kafka.apache.org/).
+A transport built on [Apache Kafka](https://kafka.apache.org/).
 
 
 ## Usage

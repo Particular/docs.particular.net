@@ -1,7 +1,7 @@
 ---
 title: Kafka Transport Usage
-summary: A simple send and receive scenario with the Kafka Transport
-reviewed: 2017-01-16
+summary: A simple send and receive scenario with the Kafka transport
+reviewed: 2018-11-23
 component: Kafka
 related:
 - transports/kafka
@@ -21,13 +21,13 @@ Useful links:
 ## Running the project
 
  1. Start both the Sender and Receiver projects.
- 1. At startup Sender will send a message to Receiver.
+ 1. At startup, Sender will send a message to Receiver.
  1. Receiver will handle the message.
 
 
-## Code Walk-through
+## Code walk-through
 
 
-### Configure the Kafka
+### Configure Kafka
 
 snippet: TransportConfiguration
