@@ -1,7 +1,7 @@
 ---
 title: Connection settings
 summary: The various ways to customize the RabbitMQ transport.
-reviewed: 2017-01-13
+reviewed: 2018-11-22
 component: Rabbit
 redirects:
  - nservicebus/rabbitmq/connection-strings
@@ -54,7 +54,7 @@ Default: `5671` if the `UseTls` setting is set to `true`, otherwise the default 
 
 ### VirtualHost
 
-The [virtual host](https://www.rabbitmq.com/access-control.html) to use.
+The [virtual host](https://www.rabbitmq.com/vhosts.html) to use.
 
 Default: `/`
 
