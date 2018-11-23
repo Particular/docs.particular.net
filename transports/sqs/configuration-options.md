@@ -31,7 +31,7 @@ The maximum value is 14 days.
 
 snippet: MaxTTL
 
-NOTE: [Large messages payload stored in S3](topology.md#s3) are never deleted by the receiving endpoint, regardless of the successful handling or not. The deletion of the payload is controlled by the S3 aging policy, that will respect the configured TTL. Since message payloads, stored in S3, are important for audited and failed messages stored in ServiceControl it is crucial that [ServiceControl message retention period](/servicecontrol/how-purge-expired-data.md) is aligned with the configured SQS and S3 TTL.
+NOTE: [Large messages payload stored in S3](topology.md#s3) are never deleted by the receiving endpoint, regardless of whether they were successfully handled. The S3 aging policy controls the deletion of the payload and will respect the configured TTL. Since message payloads stored in S3 are important for audited and failed messages stored in ServiceControl, it is crucial that the [ServiceControl message retention period](/servicecontrol/how-purge-expired-data.md) is aligned with the configured SQS and S3 TTL.
 
 ## QueueNamePrefix
 
@@ -39,13 +39,13 @@ NOTE: [Large messages payload stored in S3](topology.md#s3) are never deleted by
 
 **Default**: None.
 
-This string value will be prepended to the name of every SQS queue referenced by the endpoint. This is useful when deploying many instances of the same application in the same AWS region (e.g. a development instance, a QA instance and a production instance), and the queue names need to be distinguished somehow.
+This string value is prepended to the name of every SQS queue referenced by the endpoint. This is useful when deploying many instances of the same application in the same AWS region (e.g. a development instance, a QA instance, and a production instance), and the queue names must be distinguished from each other.
 
 **Example**: For a development instance, specify:
 
 snippet: QueueNamePrefix
 
-Queue names for the endpoint called "SampleEndpoint" might then look like:
+Queue names for the endpoint called "SampleEndpoint" might look like:
 
 ```
 DEV-SampleEndpoint
@@ -60,9 +60,9 @@ DEV-SampleEndpoint-TimeoutsDispatcher
 
 **Default**: Empty. Any attempt to send a large message with an empty S3 bucket will fail.
 
-This is the name of an S3 Bucket that will be used to store message bodies for messages that are larger than 256kb in size. If this option is not specified, S3 will not be used at all. Any attempt to send a message larger than 256kb will throw if this option hasn't been specified.
+This is the name of an S3 Bucket that will be used to store message bodies for messages larger than 256kB in size. If this option is not specified, S3 will not be used at all. Any attempt to send a message larger than 256kB will throw an exception if this option hasn't been specified.
 
-If the specified bucket doesn't exist, it will be created at endpoint start up.
+If the specified bucket doesn't exist, it will be created when the endpoint starts.
 
 **Example**: To use a bucket named `nsb-sqs-messages`, specify:
 
@@ -75,7 +75,7 @@ snippet: S3BucketForLargeMessages
 
 **Default**: Empty.
 
-This is the path within the specified S3 Bucket to store large message bodies. It is an error to specify this option without specifying a value for S3BucketForLargeMessages.
+This is the path within the specified S3 Bucket to store large message bodies. If this option is specified without a value for S3BucketForLargeMessages, an exception will be thrown.
 
 partial: s3clientfactory
 
