@@ -1,6 +1,6 @@
 When sending a message, a callback can be registered that will be invoked when a response arrives.
 
-When scaling out an endpoint, any of the endpoint instances can consume messages from the same shared broker queue. However, this behavior can cause problems when dealing with reply messages for which a callback has been registered. The reply message needs to go to the specific instance that registered the callback.
+When scaling out an endpoint, any of the endpoint instances can consume messages from the same shared broker queue. This behavior can cause problems when dealing with reply messages for which a callback has been registered. The reply message needs to go to the specific instance that registered the callback.
 
 Callback support is enabled by default, and the transport will create a separate callback receiver queue, named `{endpointname}.{machinename}`. This queue is used as `reply-to` address for all outgoing messages for which response callback has been registered.
 
