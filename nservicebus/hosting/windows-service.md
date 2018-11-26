@@ -5,7 +5,6 @@ reviewed: 2018-11-22
 component: Core
 tags:
  - Hosting
- - Windows Service
 related:
  - nservicebus/dotnet-templates
  - nservicebus/lifecycle
