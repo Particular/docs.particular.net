@@ -21,8 +21,7 @@ namespace Rabbit_All.NativeSend
                 headers: new Dictionary<string, object>
                 {
                     {
-                        "NServiceBus.EnclosedMessageTypes",
-                        "MyNamespace.MyMessage"
+                        "NServiceBus.EnclosedMessageTypes", "MyNamespace.MyMessage"
                     }
                 });
 
