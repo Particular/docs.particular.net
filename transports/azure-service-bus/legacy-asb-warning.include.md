@@ -1,1 +1,0 @@
-WARNING: This page refers to the legacy Azure Service Bus transport, which is rendered obsolete by the [Azure Service Bus transport](/transports/azure-service-bus-netstandard) built to target both .NET Framework and .NET Core. All new projects should use the new [Azure Service Bus transport](/transports/azure-service-bus-netstandard).

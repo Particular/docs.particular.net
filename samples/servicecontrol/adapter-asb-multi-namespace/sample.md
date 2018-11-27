@@ -11,7 +11,7 @@ related:
 ---
 
 
-This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using the advanced features of the Azure Service Bus transport [not natively supported by ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md#azure-service-bus-transport).
+This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using the advanced features of the Azure Service Bus transport [not natively supported by ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md#azure-service-bus-transport-legacy).
 
 The following diagram shows the topology of the solution:
 
@@ -40,9 +40,9 @@ graph RL
   sc .-> adapter
 ```
 
-Notice that `Sales` and `Shipping` are in two different namespaces. This is done by using [cross-namespace routing](/transports/azure-service-bus/multiple-namespaces-support.md#cross-namespace-routing). The other important thing to note is that ServiceControl is in a different namespace from the other endpoints, which means that it can't natively communicate with them, which is why this sample shows how to create an adapter to bridge between everything.
+Notice that `Sales` and `Shipping` are in two different namespaces. This is done by using [cross-namespace routing](/transports/azure-service-bus/legacy/multiple-namespaces-support.md#cross-namespace-routing). The other important thing to note is that ServiceControl is in a different namespace from the other endpoints, which means that it can't natively communicate with them, which is why this sample shows how to create an adapter to bridge between everything.
 
-The adapter also deals with other advanced features of the Azure Service Bus transport like [secure connection strings](/transports/azure-service-bus/securing-connection-strings.md) and [customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md).
+The adapter also deals with other advanced features of the Azure Service Bus transport like [secure connection strings](/transports/azure-service-bus/legacy/securing-connection-strings.md) and [customized brokered message creation](/transports/azure-service-bus/legacy/brokered-message-creation.md).
 
 ## Prerequisites
 
@@ -86,10 +86,10 @@ The Shipping endpoint has the Heartbeats plugin installed to enable uptime monit
 
 Both endpoints are configured to use:
 
- * [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
- * [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
- * Different namespaces with [cross-namespace routing](/transports/azure-service-bus/multiple-namespaces-support.md#cross-namespace-routing) enabled.
- * [Namespace hierary](/transports/azure-service-bus/namespace-hierarchy.md) to prefix all entities with `scadapter/`.
+ * [Secure connection strings](/transports/azure-service-bus/legacy/securing-connection-strings.md).
+ * [Customized brokered message creation](/transports/azure-service-bus/legacy/brokered-message-creation.md) using `Stream`.
+ * Different namespaces with [cross-namespace routing](/transports/azure-service-bus/legacy/multiple-namespaces-support.md#cross-namespace-routing) enabled.
+ * [Namespace hierary](/transports/azure-service-bus/legacy/namespace-hierarchy.md) to prefix all entities with `scadapter/`.
 
 snippet: featuresunsuportedbysc
 
@@ -107,10 +107,10 @@ snippet: AdapterTransport
 
 The following code configures the adapter to match advanced transport features enabled on the endpoints:
 
- * [Secure connection strings](/transports/azure-service-bus/securing-connection-strings.md).
- * [Customized brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) using `Stream`.
- * [Multiple namespace](/transports/azure-service-bus/multiple-namespaces-support.md#round-robin-namespace-partitioning).
- * [Namespace hierary](/transports/azure-service-bus/namespace-hierarchy.md)
+ * [Secure connection strings](/transports/azure-service-bus/legacy/securing-connection-strings.md).
+ * [Customized brokered message creation](/transports/azure-service-bus/legacy/brokered-message-creation.md) using `Stream`.
+ * [Multiple namespace](/transports/azure-service-bus/legacy/multiple-namespaces-support.md#round-robin-namespace-partitioning).
+ * [Namespace hierary](/transports/azure-service-bus/legacy/namespace-hierarchy.md)
 
 snippet: EndpointSideConfig
 

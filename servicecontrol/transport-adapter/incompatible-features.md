@@ -17,12 +17,12 @@ Some features of NServiceBus, particularly related to physical routing of messag
 [Custom topologies](/transports/rabbitmq/routing-topology.md#custom-routing-topology) are not supported.
 
 
-## Azure Service Bus transport
+## Azure Service Bus transport (Legacy)
 
- * Using [aliases](/transports/azure-service-bus/securing-connection-strings.md) instead of a connection string is not supported as ServiceControl will not be able to retry messages
- * Leveraging [multiple namespaces in a topology](/transports/azure-service-bus/multiple-namespaces-support.md) will require a setup of multiple ServiceControl instances.
- * Customizing [brokered message creation](/transports/azure-service-bus/brokered-message-creation.md) may lead to incompatible wire formats and deserialization errors.
- * Customizing entity paths by using [Namespace hierarchy](/transports/azure-service-bus/namespace-hierarchy.md).
+ * Using [aliases](/transports/azure-service-bus/legacy/securing-connection-strings.md) instead of a connection string is not supported as ServiceControl will not be able to retry messages
+ * Leveraging [multiple namespaces in a topology](/transports/azure-service-bus/legacy/multiple-namespaces-support.md) will require a setup of multiple ServiceControl instances.
+ * Customizing [brokered message creation](/transports/azure-service-bus/legacy/brokered-message-creation.md) may lead to incompatible wire formats and deserialization errors.
+ * Customizing entity paths by using [Namespace hierarchy](/transports/azure-service-bus/legacy/namespace-hierarchy.md).
 
 
 ## Azure Storage Queues transport

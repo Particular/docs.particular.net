@@ -4,7 +4,7 @@ summary: Demonstrates the send/reply pattern with Azure Service Bus
 reviewed: 2018-09-14
 component: ASBS
 related:
-- transports/azure-service-bus-netstandard
+- transports/azure-service-bus
 ---
 
 

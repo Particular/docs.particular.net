@@ -85,7 +85,7 @@
 
 - Key: ASB
   Name: Azure Service Bus Transport [Legacy]
-  DocoUrl: transports/azure-service-bus
+  DocoUrl: transports/azure-service-bus/legacy
   GitHubOwner: Particular/azure-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureServiceBus
@@ -94,7 +94,7 @@
 
 - Key: ASBS
   Name: Azure Service Bus Transport
-  DocoUrl: transports/azure-service-bus-netstandard
+  DocoUrl: transports/azure-service-bus
   GitHubOwner: Particular/azure-maintainers
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.Transport.AzureServiceBus

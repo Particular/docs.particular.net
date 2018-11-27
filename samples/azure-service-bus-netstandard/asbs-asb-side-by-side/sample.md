@@ -3,8 +3,8 @@ title: Side-by-side with legacy Azure Service Bus
 reviewed: 2018-10-04
 component: ASBS
 related:
-- transports/azure-service-bus-netstandard
 - transports/azure-service-bus
+- transports/azure-service-bus/legacy
 - nservicebus/bridge
 ---
 

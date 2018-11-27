@@ -52,7 +52,7 @@ Processor ->> Client: LongProcessingFinished / LongProcessingFailed
 
 ## Performing processing outside of a message handler
 
-When processing is taking a long time, [message lock renewal](/transports/azure-service-bus/message-lock-renewal.md) can be used, but should be avoided to keep message locking to the minimum. 
+When processing is taking a long time, [message lock renewal](/transports/azure-service-bus/legacy/message-lock-renewal.md) can be used, but should be avoided to keep message locking to the minimum. 
 
 include: autorenewtimeout-warning
 
