@@ -644,7 +644,7 @@
       Title: Backwards Compatibility
     - Url: transports/azure-service-bus/operational-scripting
       Title: Operational Scripting
-  - Url: transports/azure-service-bus
+  - Url: transports/azure-service-bus/legacy
     Title: Azure Service Bus [Legacy]
     Articles:
     - Url: transports/azure-service-bus/legacy/topologies
