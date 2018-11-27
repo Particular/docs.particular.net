@@ -14,10 +14,10 @@ related:
 
 ## Installation
 
-When self-hosting a Windows Service, the startup code is in full control of installation. Windows supports these features though the use of the [Service Control tool](https://technet.microsoft.com/en-us/library/cc754599.aspx). For example a basic install and uninstall commands would be:
+When self-hosting a Windows Service, the startup code is in full control of installation. Windows supports these features though the use of the [Service Control tool](https://technet.microsoft.com/en-us/library/cc754599.aspx). For example, a basic install and uninstall commands would be:
 
 ```dos
-sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 sc.exe delete SalesEndpoint
 ```
 
@@ -30,7 +30,7 @@ The Windows Service name can be configured at creation time, as follows:
 
 ```dos
 sc.exe create [ServiceName] binpath= [BinaryPathName]
-sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 ```
 
 
@@ -40,7 +40,7 @@ The display name can be configured, at creation time, using the `displayname` ar
 
 ```dos
 sc.exe create [ServiceName] displayname= [Description] binpath= [BinaryPathName]
-sc.exe create SalesEndpoint displayname= "Sales Endpoint" binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+sc.exe create SalesEndpoint displayname= "Sales Endpoint" binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 ```
 
 
@@ -102,7 +102,7 @@ Username and password can be configured at creation time using the `obj` and `pa
 
 ```dos
 sc.exe create [ServiceName] obj= [AccountName] password= [Password] binpath= [BinaryPathName]
-sc.exe create SalesEndpoint obj= MyDomain\SalesUser password= 9t6X7gkz binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+sc.exe create SalesEndpoint obj= MyDomain\SalesUser password= 9t6X7gkz binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 ```
 
 
@@ -112,7 +112,7 @@ The Windows Service start mode can be configured at creation time using the `sta
 
 ```dos
 sc.exe create [ServiceName] start= {auto | demand | disabled} binpath= [BinaryPathName]
-sc.exe create SalesEndpoint start= demand binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+sc.exe create SalesEndpoint start= demand binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 ```
 
 
