@@ -68,7 +68,7 @@ For NServiceBus version 5 and below, add the message mapping in the `UnicastBusC
 
 snippet: ServiceControlEventsXmlConfig
 
-NOTE: Transports that [natively support publish and subscribe](/transports/#types-of-transports-multicast-enabled-transports) do not require any additional configuration.
+NOTE: Transports that [natively support publish and subscribe](/transports/types.md#multicast-enabled-transports) do not require any additional configuration.
 
 
 ### Monitoring events

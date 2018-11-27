@@ -10,7 +10,7 @@ versions: '[2,)'
 
 ## Caching
 
-The storage of subscription information is required for [unicast transports](/transports/#types-of-transports-unicast-only-transports).
+The storage of subscription information is required for [unicast transports](/transports/types.md#unicast-only-transports).
 
 Subscription information can be cached for a given period of time so that it does not have to be loaded every single time an event is being published. The longer the cache period is, the higher the chance that new subscribers miss some events. It happens when a subscription message arrives after the subscription information has been loaded into memory.
 

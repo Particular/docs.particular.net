@@ -47,14 +47,14 @@ When events are published, they can be received by multiple logical endpoints. H
 
 ### Native
 
-[Multicast transports](/transports/#types-of-transports-multicast-enabled-transports) support the Publish-Subscribe pattern natively. In this case the subscriber uses the APIs of the transport to create a route for a given subscribed message type.
+[Multicast transports](/transports/types.md#multicast-enabled-transports) support the Publish-Subscribe pattern natively. In this case the subscriber uses the APIs of the transport to create a route for a given subscribed message type.
 
 Note: The Azure Service Bus `EndpointOrientedTopology` requires [publisher names](/transports/azure-service-bus/legacy/publisher-names-configuration.md) to be configured.
 
 
 ### Message-driven
 
-[Other transports](/transports/#types-of-transports-unicast-only-transports) do not support Publish-Subscribe natively. These transports emulate the publish behavior by sending message to each subscriber directly. To do this, the publisher endpoint has to know its subscribers and subscribers have to notify the publisher about their interest in a given event type. The notification message (known as the *subscribe* message) has to be routed to the publisher.
+[Other transports](/transports/types.md#unicast-only-transports) do not support Publish-Subscribe natively. These transports emulate the publish behavior by sending message to each subscriber directly. To do this, the publisher endpoint has to know its subscribers and subscribers have to notify the publisher about their interest in a given event type. The notification message (known as the *subscribe* message) has to be routed to the publisher.
 
 partial: events
 

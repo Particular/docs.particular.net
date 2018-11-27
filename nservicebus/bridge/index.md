@@ -95,7 +95,7 @@ The following section describes the behavior of the bridge with regards to publi
 
 ### Subscribing
 
-Subscribing to an event through a bridge is always done via a message-driven mechanism similar to the one used by the [unicast transports](/transports/#types-of-transports-unicast-only-transports). The subscription message contains additional information about the name of the publisher endpoint and is send to the bridge instead of the publisher.
+Subscribing to an event through a bridge is always done via a message-driven mechanism similar to the one used by the [unicast transports](/transports/types.md#unicast-only-transports). The subscription message contains additional information about the name of the publisher endpoint and is send to the bridge instead of the publisher.
 
 
 ### Publishing

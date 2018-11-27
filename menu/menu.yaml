@@ -577,9 +577,9 @@
   - Url: transports
     Title: General
     Articles:
-    - Url: transports/transports-selecting
+    - Url: transports/selecting
       Title: Selecting a transport
-    - Url: transports/transports-types
+    - Url: transports/types
       Title: Transport types
     - Url: transports/transactions
       Title: Transactions
