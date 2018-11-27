@@ -54,7 +54,7 @@ In our solution, these activities are currently happening in separate handlers. 
 The first thing we're going to do is reorganize these handlers into one class named **ShippingPolicy**.
 
 1. In the **Shipping** project, delete **OrderPlacedHandler.cs** and **OrderBilledHandler.cs**.
-1. Create a new class called `ShippingPolicy` in the Shipping project, containing a logger and implementing both the `IHandleMessages<OrderBilled>` and `IHandleMessages<OrderBilled>` interfaces, which we'll implement in basically the same way as the classes we deleted:
+1. Create a new class called `ShippingPolicy` in the Shipping project, containing a logger and implementing both the `IHandleMessages<OrderPlaced>` and `IHandleMessages<OrderBilled>` interfaces, which we'll implement in basically the same way as the classes we deleted:
 
 snippet: EmptyShippingPolicy
 
