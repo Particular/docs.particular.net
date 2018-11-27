@@ -7,7 +7,7 @@ related:
  - samples/serializers/wire
 ---
 
-Serializes messages with the [Wire](https://github.com/akkadotnet/Wire) binary format.
+Serializes messages with the [Wire](https://github.com/rogeralsing/Wire) binary format.
 
 
 ## Usage
