@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Transport
+title: Azure Service Bus Transport (Legacy)
 component: ASB
 tags:
  - Azure
