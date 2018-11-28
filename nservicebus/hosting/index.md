@@ -49,7 +49,7 @@ A [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-se
 
 Related:
 
- * [How to install an NServiceBus endpoint as Windows Service](windows-service.md)
+ * [Windows Service Installation](windows-service.md)
  * [Endpoint Configuration Choices](/samples/endpoint-configuration/)
 
 
