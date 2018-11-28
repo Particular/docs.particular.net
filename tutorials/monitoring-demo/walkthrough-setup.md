@@ -26,14 +26,13 @@ After unblocking the zip file, extract its contents into a folder. For the rest 
 Open the `MonitoringDemo` folder and double-click on `run.bat`. This script will:
 
 1. You will be prompted to run the remaining steps with elevated privileges. This is needed so that processes can bind to their network ports.
-2. Update the configuration files for all of the components with the correct connection string details.
-3. Run ServiceControl components, each in their own window.
+2. Run ServiceControl components, each in their own window.
     - A ServiceControl instance (binds to port 33533)
     - A Monitoring instance (binds to port 33833)
-4. Run the sample endpoints, each in their own window
-5. Run ServicePulse, in it's own window (binds to port 8051)
-6. Open your default browser to the ServicePulse monitoring tab.
-7. Wait for ENTER key, and will quit all processes and optionally removes the created SQL LocalDB instance.
+3. Run the sample endpoints, each in their own window
+4. Run ServicePulse, in it's own window (binds to port 8051)
+5. Open your default browser to the ServicePulse monitoring tab.
+6. Wait for ENTER key, and will quit all processes and optionally removes the created SQL LocalDB instance.
 
 ## Explore the demo
 
