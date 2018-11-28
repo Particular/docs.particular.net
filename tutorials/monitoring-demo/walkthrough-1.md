@@ -57,7 +57,7 @@ The Shipping endpoint handles two different types of messages: `OrderPlaced` (wh
 
 ![Service Pulse monitoring details - Shipping - OrderBilled is slow](servicepulse-monitoring-details-shipping-slow.png)
 
-In the details view, we can see a breakdown of processing time and throughput for each message type. The throughput for the two messages types should be roughly equivalent. The Shipping endpoint can process 4 of each message type per second. The processing time for these message types differs though. Processing an `OrderPlaced` event takes roughly 200 ms but processing an `OrderBilled` event takes closer to 700 ms. If you average these values, you get the processing time for the whole endpoint, roughly 450 ms.
+In the details view, we can see a breakdown of processing time and throughput for each message type. The throughput for the two messages types should be roughly equivalent. The Shipping endpoint can process four of each message type per second. The processing time for these message types differs though. Processing an `OrderPlaced` event takes roughly 200 ms but processing an `OrderBilled` event takes closer to 700 ms. If you average these values, you get the processing time for the whole endpoint, roughly 450 ms.
 
 The slowest type of message to process is `OrderBilled`. If we can speed up the processing of `OrderBilled` message, we can increase the throughput for the whole Shipping endpoint which will allow us to process _both_ message types faster.
 
@@ -87,7 +87,7 @@ The original endpoint will also get a boost in productivity as it will process t
 
 #### Increasing maximum concurrency
 
-Alternatively, you can increase the maximum concurrency level and allow for a higher degree of parallel processing. The default maximum concurrency level is the number of cores of the host machine. Increasing this to 2, 3, four times or even more can increase throughput if your handlers are waiting a lot on remote calls to complete.
+Alternatively, you can increase the maximum concurrency level and allow for a higher degree of parallel processing. The default maximum concurrency level is the number of cores of the host machine. Increasing this to two, three, four times or even more can increase throughput if your handlers are waiting a lot on remote calls to complete.
 
 #### Move endpoint to another host
 
