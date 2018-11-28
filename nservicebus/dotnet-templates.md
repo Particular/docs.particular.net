@@ -5,7 +5,6 @@ component: Templates
 related:
  - servicecontrol/transport-adapter
  - nservicebus/hosting/windows-service
- - samples/hosting/windows-service
  - samples/servicecontrol/adapter-mixed-transports
 redirects:
  - nservicebus/hosting/windows-service-template
@@ -25,7 +24,7 @@ snippet: install
 
 ## NServiceBus Windows Service
 
-This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for an NServiceBus endpoint. The template follows the approach outlined in [Windows Service Hosting](/nservicebus/hosting/windows-service.md).
+This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for an NServiceBus endpoint.
 
 The template can be used via the following command:
 
@@ -42,8 +41,9 @@ snippet: nsbservice-addToSolution
 
 snippet: nsbservice-options
 
-
 partial: target-framework
+
+NOTE: When installing an endpoint created from this template as a service, the `--run-as-service` parameter must be set on the command line. See [Windows Service Installation](/nservicebus/hosting/windows-service.md) for details.
 
 
 ## ServiceControl Transport Adapter Windows Service
@@ -65,8 +65,9 @@ snippet: scadapterservice-addToSolution
 
 snippet: scadapterservice-options
 
-
 partial: target-framework
+
+NOTE: When installing an endpoint created from this template as a service, the `--run-as-service` parameter must be set on the command line. See [Windows Service Installation](/nservicebus/hosting/windows-service.md) for details.
 
 
 partial: dockercontainer

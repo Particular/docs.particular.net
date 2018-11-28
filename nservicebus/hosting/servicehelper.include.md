@@ -1,1 +1,0 @@
-NOTE: Since `Environment.UserInteractive` always returns `true` on .NET Core, `ServiceHelper.IsService()` is used to provide a dual console/service experience. That is, this process can be executed from the command line or run as a Windows service. Note that if there is no intention to target .NET Core, then `Environment.UserInteractive` can be used.

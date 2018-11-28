@@ -1,43 +1,23 @@
 ---
-title: Windows Service Hosting
-summary: How to host NServiceBus in a Windows service
-reviewed: 2018-03-22
+title: Windows Service Installation
+summary: How to install an NServiceBus endpoint as a Windows service
+reviewed: 2018-11-22
 component: Core
 tags:
  - Hosting
- - Windows Service
 related:
  - nservicebus/dotnet-templates
- - samples/hosting/windows-service
  - nservicebus/lifecycle
  - samples/startup-shutdown-sequence
  - samples/endpoint-configuration
 ---
 
-Running an NServiceBus endpoint inside a [Windows service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common approach to hosting.
-
-
-## Example Windows Service hosting
-
- * Create a new Console Application.
- * Reference `System.ServiceProcess.dll`.
- * Change the program to inherit from [ServiceBase](https://msdn.microsoft.com/en-us/library/system.serviceprocess.servicebase.aspx)
-
-snippet: windowsservicehosting
-
-include: servicehelper
-
-snippet: ServiceHelper
-
-partial: bootstrapper
-
-
 ## Installation
 
-When self-hosting a Windows Service, the startup code is in full control of installation. Windows supports these features though the use of the [Service Control tool](https://technet.microsoft.com/en-us/library/cc754599.aspx). For example a basic install and uninstall commands would be:
+When self-hosting a Windows Service, the startup code is in full control of installation. Windows supports these features though the use of the [Service Control tool](https://technet.microsoft.com/en-us/library/cc754599.aspx). For example, a basic install and uninstall commands would be:
 
 ```dos
-sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 sc.exe delete SalesEndpoint
 ```
 
@@ -50,7 +30,7 @@ The Windows Service name can be configured at creation time, as follows:
 
 ```dos
 sc.exe create [ServiceName] binpath= [BinaryPathName]
-sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 ```
 
 
@@ -60,7 +40,7 @@ The display name can be configured, at creation time, using the `displayname` ar
 
 ```dos
 sc.exe create [ServiceName] displayname= [Description] binpath= [BinaryPathName]
-sc.exe create SalesEndpoint displayname= "Sales Endpoint" binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+sc.exe create SalesEndpoint displayname= "Sales Endpoint" binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 ```
 
 
@@ -122,7 +102,7 @@ Username and password can be configured at creation time using the `obj` and `pa
 
 ```dos
 sc.exe create [ServiceName] obj= [AccountName] password= [Password] binpath= [BinaryPathName]
-sc.exe create SalesEndpoint obj= MyDomain\SalesUser password= 9t6X7gkz binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+sc.exe create SalesEndpoint obj= MyDomain\SalesUser password= 9t6X7gkz binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 ```
 
 
@@ -132,7 +112,7 @@ The Windows Service start mode can be configured at creation time using the `sta
 
 ```dos
 sc.exe create [ServiceName] start= {auto | demand | disabled} binpath= [BinaryPathName]
-sc.exe create SalesEndpoint start= demand binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+sc.exe create SalesEndpoint start= demand binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 ```
 
 
@@ -144,30 +124,3 @@ A Windows Service can be uninstalled using the [sc delete](https://technet.micro
 sc.exe delete [ServiceName]
 sc.exe delete SalesEndpoint
 ```
-
-
-## Compared to NServiceBus Host
-
-
-### Code similarity
-
-When using a self-hosted approach inside a Windows Service, this code will share many similarities with other hosting code such as send-only clients and web service hosting. This similarity will result in more consistent (and hence easier to understand) code and increased opportunities for code re-use.
-
-
-### Performance
-
-Self-hosting is a specific solution to a problem that can be more specialized and has fewer dependencies. This results in
-
- * Reduced memory usage
- * Faster startup/debugging time
- * Smaller deployment size
-
-
-### Debugging
-
-The NServiceBus Host is a non-trivial piece of software, especially when including its dependency on TopShelf. As such the NServiceBus Host can add complexity to debugging issues. Self-hosting uses fewer layers of abstraction which results in a simpler debugging experience.
-
-
-### Controlling the entry point
-
-When using the NServiceBus Host, the host is calling the endpoint configuration code. As such, the configuration code and behaviors (such as startup and shutdown) need to plug into very specific APIs. For example `IWantCustomLogging`, `IWantCustomInitialization`, `IWantToRunWhenEndpointStartsAndStops` and `IConfigureLogging`. If the scenario is inverted, i.e. developer code calls NServiceBus configuration, then the requirement for these APIs no longer exists.

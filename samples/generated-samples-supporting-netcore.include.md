@@ -60,7 +60,6 @@
 * [Handling Stream Properties Via the Pipeline](/samples/pipeline/stream-properties/?version=core_7)
 * [Hangfire Usage](/samples/scheduling/hangfire/?version=core_7)
 * [Hosting endpoints in Docker Linux containers](/samples/hosting/docker/?version=core_7)
-* [Hosting in a Windows Service](/samples/hosting/windows-service/?version=core_7)
 * [Hyperion Serializer Usage](/samples/serializers/hyperion/?version=hyperion_2)
 * [Jil Serializer Usage](/samples/serializers/jil/?version=jil_3)
 * [Message Body Encryption](/samples/encryption/message-body-encryption/?version=core_7)
