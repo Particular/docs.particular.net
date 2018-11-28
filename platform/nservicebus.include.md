@@ -2,4 +2,4 @@ NServiceBus, the heart of the system, is a messaging and workflow framework that
 
 Moreover, NServiceBus is thoroughly extensible and can be tailored for many requirements. It is compatible with several technologies and many elements of the system can be replaced with custom implementations.
 
-To perform its operations, NServiceBus supports a variety of [queuing technologies](https://docs.particular.net/transports/) and [persisters](https://docs.particular.net/persistence/).
+To perform its operations, NServiceBus supports a variety of [queuing technologies](/transports/) and [persisters](/persistence/).
