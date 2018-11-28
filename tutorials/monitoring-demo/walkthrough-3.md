@@ -34,7 +34,7 @@ The following walkthrough uses the sample solution to simulate problems with end
 NServiceBus endpoints frequently rely on other resources to do their work. This might take the form of a database server that holds persisted data or a web server that hosts an API that the endpoint needs to call. The endpoints themselves are designed to tolerate failure, but there are some early indicators that failure is coming.
 
 
-### Processing messages are getting slower
+### Processing messages is getting slower
 
 The first indication that an endpoint is going to run into trouble is when processing messages start to slow down. This is indicated by an increase in processing time. This means that database queries and web API calls are taking longer to process than they were before.
 
