@@ -1,6 +1,6 @@
 ---
 title: Azure Service Bus Transport (Legacy)
-reviewed: 2017-04-18
+reviewed: 2018-11-28
 component: ASB
 related:
 - transports/azure-service-bus
