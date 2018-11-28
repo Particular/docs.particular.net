@@ -34,7 +34,7 @@ Broker transports are inherently centralized. Even if there are multiple servers
 Broker transports include:
 
  * [Azure Service Bus](/transports/azure-service-bus/)
- * [Azure Service Bus [Legacy]](/transports/azure-service-bus/legacy/)
+ * [Azure Service Bus (Legacy)](/transports/azure-service-bus/legacy/)
  * [Azure Storage Queues](/transports/azure-storage-queues/)
  * [SQL Server](/transports/sql/)
  * [RabbitMQ](/transports/rabbitmq/)
@@ -59,7 +59,7 @@ Multicast-enabled transports include:
 
  * [Learning Transport](/transports/learning/)
  * [Azure Service Bus](/transports/azure-service-bus/)
- * [Azure Service Bus [Legacy]](/transports/azure-service-bus/legacy/)
+ * [Azure Service Bus (Legacy)](/transports/azure-service-bus/legacy/)
  * [RabbitMQ](/transports/rabbitmq/)
 
 
