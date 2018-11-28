@@ -645,7 +645,7 @@
     - Url: transports/azure-service-bus/operational-scripting
       Title: Operational Scripting
   - Url: transports/azure-service-bus/legacy
-    Title: Azure Service Bus [Legacy]
+    Title: Azure Service Bus (Legacy)
     Articles:
     - Url: transports/azure-service-bus/legacy/topologies
       Title: Topologies
