@@ -318,7 +318,7 @@
     - Url: nservicebus/endpoints/decommissioning-endpoints
       Title: Decommissioning Endpoints
     - Url: nservicebus/hosting/windows-service
-      Title: Windows Service
+      Title: Windows Service Installation
     - Url: nservicebus/hosting/override-hostid
       Title: Overriding the host identifier
     - Url: nservicebus/hosting/custom-configuration-providers
