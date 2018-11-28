@@ -36,7 +36,7 @@ NServiceBus endpoints frequently rely on other resources to do their work. This 
 
 ### Processing messages is getting slower
 
-The first indication that an endpoint is going to run into trouble is when processing messages start to slow down. This is indicated by an increase in processing time. This means that database queries and web API calls are taking longer to process than they were before.
+The first indication that an endpoint is going to run into trouble is when processing messages starts to slow down. This is indicated by an increase in processing time. This means that database queries and web API calls are taking longer to process than they were before.
 
 **Find the Shipping endpoint windows and toggle the resource degradation simulation.**
 
