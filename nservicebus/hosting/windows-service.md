@@ -124,30 +124,3 @@ A Windows Service can be uninstalled using the [sc delete](https://technet.micro
 sc.exe delete [ServiceName]
 sc.exe delete SalesEndpoint
 ```
-
-
-## Compared to NServiceBus Host
-
-
-### Code similarity
-
-When using a self-hosted approach inside a Windows Service, this code will share many similarities with other hosting code such as send-only clients and web service hosting. This similarity will result in more consistent (and hence easier to understand) code and increased opportunities for code re-use.
-
-
-### Performance
-
-Self-hosting is a specific solution to a problem that can be more specialized and has fewer dependencies. This results in
-
- * Reduced memory usage
- * Faster startup/debugging time
- * Smaller deployment size
-
-
-### Debugging
-
-The NServiceBus Host is a non-trivial piece of software, especially when including its dependency on TopShelf. As such the NServiceBus Host can add complexity to debugging issues. Self-hosting uses fewer layers of abstraction which results in a simpler debugging experience.
-
-
-### Controlling the entry point
-
-When using the NServiceBus Host, the host is calling the endpoint configuration code. As such, the configuration code and behaviors (such as startup and shutdown) need to plug into very specific APIs. For example `IWantCustomLogging`, `IWantCustomInitialization`, `IWantToRunWhenEndpointStartsAndStops` and `IConfigureLogging`. If the scenario is inverted, i.e. developer code calls NServiceBus configuration, then the requirement for these APIs no longer exists.
