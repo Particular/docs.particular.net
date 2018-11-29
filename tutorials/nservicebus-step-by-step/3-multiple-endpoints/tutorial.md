@@ -1,6 +1,6 @@
 ---
-title: "NServiceBus Step-by-step: Multiple endpoints"
-reviewed: 2017-01-26
+title: "NServiceBus Step-by-step: Multiple Endpoints"
+reviewed: 2018-11-29
 summary: In this 15-20 minute tutorial, you'll learn how to send messages between multiple endpoints and control the logical routing of messages between endpoints.
 redirects:
 - tutorials/intro-to-nservicebus/3-multiple-endpoints
@@ -28,7 +28,7 @@ Sending a message to another endpoint is exactly the same, we just need to drop 
 
 snippet: Send
 
-The main difference is that with `SendLocal()`, the destination (local) for the message is already known. So when we call `Send()`, how does NServiceBus know where to send the message?
+The main difference is that with `SendLocal()`, the destination for the message is already known. So when we call `Send()`, how does NServiceBus know where to send the message?
 
 
 ## Logical routing
@@ -37,9 +37,9 @@ We could specify where we want the message to go directly in code. There is actu
 
 snippet: SendDestination
 
-However, doing that in most cases isn't a good idea. This requires each developer to remember where each message is supposed to go and type it in every time that message is sent.
+However, in most cases this isn't a good idea. It requires each developer to remember where each message is supposed to go and type it in every time that message is sent.
 
-Instead, NServiceBus should be made aware of the configuration, so that whenever a message is sent, the framework will already know exactly where it should be delivered.
+Instead, NServiceBus should be made aware of the routing configuration, so that whenever a message is sent, the framework will know exactly where it should be delivered.
 
 This is **logical routing**, the mapping of specific message types to logical endpoints that can process those messages. Each command message should have one logical endpoint that owns that message and can process it.
 
@@ -82,7 +82,7 @@ Let's split apart the endpoint we created in the previous lesson. We'll reconfig
 
 ### Creating a new endpoint
 
-First, let's create the project for our new endpoint.
+First, let's create a project for our new endpoint.
 
  1. Create a new **Console Application** project named **Sales**.
  1. In the **Sales** project, add the NServiceBus NuGet package:
@@ -97,15 +97,15 @@ Now that we have a project for our Sales endpoint, we need to add similar code t
 
 snippet: SalesProgram
 
-Most of this configuration looks exactly the same as our ClientUI endpoint. It's critical for the configuration between endpoints to match (especially message transport and serializer) otherwise the endpoints would not be able to understand each other.
+Most of this configuration looks exactly the same as our ClientUI endpoint. It's critical for the configuration between endpoints to match (especially message transport and serializer); otherwise the endpoints would not be able to understand each other.
 
-For example, if the ClientUI endpoint used `.UseSerialization<XmlSerializer>()` while the Sales endpoint used `.UseSerialization<JsonSerializer>()`, the Sales endpoint would not be able to understand the XML-serialized messages it received from ClientUI, because it would be expecting JSON instead.
+For example, if the ClientUI endpoint used `.UseSerialization<XmlSerializer>()` while the Sales endpoint used `.UseSerialization<JsonSerializer>()`, the Sales endpoint would not be able to understand the XML-serialized messages it received from ClientUI since it would be expecting JSON.
 
 NOTE: **ProTip:** It's also possible to specify [multiple deserializers](/nservicebus/serialization/#specifying-additional-deserializers) to enable receiving messages serialized in different formats, for instance to enable integration between teams, or to enable the use of a high-performance serializer in a performance-critical subsystem.
 
 To allow sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. See [Serialization](/nservicebus/serialization)
 
-While most of the configuration is the same, let me draw your attention to two specific lines that are different:
+While most of the configuration is the same, notice two specific lines that are different:
 
 snippet: EndpointDifferences
 
@@ -118,9 +118,9 @@ NOTE: This is quite repetitive, but remember that this is still an introductory 
 
 ### Debugging multiple projects
 
-At this point, we could run the Sales endpoint, although we wouldn't expect Sales to do anything except start up, create its queues, and then wait for messages that would never arrive. If you'd like, it's a good exercise to do, although you can skip it if you're in a hurry.
+At this point, we could run the Sales endpoint, although we wouldn't expect Sales to do anything except start up, create its queues, and then wait for messages that would never arrive. This is a good exercise to do, although you can skip it if you're in a hurry.
 
-What you'll find, however, is that in NServiceBus solutions it's common to want to run multiple projects (endpoints) at once. To make this easier, configure both endpoints (**ClientUI** and **Sales**) to run at startup using Visual Studio's [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx) feature.
+However, it's common in NServiceBus solutions to run multiple projects (i.e. endpoints) at once. To make this easier, configure both endpoints (**ClientUI** and **Sales**) to run at startup using Visual Studio's [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx) feature.
 
 If you run the project now, ClientUI will work just as it did before, and Sales will start up and wait for messages that will never arrive.
 
@@ -133,7 +133,7 @@ Now let's move the handler from ClientUI over to Sales where it belongs.
  1. Open the new **PlaceOrderHandler.cs** in **Sales** and change the namespace from `ClientUI` to `Sales` to match its new home.
  1. Visual Studio's default action when you drag files between projects is to copy them, so you must delete the old **PlaceOrderHandler.cs** from the **ClientUI** endpoint.
 
-So now that the handler is in the correct endpoint, what would happen if we started the solution? Sales now has a message handler, but recall that ClientUI is still calling `endpointInstance.SendLocal(command)` which effectively sends the message to itself, but it doesn't have a handler anymore.
+Now that the handler is in the correct endpoint, what would happen if we started the solution? Sales now has a message handler, but recall that ClientUI is still calling `endpointInstance.SendLocal(command)` which effectively sends the message to itself. But it doesn't have a handler for this message anymore.
 
 If you attempt to place an order in the ClientUI, an exception will be thrown because ClientUI no longer has a handler for it:
 
@@ -158,7 +158,7 @@ This establishes that commands of type `PlaceOrder` should be sent to the **Sale
 
 ### Running the solution
 
-Now when we run the solution, we get two console windows, one for ClientUI and one for Sales. After moving them around so that we can see both, we can try to place an order by pressing <kbd>P</kbd> in the **ClientUI** window.
+Now when we run the solution, we get two console windows, one for ClientUI and one for Sales. After moving the windows around so that we can see both, we can try to place an order by pressing <kbd>P</kbd> in the **ClientUI** window.
 
 INFO: You can also keep console windows from showing up in random screen locations each time by right-clicking the console window's title bar, and in the **Layout** tab, unchecking the **Let system position window** checkbox.
 
@@ -176,7 +176,7 @@ INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
 
 Everything is the same, except the command is not processed here.
 
-In the **Sales** window, we see this:
+In the **Sales** window, we see:
 
 ```
 Press Enter to exit.
@@ -184,7 +184,7 @@ INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = af0d1aa7-1611-4aa0-
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e19d6160-595a-4c30-98b5-ea07bc44a6f8
 ```
 
-At this point, we've managed to create two processes and achieve inter-process communication between them. Now, let's try something different.
+At this point, we've managed to create two processes and achieve inter-process communication between them. Now let's try something different.
 
 1. In Visual Studio's **Debug** menu, select **Detach All** so that we can close one console window without Visual Studio closing all the other windows as well. Alternatively, you can run the solution using **Debug** > **Start Without Debugging** or Ctrl+F5.
 1. Close the Sales endpoint window so that only ClientUI is running.
