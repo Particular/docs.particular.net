@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>Exe</OutputType>
@@ -8,7 +8,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="ServiceControl.Contracts" Version="1.*" />
-    <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
   </ItemGroup>
 </Project>

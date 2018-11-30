@@ -13,12 +13,7 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-        var routing = transport.Routing();
-        routing.RegisterPublisher(
-            typeof(ServiceControl.Contracts.MessageFailed).Assembly,
-            "Particular.ServiceControl"
-        );
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
         var conventions = endpointConfiguration.Conventions();
         conventions.DefiningEventsAs(

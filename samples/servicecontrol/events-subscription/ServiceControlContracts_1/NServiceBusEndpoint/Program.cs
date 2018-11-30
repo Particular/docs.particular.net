@@ -8,10 +8,9 @@ class Program
     {
         Console.Title = "NServiceBusEndpoint";
         var endpointConfiguration = new EndpointConfiguration("NServiceBusEndpoint");
-        endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region DisableRetries
