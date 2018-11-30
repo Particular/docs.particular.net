@@ -49,6 +49,16 @@ Related:
  * [Endpoint Configuration Choices](/samples/endpoint-configuration/)
 
 
+### Docker container hosting
+
+An endpoint can be hosted inside a [Docker](https://www.docker.com/) container.
+
+Related:
+ * [Docker Container Host](/nservicebus/hosting/docker-host/)
+ * [NServiceBus Docker Container template](/nservicebus/dotnet-templates.md#nservicebus-docker-container)
+ * [Hosting endpoints in Docker Linux containers](/samples/hosting/docker/)
+
+
 ### Send-only hosting
 
 A "Send-only endpoint" is used when the only purpose of the endpoint is to send messages and no message processing is required in that endpoint. Common use cases include websites, console applications, and windows applications. This is the code for starting an endpoint in send-only mode.
