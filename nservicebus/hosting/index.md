@@ -28,10 +28,6 @@ There are several approaches to hosting.
 
 Note: Override the default critical error callback when self-hosting NServiceBus. By default NServiceBus will stop the endpoint instance without exiting the process. Refer to the [Critical Errors](/nservicebus/hosting/critical-errors.md) article for more information.
 
-Related:
-
- * [Self-Hosting Sample](/samples/hosting/self-hosting/) for more details.
-
 When self-hosting, the user is responsible for creating and starting the endpoint instance:
 
 snippet: Hosting-Startup
@@ -48,9 +44,19 @@ partial: dispose
 A [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host NServiceBus in Windows.
 
 Related:
-
+ * [NServiceBus Windows Service template](/nservicebus/dotnet-templates.md#nservicebus-windows-service)
  * [Windows Service Installation](windows-service.md)
  * [Endpoint Configuration Choices](/samples/endpoint-configuration/)
+
+
+### Docker container hosting
+
+An endpoint can be hosted inside a [Docker](https://www.docker.com/) container.
+
+Related:
+ * [Docker Container Host](/nservicebus/hosting/docker-host/)
+ * [NServiceBus Docker Container template](/nservicebus/dotnet-templates.md#nservicebus-docker-container)
+ * [Hosting endpoints in Docker Linux containers](/samples/hosting/docker/)
 
 
 ### Send-only hosting
