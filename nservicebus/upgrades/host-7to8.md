@@ -1,7 +1,7 @@
 ---
 title: NServiceBus Host Upgrade Version 7 to 8
 summary: Instructions on how to upgrade NServiceBus Host Version 7 to 8.
-reviewed: 2018-03-07
+reviewed: 2018-11-30
 component: Host
 related:
  - nservicebus/upgrades/6to7
@@ -11,14 +11,14 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-The NServiceBus Host will be deprecated as of version 9 and users are recommended to switch to [self-hosting](/samples/hosting/self-hosting/) for new endpoints. Upgrading existing endpoints is still supported for version 8.
+The NServiceBus Host will be deprecated as of version 9 and users are recommended to switch to self-hosting for new endpoints. Upgrading existing endpoints is still supported for version 8.
 
 include: host-deprecate
 
 
 ## Migrating procedure
 
-Switching to self-hosting is as easy as creating a new console project and moving relevant code and config over. See the [self-hosting sample](/samples/hosting/self-hosting/) for details.
+Switching to self-hosting can be done by using the [NServiceBus Windows Service](/nservicebus/dotnet-templates.md#nservicebus-windows-service) or [NServiceBus Docker Container](/nservicebus/dotnet-templates.md#nservicebus-docker-container) templates to create a new project, and then moving the relevant code and configuration over to that project.
 
 
 ### Configuration
@@ -28,7 +28,7 @@ Self-hosting gives access to the same configuration options as provided by the h
 
 #### Custom endpoint configuration
 
-Code in `IConfigureThisEndpoint.Customize` can be transfered as is to the configuration of the self-hosted endpoint.
+Code in `IConfigureThisEndpoint.Customize` can be transferred as-is to the configuration of the self-hosted endpoint.
 
 
 #### Roles
@@ -66,7 +66,7 @@ The host allowed custom code to run when an endpoint started and stopped by impl
 
 #### Profiles    
 
-Profiles allowed endpoint configuration to be customized for different runtime environments like dev, test and prod. Self-hosted endpoints can instead explictly change configuration based on environment variables, command line arguments, machine names, etc.
+Profiles allowed endpoint configuration to be customized for different runtime environments like dev, test and prod. Self-hosted endpoints can instead explicitly change configuration based on environment variables, command line arguments, machine names, etc.
 
 
 ### Installation
