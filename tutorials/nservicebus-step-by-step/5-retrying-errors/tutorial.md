@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Step-by-step: Retrying errors"
-reviewed: 2017-01-26
+reviewed: 2018-11-30
 summary: In this 25-30 minute tutorial, you'll learn the different causes of errors and how to manage them with NServiceBus.
 redirects:
 - tutorials/intro-to-nservicebus/5-retrying-errors
@@ -27,7 +27,7 @@ Where connectivity is a major concern, there are generally three broad categorie
 
 Transient exceptions are those that, if immediately retried, would likely succeed.
 
-Let's consider a common scenario. You have some code that updates a record in the database. Two threads attempt to lock the row at the same time, resulting in a deadlock. The database chooses one transaction to succeed and the other fails. The exception message Microsoft SQL Server returns for a deadlock is this:
+Let's consider a common scenario: code that updates a record in the database. Two threads attempt to lock the row at the same time, resulting in a deadlock. The database chooses one transaction to succeed and the other fails. The exception message Microsoft SQL Server returns for a deadlock is this:
 
 WARNING: Transaction (Process ID 58) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction.
 
@@ -42,14 +42,14 @@ These are **semi-transient exceptions**. Semi-transient exceptions are persisten
 
 Another common example involves the failover of a database cluster. If a database has enough pending transactions, it can take a minute or two for all of those transactions to resolve before the failover can complete. During this time, queries are executed without issue, but attempting to modify data will result in an exception.
 
-It can be difficult to deal with this type of failure, as it's frequently not possible for the calling thread to wait around long enough for the failure to resolve.
+It can be difficult to deal with this type of failure, as it's often not possible for the calling thread to wait around long enough for the failure to resolve itself.
 
 
 ### Systemic exceptions
 
 Outright flaws in your system cause **systemic exceptions**, which are straight-up bugs. They will fail every time given the same input data. These are our good friends NullReferenceException, ArgumentException, dividing by zero, and a host of other common mistakes we've all made.
 
-In short, these are the exceptions that a developer needs to look at, triage, and fix—preferably without all the noise from the transient and semi-transient getting in the way of our investigation.
+In short, these are the exceptions that a developer needs to look at, triage, and fix —- preferably without all the noise from the transient and semi-transient errors getting in the way of our investigation.
 
 
 ## Automatic retries
@@ -76,11 +76,11 @@ We'll take a look at a few options for configuring retries in the exercise, but 
 
 Once a message is sent to the error queue, this indicates that a systemic failure has occurred. When this happens, a developer needs to look at the message and figure out *why*.
 
-For this reason, NServiceBus embeds the exception details and stack trace into the message that it forwards to the error queue, so you don't need to search through a log file to find the details. Once the underlying issue is fixed, the message can be replayed. **Replaying a message** sends it back to its original queue in order to retry message processing after an issue has been fixed.
+NServiceBus embeds the exception details and stack trace into the message that it forwards to the error queue, so you don't need to search through a log file to find the details. Once the underlying issue is fixed, the message can be replayed. **Replaying a message** sends it back to its original queue in order to retry message processing after an issue has been fixed.
 
-The [Particular Service Platform](/platform/), of which NServiceBus is a part, includes tools to make this kind of operational monitoring really easy. If you'd like to learn more, check out the [Message replay tutorial](/tutorials/message-replay/), which demonstrates how to use the platform tools to replay a failed message.
+The [Particular Service Platform](/platform/), of which NServiceBus is a part, includes tools to make this kind of operational monitoring easy. If you'd like to learn more, check out the [message replay tutorial](/tutorials/message-replay/), which demonstrates how to use the platform tools to replay a failed message.
 
-Sometimes, a new release will contain a bug in handler logic that isn't found until the code is deployed. When this happens, many errors can flood into the error queue at once. At these times, it's incredibly valuable to be able to roll back to the old version of the endpoint, and then replay the messages through proven code. Then you can take the time to properly troubleshoot and fix the issue before attempting a new deployment.
+Sometimes, a new release will contain a bug in handler logic that isn't found until the code is deployed. When this happens, many errors can flood into the error queue at once. At these times, it's incredibly useful to be able to roll back to the old version of the endpoint, and then replay the messages through proven code. Then you can take the time to properly troubleshoot and fix the issue before attempting a new deployment.
 
 
 ## Exercise
@@ -97,9 +97,9 @@ First, let's throw an exception. For the purposes of this exercise, we'll create
 
 snippet: ThrowSystemic
 
-Now, run the solution.
+Next, run the solution.
 
- 1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running, but does not break into the debugger when we throw our exception.
+ 1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running but does not break into the debugger when we throw our exception.
  1. In the **ClientUI** window, place an order by pressing <kbd>P</kbd>.
 
 When we do these steps, we'll see a wall of exception messages in white text, which is log level INFO, followed by one in yellow text, which is log level WARN. The exception traces in white are the failures during immediate retries, and the last trace in yellow is the failure that hands the message over to delayed retries.
@@ -111,7 +111,7 @@ System.Exception: BOOM
    at <stack trace>
 ```
 
-10 seconds later, the retries begin again, followed by another yellow trace, sending the message back to delayed retries. 20 seconds after that, another set of traces. Finally, 30 seconds after that, the final exception trace will be shown in red, which is log level ERROR. This is where NServiceBus gives up on the message and redirects it to the error queue.
+Ten seconds later, the retries begin again, followed by another yellow trace, sending the message back to delayed retries. Twenty seconds after that, another set of traces. Finally, 30 seconds after that, the final exception trace will be shown in red, which is log level ERROR. This is where NServiceBus gives up on the message and redirects it to the error queue.
 
 ```
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e927667c-b949-47ee-8ea2-f29523909784
@@ -147,12 +147,12 @@ snippet: Random
 
 snippet: ThrowTransient
 
-4. Start the solution, and either select **Detach All** in the **Debug** menu, or just start the solution without debugging (Ctrl+F5).
+4. Start the solution, and either select **Detach All** in the **Debug** menu, or just start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>).
 4. In the **ClientUI** window, send one message at a time by pressing <kbd>P</kbd>, and watch the **Sales** window.
 
 As you will see in the **Sales** window, 80% of the messages will go through as normal. When an exception occurs, the exception trace will be displayed once in white, and then generally succeed on the next try. After the successful retry, the other windows will continue to react as normal to complete the process.
 
-With NServiceBus watching over your processes with automated retries, you just don't have to worry about transient failures anymore. If an error is severe enough, it will progress through immediate and delayed retries and be delivered to an error queue. Then you know that it's a severe error that needs to be addressed.
+With NServiceBus watching over your processes with automated retries, you don't have to worry about transient failures anymore. If an error is severe enough, it will progress through immediate and delayed retries and be delivered to an error queue. Then you know that it's a severe error that needs to be addressed.
 
 
 ## Summary
