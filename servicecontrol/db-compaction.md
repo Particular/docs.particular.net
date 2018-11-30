@@ -89,11 +89,12 @@ Once ServiceControl is running in this mode, the following procedure can be used
 
 ### Step 2: Export the current database
 
-* Open a browser and navigate to `http://localhost:{selected RavenDB port}/storage`.
-* Export the existing ServiceControl database.
+* Open a browser and navigate to `http://localhost:{selected RavenDB port}/studio/index.html#databases/documents?&database=%3Csystem%3E`.
   ![](export-database-step1.png 'width=500')
-* Click Ok.
+* Click on the "Tasks" link at the top of the page.
+* Select "Export Database" tab and select all checkboxes.
   ![](export-database-step2.png 'width=500')
+* Export the database.
 * Select the directory to store the exported data file.
   ![](export-database-step3.png 'width=500')
 * Wait for the export operation to complete.
@@ -110,22 +111,15 @@ NOTE: At this point, it is advisable to take a backup copy of the existing datab
 
 ### Step 4: Import the exported data
 
-* Go to RavenDB studio `http://localhost:{selected RavenDB port}/storage` and perform steps to import a database.
-* Select the `Tasks` tab and select all checkboxes.
+* Go to RavenDB studio `http://localhost:{selected RavenDB port}/studio/index.html#databases/documents?&database=%3Csystem%3E` and perform steps to import a database.
+* Click on the "Tasks" link at the top of the page.
+* Select "Import Database" tab and select all checkboxes.
   ![](import-database-step1.png 'width=500')
-* Click OK to proceed.  
-  ![](import-database-step2.png 'width=500')
-* Select the file where the exported data was stored.
-  ![](import-database-step3.png 'width=500')
+* Click "Choose file" and select the file to import.
+* Click "Import Database" to proceed.  
 * Wait for the operation to complete.
-* After the operation has completed, wait for the stale index count in the footer to indicate there are no stale indexes.
-  ![](import-database-step4.png 'width=500')
+  ![](import-database-step2.png 'width=500')
 * Stop ServiceControl (from ServiceControl Management).
-
-NOTE: If an `System.OutOfMemoryException` occurs during import, reducing the batch size in advanced settings.
-
-![](import-database-note.png 'width=500')
-
 
 ### Step 5: Restart ServiceControl
 
