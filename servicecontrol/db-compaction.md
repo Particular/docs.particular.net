@@ -91,7 +91,7 @@ Once ServiceControl is running in this mode, the following procedure can be used
 
 * Open a browser and navigate to `http://localhost:{selected RavenDB port}/studio/index.html#databases/documents?&database=%3Csystem%3E`.
   ![](export-database-step1.png 'width=500')
-* Click on the "Tasks" link at the top of the page.
+* Click the "Tasks" link at the top of the page.
 * Select "Export Database" tab and select all checkboxes.
   ![](export-database-step2.png 'width=500')
 * Export the database.
@@ -112,7 +112,7 @@ NOTE: At this point, it is advisable to take a backup copy of the existing datab
 ### Step 4: Import the exported data
 
 * Go to RavenDB studio `http://localhost:{selected RavenDB port}/studio/index.html#databases/documents?&database=%3Csystem%3E` and perform steps to import a database.
-* Click on the "Tasks" link at the top of the page.
+* Click the "Tasks" link at the top of the page.
 * Select "Import Database" tab and select all checkboxes.
   ![](import-database-step1.png 'width=500')
 * Click "Choose file" and select the file to import.
