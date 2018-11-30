@@ -80,7 +80,7 @@ private void CreateYamlDeserializer()
     yamlDeserializer = builder.Build();
 }
 
-static Deserializer yamlDeserializer;
+static IDeserializer yamlDeserializer;
 
 // Define other methods and classes here
 static SampleMetadata GetSampleMetadata(string path)
