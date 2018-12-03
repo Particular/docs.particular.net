@@ -2,6 +2,8 @@
 title: Import failed audit messages
 summary: How to attempt to re-import audit messages that failed to be processed
 reviewed: 2018-09-04
+redirects:
+- servicecontrol/import-failed-audit-messages
 ---
 
 Audit messages can fail to be imported into ServiceControl database due to one of two reasons:
