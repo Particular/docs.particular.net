@@ -132,7 +132,7 @@ The SQL Server transport implements queues using relational database tables. Eac
 ### Disadvantages
 
 - Does not offer a native publish-subscribe mechanism. A database is required for storing event subscriptions (via [NServiceBus persistence](/persistence)). [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
-- Polls the queue table even if there are no messages to process.
+- Adds pressure to the server due to polling for new messages.
 - Depending on throughput, can add significant load to an existing SQL Server installation.
 
 ### When to select this transport
