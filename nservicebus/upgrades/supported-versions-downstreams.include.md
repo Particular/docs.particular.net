@@ -101,7 +101,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 3.2.x     | 2018-07-09     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | ~~3.1.x~~ | ~~2018-03-26~~ | ~~2018-10-09~~    | ~~Superseded by 3.2.x~~           |
 | ~~3.0.x~~ | ~~2017-11-22~~ | ~~2018-06-26~~    | ~~Superseded by 3.1.x~~           |
-| 2.2.x     | 2017-11-16     | 2018-11-22        | Superseded by 3.0.x               |
+| ~~2.2.x~~ | ~~2017-11-16~~ | ~~2018-11-22~~    | ~~Superseded by 3.0.x~~           |
 
 #### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
 
@@ -126,7 +126,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 2.1.x     | 2018-05-30     | -                 | -                                 |
 | ~~2.0.x~~ | ~~2018-05-29~~ | ~~2018-08-30~~    | ~~Superseded by 2.1.x~~           |
 | 1.2.x     | 2018-02-23     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
-| ~~1.1.x~~ | ~~2017-03-21~~ | ~~2018-05-23~~    | ~~Superseded by 1.2.x~~           |
 
 ### DependencyInjection packages
 
@@ -253,7 +252,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 2.0.x     | 2018-05-29     | -                 | -                                 |
+| 3.0.x     | 2018-11-29     | -                 | -                                 |
+| 2.0.x     | 2018-05-29     | 2019-11-29        | Superseded by 3.0.x               |
 | 1.0.x     | 2017-10-05     | 2019-05-29        | Superseded by 2.0.x               |
 
 ### Other packages
@@ -431,5 +431,4 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.0.x     | 2018-05-29     | -                 | -                                 |
 | 1.2.x     | 2017-07-20     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
-| ~~0.2.x~~ | ~~2017-01-25~~ | ~~2018-05-22~~    | ~~Superseded by 1.0.x~~           |
 

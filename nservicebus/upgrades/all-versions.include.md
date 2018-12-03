@@ -210,7 +210,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 3.2.x     | 2018-07-09     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | ~~3.1.x~~ | ~~2018-03-26~~ | ~~2018-10-09~~    | ~~Superseded by 3.2.x~~           |
 | ~~3.0.x~~ | ~~2017-11-22~~ | ~~2018-06-26~~    | ~~Superseded by 3.1.x~~           |
-| 2.2.x     | 2017-11-16     | 2018-11-22        | Superseded by 3.0.x               |
+| ~~2.2.x~~ | ~~2017-11-16~~ | ~~2018-11-22~~    | ~~Superseded by 3.0.x~~           |
 | ~~2.1.x~~ | ~~2017-04-28~~ | ~~2018-02-16~~    | ~~Superseded by 2.2.x~~           |
 | ~~2.0.x~~ | ~~2017-04-14~~ | ~~2017-07-28~~    | ~~Superseded by 2.1.x~~           |
 | ~~1.0.x~~ | ~~2017-02-02~~ | ~~2018-04-14~~    | ~~Superseded by 2.0.x~~           |
@@ -509,7 +509,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 2.0.x     | 2018-05-29     | -                 | -                                 |
+| 3.0.x     | 2018-11-29     | -                 | -                                 |
+| 2.0.x     | 2018-05-29     | 2019-11-29        | Superseded by 3.0.x               |
 | 1.0.x     | 2017-10-05     | 2019-05-29        | Superseded by 2.0.x               |
 
 ### Other packages
