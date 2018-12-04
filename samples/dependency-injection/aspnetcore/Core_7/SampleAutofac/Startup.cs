@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
+using Endpoint = NServiceBus.Endpoint;
 
 public class Startup
 {
@@ -15,6 +16,8 @@ public class Startup
 
     public IServiceProvider ConfigureServices(IServiceCollection services)
     {
+        services.AddLogging(loggingBuilder => loggingBuilder.AddConsole());
+
         var builder = new ContainerBuilder();
 
         builder.Populate(services);
@@ -41,10 +44,8 @@ public class Startup
 
     #endregion
 
-    public void Configure(IApplicationBuilder applicationBuilder, IApplicationLifetime applicationLifetime, IHostingEnvironment environment, ILoggerFactory loggerFactory)
+    public void Configure(IApplicationBuilder applicationBuilder, IApplicationLifetime applicationLifetime, IHostingEnvironment environment)
     {
-        loggerFactory.AddConsole();
-
         applicationLifetime.ApplicationStopping.Register(OnShutdown);
 
 
