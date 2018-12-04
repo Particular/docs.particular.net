@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using System;
 using System.Threading.Tasks;
+using Endpoint = NServiceBus.Endpoint;
 
 public class Startup
 {
@@ -13,6 +13,7 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddLogging(loggingBuilder => loggingBuilder.AddConsole());
         services.AddSingleton(sp => endpoint);
         services.AddSingleton<MyService>();
 
@@ -29,10 +30,8 @@ public class Startup
 
     #endregion
 
-    public void Configure(IApplicationBuilder applicationBuilder, IApplicationLifetime applicationLifetime, IHostingEnvironment environment, ILoggerFactory loggerFactory)
+    public void Configure(IApplicationBuilder applicationBuilder, IApplicationLifetime applicationLifetime, IHostingEnvironment environment)
     {
-        loggerFactory.AddConsole();
-
         applicationLifetime.ApplicationStopping.Register(OnShutdown);
 
 

@@ -49,14 +49,14 @@ public class Startup
         #endregion
 
         services.AddMvc();
+        services.AddLogging(loggingBuilder => loggingBuilder.AddDebug());
     }
 
 
-    public void Configure(IApplicationBuilder app, IApplicationLifetime applicationLifetime, ILoggerFactory loggerFactory)
+    public void Configure(IApplicationBuilder app, IApplicationLifetime applicationLifetime)
     {
         applicationLifetime.ApplicationStopping.Register(OnShutdown);
 
-        loggerFactory.AddDebug();
         app.UseMvc(routeBuilder => routeBuilder.MapRoute(name: "default",
             template: "{controller=SendMessage}/{action=Get}"));
     }
