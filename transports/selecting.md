@@ -7,7 +7,7 @@ tags:
 reviewed: 2018-11-27
 ---
 
-This document provides guidance for deciding which [transport](/transports) may best suit a specific scenario, including a decision chart.
+This document provides guidance for deciding which [transport](/transports) may best suit a specific scenario.
 
 This guide does not provide definitive answers for all scenarios. Every decision has trade-offs, some of which are described in the documentation for each transport. If it is unclear what the best choice is, or there are very specific constraints, contact [Particular Software](https://particular.net/contactus).
 
