@@ -386,17 +386,6 @@
   NugetOrder:
     - NServiceBus
 
-- Key: Kafka
-  Name: Kafka Transport
-  DocoUrl: transports/kafka
-  GitHubOwner: PabloCastilla
-  Category: Transport
-  SupportLevel: Community
-  LicenseUrl: https://github.com/pablocastilla/NServiceBus.Kafka/blob/master/LICENSE
-  ProjectUrl: https://github.com/pablocastilla/NServiceBus.Kafka
-  NugetOrder:
-    - NServiceBus.Transports.Kafka
-
 - Key: LearningPersistence
   Name: Learning Persistence 
   DocoUrl: persistence/learning

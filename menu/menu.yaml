@@ -841,8 +841,6 @@
       Title: Scripting
   - Url: transports/eventstore
     Title: Event Store
-  - Url: transports/kafka
-    Title: Kafka
 
 - Name: Persistence
   Url: persistence
