@@ -25,7 +25,7 @@ SQS queues support [competing consumers](http://www.enterpriseintegrationpattern
 
 ### Publish/Subscribe
 
-The transport is [unicast-only](/transports/#types-of-transports-unicast-only-transports) and does not provide built-in support for [publish-subscribe messaging](/nservicebus/messaging/publish-subscribe/). Publishing events to multiple endpoints is achieved with multiple transport-level sends to each destination. Subscriptions are created using [persistence based and message driven mechanics](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based).
+The transport is [unicast-only](/transports/types.md#unicast-only-transports) and does not provide built-in support for [publish-subscribe messaging](/nservicebus/messaging/publish-subscribe/). Publishing events to multiple endpoints is achieved with multiple transport-level sends to each destination. Subscriptions are created using [persistence based and message driven mechanics](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based).
 
 
 ## S3

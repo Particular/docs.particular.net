@@ -24,7 +24,7 @@ partial: default
 
  * MSMQ is natively available as part of the Windows operating system. In Windows servers, the MSMQ role might need to be turned on.  
  * MSMQ offers transactional queues which also support distributed transactions. With the transactional behavior, it is possible to get exactly-once delivery.
- * MSMQ provides a store and forward mechanism. Therefore it promotes a more natural [bus-style architecture](/transports/#types-of-transports-bus-transports). When sending messages to unavailable servers, the messages are stored locally in the outgoing queues and will be delivered automatically once the machine comes back online.
+ * MSMQ provides a store and forward mechanism. Therefore it promotes a more natural [bus-style architecture](/transports/types.md#federated-transports). When sending messages to unavailable servers, the messages are stored locally in the outgoing queues and will be delivered automatically once the machine comes back online.
  
 
 ## Disadvantages

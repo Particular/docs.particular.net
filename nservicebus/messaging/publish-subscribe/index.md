@@ -49,7 +49,7 @@ Available subscription persisters include
  * [Azure Storage](/persistence/azure-storage)
  * [SQL Server](/persistence/sql)
 
-The message-driven publish-subscribe implementation is used by the [unicast transports](/transports/#types-of-transports-unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
+The message-driven publish-subscribe implementation is used by the [unicast transports](/transports/types.md#unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
 
 
 #### Subscribe
@@ -76,7 +76,7 @@ The publisher's address is provided via [routing configuration](/nservicebus/mes
 
 #### Publish
 
-The publish workflow for [unicast transports](/transports/#types-of-transports-unicast-only-transports) is as follows
+The publish workflow for [unicast transports](/transports/types.md#unicast-only-transports) is as follows
 
  1. Some code (e.g. a saga or a handler) request that a message be published.
  1. Publisher queries the storage for a list of subscribers.
@@ -97,7 +97,7 @@ Publisher ->> Subscriber2: Send Message1
 
 ### Native
 
-For multicast transports that [support publish–subscribe natively](/transports/#types-of-transports-multicast-enabled-transports) neither persistence nor control message exchange is required to complete the publish-subscribe workflow. 
+For multicast transports that [support publish–subscribe natively](/transports/types.md#multicast-enabled-transports) neither persistence nor control message exchange is required to complete the publish-subscribe workflow. 
 
 
 #### Subscribe

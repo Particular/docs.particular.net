@@ -46,7 +46,7 @@ Click the `1` key repeatedly in the `Publisher` process console window and notic
 
 ## Message Flow
 
-The exact message flow may differ between [unicast transports](/transports/#types-of-transports-unicast-only-transports) and [broker transports](/transports/#types-of-transports-broker-transports). See the [publish-subscribe documentation](/nservicebus/messaging/publish-subscribe/) for further details.
+The exact message flow may differ between [unicast transports](/transports/types.md#unicast-only-transports) and [broker transports](/transports/types.md#broker-transports). See the [publish-subscribe documentation](/nservicebus/messaging/publish-subscribe/) for further details.
 
 ## Fault-tolerant messaging
 
