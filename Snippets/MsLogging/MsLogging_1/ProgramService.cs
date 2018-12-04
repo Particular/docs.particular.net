@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ServiceProcess;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 using NServiceBus.Logging;
@@ -12,7 +13,7 @@ class ProgramService :
     ServiceBase
 {
     IEndpointInstance endpointInstance;
-    LoggerFactory loggerFactory;
+    Microsoft.Extensions.Logging.ILoggerFactory loggerFactory;
 
     static void Main()
     {
@@ -37,8 +38,16 @@ class ProgramService :
 
     async Task AsyncOnStart()
     {
-        loggerFactory = new LoggerFactory();
-        loggerFactory.AddConsole();
+        var serviceCollection = new ServiceCollection();
+        serviceCollection.AddLogging(loggingBuilder =>
+        {
+            loggingBuilder.AddFilter(level => level >= Microsoft.Extensions.Logging.LogLevel.Information);
+            loggingBuilder.AddConsole();
+        });
+
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+
+        loggerFactory = serviceProvider.GetService<Microsoft.Extensions.Logging.ILoggerFactory>();
         var logFactory = LogManager.Use<MicrosoftLogFactory>();
         logFactory.UseMsFactory(loggerFactory);
         var endpointConfiguration = new EndpointConfiguration("EndpointName");
