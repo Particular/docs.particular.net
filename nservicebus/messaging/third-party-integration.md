@@ -22,7 +22,7 @@ Some serialiazers can infer the message type from information embedded in the me
  * [Json](/nservicebus/serialization/json.md)
  * [Newtonsoft](/nservicebus/serialization/newtonsoft.md)
 
-The [RabbitMQ](/samples/rabbitmq/native-integration/), [SQL](/samples/sqltransport/native-integration/), and [Azure Service Bus](/samples/azure/native-integration-asb/) native integration samples demonstrate inferring message type from .
+The [RabbitMQ](/samples/rabbitmq/native-integration/), [SQL](/samples/sqltransport/native-integration/), and [Azure Service Bus](/samples/azure/native-integration-asb/) native integration samples demonstrate inferring message type from the message body.
 
 
 ## Visualization
