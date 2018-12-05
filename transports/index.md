@@ -15,6 +15,10 @@ The transport abstraction enables businesses to build systems with the Particula
 
 The transport documentation describes differences between transports, and contains guidelines for deciding which transport may best suit a specific scenario. For each transport, the documentation describes how to make optimal usage of NServiceBus in combination with that transport. This includes how to deal with concurrency, transactions, scaling, and more.
 
+## How to select a transport
+
+Initially, it's challenging to decide which queueing technology may be best for a specific scenario. See the [guide to selecting a transport](selecting.md) for help in making that decision.
+
 ## Supported transports
 
 - [Learning](/transports/learning/)
@@ -33,7 +37,3 @@ There are several community-maintained transports which can be found in the full
 ## WebSphereMQ transport
 
 There is also a WebSphereMQ transport but it is not supported by Particular Software at this time. The code is available [on GitHub](https://github.com/ParticularLabs/NServiceBus.WebSphereMQ) as-is, for legacy, community use and reference. [Contact Particular Software](https://particular.net/contactus) for licensing.
-
-## How to select a transport
-
-Initially, it's challenging to decide which queueing technology may be best for a specific scenario. See the [guide to selecting a transport](selecting.md) for help in making that decision.
