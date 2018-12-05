@@ -10,23 +10,19 @@ redirects:
  - samples/custom-checks/monitoring3rdparty
 ---
 
-
-## Code walk-through
-
 When integrating with third-party systems, often messages fail when those systems are down. The Particular Platform has extensibility to enable the monitoring of third-party systems which are exposed as HTTP endpoints. This sample shows how to achieve this with custom checks.
 
+downloadbutton
 
-### Third-party system console
+## Running the sample
 
-The third-party system console application simulates a HTTP service running on `http://localhost:57789`. Verify that the third-party system is running by opening the url in a browser. When no error is received, the third-party system is running correctly.
+partial: running
 
+Try toggling the status of the 3rd-party system by pressing <kbd>Enter</kbd> in the **Samples.CustomChecks.3rdPartySystem** window, and watch the change in output in the **Samples.CustomChecks.Monitor3rdParty** window.
 
-### The sample console
+partial: platform
 
-The sample console hosts an endpoint instance which has a custom check associated with it.
-
-
-### The custom check
+## The custom check
 
 The monitoring capability implements a `PeriodicCheck` which calls a defined URI every time the specified interval is elapsed. When the third-party system doesn't respond in a timely fashion a `CheckResult.Failed` event is sent to ServiceControl.
 

@@ -1,10 +1,13 @@
 ﻿namespace PlatformLauncher
 {
+    using System;
+
     class Program
     {
         static void Main(string[] args)
         {
-            Particular.PlatformLauncher.Launch();
+            Console.Title = "PlatformLauncher";
+            Particular.PlatformLauncher.Launch(servicePulseDefaultRoute: "/custom-checks");
         }
     }
 }
