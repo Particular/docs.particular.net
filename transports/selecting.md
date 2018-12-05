@@ -51,7 +51,7 @@ The MSMQ transport uses the native Windows queuing technology, MSMQ, to send and
 
 ### When to select this transport
 
-- For a better a guarantee that the queuing technology is available for applications to send messages.
+- For a better guarantee that the queuing technology is available for applications to send messages.
 - When running a Windows environment on-premises and unable to invest in licenses or training for other technologies.
 - When distributed transactions are required to guarantee consistency of data with respect to message handling.
 
