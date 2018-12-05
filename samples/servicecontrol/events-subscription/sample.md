@@ -12,19 +12,20 @@ related:
  - samples/servicecontrol/monitoring3rdparty
 ---
 
-This sample shows how to monitor heartbeat and failed message events in ServiceControl.
-
-## Prerequisites
-
- 1. [Install ServiceControl](/servicecontrol/installation.md).
- 1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using MSMQ transport.
- 1. Ensure the `ServiceControl` process is running before running the sample. 
+This sample shows how to monitor heartbeat and failed message events in ServiceControl, as well as observing the same activity in ServicePulse. The sample uses the [Learning Transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
 
 NOTE: When using the [Azure Service Bus transport](/transports/azure-service-bus/legacy/), the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation), or if using the [legacy Azure Service Bus transport](), see its [sanitization strategy documentation](/transports/azure-service-bus/legacy/sanitization.md)
 
-NOTE: The ServiceControl endpoint queue name configured in `EndpointsMonitor` must match the name of the ServiceControl instance with the underlying transport naming rules.
+downloadbutton
+
 
 ## Running the project
+
+Running the project will result in 3 console windows:
+
+1. **NServiceBusEndpoint**: The endpoint that represents the system being monitored.
+1. **EndpointsMonitor**: The endpoint that subscribes to ServiceControl heartbeat and failed message events.
+1. **PlatformLauncher**: Runs an in-process version of ServiceControl and ServicePulse. When the ServiceControl instance is ready, a browser window will be launched displaying the ServicePulse Dashboard.
 
 The project handles two kinds of events:
 
@@ -34,9 +35,17 @@ A `MessageFailed` event is emitted when processing a message fails and the messa
 
 To observe this in action, press <kbd>Enter</kbd> in the `NServiceBusEndpoint` console window to send a new `SimpleMessage` event. Processing of the message fails every time.
 
+NOTE: The exception will cause the debugger to enter a breakpoint. It may be preferable to detach the debugger in order to better observe what's going on.
+
 When a `MessageFailed` event is received, the `EndpointsMonitor` prints the following message in its console window: 
 
-> `Received ServiceControl 'MessageFailed' event for a SimpleMessage.`
+```
+> Received ServiceControl 'MessageFailed' event for a SimpleMessage with ID 42f25e40-a673-61f3-a505-c8dee6d16f8a
+```
+
+Using the details in the `MessageFailed` message, handler code can be written to notify operations or development staff by email or other method.
+
+The failed message can also be viewed in the ServicePulse browser window. Navigating to the failed message allows viewing more details about the message failure.
 
 
 ### HeartbeatStopped and HeartbeatRestored events
@@ -55,8 +64,6 @@ Next, restart the `NServiceBusEndpoint` application and wait up to 30 seconds. W
 
 
 ## Code walk-through 
-
-The solution consists of two projects: `NServicebusEndpoint` and `EndpointsMonitor`. `NServiceBusEndpoint` is a simple endpoint which is monitored by the `EndpointsMonitor`.
 
 
 ### NServiceBusEndpoint
