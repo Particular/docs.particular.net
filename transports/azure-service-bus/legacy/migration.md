@@ -35,4 +35,4 @@ What needs to be done to remove parts of old topology that is no longer utilized
 
 ## Nerdy section - how it works at the high livel
 
-High level description of how migration operates. Similar to https://docs.particular.net/transports/rabbitmq/delayed-delivery#how-it-works
+High level description of how migration operates. Similar to transports/rabbitmq/delayed-delivery.md#how-it-works
