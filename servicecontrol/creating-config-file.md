@@ -359,7 +359,7 @@ Default: `false`
 After restarting the ServiceControl service, access the RavenDB studio locally at the following endpoint:
 
 ```no-highlight
-http://localhost:33333/storage
+http://localhost:{selected RavenDB port}/studio/index.html#databases/documents?&database=%3Csystem%3E
 ```
 
 NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).
