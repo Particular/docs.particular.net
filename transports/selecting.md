@@ -52,7 +52,7 @@ The MSMQ transport uses the native Windows queuing technology, MSMQ, to send and
 ### When to select this transport
 
 - For a better a guarantee that the queuing technology is available for applications to send messages.
-- When running a Windows environment on-premise and unable to invest in licenses or training for other technologies.
+- When running a Windows environment on-premises and unable to invest in licenses or training for other technologies.
 - When distributed transactions are required to guarantee consistency of data with respect to message handling.
 
 
@@ -73,7 +73,7 @@ Azure provides multiple messaging technologies. One of the most advanced and rel
 ### Disadvantages
 
 - Requires careful monitoring of costs, although the transport does provide features for throttling throughput.
-- On-premise development and testing is not possible.
+- On-premises development and testing is not possible.
 - Message processing time is limited to 5 minutes.
 - Relies on TCP, which may require opening additional ports in a firewall.
 
@@ -141,7 +141,7 @@ The SQL Server transport implements queues using relational database tables. Eac
 
 ## RabbitMQ
 
-RabbitMQ is a popular message broker used with many platforms. It can be used both on-premise and in the cloud.
+RabbitMQ is a popular message broker used with many platforms. It can be used both on-premises and in the cloud.
 
 ### Advantages
 
