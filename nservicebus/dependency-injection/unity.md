@@ -2,7 +2,7 @@
 title: Unity
 summary: Details on how to Configure NServiceBus to use Unity for dependency injection. Includes usage examples as well as lifecycle mappings.
 component: Unity
-reviewed: 2018-06-06
+reviewed: 2018-12-05
 tags:
  - Dependency Injection
 related:
@@ -20,22 +20,22 @@ NServiceBus can be configured to use [Unity](https://github.com/unitycontainer/u
 snippet: Unity
 
 
-### Existing instance
+### Using an existing container
 
 snippet: Unity_Existing
 
 
 ### DependencyLifecycle mapping
 
-The [DependencyLifecycle](/nservicebus/dependency-injection/#dependency-lifecycle) maps to Unity in the following way.
+[`DependencyLifecycle`](/nservicebus/dependency-injection/#dependency-lifecycle) maps to [Unity lifetime managers](https://msdn.microsoft.com/en-us/library/ff660872.aspx#Anchor_0) as follows:
 
-| DependencyLifecycle                                                                                             | Unity Equivalent                                                                                                        |
+| `DependencyLifecycle`                                                                                             | Unity Equivalent                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-call)                                | [Transient Lifetime Manager](https://msdn.microsoft.com/en-us/library/microsoft.practices.unity.transientlifetimemanager.aspx)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work)                    | [Hierarchical Lifetime Manager](https://msdn.microsoft.com/en-us/library/microsoft.practices.unity.hierarchicallifetimemanager.aspx) |
-| [SingleInstance](/nservicebus/dependency-injection/#dependency-lifecycle-single-instance)                                  | [Container Controlled Lifetime Manager](https://msdn.microsoft.com/en-us/library/ff660872.aspx#Anchor_0)                          |
+| [InstancePerCall](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-call)                                | [`TransientLifetimeManager`](https://msdn.microsoft.com/en-us/library/microsoft.practices.unity.transientlifetimemanager.aspx)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work)                    | [`HierarchicalLifetimeManager`](https://msdn.microsoft.com/en-us/library/microsoft.practices.unity.hierarchicallifetimemanager.aspx) |
+| [SingleInstance](/nservicebus/dependency-injection/#dependency-lifecycle-single-instance)                                  | [`ContainerControlledLifetimeManager`](https://msdn.microsoft.com/en-us/library/microsoft.practices.unity.containercontrolledlifetimemanager.aspx)                          |
 
-### Unity dependency breaking changes
+### Breaking changes in Unity
 
 Breaking changes in Unity will be handled as follows:
 
