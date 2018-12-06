@@ -19,8 +19,16 @@ Customers that are using the Endpoint-Oriented Topology planning to migrate thei
 
 ## Side-by-side migration
 
-describe steps
+INFO: Endpoints that have the migration mode enabled require manage rights to create entities on the broker.
 
+Before endpoints can be moved to the ForwardinTopology, all endpoints need to have the migration mode enabled. The following steps are required
+
+1. Pick an endpoint that is using the Endpoint-Oriented Topology indicated by `transport.UseEndpointOrientedTopology()` and update the `NServiceBus.Azure.Transports.WindowsAzureServiceBus` nuget package reference to Version 9.1 or higher
+1. Enable the migration mode by calling `EnableMigrationToForwardingTopology()` on the Endpoint-Oriented Topology, leave all the other configuration as is
+
+It is possible to apply the above steps to as many endpoints at once as required or deemed feasible. Once all the endpoints that need to be updated have the migration mode enabled deploy the updated endpoints to production. Apply the update, configuration and release to production cycle as many times necessary until all endpoints that are using the Endpoint-Oriented Topology have the migration mode enabled.
+
+Once all endpoints have the migration mode enabled and have been running in that mode in production for at least a day or until all existing messages have been fowarded to the receiving endpoints input queue, the endpoints can be moved to the ForwardingTopology either on the current transport or by switching to the new Azure Service Bus transport by following the guidance in the next section.
 
 ## Moving off the legacy transport
 
