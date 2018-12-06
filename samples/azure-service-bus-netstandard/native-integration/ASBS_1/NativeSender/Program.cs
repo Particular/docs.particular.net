@@ -15,7 +15,8 @@ class Program
             throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
-        var queueClient = new QueueClient(connectionString, "Samples.ASB.NativeIntegration");
+        // ReSharper disable once StringLiteralTypo
+        var queueClient = new QueueClient(connectionString, "samples.asb.nativeintegration");
 
         #region SerializedMessage
 
