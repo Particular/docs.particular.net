@@ -14,6 +14,8 @@ redirects:
  - nservicebus/msmq/distributor
 ---
 
+WARNING: The distributor for MSMQ is no longer supported starting from NServiceBus Versions 7 and above. It is recommended to transition to the [Sender Side Distribution](/transports/msmq/sender-side-distribution.md) model instead. NServiceBus Version 6 endpoints support worker mode as a legacy feature to help with this transition. For more details, see the [migration strategy](/nservicebus/upgrades/5to6/distributor.md).
+
 The NServiceBus Distributor is similar in behavior to standard [load balancers](https://en.wikipedia.org/wiki/Load_balancing_%28computing%29). It is the key to transparently scaling out message processing over many machines.
 
 As a standard NServiceBus process, the Distributor maintains all the fault-tolerant and performance characteristics of NServiceBus but is designed to never overwhelm any of the worker nodes.
