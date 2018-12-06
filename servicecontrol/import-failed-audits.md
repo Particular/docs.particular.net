@@ -12,7 +12,7 @@ Audit messages can fail to be imported into ServiceControl database due to one o
 
 Audit messages that fail import are stored in the ServiceControl database in the `FailedAuditImports` collection. In addition, a log with the failure reason is written for the message in the [`%ServiceControl/LogPath%`](/servicecontrol/creating-config-file.md#host-settings-servicecontrollogpath)`\FailedImports\Audit\%failureid%.txt`. These messages will not be available in ServiceInsight.
 
-When an audit message that has failed import is detected in the ServiceControl database, the **Audit Message Ingestion** custom check is marked as failed to bring the failed audit import(s) to the administrator's attention.
+When an audit message that has failed import is detected in the ServiceControl database, the [**Audit Message Ingestion** custom check](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-failed-imports) is marked as failed to bring the failed audit import(s) to the administrator's attention.
 
 To attempt to reprocess the failed audit import messages ServiceControl needs to be shut down and started from a command line with `--import-failed-audits` option. In this mode ServiceControl will not process any new error or audit messages.
 

@@ -2,6 +2,8 @@
 title: ServiceControl instances
 reviewed: 2017-07-10
 component: ServiceControl
+related:
+- servicecontrol/import-failed-audits
 ---
 
 ServiceControl instances collect and analyze data about the endpoints that make up a system and the messages flowing between them. This data is exposed to [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/) via an HTTP API and SignalR, and via [external integration events](/servicecontrol/contracts.md).
