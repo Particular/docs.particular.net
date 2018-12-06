@@ -28,12 +28,20 @@ Before endpoints can be moved to the ForwardinTopology, all endpoints need to ha
 
 It is possible to apply the above steps to as many endpoints at once as required or deemed feasible. Once all the endpoints that need to be updated have the migration mode enabled deploy the updated endpoints to production. Apply the update, configuration and release to production cycle as many times necessary until all endpoints that are using the Endpoint-Oriented Topology have the migration mode enabled.
 
-Once all endpoints have the migration mode enabled and have been running in that mode in production for at least a day or until all existing messages have been fowarded to the receiving endpoints input queue, the endpoints can be moved to the ForwardingTopology either on the current transport or by switching to the new Azure Service Bus transport by following the guidance in the next section.
+Once all endpoints have the migration mode enabled and have been running in that mode in production for at least a day or until all existing messages have been fowarded to the receiving endpoints input queue, the endpoints can be moved to the ForwardingTopology by switching to the new Azure Service Bus transport as described in the next section.
 
 ## Moving off the legacy transport
 
-What's needed to move to the new transport? transports/azure-service-bus/compatibility
+INFO: It is possible to move to the ForwardingTopology on the old transport first before moving to the new transport. Follow the guideline in the this section but skip the new package installation step and replace `transport.UseEndpointOrientedTopology()` with `transport.UseForwardingTopology()`.
 
+With all endpoints running in migration mode or already on the ForwardingTopology on the legacy transport the migration to the new transport is just around the corner. Before the switch to the new transport is started it is suggested to check compatibility with the new transport described in the [compatibility guidance](/transports/azure-service-bus/compatibility).
+
+1. Uninstall the package  `NServiceBus.Azure.Transports.WindowsAzureServiceBus`
+1. Install the package `NServiceBus.Transports.AzureServiceBus`
+1. Delete the non compiling code starting with `transport.UseEndpointOrientedTopology()` and remove any routing configuration code described in [Publishers name configuration](/transports/azure-service-bus/legacy/publisher-names-configuration)
+1. If more [advanced configuration options](/transports/azure-service-bus/legacy/configuration/full) have been used on the old transport switch them over to the [new configuration options](/transports/azure-service-bus/configuration) if available. For configuration options not available on the new transport rest assured sensible production ready defaults are being used in the new transport.
+
+It is possible to apply the above steps to as many endpoints at once as required or deemed feasible. Once all the endpoints that need to be updated have been moved to the new transport using the ForwardingTopology deploy the updated endpoints to production. Apply the update, configuration and release to production cycle as many times necessary until all endpoints that are using the Endpoint-Oriented Topology with migration mode have been moved to the ForwardingTopology. Endpoints using Endpoint-Oriented topology with migration mode enabled can co-exists and seamlessly communicate with endpoints using the ForwardingTopology.
 
 ## Finalizing migration (cleanup stage)
 
