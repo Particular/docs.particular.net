@@ -12,7 +12,7 @@ class Program
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
         var queueClient = new QueueClient(connectionString, "Samples.ASB.NativeIntegration");
