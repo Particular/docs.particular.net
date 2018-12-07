@@ -59,4 +59,5 @@ WARNING: exercise caution when removing subscriptions. If not sure what subscrip
 
 ## Nerdy section - how it works at the high level
 
-High-level description of how migration operates. Similar to transports/rabbitmq/delayed-delivery.md#how-it-works
+TODO: High-level description of how migration operates. Similar to transports/rabbitmq/delayed-delivery.md#how-it-works
+High-level diagrams/sketches are available here: https://github.com/Particular/DotNetCoreLaunch/issues/246#issuecomment-431295085
