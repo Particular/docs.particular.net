@@ -13,7 +13,7 @@ related:
 
 include: legacy-asb-warning
 
-The Endpoint-oriented topology is the first topology that was introduced in the Azure Service Bus transport. The topology design was influenced by the [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) concept and imposes several [restrictions](/transports/azure-service-bus/legacy/topologies#versions-7-and-above-forwarding-topology-topologies-comparison). The Forwarding topology was introduced to take advantage of the broker nature of the Azure Service Bus and to leverage its native capabilities. It is the recommended option for new projects. Thus the new Azure Service Bus transport is only [compatible](/transports/azure-service-bus/compatibility) with the Forwarding topology.
+The Endpoint-oriented topology is the first topology that was introduced in the Azure Service Bus transport. The topology design was influenced by the [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) concept and imposes several [restrictions](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-forwarding-topology-topologies-comparison). The Forwarding topology was introduced to take advantage of the broker nature of the Azure Service Bus and to leverage its native capabilities. It is the recommended option for new projects. Thus the new Azure Service Bus transport is only [compatible](/transports/azure-service-bus/compatibility.md) with the Forwarding topology.
 
 Customers that are using the Endpoint-oriented topology and planning to migrate to the new transport are required to migration  their endpoints to the Forwarding topology as a first step. The migration approach described here enables migrating mission-critical endpoints to the Forwarding-topology in any order without applying a big-bang approach.
 
@@ -37,12 +37,12 @@ Once all endpoints had the migration mode enabled and deployed to production for
 
 ## Moving off the legacy transport
 
-Once all endpoints using legacy transport are running in the migration mode, migration to the new transport can be performed. Prior to that, verify compatibility with the new transport described in the [compatibility guide](/transports/azure-service-bus/compatibility). To finalize migration from legacy transport :
+Once all endpoints using legacy transport are running in the migration mode, migration to the new transport can be performed. Prior to that, verify compatibility with the new transport described in the [compatibility guide](/transports/azure-service-bus/compatibility.md). To finalize migration from legacy transport :
 
 1. Uninstall the package  `NServiceBus.Azure.Transports.WindowsAzureServiceBus`.
 1. Install the package `NServiceBus.Transports.AzureServiceBus`.
-1. Delete the non-compiling code starting with `transport.UseEndpointOrientedTopology()` and remove any routing configuration code described in [Publishers name configuration](/transports/azure-service-bus/legacy/publisher-names-configuration).
-1. If more [advanced configuration options](/transports/azure-service-bus/legacy/configuration/full) have been used with the legacy transport, switch those over to the [new configuration options](/transports/azure-service-bus/configuration), if there are equivalent APIs. For configuration options that are not available in the new transport, defaults selected specifically for the new transport will be applied.
+1. Delete the non-compiling code starting with `transport.UseEndpointOrientedTopology()` and remove any routing configuration code described in [Publishers name configuration](/transports/azure-service-bus/legacy/publisher-names-configuration.md).
+1. If more [advanced configuration options](/transports/azure-service-bus/legacy/configuration/full.md) have been used with the legacy transport, switch those over to the [new configuration options](/transports/azure-service-bus/configuration.md), if there are equivalent APIs. For configuration options that are not available in the new transport, defaults selected specifically for the new transport will be applied.
 
 The steps above can be applied to as many endpoints at once as required. Once all the endpoints that need to be updated have been updated to use the new transport, deploy the updated endpoints. Repeat this cycle as many times necessary until all endpoints have been migrated to the new transport.
 
@@ -51,7 +51,7 @@ NOTE: Endpoints using an Endpoint-oriented topology with migration mode enabled 
 
 ## Finalizing migration (cleanup stage)
 
-Once endpoints have been migrated off Endpoint-oriented topology and have been running in production for some time, the [Endpoint-oriented topology](/transports/azure-service-bus/legacy/topologies#versions-7-and-above-endpoint-oriented-topology) artifacts can be removed.
+Once endpoints have been migrated off Endpoint-oriented topology and have been running in production for some time, the [Endpoint-oriented topology](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-endpoint-oriented-topology) artifacts can be removed.
 Those artifacts are endpoint-specific topics with their subscriptions.
 
 WARNING: exercise caution when removing subscriptions. If not sure what subscriptions can be removed, contact [Support](https://particular.net/support).
