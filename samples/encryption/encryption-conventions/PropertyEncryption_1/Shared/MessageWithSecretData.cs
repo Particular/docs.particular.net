@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using NServiceBus;
 
 #region Message
 
 // Note all the properties to encrypt start with "Encrypted"
-public class MessageWithSecretData :
-    IMessage
+public class MessageWithSecretData
 {
     public string EncryptedSecret { get; set; }
     public MySecretSubProperty SubProperty { get; set; }

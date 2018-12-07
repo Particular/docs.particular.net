@@ -9,6 +9,7 @@ class Program
     {
         Console.Title = "Samples.Encryption.Endpoint1";
         var endpointConfiguration = new EndpointConfiguration("Samples.Encryption.Endpoint1");
+        endpointConfiguration.Conventions().DefiningMessagesAs(type => type.Name.Contains("Message"));
         #region enableEncryption
         endpointConfiguration.ConfigurationEncryption();
         #endregion
