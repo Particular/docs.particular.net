@@ -1,7 +1,7 @@
 snippet: UniqueQueuePerEndpointInstance
 
-The code above instructs NServiceBus to use a unique input queue for each endpoint instance. The queue name is derived from the endpoint name and the Azure role instance ID. When instances of such endpoint subscribe for an event, each instance subscribes with its own unique input queue so the publisher treats each subscription individually and, as a result, broadcasts events to all subscribed instances.
+The code above configures NServiceBus to use a unique input queue for each physical endpoint instance. Each queue name is the endpoint name suffixed by the Azure role instance ID. Since each subscriber has its own unique input queue, the publisher treats them as if they are separate logical subscribers and delivers events to all of them.
 
-In case there is a need to provide a custom queue names suffix (instead of using the role instance ID), following API can be used instead:
+Alternatively, a custom queue name suffix can be specified (instead of using the Azure role instance ID):
 
 snippet: UniqueQueuePerEndpointInstanceWithSuffix
