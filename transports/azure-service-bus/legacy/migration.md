@@ -59,27 +59,29 @@ WARNING: exercise caution when removing subscriptions. If not sure what subscrip
 
 ## How it works
 
-To understand this section better, refer to the [topologies article](/transports/azure-service-bus/legacy/topologies.md) for details on how Endpoint-oriented and Forwarding topologies operate.
+To understand this section better, refer to the [topologies article](/transports/azure-service-bus/legacy/topologies.md) for details on how Endpoint-oriented and Forwarding topology operate.
 
 Migration mode has no impact on commands, but events only. It does not change how events are published. It does change how events are **subscribed to**.
-Publishing endpoints in migration mode will continue publishing using endpoint specific topic. Subscribers with enabled migration mode will modify how subscriptions work.
+Publishing endpoints in migration mode will continue publishing using the endpoint specific topic. Subscribers with enabled migration mode will modify how subscriptions work.
 Subscribers with enabled migration mode will no longer fetch messages from subscriptions. Instead, they will perform the following:
 
-1. Create Forwarding topology subscription entities; `bundle-1` topic for all events, subscription per subscriber endpoint, and SQL filter per event type (in green). Subscriptions auto-forward to the endpoint's queue.
-1. Create a `migration` topic that performs de-duplication and auto-forwards everything to `bundle-1` topic (in red).
-1. Auto-forward all events arriving to `<subscriber_endpoint_name>.<event_type_name>` subscriptions under endpoint specific topic `<publishing_endpoint_name>.events` to be routed to the `migration` topic (in grey).
+1. Create Forwarding topology subscription entities if not yet present; `bundle-1` topic for all events, subscription per subscriber endpoint, and a SQL filter per event type (in green). Subscriptions auto-forward to the endpoint's queue.
+1. Create a `migration` topic if not yet present that performs de-duplication and auto-forwards everything to `bundle-1` topic (in red).
+1. Auto-forward all events arriving to `<subscriber_endpoint_name>.<event_type_name>` subscriptions under endpoint specific topic `<publishing_endpoint_name>.events` to the `migration` topic (in grey).
 
-Below is an example of a publisher with 2 events, `EventA` and `EventB`, and a subscriber consuming those events. When in migration mode, the topology looks as following:
+Below is an example of a publisher with two events, `EventA` and `EventB`, and a subscriber consuming those events. When in migration mode, the topology looks as following:
 
 ![EndpointOrientedTopologyWithMigration](migration-mode.png "width=500")
 
-Q: is `migration` topic necessary?
-A: When an instance of a publisher is converted to Forwarding topology and another instance is still in migration, and event published by an endpoint still in migration needs to be de-duplicated. `migration` topic ensures events are de-duplicated no matter what instance of a publisher has published those.
+## Frequently asked questions
 
-Q: what should be migrated first, subscribers or publishers?
+Q: Is the `migration` topic necessary?
+A: When an instance of a publisher is converted to Forwarding topology with another instance still in migration, and event published by an endpoint still in migration needs to be de-duplicated. `migration` topic ensures events are de-duplicated no matter what instance of a publisher has published those.
+
+Q: What should be migrated first, subscribers or publishers?
 A: The order of migration doesn't matter. A publisher could also be a subscriber and the other way around.
 
-Q: Can I a new endpoint while in migration mode?
+Q: Can I add a new endpoint while in migration mode?
 A: Yes.
 
 Q: Are commands affected by migration mode?
