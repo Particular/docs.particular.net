@@ -76,7 +76,7 @@ Below is an example of a publisher with two events, `EventA` and `EventB`, and a
 ## Frequently asked questions
 
 Q: Is the `migration` topic necessary?
-A: When an instance of a publisher is converted to Forwarding topology with another instance still in migration, and event published by an endpoint still in migration needs to be de-duplicated. `migration` topic ensures events are de-duplicated no matter what instance of a publisher has published those.
+A: When an instance of a publisher is converted to Forwarding topology with another instance still in migration, all events published by an endpoint still in migration need to be de-duplicated. The `migration` topic ensures events are de-duplicated no matter what instance of a publisher has published those.
 
 Q: What should be migrated first, subscribers or publishers?
 A: The order of migration doesn't matter. A publisher could also be a subscriber and the other way around.
