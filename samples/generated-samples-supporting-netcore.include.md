@@ -67,6 +67,7 @@
 * [Monitor Azure Storage Queues endpoints with ServiceControl adapter](/samples/servicecontrol/adapter-asq-multi-storage-account/?version=sctransportadapter_2)
 * [Monitor RabbitMQ direct routing topology with ServiceControl adapter](/samples/servicecontrol/adapter-rabbitmq-different-topologies/?version=sctransportadapter_2)
 * [Monitor third-party systems with custom checks](/samples/servicecontrol/monitoring3rdparty/?version=customchecks_3)
+* [Monitor with ServiceControl events](/samples/servicecontrol/events-subscription/?version=servicecontrolcontracts_1)
 * [Multiple Deserializers](/samples/serializers/multiple-deserializers/?version=core_7)
 * [Native integration](/samples/sqltransport/native-integration/?version=sqltransport_4)
 * [Native integration with RabbitMQ](/samples/rabbitmq/native-integration/?version=rabbit_5)

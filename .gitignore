@@ -7,6 +7,8 @@ binaries
 *.lock.json
 .nu
 .learningtransport
+.db
+.logs
 _UpgradeReport.*
 *.cache
 *~
