@@ -596,7 +596,7 @@
         Title: Version 6 to 7
       - Url: transports/upgrades/asq-7to8
         Title: Version 7 to 8
-    - Title: Azure Service Bus
+    - Title: Azure Service Bus (Legacy)
       Articles:
       - Url: transports/upgrades/asb-8to9
         Title: Version 8 to 9
