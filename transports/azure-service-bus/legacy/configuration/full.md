@@ -9,7 +9,7 @@ redirects:
  - nservicebus/azure-service-bus/configuration/configuration
  - nservicebus/azure-service-bus/configuration/full
  - transports/azure-service-bus/configuration/full
-reviewed: 2018-01-10
+reviewed: 2018-12-11
 ---
 
 include: legacy-asb-warning
