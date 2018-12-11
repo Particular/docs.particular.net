@@ -53,8 +53,7 @@ NOTE: Endpoints using the endpoint-oriented topology with migration mode enabled
 
 ## Finalizing migration (cleanup stage)
 
-After all the endpoints have been running in production for some time using the forwarding topology, the [endpoint-oriented topology](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-endpoint-oriented-topology) artifacts can be removed.
-Those artifacts are endpoint-specific topics with their subscriptions.
+After all the endpoints have been running in production for some time using the forwarding topology, the [endpoint-oriented topology](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-endpoint-oriented-topology) topics with their subscriptions can be removed.
 
 WARNING: Exercise caution when removing subscriptions. If it is unclear which subscriptions can be removed, contact [Support](https://particular.net/support).
 
