@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 9 to 9.1
 summary: Tips when upgrading Azure Service Bus transport from version 9 to 9.1.
-reviewed: 2018-11-29
+reviewed: 2018-12-11
 component: ASB
 related:
  - transports/azure-service-bus
