@@ -6,7 +6,7 @@ versions: '[9.1,)'
 tags:
 - Azure
 - Transport
-reviewed: 2018-08-29
+reviewed: 2018-12-11
 related:
  - transports/azure-service-bus/legacy/topologies
 ---
