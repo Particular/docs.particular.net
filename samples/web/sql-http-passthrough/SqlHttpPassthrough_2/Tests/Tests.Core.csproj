@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <LangVersion>7.1</LangVersion>
@@ -13,4 +13,4 @@
     <ProjectReference Include="..\SampleEndpoint\SampleEndpoint.Core.csproj" />
     <ProjectReference Include="..\SampleWeb\SampleWeb.Core.csproj" />
   </ItemGroup>
- </Project>
+</Project>
