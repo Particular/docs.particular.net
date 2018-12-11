@@ -26,10 +26,10 @@
             // callback queue
             QueueDeletionUtils.DeleteQueue(uri, $"{endpointName}.{Environment.MachineName}");
 
-            // timeout queue
+            // timeout queue - not used if using native timeouts
             QueueDeletionUtils.DeleteQueue(uri, $"{endpointName}.Timeouts");
 
-            // timeout dispatcher queue
+            // timeout dispatcher queue - not used if using native timeouts
             QueueDeletionUtils.DeleteQueue(uri, $"{endpointName}.TimeoutsDispatcher");
 
             // retries queue
