@@ -14,8 +14,6 @@ related:
 
 This sample shows how to monitor heartbeat and failed message events in ServiceControl, as well as observing the same activity in ServicePulse. The sample uses the [Learning Transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
 
-NOTE: When using the [Azure Service Bus transport](/transports/azure-service-bus/legacy/), the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation), or if using the [legacy Azure Service Bus transport](), see its [sanitization strategy documentation](/transports/azure-service-bus/legacy/sanitization.md)
-
 downloadbutton
 
 
@@ -84,3 +82,10 @@ NOTE: Heartbeat control messages are sent [every 30 seconds by default](/monitor
 In order to get notifications when the exposed ServiceControl events occur, create an NServiceBus endpoint. Next, reference the `ServiceControl.Contracts` NuGet package and implement a handler which handles ServiceControl events:
 
 snippet: ServiceControlEventsHandlers
+
+
+## Notes on other transports
+
+This sample uses the [Learning Transport](/transports/learning/) in order to be portable with no transport dependencies.
+
+If adjusting this sample to use the [Azure Service Bus transport](/transports/azure-service-bus/legacy/), note that the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation), or if using the [legacy Azure Service Bus transport](), see its [sanitization strategy documentation](/transports/azure-service-bus/legacy/sanitization.md)
