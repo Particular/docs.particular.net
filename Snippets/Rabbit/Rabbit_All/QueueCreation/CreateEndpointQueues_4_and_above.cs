@@ -28,10 +28,10 @@ namespace Rabbit_All.QueueCreation
             // callback queue
             QueueCreationUtils.CreateQueue(uri, $"{endpointName}.{Environment.MachineName}", durableMessages, createExchanges);
 
-            // timeout queue
+            // timeout queue - not used if using native timeouts
             QueueCreationUtils.CreateQueue(uri, $"{endpointName}.Timeouts", durableMessages, createExchanges);
 
-            // timeout dispatcher queue
+            // timeout dispatcher queue - not used if using native timeouts
             QueueCreationUtils.CreateQueue(uri, $"{endpointName}.TimeoutsDispatcher", durableMessages, createExchanges);
 
             // retries queue
