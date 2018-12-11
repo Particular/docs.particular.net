@@ -39,7 +39,7 @@ After all the endpoints have been running in production for some time with migra
 
 ## Migrating from the legacy transport
 
-When all endpoints using the legacy transport are running in migration mode, they can be migrated to the new transport. Before that is done, their compatibility with the new transport should be verified, as described in the [compatibility guide](/transports/azure-service-bus/compatibility.md). To migrate from the legacy transport :
+When all endpoints using the legacy transport are running in migration mode, they can be migrated to the new transport. Before that is done, their compatibility with the new transport should be verified, as described in the [compatibility guide](/transports/azure-service-bus/compatibility.md). To migrate from the legacy transport:
 
 1. Uninstall the `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package.
 1. Install the `NServiceBus.Transports.AzureServiceBus` package.
