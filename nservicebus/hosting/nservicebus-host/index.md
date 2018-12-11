@@ -11,7 +11,7 @@ related:
  - nservicebus/operations/installers
  - nservicebus/lifecycle
 component: Host
-reviewed: 2017-02-28
+reviewed: 2018-12-11
 ---
 
 include: host-deprecated-warning

@@ -2,7 +2,7 @@
 title: Running locally without Azure Cloud Services emulator
 summary: Debugging endpoints without Azure Cloud Services emulator
 component: CloudServicesHost
-reviewed: 2017-02-21
+reviewed: 2018-12-11
 ---
 
 include: cloudserviceshost-deprecated-warning
