@@ -1,21 +1,14 @@
-
-## Run the solution.
-
-Two console applications will start up.
+Running the solution starts two console applications. `Endpoint1` encrypts a message and sends it and `Endpoint2` receives the encrypted message and decrypts it.
 
 
-### Endpoint1
-
-Which outputs
+### Endpoint1 output
 
 ```
 MessageWithSecretData sent.
 ```
 
 
-### Endpoint2
-
-Which outputs
+### Endpoint2 output
 
 ```
 I know the secret - it's 'betcha can't guess my secret'
@@ -28,33 +21,29 @@ CreditCard: 543645546546456 is valid to 3/11/2016 5:21:59 AM
 ## Code walk-through
 
 
-### The message contract
+### Message contract
 
-Starting with the Shared project, open the `MessageWithSecretData.cs` file and look at the following code:
+The `Shared` project contains `MessageWithSecretData.cs`, which defines the message contract:
 
 snippet: Message
 
 
 ### Encryption configuration
 
-Open either one of the `Program.cs`. Notice the line
+Encryption is enabled by calling an extension method in `Program.cs` in both `Endpoint1` and `Endpoint2`:
 
 snippet: enableEncryption
 
-This code indicates that encryption should be enabled.
-
-The key is then configured in the `EncryptionExtensions.cs` file using
+The extension method is in `Shared/EncryptionExtensions.cs`:
 
 snippet: ConfigureEncryption
 
 
 ### The message on the wire
 
-Now run `Endpoint1` on its own (i.e. don't start `Endpoint2`).
+The serialized message content can be seen by running `Endpoint1` without running `Endpoint2`.
 
-Open the .learningtransport folder for `Samples.Encryption.Endpoint2` and [view the message content](/transports/learning/viewing-messages.md).
-
-The message will look like this:
+Messages are queued in the `.learningtransport` folder next to the solution. The message will be [contained in a file](/transports/learning/viewing-messages.md) in the `Samples.Encryption.Endpoint2` sub-folder with the following content:
 
 ```xml
 <?xml version="1.0"?>

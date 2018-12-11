@@ -8,6 +8,7 @@ class Program
     {
         Console.Title = "Samples.Encryption.Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.Encryption.Endpoint2");
+        endpointConfiguration.Conventions().DefiningMessagesAs(type => type.Name.Contains("Message"));
         endpointConfiguration.ConfigurationEncryption();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

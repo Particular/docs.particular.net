@@ -1,7 +1,7 @@
 ---
-title: Message Body Encryption
+title: Message body encryption
 summary: Encrypting the full message body using a mutator.
-reviewed: 2017-11-14
+reviewed: 2018-12-11
 component: Core
 tags:
 - Encryption
@@ -12,41 +12,47 @@ related:
 ---
 
 
-## Introduction
+This sample demonstrates how to use `IMutateTransportMessages` to encrypt and decrypt the binary representation of a message as it passes through the pipeline.
 
-This sample shows how to use `IMutateTransportMessages` to encrypt/decrypt the binary data of a message as it passes through the pipeline.
+Running the solution starts two console applications. `Endpoint1` encrypts a message and sends it and `Endpoint2` receives the encrypted message and decrypts it.
 
+### Endpoint1 output
 
-## Run the solution.
+```
+Message sent.
+```
 
-Set both `Endpoint1` and `Endpoint2` as startup projects and run the solution. `Endpoint1` encrypts a message and sends it while `Endpoint2` receives the encrypted message and decrypts it.
+### Endpoint2 output
+
+```
+CompleteOrderHandler Received CompleteOrder with credit card number 123-456-789
+```
 
 
 ## Code walk-through
 
 
-### The message contract
+### Message contract
 
-Starting with the Shared project, open `CompleteOrder.cs`:
+The `Shared` project contains `CompleteOrder.cs`, which defines the message contract:
 
 snippet: Message
 
-Note that it does not need any custom property types to be encrypted.
+Note that a custom property type is not required.
 
 
-### How is encryption configured.
+### Encryption configuration
 
-Open either one of the `Program.cs` files. Notice the line:
+Encryption is enabled by calling an extension method in `Program.cs` in both `Endpoint1` and `Endpoint2`:
 
 snippet: RegisterMessageEncryptor
 
-This is an extension method that adds an `IMutateTransportMessages` to the configuration.
+The extension method is in `Shared/EncryptionExtensions.cs`:
 
 snippet: MessageEncryptorExtension
 
+The mutator is in `Shared/MessageEncryptor.cs`:
 
-#### The Mutator
-
-WARNING: This is for demonstration purposes and is not true encryption. It is only doing a byte array reversal to illustrate the API. In a production system, encryption should be used via the [.NET Framework Cryptography Model](https://docs.microsoft.com/en-us/dotnet/standard/security/cryptography-model) or some other secure mechanism.
+WARNING: This is for demonstration purposes and is not true encryption. It is only doing a byte array reversal to illustrate the API. In a production system, encryption should be performed used the [.NET Framework Cryptography Model](https://docs.microsoft.com/en-us/dotnet/standard/security/cryptography-model) or some other secure mechanism.
 
 snippet: Mutator
