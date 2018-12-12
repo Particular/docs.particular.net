@@ -9,7 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.1.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
   </ItemGroup>
   <ItemGroup Label="Transitive dependencies">
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
