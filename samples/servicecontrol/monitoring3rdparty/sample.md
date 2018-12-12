@@ -12,6 +12,8 @@ redirects:
 
 When integrating with third-party systems, often messages fail when those systems are down. The Particular Platform has extensibility to enable the monitoring of third-party systems which are exposed as HTTP endpoints. This sample shows how to achieve this with custom checks.
 
+include: platformlauncher-windows-required
+
 downloadbutton
 
 ## Running the sample
