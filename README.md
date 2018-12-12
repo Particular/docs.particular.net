@@ -842,9 +842,12 @@ RabbitMQ.Client (>= 5.0.1 && < 5.1.0)
 NuGet will then resolve the lowest within those ranges. This make it more difficult to smoke test new versions of those dependencies using samples. As such, for all dependencies that are important to use the latest, the extra dependencies are explicitly included with wildcards.
 
 ```
-<PackageReference Include="NServiceBus" Version="6.*" />
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
-<PackageReference Include="RabbitMQ.Client" Version="5.0.*" />
+
+<ItemGroup Label="Required to force the latest version of transitive dependencies">
+  <PackageReference Include="NServiceBus" Version="6.*" />
+  <PackageReference Include="RabbitMQ.Client" Version="5.0.*" />
+</ItemGroup>
 ```
 
 
