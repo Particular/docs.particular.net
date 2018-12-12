@@ -9,7 +9,7 @@ redirects:
  - nservicebus/azure-service-bus/configuration/configuration
  - nservicebus/azure-service-bus/configuration/full
  - transports/azure-service-bus/configuration/full
-reviewed: 2018-01-10
+reviewed: 2018-12-11
 ---
 
 include: legacy-asb-warning
@@ -33,12 +33,14 @@ The [forwarding topology](/transports/azure-service-bus/legacy/topologies.md#ver
 
  * `BundlePrefix(string)`: The prefix used in the entity name to differentiate shared topic (bundle) from other topics.
 
-### Endpoint oriented topology
+### Endpoint-oriented topology
 
-The [endpoint oriented topology](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-endpoint-oriented-topology) defines a queue and a topic per endpoint. It can be configured using the following settings:
+The [endpoint-oriented topology](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-endpoint-oriented-topology) defines a queue and a topic per endpoint. It can be configured using the following settings:
 
  * `RegisterPublisherForType(string, Type)`: Registers the publishing endpoint for a given type.
  * `RegisterPublisherForAssembly(string, Assembly)`: Registers the publishing endpoint for all types in an assembly.
+
+partial: migration
 
 
 ## Controlling entities

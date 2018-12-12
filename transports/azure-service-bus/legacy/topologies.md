@@ -1,6 +1,6 @@
 ---
 title: Topologies
-reviewed: 2017-11-02
+reviewed: 2018-12-11
 component: ASB
 versions: '[7,)'
 tags:
@@ -36,7 +36,7 @@ Both topologies create a single input queue per endpoint and implement [Publish-
 No default topology is set by the Azure Service Bus transport. Topology has to be explicitly configured using [configuration API](/transports/azure-service-bus/legacy/configuration/full.md).
 
 
-### Endpoint oriented topology
+### Endpoint-oriented topology
 
 In the `EndpointOrientedTopology` each publishing endpoint creates a topic called `<publishing_endpoint_name>.events`. The subscribing endpoints subscribe to the topic, by creating a subscription for a particular event type called `<subscriber_endpoint_name>.<event_type_name>`. Note that each subscription has a single rule, used to filter a specific event type.
 
