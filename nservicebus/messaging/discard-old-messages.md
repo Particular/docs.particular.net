@@ -40,11 +40,11 @@ Because clocks usually are at most a few minutes out of sync this issue only app
 For this reason, it is wise to add the maximum amount of allowed clock offset, called clock drift, to the TTBR value. For example, when using a TimeToBeReceived value of 90 seconds, one should allow for 300 seconds of maximum clock drift, so the TTBR value becomes 90 + 300 = 390 seconds.
 
 
-## Discarding obsolete messages at startup
+## Discarding messages at startup
 
-In certain situations, it may be required that obsolete messages in the incoming queue should not be processed after restarting the endpoint. Usually, this functionality is used in development and test environments, but may also be appropriate when messages contain information that gets outdated, e.g. change notifications, readings from sensors in IoT apps, etc.
+In certain situations, it may be required that messages in the incoming queue should not be processed after restarting the endpoint. Usually, this functionality is used in development and test environments, but may also be appropriate when messages contain information that gets outdated or are otherwise unneeded, e.g. change notifications, readings from sensors in IoT apps, etc.
 
-NOTE: It's not recommended to be used in a production environment as it may lead to subtle hard to diagnose message loss situations.
+NOTE: It's not recommended to be used in a production environment, as it may lead to subtle, hard to diagnose message loss situations.
 
 To discard all existing messages in the incoming queue at startup:
 
