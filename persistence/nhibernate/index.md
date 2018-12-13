@@ -94,3 +94,18 @@ partial: schema
 ## Generating scripts for deployment
 
 To create scripts for execution in production without using the [installers](/nservicebus/operations/installers.md), run an install in a lower environment and then export the SQL structure. This structure can then be migrated to production.
+
+## Schema compatibility with SQL Persistence
+
+The table schema is different.
+
+Sagas: NHibernate stores sagasas a table structure where with SQL Persistence is storing saga state as  a JSON BLOB stored more like a key/value store. Each saga type has its own table or table structure for both NHibernate and SQL Persistence.
+
+Subscriptions: Table schemas are different. NHibernate has a single table named `Subscription` where subscriptions are stored where with SQL Persistence each logical publisher endpoint has its own subscription table `*_SubscriptionData` (endpoint name as table prefix).
+
+Timeouts: NHibernate has `TimeoutEntity` table with `Endpoint` column where SQL Persistence has `*_TimeoutData` tables with the endpoint name as the table prefix.
+
+Outbox: NHibernate has table `OutboxRecord` and requires a separate db catalog, schema, or server for each logical endpoint and SQL Persistence has table `*_OutboxData]` which has the logical endpoint name as the prefix
+
+INFO: The generated schema is different from the 
+
