@@ -46,7 +46,7 @@ In certain situations, it may be required that obsolete messages in the incoming
 
 NOTE: It's not recommended to be used in a production environment as it may lead to subtle hard to diagnose message loss situations.
 
-To discard all current messages in the endpoint queues at startup:
+To discard all existing messages in the incoming queue at startup:
 
 snippet: PurgeMessagesAtStartup
 
