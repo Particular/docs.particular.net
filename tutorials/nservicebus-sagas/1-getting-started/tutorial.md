@@ -8,6 +8,8 @@ When you build a system with asynchronous messages, you divide each process into
 
 What happens when some process is dependent upon *more than one message*?
 
+![Should I ship it?](feature-image.png)
+
 Let's say a **Shipping** service can't ship an order (that is, send a `ShipOrder` command) until it has successfully received `OrderPlaced` from the **Sales** service *and* `OrderBilled` from the **Billing** service. Normal message handlers don't store any state, so we need a way to keep track of which events have already been received.
 
 In this tutorial, we'll solve this problem by building a simple [**saga**](/nservicebus/sagas/), which is essentially a message-driven state machine, or a collection of message handlers that persist shared state. Sagas represent a business process where multiple related messages can trigger state changes. Other lessons in this series will focus on other problems you can solve with sagas, such as integrating with external services or replacing nightly batch jobs with a system that processes changes in real time.
