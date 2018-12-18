@@ -9,7 +9,7 @@ redirects:
  - nservicebus/azure-service-bus/configuration/configuration
  - nservicebus/azure-service-bus/configuration/full
  - transports/azure-service-bus/configuration/full
-reviewed: 2018-12-11
+reviewed: 2018-12-18
 ---
 
 include: legacy-asb-warning
@@ -25,7 +25,7 @@ The full configuration API can be accessed from the `UseTransport<AzureServiceBu
 A topology defines what the underlying layout of Azure Service Bus messaging entities looks like, specifically what entities are used and how they relate to each other. There are 2 built-in topologies: `EndpointOrientedTopology` and `ForwardingTopology`. For more information, refer to the [Topologies](/transports/azure-service-bus/legacy/topologies.md) article.
 
  * `UseForwardingTopology()`: Selects `ForwardingTopology` as the topology to be used by the transport.
- * `UseEndpointOrientedTopology()`: Selects `UseEndpointOrientedTopology` as the topology to be used by the transport.
+ * `UseEndpointOrientedTopology()`: Selects `EndpointOrientedTopology` as the topology to be used by the transport.
 
 ### Forwarding topology
 
