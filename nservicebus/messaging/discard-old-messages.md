@@ -57,7 +57,7 @@ TimeToBeReceived relies on the transport infrastructure to discard expired messa
 
 MSMQ continuously checks the TimeToBeReceived of all queued messages. As soon as the message has expired, it is removed from the queue, and disk space gets reclaimed. 
 
-NOTE: MSMQ enforces single TimeToBeReceived value for all messages in a transaction. If multiple messages enlist in a single transaction, then TimeToBeReceived from the first message will be used for all messages, leading to unintentional message expiration. To prevent message loss, `TimeToBeReceived` is not supported for endpoints with [transaction mode](/transports/transactions.md) `TransportTransactionMode.AtomicSendsWithReceive` or `Transaction Scope (Distributed Transaction)`.
+NOTE: MSMQ enforces single TimeToBeReceived value for all messages in a transaction. If multiple messages enlist in a single transaction, then TimeToBeReceived from the first message will be used for all messages, leading to potentially, unintentional message expiration. To prevent message loss, `TimeToBeReceived` is not supported for endpoints with [transaction mode](/transports/transactions.md) `TransportTransactionMode.AtomicSendsWithReceive` or `Transaction Scope (Distributed Transaction)`.
 
 partial: msmq
 
