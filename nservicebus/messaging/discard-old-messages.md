@@ -17,7 +17,7 @@ TTBR applies only to messages that have not been handled. A failed message moved
 
 If there is no value in a message being received by the target process after a given time period it may be desirable to indicate that it can be discarded by specifying TimeToBeReceived.
 
-A time interval for a message can be specified:
+A TTBR interval for a message can be specified:
 
 ## Using an Attribute
 
