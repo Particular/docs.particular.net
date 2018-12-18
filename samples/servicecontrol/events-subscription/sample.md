@@ -2,7 +2,7 @@
 title: Monitor with ServiceControl events
 summary: A sample showing how to monitor events in ServiceControl
 component: ServiceControlContracts
-reviewed: 2018-04-20
+reviewed: 2018-12-18
 tags:
  - Notifications
 related:
@@ -90,4 +90,6 @@ snippet: ServiceControlEventsHandlers
 
 This sample uses the [Learning Transport](/transports/learning/) in order to be portable with no transport dependencies.
 
-If adjusting this sample to use the [Azure Service Bus transport](/transports/azure-service-bus/legacy/), note that the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation), or if using the [legacy Azure Service Bus transport](), see its [sanitization strategy documentation](/transports/azure-service-bus/legacy/sanitization.md)
+If adjusting this sample to use the [Azure Service Bus transport](/transports/azure-service-bus/legacy/), note that the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation), or if using the [legacy Azure Service Bus transport](), see its [sanitization strategy documentation](/transports/azure-service-bus/legacy/sanitization.md). 
+
+Same applies to [Azure Storage Queues](/transports/azure-storage-queues) name [shortening strategy](https://docs.particular.net/transports/azure-storage-queues/sanitization#backward-compatibility-with-versions-7-and-below)
