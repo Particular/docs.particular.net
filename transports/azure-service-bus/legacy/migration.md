@@ -6,7 +6,7 @@ versions: '[9.1,)'
 tags:
 - Azure
 - Transport
-reviewed: 2018-12-11
+reviewed: 2018-12-18
 related:
  - transports/azure-service-bus/legacy/topologies
 ---
@@ -34,7 +34,7 @@ After applying the above steps to one or more endpoints, they should be deployed
 
 After all the endpoints have been running in production for some time with migration mode enabled, they can be migrated to the forwarding topology by switching to the new Azure Service Bus transport as described in the next section.
 
- NOTE: Endpoints with migration mode enabled should be allowed to run for some time in production to ensure all existing messages have been forwarded to the input queue for the receiving endpoints.
+NOTE: Endpoints with migration mode enabled should be allowed to run for some time in production to ensure all existing messages have been forwarded to the input queue for the receiving endpoints.
 
 
 ## Migrating from the legacy transport
