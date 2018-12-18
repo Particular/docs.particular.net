@@ -33,7 +33,7 @@ snippet: DiscardingOldMessagesWithCode
 
 When sending a message with a TimeToBeReceived value, it could happen that the receiver drops all messages due to clocks of the sender and the receiver being too much out of sync. For example, if TimeToBeReceived is 1 minute and the receiver's clock is 1 minute ahead compared to the sender’s the message becomes immediately stale - thus never processed.
 
-In most deployments clock are at most a few minutes out of sync. As a result, this issue applies mostly to small TimeToBeReceived values.
+In most deployments clocks are at most a few minutes out of sync. As a result, this issue applies mostly to small TimeToBeReceived values.
 
 It is advised to add the maximum amount of allowed clock offset, called clock drift, to the TTBR value. For example, when using a TimeToBeReceived value of 90 seconds, one should allow for 300 seconds of maximum clock drift, so the TTBR value becomes 90 + 300 = 390 seconds.
 
