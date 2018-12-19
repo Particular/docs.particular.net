@@ -50,7 +50,7 @@ The failed message can also be viewed in the ServicePulse browser window. Naviga
 
 ### HeartbeatStopped and HeartbeatRestored events
 
-The `HeartbeatStopped` event is emitted whenever an endpoint fails to send a control message at an expected interval. The `HeartbeatRestored` event is emitted whenever the endpoint successfully sends a control message again. 
+The `HeartbeatStopped` event is emitted whenever an endpoint fails to send a control message within the expected interval. The `HeartbeatRestored` event is emitted whenever the endpoint successfully sends a control message again. 
 
 Note: The monitor must receive at least one control message before it can observe that the endpoint stopped responding.
 
@@ -72,7 +72,7 @@ Retries are disabled in the sample for simplicity; messages are immediately move
 
 snippet: DisableRetries
 
-The `MessageFailed` event is published for any standard NServiceBus endpoint that is monitored by ServiceControl.
+The `MessageFailed` event is published for any NServiceBus endpoint that is monitored by ServiceControl.
 
 In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint must use the [heartbeats plugin](/monitoring/heartbeats).
 
