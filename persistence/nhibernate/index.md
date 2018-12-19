@@ -105,7 +105,7 @@ Sagas: NHibernate stores sagasas a table structure where with SQL Persistence is
 
 *Timeouts*: NHibernate has a `TimeoutEntity` table with an `Endpoint` column where SQL Persistence has a `<endpoint_name>_TimeoutData` table for each endpoint.
 
-Outbox: NHibernate has table `OutboxRecord` and requires a separate db catalog, schema, or server for each logical endpoint and SQL Persistence has table `*_OutboxData]` which has the logical endpoint name as the prefix
+*Outbox*: NHibernate has an `OutboxRecord` table and requires a separate DB catalog, schema, or server for each logical endpoint. SQL Persistence has a table, `<endpoint_name>_OutboxData`, for each logical endpoint.
 
 INFO: The generated schema is different from the 
 
