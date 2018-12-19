@@ -72,7 +72,7 @@ Retries are disabled in the sample for simplicity; messages are immediately move
 
 snippet: DisableRetries
 
-The `MessageFailed` event is published for any NServiceBus endpoint that is monitored by ServiceControl.
+The `MessageFailed` event is published whenever ServiceControl detects a new message in the error queue.
 
 In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint must use the [heartbeats plugin](/monitoring/heartbeats).
 
