@@ -1,7 +1,7 @@
 ---
 title: Discarding Old Messages
 summary: Automatically discard messages if they have not been processed within a given period of time.
-reviewed: 2017-06-29
+reviewed: 2018-12-17
 component: Core
 related:
  - nservicebus/operations/auditing
@@ -9,17 +9,15 @@ redirects:
  - nservicebus/how-do-i-discard-old-messages
 ---
 
-A message sent through the Particular Service Platform may have Time-To-Be-Received (TTBR) set, according to the users’ decision. TTBR indicates to the platform that a delayed message will be discarded, instead of processed, if not handled within a specified period. A discarded message might no longer have any business value, and discarding it frees up system resources.
+A message sent through the Particular Service Platform may have Time-To-Be-Received (TTBR) set, according to the users’ decision. TTBR indicates to the platform that a delayed message can be discarded, if not handled within a specified period. A discarded message might no longer have any business value, and discarding it frees up system resources.
 
 Setting TimeToBeReceived might be beneficial in environments with high volumes of messages where there is little business value in processing a delayed message since it will already be replaced by a newer, more relevant version.
 
-Only messages that have not been handled will have the TTBR set. A failed message moved to the error queue or a successfully processed message is considered handled, as well as its possible audit message. By removing TTBR from handled messages, it is ensured that no message will be lost after it has been processed. The TTBR from the original message can be inspected by looking at the `NServiceBus.TimeToBeReceived` [header](/nservicebus/messaging/headers.md).
+TTBR applies only to messages that have not been handled. A failed message moved to the error queue or a successfully processed message is considered handled, as well as audit message when generated. Removing TTBR from handeled messages ensures no messages are lost. The TTBR value from the original message can be inspected by looking at the `NServiceBus.TimeToBeReceived` [header](/nservicebus/messaging/headers.md).
 
-If a message cannot be received by the target process in the given time frame, including all time in queues and in transit, it may be desirable to discard it by using TimeToBeReceived.
+If there is no value in a message being received by the target process after a given time period it may be desirable to indicate that it can be discarded by specifying TimeToBeReceived.
 
-
-To discard a message when a specific time interval has elapsed:
-
+A TTBR interval for a message can be specified:
 
 ## Using an Attribute
 
@@ -33,16 +31,16 @@ snippet: DiscardingOldMessagesWithCode
 
 ## Clock synchronization issues
 
-When sending a message with a certain TimeToBeReceived value, it could happen that the receiver drops the message if clocks are too much out of sync. For example, if TimeToBeReceived is 1 minute and the receiver's clock is 1 minute ahead compared to the sender the message could potentially never be delivered thus processed.
+When sending a message with a TimeToBeReceived value, it could happen that the receiver drops all messages due to clocks of the sender and the receiver being too much out of sync. For example, if TimeToBeReceived is 1 minute and the receiver's clock is 1 minute ahead compared to the sender’s the message becomes immediately stale - thus never processed.
 
-Because clocks usually are at most a few minutes out of sync this issue only applies to relatively small TimeToBeReceived values.
+In most deployments clocks are at most a few minutes out of sync. As a result, this issue applies mostly to small TimeToBeReceived values.
 
-For this reason, it is wise to add the maximum amount of allowed clock offset, called clock drift, to the TTBR value. For example, when using a TimeToBeReceived value of 90 seconds, one should allow for 300 seconds of maximum clock drift, so the TTBR value becomes 90 + 300 = 390 seconds.
+It is advised to add the maximum amount of allowed clock offset, called clock drift, to the TTBR value. For example, when using a TimeToBeReceived value of 90 seconds, one should allow for 300 seconds of maximum clock drift, so the TTBR value becomes 90 + 300 = 390 seconds.
 
 
 ## Discarding messages at startup
 
-In certain situations, it may be required that messages in the incoming queue should not be processed after restarting the endpoint. Usually, this functionality is used in development and test environments, but may also be appropriate when messages contain information that gets outdated or are otherwise unneeded, e.g. change notifications, readings from sensors in IoT apps, etc.
+In certain situations, it may be required that messages in the incoming queue should not be processed after restarting the endpoint. This usually applies to development and test environments, but may also be appropriate for messages containing information that gets outdated or otherwise unneeded, e.g. change notifications, readings from sensors in IoT apps, etc.
 
 NOTE: It's not recommended to discard messages at startup in a production environment because it may lead to subtle message loss situations that can be hard to diagnose.
 
@@ -50,31 +48,32 @@ To discard all existing messages in the incoming queue at startup:
 
 snippet: PurgeMessagesAtStartup
 
-
 ## Caveats
 
-TimeToBeReceived relies on underlying functionality in the transport infrastructure to discard expired messages. This feature's runtime behavior is highly affected by the implementation in the different transports.
+TimeToBeReceived relies on the transport infrastructure to discard expired messages. As a result runtime behavior is highly affected by the implementation in the different transports.
 
 
 ### MSMQ transport
 
-MSMQ continuously checks the TimeToBeReceived of all queued messages. As soon as the message has expired, it is removed from the queue, and disk space reclaimed. 
+MSMQ continuously checks the TimeToBeReceived of all queued messages. As soon as the message has expired, it is removed from the queue, and disk space gets reclaimed. 
 
-MSMQ however only allows a single TimeToBeReceived for all messages in a transaction. If multiple messages enlist in a single transaction, then TimeToBeReceived from the first message will be used for all messages, leading to a potential message loss scenario. To prevent message loss, `TimeToBeReceived` is not supported for endpoints with [transaction mode](/transports/transactions.md) `TransportTransactionMode.AtomicSendsWithReceive` or `Transaction Scope (Distributed Transaction)`.
+NOTE: MSMQ enforces single TimeToBeReceived value for all messages in a transaction. If multiple messages enlist in a single transaction, then TimeToBeReceived from the first message will be used for all messages, leading to potentially, unintentional message expiration. To prevent message loss, `TimeToBeReceived` is not supported for endpoints with [transaction mode](/transports/transactions.md) `TransportTransactionMode.AtomicSendsWithReceive` or `Transaction Scope (Distributed Transaction)`.
 
 partial: msmq
 
 
 ### RabbitMQ transport
 
-RabbitMQ continuously checks the TimeToBeReceived, but only for the first message in each queue. Expired messages are not removed from the queue, and their disk space is not reclaimed until they reach the front of the queue. Using TimeToBeReceived as a disk-saving measure on RabbitMQ is not ideal for queues with long-lived messages, like audit and forward unless it is ensured that all messages use the same TimeToBeReceived. The TimeToBeReceived of other messages in front of a message in a queue will affect when the message is removed.
+RabbitMQ continuously checks the TimeToBeReceived, but only for the first message in each queue. Expired messages are not removed from the queue, and their disk space is not reclaimed until they reach the front of the queue. Using TimeToBeReceived as a disk-saving measure on RabbitMQ is recommended only when all messages in the queue use the same TimeToBeReceived value. Otherwise, messages in front of the queue may prevent other, stale messages from being cleaned.
 
 
 ### Azure transports
 
-The Azure transports only evaluate the TimeToBeReceived for a message when the message is received from the queue. Expired messages are not removed from the queue and their disk space will not be reclaimed until they reach the front of the queue and a consumer tries to read them. Using TimeToBeReceived as a disk saving measure on the Azure transports is not a great choice for queues with long-lived messages like audit and forward.
+The Azure transports evaluate the TimeToBeReceived for a message only when the message is requested by the client. Expired messages are not removed from the queue and their disk space will not be reclaimed until they reach the front of the queue and a consumer tries to read them. Using TimeToBeReceived as a storage saving measure on the Azure transports is not a good choice for queues with long-lived messages like audit and forward.
 
 
 ### SQL transport
 
 partial: sql
+
+
