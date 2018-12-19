@@ -2,7 +2,7 @@
 title: Monitor with ServiceControl events
 summary: A sample showing how to monitor events in ServiceControl
 component: ServiceControlContracts
-reviewed: 2018-04-20
+reviewed: 2018-12-18
 tags:
  - Notifications
 related:
@@ -50,7 +50,7 @@ The failed message can also be viewed in the ServicePulse browser window. Naviga
 
 ### HeartbeatStopped and HeartbeatRestored events
 
-The `HeartbeatStopped` event is emitted whenever an endpoint fails to send a control message at an expected interval. The `HeartbeatRestored` event is emitted whenever the endpoint successfully sends a control message again. 
+The `HeartbeatStopped` event is emitted whenever an endpoint fails to send a control message within the expected interval. The `HeartbeatRestored` event is emitted whenever the endpoint successfully sends a control message again. 
 
 Note: The monitor must receive at least one control message before it can observe that the endpoint stopped responding.
 
@@ -72,7 +72,7 @@ Retries are disabled in the sample for simplicity; messages are immediately move
 
 snippet: DisableRetries
 
-The `MessageFailed` event is published for any standard NServiceBus endpoint that is monitored by ServiceControl.
+The `MessageFailed` event is published whenever ServiceControl detects a new message in the error queue.
 
 In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint must use the [heartbeats plugin](/monitoring/heartbeats).
 
@@ -90,4 +90,6 @@ snippet: ServiceControlEventsHandlers
 
 This sample uses the [Learning Transport](/transports/learning/) in order to be portable with no transport dependencies.
 
-If adjusting this sample to use the [Azure Service Bus transport](/transports/azure-service-bus/legacy/), note that the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation), or if using the [legacy Azure Service Bus transport](), see its [sanitization strategy documentation](/transports/azure-service-bus/legacy/sanitization.md)
+If adjusting this sample to use the [Azure Service Bus transport](/transports/azure-service-bus/legacy/), note that the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation), or if using the [legacy Azure Service Bus transport](), see its [sanitization strategy documentation](/transports/azure-service-bus/legacy/sanitization.md). 
+
+Same applies to [Azure Storage Queues](/transports/azure-storage-queues) name [sanitization strategy](/transports/azure-storage-queues/sanitization.md#backward-compatibility-with-versions-7-and-below)
