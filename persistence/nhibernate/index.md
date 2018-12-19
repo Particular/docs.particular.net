@@ -101,7 +101,7 @@ The table schema is different.
 
 Sagas: NHibernate stores sagasas a table structure where with SQL Persistence is storing saga state as  a JSON BLOB stored more like a key/value store. Each saga type has its own table or table structure for both NHibernate and SQL Persistence.
 
-Subscriptions: Table schemas are different. NHibernate has a single table named `Subscription` where subscriptions are stored where with SQL Persistence each logical publisher endpoint has its own subscription table `*_SubscriptionData` (endpoint name as table prefix).
+*Subscriptions*: NHibernate has a single table named `Subscription` where subscriptions are stored while with SQL Persistence, each logical publisher endpoint has its own subscription table, `<endpoint_name>_SubscriptionData`.
 
 Timeouts: NHibernate has `TimeoutEntity` table with `Endpoint` column where SQL Persistence has `*_TimeoutData` tables with the endpoint name as the table prefix.
 
