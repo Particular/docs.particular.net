@@ -99,7 +99,7 @@ To create scripts for execution in production without using the [installers](/ns
 
 The table schema is different.
 
-Sagas: NHibernate stores sagasas a table structure where with SQL Persistence is storing saga state as  a JSON BLOB stored more like a key/value store. Each saga type has its own table or table structure for both NHibernate and SQL Persistence.
+*Sagas*: NHibernate stores sagas as a table structure while SQL Persistence stores saga state as a JSON BLOB, similar to a key/value store. Each saga type has its own table or table structure for both NHibernate and SQL Persistence.
 
 *Subscriptions*: NHibernate has a single table named `Subscription` where subscriptions are stored while with SQL Persistence, each logical publisher endpoint has its own subscription table, `<endpoint_name>_SubscriptionData`.
 
