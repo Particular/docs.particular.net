@@ -97,7 +97,7 @@ To create scripts for execution in production without using the [installers](/ns
 
 ## Schema compatibility with SQL Persistence
 
-The table schema is different.
+The table schema for NHibernate has a number of differences from the SQL persistence schema.
 
 *Sagas*: NHibernate stores sagas as a table structure while SQL Persistence stores saga state as a JSON BLOB, similar to a key/value store. Each saga type has its own table or table structure for both NHibernate and SQL Persistence.
 
