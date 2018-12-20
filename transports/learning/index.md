@@ -45,7 +45,7 @@ Note: Production transports will run with higher concurrency setting by default
 
 ### Storage Directory
 
-By default all data is stored in a `.learningtransport` directory that exists at the solution root.
+By default all data is stored in a `.learningtransport` directory. The endpoint will traverse the folder hierarchy upwards in search for a `.learningtransport` directory or create one at the solution root folder if no matching folder has been found before.
 
 To configure the storage location:
 
