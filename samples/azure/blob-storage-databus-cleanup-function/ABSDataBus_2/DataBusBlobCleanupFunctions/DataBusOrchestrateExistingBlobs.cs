@@ -35,7 +35,7 @@ public static class DataBusOrchestrateExistingBlobs
                 if (existingInstance != null)
                 {
                     log.Info($"{nameof(DataBusCleanupOrchestrator)} has already been started for blob {blockBlob.Uri}.");
-                    return;
+                    continue;
                 }
 
                 var validUntilUtc = DataBusBlobTimeoutCalculator.GetValidUntil(blockBlob);
