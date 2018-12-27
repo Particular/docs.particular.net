@@ -1,4 +1,5 @@
-﻿namespace Core5
+﻿// ReSharper disable RedundantJumpStatement
+namespace Core5
 {
     using System;
     using System.Linq;
@@ -32,6 +33,8 @@
             if (runInstallers)
             {
                 busConfiguration.EnableInstallers();
+                Bus.Create(busConfiguration);
+                return;
             }
         }
 

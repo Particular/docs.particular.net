@@ -1,4 +1,5 @@
-﻿namespace Core7
+﻿// ReSharper disable RedundantJumpStatement
+namespace Core7
 {
     using System;
     using System.Linq;
@@ -27,13 +28,17 @@
 
         #region InstallersRunWhenNecessaryCommandLine
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var runInstallers = args.Any(x => x.ToLower() == "/runInstallers");
 
             if (runInstallers)
             {
                 endpointConfiguration.EnableInstallers();
+                // this will run the installers but not start the instance!
+                await Endpoint.Create(endpointConfiguration)
+                    .ConfigureAwait(false);
+                return; // Exit application
             }
         }
 
