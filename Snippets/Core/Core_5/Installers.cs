@@ -33,8 +33,9 @@ namespace Core5
             if (runInstallers)
             {
                 busConfiguration.EnableInstallers();
+                // This will run the installers but not start the instance.
                 Bus.Create(busConfiguration);
-                return;
+                return; // Exit application
             }
         }
 
