@@ -1,4 +1,5 @@
-﻿namespace Core6
+﻿// ReSharper disable RedundantJumpStatement
+namespace Core6
 {
     using System;
     using System.Linq;
@@ -27,7 +28,7 @@
 
         #region InstallersRunWhenNecessaryCommandLine
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var runInstallers = args.Any(x => x.ToLower() == "/runInstallers");
 
