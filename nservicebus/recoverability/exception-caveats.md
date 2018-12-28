@@ -1,8 +1,8 @@
 ---
-title: Exception Caveats
-summary: Certain types of exceptions cannot be handled natively by NServiceBus.
+title: Exception caveats
+summary: NServiceBus cannot guarantee the handling of certain types of exceptions.
 component: core
-reviewed: 2018-09-21
+reviewed: 2018-12-28
 tags:
  - Exceptions
  - Error Handling
@@ -10,27 +10,25 @@ redirects:
  - nservicebus/errors/exception-caveats
 ---
 
-Certain types of exceptions are behave differently and may require custom handling.
+NServiceBus cannot guarantee the handling of certain types of exceptions.
 
 
-## AccessViolationException
+## `AccessViolationException`
 
-If an [AccessViolationException](https://msdn.microsoft.com/en-us/library/system.accessviolationexception.aspx) is thrown, the endpoint will terminate. The reason is that a standard try-catch block, which NServiceBus uses, does not catch an `AccessViolationException`. As such it will bubble out of the handler and terminate the endpoint.
+If an [`AccessViolationException`](https://msdn.microsoft.com/en-us/library/system.accessviolationexception.aspx) is thrown, the endpoint is likely to terminate. This is because an `AccessViolationException` thrown by the common language runtime cannot be caught by a `try...catch` block.
 
-While these exceptions can be explicitly handled (using a [HandleProcessCorruptedStateExceptionsAttribute](https://msdn.microsoft.com/en-us/library/system.runtime.exceptionservices.handleprocesscorruptedstateexceptionsattribute.aspx)), Microsoft explicitly recommends not to do this.
+While this problem can be mitigated by using [`HandleProcessCorruptedStateExceptionsAttribute`](https://msdn.microsoft.com/en-us/library/system.runtime.exceptionservices.handleprocesscorruptedstateexceptionsattribute.aspx), Microsoft explicitly recommends not to do this.
 
 > Corrupted process state exceptions are exceptions that indicate that the state of a process has been corrupted.
 
-For more information see [Handling Corrupted State Exceptions](https://msdn.microsoft.com/en-us/magazine/dd419661.aspx#id0070035)
+For more information see [_Handling Corrupted State Exceptions_](https://msdn.microsoft.com/en-us/magazine/dd419661.aspx#id0070035).
 
 
-## StackOverflowException
+## `StackOverflowException`
 
-[StackOverflowExceptions](https://msdn.microsoft.com/en-us/library/system.stackoverflowexception.aspx) cannot be handled since .NET does not allow it.
-
-> A StackOverflowException object cannot be caught by a try-catch block and the corresponding process is terminated by default. Consequently, users are advised to write their code to detect and prevent a stack overflow. For example, if the application depends on recursion, use a counter or a state condition to terminate the recursive loop. Note that an application that hosts the common language runtime (CLR) can specify that the CLR unload the application domain where the stack overflow exception occurs and let the corresponding process continue.
+If a [`StackOverflowException`](https://msdn.microsoft.com/en-us/library/system.stackoverflowexception.aspx) is thrown, the process will terminate because the exception cannot be caught by a `try...catch` block.
 
 
-## OutOfMemoryException
+## `OutOfMemoryException`
 
-An [OutOfMemoryException](https://msdn.microsoft.com/en-us/library/system.outofmemoryexception.aspx) will be handled in a similar manner as other exceptions. A message will be retried according to the endpoint configuration. However, if there isn't sufficient memory, the process may crash.
+If an [`OutOfMemoryException`](https://msdn.microsoft.com/en-us/library/system.outofmemoryexception.aspx) is thrown, the process may terminate. This is because, even though this exception type is handled in the same way as all others, if the lack of sufficient memory persists, another instance of `OutOfMemoryException` may be thrown while the original exception is being handled.
