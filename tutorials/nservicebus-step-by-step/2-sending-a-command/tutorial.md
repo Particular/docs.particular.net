@@ -20,7 +20,7 @@ In the next 15-20 minutes, you will learn how to define messages and message han
 
 A [**message**](/nservicebus/messaging/messages-events-commands.md) is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we define message via simple classes.
 
-In this lesson, we'll focus on [commands](/nservicebus/messaging/messages-events-commands.md#command). In [Lesson 4: Publishing events](../4-publishing-events/) we'll expand to look at events as well.
+In this lesson, we'll focus on [commands](/nservicebus/messaging/messages-events-commands.md). In [Lesson 4: Publishing events](../4-publishing-events/) we'll expand to look at events as well.
 
 To define a command, create a class and mark it with the `ICommand` interface.
 
