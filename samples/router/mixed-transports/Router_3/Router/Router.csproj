@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.Raw" Version="3.*" />
+    <PackageReference Include="NServiceBus.Router" Version="3.*" />
+    <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="5.*" />
+    <PackageReference Include="RabbitMQ.Client" Version="5.0.*" />
+  </ItemGroup>
+</Project>

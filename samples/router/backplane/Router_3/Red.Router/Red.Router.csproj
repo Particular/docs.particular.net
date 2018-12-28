@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Router.Shared\Router.Shared.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="4.*" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="5.*" />
+    <PackageReference Include="RabbitMQ.Client" Version="5.0.*" />
+  </ItemGroup>
+</Project>
