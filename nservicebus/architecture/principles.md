@@ -8,7 +8,7 @@ redirects:
 
 Messaging can be used to ensure autonomy and loose coupling in systems, both at design time and at run time. However, in order to benefit from those qualities one needs to carefully design their applications and ensure good practices are followed.
 
-Service-oriented architecture (SOA) and event-driven architecture provide the basis for identifying where to use messaging frameworks, such as NServiceBus. Strategic Domain-Driven Design helps bridge the gap between business and IT. It's an essential strategy for identyfing service boundaries and finding meaningful business events.
+Service-oriented architecture (SOA) and event-driven architecture provide the basis for identifying where to use messaging frameworks, such as NServiceBus. Strategic Domain-Driven Design helps bridge the gap between business and IT. It's an essential strategy for identifying service boundaries and finding meaningful business events.
 
 
 ## How NServiceBus aligns with SOA
