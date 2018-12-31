@@ -20,17 +20,17 @@ The details of each component are discussed below. In general, a Particular Serv
 include: nservicebus
 
 
-## [ServiceControl](/servicecontrol) - the foundation
+## [ServiceControl](/servicecontrol) - data collection
 
 include: servicecontrol
 
 
-## [ServiceInsight](/serviceinsight) - message flow visualization
+## [ServiceInsight](/serviceinsight) - visualization
 
 include: serviceinsight
 
 
-## [ServicePulse](/servicepulse) - production monitoring
+## [ServicePulse](/servicepulse) - monitoring
 
 include: servicepulse
 
