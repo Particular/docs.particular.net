@@ -191,7 +191,7 @@
       - Url: nservicebus/upgrades/nservicebus.customchecks
         Title: ServiceControl.Plugin.X.CustomChecks to NServiceBus.CustomChecks
       - Url: nservicebus/upgrades/nservicebus.heartbeat
-        Title: ServiceControl.Plugin.X.Hartbeat to NServiceBus.Hartbeat
+        Title: ServiceControl.Plugin.X.Heartbeat to NServiceBus.Heartbeat
   - Url: nservicebus/messaging
     Title: Messaging
     Articles:
