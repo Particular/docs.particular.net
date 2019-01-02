@@ -9,7 +9,7 @@ To allow a low-privileged account to function as the the service account for Ser
 
 ### Access control on queues
 
-For MSMQ, the ACL default for a queue allows Administrators full access. Switching to a low-privileged account requires modification of rights to give full control to the custom account. Assuming the name of the ServiceControl service is `particular.servicecontrol` the ServiceControl queues names would be:
+The connection string used by ServiceControl needs to needs to enable access to the following ServicControl queues: 
 
  * `particular.servicecontrol`
  * `particular.servicecontrol.errors`
@@ -17,7 +17,7 @@ For MSMQ, the ACL default for a queue allows Administrators full access. Switchi
  * `particular.servicecontrol.timeouts`
  * `particular.servicecontrol.timeoutsdispatcher`
 
-In addition the service requires rights to the configured audit and error queues and the corresponding forwarding queues. These are typically named:
+In addition connection string should grant rights to the configured audit and error queues and the corresponding forwarding queues. These are typically named:
 
  * `audit`
  * `error`
@@ -26,10 +26,13 @@ In addition the service requires rights to the configured audit and error queues
 
 If the service account user does not have appropriate rights, the service will fail to start.
 
+NOTE: For MSMQ, the ACL default for a queue allows Administrators full access. Switching to a low-privileged account requires modification of rights to give full control to the custom account. 
 
-### Configuration changes
+### Url Namespace Reservations
 
-If the ServiceControl configuration is manually changed to listen to an alternate URL, check that the URLACL assigned to the URI is valid for the new service account. For instructions on how to review and change the the URLACL, refer to [Changing the ServiceControl URI](setting-custom-hostname.md)
+The account under which the ServiceControl instance is running requires url namespace reservations for the hostname and ports used by the instance. The reservations can be managed from the command using [netsh.exe](https://docs.microsoft.com/en-us/windows/desktop/http/add-urlacl). For example, to add url reservation for `http:\\localhost:33533` to `LocalService` account the following command can be used `netsh http add urlacl=http://localhost:33533 user=LocalService listen=yes delegate=no`. 
+
+For instructions on how to review and change the urls used by ServiceControl instance, refer to [Changing the ServiceControl URI](setting-custom-hostname.md).
 
 
 ### RavenDB security
