@@ -54,7 +54,11 @@ In addition to immediate and delayed retries, the router has built-in outage det
 
 ## Topologies
 
-A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endpoints, called *interfaces*, and a *routing protocol* that controls how messages should be forwarded between them.
+A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endpoints, called *interfaces*, and a *routing protocol* that controls how messages should be forwarded between them. This design is very flexible and allows for various topologies to be implemented. Here are some examples:
+
+ * [Two-way bridge](bridge.md)
+ * [Multi-way bridge](multi-way.md)
+ * [Backplane](backplane.md)
 
 
 ### Bridge
