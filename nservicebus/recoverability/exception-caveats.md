@@ -26,7 +26,7 @@ For more information see [_Handling Corrupted State Exceptions_](https://msdn.mi
 
 ## `StackOverflowException`
 
-If a [`StackOverflowException`](https://msdn.microsoft.com/en-us/library/system.stackoverflowexception.aspx) is thrown, the process will terminate because the exception cannot be caught by a `try...catch` block.
+If a [`StackOverflowException`](https://docs.microsoft.com/en-us/dotnet/api/system.stackoverflowexception) is thrown, the process will terminate because the exception cannot be caught by a `try...catch` block.
 
 
 ## `OutOfMemoryException`
