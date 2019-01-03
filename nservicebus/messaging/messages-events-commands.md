@@ -30,7 +30,7 @@ Used to _make a request to perform an action_. | Used to _communicate that an ac
 Has one logical owner. | Has one logical owner.
 Should be _sent to_ the logical owner. | Should be _published by_ the logical owner.
 Cannot be _published_. | Cannot be _sent_.
-_Cannot_ be subscribed to or unsubscribed   from. | _Can_ be subscribed to and unsubscribed from.
+_Cannot_ be subscribed to or unsubscribed from. | _Can_ be subscribed to and unsubscribed from.
 _Can_ be sent using the [gateway](/nservicebus/gateway). | _Cannot_ be sent using the [gateway](/nservicebus/gateway).
 
 Note: In a request and response pattern, _reply_ messages are neither a command nor an event.
