@@ -15,7 +15,7 @@ NServiceBus cannot guarantee the handling of certain types of exceptions.
 
 ## `AccessViolationException`
 
-If an [`AccessViolationException`](https://msdn.microsoft.com/en-us/library/system.accessviolationexception.aspx) is thrown, the endpoint is likely to terminate. This is because an `AccessViolationException` thrown by the common language runtime cannot be caught by a `try...catch` block.
+If an [`AccessViolationException`](https://docs.microsoft.com/en-us/dotnet/api/system.accessviolationexception) is thrown, the endpoint is likely to terminate. This is because an `AccessViolationException` thrown by the common language runtime cannot be caught by a `try...catch` block.
 
 While this problem can be mitigated by using [`HandleProcessCorruptedStateExceptionsAttribute`](https://msdn.microsoft.com/en-us/library/system.runtime.exceptionservices.handleprocesscorruptedstateexceptionsattribute.aspx), Microsoft explicitly recommends not to do this.
 
