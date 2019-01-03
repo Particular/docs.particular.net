@@ -1125,8 +1125,8 @@
       Articles:
       - Title: Expose internal database
         Url: servicecontrol/use-ravendb-studio
-      - Title: Import failed audits
-        Url: servicecontrol/import-failed-audits
+      - Title: Retry importing messages
+        Url: servicecontrol/import-failed-messages
   - Title: Monitoring instances
     Url: servicecontrol/monitoring-instances
     Articles:
