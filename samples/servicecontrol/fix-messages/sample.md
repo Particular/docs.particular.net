@@ -14,7 +14,7 @@ downloadbutton
 
 ## Running the project
 
-Running the project will result in 4 console windows. Please wait a moment until the ServicePulse window opens in the browser.
+Running the project will result in 4 console windows. Wait a moment until the ServicePulse window opens in the browser.
 
  1. Press <kbd>Enter</kbd> in the Sender console window
  2. Observe error log output in the Receiver console window: the endpoint cannot process the message because the `Id` field is malformed -- it contains lowercase characters.
