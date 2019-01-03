@@ -31,4 +31,4 @@ If a [`StackOverflowException`](https://docs.microsoft.com/en-us/dotnet/api/syst
 
 ## `OutOfMemoryException`
 
-If an [`OutOfMemoryException`](https://msdn.microsoft.com/en-us/library/system.outofmemoryexception.aspx) is thrown, the process may terminate. This is because, even though this exception type is handled in the same way as all others, if the lack of sufficient memory persists, another instance of `OutOfMemoryException` may be thrown while the original exception is being handled.
+If an [`OutOfMemoryException`](https://docs.microsoft.com/en-us/dotnet/api/system.outofmemoryexception) is thrown, the process may terminate. This is because, even though this exception type is handled in the same way as all others, if the lack of sufficient memory persists, another instance of `OutOfMemoryException` may be thrown while the original exception is being handled.
