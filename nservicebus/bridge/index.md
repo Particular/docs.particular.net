@@ -8,6 +8,8 @@ related:
 reviewed: 2018-05-04
 ---
 
+NOTE: `NServiceBus.Bridge` is has been deprecated and replaced by `NServiceBus.Router`. Follow the [upgrade guide](/nservicebus/bridge/bridge-router.md) to move to the Router. The Router is wire-compatible with the Bridge so old NServiceBus 6 endpoints can still use `NServiceBus.Bridge.Connector` to connect to the Router.
+
 `NServiceBus.Bridge` is a component that connects parts of an NServiceBus-based solution that use different transports. Unlike the [gateway](/nservicebus/gateway/), NServiceBus.Bridge handles both sending and publishing. The main difference is that the bridge connects parts of the system that have no logical distinction so bridging is a purely technical exercise. In other words, if both sides agree on the same transport technology, the bridge could be removed without any changes to the logic of the system. Gateways on the other hand are logically significant and the idea of *sites* must be taken into account in the logic itself.
 
 Here's a comparison between the [gateway](/nservicebus/gateway/) and the bridge
@@ -120,6 +122,6 @@ If the transport on the other side does support multicast operations, the subscr
 
 ## Deduplication
 
-The messages travelling through a bridge can get duplicated along the way. The bridge does not come with an integrated message de-duplication mechanism but offers an extension point in the the form of *interceptors* so a custom deduplication algorithm can be plugged in. The [backplane sample](/samples/bridge/backplane) demonstrates this feature.
+The messages travelling through a bridge can get duplicated along the way. The bridge does not come with an integrated message de-duplication mechanism but offers an extension point in the the form of *interceptors* so a custom de-duplication algorithm can be plugged in.
 
 However, the bridge does preserve the message ID between the source and the ultimate destination. The message ID can be used to de-duplicate at the destination. If the destination endpoint uses the [outbox](/nservicebus/outbox/) the de-duplication will be done automatically by means of the outbox mechanism.
