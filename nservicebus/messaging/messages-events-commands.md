@@ -77,8 +77,8 @@ public interface MyEvent : IEvent { }
 public class MyMessage : IMessage { }
 ```
 
-NOTE: This approach has some drawbacks, as described in ["Unobtrusive mode messages"](unobtrusive-mode.md).
+NOTE: This approach has some drawbacks, as described in [Unobtrusive mode messages](unobtrusive-mode.md).
 
  ### Conventions
 
- See ["Conventions"](/nservicebus/messaging/conventions.md).
+ See [Conventions](/nservicebus/messaging/conventions.md).
