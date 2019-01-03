@@ -59,36 +59,3 @@ A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endp
  * [Two-way bridge](bridge.md)
  * [Multi-way bridge](multi-way.md)
  * [Backplane](backplane.md)
-
-
-### Bridge
-
-![Bridge](bridge.svg)
-
-The arrows show the path of messages sent from `Endpoint A` to `Endpoint C` and from `Endpoint D` to `Endpoint B`. Each message is initially sent to the router queue and then forwarded to the destination queue. There is one additional *hop* compared to a direct communication between endpoints. The following snippet configures the built-in *static routing protocol* to forward messages between the router's interfaces.
-
-snippet: simple-routing
-
-
-### Multi-way routing
-
-![Multi-way](multi-way.svg)
-
-The router is not limited to only two interfaces but in case there are more than two interfaces, the routing protocol rules will be more complex and specific. The following snippet configures the built-in *static routing protocol* to forward messages to interfaces based on the prefix of the destination endpoint's name.
-
-snippet: three-way-router
-
-NOTE: All three interfaces use the same transport type (SQL Server Transport) but may use different settings, e.g. different database instances. This way, each part of the system (Sales, Shipping and Billing) can be autonomous and own its database server yet they can still exchange messages in the same way as if they were connected to a single shared instance.
-
-
-### Backplane
-
-![Backplane](backplane.svg)
-
-Two or more routers can be connected together to form a _backplane_ topology. This setup often makes sense for geo-distributed systems. The following snippet configures the router hosted in the European part of the globally distributed system to route messages coming from outside via the Azure Storage Queues interface directly to the local endpoints and to route messages sent by local endpoints to either east or west United States through *designated gateway* routers.
-
-NOTE: The *designated gateway* concept is not related to the `NServiceBus.Gateway` package. When the *designated gateway* is specified in the route, the message is forwarded to it instead of the actual destination.
-
-snippet: backplane
-
-NOTE: As an example the routing rules here use the `Site` property that can be set through the `SendOptions` object when sending messages. The backplane topology does not require site-based routing and can be configured e.g. using endpoint-based convention like in the multi-way routing example.
