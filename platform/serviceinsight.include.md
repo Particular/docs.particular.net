@@ -1,3 +1,3 @@
-ServiceInsight is a desktop application designed for developers. It provides advanced debugging, tracking the flow of an individual message in the system, observing sagas, and more.
+ServiceInsight is a desktop application designed for developers. It provides advanced debugging, visualizations of messages flowing through the system, saga state changes, and more.
 
-It is much easier to quickly spot anomalies and incorrect behavior in the system when presented with information in visual form, such as message flow diagrams or sequence diagrams. At the same time, more detailed information, such as message headers and message metadata, can be accessed through ServiceInsight.
+It's quicker and easier to spot anomalies and incorrect behavior in a system using message flow diagrams, sequence diagrams, and other visualizations provided by ServiceInsight. More detailed information, such as message headers and message metadata, is also shown.

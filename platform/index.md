@@ -1,41 +1,42 @@
 ---
-title: Particular Service Platform Overview
-reviewed: 2018-11-27
+title: The Particular Service Platform
+reviewed: 2018-12-31
 redirects:
  - nservicebus/preparing-your-machine-to-run-nservicebus
 ---
 
-Messaging is a good way to build loosely coupled, scalable, and reliable systems. But it also has its challenges. The most common difficulty is seeing what's happening in the system. This is one of the problems that the Particular Service Platform was built to solve.
+Messaging is a great way to build loosely coupled, scalable, and reliable systems. But it has its challenges. The most common difficulty is seeing what's happening in a system. This is one of the problems solved by the Particular Service Platform.
 
-The goal of the Platform is to provide a set of tools that make the building and maintenance of messaging systems easier. The tools are tailored to common needs of a messaging system and 'just work' out of the box, enabling developers to focus on other important challenges such as understanding their business domain better. The Particular Service Platform consists of [NServiceBus](/nservicebus), [ServiceControl](/servicecontrol), [ServiceInsight](/serviceinsight), and [ServicePulse](/servicepulse).
+The goal of the Platform is to provide a set of tools that make it easier to build and maintain messaging systems. The tools are tailored to the common needs of messaging systems and 'just work', out of the box. They enable developers to focus on more important challenges, such as gaining a better understanding of their business domains.
+
+The Particular Service Platform consists of [NServiceBus](/nservicebus), [ServiceControl](/servicecontrol), [ServicePulse](/servicepulse), and [ServiceInsight](/serviceinsight).
 
 ![Particular Service Platform architecture](architecture-overview.svg)
 
-The details of each component are discussed below but in general, a Particular Service Platform-based system consists of several NServiceBus [endpoints](/nservicebus/endpoints/). These are logical entities that communicate with each other using messages (via queues) in order to perform business operations. This message activity is audited by ServiceControl, which provides integration points for ServicePulse to monitor production systems, and for ServiceInsight to provide debugging and visualization capabilities into how the system works.
-
+The details of each component are discussed below. A Particular Service Platform-based system consists of several NServiceBus [endpoints](/nservicebus/endpoints/). Endpoints are logical entities that perform business operations. They communicate with each other using messages (via queues). They also forward messages to ServiceControl for auditing. ServiceControl stores this audit trail and provides integration points for ServicePulse and ServiceInsight. ServicePulse provides monitoring and recoverability for production systems. ServiceInsight provides debugging and visualization into how the system works.
 
 ## [NServiceBus](/nservicebus) - where it all begins
 
 include: nservicebus
 
 
-## [ServiceControl](/servicecontrol) - the foundation
+## [ServiceControl](/servicecontrol) - data collection
 
 include: servicecontrol
 
 
-## [ServiceInsight](/serviceinsight) - message flow visualization
+## [ServiceInsight](/serviceinsight) - visualization
 
 include: serviceinsight
 
 
-## [ServicePulse](/servicepulse) - production monitoring
+## [ServicePulse](/servicepulse) - monitoring
 
 include: servicepulse
 
 
 ## Working with the platform
 
-Having ServiceControl and ServiceInsight installed locally on a machine gives significant benefits during development, especially when investigating failures and defects. Additionally, if developing a [custom check](/monitoring/custom-checks/) it is useful to have the full platform installed on a development machine.
+ServiceControl and ServicePulse are server applications. They should be deployed in each environment, for example: test, QA, and production. ServiceInsight is a client application. It should be deployed on a workstation and connected to ServiceControl in the appropriate environment.
 
-After a solution is deployed, ServiceControl and ServicePulse should exist in each environment it was deployed to (e.g. one instance per integration, another one for test and one more for production). ServiceInsight is a client install, so it can be installed on a local machine only and point it to the specific environment or local instance URL.
+When investigating problems, or developing [custom checks](/monitoring/custom-checks/), it can be useful to have the Platform installed on a development machine.
