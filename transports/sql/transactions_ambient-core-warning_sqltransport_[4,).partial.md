@@ -3,7 +3,7 @@
 
 Although the .NET Core SQL Server driver supports enlisting in ambient transactions, it does not support participating in distributed transactions so any attempt to use more than one transactional resource within the same ambient transaction will cause an error.
 
-Prior to Version 2.1, the .NET Core SQL Server driver did not support the ambient transactions and any attempt to use it resulted in the following exception:
+Prior to Version 2.1, the .NET Core SQL Server driver did not support enlisting in ambient transactions and any attempt to do so resulted in the following exception:
 
 ```
 NServiceBus.Transport.SQLServer.MessagePump|Sql receive operation failed
