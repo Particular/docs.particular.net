@@ -16,7 +16,7 @@ Messages can fail to be imported into ServiceControl database due to one of two 
 
  When a message that has failed the import is detected in the ServiceControl database, the [**Message Ingestion** custom check](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-failed-imports) is marked as failed to bring the failed audit import(s) to the administrator's attention.
 
-To attempt to reprocess the failed import messages ServiceControl needs to be shut down and started from a command line with `--import-failed-audits` or `--import-failed-errors` option. While in this mode ServiceControl will not be processing its input queues.
+ To reimport the failed messages, ServiceControl needs to be shut down and started from a command line with `--import-failed-audits` or `--import-failed-errors` option. While in this mode ServiceControl will not be processing its input queues.
 
 If the import failure message is re-processed successfully, the message will be now be available in ServiceInsight. 
 
