@@ -10,7 +10,7 @@ redirects:
 Messages can fail to be imported into ServiceControl database due to one of two reasons:
  * Messages themselves are malformed (e.g. missing headers). This happens e.g. when an outdated version of NServiceBus that contained a bug was used to process the messages.
   * Messages are well-formed but there was an intermittent database problem lasting long enough that the built-in retries did not resolve the problem.
- * [Forwarding](/servicecontrol/errorlog-auditlog-behavior.md) is enabled and the destination queue does not exist or ServiceControl cannot send messages to it
+  * [Forwarding](/servicecontrol/errorlog-auditlog-behavior.md) is enabled and the destination queue does not exist or ServiceControl cannot send messages to it.
 
 Messages that fail to be imported are stored in the ServiceControl database in the `FailedAuditImports` and `FailedErrorImports` collections. In addition, a log with the failure reason is written for the message in the [`%ServiceControl/LogPath%`](/servicecontrol/creating-config-file.md#host-settings-servicecontrollogpath)`\FailedImports\{Audit|Error}\%failureid%.txt`. These messages will not be available in ServiceInsight.
 
