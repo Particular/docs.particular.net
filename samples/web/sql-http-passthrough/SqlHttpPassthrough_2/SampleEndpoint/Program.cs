@@ -28,11 +28,6 @@ namespace SampleEndpoint
             endpointConfiguration.EnableAttachments(SqlHelper.ConnectionString, TimeToKeep.Default);
             var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
             transport.ConnectionString(SqlHelper.ConnectionString);
-            #if NETCOREAPP2_0
-            // Since Transaction scope mode is not supported in .NET Core 2.0
-            // https://docs.particular.net/transports/sql/transactions#transaction-scope-distributed-transaction
-            transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
-            #endif
             endpointConfiguration.EnableInstallers();
 
             #endregion
