@@ -32,9 +32,11 @@ Before migrating endpoints to the forwarding topology, all endpoints must have m
 
 After applying the above steps to one or more endpoints, they should be deployed to production. This cycle should be repeated until all endpoints using the endpoint-oriented topology have migration mode enabled.
 
+
 ### Other Platform components
 
-If ServiceControl is configured in the [multi-instance mode](/servicecontrol/servicecontrol-instances/distributed-instances.md), it should be upgraded to Version 3.5.0 or later. The migration mode is enabled automatically. Upgrading Monitoring instances or single-instance ServiceControl is not required at this stage.
+ServiceControl should now be upgraded to Version 3.5.0 or later and both ServiceControl and Monitoring instances should be updated to latest. The migration mode is enabled automatically.
+
 
 ### Next steps
 
@@ -59,7 +61,7 @@ NOTE: Endpoints using the endpoint-oriented topology with migration mode enabled
 
 ### Other Platform components
 
-ServiceControl should now be upgraded to Versions 3.5.0 or later and both ServiceControl and Monitoring instances should be updated to latest. After updating they can be switched to `Azure Service Bus` transport using ServiceControl Management Utility.
+ServiceControl and Monitoring instances should now be switched switched to `Azure Service Bus` transport using ServiceControl Management Utility.
 
 
 ## Finalizing migration (cleanup stage)
