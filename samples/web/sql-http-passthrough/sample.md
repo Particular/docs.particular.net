@@ -31,7 +31,7 @@ When the solution is started two projects will start:
  * SampleEndpoint
  * SampleWeb (as a console and browser)
 
-In the browser press the `PostToBus` button and a message will be received by `SampleEndpoint`.
+In the browser, press the `PostToBus` button and a message will be received by `SampleEndpoint`.
 
 
 ## Code walk-through
