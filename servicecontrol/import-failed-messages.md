@@ -12,7 +12,7 @@ Messages can fail to be imported into ServiceControl database due to one of two 
   * Messages are well-formed but there was an intermittent database problem lasting long enough that the built-in retries did not resolve the problem.
   * [Forwarding](/servicecontrol/errorlog-auditlog-behavior.md) is enabled and the destination queue does not exist or ServiceControl cannot send messages to it.
 
-Messages that fail to be imported are stored in the ServiceControl database in the `FailedAuditImports` and `FailedErrorImports` collections. In addition, a log with the failure reason is written for the message in the [`%ServiceControl/LogPath%`](/servicecontrol/creating-config-file.md#host-settings-servicecontrollogpath)`\FailedImports\{Audit|Error}\%failureid%.txt`. These messages will not be available in ServiceInsight.
+ Messages that fail to be imported are stored in the ServiceControl database in the `FailedAuditImports` and `FailedErrorImports` collections. In addition, a log with the failure reason is written for the message in the [`%ServiceControl/LogPath%`](/servicecontrol/creating-config-file.md#host-settings-servicecontrollogpath)`\FailedImports\{Audit|Error}\%failureid%.txt`. These messages will not be visible in ServiceInsight.
 
 When a message that has failed import is detected in the ServiceControl database, the [**Message Ingestion** custom check](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-failed-imports) is marked as failed to bring the failed audit import(s) to the administrator's attention.
 
