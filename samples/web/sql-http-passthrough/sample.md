@@ -28,10 +28,10 @@ The database created by this sample is `SqlHttpPassthroughSample`.
 
 When the solution is started two projects will start:
 
- * Endpoint
- * Web (as a console and browser)
+ * SampleEndpoint
+ * SampleWeb (as a console and browser)
 
-In the browser, press the button and a message will be received by the endpoint.
+In the browser, press the `PostToBus` button and a message will be received by `SampleEndpoint`.
 
 
 ## Code walk-through
