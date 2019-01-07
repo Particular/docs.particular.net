@@ -15,7 +15,7 @@ ServiceControl's embedded RavenDB database can be compacted in one of two ways: 
 
 * Open ServiceControl Management
 * Stop the service from the action icons
-* Note the "DATA PATH" for the service   ![](managementutil-instance-datapath.png 'width=500')
+* Note the "DATA PATH" for the service(e.g. "C:\ProgramData\Particular\ServiceControl\Particular.ServiceControl\DB")   ![](managementutil-instance-datapath.png 'width=500')
 
 WARNING: For the `esentutl` command line utility to work, the ServiceControl service must stop without any errors.
 
@@ -60,6 +60,7 @@ Initiating DEFRAGMENTATION mode...
 
          0    10   20   30   40   50   60   70   80   90  100
          |----|----|----|----|----|----|----|----|----|----|
+         ..................................................
 ```
 
 
