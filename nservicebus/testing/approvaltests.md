@@ -29,4 +29,4 @@ snippet: SimpleHandlerV2
 Then the resulting visualization diff would look as follows:
 
 
-![visualization diff](diff.png)
+![visualization diff](approvaltests-diff.png)
