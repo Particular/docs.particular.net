@@ -1,8 +1,8 @@
 ---
-title: Messages, Events and Commands
-summary: Messages, Events and Commands and how to define them.
+title: Messages, events and commands
+summary: Messages, events, and commands and how to define them.
 component: Core
-reviewed: 2017-03-14
+reviewed: 2018-12-28
 tags:
  - Unobtrusive
  - Convention
@@ -20,72 +20,65 @@ redirects:
  - nservicebus/messaging/invalidoperationexception-in-unobtrusive-mode
 ---
 
-A *Message* is the unit of communication for NServiceBus. There are two sub-types of messages that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default unless disabled in [configuration](best-practice-enforcement.md).
+A *message* is the unit of communication for NServiceBus. There are two types of messages, _commands_ and _events_, that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default, but can be [disabled](best-practice-enforcement.md).
 
-Note: Messages must be classes. Using structs will generate exceptions at runtime when attempting to send.
+Note: A message must be a reference type (`class`). An attempt to send a message which is a value type (`struct`) will result in a runtime exception.
 
+Command | Event
+-- | --
+Used to _make a request to perform an action_. | Used to _communicate that an action has been performed_.
+Has one logical owner. | Has one logical owner.
+Should be _sent to_ the logical owner. | Should be _published by_ the logical owner.
+Cannot be _published_. | Cannot be _sent_.
+_Cannot_ be subscribed to or unsubscribed from. | _Can_ be subscribed to and unsubscribed from.
+_Can_ be sent using the [gateway](/nservicebus/gateway). | _Cannot_ be sent using the [gateway](/nservicebus/gateway).
 
-### Command
-
-Used to request that an action should be taken. A *Command* is intended to be _sent to a receiver_ (all commands should have one logical owner and should be sent to the endpoint responsible for processing). As such, commands:
-
- * Are not allowed to be _published_.
- * Cannot be _subscribed_ to or _unsubscribed_ from.
- * Cannot implement `IEvent`.
-
-
-### Event
-
-Used to communicate that some action has taken place. An *Event* should be _published_. An event:
-
- * Can be _subscribed_ to and _unsubscribed_ from.
- * Cannot be sent using `Send()` (since _all events should be published_).
- * Cannot implement `ICommand`.
- * Cannot be sent using the gateway, i.e. `SendToSites()`.
-
-Note: For reply messages in a request and response pattern, use `IMessage` since these replies are neither a Command nor an Event.
+Note: In a request and response pattern, _reply_ messages are neither a command nor an event.
 
 
-### Validation Messages
+### Validation
 
-There are checks in place to ensure following of the best practices. While violating above rules the following exceptions can be seen:
+There are checks in place to ensure best practices are followed. Violations of the above guidelines generate the following exceptions:
 
 partial: errors
 
 
-## Defining Messages
+ ## Designing messages
 
-Messages can be defined via *interfaces* or via *conventions*.
+ Messages represent data contracts between endpoints. They should be designed according to the following guidelines.
+ 
+ Messages should:
+
+ * be simple [POCO](https://en.wikipedia.org/wiki/Plain_old_CLR_object) types.
+ * be as small as possible.
+ * satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle). Types used for other purposes (e.g. domain objects, data access objects, or UI binding objects) should not be used as messages.
+
+
+## Defining messages
+
+Messages can be defined either by *interfaces* or *conventions*.
 
 
 ### Interfaces
 
-The simplest way to define a message is to use interfaces.
+The simplest way to define messages is to use interfaces.
 
- * `NServiceBus.IMessage` for defining a Message.
- * `NServiceBus.ICommand` for defining a Command.
- * `NServiceBus.IEvent` for defining an Event.
+ * `NServiceBus.ICommand` for a command.
+ * `NServiceBus.IEvent` for an event.
+ * `NServiceBus.IMessage` for any other type of message (e.g. a _reply_ in a request response pattern).
 
 ```cs
-public class MyMessage : IMessage { }
-
 public class MyCommand : ICommand { }
 
 public class MyEvent : IEvent { }
 
 public interface MyEvent : IEvent { }
+
+public class MyMessage : IMessage { }
 ```
 
+NOTE: This approach has some drawbacks, as described in [Unobtrusive mode messages](unobtrusive-mode.md).
 
  ### Conventions
 
- Conventions are described in the dedicated [Conventions](/nservicebus/messaging/conventions.md) article.
-
-
- ## Designing Messages
-
- Messages represent data contract between the endpoints. When creating messages one should follow the following guidelines:
-
- * Messages should be simple POCO objects.
- * Messages should be as small as possible.
- * Messages should satisfy a [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle). Classes used for other purposes (e.g. domain objects, data access objects and UI binding objects) should not be used as messages.
+ See [Conventions](/nservicebus/messaging/conventions.md).
