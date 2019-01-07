@@ -19,6 +19,43 @@ The test that verifies the resulting context:
 
 snippet: HandlerTest
 
+The resulting context verification file is as follows:
+
+```json
+{
+  "RepliedMessages": [
+    {
+      "MyReplyMessage": {
+        "Property": "Value"
+      }
+    }
+  ],
+  "ForwardedMessages": [
+    "newDestination"
+  ],
+  "MessageId": "Guid 1",
+  "ReplyToAddress": "reply address",
+  "SentMessages": [
+    {
+      "MySendMessage": {
+        "Property": "Value"
+      },
+      "Options": {
+        "DeliveryDelay": "12:00:00"
+      }
+    }
+  ],
+  "PublishedMessages": [
+    {
+      "MyPublishMessage": {
+        "Property": "Value"
+      }
+    }
+  ],
+  "Extensions": {}
+}
+```
+
 
 ## Example behavior change
 
