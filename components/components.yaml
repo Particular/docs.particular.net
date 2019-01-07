@@ -29,6 +29,17 @@
   NugetOrder:
     - Anotar.NServiceBus.Fody
 
+- Key: ApprovalTests
+  Name: NServiceBus ApprovalTests
+  DocoUrl: nservicebus/testing/approvaltests
+  Category: Other
+  GitHubOwner: NServiceBusExtensions
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.ApprovalTests/blob/master/license.txt
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.ApprovalTests
+  NugetOrder:
+    - NServiceBus.ApprovalTests
+
 - Key: AttachmentsSql
   Name: Sql Attachments
   DocoUrl: nservicebus/messaging/attachments-sql
