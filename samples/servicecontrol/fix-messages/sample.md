@@ -43,7 +43,7 @@ snippet: ReceiverHandler
 
 ### Sender
 
-Due to a bug this endpoint sends malformed messages of type `SimpleMessage`.
+Sends messages of `SimpleMessage` type and emulates a bug by sending malformed `Id` field values.
 
 
 ## MessageRepairingEndpoint
