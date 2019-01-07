@@ -38,12 +38,25 @@ include: supported-versions-nservicebus
 For other NServiceBus packages, refer to [the list of supported versions of all packages](supported-versions.md).
 
 
-## Extended support for NServiceBus version 5
+## Extended support
 
-Extended support is helpful when more time is required to upgrade an existing system from an unsupported version of NServiceBus to a supported version. To qualify for extended support, a valid support agreement with Particular Software is required. Extended support provides an extra two years at the end of mainstream support. During this period:
+Extended support is offered on major versions of NServiceBus for a period of 2 years after the expiration of mainstream support, for an additional fee. Because major versions of NServiceBus are generally supported for at least 3 years (or longer, depending upon the cadence of NServiceBus major releases), extended support affords the peace of mind that a major version of NServiceBus will be supported for at least 5 years. To qualify for extended support, a valid support agreement with Particular Software is required.
 
-- Samples for unsupported versions are still provided for all customers.
-- If a critical bug in an unsupported version is detected and reported by a customer with an extended support agreement, Particular Software will provide a patch release.
+During the extended support period:
+
+- Documentation is provided for versions under mainstream and extended support.
+- Samples for extended support versions are available only for customers with an extended support agreement, upon request.
+- Patches for critical bugs on extended support versions will only be provided to customers with an extended support agreement.
+
+The following table describes the extended support status for all major versions:
+
+|Version|Released|Current Support|Mainstream Support Expires|Extended Support Expires|
+|:-:|:-:|:-:|:-:|:-:|
+|NServiceBus 7|2018-03-30|Mainstream|Current Version|Current Version|
+|NServiceBus 6|2016-10-11|Mainstream|2020-05-29|2022-05-29|
+|NServiceBus 5|2014-09-29|Extended|2018-10-11|2020-10-12|
+|NServiceBus 4|2013-07-11|Unsupported|2016-09-29|2018-09-29|
+|NServiceBus 3|2012-03-08|Unsupported|2015-07-11|2017-07-11|
 
 
 ## Compatibility guarantees
