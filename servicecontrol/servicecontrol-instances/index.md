@@ -3,7 +3,7 @@ title: ServiceControl instances
 reviewed: 2017-07-10
 component: ServiceControl
 related:
-- servicecontrol/import-failed-audits
+- servicecontrol/import-failed-messages
 ---
 
 ServiceControl instances collect and analyze data about the endpoints that make up a system and the messages flowing between them. This data is exposed to [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/) via an HTTP API and SignalR, and via [external integration events](/servicecontrol/contracts.md).
@@ -58,4 +58,4 @@ Azure Service Bus queues each come with an associated dead letter queue. When Se
 
 #### Failed imports
 
-When ServiceControl is unable to properly import an audit or error message, the error is logged and the message is stored separately in ServiceControl. ServiceControl will monitor these failed import stores and notify when any are found.
+When ServiceControl is unable to properly import an audit or error message, the error is logged and the message is stored separately in ServiceControl. ServiceControl will monitor these failed import stores and notify when any are found. Read more about re-importing failed messages [here](/servicecontrol/import-failed-messages.md).
