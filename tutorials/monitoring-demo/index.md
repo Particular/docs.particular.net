@@ -22,7 +22,7 @@ In order to run the demo your system needs to meet the following requirements:
 
 ## Running the sample
 
-Once you have downloaded and extracted the zip package, open the extracted folder and double-click on `run.bat`.
+Once you have downloaded and extracted the zip package, open the extracted folder and double-click on `MonitoringDemo.exe`.
 
 ## Demo walk through
 

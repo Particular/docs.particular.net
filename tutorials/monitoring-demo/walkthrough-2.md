@@ -55,9 +55,9 @@ Now that the spike in traffic is over, there is still a large backlog of message
 
 To handle this load of traffic we are going to scale out the Sales endpoint.
 
-**In the Monitoring folder, run `scale.bat`.**
+**In the MonitoringDemo executable, press `O` to scale out.**
 
-This batch file will start three more instances of the Sales endpoint (for a total of 4) with a 20-second delay in between starting each instance. As each new instance comes online, the critical time for the Sales endpoint comes down, and the throughput increases.
+Every time the key `O` is pressed one more instance of the Sales endpoint is started. You can press the key `O` multiple times to start as many instances as you like. It is recommended to start three new instances (for a total of 4). As each new instance comes online, the critical time for the Sales endpoint comes down, and the throughput increases. It is also possible to scale in again by pressing the `I` key.
 
 As the throughput of the Sales endpoint increases watch what happens to the Billing and Shipping endpoints. As these endpoints are waiting for `OrderPlaced` events from the Sales endpoint, increasing the throughput of Sales also increases the throughput of these downstream endpoints. Neither of them seems to be building up a considerable queue length or critical time, so we don't need to scale them out.
 
