@@ -50,7 +50,7 @@ NOTE: Endpoints with migration mode enabled should be allowed to run for some ti
 When all endpoints using the legacy transport are running in migration mode, they can be migrated to the new transport. Before that is done, their compatibility with the new transport should be verified, as described in the [compatibility guide](/transports/azure-service-bus/compatibility.md). To migrate from the legacy transport:
 
 1. Uninstall the `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package.
-1. Install the `NServiceBus.Transports.AzureServiceBus` package.
+1. Install the `NServiceBus.Transport.AzureServiceBus` package.
 1. Delete any non-compiling code such as `transport.UseEndpointOrientedTopology()` and remove any routing configuration code described in ["Publishers name configuration"](/transports/azure-service-bus/legacy/publisher-names-configuration.md).
 1. If more [advanced configuration options](/transports/azure-service-bus/legacy/configuration/full.md) have been used with the legacy transport, switch those over to the [new configuration options](/transports/azure-service-bus/configuration.md) where possible. For configuration options that are not available in the new transport, defaults selected specifically for the new transport will be applied.
 
