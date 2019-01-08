@@ -21,10 +21,10 @@ Running the project will result in 4 console windows. Wait a moment until the Se
  3. Switch to ServicePulse. It should show one failed message. Hit the retry button and wait until the message is retried.
  4. Observe error log output in the Receiver console window. The endpoint still can't process the message.
  5. Stop the Receiver project.
- 5. Update the Receiver configuration code to register the `FixMessageIdBehavior` behavior in the pipeline.
- 6. Start the updated Receiver endpoint.
- 7. Go back to `Failed Messages` tab, select the failed message and hit the retry button again.
- 8. Switch to the Receiver console window and observe the successful processing notification.
+ 6. Update the Receiver configuration code to register the `FixMessageIdBehavior` behavior in the pipeline by uncommenting the code in the `RegisterFixBehavior` region.
+ 7. Start the updated Receiver endpoint.
+ 8. Go back to `Failed Messages` tab, select the failed message and hit the retry button again.
+ 9. Switch to the Receiver console window and observe the successful processing notification.
 
 
 ## Code walk-through 
