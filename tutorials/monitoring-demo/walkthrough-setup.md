@@ -25,7 +25,7 @@ After unblocking the zip file, extract its contents into a folder. For the rest 
 
 Open the `MonitoringDemo` folder and double-click on `MonitoringDemo.exe`. This executable will:
 
-1. Run the platform components .
+1. Run the platform components.
     - A ServiceControl instance (binds to a free port in the 49200 range)
     - A Monitoring instance (binds to a free port in the 49200 range)
 2. Run the sample endpoints, each in their own window
