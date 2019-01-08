@@ -33,10 +33,7 @@ The samples are located in GitHub at [Particular/docs.particular.net/samples](ht
 
 ## Samples targeting non-supported versions of the platform
 
-Samples that target non-supported versions of NServiceBus have been archived. They are still available for browsing and download
-
- * NServiceBus 4 [Browse](https://github.com/Particular/docs.particular.net/tree/Version4Samples/samples) [Download](https://github.com/Particular/docs.particular.net/archive/Version4Samples.zip)
- * NServiceBus 3 [Browse](https://github.com/Particular/docs.particular.net/tree/Version3Samples/samples) [Download](https://github.com/Particular/docs.particular.net/archive/Version3Samples.zip)
+Samples that target non-supported versions of NServiceBus have been archived, according to the [support policy](/nservicebus/upgrades/support-policy.md). Customers with an extended support agreement can request archived samples by [contacting support](mailto:support@particular.net).
 
 
 ## Technology choices
@@ -56,31 +53,7 @@ All samples target **C# 7.1** to take advantage of the new language features. If
 
 ### [Transport](/transports/)
 
-
-#### NServiceBus version 6 and above
-
 Samples default to the [learning transport](/transports/learning/) as it has the least friction for experimentation. **The [learning transport](/transports/learning/) is not for production use**.
-
-
-#### NServiceBus version 5 and below
-
-Samples default to the [MSMQ transport](/transports/msmq/). See [MSMQ configuration](/transports/msmq/#msmq-configuration) to configure MSMQ in a way that is compatible with NServiceBus.
-
-On startup, each sample will create the required queues. The samples use the prefix `samples.` for all queue names by default. There is no process to clean up these queues; after running samples those queues remain in MSMQ. To clean up these queues manually use a [management tool](/transports/msmq/viewing-message-content-in-msmq.md) or [the native MSMQ API](/transports/msmq/operations-scripting.md#delete-queues).
-
-For example this PowerShell will delete all queues prefixed with `private$\samples.`.
-
-```ps
-Add-Type -AssemblyName System.Messaging
-
-foreach ($queue in [System.Messaging.MessageQueue]::GetPrivateQueuesByMachine("."))
-{
-  if($queue.QueueName.StartsWith("private$\samples."))
-  {
-    [System.Messaging.MessageQueue]::Delete($queue.Path)
-  }
-}
-```
 
 
 ### [Persistence](/persistence/)
