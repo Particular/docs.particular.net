@@ -214,7 +214,6 @@ public static class TextWriterExtensions
 
 		foreach (var version in relevantVersions.OrderByDescending(version => version.First.Identity.Version))
 		{
-			var extSupport = version.ExtendedSupport ? "[Extended support only](/nservicebus/upgrades/support-policy.md#extended-support). " : "";
 			var isSupported = !version.PatchingEnd.HasValue || version.PatchingEnd.Value > utcTomorrow || version.ExtendedSupport;
 			var open = isSupported ? "" : "~~";
 			var close = isSupported ? "" : "~~";
@@ -226,7 +225,15 @@ public static class TextWriterExtensions
 			output.Write($" | ");
 			output.Write($"{open}{version.PatchingEnd?.ToString("yyyy-MM-dd") ?? "-"}{close}".PadRight(17));
 			output.Write($" | ");
-			output.Write($"{extSupport}{open}{(version.PatchingEnd.HasValue ? version.PatchingEndReason : "-")}{close}".PadRight(33));
+			if(version.ExtendedSupport)
+			{
+				var end = version.PatchingEnd.Value.AddYears(2);
+				output.Write($"[Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until  {end:yyyy-MM-dd}"
+			}
+			else
+			{
+				output.Write($"{open}{(version.PatchingEnd.HasValue ? version.PatchingEndReason : "-")}{close}".PadRight(33));
+			}
 			output.WriteLine(" |");
 		}
 
