@@ -228,7 +228,7 @@ public static class TextWriterExtensions
 			if(version.ExtendedSupport)
 			{
 				var end = version.PatchingEnd.Value.AddYears(2);
-				output.Write($"[Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until  {end:yyyy-MM-dd}"
+				output.Write($"[Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until {end:yyyy-MM-dd}");
 			}
 			else
 			{
