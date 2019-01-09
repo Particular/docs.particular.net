@@ -8,6 +8,7 @@ redirects:
 - nservicebus/nservicebus-pipeline-intro
 related:
 - samples/header-manipulation
+- pipeline/fix-messages-using-behavior
 ---
 
 NServiceBus has the concept of a _pipeline_ which refers to the series of actions taken when an incoming message is processed and an outgoing message is sent.
