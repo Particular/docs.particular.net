@@ -17,11 +17,16 @@ async Task Main()
 	{
 		{ "NServiceBus.Azure", "This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServiceBus.Persistence.AzureStorage." }
 	};
-
+	
 	var source = "https://api.nuget.org/v3/index.json";
 	var componentsPath = Path.Combine(Util.CurrentQuery.Location, @"..\components\components.yaml");
 
 	var corePackageId = "NServiceBus";
+
+	var extendedSupportVersions = new List<ExtendedSupportVersion>
+	{
+		new ExtendedSupportVersion { PackageId = corePackageId, Major = 5 }
+	};
 
 	var coreMajorOverlapYears = 2;
 	var coreMinorOverlapMonths = 6;
@@ -44,9 +49,9 @@ async Task Main()
 	{
 		Id = corePackageId,
 		Category = ComponentCategory.Core,
-		Versions = await packageMetadata.GetVersions(corePackageId, logger, coreMajorOverlapYears, coreMinorOverlapMonths, new List<Version>(), endOfLifePackages)
+		Versions = await packageMetadata.GetVersions(corePackageId, logger, coreMajorOverlapYears, coreMinorOverlapMonths, new List<Version>(), endOfLifePackages, extendedSupportVersions)
 	};
-
+	
 	corePackage.Dump(utcTomorrow);
 
 	var downstreamPackages =
@@ -65,7 +70,7 @@ async Task Main()
 				{
 					Id = package.Id,
 					Category = package.Category,
-					Versions = await packageMetadata.GetVersions(package.Id, logger, downstreamMajorOverlapYears, downstreamMinorOverlapMonths, corePackage.Versions, endOfLifePackages)
+					Versions = await packageMetadata.GetVersions(package.Id, logger, downstreamMajorOverlapYears, downstreamMinorOverlapMonths, corePackage.Versions, endOfLifePackages, extendedSupportVersions)
 				})))
 		.OrderBy(package => package.Id)
 		.ToList();
@@ -182,6 +187,7 @@ public static class TextWriterExtensions
 			var isSupported = !version.PatchingEnd.HasValue || version.PatchingEnd.Value > utcTomorrow;
 			var open = isSupported ? "" : "~~";
 			var close = isSupported ? "" : "~~";
+			var extSupport = version.ExtendedSupport ? "Extended support only. " : "";
 
 			output.Write($"| ");
 			output.Write($"{open}{version.First.Identity.Version.ToMinorString()}{close}".PadRight(9));
@@ -190,7 +196,7 @@ public static class TextWriterExtensions
 			output.Write($" | ");
 			output.Write($"{open}{version.PatchingEnd?.ToString("yyyy-MM-dd") ?? "-"}{close}".PadRight(17));
 			output.Write($" | ");
-			output.Write($"{open}{(version.PatchingEnd.HasValue ? version.PatchingEndReason : "-")}{close}".PadRight(33));
+			output.Write($"{extSupport}{open}{(version.PatchingEnd.HasValue ? version.PatchingEndReason : "-")}{close}".PadRight(33));
 			output.WriteLine(" |");
 		}
 
@@ -207,7 +213,7 @@ public static class PackageMetadataResourceExtensions
 	};
 
 	public static async Task<List<Version>> GetVersions(
-		this PackageMetadataResource resource, string packageId, ILogger logger, int majorOverlapYears, int minorOverlapMonths, List<Version> upstreamVersions, Dictionary<string, string> endOfLifePackages)
+		this PackageMetadataResource resource, string packageId, ILogger logger, int majorOverlapYears, int minorOverlapMonths, List<Version> upstreamVersions, Dictionary<string, string> endOfLifePackages, List<ExtendedSupportVersion> extendedSupportVersions)
 	{
 		var minors = (await resource.GetMetadataAsync(packageId, false, false, sourceCacheContext, logger, CancellationToken.None))
 			.OrderBy(package => package.Identity.Version)
@@ -256,6 +262,7 @@ public static class PackageMetadataResourceExtensions
 
 				DateTime? patchingEnd = null;
 				string patchingEndReason = null;
+				var extendedSupport = false;
 
 				var boundedBy = latestUpstreamsWithPatchingEnd.FirstOrDefault();
 				var extendedBy = lastMinorToSupportLastUpstreamToEndPatching?.Last.Identity.Version == minor.Last.Identity.Version
@@ -266,6 +273,15 @@ public static class PackageMetadataResourceExtensions
 				{
 					patchingEnd = nextMajor.ImpliedPatchingEnd;
 					patchingEndReason = $"Superseded by {nextMajor.Package.Identity.Version.ToMinorString()}";
+
+					if (nextMinor == null)
+					{
+						var lastMajorVersion = minor.Last.Identity.Version;
+						var lastMajorPackageId = minor.Last.Identity.Id;
+
+						extendedSupport = extendedSupportVersions.Any(ex => ex.Major == lastMajorVersion.Major &&
+																			ex.PackageId == lastMajorPackageId);
+					}
 				}
 
 				if (nextMinor != null && (!patchingEnd.HasValue || nextMinor.ImpliedPatchingEnd <= patchingEnd.Value))
@@ -292,12 +308,15 @@ public static class PackageMetadataResourceExtensions
 					patchingEndReason = $"End of life";
 				}
 
+				
+
 				return new Version
 				{
 					First = minor.First,
 					Last = minor.Last,
 					BoundedBy = boundedBy,
 					ExtendedBy = extendedBy,
+					ExtendedSupport = extendedSupport,
 					PatchingEnd = patchingEnd,
 					PatchingEndReason = patchingEndReason,
 				};
@@ -366,9 +385,16 @@ public class Version
 	public IPackageSearchMetadata Last { get; set; }
 	public Version BoundedBy { get; set; }
 	public Version ExtendedBy { get; set; }
+	public bool ExtendedSupport { get; set; }
 	public DateTime? PatchingEnd { get; set; }
 	public string PatchingEndReason { get; set; }
 	public override string ToString() => this.First.ToMinorString();
+}
+
+public class ExtendedSupportVersion
+{
+	public string PackageId { get; set; }
+	public int Major { get; set;}
 }
 
 public class SerializationComponent
