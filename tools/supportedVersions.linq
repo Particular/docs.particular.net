@@ -184,10 +184,10 @@ public static class TextWriterExtensions
 
 		foreach (var version in relevantVersions.OrderByDescending(version => version.First.Identity.Version))
 		{
-			var isSupported = !version.PatchingEnd.HasValue || version.PatchingEnd.Value > utcTomorrow;
+			var extSupport = version.ExtendedSupport ? "[Extended support only](/nservicebus/upgrades/support-policy.md#extended-support). " : "";
+			var isSupported = !version.PatchingEnd.HasValue || version.PatchingEnd.Value > utcTomorrow || version.ExtendedSupport;
 			var open = isSupported ? "" : "~~";
 			var close = isSupported ? "" : "~~";
-			var extSupport = version.ExtendedSupport ? "Extended support only. " : "";
 
 			output.Write($"| ");
 			output.Write($"{open}{version.First.Identity.Version.ToMinorString()}{close}".PadRight(9));
