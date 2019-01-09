@@ -9,6 +9,7 @@
   <Namespace>NuGet.Versioning</Namespace>
   <Namespace>System.Threading.Tasks</Namespace>
   <Namespace>YamlDotNet.Serialization</Namespace>
+  <Namespace>System.Collections.Concurrent</Namespace>
 </Query>
 
 async Task Main()
@@ -23,10 +24,7 @@ async Task Main()
 
 	var corePackageId = "NServiceBus";
 
-	var extendedSupportVersions = new List<ExtendedSupportVersion>
-	{
-		new ExtendedSupportVersion { PackageId = corePackageId, Major = 5 }
-	};
+	var extendedSupportVersions = new[] { 5 };
 
 	var coreMajorOverlapYears = 2;
 	var coreMinorOverlapMonths = 6;
@@ -44,15 +42,14 @@ async Task Main()
 	var logger = new Logger();
 
 	var packageMetadata = await new SourceRepository(new PackageSource(source), Repository.Provider.GetCoreV3()).GetResourceAsync<PackageMetadataResource>();
+	var searcher = new NuGetSearcher(packageMetadata, logger);
 
 	var corePackage = new Package
 	{
 		Id = corePackageId,
 		Category = ComponentCategory.Core,
-		Versions = await packageMetadata.GetVersions(corePackageId, logger, coreMajorOverlapYears, coreMinorOverlapMonths, new List<Version>(), endOfLifePackages, extendedSupportVersions)
+		Versions = await searcher.GetVersions(corePackageId, logger, coreMajorOverlapYears, coreMinorOverlapMonths, new List<Version>(), endOfLifePackages, extendedSupportVersions)
 	};
-	
-	corePackage.Dump(utcTomorrow);
 
 	var downstreamPackages =
 		(await Task.WhenAll(GetComponents(componentsPath, corePackageId)
@@ -70,11 +67,24 @@ async Task Main()
 				{
 					Id = package.Id,
 					Category = package.Category,
-					Versions = await packageMetadata.GetVersions(package.Id, logger, downstreamMajorOverlapYears, downstreamMinorOverlapMonths, corePackage.Versions, endOfLifePackages, extendedSupportVersions)
+					Versions = await searcher.GetVersions(package.Id, logger, downstreamMajorOverlapYears, downstreamMinorOverlapMonths, corePackage.Versions, endOfLifePackages, extendedSupportVersions)
 				})))
 		.OrderBy(package => package.Id)
 		.ToList();
+	
+	AssignExtendedSupport(corePackage, extendedSupportVersions, version => version.First.Identity.Version.Major);
+	foreach(var pkg in downstreamPackages)
+	{
+		AssignExtendedSupport(pkg, extendedSupportVersions, version =>
+		{
+			var nsbDependency = searcher.GetDependencies(version.First)
+				.FirstOrDefault(d => d.Id == corePackageId);
 
+			return nsbDependency?.VersionRange.MinVersion.Major;
+		});
+	}
+
+	corePackage.Dump(utcTomorrow);
 	foreach (var package in downstreamPackages)
 	{
 		package.Dump(utcTomorrow);
@@ -94,6 +104,26 @@ async Task Main()
 	{
 		output.Write(corePackage, utcTomorrow, null, true);
 		output.Write(downstreamPackages, utcTomorrow, null, true, endOfLifePackages);
+	}
+}
+
+private static void AssignExtendedSupport(Package package, int[] extendedSupportVersions, Func<Version, int?> getCoreVersion)
+{
+	foreach(var version in package.Versions)
+	{
+		version.CoreMajorVersion = getCoreVersion(version);
+	}
+	foreach(var extSupportVersion in extendedSupportVersions)
+	{
+		var extSupportPackageVersion = package.Versions
+			.Where(v => v.CoreMajorVersion == extSupportVersion)
+			.OrderByDescending(v => v.First.Identity.Version)
+			.FirstOrDefault();
+		
+		if(extSupportPackageVersion != null)
+		{
+			extSupportPackageVersion.ExtendedSupport = true;
+		}
 	}
 }
 
@@ -213,9 +243,9 @@ public static class PackageMetadataResourceExtensions
 	};
 
 	public static async Task<List<Version>> GetVersions(
-		this PackageMetadataResource resource, string packageId, ILogger logger, int majorOverlapYears, int minorOverlapMonths, List<Version> upstreamVersions, Dictionary<string, string> endOfLifePackages, List<ExtendedSupportVersion> extendedSupportVersions)
+		this NuGetSearcher searcher, string packageId, ILogger logger, int majorOverlapYears, int minorOverlapMonths, List<Version> upstreamVersions, Dictionary<string, string> endOfLifePackages, int[] extendedSupportVersions)
 	{
-		var minors = (await resource.GetMetadataAsync(packageId, false, false, sourceCacheContext, logger, CancellationToken.None))
+		var minors = (await searcher.GetPackageAsync(packageId))
 			.OrderBy(package => package.Identity.Version)
 			.GroupBy(package => new { package.Identity.Version.Major, package.Identity.Version.Minor })
 			.Select(group => new { First = group.First(), Last = group.Last(), })
@@ -237,7 +267,7 @@ public static class PackageMetadataResourceExtensions
 						version.Last.Identity.Id == dep.Id && dep.VersionRange.Satisfies(version.Last.Identity.Version)))
 					.Where(version => version != null && version.PatchingEnd.HasValue)
 					.OrderBy(version => version.PatchingEnd)
-					.ToList();
+					.ToList();				
 
 				var lastUpstreamToEndPatching = latestUpstreamsWithPatchingEnd.LastOrDefault();
 
@@ -273,15 +303,6 @@ public static class PackageMetadataResourceExtensions
 				{
 					patchingEnd = nextMajor.ImpliedPatchingEnd;
 					patchingEndReason = $"Superseded by {nextMajor.Package.Identity.Version.ToMinorString()}";
-
-					if (nextMinor == null)
-					{
-						var lastMajorVersion = minor.Last.Identity.Version;
-						var lastMajorPackageId = minor.Last.Identity.Id;
-
-						extendedSupport = extendedSupportVersions.Any(ex => ex.Major == lastMajorVersion.Major &&
-																			ex.PackageId == lastMajorPackageId);
-					}
 				}
 
 				if (nextMinor != null && (!patchingEnd.HasValue || nextMinor.ImpliedPatchingEnd <= patchingEnd.Value))
@@ -316,7 +337,6 @@ public static class PackageMetadataResourceExtensions
 					Last = minor.Last,
 					BoundedBy = boundedBy,
 					ExtendedBy = extendedBy,
-					ExtendedSupport = extendedSupport,
 					PatchingEnd = patchingEnd,
 					PatchingEndReason = patchingEndReason,
 				};
@@ -343,7 +363,9 @@ public static class PackageExtensions
 				ExtendedBy = version.ExtendedBy?.ToString(),
 				PatchingEnd = version.PatchingEnd?.ToString("yyyy-MM-dd"),
 				PatchingEndReason = version.PatchingEndReason,
-				CurrentlyPatched = !version.PatchingEnd.HasValue || version.PatchingEnd.Value > utcTomorrow
+				CurrentlyPatched = !version.PatchingEnd.HasValue || version.PatchingEnd.Value > utcTomorrow,
+				CoreMajorVersion = version.CoreMajorVersion,
+				ExtendedSupport = version.ExtendedSupport
 			})
 			.Dump("Versions");
 	}
@@ -372,6 +394,57 @@ static IEnumerable<SerializationComponent> GetComponents(string path, string cor
 		.Where(component => component.UsesNuget && component.SupportLevel == SupportLevel.Regular);
 }
 
+public class NuGetSearcher
+{
+	PackageMetadataResource resource;
+	SourceCacheContext cacheContext;
+	ILogger logger;
+	ConcurrentDictionary<string, IEnumerable<IPackageSearchMetadata>> dictionary;
+	
+	public NuGetSearcher(PackageMetadataResource resource, ILogger logger)
+	{
+		this.resource = resource;
+		this.logger = logger;
+		cacheContext = new SourceCacheContext
+		{
+			MaxAge = DateTime.UtcNow,
+			NoCache = true
+		};
+		dictionary = new ConcurrentDictionary<string, IEnumerable<IPackageSearchMetadata>>();
+	}
+	
+	public async Task<IEnumerable<IPackageSearchMetadata>> GetPackageAsync(string packageId)
+	{
+		if(!dictionary.TryGetValue(packageId, out var metadata))
+		{
+			metadata = await resource.GetMetadataAsync(packageId, false, false, cacheContext, logger, CancellationToken.None);
+			dictionary.TryAdd(packageId, metadata);
+		}
+		return metadata;
+	}
+
+	public IEnumerable<PackageDependency> GetDependencies(IPackageSearchMetadata package)
+	{
+		foreach(var dependency in package.DependencySets.SelectMany(x => x.Packages))
+		{
+			yield return dependency;
+			if(dictionary.TryGetValue(dependency.Id, out var dependencyPackageList))
+			{
+				foreach(var subPackage in dependencyPackageList.OrderBy(x => x.Identity.Version))
+				{
+					if(dependency.VersionRange.Satisfies(subPackage.Identity.Version))
+					{
+						foreach (var subDependency in GetDependencies(subPackage))
+						{
+							yield return subDependency;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 public class Package
 {
 	public string Id { get; set; }
@@ -383,6 +456,7 @@ public class Version
 {
 	public IPackageSearchMetadata First { get; set; }
 	public IPackageSearchMetadata Last { get; set; }
+	public int? CoreMajorVersion { get; set; }
 	public Version BoundedBy { get; set; }
 	public Version ExtendedBy { get; set; }
 	public bool ExtendedSupport { get; set; }
