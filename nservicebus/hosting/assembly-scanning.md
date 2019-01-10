@@ -1,13 +1,13 @@
 ---
 title: Assembly scanning
 summary: To enable automatic detection of various features NServiceBus scans assemblies for well known types
-reviewed: 2017-03-17
+reviewed: 2019-01-10
 component: core
 redirects:
  - nservicebus/assembly-scanning
 ---
 
-By default all assemblies in the endpoint bin directory are scanned to find types implementing its interfaces so that it can configure them automatically.
+By default all assemblies in the endpoint's `bin` directory are scanned in search of related interfaces so that the endpoint can configure them automatically.
 
 NOTE: During the scanning process, the core assembly for NServiceBus (`NServiceBus.Core.dll`) is automatically included since it is required for endpoints to properly function.
 
@@ -19,7 +19,7 @@ There are some cases where finer control over which assemblies are loaded is req
  * To limit the number of assemblies being scanned and hence provide improvements to startup time.
  * If hosting multiple endpoints out of the same directory each endpoint may require a subset of assemblies to be loaded.
 
-NOTE: Extensions (for example `NServiceBus.RavenDB.dll`) are not considered a core assembly and will need to be included when customizing assembly scanning.
+NOTE: NServiceBus extensions such as `NServiceBus.RavenDB.dll` are not considered a core assembly but will still need to be included when customizing the assembly scanning.
 
 
 ## Nested Directories

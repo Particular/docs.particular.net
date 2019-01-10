@@ -3,6 +3,6 @@
 
 NOTE: This configuration option is only available in NServiceBus 6.2 and above.
 
-By default, already loaded into the AppDomain, but not present in the applications base directory, are **not** scanned. The endpoint can be configured to also scan AppDomain assemblies using:
+By default, the assemblies that are already loaded into the AppDomain, but are not present in the application's base directory, are **not** scanned. The endpoint can also be configured to scan the AppDomain assemblies:
 
 snippet: ScanningApDomainAssemblies
