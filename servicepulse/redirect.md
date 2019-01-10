@@ -3,7 +3,8 @@ title: Redirects
 summary: Describes what message redirects are and how to use them.
 related:
 - servicepulse/troubleshooting
-reviewed: 2018-05-17
+- samples/pipeline/fix-messages-using-behavior
+reviewed: 2019-01-10
 ---
 
 When a failed message needs to be retried but the destination endpoint no longer exists, and the message needs to be routed to a different endpoint than what is specified in the failed message headers, ServicePulse offers a redirect feature. This feature is available in ServicePulse version 1.6.6 and above.
