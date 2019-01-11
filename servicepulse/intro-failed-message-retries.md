@@ -19,4 +19,4 @@ If a message was retried and came back to ServiceControl as failed it might mean
 
 There are two ways to deal with that kind of situation. If the issue in the sender can be fixed, there will be no new malformed messages coming. The ones already sent can be redirected to a repairing endpoint. [This sample](/samples/servicecontrol/fix-messages/) shows how this can be done using ServiceControl redirects feature.
 
-If the sender cannot be fixed it is better to use a pipeline behavior to repair the messages at the receiver endpoint before they are passed to the handler. [This sample](https://docs.particular.net/samples/pipeline/fix-messages-using-behavior/) shows this scenario.
+If the sender cannot be fixed it is better to use a pipeline behavior to repair the messages at the receiver endpoint before they are passed to the handler. [This sample](/samples/pipeline/fix-messages-using-behavior/) shows this scenario.
