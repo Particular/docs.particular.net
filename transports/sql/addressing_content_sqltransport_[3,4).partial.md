@@ -1,6 +1,6 @@
 ## Format
 
-The SQL Server Transport address has following canonical form for version 3.0.x
+The SQL Server Transport address has following canonical form for version 3.0.x:
 
 ```
 table@[schema]

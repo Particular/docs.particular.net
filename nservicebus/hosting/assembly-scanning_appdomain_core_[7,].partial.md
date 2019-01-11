@@ -1,6 +1,6 @@
 
 ## AppDomain assemblies
 
-Assemblies loaded into the AppDomain are scanned by default. AppDomain assembly scanning can be disabled using:
+By default, the assemblies that are aleady loaded into the AppDomain are scanned. The endpoint can also be configured to disable AppDomain assembly scanning:
 
 snippet: ScanningApDomainAssemblies

@@ -1,18 +1,18 @@
 ---
 title: Operations
 summary: Operations Table of Contents
-reviewed: 2017-03-14
+reviewed: 2019-01-10
 ---
 
-Operational tasks include the following categories
+Operational tasks include the following categories:
 
  * Data migrations
  * Upgrading endpoints
  * Deployments
  * Diagnostics
- * Scripting activities: using the low level/native APIs to help perform any of the above tasks.
+ * Scripting activities (using the low level/native APIs to help perform any of the above tasks)
 
-Operational documentation is best reviewed from the perceptive of the selected transport and persistence.
+Operational documentation is best reviewed from the perspective of the selected transport and persistence.
 
 
 ## Transports

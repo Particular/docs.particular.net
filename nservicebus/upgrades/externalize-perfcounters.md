@@ -1,6 +1,6 @@
 ---
 title: Externalize Windows Performance Counters
-reviewed: 2017-03-17
+reviewed: 2019-01-10
 component: PerfCounters
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -11,12 +11,10 @@ related:
 
 include: externalize-perfcounters
 
-The API was also modified.
-
 
 ## Changed APIs
 
-The NServiceBus Performance Counter APIs have been marked as obsolete and have one-for-one equivalents in the NServiceBus.Metrics.PerformanceCounters package.
+The NServiceBus Performance Counter APIs have been marked as obsolete and have one-for-one equivalents in the new `NServiceBus.Metrics.PerformanceCounters` package.
 
 
 ### Enabling Critical Time Counter
@@ -31,4 +29,4 @@ snippet: 6to1-enable-sla
 
 ## Compatibility
 
-The NServiceBus.Metrics.PerformanceCounters package is fully compatible with endpoints that use NServiceBus package's Performance Counters functionality.
+The `NServiceBus.Metrics.PerformanceCounters` package is fully compatible with endpoints that use NServiceBus package's Performance Counters functionality.
