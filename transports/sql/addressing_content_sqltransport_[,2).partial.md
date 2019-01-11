@@ -6,7 +6,7 @@ The SQL Server Transport address has following canonical form
 table
 ```
 
-The table name is an bracket-delimited identifier without the surrounding square brackets. Whitespace characters are allowed. Brackets must be escaped e.g. `my table` and `my]]table` are legal values. The surrounding brackets are added automatically by SQL Server transport when executing the SQL statements. `@` is not a valid character. All characters after `@` (including `@`) are omitted when parsing addresses e.g. `my t@ble` is parsed as `my t`.
+The table name is an bracket-delimited identifier without the surrounding square brackets. Whitespace characters are allowed. Brackets must be escaped, for example `my table` and `my]]table` are acceptable values. The surrounding brackets are added automatically by SQL Server transport when executing the SQL statements. `@` is not a valid character. All characters after `@` (including `@`) are omitted when parsing addresses e.g. `my t@ble` is parsed as `my t`.
 
 
 ## Resolution
