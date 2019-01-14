@@ -224,7 +224,7 @@ The **Shipping** endpoint console should show the following output:
 ```
 INFO  Shipping.ShippingPolicy OrderPlaced message received.
 INFO  Shipping.ShippingPolicy OrderBilled message received.
-INFO  Shipping.ShipOrderHandler Order [0b0dd421-4661-46e7-abc5-c92c43b8fd18] - Succesfully shipped.
+INFO  Shipping.ShipOrderHandler Order [0b0dd421-4661-46e7-abc5-c92c43b8fd18] - Successfully shipped.
 ```
 
 Remember that it's possible that `OrderBilled` may be handled before `OrderPlaced`, which is why it was so critical to indicate that the saga can be started by both messages with `IAmStartedByMessages<T>`. This ensures that the saga will work correctly no matter the arrival order of the events.
