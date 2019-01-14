@@ -11,7 +11,7 @@ namespace Shipping
 
         public Task Handle(ShipOrder message, IMessageHandlerContext context)
         {
-            log.Info($"Order [{message.OrderId}] - Succesfully shipped.");
+            log.Info($"Order [{message.OrderId}] - Successfully shipped.");
             return Task.CompletedTask;
         }
     }
