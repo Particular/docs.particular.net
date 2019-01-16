@@ -1,6 +1,6 @@
 ---
 title: Service Fabric Persistence Sagas
-reviewed: 2017-03-22
+reviewed: 2019-01-16
 component: ServiceFabricPersistence
 ---
 
