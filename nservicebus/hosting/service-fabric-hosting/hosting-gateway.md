@@ -2,7 +2,7 @@
 title: Hosting Gateway with Service Fabric
 related:
  - persistence/service-fabric
-reviewed: 2017-03-30
+reviewed: 2019-01-16
 ---
 
 WARNING: [Gateway](/nservicebus/gateway) hosted in Service Fabric does not support forwarding messages containing [Databus](/nservicebus/messaging/databus/) properties.
@@ -13,7 +13,7 @@ Alternatively the [nservicebus gateway](/nservicebus/gateway/) can be leveraged 
 
 To host the NServiceBus Gateway in an endpoint deployed to Service Fabric, the following has to be taken into account:
 
-1. Host the gateway as a [stateless service](/nservicebus/hosting/service-fabric/hosting/#stateful service), and use [partition aware routing](/samples/azure/azure-service-fabric-routing/) within to forward messages to other parts of the cluster.
+1. Host the gateway as a [stateless service](/nservicebus/hosting/service-fabric-hosting/index.md#stateless-service), and use [partition aware routing](/samples/azure/azure-service-fabric-routing/) within to forward messages to other parts of the cluster.
 2. Because the service instance are hosted behind a load balancer, it is required to configure the gateway channel address to use a URL with wildcard. The reason is that the public IP address is the one from the cluster load balancer and will therefore differ from the one that the gateway communication listener will effectively be listening on. 
 
 Snippet: configureWildcardGatewayChannel
