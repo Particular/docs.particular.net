@@ -22,7 +22,7 @@ To handle any other errors, wrap the `next()` operation in a try-catch block and
 
 snippet: AllErrorsCustomization
 
-WARNING: Throwing the exception in the catch block will forward the message to the error queue after all the configured retry attempts, if the exception is not a `MessageDeserializationException`. If that's not desired, remove the `throw` from the catch block to indicate that the message has been successfully processed.
+WARNING: Throwing the exception in the catch block will forward the message to the error queue after all the configured retry attempts. If that's not desired, remove the `throw` from the catch block to indicate that the message has been successfully processed.
 
 
 #### Rolling Back
