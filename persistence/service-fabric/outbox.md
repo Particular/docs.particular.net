@@ -1,6 +1,6 @@
 ---
 title: Service Fabric Persistence Outbox
-reviewed: 2017-03-23
+reviewed: 2019-01-16
 component: ServiceFabricPersistence
 ---
 
