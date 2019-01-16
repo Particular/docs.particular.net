@@ -45,7 +45,7 @@ SQL Server transport uses SQL Server to store queues and messages. It doesn't us
 
  * No local store-and-forward mechanism; when a SQL Server instance is down, the endpoint cannot send nor receive messages.
  * In centralized deployment scenarios, maximum throughput applies for the whole system, not individual endpoints. For example, if SQL Server can handle 2000 msg/s on the given hardware, each one of the 10 endpoints deployed on this machine can only receive a maximum of 200 msg/s (on average).
- * When using SQL Server transport, a database table serves as a queue for the messages for the endpoints. These tables are polled periodically to see if messages need to be processed by the endpoints. Although the polling interval is one second, this may still lead to delays in processing a message. For environments where low latency is required, consider using other transports that use queuing technologies, such as RabbitMQ or MSMQ.
+ * When using SQL Server transport, a database table serves as a queue for the messages for the endpoints. These tables are polled periodically to see if messages need to be processed by the endpoints. Although the polling interval is one second, this may still lead to delays in processing a message. For environments where low latency is required, consider using other transports that use queuing technologies, such as RabbitMQ or MSMQ. Refer to [receiving behavior](design.md#behavior-receiving) documentation for more information about the polling configuration.
 
 
 ## Deployment considerations
