@@ -1,6 +1,6 @@
 ---
 title: Service Fabric Persistence
-reviewed: 2017-03-29
+reviewed: 2019-01-15
 component: ServiceFabricPersistence
 related:
 - samples/azure/azure-service-fabric-routing
