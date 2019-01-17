@@ -24,6 +24,8 @@ In order to run the demo your system needs to meet the following requirements:
 
 Once you have downloaded and extracted the zip package, open the extracted folder and double-click on `MonitoringDemo.exe`.
 
+The details on how the demo is setup can be found in the demo [setup walkthrough](walkthrough-setup.md).
+
 ## Demo walk through
 
 Once everything is running, you will have 4 endpoints which are configured like this:
