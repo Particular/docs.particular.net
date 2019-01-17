@@ -15,7 +15,7 @@ In order to run the demo your system needs to meet the following requirements:
 
 ## Running the demo
 
-The sample zip file includes 4 endpoints and the Particular Software Platform components, all of which have been configured to connunicate using the Learning Transport.
+The sample zip file includes 4 endpoints and the Particular Software Platform components, all of which have been configured to send messages using the [Learning Transport](/transports/learning).
 
 After downloading the zip file, extract its contents into a folder. Open the folder and double-click on `MonitoringDemo.exe`. This executable will:
 
