@@ -55,7 +55,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-    <PackageReference Include="NServiceBus" Version="7.0.1" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
+	<PackageReference Include="NServiceBus.Heartbeat" Version="3.*" />
+	<PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="3.*" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.4.1" />
   </ItemGroup>
   <ItemGroup>
