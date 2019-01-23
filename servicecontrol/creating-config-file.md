@@ -64,7 +64,7 @@ The path where the internal RavenDB is located.
 
 Type: string
 
-Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>`
+Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\DB`
 
 The indexes and Esent logs can be stored in a different path from the the RavenDB database data files by using the following [RavenDB configuration app settings](https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration):
 
