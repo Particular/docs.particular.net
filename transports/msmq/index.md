@@ -40,10 +40,17 @@ NServiceBus requires a specific MSMQ configuration to operate.
 
 The supported configuration is to have only the base MSMQ service installed with no optional features. To enable the supported configuration either use `NServiceBus Prerequisites` in the [Platform Installer](/platform/installer/) or use the `Install-NServiceBusMSMQ` cmdlet from the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md).
 
-Alternatively, the MSMQ service can be installed manually: 
+Alternatively, the MSMQ service can be installed manually. When installing manually **do not** enable the following components:
 
+ * MSMQ Active Directory Domain Services Integration
+ * MSMQ Http Support
+ * MSMQ Triggers
+ * Multicasting Support
+ * MSMQ DCOM Proxy
 
-### Windows 2012 and 2016
+These components can cause issues with the addressing used in NServiceBus.
+
+### Installation on Windows 2012 and 2016
 
 From Server Manager's Add Roles and Features Wizard enable `Message Queue Server`. All other MSMQ options should be disabled.
 
@@ -53,8 +60,7 @@ The DISM command line equivalent is:
 DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
 ```
 
-
-### Windows 8.x and 10
+### Installation on Windows 8.x and 10
 
 From the Control Panel, choose Programs. Then run the Windows Features Wizard by clicking `Turn Windows Features On or Off`. Enable `Microsoft Message Queue (MSMQ) Server Core`. All other MSMQ options should be disabled.
 
@@ -134,3 +140,9 @@ An example of the warning that is logged:
 > WARN NServiceBus.QueuePermissions - Queue [private$\xxxx] is running with [Everyone] with AccessRights set to [GenericWrite]. Consider setting appropriate permissions, if required by the organization. For more information, consult the documentation.
 
 See also [Message Queuing Security Overview in Windows Server 2008](https://technet.microsoft.com/en-us/library/cc771268.aspx).
+
+## Distributed Transaction Coordinator
+
+To support guaranteed [once delivery of messages,](/nservicebus/operations/transactions-message-processing.md) NServiceBus makes use of the Distributed Transaction Coordinator (DTC) to synchronize transactions between MSMQ and the database. For this to work, the DTC must be started and configured correctly.
+
+In Versions 5 and above of NServiceBus there is a _non-DTC_ mode of operation available. In this mode NServiceBus uses a concept of outbox, a message store backed by the same DB as the user code, to temporarily store messages that need to be sent as a result of processing an incoming message. To read more about this subject see [Outbox](/nservicebus/outbox/).

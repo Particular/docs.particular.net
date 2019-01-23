@@ -568,8 +568,6 @@
       Title: PowerShell
     - Url: nservicebus/operations/tuning
       Title: Tuning endpoint message processing
-    - Url: nservicebus/operations/running-on-windows
-      Title: Running on Windows
     - Url: nservicebus/endpoints/decommissioning-endpoints
       Title: Decommissioning Endpoints
     - Url: nservicebus/operations/nservicebus-analyzer
