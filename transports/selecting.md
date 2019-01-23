@@ -24,6 +24,24 @@ Each of the following sections describes the advantages and disadvantages of eac
 
 For transports which use a cloud hosted queueing technology, the quality of the network connection between the applications and cloud provider is important. If the connection is problematic, it may not be possible to send messages. For example, this may result in problems capturing data from a user interface. If applications are running the same data centre as the queueing technology, this risk is mitigated.
 
+This is a basic flowchart for selecting a supported transport. Where more than one transport is listed, refer to the sections below. They describe the advantages and disadvantages of each transport in more detail.
+
+```mermaid
+graph TD
+S((Start))-->Q{<center>Do you<br/>want to use<br/>the cloud?</center>}
+Q-->|Yes|Y{<center>What is<br/>your preferred<br/>cloud provider?</center>}
+Q-->|No|N{<center>Do you need<br/>to interop with<br/>existing systems?</center>}
+Y-->|Azure/we don't have one|Y1[<center>Azure Service Bus/<br/>Azure Storage Queues</center>]
+Y-->|Amazon|Y2[Amazon SQS]
+N-->|Yes|NY{<center>Do those systems<br/>use SQL Server?</center>}
+N-->|No|NN{<center>Do you expect<br/>high message<br/>throughput, e.g.<br/>500 msg/s?</center>}
+NY-->|Yes|NYY[SQL Server]
+NY-->|No|NYN[<center>RabbitMQ/<br/>MSMQ/<br/>SQL Server</center>]
+NN-->|Yes|NNY[<center>RabbitMQ/<br/>MSMQ</center>]
+NN-->|No|NNN{<center>Do you store<br/>your business data<br/>in SQL Server?</center>}
+NNN-->|Yes|NNNY[SQL Server]
+NNN-->|No|NNNN[<center>RabbitMQ/<br/>MSMQ/<br/>SQL Server</center>]
+```
 
 
 ## Learning
