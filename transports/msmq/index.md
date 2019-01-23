@@ -40,10 +40,17 @@ NServiceBus requires a specific MSMQ configuration to operate.
 
 The supported configuration is to have only the base MSMQ service installed with no optional features. To enable the supported configuration either use `NServiceBus Prerequisites` in the [Platform Installer](/platform/installer/) or use the `Install-NServiceBusMSMQ` cmdlet from the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md).
 
-Alternatively, the MSMQ service can be installed manually: 
+Alternatively, the MSMQ service can be installed manually. When installing manually **do not** enable the following components:
 
+ * MSMQ Active Directory Domain Services Integration
+ * MSMQ Http Support
+ * MSMQ Triggers
+ * Multicasting Support
+ * MSMQ DCOM Proxy
 
-### Windows 2012 and 2016
+These components can cause issues with the addressing used in NServiceBus.
+
+### Installation on Windows 2012 and 2016
 
 From Server Manager's Add Roles and Features Wizard enable `Message Queue Server`. All other MSMQ options should be disabled.
 
@@ -53,8 +60,7 @@ The DISM command line equivalent is:
 DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
 ```
 
-
-### Windows 8.x and 10
+### Installation on Windows 8.x and 10
 
 From the Control Panel, choose Programs. Then run the Windows Features Wizard by clicking `Turn Windows Features On or Off`. Enable `Microsoft Message Queue (MSMQ) Server Core`. All other MSMQ options should be disabled.
 
