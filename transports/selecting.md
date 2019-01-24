@@ -22,6 +22,14 @@ Other queueing technologies are "federated" and deployed on every machine that s
 
 Each of the following sections describes the advantages and disadvantages of each supported transport and some reasons for choosing that transport.
 
+* [Learning Transport](#learning)
+* [MSMQ](#msmq)
+* [Azure Service Bus](#azure-service-bus)
+* [Azure Storage Queues](#azure-storage-queues)
+* [SQL Server](#sql-server)
+* [RabbitMQ](#rabbitmq)
+* [Amazon SQS](#amazonsqs)
+
 For transports which use a cloud hosted queueing technology, the quality of the network connection between the applications and cloud provider is important. If the connection is problematic, it may not be possible to send messages. For example, this may result in problems capturing data from a user interface. If applications are running the same data centre as the queueing technology, this risk is mitigated.
 
 This is a basic flowchart for selecting a supported transport. Where more than one transport is listed, refer to the sections below. They describe the advantages and disadvantages of each transport in more detail.
