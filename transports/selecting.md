@@ -28,17 +28,17 @@ This is a basic flowchart for selecting a supported transport. Where more than o
 
 ```mermaid
 graph TD
-S((Start))-->Q{<center>Do you<br/>want to use<br/>the cloud?</center>}
-Q-->|Yes|Y{<center>What is<br/>your preferred<br/>cloud provider?</center>}
-Q-->|No|N{<center>Do you need<br/>to interop with<br/>existing systems?</center>}
-Y-->|Azure/we don't have one|Y1[<center>Azure Service Bus/<br/>Azure Storage Queues</center>]
+S((Start))-->Q{<center>Targeting<br/>the cloud?</center>}
+Q-->|Yes|Y{<center>Preferred<br/>cloud provider?</center>}
+Q-->|No|N{<center>Is interop<br/>with existing<br/>systems needed?</center>}
+Y-->|Azure/no preferences|Y1[<center>Azure Service Bus/<br/>Azure Storage Queues</center>]
 Y-->|Amazon|Y2[Amazon SQS]
 N-->|Yes|NY{<center>Do those systems<br/>use SQL Server?</center>}
-N-->|No|NN{<center>Do you expect<br/>high message<br/>throughput, e.g.<br/>500 msg/s?</center>}
+N-->|No|NN{<center>Is high message<br/>throughput, e.g.<br/>500 msg/s,<br/>expected?</center>}
 NY-->|Yes|NYY[SQL Server]
 NY-->|No|NYN[<center>RabbitMQ/<br/>MSMQ/<br/>SQL Server</center>]
 NN-->|Yes|NNY[<center>RabbitMQ/<br/>MSMQ</center>]
-NN-->|No|NNN{<center>Do you store<br/>your business data<br/>in SQL Server?</center>}
+NN-->|No|NNN{<center>Is business<br/>data stored<br/>in SQL Server?</center>}
 NNN-->|Yes|NNNY[SQL Server]
 NNN-->|No|NNNN[<center>RabbitMQ/<br/>MSMQ/<br/>SQL Server</center>]
 ```
