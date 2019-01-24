@@ -1,7 +1,7 @@
 ---
 title: Oracle Scripts
 component: SqlPersistence
-reviewed: 2017-04-05
+reviewed: 2019-01-24
 related:
  - nservicebus/operations
 redirects:
