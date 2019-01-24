@@ -22,8 +22,34 @@ Other queueing technologies are "federated" and deployed on every machine that s
 
 Each of the following sections describes the advantages and disadvantages of each supported transport and some reasons for choosing that transport.
 
+* [Learning Transport](#learning)
+* [MSMQ](#msmq)
+* [Azure Service Bus](#azure-service-bus)
+* [Azure Storage Queues](#azure-storage-queues)
+* [SQL Server](#sql-server)
+* [RabbitMQ](#rabbitmq)
+* [Amazon SQS](#amazon-sqs)
+
 For transports which use a cloud hosted queueing technology, the quality of the network connection between the applications and cloud provider is important. If the connection is problematic, it may not be possible to send messages. For example, this may result in problems capturing data from a user interface. If applications are running the same data centre as the queueing technology, this risk is mitigated.
 
+This is a basic flowchart for selecting a supported transport. Where more than one transport is listed, refer to the sections below. They describe the advantages and disadvantages of each transport in more detail.
+
+```mermaid
+graph TD
+S((Start))-->Q{<center>Targeting<br/>the cloud?</center>}
+Q-->|Yes|Y{<center>Preferred<br/>cloud provider?</center>}
+Q-->|No|N{<center>Is interop<br/>with existing<br/>systems needed?</center>}
+Y-->|Azure/no preferences|Y1[<center>Azure Service Bus/<br/>Azure Storage Queues</center>]
+Y-->|Amazon|Y2[Amazon SQS]
+N-->|Yes|NY{<center>Do those systems<br/>use SQL Server?</center>}
+N-->|No|NN{<center>Is high message<br/>throughput, e.g.<br/>500 msg/s,<br/>expected?</center>}
+NY-->|Yes|NYY[SQL Server]
+NY-->|No|NYN[<center>RabbitMQ/<br/>MSMQ/<br/>SQL Server</center>]
+NN-->|Yes|NNY[<center>RabbitMQ/<br/>MSMQ</center>]
+NN-->|No|NNN{<center>Is business<br/>data stored<br/>in SQL Server?</center>}
+NNN-->|Yes|NNNY[SQL Server]
+NNN-->|No|NNNN[<center>RabbitMQ/<br/>MSMQ/<br/>SQL Server</center>]
+```
 
 
 ## Learning
