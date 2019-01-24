@@ -7,6 +7,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Unity" Version="9.*" />
-    <PackageReference Include="Unity.Container" Version="5.*" />
+    <PackageReference Include="Unity.Container" Version="5.8.*" />
   </ItemGroup>
 </Project>
