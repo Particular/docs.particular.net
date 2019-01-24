@@ -28,7 +28,7 @@ Each of the following sections describes the advantages and disadvantages of eac
 * [Azure Storage Queues](#azure-storage-queues)
 * [SQL Server](#sql-server)
 * [RabbitMQ](#rabbitmq)
-* [Amazon SQS](#amazonsqs)
+* [Amazon SQS](#amazon-sqs)
 
 For transports which use a cloud hosted queueing technology, the quality of the network connection between the applications and cloud provider is important. If the connection is problematic, it may not be possible to send messages. For example, this may result in problems capturing data from a user interface. If applications are running the same data centre as the queueing technology, this risk is mitigated.
 
