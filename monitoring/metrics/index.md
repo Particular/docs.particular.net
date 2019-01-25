@@ -45,7 +45,7 @@ A ServiceControl monitoring instance is much lighter than a regular ServiceContr
 
 ### Wire usage
 
-Each endpoint instance collects performance metrics which are buffered and then send. A single metrics message contains a batch of metrics values in a compact binary format. This makes the sending of performance metrics very lightweight.
+Each endpoint instance collects performance metrics which are buffered and then send. A single metrics message contains a batch of values written in a compact binary format. It makes reporting very lightweight.
 
 ### Storage usage
 
