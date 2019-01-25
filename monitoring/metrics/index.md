@@ -49,11 +49,11 @@ Each endpoint instance collects performance metrics which are buffered and then 
 
 ### Storage usage
 
-Metrics are processed by a Service Control Monitoring instance. A monitoring instance only requires RAM, it does not store any metrics on disk except the creation of a log file. Metrics data is stored in RAM in aggregated form for a maximum duration of one hour. A 100mb process can easily hold metric state for atleast 100 endpoint instances.
+Metrics are processed by a Service Control Monitoring instance. A monitoring instance stores data only in RAM. It does not store any data on disk except the creation of a log file. Metrics data are stored for at most one hour. A 100MB process can easily hold metric state for atleast 100 endpoint instances.
 
 ### CPU Usage
 
-The metrics service is only performing simple summing aggregation logic. The CPU resources 
+The metrics service is only performing simple summing aggregation logic. CPU usage is fairly low.
 
 
 ## Reporting metric data to other places
