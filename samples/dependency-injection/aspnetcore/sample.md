@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core Dependency Injection Integration
-component: core
+component: Core
 reviewed: 2018-09-05
 tags:
  - dependency injection
