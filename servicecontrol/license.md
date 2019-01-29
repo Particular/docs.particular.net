@@ -41,7 +41,7 @@ Note: The easiest way to find the configuration file is by launching the Service
 <add key="NServiceBus/LicensePath" value="d:\NServiceBus\License\License.xml" />
 ```
 
-Note: [This is the same setting to configure a license path for any NServiceBus 5 endpoint](https://docs.particular.net/nservicebus/licensing/?version=core_5#license-management-using-app-config-appsettings).
+Note: [This is the same setting to configure a license path for any NServiceBus 5 endpoint](/nservicebus/licensing/?version=core_5#license-management-using-app-config-appsettings).
 
 
 ## Using other platform tools
