@@ -41,7 +41,7 @@ NOTE: [Monitoring NServiceBus solutions: Getting started](/tutorials/monitoring-
 
 ## Performance impact on system resources
 
-A ServiceControl monitoring instance is much lighter than a regular ServiceControl instance. We would still advice not to host a monitoring instance on the same machine that is hosting any production endpoint instances.
+A ServiceControl monitoring instance is much lighter than a regular ServiceControl instance. It is not recommended to host a monitoring instance on the same machine that is hosting any production endpoint instances.
 
 ### Wire usage
 
