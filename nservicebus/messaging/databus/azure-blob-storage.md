@@ -22,6 +22,7 @@ snippet: AzureDataBus
 
 Specify a value for the `TimeToBeReceived` property. For more details on how to specify this, see the article on [discarding old messages](/nservicebus/messaging/discard-old-messages.md).
 
+Alternatively, consider disabling Blob cleanup using Azure DataBus. Instead, use Durable Azure Function to perform this functionality.
 
 ## Configuration
 
