@@ -100,3 +100,10 @@ A: Yes.
 
 Q: Are commands affected by migration mode?
 A: No. Commands work the same way in both topologies and are not affected by migration.
+
+
+## Additional considerations
+
+When migrating from the legacy Azure Service Bus transport, not all configuration settings will be found with the new Azure Service Bus transport. Certain configuration option will not be found in the new transport as it has sensible and optimal settings configured by the transports and should not be altered.
+
+Particular Services Platform support for new transport was added in Service Control version 3 and later. 
