@@ -5,7 +5,7 @@ reviewed: 2019-01-29
 component: SqlPersistence
 ---
 
-The database schema is not compatible between the [NHibernate](/persistence/nhibernate) and [SQL](/persistence/slq) persisters.
+The database schema is not compatible between the [NHibernate](/persistence/nhibernate) and [SQL](/persistence/sql) persisters.
 
 *Sagas*: NHibernate stores sagas as a table structure while SQL Persistence stores saga state as a JSON BLOB, similar to a key/value store. Each saga type has its own table or table structure for both NHibernate and SQL Persistence.
 
