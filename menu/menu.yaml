@@ -543,6 +543,9 @@
       Title: Auditing Messages
   - Url: nservicebus/security
     Title: Security
+    Articles:
+    - Url: nservicebus/security/generating-encryption-keys
+      Title: Generating secure random strong encryption keys
   - Url: nservicebus/operations
     Title: Operations
     Articles:
