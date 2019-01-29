@@ -1,10 +1,11 @@
 ---
-title: Migrating from NHibernate to SQL persistence
-summary: NHibernate-based persistence for NServiceBus
+title: Migrating from NHibernate to SQL persister
+summary: Highlights differences in the database schema between the two persisters
+dateReviewed: 2019-01-29
 component: SqlPersistence
 ---
 
-The database schema is not compatible between the [NHibernate](/persistence/nhibernate) and [SQL](/persistence/slq) persistence.
+The database schema is not compatible between the [NHibernate](/persistence/nhibernate) and [SQL](/persistence/slq) persisters.
 
 *Sagas*: NHibernate stores sagas as a table structure while SQL Persistence stores saga state as a JSON BLOB, similar to a key/value store. Each saga type has its own table or table structure for both NHibernate and SQL Persistence.
 
