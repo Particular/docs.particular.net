@@ -29,7 +29,7 @@ partial: uow
 
 ### Multi hosting
 
-Sometimes you want to host multiple endpoints in a single process. You cannot share a single Ninject kernel with multiple endpoint instances. You need to create a child container. Ninject supports this with the [Ninject.Extensions.ChildKernel](https://github.com/ninject/Ninject.Extensions.ChildKernel) extension. Before you pass the kernel to NServiceBus you need to do `new ChildKernel(parentKernel)` and pass this new kernel instance.
+Multiple endpoints in a single process cannot share a single Ninject kernel. Each requires its own container instance or each requires its own child container. Ninject supports this with the [Ninject.Extensions.ChildKernel](https://github.com/ninject/Ninject.Extensions.ChildKernel) extension. Execute `new ChildKernel(parentKernel)` and pass this new kernel instance to NServiceBus.
 
 
 ### DependencyLifecycle Mapping
