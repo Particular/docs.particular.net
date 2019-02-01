@@ -1,4 +1,3 @@
-﻿// ReSharper disable RedundantJumpStatement
 namespace Core6
 {
     using System;
@@ -26,11 +25,12 @@ namespace Core6
     {
         static EndpointConfiguration endpointConfiguration = new EndpointConfiguration("someEndpoint");
 
-        #region InstallersRunWhenNecessaryCommandLine
 
         public static async Task Main(string[] args)
         {
-            var runInstallers = args.Any(x => x.ToLower() == "/runInstallers");
+            #region InstallersRunWhenNecessaryCommandLine
+                
+            var runInstallers = Environment.GetCommandLineArgs().Any(x => x.ToLower() == "/runInstallers");
 
             if (runInstallers)
             {
@@ -38,11 +38,11 @@ namespace Core6
                 // This will run the installers but not start the instance.
                 await Endpoint.Create(endpointConfiguration)
                     .ConfigureAwait(false);
-                return; // Exit application
+                Environment.Exit(0);
             }
+            
+            #endregion
         }
-
-        #endregion
     }
 
     class SwitchInstallersByMachineNameConvention
