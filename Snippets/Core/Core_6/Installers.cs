@@ -1,4 +1,4 @@
-﻿namespace Core6
+namespace Core6
 {
     using System;
     using System.Linq;
@@ -13,8 +13,8 @@
 
             endpointConfiguration.EnableInstallers();
 
-            // this will run the installers
-            await Endpoint.Start(endpointConfiguration)
+            // This will run the installers but not start the instance.
+            await Endpoint.Create(endpointConfiguration)
                 .ConfigureAwait(false);
 
             #endregion
@@ -25,19 +25,24 @@
     {
         static EndpointConfiguration endpointConfiguration = new EndpointConfiguration("someEndpoint");
 
-        #region InstallersRunWhenNecessaryCommandLine
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            var runInstallers = args.Any(x => x.ToLower() == "/runInstallers");
+            #region InstallersRunWhenNecessaryCommandLine
+                
+            var runInstallers = Environment.GetCommandLineArgs().Any(x => x.ToLower() == "/runInstallers");
 
             if (runInstallers)
             {
                 endpointConfiguration.EnableInstallers();
+                // This will run the installers but not start the instance.
+                await Endpoint.Create(endpointConfiguration)
+                    .ConfigureAwait(false);
+                Environment.Exit(0);
             }
+            
+            #endregion
         }
-
-        #endregion
     }
 
     class SwitchInstallersByMachineNameConvention

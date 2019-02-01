@@ -1,4 +1,4 @@
-﻿namespace Core5
+namespace Core5
 {
     using System;
     using System.Linq;
@@ -23,19 +23,23 @@
     {
         static BusConfiguration busConfiguration = new BusConfiguration();
 
-        #region InstallersRunWhenNecessaryCommandLine
 
         public static void Main(string[] args)
         {
-            var runInstallers = args.Any(x => x.ToLower() == "/runInstallers");
+            #region InstallersRunWhenNecessaryCommandLine
+                
+            var runInstallers = Environment.GetCommandLineArgs().Any(x => x.ToLower() == "/runInstallers");
 
             if (runInstallers)
             {
                 busConfiguration.EnableInstallers();
+                // This will run the installers but not start the instance.
+                Bus.Create(busConfiguration);
+                Environment.Exit(0);
             }
+            
+            #endregion
         }
-
-        #endregion
     }
 
     class SwitchInstallersByMachineNameConvention
