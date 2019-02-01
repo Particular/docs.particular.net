@@ -35,7 +35,7 @@ namespace Core5
                 busConfiguration.EnableInstallers();
                 // This will run the installers but not start the instance.
                 Bus.Create(busConfiguration);
-                Environment.Exit(0); // Make sure we stop so we do not accidentally start consuming messages
+                Environment.Exit(0);
             }
             
             #endregion
