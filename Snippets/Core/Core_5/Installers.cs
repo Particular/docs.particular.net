@@ -1,4 +1,3 @@
-﻿// ReSharper disable RedundantJumpStatement
 namespace Core5
 {
     using System;
@@ -24,22 +23,23 @@ namespace Core5
     {
         static BusConfiguration busConfiguration = new BusConfiguration();
 
-        #region InstallersRunWhenNecessaryCommandLine
 
         public static void Main(string[] args)
         {
-            var runInstallers = args.Any(x => x.ToLower() == "/runInstallers");
+            #region InstallersRunWhenNecessaryCommandLine
+                
+            var runInstallers = Environment.GetCommandLineArgs().Any(x => x.ToLower() == "/runInstallers");
 
             if (runInstallers)
             {
                 busConfiguration.EnableInstallers();
                 // This will run the installers but not start the instance.
                 Bus.Create(busConfiguration);
-                return; // Exit application
+                Environment.Exit(0); // Make sure we stop so we do not accidentally start consuming messages
             }
+            
+            #endregion
         }
-
-        #endregion
     }
 
     class SwitchInstallersByMachineNameConvention
