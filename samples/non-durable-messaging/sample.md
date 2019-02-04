@@ -1,5 +1,5 @@
 ---
-title: Non-Durable messaging on MSMQ
+title: Non-durable messaging on MSMQ
 summary: Sending a non-durable message by using the Express Attribute.
 reviewed: 2019-02-04
 component: MsmqTransport
@@ -50,4 +50,4 @@ View the properties of the queues and notice they set to be non-transactional. T
 
 ### Viewing the message
 
-Start the `Sender` project on it own it will send a message to the `Samples.MessageDurability.Receiver` queue. Open this message and notice the `Recoverable` property is `false`.
+Start the `Sender` project on its own and it will send a message to the `Samples.MessageDurability.Receiver` queue. Open this message and notice the `Recoverable` property is `false`.
