@@ -22,3 +22,9 @@ partial: headers
 ## Configuring Message Forwarding
 
 partial: config
+
+## Forwarding a message from the handler
+
+When forwarding all messages successfully processed by an endpoint is not desired individual messages can be forwarded directly from the handler:
+
+snippet: ForwardingMessageFromHandler
