@@ -2,15 +2,14 @@
 title: Steps, Stages and Connectors
 summary: The pipeline is composed of a number of Stages that communicate via Connectors
 component: Core
-reviewed: 2017-03-30
-versions: '[5.0,)'
+reviewed: 2019-02-04
 tags:
 - Pipeline
 related:
 - nservicebus/pipeline/manipulate-with-behaviors
 ---
 
-NServiceBus has the concept of a pipeline execution order that is executed when a message is received or dispatched. A *pipeline* refers to the series of actions taken when an incoming message is processed or an outgoing message is sent. In Versions 5 and above, this pipeline has been made a first level concept and exposed for extensibility. This allows users to take full control of the incoming and outgoing message processing.
+NServiceBus has the concept of a pipeline execution order that is executed when a message is received or dispatched. A *pipeline* refers to the series of actions taken when an incoming message is processed or an outgoing message is sent. This allows users to take full control of the incoming and outgoing message processing.
 
 There are two explicit pipelines: one for the outgoing messages and one for the incoming messages.
 
