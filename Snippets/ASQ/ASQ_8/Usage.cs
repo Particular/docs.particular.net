@@ -2,6 +2,7 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using NServiceBus;
 
 [SuppressMessage("ReSharper", "UnusedMember.Local")]
@@ -42,22 +43,22 @@ class Usage
         #endregion
     }
 
-    void SendToMulitpleAccountUsingConnectionSTring(IEndpointInstance endpointInstance)
+    async Task SendToMulitpleAccountUsingConnectionSTring(IEndpointInstance endpointInstance)
     {
         #region storage_account_routing_send_options_full_connectionstring
 
-        endpointInstance.Send(
+        await endpointInstance.Send(
             destination: "sales@DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];",
             message: new MyMessage());
 
         #endregion
     }
 
-    void SendToMulitpleAccountUsingAlias(IEndpointInstance endpointInstance)
+    async Task SendToMulitpleAccountUsingAlias(IEndpointInstance endpointInstance)
     {
         #region storage_account_routing_send_options_alias
 
-        endpointInstance.Send(
+        await endpointInstance.Send(
             destination: "sales@accountName",
             message: new MyMessage());
 
@@ -80,11 +81,11 @@ class Usage
         #endregion
     }
 
-    void SendToMulitpleAccountUsingRegisterdEndpoint(IEndpointInstance endpointInstance)
+    async Task SendToMulitpleAccountUsingRegisterdEndpoint(IEndpointInstance endpointInstance)
     {
         #region storage_account_routing_send_registered_endpoint
 
-        endpointInstance.Send(message: new MyMessage());
+        await endpointInstance.Send(message: new MyMessage());
 
         #endregion
     }
