@@ -1,6 +1,6 @@
 ---
 title: Learning Transport
-reviewed: 2017-05-01
+reviewed: 2019-02-04
 component: LearningTransport
 related:
 - transports
@@ -9,12 +9,12 @@ related:
 
 include: learning-warning
 
-This sample show how to use the Learning Transport and how the messages are persisted to the file system.
+This sample shows how to use the [Learning Transport](/transports/learning/) and how the messages are persisted to the file system.
 
 
 ## Sample Structure
 
-The sample has two endpoint, `Endpoint1` and `Endpoint2`. Both are configured to use the Learning Transport:
+The sample has two endpoints, `Endpoint1` and `Endpoint2`. Both are configured to use the Learning Transport:
 
 snippet: UseTransport
 
@@ -59,7 +59,7 @@ Note that a `.learningtransport` directory exists at the solution root. It will 
 
 ### Send a message from Endpoint1
 
-Press `S` to send a message or `D` to send a message with a delay.
+Press <kbd>S</kbd> to send a message or <kbd>D</kbd> to send a message with a delay.
 
 The `.learningtransport` directory will now have an additional structure that stores the message for `Endpoint2`. The structure will differ slightly based if the message is delayed or not.
 
