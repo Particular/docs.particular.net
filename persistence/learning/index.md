@@ -1,7 +1,7 @@
 ---
 title: Learning Persistence
 component: LearningPersistence
-reviewed: 2017-05-01
+reviewed: 2019-02-04
 related:
  - samples/saga/simple
  - transports/learning
@@ -13,7 +13,7 @@ include: learning-persistence-description
 
 include: learning-warning
 
-Added in Version 6.3.
+Added in NServiceBus 6.3.
 
 include: learning-usages
 
