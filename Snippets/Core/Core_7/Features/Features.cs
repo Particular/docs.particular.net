@@ -64,10 +64,10 @@
     {
         public FeatureWithDefaults()
         {
-            Defaults(s =>
+            Defaults(settings =>
             {
-                s.Set("Key", "Value");
-                s.SetDefault("OtherKey", 42);
+                settings.Set("Key", "Value");
+                settings.SetDefault("OtherKey", 42);
             });
         }
 
