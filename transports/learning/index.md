@@ -7,6 +7,7 @@ related:
  - persistence/learning
 redirects:
  - nservicebus/learning-transport
+ - samples/learning-transport
 ---
 
 The Learning Transport simulates queuing infrastructure by storing all message actions in the local file system. All files and directories are relative to the current solution directory.
