@@ -2,7 +2,7 @@
 title: Unit of Work
 summary: Implementing a unit of work in NServiceBus
 component: Core
-reviewed: 2017-03-30
+reviewed: 2019-02-05
 redirects:
  - nservicebus/unit-of-work-in-nservicebus
 related:
@@ -39,6 +39,6 @@ partial: nulltask
 
 ### Registering custom unit of work
 
-After implementing a `IManageUnitsOfWork`, it needs to be registered:
+After implementing an `IManageUnitsOfWork`, it needs to be registered:
 
 snippet: InstancePerUnitOfWorkRegistration
