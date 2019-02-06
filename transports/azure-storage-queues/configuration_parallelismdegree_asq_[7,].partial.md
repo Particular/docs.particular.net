@@ -2,7 +2,7 @@
 
 The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it.
 
-Starting from version 7.5.5 of the transport dynamically calculate the value based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
+Starting from version 7.5.6 or 8.1.3 of the transport dynamically calculate the value based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
 
 |`MaxConcurrency` | `DegreeOfReceiveParallelism` | `Batch Size` |
 | :-: | :-:| :-:
@@ -22,7 +22,7 @@ Starting from version 7.5.5 of the transport dynamically calculate the value bas
 
 When the `DegreeOfReceiveParallelism` is explictely set the batch size is dynamically adjusted to fulfill the endpoints message processing limits if possible up to the allowed maximum of 32. For example with a maximum concurrency set to `100` and a `DegreeOfReceiveParallelism` fixed to `3` an underfetching of `4` messages might occur. Therefore it is generally advised to tweak both `DegreeOfReceiveParallelism` in aligned with the `BatchSize` if required. In the majority of cases the dynamic calculation should be sufficient and no adjustement is required.
 
-Versions starting from 7.x to 7.5.4 dynamically calculate the value based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
+Versions starting from 7.x to 7.5.5 or 8.x to 8.1.2 dynamically calculate the value based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
 
 ```
 Degree of parallelism = square root of MaxConcurrency
