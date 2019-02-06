@@ -42,7 +42,7 @@ snippet: message-definition
 
 ## Running the solution
 
-Run the solution with both projects as startup project and not the output that the handler in Receiver successfully processes the message
+Run the solution with both projects as startup project and note the output that the handler in Receiver successfully processes the message
 
 ### Look at the queue
 
