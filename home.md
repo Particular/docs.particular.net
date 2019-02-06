@@ -118,7 +118,7 @@ span.blue {
   <a href="/nservicebus/"><img src="/content/images/menu/nservicebus-icon.svg" width="47" height="47"><span class="productlink">NServiceBus</span></a>
   <span class="pull-right">
     <a class="btn btn-info btn-lg hidden-sm hidden-xs" href="https://github.com/Particular/docs.particular.net/issues/new" target="_blank"><em class="glyphicon glyphicon-comment"></em> Feedback</a>
-    <a type="button" class="btn btn-primary btn-lg" href="/nservicebus/">Documentation topics</a>
+    <a type="button" class="btn btn-primary btn-lg" href="/get-started/">Documentation topics</a>
   </span>
 </div>
 </div>
