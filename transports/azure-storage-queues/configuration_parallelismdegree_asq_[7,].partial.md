@@ -2,7 +2,7 @@
 
 The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it.
 
-The value is dynamically calculated based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
+Versions starting from 7.x to 7.5.4 dynamically calculate the value based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
 
 ```
 Degree of parallelism = square root of MaxConcurrency
@@ -19,6 +19,24 @@ Degree of parallelism = square root of MaxConcurrency
 | 1000 | 32 [max] |
 
 This means that `DegreeOfReceiveParallelism` message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example using a `BatchSize` of 32 (Default) and parallelism set to 10 will allow the transport to receive 320 messages from the storage queue at the same time.
+
+Starting from version 7.5.5 of the transport dynamically calculate the value based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
+
+|`MaxConcurrency` | `DegreeOfReceiveParallelism` | `Batch Size` |
+| :-: | :-:| :-:
+| 1 | 1 | 1 |
+| 2 | 1 | 2 |
+| 3 | 1 | 3 |
+| ... | 1 | ... |
+| 10 | 1 | 10 |
+| ... | 1 | ... |
+| 20 | 1 | 20 |
+| ... | 1 | ... |
+| 32 | 1 | 32 |
+| 50 | 2 | 32 / 18 |
+| 100 | 4 | 32 / 32 / 32 / 4 |
+| 200 | 7 | 32 / 32 / 32 / 32 / 32 / 32 / 32 / 8 |
+| 1000 | 31 | 31 x 32 / 8 |
 
 WARNING: Changing the value of `DegreeOfReceiveParallelism` will influence the total number of storage operations against Azure Storage Services and can result in higher costs.
 
