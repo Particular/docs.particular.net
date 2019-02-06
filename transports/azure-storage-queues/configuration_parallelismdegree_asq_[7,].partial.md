@@ -1,5 +1,3 @@
-#### DegreeOfReceiveParallelism
-
 The number of parallel receive operations that the transport is issuing against the storage queue to pull messages out of it.
 
 If not specified explicitly via configuratin API the value is calculated at startup based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md), using the following equation:
