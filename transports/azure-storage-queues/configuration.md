@@ -51,9 +51,15 @@ Defaults: 30000 ms (i.e. 30 seconds)
 
 #### BatchSize
 
+partial: parallelismoverrides
+
 The number of messages that the transport tries to pull at once from the storage queue. Depending on the expected load, the value should vary between 1 and 32 (the maximum).
 
 partial: batchsize
+
+#### DegreeOfReceiveParallelism
+
+partial: parallelismoverrides
 
 partial: parallelismdegree
 
