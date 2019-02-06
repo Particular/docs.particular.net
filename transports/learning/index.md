@@ -1,7 +1,7 @@
 ---
 title: Learning Transport
 component: LearningTransport
-reviewed: 2017-05-01
+reviewed: 2019-02-06
 related:
  - persistence/learning
 redirects:
@@ -21,9 +21,7 @@ Currently [ServiceControl](/servicecontrol/) (and hence [ServicePulse](/servicep
 
 ### Publish and subscribe
 
-The learning transport simulates a [multicast transport](/transports/types.md#multicast-enabled-transports) this means that routing configuration isn't needed in order to publish events. 
-
-See the [native pubsub](/nservicebus/messaging/publish-subscribe/#mechanics-native) documentation for further details.
+The learning transport simulates a [multicast transport](/transports/types.md#multicast-enabled-transports), which means that routing configuration isn't needed in order to publish events. See the [native publish/subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-native) documentation for further details.
 
 ## Usage
 
@@ -47,7 +45,7 @@ Note: Production transports will run with higher concurrency setting by default
 
 By default all data is stored in a `.learningtransport` directory. The endpoint will traverse the folder hierarchy upwards in search for a `.learningtransport` directory or create one at the solution root folder if no matching folder has been found before.
 
-To configure the storage location:
+To manually configure the storage location:
 
 snippet: StorageDirectory
 
@@ -94,7 +92,7 @@ When a message fails processing both its metadata and body files will be moved t
 
 ### Endpoint Structure
 
-Each endpoint will have a corresponding directory under `.learningtransport` with the following structure
+Each endpoint will have a corresponding directory under `.learningtransport` with the following structure:
 
 
 #### Metadata files
