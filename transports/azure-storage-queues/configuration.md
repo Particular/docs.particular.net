@@ -55,13 +55,11 @@ The number of messages that the transport tries to pull at once from the storage
 
 partial: batchsize
 
+partial: parallelismdegree
 
 partial: serialization
 
-partial: parallelismdegree
-
 partial: config
-
 
 ## Connection strings
 
