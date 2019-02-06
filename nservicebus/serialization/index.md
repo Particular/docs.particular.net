@@ -22,6 +22,11 @@ The [Newtonsoft JSON Serializer](newtonsoft.md) provides an effective general-pu
 
  * [Newtonsoft](newtonsoft.md)
  * [Xml](xml.md)
+ * [JSON/BSON](json.md) (deprecated in NServiceBus versions 7 and above)
+ * [Binary](binary.md) (deprecated in NServiceBus versions 6 and above)
+ 
+### Community-supported serializers
+
  * [ProtoBuf-Net](protobufnet.md)
  * [ProtoBuf-Google](protobufgoogle.md)
  * [MessagePack](messagepack.md)
@@ -32,8 +37,6 @@ The [Newtonsoft JSON Serializer](newtonsoft.md) provides an effective general-pu
  * [Utf8Json](utf8json.md)
  * [Bond](bond.md)
  * [ZeroFormatter](zeroformatter.md)
- * [JSON/BSON](json.md) (deprecated in NServiceBus versions 7 and above)
- * [Binary](binary.md) (deprecated in NServiceBus versions 6 and above)
 
 
 ### Using an existing serializer
