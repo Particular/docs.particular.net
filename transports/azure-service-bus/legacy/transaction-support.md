@@ -1,6 +1,6 @@
 ---
 title: Transaction Support
-reviewed: 2017-04-05
+reviewed: 2019-02-06
 component: ASB
 versions: '[7,)'
 tags:
