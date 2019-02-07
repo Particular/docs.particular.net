@@ -38,4 +38,4 @@ When transactions are disabled in NServiceBus then the transport uses the Azure 
 
 The message is deleted from the queue directly after the receive operation completes, before it is processed, meaning that it's not possible to retry that message in case of processing failures. As transient exceptions occur regularly when integrating with online services, disabling retries when in unreliable mode is not recommended. This mode should only be used in very specific situations, when message loss is acceptable.
 
-NOTE: For a full explanation of the transactional behavior in Azure, refer to [Understanding internal transactions and delivery guarantees](understanding-transactions-and-delivery-guarantees.md).
+NOTE: For a full explanation of the transactional behavior in Azure, refer to [Understanding internal transactions and delivery guarantees](/transports/azure-service-bus/legacy/understanding-transactions-and-delivery-guarantees.md).
