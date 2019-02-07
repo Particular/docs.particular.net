@@ -42,7 +42,9 @@ snippet: message-definition
 
 ## Running the solution
 
-Run the solution with both projects as startup project and note the output that the handler in Receiver successfully processes the message
+To run the application, set both projects as startup and note the output that the handler in Receiver successfully processes the message. 
+
+Note: The first time the application runs, it will automatically create the queues for you, but since the reciever queue need to exist first, if you encounter an error saying 'The destination queue could not be found', just re-run the application. 
 
 ### Look at the queue
 
@@ -50,4 +52,4 @@ View the properties of the queues and notice they set to be non-transactional. T
 
 ### Viewing the message
 
-Start the `Sender` project on its own and it will send a message to the `Samples.MessageDurability.Receiver` queue. Open this message and notice the `Recoverable` property is `false`.
+Start the `Sender` project on its own and it will send a message to the `Samples.MessageDurability.Receiver` queue.
