@@ -6,4 +6,5 @@
 | [RabbitMQ](/transports/rabbitmq/transactions-and-delivery-guarantees.md) | &#10006; | &#10006; | &#10004; | &#10004; |
 | [Amazon SQS](/transports/sqs/transaction-support.md) | &#10006; | &#10006; | &#10004; | &#10004; |
 | [Azure Storage Queues](/transports/azure-storage-queues/transaction-support.md)| &#10006; | &#10006; | &#10004; | &#10004; |
+| [Azure Service Bus](/transports/azure-service-bus/transaction-support.md) | &#10006; | &#10004; | &#10004; | &#10004; |
 | [Azure Service Bus (Legacy)](/transports/azure-service-bus/legacy/transaction-support.md) | &#10006; | &#10004; | &#10004; | &#10004; |

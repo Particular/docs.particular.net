@@ -658,6 +658,8 @@
       Title: Configuration
     - Url: transports/azure-service-bus/compatibility
       Title: Backwards Compatibility
+    - Url: transports/azure-service-bus/transaction-support
+      Title: Transaction Support
     - Url: transports/azure-service-bus/operational-scripting
       Title: Operational Scripting
   - Url: transports/azure-service-bus/legacy

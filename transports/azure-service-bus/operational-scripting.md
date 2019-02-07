@@ -4,7 +4,7 @@ summary: Explains how to create queues and topics with the Azure Service Bus tra
 component: ASBS
 tags:
  - Azure
-reviewed: 2018-06-21
+reviewed: 2019-02-07
 ---
 
 ## Operational Scripting

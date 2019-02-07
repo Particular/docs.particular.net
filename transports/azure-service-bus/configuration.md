@@ -4,7 +4,7 @@ summary: Explains the configuration options
 component: ASBS
 tags:
  - Azure
-reviewed: 2018-06-27
+reviewed: 2019-02-07
 ---
 
 ## Entity creation
