@@ -9,7 +9,7 @@ tags:
 redirects:
  - nservicebus/messaging/transactions
  - nservicebus/transports/transactions
-reviewed: 2017-08-08
+reviewed: 2019-02-07
 related:
  - nservicebus/azure/understanding-transactionality-in-azure
 ---
