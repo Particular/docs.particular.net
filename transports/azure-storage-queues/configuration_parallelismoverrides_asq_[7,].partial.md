@@ -1,0 +1,1 @@
+WARNING: `DegreeOrReceiverParallelism` and `BatchSize` should be both specified when explicitly set. Otherwise, the value not specified will be adjusted so that the number of in-flight messages processed in parallel does not exceed `MaxConcurrency`.
