@@ -5,8 +5,8 @@ component: Core
 reviewed: 2018-10-04
 redirects:
  - nservicebus/messaging/express-messages
-related:
  - samples/non-durable-messaging
+related:
  - transports/msmq/connection-strings
 ---
 
