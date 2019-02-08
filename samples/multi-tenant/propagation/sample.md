@@ -16,6 +16,13 @@ This sample shows how to configure the NServiceBus pipeline to automatically pro
 ## Code Walk Through
 
 
+### Attaching the tenant information to the message
+
+In most cases the best way to attach tenant information message is by using a custom message header. Following code demonstrates how to set a custom header `tenant_id`.
+
+snippet: SetTenantId
+
+
 ### Creating the Behaviors
 
 There are two behaviors required to propagate the tenant information.

@@ -26,10 +26,14 @@ class Program
             Console.ReadLine();
             var tenantId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
 
+            #region SetTenantId
+
             var options = new SendOptions();
             options.SetHeader("tenant_id", tenantId);
             await endpointInstance.Send(new PlaceOrder(), options)
                 .ConfigureAwait(false);
+
+            #endregion
         }
     }
 }
