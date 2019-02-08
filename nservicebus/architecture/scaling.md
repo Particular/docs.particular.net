@@ -1,6 +1,6 @@
 ---
 title: Scaling with NServiceBus
-summary: NServiceBus provides several options to scale out your system
+summary: NServiceBus provides several options to scale out a system
 ---
 
 This document describes how to scale-out endpoints using NServiceBus. Reasons to scale out can be to either achieve a higher message throughput or high availability.
@@ -23,10 +23,6 @@ One message-type might take considerably longer to process than other message-ty
 
 Separating the slower messages from the faster messages mean a higher throughput for the faster messages. For this reason it can be beneficial to include messages and/or handlers in separate assemblies, making it easier to separate them from others.
 
-**<u>Question: can the following be moved to its own separate paragraph with title?</u>**
-
-As an migration scenario, deploy a new logical endpoint with message handlers that have been separated. Once deployed, you can reconfigure other endpoints to send messages to this new endpoint. Once all endpoints have been properly configured and rerouted messages are no longer in any queue underway to the old endpoint, you can remove the message handlers from the old endpoint. This way there is no downtime and no messages accidentally arrive at an incorrect destination.
-
 ### Scaling out to different nodes
 
 An endpoint can reach a maximum message throughput when resources are completely utilized. An example can be the CPU or hard drive I/O. In these cases it can be beneficial to scale out an endpoint to different nodes.
@@ -35,9 +31,9 @@ However, a centralized datastore like SQL Server can also be a bottleneck. It sh
 
 ### Competing Consumers
 
-The easiest to scale out is with [brokered transports](/transports/types#broker-transports), as those can make use of the *[competing consumer pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html)*. This means you can deploy multiple instances of an endpoint that all start processing messages from the same queue. When a message is delivered, any of the endpoint instances could potentially process it. The NServiceBus transport will try to accomplish that only one instance will actually process the message. Be aware for [the need for idempotency](/nservicebus/azure/ways-to-live-without-transactions#the-need-for-idempotency).
+The easiest to scale out is with [brokered transports](/transports/types#broker-transports), as those can make use of the *[competing consumer pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html)*. This is done by deploying multiple instances of an endpoint that will all start processing messages from the same queue. When a message is delivered, any of the endpoint instances could potentially process it. The NServiceBus transport will try to accomplish that only one instance will actually process the message. Be aware for [the need for idempotency](/nservicebus/azure/ways-to-live-without-transactions#the-need-for-idempotency).
 
-In the image below you can see the `ClientUI` sending a command message to the logical endpoint `Sales`. But with messaging, the message is actually sent to the queue of `Sales`. With two competing consumers for the `Sales` endpoint, both could potentially process the incoming message.
+The image below shows the component `ClientUI` sending a command message to the logical endpoint `Sales`. But with messaging, the message is actually sent to the queue of `Sales`. With two competing consumers for the `Sales` endpoint, both could potentially process the incoming message.
 
 ![competing-consumer](C:\Users\dvdst\Desktop\competing-consumer.png)
 
@@ -67,4 +63,3 @@ Execute the following steps to upgrade an endpoint without downtime:
 3. Bring the upgraded version of `Finance` back up so it can start processing version 1 messages.
 4. Take down the still running version 1 of `Finance` and upgrade it as well to version 2 of `Finance.Messages`
 5. Update `Sales` to also have message assembly `Finance.Messages` version 2.
-
