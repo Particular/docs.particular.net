@@ -8,7 +8,7 @@ component: Core
 
 ## Introduction
 
-This sample shows how to configure the dependency injection infrastructure built into NServiceBus to instantiate and inject tenant-aware components. Such approach allows the code in the handler to focus on the actual business logic without having to deal with multi-tenant aspect of the problem.
+This sample shows how to configure the dependency injection infrastructure built into NServiceBus to instantiate and inject tenant-aware components. Such approach allows the code in the handlers to focus on the actual business logic without having to deal with multi-tenant aspects of the problem.
 
 This sample simulates a multi-tenant solution where the session provided to handlers is connected to individual tenant databases based on the value of a `tenant` header on the incoming message.
 
