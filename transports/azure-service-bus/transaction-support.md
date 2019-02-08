@@ -22,7 +22,7 @@ include: send-atomic-with-receive-note
 
 The `SendsAtomicWithReceive` guarantee is achieved by setting the `ViaEntityPath` on outbound message senders. Its value is set to the receiving queue.
 
-If the `ViaEntityPath` is not empty, then messages will be added to the receive queue. The messages will be forwarded to their destinations (inside the broker) only when the complete operation is called on the received brokered message. The message won't be forwarded if the lock duration limit is exceeded (30 seconds by default) or if the message is explicitly abandoned.
+If the `ViaEntityPath` is not empty, then messages will be added to the receive queue. The messages will be forwarded to their destinations (inside the broker) only when the complete operation is called on the received brokered message. The message won't be forwarded if the lock duration limit is exceeded (5 minutes by default) or if the message is explicitly abandoned.
 
 
 ## Receive Only
