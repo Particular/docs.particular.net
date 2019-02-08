@@ -25,6 +25,6 @@ partial: config
 
 ## Forwarding a message from the handler
 
-When forwarding all messages successfully processed by an endpoint is not desired individual messages can be forwarded directly from the handler:
+Individual messages can be forwarded directly from the handler if the desired behavior is not to forward all messages that were successfully processed by an endpoint:
 
 snippet: ForwardingMessageFromHandler

@@ -27,7 +27,7 @@ Monitoring -- Endpoint<br>performance<br>data --> ServicePulse
 ```
 
 
-## Set up Metrics
+## Set up metrics
 
 To enable collecting metrics in an environment:
 
@@ -41,19 +41,19 @@ NOTE: [Monitoring NServiceBus solutions: Getting started](/tutorials/monitoring-
 
 ## Performance impact on system resources
 
-A ServiceControl monitoring instance is much lighter than a regular ServiceControl instance. It is not recommended to host a monitoring instance on the same machine that is hosting any production endpoint instances.
+A ServiceControl monitoring instance is more lightweight than a regular ServiceControl instance. Nevertheless, it is not recommended to host a monitoring instance on the same machine that is hosting production endpoint instances.
 
 ### Wire usage
 
-Each endpoint instance collects performance metrics which are buffered and then send. A single metrics message contains a batch of values written in a compact binary format. It makes reporting very lightweight.
+Each endpoint instance collects performance metrics which are buffered and then sent. A single metrics message contains a batch of values written in a compact binary format, making reporting very lightweight.
 
 ### Storage usage
 
-Metrics are processed by a Service Control Monitoring instance. A monitoring instance stores data only in RAM. It does not store any data on disk except the creation of a log file. Metrics data are stored for at most one hour. A 100MB process can easily hold metric state for atleast 100 endpoint instances.
+Metrics are processed by a Service Control Monitoring instance. A monitoring instance stores data only in RAM. It does not store data on disk except for a log file. Metrics data are stored for at most one hour. A 100MB process can hold state for at least 100 endpoint instances.
 
-### CPU Usage
+### CPU usage
 
-The metrics service is only performing simple summing aggregation logic. CPU usage is fairly low.
+The metrics service is only performing simple summing aggregation logic. CPU usage is low.
 
 
 ## Reporting metric data to other places

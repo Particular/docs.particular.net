@@ -31,7 +31,7 @@ Import-ServiceControlLicense <LicenseFile>
 
 ## License from file system
 
-Instead of importing the license in the registry it is also possible to load the license from the file system but this needs to be done manually. This allows the license to be loaded from for example a central network share instead of the registry.
+It is also possible to load the license from the file system but this must be done manually. This allows the license to be loaded from (for example) a central network share instead of the registry.
 
 Add the `NServiceBus/LicensePath` application setting to the `ServiceControl.exe.config` configuration file. 
 
@@ -41,7 +41,7 @@ Note: The easiest way to find the configuration file is by launching the Service
 <add key="NServiceBus/LicensePath" value="d:\NServiceBus\License\License.xml" />
 ```
 
-Note: [This is the same setting to configure a license path for any NServiceBus 5 endpoint](/nservicebus/licensing/?version=core_5#license-management-using-app-config-appsettings).
+Note: [This is the same setting to configure a license path for an NServiceBus 5 endpoint](/nservicebus/licensing/?version=core_5#license-management-using-app-config-appsettings).
 
 
 ## Using other platform tools
