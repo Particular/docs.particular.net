@@ -48,7 +48,7 @@ public class AcceptOrderController :
                 transportTransaction.Set(connection);
                 transportTransaction.Set(transaction);
                 options.GetExtensions().Set(transportTransaction);
-                await messageSession.Publish(message).ConfigureAwait(false);
+                await messageSession.Publish(message, options).ConfigureAwait(false);
 
                 await dataContext.SaveChangesAsync().ConfigureAwait(false);
                 transaction.Commit();
