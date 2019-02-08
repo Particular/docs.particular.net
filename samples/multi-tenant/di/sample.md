@@ -43,7 +43,7 @@ NOTE: The lifecycle has to be specified as `DependencyLifecycle.InstancePerUnitO
 
 ### Message handlers
 
-One of the benefits of a unit of work is that multiple handlers for the same message will share the same session and commit/rollback together. This is how the handlers look:
+One of the benefits of a unit of work is that multiple handlers for the same message will share the same session and commit/rollback together. This is how the handlers look like:
 
 snippet: message-handlers
 
