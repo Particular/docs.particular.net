@@ -14,7 +14,7 @@ class MyMessageHandler1 :
         await context.Store(new MyEntity())
             .ConfigureAwait(false);
 
-        log.Info($"{nameof(MyMessageHandler1)}({context.MessageId}) got UOW instance {context.GetSession()}");
+        log.Info($"{context.MessageId} got UoW instance {context.GetSession().GetHashCode()}");
     }
 }
 

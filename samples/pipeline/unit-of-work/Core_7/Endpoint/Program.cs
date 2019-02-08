@@ -29,14 +29,10 @@ class Program
         {
             key = Console.ReadKey();
 
-            for (var i = 1; i < 4; i++)
-            {
-                var options = new SendOptions();
-                options.SetHeader("tenant", "tenant" + i);
-                options.RouteToThisEndpoint();
-                await endpointInstance.Send(new MyMessage(), options)
-                    .ConfigureAwait(false);
-            }
+            var options = new SendOptions();
+            options.RouteToThisEndpoint();
+            await endpointInstance.Send(new MyMessage(), options)
+                .ConfigureAwait(false);
         }
 
         await endpointInstance.Stop()

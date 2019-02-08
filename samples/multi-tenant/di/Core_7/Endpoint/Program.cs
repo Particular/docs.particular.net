@@ -13,10 +13,13 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
 
         #region configuration
-        var sessionProvider = new MySessionProvider();
 
         var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register(new MyUowBehavior(sessionProvider), "Manages the session");
+        pipeline.Register(new MyUowBehavior(), "Manages the session");
+        endpointConfiguration.RegisterComponents(c =>
+        {
+            c.ConfigureComponent<MySession>(DependencyLifecycle.InstancePerUnitOfWork);
+        });
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -29,10 +32,14 @@ class Program
         {
             key = Console.ReadKey();
 
-            var options = new SendOptions();
-            options.RouteToThisEndpoint();
-            await endpointInstance.Send(new MyMessage(), options)
-                .ConfigureAwait(false);
+            for (var i = 1; i < 4; i++)
+            {
+                var options = new SendOptions();
+                options.SetHeader("tenant", "tenant" + i);
+                options.RouteToThisEndpoint();
+                await endpointInstance.Send(new MyMessage(), options)
+                    .ConfigureAwait(false);
+            }
         }
 
         await endpointInstance.Stop()

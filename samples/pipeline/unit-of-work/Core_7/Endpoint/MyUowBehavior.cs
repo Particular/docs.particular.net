@@ -15,9 +15,7 @@ class MyUowBehavior :
 
     public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {
-        var tenant = context.MessageHeaders["tenant"];
-
-        using (var session = await sessionProvider.Open(tenant).ConfigureAwait(false))
+        using (var session = await sessionProvider.Open().ConfigureAwait(false))
         {
             context.Extensions.Set<IMySession>(session);
 
