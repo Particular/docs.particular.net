@@ -2,7 +2,7 @@
 title: Upgrade Version 1 to 2
 summary: Instructions on how to upgrade NServiceBus.Callbacks Version 1 to 2.
 component: Callbacks
-reviewed: 2017-05-05
+reviewed: 2018-02-11
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
@@ -25,6 +25,6 @@ snippet: 1to2-Callbacks-ObjectCallbackResponse
 
 don't require a reference to the callbacks package. 
 
-For endpoints replying with int or enum callbacks the callbacks can be enabled in response-only mode like the following:
+For endpoints replying with int or enum results, the callbacks package can be enabled in response-only mode:
 
 snippet: 1to2-Callbacks-InstanceId-NoRequests
