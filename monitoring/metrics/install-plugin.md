@@ -36,7 +36,7 @@ It is recommended to [override the *host id* and *host display name* via NServic
 
 Note: Make sure that the `InstanceId` value is logically unique and human readable.
 
-A human readable value can be passed like in the following example:
+A human readable value can be passed in the following example:
 
 snippet: SendMetricDataToServiceControlHostId
 
