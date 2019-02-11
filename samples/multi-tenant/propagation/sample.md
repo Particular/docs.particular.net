@@ -37,7 +37,7 @@ snippet: StoreTenantId
 
 #### Propagating the tenant information to the outgoing messages
 
-The second behavior is responsible for attaching the tenant information header(s) to the outgoing messages based on the pipeline context. This behavior executes as part of the message send pipeline.
+The second behavior is responsible for attaching the tenant information header(s) to outgoing messages based on the pipeline context. This behavior executes as part of the message send pipeline.
 
 snippet: PropagateTenantId
 
