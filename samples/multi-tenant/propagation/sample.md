@@ -44,7 +44,7 @@ snippet: PropagateTenantId
 
 ### Registering the behaviors
 
-The following code is needed to register the behavior in the pipeline.
+The following code is needed to register the created behaviors in the pipeline.
 
 snippet: configuration
 
