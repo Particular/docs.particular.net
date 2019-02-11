@@ -53,7 +53,7 @@ snippet: configuration
 
 The `OrderPlaced` message handler in the Sales endpoint publishes an `OrderAccepted` event.
 
-snippet: message-handlers
+snippet: message-handler
 
 In addition to that, both `OrderAccepted` and `OrderPlaced` message handlers log the tenant ID header value extracted from the incoming message.
 
