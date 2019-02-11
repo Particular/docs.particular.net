@@ -30,7 +30,7 @@ Two behaviors are required to propagate the tenant information.
 
 #### Retrieving and storing the tenant information
 
-The first behavior is responsible for extracting the tenant information from a message header and placing it in the pipeline execution context bag. This behavior executes as part of the message receive pipeline.
+The first behavior is responsible for extracting the tenant information from the incoming message header, and placing it in the pipeline execution context bag. This behavior executes as part of the message receive pipeline.
 
 snippet: StoreTenantId
 
