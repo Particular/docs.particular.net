@@ -35,7 +35,7 @@ The easiest to scale out is with [brokered transports](/transports/types#broker-
 
 The image below shows the component `ClientUI` sending a command message to the logical endpoint `Sales`. But with messaging, the message is actually sent to the queue of `Sales`. With two competing consumers for the `Sales` endpoint, both could potentially process the incoming message.
 
-![competing-consumer](C:\Users\dvdst\Desktop\competing-consumer.png)
+![competing-consumer](competing-consumer.png)
 
 ### Sender Side Distribution
 
@@ -54,7 +54,7 @@ Upgrading an endpoint without stopping message processing, can be accomplished b
 
 The following image explains how this can be achieved.
 
-![upgrading-endpoint-instance](C:\Users\dvdst\Desktop\upgrading-endpoint-instance.jpg)
+![upgrading-endpoint-instance](upgrading-endpoint-instance.jpg)
 
 Execute the following steps to upgrade an endpoint without downtime:
 
