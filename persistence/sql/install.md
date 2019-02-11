@@ -19,7 +19,7 @@ snippet: ExecuteAtStartup
 NOTE: Note this is only recommended during development.
 
 
-## Script execution in higher enviroments
+## Script execution in higher environments
 
 In non-development environments, where the SQL persistence installation scripts have been executed as part of the deployment, it may be necessary to explicitly disable the SQL persistence installers if [standard installers](/nservicebus/operations/installers.md) needs to be used for other purposes.
 
