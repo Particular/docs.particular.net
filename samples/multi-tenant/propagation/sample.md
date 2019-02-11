@@ -25,7 +25,7 @@ snippet: SetTenantId
 
 ### Creating Behaviors
 
-There are two behaviors required to propagate the tenant information.
+Two behaviors are required to propagate the tenant information.
 
 
 #### Retrieving and storing the tenant information
