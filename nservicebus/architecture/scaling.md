@@ -41,14 +41,14 @@ The image below shows the component `ClientUI` sending a command message to the 
 
 Because of the federated nature of queues with MSMQ, with scaled out endpoints across different nodes, each node has its own physical queue. This makes it impossible to apply the *competing consumer pattern*. For this reason NServiceBus supports two options to scale out MSMQ endpoints across nodes.
 
-- [Sender Side Distribution](/transports/msmq/sender-side-distribution)
-- [Distributor](/transports/msmq/distributor/)
+- [Sender Side Distribution](/transports/msmq/sender-side-distribution.md)
+- [Distributor](/transports/msmq/distributor/index.md)
 
 Both have their advantages and disadvantages which can be found in the documentation.
 
 ## High Availability
 
-There are many ways to achieve high availability for endpoints using infrastructure with either on-premise or cloud based solutions. Those are out of scope for this document. A different reason to try to achieve high availability is to make sure an endpoint continues to process messages while upgrading it to a newer version of either the endpoint itself and/or its messages. For more information on how to do message versioning, see [this sample](/samples/versioning/).
+There are many ways to achieve high availability for endpoints using infrastructure with either on-premise or cloud based solutions. Those are out of scope for this document. A different reason to try to achieve high availability is to make sure an endpoint continues to process messages while upgrading it to a newer version of either the endpoint itself and/or its messages. For more information on how to do message versioning, see [this sample](/samples/versioning/sample.md).
 
 Upgrading an endpoint without stopping message processing, can be accomplished by also using the *competing consumer pattern*, without necessarily deploying multiple endpoint instances to different nodes. Meaning this can even be achieved by deploying two endpoint instances on the same node.
 
