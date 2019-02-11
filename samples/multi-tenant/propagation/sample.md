@@ -10,7 +10,7 @@ related:
 
 ## Introduction
 
-This sample shows how to configure the NServiceBus pipeline to automatically propagate tenant information to the downstream endpoints. The sample assumes that the tenant information is passed as a message header.
+This sample shows how to configure the NServiceBus pipeline to automatically propagate tenant information to downstream endpoints. The sample assumes that the tenant information is passed as a message header.
 
 
 ## Code Walk Through
