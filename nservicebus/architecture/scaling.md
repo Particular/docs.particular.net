@@ -17,7 +17,7 @@ Different ways to scale with NServiceBus are
 
 If message throughput is an issue, the first thing to consider is splitting up [message handlers](/nservicebus/handlers/) and [sagas](/nservicebus/sagas/) over multiple logical endpoints.
 
-One message-type might take considerably longer to process than other message-types. The faster processing messages might suffer in throughput because of the slower processing messages. A good way to monitor and detect this is by using the [ServicePulse monitoring](/monitoring/metrics/in-servicepulse) abilities.
+One message-type might take considerably longer to process than other message-types. The faster processing messages might suffer in throughput because of the slower processing messages. A good way to monitor and detect this is by using the [ServicePulse monitoring](/monitoring/metrics/in-servicepulse.md) abilities.
 
 Separating the slower messages from the faster messages mean a higher throughput for the faster messages. For this reason it can be beneficial to include messages and/or handlers in separate assemblies, making it easier to separate them from others.
 
@@ -29,7 +29,7 @@ However, a centralized datastore like SQL Server can also be a bottleneck. It sh
 
 ### Competing Consumers
 
-The easiest to scale out is with [brokered transports](/transports/types#broker-transports), as those can make use of the *[competing consumer pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html)*. This is done by deploying multiple instances of an endpoint that will all start processing messages from the same queue. When a message is delivered, any of the endpoint instances could potentially process it. The NServiceBus transport will try to accomplish that only one instance will actually process the message. Be aware for [the need for idempotency](/nservicebus/azure/ways-to-live-without-transactions#the-need-for-idempotency).
+The easiest to scale out is with [brokered transports](/transports/types.md#broker-transports), as those can make use of the *[competing consumer pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html)*. This is done by deploying multiple instances of an endpoint that will all start processing messages from the same queue. When a message is delivered, any of the endpoint instances could potentially process it. The NServiceBus transport will try to accomplish that only one instance will actually process the message. Be aware for [the need for idempotency](/nservicebus/azure/ways-to-live-without-transactions.md#the-need-for-idempotency).
 
 The image below shows the component `ClientUI` sending a command message to the logical endpoint `Sales`. But with messaging, the message is actually sent to the queue of `Sales`. With two competing consumers for the `Sales` endpoint, both could potentially process the incoming message.
 
