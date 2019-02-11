@@ -21,7 +21,7 @@ One message-type might take considerably longer to process than other message-ty
 
 Separating the slower messages from the faster messages mean a higher throughput for the faster messages. For this reason it can be beneficial to include messages and/or handlers in separate assemblies, making it easier to separate them from others.
 
-### Scaling out to different nodes
+## Scaling out to different nodes
 
 An endpoint can reach a maximum message throughput when resources are completely utilized. An example can be the CPU or hard drive I/O. In these cases it can be beneficial to scale out an endpoint to different nodes.
 
