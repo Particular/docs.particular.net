@@ -23,7 +23,7 @@ In most cases the best way to attach tenant information to messages is by using 
 snippet: SetTenantId
 
 
-### Creating the Behaviors
+### Creating Behaviors
 
 There are two behaviors required to propagate the tenant information.
 
