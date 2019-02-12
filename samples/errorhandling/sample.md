@@ -12,11 +12,15 @@ related:
 - nservicebus/recoverability
 ---
 
+
+
 include: recoverability-rename
 
 Run the sample **without debugging**.
 
-The message handler in both endpoints is set to throw an exception.
+The message handler in both endpoints is set to throw an exception, causing the handled message to end up in the error queue. The portable Particular Service Platform will list the messages arriving in the error queue.
+
+include: platformlauncher-windows-required
 
 snippet: handler
 
