@@ -2,7 +2,7 @@
 title: Sanitization with Azure Service Bus Transport
 summary: Sanitizing entity path/names with Azure Service Bus Transport.
 component: ASB
-reviewed: 2017-05-05
+reviewed: 2019-02-11
 related:
  - transports/azure-service-bus
  - transports/azure-service-bus/legacy/sanitization
@@ -29,12 +29,12 @@ This sample has two endpoints
 * `Publisher`
 * `Subscriber`
 
-snippet: SomeEvent
-
 
 ## Publisher
 
 `Publisher` publishes `SomeEvent`.
+
+snippet: SomeEvent
 
 
 ## Subscriber
@@ -51,7 +51,7 @@ snippet: SomeEvent
 
 #### Registering custom sanitization
 
-For the purpose of this sample, custom sanitization based on a SHA1 hashing algorithm will be used:
+For the purpose of this sample, custom sanitization based on a SHA1 hashing algorithm will be used to generate a valid rule name:
 
 snippet: Sha1SanitiazationStrategy
 
