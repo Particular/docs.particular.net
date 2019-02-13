@@ -12,14 +12,14 @@ SQL persistence outputs scripts to create needed database assets. It's recommend
 
 ## Script execution during development
 
-To streamline development SQL persistence will execute generated scripts at endpoint startup if installers are enbled.
+To streamline development SQL persistence will execute generated scripts at endpoint startup if installers are enabled.
 
 snippet: ExecuteAtStartup
 
 NOTE: Note this is only recommended during development.
 
 
-## Script execution in higher environments
+## Script execution in non-development environments
 
 In non-development environments, where the SQL persistence installation scripts have been executed as part of the deployment, it may be necessary to explicitly disable the SQL persistence installers if [standard installers](/nservicebus/operations/installers.md) needs to be used for other purposes.
 
@@ -67,6 +67,5 @@ snippet: ExecuteScriptsSqlServer
 snippet: ExecuteScriptsMySql
 
 partial: executescriptsoracle
-
 
 partial: executescriptspostgresql
