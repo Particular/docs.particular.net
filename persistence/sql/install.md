@@ -7,21 +7,21 @@ reviewed: 2017-10-29
 ---
 
 
-The SQL persistence enables creation of scripts that can be run as a part of a deployment process instead of as part of endpoint startup as with [standard installers](/nservicebus/operations/installers.md). See [Installer Workflow](installer-workflow.md) for more information.
+SQL persistence outputs scripts to create needed database assets. It's recommended to run those scripts as part of the deployment process. See [Installer Workflow](installer-workflow.md) for more information.
 
 
-## Script execution runs by default at endpoint startup
+## Script execution during development
 
-To streamline development SQL persistence installers are, by default, executed at endpoint startup, in the same manner as all other installers. 
+To streamline development SQL persistence will execute generated scripts at endpoint startup if installers are enabled.
 
 snippet: ExecuteAtStartup
 
-NOTE: Note that this is also a valid approach for higher level environments.
+NOTE: Note this is only recommended during development.
 
 
-## Optionally take control of script execution
+## Script execution in non-development environments
 
-However in higher level environment scenarios, where standard installers are being run, but the SQL persistence installation scripts have been executed as part of a deployment, it may be necessary to explicitly disable the SQL persistence installers executing while leaving standard installers enabled.
+In non-development environments, where the SQL persistence installation scripts have been executed as part of the deployment, it may be necessary to explicitly disable the SQL persistence installers if [standard installers](/nservicebus/operations/installers.md) needs to be used for other purposes.
 
 snippet: DisableInstaller
 
@@ -67,6 +67,5 @@ snippet: ExecuteScriptsSqlServer
 snippet: ExecuteScriptsMySql
 
 partial: executescriptsoracle
-
 
 partial: executescriptspostgresql
