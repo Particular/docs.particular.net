@@ -30,7 +30,7 @@ To get started, download the solution appropriate for your Visual Studio version
 
 ## Project structure
 
-The solution contains five projects. The **ClientUI**, **Sales**, and **Billing** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is an entry point in our system. The **Sales** and **Billing** endpoints, implemented as console applications, contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as POCO class files. A little further into the tutorial, the **Platform** project will provide a demonstration of the Particular Service Platform, but at the beginning of the tutorial we'll leave its code commented out, and return to it later.
+The solution contains five projects. The **ClientUI**, **Sales**, and **Billing** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is an entry point in our system. The **Sales** and **Billing** endpoints, implemented as console applications, contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as simple class files. A little further into the tutorial, the **Platform** project will provide a demonstration of the Particular Service Platform, but at the beginning of the tutorial we'll leave its code commented out, and return to it later.
 
 ![Solution Explorer view](solution-explorer.png "width=240")
 
