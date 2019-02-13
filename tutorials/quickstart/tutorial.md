@@ -128,7 +128,9 @@ Of course, there are other exceptions that may be harder to recover from than si
 
 ## Systemic failures
 
-A systemic failure is one that is simply unrecoverable, no matter how many times we retry. Just plain old bugs. Most of the time these kinds of failure require a redeploy with new code in order to fix. But what happens to the messages when this happens?
+A systemic failure is one that is simply unrecoverable, no matter how many times we retry. Usually these are just plain old bugs. Most of the time these kinds of failures require a redeployment with new code in order to fix. But what happens to the messages when this happens?
+
+NOTE: For a good introduction to different types of errors and how to handle them with message-based systems, see [But all my errors are severe!](https://particular.net/blog/but-all-my-errors-are-severe)
 
 Let's cause a systemic failure and see how we can use the Particular Service Platform tools to handle it.
 
