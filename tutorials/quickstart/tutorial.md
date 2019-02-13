@@ -123,25 +123,25 @@ NOTE: If you forgot to detach the debugger, you'll need to click the **Continue*
 
 Automatic retries allow us to avoid losing data or having our system left in an inconsistent state because of a random transient exception. We won't need to manually dig through the database to fix things anymore!
 
-Of course, there are other exceptions that may be harder to recover from than simple database deadlocks. Let's take a look at what happens when a systemic failure occurs.
+Of course, there are other exceptions that may be harder to recover from than simple database deadlocks. Let's see what happens when a systemic failure occurs.
 
 
 ## Systemic failures
 
 A systemic failure is one that is simply unrecoverable, no matter how many times we retry. Just plain old bugs. Most of the time these kinds of failure require a redeploy with new code in order to fix. But what happens to the messages when this happens?
 
-Let's cause the system to have a systemic failure, and then look at how we can use the Particular Service Platform tools to handle it.
+Let's cause a systemic failure and see how we can use the Particular Service Platform tools to handle it.
 
 First, let's simulate a systemic failure in the **Sales** endpoint:
 
 1. In the **Sales** endpoint, locate and open the **PlaceOrderHandler.cs** file.
-2. Uncomment the code inside the **ThrowFatalException** region shown here. This will cause an exception to be thrown every single time the `PlaceOrder` message is processed:
+2. Uncomment the code inside the **ThrowFatalException** region shown here. This will cause an exception to be thrown every time the `PlaceOrder` message is processed:
 
 snippet: ThrowFatalException
 
-3. In order to stop Visual Studio complaining about unreachable code, you'll need to comment out all the code in the `Handle` method past the `throw` statement.
+3. In the `Handle` method, comment out all the code past the `throw` statement so that Visual Studio doesn't show a warning about unreachable code.
 
-Next, let's enable the Particular Service Platform tools, and then see what they do.
+Next, let's enable the Particular Service Platform tools and see what they do.
 
 1. In the **Platform** project, locate and open the **Program.cs** file.
 2. Uncomment the code inside the **PlatformMain** region shown here. This will cause the platform to launch when we start our project.
@@ -154,13 +154,13 @@ Along with the windows from before, two new windows will now launch. The first i
 
 ![Particular Service Platform Launcher console app](platform-launcher-console.png)
 
-The purpose of this app is to host different tools within a sandbox environment, just for this solution. If you read through the log, it's finding free ports for different services to use, creating folders, and other related tasks, before finally (it may take several seconds) it launches ServicePulse in a new browser window:
+The purpose of this app is to host different tools within a sandbox environment, just for this solution. After a few seconds, the application launches ServicePulse in a new browser window:
 
 ![Service Pulse: Dashboard View](pulse-dashboard.png)
 
-From this screenshot we can see that ServicePulse is a tool that tracks the operational health of your system. It tracks **Hearbeats** from your messaging endpoints, ensuring that they are running and able to send messages. It tracks **Failed Messages** and allows you to retry them. It also supports **Custom Checks** allowing you to write code that checks the health of your external dependencies (such as connectivity to a web service or FTP server) so you can get a better idea of the overall health of your system.
+The screenshot shows how ServicePulse monitors the operational health of your system. It tracks **Hearbeats** from your messaging endpoints, ensuring that they are running and able to send messages. It tracks **Failed Messages** and allows you to retry them. It also supports **Custom Checks** allowing you to write code that checks the health of your external dependencies (such as connectivity to a web service or FTP server) so you can get a better idea of the overall health of your system.
 
-Another great feature of ServicePulse is the **Monitoring** view, which tracks performance statistics for all of your endpoints:
+Another feature of ServicePulse is the **Monitoring** view, which tracks performance statistics for your endpoints:
 
 ![ServicePulse: Monitoring View](pulse-monitoring.png)
 
@@ -168,10 +168,10 @@ For a more in-depth look at the monitoring capabilities, check out the [Monitori
 
 For now, let's focus on the **Failed Messages** view. It's not much to look at right now (and that's good!) so let's generate a systemic failure:
 
-1. If you're able, undock the ServicePulse browser tab into a new window so you can better see what's going on.
+1. Undock the ServicePulse browser tab into a new window to better see what's going on.
 2. In the **ClientUI** window, send one message while watching the **Sales** window.
 
-Immediately, you'll see exception text flash past, culminating in an orange-colored WARN message:
+Immediately, you'll see an exception flash past, followed by an orange WARN message:
 
 ```
 WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message 'ea962f05-7d82-4be1-926a-a9de01749767' after a delay of 00:00:10 because of an exception:
@@ -179,7 +179,7 @@ System.Exception: BOOM
    at <long stack trace>
 ```
 
-10 seconds later, text will flash past again, warning of a 20-second delay. 20 seconds later, the text will flash again, warning of a 30-second delay. And finally, 30 seconds after that, text will flash by again, finally ending in red ERROR message:
+Ten seconds later, text will flash past again, warning of a 20-second delay. Twenty seconds later, the text will flash again, warning of a 30-second delay. And finally, 30 seconds after that, text will flash by again, ending in red ERROR message:
 
 ```
 ERROR NServiceBus.RecoverabilityExecutor Moving message 'ea962f05-7d82-4be1-926a-a9de01749767' to the error queue 'error' because processing failed due to an exception:
@@ -193,9 +193,9 @@ Once the red stack trace appears, check out the **Failed Messages** view in the 
 
 So what happened here? The message couldn't be successfully processed during an immediate round of retries, so it delayed the message for 10 seconds to try again. After that, it could still not be processed successfully, so it delayed the message for an additional 20 seconds, and then 30 seconds, before giving up all hope and transferring the message to an **error queue**, a holding location for poison messages so that other messages behind it can still get processed successfully.
 
-Once the message enters the error queue, ServicePulse takes over, displaying all failed messages grouped by exception type and the location where it's thrown from.
+Once the message enters the error queue, ServicePulse takes over, displaying all failed messages grouped by exception type and the location it's thrown from.
 
-If you click anywhere on the exception group, it will take you to the list of exceptions within that group. This is not too interesting, since we currently only have one, but if you click again on the individual exception, you will get a rich exception detail view:
+If you click on the exception group, it will take you to the list of exceptions within that group. This is not too interesting, since we currently only have one, but if you click again on the individual exception, you will get a rich exception detail view:
 
 ![ServicePulse: Exception Details](pulse-exception-details.png)
 
@@ -203,22 +203,22 @@ No need to go digging through log files to find out what went wrong. ServicePuls
 
 Armed with this information, it should be much easier to track down and fix our bug, so let's do that:
 
-1. Because we ran without attaching the debugger, we need to close both browser windows and all console applications.
+1. Close both browser windows and all console applications.
 1. In the **Sales** endpoint, locate and open the **PlaceOrderHandler.cs** file.
 1. Comment out the `throw` statement, and uncomment all the code below the **ThrowFatalException** region, returning the code to its original working state.
-1. Start the solution again. It won't be throwing any exceptions so attaching the debugger is fine this time.
+1. Start the solution again. It won't throw any exceptions so it's okay to attach the debugger this time.
 2. Once the **ServicePulse** window launches, navigate to the **Failed Messages** view.
 
 Now our system has been fixed, and we can give that failed message another chance.
 
 1. Move the **Sales** and **Billing** windows around so you can see waht happens when you retry the message.
 2. In the **ServicePulse** window, click the **Request Retry** link.
-3. In the confirmation dialog, click the **Yes** button, and remember to watch the **Sales** and **Billing** windows.
+3. In the confirmation dialog, click **Yes**, and watch the **Sales** and **Billing** windows.
 4. It may take several seconds to enqueue the batch, but eventually you will see the familiar log messages in **Sales** and **Billing**, showing the message being processed successfully as if nothing bad ever happened.
 
 This is a powerful feature. Many systemic failures are the result of bad deployments. A new version is rolled out with a bug, and errors suddenly start appearing that ultimately result in lost data.
 
-With a message-based system, no data is ever lost, because those failures result in messages being sent to an error queue, not lost to the ether. After a deploy, you can watch ServicePulse, and if messages start to pile up in the error queue, you can revert to the previous known good configuration while you diagnose the problem.
+With a message-based system, no data is ever lost, because those failures result in messages being sent to an error queue, not lost to the ether. After a deployment, you can watch ServicePulse, and if messages start to pile up in the error queue, you can revert to the previous known good configuration while you diagnose the problem.
 
 The visual tools in ServicePulse provide a quick way to get to the root cause of a problem and develop a fix. Once deployed, all affected messages (even into the thousands) can be replayed with just a few mouse clicks.
 
@@ -322,7 +322,7 @@ We learned that asynchronous messaging failures in one part of a system can be i
 
 We saw how automatic retries provide protection from transient failures like database deadlocks. If we implement a multi-step process as a series of message handlers, then each step will be executed independently and can be automatically retried in case of failures. This means that a stray exception won't abort an entire process, leaving the system in an inconsistent state.
 
-We saw how the tooling in the Particular Service Platform makes running a distributed system much easier. ServicePulse gives us critical insights into the health of the system, and allows us to diagnose and fix even systemic failures. We don't have to worry about data loss anymore–once we redeploy our system, we can replay failed messages in batches as if the error had never occurred.
+We saw how the tooling in the Particular Service Platform makes running a distributed system much easier. ServicePulse gives us critical insights into the health of a system, and allows us to diagnose and fix systemic failures. We don't have to worry about data loss–once we redeploy our system, we can replay failed messages in batches as if the error had never occurred.
 
 We also implemented an additional event subscriber, showing how to decouple independent bits of business logic from each other. The ability to publish one event and then implement resulting steps in separate message handlers makes the system much easier to maintain and evolve.
 
