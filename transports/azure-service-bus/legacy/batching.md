@@ -5,7 +5,7 @@ component: ASB
 tags:
 - Azure
 - Transport
-reviewed: 2017-05-05
+reviewed: 2019-02-13
 redirects:
  - nservicebus/azure-service-bus/batching
  - transports/azure-service-bus/batching
@@ -34,15 +34,15 @@ Batched store access is only available for asynchronous Send and Complete operat
 
 ## Batching messages sent from a handler
 
-Azure Service Bus optimizes multiple message sends from a handler by batching send operations into a single operation. For example, when a handler is sending multiple messages, Azure Service Bus will batch those and send in as few operations as possible. Size of a batch cannot exceed the maximum size on a `BrokeredMessage`. The maximum message size is configured using [`MaximumMessageSizeInKilobytes`](/transports/azure-service-bus/legacy/configuration/full.md#controlling-connectivity-message-senders) setting of the Message Senders.
+Azure Service Bus optimizes multiple message sends from a handler by batching send operations into a single operation. For example, when a handler is sending multiple messages, Azure Service Bus will batch those and send in as few operations as possible. The size of a batch cannot exceed the maximum size on a `BrokeredMessage`. The maximum message size is configured using [`MaximumMessageSizeInKilobytes`](/transports/azure-service-bus/legacy/configuration/full.md#controlling-connectivity-message-senders) setting of the Message Senders.
 
 NOTE: `BrokeredMessage` size is different between [tiers](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging) of Azure Service Bus.
 
-Batch size that can be sent from within a handler also depends on the `TransportTransactionMode`.
+The batch size that can be sent from within a handler also depends on the `TransportTransactionMode`.
 
-WARNING: When `TransportTransactionMode.SendsAtomicWithReceive` is used, Azure Service Bus limits number of outgoing operations from a handler context to 100. If number of outgoing operations exceeds the limit, `TransactionContainsTooManyMessages` exception will be thrown and incoming message will be eventually moved to the error queue. To send more than 100 outgoing operations, lower transport transaction mode. 
+WARNING: When `TransportTransactionMode.SendsAtomicWithReceive` is used, Azure Service Bus limits number of outgoing operations from a handler context to 100. If the number of outgoing operations exceeds the limit, `TransactionContainsTooManyMessages` exception will be thrown and incoming message will be eventually moved to the error queue. To send more than 100 outgoing operations, lower transport transaction mode. 
 
-When batching messages sent from a handler, the underlying implementation of batching serializes messages. A serialized batch is usually bigger than the original messages combined. To ensure successful batch sending operation, batch should not exceed the `BrokeredMessage` size. To cater for the overhead caused by serialization, the final batch size is estimated using `MessageSizePaddingPercentage` setting. By default, it's set to 5%. It can be configured using [`MessageSizePaddingPercentage`](/transports/azure-service-bus/legacy/configuration/full.md#controlling-connectivity-message-senders) configuration of the Message Senders.
+When batching messages sent from a handler, the underlying implementation of batching serializes messages. A serialized batch is usually bigger than the original messages combined. To ensure successful batch sending operation, the batch should not exceed the `BrokeredMessage` size. To cater for the overhead caused by serialization, the final batch size is estimated using `MessageSizePaddingPercentage` setting. By default, it's set to 5%. It can be configured using [`MessageSizePaddingPercentage`](/transports/azure-service-bus/legacy/configuration/full.md#controlling-connectivity-message-senders) configuration of the Message Senders.
 
 By default, message batches exceeding the maximum allowed size by Azure Service Bus, will throw a `MessageTooLargeException`. The default behavior can by changed with [`OversizedBrokeredMessageHandler<T>(T)`](/transports/azure-service-bus/legacy/configuration/full.md#controlling-connectivity-message-senders) configuration of the Message Senders.
 
