@@ -245,7 +245,7 @@ The transport type to run ServiceControl with.
 
 Type: string
 
-Default: `NServiceBus.MsmqTransport, NServiceBus.Core`
+Default: `ServiceControl.Transports.Msmq.MsmqTransportCustomization, ServiceControl.Transports.Msmq`
 
 
 #### NServiceBus/Transport
