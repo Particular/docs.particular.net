@@ -5,11 +5,11 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" />
     <ProjectReference Include="..\Messages\Messages.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="4.*" />
     <PackageReference Include="System.Data.SqlClient" Version="4.*" />
+    <PackageReference Include="EntityFramework" Version="6.*" />
   </ItemGroup>
 </Project>

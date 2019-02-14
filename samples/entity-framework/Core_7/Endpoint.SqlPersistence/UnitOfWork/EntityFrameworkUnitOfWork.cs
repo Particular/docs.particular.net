@@ -16,8 +16,6 @@ class EntityFrameworkUnitOfWork
         if (context == null)
         {
             context = contextFactory(storageSession);
-
-
         }
         return context;
     }
