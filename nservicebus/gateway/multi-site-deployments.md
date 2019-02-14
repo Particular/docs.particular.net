@@ -75,9 +75,6 @@ snippet: SendToSites
 
 While these URLs can be placed directly in the call, it is recommended to put these settings in `app.config` so administrators can change them should the need arise. To do this, add this config section:
 
-
-#### Using App.Config
-
 snippet: GatewaySitesAppConfig
 
 
@@ -117,8 +114,6 @@ partial: dedup
 ## Incoming channels
 
 When the gateway is enabled it automatically sets up an HTTP channel to listen to `http://localhost/{name of the endpoint}`. To change this URL or add more than one incoming channel, configure `app.config`, as shown:
-
-#### Using App.Config
 
 snippet: GatewayChannelsAppConfig
 
