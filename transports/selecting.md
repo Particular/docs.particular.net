@@ -1,9 +1,6 @@
 ---
 title: Selecting a transport
 summary: A guide for selecting an NServicebus transport.
-component: Core
-tags:
- - Transport
 reviewed: 2018-11-27
 ---
 
