@@ -1,4 +1,4 @@
-Starting from version 7.5.6 and 8.1.3 of the transport the batch size is dynamically calculated based on the endpoints [message processing concurrency limit] (/nservicebus/operations/tuning.md) unless explicitly specified. The batch size is calculated based on the following formula
+Starting from version 8.1.3 of the transport (and from version 7.5.6 for the 7.x version of the transport), the batch size is dynamically calculated based on the endpoints [message processing concurrency limit](/nservicebus/operations/tuning.md) unless explicitly specified. The batch size is calculated based on the following formula
 
 |`MaxConcurrency` | `Batch Size` |
 | :-: |:-:|

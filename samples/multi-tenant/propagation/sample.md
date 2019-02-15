@@ -1,6 +1,6 @@
 ---
-title: Propagating tenant information to downstream endpoints
-summary: Shows how to configure the pipeline to automatically propagate tenant information to downstream endpoints
+title: Propagating Tenant Information to Downstream Endpoints
+summary: How to configure the pipeline to automatically propagate tenant information to downstream endpoints
 reviewed: 2019-02-08
 component: Core
 related:
@@ -13,7 +13,7 @@ related:
 This sample shows how to configure the NServiceBus pipeline to automatically propagate tenant information to downstream endpoints. The sample assumes that the tenant information is passed as a message header.
 
 
-## Code Walk Through
+## Code walk-through
 
 
 ### Attaching tenant information to the messages
@@ -23,14 +23,14 @@ In most cases the best way to attach tenant information to messages is by using 
 snippet: SetTenantId
 
 
-### Creating Behaviors
+### Creating behaviors
 
 Two behaviors are required to propagate the tenant information.
 
 
 #### Retrieving and storing the tenant information
 
-The first behavior is responsible for extracting the tenant information from the incoming message header, and placing it in the pipeline execution context bag. This behavior executes as part of the message receive pipeline.
+The first behavior is responsible for extracting the tenant information from the incoming message header and placing it in the pipeline execution context bag. This behavior executes as part of the message receive pipeline.
 
 snippet: StoreTenantId
 
@@ -60,4 +60,4 @@ In addition to that, both `OrderAccepted` and `OrderPlaced` message handlers log
 
 ## Running the sample
 
-Run the sample. Once running, in the Client console press any key to send messages. Note that the logged tenant ID is the same in both Sales and Billing endpoints.
+Run the sample. Once running, in the Client console press any key to send messages. Note that the logged tenant ID is the same in both the Sales and Billing endpoints.

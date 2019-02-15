@@ -1,6 +1,6 @@
 ---
-title: Injecting tenant-aware components to message handlers
-summary: Shows how to configure IoC to inject tenant-aware components to message handlers
+title: Injecting Tenant-aware Components to Message Handlers
+summary: How to configure IoC to inject tenant-aware components into message handlers
 reviewed: 2019-02-07
 component: Core
 related:
@@ -10,15 +10,15 @@ related:
 
 ## Introduction
 
-This sample shows how to configure the dependency injection infrastructure built into NServiceBus to instantiate and inject tenant-aware components. Such approach allows the code in the handlers to focus on the actual business logic without having to deal with multi-tenant aspects of the problem.
+This sample shows how to configure the dependency injection infrastructure built into NServiceBus to instantiate and inject tenant-aware components. The approach allows the code in the handlers to focus on the actual business logic without having to deal with multi-tenant aspects of the problem.
 
 This sample simulates a multi-tenant solution where the session provided to handlers is connected to individual tenant databases based on the value of a `tenant` header on the incoming message.
 
 
-## Code Walk Through
+## Code walk-through
 
 
-### Creating the Behavior
+### Creating the behavior
 
 The behavior will wrap handler invocations and:
 
@@ -43,7 +43,7 @@ NOTE: The lifecycle has to be specified as `DependencyLifecycle.InstancePerUnitO
 
 ### Message handlers
 
-One of the benefits of a unit of work is that multiple handlers for the same message will share the same session and commit/rollback together. This is how the handlers look like:
+One of the benefits of a unit of work is that multiple handlers for the same message will share the same session and commit/rollback together. This is how the handlers look:
 
 snippet: message-handlers
 
@@ -52,4 +52,4 @@ The session instance is injected via the constructor. This is the same instance 
 
 ## Running the sample
 
-Run the sample. Once running press any key to send messages. Note that for each given message the two message handlers will get the same session instance and that the instance is connected to the given tenant specified on the incoming message.
+Run the sample. Once running, press any key to send messages. Note that for each given message the two message handlers will get the same session instance and that the instance is connected to the given tenant specified on the incoming message.
