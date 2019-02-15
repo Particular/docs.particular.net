@@ -14,4 +14,4 @@ The Sender does not store any data. It mimics the front-end system where orders 
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is configured to use SQL persistence in the multi-tenant mode.
+The Receiver mimics a back-end system. It is configured to use SQL persistence in multi-tenant mode.

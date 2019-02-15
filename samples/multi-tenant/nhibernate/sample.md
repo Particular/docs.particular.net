@@ -53,7 +53,7 @@ snippet: NHibernateConfiguration
 
 #### Connecting to the tenant database
 
-To allow for database isolation between the tenants the connection to the database needs to be created based on the message being processed. This requires cooperation of two components:
+To allow database isolation between tenants, the connection to the database needs to be created based on the message being processed. This requires cooperation of two components:
 
  * A behavior that inspects an incoming message and extracts the tenant information 
  * Custom `ConnectionProvider` for NHibernate
@@ -62,7 +62,7 @@ The custom connection provider has to be registered with NHibernate
 
 snippet: ConnectionProvider
 
-The behavior retrieves the value of the `tenant_id` header and builds a connection string based on the value of that header. Then it stores the value of the connection string in the async context via `AsyncLocal`.
+The behavior retrieves the value of the `tenant_id` header and builds a connection string based on the header value. Then it stores the connection string in the async context via `AsyncLocal`.
 
 snippet: PutConnectionStringToContext
 
