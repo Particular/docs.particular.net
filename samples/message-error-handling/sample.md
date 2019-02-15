@@ -12,12 +12,16 @@ related:
  - nservicebus/pipeline/customizing-error-handling
 ---
 
-partial: usage
+This sample shows how, based on the exception type, a message can be either retried, sent to the error queue, or ignored. The portable Particular Service Platform will list the messages arriving in the error queue.
 
-This sample shows how, based on the exception type, a message can be either retried, sent to the error queue, or ignored. Beware of swallowing exceptions though, since it is almost never intended and the message will be removed from the queue, as if it has been processed successfully. 
+include: platformlauncher-windows-required
+
+partial: usage
 
 snippet: MoveToErrorQueue
 
 To register the new exception handler:
 
 snippet: registering-behavior
+
+Beware of swallowing exceptions though, since it is almost never intended and the message will be removed from the queue, as if it has been processed successfully.
