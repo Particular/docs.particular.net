@@ -6,7 +6,7 @@ versions: '[7,)'
 tags:
 - Azure
 - Transport
-reviewed: 2017-05-05
+reviewed: 2019-02-015
 redirects:
  - nservicebus/azure-service-bus/retries
  - transports/azure-service-bus/retries
