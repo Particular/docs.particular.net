@@ -1,7 +1,7 @@
 ---
 title: Custom Exception Handling
 summary: With custom exception handling, it is possible to fine-tune how exceptions should be handled after they have been retried
-reviewed: 2018-09-05
+reviewed: 2019-02-15
 component: Core
 tags:
  - Error Handling
