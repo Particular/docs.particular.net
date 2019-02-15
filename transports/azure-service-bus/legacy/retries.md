@@ -1,6 +1,6 @@
 ---
 title: Retry behavior
-summary: Describes the relationship between the NServiceBus retry behavior and the Azure Service Bus native retry behavior
+summary: Describes the relationship between the NServiceBus recoverability feature and the native Azure Service Bus retry behavior
 component: ASB
 versions: '[7,)'
 tags:
