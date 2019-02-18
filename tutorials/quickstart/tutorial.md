@@ -152,7 +152,7 @@ Next, let's enable the Particular Service Platform tools and see what they do.
 
 snippet: PlatformMain
 
-With those two changes made, start the solution without debugging (<kbd>Ctrl</kdb>+<kbd>F5</kbd>). This will make it easier to observe the exceptions and retries without being interrupted by Visual Studio's Exception Assistant dialog.
+With those two changes made, start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>). This will make it easier to observe the exceptions and retries without being interrupted by Visual Studio's Exception Assistant dialog.
 
 Along with the windows from before, two new windows will now launch. The first is the **Particular Service Platform Launcher** window, which looks like this:
 
