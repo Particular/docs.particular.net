@@ -16,7 +16,7 @@ namespace ClientUI
         {
             AsyncStart().GetAwaiter().GetResult();
         }
-        
+
         async Task AsyncStart()
         {
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
