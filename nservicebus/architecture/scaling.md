@@ -1,6 +1,7 @@
 ---
 title: Scaling with NServiceBus
 summary: NServiceBus provides several options to scale out a system
+reviewed: 2019-02-08
 ---
 
 This document describes how to scale-out endpoints using NServiceBus. Reasons to scale out can be to either achieve a higher message throughput or high availability.
