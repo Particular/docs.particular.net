@@ -128,6 +128,8 @@ Of course, there are other exceptions that may be harder to recover from than si
 
 ## Systemic failures
 
+WARNING: In order to use the portable version of the Particular Service Platform included in this tutorial, you'll need to use the [Visual Studio 2017 version](https://liveparticularwebstr.blob.core.windows.net/media/tutorials-quickstart.zip) of the downloaded solution on a Windows operating system.
+
 A systemic failure is one that is simply unrecoverable, no matter how many times we retry. Usually these are just plain old bugs. Most of the time these kinds of failures require a redeployment with new code in order to fix. But what happens to the messages when this happens?
 
 NOTE: For a good introduction to different types of errors and how to handle them with message-based systems, see [But all my errors are severe!](https://particular.net/blog/but-all-my-errors-are-severe)
@@ -314,6 +316,8 @@ INFO Shipping.OrderPlacedHandler Shipping has received OrderPlaced, OrderId = 25
 ```
 
 **Shipping** is now receiving events published by **Sales** without having to change the code in the **Sales** endpoint. Additional subscribers could be added, for example, to email a receipt to the customer, notify a fulfillment agency via a web service, update a wish list or gift registry, or update data on items that are frequently bought together. Each business activity would occur in its own isolated message handler and doesn't depend on what happens in other parts of the system.
+
+NOTE: You may also want to take a look at the ServicePulse window, where you should now be able to see heartbeat and endpoint monitoring information for the new endpoint as well.
 
 
 ## Summary
