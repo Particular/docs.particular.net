@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billing", "Billing\Billing.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientUI", "ClientUI\ClientUI.csproj", "{BB2E5FCA-C3C4-4C01-AD48-DFB3ABB1B54B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform", "Platform\Platform.csproj", "{B0EDB6F8-761B-476A-AD04-5DE30FD79325}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,8 @@ Global
 		{9BF02A43-6D9D-4B49-A06D-603A66C6BCB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB2E5FCA-C3C4-4C01-AD48-DFB3ABB1B54B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB2E5FCA-C3C4-4C01-AD48-DFB3ABB1B54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0EDB6F8-761B-476A-AD04-5DE30FD79325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0EDB6F8-761B-476A-AD04-5DE30FD79325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

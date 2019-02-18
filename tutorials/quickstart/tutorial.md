@@ -30,7 +30,7 @@ To get started, download the solution appropriate for your Visual Studio version
 
 ## Project structure
 
-The solution contains four projects. The **ClientUI**, **Sales**, and **Billing** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is an entry point in our system. The **Sales** and **Billing** endpoints, implemented as console applications, contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as POCO class files.
+The solution contains five projects. The **ClientUI**, **Sales**, and **Billing** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is an entry point in our system. The **Sales** and **Billing** endpoints, implemented as console applications, contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as simple class files. A little further into the tutorial, the **Platform** project will provide a demonstration of the Particular Service Platform, but at the beginning of the tutorial we'll leave its code commented out, and return to it later.
 
 ![Solution Explorer view](solution-explorer.png "width=240")
 
@@ -43,7 +43,7 @@ The solution mimics a real-life retail system, where [the command](/nservicebus/
 
 ## Running the solution
 
-The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when you run the solution it should open the web application and two console applications, one window for each messaging endpoint.
+The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when you run the solution it should open the web application and two console applications, one window for each messaging endpoint. (The Platform console app will also open briefly and then immediately close.)
 
 ![ClientUI Web Application](webapp-start.png)
 ![2 console applications, one for endpoint implemented as a console app](2-console-windows.png)
@@ -103,7 +103,7 @@ Let's simulate a transient failure in the **Sales** endpoint and see retries in 
 
 snippet: ThrowTransientException
 
-3. Start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>). This will make it easier to observe exceptions occurring without being interrupted by Visual Studio's Exception Assistant.
+3. Start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>). This will make it easier to observe exceptions occurring without being interrupted by Visual Studio's Exception Assistant dialog.
 4. In the **ClientUI** window, send one message at a time, and watch the **Sales** window.
 
 ![Transient exceptions](transient-exceptions.png)
@@ -123,8 +123,108 @@ NOTE: If you forgot to detach the debugger, you'll need to click the **Continue*
 
 Automatic retries allow us to avoid losing data or having our system left in an inconsistent state because of a random transient exception. We won't need to manually dig through the database to fix things anymore!
 
-Of course, there are other exceptions that may be harder to recover from than simple database deadlocks. NServiceBus contains more [recoverability tools](/nservicebus/recoverability/) to handle various types of failures and ensure that no message is ever lost.
+Of course, there are other exceptions that may be harder to recover from than simple database deadlocks. Let's see what happens when a systemic failure occurs.
 
+
+## Systemic failures
+
+WARNING: In order to use the portable version of the Particular Service Platform included in this tutorial, you'll need to use the [Visual Studio 2017 version](https://liveparticularwebstr.blob.core.windows.net/media/tutorials-quickstart.zip) of the downloaded solution on a Windows operating system.
+
+A systemic failure is one that is simply unrecoverable, no matter how many times we retry. Usually these are just plain old bugs. Most of the time these kinds of failures require a redeployment with new code in order to fix. But what happens to the messages when this happens?
+
+NOTE: For a good introduction to different types of errors and how to handle them with message-based systems, see [But all my errors are severe!](https://particular.net/blog/but-all-my-errors-are-severe)
+
+Let's cause a systemic failure and see how we can use the Particular Service Platform tools to handle it.
+
+First, let's simulate a systemic failure in the **Sales** endpoint:
+
+1. In the **Sales** endpoint, locate and open the **PlaceOrderHandler.cs** file.
+2. Uncomment the code inside the **ThrowFatalException** region shown here. This will cause an exception to be thrown every time the `PlaceOrder` message is processed:
+
+snippet: ThrowFatalException
+
+3. In the `Handle` method, comment out all the code past the `throw` statement so that Visual Studio doesn't show a warning about unreachable code.
+
+Next, let's enable the Particular Service Platform tools and see what they do.
+
+1. In the **Platform** project, locate and open the **Program.cs** file.
+2. Uncomment the code inside the **PlatformMain** region shown here. This will cause the platform to launch when we start our project.
+
+snippet: PlatformMain
+
+With those two changes made, start the solution without debugging (<kbd>Ctrl</kdb>+<kbd>F5</kbd>). This will make it easier to observe the exceptions and retries without being interrupted by Visual Studio's Exception Assistant dialog.
+
+Along with the windows from before, two new windows will now launch. The first is the **Particular Service Platform Launcher** window, which looks like this:
+
+![Particular Service Platform Launcher console app](platform-launcher-console.png)
+
+The purpose of this app is to host different tools within a sandbox environment, just for this solution. After a few seconds, the application launches ServicePulse in a new browser window:
+
+![Service Pulse: Dashboard View](pulse-dashboard.png)
+
+The screenshot shows how ServicePulse monitors the operational health of your system. It tracks **Hearbeats** from your messaging endpoints, ensuring that they are running and able to send messages. It tracks **Failed Messages** and allows you to retry them. It also supports **Custom Checks** allowing you to write code that checks the health of your external dependencies (such as connectivity to a web service or FTP server) so you can get a better idea of the overall health of your system.
+
+Another feature of ServicePulse is the **Monitoring** view, which tracks performance statistics for your endpoints:
+
+![ServicePulse: Monitoring View](pulse-monitoring.png)
+
+For a more in-depth look at the monitoring capabilities, check out the [Monitoring Demo](/tutorials/monitoring-demo/), which includes a load simulator to create monitoring graphs that aren't flatlined at zero.
+
+For now, let's focus on the **Failed Messages** view. It's not much to look at right now (and that's good!) so let's generate a systemic failure:
+
+1. Undock the ServicePulse browser tab into a new window to better see what's going on.
+2. In the **ClientUI** window, send one message while watching the **Sales** window.
+
+Immediately, you'll see an exception flash past, followed by an orange WARN message:
+
+```
+WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message 'ea962f05-7d82-4be1-926a-a9de01749767' after a delay of 00:00:10 because of an exception:
+System.Exception: BOOM
+   at <long stack trace>
+```
+
+Ten seconds later, text will flash past again, warning of a 20-second delay. Twenty seconds later, the text will flash again, warning of a 30-second delay. And finally, 30 seconds after that, text will flash by again, ending in red ERROR message:
+
+```
+ERROR NServiceBus.RecoverabilityExecutor Moving message 'ea962f05-7d82-4be1-926a-a9de01749767' to the error queue 'error' because processing failed due to an exception:
+System.Exception: BOOM
+   at <long stack trace>
+```
+
+Once the red stack trace appears, check out the **Failed Messages** view in the **ServicePulse** window:
+
+![ServicePulse: Failed Messages View](pulse-failed-messages.png)
+
+So what happened here? The message couldn't be successfully processed during an immediate round of retries, so it delayed the message for 10 seconds to try again. After that, it could still not be processed successfully, so it delayed the message for an additional 20 seconds, and then 30 seconds, before giving up all hope and transferring the message to an **error queue**, a holding location for poison messages so that other messages behind it can still get processed successfully.
+
+Once the message enters the error queue, ServicePulse takes over, displaying all failed messages grouped by exception type and the location it's thrown from.
+
+If you click on the exception group, it will take you to the list of exceptions within that group. This is not too interesting, since we currently only have one, but if you click again on the individual exception, you will get a rich exception detail view:
+
+![ServicePulse: Exception Details](pulse-exception-details.png)
+
+No need to go digging through log files to find out what went wrong. ServicePulse provides the exception's stack trace, message headers, and message body right here.
+
+Armed with this information, it should be much easier to track down and fix our bug, so let's do that:
+
+1. Close both browser windows and all console applications.
+1. In the **Sales** endpoint, locate and open the **PlaceOrderHandler.cs** file.
+1. Comment out the `throw` statement, and uncomment all the code below the **ThrowFatalException** region, returning the code to its original working state.
+1. Start the solution again. It won't throw any exceptions so it's okay to attach the debugger this time.
+2. Once the **ServicePulse** window launches, navigate to the **Failed Messages** view.
+
+Now our system has been fixed, and we can give that failed message another chance.
+
+1. Move the **Sales** and **Billing** windows around so you can see waht happens when you retry the message.
+2. In the **ServicePulse** window, click the **Request Retry** link.
+3. In the confirmation dialog, click **Yes**, and watch the **Sales** and **Billing** windows.
+4. It may take several seconds to enqueue the batch, but eventually you will see the familiar log messages in **Sales** and **Billing**, showing the message being processed successfully as if nothing bad ever happened.
+
+This is a powerful feature. Many systemic failures are the result of bad deployments. A new version is rolled out with a bug, and errors suddenly start appearing that ultimately result in lost data.
+
+With a message-based system, no data is ever lost, because those failures result in messages being sent to an error queue, not lost to the ether. After a deployment, you can watch ServicePulse, and if messages start to pile up in the error queue, you can revert to the previous known good configuration while you diagnose the problem.
+
+The visual tools in ServicePulse provide a quick way to get to the root cause of a problem and develop a fix. Once deployed, all affected messages (even into the thousands) can be replayed with just a few mouse clicks.
 
 ## Extending the system
 
@@ -144,9 +244,9 @@ To start, in the **Solution Explorer** window, right-click the **RetailDemo** so
 ![New Project Dialog](new-project.png "width=680")
 
 1. In the **Add New Project** dialog, be sure to select at least **.NET Framework 4.6.1** in the dropdown menu at the top of the window for access to the `Task.CompletedTask` API.
-1. Select a new **Console App (.NET Framework)** project (or just **Console Application**).
-1. Name the project **Shipping**.
-1. Click **OK** to create the project and add it to the solution.
+2. Select a new **Console App (.NET Framework)** project (or just **Console Application**).
+3. Name the project **Shipping**.
+4. Click **OK** to create the project and add it to the solution.
 
 {{NOTE:
 **ProTip:** The existing projects in this solution are using the newer, leaner, .NET Core style project files, but the current Visual Studio tooling doesn't make it very easy to do the same for the **Shipping** project. If you like, you can create a project of type **Console App (.NET Core)** and then manually edit the **Shipping.csproj** file to change the `TargetFramework` value from `netcoreapp2.0` to `net461`.
@@ -217,6 +317,8 @@ INFO Shipping.OrderPlacedHandler Shipping has received OrderPlaced, OrderId = 25
 
 **Shipping** is now receiving events published by **Sales** without having to change the code in the **Sales** endpoint. Additional subscribers could be added, for example, to email a receipt to the customer, notify a fulfillment agency via a web service, update a wish list or gift registry, or update data on items that are frequently bought together. Each business activity would occur in its own isolated message handler and doesn't depend on what happens in other parts of the system.
 
+NOTE: You may also want to take a look at the ServicePulse window, where you should now be able to see heartbeat and endpoint monitoring information for the new endpoint as well.
+
 
 ## Summary
 
@@ -225,6 +327,8 @@ In this tutorial, we explored the basics of how a messaging system using NServic
 We learned that asynchronous messaging failures in one part of a system can be isolated and prevent the entire system failure. That level of resilience and reliability is not easy to achieve with traditional REST-based web services.
 
 We saw how automatic retries provide protection from transient failures like database deadlocks. If we implement a multi-step process as a series of message handlers, then each step will be executed independently and can be automatically retried in case of failures. This means that a stray exception won't abort an entire process, leaving the system in an inconsistent state.
+
+We saw how the tooling in the Particular Service Platform makes running a distributed system much easier. ServicePulse gives us critical insights into the health of a system, and allows us to diagnose and fix systemic failures. We don't have to worry about data loss–once we redeploy our system, we can replay failed messages in batches as if the error had never occurred.
 
 We also implemented an additional event subscriber, showing how to decouple independent bits of business logic from each other. The ability to publish one event and then implement resulting steps in separate message handlers makes the system much easier to maintain and evolve.
 

@@ -32,22 +32,25 @@ void CleanUpSolutions()
 		{
 			foreach (var line in lines)
 			{
-				if (line.StartsWith("# Visual Studio "))
+				if (solutionFile.IndexOf("VS2015") < 0)
 				{
-					//VS 2017
-					writer.WriteLine("# Visual Studio 15");
-					continue;
-				}
-				//https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes
-				if (line.StartsWith("VisualStudioVersion = "))
-				{
-					writer.WriteLine("VisualStudioVersion = 15.0.26730.12");
-					continue;
-				}
-				if (line.StartsWith("MinimumVisualStudioVersion = "))
-				{
-					writer.WriteLine("MinimumVisualStudioVersion = 15.0.26730.12");
-					continue;
+					if (line.StartsWith("# Visual Studio "))
+					{
+						//VS 2017
+						writer.WriteLine("# Visual Studio 15");
+						continue;
+					}
+					//https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes
+					if (line.StartsWith("VisualStudioVersion = "))
+					{
+						writer.WriteLine("VisualStudioVersion = 15.0.26730.12");
+						continue;
+					}
+					if (line.StartsWith("MinimumVisualStudioVersion = "))
+					{
+						writer.WriteLine("MinimumVisualStudioVersion = 15.0.26730.12");
+						continue;
+					}
 				}
 				if (line.Contains(".Release"))
 				{
