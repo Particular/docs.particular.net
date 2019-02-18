@@ -61,6 +61,17 @@ partial: select-destination
 
 To learn more about creating custom distribution strategies, see the [fair distribution sample](/samples/routing/fair-distribution/).
 
+## Events and subscriptions
+
+Scaled out publisher:
+
+Subscriptions are routed to all configured publisher instances. The subscriber endpoint will at start send a subscription message to each configured publisher instance.
+
+Scaled out subscriber:
+
+A scaled out subscriber will result in each subscriber instance to send a subscription message to the publisher. When an event is published the event will be send to only one of the instances.
+
+Info: An event will not be send to all instance of a logical endpoint
 
 ## Limitations
 
