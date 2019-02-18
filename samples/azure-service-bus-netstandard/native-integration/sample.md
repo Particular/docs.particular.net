@@ -46,7 +46,7 @@ For a native message to be processed, NServiceBus endpoints using the Azure Serv
 
 snippet: NecessaryHeaders
 
-NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the the fully-qualified name of the type expected by the NServiceBus endpoint.
+NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the namespace and name of the type expected by the NServiceBus endpoint. Some serializers might require also require the fully-qualified name including the assembly of the type.
 
 The message itself is defined using [conventions](/nservicebus/messaging/conventions.md) in the `Receiver` project.
 
