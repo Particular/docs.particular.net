@@ -52,4 +52,4 @@ NOTE: For a full explanation of the transactional behavior in Azure, refer to [U
 
 Using the supported transaction levels, the transport only provides an **`at-least-once`** delivery model. Azure Service Bus provides a [duplicate detection feature](https://docs.microsoft.com/en-us/azure/service-bus-messaging/duplicate-detection) which will ensure the message is received exactly once if enabled. However, Duplicate Detection comes at the expense of throughput and is time constrained.
 
-WARN: The duplicate detection feature is not compatible with the [outbox](/nservicebus/outbox). Enabling duplicate detection and the outbox together can cause message loss.
+WARN: The Azure Service Bus duplicate detection feature is not compatible with the [send level retries](recoverability/#delayed-retries). Enabling duplicate detection and second level retries together can cause message loss.
