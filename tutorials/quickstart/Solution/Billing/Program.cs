@@ -21,7 +21,6 @@ namespace Billing
             var metrics = endpointConfiguration.EnableMetrics();
             metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromMilliseconds(500));
 
-
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
