@@ -8,9 +8,9 @@ related:
 - nservicebus/outbox
 ---
 
-This sample demonstrates how to configure SQL Persistence to store tenant-specific data in separate catalogs, for each tenant. The tenant-specific information include the saga state and the business entities that are accessed using [NServiceBus-managed session](/persistence/sql/accessing-data.md).
+This sample demonstrates how to configure SQL Persistence to store tenant-specific data in separate catalogs, for each tenant. The tenant-specific information include saga state and business entities that are accessed using [NServiceBus-managed session](/persistence/sql/accessing-data.md).
 
-This sample uses the [Outbox](/nservicebus/outbox/) to guarantee consistency between the saga state and the business entity. The outbox data as well as timeout data is stored a dedicated catalog shared by all tenants.
+This sample uses [Outbox](/nservicebus/outbox/) to guarantee consistency between the saga state and the business entity. Outbox data as well as timeout data are stored in a dedicated catalog shared by all tenants.
 
 The sample assumes that the tenant information is passed as a custom message header `tenant_id`.
 
@@ -33,7 +33,7 @@ include: persistence-code
 
 #### Creating the schema
 
-The default SQL Persistence installers create all schema objects in a single catalog. In the multi-tenant mode the schema objects need to be created manually. The `ScriptRunner` class provides APIs required to run schema creation scripts.
+The default SQL Persistence installers create all schema objects in a single catalog. In multi-tenant scenarios schema objects need to be created manually. The `ScriptRunner` class provides APIs required to run schema creation scripts.
 
 snippet: CreateSchema
 

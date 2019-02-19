@@ -14,4 +14,4 @@
  1. Finally, after a couple of seconds, the Receiver displays confirmation that the timeout message has been received.
  1. Open SQL Server Management Studio and go to the tenant databases. Verify that there are rows in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`) for each message sent.
 
-WARNING: Timeouts are stored in the shared database so make sure to not include any sensitive information in the timeouts. Keep such information in the saga data and only use timeouts as notifications.
+WARNING: Timeouts are stored in the shared database so make sure to not include any sensitive information. Keep such information in saga data and only use timeouts as notifications.
