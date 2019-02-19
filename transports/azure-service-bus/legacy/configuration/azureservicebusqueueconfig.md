@@ -5,7 +5,7 @@ component: ASB
 versions: '[5,6)'
 tags:
 - Azure
-reviewed: 2017-05-05
+reviewed: 2019-02-19
 redirects:
  - transports/azure-service-bus/configuration/azureservicebusqueueconfig
 ---
