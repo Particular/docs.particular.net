@@ -6,7 +6,7 @@ tags:
 - Azure
 - Transport
 - Security
-reviewed: 2017-05-05
+reviewed: 2019-02-19
 related:
  - nservicebus/operations
  - transports/upgrades/asb-6to7
@@ -21,15 +21,15 @@ include: legacy-asb-warning
 
 ## Namespace Aliases
 
-Versions 6 and below allows routing of messages across different namespaces by adding connection string information behind the `@` sign in any address notation. As address information is included in messages headers, the headers include both the queue name as well as the connection string. For instance, the `ReplyTo` header value has of the following structure:
+Versions 6 and below allow the routing of messages across different namespaces by adding connection string information behind the `@` sign in any address notation. As address information is included in messages headers, the headers include both the queue name as well as the connection string. For instance, the `ReplyTo` header value has of the following structure:
 
 ```
 [queue name]@Endpoint=sb://[namespace name].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[key]
 ```
 
-In certain scenarios this could lead to insecure behavior and result in a leak of such connection strings, for example when messages are exchanged with untrusted parties (native outgoing integration, messages export, etc) or when body content is added to [log files](/nservicebus/logging/) which are then shared.
+This carries a risk of exposing sensitive connection strings with unwanted 3rd parties, for example when messages are exchanged with untrusted parties (native outgoing integration, messages export, etc) or when body content is added to [log files](/nservicebus/logging/) which are then shared.
 
-To prevent this kind of accidental leaking, Versions 7 and above can map an alias to a namespace connection string. By default the connection strings are still passed around. To override the default behavior use the `UseNamespaceNamesInsteadOfConnectionStrings()` configuration API setting.
+To reduce the risk, Versions 7 and above can map an alias to a namespace connection string. For backwards compatibility this new behavior is disabled by default. To enable namespace aliases use the `UseNamespaceNamesInsteadOfConnectionStrings()` configuration API setting.
 
 snippet: enable_use_namespace_alias_instead_of_connection_string
 
