@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
-using NServiceBus.Pipeline;
 
 class Program
 {
@@ -48,18 +46,16 @@ class Program
         var startableEndpoint = await Endpoint.Create(endpointConfiguration)
             .ConfigureAwait(false);
 
-        Database.SetInitializer(new CreateDatabaseIfNotExists<ReceiverDataContext>());
-
         using (var connection = new SqlConnection(Connections.TenantA))
         using (var receiverDataContext = new ReceiverDataContext(connection))
         {
-            receiverDataContext.Database.Initialize(true);
+            await receiverDataContext.Database.EnsureCreatedAsync();
         }
 
         using (var connection = new SqlConnection(Connections.TenantB))
         using (var receiverDataContext = new ReceiverDataContext(connection))
         {
-            receiverDataContext.Database.Initialize(true);
+            await receiverDataContext.Database.EnsureCreatedAsync();
         }
 
         var dialect = new SqlDialect.MsSqlServer();
