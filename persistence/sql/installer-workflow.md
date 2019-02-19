@@ -24,7 +24,7 @@ The following pages should be reviewed prior to this page:
 
 ## Contrasting Workflows
 
-In most cases, the automatic SQL installer scripts execution should be only enabled on developers machines. This kind of behavior can be enabled with the following code:
+[NServiceBus Installers](/nservicebus/operations/installers.md) offer an automatic deployment model which requires elevated database permissions to correctly execute. In non-development environments least priviledged access or operational deployment control is often required, making the use of automatic SQL installer scripts forbidden. To streamline development execution of installers can be enabled only on developers machines. This kind of behavior can be enabled with the following code:
 
 snippet: InstallerWorkflow
 
