@@ -22,7 +22,7 @@ class Log4NetFiltering
                     return FilterDecision.Deny;
                 }
             }
-            return FilterDecision.Accept;
+            return FilterDecision.Neutral;
         }
     }
 
