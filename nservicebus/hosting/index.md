@@ -151,4 +151,4 @@ Since NServiceBus makes assumptions on aspects like assembly names, ILMerging an
 NServiceBus endpoints have certain requirements on the hosting environment:
 
 * The endpoint process needs write access to write log files. See the [logging documentation](/nservicebus/logging) for more details about the default log file location and how to configure logging.
-* The endpoint process needs write access to write the startup diagnostics file. See the [startup diagnostics documentation] for more details about the diagnostic file.
+* The endpoint process needs write access to write the startup diagnostics file. See the [startup diagnostics documentation](/nservicebus/hosting/startup-diagnostics.md) for more details about the diagnostic file.
