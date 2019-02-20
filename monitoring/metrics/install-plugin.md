@@ -19,6 +19,8 @@ It can be enabled via:
 
 snippet: SendMetricDataToServiceControl
 
+Note: The metrics feature can't be used on send-only endpoints
+
 
 ### Service Control Metrics Address
 
