@@ -1,5 +1,5 @@
 ---
-title: RavenDB Persistence in multi-tenant system
+title: RavenDB Persistence in multi-tenant systems
 summary: Configure RavenDB Persistence to support multi-tenant scenarios.
 reviewed: 2019-02-15
 component: Raven
@@ -12,7 +12,7 @@ include: dtc-warning
 
 This sample demonstrates how to configure RavenDB Persistence to store tenant-specific data in separate databases. The tenant-specific information includes the saga state, the business documents that are accessed using [RavenDB-managed session](/persistence/ravendb/#shared-session), and the outbox records.
 
-This sample uses the [Outbox](/nservicebus/outbox/) to guarantee consistency between the saga state and the business entity.
+This sample uses [Outbox](/nservicebus/outbox/) to guarantee consistency between the saga state and the business entity.
 
 The sample assumes that the tenant information is passed as a custom message header `tenant_id`.
 
@@ -34,11 +34,11 @@ include: persistence-code
 
 #### Outbox cleanup
 
-The built-in Outbox cleanup does not work in a multi-tenant environment because it executes in the context of the shared database while the Outbox documents are stored in the tenant databases. For that reason it needs to be disabled.
+The built-in Outbox cleanup does not work in a multi-tenant environment because it’s executed in the context of the shared database, while Outbox documents are stored in the tenants’ database. For that reason it needs to be disabled.
 
 snippet: DisableOutboxCleanup
 
-Alternative solution needs to be configured. The simplest way to ensure that the dispatched Outbox documents are removed is to use the RavenDB [Document expiration](https://ravendb.net/docs/article-page/3.5/Csharp/server/bundles/expiration) bundle. Following code ensures that tenant databases are created with this bundle enabled:
+The simplest way to ensure that the dispatched Outbox documents are removed is to use the RavenDB [Document expiration](https://ravendb.net/docs/article-page/3.5/Csharp/server/bundles/expiration) bundle. Following code ensures that tenants’ databases are created with this bundle enabled:
 
 snippet: CreateDatabase
 
