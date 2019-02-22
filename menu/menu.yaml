@@ -853,6 +853,8 @@
       Title: Transaction
     - Url: transports/sqs/operations-scripting
       Title: Scripting
+    - Url: transports/sqs/troubleshooting
+      Title: Troubleshooting
   - Url: transports/eventstore
     Title: Event Store
 
