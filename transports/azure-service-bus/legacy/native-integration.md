@@ -1,8 +1,8 @@
 ---
-title: Native Integration
-summary: Native integration with Azure Service Bus
+title: Native Integration with Azure Service Bus
+summary: How to integrate NServiceBus endpoints with non-NServiceBus endpoints on Azure Service Bus.
 component: ASB
-reviewed: 2017-05-05
+reviewed: 2019-02-15
 tags:
 - Azure
 related:
