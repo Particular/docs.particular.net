@@ -34,7 +34,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 4.2.x     | 2018-12-12     | -                 | -                                 |
+| 4.3.x     | 2019-02-22     | -                 | -                                 |
+| 4.2.x     | 2018-12-12     | 2019-05-22        | Superseded by 4.3.x               |
 | 4.1.x     | 2018-06-01     | 2019-03-12        | Superseded by 4.2.x               |
 | ~~4.0.x~~ | ~~2018-05-29~~ | ~~2018-09-01~~    | ~~Superseded by 4.1.x~~           |
 | 3.3.x     | 2018-05-14     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
@@ -211,7 +212,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 4.4.x     | 2018-12-11     | -                 | -                                 |
 | 4.3.x     | 2018-10-16     | 2019-03-11        | Superseded by 4.4.x               |
-| 4.2.x     | 2018-07-09     | 2019-01-16        | Superseded by 4.3.x               |
+| ~~4.2.x~~ | ~~2018-07-09~~ | ~~2019-01-16~~    | ~~Superseded by 4.3.x~~           |
 | ~~4.1.x~~ | ~~2018-05-29~~ | ~~2018-10-09~~    | ~~Superseded by 4.2.x~~           |
 | ~~4.0.x~~ | ~~2018-05-29~~ | ~~2018-08-29~~    | ~~Superseded by 4.1.x~~           |
 | 3.2.x     | 2018-07-09     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
@@ -692,7 +693,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.2.x     | 2018-11-01     | -                 | -                                 |
-| 1.1.x     | 2015-02-05     | 2019-02-01        | Superseded by 1.2.x               |
+| ~~1.1.x~~ | ~~2015-02-05~~ | ~~2019-02-01~~    | ~~Superseded by 1.2.x~~           |
 | ~~1.0.x~~ | ~~2014-10-13~~ | ~~2015-05-05~~    | ~~Superseded by 1.1.x~~           |
 
 #### [ServiceControl.Plugin.Nsb3.CustomChecks](/nuget/ServiceControl.Plugin.Nsb3.CustomChecks)
