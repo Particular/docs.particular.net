@@ -12,7 +12,7 @@ related:
 
 ### Initialize the Nancy web endpoint
 
-Open `Bootstraper.cs` and look at the `ConfigureApplicationContainer` method.
+Open `Bootstrapper.cs` and look at the `ConfigureApplicationContainer` method.
 
 snippet: ConfigureApplicationContainer
 
