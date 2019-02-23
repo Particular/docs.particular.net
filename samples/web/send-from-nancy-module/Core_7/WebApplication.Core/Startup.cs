@@ -24,7 +24,6 @@ namespace WebApplication.Core
 			// Start endpoint instance
 			endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 
-
 			applicationLifetime.ApplicationStopping.Register(OnShutdown);
 
             app.UseOwin(x => x.UseNancy(opt => opt.Bootstrapper = new Bootstrapper(endpoint)));
