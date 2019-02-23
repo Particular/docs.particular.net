@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+	<LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+		  <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
+    <!-- <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" /> -->
+    <!-- <PackageReference Include="NServiceBus.Autofac" Version="7.*" /> -->
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.Core.csproj" />
+  </ItemGroup>
+
+  <!-- <ItemGroup> -->
+    <!-- <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.0" /> -->
+    <!-- <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0" /> -->
+    <!-- <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.2.0" /> -->
+					<!-- <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.1" /> -->
+					  <!-- <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" /> -->
+					<!-- <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.2.0" /> -->
+					<!-- <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" /> -->
+					<!-- <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="2.2.10" /> -->
+					  <!-- <PackageReference Include="log4net" Version="2.0.8" /> -->
+					
+	<!-- <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" /> -->
+    
+	
+					<!-- <PackageReference Include="Nancy.Validation.FluentValidation" Version="2.0.0-clinteastwood" /> -->
+  <!-- </ItemGroup> -->
+</Project>
