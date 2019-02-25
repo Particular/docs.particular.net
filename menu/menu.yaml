@@ -721,8 +721,6 @@
       Title: Native Integration
     - Url: transports/azure-service-bus/legacy/brokered-message-creation
       Title: Brokered Message Creation
-    - Url: transports/azure-service-bus/legacy/operational-scripting
-      Title: Operational Scripting
   - Url: transports/azure-storage-queues
     Title: Azure Storage Queues
     Articles:

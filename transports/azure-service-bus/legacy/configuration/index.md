@@ -4,7 +4,7 @@ component: ASB
 versions: '[7,)'
 tags:
 - Azure
-reviewed: 2017-05-05
+reviewed: 2019-02-19
 redirects:
  - nservicebus/azure-service-bus/configuration
  - transports/azure-service-bus/configuration

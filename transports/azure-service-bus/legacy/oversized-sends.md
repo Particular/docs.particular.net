@@ -13,16 +13,15 @@ redirects:
 
 include: legacy-asb-warning
 
-As mentioned in [error handling](error-handling.md#azure-service-bus-sdk-message-size-problems) the Azure Service Bus SDK has a peculiar behavior when it comes to computing the message size, resulting in the possibility that oversized messages get sent even when not intended.
+The Azure Service Bus SDK attempts to prevent sending of messages that exceed the maximum message size supported by the SQS broker by calculating the size using the body of the message, however it does not take into account headers or overhead added by serialization performed in the SDK. As a result oversized messages may be sent to the broker and only reported after the message has been rejected and discarded by the Azure Service Bus broker.
 
-The transport handles this scenario by advising to use [the databus](/nservicebus/messaging/databus/) to send oversized messages instead. However, in certain scenarios, this is not the desired behavior. Therefore it is possible to override this behavior.
+The transport deals with this problem for a large part by performing an estimated size calculation that includes both body and headers as well as a percentage for padding as an attempt to compensate for additional message serialization performed by the SDK.
 
-One such scenario is, for example, an HTTP API that allows bulk uploading of arrays of entities to process. The API has logic to split these arrays into parts that would normally fit inside a brokered message, but due to the unknown entity property content and the internal serialization overhead associated with that, the message suddenly exceeds the maximum body size. In this scenario, the message to be sent would be lost, and it would be up to the caller of the API to deal with the problem.
+The recommended way to send message payloads which may exceed the transport message size limits is to use the NServiceBus [DataBus feature](/nservicebus/messaging/databus/), however using the DataBus feature is not always desirable, especially when exceeding the message size limits of Azure Service Bus is uncommon.
 
+As an alternative to using the DataBus feature, a custom implementation of `IHandleOversizedBrokeredMessages` can be configured
 
 ## Configuring an oversized brokered message handler
-
-To provide an alternate behavior, a custom implementation of `IHandleOversizedBrokeredMessages` can be configured
 
 snippet: asb-configure-oversized-messages-handler
 
