@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NServiceBus.Logging;
 using NServiceBus.Serilog;
 using Serilog;
@@ -45,6 +46,9 @@ class Usage
             string messageType = logState.MessageType;
             string correlationId = logState.CorrelationId;
             string conversationId = logState.ConversationId;
+            string handlerType = logState.HandlerType;
+            IReadOnlyDictionary<string, string> headers = logState.Headers;
+            object message = logState.Message;
         }
 
         #endregion
