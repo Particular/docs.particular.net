@@ -9,21 +9,21 @@ namespace WebApplication.Core
     {
         public void Configure(IApplicationBuilder app, IApplicationLifetime applicationLifetime)
         {
-			// Configure endpoint
-			var endpointConfiguration = new EndpointConfiguration("Samples.Nancy.Sender");
-			var transport = endpointConfiguration.UseTransport<LearningTransport>();
-			endpointConfiguration.SendOnly();
+            // Configure endpoint
+            var endpointConfiguration = new EndpointConfiguration("Samples.Nancy.Sender");
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            endpointConfiguration.SendOnly();
 
-			// Define routing
-			var routing = transport.Routing();
-			routing.RouteToEndpoint(
-				assembly: typeof(MyMessage).Assembly,
-				destination: "Samples.Nancy.Endpoint");
+            // Define routing
+            var routing = transport.Routing();
+            routing.RouteToEndpoint(
+                assembly: typeof(MyMessage).Assembly,
+                destination: "Samples.Nancy.Endpoint");
 
-			// Start endpoint instance
-			endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
+            // Start endpoint instance
+            endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 
-			applicationLifetime.ApplicationStopping.Register(OnShutdown);
+            applicationLifetime.ApplicationStopping.Register(OnShutdown);
 
             app.UseOwin(x => x.UseNancy(opt => opt.Bootstrapper = new Bootstrapper(endpoint)));
         }
