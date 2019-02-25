@@ -215,7 +215,7 @@ Armed with this information, it should be much easier to track down and fix our 
 
 Now our system has been fixed, and we can give that failed message another chance.
 
-1. Move the **Sales** and **Billing** windows around so you can see waht happens when you retry the message.
+1. Move the **Sales** and **Billing** windows around so you can see what happens when you retry the message.
 2. In the **ServicePulse** window, click the **Request Retry** link.
 3. In the confirmation dialog, click **Yes**, and watch the **Sales** and **Billing** windows.
 4. It may take several seconds to enqueue the batch, but eventually you will see the familiar log messages in **Sales** and **Billing**, showing the message being processed successfully as if nothing bad ever happened.
