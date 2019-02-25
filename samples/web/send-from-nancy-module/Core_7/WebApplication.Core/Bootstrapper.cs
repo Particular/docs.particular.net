@@ -7,12 +7,12 @@ public class Bootstrapper :
 {
     private readonly IMessageSession endpointInstance;
 
-	public Bootstrapper(IMessageSession messageSession)
-	{
-		this.endpointInstance = messageSession;
-	}	
-	
-	protected override void ConfigureApplicationContainer(TinyIoCContainer container)
+    public Bootstrapper(IMessageSession messageSession)
+    {
+        this.endpointInstance = messageSession;
+    }
+
+    protected override void ConfigureApplicationContainer(TinyIoCContainer container)
     {
         base.ConfigureApplicationContainer(container);
 
