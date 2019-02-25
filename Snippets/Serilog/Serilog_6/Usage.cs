@@ -45,6 +45,8 @@ class Usage
             string messageType = logState.MessageType;
             string correlationId = logState.CorrelationId;
             string conversationId = logState.ConversationId;
+            string handlerName = logState.HandlerName;
+            object message = logState.Message;
         }
 
         #endregion

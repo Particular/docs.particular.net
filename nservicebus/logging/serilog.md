@@ -106,6 +106,8 @@ The type added to the exception data is `ExceptionLogState`. It contains the fol
  * `MessageType` will be the message type [FullName](https://docs.microsoft.com/de-de/dotnet/api/system.type.fullname) extracted from the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes). `UnknownMessageType` will be used if no header exists.
  * `CorrelationId` will be the value of the [CorrelationId header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-correlationid) if it exists.
  * `ConversationId` will be the value of the [ConversationId header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-conversationid) if it exists.
+ * `HandlerName` will be type name for the current handler if it exists.
+ * `Message` will be the value of current logical message if it exists.
 
 The instance of `ExceptionLogState` can be accessed using the following.
 

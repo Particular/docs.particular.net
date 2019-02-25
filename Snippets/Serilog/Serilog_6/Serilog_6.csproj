@@ -4,7 +4,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Serilog" Version="6.*" />
-    <PackageReference Include="Serilog.Sinks.Seq" Version="3.*" />
+    <PackageReference Include="NServiceBus.Serilog" Version="6.2.2" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
   </ItemGroup>
 </Project>
