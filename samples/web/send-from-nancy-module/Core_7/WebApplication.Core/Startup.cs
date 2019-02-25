@@ -12,7 +12,6 @@ namespace WebApplication.Core
 			// Configure endpoint
 			var endpointConfiguration = new EndpointConfiguration("Samples.Nancy.Sender");
 			var transport = endpointConfiguration.UseTransport<LearningTransport>();
-			endpointConfiguration.UsePersistence<LearningPersistence>();
 			endpointConfiguration.SendOnly();
 
 			// Define routing
