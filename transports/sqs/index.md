@@ -79,4 +79,4 @@ NOTE: NServiceBus will perform [immediate](/nservicebus/recoverability/#immediat
 
 ## Batching
 
-Messages sent from within a handler are [batched](/nservicebus/messaging/batched-dispatch) with up to ten messages per batch depending on the size of the message. Messages sent outside a handler are not batched.
+Messages sent from within a handler are [batched](/nservicebus/messaging/batched-dispatch.md) with up to ten messages per batch depending on the size of the message. Messages sent outside a handler are not batched.
