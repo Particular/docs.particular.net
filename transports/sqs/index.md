@@ -2,7 +2,7 @@
 title: Amazon SQS Transport
 summary: A transport for Amazon Web Services Simple Queue Service.
 component: SQS
-reviewed: 2017-10-16
+reviewed: 2019-02-22
 related:
  - samples/sqs/simple
 tags:
@@ -11,7 +11,7 @@ redirects:
 - nservicebus/sqs/index
 ---
 
-WARNING: Due to a [bug in the AWS SDK](https://github.com/aws/aws-sdk-net/issues/796), messages might indicate that they are in-flight for a longer time than expected. Messages will not be lost but may end up being delivered up to 30 seconds later.
+WARNING: Due to an [issue in the AWS SDK](https://github.com/aws/aws-sdk-net/issues/796), messages might indicate that they are in-flight for a longer time than expected. Messages will not be lost but may end up being delivered up to 30 seconds later.
 
 [Simple Queue Service (SQS)](https://aws.amazon.com/sqs/) is a message queue service provided by [Amazon Web Services](https://aws.amazon.com/).
 
@@ -19,7 +19,7 @@ WARNING: Due to a [bug in the AWS SDK](https://github.com/aws/aws-sdk-net/issues
 ## Advantages
 
  * Fully managed turn-key messaging infrastructure. SQS queues requires very little effort to set up, maintain and manage over time.
- * Integrates seamlessly with other services provided by AWS, for example, [IAM](https://aws.amazon.com/documentation/iam/), [CloudWatch](https://aws.amazon.com/cloudwatch/), [Lambda](https://aws.amazon.com/lambda/), etc. For organizations already committed to AWS, SQS is a natural choice.
+ * Integrates seamlessly with other services provided by AWS, such as [IAM](https://docs.aws.amazon.com/iam/index.html), [CloudWatch](https://aws.amazon.com/cloudwatch/), and [Lambda](https://aws.amazon.com/lambda/). For organizations already committed to AWS, SQS is a natural choice.
  * Can be used as a gateway between endpoints that may not have direct connectivity to each-other.
  * Can send and receive large messages that exceed the queue limitations by storing large payloads in S3. For more information review the documentation for the transport [topology](topology.md#s3) and [configuration options](configuration-options.md).
 
@@ -30,12 +30,11 @@ WARNING: Due to a [bug in the AWS SDK](https://github.com/aws/aws-sdk-net/issues
  * Can be relatively expensive when using larger volumes of messages.
 
 
-## Getting Started
+## Getting started
 
 An [AWS IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) account with a pair of [Access Keys](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html) is required.
 
-The IAM account requires the following:
-
+The IAM account requires the following permissions:
 
 #### [SQS permissions](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html)
 
@@ -66,10 +65,9 @@ The IAM account requires the following:
 partial: credentials
 
 
-## Retries and Timeouts
+## Retries and timeouts
 
-
-The SQS transport uses the default [retries and timeouts](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/retries-timeouts.html) values implemented by the [AWS SDK for .NET](https://aws.amazon.com/sdk-for-net/):
+The SQS transport uses the default [retry and timeout](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/retries-timeouts.html) values implemented by the [AWS SDK for .NET](https://aws.amazon.com/sdk-for-net/):
 
 | Parameter          | Default value |
 |--------------------|---------------|
@@ -79,46 +77,6 @@ The SQS transport uses the default [retries and timeouts](http://docs.aws.amazon
 
 NOTE: NServiceBus will perform [immediate](/nservicebus/recoverability/#immediate-retries) and [delayed](/nservicebus/recoverability/#delayed-retries) retries in addition to retries performed internally by the SQS client.
 
+## Batching
 
-## Troubleshooting
-
-### AmazonSQSException: Request is throttled
-
-Amazon SQS can handle large, continuous throughput but if there are sudden spikes, the service may apply throttling.
-
-When throttling happens, the following exception is logged:
-
-```
-2017-11-14 23:10:24,314|ERROR|18|NServiceBus.Transports.SQS.MessageDispatcher|Exception from Send.
-Amazon.SQS.AmazonSQSException: Request is throttled. ---> Amazon.Runtime.Internal.HttpErrorResponseException: The remote server returned an error: (403) Forbidden. ---> System.Net.WebException: The remote server returned an error: (403) Forbidden.
-```
-
-Throttling is more likely to happen when sending a large number messages concurrently. For example, using a list of tasks when using async/await.
-
-To avoid Amazon throttling errors, limit the maximum number of concurrent sends. For example, allow only a small amount of messages to be sent concurrently as outlined in the [sending large amount of messages](/nservicebus/handlers/async-handlers.md#concurrency-large-amount-of-concurrent-message-operations) guidelines or send messages sequentially.
-
-Throttling can happen during any send or receive operation and can happen during the following scenarios:
-
-- Incoming message (receiving)
-- Sending from within a handler
-- Sending outside of a handler
-
-
-#### Incoming message (receiving)
-
-For incoming messages throttling errors can be safely ignored as the message pump will try to fetch the next available message again.
-
-#### Sending from within a handler
-
-Failing message sends raise an exception when throttled. The exception will be handled by the [recoverability feature](/nservicebus/recoverability/) mechanism. An incoming message that continuously fails due to throttling errors will be moved to the error queue.
-
-A throttling error could result in partial message delivery while the incoming message is not processed successfully and can occur regardless of using the default [batched message dispatch](/nservicebus/messaging/batched-dispatch.md) or when using [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately).
-
-Throttling errors are similar to any other technical error that can occur.
-
-
-#### Sending outside of a handler
-
-As message sending does not happen within a handler context any failures during sending will not rely or be covered by the [recoverability feature](/nservicebus/recoverability/) mechanism. Any retry logic must be manually implemented.
-
-When throttling occurs with no custom error logic implemented, one or more messages might not have been transmitted to Amazon SQS. The custom retry logic could either retry all messages to be sent again, including already succeeded messages or only retry individual messages that failed.
+Messages sent from within a handler are [batched](/nservicebus/messaging/batched-dispatch.md) with up to ten messages per batch depending on the size of the message. Messages sent outside a handler are not batched.
