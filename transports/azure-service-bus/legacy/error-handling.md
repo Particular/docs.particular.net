@@ -21,7 +21,7 @@ In a cloud environment, exceptions are common. Given the size and complexity of 
 
 The following document describes a list of [common exceptions](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-exceptions), coming from the broker or connectivity to the broker, that may be logged by NServiceBus. Usually, these exceptions are transient in their nature and will be automatically resolved by the retry policy of the Azure Service Bus SDK, or they are resolved at the transport level by reestablishing the connection to the service.
 
-If the exceptions persist, they will eventually trigger the transport's circuit breaker which results a [critical error](/nservicebus/hosting/critical-errors.md) which may stop the process with a fatal exception.
+If the exceptions persist, they will eventually trigger the transport's circuit breaker which results in a [critical error](/nservicebus/hosting/critical-errors.md) which may stop the process with a fatal exception.
 
 
 ### Broker side exceptions
