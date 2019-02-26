@@ -12,7 +12,7 @@ tags:
 
 ## Viewing the message ID on the SQS message
 
-To assist with troubleshooting, the NServiceBus [message ID](/nservicebus/messaging/headers#messaging-interaction-headers-nservicebus-messageid) is propagated to the underlying SQS message as a message attribute. That way, even if message deserialization fails, the NServiceBus message ID is still available to help diagnose problems.
+To assist with troubleshooting, the NServiceBus [message ID](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-messageid) is propagated to the underlying SQS message as a message attribute. That way, even if message deserialization fails, the NServiceBus message ID is still available to help diagnose problems.
 
 ## AmazonSQSException: Request is throttled
 
