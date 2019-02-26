@@ -5,7 +5,6 @@ component: SQS
 reviewed: 2019-02-22
 related:
  - samples/sqs/simple
- - transports/sqs/troubleshooting
 tags:
 - AWS
 redirects:
