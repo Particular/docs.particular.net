@@ -8,7 +8,7 @@ related:
 - nservicebus/outbox
 ---
 
-This sample demonstrates how to configure SQL Persistence to store tenant-specific data in separate catalogs, for each tenant. The tenant-specific information include saga state and business entities that are accessed using [NServiceBus-managed session](/persistence/sql/accessing-data.md).
+This sample demonstrates how to configure SQL Persistence to store tenant-specific data in separate catalogs, for each tenant. The tenant-specific information includes saga state and business entities that are accessed using [NServiceBus-managed session](/persistence/sql/accessing-data.md).
 
 This sample uses [Outbox](/nservicebus/outbox/) to guarantee consistency between the saga state and the business entity. Outbox data as well as timeout data are stored in a dedicated catalog shared by all tenants.
 
@@ -49,7 +49,7 @@ snippet: Synonyms
 To allow for database isolation between the tenants the connection to the database needs to be created based on the message being processed. This requires cooperation of two components:
 
  * A behavior that inspects an incoming message and extracts the tenant information 
- * Custom connection factory for SQL Persistence
+ * A custom connection factory for SQL Persistence
 
 The connection factory has to be registered with SQL Persistence
 
