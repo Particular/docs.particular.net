@@ -38,7 +38,7 @@ The built-in Outbox cleanup does not work in a multi-tenant environment because 
 
 snippet: DisableOutboxCleanup
 
-The simplest way to ensure that the dispatched Outbox documents are removed is to use the RavenDB [Document expiration](https://ravendb.net/docs/article-page/3.5/Csharp/server/bundles/expiration) bundle. Following code ensures that tenants’ databases are created with this bundle enabled:
+The simplest way to ensure that the dispatched Outbox documents are removed is to use the RavenDB [Document expiration](https://ravendb.net/docs/article-page/3.5/Csharp/server/bundles/expiration) bundle. The following code ensures that tenants’ databases are created with this bundle enabled:
 
 snippet: CreateDatabase
 
@@ -51,7 +51,7 @@ This component is executed each time the RavenDB session is about to send data m
 
 #### Connecting to the tenant database
 
-To allow for database isolation between the tenants the connection to the database needs to be created based on the message being processed. RavenDB persistence offers an extension point which allows to customize the database name to be used when opening a session.
+To allow for database isolation between the tenants the connection to the database needs to be created based on the message being processed. RavenDB persistence offers an extension point which allows for a customized database name to be used when opening a session.
 
 snippet: DetermineDatabase
 
