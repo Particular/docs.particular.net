@@ -1,7 +1,7 @@
 ---
 title: Azure Cloud Showcase
 summary: Implements a fictional store utilizing several features of NServiceBus.
-reviewed: 2017-05-18
+reviewed: 2019-02-27
 component: Core
 redirects:
   - samples/show-case/cloud-azure
