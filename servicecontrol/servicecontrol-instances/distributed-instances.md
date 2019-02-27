@@ -14,40 +14,40 @@ Aggregating the data for querying and analysis takes considerable resources, suc
 
 ## Overview
 
-Multi-instance deployments consist of at least two ServiceControl instances. In this scenario, there is a single designated instance, a _master_  instance, responsible for processing error messages and optionally audit messages. All other existing ServiceControl instances are slaves responsible **only** for processing audit messages. 
+Multi-instance deployments consist of at least two ServiceControl instances. In this scenario, there is a single designated instance, a _primary_  instance, responsible for processing error messages and optionally audit messages. All other existing ServiceControl instances are secondary instances responsible **only** for processing audit messages. 
 
-It is only the master instance that handles the external API requests (from [ServicePulse](/servicepulse/) or [ServiceInsight](/serviceinsight/)). Master is the only party communicating with slave instances directly for query execution.
+It is only the primary instance that handles the external API requests (from [ServicePulse](/servicepulse/) or [ServiceInsight](/serviceinsight/)). Primary is the only party communicating with secondary instances directly for query execution.
 
 The following is a high-level look at the steps needed to deploy ServiceControl in multi-instance mode:
 
-- Install one or more ServiceControl slave instances
-- Install a ServiceControl master instance and configure it to route API queries to its slave instances
+- Install one or more ServiceControl secondary instances
+- Install a ServiceControl primary instance and configure it to route API queries to its secondary instances
 - When using audit queue per shard, the production endpoints must be reconfigured to forward audit messages to different [audit queues](/nservicebus/operations/auditing.md) consumed by different ServiceControl instances
 
-WARNING: Error queue sharding is not supported and all endpoints need to route error messages to a centralized [error queue](/nservicebus/recoverability/configure-error-handling.md) handled by the master.
+WARNING: Error queue sharding is not supported and all endpoints need to route error messages to a centralized [error queue](/nservicebus/recoverability/configure-error-handling.md) handled by the primary instance.
 
 WARNING: All instances of ServiceControl MUST have a unique name
 
 ### Sharding audit messages with competing consumers
 
-This section walks through a fresh installation of multiple ServiceControl instances where audit messages are sharded with a competing consumers approach. That is, two instances of ServiceControl (master and slave) compete for audit messages on a single audit queue. All of the endpoints will forward their audit messages to `audit`. All error messages are forwarded to the `error` queue. ServiceInsight and ServicePulse are connected to the master instance.
+This section walks through a fresh installation of multiple ServiceControl instances where audit messages are sharded with a competing consumers approach. That is, two instances of ServiceControl (primary and secondary) compete for audit messages on a single audit queue. All of the endpoints will forward their audit messages to `audit`. All error messages are forwarded to the `error` queue. ServiceInsight and ServicePulse are connected to the primary instance.
 
 ```mermaid
 graph TD
-SI[ServiceInsight] -. connected to .->Master
-SP[ServicePulse] -. connected to .-> Master
+SI[ServiceInsight] -. connected to .->Primary
+SP[ServicePulse] -. connected to .-> Primary
 Endpoints -- audits to--> AuditsMain(audit)
 Endpoints -- errors to --> Errors(error)
-Master[ServiceControl<br/>Master]
-Slave[ServiceControl<br/>Slave]
-AuditsMain -- ingested by --> Master
-AuditsMain -- ingested by --> Slave
-Errors-- ingested by --> Master
-Master -. connected to .-> Slave
+Primary[ServiceControl<br/>Primary]
+Secondary[ServiceControl<br/>Secondary]
+AuditsMain -- ingested by --> Primary
+AuditsMain -- ingested by --> Secondary
+Errors-- ingested by --> Primary
+Primary -. connected to .-> Secondary
 ```
 
 Setup steps:
-1. Install the ServiceControl slave instance (on separate infrastructure) which points to `audit` according to the [installation guidelines](/servicecontrol/installation.md). Each slave instance must have a unique name. The ServiceControl instance name and the port are required to configure the master instance (for example `Particular.ServiceControl.Slave` and the port `33334`). Make sure error queue processing is disabled by specifying `!disable` as the error queue field in the ServiceControl Management Utility, or as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script, or by editing `ServiceControl.exe.config` as shown below:
+1. Install the ServiceControl secondary instance (on separate infrastructure) which points to `audit` according to the [installation guidelines](/servicecontrol/installation.md). Each secondary instance must have a unique name. The ServiceControl instance name and the port are required to configure the primary instance (for example `Particular.ServiceControl.Secondary` and the port `33334`). Make sure error queue processing is disabled by specifying `!disable` as the error queue field in the ServiceControl Management Utility, or as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script, or by editing `ServiceControl.exe.config` as shown below:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -60,43 +60,43 @@ Setup steps:
 
 If the error queue is set to `!disable` then error forwarding will be ignored even if enabled.
 
-2. Install the ServiceControl master instance which points to `audit` according to the [installation guidelines](/servicecontrol/installation.md).
-3. Stop the ServiceControl master instance and edit the [`ServiceControl.exe.config` ](/servicecontrol/creating-config-file.md) with the `RemoteInstances` key. The value for the key is a json array.
+2. Install the ServiceControl primary instance which points to `audit` according to the [installation guidelines](/servicecontrol/installation.md).
+3. Stop the ServiceControl primary instance and edit the [`ServiceControl.exe.config` ](/servicecontrol/creating-config-file.md) with the `RemoteInstances` key. The value for the key is a json array.
 
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Slave'}]'"/>
+    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary'}]'"/>
   </appSettings>/
 </configuration>
 ```
 
-4. Start the ServiceControl master instance.
-5. Validate ServiceInsight and ServicePulse are connecting to the master instance only.
+4. Start the ServiceControl primary instance.
+5. Validate ServiceInsight and ServicePulse are connecting to the primary instance only.
 
 ### Sharding audit messages with split audit queue
 
-This section walks through a fresh installation of multiple instances of ServiceControl in which audit messages are sharded with separate audit queues. Some of the endpoints will forward their audit messages to `audit-master` processed by the master while others will forward their audit messages to `audit-slave` processed by the slave. All error messages are forwarded to the `error` queue. ServiceInsight and ServicePulse are connected to the master instance.
+This section walks through a fresh installation of multiple instances of ServiceControl in which audit messages are sharded with separate audit queues. Some of the endpoints will forward their audit messages to `audit-primary` processed by the primary instance while others will forward their audit messages to `audit-secondary` processed by the secondary instance. All error messages are forwarded to the `error` queue. ServiceInsight and ServicePulse are connected to the primary instance.
 
 ```mermaid
 graph TD
-SI[ServiceInsight] -. connected to .->Master
-SP[ServicePulse] -. connected to .-> Master
-Endpoints -- audits to--> AuditsMain[audit-master]
-OtherEndpoints -- audits to--> AuditsSlave(audit-slave)
+SI[ServiceInsight] -. connected to .->Primary
+SP[ServicePulse] -. connected to .-> Primary
+Endpoints -- audits to--> AuditsMain[audit-primary]
+OtherEndpoints -- audits to--> AuditsSecondary(audit-secondary)
 Endpoints -- errors to --> Errors(error)
 OtherEndpoints -- errors to --> Errors(error)
-Master[ServiceControl<br/>Master]
-Slave[ServiceControl<br/>Slave]
-AuditsMain -- ingested by --> Master
-Errors-- ingested by --> Master
-AuditsSlave -- ingested by --> Slave
-Master -. connected to .-> Slave
+Primary[ServiceControl<br/>Primary]
+Secondary[ServiceControl<br/>Secondary]
+AuditsMain -- ingested by --> Primary
+Errors-- ingested by --> Primary
+AuditsSecondary -- ingested by --> Secondary
+Primary -. connected to .-> Secondary
 ```
 
 Setup steps:
 
-1. Install the ServiceControl slave instance (on separate infrastructure) which ingests messages from the `audit-slave` queue according to the [installation guidelines](/servicecontrol/installation.md). Each slave instance must have a unique name. The ServiceControl instance name and the port are required to configure the master instance. In this example, the name `Particular.ServiceControl.Slave` and the port `33334` is used. Make sure error queue processing is disabled by specifying `!disable` as the error queue field in the ServiceControl Management Utility, or as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script, or by editing `ServiceControl.exe.config` as shown below:
+1. Install the ServiceControl secondary instance (on separate infrastructure) which ingests messages from the `audit-secondary` queue according to the [installation guidelines](/servicecontrol/installation.md). Each secondary instance must have a unique name. The ServiceControl instance name and the port are required to configure the primary instance. In this example, the name `Particular.ServiceControl.Secondary` and the port `33334` is used. Make sure error queue processing is disabled by specifying `!disable` as the error queue field in the ServiceControl Management Utility, or as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script, or by editing `ServiceControl.exe.config` as shown below:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -109,27 +109,27 @@ Setup steps:
 
 If the error queue is set to `!disable` then error forwarding will be ignored even if enabled.
 
-2. Install the ServiceControl master instance which ingests messages from the `audit-master` queue according to the [installation guidelines](/servicecontrol/installation.md).
-3. Stop the ServiceControl master instance and edit the [`ServiceControl.exe.config` ](/servicecontrol/creating-config-file.md) with the `RemoteInstances` key. The value for the key is a json array.
+2. Install the ServiceControl primary instance which ingests messages from the `audit-primary` queue according to the [installation guidelines](/servicecontrol/installation.md).
+3. Stop the ServiceControl primary instance and edit the [`ServiceControl.exe.config` ](/servicecontrol/creating-config-file.md) with the `RemoteInstances` key. The value for the key is a json array.
 
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Slave'}]'"/>
+    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary'}]'"/>
   </appSettings>/
 </configuration>
 ```
 
-4. Start the ServiceControl master instance.
-5. Validate ServiceInsight and ServicePulse are connecting to the master instance only.
+4. Start the ServiceControl primary instance.
+5. Validate ServiceInsight and ServicePulse are connecting to the primary instance only.
 
 ### Splitting an existing installation
 
-This section walks through converting a single existing ServiceControl installation into a master-slave configuration.
+This section walks through converting a single existing ServiceControl installation into a primary-secondary configuration.
 
-1. Add a ServiceControl instance (on separate infrastructure and with a unique name) intended to ingest audit messages only. Disable error queue processing as described above. This will be a slave instance.
+1. Add a ServiceControl instance (on separate infrastructure and with a unique name) intended to ingest audit messages only. Disable error queue processing as described above. This will be a secondary instance.
 2. Configure production endpoints to send audit messages to the newly added ServiceControl instance.
-3. Make the original endpoint a designated master by adding `ServiceControl/RemoteInstances` setting, pointing to the slave instance of ServiceControl.
+3. Make the original endpoint a designated primary by adding `ServiceControl/RemoteInstances` setting, pointing to the secondary instance of ServiceControl.
 
 ## Advanced scenarios
 
@@ -137,15 +137,15 @@ This section walks through converting a single existing ServiceControl installat
 
 ```mermaid
 graph TD
-SI[ServiceInsight] -. connected to .->Master
-SP[ServicePulse] -. connected to .-> Master
+SI[ServiceInsight] -. connected to .->Primary
+SP[ServicePulse] -. connected to .-> Primary
 HighVolumeEndpoints -- audits to--> AuditsHigh[audit-high]
 LowVolumeEndpoints -- audits to--> AuditsLow(audit-low)
-Master[ServiceControl<br/>Master<br/>Retention: 1day]
-Slave[ServiceControl<br/>Slave<br/>Retention: 7days]
-AuditsHigh-- ingested by --> Master
-AuditsLow-- ingested by --> Slave
-Master -. connected to .-> Slave
+Primary[ServiceControl<br/>Primary<br/>Retention: 1day]
+Secondary[ServiceControl<br/>Secondary<br/>Retention: 7days]
+AuditsHigh-- ingested by --> Primary
+AuditsLow-- ingested by --> Secondary
+Primary -. connected to .-> Secondary
 ```
 
 Each ServiceControl instance can have different settings. For example, it is possible to have different [audit retention periods](/servicecontrol/creating-config-file.md#data-retention-servicecontrolauditretentionperiod). With that in mind, high volume endpoints can report audits to a ServiceControl instance with shorter retention periods (thus evicting old messages faster). This allows catering settings as well as resources being used by ServiceControl to the needs of the endpoints configured to audit to a specific ServiceControl instance.
@@ -154,30 +154,30 @@ NOTE: If there are message conversations that span `HighVolumenEndpoints` and `L
 
 ### Migration
 
-Sometimes it is necessary to migrate a ServiceControl master to a different machine with better hardware. By taking the audit retention period into account, it is possible to migrate ServiceControl instances without needing to backup and restore data.
+Sometimes it is necessary to migrate a ServiceControl primary instance to a different machine with better hardware. By taking the audit retention period into account, it is possible to migrate ServiceControl instances without needing to backup and restore data.
 
 Describe
 
-Server Slow: Master (7 days, error enabled, audit enabled)
-Server Fast 1: Slave 1 (error disabled, audit enabled)
-Server Fast 2: Slave 2 (error disabled, audit enabled)
+Server Slow: Primary (7 days, error enabled, audit enabled)
+Server Fast 1: Secondary 1 (error disabled, audit enabled)
+Server Fast 2: Secondary 2 (error disabled, audit enabled)
 
-endpoints point to Slave 1 Audit and Slave 2 audit
+endpoints point to Secondary 1 Audit and Secondary 2 audit
 after seven days
-Configure slave 1 to be the new master, enable error
-Shutdown master
-Point tools to Slave 1 which is the new master
+Configure Secondary 1 to be the new primary, enable error
+Shutdown primary
+Point tools to Secondary 1 which is the new primary
 
 ### Multi-region deployments
 
-Multi-region deployments are partially supported (error data sharding is not supported). This scenario consists of a ServiceControl slave deployed in each region and a master instance responsible for aggregating audit data. 
+Multi-region deployments are partially supported (error data sharding is not supported). This scenario consists of a ServiceControl secondary instance deployed in each region and a primary instance responsible for aggregating audit data. 
 
-In this scenario, all cross-region audit data can be queried via ServiceInsight connected to the master. However, to use the recoverability features, a dedicated ServicePulse installation in each region is required. 
+In this scenario, all cross-region audit data can be queried via ServiceInsight connected to the primary instance. However, to use the recoverability features, a dedicated ServicePulse installation in each region is required. 
 
 ```mermaid
 graph TD
-SI[ServiceInsight] -->Master[ServiceControl Instance]
-Master -.->SCB
+SI[ServiceInsight] -->Primary[ServiceControl Instance]
+Primary -.->SCB
 subgraph Region B
 SPB[ServicePulse Instance]-->SCB[ServiceControl Instance]
 EPB[Endpoints] --audits/errors-->SCB
@@ -186,23 +186,23 @@ subgraph Region A
 EPA[Endpoints] --audits/errors-->SCA[ServiceControl Instance]
 SPA[ServicePulse Instance] -->SCA
 end
-Master -.->SCA
+Primary -.->SCA
 ```
-## Configuration of multiple slaves
+## Configuration of multiple secondaries
 
-Multiple slave instances can be configured as follows:
+Multiple secondary instances can be configured as follows:
 
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Slave1'},{'api_uri':'http://localhost:33335/api', 'queue_address':'Particular.ServiceControl.Slave2'}]'"/>
+    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary1'},{'api_uri':'http://localhost:33335/api', 'queue_address':'Particular.ServiceControl.Secondary2'}]'"/>
   </appSettings>/
 </configuration>
 ```
 
 ## Disabling auditing
 
-With multiple instances in place, it is possible to disable the auditing in the master instance and only perform auditing in the slaves. Auditing can be disabled by specifying `!disable` in the audit queue name field in the ServiceControl Management utility, or by editing the `ServiceControl.exe.config` as follows:
+With multiple instances in place, it is possible to disable the auditing in the primary instance and only perform auditing in the secondaries. Auditing can be disabled by specifying `!disable` in the audit queue name field in the ServiceControl Management utility, or by editing the `ServiceControl.exe.config` as follows:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -217,10 +217,10 @@ Audit forwarding, if enabled, will be ignored.
 ## Known limitations
 
 - Splitting into multiple ServiceControl instances is supported only for auditing.
-- Only one ServiceControl instance, usually master, should have error handling / recoverability enabled unless the multi-region scenario is used.
-- Only one ServiceControl instance, usually master, should be the target for [plugins](/servicecontrol/plugins/) unless the multi-region scenario is used.
+- Only one ServiceControl instance, usually the primary instance, should have error handling / recoverability enabled unless the multi-region scenario is used.
+- Only one ServiceControl instance, usually the primary instance, should be the target for [plugins](/servicecontrol/plugins/) unless the multi-region scenario is used.
 - Pagination with ServiceInsight may not work as traditional pagination would. For example, some pages might be filled unevenly depending on how the load is scattered between the different ServiceControl instances.
-- Data from remote instances that cannot be reached by the master instance will not be included in the results.
+- Data from remote instances that cannot be reached by the primary instance will not be included in the results.
 - Multi-instance configuration is a manual setup process and cannot be done via the ServiceControl Management application.
 - An incorrect configuration could introduce cyclic loops.
-- Having multiple masters is discouraged.
+- Having multiple primary instances is discouraged.
