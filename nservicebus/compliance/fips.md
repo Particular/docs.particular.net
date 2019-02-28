@@ -16,7 +16,7 @@ First a replacement for the MD5 based DeterministicGuid utility within the NServ
 
 snippet: SHA1DeterministicGuid
 
-Next [set the HostId](https://docs.particular.net/nservicebus/hosting/override-hostid) as part of the endpoint configuration:
+Next [set the HostId](/nservicebus/hosting/override-hostid.md) as part of the endpoint configuration:
 
 snippet: HostIdFixer
 
