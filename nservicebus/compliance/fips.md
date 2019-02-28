@@ -8,15 +8,15 @@ The [Federal Information Processing Standards](https://en.wikipedia.org/wiki/Fed
 
 The Particular Software Platform is not FIPS compliant, but can run in a FIPS compliant using the following methods:
 
-## Generate your own HostId
+## NServiceBus HostId
 
-NServiceBus uses the MD5 hash algorithm to generate deterministic unique identifiers for endpoints, also known as HostIds. MD5 is not FIPS compliant. Using a FIPS compliant hashing algorithm method to generate a HostId will allow a NServiceBus endpoint to run under a FIPS policy.
+NServiceBus uses the MD5 hash algorithm to generate deterministic unique identifiers for endpoints, also known as HostIds. MD5 is not FIPS compliant. Using a FIPS compliant hashing algorithm method to generate a HostId will allow an NServiceBus endpoint to run under a FIPS policy.
 
 First a replacement for the MD5 based DeterministicGuid utility within the NServiceBus framework will have to be provided:
 
 snippet: SHA1DeterministicGuid
 
-Next [provide your own HostId](https://docs.particular.net/nservicebus/hosting/override-hostid) as part of the endpoint configuration:
+Next [set the HostId](https://docs.particular.net/nservicebus/hosting/override-hostid) as part of the endpoint configuration:
 
 snippet: HostIdFixer
 
