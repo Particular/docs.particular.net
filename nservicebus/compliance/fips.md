@@ -14,11 +14,11 @@ NServiceBus uses the MD5 hash algorithm to generate deterministic unique identif
 
 First a replacement for the MD5 based DeterministicGuid utility within the NServiceBus framework will have to be provided:
 
-snippet:SHA1DeterministicGuid
+snippet: SHA1DeterministicGuid
 
 Next [provide your own HostId](https://docs.particular.net/nservicebus/hosting/override-hostid) as part of the endpoint configuration:
 
-snippet:HostIdFixer
+snippet: HostIdFixer
 
 ## Disable enforcement of FIPS
 
