@@ -580,6 +580,8 @@
     Articles:
     - Url: nservicebus/compliance/gdpr
       Title: GDPR
+    - Url: nservicebus/compliance/fips
+      Title: FIPS
 
 - Name: Transports
   Url: transports
