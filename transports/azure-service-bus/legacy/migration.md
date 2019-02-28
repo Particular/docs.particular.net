@@ -6,7 +6,7 @@ versions: '[9.1,)'
 tags:
 - Azure
 - Transport
-reviewed: 2018-12-18
+reviewed: 2019-02-27
 related:
  - transports/azure-service-bus/legacy/topologies
 ---
@@ -18,6 +18,14 @@ The endpoint-oriented topology was the first topology included in the Azure Serv
 The forwarding topology was introduced to take advantage of the broker-style native capabilities of Azure Service Bus. It is the recommended topology for new projects. The new Azure Service Bus transport is only [compatible](/transports/azure-service-bus/compatibility.md) with the forwarding topology.
 
 Before migrating to the new Azure Service Bus transport, a system using the endpoint-oriented topology must be migrated to the forwarding topology. The migration approach described here allows migration of individual endpoints to the forwarding topology in any order, and avoids a big-bang style migration.
+
+
+## Namespace validation
+
+To proceed with migration, it's recommended to verify Azure Service Bus namespaces support the migration feature.
+Verification steps are described [here](https://github.com/Particular/NServiceBus.AzureServiceBus/issues/810). 
+
+All namespaces used for development, testing, and production should be validated prior to migration taking place.
 
 
 ## Side-by-side migration
