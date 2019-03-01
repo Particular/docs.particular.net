@@ -1,7 +1,7 @@
 ---
 title: ProtoBuf-Net Serializer
 component: ProtoBufNet
-reviewed: 2017-05-17
+reviewed: 2019-03-01
 related:
  - samples/serializers/protobufnet
  - nservicebus/serialization/protobufgoogle
@@ -20,7 +20,7 @@ include: interface-not-supported
 
 ### Custom Settings
 
-Customizes the instance of `SerializerOptions` used for serialization.
+Customizes the `SerializerOptions` used for serialization.
 
 snippet: ProtoBufCustomSettings
 
@@ -28,5 +28,3 @@ snippet: ProtoBufCustomSettings
 include: custom-contenttype-key
 
 snippet: ProtoBufContentTypeKey
-
-
