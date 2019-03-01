@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 6 to 7
 summary: Instructions on how to upgrade Azure Service Bus Transport Version 6 to 7.
-reviewed: 2017-05-05
+reviewed: 2019-03-01
 component: ASB
 related:
  - transports/azure-service-bus
@@ -15,13 +15,13 @@ upgradeGuideCoreVersions:
 ---
 
 
-## [Topology](/transports/azure-service-bus/legacy/topologies.md) is mandatory
+## Topology is mandatory
 
-In Versions 7 and above the topology selection is mandatory:
+In Versions 7 and above the [topology selection](/transports/azure-service-bus/legacy/topologies.md) is mandatory:
 
 snippet: topology-selection-upgrade-guide
 
-The [`EndpointOrientedTopology`](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-endpoint-oriented-topology)  is backward compatible with versions 6 and below of the transport. The [`ForwardingTopology`](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-forwarding-topology) is the recommended option for new projects.
+The [`EndpointOrientedTopology`](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-endpoint-oriented-topology) is backward compatible with versions 6 and below of the transport. The [`ForwardingTopology`](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-forwarding-topology) is the recommended option for new projects.
 
 When selecting `EndpointOrientedTopology`, it is also necessary to configure [publisher names](/transports/azure-service-bus/legacy/publisher-names-configuration.md), in order to ensure that subscribers are subscribed to the correct publisher:
 
@@ -32,9 +32,9 @@ For more details on topologies refer to the [Azure Service Bus Transport Topolog
 
 ## Sanitization
 
-Azure Service Bus entities have path and name rules that limit the allowed characters and maximum length.  NServiceBase derives entity names from endpoint and event names; these derived names may fail Azure Service Bus validation.  Sanitization is a process that modifies entity names so that the broker can use them.
+Azure Service Bus entities have path and naming rules that limit the allowed characters and maximum length.  NServiceBus derives entity names from endpoint and event names; these derived names may fail Azure Service Bus validation. Sanitization allows to modify entity names to meet the namning rules of the broker.
 
-In Versions 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. In Versions 7 and above, the sanitization has to be enabled and configured explicitly.
+In Versions 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. In Versions 7 and above, the sanitization has to configured explicitly.
 
 In order to maintain backward compatibility, [register a custom sanitization strategy](/transports/azure-service-bus/legacy/sanitization.md#automated-sanitization-backward-compatibility-with-versions-6-and-below).
 
@@ -43,21 +43,21 @@ In version 6.4.0 `NamingConventions` class was introduced to customize sanitizat
 
 ## New Configuration API
 
-In Versions 6 and below the transport was configured using an XML configuration section called `AzureServiceBusQueueConfig`. This section has been removed in favor of a more granular, code based configuration API.
+In Versions 6 and below the transport was configured using the `AzureServiceBusQueueConfig`configuration section. This section has been removed in favor of a more granular code based configuration API.
 
-The new configuration API is accessible through extension methods on the `UseTransport<AzureServiceBusTransport>()` extension point in the endpoint configuration. Refer to the [Full Configuration Page](/transports/azure-service-bus/legacy/configuration/full.md) for more details.
+The new API is accessible through the `.UseTransport<AzureServiceBusTransport>()` extension point. Refer to the [Full Configuration Page](/transports/azure-service-bus/legacy/configuration/full.md) for more details.
 
 
-### Setting The Connection String
+### Configuring a connection string
 
-Setting the connection string can still be done using the `ConnectionString` extension method:
+Setting a connection string is still supported using the `ConnectionString` extension method:
 
 snippet: 6to7_setting_asb_connection_string
 
 
 ### Default value changes
 
-The default values of the following settings have been changed:
+The default values for the following settings have changed:
 
  * `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200. 
  * `MaxDeliveryCount` is set to number of immediate retries + 1. For system queues the value has changed from 6 to 10.
@@ -83,10 +83,10 @@ snippet: setting_topic_properties
 
 include: asb-credential-warning
 
-In order to enhance security and to avoid sharing sensitive information using `UseNamespaceNameInsteadOfConnectionString` feature follow the next steps:
+In order to enhance security and to avoid sharing sensitive information enable the `UseNamespaceNameInsteadOfConnectionString` feature using the following steps:
 
- * Upgrade all endpoints to Version 7 or above. Previous versions of transport aren't able to understand namespace name instead of connection string.
- * After the above has been done and all endpoints deployed configure each endpoint switching on `UseNamespaceNameInsteadOfConnectionString` feature and re-deploy.
+ * Upgrade all endpoints to Version 7 or above. Previous versions of the transport aren't able to understand namespace names instead of connection strings.
+ * After the above has been done and all endpoints have been deployed switch on the `UseNamespaceNameInsteadOfConnectionString` feature and re-deploy.
 
 
 ## BrokeredMessage conventions
