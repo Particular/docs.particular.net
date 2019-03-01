@@ -1,7 +1,7 @@
 ---
 title: ProtoBuf-Google Serializer
 component: ProtoBufGoogle
-reviewed: 2017-05-17
+reviewed: 2019-03-01
 related:
  - samples/serializers/protobufgoogle
  - nservicebus/serialization/protobufnet
