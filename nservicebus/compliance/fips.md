@@ -6,6 +6,8 @@ reviewed: 2019-02-28
 
 The [Federal Information Processing Standards](https://en.wikipedia.org/wiki/Federal_Information_Processing_Standards) or FIPS are standards developed by the United States government for computer systems that sets requirements for, among other things, crytography.
 
+Microsoft [does not recommend enabling FIPS](https://blogs.technet.microsoft.com/secguide/2014/04/07/why-were-not-recommending-fips-mode-anymore/) unless it is required by government regulations.
+
 The Particular Software Platform is not FIPS compliant, but can run in a FIPS compliant using the following methods:
 
 ## NServiceBus HostId
