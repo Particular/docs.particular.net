@@ -23,3 +23,5 @@ snippet: HostIdFixer
 ## Disable enforcement of FIPS
 
 FIPS enforcement can be disabled by setting the runtime setting `enforceFIPSPolicy` to `false` in the applications app.config or web.config. See the [MSDN article on how to change this setting](https://msdn.microsoft.com/en-us/library/hh202806(v=vs.110).aspx).
+
+ServiceControl also uses MD5 internally and will require disabling FIPS enforcement to run properly.
