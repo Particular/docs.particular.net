@@ -8,8 +8,6 @@ related:
 ---
 
 
-## Introduction
-
 This sample shows how to configure the NServiceBus pipeline to automatically propagate tenant information to downstream endpoints. The sample assumes that the tenant information is passed as a message header.
 
 
@@ -18,7 +16,7 @@ This sample shows how to configure the NServiceBus pipeline to automatically pro
 
 ### Attaching tenant information to the messages
 
-In most cases the best way to attach tenant information to messages is by using a custom message header. The following code demonstrates how to set a custom `tenant_id` header.
+In most cases the best way to attach tenant information to messages is with a custom message header. The following code demonstrates how to set a custom `tenant_id` header.
 
 snippet: SetTenantId
 
