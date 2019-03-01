@@ -1,7 +1,7 @@
 ---
 title: Simple Saga Usage
 summary: How build and use a saga.
-reviewed: 2017-05-10
+reviewed: 2019-03-01
 component: Core
 tags:
 - Saga
@@ -17,11 +17,11 @@ related:
 
 ## Introduction
 
-This sample shows a simple saga.
+This sample shows a simple saga to manage an order.
 
-Once starting the sample, press `Enter` to send a `StartOrder` message with a random `OrderId`. Each message will cause a saga instance to start because `StartOrder` is configured to start a saga using the `IAmStartedByMessages` construct. There is also a mapping defined between `StartOrder.OrderId` and `OrderSagaData.OrderId`. This mapping helps to [correlate incoming messages](/nservicebus/sagas/message-correlation.md) to its appropriate saga instances.
+Once starting the sample, press `Enter` to send a `StartOrder` message with a random `OrderId`. Each message will cause a new saga instance to start because `StartOrder` is configured to start a saga using the `IAmStartedByMessages` interface. There is also a mapping defined between `StartOrder.OrderId` and `OrderSagaData.OrderId`. This [correlates incoming messages](/nservicebus/sagas/message-correlation.md) to appropriate saga instances.
 
-This sample also requests a 30 second `CancelOrder` timeout that will mark the saga as complete if the saga is not already complete.
+This sample also requests a 30 second `CancelOrder` timeout that will [mark the saga as complete](/nservicebus/sagas/#ending-a-saga) if the saga is not already complete.
 
 The output to the console will be
 
