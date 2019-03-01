@@ -1,7 +1,7 @@
 ---
 title: ProtoBuf-Net Serializer Usage
 summary: Using the ProtoBuf-Net serializer in an endpoint.
-reviewed: 2017-05-17
+reviewed: 2019-03-01
 component: ProtoBufNet
 related:
 - nservicebus/serialization
@@ -14,11 +14,11 @@ redirects:
 snippet: config
 
 
-## The message definition
+## Message contact definition
 
 snippet: message
 
 
-## The message send
+## Sending a message
 
 snippet: messagesend
