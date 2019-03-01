@@ -10,7 +10,9 @@ Microsoft [does not recommend enabling FIPS](https://blogs.technet.microsoft.com
 
 NOTE: FIPS policy enforcement does not exist at all in .NET Core.
 
-The Particular Software Platform is not FIPS compatible, and in general uses `System.Security.Cryptography` classes only for hashing, and not for data security. There are workarounds that allow running NServiceBus and the Particular Service Platform on the .NET Framework on servers with FIPS enforcement enabled.
+The Particular Software Platform is not FIPS compatible, and no testing is done to ensure components will work properly on FIPS-enabled hardware. In general, the platform uses `System.Security.Cryptography` classes only for hashing, and not for data security purposes.
+
+There are workarounds that allow running NServiceBus and the Particular Service Platform on the .NET Framework on servers with FIPS enforcement enabled, but these workarounds are also not tested or verified in any way.
 
 ## NServiceBus
 
