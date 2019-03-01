@@ -38,4 +38,4 @@ It can be a challenge to decide whether or not a persister is needed and which o
 
 ## Community-maintained persisters
 
-There are several community-maintained transports which can be found in the full list of [extensions](/components#persisters).
+There are several community-maintained persisters which can be found in the full list of [extensions](/components#persisters).
