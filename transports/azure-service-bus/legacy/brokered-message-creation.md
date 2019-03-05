@@ -3,7 +3,7 @@ title: Brokered Message Creation
 summary: Details on brokered message creation with Azure Service Bus
 component: ASB
 versions: '[6,)'
-reviewed: 2017-06-13
+reviewed: 2019-03-04
 tags:
  - Azure
 related:
