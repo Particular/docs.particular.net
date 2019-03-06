@@ -1,9 +1,6 @@
-﻿using System;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
-using NServiceBus.Pipeline;
 
 class MultiTenant
 {
