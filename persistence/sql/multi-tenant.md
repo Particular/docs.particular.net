@@ -1,6 +1,6 @@
 ---
 title: Multi-tenant support
-summary: Highlights differences in the database schema between the two persisters
+summary: SQL Persistence support for multi-tenant systems using database per customer
 reviewed: 2019-03-06
 component: SqlPersistence
 versions: '[4.5,)'
@@ -9,23 +9,23 @@ related:
  - samples/multi-tenant/propagation
 ---
 
-When working in a multi-tenant system, the data for each customer/client (tenant) is stored in an independent database identified by a message header passed along with each message flowing through the system. With SQL Persistence running in multi-tenant mode, [saga data](saga.md) and [outbox data](outbox.md) are both stored in the same database as the tenant data, requiring only one database connection and transaction for the duration of the message handler.
+When working in a multi-tenant system, the data for each customer/client (tenant) is stored in an independent database identified by one or more message headers passed along with each message flowing through the system. With SQL Persistence running in multi-tenant mode, [saga data](saga.md) and [outbox data](outbox.md) are both stored in the same database as the tenant data, requiring only one database connection and transaction for the duration of the message handler.
 
-[Timeout data](timeouts.md) and [subscription data](subscriptions.md) do not belong to any specific tenant and are stored in a master database in cases where the message transport does not provide native timeouts or native publish/subscribe capabilities.
+[Timeout data](timeouts.md) and [subscription data](subscriptions.md) do not belong to any specific tenant and are stored in a shared database in cases where the message transport does not provide native timeouts or native publish/subscribe capabilities.
 
 ## Specifying connections per tenant
 
-If the tenant information is propagated in a single header that does not change, multi-tenancy can be enabled by specifying the header name and a `Func` to create a connection given a tenant id:
+If the tenant information is propagated in a single header that does not change, multi-tenancy can be enabled by specifying the header name and a callback to create a connection given a tenant id:
 
 snippet: MultiTenantWithHeaderName
 
-In more complex situations, where the tenant id must be calculated by consulting multiple headers, or where a transition from an old header name to a new header name is occurring, a `Func` can be provided that captures the tenant id from the incoming message.
+In more complex situations, where the tenant id must be calculated by consulting multiple headers, or where a transition from an old header name to a new header name is occurring, a callback can be provided that captures the tenant id from the incoming message.
 
 In this example, the header `NewTenantHeaderName` is consulted first, with `OldTenantHeaderName` as a backup.
 
 snippet: MultiTenantWithFunc
 
-NOTE: A null tenant id probably indicates a failure to propagate the tenant id from an older message, rendering the message invalid. However, it is safe to return null in this `Func` because SQL Persistence will throw an exception if a null tenant id is encountered, rather than trying to process a message without a tenant id.
+NOTE: A null tenant id indicates a failure to propagate the tenant id from a previous message, rendering the message invalid. However, it is safe to return null in this callback because SQL Persistence will throw an exception if a null tenant id is encountered, rather than trying to process a message without a tenant id.
 
 ## Disabling Outbox cleanup
 
