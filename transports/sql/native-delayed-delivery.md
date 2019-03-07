@@ -1,7 +1,7 @@
 ---
 title: SQL Server Native Delayed Delivery
 summary: Describes the native delayed delivery implementation in the SQL Server transport
-reviewed: 2017-06-05
+reviewed: 2019-03-07
 component: SqlTransport
 versions: '[3,)'
 ---
@@ -25,7 +25,7 @@ The transport creates an additional table that stores delayed messages. The tabl
 
 snippet: DelayedDeliveryTableSuffix
 
-SQL Server transport polls for expired messages at the specified intervals:
+SQL Server transport polls for expired messages every second by default. Polling interval can be configured:
 
 snippet: DelayedDeliveryProcessingInterval
 
