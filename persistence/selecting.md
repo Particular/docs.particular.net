@@ -8,16 +8,16 @@ NServiceBus needs to store data for various purposes. This document is written t
 
 ## Why does NServiceBus need storage?
 
-NServiceBus needs a persister to store the state of sagas, enable the outbox and sometimes to make a transport feature complete.
+NServiceBus needs a persister to store the state of sagas, enable the outbox and, sometimes, to make a transport feature complete.
 
 - **Sagas**
   A powerful way to orchestrate long-running business processes is provided by [sagas](/nservicebus/sagas/). They contain state that needs to be persisted.
 - **Outbox**
   The [outbox](nservicebus/outbox/) needs to store message details to provide deduplication. See the [persisters documentation](http://nservicebus/outbox/#persistence) for more details.
 - **Subscription storage**
-  Transports that don’t support publish and subscribe natively needs storage for the subscription data. See the [transport documentation](/transports/) for more details.
+  Transports that don’t support publish and subscribe natively, need storage for the subscription data. See the [transport documentation](/transports/) for more details.
 - **Timeouts**
-  All transports except [MSMQ](/transports/msmq/) support native timeouts so if MSMQ is selected storage of timeout data is required.
+  All transports except [MSMQ](/transports/msmq/) support native timeouts. Therefore, if MSMQ is selected, storage of timeout data is required.
 
 ## Persister decision chart
 
@@ -44,7 +44,7 @@ This section provides considerations that aren’t included or immediately visib
 
 Most users will eventually start recognizing the benefits of sagas in their business system. For this reason, it is important for any system to consider selecting a persister.
 
-If a datastore was already selected to store business data and NServiceBus has a persister for that specific datastore, it can be beneficial to select that specific persister. If NServiceBus doesn’t have a persister for the specific data store or multiple data stores are used, any of the NServiceBus persisters can be used. The result is a hybrid solution of multiple data stores to store both business data and NServiceBus specific data.
+If a datastore has already been selected to store business data and NServiceBus has a persister for that specific datastore, it can be beneficial to select that specific persister. If NServiceBus doesn’t have a persister for the specific data store or multiple data stores are used, any of the NServiceBus persisters can be used. The result is a hybrid solution of multiple data stores to store both business data and NServiceBus specific data.
 
 ### Learning Persistence
 
@@ -58,7 +58,7 @@ The In-Memory persister is not mentioned in the decision chart, as it is only us
 
 There are multiple options available when endpoints are hosted in Windows Azure. The most commonly used persisters are Azure Storage and Azure SQL, the fully managed SQL Server solution in Azure.
 
-The decision can be made between whether or not you want to be fully Platform-as-a-Service (PaaS) enabled and want to fully buy-in into Azure. Or if you’re more confident with managing SQL Server yourself and want Infrastructure-as-a-Service (IaaS). Although there are other small considerations to be made for either option.
+The decision should be made whether you want to be fully Platform-as-a-Service (PaaS) enabled - and want to fully buy-in to Azure - or if you’re confident managing SQL Server yourself you may choose Infrastructure-as-a-Service (IaaS). Although there are other small considerations to be made for either option.
 
 Azure SQL
 
@@ -76,7 +76,7 @@ Azure Storage
 
 This persister stores saga data as a JSON blob. This gives much better performance and maintainability than the NHibernate persister. The NHibernate persister stores data in tabular format, creating multiple tables for sagas, especially when using complex data types.
 
-Especially since SQL Server and PostgreSQL have great support for querying JSON data, this persister is recommended over NHibernate.
+Since SQL Server and PostgreSQL have great support for querying JSON data, this persister is recommended over NHibernate.
 
 ### Service Fabric
 
@@ -100,4 +100,4 @@ If it is still hard to make a decision it is recommended to [get in contact](htt
 
 ## Migrating to a different persister
 
-There is always the option to migrate to a different persister, although it is not the easiest task. So although it is possible, it is important to consider well which of the available NServiceBus persisters is the right one. For both selecting the right persister and migrating to a different persister, it is possible to [contact us for help](https://particular.net/support).
+There is always the option to migrate to a different persister, although it is not the easiest task. Before doing so, it is important to consider carefully which of the available NServiceBus persisters is the right one for you. For help in selecting the right persister and migrating to a different persister [contact us for help](https://particular.net/support).
