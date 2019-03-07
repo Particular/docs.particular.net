@@ -58,8 +58,4 @@ snippet: ConnectionFactory
 
 When SQL Persistence needs to open a connection, the connection factory is called using the value extracted from the message. As an alternative, other connection factory options exist that allow [consulting multiple headers to extract tenant information](/persistence/sql/multi-tenant.md#specifying-connections-per-tenant).
 
-custom connection factory retrieves the connection string value from the async context and, if present, opens a connection to the tenant database. Otherwise it opens a connection to the shared database.
-
-snippet: GetConnectionFromContext
-
 include: persistence-propagation
