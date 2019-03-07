@@ -16,7 +16,6 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.EnableInstallers();
 
         #region DisablingOutboxCleanup
 
@@ -82,12 +81,6 @@ class Program
             shouldInstallSagas: true,
             shouldInstallSubscriptions: false,
             shouldInstallTimeouts: false);
-
-        //await ScriptRunner.Install(dialect, tablePrefix, () => new SqlConnection(Connections.Shared), scriptDirectory,
-        //    shouldInstallOutbox: true,
-        //    shouldInstallSagas: false,
-        //    shouldInstallSubscriptions: false,
-        //    shouldInstallTimeouts: true);
 
         #endregion
 

@@ -10,7 +10,7 @@ public class OrderLifecycleSaga :
     IHandleTimeouts<OrderTimeout>
 {
     static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
-    
+
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
