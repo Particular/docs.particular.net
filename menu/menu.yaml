@@ -860,6 +860,8 @@
   - Url: persistence
     Title: General
     Articles:
+    - Url: persistence/selecting
+      Title: Selecting a persister
     - Url: persistence/order
       Title: Persistence order
   - Url: persistence/upgrades
