@@ -6,7 +6,7 @@ reviewed: 2019-03-11
 
 NServiceBus stores data for various purposes. This document contains guidelines to help select the right persister for NServiceBus from the [list of available persisters](/persistence/#available-persisters).
 
-## Why does NServiceBus need storage?
+## How NServiceBus uses storage
 
 NServiceBus uses persisters to store the state of sagas, to enable the outbox, and to provide other features for some transports.
 
