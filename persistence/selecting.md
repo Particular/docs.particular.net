@@ -58,13 +58,13 @@ The in-memory persister is not mentioned in the decision chart, as it is appropr
 
 There are several options available when endpoints are hosted in Windows Azure. The most commonly used persisters are Azure Storage and Azure SQL, the fully managed SQL Server solution in Azure.
 
-One factor in the decision is whether the system is fully platform-as-a-service-enabled and whether it is designed to run fully on Azure (in which case, the Azure Storage persister may be appropriate). Alternatively, some organizations are more comfortable managing SQL Server and may choose an infrastructure-as-a-service solution (using the SQL Server persister with Azure SQL).
+One factor in the decision is whether the system is fully platform-as-a-service-enabled and whether it is designed to run fully on Azure (in which case, the Azure Storage persister may be appropriate). Alternatively, some organizations are more comfortable managing SQL Server and may choose an infrastructure-as-a-service solution (using the SQL persister with Azure SQL).
 
 **Azure SQL**
 
 - Supports local transactions
 - Supports outbox
-- Better tooling support with SQL Management Studio
+- Better tooling support with SQL Server Management Studio
 
 **Azure Storage**
 
@@ -74,7 +74,7 @@ One factor in the decision is whether the system is fully platform-as-a-service-
 
 ### SQL persistence
 
-This persister stores saga data as a JSON blob. This gives much better performance and maintainability than the NHibernate persister. The NHibernate persister stores data in tabular format, creating multiple tables for sagas, especially when using complex data types.
+This persister stores saga data as a JSON blob. This gives much better performance and maintainability than the NHibernate persister, which stores data in tabular format, creating multiple tables for sagas.
 
 Since SQL Server and PostgreSQL have great support for querying JSON data, this persister is recommended over NHibernate.
 
@@ -90,15 +90,15 @@ This option is relevant only if endpoints are hosted in Service Fabric. Read thi
 
 If a business system already stores its data in RavenDB, NServiceBus supports storing data inside RavenDB as well. This removes the need to introduce additional storage.
 
-### What if a preferred persistence is missing?
+### Other options
 
-If the NServiceBus persisters are lacking an option for a specific data store, there are additional options to be found in the [community extensions](/components/#persisters). Although Particular Software support will do its best to help with these extensions, they are not officially supported.
+If the NServiceBus persisters are lacking an option for a specific data store, there are additional options to be found in the [community extensions](/components/#persisters). Although Particular Software will do its best to help with these extensions, they are not officially supported.
 
-### What is the recommended choice?
+### The recommended choice
 
 If there is no obvious contender based on the guidelines presented here, the SQL persister is the recommended default. Relational databases are often used for business applications and many developers have knowledge on them. The SQL persister also supports [multiple database engines](/persistence/sql/#supported-sql-implementations) and can be used with many object/relational mappers, such as Entity Framework, NHibernate, Dapper, and others.
 
-The NHibernate persister also supports multiple database engines; however, the SQL persister does not depend on additional libraries and is more likely to support the latest trends in both .NET and the supported database engines.
+Even though the NHibernate persister also supports multiple database engines, the SQL persister does not depend on additional libraries and is more likely to support the latest trends in both .NET and the supported database engines.
 
 After reviewing the requirements, and if the SQL persister is not a viable option, [get in contact](https://particular.net/support) with Particular Software and a Solution Architect will help based on specific requirements.
 
