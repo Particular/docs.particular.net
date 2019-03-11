@@ -1,7 +1,7 @@
 ---
 title: Selecting a persister
 summary: A guide for selecting an NServicebus persister.
-reviewed: 2019-02-27
+reviewed: 2019-03-11
 ---
 
 NServiceBus stores data for various purposes. This document contains guidelines to help select the right persister for NServiceBus from the [list of available persisters](/persistence/#available-persisters).
@@ -17,7 +17,7 @@ NServiceBus uses persisters to store the state of sagas, to enable the outbox, a
 - **Subscription storage**
   Transports that don’t support publish and subscribe natively use storage for the subscription data. See the [transport documentation](/transports/) for more details.
 - **Timeouts**
-Unlike other transports, [MSMQ](/transports/msmq/) does not support native timeouts. Therefore, if MSMQ is selected as the transport, storage of timeout data is required.
+  Unlike other transports, [MSMQ](/transports/msmq/) does not support native timeouts. Therefore, if MSMQ is selected as the transport, storage of timeout data is required.
 
 ## Persister decision chart
 
@@ -77,6 +77,10 @@ One factor in the decision is whether the system is fully platform-as-a-service-
 This persister stores saga data as a JSON blob. This gives much better performance and maintainability than the NHibernate persister. The NHibernate persister stores data in tabular format, creating multiple tables for sagas, especially when using complex data types.
 
 Since SQL Server and PostgreSQL have great support for querying JSON data, this persister is recommended over NHibernate.
+
+### NHibernate
+
+For new development, this persister is not recommended. Instead, use the SQL persister.
 
 ### Service Fabric
 
