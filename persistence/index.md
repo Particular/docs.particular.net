@@ -7,7 +7,7 @@ redirects:
 - nservicebus/persistence
 ---
 
-NServiceBus needs to store data for various purposes, like persisting the state of sagas, enable the outbox and on some occasions to make a transport feature complete.
+NServiceBus needs to store data for various purposes, such as persisting the state of sagas, enabling the outbox, and for certain other transport features.
 
 
 ## Features that require persistence
@@ -20,7 +20,7 @@ NServiceBus needs to store data for various purposes, like persisting the state 
  * [Deferral](/nservicebus/messaging/delayed-delivery.md)
  * [Gateway Deduplication](/nservicebus/gateway/)
 
-## How to select a persister
+## Selecting a persister
 
 It can be a challenge to decide whether or not a persister is needed and which one is the best option for a specific scenario. See the [guide to selecting a persister](selecting.md) for help in making that decision.
 
