@@ -975,7 +975,7 @@
 
 - Key: Wormhole
   Name: Wormhole Gateway
-  DocoUrl: nservicebus/wormhole
+  DocoUrl: nservicebus/upgrades/wormhole-router
   GitHubOwner: SzymonPobiega
   Category: Other
   SupportLevel: Community

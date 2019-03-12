@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <LangVersion>7.1</LangVersion>
@@ -9,7 +9,7 @@
     <PackageReference Include="NServiceBus.WormHole.Gateway" Version="2.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
     <!--For the upgrade guide-->
-    <PackageReference Include="NServiceBus.Router" Version="2.*" />
-    <PackageReference Include="NServiceBus.Router.Connector" Version="2.*" />
+    <PackageReference Include="NServiceBus.Router" Version="3.*" />
+    <PackageReference Include="NServiceBus.Router.Connector" Version="3.*" />
   </ItemGroup>
 </Project>
