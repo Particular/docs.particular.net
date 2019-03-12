@@ -13,7 +13,7 @@ NServiceBus uses persisters to store the state of sagas, to enable the outbox, a
 - **Sagas**
   A powerful way to orchestrate long-running business processes is provided by [sagas](/nservicebus/sagas/). Sagas maintain state over a period of time and this state must be persisted.
 - **Outbox**
-  The [outbox](nservicebus/outbox/) stores message details in order to prevent processing duplicated messages. See the [persistence documentation](http://nservicebus/outbox/#persistence) for more details.
+  The [outbox](/nservicebus/outbox/) stores message details in order to prevent processing duplicated messages. See the [persistence documentation](nservicebus/outbox/#persistence) for more details.
 - **Subscription storage**
   Transports that don’t support publish and subscribe natively use storage for the subscription data. See the [transport documentation](/transports/) for more details.
 - **Timeouts**
