@@ -206,7 +206,7 @@ Saga state needs to be persisted, so we need to configure the **Shipping** endpo
 
 snippet: ShippingEndpointConfigLearningPersistence
 
-The snippet above is configuring the endpoint to use `LearningPersistence` which is designed for testing and development. It stores data on the disk in a folder in the executable path. In production use one of [our production-level persistence options](/persistence/#available-persisters).
+The snippet above is configuring the endpoint to use `LearningPersistence` which is designed for testing and development. It stores data on the disk in a folder in the executable path. In production use one of [our production-level persistence options](/persistence/#supported-persisters).
 
 
 #### Running the solution
