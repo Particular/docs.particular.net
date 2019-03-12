@@ -1,10 +1,10 @@
 ---
 title: Selecting a persister
 summary: A guide for selecting an NServicebus persister.
-reviewed: 2019-03-11
+reviewed: 2019-03-12
 ---
 
-NServiceBus stores data for various purposes. This document contains guidelines to help select the right persister for NServiceBus from the [list of available persisters](/persistence/#available-persisters).
+NServiceBus stores data for various purposes. This document contains guidelines to help select the right persister for NServiceBus from the [list of supported persisters](/persistence/#supported-persisters).
 
 ## How NServiceBus uses storage
 
