@@ -18,7 +18,7 @@ public class OrderSubmittedHandler :
             Value = message.Value
         };
         var session = context.SynchronizedStorageSession.SqlPersistenceSession();
-        
+
         var dataContext = new ReceiverDataContext(session.Connection);
         dataContext.Database.UseTransaction(session.Transaction);
 
