@@ -84,7 +84,7 @@ For new development, this persister is not recommended. Instead, use the SQL per
 
 ### Service Fabric
 
-This option is relevant only if endpoints are hosted in Service Fabric. Read this (TBA) hosting guidance section.
+This option is relevant only if endpoints are hosted in Service Fabric.
 
 ### RavenDB
 
