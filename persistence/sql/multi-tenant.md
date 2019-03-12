@@ -6,6 +6,7 @@ component: SqlPersistence
 versions: '[4.5,)'
 related:
  - nservicebus/pipeline/manipulate-with-behaviors
+ - samples/multi-tenant/sqlp
  - samples/multi-tenant/propagation
 ---
 
