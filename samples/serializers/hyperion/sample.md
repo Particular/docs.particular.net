@@ -2,7 +2,7 @@
 title: Hyperion Serializer Usage
 summary: Using the Hyperion serializer in an endpoint.
 component: Hyperion
-reviewed: 2017-06-01
+reviewed: 2019-03-12
 related:
  - nservicebus/serialization
  - nservicebus/serialization/hyperion
