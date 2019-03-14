@@ -1,7 +1,7 @@
 ---
 title: Hyperion Serializer
 component: Hyperion
-reviewed: 2017-06-01
+reviewed: 2019-03-14
 related:
  - samples/serializers/hyperion
 ---
