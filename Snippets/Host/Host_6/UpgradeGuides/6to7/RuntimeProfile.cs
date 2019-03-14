@@ -13,7 +13,7 @@ class RuntimeProfile :
 
         if (profile.Contains("Production"))
         {
-            // config the production profile
+            // configure the production profile
         }
     }
 }
