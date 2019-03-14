@@ -1,7 +1,7 @@
 ---
 title: Near Real Time Transient Clients
 summary: Shows how to relay NServiceBus events to occasionally-connected clients via SignalR.
-reviewed: 2017-05-22
+reviewed: 2019-03-12
 component: Core
 related: 
  - nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
@@ -26,7 +26,6 @@ Before running the sample, look over the solution structure, the projects, and t
 The `ClientHub` project also hosts a SignalR server. The `Client` project is a command line app that hosts a SignalR client.
 
 
-
 ## Sharing Message Types with SignalR
 
 The `StockEvents` project contains the definition a message class that is shared with both NServiceBus endpoints, the SignalR hub, and the SignalR client. Open "StockTick" to see the message that will be published by this sample. Note that this event is defined using [Unobtrusive Mode Message Conventions](/nservicebus/messaging/unobtrusive-mode.md), allowing the `Client` project, which only uses SignalR, to reference the message type without needing a reference to NServiceBus.
@@ -34,11 +33,9 @@ The `StockEvents` project contains the definition a message class that is shared
 snippet: MessageConventionsForNonNSB
 
 
-
 ## Hosting SignalR with NServiceBus
 
 This sample shows how to host a self-hosted SignalR 2 server side-by-side with a NServiceBus endpoint. For more information on using SignalR Self-Host see the Microsoft tutorial [SignalR Self-Host](https://docs.microsoft.com/en-us/aspnet/signalr/overview/deployment/tutorial-signalr-self-host).
-
 
 
 ## Bridging the Bus to Clients using SignalR
@@ -65,6 +62,6 @@ In this sample, the SignalR client is implemented as a .NET console application.
 
 When the number of connected clients exceeds the capability of a single SignalR server, it will be necessary to scale out the SignalR server. Scaling out SignalR is described in the [Introduction to Scaleout in SignalR](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-in-signalr) article by Microsoft.
 
-Since each SignalR server can also be an NServiceBus subscriber, each scaled out instance of the server also receives and pushes events to its connected clients. This, along with a load balancer to distribute clients between the servers, is sufficient as long as the SignalR server is simply relaying NServiceBus events to the clients.
+Each SignalR server as attached to an instance of NServiceBus endpoint. Since these instances form a single logical NServiceBus endpoint, each event will be delivered to a single instance. In order to notify all SingnalR clients about that event, a SignalR backplane is required. The backplane replaces the default implementation of the SignalR `IMessageBus` with one that can communicate with other SignalR servers.
 
-If SignalR usage extends beyond simply pushing NServiceBus events, then scaling out using a backplane will likely be necessary. In this case, using a backplane will result in duplicate messages, since each SignalR server is also a subscriber and will forward pushed events to other SignalR servers on the backplane. Instead, only deploy a single SignalR server that is also an NServiceBus subscriber. This will prevent duplicates, but at the expense of an additional message hop as the message is forwarded through the backplane to the clients.
+In this topology each event is received by a single instance of NServiceBus endpoint and passed to the local SignalR instance. SignalR backplane passed that event further to all other SignalR instaces and eventually the event is delivered to all connected clients, no matter which SignalR server they are connected to.
