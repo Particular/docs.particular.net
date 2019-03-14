@@ -11,7 +11,7 @@ The request/response pattern is illustrated for the product provisioning between
 
 ### ASP MVC and SignalR
 
-The ECommerce endpoint is implemented as an ASP.NET application which uses SignalR to show feedback to the user.
+The ECommerce endpoint is implemented as an ASP.NET application which uses SignalR to show feedback to the user without the need for refreshing the page.
 
 
 ### Message Mutator
@@ -21,4 +21,4 @@ The use of message headers and message mutator is also illustrated when the user
 
 ### Encryption
 
-The use of encryption is illustrated by passing in the Credit Card number and the Expiration date from the ECommerce web site. The UnobtrusiveConventions defined in the ECommerce endpoint show how to treat certain properties as encrypted. Both the ECommerce and the Sales endpoint is setup for RijndaelEncryption and the encryption key is provided in the config file. If the messages are inspected in the queue, both the Credit Card number and the Expiration Date will show the encrypted values.
+The use of encryption is illustrated by passing in the Credit Card number and the Expiration date from the ECommerce web site. The UnobtrusiveConventions defined in the ECommerce endpoint show how to treat certain properties as encrypted. Both the ECommerce and the Sales endpoint are setup for RijndaelEncryption and the encryption key is provided in the config file. If the messages are inspected in the queue, both the Credit Card number and the Expiration Date show only the encrypted values.
