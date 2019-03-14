@@ -18,9 +18,13 @@ upgradeGuideCoreVersions:
 
 snippet: 6to7customize_nsb_host
 
-## IConfigureLoggingForProfile<T> changes
+## IConfigureLogging and IConfigureLoggingForProfile<T> changes
 
-This interface will be removed in version 8 of NServiceBus.Host. The logging can still be configured in the constructor of the class that implements `IConfigureThisEndpoint`. The way the runtime profile is detected will need to be re-created but the simple approach could be like this:
+These interface will be removed in version 8 of NServiceBus.Host. The logging can still be configured in the constructor of the class that implements `IConfigureThisEndpoint`. 
+
+snippet: CustomHostLogging
+
+The way the runtime profile is detected will need to be re-created but the simple approach could be like this:
 
 snippet: 6to7-ProfileForLogging
 
