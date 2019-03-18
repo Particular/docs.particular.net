@@ -1,14 +1,14 @@
 ---
 title: SQL Persistence in multi-tenant system
 summary: Configure SQL Persistence to support multi-tenant scenarios.
-reviewed: 2019-03-07
+reviewed: 2019-03-18
 component: SqlPersistence
 related:
 - persistence/sql
 - nservicebus/outbox
 ---
 
-This sample demonstrates how to configure SQL Persistence to store tenant-specific data in separate catalogs, for each tenant. The tenant-specific information includes saga state, business entities that are accessed using [NServiceBus-managed session](/persistence/sql/accessing-data.md). In addition, the [Outbox](/nservicebus/outbox/) is used to guarantee consistency between the saga state and the business entity. Outbox data is also stored in the tenant-specific database.
+This sample demonstrates how to configure SQL Persistence to store tenant-specific data in separate catalogs, for each tenant. The tenant-specific information includes saga state, and business entities that are accessed using [NServiceBus-managed session](/persistence/sql/accessing-data.md). In addition, the [Outbox](/nservicebus/outbox/) is used to guarantee consistency between the saga state and the business entity. Outbox data is also stored in the tenant-specific database.
 
 Because this sample uses the [Learning Transport](/transports/learning/), which provides delayed delivery (timeouts) as well as publish/subscribe natively, there is no need for a common database to store data for those capabilities. A message transport like MSMQ, which does not provide native delayed delivery or publish/subscribe, would require a common database to store timeouts and subscriptions shared by all tenants.
 
