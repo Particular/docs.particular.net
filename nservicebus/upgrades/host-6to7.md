@@ -1,7 +1,7 @@
 ---
 title: NServiceBus Host Upgrade Version 6 to 7
 summary: Instructions on how to upgrade NServiceBus host from version 6 to version 7
-reviewed: 2018-02-27
+reviewed: 2019-03-18
 component: Host
 related:
  - nservicebus/upgrades/5to6
@@ -20,7 +20,7 @@ snippet: 6to7customize_nsb_host
 
 ## IConfigureLogging and IConfigureLoggingForProfile<T> changes
 
-These interface will be removed in version 8 of NServiceBus.Host. The logging can still be configured in the constructor of the class that implements `IConfigureThisEndpoint`. 
+These interfaces will be removed in version 8 of NServiceBus.Host. The logging can still be configured in the constructor of the class that implements `IConfigureThisEndpoint`. 
 
 snippet: CustomHostLogging
 
