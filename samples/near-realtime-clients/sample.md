@@ -65,19 +65,15 @@ In this sample, the SignalR client is implemented as a .NET console application.
 
 When the number of connected clients exceeds the capability of a single SignalR server, it will be necessary to scale out the SignalR server. Scaling out SignalR is described in the [Introduction to Scaleout in SignalR](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-in-signalr) article by Microsoft.
 
-### Simple NServiceBus Event Forwarding (No SignalR Backplane)
-
-Since each SignalR server can also be an NServiceBus subscriber, each scaled out instance of the server also receives and pushes events to its connected clients. This, along with a load balancer to distribute clients between the servers, is sufficient as long as the SignalR server is simply relaying NServiceBus events to the clients.
-
 ```mermaid
 graph TD
-A[NSB Publisher]
-   subgraph Server 1
-      NS1[NSB Subscriber]
+NP[NSB Publisher]
+   subgraph Scaled-out Server 1
+      NS1[NSB Subscriber instance 1]
       SS1[SignalR Host]
    end
-   subgraph Server 2
-      NS2[NSB Subscriber]
+   subgraph Scaled-out Server 2
+      NS2[NSB Subscriber instance 2]
       SS2[SignalR Host]
    end
    subgraph Load Balancer
@@ -86,47 +82,16 @@ A[NSB Publisher]
       CC(SignalR Client C)
       CD(SignalR Client D)
    end
-A -->|NSB Event|NS1
-A -->|NSB Event|NS2
+   BP{"SignalR Backplane<br/>(Redis/ASB/SQL)"}
+NP -->|NSB Event|NS1
 NS1-->|Forward|SS1
 NS2-->|Forward|SS2
+SS1-->|Broadcast|BP
+BP-->SS2
 SS1-->|SignalR Message|CA
 SS1-->|SignalR Message|CB
 SS2-->|SignalR Message|CC
 SS2-->|SignalR Message|CD
 ```
 
-NOTE: In this case each NServiceBus subscriber will require a unique endpoint name to receive a copy of the published message and push the event to its connected clients.
-
-### Using a SignalR Backplane
-
-If SignalR usage extends beyond simply pushing NServiceBus events, then scaling out using a backplane will likely be necessary. In this case, only deploy a _single_ NServiceBus subscriber forwarding events to SignalR. This will prevent duplicates, at the expense of an additional message hop as the message is forwarded through the backplane to the clients, since each SignalR server will forward pushed events to other SignalR servers on the backplane.
-
-```mermaid
-graph TD
-A[NSB Publisher]
-   subgraph Server 1
-      NS1[NSB Subscriber]
-      SS1[SignalR Host]
-   end
-   subgraph Server 2
-      SS2[SignalR Host]
-   end
-   subgraph Load Balancer
-      CA(SignalR Client A)
-      CB(SignalR Client B)
-      CC(SignalR Client C)
-      CD(SignalR Client D)
-   end
-   BP{SignalR Backplane}
-A -->|NSB Event|NS1
-
-NS1-->|Forward|SS1
-SS1-->|SignalR Message|BP
-BP-->|SignalR Message|SS2
-SS1-->|SignalR Message|CA
-SS1-->|SignalR Message|CB
-SS2-->|SignalR Message|CC
-SS2-->|SignalR Message|CD
-```
-
+In this diagram an NServiceBus event is being processed by [1 of the 2 subscriber instances](/nservicebus/architecture/scaling.md#scaling-out-to-different-nodes-competing-consumers). Server 1 is forwarding the NServiceBus event as a SignalR message, which is then being broadcast via the configured backplane to Server 2's SignalR server which allows the connected SignalR clients to receive the message.
