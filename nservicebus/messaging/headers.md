@@ -354,11 +354,6 @@ Note: These headers will only exist after the initial retry has occurred.
 The queue at which the message processing failed.
 
 
-### NServiceBus.FLRetries
-
-The number of [immediate retries](/nservicebus/recoverability/#immediate-retries) that have been performed for a message.
-
-
 ### NServiceBus.Retries
 
 The number of [delayed retries](/nservicebus/recoverability/#delayed-retries) that have been performed for a message.
