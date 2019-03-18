@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode sqlserver-connection-string-xml-->
+<configuration>
+  <connectionStrings>
+     <add name="NServiceBus/Transport"
+          connectionString="Data Source=instance; Initial Catalog=db; Integrated Security=True;Max Pool Size=80"/>
+  </connectionStrings>
+</configuration>
+<!--endcode-->
