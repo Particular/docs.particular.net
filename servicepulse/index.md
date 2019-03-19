@@ -1,6 +1,6 @@
 ---
 title: ServicePulse
-reviewed: 2018-01-15
+reviewed: 2019-03-19
 component: ServicePulse
 related:
 - servicecontrol/setting-custom-hostname
