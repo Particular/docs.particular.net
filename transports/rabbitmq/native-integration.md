@@ -11,13 +11,13 @@ redirects:
  - transports/rabbitmq/message-id-strategy
 ---
 
-This document describes how to consume messages from and sending messages to non NServiceBus endpoints via RabbitMQ in integration scenarios.
+This document describes how to consume messages from and send messages to non-NServiceBus endpoints via RabbitMQ in integration scenarios.
 
 TODO: The below section needs a partial for 5.1.0
 
 ### Access to the native RabbitMQ message details
 
-It can sometimes be useful to access the native RabbitMQ message from behaviors and handlers. When a message is received the transport add the native RabbitMQ client [`BasicDeliveryEventArgs`](TODO) to the message processing context. Use the code below to access the message details:
+It can sometimes be useful to access the native RabbitMQ message from behaviors and handlers. When a message is received, the transport adds the native RabbitMQ client [`BasicDeliverEventArgs`](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.Events.BasicDeliverEventArgs.html) to the message processing context. Use the code below to access the message details:
 
 snippet: rabbitmq-config-access-to-event-args
 
