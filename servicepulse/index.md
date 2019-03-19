@@ -14,6 +14,20 @@ ServicePulse uses information provided by ServiceControl. In order to use Servic
 
 NOTE: By default ServicePulse can be accessed on the hosting machine at the following URL: `http://localhost:9090`
 
+### Relationship between ServicePulse, ServiceControl, Monitoring, and Endpoints
+
+```mermaid
+graph RL
+EP[Endpoint]-- Errors -->EQ
+EP-- Audits -->AQ
+EP-- Metrics -->MQ
+EQ(Error Queue)-- Ingests -->SC
+MQ(Metrics Queue)-- Ingests -->SCM
+AQ(Audit Queue)-- Ingests -->SC
+SC[ServiceControl]-- HTTP API & SignalR ---SP
+SCM[Monitoring]-- HTTP API ---SP[ServicePulse]
+```
+
 ## System status overview
 
 The dashboard provides a visual overview of the current state of the monitored NServiceBus system. It provides information about the latest events in the system, such as detecting a new endpoint or a message processing failure.
