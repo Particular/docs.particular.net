@@ -43,6 +43,13 @@
                 }
             }
 
+            // If it does not make sense to have this message around anymore
+            // it can be discarded with a reason.
+            if (context.Exception is MyBusinessTimedOutException)
+            {
+                return RecoverabilityAction.Discard("Business operation timed out.");
+            }
+
             // override delayed retry decision for custom exception
             // i.e. MyOtherBusinessException should do fixed backoff of 5 seconds
             if (context.Exception is MyOtherBusinessException &&
@@ -58,6 +65,11 @@
         #endregion
 
         class MyOtherBusinessException :
+            Exception
+        {
+        }
+
+        class MyBusinessTimedOutException :
             Exception
         {
         }
