@@ -20,6 +20,19 @@ As endpoints are selected, the other views within ServiceInsight respond and fil
 
 NOTE: Endpoint lists, message information, and message flows will not be populated until messages have been successfully processed by ServiceControl.
 
+### Relationship between ServiceInsight, ServiceControl, and Endpoints
+
+```mermaid
+graph RL
+EP[Endpoint]-- Audits -->AQ
+EP-- Errors -->EQ
+EP-- SagaAudits -->SCQ
+AQ(Audit Queue)-- Ingests -->SC
+EQ(Error Queue)-- Ingests -->SC
+SCQ(ServiceControl Queue)-- Ingests -->SC
+SC[ServiceControl]-- HTTP API ---SI[ServiceInsight]
+```
+
 ## The Messages window
 
 The Messages window is a detailed grid view indicating message status, type, time stamp, and service level information. Filter the list based on specific message content, searching for all message data, not just commonly displayed fields.
