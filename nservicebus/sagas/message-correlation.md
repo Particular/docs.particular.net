@@ -37,7 +37,7 @@ A common usage of sagas is to have them send out a request message to get some w
 
 NOTE: If it's not clear if the message can be auto-correlated, it's better to provide the mappings. In cases where the message will be auto-correlated, the mappings will be ignored.
 
-NOTE: A caveat of this feature is that it currently doesn't support auto-correlation between sagas. If the request is handled by a another saga, relevant message properties must be added and mapped to the requesting saga using the syntax described above.
+NOTE: A caveat of this feature is that it currently doesn't support auto-correlation between sagas. If the request is handled by another saga, relevant message properties must be added and mapped to the requesting saga using the syntax described above.
 
 
 ## Custom saga finder
