@@ -36,7 +36,7 @@ Open SQL Server Management Studio and go to the database. Verify that there is a
 
 ## Code walk-through
 
-This sample contains four projects:
+This sample contains the following projects:
 
  * **Messages**: A class library containing the message definitions.
  * **Endpoint.SqlPersistence**: A console application running the endpoint with SQL persistence.
