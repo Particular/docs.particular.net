@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 using RabbitMQ.Client.Events;
 
-#region rabbitmq-config-access-to-event-args
-class AccessToBasicDeliveryEventArgs : Behavior<IIncomingContext>
+#region rabbitmq-access-to-event-args
+class AccessToBasicDeliverEventArgs : Behavior<IIncomingContext>
 {
     public override Task Invoke(IIncomingContext context, Func<Task> next)
     {

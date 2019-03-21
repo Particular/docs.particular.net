@@ -13,7 +13,7 @@ redirects:
 
 This document describes how to consume messages from and send messages to non-NServiceBus endpoints via RabbitMQ in integration scenarios.
 
-partial: messagedetails
+partial: message-details
 
 ### Custom message id strategy
 
