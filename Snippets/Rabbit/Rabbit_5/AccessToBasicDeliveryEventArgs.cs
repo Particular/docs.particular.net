@@ -16,4 +16,3 @@ class AccessToBasicDeliveryEventArgs : Behavior<IIncomingContext>
     }
 }
 #endregion
-
