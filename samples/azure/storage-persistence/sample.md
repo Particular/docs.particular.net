@@ -21,7 +21,7 @@ Ensure that an instance of the latest [Azure Storage Emulator](https://docs.micr
 
 ## Azure Storage Persistence
 
-This sample utilizes the [Azure Storage Persistence](/persistence/azure-storage/).
+This sample uses the [Azure Storage Persistence](/persistence/azure-storage/).
 
 
 ## Code walk-through

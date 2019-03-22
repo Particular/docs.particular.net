@@ -14,7 +14,7 @@ Ensure an instance of the [Azure Storage Emulator](https://docs.microsoft.com/en
 
 ## Azure Storage Queues Transport
 
-This sample utilizes the [Azure Storage Queues Transport](/transports/azure-storage-queues/).
+This sample uses the [Azure Storage Queues Transport](/transports/azure-storage-queues/).
 
 
 ## Code walk-through
