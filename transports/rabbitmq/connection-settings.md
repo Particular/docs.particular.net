@@ -9,7 +9,7 @@ redirects:
 ---
 
 
-RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html). The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker.
+The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker. While RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html), the RabbitMQ transport uses it's own connection string format.
 
 
 ### Specifying the connection string via code
