@@ -92,10 +92,6 @@ If more control over Recoverability is needed, the Recoverability delegate can b
 
 If the Recoverability Policy is fully customized, then the `DefaultRecoverabilityPolicy` won't be called. In this case it is still possible to use the recoverability high level APIs, for example:
 
-snippet: FullyCustomizedPolicyRecoverabilityConfiguration
-
 partial: fullconfig
-
-snippet: FullyCustomizedPolicy
 
 Note that the `RecoverabilityConfig` will be passed into the custom policy so the code can be fine-tuned based on the configured values. 

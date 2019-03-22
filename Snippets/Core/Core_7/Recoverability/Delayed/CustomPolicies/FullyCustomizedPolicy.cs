@@ -8,7 +8,7 @@
     {
         FullyCustomizedPolicy(EndpointConfiguration endpointConfiguration)
         {
-            #region FullyCustomizedPolicyRecoverabilityConfiguration [7.0,7.2)
+            #region FullyCustomizedPolicyRecoverabilityConfiguration
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.AddUnrecoverableException<MyBusinessException>();
@@ -29,7 +29,7 @@
             #endregion
         }
 
-        #region FullyCustomizedPolicy [7.0,7.2)
+        #region FullyCustomizedPolicy
 
         RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)
         {
