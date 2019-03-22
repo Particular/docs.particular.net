@@ -8,7 +8,7 @@ related:
  - nservicebus/messaging/message-identity
 redirects:
  - nservicebus/rabbitmq/message-id-strategy
- - transports/rabbitmq/message-id-strategy.md
+ - transports/rabbitmq/message-id-strategy
 ---
 
 This document describes how to consume messages from and send messages to non-NServiceBus endpoints via RabbitMQ in integration scenarios.
