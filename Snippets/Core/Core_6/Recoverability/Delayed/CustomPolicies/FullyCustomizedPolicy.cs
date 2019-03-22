@@ -6,28 +6,6 @@
 
     class FullyCustomizedPolicy
     {
-        FullyCustomizedPolicy(EndpointConfiguration endpointConfiguration)
-        {
-            #region FullyCustomizedPolicyRecoverabilityConfiguration
-
-            var recoverability = endpointConfiguration.Recoverability();
-            recoverability.CustomPolicy(MyCustomRetryPolicy);
-            // configuration can be changed at this point, data will be passed to the policy
-            recoverability.Immediate(
-                immediate =>
-                {
-                    immediate.NumberOfRetries(3);
-                });
-            recoverability.Delayed(
-                delayed =>
-                {
-                    var retries = delayed.NumberOfRetries(3);
-                    retries.TimeIncrease(TimeSpan.FromSeconds(2));
-                });
-
-            #endregion
-        }
-
         #region FullyCustomizedPolicy
 
         RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)
