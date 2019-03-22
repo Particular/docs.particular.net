@@ -39,8 +39,15 @@ snippet: DefineNSBMessage
 
 ### Uniquely identifying messages
 
-NServiceBus requires all messages to be uniquely identified in order to be able to perform retries in a safe way. Unfortunately, RabbitMQ doesn't provide a unique ID for messages automatically, so a unique ID will need to be manually generated. By default, NServiceBus will look for this message ID in the optional [AMQP](https://www.rabbitmq.com/amqp-0-9-1-reference.html) `message-id` message header. This behavior can be modified by using a [custom message ID strategy](/transports/rabbitmq/message-id-strategy.md) to tell NServiceBus to look in a different location for the message ID. Using this custom strategy, the ID can be extracted from any message header, or even the message payload itself.
+NServiceBus requires all messages to be uniquely identified in order to be able to perform retries in a safe way. Unfortunately, RabbitMQ doesn't provide a unique ID for messages automatically, so a unique ID will need to be manually generated. By default, NServiceBus will look for this message ID in the optional [AMQP](https://www.rabbitmq.com/amqp-0-9-1-reference.html) `message-id` message header. This behavior can be modified by using a [custom message ID strategy](/transports/rabbitmq/native-integration.md#custom-message-id-strategy) to tell NServiceBus to look in a different location for the message ID. Using this custom strategy, the ID can be extracted from any message header, or even the message payload itself.
 
 To set this up for this sample, generate a unique ID on the sender side and attach it to the `MessageId` property:
 
 snippet: GenerateUniqueMessageId
+
+
+### Access to the native RabbitMQ message details
+
+The transport adds the native RabbitMQ client [`BasicDeliverEventArgs`](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.Events.BasicDeliverEventArgs.html) to the message processing context. The sample demonstrates this by setting a custom [`AppId`](https://www.rabbitmq.com/consumers.html#message-properties) that is accessed in the message handler using the following syntax:
+
+snippet: AccessToNativeMessageDetails
