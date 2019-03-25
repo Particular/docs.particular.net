@@ -29,4 +29,4 @@ If ServiceControl is installed on a different machine than endpoints using MSMQ 
 
 partial: snippets
 
-For more information about how to configure the audit queue refer to the [Configuring auditing](/nservicebus/operations/auditing#configuring-auditing.md) documentation.
+For more information about how to configure the audit queue refer to the [Configuring auditing](/nservicebus/operations/auditing.md#configuring-auditing) documentation.
