@@ -2,7 +2,7 @@
 title: Configuring MSMQ for use with ServiceControl
 summary: How to configure MSMQ to feed data into ServiceControl
 component: MSMQTransport
-reviewed: 2017-06-28
+reviewed: 2019-03-25
 versions: '[5,)'
 related:
  - nservicebus/recoverability/configure-error-handling
@@ -18,6 +18,7 @@ The following transports don't need any additional configuration for remote queu
  * RabbitMQ
  * Azure Storage Queues
  * Azure Service Bus
+ * Amazon SQS
 
 See [Configure error handling](/nservicebus/recoverability/configure-error-handling.md) for examples.
 
