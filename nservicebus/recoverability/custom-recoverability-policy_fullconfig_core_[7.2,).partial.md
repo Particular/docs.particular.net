@@ -1,4 +1,4 @@
-snippet: FullyCustomizedPolicyRecoverabilityConfiguration
+snippet: FullyCustomizedPolicyRecoverabilityConfigurationWithDiscard
 
 The snippet below shows a fully custom policy that does the following:
 
@@ -7,4 +7,4 @@ The snippet below shows a fully custom policy that does the following:
  * For `MyOtherBusinessException` Delayed Retries are performed with a constant time increase of five seconds.
  * For all other cases failed messages are immediately moved to the configured error queue.
 
-snippet: FullyCustomizedPolicy
+snippet: FullyCustomizedPolicyWithDiscard
