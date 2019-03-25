@@ -1,7 +1,7 @@
 ---
 title: Msmq-to-SQL Relay
 summary: How to set up a SQL relay to receive events from an MSMQ publisher.
-reviewed: 2017-06-21
+reviewed: 2019-03-22
 component: MsmqTransport
 related:
 - transports
