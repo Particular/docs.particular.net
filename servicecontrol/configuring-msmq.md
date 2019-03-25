@@ -28,3 +28,5 @@ See [Configure error handling](/nservicebus/recoverability/configure-error-handl
 If ServiceControl is installed on a different machine than endpoints using MSMQ Transport, then endpoints must be configured to send error and audit messages to a remote queue:
 
 partial: snippets
+
+For more information about how to configure the audit queue refer to the [Configuring auditing](/nservicebus/operations/auditing#configuring-auditing.md) documentation.
