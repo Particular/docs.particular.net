@@ -15,7 +15,7 @@ upgradeGuideCoreVersions:
 
 The handler method on `IHandleMessages<T>` now returns a Task. To leverage async code, add the `async` keyword to the handler method and use `await` for async methods. To convert the synchronous code add `return Task.FromResult(0);` or `return Task.CompletedTask` (.NET 4.6 and higher) to the handler methods.
 
-WARNING: Do not `return null` from the message handlers. A `null` will result in an Exception.
+WARNING: Do not `return null` from the message handlers. Returning `null` will result in an Exception.
 
 snippet: 5to6-messagehandler
 
@@ -23,7 +23,7 @@ snippet: 5to6-messagehandler
 
 ### Bus Send and Receive
 
-There is also a change in the parameters, giving access to the `IMessageHandlerContext`, which provides the methods that used to be called from `IBus`. Use the `IMessageHandlerContext` to send and publish messages.
+There is a change in the parameters, giving access to the `IMessageHandlerContext`, which provides the methods that used to be called from `IBus`. Use the `IMessageHandlerContext` to send and publish messages.
 
 snippet: 5to6-bus-send-publish
 
@@ -41,7 +41,7 @@ snippet: 5to6HandlerOrderingWithCode
 
 ### New context arguments
 
-The signature for the mutators now passes context arguments that give access to relevant information on the message and also the mutation the message. This context gives access to the same functionality as previous versions so update the code accordingly.
+The signature for the mutators now passes context arguments that give access to relevant information on the message and also on the mutation of the message. This context gives access to the same functionality as previous versions so update the code accordingly.
 
 See [header manipulation](/nservicebus/messaging/header-manipulation.md) for one example on how this might look.
 
@@ -53,7 +53,7 @@ When this scenario is detected an exception with the following message is thrown
 
 > HandleCurrentMessageLater cannot be used in conjunction with the Outbox. Use the recoverability mechanisms or delayed delivery instead.
 
-Use the [recoverability](/nservicebus/recoverability) or [delayed delivery](/nservicebus/messaging/delayed-delivery.md) APIs instead when using the Outbox. 
+Use the [recoverability](/nservicebus/recoverability) or [delayed delivery](/nservicebus/messaging/delayed-delivery.md) APIs instead when using the Outbox.
 
 ## Migration
 
@@ -65,7 +65,7 @@ Implement the new `IHandleMessages` interface. Remove any code that is generated
 
 snippet: 5to6-handler-migration-step1
 
-Rename the bus property or the bus constructor parameter to `context`. Although the [IBus interface has been deprecated](moving-away-from-ibus.md) and can be safely removed, for this step renaming the property instead of deleting it comes in useful when refactoring existing code. It's much easier to rename all the existing references from `bus` property to `context`.
+Rename the bus property or the bus constructor parameter to `context`. Although the [IBus interface has been deprecated](moving-away-from-ibus.md) and can be safely removed, for this step renaming the property instead of deleting it comes in useful when refactoring existing code. It's much better to rename all the existing references from `bus` property to `context`.
 
 snippet: 5to6-handler-migration-step2
 
@@ -73,7 +73,7 @@ Inline or "cut-and-paste" the old `Handle` method code into the new asynchronous
 
 snippet: 5to6-handler-migration-step3
 
-Fix the compiler warnings by introducing the `await` statement followed by `ConfigureAwait(false)` to each asynchronous method call.
+Fix the compiler warnings by introducing the `await` statement and optionally followed by `ConfigureAwait(false)` to each asynchronous method call.
 
 NOTE: Visual Studio 2015 and higher has the capability to automatically fix those warnings with the [`Ctrl+.`](https://msdn.microsoft.com/en-us/library/dn872466.aspx) (depending on the keybindings) shortcut. It is even possible to fix it in the whole solution if desired.
 
@@ -87,10 +87,9 @@ For information about how to migrate handlers with dependencies that access the 
 
 ### Remove NServiceBus.Saga namespace
 
-The `NServiceBus.Saga` namespace has been removed to stop it clashing with the `NServiceBus.Saga.Saga` class. For all commonly used APIs (e.g., the `Saga` class and `IContainSagaData ` interface) they have been moved into the `NServiceBus` namespace. Other more advanced APIs (e.g., the `IFinder` and `IHandleSagaNotFound` interfaces) have been moved into the `NServiceBus.Sagas` namespace.
+The `NServiceBus.Saga` namespace has been removed to stop it clashing with the `NServiceBus.Saga.Saga` class. For all commonly used APIs (e.g., the `Saga` class and `IContainSagaData` interface) they have been moved into the `NServiceBus` namespace. Other more advanced APIs (e.g., the `IFinder` and `IHandleSagaNotFound` interfaces) have been moved into the `NServiceBus.Sagas` namespace.
 
 In most cases `using NServiceBus.Saga` can be replaced with `using NServiceBus`.
-
 
 ### Unique attribute no longer needed
 
