@@ -1,6 +1,6 @@
 ---
 title: Migrate handlers and sagas to Version 6
-reviewed: 2017-06-28
+reviewed: 2019-03-25
 component: Core
 related:
  - nservicebus/handlers
@@ -19,9 +19,7 @@ WARNING: Do not `return null` from the message handlers. A `null` will result in
 
 snippet: 5to6-messagehandler
 
-
 ## API Changes
-
 
 ### Bus Send and Receive
 
@@ -29,42 +27,35 @@ There is also a change in the parameters, giving access to the `IMessageHandlerC
 
 snippet: 5to6-bus-send-publish
 
-
 ### Message handler ordering
 
 In Version 6 the message handler ordering APIs are simplified. The full API can be seen in [Handler ordering](/nservicebus/handlers/handler-ordering.md).
-
 
 #### Specifying a Handler to run first
 
 snippet: 5to6HandlerOrderingWithFirst
 
-
 #### Specifying Handler order
 
 snippet: 5to6HandlerOrderingWithCode
 
-
 ### New context arguments
 
-The signature for the mutators now passes context arguments that give access to relevant information on the message and also the mutation the message. This context will give access to the same functionality as previous versions so just update the code accordingly.
+The signature for the mutators now passes context arguments that give access to relevant information on the message and also the mutation the message. This context gives access to the same functionality as previous versions so update the code accordingly.
 
 See [header manipulation](/nservicebus/messaging/header-manipulation.md) for one example on how this might look.
-
 
 ### HandleCurrentMessageLater and the Outbox
 
 The `HandleCurrentMessageLater` method can no longer be used in conjunction with the [Outbox](/nservicebus/outbox/). 
 
-When this scenario is detected an exception with the following message will be throw:
+When this scenario is detected an exception with the following message is thrown:
 
 > HandleCurrentMessageLater cannot be used in conjunction with the Outbox. Use the recoverability mechanisms or delayed delivery instead.
 
 Use the [recoverability](/nservicebus/recoverability) or [delayed delivery](/nservicebus/messaging/delayed-delivery.md) APIs instead when using the Outbox. 
 
-
 ## Migration
-
 
 In previous versions of NServiceBus, a typical handler class looks like the below:
 
@@ -92,9 +83,7 @@ After these steps start moving other code in the handler towards async if the co
 
 For information about how to migrate handlers with dependencies that access the `IBus` interface, refer to [IBus interface has been deprecated](moving-away-from-ibus.md) guidance.
 
-
 ## Saga API Changes
-
 
 ### Remove NServiceBus.Saga namespace
 
@@ -105,31 +94,29 @@ In most cases `using NServiceBus.Saga` can be replaced with `using NServiceBus`.
 
 ### Unique attribute no longer needed
 
-NServiceBus will automatically make the correlated saga property unique without the need for an explicit `[Unique]` attribute to be used. This attribute can be safely removed from saga data types.
-
+NServiceBus automatically makes the correlated saga property unique without the need for an explicit `[Unique]` attribute to be used. This attribute can be safely removed from saga data types.
 
 ### ConfigureHowToFindSaga
 
-All messages that start the saga (`IAmStartedByMessages<T>`) need to be mapped to the saga data using either a mapping in `ConfigureHowToFindSaga` method, or a custom [saga finder](/nservicebus/sagas/saga-finding.md), otherwise an exception will be thrown on endpoint startup. Other messages that are handled by the saga (`IHandleMessages<T>`) also require mappings, unless they are reply messages resulting from a message sent out of the saga, in which case they will contain the SagaId in a message header. Messages that cannot be mapped by a SagaId message header, by a property mapping in `ConfigureHowToFindSaga`, or via a custom saga finder will throw a runtime exception.
+All messages that start the saga (`IAmStartedByMessages<T>`) need to be mapped to the saga data using either a mapping in `ConfigureHowToFindSaga` method, or a custom [saga finder](/nservicebus/sagas/saga-finding.md); otherwise, an exception is thrown on endpoint startup. Other messages that are handled by the saga (`IHandleMessages<T>`) also require mappings, unless they are reply messages resulting from a message sent out of the saga, in which case they contain the SagaId in a message header. Messages that cannot be mapped by a SagaId message header, by a property mapping in `ConfigureHowToFindSaga`, or via a custom saga finder will throw a runtime exception.
 
 In the below example, the `OrderSaga` is started by the `StartOrder` message. The `OrderSaga` also handles the `CompleteOrder` message.
 
 snippet: 5to6-SagaDefinition
 
-In Version 6, the `StartOrder` message will also need to be specified in the `ConfigureHowToFindSaga` method.
+In Version 6, the `StartOrder` message needs to be specified in the `ConfigureHowToFindSaga` method.
 
 snippet: 5to6-ConfigureHowToFindSaga
 
-
 ### Correlating properties
 
-Version 6 automatically correlates incoming message properties to its saga data counterparts. Any saga data correlation in the message handler code can be safely removed. Correlated properties (for existing saga instances) will not be changed once set.
+Version 6 automatically correlates incoming message properties to its saga data counterparts. Any saga data correlation in the message handler code can be safely removed. Correlated properties (for existing saga instances) do not change once set.
 
-{{NOTE: Correlated properties must have a non [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default-values-table) value, i.e. not null and not empty, assigned when persisted. If not the following exception will be thrown: 
+{{NOTE: Correlated properties must have a non [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default-values-table) value, i.e., not null and not empty, assigned when persisted. If not the following exception is thrown: 
 
 ```
 The correlated property 'MyPropery' on Saga 'MySaga' does not have a value.
-A correlated property must have a non-default (i.e. non-null and non-empty) value assigned when a new saga instance is created.
+A correlated property must have a non-default (i.e., non-null and non-empty) value assigned when a new saga instance is created.
 ```
 
 Use a [custom finder](/nservicebus/sagas/saga-finding.md) for the received message to override this validation.
@@ -137,27 +124,23 @@ Use a [custom finder](/nservicebus/sagas/saga-finding.md) for the received messa
 
 snippet: 5to6-NoSagaDataCorrelationNeeded
 
-Versions 6 and above will only support correlating messages to a single saga property. Correlating on more than one property is still supported by creating a custom [saga finder](/nservicebus/sagas/saga-finding.md). If sagas with multiple correlations mappings to different properties are detected the following exception will be thrown:
+Versions 6 and above only support correlating messages to a single saga property. Correlating on more than one property is still supported by creating a custom [saga finder](/nservicebus/sagas/saga-finding.md). If sagas with multiple correlations mappings to different properties are detected the following exception is thrown:
 
 ```
 Sagas can only have mappings that correlate on a single saga property. Use custom finders to correlate *message types* to Saga *saga type*
 ```
 
-
 ### Saga persisters & finders
 
-Saga persisters (`ISagaPersister`) and finders (`IFindSagas`) introduce a new parameter `SagaPersistenceOptions`. This parameter gives access to the saga metadata and pipeline context. This enables  persisters and finders to manipulate everything that exists in the context during message pipeline execution. For more information see [Sagas](/nservicebus/sagas/) and [Complex saga finding logic](/nservicebus/sagas/saga-finding.md).
-
+Saga persisters (`ISagaPersister`) and finders (`IFindSagas`) introduce a new parameter `SagaPersistenceOptions`. This parameter gives access to the saga metadata and pipeline context. The options enable persisters and finders to manipulate everything that exists in the context during message pipeline execution. For more information see [Sagas](/nservicebus/sagas/) and [Complex saga finding logic](/nservicebus/sagas/saga-finding.md).
 
 ### MarkAsComplete no longer virtual
 
 The `Saga` base class method `MarkAsComplete` is no longer virtual.
 
-
 ### RequestTimeout requires IMessageHandlerContext
 
 `RequestTimeout` requires a `IMessageHandlerContext` as additional parameter. Pass the context argument received in the handle method to `RequestTimeout`.
-
 
 ### ReplyToOriginator requires IMessageHandlerContext
 
