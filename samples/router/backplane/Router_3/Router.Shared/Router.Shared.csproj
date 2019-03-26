@@ -12,6 +12,6 @@
     <PackageReference Include="System.Reflection.Emit " Version="4.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="4.*" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="5.*" />
-    <PackageReference Include="RabbitMQ.Client" Version="5.0.*" />
+    <PackageReference Include="RabbitMQ.Client" Version="5.*" />
   </ItemGroup>
 </Project>
