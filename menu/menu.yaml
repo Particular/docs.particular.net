@@ -823,8 +823,8 @@
       Title: Routing topology
     - Url: transports/rabbitmq/delayed-delivery
       Title: Delayed Delivery
-    - Url: transports/rabbitmq/message-id-strategy
-      Title: Message Id strategy
+    - Url: transports/rabbitmq/native-integration
+      Title: Native integration
     - Url: transports/rabbitmq/callbacks
       Title: Callback support
     - Url: transports/rabbitmq/transactions-and-delivery-guarantees

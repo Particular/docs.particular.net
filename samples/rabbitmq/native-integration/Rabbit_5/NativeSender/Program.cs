@@ -25,6 +25,10 @@ class Program
                 using (var channel = connection.CreateModel())
                 {
                     var properties = channel.CreateBasicProperties();
+
+                    //not required but shows how to access basic properties in the receiving NServiceBus endpoint
+                    properties.AppId = "MyNativeApp";
+
                     #region GenerateUniqueMessageId
                     var messageId = Guid.NewGuid().ToString();
 
