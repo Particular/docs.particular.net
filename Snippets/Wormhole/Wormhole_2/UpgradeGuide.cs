@@ -1,54 +1,113 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Router;
+using NServiceBus.Routing;
 using NServiceBus.Settings;
 using NServiceBus.Transport;
+using NServiceBus.Wormhole;
+using NServiceBus.Wormhole.Gateway;
+using SettingsHolder = NServiceBus.Settings.SettingsHolder;
 
 public class UpgradeGuide
 {
-    public async Task EndpointSide()
+    public void WormholeConnector(EndpointConfiguration endpointConfiguration)
     {
-        #region wormhole-to-router-connector
+        #region upgrade-wormhole-connector
 
-        var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
+        var routing = endpointConfiguration.UseWormholeGateway("Gateway.SiteA");
+        routing.RouteToSite<MyMessage>(m => m.DestinationSite);
+
+        #endregion
+    }
+
+    public async Task WormholeSend(IEndpointInstance endpointInstance)
+    {
+        #region upgrade-wormhole-connector-send
+
+        await endpointInstance.Send(new MyMessage
+        {
+            DestinationSite = "SiteB"
+        });
+
+        #endregion
+    }
+
+    public void RouterConnector(EndpointConfiguration endpointConfiguration)
+    {
+        #region upgrade-router-connector
+
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
         var routing = transport.Routing();
 
-        var router = routing.ConnectToRouter("SiteA");
+        var router = routing.ConnectToRouter("Gateway.SiteA");
+        router.RouteToEndpoint(typeof(MyMessage), "EndpointB");
 
-        router.RouteToEndpoint(typeof(MyMessage), "Receiver");
+        #endregion
+    }
 
-        //Send a message
+    public async Task RouterSend(IEndpointInstance endpointInstance)
+    {
+        #region upgrade-router-connector-send
 
-        var endpoint = await Endpoint.Start(endpointConfiguration);
         var options = new SendOptions();
-        options.SendToSites("B", "C");
+        options.SendToSites("SiteB");
 
-        await endpoint.Send(new MyMessage(), options);
+        await endpointInstance.Send(new MyMessage(), options);
+
+        #endregion
+    }
+
+    public void GatewaySideA()
+    {
+        #region upgrade-gateway-config-a
+
+        var gatewayConfig = new WormholeGatewayConfiguration
+            <MsmqTransport, AzureStorageQueuesTransport>("Gateway.SiteA", "SiteA");
+
+        gatewayConfig.ConfigureRemoteSite("SiteB", "Gateway.SiteB");
+        
+        #endregion
+    }
+
+    public void GatewaySideB()
+    {
+        #region upgrade-gateway-config-b
+
+        var gatewayConfig = new WormholeGatewayConfiguration
+            <MsmqTransport, AzureStorageQueuesTransport>("Gateway.SiteB", "SiteB");
+
+        gatewayConfig.ForwardToEndpoint(MessageType.Parse("MyMessage, Messages"), "EndpointB");
 
         #endregion
     }
 
     public void RouterSide()
     {
-        #region wormhole-to-router-router
+        #region upgrade-router-config
 
-        var routerConfig = new RouterConfiguration("SiteA");
-        routerConfig.AddInterface<MsmqTransport>("Endpoints", tx => { });
+        var routerConfig = new RouterConfiguration("Gateway.SiteA");
+
+        routerConfig.AddInterface<MsmqTransport>("Local", tx => { });
         routerConfig.AddInterface<AzureStorageQueuesTransport>("Tunnel", tx => { });
 
         var staticRouting = routerConfig.UseStaticRoutingProtocol();
-        staticRouting.AddRoute((iface, dest) => iface == "Endpoints", "From the local site", "SiteB", "Tunnel");
-        staticRouting.AddRoute((iface, dest) => iface == "Tunnel", "From the remote site", null, "Endpoints");
+
+        staticRouting.AddRoute((iface, dest) => iface == "Local", 
+            "From the local site", "Gateway.SiteB", "Tunnel");
+
+        staticRouting.AddRoute((iface, dest) => iface == "Tunnel", 
+            "From the remote site", null, "Local");
 
         var router = Router.Create(routerConfig);
 
         #endregion
     }
-
+    
     class MyMessage : IMessage
     {
+        public string DestinationSite { get; set; }
     }
 
     public class AzureStorageQueuesTransport : TransportDefinition

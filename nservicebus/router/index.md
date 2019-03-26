@@ -10,8 +10,6 @@ reviewed: 2018-09-05
 
 `NServiceBus.Router` is a universal component that connects parts of an NServiceBus-based solution that otherwise could not talk to each other (e.g. because they use different transports or transport settings).
 
-Unlike the [gateway](/nservicebus/gateway/) or the [wormhole](/nservicebus/wormhole/), the router handles both sending and publishing. Unlike the [bridge](/nservicebus/bridge/), the router can use site-based addressing to route messages between logically significant sites (just like the gateway does).
-
 The router is transparent to the publishing and replying endpoint. That is:
 
  * The endpoint that *replies* to a message does not have to know if the initiating message came through a router. The reply will be routed automatically to the correct router and then forwarded to the initiating endpoint.

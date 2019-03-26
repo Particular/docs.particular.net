@@ -1,35 +1,25 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Wormhole;
 
 class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Wormhole.PingPong.Server";
+        Console.Title = "Samples.Router.Sites.Server";
         var endpointConfiguration = new EndpointConfiguration(
-            "Samples.Wormhole.PingPong.Server");
+            "Samples.Router.Sites.Server");
 
-        endpointConfiguration.UseTransport<MsmqTransport>();
-
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Immediate(immediate => immediate.NumberOfRetries(0));
         recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
-        recoverability.DisableLegacyRetriesSatellite();
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
-
-        #region ConfigureServer
-
-        endpointConfiguration.UseWormholeGateway("Gateway.SiteB");
-
-        #endregion
-
+        
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
