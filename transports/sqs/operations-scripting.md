@@ -2,7 +2,7 @@
 title: SQS Transport Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against the SQS Transport.
 component: SQS
-reviewed: 2017-06-28
+reviewed: 2019-03-26
 related:
  - nservicebus/operations
 ---
@@ -64,16 +64,13 @@ A send involves the following actions:
  * Create and serialize the message with an empty payload including headers and the `S3BodyKey`.
  * Write a message directly to SQS Transport.
 
-
 #### In C&#35;
 
 snippet: sqs-nativesend-large
 
-
 #### In PowerShell
 
 snippet: sqs-powershell-nativesend-large
-
 
 ### Using the native send helper methods
 
@@ -87,14 +84,11 @@ The S3 bucket name and the S3 prefix must be provided as defined in the transpor
 
 Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
 
-
 ### The create queue helper methods
-
 
 #### In C&#35;
 
 snippet: sqs-create-queues
-
 
 #### In PowerShell
 
@@ -108,16 +102,13 @@ The template used
 
 snippet: sqs-create-queues-template-cloudformation
 
-
 ### Creating queues for an endpoint
 
 To create all queues for a given endpoint name.
 
-
 #### In C&#35;
 
 snippet: sqs-create-queues-for-endpoint
-
 
 #### In PowerShell
 
@@ -131,14 +122,11 @@ The template used
 
 snippet: sqs-create-queues-for-endpoint-template-cloudformation
 
-
 ### Using the create endpoint queues helper methods
-
 
 #### In C&#35;
 
 snippet: sqs-create-queues-endpoint-usage
-
 
 #### In PowerShell
 
@@ -150,11 +138,9 @@ snippet: sqs-create-queues-endpoint-usage-cloudformation
 
 ### To create shared queues
 
-
 #### In C&#35;
 
 snippet: sqs-create-queues-shared-usage
-
 
 #### In PowerShell
 
@@ -164,9 +150,7 @@ snippet: sqs-create-queues-shared-usage-powershell
 
 snippet: sqs-create-queues-shared-usage-cloudformation
 
-
 ## Delete queues
-
 
 ### The delete helper queue methods
 
@@ -181,7 +165,6 @@ snippet: sqs-delete-queues-powershell
 #### In CloudFormation
 
 snippet: sqs-delete-queues-cloudformation
-
 
 ### To delete all queues for a given endpoint
 
@@ -228,7 +211,6 @@ snippet: sqs-delete-queues-shared-usage-powershell
 snippet: sqs-delete-queues-shared-usage-cloudformation
 
 ## Return message to source queue
-
 
 ### The retry helper methods
 
