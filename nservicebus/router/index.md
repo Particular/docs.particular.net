@@ -4,7 +4,7 @@ summary: How to connect parts of the system that use different transports
 component: Router
 related:
 - samples/azure/azure-service-bus-msmq-bridge
-- samples/msmq/sql-bridge
+- samples/msmq/msmqtosqlrelay
 reviewed: 2018-09-05
 ---
 

@@ -9,6 +9,7 @@ related:
 - transports/sql
 redirects:
 - samples/msmqtosqlrelay
+- samples/msmq/sql-bridge
 ---
 
 This sample is an example of transport integration, showing how to receive events published by an endpoint whose transport is different from that of the subscriber. Here, events published from an MSMQ endpoint will be relayed to an SQL endpoint for downstream SQL subscribers. The strategy shown can be applied to any transport integration, such as integrating the work of different teams, or crossing the boundary between on-premises and cloud-based systems.
