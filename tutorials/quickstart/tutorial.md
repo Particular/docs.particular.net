@@ -48,6 +48,8 @@ The solution is configured to have [multiple startup projects](https://msdn.micr
 ![ClientUI Web Application](webapp-start.png)
 ![2 console applications, one for endpoint implemented as a console app](2-console-windows.png)
 
+WARNING: Did all three windows appear? There is currently an [outstanding bug in Visual Studio](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html) that will sometimes prevent one or more projects from launching with an error message "Unable to launch the previously selected debugger. Please choose another." If this is the case, stop debugging and try again. The problem usually happens only on the first attempt. 
+
 In the **ClientUI** web application, click the **Place order** button to place an order, and watch what happens in other windows. 
 
 It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint. In the **Sales** endpoint window you should see:
