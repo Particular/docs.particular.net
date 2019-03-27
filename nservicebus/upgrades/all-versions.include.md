@@ -91,7 +91,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 5.0.x     | 2018-05-29     | -                 | -                                 |
+| 5.1.x     | 2019-03-27     | -                 | -                                 |
+| 5.0.x     | 2018-05-29     | 2019-06-27        | Superseded by 5.1.x               |
 | 4.4.x     | 2017-09-18     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | ~~4.3.x~~ | ~~2017-04-05~~ | ~~2017-12-18~~    | ~~Superseded by 4.4.x~~           |
 | ~~4.2.x~~ | ~~2016-11-30~~ | ~~2017-07-05~~    | ~~Superseded by 4.3.x~~           |
@@ -127,7 +128,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.0.x     | 2018-12-19     | -                 | -                                 |
+| 1.1.x     | 2019-03-27     | -                 | -                                 |
+| 1.0.x     | 2018-12-19     | 2019-06-27        | Superseded by 1.1.x               |
 
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
 
@@ -375,7 +377,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 9.0.x     | 2018-05-31     | -                 | -                                 |
+| 10.0.x    | 2019-03-22     | -                 | -                                 |
+| 9.0.x     | 2018-05-31     | 2020-03-22        | Superseded by 10.0.x              |
 | 8.1.x     | 2018-01-24     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | ~~8.0.x~~ | ~~2017-11-17~~ | ~~2018-04-24~~    | ~~Superseded by 8.1.x~~           |
 | ~~7.0.x~~ | ~~2016-10-11~~ | ~~2018-11-17~~    | ~~Superseded by 8.0.x~~           |
@@ -654,7 +657,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 7.0.x     | 2018-05-29     | -                 | -                                 |
+| 7.1.x     | 2019-03-21     | -                 | -                                 |
+| 7.0.x     | 2018-05-29     | 2019-06-21        | Superseded by 7.1.x               |
 | 6.0.x     | 2016-10-11     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | 5.2.x     | 2016-04-29     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
 | ~~5.1.x~~ | ~~2015-10-27~~ | ~~2016-07-29~~    | ~~Superseded by 5.2.x~~           |
