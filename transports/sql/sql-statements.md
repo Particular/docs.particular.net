@@ -53,6 +53,7 @@ Checks if there are messages in the queue.
 
 snippet: PeekTextSql
 
+partial: peektext
 
 ### Purge expired
 
