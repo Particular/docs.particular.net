@@ -32,6 +32,8 @@ partial: ttrq
 
 partial: label
 
+partial: messageEnumeratorTimeout
+
 
 ## Transactions and delivery guarantees
 
