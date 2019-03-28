@@ -3,7 +3,7 @@
 <configuration>
   <connectionStrings>
     <add name="NServiceBus/Transport"
-         connectionString="cacheSendConnection=true;journal=false;deadLetter=true;useTransactionalQueues=true;timeToReachQueue=00:00:10;messageEnumeratorTimeout=00:00:00.5"/>
+         connectionString="cacheSendConnection=true;journal=false;deadLetter=true;useTransactionalQueues=true;timeToReachQueue=00:00:10;messageEnumeratorTimeout=00:00:02"/>
   </connectionStrings>
 </configuration>
 <!--endcode -->
