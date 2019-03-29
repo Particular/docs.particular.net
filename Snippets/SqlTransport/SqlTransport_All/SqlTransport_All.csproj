@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <LangVersion>7.1</LangVersion>
@@ -10,7 +10,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="2.*" />
     <PackageReference Include="NUnit" Version="3.*" />
-    <PackageReference Include="System.Management.Automation" Version="6.*" />
+    <PackageReference Include="System.Management.Automation" Version="6.1.*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Operations\**\*.ps1" CopyToOutputDirectory="PreserveNewest" />
