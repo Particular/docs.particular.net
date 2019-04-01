@@ -1,6 +1,6 @@
 ---
 title: Externalize Message Property Encryption
-reviewed: 2017-06-30
+reviewed: 2019-04-01
 component: PropertyEncryption
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
