@@ -54,3 +54,7 @@ Throttling errors are similar to any other technical error that can occur.
 As message sending does not happen within a handler context any failures during sending will not rely or be covered by the [recoverability feature](/nservicebus/recoverability/) mechanism. Any retry logic must be manually implemented.
 
 When throttling occurs with no custom error logic implemented, one or more messages might not have been transmitted to Amazon SQS. The custom retry logic could either retry all messages to be sent again, including already succeeded messages or only retry individual messages that failed.
+
+## On endpoint shutdown messages might be only visible after the visibility timeout has expired
+
+Due to an [issue in the AWS SDK](https://github.com/aws/aws-sdk-net/issues/796#issuecomment-375494537) after an endpoint shutdown, messages might indicate that they are in-flight for a longer time than expected. Messages will not be lost but may end up being delivered up to 30 seconds later on endpoint shutdown.
