@@ -1,14 +1,14 @@
 ---
 title: Client side Callbacks Testing
 summary: Shows how to unit test code that uses Callbacks.
-reviewed: 2017-06-29
+reviewed: 2019-04-01
 component: CallbacksTesting
 related:
 - samples/callbacks
 - nservicebus/messaging/callbacks
 ---
 
-Shows the usage of the `NServiceBus.Callback.Testing`.
+Shows the usage of the `NServiceBus.Callbacks.Testing` package.
 
 
 ## Prerequisites for callback testing functionality
