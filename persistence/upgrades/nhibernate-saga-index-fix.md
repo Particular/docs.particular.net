@@ -1,7 +1,7 @@
 ---
 title: NHibernate Persistence - Missing unique constraints
 summary: Instructions on how to add missing unique constraints on saga correlation property columns for affected versions.
-reviewed: 2017-06-30
+reviewed: 2019-04-01
 component: NHibernate
 isUpgradeGuide: true
 redirects:
