@@ -57,4 +57,4 @@ When throttling occurs with no custom error logic implemented, one or more messa
 
 ## On endpoint shutdown messages might be only visible after the visibility timeout has expired
 
-Due to an [issue in the AWS SDK](https://github.com/aws/aws-sdk-net/issues/796#issuecomment-375494537) after an endpoint shutdown, messages might indicate that they are in-flight for a longer time than expected. Messages will not be lost but may end up being delivered up to 30 seconds later on endpoint shutdown.
+Due to an [issue in the AWS SDK](https://github.com/aws/aws-sdk-net/issues/796#issuecomment-375494537) after an endpoint shutdown, messages might indicate that they are in-flight for a longer time than expected. Messages will not be lost but may end up being visible in the input queue again up to 30 seconds later after an endpoint shutdown.
