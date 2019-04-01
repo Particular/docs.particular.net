@@ -1,7 +1,7 @@
 ---
 title: NHibernate Persistence - Resolving incorrect timeout table indexes #252
 summary: Instructions on how to resolve incorrect index definitions that can cause performance degradation for affected versions 6 to 7.
-reviewed: 2017-06-30
+reviewed: 2019-04-01
 component: NHibernate
 isUpgradeGuide: true
 redirects:
