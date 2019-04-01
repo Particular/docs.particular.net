@@ -2,7 +2,7 @@
 title: Upgrade encryption configuration
 summary: Instructions on how to upgrade the Rijndael property encryption configuration to use key IDs.
 component: PropertyEncryption
-reviewed: 2017-06-30
+reviewed: 2019-04-01
 related:
  - nservicebus/security/generating-encryption-keys
 isUpgradeGuide: true
