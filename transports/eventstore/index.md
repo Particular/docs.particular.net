@@ -1,7 +1,7 @@
 ---
 title: Event Store Transport
 summary: High-level description of the EventStore Transport.
-reviewed: 2017-06-30
+reviewed: 2019-04-02
 component: EventStoreTransport
 redirects:
  - nservicebus/eventstoretransport
