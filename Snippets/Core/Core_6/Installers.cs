@@ -30,7 +30,7 @@ namespace Core6
         {
             #region InstallersRunWhenNecessaryCommandLine
                 
-            var runInstallers = Environment.GetCommandLineArgs().Any(x => x.ToLower() == "/runInstallers");
+            var runInstallers = Environment.GetCommandLineArgs().Any(x => string.Equals(x, "/runInstallers", StringComparison.OrdinalIgnoreCase));
 
             if (runInstallers)
             {
