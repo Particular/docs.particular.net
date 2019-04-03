@@ -16,8 +16,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomChecks6_3", "CustomCh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomChecks5_2", "CustomChecks5_2\CustomChecks5_2.csproj", "{D9175F6F-6684-45DD-B366-07EC97EEEE69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks_1", "CustomChecks_1\CustomChecks_1.csproj", "{3C5E565A-0188-4F5B-BA20-2408CA88D5BE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks_2", "CustomChecks_2\CustomChecks_2.csproj", "{CAC8A968-902C-49C0-A1B5-7CE300022778}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks_3", "CustomChecks_3\CustomChecks_3.csproj", "{AF85DB2D-A081-4E32-9C1A-0E73A7C64635}"
@@ -41,8 +39,6 @@ Global
 		{A8E34344-2D73-4B11-942E-045F910171CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9175F6F-6684-45DD-B366-07EC97EEEE69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9175F6F-6684-45DD-B366-07EC97EEEE69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C5E565A-0188-4F5B-BA20-2408CA88D5BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C5E565A-0188-4F5B-BA20-2408CA88D5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAC8A968-902C-49C0-A1B5-7CE300022778}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CAC8A968-902C-49C0-A1B5-7CE300022778}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF85DB2D-A081-4E32-9C1A-0E73A7C64635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

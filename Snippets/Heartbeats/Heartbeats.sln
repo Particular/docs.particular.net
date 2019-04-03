@@ -14,8 +14,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heartbeats6_2", "Heartbeats
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heartbeats6_3", "Heartbeats6_3\Heartbeats6_3.csproj", "{44B5DAFE-A821-4125-A66E-E9EA7172E4A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heartbeats_1", "Heartbeats_1\Heartbeats_1.csproj", "{8A46345A-1677-4BAA-89FD-B1F7AD2B091E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heartbeats_2", "Heartbeats_2\Heartbeats_2.csproj", "{1E4B2CCA-A08E-4A5E-BA3D-6DFE85A7BECE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heartbeats_3", "Heartbeats_3\Heartbeats_3.csproj", "{23385EBE-C680-4C0A-BAE0-464FC586144B}"
@@ -37,8 +35,6 @@ Global
 		{7286B248-4947-4297-9031-811271751648}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44B5DAFE-A821-4125-A66E-E9EA7172E4A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44B5DAFE-A821-4125-A66E-E9EA7172E4A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A46345A-1677-4BAA-89FD-B1F7AD2B091E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A46345A-1677-4BAA-89FD-B1F7AD2B091E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E4B2CCA-A08E-4A5E-BA3D-6DFE85A7BECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E4B2CCA-A08E-4A5E-BA3D-6DFE85A7BECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23385EBE-C680-4C0A-BAE0-464FC586144B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

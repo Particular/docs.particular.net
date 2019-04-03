@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Distributor_4", "Distributo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Distributor_5", "Distributor_5\Distributor_5.csproj", "{9C5C25D9-007B-4622-8673-381B2ABA8C9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_3", "Core_3\Core_3.csproj", "{551FC1B3-C43B-48DD-9EC0-238A4F1FC8B1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_4", "Core_4\Core_4.csproj", "{C7253B49-CB8E-46F9-8E93-6A6E7233C9A6}"
 EndProject
 Global
@@ -20,8 +18,6 @@ Global
 		{ED8174FA-E4C8-48A6-972E-A67314FAE3FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C5C25D9-007B-4622-8673-381B2ABA8C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C5C25D9-007B-4622-8673-381B2ABA8C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{551FC1B3-C43B-48DD-9EC0-238A4F1FC8B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{551FC1B3-C43B-48DD-9EC0-238A4F1FC8B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7253B49-CB8E-46F9-8E93-6A6E7233C9A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C7253B49-CB8E-46F9-8E93-6A6E7233C9A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
