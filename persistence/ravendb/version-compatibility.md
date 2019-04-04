@@ -63,13 +63,33 @@ NOTE: Replace `X.Y` with latest minor/patch version.
 
 RavenDB integration, in both the core and the externalized versions is configured using extension methods. Since these cannot be made distinct using namespace or type,  re-using the same extension method names would result in type conflicts. To avoid the conflicts the externalized version has had to slightly rename the extension points.
 
-Previously:
+In the embedded version:
 
-snippet: OldRavenDBPersistenceInitialization
+```cs
+configure.RavenPersistence();
+configure.RavenSagaPersister();
+configure.RavenSubscriptionStorage();
+configure.UseRavenTimeoutPersister();
+configure.UseRavenGatewayDeduplication();
+configure.UseRavenGatewayPersister();
+```
 
-Now:
+In NServiceBus.RavenDB 1.x:
 
-snippet: Version2_5RavenDBPersistenceInitialization
+```cs
+// Need to call this method
+configure.RavenDBStorage();
+// Call this method to use Raven saga storage
+configure.UseRavenDBSagaStorage();
+// Call this method to use Raven subscription storage
+configure.UseRavenDBSubscriptionStorage();
+// Call this method to use Raven timeout storage
+configure.UseRavenDBTimeoutStorage();
+// Call this method to use Raven deduplication storage for the Gateway
+configure.UseRavenDBGatewayDeduplicationStorage();
+// Call this method to use the  Raven Gateway storage method
+configure.UseRavenDBGatewayStorage();
+```
 
 
 ## NServiceBus 3: ILMerged into the Core
