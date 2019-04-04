@@ -6,8 +6,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_All", "SqlTran
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_1", "SqlTransport_1\SqlTransport_1.csproj", "{BE948BCF-1425-42CA-B0F5-E527DDCAE862}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_2", "SqlTransport_2\SqlTransport_2.csproj", "{DB7B97B4-3075-4541-A821-1C6FF9AB8671}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_3", "SqlTransport_3\SqlTransport_3.csproj", "{E8130F3D-3346-4846-9122-2406EB4E31E4}"
@@ -27,8 +25,6 @@ Global
 		{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE948BCF-1425-42CA-B0F5-E527DDCAE862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE948BCF-1425-42CA-B0F5-E527DDCAE862}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB7B97B4-3075-4541-A821-1C6FF9AB8671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB7B97B4-3075-4541-A821-1C6FF9AB8671}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8130F3D-3346-4846-9122-2406EB4E31E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
