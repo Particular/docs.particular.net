@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-  <!--startcode sagaaudit-queue-config -->
-  <appSettings>
-    <add key="ServiceControl/Queue"
-         value="particular.servicecontrol@machine" />
-  </appSettings>
-  <!--endcode -->
-</configuration>
