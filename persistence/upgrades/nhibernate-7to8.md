@@ -24,13 +24,13 @@ With optimistic concurrency check the processes would append `where counter = 5`
 
 By default, NHibernate persistence uses all Saga fields for optimistic concurrency control so the generated update statement contains a `where` clause with all previously read Saga property values.
 
-When reading `DateTime` column values using `DateTime2(7)` type the value is read without any precision loss and stored in the .NET `DateTime` type. Later, when building the update command NHibernate passes the `DateTime2(7)` type as the command parameter type which causes ADO.NET to send a `DateTime2(7)` value to the database rather than `DateTime` value. Because these are different types, the comparison fails resulting in `ObjectStaleException` being thrown by NHibernate.
+When reading `DateTime` column values using `DateTime2(7)` type the value is read without any precision loss and stored in the .NET `DateTime` type. Later, when building the update command NHibernate passes the `DateTime2(7)` type as the command parameter type which causes ADO.NET to send a `DateTime2(7)` value to the database rather than `DateTime` value. Because these are different types, the comparison fails resulting in `NHibernate.StaleStateException` being thrown by NHibernate.
 
 ## Upgrade paths
 
 Because, as mentioned, NHibernate 5 defaults to `DateTime2(7)` type, all new saga tables will used that new type for storing .NET `DateTime` values. These new sagas will work correctly with Version 8.1 of NHibernate persistence.
 
-All the existing sagas that use `DateTime` type in their tables stop working with Version 8.1 of NHibernate persistence due to the optimistic concurrency problem manifesting in `ObjectStaleException` being thrown. There are three upgrade paths to make these existing sagas work.
+All the existing sagas that use `DateTime` type in their tables stop working with Version 8.1 of NHibernate persistence due to the optimistic concurrency problem manifesting in `NHibernate.StaleStateException` being thrown. There are three upgrade paths to make these existing sagas work.
 
 ### Alter schema
 
