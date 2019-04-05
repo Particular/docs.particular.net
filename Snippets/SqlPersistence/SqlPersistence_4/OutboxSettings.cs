@@ -1,6 +1,5 @@
 ﻿using System;
 using NServiceBus;
-using NServiceBus.InMemory.Outbox;
 
 class OutboxSettings
 {
@@ -11,7 +10,7 @@ class OutboxSettings
         var outboxSettings = endpointConfiguration.EnableOutbox();
 
         outboxSettings.KeepDeduplicationDataFor(TimeSpan.FromDays(6));
-        outboxSettings.TimeToKeepDeduplicationData(TimeSpan.FromMinutes(15));
+        outboxSettings.RunDeduplicationDataCleanupEvery(TimeSpan.FromMinutes(15));
 
         #endregion
     }
