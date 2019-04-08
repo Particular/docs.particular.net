@@ -26,7 +26,9 @@ partial: exclude-event-types
 
 ### Exclude sagas from auto-subscribe
 
-partial: exclude
+Sagas are treated the same as handlers and will cause an endpoint to subscribe to a given event. It is possible to opt-in to the old exclude saga event handling behavior using:
+
+snippet: DoNotAutoSubscribeSagas
 
 
 ### Auto-subscribe to plain messages
@@ -41,7 +43,11 @@ partial: plainmessage
 A subscriber will not unsubscribe when it stops; it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started, it will consume the messages from its queue. The subscriber will never lose an event.
 
 
-partial: disableautosubscribe
+## Disabling auto-subscription
+
+Automatic subscriptions by the infrastructure can be disabled using the configuration API:
+
+snippet: DisableAutoSubscribe
 
 
 ## Manually subscribing to a message
