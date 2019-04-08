@@ -40,16 +40,6 @@ namespace Core6
         #endregion
 
 
-        void DefaultActionLogging(string errorMessage, Exception exception)
-        {
-            #region DefaultCriticalErrorActionLogging
-
-            var logger = LogManager.GetLogger("NServiceBus");
-            logger.Fatal(errorMessage, exception);
-
-            #endregion
-        }
-
         void InvokeCriticalError(CriticalError criticalError, string errorMessage, Exception exception)
         {
             #region InvokeCriticalError
