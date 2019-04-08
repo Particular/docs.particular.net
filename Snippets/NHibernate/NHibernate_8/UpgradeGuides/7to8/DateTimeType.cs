@@ -8,8 +8,13 @@ class DateTimeType
     {
         #region NHibernateLegacyDateTimeUpgrade7To8
 
-        var nhConfiguration = new Configuration();
-        nhConfiguration.SetProperty(Environment.SqlTypesKeepDateTime, bool.TrueString);
+        var nhConfiguration = new Configuration
+        {
+            Properties =
+            {
+                [Environment.SqlTypesKeepDateTime] = bool.TrueString
+            }
+        };
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(nhConfiguration);
