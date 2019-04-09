@@ -1,25 +1,25 @@
 ---
 title: SQL Server Transport Upgrade Version 3 to 3.1
 summary: Instructions on how to migrate the delayed messages from persistence-based mechanism (Timeout Manager) to native transport handling.
-reviewed: 2017-07-06
+reviewed: 2019-04-09
 component: SqlTransport
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
 ---
 
-SQL Server transport 3.1 introduces a native handling of delayed messages. It does so via a special table that holds the messages that are sent but not yet due. The structure of this table is shown below:
+SQL Server transport 3.1 introduces native handling of delayed messages. It does so via a dedicated table which holds messages that have been sent but are not yet due. The snippet below shows T-SQL script that creates delayed messages table:
 
 snippet: 3to31-createdelayedmessagestoretextsql
 
-SQL Server transport 3.1 by default runs the [Timeout Manager](/nservicebus/messaging/timeout-manager.md) using the selected persistence option to drain all the remaining delayed messages sent before upgrading to version 3.1. However, even the new delayed messages are processed using the native mechanism only even when they are sent by the endpoint using older version of the transport.
+In order to drain all delayed messages sent before upgrading to version 3.1, [Timeout Manager](/nservicebus/messaging/timeout-manager.md) is enabled by default in version 3.1 of the transport. 
 
-Because some delayed messages can have the due times months or even years in future it might be advisable to migrate them in order to be able to disable the Timeout Manager entirely. See the [SQL Server Native Delayed Delivery](/transports/sql/native-delayed-delivery.md) article for more details.
+As some delayed messages can have the due times months or even years in the future it might be advisable to move the messages manually from the old Timeout Manager storage to the native delayed tables. See the [SQL Server Native Delayed Delivery](/transports/sql/native-delayed-delivery.md) article for more details.
 
 
 ### SQL Server
 
-If SQL Server was used as a backing store for the Timeout Manager, either via [NHibernate persistence](/persistence/nhibernate/) or [SQL persistence](/persistence/sql), refer to [this sample](/samples/sqltransport/native-timeout-migration/) for details on how to migrate. 
+If SQL Server was used as a backing store for the Timeout Manager, either via [NHibernate persistence](/persistence/nhibernate/) or [SQL persistence](/persistence/sql), refer to [the native timeout migration](/samples/sqltransport/native-timeout-migration/) sample for details. 
 
 
 ### Other databases
@@ -32,4 +32,4 @@ Once exported, use the following script to insert the data into SQL Server trans
 
 snippet: 3to31-storedelayedmessagetextsql
 
-NOTE: By default the table used to store delayed messages has the `Delayed` suffix so for an endpoint called `MyEndpoint` the delayed messages are stored in a table called `MyEndpoint.Delayed`.
+NOTE: By default, the table used to store delayed messages has the `Delayed` suffix so for an endpoint called `MyEndpoint` the delayed messages are stored in a table called `MyEndpoint.Delayed`.
