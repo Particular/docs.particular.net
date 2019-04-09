@@ -880,6 +880,8 @@
         Title: Version 6.2.3 to 6.2.4
     - Title: NHibernate
       Articles:
+      - Url: persistence/upgrades/nhibernate-8to8.1
+        Title: Version 8 to 8.1      
       - Url: persistence/upgrades/nhibernate-6to7
         Title: Version 6 to 7
       - Url: persistence/upgrades/nhibernate-timeouts-index
