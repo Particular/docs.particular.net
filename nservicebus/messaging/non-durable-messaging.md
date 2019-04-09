@@ -36,7 +36,11 @@ A subset of messages can be configured to be non-durable by using a convention.
 snippet: ExpressMessageConvention
 
 
-partial: global
+### Global for the endpoint
+
+Allows messages to be non-durable via the configuration API.
+
+snippet: set-to-non-durable
 
 
 ## Effect on transports

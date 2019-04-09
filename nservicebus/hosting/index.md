@@ -82,7 +82,7 @@ NServiceBus can be hosted in any web technology that supports .NET. See [Web App
 
 "Multi-hosting" refers to hosting multiple NServiceBus endpoints in a single .NET process.
 
-partial: multi
+It is safe for multiple endpoints to share the same AppDomain or use multiple AppDomains.
 
 Related:
 

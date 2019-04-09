@@ -27,7 +27,7 @@ The Scheduler leverages the queuing system to trigger scheduled actions. Under h
 
 ## How the Scheduler works
 
-partial: scope
+The scheduler holds a list of tasks scheduled in a non-durable in-memory dictionary that is scoped per endpoint instance.
 
 When a new scheduled task is created it is given a unique ID and stored in the endpoint's in-memory dictionary. The ID for the task is sent in a message to the Timeout Manager, setting the message to be deferred with the specified time interval. When the specified time has elapsed, the Timeouts dispatcher returns the message containing the ID to the endpoint with the scheduled task ID. The endpoint then uses that ID to fetch and invoke the task from its internal list of tasks and executes it.
 

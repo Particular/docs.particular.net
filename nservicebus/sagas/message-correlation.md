@@ -27,8 +27,9 @@ When an instance of `MyMessage` arrives, NServiceBus asks the saga persistence i
 
 If correlating on more than one saga property is necessary, or matched properties are of different types, use a [custom saga finder](saga-finding.md).
 
+It is possible to specify the mapping to the message using expressions if the correlation information is split between multiple fields.
 
-partial: expression
+snippet: saga-find-by-expression
 
 
 ## Auto-correlation

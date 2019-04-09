@@ -20,11 +20,6 @@ NServiceBus has built-in [recoverability](/nservicebus/recoverability/) but in c
 partial: default
 
 
-### Logging of critical errors
-
-partial: logging
-
-
 ## Custom handling
 
 It is possible to providing a delegate that overrides the above action. When a critical error occurs the new action will be called instead of the default.

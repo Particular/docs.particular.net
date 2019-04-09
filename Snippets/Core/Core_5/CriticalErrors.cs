@@ -42,17 +42,6 @@ namespace Core5
         #endregion
 
 
-        void DefaultActionLogging(string errorMessage, Exception exception)
-        {
-            #region DefaultCriticalErrorActionLogging
-
-            var logger = LogManager.GetLogger("NServiceBus");
-            logger.Fatal(errorMessage, exception);
-
-            #endregion
-        }
-
-
         void DefaultAction(Configure configure)
         {
             // https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Core/CriticalError/CriticalError.cs
