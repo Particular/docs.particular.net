@@ -37,7 +37,11 @@ The test verifies that when a message of the type `StartsSaga` is processed by `
 
 Note that the expectation for `MyOtherEvent` is set only after the message is sent.
 
-partial: interfacemessages
+
+
+### Interface messages
+
+To support testing of interface messages use `.WhenHandling<T>()` method, where `T` is the interface type.
 
 
 ## Header manipulation

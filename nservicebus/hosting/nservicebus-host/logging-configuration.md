@@ -19,6 +19,10 @@ Logging should be customized in the constructor of the class that implements `IC
 
 WARNING: If logging is not initialized in the constructor and anything goes wrong during startup of the NServiceBus.Host, errors could be written to the default NServiceBus logging location, and not in the expected custom log output location(s).
 
-partial: customize
+### Via endpoint configuration
+
+To change the host's logging configuration, implement the `IConfigureThisEndoint` interface. Provide the custom configuration in the `Customize` method:
+
+snippet: CustomHostLogging
 
 partial: profile

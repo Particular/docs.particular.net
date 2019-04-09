@@ -64,7 +64,9 @@ or during installation by passing values to [`/scannedAssemblies:` parameters](/
 
 ### Initialization
 
-partial: initialization
+For Versions 5 and above, customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on the endpoint configuration class. Call the appropriate methods on the parameter passed to the method.
+
+snippet: customize_nsb_host
 
 
 ### Endpoint Name
@@ -98,7 +100,11 @@ snippet: DefaultHostCriticalErrorAction
 The default callback should be overriden, if some custom code should be executed before exiting the process, such as persisting some in-memory data, flushing the loggers, etc. Refer to the [Critical Errors](/nservicebus/hosting/critical-errors.md) article for more information.
 
 
-partial: roles
+## Roles - Built-in configurations
+
+In Versions 5 and above roles are obsoleted and should not be used. The functionality of `AsA_Server`, and `AsA_Publisher` has been made defaults in the core and can be safely removed. If the `AsA_Client` functionality is still required add the following configuration.
+
+snippet: AsAClientEquivalent
 
 partial: slaviolation
 
