@@ -46,7 +46,13 @@ snippet: ConfiguringNHibernate
 It is possible to pass a connection string in the `app.config` file, as described in the [using configuration convention](/persistence/nhibernate/#customizing-the-configuration-using-configuration-convention) section.
 
 
-partial: code-connection
+### With code 
+
+NHibernate persistence requires specifying a connection string.
+
+The connection string might be passed using code configuration:
+
+snippet: ConnectionStringAPI
 
 
 ## Customizing the configuration
@@ -62,7 +68,17 @@ snippet: SpecificNHibernateConfiguration
 
 NOTE: Combine both approaches to define a common configuration and override it for one specific concern.
 
-partial: code
+
+
+
+To use a given NHibernate `Configuration` object for all the persistence concerns:
+
+snippet: CommonNHibernateConfiguration
+
+
+WARNING: When using the per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern being enabled. The following code will set up NHibernate persistence only for `GatewayDeduplication` concern but will override the default configuration **for all the concerns**.
+
+snippet: CustomCommonNhibernateConfigurationWarning
 
 
 ### Using configuration convention
@@ -88,7 +104,31 @@ NOTE: Publishing is performed on stale data. This is only advised in high volume
 snippet: NHibernateSubscriptionCaching
 
 
-partial: schema
+
+## Controlling schema
+
+In some cases it may be necessary to take full control over creating the SQL structure used by the NHibernate persister. In these cases the automatic creation of SQL structures on install can be disabled as follows:
+
+
+**For all persistence schema updates:**
+
+snippet: DisableSchemaUpdate
+
+
+**For gateway schema update:**
+
+snippet: DisableGatewaySchemaUpdate
+
+
+**For subscription schema update:**
+
+snippet: DisableSubscriptionSchemaUpdate
+
+
+**For timeout schema update:**
+
+snippet: DisableTimeoutSchemaUpdate
+
 
 
 ## Generating scripts for deployment
