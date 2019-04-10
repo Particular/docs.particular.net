@@ -1,7 +1,7 @@
 ---
 title: Migrating delayed messages from persistence to SQL Server transport
 summary: How to migrate the delayed messages stored in NHibernate or SQL persistence to the format used by native delayed delivery in SQL Server transport 3.1.
-reviewed: 2017-07-07
+reviewed: 2018-04-10
 component: SqlTransport
 related:
 - transports/sql
