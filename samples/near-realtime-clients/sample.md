@@ -9,6 +9,8 @@ related:
  - samples/showcase
 ---
 
+NOTE: SignalR can be used in a variety of ways. Please browse the official [SignalR tutorials](https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?tabs=visual-studio&view=aspnetcore-2.2) and [SignalR samples](https://github.com/aspnet/SignalR-samples) for information on how to use SignalR. This document focusses on how to relay NServiceBus events to SignalR clients.
+
 For near real-time, occasionally connected clients, messages are only relevant for a short period of time. Clients that received near real-time stock ticker updates are a common example of these types of clients.
 
 One of the basic features of message queuing is the ability for the receiving endpoints to maintain service even when offline.  In this scenario, the long lasting, durable nature of message queuing can result in a backlog of messages that are no longer relevant which, if disconnected long enough, can result in queue quotas being exceeded. This can ultimately result in exceptions on the message sender possibly impacting other parts of the system.
