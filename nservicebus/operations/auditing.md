@@ -13,11 +13,13 @@ redirects:
  - nservicebus/auditing-with-nservicebus
 ---
 
+WARNING: Disabling auditing impacts the functionality of the platform tools. ServicePulse can work without auditing enabled but will show incorrect retry states on messages, and ServiceInsight will only show failures instead of complete conversations.
+
 The distributed nature of parallel, message-driven systems makes them more difficult to debug than their sequential, synchronous and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Configure NServiceBus to audit and it will capture a copy of every received message and forward it to a specified audit queue.
 
 NOTE: By default, auditing is not enabled and must be configured for each endpoint where auditing is required.
 
-It is recommended to specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). This gives an overview of the entire system in one place and can help see how messages correlate. One can look at the audit queue as a central record of everything that is happening in the system. A central audit queue is also required by the Particular Service Platform and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
+It is recommended to specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). This gives an overview of the entire system in one place and can help see how messages correlate. One can look at the audit queue as a central record of everything that happened in the system. A central audit queue is also required by the Particular Service Platform and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
 
 
 ## Message headers
