@@ -9,6 +9,14 @@ related:
  - samples/delayed-delivery
 ---
 
+Messages don't need to be dispatched immediately. Delayed delivery is a feature that sends messages into the future to be delivered and processed at a later time.
+
+Delayed delivery is used for:
+
+* [Timeout messages](/nservicebus/sagas/timeouts.md) sent by [sagas](/nservicebus/sagas/)
+* [Delayed retries](/nservicebus/recoverability/#delayed-retries), to retry a message after successive delays when [immediate retries](/nservicebus/recoverability/#immediate-retries) don't result in successful processing
+* Explicitly sending a message with a delay, as described below
+
 The message doesn't have to be dispatched immediately after sending, it can be delivered at a later time if necessary.
 
 NOTE: Only send operations can be deferred. Publish and reply operations cannot be deferred.
