@@ -2,7 +2,7 @@
 title: Distributor error handling
 summary: Error handling with and configuration with the distributor
 component: Distributor
-reviewed: 2017-06-30
+reviewed: 2019-04-15
 tags:
  - Error Handling
  - Exceptions
