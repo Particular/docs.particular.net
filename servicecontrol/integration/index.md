@@ -1,6 +1,6 @@
 ---
 title: ServiceControl Integration
-reviewed: 2017-07-10
+reviewed: 2019-04-17
 component: ServiceControl
 ---
 
@@ -49,6 +49,7 @@ Besides being able to ingest audit and error information, ServiceControl can pro
  * [Heartbeat](/monitoring/heartbeats/)
  * [Custom checks](/monitoring/custom-checks/)
  * [Saga audit](/nservicebus/sagas/saga-audit.md) 
+ * [Monitoring](/monitoring)
 
 To enable ServiceControl to gather this information, configure the solution appropriately:
 
