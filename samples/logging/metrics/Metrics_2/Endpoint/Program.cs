@@ -24,7 +24,7 @@ class Program
                     duration.Register(
                         observer: (ref DurationEvent @event) =>
                         {
-                            Trace.WriteLine($"Duration: '{duration.Name}'. Value: '{@event.Duration}'");
+                            Trace.WriteLine($"Duration: '{duration.Name}'. Value: '{@event.Duration}' (@event.MessageType)");
                         });
                 }
                 foreach (var signal in context.Signals)
@@ -32,7 +32,7 @@ class Program
                     signal.Register(
                         observer: (ref SignalEvent @event) =>
                         {
-                            Trace.WriteLine($"Signal: '{signal.Name}'");
+                            Trace.WriteLine($"Signal: '{signal.Name}' (@event.MessageType)");
                         });
                 }
             });
