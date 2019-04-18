@@ -12,12 +12,7 @@ namespace Sales
 
             var endpointConfiguration = new EndpointConfiguration("Sales");
 
-            #region MsmqConfig
-            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.EnableInstallers();
-            #endregion
+            endpointConfiguration.UseTransport<LearningTransport>();
 
             #region NoDelayedRetries
             var recoverability = endpointConfiguration.Recoverability();
