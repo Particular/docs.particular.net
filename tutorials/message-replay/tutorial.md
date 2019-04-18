@@ -17,7 +17,7 @@ downloadbutton
 
 ## Project Structure
 
-The solution is similar to the one built in [NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/), containing five projects. The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages.
+The solution contains six projects. Similar to the one built in [NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/), the **ClientUI**, **Sales**, **Billing**, and **Shipping** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. In addition, this tutorial introduces the **ParticularPlatformTools** project which provides and launches a portable version of ServiceControl and ServicePulse for use during this tutorial.
 
 The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales**, **Billing**, and **Shipping** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as [POCO classes](https://en.wikipedia.org/wiki/Plain_old_CLR_object).
 
@@ -29,7 +29,7 @@ INFO: In a real system, the **Shipping** endpoint should be able to take some ac
 
 ## Running the solution
 
-The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when you run the solution it should open four console applications, one for each messaging endpoint.
+The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when you run the solution it should open a console window for each messaging endpoint, a console window for the Particular Platform tools, and a browser window for the ServicePulse application.
 
 In the **ClientUI** application, press <kbd>P</kbd> to place an order, and watch what happens in other windows.
 
@@ -69,7 +69,7 @@ Because we installed ServiceControl and ServicePulse earlier, we can attempt to 
 
  1. Fix the **Sales** endpoint by commenting the `throw` statement.
  1. Run the solution.
- 1. Open ServicePulse at `http://localhost:9090` and navigate to the **Failed Messages** page. Note how similar messages are grouped together for easier handling.
+ 1. Switch to the ServicePulse browser window and navigate to the **Failed Messages** page. Note how similar messages are grouped together for easier handling.
     ![Failed Message Groups](failed-message-groups.png)
  1. Click anywhere in a message group box to see the individual failed messages in the group, including the exception message.
     ![Failed Message Details](failed-message-details.png)
@@ -88,7 +88,7 @@ For more details see [Persistence in NServiceBus](/persistence/).
 
 ## Summary
 
-In this tutorial, we saw how to set up the Particular Service Platform tools ServiceControl and ServicePulse to replay a failed message. With this ability, we can see the details of failed messages in ServicePulse and begin to troubleshoot what went wrong.
+In this tutorial, we saw how to use the Particular Service Platform tools ServiceControl and ServicePulse to replay a failed message. With this ability, we can see the details of failed messages in ServicePulse and begin to troubleshoot what went wrong.
 
 Perhaps the message had a previously unexpected input value which caused the bug to go undetected until the code entered production. With this knowledge in hand, we can go fix the code to validate these inputs or take some other sort of corrective action. Once the new code is deployed with the fix, we can replay the message and everything will flow through the system as if the error had never happened.
 
