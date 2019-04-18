@@ -1,6 +1,6 @@
 ---
 title: Understanding internal transactions and delivery guarantees
-reviewed: 2017-07-14
+reviewed: 2019-04-18
 component: ASB
 tags:
  - Azure
