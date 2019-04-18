@@ -28,42 +28,6 @@ As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** comman
 INFO: In a real system, the **Shipping** endpoint should be able to take some action once it receives both an `OrderPlaced` and `OrderBilled` event for the same order. That is a use case for a [Saga](/nservicebus/sagas/) and is outside of the scope of this tutorial.
 
 
-## Production-ready message transport
-
-The [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/) on which the code is based uses the [Learning Transport](/transports/learning/) as its underlying [message transport](/transports/) to move messages around. It's great for learning the NServiceBus API and for demos, but since it does not support the tools in the [Particular Service Platform](/platform/), we need to upgrade to a production-ready transport.
-
-This tutorial uses the [MSMQ Transport](/transports/msmq/) that moves messages around using Microsoft Message Queuing.
-
-If you completed the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/), you may want to note a few things in the code that have changed.
-
-In the **Program.cs** file of every endpoint, the `LearningTransport` has been replaced by the `MsmqTransport` (from the [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq) NuGet package), including additional configuration that is required by MSMQ:
-
-snippet: MsmqConfig
-
-In this snippet we can see that:
-
- * `UseTransport<LearningTransport>()` has been replaced by `UseTransport<MsmqTransport>()`.
- * In-memory persistence has been selected. This is because MSMQ, unlike the learning transport, does not natively support Publish/Subscribe, so the message subscription information will be stored in memory instead.
- * An error queue (`error`) has been specified, which was not a required setting in the learning transport. This is important because most MSMQ systems are distributed, and a centralized error queue in the form of `error@MACHINENAME` is used for the whole system.
- * [EnableInstallers()](/nservicebus/operations/installers.md) is called, which instructs MSMQ to create the message queues required by the endpoints.
-
-In addition, there is additional routing configuration in the **Program.cs** file in both **Billing**:
-
-snippet: BillingPubSubConfig
-
-And in **Shipping**:
-
-snippet: ShippingPubSubConfig
-
-This is also because MSMQ does not support native Publish/Subscribe, so subscribers need to know which [logical endpoint](/nservicebus/endpoints/) to listen for events.
-
-The last change in the solution is [disabling delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) in the **Sales** endpoint's **Program.cs** file:
-
-snippet: NoDelayedRetries
-
-Since we are going to be causing a lot of messages to fail in this exercise, we'd prefer not to wait around for several rounds of delayed retries to complete.
-
-
 ## Setting up the platform tools
 
 To complete this tutorial and run the solution, we will be using the [Particular Platform Installer](/platform/installer/). It will ensure that MSMQ is set up correctly, and also install two tools we need for the tutorial:
