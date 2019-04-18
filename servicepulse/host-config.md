@@ -34,7 +34,7 @@ The default connections can easily be overriden via the Connections configuratio
 
 ![Connections configuration](images/connections-configuration.png 'width=500')
 
-To configure connections via the Connections configuration screen, the ServiceControl (Monitoring) URLs need to be entered, with the port number included. This configuration will persist only locally and is read in the following order:
+To configure connections via the Connections configuration screen, the ServiceControl and ServiceControl Monitoring full URLs need to be entered, including port number and scheme. Connection configuration is persisted only locally and is read in the following order:
 
 1. **URL in the browser address bar** - allows easily bookmarking and sharing connection details
 2. **Local storage** - remembers the last used connection if connection parameters are later not found in the URL
