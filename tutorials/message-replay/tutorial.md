@@ -27,51 +27,6 @@ As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** comman
 
 INFO: In a real system, the **Shipping** endpoint should be able to take some action once it receives both an `OrderPlaced` and `OrderBilled` event for the same order. That is a use case for a [Saga](/nservicebus/sagas/) and is outside of the scope of this tutorial.
 
-
-## Setting up the platform tools
-
-To complete this tutorial and run the solution, we will be using the [Particular Platform Installer](/platform/installer/). It will ensure that MSMQ is set up correctly, and also install two tools we need for the tutorial:
-
- * [ServiceControl](/servicecontrol/) is like a watchdog monitoring your system, sucking in information and making that available to other tools via a REST API. One of its functions is to monitor your error queue so that you can act on the poison messages that arrive there.
- * [ServicePulse](/servicepulse/) is a web application aimed to be an operational dashboard for your NServiceBus system. It allows you to see failed messages, including the exception details, and provides a UI to either replay or archive failed messages.
-
-To install the Service Platform:
-
- 1. Download the [Platform Installer](https://particular.net/start-platform-download).
- 2. Launch the **ParticularPlatform.exe** you downloaded, and use it to install the Particular Service Platform [according to the instructions](/platform/installer/).
-
-Once that completes, we need to install an instance of ServiceControl. It's possible to install multiple instances of ServiceControl for different transports, so we need to configure a ServiceControl instance specifically for MSMQ.
-
-You can launch the **ServiceControl Management** application in one of two ways:
-
- * From the **Start ServiceControl Management** button on the last screen of the Platform Installer
- * By locating **ServiceControl Management** in the Windows Start menu
-
-Next, in the **ServiceControl Management** window, click the **Add new instance** button. There are a few customizations we will need to make here to configure ServiceControl.
-
-First and foremost, under the **General** heading, take note of the host name and port (`localhost:33333` by default) as you will need these later.
-
-Last, scroll down to the **Queues Configuration** heading:
-
-1. Change the **Audit Forwarding** dropdown value to **Off**.
-
-{{NOTE:
-This setting may seem esoteric, but serves an important purpose. [Forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md) settings control what happens to messages after being processed by ServiceControl. If audit forwarding is on, then copies of all messages processed will accumulate in a queue, but not get processed, eventually consuming all available disk space. On the other hand, if you wanted to do something with those messages but turned audit forwarding off, ServiceControl would consume those messages but then effectively delete them.
-
-Because we're just getting started with NServiceBus development, we don't need to keep copies of these messages around, so we can safely set Audit Forwarding to Off.
-}}
-
-Now, we're ready to create and start the service:
-
- 1. Click the **Add** button to install the ServiceControl instance as a Windows service.
- 1. When complete, the **ServiceControl Management** tool will display the high-level details of the ServiceControl instance, but the instance will be in the **Stopped** state.
- 1. In the upper-right corner of the ServiceControl instance details, click the **Start** button (the button with the *Play* icon) to start the service. You can also start the service from the Windows Services manager.
-
-To check that everything is working properly, you can click on the link shown under **URL**, which will return a JSON response if ServiceControl is working properly. This is the API that is used to serve information to the [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/) tools.
-
-Later in the exercise, we will be using ServicePulse to replay a failed message, so we should also check to make sure it is working. ServicePulse is installed as a Windows service named **Particular ServicePulse** and has a web-based UI, which can be accessed at `http://localhost:9090` [when default settings are used](/servicepulse/host-config.md). You can check to see if it is running from the Windows Services control panel. ServicePulse must be configured for the correct URL for the ServiceControl API (`localhost:33333` by default) which [can be configured](/servicepulse/host-config.md#changing-the-servicecontrol-url) if a non-default ServiceControl URL is used.
-
-
 ## Running the solution
 
 The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when you run the solution it should open four console applications, one for each messaging endpoint.
