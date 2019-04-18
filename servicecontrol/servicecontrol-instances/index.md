@@ -1,6 +1,6 @@
 ---
 title: ServiceControl instances
-reviewed: 2017-07-10
+reviewed: 2019-04-18
 component: ServiceControl
 related:
 - servicecontrol/import-failed-messages
