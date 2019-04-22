@@ -79,13 +79,6 @@ Because we installed ServiceControl and ServicePulse earlier, we can attempt to 
 
 When the message is replayed in **Sales**, each endpoint picks up right where it left off. You should be able to see how useful this capability will be when failures happen in your real-life systems.
 
-{{NOTE:
-Our solution currently uses [in-memory persistence](/persistence/in-memory.md) to store subscription information. Because of this, if you restart only the Sales endpoint while the others continue to run, it will not know where to publish messages and the system will not work as intended. When using a durable persistence, this will not be an issue. When testing with in-memory persistence, restart the entire system so that subscription messages are resent as each endpoint starts up.
-
-For more details see [Persistence in NServiceBus](/persistence/).
-}}
-
-
 ## Summary
 
 In this tutorial, we saw how to use the Particular Service Platform tools ServiceControl and ServicePulse to replay a failed message. With this ability, we can see the details of failed messages in ServicePulse and begin to troubleshoot what went wrong.
