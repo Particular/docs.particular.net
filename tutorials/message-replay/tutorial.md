@@ -17,7 +17,7 @@ downloadbutton
 
 ## Project Structure
 
-The solution contains six projects. Similar to the one built in [NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/), the **ClientUI**, **Sales**, **Billing**, and **Shipping** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. In addition, this tutorial introduces the **ParticularPlatformTools** project which provides and launches a portable version of ServiceControl and ServicePulse for use during this tutorial.
+The solution contains six projects. Similar to the one built in [NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/), the **ClientUI**, **Sales**, **Billing**, and **Shipping** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. In addition, this tutorial introduces the **PlatformTools** project which provides and launches a portable version of ServiceControl and ServicePulse for use during this tutorial.
 
 The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales**, **Billing**, and **Shipping** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as [POCO classes](https://en.wikipedia.org/wiki/Plain_old_CLR_object).
 
