@@ -65,7 +65,7 @@ System.Exception: BOOM
 
 ### Replay a message
 
-Because we installed ServiceControl and ServicePulse earlier, we can attempt to replay a message:
+Using ServiceControl and ServicePulse we can attempt to replay a message:
 
  1. Fix the **Sales** endpoint by commenting the `throw` statement.
  1. Run the solution.
