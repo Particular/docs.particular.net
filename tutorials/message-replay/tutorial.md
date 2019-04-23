@@ -40,7 +40,6 @@ INFO  Shipping.OrderPlacedHandler Received OrderPlaced, OrderId = 96dfd084-2bb0-
 INFO  Shipping.OrderBilledHandler Received OrderBilled, OrderId = 96dfd084-2bb0-46c3-b939-046e3b911102 - Should we ship now?
 ```
 
-
 ## Throwing an exception
 
 Now, let's throw an exception that will make its way to the error queue. For the purposes of this exercise, we'll create a specific bug in the Sales endpoint and watch what happens when we run the endpoint.
@@ -61,6 +60,12 @@ ERROR NServiceBus.RecoverabilityExecutor Moving message '53ac6836-48ef-49dd-aabb
 System.Exception: BOOM
    at < stack trace>
 ```
+
+You may have noticed the **Sales** endpoint did not peform any delayed retries. This is because they have been [disabled](/nservicebus/recoverability/configure-delayed-retries.md) in the **Sales** endpoint's **Program.cs** file:
+
+snippet: NoDelayedRetries	
+
+Since we are going to be causing a lot of messages to fail in this exercise, we'd prefer not to wait around for several rounds of delayed retries to complete.
 
 
 ### Replay a message
