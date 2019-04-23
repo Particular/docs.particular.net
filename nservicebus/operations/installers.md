@@ -35,6 +35,8 @@ For example, installers can be enabled based on command line arguments:
 
 snippet: InstallersRunWhenNecessaryCommandLine
 
+NOTE: Some transports / persistences may require `.Start` to be called instead of `.Create`. In this case call both `.Start` and `.Stop` and allow the endpoint to shutdown immediately after startup.
+
 They can also be enabled by a machine name convention:
 
 snippet: InstallersRunWhenNecessaryMachineNameConvention
