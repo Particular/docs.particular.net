@@ -26,7 +26,7 @@ Change the value after `--url=` and restart the service.
 
 ## Connecting to ServiceControl and ServiceControl Monitoring
 
-ServicePulse will, by default, attempt to connect to ServiceControl and ServiceControl Monitoring using the URLs `http://localhost:33333/api/` and `http://localhost:33633/`, respectively.
+ServicePulse will by default, attempt to connect to ServiceControl and ServiceControl Monitoring using the URLs `http://localhost:33333/api/` and `http://localhost:33633/`, respectively.
 
 ### Configuring connections via the ServicePulse UI
 
