@@ -27,7 +27,6 @@ As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** comman
 
 INFO: In a real system, the **Shipping** endpoint should be able to take some action once it receives both an `OrderPlaced` and `OrderBilled` event for the same order. That is a use case for a [Saga](/nservicebus/sagas/) and is outside of the scope of this tutorial.
 
-Later in the exercise, we will be using ServicePulse to replay a failed message, so we should also check to make sure it is working. ServicePulse is installed as a Windows service named **Particular ServicePulse** and has a web-based UI, which can be accessed at `http://localhost:9090` [when default settings are used](/servicepulse/host-config.md). You can check to see if it is running from the Windows Services control panel. ServicePulse must be configured for the correct URL for the ServiceControl API (`localhost:33333` by default) which [can be configured](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) if a non-default ServiceControl URL is used.
 ## Running the solution
 
 The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when you run the solution it should open a console window for each messaging endpoint, a console window for the Particular Platform tools, and a browser window for the ServicePulse application.
