@@ -38,7 +38,7 @@ Alternatively, consider disabling Blob cleanup using Azure DataBus. Instead, use
 
 ### Using Blob Lifecycle Management policy
 
-Attachment blobs can be cleaned up using [Blob Storage Lifecycle feature](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts). This method allows configuring a single policy for all DataBus related. Those blobs can be either deleted or archived. The policy does not require custom code and is deployed directly to the storage account. Storage account has to be GPv2 or Blob storage account and cannot be GPv1 account. 
+Attachment blobs can be cleaned up using [Blob Storage Lifecycle feature](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts). This method allows configuring a single policy for all DataBus related blobs. Those blobs can be either deleted or archived. The policy does not require custom code and is deployed directly to the storage account. This feature can only be used on GPv2 and Blob storage accounts, not on GPv1 accounts. 
 
 
 ## Configuration
