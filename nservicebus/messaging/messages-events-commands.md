@@ -80,4 +80,4 @@ public class MyMessage : IMessage { }
 
 ### Conventions
 
-To avoid having message contract assemblies reference NServiceBus, what's else known as [unobtrusive mode](unobtrusive-mode.md), [custom conventions](/nservicebus/messaging/conventions.md) to identify contracts for messages, commands and events can be defined.
+To avoid having message contract assemblies reference the NServiceBus assembly [custom conventions](/nservicebus/messaging/conventions.md) can be used to identify the types used as contracts for messages, commands and events. This mode is known as [unobtrusive mode](unobtrusive-mode.md).
