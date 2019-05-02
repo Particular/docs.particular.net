@@ -18,12 +18,12 @@ include: sagafinder-intro
 
 include: sql-prereq
 
-The database created by this sample is `NsbSamplesNhCustomSagaFinder`.
+This sample creates a database named `NsbSamplesNhCustomSagaFinder`.
 
 
 ### NHibernate setup
 
-This sample uses the [NHibernate persistence](/persistence/nhibernate/) which is configured as follows:
+This sample uses the [NHibernate persistence](/persistence/nhibernate/), configured as follows:
 
 snippet: config
 
