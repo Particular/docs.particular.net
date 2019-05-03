@@ -1,12 +1,12 @@
 ---
 title: Manage ServiceControl instances via PowerShell
-reviewed: 2017-07-26
+reviewed: 2019-05-03
 tags:
  - Installation
  - PowerShell
 ---
 
-NOTE: For general information about ServiceControl Powershell, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
+NOTE: For general information about using PowerShell with ServiceControl, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
 
 ## ServiceControl instance Cmdlets and Aliases
 
@@ -39,12 +39,12 @@ Get-Help Get-ServiceControlInstances
 New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -DatabaseMaintenancePort 33335 -Transport MSMQ -ErrorQueue error1 -AuditQueue audit1 -ForwardAuditMessages:$false -AuditRetentionPeriod 01:00:00 -ErrorRetentionPeriod 10:00:00:00
 ```
 
-There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or hostname.
+There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string, or host name.
 
 
 ### Removing an instance
 
-The following commands show how to remove a ServiceControl instance(s). To List existing instances of the ServiceControl service use `Get-ServiceControlInstances`.
+The following commands show how to remove a ServiceControl instance(s). To list existing instances of the ServiceControl service use `Get-ServiceControlInstances`.
 
 Remove the instance that was created in the Add sample and delete the database and logs:
 
@@ -52,13 +52,13 @@ Remove the instance that was created in the Add sample and delete the database a
 Remove-ServiceControlInstance -Name Test.ServiceControl -RemoveDB -RemoveLogs
 ```
 
-Remove all ServiceControl instance created in the Add sample and delete the database and logs for each one:
+Remove all ServiceControl instances created in the Add sample and delete the database and logs for each one:
 
 ```ps
 Get-ServiceControlInstances | Remove-ServiceControlInstance -RemoveDB -RemoveLogs
 ```
 
-There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or host name.
+There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string, or host name.
 
 
 ### Upgrading an instance
@@ -69,7 +69,7 @@ The following command will list the ServiceControl instances current installed a
 Get-ServiceControlInstances | Select Name, Version
 ```
 
-To upgrade and instance to the latest version of the binaries run.
+To upgrade an instance to the latest version of the binaries:
 
 ```ps
 Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade>

@@ -1,7 +1,7 @@
 ---
 title: Simple SQL Server Transport Usage
 summary: A simple send and receive scenario with the SQL Server Transport.
-reviewed: 2017-07-17
+reviewed: 2019-05-03
 component: SqlTransport
 related:
 - transports/sql
@@ -12,7 +12,7 @@ related:
 
 include: sql-prereq
 
-The database created by this sample is `NsbSamplesSqlTransport`.
+The database created by this sample is called `NsbSamplesSqlTransport`.
 
 
 ## Running the project
@@ -22,9 +22,9 @@ The database created by this sample is `NsbSamplesSqlTransport`.
  1. Receiver will handle the message.
 
 
-## Code Walk-through
+## Code walk-through
 
 
-### Configure the SQL Server Transport
+### Configure the SQL Server transport
 
 snippet: TransportConfiguration
