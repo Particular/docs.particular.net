@@ -17,7 +17,7 @@ downloadbutton
 
 ## Project Structure
 
-The solution contains six projects. Similar to the one built in [NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/), the **ClientUI**, **Sales**, **Billing**, and **Shipping** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. In addition, this tutorial introduces the **PlatformTools** project which provides and launches a portable version of ServiceControl and ServicePulse for use during this tutorial.
+The solution contains six projects. Similar to the one built in the [NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/) tutorial, the **ClientUI**, **Sales**, **Billing**, and **Shipping** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. In addition, this tutorial introduces the **PlatformTools** project which launches a portable version of ServiceControl and ServicePulse.
 
 The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales**, **Billing**, and **Shipping** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as [POCO classes](https://en.wikipedia.org/wiki/Plain_old_CLR_object).
 
@@ -61,7 +61,7 @@ System.Exception: BOOM
    at < stack trace>
 ```
 
-You may have noticed the **Sales** endpoint did not peform any delayed retries. This is because they have been [disabled](/nservicebus/recoverability/configure-delayed-retries.md) in the **Sales** endpoint's **Program.cs** file:
+Note that the **Sales** endpoint did not peform any delayed retries. This is because retries have been [disabled](/nservicebus/recoverability/configure-delayed-retries.md) in the **Sales** endpoint's **Program.cs** file:
 
 snippet: NoDelayedRetries	
 
@@ -86,7 +86,7 @@ When the message is replayed in **Sales**, each endpoint picks up right where it
 
 ## Summary
 
-In this tutorial, we saw how to use the Particular Service Platform tools ServiceControl and ServicePulse to replay a failed message. With this ability, we can see the details of failed messages in ServicePulse and begin to troubleshoot what went wrong.
+In this tutorial, we saw how to use the Particular Service Platform tools, ServiceControl and ServicePulse, to replay a failed message. With this ability, we can see the details of failed messages in ServicePulse and begin to troubleshoot what went wrong.
 
 Perhaps the message had a previously unexpected input value which caused the bug to go undetected until the code entered production. With this knowledge in hand, we can go fix the code to validate these inputs or take some other sort of corrective action. Once the new code is deployed with the fix, we can replay the message and everything will flow through the system as if the error had never happened.
 
