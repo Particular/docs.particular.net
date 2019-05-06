@@ -2,7 +2,7 @@
 title: NHibernate Custom Saga Finding Logic
 summary: Perform custom saga finding logic based on custom query logic when the Saga storage is a relational database using NHibernate as the ORM.
 component: NHibernate
-reviewed: 2017-07-17
+reviewed: 2019-05-02
 tags:
 - Saga
 - SagaFinder
@@ -18,12 +18,12 @@ include: sagafinder-intro
 
 include: sql-prereq
 
-The database created by this sample is `NsbSamplesNhCustomSagaFinder`.
+This sample creates a database named `NsbSamplesNhCustomSagaFinder`.
 
 
 ### NHibernate setup
 
-This sample uses the [NHibernate persistence](/persistence/nhibernate/) which is configured as follows:
+This sample uses the [NHibernate persistence](/persistence/nhibernate/), configured as follows:
 
 snippet: config
 
