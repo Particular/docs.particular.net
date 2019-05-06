@@ -1,7 +1,7 @@
 ---
 title: Monitoring Instance Configuration Settings
 summary: Categorized list of ServiceControl Monitoring instance configuration settings.
-reviewed: 2017-07-26
+reviewed: 2019-05-06
 ---
 
 
