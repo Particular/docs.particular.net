@@ -1,6 +1,6 @@
 ---
-title: Entity Framework integration
-summary: Integrating Entity Framework with SQL persistence.
+title: Entity Framework integration with SQL Persistence
+summary: Integrating Entity Framework with SQL Persistence.
 reviewed: 2019-01-03
 component: Core
 related:
