@@ -11,7 +11,7 @@ related:
 - nservicebus/messaging/messages-events-commands
 ---
 
-Event messages needs to either implement `IEvent` or match a custom `IsEvent` convention. See the [message design documentation](/nservicebus/messaging/messages-events-commands.md) for more details.
+Event messages needs to either implement `IEvent` or match a custom `DefiningEventsAs` convention. See the [message design documentation](/nservicebus/messaging/messages-events-commands.md) for more details.
 
 ## Handling an event
 
