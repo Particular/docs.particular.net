@@ -18,7 +18,7 @@
 
         void InterfaceReply(IBus bus)
         {
-            #region InterfaceSend
+            #region InterfaceReply
 
             bus.Reply<IMyReply>(message =>
             {
