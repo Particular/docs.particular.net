@@ -51,11 +51,11 @@ Messages should:
 * be as small as possible.
 * satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle). Types used for other purposes (e.g. domain objects, data access objects, or UI binding objects) should not be used as messages.
 
-Note: A message must be a reference type (`class`). An attempt to send a message which is a value type (`struct`) will result in a runtime exception.
+Note: A message must be a reference type (i.e. a `class`). An attempt to send a message which is a value type (e.g. a `struct`) will result in a runtime exception.
 
 ## Identifying messages
 
-Endpoints will process any message that can be de-serialized into a .NET Type but requires message contracts to be identified up front to support:
+Endpoints will process any message that can be deserialized into a .NET type but requires message contracts to be identified up front to support:
 
 * [Automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) for event types
 * [Routing based on `namespace` or `assembly`](/nservicebus/messaging/routing.md) for commands
@@ -80,4 +80,4 @@ public class MyMessage : IMessage { }
 
 ### Conventions
 
-To avoid having message contract assemblies reference the NServiceBus assembly [custom conventions](/nservicebus/messaging/conventions.md) can be used to identify the types used as contracts for messages, commands and events. This mode is known as [unobtrusive mode](unobtrusive-mode.md).
+To avoid having message contract assemblies reference the NServiceBus assembly, [custom conventions](/nservicebus/messaging/conventions.md) can be used to identify the types used as contracts for messages, commands, and events. This is known as [unobtrusive mode](unobtrusive-mode.md).
