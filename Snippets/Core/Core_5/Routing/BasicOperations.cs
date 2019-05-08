@@ -1,11 +1,23 @@
 ﻿namespace Core5.Routing
 {
-    using System.Threading.Tasks;
     using NServiceBus;
 
     class BasicOperations
     {
-        void InterfaceMessage(IBus bus)
+        void InterfaceSend(IBus bus)
+        {
+            #region InterfaceSend
+
+            bus.Send<IMyMessage>(
+                messageConstructor: message =>
+                {
+                    message.SomeProperty = "Hello world";
+                });
+
+            #endregion
+        }
+
+        void InterfacePublish(IBus bus)
         {
             #region InterfacePublish
 
@@ -52,7 +64,6 @@
 
         class MyEvent
         {
-            public string SomeProperty { get; set; }
         }
 
         interface IMyEvent
@@ -60,5 +71,9 @@
             string SomeProperty { get; set; }
         }
 
+        interface IMyMessage
+        {
+            string SomeProperty { get; set; }
+        }
     }
 }

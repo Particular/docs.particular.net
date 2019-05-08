@@ -5,7 +5,20 @@
 
     class BasicOperations
     {
-        Task InterfaceMessage(IPipelineContext context)
+        async Task InterfaceSend(IEndpointInstance endpoint)
+        {
+            #region InterfaceSend
+
+            await endpoint.Send<IMyMessage>(
+                    messageConstructor: message =>
+                    {
+                        message.SomeProperty = "Hello world";
+                    });
+
+            #endregion
+        }
+
+        Task InterfacePublish(IPipelineContext context)
         {
             #region InterfacePublish
 
@@ -59,7 +72,6 @@
 
         class MyEvent
         {
-            public string SomeProperty { get; set; }
         }
 
         interface IMyEvent
@@ -67,5 +79,9 @@
             string SomeProperty { get; set; }
         }
 
+        interface IMyMessage
+        {
+            string SomeProperty { get; set; }
+        }
     }
 }

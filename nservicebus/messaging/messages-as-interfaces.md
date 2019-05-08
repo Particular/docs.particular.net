@@ -36,7 +36,11 @@ Without the ability to inherit a message from other message types, composition t
 
 Interface messages can be sent using the following syntax:
 
-snippet: BasicSendInterface
+snippet: InterfaceSend
+
+Replies are supported via:
+
+snippet: InterfaceReply
 
 ## Publishing interface messages
 

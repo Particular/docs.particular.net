@@ -5,7 +5,6 @@ namespace Core6
     using System;
     using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Logging;
 
     class CriticalErrors
     {
