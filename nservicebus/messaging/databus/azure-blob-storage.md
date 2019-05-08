@@ -34,7 +34,7 @@ WARN: the built-in method uses continuous blob scanning which can add to the cos
 
 ### Using an Azure Durable Function
 
-Review our [sample](/sampls/azure/blob-storage-database-cleanup-function/) to see how to use a durable function to clean up attachments. Be sure to [disable blob cleanup](#disabling-blob-cleanup) first.
+Review our [sample](/samples/azure/blob-storage-database-cleanup-function/) to see how to use a durable function to clean up attachments. Be sure to [disable blob cleanup](#configuration-disabling-blob-cleanup) first.
 
 ### Using the Blob Lifecycle Management policy
 
