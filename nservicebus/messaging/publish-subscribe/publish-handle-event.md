@@ -11,7 +11,7 @@ related:
 - nservicebus/messaging/messages-events-commands
 ---
 
-Event messages needs to either implement `IEvent` or match a custom `DefiningEventsAs` convention. See the [message design documentation](/nservicebus/messaging/messages-events-commands.md) for more details.
+Event messages need to either implement `IEvent` or match a custom `DefiningEventsAs` convention. See the [message design documentation](/nservicebus/messaging/messages-events-commands.md) for more details.
 
 ## Handling an event
 
@@ -39,4 +39,4 @@ snippet: publishAtStartup
 
 ## Composing events
 
-In order to support advanced composition scenarios events can be defined as interfaces. See the [multiple inheritance documentation](/nservicebus/messaging/messages-as-interfaces.md) for more details.
+In order to support advanced composition scenarios, events can be defined as interfaces. See the [Messages as Interfaces](/nservicebus/messaging/messages-as-interfaces.md) for more details.
