@@ -7,9 +7,7 @@ redirects:
 - nservicebus/messages-as-interfaces
 ---
 
-NServiceBus support using interfaces as messages types to allow "multiple inheritance" where one message can inherit from varieties of other messages. This is useful for solving certain "message evolution" scenarios where one message can inherit from varieties of other messages. This is useful for solving certain "message evolution" scenarios.
-
-NOTE: It's only recommended to use interface messages when multiple inheritance is needed.
+NServiceBus support using interfaces as messages types to allow "multiple inheritance" where one message can inherit from varieties of other messages. This is useful for solving certain "message evolution" scenarios where one message can inherit from varieties of other messages.
 
 Imagine that the business logic represents a state machine with states X and Y. When the system gets into state X, it publishes the message `EnteredStateX`. When the system gets into state Y, it publishes the message `EnteredStateY`. (For more information on how to publish a message, see below.)
 
