@@ -8,11 +8,10 @@
         {
             #region InterfaceSend
 
-            bus.Send<IMyMessage>(
-                messageConstructor: message =>
-                {
-                    message.SomeProperty = "Hello world";
-                });
+            bus.Send<IMyMessage>(message =>
+            {
+                message.SomeProperty = "Hello world";
+            });
 
             #endregion
         }
@@ -21,11 +20,10 @@
         {
             #region InterfaceSend
 
-            bus.Reply<IMyReply>(
-                messageConstructor: message =>
-                {
-                    message.SomeProperty = "Hello world";
-                });
+            bus.Reply<IMyReply>(message =>
+            {
+                message.SomeProperty = "Hello world";
+            });
 
             #endregion
         }
@@ -34,11 +32,10 @@
         {
             #region InterfacePublish
 
-            bus.Publish<IMyEvent>(
-                messageConstructor: message =>
-                {
-                    message.SomeProperty = "Hello world";
-                });
+            bus.Publish<IMyEvent>(message =>
+            {
+                message.SomeProperty = "Hello world";
+            });
 
             #endregion
         }

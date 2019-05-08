@@ -9,11 +9,10 @@
         {
             #region InterfaceSend
 
-            await endpoint.Send<IMyMessage>(
-                    messageConstructor: message =>
-                    {
-                        message.SomeProperty = "Hello world";
-                    });
+            await endpoint.Send<IMyMessage>(message =>
+            {
+                message.SomeProperty = "Hello world";
+            }).ConfigureAwait(false);
 
             #endregion
         }
@@ -22,11 +21,10 @@
         {
             #region InterfaceReply
 
-            return context.Send<IMyReply>(
-                messageConstructor: message =>
-                {
-                    message.SomeProperty = "Hello world";
-                });
+            return context.Send<IMyReply>(message =>
+            {
+                message.SomeProperty = "Hello world";
+            });
 
             #endregion
         }
@@ -35,11 +33,10 @@
         {
             #region InterfacePublish
 
-            return context.Publish<IMyEvent>(
-                messageConstructor: message =>
-                {
-                    message.SomeProperty = "Hello world";
-                });
+            return context.Publish<IMyEvent>(message =>
+            {
+                message.SomeProperty = "Hello world";
+            });
 
             #endregion
         }

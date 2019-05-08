@@ -40,9 +40,6 @@
             options.SetDestination("MyDestination");
             await endpoint.Send(new MyMessage(), options)
                 .ConfigureAwait(false);
-            // or
-            await endpoint.Send<MyMessage>("MyDestination", m => { })
-                .ConfigureAwait(false);
 
             #endregion
         }
