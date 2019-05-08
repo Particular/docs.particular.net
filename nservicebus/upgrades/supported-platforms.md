@@ -43,7 +43,6 @@ Some packages do not currently support .NET Core or running on non-Windows platf
     * NServiceBus.Host32
     * NServiceBus.Hosting.Azure
     * NServiceBus.Hosting.Azure.HostProcess
-  * ParticularTemplates - The Windows Service templates will support .NET Core on Windows in a future version.
 * Other
   * NServiceBus.Metrics.PerformanceCounters - Will support .NET Core on Windows in a future version.
   * NServiceBus.Wcf - Microsoft does not support the server aspects of WCF on .NET Core.

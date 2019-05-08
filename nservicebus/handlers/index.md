@@ -2,7 +2,7 @@
 title: Handlers
 summary: Write a class to handle messages in NServiceBus.
 component: Core
-reviewed: 2017-07-31
+reviewed: 2019-05-06
 redirects:
 - nservicebus/how-do-i-handle-a-message
 ---
@@ -31,7 +31,7 @@ If handling a message in a publish-and-subscribe scenario, see [How to Publish/S
 
 ### Mapping to name
 
-Incoming messages will be to mapped to a type using [Assembly Qualified Name](https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname.aspx). This is default behavior for sharing assemblies among endpoints. When a message cannot be mapped based on Assembly Qualified Name, the mapping will be attempted using [`FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx). The following is an example of how NServiceBus gets the type information.
+Incoming messages will be mapped to a type using [Assembly Qualified Name](https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname.aspx). This is the default behavior for sharing assemblies among endpoints. When a message cannot be mapped based on Assembly Qualified Name, the mapping will be attempted using [`FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx). The following is an example of how NServiceBus gets the type information.
 
 ```cs
 var fqn = message.GetType().AssemblyQualifiedName;
