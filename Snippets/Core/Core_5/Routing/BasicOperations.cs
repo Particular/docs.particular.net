@@ -17,6 +17,19 @@
             #endregion
         }
 
+        void InterfaceReply(IBus bus)
+        {
+            #region InterfaceSend
+
+            bus.Reply<IMyReply>(
+                messageConstructor: message =>
+                {
+                    message.SomeProperty = "Hello world";
+                });
+
+            #endregion
+        }
+
         void InterfacePublish(IBus bus)
         {
             #region InterfacePublish
@@ -66,12 +79,17 @@
         {
         }
 
-        interface IMyEvent
+        interface IMyMessage
         {
             string SomeProperty { get; set; }
         }
 
-        interface IMyMessage
+        interface IMyReply
+        {
+            string SomeProperty { get; set; }
+        }
+
+        interface IMyEvent
         {
             string SomeProperty { get; set; }
         }

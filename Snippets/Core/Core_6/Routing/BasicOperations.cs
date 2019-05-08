@@ -18,6 +18,19 @@
             #endregion
         }
 
+        Task InterfaceReply(IPipelineContext context)
+        {
+            #region InterfaceReply
+
+            return context.Send<IMyReply>(
+                messageConstructor: message =>
+                {
+                    message.SomeProperty = "Hello world";
+                });
+
+            #endregion
+        }
+
         Task InterfacePublish(IPipelineContext context)
         {
             #region InterfacePublish
@@ -74,12 +87,17 @@
         {
         }
 
-        interface IMyEvent
+        interface IMyMessage
         {
             string SomeProperty { get; set; }
         }
 
-        interface IMyMessage
+        interface IMyReply
+        {
+            string SomeProperty { get; set; }
+        }
+
+        interface IMyEvent
         {
             string SomeProperty { get; set; }
         }
