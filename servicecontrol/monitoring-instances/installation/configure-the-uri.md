@@ -25,4 +25,4 @@ ServiceControl Management will then validate the settings changes and restart th
 
 ### Updating ServicePulse Configuration to the Monitoring instance custom hostname
 
-Refer to the [ServicePulse documention](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) for guidance on how to change connections configuration in ServicePulse.
+Refer to the [ServicePulse documention](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) for guidance on how to configure ServicePulse to connect to ServiceControl Monitoring.
