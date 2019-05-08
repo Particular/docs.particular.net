@@ -17,11 +17,11 @@
             #endregion
         }
 
-        Task InterfaceReply(IPipelineContext context)
+        Task InterfaceReply(IMessageHandlerContext context)
         {
             #region InterfaceReply
 
-            return context.Send<IMyReply>(message =>
+            return context.Reply<IMyReply>(message =>
             {
                 message.SomeProperty = "Hello world";
             });
@@ -29,7 +29,7 @@
             #endregion
         }
 
-        Task InterfacePublish(IPipelineContext context)
+        Task InterfacePublish(IMessageHandlerContext context)
         {
             #region InterfacePublish
 
