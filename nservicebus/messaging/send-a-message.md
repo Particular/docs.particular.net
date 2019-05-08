@@ -35,10 +35,6 @@ To send a message from inside a message handler:
 
 snippet: SendFromHandler
 
-The message can also be an interface rather than a concrete class:
-
-snippet: BasicSendInterface
-
 partial: imessagessession-warning
 
 

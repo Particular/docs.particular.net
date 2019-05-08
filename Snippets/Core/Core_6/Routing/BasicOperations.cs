@@ -5,20 +5,6 @@
 
     class BasicOperations
     {
-        async Task ConcreteMessage(IPipelineContext context)
-        {
-            #region InstancePublish
-
-            var message = new MyEvent
-            {
-                SomeProperty = "Hello world"
-            };
-            await context.Publish(message)
-                .ConfigureAwait(false);
-
-            #endregion
-        }
-
         Task InterfaceMessage(IPipelineContext context)
         {
             #region InterfacePublish
@@ -28,6 +14,32 @@
                 {
                     message.SomeProperty = "Hello world";
                 });
+
+            #endregion
+        }
+
+        class InterfaceMessageCreatedUpFront
+        {
+            IMessageHandlerContext context = null;
+            IMessageSession messageSession = null;
+
+            #region IMessageCreatorUsage
+
+            //IMessageCreator is available via dependency injection
+            async Task PublishEvent(IMessageCreator messageCreator)
+            {
+                var eventMessage = messageCreator.CreateInstance<IMyEvent>(message =>
+                {
+                    message.SomeProperty = "Hello world";
+                });
+
+
+                await messageSession.Publish(eventMessage);
+
+                //or if on a message handler
+
+                await context.Publish(eventMessage);
+            }
 
             #endregion
         }

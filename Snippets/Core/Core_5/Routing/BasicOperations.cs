@@ -1,22 +1,10 @@
 ﻿namespace Core5.Routing
 {
+    using System.Threading.Tasks;
     using NServiceBus;
 
     class BasicOperations
     {
-        void ConcreteMessage(IBus bus)
-        {
-            #region InstancePublish
-
-            var message = new MyEvent
-            {
-                SomeProperty = "Hello world"
-            };
-            bus.Publish(message);
-
-            #endregion
-        }
-
         void InterfaceMessage(IBus bus)
         {
             #region InterfacePublish
@@ -26,6 +14,27 @@
                 {
                     message.SomeProperty = "Hello world";
                 });
+
+            #endregion
+        }
+
+        class InterfaceMessageCreatedUpFront
+        {
+            IBus bus = null;
+
+            #region IMessageCreatorUsage
+
+            //IMessageCreator is available via dependency injection
+            void PublishEvent(IMessageCreator messageCreator)
+            {
+                var eventMessage = messageCreator.CreateInstance<IMyEvent>(message =>
+                {
+                    message.SomeProperty = "Hello world";
+                });
+
+
+                bus.Publish(eventMessage);
+            }
 
             #endregion
         }
