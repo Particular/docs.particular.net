@@ -1,7 +1,7 @@
 ---
 title: Azure Blob Storage DataBus
 summary: The Azure Blob Storage implementation of databus
-reviewed: 2018-04-10
+reviewed: 2019-05-08
 component: ABSDataBus
 tags:
  - DataBus
@@ -22,19 +22,17 @@ snippet: AzureDataBus
 
 Discarding old Azure DataBus attachments can be done in one of the following ways:
 
-1. Using the built-in method (enabled by default)
-2. Using an Azure Durable Function
-3. Using the Blob Lifecycle Management policy
+partial: cleanup-options
 
 ### Using the built-in clean-up method
 
 Specify a value for the `TimeToBeReceived` property. For more details on how to specify this, see [Discarding Old Messages](/nservicebus/messaging/discard-old-messages.md).
 
-WARN: the built-in method uses continuous blob scanning which can add to the cost of the storage operations. It is **not** recommended for multiple endpoints that are scaled out. If this method is not used, be sure to disable the built-in cleanup by setting the `CleanupInterval` to `0`.
+WARN: the built-in method uses continuous blob scanning which can add to the cost of the storage operations. It is **not** recommended for multiple endpoints that are scaled out. If this method is not used, be sure to disable the built-in cleanup by setting the `CleanupInterval` to `0`. In versions 3 and above built-in cleanup is disabled by default.
 
 ### Using an Azure Durable Function
 
-Review the [sample](/samples/azure/blob-storage-databus-cleanup-function/) to see how to use a durable function to clean up attachments. Be sure to [disable blob cleanup](#configuration-disabling-blob-cleanup) first.
+Review the [sample](/samples/azure/blob-storage-databus-cleanup-function/) to see how to use a durable function to clean up attachments.
 
 ### Using the Blob Lifecycle Management policy
 
@@ -48,9 +46,4 @@ The following extension methods are available for changing the behavior of `Azur
 snippet: AzureDataBusSetup
 
 partial: settings
-
-### Disabling blob cleanup
-
-Setting the `CleanupInterval` to `0` will disable blob cleanup.
-
-snippet: AzureDataBusDisableCleanup
+partial: disable-built-in-cleanup
