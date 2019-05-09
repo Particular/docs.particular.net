@@ -28,7 +28,7 @@ partial: cleanup-options
 
 Specify a value for the `TimeToBeReceived` property. For more details on how to specify this, see [Discarding Old Messages](/nservicebus/messaging/discard-old-messages.md).
 
-WARN: the built-in method uses continuous blob scanning which can add to the cost of the storage operations. It is **not** recommended for multiple endpoints that are scaled out. If this method is not used, be sure to disable the built-in cleanup by setting the `CleanupInterval` to `0`. In versions 3 and above built-in cleanup is disabled by default.
+WARN: The built-in method uses continuous blob scanning which can add to the cost of the storage operations. It is **not** recommended for multiple endpoints that are scaled out. If this method is not used, be sure to disable the built-in cleanup by setting the `CleanupInterval` to `0`. In versions 3 and above built-in cleanup is disabled by default.
 
 ### Using an Azure Durable Function
 
@@ -46,4 +46,9 @@ The following extension methods are available for changing the behavior of `Azur
 snippet: AzureDataBusSetup
 
 partial: settings
-partial: disable-built-in-cleanup
+
+### Disabling built-in blob cleanup
+
+Setting the `CleanupInterval` to `0` will disable blob cleanup.
+
+snippet: AzureDataBusDisableCleanup
