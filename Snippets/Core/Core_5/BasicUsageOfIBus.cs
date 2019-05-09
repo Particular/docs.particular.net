@@ -37,19 +37,6 @@
 
         #endregion
 
-        void SendInterface(IBus bus)
-        {
-            #region BasicSendInterface
-
-            bus.Send<IMyMessage>(
-                messageConstructor: message =>
-                {
-                    message.MyProperty = "Hello world";
-                });
-
-            #endregion
-        }
-
         void SetDestination(IBus bus)
         {
             #region BasicSendSetDestination
@@ -75,11 +62,6 @@
 
         public class OtherMessage
         {
-        }
-
-        interface IMyMessage
-        {
-            string MyProperty { get; set; }
         }
     }
 }

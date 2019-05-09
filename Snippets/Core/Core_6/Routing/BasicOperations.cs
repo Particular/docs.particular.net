@@ -5,29 +5,64 @@
 
     class BasicOperations
     {
-        async Task ConcreteMessage(IPipelineContext context)
+        async Task InterfaceSend(IEndpointInstance endpoint)
         {
-            #region InstancePublish
+            #region InterfaceSend
 
-            var message = new MyEvent
+            await endpoint.Send<IMyMessage>(message =>
             {
-                SomeProperty = "Hello world"
-            };
-            await context.Publish(message)
-                .ConfigureAwait(false);
+                message.SomeProperty = "Hello world";
+            }).ConfigureAwait(false);
 
             #endregion
         }
 
-        Task InterfaceMessage(IPipelineContext context)
+        Task InterfaceReply(IMessageHandlerContext context)
+        {
+            #region InterfaceReply
+
+            return context.Reply<IMyReply>(message =>
+            {
+                message.SomeProperty = "Hello world";
+            });
+
+            #endregion
+        }
+
+        Task InterfacePublish(IMessageHandlerContext context)
         {
             #region InterfacePublish
 
-            return context.Publish<IMyEvent>(
-                messageConstructor: message =>
+            return context.Publish<IMyEvent>(message =>
+            {
+                message.SomeProperty = "Hello world";
+            });
+
+            #endregion
+        }
+
+        class InterfaceMessageCreatedUpFront
+        {
+            IMessageHandlerContext context = null;
+            IMessageSession messageSession = null;
+
+            #region IMessageCreatorUsage
+
+            //IMessageCreator is available via dependency injection
+            async Task PublishEvent(IMessageCreator messageCreator)
+            {
+                var eventMessage = messageCreator.CreateInstance<IMyEvent>(message =>
                 {
                     message.SomeProperty = "Hello world";
                 });
+
+
+                await messageSession.Publish(eventMessage);
+
+                //or if on a message handler
+
+                await context.Publish(eventMessage);
+            }
 
             #endregion
         }
@@ -47,13 +82,21 @@
 
         class MyEvent
         {
-            public string SomeProperty { get; set; }
+        }
+
+        interface IMyMessage
+        {
+            string SomeProperty { get; set; }
+        }
+
+        interface IMyReply
+        {
+            string SomeProperty { get; set; }
         }
 
         interface IMyEvent
         {
             string SomeProperty { get; set; }
         }
-
     }
 }

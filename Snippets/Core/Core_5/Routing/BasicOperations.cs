@@ -4,28 +4,59 @@
 
     class BasicOperations
     {
-        void ConcreteMessage(IBus bus)
+        void InterfaceSend(IBus bus)
         {
-            #region InstancePublish
+            #region InterfaceSend
 
-            var message = new MyEvent
+            bus.Send<IMyMessage>(message =>
             {
-                SomeProperty = "Hello world"
-            };
-            bus.Publish(message);
+                message.SomeProperty = "Hello world";
+            });
 
             #endregion
         }
 
-        void InterfaceMessage(IBus bus)
+        void InterfaceReply(IBus bus)
+        {
+            #region InterfaceReply
+
+            bus.Reply<IMyReply>(message =>
+            {
+                message.SomeProperty = "Hello world";
+            });
+
+            #endregion
+        }
+
+        void InterfacePublish(IBus bus)
         {
             #region InterfacePublish
 
-            bus.Publish<IMyEvent>(
-                messageConstructor: message =>
+            bus.Publish<IMyEvent>(message =>
+            {
+                message.SomeProperty = "Hello world";
+            });
+
+            #endregion
+        }
+
+        class InterfaceMessageCreatedUpFront
+        {
+            IBus bus = null;
+
+            #region IMessageCreatorUsage
+
+            //IMessageCreator is available via dependency injection
+            void PublishEvent(IMessageCreator messageCreator)
+            {
+                var eventMessage = messageCreator.CreateInstance<IMyEvent>(message =>
                 {
                     message.SomeProperty = "Hello world";
                 });
+
+
+                bus.Publish(eventMessage);
+            }
 
             #endregion
         }
@@ -43,13 +74,21 @@
 
         class MyEvent
         {
-            public string SomeProperty { get; set; }
+        }
+
+        interface IMyMessage
+        {
+            string SomeProperty { get; set; }
+        }
+
+        interface IMyReply
+        {
+            string SomeProperty { get; set; }
         }
 
         interface IMyEvent
         {
             string SomeProperty { get; set; }
         }
-
     }
 }

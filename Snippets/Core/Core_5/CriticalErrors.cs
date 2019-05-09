@@ -4,7 +4,6 @@ namespace Core5
 {
     using System;
     using NServiceBus;
-    using NServiceBus.Logging;
     using NServiceBus.ObjectBuilder;
 
     class CriticalErrors
