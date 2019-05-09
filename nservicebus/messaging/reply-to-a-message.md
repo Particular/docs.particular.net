@@ -18,3 +18,27 @@ When using the Publish-Subscribe pattern, an endpoint handling an event shouldn'
 The reply address is controlled by the sender of the message replying to. See [how to influence the reply behavior when sending messages](send-a-message.md#influencing-the-reply-behavior).
 
 partial: influence
+
+## Use immediate dispatch for responses
+
+In some cases when doing request/response it is required to reply with a response indicating a non transient failure. If an  exception is thrown that reply will not be send if that exception is not handled.
+
+The exception should not be handled to prevent the exception reaching the pipeline as then transactions will be committed and any buffered message still be send.
+
+```cs
+try
+{
+}
+catch (NonTransientFailureException ex)
+{
+    var replyOptions = new ReplyOptions();
+    replyOptions.RequireImmediateDispatch();
+    await context.Reply(new MyResponseIndicatingFailureMessage, replyOptions);
+    throw ex;
+}
+```
+
+The exception should be handled and then rethrown after a the reply indicating failure. This reply must be send with immediate dispatch or else this message will not be dispatched due to the exception resulting in transactions to be rolled back.
+
+Often such non-transient errors do not need to be retried. A [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy) can be configured to prevent retrying non-transient errors.
+
