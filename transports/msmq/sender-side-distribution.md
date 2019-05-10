@@ -69,7 +69,7 @@ Each subscriber endpoint instance will at start send a subscription message to e
 
 Events:
 
-When an event is published the event will be send to only one of the endpoint instances. Which instance depends on the [distribution strategy](#message-distribution)
+When an event is published the event will be send to only one of the endpoint instances. Which instance depends on the [distribution strategy](#mapping-physical-endpoint-instances-message-distribution)
 
 
 ## Limitations
