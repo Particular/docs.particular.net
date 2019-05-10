@@ -10,6 +10,8 @@ related:
 - samples/scaleout/distributor
 ---
 
+Note: This solution should be seen as a temporary solution. Support for the distributor is only available in Core version 6 and removed in core version 7 / msmq version 1. When all endpoints have been upgraded to version 6 it is adviced to transition to [Sender Side Distribution](/transports/msmq/sender-side-distribution.md) to be prepared for a future migration to core version 7 / msmq version 1.
+
 ## Initial state
 
 This sample uses the same solution as the Version 5 [distributor sample](/samples/scaleout/distributor):
@@ -20,6 +22,10 @@ This sample uses the same solution as the Version 5 [distributor sample](/sample
 
 
 ## Upgrade
+
+NServiceBus 6 does not have a distributor role. The distributor remains on NServiceBus 5.x, the workers can upgrade to 6.x.
+
+Note: This sample solution contains 2 worker projects which is only done for demo purposes. A regular project would have a single project which would be deployed to several machines.
 
 
 ### Adding standalone distributor
@@ -45,17 +51,18 @@ In the original sample the sender was sending messages to the master (Worker1). 
 snippet: SenderRouting
 
 
-### Upgrading the workers
+### Upgrading a worker
 
-As both the workers are now only processing messages, they no longer need the `NServiceBus.Distributor.MSMQ` package. The `NServiceBus` package needs to be upgraded to 6.x.
+The `NServiceBus` package needs to be upgraded to 6.x. Workers no longer need the `NServiceBus.Distributor.MSMQ` package as the worker logic is embedded in the Version 6 package.
 
-There are minor changes required to make the workers compile against the Version 6:
-
- * Changing `BusConfiguration` to `EndpointConfiguration`.
- * Using the new `async` endpoint create/start APIs.
+Note: Endpoints need to be upgraded to version 6 like any other endpoint. Read the [Upgrade Guides](/nservicebus/upgrades/) for additional information.
 
 
-### Giving workers new identity
+## Sample specific changes
+
+### Emulating multiple workers
+
+Note: The sample solution contains 2 workers for demo purposes. The second worker is carefully crafted so that the distributor sends messages to both workers where each worker has its own queue but on the same machine instead of multiple machines.
 
 In Versions 6 and above each endpoint instance is identified by name of the endpoint and an ID of the instance. Both workers are going to be named `Samples.Scaleout.Worker` and the instance ID is going to be loaded from the app.config file. If the workers are deployed to separate machines the instance ID can be omitted.
 
