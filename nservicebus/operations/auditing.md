@@ -33,7 +33,7 @@ In such environments it might make sense to only enable auditing on relevant end
 
 ### Queue storage capacity
 
-Auditing succesfully processed message can result in storing huge amounts of message data. First in the audit queue, second in any application that will store these messages. If the audit storage logic stops processing audit messages the audit queue can grow very fast in size. Messaging infrastructure has a size limit on the amount of data that can be stored in a queue. If this limit is reached messages can no longer be processed in all your endpoints that have auditing enabled.
+Auditing succesfully processed message can result in storing huge amounts of message data. First in the audit queue, second in any application that will store these messages. If the audit storage logic stops processing audit messages the audit queue size can grow very fast. Messaging infrastructure has a size limit on the amount of data that can be stored in a queue. If this storage limit is reached messages can no longer be processed in all the endpoints that have auditing enabled.
 
 Make sure the size limit is increased to allow for scheduled and unscheduled downtime.
 
