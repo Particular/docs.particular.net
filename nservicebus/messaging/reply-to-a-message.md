@@ -40,5 +40,5 @@ catch (NonTransientFailureException ex)
 
 The exception should be handled and then rethrown after a the reply indicating failure. This reply must be send with immediate dispatch or else this message will not be dispatched due to the exception resulting in transactions to be rolled back.
 
-Often such non-transient errors do not need to be retried. A [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy) can be configured to prevent retrying non-transient errors.
+Often such non-transient errors do not need to be retried. A [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) can be configured to prevent retrying non-transient errors.
 
