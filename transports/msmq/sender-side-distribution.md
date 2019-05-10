@@ -63,15 +63,14 @@ To learn more about creating custom distribution strategies, see the [fair distr
 
 ## Events and subscriptions
 
-Scaled out publisher:
+Subscription requests:
 
-Subscriptions are routed to all configured publisher instances. The subscriber endpoint will at start send a subscription message to each configured publisher instance.
+Each subscriber endpoint instance will at start send a subscription message to each configured publisher instance. Each publisher instance receives a subscription requests and stores this. In most cases the subscription storage is shared.
 
-Scaled out subscriber:
+Events:
 
-A scaled out subscriber will result in each subscriber instance to send a subscription message to the publisher. When an event is published the event will be send to only one of the instances.
+When an event is published the event will be send to only one of the endpoint instances. Which instance depends on the [distribution strategy](#message-distribution)
 
-Info: An event will not be send to all instance of a logical endpoint
 
 ## Limitations
 
