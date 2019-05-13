@@ -2,7 +2,7 @@
 title: Custom DataBus implementation
 summary: Details how to register and plugin custom DataBus implementation into an endpoint.
 component: Core
-reviewed: 2017-08-18
+reviewed: 2019-05-12
 tags:
 - DataBus
 redirects:
