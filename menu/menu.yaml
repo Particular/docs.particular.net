@@ -19,6 +19,8 @@
         Title: Publishing events
       - Url: tutorials/nservicebus-step-by-step/5-retrying-errors
         Title: Retrying errors
+    - Url: tutorials/message-replay
+      Title: Message replay tutorial
     - Url: tutorials/nservicebus-sagas/1-getting-started
       Title: "NServiceBus sagas: Getting started"
     - Url: tutorials
