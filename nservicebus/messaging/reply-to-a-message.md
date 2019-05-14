@@ -19,33 +19,7 @@ The reply address is controlled by the sender of the message replying to. See [h
 
 partial: influence
 
-## Use immediate dispatch for responses
-
-In some cases when doing request/response it is required to reply with a response indicating a non transient failure. If an  exception is thrown that reply will not be send if that exception is not handled.
-
-Often exceptions need to be propagated to ensure data modifications by performing a transactional rollback. The exception should not be handled to prevent the exception reaching the pipeline as then transactions will be committed and any buffered message still be send.
-
-NOTE: When no message has been send or published or any state change been written immediate dispatch is not required is the handled exception is not rethrown.
-
-
-```cs
-try
-{
-}
-catch (NonTransientFailureException ex)
-{
-    var replyOptions = new ReplyOptions();
-    replyOptions.RequireImmediateDispatch();
-    await context.Reply(new MyResponseIndicatingFailureMessage, replyOptions);
-    throw;
-}
-```
-
-In the code above the exception is handled and then rethrown after a the reply indicating failure. This reply is send with immediate dispatch or else this message will not be dispatched due to the exception resulting in transactions to be rolled back.
-
-NOTE: This is also required with transaction mode Receive Only or None as sends and published are buffered until all handlers have been succesfully invoked and then actually transmitted to the message infrastructure.
-
-Often such non-transient errors do not need to be retried. A [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) can be configured to prevent retrying non-transient errors.
+NOTE: Replies participate in the handler transaction and are not sent if the message rolls back. If the code requires a response whether or not message processing succeeds, use [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) on the reply options. Make sure exceptions are rethrown to rollback any transactions and use a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) to not retry non-transient errors.
 
 
 
