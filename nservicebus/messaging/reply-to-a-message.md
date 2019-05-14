@@ -18,3 +18,8 @@ When using the Publish-Subscribe pattern, an endpoint handling an event shouldn'
 The reply address is controlled by the sender of the message replying to. See [how to influence the reply behavior when sending messages](send-a-message.md#influencing-the-reply-behavior).
 
 partial: influence
+
+NOTE: Replies participate in the handler transaction and are not sent if the message rolls back. If the code requires a response whether or not message processing succeeds, use [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) on the reply options. Make sure exceptions are rethrown to rollback any transactions and use a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) to not retry non-transient errors.
+
+
+
