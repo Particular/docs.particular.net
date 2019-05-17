@@ -193,5 +193,6 @@ Saga state read just before `Handle` is invoked and written immediately after `H
 - The write will be an ADD if the read didn't return data or an UPDATE if the read did return data.
 - If the read did not return data and during the invoke the saga is completed no write will occur
 - How state remains consistent depends the persister implementation
+- Saga state reads/writes happen after all pipeline stages
 
 If multiple different saga types are invoked on the same message type each read/invoke/write cycle will happen sequentially per saga type.
