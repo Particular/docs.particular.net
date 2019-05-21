@@ -15,7 +15,7 @@
 
             #region JsonSerializationEncoding
 
-            var noBomEncoding = new UTF8Encoding(false);
+            var noBomEncoding = new UTF8Encoding(false, false);
 
             busConfiguration.UseSerialization<JsonSerializer>()
                 .Encoding(noBomEncoding);
