@@ -13,7 +13,7 @@ public class Deduplication
     {
         #region CreateDeduplicationTable
 
-        var queueManager = new DeduplicationManager(sqlConnection, "DeduplicationTable");
+        var queueManager = new DedupeManager(sqlConnection, "DeduplicationTable");
         await queueManager.Create().ConfigureAwait(false);
 
         #endregion
@@ -23,7 +23,7 @@ public class Deduplication
     {
         #region DeleteDeduplicationTable
 
-        var queueManager = new DeduplicationManager(sqlConnection, "DeduplicationTable");
+        var queueManager = new DedupeManager(sqlConnection, "DeduplicationTable");
         await queueManager.Drop()
             .ConfigureAwait(false);
 
@@ -53,7 +53,7 @@ public class Deduplication
     {
         #region DeduplicationCleanerJobStart
 
-        var cleaner = new DeduplicationCleanerJob(
+        var cleaner = new DedupeCleanerJob(
             table: "Deduplication",
             connectionBuilder: cancellation =>
             {
