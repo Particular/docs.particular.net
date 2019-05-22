@@ -4,16 +4,16 @@ reviewed:
 component: Core
 ---
 
-In order to invoke the correct message handlers for incoming messages NServiceBus needs to be able to map the incoming transport message to a [message type](/nservicebus/messaging/messages-events-commands.md).
+In order to invoke the correct message handlers for incoming messages, NServiceBus needs to be able to map the incoming transport message to a [message type](/nservicebus/messaging/messages-events-commands.md).
 
 The mapping rules are as follows:
 
-1. If the message contains the [`NServiceBus.EnclosedMessageType` header](/nservicebus/messaging/headers.md##serialization-headers-nservicebus-enclosedmessagetypes) the header value will be used to find the message type.
+1. If the message contains the [`NServiceBus.EnclosedMessageType` header](/nservicebus/messaging/headers.md##serialization-headers-nservicebus-enclosedmessagetypes), the header value will be used to find the message type.
 
-1. If the header is missing serializers can optionally infer the message type based on the message payload.
+1. If the header is missing, serializers can optionally infer the message type based on the message payload.
 
 
-## Serializers supporting message type inferral
+## Serializers that support message type inference
 
 * [Xml](/nservicebus/serialization/xml.md#inferring-message-type-from-root-node-name)
-* [JSON.net](/nservicebus/serialization/newtonsoft.md#inferring-message-type-from-type)
+* [Json.NET](/nservicebus/serialization/newtonsoft.md#inferring-message-type-from-type)
