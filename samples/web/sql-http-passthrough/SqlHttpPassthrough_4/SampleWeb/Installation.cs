@@ -8,8 +8,8 @@ public static class Installation
         using (var connection = await ConnectionHelpers.OpenConnection(SqlHelper.ConnectionString)
             .ConfigureAwait(false))
         {
-            var deduplicationManager = new DeduplicationManager(connection, "Deduplication");
-            await deduplicationManager.Create().ConfigureAwait(false);
+            var dedupeManager = new DedupeManager(connection, "Deduplication");
+            await dedupeManager.Create().ConfigureAwait(false);
         }
     }
 }
