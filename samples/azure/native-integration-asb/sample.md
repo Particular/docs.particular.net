@@ -65,7 +65,7 @@ The message itself is defined as an `IMessage` in the `Shared` project.
 
 snippet: NativeMessage
 
-## Controlling message id
+## Controlling message ID
 
 To specify a message ID different from the underlying transport message ID (`Message.MessageId`), set the `NServiceBus.MessageId` header on the native message with the desired message ID.
 
