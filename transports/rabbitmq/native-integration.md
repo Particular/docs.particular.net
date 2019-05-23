@@ -24,3 +24,7 @@ For integration scenarios where the sender is not controlled, the receiver might
 snippet: rabbitmq-config-custom-id-strategy
 
 WARNING: It is extremely important that the custom strategy is deterministic (it returns the same value when invoked multiple times for the same message), and that no two messages are assigned the same value.
+
+### Message type detection
+
+The native message must allow NServiceBus to [detect message type either via headers or message payload](/nservicebus/messaging/message-type-detection.md).

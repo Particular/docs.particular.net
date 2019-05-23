@@ -36,6 +36,7 @@ The next step is to define a message contract in the receiver that matches the X
 
 snippet: DefineNSBMessage
 
+See [the message type detection documentation](/nservicebus/messaging/message-type-detection.md) for more details.
 
 ### Uniquely identifying messages
 

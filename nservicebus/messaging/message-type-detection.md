@@ -8,7 +8,7 @@ In order to invoke the correct message handlers for incoming messages, NServiceB
 
 The mapping rules are as follows:
 
-1. If the message contains the [`NServiceBus.EnclosedMessageType` header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes), the header value will be used to find the message type.
+1. If the message contains the [`NServiceBus.EnclosedMessageType` header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes), the header value will be used to find the message type. The header value must at least contain the [FullName](https://docs.microsoft.com/en-us/dotnet/api/system.type.fullname) of the message type but can also contain the [AssemblyQualifiedName](https://docs.microsoft.com/en-us/dotnet/api/system.type.assemblyqualifiedname). NServiceBus use the AssemblyQualifiedName when emitting messages.
 
 1. If the header is missing, serializers can optionally infer the message type based on the message payload.
 
