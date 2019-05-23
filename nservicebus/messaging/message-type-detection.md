@@ -8,7 +8,7 @@ In order to invoke the correct message handlers for incoming messages, NServiceB
 
 The mapping rules are as follows:
 
-1. If the message contains the [`NServiceBus.EnclosedMessageType` header](/nservicebus/messaging/headers.md##serialization-headers-nservicebus-enclosedmessagetypes), the header value will be used to find the message type.
+1. If the message contains the [`NServiceBus.EnclosedMessageType` header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes), the header value will be used to find the message type.
 
 1. If the header is missing, serializers can optionally infer the message type based on the message payload.
 
