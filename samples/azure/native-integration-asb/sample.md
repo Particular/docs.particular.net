@@ -55,7 +55,7 @@ NOTE: Both the sender (native or NServiceBus) and the receiver must agree on the
 
 The native message must allow NServiceBus to [detect message type either via headers or message payload](/nservicebus/messaging/message-type-detection.md).
 
-in this sample the header option will be used by storing the `FullName` of the message as an Azure Service Bus `BrokeredMessage` user property.
+In this sample the header option will be used by storing the `FullName` of the message as an Azure Service Bus `BrokeredMessage` user property.
 
 snippet: NecessaryHeaders
 
