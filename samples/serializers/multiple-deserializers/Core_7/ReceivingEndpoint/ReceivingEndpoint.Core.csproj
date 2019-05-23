@@ -11,7 +11,7 @@
     <PackageReference Include="NServiceBus.Jil" Version="3.*" />
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
-    <PackageReference Include="NServiceBus.Wire" Version="3.*" />
+    <PackageReference Include="NServiceBus.Wire" Version="4.*" />
     <PackageReference Include="Wire" Version="0.*" />
   </ItemGroup>
 </Project>
