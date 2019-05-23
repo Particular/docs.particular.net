@@ -12,7 +12,6 @@ The mapping rules are as follows:
 
 1. If the header is missing, serializers can optionally infer the message type based on the message payload.
 
-
 ## Serializers that support message type inference
 
 * [Xml](/nservicebus/serialization/xml.md#inferring-message-type-from-root-node-name)

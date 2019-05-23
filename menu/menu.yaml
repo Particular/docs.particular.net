@@ -206,6 +206,8 @@
       Articles:
       - Url: nservicebus/messaging/message-identity
         Title: Message Identity
+      - Url: nservicebus/messaging/message-type-detection
+        Title: Message type detection
       - Url: nservicebus/messaging/messages-as-interfaces
         Title: Messages as Interfaces
       - Url: nservicebus/messaging/conventions
