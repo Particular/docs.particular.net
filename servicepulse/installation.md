@@ -2,7 +2,7 @@
 title: Installing ServicePulse
 summary: Describes how ServicePulse is installed - independently or via the PlatformInstaller - and its basic requirements
 component: ServicePulse
-reviewed: 2019-05-14
+reviewed: 2018-12-18
 tags:
 - Installation
 related:
@@ -37,10 +37,15 @@ Provides the location on disk for the logfile to be generated.
 Provides the port number that ServicePulse web application will run on.
 Default : 9090
 - `INST_URI [uri]`
+Provides location of the ServiceControl Instance API
+Default : `http://localhost:33333/api/`
+- `INST_SC_MONITORING_URI [uri]` 
+Provides location of the Monitoring Instance API
+Default : `http://localhost:33633/`
 
 Example
 ```
-.\Particular.ServicePulse.exe /Quiet /Log C:\temp\servicepulse-installer.log INST_PORT_PULSE=12345
+.\Particular.ServicePulse.exe /Quiet /Log C:\temp\servicepulse-installer.log INST_PORT_PULSE=12345 INST_URI=http://localhost:33333/api/
 ```
 
 ## Configuring ServicePulse
@@ -50,8 +55,6 @@ For details on ServiceControl and ServicePulse configuration options, see:
 
  * [Configuring ServiceControl](/servicecontrol/creating-config-file.md)
  * [ServiceControl Guidance](/servicecontrol)
- 
-Refer to the [ServicePulse documention](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) for guidance on how to configure ServicePulse to connect to ServiceControl.
 
 NOTE: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. Set the message storage timespan by [setting automatic expiration for ServiceControl data](/servicecontrol/how-purge-expired-data.md).
 
