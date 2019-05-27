@@ -367,7 +367,7 @@ NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost 
 
 #### ServiceControl/DataSpaceRemainingThreshold
 
-The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/index.md#self-monitoring-via-custom-checks-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive) then the check will fail, alerting the user.
+This setting was introduced in version 3.8. The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/index.md#self-monitoring-via-custom-checks-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive) then the check will fail, alerting the user.
 
 Type: int
 
