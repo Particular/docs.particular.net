@@ -13,6 +13,6 @@ redirects:
 
 include: dtc-warning
 
-After moving an endpoint from one machine to another or changing endpoint name existing timeouts will need to be manually modified so that they could be delivered to new endpoint. In order to do that the following steps should be followed:
+After moving an endpoint from one machine to another or changing an endpoints name, existing timeouts will need to be manually modified to end up in the new endpoint. To do that, follow these steps:
 
 partial: fields
