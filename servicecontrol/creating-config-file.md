@@ -363,3 +363,12 @@ http://localhost:{selected RavenDB port}/studio/index.html#databases/documents?&
 ```
 
 NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).
+
+
+#### ServiceControl/DataSpaceRemainingThreshold
+
+The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/index.md#self-monitoring-via-custom-checks-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive) then the check will fail, alerting the user.
+
+Type: int
+
+Default: 20
