@@ -14,5 +14,5 @@ The mapping rules are as follows:
 
 ## Serializers that support message type inference
 
-* [Xml](/nservicebus/serialization/xml.md#inferring-message-type-from-root-node-name)
-* [Json.NET](/nservicebus/serialization/newtonsoft.md#inferring-message-type-from-type)
+* [Xml](/nservicebus/serialization/xml.md#inferring-message-type-from-root-node-name) via root node name
+* [Json.NET](/nservicebus/serialization/newtonsoft.md#inferring-message-type-from-type) via custom `$type` property
