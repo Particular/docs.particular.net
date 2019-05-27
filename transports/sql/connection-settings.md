@@ -18,7 +18,7 @@ partial: pool-size
 
 ## Connection configuration
 
-Connection string can be configured in several ways:
+The connection string can be configured in several ways:
 
 partial: connection-string
 
@@ -28,7 +28,7 @@ partial: multi-instance
 
 ## Custom database schemas
 
-SQL Server transport uses `dbo` as a default schema. Default schema is used for every queue if no other schema is explicitly provided in transport address. That includes all local queues, error, audit and remote queues of other endpoints.
+SQL Server transport uses `dbo` as a default schema. It is used for every queue if no other schema is explicitly provided in a transport address. That includes all local queues, error, audit and remote queues of other endpoints.
 
 partial: custom-schema
 
@@ -45,6 +45,6 @@ NOTE: If opening the connection fails, the custom connection factory must dispos
 
 ## Circuit Breaker
 
-A built in circuit breaker is used to handle intermittent SQL Server connectivity problems. When a failure occurs when trying to connect, a circuit breaker enters an *armed* state. If the failure is not resolved before the configured *wait time* elapses, the circuit breaker triggers the [critical errors](/nservicebus/hosting/critical-errors.md) handling procedure.
+A built-in circuit breaker is used to handle intermittent SQL Server connectivity problems. When a failure occurs when trying to connect, a circuit breaker enters an *armed* state. If the failure is not resolved before the configured *wait time* elapses, the circuit breaker triggers the [critical errors](/nservicebus/hosting/critical-errors.md) handling procedure.
 
 partial: circuit-breaker
