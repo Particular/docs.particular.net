@@ -56,8 +56,7 @@ The fully qualified .NET type name of the enclosed message(s). The receiving end
  * Full type name: `Namespace.ClassName`.
  * Assembly qualified name: `Namespace.ClassName, AssemblyName, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null`.
 
-NOTE: In integration scenarios, this header can be safely omitted if the endpoint uses [XmlSerialization](/nservicebus/serialization/xml.md) and the root node happens to be the message type.
-
+See the [message type detection documentation](/nservicebus/messaging/message-type-detection.md) for more details.
 
 ## Messaging interaction headers
 

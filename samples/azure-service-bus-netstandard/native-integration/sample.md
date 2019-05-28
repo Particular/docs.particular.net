@@ -39,18 +39,17 @@ snippet: SerializedMessage
 
 To generate a serialized message, the `MessageGenerator` project can be used with the unit test named `Generate` under the `SerializedMessageGenerator` test fixture.
 
+## Message type detection
 
-## Required headers
+The native message must allow NServiceBus to [detect message type either via headers or message payload](/nservicebus/messaging/message-type-detection.md).
 
-For a native message to be processed, NServiceBus endpoints using the Azure Service Bus transport need the message type to be included as a header. This header must be stored as an Azure Service Bus `Message` user property.
+In this sample the header option will be used by storing the `FullName` of the message as an Azure Service Bus `Message` user property.
 
 snippet: NecessaryHeaders
 
-NOTE: The [`NServiceBus.EnclosedMessageTypes` header property](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) must at least contain the [FullName](https://docs.microsoft.com/en-us/dotnet/api/system.type.fullname) of the message type expected by the NServiceBus endpoint, but can instead contain the [AssemblyQualifiedName](https://docs.microsoft.com/en-us/dotnet/api/system.type.assemblyqualifiedname), which also includes the assembly name and version that the type was loaded from. The assembly-qualified name is the value NServiceBus puts into the header by default.
+## Message definition
 
 The message itself is defined using [conventions](/nservicebus/messaging/conventions.md) in the `Receiver` project.
-
-NOTE: To specify a message ID different from the underlying transport message ID (`Message.MessageId`), set the `NServiceBus.MessageId` header on the native message with the desired message ID.
 
 snippet: NativeMessage
 

@@ -38,7 +38,7 @@ class Program
             UserProperties =
             {
                 #region NecessaryHeaders
-                ["NServiceBus.EnclosedMessageTypes"] = "NativeMessage",
+                ["NServiceBus.EnclosedMessageTypes"] = typeof(NativeMessage).FullName
                 #endregion
             }
         };
