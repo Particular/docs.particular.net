@@ -39,11 +39,6 @@ For more information on Pull Requests see:
  * [Creating a pull request from a fork](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
 
 
-## Branching Strategy
-
-Most projects follow [GitFlow](https://github.com/nvie/gitflow), except for [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/) which follow [GitHub Flow](https://guides.github.com/introduction/flow/).
-
-
 ## Additional Resources
 
  * [GitHub introduction](https://guides.github.com/activities/hello-world/)
