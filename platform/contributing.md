@@ -47,4 +47,3 @@ For more information on Pull Requests see:
  * [Sorting issues and pull requests](https://help.github.com/articles/sorting-issues-and-pull-requests/)
  * [Using search to filter issues and pull requests](https://help.github.com/articles/using-search-to-filter-issues-and-pull-requests/)
  * [Pluralsight: GitHub for Windows Developers](https://www.pluralsight.com/courses/github-windows-developers)
- * [Pluralsight: Using GitFlow](https://www.pluralsight.com/courses/using-gitflow)
