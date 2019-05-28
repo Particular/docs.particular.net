@@ -53,9 +53,6 @@ The message itself is defined using [conventions](/nservicebus/messaging/convent
 
 snippet: NativeMessage
 
-## Controlling message id
-
-To specify a message ID different from the underlying transport message ID (`Message.MessageId`), set the `NServiceBus.MessageId` header on the native message with the desired message ID.
 
 ## Handling messages from a native sender in an NServiceBus endpoint
 
