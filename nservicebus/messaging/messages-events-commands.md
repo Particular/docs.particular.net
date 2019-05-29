@@ -51,7 +51,6 @@ Messages should:
 * be as small as possible.
 * satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle). Types used for other purposes (e.g. domain objects, data access objects, or UI binding objects) should not be used as messages.
 
-Note: A message must be a reference type (i.e. a `class`). An attempt to send a message which is a value type (e.g. a `struct`) will result in a runtime exception.
 
 ## Identifying messages
 
