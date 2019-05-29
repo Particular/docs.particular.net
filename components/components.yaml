@@ -22,9 +22,9 @@
   Name: Anotar Logger
   DocoUrl: https://github.com/Fody/Anotar
   Category: Logger
-  GitHubOwner: SimonCropp
+  GitHubOwner: Fody
   SupportLevel: Community
-  LicenseUrl: https://github.com/Fody/Anotar/blob/master/license.txt
+  LicenseUrl: https://github.com/Fody/Home/blob/master/pages/licensing-patron-faq.md
   ProjectUrl: https://github.com/Fody/Anotar
   NugetOrder:
     - Anotar.NServiceBus.Fody
@@ -35,7 +35,7 @@
   Category: Other
   GitHubOwner: NServiceBusExtensions
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.ApprovalTests/blob/master/license.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.ApprovalTests
   NugetOrder:
     - NServiceBus.ApprovalTests
@@ -46,7 +46,7 @@
   Category: Other
   GitHubOwner: NServiceBusExtensions
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Attachments/blob/master/license.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Attachments
   NugetOrder:
     - NServiceBus.Attachments.Sql
@@ -58,7 +58,7 @@
   Category: Other
   GitHubOwner: NServiceBusExtensions
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Attachments/blob/master/license.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Attachments
   NugetOrder:
     - NServiceBus.Attachments.FileShare
@@ -81,7 +81,7 @@
   SupportLevel: Community
   Category: Other
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter/blob/master/license.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   NugetOrder:
     - NServiceBus.AuditFilter
 
@@ -146,7 +146,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Bond/blob/master/LICENSE
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Bond
   NugetOrder:
     - NServiceBus.Bond
@@ -341,7 +341,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Other
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.HandlerOrdering/blob/master/License.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.HandlerOrdering
   NugetOrder:
     - NServiceBus.HandlerOrdering
@@ -352,7 +352,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Hyperion/blob/master/LICENSE.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Hyperion
   NugetOrder:
     - NServiceBus.Hyperion
@@ -372,7 +372,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Utf8Json/blob/master/LICENSE
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Utf8Json
   NugetOrder:
     - NServiceBus.Utf8Json
@@ -383,7 +383,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Jil/blob/master/LICENSE
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Jil
   NugetOrder:
     - NServiceBus.Jil
@@ -460,7 +460,7 @@
   GitHubOwner: NServiceBusExtensions
   SupportLevel: Community
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.MicrosoftLogging
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.MicrosoftLogging/blob/master/LICENSE
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   NugetOrder:
     - NServiceBus.MicrosoftLogging
 
@@ -501,7 +501,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.MessagePack/blob/master/LICENSE
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.MessagePack
   NugetOrder:
     - NServiceBus.MessagePack
@@ -512,7 +512,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.MsgPack/blob/master/LICENSE
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.MsgPack
   NugetOrder:
     - NServiceBus.MsgPack
@@ -592,12 +592,12 @@
 
 - Key: NewtonsoftEncryption
   Name: Newtonsoft Encryption
-  LicenseUrl: https://github.com/SimonCropp/Newtonsoft.Json.Encryption/blob/master/LICENSE
-  DocoUrl: https://github.com/SimonCropp/Newtonsoft.Json.Encryption
-  GitHubOwner: SimonCropp
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  DocoUrl: https://github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption
+  GitHubOwner: NServiceBusExtensions
   SupportLevel: Community
   Category: Other
-  ProjectUrl: https://github.com/SimonCropp/Newtonsoft.Json.Encryption
+  ProjectUrl: https://github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption
   NugetOrder:
     - NServiceBus.Newtonsoft.Encryption
 
@@ -677,7 +677,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet/blob/master/LICENSE
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet
   NugetOrder:
     - NServiceBus.ProtoBuf
@@ -688,7 +688,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufGoogle/blob/master/LICENSE
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufGoogle
   NugetOrder:
     - NServiceBus.ProtoBufGoogle
@@ -762,7 +762,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Logger
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Serilog/blob/master/license.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Serilog
   NugetOrder:
     - NServiceBus.Serilog
@@ -868,7 +868,7 @@
   Category: Transport
   GitHubOwner: NServiceBusExtensions
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Native/blob/master/license.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Native
   NugetOrder:
     - NServiceBus.SqlServer.Native
@@ -879,7 +879,7 @@
   Category: Other
   GitHubOwner: NServiceBusExtensions
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Native/blob/master/license.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Native
   NugetOrder:
     - NServiceBus.SqlServer.HttpPassthrough
@@ -926,7 +926,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Wire/blob/master/LICENSE.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Wire
   NugetOrder:
     - NServiceBus.Wire
@@ -956,7 +956,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Serializer
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.ZeroFormatter/blob/master/license.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.ZeroFormatter
   NugetOrder:
     - NServiceBus.ZeroFormatter
@@ -1023,7 +1023,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Other
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Validation/blob/master/license.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Validation
   NugetOrder:
     - NServiceBus.FluentValidation
@@ -1034,7 +1034,7 @@
   GitHubOwner: NServiceBusExtensions
   Category: Other
   SupportLevel: Community
-  LicenseUrl: https://github.com/NServiceBusExtensions/NServiceBus.Validation/blob/master/license.txt
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
   ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Validation
   NugetOrder:
     - NServiceBus.DataAnnotations
