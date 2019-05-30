@@ -1,0 +1,1 @@
+WARN: The version field name must be set taking into account any [member mapping conventions](http://mongodb.github.io/mongo-csharp-driver/2.8/reference/bson/mapping/conventions/) configured for the MongoDB client.
