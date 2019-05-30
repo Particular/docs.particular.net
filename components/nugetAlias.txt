@@ -51,6 +51,7 @@ Metrics: NServiceBus.Metrics
 MetricsServiceControl: NServiceBus.Metrics.ServiceControl
 MetricsServiceControlMsmq: NServiceBus.Metrics.ServiceControl.Msmq
 MessageRouting: NServiceBus.MessageRouting
+MongoDB: NServiceBus.Storage.MongoDB
 MongoSbmako: NServiceBus.MongoDB
 MongoTekmaven: NServiceBus.Persistence.MongoDb
 MsmqTransport: NServiceBus.Transport.Msmq
