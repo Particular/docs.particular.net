@@ -24,7 +24,7 @@
         }
         void DatabaseName(EndpointConfiguration endpointConfiguration)
         {
-            #region MongoDBSetDatabaseName
+            #region MongoDBDatabaseName
 
             var persistence = endpointConfiguration.UsePersistence<MongoDBPersistence>();
             persistence.DatabaseName("DatabaseName");
