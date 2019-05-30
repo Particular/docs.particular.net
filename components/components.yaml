@@ -524,7 +524,7 @@
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Storage.MongoDB
   NugetOrder:
-    - NServiceBus.Storage.MongoDb
+    - NServiceBus.Storage.MongoDB
 
 - Key: MongoPersistenceSbmako
   Name: MongoDB Persistence (Carlos Sandoval)
