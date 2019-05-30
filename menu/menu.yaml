@@ -1024,8 +1024,15 @@
       Title: Scripting
   - Url: persistence/msmq/subscription
     Title: MSMQ Subscription
+  # - Url: persistence/mongodb
+  #   Title: MongoDB
+  #   Articles:
+  #   - Url: persistence/mongodb/migrating-from-sbmako
+  #     Title: Migrating from NServicebus.MongoDB
+  #   - Url: persistence/mongodb/migrating-from-tekmaven
+  #     Title: Migrating from NServiceBus.Persistence.MongoDB
   - Url: persistence/mongodb-tekmaven
-    Title: MongoDB
+    Title: MongoDB (Ryan Hoffman)
 
 - Name: ServiceInsight
   Topics:
