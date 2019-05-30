@@ -1,6 +1,7 @@
 ---
 title: Subscription versioning
 component: raven
+versions: '[3,6)'
 tags:
  - Persistence
  - Subscription
