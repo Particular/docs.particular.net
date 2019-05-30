@@ -5,7 +5,7 @@ versions: '[1,)'
 tags:
  - Persistence
 related:
- - persistence/mongodb/from-tekmaven
+ - persistence/mongodb/migrating-from-tekmaven
 reviewed: 2019-05-29
 ---
 
