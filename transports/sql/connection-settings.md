@@ -1,6 +1,6 @@
 ---
 title: Connection Settings
-reviewed: 2017-08-23
+reviewed: 2019-05-30
 component: SqlTransport
 redirects:
 - nservicebus/sqlserver/connection-settings
