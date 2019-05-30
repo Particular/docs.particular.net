@@ -10,9 +10,19 @@ related:
 reviewed: 2019-05-29
 ---
 
-This package was designed to be fully compatible with the community `NServiceBus.Persistence.MongoDB` package.
+This package was designed to be fully compatible with the community `NServiceBus.Persistence.MongoDB` package with some minor configuration.
 
 include: migration-warning
+
+## Configuration
+
+Use the following compatibility API to configure the persistence to work with your existing saga data:
+
+snippet: MongoDBTekmavenCompatibility
+
+The `VersionFieldName` value must match the element name used by the previous saga data property decorated with the `[DocumentVersion]` attribute.
+
+include: must-apply-conventions-for-version
 
 ## Saga data class changes
 
@@ -31,12 +41,6 @@ class MySagaData : IContainSagaData
 
 ```
 
+### How Document Versioning Works
+
 include: document-version
-
-## Configuration
-
-Use the following compatibility API to configure the persistence to work with your existing saga data:
-
-snippet: MongoDBTekmavenCompatibility
-
-include: must-apply-conventions-for-version
