@@ -1,7 +1,7 @@
 ---
 title: Outbox with RavenDB persistence
 component: Raven
-reviewed: 2018-02-19
+reviewed: 2019-05-30
 versions: '[2.0,)'
 tags:
  - Outbox
