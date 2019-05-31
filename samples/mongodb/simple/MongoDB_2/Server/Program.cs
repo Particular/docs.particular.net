@@ -11,7 +11,8 @@ class Program
         #region mongoDbConfig
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MongoDB.Server");
-        endpointConfiguration.UsePersistence<MongoDBPersistence>();
+        var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
+        persistence.DatabaseName("Samples_MongoDB_Server");
 
         #endregion
 
