@@ -16,7 +16,7 @@ include: migration-warning
 
 ## Configuration
 
-Use the following compatibility API to configure the persistence to work with your existing saga data:
+Use the following compatibility API to configure the persistence to work with existing saga data:
 
 snippet: MongoDBTekmavenCompatibility
 
@@ -26,7 +26,7 @@ include: must-apply-conventions-for-version
 
 ## Saga data class changes
 
-[Saga data classes](/nservicebus/sagas#long-running-means-stateful) no longer need to provide an `int` version property decorated with a [`DocumentVersion`](persistence/mongodb-tekmaven/#saga-definition-guideline). The version property and attribute may be safely removed from your Saga data class implementations. 
+[Saga data classes](/nservicebus/sagas#long-running-means-stateful) no longer need to provide an `int` version property decorated with a [`DocumentVersion`](persistence/mongodb-tekmaven/#saga-definition-guideline). The version property and attribute may be safely removed from Saga data class implementations. 
 
 ```c#
 
