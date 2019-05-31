@@ -6,7 +6,7 @@ tags:
  - Persistence
 related:
  - persistence/mongodb-tekmaven
- - persistence/mongodb/from-sbmako
+ - persistence/mongodb/migrating-from-sbmako
 reviewed: 2019-05-29
 ---
 
