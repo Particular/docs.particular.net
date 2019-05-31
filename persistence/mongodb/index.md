@@ -35,7 +35,7 @@ snippet: MongoDBDatabaseName
 
 ## Multi-document transactions
 
-To support multiple saga updates from a single message transactions are used and required by default.
+Multi-documents are enabled and required by default. This allows the persister to support updating multiple saga instances and commit them all atomically during message processing.
 
 ### Disabling transactions
 
@@ -45,7 +45,7 @@ snippet: MongoDBDisableTransactions
 
 ### Shared transactions
 
-NServiceBus supports sharing the same MongoDB session transaction between Saga persistence and business data, so that a single session transaction can be used to persist the data for both concerns atomically. Shared transactions are automatically enabled.
+NServiceBus supports sharing the same MongoDB session transaction between Saga persistence and business data, so that a single session transaction can be used to persist document updates for both concerns atomically. Shared transactions are automatically enabled.
 
 To use the shared transaction in a message handler:
 

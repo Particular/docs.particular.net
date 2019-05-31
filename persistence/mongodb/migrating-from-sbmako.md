@@ -29,9 +29,7 @@ In addition the collection naming scheme must follow the same naming scheme used
 
 [Saga data classes](/nservicebus/sagas/#long-running-means-stateful) no longer need to implement [`IHaveDocumentVersion`](https://github.com/sbmako/NServiceBus.MongoDB#sagas). If the saga data class extends [`ContainMongoSagaData`](https://github.com/sbmako/NServiceBus.MongoDB#sagas) it no longer needs to do so. In cases where `IHaveDocumentVersion` has been explicitly implemented by the saga data class the `DocumentVersion` and `ETag` properties may be safely removed from Saga data class implementations.
 
-If the `ETag` property is not removed it will no longer be updated by the persister.
-
-```c#
+```diff
 
 - class MySagaData : IContainSagaData, IHaveDocumentVersion
 + class MySagaData : IContainSagaData
@@ -44,6 +42,8 @@ If the `ETag` property is not removed it will no longer be updated by the persis
 }
 
 ```
+
+If the `ETag` property is not removed it will no longer be updated by the persister.
 
 ### How Document Versioning Works
 
