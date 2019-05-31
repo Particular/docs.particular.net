@@ -9,16 +9,16 @@
         {
             #region MongoDBUsage
 
-            endpointConfiguration.UsePersistence<MongoDBPersistence>();
+            endpointConfiguration.UsePersistence<MongoPersistence>();
 
             #endregion
         }
-        void MongoDBClient(EndpointConfiguration endpointConfiguration)
+        void MongoClient(EndpointConfiguration endpointConfiguration)
         {
             #region MongoDBClient
 
-            var persistence = endpointConfiguration.UsePersistence<MongoDBPersistence>();
-            persistence.Client(new MongoClient("SharedMongoUrl"));
+            var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
+            persistence.MongoClient(new MongoClient("SharedMongoUrl"));
 
             #endregion
         }
@@ -26,16 +26,16 @@
         {
             #region MongoDBDatabaseName
 
-            var persistence = endpointConfiguration.UsePersistence<MongoDBPersistence>();
+            var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
             persistence.DatabaseName("DatabaseName");
 
             #endregion
         }
-        void DisableTransactions(EndpointConfiguration endpointConfiguration)
+        void UseTransactions(EndpointConfiguration endpointConfiguration)
         {
             #region MongoDBDisableTransactions
 
-            var persistence = endpointConfiguration.UsePersistence<MongoDBPersistence>();
+            var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
             persistence.UseTransactions(false);
 
             #endregion
@@ -44,10 +44,10 @@
         {
             #region MongoDBSBMakoCompatibility
 
-            var persistence = endpointConfiguration.UsePersistence<MongoDBPersistence>();
+            var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
             var compatibility = persistence.CommunityPersistenceCompatibility();
-            compatibility.CollectionNamingScheme(type => type.Name);
-            compatibility.VersionFieldName("DocumentVersion");
+            compatibility.CollectionNamingConvention(type => type.Name);
+            compatibility.VersionElementName("DocumentVersion");
 
             #endregion
         }
@@ -55,9 +55,9 @@
         {
             #region MongoDBTekmavenCompatibility
 
-            var persistence = endpointConfiguration.UsePersistence<MongoDBPersistence>();
+            var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
             var compatibility = persistence.CommunityPersistenceCompatibility();
-            compatibility.VersionFieldName("Version");
+            compatibility.VersionElementName("Version");
 
             #endregion
         }
