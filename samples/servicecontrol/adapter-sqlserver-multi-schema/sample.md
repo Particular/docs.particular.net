@@ -20,7 +20,7 @@ The purpose of the adapter is to isolate ServiceControl from the specifics of th
 
  1. [Install ServiceControl](/servicecontrol/installation.md).
  2. Create `ServiceControl` database on the local SQL Server instance.
- 3. Using the [ServiceControl Management tool](/servicecontrol/license.md#servicecontrol-management-tool), set up ServiceControl to monitor endpoints using SQL Server transport:
+ 3. Using the [ServiceControl Management tool](/servicecontrol/license.md#servicecontrol-management-tool), set up ServiceControl to monitor endpoints using the SQL Server transport:
 
    * Add a new ServiceControl instance:
    * Use `Particular.ServiceControl.SQL` as the instance name (ensure there is no other instance of ServiceControl running with the same name).

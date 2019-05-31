@@ -56,4 +56,4 @@ If the message content is in an unsupported or proprietary format, then the appl
 
 ### Message type detection
 
-The native message must allow NServiceBus to [detect message type either via headers or message payload](/nservicebus/messaging/message-type-detection.md).
+The native message must allow NServiceBus to [detect the message type either via the headers or the message payload](/nservicebus/messaging/message-type-detection.md).

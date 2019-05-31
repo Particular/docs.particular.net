@@ -1,5 +1,6 @@
 ---
 title: Rerouting Existing Timeouts
+summary: How to reroute existing timeouts in the Raven persister when an endpoint is moved
 component: Raven
 versions: '[3,)'
 reviewed: 2019-05-30
@@ -13,6 +14,6 @@ redirects:
 
 include: dtc-warning
 
-After moving an endpoint from one machine to another or changing an endpoints name, existing timeouts will need to be manually modified to end up in the new endpoint. To do that, follow these steps:
+After moving an endpoint from one machine to another or changing an endpoint's name, existing timeouts must be manually modified to end up in the new endpoint. To do that, follow these steps:
 
 partial: fields
