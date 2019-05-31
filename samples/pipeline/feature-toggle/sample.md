@@ -26,7 +26,7 @@ snippet: FeatureToggleBehavior
 
 ## The feature
 
-The feature toggles [feature](https://docs.particular.net/nservicebus/pipeline/features) creates the behavior and adds it to the pipeline. 
+The feature toggles [feature](/nservicebus/pipeline/features) creates the behavior and adds it to the pipeline. 
 
 snippet: FeatureToggles
 
