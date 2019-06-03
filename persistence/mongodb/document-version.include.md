@@ -2,8 +2,8 @@ MongoDB provides no out-of-the-box concurrency controls. A common pattern for su
 
 snippet: MongoDBUpdateWithVersion
 
-By updating the document with a filter specifying the expected current value of the document, no update will be made if another process has incremented the version before the current process is able to. This is the pattern this persister is using for updating Sagas.
+By updating the document with a filter specifying the expected current version value of the document, no update will be made if another process has incremented the version before the current process is able to. This package relies on this pattern to ensure only one process/thread can update the saga at a time.
 
-This pattern requires an element that stores the current version in the `BsonDocument` in the collection. This persister achieves this by adding a version element to the serialized saga data `BsonDocument` when the saga is initially created. When the saga data is later fetched, the version element's current value is retrieved from the `BsonDocument` before deserializing to the saga data type. This current value is stored during the lifetime of the saga message processing and used to create the update filter.
+This pattern requires an element in the `BsonDocument` to store the current version value. Instead of requiring the user provide this as a property of their saga data type, this package uses the MongoDB client's BSON serializer to add a version element to the serialized saga data as it is initially created and stored in the collection. When the saga data serialized `BsonDocument` is later fetched, the version element's current value is retrieved before deserializing to the saga data type. The current value is then retained for the lifetime of saga message processing and used to create the update filter.
 
-By default, the element is named `_version`. For migration scenarios, the persistence must be configured with the element name used by the community persistence being migrated from.
+By default, the `BsonDocument` element is named `_version`. To maintain compatibility with existing saga data created by community packages this package must be configured to instead use the version element name contained in the existing saga data documents.
