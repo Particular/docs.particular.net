@@ -3,13 +3,10 @@ using NServiceBus;
 
 #region sagadata
 
-public class OrderSagaData :
-    IContainSagaData
+public class OrderSagaData : ContainSagaData
 {
-    public Guid Id { get; set; }
-    public string Originator { get; set; }
-    public string OriginalMessageId { get; set; }
     public Guid OrderId { get; set; }
+
     public string OrderDescription { get; set; }
 }
 

@@ -2,10 +2,9 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class OrderCompletedHandler :
-    IHandleMessages<OrderCompleted>
+public class OrderCompletedHandler : IHandleMessages<OrderCompleted>
 {
-    static ILog log = LogManager.GetLogger<OrderCompletedHandler>();
+    static readonly ILog log = LogManager.GetLogger<OrderCompletedHandler>();
 
     public Task Handle(OrderCompleted message, IMessageHandlerContext context)
     {
