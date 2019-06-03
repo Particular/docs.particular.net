@@ -73,7 +73,7 @@ The following methods are deprecated and will throw a `NotImplementedException` 
 
 Subscription versioning now does not include the message assembly version _by default_. Systems using the `DisableSubscriptionVersioning()` method (the new default) can safely remove this call as it is no longer needed.
 
-See the [subscription versioning for NServiceBus.RavenDB version 5](/persistence/ravendb/subscription-versioning?version=raven_4) for more details.
+See the [subscription versioning for NServiceBus.RavenDB version 5](/persistence/ravendb/subscription-versioning.md?version=raven_4) for more details.
 
 
 ## Legacy document conventions cannot be used
