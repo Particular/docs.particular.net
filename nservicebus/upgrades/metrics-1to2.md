@@ -9,9 +9,7 @@ upgradeGuideCoreVersions:
 ---
 
 
-## RegisterObservers replaces basic methods
-
-If upgrading from version 1.0 the `EnableMetricTracing`, `EnableCustomReport` and `EnableLogTracing` methods have been deprecated and replaced with the more extensible [`RegisterObservers`](/monitoring/metrics/raw.md#reporting-metrics-data-to-any-external-storage). See [Upgrade Version 1 to 1.1](/nservicebus/upgrades/metrics-1to1.1.md#registerobservers-replaces-basic-methods).
+include: metrics-registerobservers
 
 
 ## Changes in RegisterObservers
