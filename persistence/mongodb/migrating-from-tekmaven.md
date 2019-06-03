@@ -16,11 +16,11 @@ include: migration-warning
 
 ## Configuration
 
-Use the following compatibility API to configure the persistence to work with existing saga data:
+Use the following compatibility API to configure the package to work with existing saga data:
 
 snippet: MongoDBTekmavenCompatibility
 
-The `VersionElementName` value must match the element name used by the previous saga data property decorated with the `[DocumentVersion]` attribute.
+The `VersionElementName` value must match the `BsonDocument` element name used by the previous saga data property decorated with the `[DocumentVersion]` attribute.
 
 include: must-apply-conventions-for-version
 
@@ -35,8 +35,8 @@ class MySagaData : IContainSagaData
 	public Guid Id { get; set; }
 	public string OriginatingMessageId { get; set; }
 	public string Originator { get; set; }
--   [DocumentVersion]
--   public int Version { get; set; }
+-       [DocumentVersion]
+-       public int Version { get; set; }
 }
 
 ```
