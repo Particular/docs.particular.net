@@ -517,6 +517,15 @@
   NugetOrder:
     - NServiceBus.MsgPack
 
+- Key: MongoDB
+  Name: MongoDB Persistence
+  DocoUrl: persistence/mongodb
+  GitHubOwner: Particular
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus.Storage.MongoDB
+  NugetOrder:
+    - NServiceBus.Storage.MongoDB
+
 - Key: MongoPersistenceSbmako
   Name: MongoDB Persistence (Carlos Sandoval)
   DocoUrl: https://github.com/sbmako/NServiceBus.MongoDB
