@@ -1,6 +1,6 @@
 ---
 title: Metrics Upgrade Version 1.0 to 1.1
-reviewed: 2017-09-05
+reviewed: 2019-06-03
 component: metrics
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -12,7 +12,7 @@ upgradeGuideCoreVersions:
 
 The `EnableMetricTracing`, `EnableCustomReport` and `EnableLogTracing` methods have been deprecated and replaced with the more extensible [`RegisterObservers`](/monitoring/metrics/raw.md#reporting-metrics-data-to-any-external-storage).
 
-Also note that the older methods supported an `interval` TimeSpan. In the new API batching up metrics, and flushing them at a given interval, is the domain of the calling code.
+Also note that the older methods supported an `interval` TimeSpan. It is now the responsibility of the implementing code to batch metrics and flush them as needed.
 
 
 ### EnableMetricTracing
