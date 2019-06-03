@@ -17,7 +17,7 @@ Uses the [MongoDB document database](https://www.mongodb.com/) for storage.
 
 ## Usage
 
-Add a NuGet package reference to `NServiceBus.Storage.MongoDB`. Configure the endpoint to use the persistence through the following configuration API.
+Add a NuGet package reference to `NServiceBus.Storage.MongoDB`. Configure the endpoint to use the persistence through the following configuration API:
 
 snippet: MongoDBUsage
 
@@ -35,7 +35,7 @@ snippet: MongoDBDatabaseName
 
 ## Multi-document transactions
 
-Multi-documents are enabled and required by default. This allows the persister to support updating multiple saga instances and commit them all atomically during message processing.
+Multi-document transactions are enabled and required by default. This allows the persister to support updating multiple saga instances and commit them all atomically during message processing.
 
 ### Disabling transactions
 
@@ -45,7 +45,7 @@ snippet: MongoDBDisableTransactions
 
 ### Shared transactions
 
-NServiceBus supports sharing the same MongoDB session transaction between Saga persistence and business data, so that a single session transaction can be used to persist document updates for both concerns atomically. Shared transactions are automatically enabled.
+NServiceBus supports sharing the same MongoDB session transaction between Saga persistence and business data. A single session transaction can be used to persist document updates for both concerns atomically. Shared transactions are automatically enabled.
 
 To use the shared transaction in a message handler:
 

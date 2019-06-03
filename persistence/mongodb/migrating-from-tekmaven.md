@@ -20,13 +20,13 @@ Use the following compatibility API to configure the persistence to work with ex
 
 snippet: MongoDBTekmavenCompatibility
 
-The `VersionFieldName` value must match the element name used by the previous saga data property decorated with the `[DocumentVersion]` attribute.
+The `VersionElementName` value must match the element name used by the previous saga data property decorated with the `[DocumentVersion]` attribute.
 
 include: must-apply-conventions-for-version
 
 ## Saga data class changes
 
-[Saga data classes](/nservicebus/sagas/#long-running-means-stateful) no longer need to provide an `int` version property decorated with a [`DocumentVersion`](/persistence/mongodb-tekmaven/#saga-definition-guideline). The version property and attribute may be safely removed from Saga data class implementations:
+[Saga data classes](/nservicebus/sagas/#long-running-means-stateful) no longer need to provide an `int` version property decorated with a [`DocumentVersion`](/persistence/mongodb-tekmaven/#saga-definition-guideline). The version property and attribute may be safely removed from saga data class implementations:
 
 ```diff
 

@@ -19,15 +19,15 @@ Use the following compatibility API to configure the persistence to work with ex
 
 snippet: MongoDBSBMakoCompatibility
 
-The `VersionFieldName` value must match the element name used for the `DocumentVersion` property from the community persister.
+The `VersionElementName` value must match the element name used for the `DocumentVersion` property from the community persister.
 
 include: must-apply-conventions-for-version
 
-In addition the collection naming scheme must follow the same naming scheme used by `NServiceBus.MongoDB`: `sagaDataType => sagaDataType.Name` as demonstrated in the above snippet.
+In addition, the collection naming convention must be configured to match the one used by `NServiceBus.MongoDB`, `type => type.Name`, as demonstrated in the above snippet.
 
 ## Saga data class changes
 
-[Saga data classes](/nservicebus/sagas/#long-running-means-stateful) no longer need to implement [`IHaveDocumentVersion`](https://github.com/sbmako/NServiceBus.MongoDB#sagas). If the saga data class extends [`ContainMongoSagaData`](https://github.com/sbmako/NServiceBus.MongoDB#sagas) it no longer needs to do so. In cases where `IHaveDocumentVersion` has been explicitly implemented by the saga data class the `DocumentVersion` and `ETag` properties may be safely removed from Saga data class implementations.
+[Saga data classes](/nservicebus/sagas/#long-running-means-stateful) no longer need to implement [`IHaveDocumentVersion`](https://github.com/sbmako/NServiceBus.MongoDB#sagas). If the saga data class extends [`ContainMongoSagaData`](https://github.com/sbmako/NServiceBus.MongoDB#sagas), it no longer needs to do so. In cases where `IHaveDocumentVersion` has been explicitly implemented by the saga data class, the `DocumentVersion` and `ETag` properties may be safely removed from saga data class implementations.
 
 ```diff
 
@@ -43,7 +43,7 @@ In addition the collection naming scheme must follow the same naming scheme used
 
 ```
 
-If the `ETag` property is not removed it will no longer be updated by the persister.
+If the `ETag` property is not removed, it will no longer be updated by the persister.
 
 ### How Document Versioning Works
 

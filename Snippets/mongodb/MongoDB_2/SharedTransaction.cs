@@ -12,7 +12,7 @@
             var collection = context.SynchronizedStorageSession.GetCollection<MyBusinessObject>("MyCollectionName");
             return collection.InsertOneAsync(new MyBusinessObject());
         }
-        
+
         #endregion
     }
 

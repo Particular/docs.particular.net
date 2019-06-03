@@ -38,9 +38,9 @@ The `Server` endpoint is configured to use the MongoDB persistence.
 
 snippet: MongoDBConfig
 
-Unless the mongo url is configured the persistence will use the default connection string of `mongodb://localhost:27017`. 
+Unless the mongo url is configured, the persistence will use the default connection string of `mongodb://localhost:27017`. 
 
-Similarly, unless the database name setting is configured, the persistence will use the sanitized endpoint name as the database name. In this sample the database name will be `Samples_MongoDB_Server`.
+Similarly, unless the database name setting is configured, the persistence will use the endpoint name as the database name. In this sample the database name will be `Samples_MongoDB_Server`.
 
 ### Order saga
 
@@ -54,7 +54,7 @@ The saga data is stored in the `ordersagadata` collection.
 snippet: sagadata
 
  * `IContainSagaData.Id` maps to the native MongoDB document `_id`
- * `IContainSagaData.Originator` and `IContainSagaData.OriginalMessageId` both map to simple properties pairs.
+ * `IContainSagaData.Originator` and `IContainSagaData.OriginalMessageId` both map to simple property pairs.
  * Custom properties on the SagaData, in this case `OrderDescription` and `OrderId`, are also mapped to simple properties.
  * `_t` is type serialization metadata used by the underlying MongoDB Driver.
  * `_version` is added and managed by `NServiceBus.Storage.MongoDB` to prevent concurrency issues.

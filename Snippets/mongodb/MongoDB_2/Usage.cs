@@ -13,6 +13,7 @@
 
             #endregion
         }
+
         void MongoClient(EndpointConfiguration endpointConfiguration)
         {
             #region MongoDBClient
@@ -22,6 +23,7 @@
 
             #endregion
         }
+
         void DatabaseName(EndpointConfiguration endpointConfiguration)
         {
             #region MongoDBDatabaseName
@@ -31,6 +33,7 @@
 
             #endregion
         }
+
         void UseTransactions(EndpointConfiguration endpointConfiguration)
         {
             #region MongoDBDisableTransactions
@@ -40,6 +43,7 @@
 
             #endregion
         }
+
         void SBMakoCompatibility(EndpointConfiguration endpointConfiguration)
         {
             #region MongoDBSBMakoCompatibility
@@ -51,6 +55,7 @@
 
             #endregion
         }
+
         void TekmavenCompatibility(EndpointConfiguration endpointConfiguration)
         {
             #region MongoDBTekmavenCompatibility
