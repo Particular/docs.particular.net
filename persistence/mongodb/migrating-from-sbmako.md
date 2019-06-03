@@ -15,7 +15,7 @@ include: migration-warning
 
 ## Configuration
 
-Use the following compatibility API to configure the persistence to work with existing saga data:
+Use the following compatibility API to configure the package to work with existing saga data:
 
 snippet: MongoDBSBMakoCompatibility
 
@@ -23,7 +23,7 @@ The `VersionElementName` value must match the element name used for the `Documen
 
 include: must-apply-conventions-for-version
 
-In addition, the collection naming convention must be configured to match the one used by `NServiceBus.MongoDB`, `type => type.Name`, as demonstrated in the above snippet.
+In addition, the collection naming convention for sagas must be configured to match the one used by `NServiceBus.MongoDB`, `type => type.Name`, as demonstrated in the above snippet.
 
 ## Saga data class changes
 
@@ -37,8 +37,8 @@ In addition, the collection naming convention must be configured to match the on
 	public Guid Id { get; set; }
 	public string OriginatingMessageId { get; set; }
 	public string Originator { get; set; }
--   public int DocumentVersion { get; set; }
--   public int ETag { get; set; }
+-       public int DocumentVersion { get; set; }
+-       public int ETag { get; set; }
 }
 
 ```
