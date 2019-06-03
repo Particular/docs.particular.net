@@ -1,7 +1,7 @@
 ---
 title: Outbox with RavenDB persistence
 component: Raven
-reviewed: 2019-05-30
+reviewed: 2019-06-03
 versions: '[2.0,)'
 tags:
  - Outbox
@@ -9,7 +9,7 @@ related:
 - nservicebus/outbox
 redirects:
 - nservicebus/ravendb/outbox
-reviewed: 2017-08-21
+reviewed: 2019-06-03
 ---
 
 include: dtc-warning
