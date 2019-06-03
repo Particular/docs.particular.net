@@ -1,1 +1,1 @@
-WARNING: Compatibility requires additional settings which must be configured otherwise data duplication and incorrect execution of business logic may occur.
+DANGER: Compatibility requires additional settings which must be configured otherwise data duplication and incorrect execution of business logic may occur.
