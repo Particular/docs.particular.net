@@ -10,8 +10,6 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-TODO: Remove this diff link: https://github.com/Particular/NServiceBus.RavenDB/compare/tmp-start-of-6...develop
-
 This update supports upgrading to RavenDB 4.2 while using NServiceBus 7.x. The upgrade to RavenDB 4 is a **major** upgrade. It's not backward compatible, and the [API has a lot of breaking changes](https://ravendb.net/docs/article-page/4.2/csharp/migration/client-api/introduction). Additionally, the data storage format has changed, so databases need to have their [data migrated to a new RavenDB 4 database](https://ravendb.net/docs/article-page/4.2/csharp/migration/server/data-migration).
 
 ## Required RavenDB client
@@ -156,17 +154,16 @@ In RavenDB 4 and above, there is no default `Raven/DocumentsByEntityName` index,
 
 ## Legacy Outbox document id format no longer used
 
-TODO: Look up version when the change to add endpoint was made
+In versions as far back as 2.2.3, the document id format for Outbox records was changed to include the endpoint name, so that multiple endpoints wouldn't conflict with each other when cleaning up their outbox data. New outbox records were always stored with the updated naming convention.
 
-in 4
-
+Since outbox data is only persisted for a period of days, and the conversion has been contained in multiple versions over the course of years, the conversion is no longer necessary and has been removed in 6.0.
 
 
 ## No longer converting V4 core timeouts
 
-Stub
+In NServiceBus versions 3 and 4, RavenDB Persistence was part of the main NServiceBus library, and `TimeoutData` had a different class and namespace name. All versions of NServiceBus.RavenDB (the persistence split into a separate library) until now have included a converter that changes the class name on deserialization.
 
-TODO: Look up TimeoutData converter stuff in code
+If attempting to convert directly from NServiceBus 4 or lower to NServiceBus 7 (which is _not recommended_) timeout data will have to be converted to the new format manually.
 
 
 ## Updated .NET Framework versions
