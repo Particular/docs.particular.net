@@ -1,7 +1,6 @@
 ---
 title: Simple RavenDB Persistence Usage
 summary: Using RavenDB to store Sagas and Timeouts.
-reviewed: 2019-05-30
 component: Raven
 tags:
  - Saga
@@ -9,7 +8,7 @@ tags:
 related:
  - nservicebus/sagas
  - persistence/ravendb
-reviewed: 2017-08-21
+reviewed: 2019-06-04
 ---
 
 include: dtc-warning
@@ -19,7 +18,7 @@ include: dtc-warning
 
 This sample shows a simple Client + Server scenario.
 
- 1.  `Client` sends a `StartOrder` message to `Server`.
+ 1. `Client` sends a `StartOrder` message to `Server`.
  2. `Server` starts an `OrderSaga`.
  3. `OrderSaga` requests a timeout with a `CompleteOrder` data.
  4. When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
