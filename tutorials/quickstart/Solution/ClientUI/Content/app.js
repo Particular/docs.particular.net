@@ -86,7 +86,7 @@ ga('set', 'transport', 'beacon');
             gaEvt('QuickStart', 'SubmitLicenseForm', SOLUTION_VERSION);
 
             $.ajax({
-                url: "https://api.particular.net/platform/licensetool/requestextension",
+                url: "https://api2.particular.net/platform/licensetool/requestextension",
                 type: "POST",
                 data: postData,
                 complete: function (xhr, textStatus) {
