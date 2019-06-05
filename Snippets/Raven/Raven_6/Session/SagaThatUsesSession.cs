@@ -1,9 +1,7 @@
-﻿using NServiceBus;
-using NServiceBus.Saga;
-using NServiceBus.RavenDB.Persistence;
-
-namespace Raven_3.Session
+﻿namespace Raven_6.Session
 {
+    using System.Threading.Tasks;
+    using NServiceBus;
 
     #region ravendb-persistence-shared-session-for-saga
 
@@ -11,17 +9,11 @@ namespace Raven_3.Session
         Saga<SagaThatUsesSession.SagaData>,
         IHandleMessages<MyMessage>
     {
-        ISessionProvider sessionProvider;
-
-        public SagaThatUsesSession(ISessionProvider sessionProvider)
-        {
-            this.sessionProvider = sessionProvider;
-        }
-
-        public void Handle(MyMessage message)
+        public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var document = new MyDocument();
-            sessionProvider.Session.Store(document);
+            var ravenSession = context.SynchronizedStorageSession.RavenSession();
+            return ravenSession.StoreAsync(document);
         }
 
         #endregion
@@ -35,4 +27,5 @@ namespace Raven_3.Session
         {
         }
     }
+
 }
