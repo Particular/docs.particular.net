@@ -14,7 +14,7 @@ This update supports upgrading to RavenDB 4.2 while using NServiceBus 7.x. The u
 
 ## Required RavenDB client
 
-RavenDB Persistence requires [RavenDB.Client 4.2.0](https://www.nuget.org/packages/RavenDB.Client/4.2.0) or later.
+RavenDB Persistence requires [RavenDB.Client 4.2.0](https://www.nuget.org/packages/RavenDB.Client/4.2.0) or later. RavenDB 4.0 and 4.1 [are not LTS releases](https://ravendb.net/support) and are not supported.
 
 
 ## Supported cluster configurations
