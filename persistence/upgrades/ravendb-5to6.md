@@ -159,7 +159,7 @@ In versions as far back as 2.2.3, the document id format for Outbox records was 
 Since outbox data is only persisted for a period of days, and the conversion has been contained in multiple versions over the course of years, the conversion is no longer necessary and has been removed in 6.0.
 
 
-## No longer converting V4 core timeouts
+## No longer converting legacy timeouts
 
 In NServiceBus versions 3 and 4, RavenDB Persistence was part of the main NServiceBus library, and `TimeoutData` had a different class and namespace name. All versions of NServiceBus.RavenDB (the persistence split into a separate library) until now have included a converter that changes the class name on deserialization.
 
@@ -168,7 +168,8 @@ If attempting to convert directly from NServiceBus 4 or lower to NServiceBus 7 (
 
 ## Updated .NET Framework versions
 
-Because the [RavenDB.Client 4.2.0 NuGet package](https://www.nuget.org/packages/RavenDB.Client/4.2.0) is shipped for only the `netstandard20` and `netcoreapp2.1` build targets, RavenDB persistence can now only support frameworks implementing .NET Standard 2.0:
+Because the [RavenDB.Client 4.2.0 NuGet package](https://www.nuget.org/packages/RavenDB.Client/4.2.0) supports only `netstandard20` and `netcoreapp2.1`, RavenDB persistence can now only support frameworks:
 
 * .NET Core 2.0 and above
 * .NET Framework 4.7.2 and above
+* .NET Framework 4.6.1, although [there are several issues with consuming .NET Standard libraries from .NET 4.6.1](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) and Microsoft recommends upgrading to .NET Framework 4.7.2 or higher.
