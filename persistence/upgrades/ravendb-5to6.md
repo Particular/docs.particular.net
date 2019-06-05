@@ -168,7 +168,7 @@ If attempting to convert directly from NServiceBus 4 or lower to NServiceBus 7 (
 
 ## Updated .NET Framework versions
 
-Because the [RavenDB.Client 4.2.0 NuGet package](https://www.nuget.org/packages/RavenDB.Client/4.2.0) supports only `netstandard20` and `netcoreapp2.1`, RavenDB persistence can now only support frameworks:
+Because the [RavenDB.Client 4.2.0 NuGet package](https://www.nuget.org/packages/RavenDB.Client/4.2.0) supports only `netstandard20` and `netcoreapp2.1`, RavenDB persistence now supports the following frameworks:
 
 * .NET Core 2.0 and above
 * .NET Framework 4.7.2 and above
