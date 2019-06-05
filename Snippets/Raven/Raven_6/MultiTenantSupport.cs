@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 
-namespace Raven_5
+namespace Raven_6
 {
     class MultiTenantSupport
     {

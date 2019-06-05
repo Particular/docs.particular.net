@@ -1,4 +1,4 @@
-﻿namespace Raven_5.Session
+﻿namespace Raven_6.Session
 {
     using System.Threading.Tasks;
     using NServiceBus;
