@@ -1,6 +1,6 @@
 ---
 title: RavenDB Persistence Saga concurrency
-reviewed: 2017-10-17
+reviewed: 2019-06-10
 related:
  - nservicebus/sagas/concurrency
 redirects:

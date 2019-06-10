@@ -5,7 +5,7 @@ component: core
 versions: "[3,)"
 tags:
  - Persistence
-reviewed: 2018-08-08
+reviewed: 2019-06-10
 related:
  - nservicebus/operations
 redirects:
