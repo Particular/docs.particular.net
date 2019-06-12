@@ -10,5 +10,17 @@ class Usage
         transport.ConnectionString("Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
 
         #endregion
+
+        #region custom-prefetch-multiplier
+
+        transport.PrefetchMultiplier(3);
+
+        #endregion
+
+        #region custom-prefetch-count
+
+        transport.PrefetchCount(100);
+
+        #endregion
     }
 }
