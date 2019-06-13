@@ -3,7 +3,7 @@ NServiceBus is the heart of a distributed system and the Particular Service Plat
 At its core, NServiceBus works by routing _messages_ between _endpoints_. [Messages](/nservicebus/concept-overview.md#message) are plain C# classes that contain meaningful data for the business process that is being modeled.
 
 ```csharp
-public class ProcessOrder : IMessage
+public class ProcessOrder
 {
     public int OrderId { get; set; }
 }
@@ -31,7 +31,7 @@ NServiceBus accomplishes this by providing an abstraction over [existing queuing
 
 ## Reliable
 
-NServiceBus offers different ways of ensuring information is not lost due to failures in a system. First, NServiceBus provides native transaction support (e.g. DTC) for the underlying queuing technologies that support it, as well as its own transaction guarantees through the implementation of the [Outbox pattern](/nservicebus/outbox).
+NServiceBus offers different ways of ensuring information is not lost due to failures in a system. First, NServiceBus provides native transaction support for the underlying queuing technologies that support it, as well as its own transaction guarantees through the implementation of the [Outbox pattern](/nservicebus/outbox).
 
 In other cases, NServiceBus has [built-in recoverability](/nservicebus/recoverability) that can automatically adapt to common failures in a system. For intermittent failures, such as network outages, messages can be retried at regular intervals. For more serious errors, messages are set aside in a separate error queue so that they can be investigated at a later time without impacting the overall performance of the system.
 
