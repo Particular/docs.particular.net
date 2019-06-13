@@ -63,3 +63,7 @@ When ServiceControl is unable to properly import an audit or error message, the 
 #### Message database storage space
 
 ServiceControl stores messages in an embedded database on the local file system. If the disk runs out of space, message ingestion will fail and the ServiceControl instance will stop. This type of failure can cause instability in the database, even after storage space has been increased. ServiceControl will monitor the remaining storage space on the drive containing the embedded message store. The check will report a failure if the hard drive has less than 20% remaining of its total capacity. This threshold can be changed with the [ServiceControl/DataSpaceRemainingThreshold](/servicecontrol/creating-config-file.md#troubleshooting-servicecontroldataspaceremainingthreshold) setting.
+
+#### Remote instances not reachable
+
+With the introduction of ServiceControl.Audit the audit ingestion was split into its own ServiceControl instance. The existing ServiceControl instance relies on the audit instance being available. ServiceControl will monitor the configured remote instances every 30 seconds and report back if they do not return a status code 200 withing ten seconds.
