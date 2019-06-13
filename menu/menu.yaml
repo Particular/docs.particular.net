@@ -60,6 +60,7 @@
     - Url: nservicebus/architecture/principles
       Title: Architectural Principles
     - Url: nservicebus/architecture/scaling
+      Title: Scaling out
     - Url: nservicebus/architecture
       Title: Bus vs. Broker
   - Url: nservicebus/upgrades
