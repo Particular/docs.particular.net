@@ -7,7 +7,6 @@ reviewed: 2018-11-09
 ## Getting Started
 
  1. Create a [GitHub account](https://github.com/join).
- 1. Sign the [Particular Contributor License Agreement](https://particular.net/contributors-license-agreement-consent).
  1. Find the relevant repository by browsing the [list of extensions](/components/).
 
 
