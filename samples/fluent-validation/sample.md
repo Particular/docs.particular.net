@@ -10,6 +10,7 @@ Uses the [NServiceBus.FluentValidation](/nservicebus/messaging/validation-fluent
 
 ## Code walk-through
 
+
 ### Adding the fluent message validator
 
 In the snippet below, a fluent `AbstractValidator` for the type `MyMessage` is created with a rule to check that the `Content` property of the message is not empty. 
@@ -29,6 +30,44 @@ snippet: Enable
  1. Start the solution.
  1. Two messages of type, `MyMessage` are automatically sent to the endpoint on start up. The first message has a value  for the `Content` property and the second message has an empty value.
  1. The handler for the message whose `Content` property has been set will be handled correctly while a validation exception will be thrown for the message whose `Content` property is empty.
+
+
+## Testing
+
+Message validation can be performed during tests. This is done using the [NServiceBus.FluentValidation.Testing NuGet package](https://www.nuget.org/packages/NServiceBus.FluentValidation.Testing/).
+
+
+### Handler with a bug
+
+`OtherMessage` requires the `Content` property to be set. However the below handler has a bug in that that property is not set:
+
+snippet: OtherHandler
+
+
+### Add validators
+
+Once at assembly load time, validators should be loaded into `TestContextValidator`.
+
+snippet: AddValidators
+
+
+### Messages validated during tests
+
+During test execution incoming and outgoing messages are validated.
+
+
+#### Incoming messages are validated
+
+When running tests incoming messages are validated. This would usually be indicative of a bug in the test, i.e. the test in not passing in a valid message.
+
+snippet: ThrowsForIncoming
+
+
+#### Outgoing messages are validated
+
+Any message sent from the handler is validated.
+
+snippet: ThrowsForOutgoing
 
 
 
