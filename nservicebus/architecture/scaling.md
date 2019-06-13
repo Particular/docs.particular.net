@@ -2,9 +2,9 @@
 title: Scaling with NServiceBus
 summary: NServiceBus provides several options to scale out a system
 tags:
-- scalability
-- versioning
-- routing
+ - scalability
+ - versioning
+ - routing
 redirects:
  - nservicebus/architecture/scaling
 reviewed: 2019-06-13
