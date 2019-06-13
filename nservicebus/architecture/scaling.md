@@ -53,7 +53,7 @@ Upgrading an endpoint without stopping message processing, can be accomplished b
 
 The following image explains the process.
 
-![upgrading-endpoint-instance](upgrading-endpoint-instance.jpg)
+![upgrading-endpoint-instance](upgrading-endpoint-instance.png)
 
 Execute the following steps to upgrade an endpoint without downtime:
 
