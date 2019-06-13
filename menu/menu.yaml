@@ -59,6 +59,7 @@
       Title: Contributing
     - Url: nservicebus/architecture/principles
       Title: Architectural Principles
+    - Url: nservicebus/architecture/scaling
     - Url: nservicebus/architecture
       Title: Bus vs. Broker
   - Url: nservicebus/upgrades
