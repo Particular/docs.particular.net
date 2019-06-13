@@ -6,7 +6,7 @@ tags:
 - versioning
 - routing
 redirects:
- - transports/scale-out
+ - nservicebus/architecture/scaling
 reviewed: 2019-06-13
 ---
 
