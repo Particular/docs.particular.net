@@ -599,8 +599,6 @@
       Title: Transport types
     - Url: transports/transactions
       Title: Transactions
-    - Url: transports/scale-out
-      Title: Scaling out
     - Url: transports/queuecreation
       Title: Creating queues
   - Url: transports/upgrades
