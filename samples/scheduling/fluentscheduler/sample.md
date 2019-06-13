@@ -56,7 +56,7 @@ snippet: logging
 
 ## Scale Out
 
-Note that in this sample an instance of the FluentScheduler is configured to run in every endpoint's instance. If an endpoint is [scaled out](/transports/scale-out.md) then the configured jobs will be executed by each of the running instances. This behavior needs to be considered when architecting a solution that requires scale out. For example message de-duplication may be required, or only running the scheduler on a single endpoint instance.
+Note that in this sample an instance of the FluentScheduler is configured to run in every endpoint's instance. If an endpoint is [scaled out](/nservicebus/architecture/scaling.md) then the configured jobs will be executed by each of the running instances. This behavior needs to be considered when architecting a solution that requires scale out. For example message de-duplication may be required, or only running the scheduler on a single endpoint instance.
 
 
 ## Further information on FluentScheduler
