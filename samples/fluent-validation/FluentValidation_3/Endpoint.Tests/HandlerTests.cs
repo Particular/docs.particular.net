@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using NServiceBus.Testing;
 using Xunit;
 
@@ -11,28 +12,42 @@ public class HandlerTests
         #endregion
     }
 
-    #region ThrowsForIncoming
+    #region IncorrectlyPasses
     [Fact]
-    public Task ThrowsForIncoming()
+    public async Task IncorrectlyPasses()
     {
         var message = new MyMessage();
-        var handlerContext = ValidatingContext.Build(message);
+        var context = new TestableMessageHandlerContext();
         var handler = new OtherHandler();
-        return handlerContext.Run(handler);
+        await handler.Handle(message, context);
+        Assert.IsType<OtherMessage>(context.SentMessages.Single().Message);
+    }
+    #endregion
+
+    #region ThrowsForIncoming
+    [Fact]
+    public async Task ThrowsForIncoming()
+    {
+        var message = new MyMessage();
+        var context = ValidatingContext.Build(message);
+        var handler = new OtherHandler();
+        await context.Run(handler);
+        Assert.IsType<OtherMessage>(context.SentMessages.Single().Message);
     }
     #endregion
 
     #region ThrowsForOutgoing
     [Fact]
-    public Task ThrowsForOutgoing()
+    public async Task ThrowsForOutgoing()
     {
         var message = new MyMessage
         {
             Content = "TheContent"
         };
-        var handlerContext = ValidatingContext.Build(message);
+        var context = ValidatingContext.Build(message);
         var handler = new OtherHandler();
-        return handlerContext.Run(handler);
+        await context.Run(handler);
+        Assert.IsType<OtherMessage>(context.SentMessages.Single().Message);
     }
     #endregion
 }

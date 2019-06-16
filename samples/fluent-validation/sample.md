@@ -13,7 +13,7 @@ Uses the [NServiceBus.FluentValidation](/nservicebus/messaging/validation-fluent
 
 ### Adding the fluent message validator
 
-In the snippet below, a fluent `AbstractValidator` for the type `MyMessage` is created with a rule to check that the `Content` property of the message is not empty. 
+In the snippet below, a fluent `AbstractValidator` for the type `MyMessage` is created with a rule to check that the `Content` property of the message is not empty.
 
 snippet: Fluent-Validator
 
@@ -34,7 +34,7 @@ snippet: Enable
 
 ## Testing
 
-Message validation can be performed during tests. This is done using the [NServiceBus.FluentValidation.Testing NuGet package](https://www.nuget.org/packages/NServiceBus.FluentValidation.Testing/).
+Message validation can be performed during tests. This is done using a combination of the [NServiceBus Testing functionality](/nservicebus/testing/) and the [NServiceBus.FluentValidation.Testing NuGet package](https://www.nuget.org/packages/NServiceBus.FluentValidation.Testing/).
 
 
 ### Handler with a bug
@@ -44,30 +44,28 @@ Message validation can be performed during tests. This is done using the [NServi
 snippet: OtherHandler
 
 
-### Add validators
+### Testing with [NServiceBus Testing](/nservicebus/testing/)
 
-Once at assembly load time, validators should be loaded into `TestContextValidator`.
+When using [NServiceBus Testing](/nservicebus/testing/) a handlers behavior would be tested as follows:
 
-snippet: AddValidators
+snippet: IncorrectlyPasses
+
+This test will incorrectly pass, since the handler sends an invalid message.
 
 
 ### Messages validated during tests
 
-During test execution incoming and outgoing messages are validated.
+During test execution outgoing messages can be validated.
 
+snippet: ThrowsForOutgoing
 
-#### Incoming messages are validated
-
-When running tests incoming messages are validated. This would usually be indicative of a bug in the test, i.e. the test in not passing in a valid message.
+Incoming messages can also be validated. This would usually be indicative of a bug in the test, i.e. the test in not passing in a valid message.
 
 snippet: ThrowsForIncoming
 
 
-#### Outgoing messages are validated
+### Add validators
 
-Any message sent from the handler is validated.
+To enable this functionality validators should be loaded into `TestContextValidator` before any tests run.
 
-snippet: ThrowsForOutgoing
-
-
-
+snippet: AddValidators
