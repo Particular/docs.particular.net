@@ -15,6 +15,10 @@ NServiceBus can be configured to use [Microsoft.Extensions.DependencyInjection](
 
 snippet: msdependencyinjection
 
+If there is the need to share the DI container between NServiceBus and the hosting .NET Core application the following code can be used:
+
+snippet: msdependencyinjectionaspnetcore
+
 ### DependencyLifecycle mapping
 
 [`DependencyLifecycle`](/nservicebus/dependency-injection/#dependency-lifecycle) maps to [`Microsoft.Extensions.DependencyInjection` service lifetimes](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.2) as follows:
