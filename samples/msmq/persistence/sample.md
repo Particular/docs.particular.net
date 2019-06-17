@@ -16,9 +16,7 @@ Ensure that MSMQ has been installed.
 
 ## Code walk-through
 
-The application publishes an empty message to itself, via the MSMQ transport, and writes to the console when the message is received. 
-
-Note that the default queue name, `NServiceBus.Subscriptions`, is overridden to avoid sharing the subscription storage queue with other endpoints on the same machine. The queue name is `{EndpointName}.Subscriptions`.
+The application publishes an empty event to itself and writes to the console when the event is received. 
 
 
 ### Configuration

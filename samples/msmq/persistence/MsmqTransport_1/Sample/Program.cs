@@ -19,9 +19,8 @@ class Program
         #region ConfigureMsmqPersistenceEndpoint
 
         endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
-        var persistence = endpointConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>();
-        persistence.SubscriptionQueue($"{endpointName}.Subscriptions");
-
+        endpointConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>();
+        
         #endregion
 
         var routing = transport.Routing();
@@ -30,7 +29,7 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Press any key to publish an event");
+        Console.WriteLine("Press any key to publish");
         Console.ReadKey();
 
         var myMessage = new MyEvent();
