@@ -6,10 +6,12 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Msmq.Persistence";
+        var endpointName = "Samples.Msmq.Persistence";
+        Console.Title = endpointName;
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.Msmq.Persistence");
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>()
+            .Transactions(TransportTransactionMode.SendsAtomicWithReceive);
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
@@ -18,7 +20,7 @@ class Program
 
         endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
         var persistence = endpointConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>();
-        persistence.SubscriptionQueue("Samples.Msmq.Persistence.Subscriptions");
+        persistence.SubscriptionQueue($"{endpointName}.Subscriptions");
 
         #endregion
 
@@ -27,11 +29,17 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
+
+        Console.WriteLine("Press any key to publish an event");
+        Console.ReadKey();
+
         var myMessage = new MyEvent();
         await endpointInstance.Publish(myMessage)
             .ConfigureAwait(false);
+
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
+
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
