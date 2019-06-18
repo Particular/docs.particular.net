@@ -1,6 +1,6 @@
 ---
 title: MSMQ Subscription Persistence usage
-reviewed: 2017-09-22
+reviewed: 2019-06-18
 component: MsmqPersistence
 related:
 - persistence/msmq
