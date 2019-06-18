@@ -17,7 +17,7 @@ snippet: msdependencyinjection
 
 If there is the need to share the DI container between NServiceBus and the hosting .NET Core application the following code can be used:
 
-snippet: msdependencyinjectionaspnetcore
+snippet: msdependencyinjectionsharedcontainer
 
 ### DependencyLifecycle mapping
 
