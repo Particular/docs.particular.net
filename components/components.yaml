@@ -415,6 +415,15 @@
   NugetOrder:
     - NServiceBus
 
+- Key: PlatformSample
+  Name: Platform Sample
+  DocoUrl: platform/installation
+  GitHubOwner: Particular
+  Category: Other
+  ProjectUrl: https://github.com/Particular/Particular.PlatformSample
+  NugetOrder:
+    - NServiceBus
+
 - Key: Log4Net
   Name: Log4Net Logger
   DocoUrl: nservicebus/logging/log4net
