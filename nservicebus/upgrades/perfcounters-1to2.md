@@ -2,7 +2,7 @@
 title: Upgrade PerformanceCounters Version 1 to 2
 summary: Instructions on how to upgrade PerformanceCounters Version 1 to 2.
 component: PerfCounters
-reviewed: 2017-09-08
+reviewed: 2019-06-19
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
