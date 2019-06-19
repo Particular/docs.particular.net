@@ -12,7 +12,7 @@ The Particular Service Platform can be used in different ways.
 
 ## Monitoring production systems
 
-The Platform Installers requires internet connectivity and performs several actions like verifying MSMQ and MSDTC installation. It is possible to [achieve the same result](https://docs.particular.net/platform/installer/offline) without requiring internet connectivity.
+The Platform Installers requires internet connectivity and performs several actions like verifying MSMQ and MSDTC installation. It is possible to [achieve the same result](/platform/installer/offline.md) without requiring internet connectivity.
 
 For usage on production environments it is possible and recommended to install the different components individually. Each component has individual installation instructions.
 
@@ -20,7 +20,7 @@ For usage on production environments it is possible and recommended to install t
 
 The latest download is [available on GitHub here](https://github.com/Particular/servicecontrol/releases/latest).
 
-After installation, the ServiceControl Management application can configure one or multiple instances for [ServiceControl](/servicecontrol/installation) and [ServiceControl Monitoring](/servicecontrol/monitoring-instances/installation/).
+After installation, the ServiceControl Management application can configure one or multiple instances for [ServiceControl](/servicecontrol/installation.md) and [ServiceControl Monitoring](/servicecontrol/monitoring-instances/installation/).
 
 ### ServiceControl.Monitoring
 
@@ -56,4 +56,4 @@ For optimal installation of the Platform on a development machine the [Platform 
 
 The Service Platform has the ability to be hosted from within Visual Studio for the benefit of not having to install anything. This can be useful during presentations, to provide samples to others or to demonstrate the usage of the platform from within an existing solution. For this feature the Platform Package has been developed.
 
-There are additional [installation instructions](platform-sample) for the Platform Package.
+There are additional [installation instructions](/platform/platform-sample.md) for the Platform Package.
