@@ -23,7 +23,7 @@ The default value for ImagePath is:
 
 Change the value after `--url=` and restart the service.
 
-As ServicePulse is installed as a Windows Servce, optionally multiple ServicePulse instances can be installed. The default ports can be changed by providing [installation paramters](/servicepulse/installation#installation-available-installation-parameters).
+As ServicePulse is installed as a Windows Servce, optionally multiple ServicePulse instances can be installed. The default ports can be changed by providing [installation parameters](/servicepulse/installation.md#installation-available-installation-parameters).
 
 ## Default connection to ServiceControl and ServiceControl Monitoring
 
