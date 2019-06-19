@@ -67,4 +67,4 @@ When a message fails to be processed, even after a number of retry strategies ha
 
 Additionally, each endpoint can send [heartbeat](/monitoring/heartbeats/), [health check](/monitoring/custom-checks/), and [performance metrics](/monitoring/metrics/) through the platform for visualization in ServicePulse, making it easy to see which endpoints are offline, which are ready to scale out, and which require manual intervention.
 
-The [real-time monitoring demo](https://particular.net/real-time-monitoring) provides the ability to experience the Service Platform in action. The [Platform Sample](platform-sample-package.md) provides the ability to demonstrate the Service Platform from within any Visual Studio solution, without the need to install anything. 
+The [real-time monitoring demo](https://particular.net/real-time-monitoring) provides the ability to experience the Service Platform in action. The [Platform Sample](/platform/platform-sample-package.md) provides the ability to demonstrate the Service Platform from within any Visual Studio solution, without the need to install anything. 
