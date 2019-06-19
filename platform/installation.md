@@ -36,7 +36,7 @@ ServicePulse connects to a single instance of ServiceControl. There are differen
 
 #### Different browser connections
 
-By default ServicePulse connects to the [default ports](/servicepulse/host-config#default-connection-to-servicecontrol-and-servicecontrol-monitoring) for ServiceControl. This can be modified via [configuration](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) inside ServicePulse, which will alter the querystring. These unique uri can then be used as bookmarks.
+By default ServicePulse connects to the [default ports](/servicepulse/host-config.md#default-connection-to-servicecontrol-and-servicecontrol-monitoring) for ServiceControl. This can be modified via [configuration](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) inside ServicePulse, which will alter the querystring. These unique uri can then be used as bookmarks.
 
 #### Multiple ServicePulse instances
 
@@ -46,7 +46,7 @@ As ServicePulse runs as a Windows Service, it is possible to install the service
 
 The latest download is [available on GitHub here](https://github.com/Particular/serviceinsight/releases/latest).
 
-ServiceInsight has the ability to connect to multiple ServiceControl instances using the [Endpoint Explorer](/serviceinsight#endpoint-explorer).
+ServiceInsight has the ability to connect to multiple ServiceControl instances using the [Endpoint Explorer](/serviceinsight/#endpoint-explorer).
 
 ## Debugging during development
 

@@ -15,7 +15,7 @@ The Platform Sample package includes the binaries of ServiceControl and ServiceC
 
 The [Message Replay Tutorial](/tutorials/message-replay) is a sample that includes the Platform Sample and is used to view and retry failed messages. It can be used to verify how the Platform Sample works from within an existing Visual Studio solution.
 
-To have ServiceInsight use the sample, [download](https://github.com/Particular/serviceinsight/releases/latest) and install ServiceInsight. Then connect to `http://localhost:49200/api` from the [Endpoint Explorer](/serviceinsight#endpoint-explorer) to connect to the running Service Control.
+To have ServiceInsight use the sample, [download](https://github.com/Particular/serviceinsight/releases/latest) and install ServiceInsight. Then connect to `http://localhost:49200/api` from the [Endpoint Explorer](/serviceinsight/#endpoint-explorer) to connect to the running Service Control.
 
 Note: If port `49200` is in use by another process, the Platform Sample console application will start by outputting the used port.
 
