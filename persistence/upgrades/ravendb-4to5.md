@@ -4,7 +4,7 @@ summary: Instructions on how to upgrade NServiceBus.RavenDB 4 to 5
 component: Raven
 related:
  - nservicebus/upgrades/6to7
-reviewed: 2017-09-11
+reviewed: 2019-06-19
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
