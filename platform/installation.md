@@ -56,4 +56,4 @@ For optimal installation of the Platform on a development machine the [Platform 
 
 The Service Platform has the ability to be hosted from within Visual Studio for the benefit of not having to install anything. This can be useful during presentations, to provide samples to others or to demonstrate the usage of the platform from within an existing solution. For this feature the Platform Package has been developed.
 
-There are additional [installation instructions](/platform/platform-sample.md) for the Platform Package.
+There are additional [installation instructions](/platform/platform-sample-package.md) for the Platform Package.
