@@ -1,7 +1,7 @@
 ---
 title: Hangfire Usage
 summary: Using of Hangfire to send messages from within an NServiceBus endpoint.
-reviewed: 2017-09-20
+reviewed: 2019-06-20
 component: Core
 related:
 - nservicebus/messaging/timeout-manager
@@ -11,7 +11,6 @@ related:
 This sample illustrates the use of [Hangfire](https://www.hangfire.io/) to send messages from within an NServiceBus endpoint.
 
 > Hangfire - An easy way to perform background processing in .NET and .NET Core applications. Hangfire is an open-source framework that helps you to create, process and manage your background jobs.
-
 
 
 include: scheduler-drawbacks
