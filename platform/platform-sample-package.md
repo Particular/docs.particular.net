@@ -9,7 +9,7 @@ The Platform Sample can be used to demonstrate the platform without actually ful
 
 DANGER: The Platform Sample is not for production usage and should only be used for demonstrating it during presentations or in samples.
 
-The Platform Sample package includes the binaries of ServiceControl and ServiceControl.Monitoring and a self-hosted version of ServicePulse. All are configured to use the LearningTransport and don't support any other transports.
+The Platform Sample package includes ServiceControl, ServiceControl.Monitoring, and ServicePulse. All are configured to use the [Learning Transport](/transports/learning/) and don't support any other transports.
 
 ## Sample
 
@@ -26,7 +26,7 @@ Within an existing Visual Studio solution a new console application needs to be 
 1. Add a reference to the `Particular.PlatformSample` NuGet package.
 1. Add the following code
 
-```CSharp
+```cs
 static void Main(string[] args)
 {
     Particular.PlatformLauncher.Launch();
@@ -52,7 +52,7 @@ The `PlatformLauncher.Launch()` API has very limited options available as option
 
 By default the console outputs of ServiceControl and ServiceControl.Monitoring are suppressed. To view them for purposes of debugging or curiosity, use the `showPlatformToolConsoleOutput` parameter:
 
-```CSharp
+```cs
 Particular.PlatformLauncher.Launch(showPlatformToolConsoleOutput: true);
 ```
 
