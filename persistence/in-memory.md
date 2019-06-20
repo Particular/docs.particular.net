@@ -17,4 +17,4 @@ DANGER: All information stored in the In-Memory persistence is discarded when th
 
 NOTE: The [Delayed Retries](/nservicebus/recoverability/#delayed-retries) mechanism uses the [timeout manager](/nservicebus/messaging/timeout-manager.md) when a transport does not natively support delayed delivery. As Delayed Retries are enabled by default, using In-Memory persistence with a transport that uses the timeout manager has the risk of losing messages that have failed processing and are waiting for another retry attempt. Use In-Memory persistence only in scenarios where it is OK to lose messages.
 
-include: gatewaydedupe
+partial: gatewaydedupe
