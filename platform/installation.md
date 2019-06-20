@@ -12,7 +12,7 @@ The Particular Service Platform can be used in different ways.
 
 ## Monitoring production systems
 
-The Platform Installers requires internet connectivity and performs several actions like verifying MSMQ and MSDTC installation. It is possible to [achieve the same result](/platform/installer/offline.md) without requiring internet connectivity.
+The Platform Installer requires Internet connectivity. It is possible to [achieve the same result](/platform/installer/offline.md) without requiring internet connectivity.
 
 For usage on production environments it is possible and recommended to install the different components individually. Each component has individual installation instructions.
 
