@@ -115,7 +115,7 @@ If the error queue is set to `!disable` then error forwarding will be ignored ev
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary'}]'"/>
+    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary'}]"/>
   </appSettings>/
 </configuration>
 ```
