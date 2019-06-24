@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
@@ -96,6 +97,11 @@ class MyMessageAttachments : IMessageAttachments
     }
 
     public Task ProcessStreams(Func<string, AttachmentStream, Task> action, CancellationToken cancellation = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IReadOnlyCollection<AttachmentInfo>> GetMetadata(CancellationToken cancellation = new CancellationToken())
     {
         throw new NotImplementedException();
     }
