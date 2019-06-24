@@ -41,6 +41,11 @@
     Articles:
     - Url: platform
       Title: Service Platform
+      Articles:
+      - Url: platform/installation
+        Title: Platform Installation
+      - Url: platform/platform-sample-package
+        Title: Platform Sample Installation
     - Url: samples/endpoint-configuration
       Title: Configuration choices Sample
     - Url: nservicebus/concept-overview
