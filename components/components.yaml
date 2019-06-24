@@ -422,7 +422,7 @@
   Category: Other
   ProjectUrl: https://github.com/Particular/Particular.PlatformSample
   NugetOrder:
-    - NServiceBus
+    - Particular.PlatformSample
 
 - Key: Log4Net
   Name: Log4Net Logger
