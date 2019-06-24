@@ -26,6 +26,11 @@ WARNING: Don't assume that other messages haven't arrived in the meantime. If re
 
 include: non-null-task
 
+## Timezones and Daylight Saving Time (DST)
+
+Requesting a timeout can be done by passing either a `DateTime` or a `TimeSpan`. Passing a `DateTime` requires its `Kind` property to be set. If the timeouts needs to be triggered at a specific hour instead of a day then make sure that the time calculation is daylight saving time (DST) aware as clocks could shift a hour back or forth. Correct timezone and daylight saving time conversion can be done via the [`TimeZoneInfo.ConvertTime`](https://docs.microsoft.com/en-us/dotnet/api/system.timezoneinfo.converttime) API.
+
+NOTE: Keep in mind that DST / timezone info can change in the future for timeouts that are already set. Please keep in mind to have sagas react to such changes if business logic is dependant on this.
 
 ## Revoking timeouts
 
