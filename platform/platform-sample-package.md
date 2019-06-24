@@ -19,12 +19,7 @@ From within an existing Visual Studio solution, the following steps need to be e
 1. Add a reference to the `Particular.PlatformSample` NuGet package to the new Console Application.
 1. Add the following code:
 
-```cs
-static void Main(string[] args)
-{
-    Particular.PlatformLauncher.Launch();
-}
-```
+snippet: Launch
 
 The Platform Sample package will perform the following actions upon execution:
 
@@ -42,9 +37,7 @@ The `PlatformLauncher.Launch()` API has very limited options available as option
 
 By default the console outputs of ServiceControl and ServiceControl.Monitoring are suppressed. To view them for purposes of debugging or curiosity, use the `showPlatformToolConsoleOutput` parameter:
 
-```cs
-Particular.PlatformLauncher.Launch(showPlatformToolConsoleOutput: true);
-```
+snippet: ShowConsoleOutput
 
 ### ServicePulse default route
 
@@ -52,9 +45,7 @@ Some samples benefit from opening ServicePulse to a specific view, rather than t
 
 For example, to open ServicePulse to the Monitoring view:
 
-```CSharp
-Particular.PlatformLauncher.Launch(servicePulseDefaultRoute: "/monitoring");
-```
+snippet: ServicePulseDefaultRoute
 
 ## Sample
 
