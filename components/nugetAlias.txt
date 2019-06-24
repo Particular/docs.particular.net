@@ -111,3 +111,4 @@ UniformSession: NServiceBus.UniformSession
 FluentValidation: NServiceBus.FluentValidation
 DataAnnotations: NServiceBus.DataAnnotations
 MSDependencyInjection: NServiceBus.MSDependencyInjection
+PlatformSample: Particular.PlatformSample

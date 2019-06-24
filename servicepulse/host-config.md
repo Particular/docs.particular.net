@@ -1,7 +1,7 @@
 ---
 title: Configuring Hosting
 summary: Describes how to configure the ServicePulse host and connections
-reviewed: 2018-04-24
+reviewed: 2019-06-17
 component: ServicePulse
 redirects:
  - servicepulse/servicepulse-host-config
@@ -23,10 +23,13 @@ The default value for ImagePath is:
 
 Change the value after `--url=` and restart the service.
 
+As ServicePulse is installed as a Windows Servce, optionally multiple ServicePulse instances can be installed. The default ports can be changed by providing [installation parameters](/servicepulse/installation.md#installation-available-installation-parameters).
 
 ## Default connection to ServiceControl and ServiceControl Monitoring
 
 ServicePulse will by default, attempt to connect to ServiceControl and ServiceControl Monitoring using the URLs `http://localhost:33333/api/` and `http://localhost:33633/`, respectively.
+
+The configuration is stored inside a javascript file located in the folder ServicePulse is installed in. By default this is `C:\Program Files (x86)\Particular Software\ServicePulse\app\js\app.constants.js`.
 
 ## Configuring connections via the ServicePulse UI
 
