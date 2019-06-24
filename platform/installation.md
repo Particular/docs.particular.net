@@ -22,7 +22,7 @@ ServicePulse connects to a single instance of ServiceControl. There are differen
 
 #### Different browser connections
 
-By default ServicePulse connects to the [default ports](/servicepulse/host-config.md#default-connection-to-servicecontrol-and-servicecontrol-monitoring) for ServiceControl. This can be modified via [configuration](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) inside ServicePulse, which will alter the querystring. These unique uri can then be used as bookmarks.
+By default ServicePulse connects to the [default ports](/servicepulse/host-config.md#default-connection-to-servicecontrol-and-servicecontrol-monitoring) for ServiceControl. This can be modified via [configuration](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) inside ServicePulse, which will alter the querystring. These unique URLs can then be used as bookmarks.
 
 #### Multiple ServicePulse instances
 
