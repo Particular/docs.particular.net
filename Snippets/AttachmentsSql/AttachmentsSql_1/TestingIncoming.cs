@@ -116,6 +116,16 @@ class MyMessageAttachments : IMessageAttachments
         throw new NotImplementedException();
     }
 
+    public Task<AttachmentString> GetString(CancellationToken cancellation = new CancellationToken())
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<AttachmentString> GetString(string name, CancellationToken cancellation = new CancellationToken())
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<AttachmentStream> GetStream(CancellationToken cancellation = default)
     {
         throw new NotImplementedException();
@@ -157,6 +167,16 @@ class MyMessageAttachments : IMessageAttachments
     }
 
     public Task<AttachmentBytes> GetBytesForMessage(string messageId, string name, CancellationToken cancellation = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<AttachmentString> GetStringForMessage(string messageId, CancellationToken cancellation = new CancellationToken())
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<AttachmentString> GetStringForMessage(string messageId, string name, CancellationToken cancellation = new CancellationToken())
     {
         throw new NotImplementedException();
     }
