@@ -1,5 +1,6 @@
 ﻿namespace MongoDB_2
 {
+    using System;
     using MongoDB.Driver;
     using NServiceBus;
 
@@ -40,6 +41,16 @@
 
             var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
             persistence.UseTransactions(false);
+
+            #endregion
+        }
+
+        void TimeToKeepOutboxDeduplicationData(EndpointConfiguration endpointConfiguration)
+        {
+            #region MongoDBOutboxCleanup
+
+            var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
+            persistence.TimeToKeepOutboxDeduplicationData(TimeSpan.FromDays(30));
 
             #endregion
         }

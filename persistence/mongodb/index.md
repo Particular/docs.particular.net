@@ -13,7 +13,8 @@ Uses the [MongoDB document database](https://www.mongodb.com/) for storage.
 
 ## Supported persistence types
 
- * [Sagas](/nservicebus/sagas/)
+* [Sagas](/nservicebus/sagas/)
+* [Outbox](/nservicebus/outbox/)
 
 ## Usage
 
@@ -50,3 +51,9 @@ NServiceBus supports sharing the same MongoDB session transaction between Saga p
 To use the shared transaction in a message handler:
 
 snippet: MongoDBHandlerSharedTransaction
+
+## Outbox cleanup 
+
+When the outbox is enabled, the deduplication data is kept for seven days by default. To customize this time frame, use the following API:
+
+snippet: MongoDBOutboxCleanup
