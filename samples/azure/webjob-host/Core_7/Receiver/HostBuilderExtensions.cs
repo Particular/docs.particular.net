@@ -1,31 +1,34 @@
-﻿namespace Receiver
+﻿using Microsoft.Azure.WebJobs;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+
+public static class HostBuilderExtensions
 {
-    using Microsoft.Azure.WebJobs;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
-    using Microsoft.Extensions.Logging;
-
-    public static class HostBuilderExtensions
+    public static IHostBuilder ConfigureBackend(this IHostBuilder hostBuilder)
     {
-        public static IHostBuilder ConfigureBackend(this IHostBuilder hostBuilder)
+        hostBuilder.ConfigureHostConfiguration(builder =>
         {
-            hostBuilder.ConfigureAppConfiguration((context, builder) =>
-            {
-                builder.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName.ToLowerInvariant()}.json", optional: true);
-            });
+            builder.AddEnvironmentVariables("DOTNET_");
+            builder.AddEnvironmentVariables();
+        });
 
-            hostBuilder.ConfigureWebJobs(builder => { builder.AddAzureStorageCoreServices(); });
+        hostBuilder.ConfigureAppConfiguration((context, builder) =>
+        {
+            builder.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName.ToLowerInvariant()}.json", optional: true);
+        });
 
-            hostBuilder.ConfigureLogging((context, builder) => { builder.AddConsole(); });
+        hostBuilder.ConfigureWebJobs(builder => { builder.AddAzureStorageCoreServices(); });
 
-            hostBuilder.ConfigureServices((context, services) =>
-            {
-                services.AddSingleton<IJobHost, ContinuousJob>();
-                services.AddSingleton(services);
-            });
+        hostBuilder.ConfigureLogging((context, builder) => { builder.AddConsole(); });
 
-            return hostBuilder;
-        }
+        hostBuilder.ConfigureServices((context, services) =>
+        {
+            services.AddSingleton<IJobHost, ContinuousJob>();
+            services.AddSingleton(services);
+        });
+
+        return hostBuilder;
     }
 }
