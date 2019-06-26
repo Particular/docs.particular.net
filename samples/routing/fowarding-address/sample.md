@@ -19,9 +19,9 @@ An endpoint may be configured to [forward a copy of every successfully processed
 
 1. Open the solution in Visual Studio.
 1. Press F5.
-1. Follow the instructions in sender's console window.
+1. Follow the instructions in sender's console window to send a message to the OriginalDestination endpoint.
 1. The message will be processed by the OriginalDestination endpoint.
-1. The message will also be processed by NewDestination endpoint.
+1. The message will also be processed by the NewDestination endpoint.
 
 The sender is configured to send messages to OriginalDestination, and OriginalDestination is configured to forward a copy to NewDestination.
 
@@ -62,7 +62,7 @@ snippet: new-handler
 
 ### NServiceBus.ForwardingAddress
 
-Contains the implementation logic for specifying a forwarding address. This is done by specifying two behaviors in the pipeline.
+Contains the implementation logic for specifying a forwarding address. This is done by adding two behaviors in the pipeline.
 
 The first behavior forks the incoming physical context into the forwarding context after the message has been processed.
 
