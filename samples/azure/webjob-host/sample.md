@@ -21,13 +21,13 @@ related:
 
 This sample contains one project:
 
-- Receiver - Self-hosted endpoint running in a continuous webjob
+- Receiver - Self-hosted endpoint running in a continuous web job
 
 ### Receiver project
 
-The receiver project uses the self-hosting capability to start an end endpoint inside a continuously running webjob.
+The receiver project uses the self-hosting capability to start an end endpoint inside a continuously running web job.
 
-The snippet below illustrates how `StartAsync` method of `IJobHost` can be used to configure and start the endpoint
+The snippet below illustrates how the `StartAsync` method of `IJobHost` can be used to configure and start the endpoint
 
 snippet: WebJobHost_Start
 
