@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_6", "Core_6\Core_6.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_7", "Core_7\Core_7.csproj", "{B3FD8163-201D-4C85-B70F-C96A59CC682A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_7.1", "Core_7.1\Core_7.1.csproj", "{2327BA4F-D06D-44FE-B61F-3DF9259F5BEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_7.2", "Core_7.2\Core_7.2.csproj", "{2327BA4F-D06D-44FE-B61F-3DF9259F5BEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
