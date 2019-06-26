@@ -42,11 +42,11 @@ snippet: route-message-to-original-destination
 
 ### OriginalDestination
 
-Configures the forwarding address for `ImportantMessage` messages.
+This endpoint configures the forwarding address for `ImportantMessage` messages.
 
 snippet: forward-message-to-new-destination
 
-Also contains the original handler for `ImportantMessage` messages.
+The endpoint also contains the original handler for `ImportantMessage` messages.
 
 snippet: old-handler
 
@@ -55,14 +55,14 @@ NOTE: This handler will still be called, but can be safely removed, if no longer
 
 ### NewDestination
 
-Contains the new handler for `ImportantMessage` messages.
+This endpoint contains the new handler for `ImportantMessage` messages.
 
 snippet: new-handler
 
 
 ### NServiceBus.ForwardingAddress
 
-Contains the implementation logic for specifying a forwarding address. This is done by adding two behaviors in the pipeline.
+Contains the implementation logic for specifying a forwarding address. This is done by adding two behaviors to the pipeline.
 
 The first behavior forks the incoming physical context into the forwarding context after the message has been processed.
 
