@@ -27,9 +27,9 @@ This sample shows how the [NServiceBus.Wcf package](/nservicebus/wcf) may be use
 
 ## Code walk-through
 
-The sample contains a self-hosted endpoint which uses the [NServiceBus.WCF](/nservicebus/wcf) and [NServiceBus.Callbacks](/nservicebus/messaging/callbacks.md) packages to achieve reliable WCF services over messaging.
+The sample contains a self-hosted endpoint which uses the [NServiceBus.Wcf](/nservicebus/wcf) and [NServiceBus.Callbacks](/nservicebus/messaging/callbacks.md) packages to achieve reliable WCF services over messaging.
 
-The WCF package is configured to cancel requests after five seconds and a named pipe binding is used to expose the service:
+The WCF package is configured to cancel requests after five seconds, and a named pipe binding is used to expose the service:
 
 snippet: enable-wcf
 
