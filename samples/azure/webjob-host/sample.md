@@ -8,7 +8,7 @@ tags:
 - Hosting
 related:
 - nservicebus/dependency-injection/msdependencyinjection
-- samples/dependency-injection/aspnetcore/
+- samples/dependency-injection/aspnetcore
 
 ---
 
