@@ -41,6 +41,6 @@ The request message is passed to the proxy:
 
 snippet: wcf-proxy-call
 
-The proxy asynchronously waits until the response, or the cancellation is received. A response is sent from a regular handler hosted in the same endpoint:
+The proxy waits, asynchronously, until the response or cancellation is received. A response is sent from a regular handler hosted in the same endpoint:
 
 snippet: wcf-reply-handler
