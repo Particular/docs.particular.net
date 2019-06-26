@@ -155,7 +155,7 @@
         Title: Version 4 to 5
     - Title: NServiceBus.Azure deprecated
       Url: nservicebus/upgrades/azure-deprecation
-    - Title: MessagePack changes
+    - Title: NServiceBus.MessagePack
       Url: nservicebus/upgrades/messagepack-changes
     - Title: Azure BlobStorage DataBus
       Articles:
