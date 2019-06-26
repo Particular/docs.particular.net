@@ -31,7 +31,7 @@ The snippet below illustrates how the `StartAsync` method of `IJobHost` can be u
 
 snippet: WebJobHost_Start
 
-If dependencies need to be shared between the service collection and NServiceBus infrastructure like handlers the [MSDependencyInjection nuget package](nservicebus/dependency-injection/msdependencyinjection.md) needs to be configured.
+If dependencies need to be shared between the service collection and NServiceBus infrastructure like handlers the [MSDependencyInjection nuget package](/nservicebus/dependency-injection/msdependencyinjection.md) needs to be configured.
 
 A critical error action needs to be defined to restart the host when a critical error is raised.
 
