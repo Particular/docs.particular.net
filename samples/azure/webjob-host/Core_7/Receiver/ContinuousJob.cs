@@ -16,6 +16,7 @@ public class ContinuousJob : IJobHost
         this.services = services;
     }
 
+    #region WebJobHost_Start
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         endpointConfiguration = new EndpointConfiguration("receiver");
@@ -32,22 +33,26 @@ public class ContinuousJob : IJobHost
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString(transportConnectionString);
 
-        endpointConfiguration.UseContainer<ServicesBuilder>(customizations =>
-        {
-            customizations.ExistingServices(services);
-        });
-
         endpoint = await Endpoint.Start(endpointConfiguration);
+        #endregion
 
+        _ = SimulateWork();
+    }
+
+    private async Task SimulateWork()
+    {
         // sending here to simulate work
         await endpoint.SendLocal(new MyMessage());
         await endpoint.SendLocal(new MyMessage());
     }
 
+    #region WebJobHost_Stop
+
     public async Task StopAsync()
     {
         await endpoint.Stop();
     }
+    #endregion
 
     public Task CallAsync(string name, IDictionary<string, object> arguments = null, CancellationToken cancellationToken = default)
     {
@@ -55,16 +60,25 @@ public class ContinuousJob : IJobHost
         throw new NotImplementedException();
     }
 
-    Task OnCriticalError(ICriticalErrorContext context)
+    #region WebJobHost_CriticalError
+    static Task OnCriticalError(ICriticalErrorContext context)
     {
         var fatalMessage =
             $"The following critical error was encountered:\n{context.Error}\nProcess is shutting down.";
         Logger.Fatal(fatalMessage, context.Exception);
 
+        if (Environment.UserInteractive)
+        {
+            // so that user can see on their screen the problem
+            Thread.Sleep(10000);
+        }
+
         Environment.FailFast(fatalMessage, context.Exception);
 
         return Task.CompletedTask;
     }
+    #endregion
+
 
     readonly IConfiguration configuration;
     readonly IServiceCollection services;
