@@ -190,7 +190,7 @@ The recommended approach is for the saga to publish events containing the requir
 
 Saga state is read just before `Handle` is invoked and written immediately after `Handle` is completed. In other words, the sequence is read, invoke, and write per `Handle`.
 
-- The write will be an ADD if the read didn't return data or an UPDATE if the read did return data.
+- The write will be an INSERT if the read didn't return data or an UPDATE if the read did return data.
 - If the read did not return data and during the invoke the saga is completed no write will occur.
 - How state remains consistent depends the persister implementation (transactional lock vs atomic with optimistic concurrency control)
 - Saga state reads/writes do not happen during a stage, they happen during invocation in the `Invoke Handlers` stage and cannot be intercepted.
