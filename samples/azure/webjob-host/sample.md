@@ -39,6 +39,6 @@ A critical error action needs to be defined to restart the host when a critical 
 
 snippet: WebJobHost_CriticalError
 
-When the job host stops the endpoint needs to be shutdown to properly release all acquired ressources.
+When the job host stops the endpoint needs to be shutdown to properly release all acquired resources.
 
 snippet: WebJobHost_Stop
