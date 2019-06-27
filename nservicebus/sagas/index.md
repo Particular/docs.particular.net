@@ -193,6 +193,6 @@ Saga state is read just before `Handle` is invoked and written immediately after
 - The write will be an ADD if the read didn't return data or an UPDATE if the read did return data.
 - If the read did not return data and during the invoke the saga is completed no write will occur.
 - How state remains consistent depends the persister implementation (transactional lock vs atomic with optimistic concurrency control)
-- Saga state reads/writes happen after all pipeline stages
+- Saga state reads/writes do not happen during a stage, they happen during invocation in the `Invoke Handlers` stage and cannot be intercepted.
 
 If multiple different saga types are invoked on the same message type each read/invoke/write cycle will happen sequentially per saga type.
