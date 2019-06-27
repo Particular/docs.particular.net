@@ -56,12 +56,12 @@ public class ContinuousJob : IJobHost
 
     public Task CallAsync(string name, IDictionary<string, object> arguments = null, CancellationToken cancellationToken = default)
     {
-        // we don't need it
+        // this method is not needed for NServiceBus to run
         throw new NotImplementedException();
     }
 
     #region WebJobHost_CriticalError
-    static Task OnCriticalError(ICriticalErrorContext context)
+    static async Task OnCriticalError(ICriticalErrorContext context)
     {
         var fatalMessage =
             $"The following critical error was encountered:\n{context.Error}\nProcess is shutting down.";
@@ -70,12 +70,11 @@ public class ContinuousJob : IJobHost
         if (Environment.UserInteractive)
         {
             // so that user can see on their screen the problem
-            Thread.Sleep(10000);
+            await Task.Delay(10_000);
         }
 
         Environment.FailFast(fatalMessage, context.Exception);
 
-        return Task.CompletedTask;
     }
     #endregion
 

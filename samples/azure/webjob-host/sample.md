@@ -12,6 +12,8 @@ related:
 
 ---
 
+This sample is compatible with WebJobs SDK 3.0
+
 ## Running in development mode
 
  1. Start [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator)
