@@ -13,7 +13,8 @@ class Program
         var cancellationToken = new WebJobsShutdownWatcher().Token;
         using (host)
         {
-            await host.RunAsync(cancellationToken);
+            await host.RunAsync(cancellationToken)
+                .ConfigureAwait(false);
         }
     }
 }

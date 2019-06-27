@@ -33,7 +33,8 @@ public class ContinuousJob : IJobHost
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString(transportConnectionString);
 
-        endpoint = await Endpoint.Start(endpointConfiguration);
+        endpoint = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
         #endregion
 
         _ = SimulateWork();
@@ -42,15 +43,18 @@ public class ContinuousJob : IJobHost
     private async Task SimulateWork()
     {
         // sending here to simulate work
-        await endpoint.SendLocal(new MyMessage());
-        await endpoint.SendLocal(new MyMessage());
+        await endpoint.SendLocal(new MyMessage())
+            .ConfigureAwait(false);
+        await endpoint.SendLocal(new MyMessage())
+            .ConfigureAwait(false);
     }
 
     #region WebJobHost_Stop
 
     public async Task StopAsync()
     {
-        await endpoint.Stop();
+        await endpoint.Stop()
+            .ConfigureAwait(false);
     }
     #endregion
 
@@ -70,7 +74,8 @@ public class ContinuousJob : IJobHost
         if (Environment.UserInteractive)
         {
             // so that user can see on their screen the problem
-            await Task.Delay(10_000);
+            await Task.Delay(10_000)
+                .ConfigureAwait(false);
         }
 
         Environment.FailFast(fatalMessage, context.Exception);
