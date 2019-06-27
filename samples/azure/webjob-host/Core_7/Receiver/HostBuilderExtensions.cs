@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 public static class HostBuilderExtensions
 {
-    public static IHostBuilder ConfigureBackend(this IHostBuilder hostBuilder)
+    public static IHostBuilder ConfigureHost(this IHostBuilder hostBuilder)
     {
         hostBuilder.ConfigureHostConfiguration(builder =>
         {

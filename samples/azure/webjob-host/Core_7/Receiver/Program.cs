@@ -7,7 +7,7 @@ class Program
     static async Task Main(string[] args)
     {
         var host = new HostBuilder()
-            .ConfigureBackend()
+            .ConfigureHost()
             .Build();
 
         var cancellationToken = new WebJobsShutdownWatcher().Token;
